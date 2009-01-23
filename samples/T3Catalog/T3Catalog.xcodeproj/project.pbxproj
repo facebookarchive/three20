@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* T3CatalogAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* T3CatalogAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* RootViewController.xib */; };
+		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		BE5F25920EBA5F0400FD59A6 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */; };
+		BE5F266B0EBA684600FD59A6 /* T3ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5F266A0EBA684600FD59A6 /* T3ErrorView.m */; };
+		BE5F28120EBE695100FD59A6 /* T3TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5F28110EBE695100FD59A6 /* T3TableViewController.m */; };
+		BE617E130F20788000E4D5F1 /* T3YouTubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE617E120F20788000E4D5F1 /* T3YouTubeView.m */; };
+		BE80E0D40EAEAD3C00743358 /* T3ActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E0CB0EAEAD3C00743358 /* T3ActivityLabel.m */; };
+		BE80E0D60EAEAD3C00743358 /* T3Global.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E0CD0EAEAD3C00743358 /* T3Global.m */; };
+		BE80E0D80EAEAD3C00743358 /* T3ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E0CF0EAEAD3C00743358 /* T3ImageView.m */; };
+		BE80E0DA0EAEAD3C00743358 /* T3PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E0D10EAEAD3C00743358 /* T3PhotoView.m */; };
+		BE80E0DB0EAEAD3C00743358 /* T3PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E0D20EAEAD3C00743358 /* T3PhotoViewController.m */; };
+		BE80E0DC0EAEAD3C00743358 /* T3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E0D30EAEAD3C00743358 /* T3ViewController.m */; };
+		BE80E24A0EAEFF6100743358 /* SamplePhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E2490EAEFF6100743358 /* SamplePhotoSource.m */; };
+		BE80E3710EAF0F3000743358 /* ImageTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3700EAF0F3000743358 /* ImageTest2Controller.m */; };
+		BE80E3750EAF0F6E00743358 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3740EAF0F6E00743358 /* ImageTableViewCell.m */; };
+		BE80E39D0EAF103200743358 /* DefaultAlbum.png in Resources */ = {isa = PBXBuildFile; fileRef = BE80E39C0EAF103200743358 /* DefaultAlbum.png */; };
+		BE80E3A70EAF108500743358 /* ImageTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3A60EAF108500743358 /* ImageTest1Controller.m */; };
+		BE80E3B60EAF116700743358 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE80E3B50EAF116700743358 /* Icon.png */; };
+		BE8C0F7D0F2018C600EB0E98 /* YouTubeTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */; };
+		BEC82A720EB2B15A00F0BF5D /* T3PaintedView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC82A710EB2B15A00F0BF5D /* T3PaintedView.m */; };
+		BED689BA0EB2A9BB00BE45B1 /* T3UnclippedView.m in Sources */ = {isa = PBXBuildFile; fileRef = BED689B90EB2A9BB00BE45B1 /* T3UnclippedView.m */; };
+		BEDFE7B20F173E81003D6D69 /* T3URLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDFE7AF0F173E81003D6D69 /* T3URLRequest.m */; };
+		BEDFE7B30F173E81003D6D69 /* T3URLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDFE7B10F173E81003D6D69 /* T3URLCache.m */; };
+		BEE0FDAA0EB2A16A0052C05F /* T3ThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7314A50EB29D35001310D7 /* T3ThumbsViewController.m */; };
+		BEE0FDBF0EB2A2CA0052C05F /* T3ThumbsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7314A60EB29D35001310D7 /* T3ThumbsTableViewCell.m */; };
+		BEE0FDC40EB2A2F00052C05F /* T3ThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0FDC30EB2A2F00052C05F /* T3ThumbView.m */; };
+		BEE0FDDB0EB2A6850052C05F /* PhotoTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */; };
+		BEE38E7C0EB2884400189902 /* T3ShinyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE38E7B0EB2884400189902 /* T3ShinyLabel.m */; };
+		BEE38E810EB288BA00189902 /* TextTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE38E800EB288BA00189902 /* TextTest1Controller.m */; };
+		BEF6EBE10F27FDBC00CF4096 /* T3ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EBE00F27FDBC00CF4096 /* T3ScrollView.m */; };
+		BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* T3CatalogAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = T3CatalogAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* T3CatalogAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3CatalogAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* T3Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = T3Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2899E55F0DE3E45000AC0155 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		28A0AAE50D9B0CCF005BE974 /* T3Catalog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = T3Catalog_Prefix.pch; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE5F25900EBA5F0400FD59A6 /* PhotoTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest2Controller.h; sourceTree = "<group>"; };
+		BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest2Controller.m; sourceTree = "<group>"; };
+		BE5F26650EBA683600FD59A6 /* T3ErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3ErrorView.h; path = Three20/T3ErrorView.h; sourceTree = "<group>"; };
+		BE5F266A0EBA684600FD59A6 /* T3ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ErrorView.m; sourceTree = "<group>"; };
+		BE5F28100EBE694300FD59A6 /* T3TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3TableViewController.h; path = Three20/T3TableViewController.h; sourceTree = "<group>"; };
+		BE5F28110EBE695100FD59A6 /* T3TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3TableViewController.m; sourceTree = "<group>"; };
+		BE617E120F20788000E4D5F1 /* T3YouTubeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3YouTubeView.m; sourceTree = "<group>"; };
+		BE617E140F20788F00E4D5F1 /* T3YouTubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3YouTubeView.h; path = Three20/T3YouTubeView.h; sourceTree = "<group>"; };
+		BE67FE1A0EB2AA3100D4361F /* T3UnclippedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3UnclippedView.h; path = Three20/T3UnclippedView.h; sourceTree = "<group>"; };
+		BE7314A50EB29D35001310D7 /* T3ThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ThumbsViewController.m; sourceTree = "<group>"; };
+		BE7314A60EB29D35001310D7 /* T3ThumbsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ThumbsTableViewCell.m; sourceTree = "<group>"; };
+		BE7314AD0EB29D59001310D7 /* T3ThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3ThumbsViewController.h; path = Three20/T3ThumbsViewController.h; sourceTree = "<group>"; };
+		BE7314AE0EB29D59001310D7 /* T3ThumbsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3ThumbsTableViewCell.h; path = Three20/T3ThumbsTableViewCell.h; sourceTree = "<group>"; };
+		BE80E0C00EAEAD3C00743358 /* T3ActivityLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3ActivityLabel.h; path = Three20/T3ActivityLabel.h; sourceTree = "<group>"; };
+		BE80E0C20EAEAD3C00743358 /* T3Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3Global.h; path = Three20/T3Global.h; sourceTree = "<group>"; };
+		BE80E0C40EAEAD3C00743358 /* T3ImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3ImageView.h; path = Three20/T3ImageView.h; sourceTree = "<group>"; };
+		BE80E0C50EAEAD3C00743358 /* T3Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3Object.h; path = Three20/T3Object.h; sourceTree = "<group>"; };
+		BE80E0C60EAEAD3C00743358 /* T3PhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3PhotoSource.h; path = Three20/T3PhotoSource.h; sourceTree = "<group>"; };
+		BE80E0C70EAEAD3C00743358 /* T3PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3PhotoView.h; path = Three20/T3PhotoView.h; sourceTree = "<group>"; };
+		BE80E0C80EAEAD3C00743358 /* T3PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3PhotoViewController.h; path = Three20/T3PhotoViewController.h; sourceTree = "<group>"; };
+		BE80E0C90EAEAD3C00743358 /* T3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3ViewController.h; path = Three20/T3ViewController.h; sourceTree = "<group>"; };
+		BE80E0CA0EAEAD3C00743358 /* Three20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20.h; path = Three20/Three20.h; sourceTree = "<group>"; };
+		BE80E0CB0EAEAD3C00743358 /* T3ActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ActivityLabel.m; sourceTree = "<group>"; };
+		BE80E0CD0EAEAD3C00743358 /* T3Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3Global.m; sourceTree = "<group>"; };
+		BE80E0CF0EAEAD3C00743358 /* T3ImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ImageView.m; sourceTree = "<group>"; };
+		BE80E0D10EAEAD3C00743358 /* T3PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3PhotoView.m; sourceTree = "<group>"; };
+		BE80E0D20EAEAD3C00743358 /* T3PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3PhotoViewController.m; sourceTree = "<group>"; };
+		BE80E0D30EAEAD3C00743358 /* T3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ViewController.m; sourceTree = "<group>"; };
+		BE80E2480EAEFF6100743358 /* SamplePhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplePhotoSource.h; sourceTree = "<group>"; };
+		BE80E2490EAEFF6100743358 /* SamplePhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplePhotoSource.m; sourceTree = "<group>"; };
+		BE80E36F0EAF0F3000743358 /* ImageTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTest2Controller.h; sourceTree = "<group>"; };
+		BE80E3700EAF0F3000743358 /* ImageTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTest2Controller.m; sourceTree = "<group>"; };
+		BE80E3730EAF0F6E00743358 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTableViewCell.h; sourceTree = "<group>"; };
+		BE80E3740EAF0F6E00743358 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
+		BE80E39C0EAF103200743358 /* DefaultAlbum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAlbum.png; sourceTree = "<group>"; };
+		BE80E3A50EAF108500743358 /* ImageTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTest1Controller.h; sourceTree = "<group>"; };
+		BE80E3A60EAF108500743358 /* ImageTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTest1Controller.m; sourceTree = "<group>"; };
+		BE80E3B50EAF116700743358 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		BE8C0F7B0F2018C600EB0E98 /* YouTubeTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeTestController.h; sourceTree = "<group>"; };
+		BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeTestController.m; sourceTree = "<group>"; };
+		BEC82A710EB2B15A00F0BF5D /* T3PaintedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3PaintedView.m; sourceTree = "<group>"; };
+		BEC82A730EB2B18200F0BF5D /* T3PaintedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3PaintedView.h; path = Three20/T3PaintedView.h; sourceTree = "<group>"; };
+		BED689B90EB2A9BB00BE45B1 /* T3UnclippedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3UnclippedView.m; sourceTree = "<group>"; };
+		BEDFE7AE0F173E81003D6D69 /* T3URLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3URLRequest.h; path = Three20/T3URLRequest.h; sourceTree = "<group>"; };
+		BEDFE7AF0F173E81003D6D69 /* T3URLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3URLRequest.m; sourceTree = "<group>"; };
+		BEDFE7B00F173E81003D6D69 /* T3URLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3URLCache.h; path = Three20/T3URLCache.h; sourceTree = "<group>"; };
+		BEDFE7B10F173E81003D6D69 /* T3URLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3URLCache.m; sourceTree = "<group>"; };
+		BEE0FDC30EB2A2F00052C05F /* T3ThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ThumbView.m; sourceTree = "<group>"; };
+		BEE0FDC60EB2A3250052C05F /* T3ThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3ThumbView.h; path = Three20/T3ThumbView.h; sourceTree = "<group>"; };
+		BEE0FDD90EB2A6850052C05F /* PhotoTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest1Controller.h; sourceTree = "<group>"; };
+		BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest1Controller.m; sourceTree = "<group>"; };
+		BEE38E7A0EB2883F00189902 /* T3ShinyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3ShinyLabel.h; path = Three20/T3ShinyLabel.h; sourceTree = "<group>"; };
+		BEE38E7B0EB2884400189902 /* T3ShinyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ShinyLabel.m; sourceTree = "<group>"; };
+		BEE38E7F0EB288BA00189902 /* TextTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextTest1Controller.h; sourceTree = "<group>"; };
+		BEE38E800EB288BA00189902 /* TextTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTest1Controller.m; sourceTree = "<group>"; };
+		BEF6EBE00F27FDBC00CF4096 /* T3ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ScrollView.m; sourceTree = "<group>"; };
+		BEF6EBE60F27FDD000CF4096 /* T3ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3ScrollView.h; path = Three20/T3ScrollView.h; sourceTree = "<group>"; };
+		BEF6EC350F280CB300CF4096 /* ScrollViewTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewTestController.h; sourceTree = "<group>"; };
+		BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewTestController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* T3CatalogAppDelegate.h */,
+				1D3623250D0F684500981E51 /* T3CatalogAppDelegate.m */,
+				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
+				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+				BE80E3A50EAF108500743358 /* ImageTest1Controller.h */,
+				BE80E3A60EAF108500743358 /* ImageTest1Controller.m */,
+				BE80E36F0EAF0F3000743358 /* ImageTest2Controller.h */,
+				BE80E3700EAF0F3000743358 /* ImageTest2Controller.m */,
+				BE80E3730EAF0F6E00743358 /* ImageTableViewCell.h */,
+				BE80E3740EAF0F6E00743358 /* ImageTableViewCell.m */,
+				BEE0FDD90EB2A6850052C05F /* PhotoTest1Controller.h */,
+				BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */,
+				BE5F25900EBA5F0400FD59A6 /* PhotoTest2Controller.h */,
+				BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */,
+				BEE38E7F0EB288BA00189902 /* TextTest1Controller.h */,
+				BEE38E800EB288BA00189902 /* TextTest1Controller.m */,
+				BE8C0F7B0F2018C600EB0E98 /* YouTubeTestController.h */,
+				BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */,
+				BEF6EC350F280CB300CF4096 /* ScrollViewTestController.h */,
+				BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */,
+				BE80E2480EAEFF6100743358 /* SamplePhotoSource.h */,
+				BE80E2490EAEFF6100743358 /* SamplePhotoSource.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* T3Catalog.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				BE4A53D80EAD22370061796A /* Three20 */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				28A0AAE50D9B0CCF005BE974 /* T3Catalog_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				BE80E3B50EAF116700743358 /* Icon.png */,
+				BE80E39C0EAF103200743358 /* DefaultAlbum.png */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE4A53D80EAD22370061796A /* Three20 */ = {
+			isa = PBXGroup;
+			children = (
+				BE80E0CA0EAEAD3C00743358 /* Three20.h */,
+				BE80E0C20EAEAD3C00743358 /* T3Global.h */,
+				BE80E0CD0EAEAD3C00743358 /* T3Global.m */,
+				BE80E0C50EAEAD3C00743358 /* T3Object.h */,
+				BE80E0C90EAEAD3C00743358 /* T3ViewController.h */,
+				BE80E0D30EAEAD3C00743358 /* T3ViewController.m */,
+				BE5F28100EBE694300FD59A6 /* T3TableViewController.h */,
+				BE5F28110EBE695100FD59A6 /* T3TableViewController.m */,
+				BEDFE7AE0F173E81003D6D69 /* T3URLRequest.h */,
+				BEDFE7AF0F173E81003D6D69 /* T3URLRequest.m */,
+				BEDFE7B00F173E81003D6D69 /* T3URLCache.h */,
+				BEDFE7B10F173E81003D6D69 /* T3URLCache.m */,
+				BE80E0C40EAEAD3C00743358 /* T3ImageView.h */,
+				BE80E0CF0EAEAD3C00743358 /* T3ImageView.m */,
+				BEF6EBE60F27FDD000CF4096 /* T3ScrollView.h */,
+				BEF6EBE00F27FDBC00CF4096 /* T3ScrollView.m */,
+				BEE38E7A0EB2883F00189902 /* T3ShinyLabel.h */,
+				BEE38E7B0EB2884400189902 /* T3ShinyLabel.m */,
+				BE80E0C00EAEAD3C00743358 /* T3ActivityLabel.h */,
+				BE80E0CB0EAEAD3C00743358 /* T3ActivityLabel.m */,
+				BE80E0C60EAEAD3C00743358 /* T3PhotoSource.h */,
+				BE7314AD0EB29D59001310D7 /* T3ThumbsViewController.h */,
+				BE7314A50EB29D35001310D7 /* T3ThumbsViewController.m */,
+				BE7314AE0EB29D59001310D7 /* T3ThumbsTableViewCell.h */,
+				BE7314A60EB29D35001310D7 /* T3ThumbsTableViewCell.m */,
+				BEE0FDC60EB2A3250052C05F /* T3ThumbView.h */,
+				BEE0FDC30EB2A2F00052C05F /* T3ThumbView.m */,
+				BE80E0C80EAEAD3C00743358 /* T3PhotoViewController.h */,
+				BE80E0D20EAEAD3C00743358 /* T3PhotoViewController.m */,
+				BE80E0C70EAEAD3C00743358 /* T3PhotoView.h */,
+				BE80E0D10EAEAD3C00743358 /* T3PhotoView.m */,
+				BE67FE1A0EB2AA3100D4361F /* T3UnclippedView.h */,
+				BED689B90EB2A9BB00BE45B1 /* T3UnclippedView.m */,
+				BEC82A730EB2B18200F0BF5D /* T3PaintedView.h */,
+				BEC82A710EB2B15A00F0BF5D /* T3PaintedView.m */,
+				BE5F26650EBA683600FD59A6 /* T3ErrorView.h */,
+				BE5F266A0EBA684600FD59A6 /* T3ErrorView.m */,
+				BE617E140F20788F00E4D5F1 /* T3YouTubeView.h */,
+				BE617E120F20788000E4D5F1 /* T3YouTubeView.m */,
+			);
+			name = Three20;
+			path = ../../src;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* PhotoBrowser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PhotoBrowser" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhotoBrowser;
+			productName = PhotoBrowser;
+			productReference = 1D6058910D05DD3D006BFB54 /* T3Catalog.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "T3Catalog" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* PhotoBrowser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
+				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
+				BE80E39D0EAF103200743358 /* DefaultAlbum.png in Resources */,
+				BE80E3B60EAF116700743358 /* Icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* T3CatalogAppDelegate.m in Sources */,
+				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
+				BE80E0D40EAEAD3C00743358 /* T3ActivityLabel.m in Sources */,
+				BE80E0D60EAEAD3C00743358 /* T3Global.m in Sources */,
+				BE80E0D80EAEAD3C00743358 /* T3ImageView.m in Sources */,
+				BE80E0DA0EAEAD3C00743358 /* T3PhotoView.m in Sources */,
+				BE80E0DB0EAEAD3C00743358 /* T3PhotoViewController.m in Sources */,
+				BE80E0DC0EAEAD3C00743358 /* T3ViewController.m in Sources */,
+				BE80E24A0EAEFF6100743358 /* SamplePhotoSource.m in Sources */,
+				BE80E3710EAF0F3000743358 /* ImageTest2Controller.m in Sources */,
+				BE80E3750EAF0F6E00743358 /* ImageTableViewCell.m in Sources */,
+				BE80E3A70EAF108500743358 /* ImageTest1Controller.m in Sources */,
+				BEE38E7C0EB2884400189902 /* T3ShinyLabel.m in Sources */,
+				BEE38E810EB288BA00189902 /* TextTest1Controller.m in Sources */,
+				BEE0FDAA0EB2A16A0052C05F /* T3ThumbsViewController.m in Sources */,
+				BEE0FDBF0EB2A2CA0052C05F /* T3ThumbsTableViewCell.m in Sources */,
+				BEE0FDC40EB2A2F00052C05F /* T3ThumbView.m in Sources */,
+				BEE0FDDB0EB2A6850052C05F /* PhotoTest1Controller.m in Sources */,
+				BED689BA0EB2A9BB00BE45B1 /* T3UnclippedView.m in Sources */,
+				BEC82A720EB2B15A00F0BF5D /* T3PaintedView.m in Sources */,
+				BE5F25920EBA5F0400FD59A6 /* PhotoTest2Controller.m in Sources */,
+				BE5F266B0EBA684600FD59A6 /* T3ErrorView.m in Sources */,
+				BE5F28120EBE695100FD59A6 /* T3TableViewController.m in Sources */,
+				BEDFE7B20F173E81003D6D69 /* T3URLRequest.m in Sources */,
+				BEDFE7B30F173E81003D6D69 /* T3URLCache.m in Sources */,
+				BE8C0F7D0F2018C600EB0E98 /* YouTubeTestController.m in Sources */,
+				BE617E130F20788000E4D5F1 /* T3YouTubeView.m in Sources */,
+				BEF6EBE10F27FDBC00CF4096 /* T3ScrollView.m in Sources */,
+				BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joe Hewitt";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = T3Catalog_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = T3Catalog;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "394697A6-6692-459E-85EF-70C5F4CCA7C6";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = T3Catalog_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = T3Catalog;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joe Hewitt";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../src;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "394697A6-6692-459E-85EF-70C5F4CCA7C6";
+				SDKROOT = iphoneos2.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../src;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
+				SDKROOT = iphoneos2.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PhotoBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "T3Catalog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
