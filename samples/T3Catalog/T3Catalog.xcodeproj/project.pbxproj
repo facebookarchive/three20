@@ -266,9 +266,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* PhotoBrowser */ = {
+		1D6058900D05DD3D006BFB54 /* T3Catalog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PhotoBrowser" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "T3Catalog" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -278,7 +278,7 @@
 			);
 			dependencies = (
 			);
-			name = PhotoBrowser;
+			name = T3Catalog;
 			productName = PhotoBrowser;
 			productReference = 1D6058910D05DD3D006BFB54 /* T3Catalog.app */;
 			productType = "com.apple.product-type.application";
@@ -302,7 +302,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* PhotoBrowser */,
+				1D6058900D05DD3D006BFB54 /* T3Catalog */,
 			);
 		};
 /* End PBXProject section */
@@ -372,6 +372,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = T3Catalog_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = T3Catalog;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "394697A6-6692-459E-85EF-70C5F4CCA7C6";
@@ -424,7 +425,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PhotoBrowser" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "T3Catalog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,

@@ -7,10 +7,16 @@
 #ifdef DEBUG
 #define T3LOG NSLog
 #else
-#define T3LOG     
+#define T3LOG    
 #endif
 
-#define T3LOGRECT(rect) T3LOG(@"RECT x=%f, y=%f, w=%f, h=%f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
+#define T3LOGRECT(rect) \
+  T3LOG(@"RECT x=%f, y=%f, w=%f, h=%f", rect.origin.x, rect.origin.y, \
+    rect.size.width, rect.size.height)
+
+#define T3LOGEDGES(edges) \
+  T3LOG(@"%s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
+    edges.top, edges.bottom)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Dimensions of common iPhone OS Views
@@ -39,11 +45,24 @@
 #define T3_LONG_CACHE_AGE 60*60*24*7 // 1 week
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Animation
+
+/**
+ * The standard duration for transition animations.
+ */
+#define T3_TRANSITION_DURATION 0.3
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Creates a mutable array which does not retain references to the objects it contains.
  */
 NSMutableArray* T3CreateNonRetainingArray();
+
+/**
+ * Gets the current device orientation.
+ */
+UIInterfaceOrientation T3DeviceOrientation();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

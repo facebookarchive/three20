@@ -12,6 +12,15 @@ NSMutableArray* T3CreateNonRetainingArray() {
   return (NSMutableArray*)CFArrayCreateMutable(nil, 0, &callbacks);
 }
 
+UIInterfaceOrientation T3DeviceOrientation() {
+  UIInterfaceOrientation orient = [UIDevice currentDevice].orientation;
+  if (!orient) {
+    return UIInterfaceOrientationPortrait;
+  } else {
+    return orient;
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static int networkTaskCount = 0;

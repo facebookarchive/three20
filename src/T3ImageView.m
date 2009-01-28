@@ -77,7 +77,7 @@
   }
 }
 
-- (void)request:(T3URLRequest*)aRequest canceledLoadingURL:(NSString*)url {
+- (void)request:(T3URLRequest*)aRequest cancelledLoadingURL:(NSString*)url {
   [request release];
   request = nil;
 

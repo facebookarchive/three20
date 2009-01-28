@@ -80,6 +80,7 @@ static NSString* kCacheDirPathName = @"Three20";
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
                                     cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                     timeoutInterval:kTimeout];
+  // XXXjoe Set the User-Agent to something
   connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];  
 }
 
@@ -191,8 +192,8 @@ static NSString* kCacheDirPathName = @"Three20";
   if (index != NSNotFound) {
     [requests removeObjectAtIndex:index];
 
-    if ([request.delegate respondsToSelector:@selector(request:canceledLoadingURL:)]) {
-      [request.delegate request:request canceledLoadingURL:url];
+    if ([request.delegate respondsToSelector:@selector(request:cancelledLoadingURL:)]) {
+      [request.delegate request:request cancelledLoadingURL:url];
     }
   }
   if (![requests count]) {

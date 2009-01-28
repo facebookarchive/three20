@@ -83,26 +83,13 @@ static void addInvertedRoundedRectPath(CGContextRef context, CGRect rect, float 
   
   CGPathRelease(path);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation T3PaintedView
 
-@synthesize fillColor, strokeColor, strokeRadius, background;
-
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    background = 0;
-    fillColor = nil;
-    strokeColor = nil;
-    strokeRadius = 0;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [fillColor release];
-  [strokeColor release];
-  [super dealloc];
-}
-
+@synthesize background = _background, fillColor = _fillColor, fillColor2 = _fillColor2,
+  strokeColor = _strokeColor, strokeRadius = _strokeRadius;
 
 + (void)drawGrayBar:(CGRect)rect bottom:(BOOL)bottom {
   CGContextRef context = UIGraphicsGetCurrentContext();
@@ -315,11 +302,8 @@ static void addInvertedRoundedRectPath(CGContextRef context, CGRect rect, float 
   CGContextRestoreGState(context);
 }
 
-+ (void)drawBackground:(T3Background)background rect:(CGRect)rect fill:(UIColor*)fillColor
-  fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius {
-  const CGFloat* fill = fillColor ? CGColorGetComponents(fillColor.CGColor) : nil;
-  const CGFloat* stroke = strokeColor ? CGColorGetComponents(strokeColor.CGColor) : nil;
-
++ (void)drawBackground:(T3Background)background rect:(CGRect)rect fill:(const CGFloat*)fill
+  fillCount:(int)fillCount stroke:(const CGFloat*)stroke radius:(CGFloat)radius {
   switch (background) {
     case T3BackgroundGrayBar:
       [self drawGrayBar:rect bottom:NO];
@@ -353,13 +337,54 @@ static void addInvertedRoundedRectPath(CGContextRef context, CGRect rect, float 
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (id)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _background = 0;
+    _fillColor = nil;
+    _fillColor2 = nil;
+    _strokeColor = nil;
+    _strokeRadius = 0;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_fillColor release];
+  [_fillColor2 release];
+  [_strokeColor release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
 - (void)drawRect:(CGRect)rect {
-  if (background) {
-    [T3PaintedView drawBackground:background rect:rect fill:fillColor fillCount:1
-      stroke:strokeColor radius:strokeRadius];
+  if (_background) {
+    const CGFloat* stroke = _strokeColor ? CGColorGetComponents(_strokeColor.CGColor) : nil;
+
+    if (_fillColor2 && _fillColor) {
+      const CGFloat* fill = _fillColor ? CGColorGetComponents(_fillColor.CGColor) : nil;
+      const CGFloat* fill2 = _fillColor ? CGColorGetComponents(_fillColor2.CGColor) : nil;
+      const CGFloat fillColors[] = {fill[0], fill[1], fill[2], fill[3],
+        fill2[0], fill2[1], fill2[2], fill2[3]};
+      [T3PaintedView drawBackground:_background rect:rect fill:fillColors fillCount:2
+        stroke:stroke radius:_strokeRadius];
+    } else {
+      const CGFloat* fill = _fillColor ? CGColorGetComponents(_fillColor.CGColor) : nil;
+      [T3PaintedView drawBackground:_background rect:rect fill:fill fillCount:1
+        stroke:stroke radius:_strokeRadius];
+    }
   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)setFillColor:(UIColor*)color {
+  [_fillColor release];
+  _fillColor = [color retain];
+  
+  [self setNeedsDisplay];
 }
 
 @end

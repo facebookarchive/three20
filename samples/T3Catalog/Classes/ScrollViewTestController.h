@@ -3,7 +3,7 @@
 @interface ScrollViewTestController : T3ViewController
     <T3ScrollViewDelegate, T3ScrollViewDataSource> {
   T3ScrollView* _scrollView;
-  NSArray* colors;
+  NSArray* objects;
 }
 
 @end
