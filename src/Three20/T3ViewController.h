@@ -9,14 +9,6 @@ typedef enum {
   T3ViewInvalidView = 2
 } T3ViewValidity;
 
-typedef enum {
-  T3ViewContentNone,
-  T3ViewContentActivity,
-  T3ViewContentReady,
-  T3ViewContentEmpty,
-  T3ViewContentError
-} T3ViewContentState;
-
 @protocol T3Object;
 
 /**
@@ -71,7 +63,7 @@ typedef enum {
 @property(nonatomic, readonly) BOOL disabled;
 
 /**
- * The view has appeared at lease once.
+ * The view has appeared at least once.
  */
 @property(nonatomic, readonly) BOOL appeared;
 

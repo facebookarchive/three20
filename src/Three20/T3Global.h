@@ -11,11 +11,11 @@
 #endif
 
 #define T3LOGRECT(rect) \
-  T3LOG(@"RECT x=%f, y=%f, w=%f, h=%f", rect.origin.x, rect.origin.y, \
+  T3LOG(@"RECT %s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
     rect.size.width, rect.size.height)
 
 #define T3LOGEDGES(edges) \
-  T3LOG(@"%s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
+  T3LOG(@"EDGES %s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
     edges.top, edges.bottom)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,6 +54,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+typedef enum {
+  T3ViewContentNone,
+  T3ViewContentActivity,
+  T3ViewContentReady,
+  T3ViewContentEmpty,
+  T3ViewContentError
+} T3ViewContentState;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
  * Creates a mutable array which does not retain references to the objects it contains.
  */
@@ -64,6 +74,12 @@ NSMutableArray* T3CreateNonRetainingArray();
  */
 UIInterfaceOrientation T3DeviceOrientation();
 
+
+/**
+ * Gets the bounds of the screen with device orientation factored in.
+ */
+CGRect T3ScreenBounds();
+ 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -116,6 +132,9 @@ void T3NetworkRequestStopped();
 
 @property(nonatomic, readonly) CGFloat screenViewX;
 @property(nonatomic, readonly) CGFloat screenViewY;
+
+@property(nonatomic, readonly) CGFloat orientationWidth;
+@property(nonatomic, readonly) CGFloat orientationHeight;
 
 - (UIScrollView*)findFirstScrollView;
 - (UIView*)firstViewOfClass:(Class)cls;

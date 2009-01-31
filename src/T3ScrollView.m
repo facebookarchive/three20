@@ -20,23 +20,23 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 
 @implementation T3ScrollView
 
-@synthesize delegate = _delegate, dataSource = _dataSource, currentPageIndex = _currentPageIndex,
+@synthesize delegate = _delegate, dataSource = _dataSource, centerPageIndex = _centerPageIndex,
   pageSpacing = _pageSpacing, scrollEnabled = _scrollEnabled, zoomEnabled = _zoomEnabled,
   rotateEnabled = _rotateEnabled, orientation = _orientation;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    self.backgroundColor = [UIColor blackColor];
     self.clipsToBounds = YES;
     self.multipleTouchEnabled = YES;
     self.userInteractionEnabled = YES;
     
     _delegate = nil;
     _dataSource = nil;
-    _pageViews = [[NSMutableArray alloc] initWithCapacity:T3_MAX_PAGES];
-    _pageViewQueue = [[NSMutableArray alloc] init];
+    _pages = [[NSMutableArray alloc] initWithCapacity:T3_MAX_PAGES];
+    _pageQueue = [[NSMutableArray alloc] init];
     _pageSpacing = T3DefaultPageSpacing;
-    _currentPageIndex = 2;
+    _centerPageIndex = 0;
+    _visiblePageIndex = T3InvalidIndex;
     _pageArrayIndex = 0;
     _touchCount = 0;
     _pageEdges = UIEdgeInsetsZero;
@@ -47,11 +47,15 @@ static const NSTimeInterval T3BounceInterval = 0.5;
     _zoomEnabled = YES;
     _rotateEnabled = YES;
     _orientation = T3DeviceOrientation();
+    _tapTimer = nil;
+    _animationTimer = nil;
     _touch1 = nil;
     _touch2 = nil;
+    _dragging = NO;
+    _zooming = NO;
     
     for (NSInteger i = 0; i < T3_MAX_PAGES; ++i) {
-      [_pageViews addObject:[NSNull null]];
+      [_pages addObject:[NSNull null]];
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -65,21 +69,23 @@ static const NSTimeInterval T3BounceInterval = 0.5;
   [[NSNotificationCenter defaultCenter] removeObserver:self
     name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 
+  _delegate = nil;
   [_animationTimer invalidate];
+  [_tapTimer invalidate];
   [_animationStartTime release];
-  [_pageViews release];
-  [_pageViewQueue release];
+  [_pages release];
+  [_pageQueue release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (BOOL)isFirstPage {
-  return _currentPageIndex == 0;
+  return _centerPageIndex == 0;
 }
 
 - (BOOL)isLastPage {
-  return _currentPageIndex+1 >= [_dataSource numberOfItemsInScrollView:self];
+  return _centerPageIndex+1 >= [_dataSource numberOfPagesInScrollView:self];
 }
 
 - (BOOL)draggingFromEdge {
@@ -140,34 +146,38 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 }
 
 - (CGRect)frameOfPageAtIndex:(NSInteger)pageIndex {
+  CGSize size;
   if ([_dataSource respondsToSelector:@selector(scrollView:sizeOfPageAtIndex:)]) {
-    CGSize size = [_dataSource scrollView:self sizeOfPageAtIndex:pageIndex];
-    
-    CGFloat width, height;
-    if (UIInterfaceOrientationIsLandscape(_orientation)) {
-      if (size.width > size.height) {
-        height = size.width/size.height * self.width;
-        width = self.width;
-      } else {
-        height = size.width/size.height * self.width;
-        width = self.width;
-      }
-    } else {
-      if (size.width > size.height) {
-        width = self.width;
-        height = size.height/size.width * self.width;
-      } else {
-        width = size.width/size.height * self.height;
-        height = self.height;
-      }
+    size = [_dataSource scrollView:self sizeOfPageAtIndex:pageIndex];
+    if (!size.width || !size.height) {
+      size = CGSizeMake(self.pageWidth, self.pageHeight);
     }
-    
-    CGFloat xd = width - self.width;
-    CGFloat yd = height - self.height;
-    return CGRectMake(-xd/2, -yd/2, width, height);
   } else {
-    return CGRectMake(0, 0, self.pageWidth, self.pageHeight);
+    size = CGSizeMake(self.pageWidth, self.pageHeight);
   }
+
+  CGFloat width, height;
+  if (UIInterfaceOrientationIsLandscape(_orientation)) {
+    if (size.width > size.height) {
+      height = size.width/size.height * self.width;
+      width = self.width;
+    } else {
+      height = size.width/size.height * self.width;
+      width = self.width;
+    }
+  } else {
+    if (size.width > size.height) {
+      width = self.width;
+      height = size.height/size.width * self.width;
+    } else {
+      width = size.width/size.height * self.height;
+      height = self.height;
+    }
+  }
+  
+  CGFloat xd = width - self.width;
+  CGFloat yd = height - self.height;
+  return CGRectMake(-xd/2, -yd/2, width, height);
 }
 
 - (CGPoint)offsetForOrientation:(CGFloat)x y:(CGFloat)y {
@@ -213,11 +223,17 @@ static const NSTimeInterval T3BounceInterval = 0.5;
   }
 }
 
-- (NSInteger)pageIndexForItemIndex:(NSInteger)itemIndex relativeToIndex:(NSInteger)baseIndex {
-  NSInteger indexDiff = itemIndex - baseIndex;
+- (NSInteger)arrayIndexForPageIndex:(NSInteger)pageIndex relativeToIndex:(NSInteger)baseIndex {
+  NSInteger numberOfPages = self.numberOfPages;
+  if (!numberOfPages || pageIndex >= numberOfPages || pageIndex < 0) {
+    return T3InvalidIndex;
+  }
+  
+  NSInteger indexDiff = pageIndex - baseIndex;
   if (abs(indexDiff) > T3_OFFSCREEN_PAGES) {
     return T3InvalidIndex;
   }
+
   NSInteger arrayIndex = _pageArrayIndex + indexDiff;
   if (arrayIndex >= T3_MAX_PAGES) {
       return arrayIndex - T3_MAX_PAGES;
@@ -230,78 +246,87 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 
 - (NSInteger)realPageIndex {
   if (self.pinched) {
-    return _currentPageIndex;
+    return _centerPageIndex;
   } else if (!self.flipped) {
     if (_pageEdges.left > T3FlickThreshold && ![self isFirstPage]) {
-      return _currentPageIndex - 1;
+      return _centerPageIndex - 1;
     } else if (_pageEdges.right < -T3FlickThreshold && ![self isLastPage]) {
-      return _currentPageIndex + 1;
+      return _centerPageIndex + 1;
     } else {
-      return _currentPageIndex;
+      return _centerPageIndex;
     }
   } else {
     if (_pageEdges.left > T3FlickThreshold && ![self isLastPage]) {
-      return _currentPageIndex + 1;
+      return _centerPageIndex + 1;
     } else if (_pageEdges.right < -T3FlickThreshold && ![self isFirstPage]) {
-      return _currentPageIndex - 1;
+      return _centerPageIndex - 1;
     } else {
-      return _currentPageIndex;
+      return _centerPageIndex;
     }
   }
 }
 
-- (UIView*)pageAtIndex:(NSInteger)index create:(BOOL)create {
-  NSInteger arrayIndex = [self pageIndexForItemIndex:index relativeToIndex:_currentPageIndex];
+- (UIView*)pageAtIndex:(NSInteger)pageIndex create:(BOOL)create {
+  NSInteger arrayIndex = [self arrayIndexForPageIndex:pageIndex relativeToIndex:_centerPageIndex];
   if (arrayIndex == T3InvalidIndex) {
     return nil;
   }
   
-  UIView* pageView = [_pageViews objectAtIndex:arrayIndex];
-  if ((NSNull*)pageView == [NSNull null]) {
+  UIView* page = [_pages objectAtIndex:arrayIndex];
+  if ((NSNull*)page == [NSNull null]) {
     if (create) {
-      pageView = [_dataSource scrollView:self pageAtIndex:index];
-      pageView.userInteractionEnabled = NO;
-      [self addSubview:pageView];
-      [_pageViews replaceObjectAtIndex:arrayIndex withObject:pageView];
+      page = [_dataSource scrollView:self pageAtIndex:pageIndex];
+      page.multipleTouchEnabled = YES;
+      page.userInteractionEnabled = YES;
+      [self addSubview:page];
+      [_pages replaceObjectAtIndex:arrayIndex withObject:page];
     } else {
       return nil;
     }
   }
   
-  return pageView;
+  return page;
 }
 
-- (UIView*)enqueuePageAtIndex:(NSInteger)index {
-  NSInteger arrayIndex = [self pageIndexForItemIndex:index relativeToIndex:_currentPageIndex];
+- (UIView*)enqueuePageAtIndex:(NSInteger)pageIndex {
+  NSInteger arrayIndex = [self arrayIndexForPageIndex:pageIndex relativeToIndex:_centerPageIndex];
   if (arrayIndex == T3InvalidIndex) {
     return nil;
   }
   
-  UIView* pageView = [_pageViews objectAtIndex:arrayIndex];
-  if ((NSNull*)pageView == [NSNull null]) {
+  UIView* page = [_pages objectAtIndex:arrayIndex];
+  if ((NSNull*)page == [NSNull null]) {
     return nil;
   } else {
-    [_pageViewQueue addObject:pageView];
-    [_pageViews replaceObjectAtIndex:arrayIndex withObject:[NSNull null]];
+    [_pageQueue addObject:page];
+    [_pages replaceObjectAtIndex:arrayIndex withObject:[NSNull null]];
+    [page removeFromSuperview];
   }
   
-  return pageView;
+  return page;
 }
 
 - (void)enqueueAllPages {
-  for (int i = 0; i < _pageViews.count; ++i) {
-    [self enqueuePageAtIndex:i];
+  for (NSInteger i = 0; i < _pages.count; ++i) {
+    UIView* page = [_pages objectAtIndex:i];
+    if ((NSNull*)page != [NSNull null]) {
+      [_pageQueue addObject:page];
+      [_pages replaceObjectAtIndex:i withObject:[NSNull null]];
+      [page removeFromSuperview];
+    }
   }
+
+  _visiblePageIndex = T3InvalidIndex;
 }
 
 - (void)adjustPageEdgesForPageAtIndex:(NSInteger)pageIndex {
   if (self.flipped) {
-    CGFloat xd = (_currentPageIndex - pageIndex) * -(self.pageWidth + _pageSpacing);
+    CGFloat xd = (_centerPageIndex - pageIndex) * -(self.pageWidth + _pageSpacing);
     CGFloat left = _pageEdges.right > 0 ? _pageEdges.right : _pageEdges.left;
     CGFloat right = _pageEdges.left < 0 ? _pageEdges.left : _pageEdges.right;
     _pageEdges = _pageStartEdges = UIEdgeInsetsMake(0, left - xd, 0, right - xd);
   } else {
-    CGFloat xd = (_currentPageIndex - pageIndex) * (self.pageWidth + _pageSpacing);
+    CGFloat xd = (_centerPageIndex - pageIndex) * (self.pageWidth + _pageSpacing);
     CGFloat left = _pageEdges.right < 0 ? _pageEdges.right : _pageEdges.left;
     CGFloat right = _pageEdges.left > 0 ? _pageEdges.left : _pageEdges.right;
     _pageEdges = _pageStartEdges = UIEdgeInsetsMake(0, right - xd, 0, left - xd);
@@ -311,22 +336,24 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 - (void)moveToPageAtIndex:(NSInteger)pageIndex resetEdges:(BOOL)resetEdges {
   if (resetEdges) {
     _pageEdges = _pageStartEdges = UIEdgeInsetsZero;
+    _zooming = NO;
     [self setNeedsLayout];
-  } else if (pageIndex != _currentPageIndex) {
+  } else if (pageIndex != _centerPageIndex) {
     [self adjustPageEdgesForPageAtIndex:pageIndex];
+    _zooming = NO;
   }
 
-  NSInteger indexDiff = pageIndex - _currentPageIndex;
+  NSInteger indexDiff = pageIndex - _centerPageIndex;
   if (indexDiff) {
     if (abs(indexDiff) <= T3_OFFSCREEN_PAGES) {
       if (indexDiff > 0) {
-        NSInteger edgeIndex = _currentPageIndex - T3_OFFSCREEN_PAGES;
+        NSInteger edgeIndex = _centerPageIndex - T3_OFFSCREEN_PAGES;
         NSInteger newEdgeIndex = pageIndex - T3_OFFSCREEN_PAGES;
         for (int i = edgeIndex; i < newEdgeIndex; ++i) {
           [self enqueuePageAtIndex:i];
         }
       } else if (indexDiff < 0) {
-        NSInteger edgeIndex = _currentPageIndex + T3_OFFSCREEN_PAGES;
+        NSInteger edgeIndex = _centerPageIndex + T3_OFFSCREEN_PAGES;
         NSInteger newEdgeIndex = pageIndex + T3_OFFSCREEN_PAGES;
         for (int i = edgeIndex; i > newEdgeIndex; --i) {
           [self enqueuePageAtIndex:i];
@@ -336,29 +363,29 @@ static const NSTimeInterval T3BounceInterval = 0.5;
       [self enqueueAllPages];
     }
 
-    _pageArrayIndex = [self pageIndexForItemIndex:pageIndex relativeToIndex:_currentPageIndex];
-    _currentPageIndex = pageIndex;
+    _pageArrayIndex = [self arrayIndexForPageIndex:pageIndex relativeToIndex:_centerPageIndex];
+    _centerPageIndex = pageIndex;
   }
 }
 
 - (void)layoutPage {
-  UIView* view = [self pageAtIndex:_currentPageIndex create:YES];
-  if (view) {
+  UIView* page = [self pageAtIndex:_centerPageIndex create:YES];
+  if (page) {
     CGAffineTransform rotation = [self transformForOrientation:_orientation];
     CGPoint offset = [self offsetForOrientation:_pageEdges.left y:_pageEdges.top];
-    CGRect frame = [self frameOfPageAtIndex:_currentPageIndex];
+    CGRect frame = [self frameOfPageAtIndex:_centerPageIndex];
     
     if (self.zoomed) {
       CGFloat stretchedWidth = -_pageEdges.left + self.pageWidth + _pageEdges.right;
       CGFloat zoom = stretchedWidth / self.pageWidth;
       
-      view.transform = [self rotateTransform:CGAffineTransformScale(
+      page.transform = [self rotateTransform:CGAffineTransformScale(
         CGAffineTransformMakeTranslation(offset.x, offset.y), zoom, zoom)];
-      view.frame = CGRectMake(offset.x + (frame.origin.x*zoom), offset.y + (frame.origin.y*zoom),
+      page.frame = CGRectMake(offset.x + frame.origin.x*zoom, offset.y + frame.origin.y*zoom,
         frame.size.width*zoom, frame.size.height*zoom);
     } else {
-      view.transform = rotation;
-      view.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
+      page.transform = rotation;
+      page.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
         frame.size.width, frame.size.height);
     }
   }
@@ -369,54 +396,42 @@ static const NSTimeInterval T3BounceInterval = 0.5;
   BOOL pinched = self.pinched;
   CGAffineTransform rotation = [self transformForOrientation:_orientation];
 
-  NSInteger minPageIndex = _currentPageIndex - T3_OFFSCREEN_PAGES;
-  NSInteger maxPageIndex = _currentPageIndex + T3_OFFSCREEN_PAGES;
+  NSInteger minPageIndex = _centerPageIndex - T3_OFFSCREEN_PAGES;
+  NSInteger maxPageIndex = _centerPageIndex + T3_OFFSCREEN_PAGES;
 
-  for (NSInteger i = _currentPageIndex - 1; i >= 0 && i >= minPageIndex; --i) {
-    UIView* view = [self pageAtIndex:i create:YES];
-    if (view) {
-      NSInteger relativeIndex = -(_currentPageIndex - i);
+  for (NSInteger i = _centerPageIndex - 1; i >= 0 && i >= minPageIndex; --i) {
+    UIView* page = [self pageAtIndex:i create:YES];
+    if (page) {
+      NSInteger relativeIndex = -(_centerPageIndex - i);
       CGFloat x = flipped
         ? ((self.pageWidth + _pageSpacing) * -relativeIndex) + _pageEdges.right
         : ((self.pageWidth + _pageSpacing) * relativeIndex) + _pageEdges.left;
       CGPoint offset = [self offsetForOrientation:x y:0];
       CGRect frame = [self frameOfPageAtIndex:i];
 
-      view.transform = rotation;
-      view.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
+      page.transform = rotation;
+      page.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
         frame.size.width, frame.size.height);
-      view.hidden = pinched;
+      page.hidden = pinched;
     }
   }
 
-  NSInteger pageCount = [_dataSource numberOfItemsInScrollView:self];
-  for (NSInteger i = _currentPageIndex + 1; i < pageCount && i <= maxPageIndex; ++i) {
-    UIView* view = [self pageAtIndex:i create:YES];
-    if (view) {
-      NSInteger relativeIndex = i - _currentPageIndex;
+  NSInteger pageCount = [_dataSource numberOfPagesInScrollView:self];
+  for (NSInteger i = _centerPageIndex + 1; i < pageCount && i <= maxPageIndex; ++i) {
+    UIView* page = [self pageAtIndex:i create:YES];
+    if (page) {
+      NSInteger relativeIndex = i - _centerPageIndex;
       CGFloat x = flipped
         ? ((self.pageWidth + _pageSpacing) * -relativeIndex) + _pageEdges.left
         : ((self.pageWidth + _pageSpacing) * relativeIndex) + _pageEdges.right;
       CGPoint offset = [self offsetForOrientation:x y:0];
       CGRect frame = [self frameOfPageAtIndex:i];
 
-      view.transform = rotation;
-      view.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
+      page.transform = rotation;
+      page.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
         frame.size.width, frame.size.height);
-      view.hidden = pinched;
+      page.hidden = pinched;
     }
-  }
-}
-
-- (void)rotateToOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated {
-  _orientation = orientation;
-  if (animated) {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:T3_TRANSITION_DURATION];
-    [self layoutPage];
-    [UIView commitAnimations];
-  } else {
-    [self setNeedsLayout];
   }
 }
 
@@ -634,15 +649,77 @@ static const NSTimeInterval T3BounceInterval = 0.5;
   }
 }
 
+- (BOOL)canZoom {
+  return _zooming || ![_delegate respondsToSelector:@selector(scrollViewShouldZoom:)]
+      || [_delegate scrollViewShouldZoom:self];
+}
+
+- (BOOL)edgesAreZoomed:(UIEdgeInsets)edges {
+  return edges.left != edges.right || edges.top != edges.bottom;
+}
+
+- (void)updateZooming:(UIEdgeInsets)edges {
+  if (!_zooming && (self.zoomed || [self edgesAreZoomed:edges])) {
+    _zooming = YES;
+    self.centerPage.userInteractionEnabled = NO;
+    
+    if ([_delegate respondsToSelector:@selector(scrollViewDidBeginZooming:)]) {
+      [_delegate scrollViewDidBeginZooming:self];
+    }
+  } else if (_zooming && !self.zoomed) {
+    _zooming = NO;
+    self.centerPage.userInteractionEnabled = YES;
+    
+    if ([_delegate respondsToSelector:@selector(scrollViewDidEndZooming:)]) {
+      [_delegate scrollViewDidEndZooming:self];
+    }
+  }
+}
+
+- (void)stopDragging:(BOOL)willDecelerate {
+  if (_dragging) {
+    _dragging = NO;
+
+    if ([_delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
+      [_delegate scrollViewDidEndDragging:self willDecelerate:willDecelerate];
+    }
+  }
+}
+
+- (void)rotationDidStop {
+  if ([_delegate respondsToSelector:@selector(scrollViewDidRotate:)]) {
+    [_delegate scrollViewDidRotate:self];
+  }
+}
+
+- (void)startTapTimer {
+  _tapTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(tapTimer)
+    userInfo:nil repeats:NO];
+}
+
+- (void)cancelTapTimer {
+  [_tapTimer invalidate];
+  _tapTimer = nil;
+}
+
+- (void)tapTimer {
+  _tapTimer = nil;
+
+  if ([_delegate respondsToSelector:@selector(scrollViewTapped:)]) {
+    [_delegate scrollViewTapped:self];
+  }
+}
+
 - (void)stopAnimation:(BOOL)resetEdges {
   if (_animationTimer) {
     [_animationTimer invalidate];
     _animationTimer = nil;
     [_animationStartTime release];
     _animationStartTime = nil;
-
+    [self updateZooming:UIEdgeInsetsZero];
+    
     NSInteger realIndex = [self realPageIndex];
-    if (realIndex != _currentPageIndex || self.pinched) {
+    if (realIndex != _centerPageIndex || self.pinched) {
       [self moveToPageAtIndex:realIndex resetEdges:resetEdges];
     }
   }
@@ -655,6 +732,9 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 - (void)animator {
   NSTimeInterval kt = -[_animationStartTime timeIntervalSinceNow];
   CGFloat pct = kt ? [self tween:kt b:0 c:kt d:_animationDuration]/kt : 0;
+  if (pct > 1.0) {
+    pct = 1.0;
+  }
   
   _pageEdges.left = _pageStartEdges.left + _animateEdges.left * pct;
   _pageEdges.right = _pageStartEdges.right + _animateEdges.right * pct;
@@ -666,12 +746,19 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 
   if (pct >= 1.0) {
     [self stopAnimation:YES];
+    
+    if ([_delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+      [_delegate scrollViewDidEndDecelerating:self];
+    }
   }
 }
 
 - (void)startAnimationTo:(UIEdgeInsets)edges duration:(NSTimeInterval)duration {
   if (!_animationTimer) {
     _pageStartEdges = _pageEdges;
+    [self updateZooming:edges];
+    [self cancelTapTimer];
+
     _animateEdges = edges;
     _animationDuration = duration;
     _animationStartTime = [[NSDate date] retain];
@@ -686,6 +773,11 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 - (void)layoutSubviews {
   [self layoutPage];
   [self layoutAdjacentPages];
+
+  if (_visiblePageIndex != _centerPageIndex && self.centerPage) {
+    _visiblePageIndex = _centerPageIndex;
+    [_delegate scrollView:self didMoveToPageAtIndex:_centerPageIndex];
+  }
 }
 
 - (void)didMoveToSuperview {
@@ -695,6 +787,8 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesBegan:touches withEvent:event];
+  
   if (_touchCount < 2) {
     [self stopAnimation:NO];
     
@@ -706,14 +800,6 @@ static const NSTimeInterval T3BounceInterval = 0.5;
           CGPoint pt = [self touchLocation:touch];
           _touchStartEdges = _touchEdges = [self touchEdgesForPoint:pt];
           _pageStartEdges = _pageEdges;
-
-          if (touch.tapCount == 2) {
-            if (self.zoomed) {
-              [self startAnimationTo:[self reversePageEdges] duration:T3FlickInterval];
-            } else {
-              [self startAnimationTo:[self zoomPageEdgesTo:pt] duration:T3FlickInterval];
-            }
-          }
         } else if (_touchCount == 2) {
           CGPoint pt = [self touchLocation:touch];
           _touchEdges = [self stretchTouchEdges:_touchEdges toPoint:pt];
@@ -721,12 +807,27 @@ static const NSTimeInterval T3BounceInterval = 0.5;
           _pageStartEdges = _pageEdges;
         }
       }
+      
+      if (touch.tapCount == 2) {
+        [self cancelTapTimer];
+      }
     }
   }
 }
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent *)event {
+  [super touchesMoved:touches withEvent:event];
+
   if (_scrollEnabled && _touchCount && !_animationTimer) {
+    if (!_dragging) {
+      _dragging = YES;
+      [self cancelTapTimer];
+      
+      if ([_delegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
+        [_delegate scrollViewWillBeginDragging:self];
+      }
+    }
+
     _touchEdges = UIEdgeInsetsZero;
     for (UITouch* touch in [event allTouches]) {
       if (touch == _touch1 || touch == _touch2) {
@@ -737,7 +838,6 @@ static const NSTimeInterval T3BounceInterval = 0.5;
     }
     
     UIEdgeInsets edges = [self squareTouchEdges:_touchEdges];
-    
     CGFloat left = _pageStartEdges.left + (edges.left - _touchStartEdges.left);
     CGFloat right = _pageStartEdges.right + (edges.right - _touchStartEdges.right);
     CGFloat top = _pageEdges.top;
@@ -748,27 +848,37 @@ static const NSTimeInterval T3BounceInterval = 0.5;
       bottom = _pageStartEdges.bottom + (edges.bottom - _touchStartEdges.bottom) * r;
     }
       
-    _pageEdges = [self resistPageEdges:UIEdgeInsetsMake(top, left, bottom, right)];
-    //T3LOGEDGES(_pageEdges);
+    UIEdgeInsets pageEdges = [self resistPageEdges:UIEdgeInsetsMake(top, left, bottom, right)];
     
-    [self setNeedsLayout];
+    if (![self edgesAreZoomed:pageEdges] || self.canZoom) {
+      _pageEdges = pageEdges;
+      // T3LOGEDGES(_pageEdges);
+
+      [self updateZooming:pageEdges];
+      [self setNeedsLayout];
+    }
   }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+  [super touchesCancelled:touches withEvent:event];
+
   for (UITouch* touch in touches) {
     [self removeTouch:touch];
   }
   
   if (!_touchCount) {
     [self stopAnimation:YES];
-
+    [self stopDragging:NO];
+    
     _pageEdges = UIEdgeInsetsZero;
     [self setNeedsLayout];
   }
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
+  [super touchesEnded:touches withEvent:event];
+
   for (UITouch* touch in touches) {
     if (touch == _touch1 || touch == _touch2) {
       UITouch* remainingTouch = [self removeTouch:touch];
@@ -777,6 +887,19 @@ static const NSTimeInterval T3BounceInterval = 0.5;
         CGPoint point = [self touchLocation:remainingTouch];
         _touchEdges = _touchStartEdges = [self touchEdgesForPoint:point];
         _pageStartEdges = _pageEdges;
+      } else if (_touchCount == 0) {
+        if (touch.tapCount == 1 && !_dragging) {
+          [self startTapTimer];
+        } else if (touch.tapCount == 2 && self.canZoom) {
+          CGPoint pt = [self touchLocation:touch];
+          if (self.zoomed) {
+            [self startAnimationTo:[self reversePageEdges] duration:T3FlickInterval];
+          } else {
+            [self startAnimationTo:[self zoomPageEdgesTo:pt] duration:T3FlickInterval];
+          }
+        }
+
+        [self stopDragging:YES];
       }
       
       if (self.pinched || (_touchCount == 0 && self.pulled)) {
@@ -806,15 +929,47 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 
 - (void)setDataSource:(id<T3ScrollViewDataSource>)dataSource {
   _dataSource = dataSource;
-  [self rebuild];
+  [self reloadData];
 }
 
-- (void)setCurrentPageIndex:(NSInteger)index {
+- (void)setCenterPageIndex:(NSInteger)index {
   [self moveToPageAtIndex:index resetEdges:YES];
 }
 
-- (UIView*)currentPageView {
-  return [self pageAtIndex:_currentPageIndex create:YES];
+- (NSInteger)numberOfPages {
+  return [_dataSource numberOfPagesInScrollView:self];
+}
+
+- (UIView*)centerPage {
+  return [self pageAtIndex:_centerPageIndex create:YES];
+}
+
+- (NSDictionary*)visiblePages {
+  NSMutableDictionary* visiblePages = [NSMutableDictionary dictionaryWithCapacity:T3_MAX_PAGES];
+    
+  UIView* centerPage = self.centerPage;
+  if (centerPage) {
+    [visiblePages setObject:self.centerPage forKey:[NSNumber numberWithInt:_centerPageIndex]];
+  }
+  
+  NSInteger minPageIndex = _centerPageIndex - T3_OFFSCREEN_PAGES;
+  for (NSInteger i = _centerPageIndex - 1; i >= 0 && i >= minPageIndex; --i) {
+    UIView* page = [self pageAtIndex:i create:YES];
+    if (page) {
+      [visiblePages setObject:page forKey:[NSNumber numberWithInt:i]];
+    }
+  }
+
+  NSInteger maxPageIndex = _centerPageIndex + T3_OFFSCREEN_PAGES;
+  NSInteger pageCount = [_dataSource numberOfPagesInScrollView:self];
+  for (NSInteger i = _centerPageIndex + 1; i < pageCount && i <= maxPageIndex; ++i) {  
+    UIView* page = [self pageAtIndex:i create:YES];
+    if (page) {
+      [visiblePages setObject:page forKey:[NSNumber numberWithInt:i]];
+    }
+  }
+  
+  return visiblePages;
 }
 
 - (void)setOrientation:(UIInterfaceOrientation)orientation {
@@ -823,25 +978,46 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 
 - (void)setOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated {
   if (orientation != _orientation) {
-    [self rotateToOrientation:orientation animated:animated];
+    _orientation = orientation;
+
+    if ([_delegate respondsToSelector:@selector(scrollViewWillRotate:)]) {
+      [_delegate scrollViewWillRotate:self];
+    }
+
+    if (animated) {
+      [UIView beginAnimations:nil context:nil];
+      [UIView setAnimationDuration:T3_TRANSITION_DURATION];
+      [UIView setAnimationDelegate:self];
+      [UIView setAnimationDidStopSelector:@selector(rotationDidStop)];
+      [self layoutPage];
+      [UIView commitAnimations];
+    } else {
+      [self rotationDidStop];
+      [self setNeedsLayout];
+    }
   }
 }
 
 - (UIView*)dequeueReusablePage {
-  if (_pageViewQueue.count) {
-    UIView* pageView = [[_pageViewQueue.lastObject retain] autorelease];
-    [_pageViewQueue removeLastObject];
-    return pageView;
+  if (_pageQueue.count) {
+    UIView* page = [[_pageQueue.lastObject retain] autorelease];
+    [_pageQueue removeLastObject];
+    return page;
   } else {
     return nil;
   }
 }
 
-- (void)rebuild {
+- (void)reloadData {
   if (_dataSource) {
     [self enqueueAllPages];
     [self setNeedsLayout];
   }
+}
+
+
+- (UIView*)pageAtIndex:(NSInteger)pageIndex {
+  return [self pageAtIndex:pageIndex create:NO];
 }
 
 @end

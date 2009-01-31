@@ -1,20 +1,26 @@
 #import "Three20/T3ViewController.h"
 #import "Three20/T3PhotoSource.h"
-#import "Three20/T3PhotoView.h"
+#import "Three20/T3ScrollView.h"
+
+@protocol T3PhotoViewControllerDelegate;
+@class T3ScrollView, T3PhotoView;
 
 @interface T3PhotoViewController : T3ViewController
-    <UIScrollViewDelegate, T3PhotoSourceDelegate, T3PhotoViewDelegate> {
-  UIScrollView* scrollView;
-  T3PhotoView* photoView;
-  T3PhotoView* photoViewLeft;
-  T3PhotoView* photoViewRight;
-
-  id<T3PhotoSource> photoSource;
-  id<T3Photo> visiblePhoto;
-  NSUInteger visiblePhotoIndex;
-  UIInterfaceOrientation orientation;
-  UIBarStyle previousBarStyle;
+    <T3ScrollViewDelegate, T3ScrollViewDataSource, T3PhotoSourceDelegate> {
+  id<T3PhotoViewControllerDelegate> _delegate;
+  id<T3PhotoSource> _photoSource;
+  id<T3Photo> _centerPhoto;
+  NSUInteger _centerPhotoIndex;
+  T3ScrollView* _scrollView;
+  T3PhotoView* _statusView;
+  UIImage* _defaultImage;
+  NSString* _statusText;
+  UIBarStyle _previousBarStyle;
+  NSTimer* _loadTimer;
+  BOOL _delayLoad;
 }
+
+@property (nonatomic, assign) id<T3PhotoViewControllerDelegate> delegate;
 
 /**
  * The source of a sequential photo collection that will be displayed.
@@ -26,19 +32,25 @@
  *
  * You can assign this directly to change the photoSource to the one that contains the photo.
  */
-@property (nonatomic, assign) id<T3Photo> visiblePhoto;
+@property (nonatomic, assign) id<T3Photo> centerPhoto;
 
 /**
  * The index of the currently visible photo.
  *
- * Because visiblePhoto can be nil while waiting for the source to load the photo, this property
- * must be maintained even though visiblePhoto has its own index property.
+ * Because centerPhoto can be nil while waiting for the source to load the photo, this property
+ * must be maintained even though centerPhoto has its own index property.
  */
-@property (nonatomic, readonly) NSUInteger visiblePhotoIndex;
+@property (nonatomic, readonly) NSUInteger centerPhotoIndex;
 
 /**
- * Show or hide the toolbar and status bar that overlay the photo.
+ * The default image to show before a photo has been loaded.
  */
-- (void)showChrome:(BOOL)show animated:(BOOL)animated;
+@property (nonatomic, retain) UIImage* defaultImage;
+
+@end
+
+@protocol T3PhotoViewControllerDelegate
+
+- (UIView*)metaViewForPhotoAtIndex:(NSInteger)photoIndex;
 
 @end

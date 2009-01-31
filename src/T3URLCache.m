@@ -87,8 +87,17 @@ static NSString* kCacheDirPathName = @"Three20";
 - (void)dispatchData:(NSData*)data media:(id)media {
   for (int i = 0; i < requests.count; ++i) {
     T3URLRequest* request = [requests objectAtIndex:i];
-    if ([request.delegate respondsToSelector:@selector(request:loadedData:media:forURL:)]) {
-      [request.delegate request:request loadedData:data media:media forURL:url];
+    if ([request.delegate respondsToSelector:@selector(request:loadedData:media:)]) {
+      [request.delegate request:request loadedData:data media:media];
+    }
+  }
+}
+
+- (void)dispatchError:(NSError*)error {
+  NSEnumerator* e = [requests objectEnumerator];
+  for (T3URLRequest* request; request = [e nextObject]; ) {
+    if ([request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
+      [request.delegate request:request didFailWithError:error];
     }
   }
 }
@@ -113,14 +122,8 @@ static NSString* kCacheDirPathName = @"Three20";
     [cache performSelector:@selector(loader:loadedData:) withObject:self withObject:data];
   } else {
     T3LOG(@"  FAILED LOADING (%d) %@", statusCode, url);
-
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:statusCode userInfo:nil];
-    NSEnumerator* e = [requests objectEnumerator];
-    for (T3URLRequest* request; request = [e nextObject]; ) {
-      if ([request.delegate respondsToSelector:@selector(request:loadingURL:didFailWithError:)]) {
-        [request.delegate request:request loadingURL:url didFailWithError:error];
-      }
-    }
+    [cache performSelector:@selector(loader:didFailWithError:) withObject:self withObject:error];
   }
   return nil;
 }
@@ -146,13 +149,6 @@ static NSString* kCacheDirPathName = @"Three20";
     --retriesLeft;
     [self connect];
   } else {
-    NSEnumerator* e = [requests objectEnumerator];
-    for (T3URLRequest* request; request = [e nextObject]; ) {
-      if ([request.delegate respondsToSelector:@selector(request:loadingURL:didFailWithError:)]) {
-        [request.delegate request:request loadingURL:url didFailWithError:error];
-      }
-    }
-    
     [cache performSelector:@selector(loader:didFailWithError:) withObject:self withObject:error];
   }
 }
@@ -178,8 +174,8 @@ static NSString* kCacheDirPathName = @"Three20";
   if (!connection) {
     for (int i = 0; i < requests.count; ++i) {
       T3URLRequest* request = [requests objectAtIndex:i];
-      if ([request.delegate respondsToSelector:@selector(request:loadingURL:)]) {
-        [request.delegate request:request loadingURL:url];
+      if ([request.delegate respondsToSelector:@selector(requestLoading:)]) {
+        [request.delegate requestLoading:request];
       }
     }
 
@@ -192,8 +188,8 @@ static NSString* kCacheDirPathName = @"Three20";
   if (index != NSNotFound) {
     [requests removeObjectAtIndex:index];
 
-    if ([request.delegate respondsToSelector:@selector(request:cancelledLoadingURL:)]) {
-      [request.delegate request:request cancelledLoadingURL:url];
+    if ([request.delegate respondsToSelector:@selector(requestCancelled:)]) {
+      [request.delegate requestCancelled:request];
     }
   }
   if (![requests count]) {
@@ -431,19 +427,24 @@ static NSString* kCacheDirPathName = @"Three20";
   [self loadNextInQueue];
 }
 
+- (void)loader:(T3RequestLoader*)loader didFailWithError:(NSError*)error {
+  [loader dispatchError:error];
+  [self loadNextInQueueAfterLoader:loader];
+}
+
 - (void)loader:(T3RequestLoader*)loader loadedData:(NSData*)data {
   id media = nil;
   if (loader.convertMedia) {
     media = [self convertDataToMedia:data forType:loader.contentType];
+    if (!media) {
+      return [self loader:loader didFailWithError:nil];
+      return;
+    }
   }
 
   [self storeData:data media:media forURL:loader.url toDisk:YES];
   [loader dispatchData:data media:media];
 
-  [self loadNextInQueueAfterLoader:loader];
-}
-
-- (void)loader:(T3RequestLoader*)loader didFailWithError:(NSError*)error {
   [self loadNextInQueueAfterLoader:loader];
 }
 
@@ -467,10 +468,14 @@ static NSString* kCacheDirPathName = @"Three20";
   id media = nil;
   if ([self loadFromCache:request.url convertMedia:request.convertMedia data:&data media:&media
         fromDisk:!paused && totalLoading != kMaxConcurrentLoads]) {
-    if ([request.delegate respondsToSelector:@selector(request:loadedData:media:forURL:)]) {
-      [request.delegate request:request loadedData:data media:media forURL:request.url];
+    if ([request.delegate respondsToSelector:@selector(request:loadedData:media:)]) {
+      [request.delegate request:request loadedData:data media:media];
     }
     return YES;
+  }
+
+  if ([request.delegate respondsToSelector:@selector(requestPosted:)]) {
+    [request.delegate requestPosted:request];
   }
   
   // Next, see if there is an active loader for the URL and if so join that bandwagon
@@ -490,6 +495,7 @@ static NSString* kCacheDirPathName = @"Three20";
     [loader load];
   }
   [loader release];
+
   return NO;
 }
 

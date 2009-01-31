@@ -97,7 +97,6 @@
     [self loadView];
   }
 
-  appeared = YES;
   appearing = YES;
     
   [T3URLCache sharedCache].paused = YES;
@@ -105,6 +104,8 @@
   if (!disabled && validity != T3ViewValid) {
     [self updateViewInternal];
   }
+
+  appeared = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -191,6 +192,9 @@
 - (void)invalidate:(T3ViewValidity)aValidity {
   if (!(validity & aValidity)) {
     validity |= aValidity;
+    if (validity & T3ViewInvalidContent) {
+      contentState = T3ViewContentNone;
+    }
     if (appearing) {
       [self updateViewInternal];
     }
@@ -229,24 +233,24 @@
 }
 
 - (void)updateViewWithEmptiness {
-  NSString* description = @"There is nothing to show here.";
-  self.statusView = [[[T3ErrorView alloc] initWithTitle:description caption:nil image:nil]
+  NSString* caption = NSLocalizedString(@"There is nothing to show here.", @"");
+  self.statusView = [[[T3ErrorView alloc] initWithTitle:nil caption:caption image:nil]
     autorelease];
 }
 
 - (void)updateViewWithActivity:(NSString*)activityText {
   T3ActivityLabel* activityView = [[[T3ActivityLabel alloc] initWithFrame:CGRectZero
       style:T3ActivityLabelStyleGray] autorelease];
-  activityView.label = activityText;
+  activityView.text = activityText;
   self.statusView = activityView;
 }
 
 - (void)updateViewWithError:(NSError*)error {
-  NSString* title = @"Error";
-  NSString* description = error.description
+  NSString* title = NSLocalizedString(@"Error", @"");
+  NSString* caption = error.description
     ? error.description
-    : @"An error occurred";
-  self.statusView = [[[T3ErrorView alloc] initWithTitle:description caption:title image:nil]
+    : NSLocalizedString(@"An error occurred", @"");
+  self.statusView = [[[T3ErrorView alloc] initWithTitle:title caption:caption image:nil]
     autorelease];
 }
 

@@ -4,7 +4,7 @@
 
 static CGFloat kImageSize = 180;
 static CGFloat kHPadding = 20;
-static CGFloat kPadding = 20;
+static CGFloat kVPadding = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -22,6 +22,7 @@ static CGFloat kPadding = 20;
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageView.contentMode = UIViewContentModeCenter;
     [self addSubview:imageView];
 
     titleView = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -52,11 +53,16 @@ static CGFloat kPadding = 20;
 // UIView
 
 - (void)layoutSubviews {
+  [captionView sizeToFit];
+  [titleView sizeToFit];
+  
   if (titleView.text.length) {
-    captionView.frame = CGRectMake(kHPadding, self.height - (20+kPadding), self.width-kHPadding*2, 20);
-    titleView.frame = CGRectMake(0, captionView.y-50, self.width, 50);
+    captionView.frame = CGRectMake(kHPadding, self.height - kVPadding,
+      self.width-kHPadding*2, captionView.height);
+    titleView.frame = CGRectMake(0, captionView.y-kVPadding, self.width, titleView.height);
   } else {
-    captionView.frame = CGRectMake(kHPadding, self.height - 40, self.width-kHPadding*2, 40);
+    captionView.frame = CGRectMake(kHPadding, self.height - kVPadding,
+      self.width-kHPadding*2, captionView.height);
     titleView.frame = CGRectZero;
   }
 
@@ -64,7 +70,7 @@ static CGFloat kPadding = 20;
     [imageView sizeToFit];
     
     CGFloat textTop = titleView.height ? titleView.y : captionView.y;
-    imageView.frame = CGRectMake(self.width/2 - kImageSize/2, textTop - kImageSize,
+    imageView.frame = CGRectMake(self.width/2 - kImageSize/2, textTop - (kImageSize + kVPadding),
       kImageSize, kImageSize);
   } else {
     imageView.frame = CGRectZero;

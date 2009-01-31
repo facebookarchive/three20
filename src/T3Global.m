@@ -21,6 +21,16 @@ UIInterfaceOrientation T3DeviceOrientation() {
   }
 }
 
+CGRect T3ScreenBounds() {
+  CGRect bounds = [UIScreen mainScreen].bounds;
+  if (UIDeviceOrientationIsLandscape(T3DeviceOrientation())) {
+    CGFloat width = bounds.size.width;
+    bounds.size.width = bounds.size.height;
+    bounds.size.height = width;
+  }
+  return bounds;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static int networkTaskCount = 0;
@@ -344,6 +354,16 @@ void T3NetworkRequestStopped() {
     }
   }
   return y;
+}
+
+- (CGFloat)orientationWidth {
+  return UIDeviceOrientationIsPortrait(T3DeviceOrientation())
+    ? self.height : self.width;
+}
+
+- (CGFloat)orientationHeight {
+  return UIDeviceOrientationIsPortrait(T3DeviceOrientation())
+    ? self.height : self.width;
 }
 
 - (UIScrollView*)findFirstScrollView {

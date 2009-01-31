@@ -2,24 +2,25 @@
 
 @implementation T3ImageView
 
-@synthesize delegate, url, defaultImage, loading, autoresizesToImage;
+@synthesize delegate = _delegate, url = _url, defaultImage = _defaultImage,
+  autoresizesToImage = _autoresizesToImage;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    delegate = nil;
-    request = nil;
-    url = nil;
-    defaultImage = nil;
-    autoresizesToImage = NO;
+    _delegate = nil;
+    _request = nil;
+    _url = nil;
+    _defaultImage = nil;
+    _autoresizesToImage = NO;
   }
   return self;
 }
 
 - (void)dealloc {
-  delegate = nil;
+  _delegate = nil;
   self.url = nil;
-  [request release];
-  [defaultImage release];
+  [_request release];
+  [_defaultImage release];
   [super dealloc];
 }
 
@@ -30,7 +31,7 @@
   [super setImage:image];
 
   CGRect frame = self.frame;
-  if (autoresizesToImage) {
+  if (_autoresizesToImage) {
     self.frame = CGRectMake(frame.origin.x, frame.origin.y, image.size.width, image.size.height);
   } else {
     if (!frame.size.width && !frame.size.height) {
@@ -44,61 +45,74 @@
     }
   }
 
-  [delegate imageView:self loaded:image];
+  if (!_defaultImage || image != _defaultImage) {
+    [_delegate imageView:self loaded:image];
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // T3URLRequestDelegate
 
-- (void)request:(T3URLRequest*)aRequest loadedData:(NSData*)data media:(id)media
-    forURL:(NSString*)url {
-  [request release];
-  request = nil;
+- (void)requestPosted:(T3URLRequest*)request {
+  if ([_delegate respondsToSelector:@selector(imageViewPosted:)]) {
+    [_delegate imageViewPosted:self];
+  }
+}
+
+- (void)requestLoading:(T3URLRequest*)request {
+  if ([_delegate respondsToSelector:@selector(imageViewLoading:)]) {
+    [_delegate imageViewLoading:self];
+  }
+}
+
+- (void)request:(T3URLRequest*)request loadedData:(NSData*)data media:(id)media {
+  [_request release];
+  _request = nil;
 
   if ([media isKindOfClass:[UIImage class]]) {
     self.image = (UIImage*)media;
 
-    if ([delegate respondsToSelector:@selector(imageViewLoaded:)]) {
-      [delegate imageViewLoaded:self];
+    if ([_delegate respondsToSelector:@selector(imageViewLoaded:)]) {
+      [_delegate imageViewLoaded:self];
     }
   } else {
-    if ([delegate respondsToSelector:@selector(imageView:loadFailedWithError:)]) {
-      [delegate imageView:self loadFailedWithError:nil];
+    if ([_delegate respondsToSelector:@selector(imageView:loadLoadDidFailWithError:)]) {
+      [_delegate imageView:self loadLoadDidFailWithError:nil];
     }
   }
 }
 
-- (void)request:(T3URLRequest*)aRequest loadingURL:(NSString*)url didFailWithError:(NSError*)error {
-  [request release];
-  request = nil;
+- (void)request:(T3URLRequest*)request didFailWithError:(NSError*)error {
+  [_request release];
+  _request = nil;
 
-  if ([delegate respondsToSelector:@selector(imageView:loadFailedWithError:)]) {
-    [delegate imageView:self loadFailedWithError:error];
+  if ([_delegate respondsToSelector:@selector(imageView:loadLoadDidFailWithError:)]) {
+    [_delegate imageView:self loadLoadDidFailWithError:error];
   }
 }
 
-- (void)request:(T3URLRequest*)aRequest cancelledLoadingURL:(NSString*)url {
-  [request release];
-  request = nil;
+- (void)requestCancelled:(T3URLRequest*)request {
+  [_request release];
+  _request = nil;
 
-  if ([delegate respondsToSelector:@selector(imageView:loadFailedWithError:)]) {
-    [delegate imageView:self loadFailedWithError:nil];
+  if ([_delegate respondsToSelector:@selector(imageView:loadLoadDidFailWithError:)]) {
+    [_delegate imageView:self loadLoadDidFailWithError:nil];
   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setUrl:(NSString*)theURL {
-  if (self.image && [theURL isEqualToString:url])
+- (void)setUrl:(NSString*)url {
+  if (self.image && [url isEqualToString:_url])
     return;
   
   [self stopLoading];
-  [url release];
-  url = [theURL retain];
+  [_url release];
+  _url = [url retain];
   
-  if (!url || !url.length) {
-    if (self.image != defaultImage) {
-      self.image = defaultImage;
+  if (!_url || !_url.length) {
+    if (self.image != _defaultImage) {
+      self.image = _defaultImage;
     }
   } else {
     [self reload];
@@ -106,30 +120,26 @@
 }
 
 - (BOOL)loading {
-  return !!request;
+  return !!_request;
 }
 
 - (void)reload {
-  if (request)
+  if (_request)
     return;
   
-  request = [[T3URLRequest alloc] initWithURL:url delegate:self];
-  request.convertMedia = YES;
+  _request = [[T3URLRequest alloc] initWithURL:_url delegate:self];
+  _request.convertMedia = YES;
   
-  if (url && ![request send]) {
+  if (_url && ![_request send]) {
     // Put the default image in place while waiting for the request to load
-    if (defaultImage && self.image != defaultImage) {
-      self.image = defaultImage;
-    }
-
-    if ([delegate respondsToSelector:@selector(imageViewLoading:)]) {
-      [delegate imageViewLoading:self];
+    if (_defaultImage && self.image != _defaultImage) {
+      self.image = _defaultImage;
     }
   }
 }
 
 - (void)stopLoading {
-  [request cancel];
+  [_request cancel];
 }
 
 @end

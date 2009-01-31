@@ -23,73 +23,73 @@ static CGFloat kThinBezelHeight = 35;
     
     self.backgroundColor = [UIColor clearColor];
   
-    bezelView = [[T3PaintedView alloc] initWithFrame:CGRectZero];
+    _bezelView = [[T3PaintedView alloc] initWithFrame:CGRectZero];
     if (style == T3ActivityLabelStyleBlackBezel || style == T3ActivityLabelStyleBlackThinBezel) {
-      bezelView.opaque = NO;
-      bezelView.background = T3BackgroundRoundedRect;
-      bezelView.fillColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
-      bezelView.strokeRadius = 10;
+      _bezelView.opaque = NO;
+      _bezelView.background = T3BackgroundRoundedRect;
+      _bezelView.fillColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+      _bezelView.strokeRadius = 10;
     } else if (style == T3ActivityLabelStyleWhiteBezel) {
-      bezelView.opaque = NO;
-      bezelView.background = T3BackgroundRoundedRect;
-      bezelView.fillColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-      bezelView.strokeColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
-      bezelView.strokeRadius = 10;
+      _bezelView.opaque = NO;
+      _bezelView.background = T3BackgroundRoundedRect;
+      _bezelView.fillColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+      _bezelView.strokeColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
+      _bezelView.strokeRadius = 10;
     } else if (style == T3ActivityLabelStyleWhiteBox) {
-      bezelView.backgroundColor = [UIColor whiteColor];
+      _bezelView.backgroundColor = [UIColor whiteColor];
       self.backgroundColor = [UIColor whiteColor];
     } else {
-      bezelView.backgroundColor = [UIColor clearColor];
+      _bezelView.backgroundColor = [UIColor clearColor];
     }
-    [self addSubview:bezelView];
+    [self addSubview:_bezelView];
     
-    labelView = [[UILabel alloc] initWithFrame:
+    _textView = [[UILabel alloc] initWithFrame:
       CGRectMake(frame.size.height+5,0,frame.size.width,frame.size.height)];
-    labelView.backgroundColor = [UIColor clearColor];
-    labelView.opaque = NO;
-    labelView.lineBreakMode = UILineBreakModeTailTruncation;
+    _textView.backgroundColor = [UIColor clearColor];
+    _textView.opaque = NO;
+    _textView.lineBreakMode = UILineBreakModeTailTruncation;
     
     if (style == T3ActivityLabelStyleWhite) {
       spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleWhite];
-      labelView.font = [UIFont systemFontOfSize:17];
-      labelView.textColor = [UIColor whiteColor];
+      _textView.font = [UIFont systemFontOfSize:17];
+      _textView.textColor = [UIColor whiteColor];
     } else if (style == T3ActivityLabelStyleGray
                 || style == T3ActivityLabelStyleWhiteBox
                || style == T3ActivityLabelStyleWhiteBezel) {
       spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleGray];
-      labelView.font = [UIFont systemFontOfSize:17];
-      labelView.textColor = [UIColor grayColor];
+      _textView.font = [UIFont systemFontOfSize:17];
+      _textView.textColor = [UIColor grayColor];
     } else if (style == T3ActivityLabelStyleBlackBezel) {
       spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleWhiteLarge];
       spinner.frame = CGRectMake(0, 0, 24, 24);
-      labelView.font = [UIFont boldSystemFontOfSize:17];
-      labelView.textColor = [UIColor whiteColor];
-      labelView.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
-      labelView.shadowOffset = CGSizeMake(1, 1);
+      _textView.font = [UIFont boldSystemFontOfSize:17];
+      _textView.textColor = [UIColor whiteColor];
+      _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
+      _textView.shadowOffset = CGSizeMake(1, 1);
     } else if (style == T3ActivityLabelStyleBlackThinBezel) {
       spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleWhite];
       spinner.frame = CGRectMake(0, 0, 20, 20);
-      labelView.font = [UIFont boldSystemFontOfSize:15];
-      labelView.textColor = [UIColor whiteColor];
-      labelView.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
-      labelView.shadowOffset = CGSizeMake(1, 1);
+      _textView.font = [UIFont boldSystemFontOfSize:15];
+      _textView.textColor = [UIColor whiteColor];
+      _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
+      _textView.shadowOffset = CGSizeMake(1, 1);
     }
     
-    [bezelView addSubview:spinner];
-    [bezelView addSubview:labelView];
+    [_bezelView addSubview:spinner];
+    [_bezelView addSubview:_textView];
     [spinner startAnimating];
   }
   return self;
 }
 
 - (void)dealloc {
-  [bezelView release];
+  [_bezelView release];
   [spinner release];
-  [labelView release];
+  [_textView release];
   [super dealloc];
 }
 
@@ -100,7 +100,7 @@ static CGFloat kThinBezelHeight = 35;
   [super layoutSubviews];
 
   CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  CGSize captionSize = [labelView.text sizeWithFont:labelView.font];
+  CGSize captionSize = [_textView.text sizeWithFont:_textView.font];
   CGFloat contentWidth = spinner.width + kSpacing + captionSize.width;
 
   CGFloat bezelWidth, bezelHeight, y;
@@ -133,24 +133,24 @@ static CGFloat kThinBezelHeight = 35;
     captionWidth = captionMaxWidth;
   }
       
-  bezelView.frame = CGRectMake(floor(self.width/2 - bezelWidth/2), y,
+  _bezelView.frame = CGRectMake(floor(self.width/2 - bezelWidth/2), y,
     bezelWidth, bezelHeight);
   
-  labelView.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + kPadding + spinner.width/2),
+  _textView.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + kPadding + spinner.width/2),
     floor(bezelHeight/2 - captionSize.height/2), captionWidth, captionSize.height);
 
-  spinner.frame = CGRectMake(labelView.x - (spinner.width+kSpacing),
+  spinner.frame = CGRectMake(_textView.x - (spinner.width+kSpacing),
     floor(bezelHeight/2 - spinner.height/2), spinner.width, spinner.height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (NSString*)label {
-  return labelView.text;
+- (NSString*)text {
+  return _textView.text;
 }
 
-- (void)setLabel:(NSString*)label {
-  labelView.text = label;
+- (void)setText:(NSString*)text {
+  _textView.text = text;
   [self setNeedsLayout];
 }
 

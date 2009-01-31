@@ -13,15 +13,15 @@ typedef enum {
 
 @interface T3ActivityLabel : UIView {
   T3ActivityLabelStyle style;
-  T3PaintedView* bezelView;
+  T3PaintedView* _bezelView;
   UIActivityIndicatorView* spinner;
-  UILabel* labelView;
+  UILabel* _textView;
   BOOL centered;
   BOOL centeredToScreen;
 }
 
 @property (nonatomic, readonly) T3ActivityLabelStyle style;
-@property (nonatomic, assign) NSString* label;
+@property (nonatomic, assign) NSString* text;
 @property (nonatomic) BOOL centered;
 @property (nonatomic) BOOL centeredToScreen;
 

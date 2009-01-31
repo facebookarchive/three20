@@ -3,11 +3,11 @@
 @protocol T3ImageViewDelegate;
 
 @interface T3ImageView : UIImageView<T3URLRequestDelegate> {
-  id<T3ImageViewDelegate> delegate;
-  T3URLRequest* request;
-  NSString* url;
-  UIImage* defaultImage;
-  BOOL autoresizesToImage;
+  id<T3ImageViewDelegate> _delegate;
+  T3URLRequest* _request;
+  NSString* _url;
+  UIImage* _defaultImage;
+  BOOL _autoresizesToImage;
 }
 
 @property (nonatomic, assign) id<T3ImageViewDelegate> delegate;
@@ -26,8 +26,9 @@
 - (void)imageView:(T3ImageView*)imageView loaded:(UIImage*)image;
 
 @optional
+- (void)imageViewPosted:(T3ImageView*)imageView;
 - (void)imageViewLoading:(T3ImageView*)imageView;
 - (void)imageViewLoaded:(T3ImageView*)imageView;
-- (void)imageView:(T3ImageView*)imageView loadFailedWithError:(NSError*)error;
+- (void)imageView:(T3ImageView*)imageView loadLoadDidFailWithError:(NSError*)error;
 
 @end

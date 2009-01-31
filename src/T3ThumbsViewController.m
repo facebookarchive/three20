@@ -3,6 +3,7 @@
 #import "Three20/T3ThumbsTableViewCell.h"
 #import "Three20/T3PhotoSource.h"
 #import "Three20/T3UnclippedView.h"
+#import "Three20/T3ErrorView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -18,6 +19,7 @@ static NSInteger kColumnCount = 4;
   if (self = [super init]) {
     photoSource = nil;
     previousBarStyle = 0;
+    goingBack = NO;
   }
   
   return self;
@@ -31,7 +33,7 @@ static NSInteger kColumnCount = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)pauseLoadingThumbnails:(BOOL)paused {
-  if (photoSource.numberOfPhotos) {
+  if (photoSource.maxPhotoIndex >= 0) {
     NSArray* cells = _tableView.visibleCells;
     for (int i = 0; i < cells.count; ++i) {
       T3ThumbsTableViewCell* cell = [cells objectAtIndex:i];
@@ -47,7 +49,7 @@ static NSInteger kColumnCount = 4;
 
 - (void)loadView {
   CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  CGRect frame = CGRectMake(0, TOOLBAR_HEIGHT, appFrame.size.width, appFrame.size.height - TOOLBAR_HEIGHT);
+  CGRect frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height - TOOLBAR_HEIGHT);
 
   UIView* contentView = [[[T3UnclippedView alloc] initWithFrame:appFrame] autorelease];
   contentView.backgroundColor = [UIColor whiteColor];
@@ -55,7 +57,8 @@ static NSInteger kColumnCount = 4;
 //  contentView.autoresizesSubviews = YES;
   self.view = contentView;
     
-  UITableView* tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+  UITableView* tableView = [[UITableView alloc] initWithFrame:frame
+    style:UITableViewStylePlain];
   tableView.rowHeight = 79;
 //  tableView.autoresizesSubviews = YES;
 //	tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -89,26 +92,16 @@ static NSInteger kColumnCount = 4;
   [super viewDidAppear:animated];
   [self pauseLoadingThumbnails:NO];
 
-  if (0) {
-    self.tableView.frame = CGRectOffset(self.tableView.frame, 0, TOOLBAR_HEIGHT);
-  } else {
+  if (!self.nextViewController) {
     self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
   }
-
-//  if (!self.nextViewController && !goingBack) {
-//    self.tableView.frame = CGRectOffset(self.tableView.frame, 0, TOOLBAR_HEIGHT);
-//  }
 }
 
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
-  if (1) {
-    self.tableView.frame = CGRectOffset(self.tableView.frame, 0, TOOLBAR_HEIGHT);
-  } else {
-    self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
-  }
+  self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
 
   // If we're going backwards...
   if (!self.nextViewController) {
@@ -142,31 +135,50 @@ static NSInteger kColumnCount = 4;
   self.navigationItem.title = photoSource.title;
 
   if (photoSource.loading) {
-    [self setContentStateActivity:@"Loading..."];
+    [self setContentStateActivity:NSLocalizedString(@"Loading...", @"")];
   } else if (photoSource.isInvalid) {
     [photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax delegate:self];
-  } else if (!photoSource.numberOfPhotos) {
+  } else if (photoSource.maxPhotoIndex < 0) {
     self.contentState = T3ViewContentEmpty;
   } else {
     self.contentState = T3ViewContentReady;
   }
 }
 
+- (void)updateViewWithEmptiness {
+  self.statusView = [[[T3ErrorView alloc] initWithTitle:nil
+    caption:NSLocalizedString(@"This photo set contains no photos.", @"")
+    image:[UIImage imageNamed:@"t3images/photoDefault.png"]] autorelease];
+}
+
+- (void)updateViewWithError:(NSError*)error {
+  self.statusView = [[[T3ErrorView alloc]
+    initWithTitle:NSLocalizedString(@"Error", @"")
+    caption:NSLocalizedString(@"This photo set could not be loaded.", "")
+    image:[UIImage imageNamed:@"t3images/photoDefault.png"]] autorelease];
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return (photoSource.numberOfPhotos / kColumnCount) + 
-    (photoSource.numberOfPhotos % kColumnCount ? 1 : 0);
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
+  NSInteger maxIndex = photoSource.maxPhotoIndex;
+  if (maxIndex > 0) {
+    return (maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0);
+  } else {
+    return 0;
+  }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *cellId = @"Thumbs";
+- (UITableViewCell *)tableView:(UITableView*)tableView
+    cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+  static NSString* cellId = @"Thumbs";
 	
-	T3ThumbsTableViewCell *cell =
+	T3ThumbsTableViewCell* cell =
     (T3ThumbsTableViewCell*)[_tableView dequeueReusableCellWithIdentifier:cellId];
 	if (cell == nil) {
-		cell = [[[T3ThumbsTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellId] autorelease];
+		cell = [[[T3ThumbsTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellId]
+      autorelease];
 	}
 	
   cell.photo = [photoSource photoAtIndex:indexPath.row * kColumnCount];
@@ -176,7 +188,7 @@ static NSInteger kColumnCount = 4;
 
 - (void)tableView:(UITableView*)aTableView didSelectPhoto:(id<T3Photo>)photo {
   T3PhotoViewController* controller = [[[T3PhotoViewController alloc] init] autorelease];
-  controller.visiblePhoto = photo;
+  controller.centerPhoto = photo;
   [self.navigationController pushViewController:controller animated:YES];  
 }
 
@@ -185,18 +197,18 @@ static NSInteger kColumnCount = 4;
 
 - (void)photoSourceLoading:(id<T3PhotoSource>)aPhotoSource fromIndex:(NSUInteger)fromIndex
    toIndex:(NSUInteger)toIndex {
-  [self setContentStateActivity:@"Loading..."];
+  [self setContentStateActivity:NSLocalizedString(@"Loading...", @"")];
 }
 
 - (void)photoSourceLoaded:(id<T3PhotoSource>)aPhotoSource {
-  if (photoSource.numberOfPhotos) {
+  if (photoSource.maxPhotoIndex >= 0) {
     self.contentState = T3ViewContentReady;
   } else {
     self.contentState = T3ViewContentEmpty;
   }
 }
 
-- (void)photoSource:(id<T3PhotoSource>)aPhotoSource loadFailedWithError:(NSError*)error {
+- (void)photoSource:(id<T3PhotoSource>)aPhotoSource loadLoadDidFailWithError:(NSError*)error {
   [self setContentStateError:error];
 }
 

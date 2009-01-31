@@ -33,10 +33,10 @@
 @protocol T3URLRequestDelegate <NSObject>
 
 @optional
-- (void)request:(T3URLRequest*)request loadingURL:(NSString*)url;
-- (void)request:(T3URLRequest*)request loadedData:(NSData*)data media:(id)media 
-  forURL:(NSString*)url;
-- (void)request:(T3URLRequest*)request loadingURL:(NSString*)url didFailWithError:(NSError*)error;
-- (void)request:(T3URLRequest*)request cancelledLoadingURL:(NSString*)url;
+- (void)requestPosted:(T3URLRequest*)request;
+- (void)requestLoading:(T3URLRequest*)request;
+- (void)request:(T3URLRequest*)request loadedData:(NSData*)data media:(id)media;
+- (void)request:(T3URLRequest*)request didFailWithError:(NSError*)error;
+- (void)requestCancelled:(T3URLRequest*)request;
 
 @end

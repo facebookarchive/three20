@@ -6,10 +6,21 @@
 
 @protocol T3Photo, T3PhotoSourceDelegate;
 
+typedef enum {
+  T3PhotoVersionNone,
+  T3PhotoVersionLarge,
+  T3PhotoVersionMedium,
+  T3PhotoVersionSmall,
+  T3PhotoVersionThumbnail
+} T3PhotoVersion;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @protocol T3PhotoSource <T3Object>
 
+/**
+ *
+ */
 @property(nonatomic, copy) NSString* title;
 
 /**
@@ -22,9 +33,19 @@
  */
 @property(nonatomic, readonly) NSUInteger maxPhotoIndex;
 
+/**
+ *
+ */
 @property(nonatomic, readonly) BOOL loading;
 
+/**
+ *
+ */
 - (id<T3Photo>)photoAtIndex:(NSUInteger)index;
+
+/**
+ *
+ */
 - (NSUInteger)indexOfPhoto:(id<T3Photo>)photo;
 
 /**
@@ -41,10 +62,21 @@
 
 @protocol T3PhotoSourceDelegate <NSObject>
 
+/**
+ *
+ */
 - (void)photoSourceLoading:(id<T3PhotoSource>)photoSource fromIndex:(NSUInteger)fromIndex
    toIndex:(NSUInteger)toIndex;
+
+/**
+ *
+ */
 - (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource;
-- (void)photoSource:(id<T3PhotoSource>)photoSource loadFailedWithError:(NSError*)error;
+
+/**
+ *
+ */
+- (void)photoSource:(id<T3PhotoSource>)photoSource loadLoadDidFailWithError:(NSError*)error;
 
 @end
 
@@ -58,21 +90,6 @@
 @property(nonatomic, assign) id<T3PhotoSource> photoSource;
 
 /**
- * The full-size version of the photo.
- */
-@property(nonatomic, copy) NSString* url;
-
-/**
- * A small version of the photo.
- */
-@property(nonatomic, copy) NSString* smallURL;
-
-/**
- * A very small thumbnail version of the photo.
- */
-@property(nonatomic, copy) NSString* thumbURL;
-
-/**
  * The index of the photo within its photo source.
  */
 @property(nonatomic) CGSize size;
@@ -81,5 +98,10 @@
  * The index of the photo within its photo source.
  */
 @property(nonatomic) NSInteger index;
+
+/**
+ * Gets the url of one of the differently sized versions of the photo.
+ */
+- (NSString*)urlForVersion:(T3PhotoVersion)version;
 
 @end

@@ -1,209 +1,271 @@
 #import "PhotoTest1Controller.h"
-#import "SamplePhotoSource.h"
+#import "MockPhotoSource.h"
 
 @implementation PhotoTest1Controller
 
 - (void)viewDidLoad {
-  self.photoSource = [[SamplePhotoSource alloc] initWithPhotos:[[NSArray alloc] initWithObjects:
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
-      size:CGSizeMake(960, 1280)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
-      size:CGSizeMake(1024, 684)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
-      size:CGSizeMake(683, 1024)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
-      size:CGSizeMake(1024, 678)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
-      size:CGSizeMake(1024, 681)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
-      size:CGSizeMake(2800, 1866)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
-      size:CGSizeMake(800, 533)] autorelease],
+  self.photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceDelayed
+    photos:[[NSArray alloc] initWithObjects:
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
+//      size:CGSizeMake(960, 1280)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
+//      size:CGSizeMake(1024, 684)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
+//      size:CGSizeMake(683, 1024)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
+//      size:CGSizeMake(1024, 678)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
+//      size:CGSizeMake(1024, 681)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
+//      size:CGSizeMake(2800, 1866)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
+//      size:CGSizeMake(800, 533)] autorelease],
+//
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
+//      size:CGSizeMake(960, 1280)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
+//      size:CGSizeMake(1024, 684)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
+//      size:CGSizeMake(683, 1024)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
+//      size:CGSizeMake(1024, 678)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
+//      size:CGSizeMake(1024, 681)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
+//      size:CGSizeMake(2800, 1866)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
+//      size:CGSizeMake(800, 533)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
+//      size:CGSizeMake(960, 1280)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
+//      size:CGSizeMake(1024, 684)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
+//      size:CGSizeMake(683, 1024)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
+//      size:CGSizeMake(1024, 678)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
+//      size:CGSizeMake(1024, 681)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
+//      size:CGSizeMake(2800, 1866)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
+//      size:CGSizeMake(800, 533)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
+//      size:CGSizeMake(960, 1280)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
+//      size:CGSizeMake(1024, 684)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
+//      size:CGSizeMake(683, 1024)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
+//      size:CGSizeMake(1024, 678)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
+//      size:CGSizeMake(1024, 681)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
+//      size:CGSizeMake(2800, 1866)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
+//      size:CGSizeMake(800, 533)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
+//      size:CGSizeMake(960, 1280)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
+//      size:CGSizeMake(1024, 684)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
+//      size:CGSizeMake(683, 1024)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
+//      size:CGSizeMake(1024, 678)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
+//      size:CGSizeMake(1024, 681)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
+//      size:CGSizeMake(2800, 1866)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
+//      size:CGSizeMake(800, 533)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
+//      size:CGSizeMake(960, 1280)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
+//      size:CGSizeMake(1024, 684)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
+//      size:CGSizeMake(683, 1024)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
+//      size:CGSizeMake(1024, 678)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
+//      size:CGSizeMake(1024, 681)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
+//      size:CGSizeMake(2800, 1866)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
+//      size:CGSizeMake(800, 533)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
+//      size:CGSizeMake(960, 1280)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
+//      size:CGSizeMake(1024, 684)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
+//      size:CGSizeMake(683, 1024)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
+//      size:CGSizeMake(1024, 678)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
+//      size:CGSizeMake(1024, 681)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
+//      size:CGSizeMake(2800, 1866)] autorelease],
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
+//      size:CGSizeMake(800, 533)] autorelease],
 
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
-      size:CGSizeMake(960, 1280)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
-      size:CGSizeMake(1024, 684)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
-      size:CGSizeMake(683, 1024)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
-      size:CGSizeMake(1024, 678)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
-      size:CGSizeMake(1024, 681)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
-      size:CGSizeMake(2800, 1866)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
-      size:CGSizeMake(800, 533)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
-      size:CGSizeMake(960, 1280)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
-      size:CGSizeMake(1024, 684)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
-      size:CGSizeMake(683, 1024)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
-      size:CGSizeMake(1024, 678)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
-      size:CGSizeMake(1024, 681)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
-      size:CGSizeMake(2800, 1866)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
-      size:CGSizeMake(800, 533)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
-      size:CGSizeMake(960, 1280)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
-      size:CGSizeMake(1024, 684)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
-      size:CGSizeMake(683, 1024)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
-      size:CGSizeMake(1024, 678)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
-      size:CGSizeMake(1024, 681)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
-      size:CGSizeMake(2800, 1866)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
-      size:CGSizeMake(800, 533)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
-      size:CGSizeMake(960, 1280)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
-      size:CGSizeMake(1024, 684)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
-      size:CGSizeMake(683, 1024)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
-      size:CGSizeMake(1024, 678)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
-      size:CGSizeMake(1024, 681)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
-      size:CGSizeMake(2800, 1866)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
-      size:CGSizeMake(800, 533)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
-      size:CGSizeMake(960, 1280)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
-      size:CGSizeMake(1024, 684)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
-      size:CGSizeMake(683, 1024)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
-      size:CGSizeMake(1024, 678)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
-      size:CGSizeMake(1024, 681)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
-      size:CGSizeMake(2800, 1866)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
-      size:CGSizeMake(800, 533)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"
-      size:CGSizeMake(960, 1280)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3048/2942420409_20910290e9_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3048/2942420409_9c442b07ea_t.jpg"
-      size:CGSizeMake(1024, 684)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3239/2945308303_e692ebffe1_t.jpg"
-      size:CGSizeMake(683, 1024)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3160/2949948250_161a3914c1_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3160/2949948250_22eeaa085a_t.jpg"
-      size:CGSizeMake(1024, 678)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3017/2948109400_838ebc22ef_t.jpg"
-      size:CGSizeMake(1024, 681)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_b.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3290/2958486604_d217d02a6a_t.jpg"
-      size:CGSizeMake(2800, 1866)] autorelease],
-    [[[SamplePhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
-      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
-      size:CGSizeMake(800, 533)] autorelease],
+    // Request fails immediately due to DNS error
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://example.com"
+//      smallURL:@"http://example.com"
+//      size:CGSizeMake(320, 480)] autorelease],
+
+    // 404 on both url and thumbnail
+    [[[MockPhoto alloc]
+      initWithURL:@"http://farm4.static.flickr.com/3425/3214x620333_daf56d25e5.jpg?v=0"
+      smallURL:@"http://farm4.static.flickr.com/3425/3214620333_daf56d25e5_t.jpg"
+      size:CGSizeMake(320, 480)] autorelease],
+
+    // Returns HTML instead of image
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://flickr.com"
+//      smallURL:@"http://farm4.static.flickr.com/3444/3223645618_f5e2fa7fea_t.jpg"
+//      size:CGSizeMake(320, 480)] autorelease],    
+
+    [[[MockPhoto alloc]
+      initWithURL:@"http://farm4.static.flickr.com/3444/3223645618_13fe36887a_o.jpg"
+      smallURL:@"http://farm4.static.flickr.com/3444/3223645618_f5e2fa7fea_t.jpg"
+      size:CGSizeMake(320, 480)] autorelease],
+
+    // Causes album to be loaded
+    // [NSNull null],
+
+    [[[MockPhoto alloc]
+      initWithURL:@"http://photos-e.ll.facebook.com/photos-ll-sf2p/v646/35/54/223792/n223792_35094388_3743.jpg"
+      smallURL:@"http://photos-e.ll.facebook.com/photos-ll-sf2p/v646/35/54/223792/t223792_35094388_3743.jpg"
+      size:CGSizeMake(604, 453)] autorelease],
+
+    [[[MockPhoto alloc]
+      initWithURL:@"http://farm2.static.flickr.com/1124/3164979509_bcfdd72123.jpg?v=0"
+      smallURL:@"http://farm2.static.flickr.com/1124/3164979509_bcfdd72123_t.jpg"
+      size:CGSizeMake(320, 480)] autorelease],
+
+    [[[MockPhoto alloc]
+      initWithURL:@"http://farm4.static.flickr.com/3106/3203111597_d849ef615b.jpg?v=0"
+      smallURL:@"http://farm4.static.flickr.com/3106/3203111597_d849ef615b_t.jpg"
+      size:CGSizeMake(320, 480)] autorelease],
+
+    [[[MockPhoto alloc]
+      initWithURL:@"http://farm4.static.flickr.com/3099/3164979221_6c0e583f7d.jpg?v=0"
+      smallURL:@"http://farm4.static.flickr.com/3099/3164979221_6c0e583f7d_t.jpg"
+      size:CGSizeMake(320, 480)] autorelease],
+
     nil
-  ] delayed:YES];
+  ]
+
+  photos2:[[NSArray alloc] initWithObjects:
+    [[[MockPhoto alloc]
+      initWithURL:@"http://farm4.static.flickr.com/3081/3164978791_3c292029f2.jpg?v=0"
+      smallURL:@"http://farm4.static.flickr.com/3081/3164978791_3c292029f2_t.jpg"
+      size:CGSizeMake(320, 480)] autorelease],
+
+    [[[MockPhoto alloc]
+      initWithURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e.jpg?v=0"
+      smallURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e_t.jpg"
+      size:CGSizeMake(320, 480)] autorelease],
+    nil
+  ]];
+  
   self.photoSource.title = @"Flickr Photos";
 }
 

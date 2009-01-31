@@ -3,10 +3,11 @@
 @implementation T3UnclippedView
 
 - (void)didMoveToSuperview {
-  // Turns off clipping on every view that contains this view. This allows the translucent
-  // toolbar and status bar to blend with the contents of this view
+  // This allows the view to be shown "full screen", and not offset by the toolbar and status bar
+  self.superview.clipsToBounds = NO;
+
   for (UIView* p = self; p; p = p.superview) {
-    p.clipsToBounds = NO;
+    p.backgroundColor = self.backgroundColor;
   }
 }
 

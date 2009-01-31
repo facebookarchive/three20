@@ -37,7 +37,7 @@
       nil],
     nil];
 
-  [self pushControllerAtRow:[NSIndexPath indexPathForRow:1 inSection:2] animated:NO];
+  [self pushControllerAtRow:[NSIndexPath indexPathForRow:2 inSection:0] animated:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

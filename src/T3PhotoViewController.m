@@ -2,79 +2,128 @@
 #import "Three20/T3ThumbsViewController.h"
 #import "Three20/T3URLCache.h"
 #import "Three20/T3UnclippedView.h"
-#import "Three20/T3PhotoSource.h"
+#import "Three20/T3PhotoView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface T3PhotoScrollView : UIScrollView
-@end
-
-@implementation T3PhotoScrollView
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent*)event {
-  if (self.pagingEnabled) {
-    [super touchesBegan:touches withEvent:event];
-  }
-  
-  UITouch* touch = [touches anyObject];
-  if (touch.view == self) {
-    [self.delegate performSelector:@selector(photoTouchBegan:) withObject:touch];
-  }
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent*)event {
-  if (self.pagingEnabled) {
-    [super touchesMoved:touches withEvent:event];
-  }
-}
-
-- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent *)event {
-  if (self.pagingEnabled) {
-    [super touchesEnded:touches withEvent:event];
-  }
-  
-  UITouch* touch = [touches anyObject];
-  if (touch.view == self) {
-    [self.delegate performSelector:@selector(photoTouchEnded:) withObject:touch];
-  }
-}
-
-@end
+static const NSTimeInterval kPhotoLoadLongDelay = 0.5;
+static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation T3PhotoViewController
 
-@synthesize photoSource, visiblePhoto, visiblePhotoIndex;
+@synthesize delegate = _delegate, photoSource = _photoSource, centerPhoto = _centerPhoto,
+  centerPhotoIndex = _centerPhotoIndex, defaultImage = _defaultImage;
 
 - (id)init {
   if (self = [super init]) {
-    photoSource = nil;
-    visiblePhoto = nil;
-    visiblePhotoIndex = T3_NULL_PHOTO_INDEX;
-    previousBarStyle = 0;
-    orientation = 0;
+    _delegate = nil;
+    _photoSource = nil;
+    _centerPhoto = nil;
+    _centerPhotoIndex = 0;
+    _previousBarStyle = 0;
+    _scrollView = nil;
+    _statusView = nil;
+    _statusText = nil;
+    _loadTimer = nil;
+    _delayLoad = NO;
+    self.defaultImage = [UIImage imageNamed:@"t3images/photoDefault.png"];
     
     self.hidesBottomBarWhenPushed = YES;
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Photo"
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
+      NSLocalizedString(@"Photo", @"Title for back button that returns to photo browser")
       style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
   }
   return self;
 }
 
 - (void)dealloc {
-  [photoSource release];
+  [_loadTimer invalidate];
+  _loadTimer = nil;
+  [_centerPhoto release];
+  [_photoSource release];
+  [_statusText release];
+  [_defaultImage release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (UIInterfaceOrientation)getCurrentOrientation {
-  UIInterfaceOrientation orient = [UIDevice currentDevice].orientation;
-  if (!orient) {
-    return UIInterfaceOrientationPortrait;
+- (T3PhotoView*)centerPhotoView {
+  return (T3PhotoView*)_scrollView.centerPage;
+}
+
+- (void)updateTitle {
+  if (!_photoSource.numberOfPhotos) {
+    self.title = _photoSource.title;
   } else {
-    return orient;
+    self.title = [NSString stringWithFormat:
+      NSLocalizedString(@"%d of %d", @"Current page in photo browser (1 of 10)"),
+      _centerPhotoIndex+1, _photoSource.numberOfPhotos];
+  }
+}
+
+- (void)loadImageDelayed {
+  _loadTimer = nil;
+  [self.centerPhotoView loadImage];
+}
+
+- (void)startImageLoadTimer:(NSTimeInterval)delay {
+  [_loadTimer invalidate];
+  _loadTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self
+    selector:@selector(loadImageDelayed) userInfo:nil repeats:NO];
+}
+
+- (void)cancelImageLoadTimer {
+  [_loadTimer invalidate];
+  _loadTimer = nil;
+}
+
+- (void)loadImages {
+  T3PhotoView* centerPhotoView = self.centerPhotoView;
+  for (T3PhotoView* photoView in _scrollView.visiblePages.objectEnumerator) {
+    if (photoView == centerPhotoView) {
+      [photoView loadPreview:NO];
+    } else {
+      [photoView loadPreview:YES];
+    }
+  }
+
+  if (_delayLoad) {
+    _delayLoad = NO;
+    [self startImageLoadTimer:kPhotoLoadLongDelay];
+  } else {
+    [centerPhotoView loadImage];
+  }
+}
+
+- (void)moveToPhotoAtIndex:(NSInteger)photoIndex withDelay:(BOOL)withDelay {
+  _centerPhotoIndex = photoIndex;
+  [_centerPhoto release];
+  _centerPhoto = [[_photoSource photoAtIndex:_centerPhotoIndex] retain];
+  _delayLoad = withDelay;
+}
+
+- (void)showPhoto:(id<T3Photo>)photo inView:(T3PhotoView*)photoView {
+  photoView.photo = photo;
+  if (!photoView.photo && _statusText) {
+    [photoView showStatus:_statusText];
+  }
+}
+
+- (void)loadPhotos {
+  if (!_photoSource.loading) {
+    [_photoSource loadPhotosFromIndex:_photoSource.maxPhotoIndex+1 toIndex:-1 delegate:self];
+  }
+}
+
+- (void)refreshVisiblePhotoViews {
+  NSDictionary* photoViews = _scrollView.visiblePages;
+  for (NSNumber* key in photoViews.keyEnumerator) {
+    T3PhotoView* photoView = [photoViews objectForKey:key];
+    id<T3Photo> photo = [_photoSource photoAtIndex:key.intValue];
+    [self showPhoto:photo inView:photoView];
   }
 }
 
@@ -87,223 +136,65 @@
   self.navigationController.navigationBar.alpha = show ? 1 : 0;
 }
 
-- (void)updateTitle {
-  if (photoSource.numberOfPhotos > 1) {
-    self.title = [NSString stringWithFormat:@"%d of %d", visiblePhoto.index+1,
-      photoSource.numberOfPhotos];
-  } else {
-    self.title = photoSource.title;
-  }
-}
-
-- (void)updateScrollViewSize {
-  int count = photoSource.numberOfPhotos;
-  CGRect screenFrame = [UIScreen mainScreen].bounds;
-  if (orientation == UIInterfaceOrientationLandscapeLeft
-        || orientation == UIInterfaceOrientationLandscapeRight) {
-    scrollView.contentSize = CGSizeMake(screenFrame.size.width,
-      screenFrame.size.height*count);
-  } else {
-    scrollView.contentSize = CGSizeMake(screenFrame.size.width*count,
-      screenFrame.size.height);
-  }
-}
-
-- (NSString*)loadingCaptionForPhotosource {
-  return photoSource.title
-    ? [NSString stringWithFormat:@"Loading %@...", photoSource.title]
-    : @"Loading...";
-}
-
-- (void)loadPhotos {
-  if (!photoSource.loading) {
-    self.title = photoSource.title;
-    
-    [photoSource loadPhotosFromIndex:photoSource.isInvalid ? 0 : photoSource.maxPhotoIndex+1
-      toIndex:-1 delegate:self];
-  }
-}
-
-- (void)loadImages {
-  [photoViewRight loadThumbnail];    
-  [photoViewLeft loadThumbnail];    
-  [photoView loadImage];
-}
-
-- (NSUInteger)photoIndexOfScrollOffset {
-  if (orientation == UIInterfaceOrientationLandscapeLeft) {
-    CGFloat maxWidth = scrollView.contentSize.height;
-    return (maxWidth - (scrollView.contentOffset.y + scrollView.frame.size.height))
-      / scrollView.frame.size.height;
-  } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-    return scrollView.contentOffset.y/scrollView.frame.size.height;
-  } else {
-    return scrollView.contentOffset.x/scrollView.frame.size.width;
-  }
-}
-
-- (void)showPhoto:(id<T3Photo>)aPhoto index:(NSUInteger)index inView:(T3PhotoView*)view {
-  if (!aPhoto) {
-    [view showActivity:[self loadingCaptionForPhotosource]];
-  } else {
-    [view showActivity:nil];
-  }
-
-  view.photo = aPhoto;
-
-  if (orientation == UIInterfaceOrientationLandscapeLeft) {
-    CGFloat maxWidth = scrollView.contentSize.height;
-    view.frame = CGRectMake(0, maxWidth - ((index+1) * scrollView.height),
-      scrollView.width, scrollView.height);
-  } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-    view.frame = CGRectMake(0, index * scrollView.height, scrollView.width, scrollView.height);
-  } else {
-    CGFloat x = index == NSUIntegerMax ? 0 : index * scrollView.width;
-    view.frame = CGRectMake(x, 0, scrollView.width, scrollView.height);
-  }
-}
-
-- (void)rotate:(UIInterfaceOrientation)toOrient from:(UIInterfaceOrientation)fromOrient
-    animated:(BOOL)animated {
-  if (toOrient != fromOrient) {
-    orientation = toOrient;
-
-    [photoViewLeft layout:toOrient from:0 stage:0];
-    [photoViewRight layout:toOrient from:0 stage:0];
-
-    if (animated) {
-      [UIView beginAnimations:nil context:(void*)toOrient];
-      [UIView setAnimationDuration:0.3];
-      [UIView setAnimationDelegate:self];
-      [UIView setAnimationDidStopSelector:@selector(rotateAnimationStopped:finished:context:)];
-      [photoView layout:toOrient from:fromOrient stage:1];
-      [UIView commitAnimations];
-    } else {
-      [photoView layout:toOrient from:fromOrient stage:0];
-    }
-  }
-}
-
-- (void)autorotate:(UIInterfaceOrientation)toOrient animated:(BOOL)animated {
-  if (toOrient != orientation) {
-    UIInterfaceOrientation fromOrient = orientation;
-    orientation = toOrient;
-      
-    if (photoSource) {
-      [self updateScrollViewSize];
-
-      if (!photoViewRight.hidden) {
-        [self showPhoto:photoViewRight.photo index:visiblePhotoIndex+1 inView:photoViewRight];
-      }
-      if (!photoViewLeft.hidden) {
-        [self showPhoto:photoViewLeft.photo index:visiblePhotoIndex-1 inView:photoViewLeft];
-      }
-      [self showPhoto:photoView.photo index:visiblePhotoIndex inView:photoView];
-
-      [scrollView scrollRectToVisible:photoView.frame animated:NO];
-    }
-    
-    [self rotate:toOrient from:fromOrient animated:animated];
-  }
-}
-
-- (void)rotateAnimationStopped:(NSString*)animationId finished:(NSNumber*)finished
-    context:(void*)context {
-  [photoView layout:(UIInterfaceOrientation)context from:0 stage:2];
-
-  [UIView beginAnimations:nil context:NULL];
-  [UIView setAnimationDuration:0.3];
-
-  [photoView layout:(UIInterfaceOrientation)context from:0 stage:0];
+- (void)showChrome:(BOOL)show animated:(BOOL)animated {
+  [[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];
   
-  [UIView commitAnimations];
-}
-
-- (void)moveToPhoto:(id<T3Photo>)aPhoto atIndex:(NSUInteger)index animated:(BOOL)animated {
-  visiblePhotoIndex = index;
-  visiblePhoto = aPhoto;
-
-  if (index+1 < photoSource.numberOfPhotos && index != T3_NULL_PHOTO_INDEX) {
-    id<T3Photo> nextPhoto = !photoSource.isInvalid ? [photoSource photoAtIndex:index+1] : nil;
-    [self showPhoto:nextPhoto index:index+1 inView:photoViewRight];
-    photoViewRight.hidden = NO;
-  } else {
-    photoViewRight.photo = nil;
-    photoViewRight.hidden = YES;
-  }
-
-  if (index > 0 && index != T3_NULL_PHOTO_INDEX) {
-    id<T3Photo> prevPhoto = !photoSource.isInvalid ? [photoSource photoAtIndex:index-1] : nil;
-    [self showPhoto:prevPhoto index:index-1 inView:photoViewLeft];
-    photoViewLeft.hidden = NO;
-  } else {
-    photoViewLeft.photo = nil;
-    photoViewLeft.hidden = YES;
+  if (animated) {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
   }
   
-  if (visiblePhoto) {
-    photoView.hidden = NO;
-    [self showPhoto:visiblePhoto index:visiblePhotoIndex inView:photoView];
-    [self updateTitle];
-    if (animated) {
-      scrollView.contentOffset = CGPointMake(photoView.x, photoView.y);
-    }
-  } else {
-    [self showPhoto:nil index:visiblePhotoIndex inView:photoView];
-  }
+  [self showNavigationBar:show];
 
-  if (!animated) {
-    [self loadImages];
-
-    if (photoSource.isInvalid || visiblePhotoIndex >= photoSource.maxPhotoIndex+1) {
-      [self loadPhotos];
-    }
-  } else {
-    [photoView loadPreview];
-
-    if (!visiblePhoto) {
-      [self loadPhotos];
-    }
+  if (animated) {
+    [UIView commitAnimations];
   }
 }
 
-- (void)selectPhotoDelayed:(NSTimer*)timer {
-  [T3URLCache sharedCache].paused = NO;
-  [self loadImages];
+- (T3PhotoView*)statusView {
+  if (!_statusView) {
+    _statusView = [[T3PhotoView alloc] initWithFrame:_scrollView.frame];
+    _statusView.defaultImage = _defaultImage;
+    _statusView.photo = nil;
+    [self.view addSubview:_statusView];
+  }
+  
+  return _statusView;
+}
+
+- (void)showProgress:(CGFloat)progress {
+  if ((appeared || appearing) && progress >= 0 && !self.centerPhotoView) {
+    [self.statusView showProgress:progress];
+    self.statusView.hidden = NO;
+  } else {
+    _statusView.hidden = YES;
+  }
+}
+
+- (void)showStatus:(NSString*)status {
+  [_statusText release];
+  _statusText = [status retain];
+
+  if ((appeared || appearing) && status && !self.centerPhotoView) {
+    [self.statusView showStatus:status];
+    self.statusView.hidden = NO;
+  } else {
+    _statusView.hidden = YES;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
 - (void)loadView {
-  [super loadView];
-  
   CGRect screenFrame = [UIScreen mainScreen].bounds;
   self.view = [[[T3UnclippedView alloc] initWithFrame:screenFrame] autorelease];
-  self.view.backgroundColor = [UIColor blackColor];
   
-  scrollView = [[T3PhotoScrollView alloc]
-    initWithFrame:CGRectOffset(screenFrame, 0, -CHROME_HEIGHT)];
-  scrollView.delegate = self;
-  scrollView.backgroundColor = [UIColor blackColor];
-  scrollView.pagingEnabled = YES;
-  scrollView.showsHorizontalScrollIndicator = NO;
-  scrollView.showsVerticalScrollIndicator = NO;
-  scrollView.delaysContentTouches = NO;
-  scrollView.multipleTouchEnabled = YES;
-  [self.view addSubview:scrollView];
-  
-  photoView = [[T3PhotoView alloc] initWithFrame:screenFrame];
-  photoView.delegate = self;
-  [scrollView addSubview:photoView];
-
-  photoViewLeft = [[T3PhotoView alloc] initWithFrame:screenFrame];
-  photoViewLeft.delegate = self;
-  [scrollView addSubview:photoViewLeft];
-
-  photoViewRight = [[T3PhotoView alloc] initWithFrame:screenFrame];
-  photoViewRight.delegate = self;
-  [scrollView addSubview:photoViewRight];
+  _scrollView = [[T3ScrollView alloc] initWithFrame:CGRectOffset(screenFrame, 0, -CHROME_HEIGHT)];
+  _scrollView.delegate = self;
+  _scrollView.dataSource = self;
+  _scrollView.backgroundColor = [UIColor blackColor];
+  [self.view addSubview:_scrollView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -312,27 +203,19 @@
   UINavigationBar* bar = self.navigationController.navigationBar;
   if (bar.barStyle != UIBarStyleBlackTranslucent) {
     if (!self.nextViewController) {
-      previousBarStyle = bar.barStyle;
+      _previousBarStyle = bar.barStyle;
     }
 
     bar.barStyle = UIBarStyleBlackTranslucent;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent
       animated:YES];
   }
-  
-  orientation = [self getCurrentOrientation];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-    selector:@selector(deviceOrientationDidChange:)
-    name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self loadImages];
 
-  if (0) {
-    scrollView.frame = CGRectOffset(scrollView.frame, 0, TOOLBAR_HEIGHT);
-  } else {
+  if (!self.nextViewController) {
     self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
   }
 }
@@ -340,17 +223,13 @@
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
-  if (1) {
-    scrollView.frame = CGRectOffset(scrollView.frame, 0, TOOLBAR_HEIGHT);
-  } else {
-    self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
-  }
+  self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
 
   // If we're going backwards...
   if (!self.nextViewController) {
     UINavigationBar* bar = self.navigationController.navigationBar;
-    if (previousBarStyle != UIBarStyleBlackTranslucent) {
-      bar.barStyle = previousBarStyle;
+    if (_previousBarStyle != UIBarStyleBlackTranslucent) {
+      bar.barStyle = _previousBarStyle;
       [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     }
   }
@@ -366,18 +245,11 @@
   }
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-  [super viewDidDisappear:animated];
-
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-    name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // T3ViewController
 
 - (id<T3Object>)viewObject {
-  return visiblePhoto;
+  return _centerPhoto;
 }
 
 - (void)showObject:(id<T3Object>)object inView:(NSString*)name withState:(NSDictionary*)state {
@@ -386,14 +258,14 @@
   if ([object conformsToProtocol:@protocol(T3PhotoSource)]) {
     self.photoSource = (id<T3PhotoSource>)object;
   } else if ([object conformsToProtocol:@protocol(T3Photo)]) {
-    self.visiblePhoto = (id<T3Photo>)object;
+    self.centerPhoto = (id<T3Photo>)object;
   }
 }
 
 - (void)updateContent {
-  if (photoSource.isInvalid || !visiblePhoto.url) {
+  if (!_centerPhoto) {
     [self loadPhotos];
-  } else if (photoSource.numberOfPhotos) {
+  } else if (_photoSource.numberOfPhotos) {
     self.contentState = T3ViewContentReady;
   } else {
     self.contentState = T3ViewContentEmpty;
@@ -401,170 +273,167 @@
 }
 
 - (void)updateView {
-  [self updateScrollViewSize];
-  [self rotate:[self getCurrentOrientation] from:orientation animated:NO];
-
-  if (visiblePhotoIndex == T3_NULL_PHOTO_INDEX) {
-    int actualIndex = [photoSource indexOfPhoto:visiblePhoto];
-    if (actualIndex == NSNotFound) {
-      id<T3Photo> actualPhoto = [photoSource photoAtIndex:0];
-      [self moveToPhoto:actualPhoto atIndex:0 animated:NO];
-    } else {
-      [self moveToPhoto:visiblePhoto atIndex:actualIndex animated:NO];
-    }
-  } else if (visiblePhotoIndex > photoSource.numberOfPhotos-1) {
-    [self moveToPhoto:[photoSource photoAtIndex:0] atIndex:0 animated:NO];
-  } else {
-    [self moveToPhoto:[photoSource photoAtIndex:visiblePhotoIndex] atIndex:visiblePhotoIndex
-      animated:NO];
-  }
+  _scrollView.centerPageIndex = _centerPhotoIndex;
+  [self showProgress:-1];
+  [self showStatus:nil];
+  [self updateTitle];
+  [self loadImages];
 }
 
 - (void)updateViewWithEmptiness {
-  [photoView showActivity:nil];
+  [self showStatus:NSLocalizedString(@"This photo set contains no photos.", "")];
+  [self updateTitle];
 }
 
 - (void)updateViewWithActivity:(NSString*)activityText {
-  [photoView showActivity:activityText];
+  [self showProgress:0];
+  [self updateTitle];
 }
 
 - (void)updateViewWithError:(NSError*)error {
-  [photoView showActivity:nil];
+  [self showStatus:NSLocalizedString(@"This photo set could not be loaded.", "")];
+  [self updateTitle];
 }
 
 - (void)unloadView {
-  [scrollView release];
-  [photoView release];
-  [photoViewLeft release];
-  [photoViewRight release];
-  scrollView = nil;
-  photoView = nil;
-  photoViewLeft = nil;
-  photoViewRight = nil;
+  _scrollView.delegate = nil;
+  _scrollView.dataSource = nil;
+  [_scrollView release];
+  _scrollView = nil;
+  [_statusView release];
+  _statusView = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // T3PhotoSourceDelegate
 
-- (void)photoSourceLoading:(id<T3PhotoSource>)aPhotoSource fromIndex:(NSUInteger)fromIndex
-   toIndex:(NSUInteger)toIndex {
-  [self setContentStateActivity:[self loadingCaptionForPhotosource]];
+- (void)photoSourceLoading:(id<T3PhotoSource>)photoSource fromIndex:(NSUInteger)fromIndex
+    toIndex:(NSUInteger)toIndex {
+  [self setContentStateActivity:nil];
 }
 
-- (void)photoSourceLoaded:(id<T3PhotoSource>)aPhotoSource {
-  if (photoSource.numberOfPhotos) {
+- (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource {
+  if (_centerPhotoIndex >= photoSource.numberOfPhotos) {
+    [self moveToPhotoAtIndex:photoSource.numberOfPhotos - 1 withDelay:NO];
+    [_scrollView reloadData];
+  } else {
+    [self refreshVisiblePhotoViews];
+  }
+  
+  if (_photoSource.numberOfPhotos) {
     self.contentState = T3ViewContentReady;
   } else {
     self.contentState = T3ViewContentEmpty;
   }
 }
 
-- (void)photoSource:(id<T3PhotoSource>)aPhotoSource loadFailedWithError:(NSError*)error {
+- (void)photoSource:(id<T3PhotoSource>)photoSource loadLoadDidFailWithError:(NSError*)error {
   [self setContentStateError:error];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIScrollViewDelegate
+// T3ScrollViewDelegate
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+- (void)scrollView:(T3ScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex {
+  if (pageIndex != _centerPhotoIndex) {
+    [self moveToPhotoAtIndex:pageIndex withDelay:YES];
+    [self invalidate:T3ViewInvalidContent];
+  }
+}
+
+- (void)scrollViewWillBeginDragging:(T3ScrollView *)scrollView {
+  [self cancelImageLoadTimer];
   [self showChrome:NO animated:NO];
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)aScrollView {
-  NSUInteger index = [self photoIndexOfScrollOffset];
-  if (index != visiblePhotoIndex) {
-    id<T3Photo> aPhoto = !photoSource.isInvalid ? [photoSource photoAtIndex:index] : nil;
-    if (aPhoto) {
-      if (photoViewLeft.photo == aPhoto) {
-        T3PhotoView* a = photoViewRight;
-        photoViewRight = photoView;
-        photoView = photoViewLeft;
-        photoViewLeft = a;
-      } else if (photoViewRight.photo == aPhoto) {
-        T3PhotoView* a = photoViewLeft;
-        photoViewLeft = photoView;
-        photoView = photoViewRight;
-        photoViewRight = a;
-      }
-    }
-    
-    [self moveToPhoto:aPhoto atIndex:index animated:NO];
-  }
+- (void)scrollViewDidEndDecelerating:(T3ScrollView*)scrollView {
+  [self startImageLoadTimer:kPhotoLoadShortDelay];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIDeviceOrientationDidChangeNotification
+- (void)scrollViewWillRotate:(T3ScrollView*)scrollView {
+  self.centerPhotoView.extrasHidden = YES;
+  [self showChrome:NO animated:YES];
+}
 
-- (void)deviceOrientationDidChange:(void*)object {
-  // Make sure we only try to rotate to one of the three supported orientations
-  UIInterfaceOrientation orient = [self getCurrentOrientation];
-  if (orient != UIInterfaceOrientationLandscapeLeft
-        && orient != UIInterfaceOrientationLandscapeRight
-        && orient != UIInterfaceOrientationPortrait) {
-    orient = orientation;
-  }
-        
-  if (orient != orientation) {
+- (void)scrollViewDidRotate:(T3ScrollView*)scrollView {
+  self.centerPhotoView.extrasHidden = NO;
+}
+
+- (BOOL)scrollViewShouldZoom:(T3ScrollView*)scrollView {
+  return self.centerPhotoView.image != self.centerPhotoView.defaultImage;
+}
+
+- (void)scrollViewDidBeginZooming:(T3ScrollView*)scrollView {
+  self.centerPhotoView.extrasHidden = YES;
+}
+
+- (void)scrollViewDidEndZooming:(T3ScrollView*)scrollView {
+  self.centerPhotoView.extrasHidden = NO;
+}
+
+- (void)scrollViewTapped:(T3ScrollView*)scrollView {
+  if ([self isShowingChrome]) {
     [self showChrome:NO animated:YES];
-    [self autorotate:orient animated:YES];
+  } else {
+    [self showChrome:YES animated:NO];
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3PhotoScrollViewDelegate
+// T3ScrollViewDataSource
 
-- (void)photoTouchBegan:(UITouch*)touch {
-  [photoView photoTouchBegan:touch];
+- (NSInteger)numberOfPagesInScrollView:(T3ScrollView*)scrollView {
+  return _photoSource.numberOfPhotos;
 }
 
-- (void)photoTouchEnded:(UITouch*)touch {
-  [photoView photoTouchEnded:touch];
-}
+- (UIView*)scrollView:(T3ScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
+  T3PhotoView* photoView = (T3PhotoView*)[_scrollView dequeueReusablePage];
+  if (!photoView) {
+    photoView = [[[T3PhotoView alloc] initWithFrame:CGRectZero] autorelease];
+    photoView.defaultImage = _defaultImage;
+  }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3PhotoViewDelegate
-
-- (void)photoViewTapped:(T3PhotoView*)aPhotoView {
-  [self showChrome:![self isShowingChrome] animated:YES];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)setPhotoSource:(id<T3PhotoSource>)aSource {
-  if (photoSource != aSource) {
-    [photoSource release];
-    photoSource = [aSource retain];
+  id<T3Photo> photo = [_photoSource photoAtIndex:pageIndex];
+  [self showPhoto:photo inView:photoView];
   
-    visiblePhoto = [photoSource photoAtIndex:0];
+  return photoView;
+}
+
+- (CGSize)scrollView:(T3ScrollView*)scrollView sizeOfPageAtIndex:(NSInteger)pageIndex {
+  id<T3Photo> photo = [_photoSource photoAtIndex:pageIndex];
+  return photo ? photo.size : CGSizeZero;
+}
+
+- (UIView*)scrollView:(T3ScrollView*)scrollView metaViewForPageAtIndex:(NSInteger)pageIndex {
+  UIView* metaView = [_delegate metaViewForPhotoAtIndex:pageIndex];
+  if (metaView) {
+    return metaView;
+  } else {
+    return nil;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)setPhotoSource:(id<T3PhotoSource>)photoSource {
+  if (_photoSource != photoSource) {
+    [_photoSource release];
+    _photoSource = [photoSource retain];
+  
+    [self moveToPhotoAtIndex:0 withDelay:NO];
     [self invalidate:T3ViewInvalidContent];
   }
 }
 
-- (void)setVisiblePhoto:(id<T3Photo>)aPhoto {
-  if (visiblePhoto != aPhoto) {
-    visiblePhoto = aPhoto;
-
-    if (visiblePhoto.photoSource != photoSource) {
-      [photoSource release];
-      photoSource = [visiblePhoto.photoSource retain];
+- (void)setCenterPhoto:(id<T3Photo>)photo {
+  if (_centerPhoto != photo) {
+    if (photo.photoSource != _photoSource) {
+      [_photoSource release];
+      _photoSource = [photo.photoSource retain];
     }
-  
+
+    [self moveToPhotoAtIndex:photo.index withDelay:NO];
     [self invalidate:T3ViewInvalidContent];
-  }
-}
-
-- (void)showChrome:(BOOL)show animated:(BOOL)animated {
-  [[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];
-  
-  if (animated) {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-  }
-  
-  [self showNavigationBar:show];
-
-  if (animated) {
-    [UIView commitAnimations];
   }
 }
 
