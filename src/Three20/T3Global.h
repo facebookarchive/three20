@@ -11,11 +11,11 @@
 #endif
 
 #define T3LOGRECT(rect) \
-  T3LOG(@"RECT %s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
+  T3LOG(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
     rect.size.width, rect.size.height)
 
 #define T3LOGEDGES(edges) \
-  T3LOG(@"EDGES %s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
+  T3LOG(@"%s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
     edges.top, edges.bottom)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,20 +37,20 @@
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:a]
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Cache times
-
-#define T3_SKIP_CACHE CGFLOAT_MAX
-#define T3_ALWAYS_USE_CACHE 0
-#define T3_DEFAULT_CACHE_AGE 60*3 // 3 minutes
-#define T3_LONG_CACHE_AGE 60*60*24*7 // 1 week
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Animation
 
 /**
  * The standard duration for transition animations.
  */
 #define T3_TRANSITION_DURATION 0.3
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Cache times
+
+#define T3_SKIP_CACHE CGFLOAT_MAX
+#define T3_ALWAYS_USE_CACHE 0
+#define T3_DEFAULT_CACHE_AGE (60*3)
+#define T3_LONG_CACHE_AGE (60*60*24*7)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,6 +70,15 @@ typedef enum {
 NSMutableArray* T3CreateNonRetainingArray();
 
 /**
+ * Tests if an object is an array which is empty.
+ */
+BOOL T3EmptyArray(NSObject* object);
+
+/**
+ * Tests if an object is a string which is empty.
+ */
+BOOL T3EmptyString(NSObject* object);
+/**
  * Gets the current device orientation.
  */
 UIInterfaceOrientation T3DeviceOrientation();
@@ -79,8 +88,6 @@ UIInterfaceOrientation T3DeviceOrientation();
  */
 CGRect T3ScreenBounds();
  
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 /**
  * Increment the number of active network request.
  *
@@ -95,105 +102,15 @@ void T3NetworkRequestStarted();
  */
 void T3NetworkRequestStopped();
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface NSObject (T3Category)
-
-/**
- * Additional performSelector signatures that support up to 7 arguments.
+/*
+ * Resizes and/or rotates an image.
  */
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3;
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
-  withObject:(id)p4;
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
-  withObject:(id)p4 withObject:(id)p5;
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
-  withObject:(id)p4 withObject:(id)p5 withObject:(id)p6;
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
-  withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 withObject:(id)p7;
-
-@end
+UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL rotate);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface UIView (T3Category)
-
-@property(nonatomic) CGFloat x;
-@property(nonatomic) CGFloat y;
-@property(nonatomic) CGFloat width;
-@property(nonatomic) CGFloat height;
-
-@property(nonatomic,readonly) CGFloat right;
-@property(nonatomic,readonly) CGFloat bottom;
-
-@property(nonatomic,readonly) CGFloat screenX;
-@property(nonatomic,readonly) CGFloat screenY;
-
-@property(nonatomic,readonly) CGFloat screenViewX;
-@property(nonatomic,readonly) CGFloat screenViewY;
-
-@property(nonatomic,readonly) CGFloat orientationWidth;
-@property(nonatomic,readonly) CGFloat orientationHeight;
-
-- (UIScrollView*)findFirstScrollView;
-- (UIView*)firstViewOfClass:(Class)cls;
-- (UIView*)firstParentOfClass:(Class)cls;
-- (UIView*)childWithDescendant:(UIView*)descendant;
-
-/**
- * WARNING: This depends on undocumented APIs and may be fragile.  For testing only.
- */
-- (void)simulateTapAtPoint:(CGPoint)location;
-
-@end
-
-@interface UITableView (T3Category)
-
-/**
- * The view that contains the "index" along the right side of the table.
- */
-@property(nonatomic,readonly) UIView* indexView;
-
-@end
-
-@interface UIWebView (T3Category)
-
-/**
- * Gets the frame of a DOM element in the page.
- *
- * @query A JavaScript expression that evaluates to a single DOM element.
- */
-- (CGRect)frameOfElement:(NSString*)query;
-
-@end
-
-@interface UIViewController (T3Category)
-
-/**
- * The view controller that comes before this one in a navigation controller's history.
- */
-- (UIViewController*)previousViewController;
-
-/**
- * The view controller that comes after this one in a navigation controller's history.
- */
-- (UIViewController*)nextViewController;
-
-/**
- * Shows a UIAlertView with a message and title.
- *
- * @delegate A UIAlertView delegate
- */ 
-- (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate;
-
-/**
- * Shows a UIAlertView with a message.
- */ 
-- (void)alert:(NSString*)message;
-
-/**
- * Shows a UIAlertView with an error message.
- */ 
-- (void)alertError:(NSString*)message;
-
-@end
+#import "T3+NSObject.h"
+#import "T3+UIViewController.h"
+#import "T3+UIView.h"
+#import "T3+UITableView.h"
+#import "T3+UIWebView.h"

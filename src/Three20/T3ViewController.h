@@ -1,12 +1,9 @@
 #import "Three20/T3Global.h"
 
 typedef enum {
-  // Nothing needs to be updated
-  T3ViewValid = 0,
-  // Content needs to be updated
-  T3ViewInvalidContent = 1,
-  // Views need to be updated with the latest content
-  T3ViewInvalidView = 2
+  T3ViewValid = 0,            // Nothing needs to be updated
+  T3ViewInvalidContent = 1,   // Content needs to be updated
+  T3ViewInvalidView = 2       // Views need to be updated with the latest content
 } T3ViewValidity;
 
 @protocol T3Object;

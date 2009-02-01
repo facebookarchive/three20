@@ -24,7 +24,7 @@
 @property(nonatomic) BOOL disableDiskCache;
 
 /**
- * Disables the memory cache for multimedia objects.
+ * Disables the in-memory cache for multimedia objects.
  */
 @property(nonatomic) BOOL disableMediaCache;
 
