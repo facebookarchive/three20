@@ -5,6 +5,6 @@
   UITableView* _tableView;
 }
 
-@property (nonatomic, retain) UITableView* tableView;
+@property(nonatomic,retain) UITableView* tableView;
 
 @end

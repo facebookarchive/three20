@@ -74,7 +74,6 @@ NSMutableArray* T3CreateNonRetainingArray();
  */
 UIInterfaceOrientation T3DeviceOrientation();
 
-
 /**
  * Gets the bounds of the screen with device orientation factored in.
  */
@@ -98,7 +97,7 @@ void T3NetworkRequestStopped();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface NSObject (T3Extensions)
+@interface NSObject (T3Category)
 
 /**
  * Additional performSelector signatures that support up to 7 arguments.
@@ -117,24 +116,24 @@ void T3NetworkRequestStopped();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface UIView (T3Extensions)
+@interface UIView (T3Category)
 
 @property(nonatomic) CGFloat x;
 @property(nonatomic) CGFloat y;
 @property(nonatomic) CGFloat width;
 @property(nonatomic) CGFloat height;
 
-@property(nonatomic, readonly) CGFloat right;
-@property(nonatomic, readonly) CGFloat bottom;
+@property(nonatomic,readonly) CGFloat right;
+@property(nonatomic,readonly) CGFloat bottom;
 
-@property(nonatomic, readonly) CGFloat screenX;
-@property(nonatomic, readonly) CGFloat screenY;
+@property(nonatomic,readonly) CGFloat screenX;
+@property(nonatomic,readonly) CGFloat screenY;
 
-@property(nonatomic, readonly) CGFloat screenViewX;
-@property(nonatomic, readonly) CGFloat screenViewY;
+@property(nonatomic,readonly) CGFloat screenViewX;
+@property(nonatomic,readonly) CGFloat screenViewY;
 
-@property(nonatomic, readonly) CGFloat orientationWidth;
-@property(nonatomic, readonly) CGFloat orientationHeight;
+@property(nonatomic,readonly) CGFloat orientationWidth;
+@property(nonatomic,readonly) CGFloat orientationHeight;
 
 - (UIScrollView*)findFirstScrollView;
 - (UIView*)firstViewOfClass:(Class)cls;
@@ -142,36 +141,59 @@ void T3NetworkRequestStopped();
 - (UIView*)childWithDescendant:(UIView*)descendant;
 
 /**
- * WARNING: This depends on undocumented APIs and may be fragile.
+ * WARNING: This depends on undocumented APIs and may be fragile.  For testing only.
  */
 - (void)simulateTapAtPoint:(CGPoint)location;
 
 @end
 
-@interface UITableView (T3Extensions)
+@interface UITableView (T3Category)
 
 /**
  * The view that contains the "index" along the right side of the table.
  */
-@property(nonatomic, readonly) UIView* indexView;
+@property(nonatomic,readonly) UIView* indexView;
 
 @end
-@interface UIWebView (T3Extensions)
 
+@interface UIWebView (T3Category)
+
+/**
+ * Gets the frame of a DOM element in the page.
+ *
+ * @query A JavaScript expression that evaluates to a single DOM element.
+ */
 - (CGRect)frameOfElement:(NSString*)query;
 
 @end
 
-@interface UIViewController (T3Extensions)
+@interface UIViewController (T3Category)
 
 /**
- * The view controller that comes before this one in a navigation controller.
+ * The view controller that comes before this one in a navigation controller's history.
  */
 - (UIViewController*)previousViewController;
+
+/**
+ * The view controller that comes after this one in a navigation controller's history.
+ */
 - (UIViewController*)nextViewController;
 
+/**
+ * Shows a UIAlertView with a message and title.
+ *
+ * @delegate A UIAlertView delegate
+ */ 
 - (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate;
+
+/**
+ * Shows a UIAlertView with a message.
+ */ 
 - (void)alert:(NSString*)message;
+
+/**
+ * Shows a UIAlertView with an error message.
+ */ 
 - (void)alertError:(NSString*)message;
 
 @end

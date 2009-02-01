@@ -389,8 +389,11 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 - (UIView*)scrollView:(T3ScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
   T3PhotoView* photoView = (T3PhotoView*)[_scrollView dequeueReusablePage];
   if (!photoView) {
-    photoView = [[[T3PhotoView alloc] initWithFrame:CGRectZero] autorelease];
-    photoView.defaultImage = _defaultImage;
+    photoView = [_delegate photoViewController:self viewForPhotoAtIndex:pageIndex];
+    if (!photoView) {
+      photoView = [[[T3PhotoView alloc] initWithFrame:CGRectZero] autorelease];
+      photoView.defaultImage = _defaultImage;
+    }
   }
 
   id<T3Photo> photo = [_photoSource photoAtIndex:pageIndex];
@@ -402,15 +405,6 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 - (CGSize)scrollView:(T3ScrollView*)scrollView sizeOfPageAtIndex:(NSInteger)pageIndex {
   id<T3Photo> photo = [_photoSource photoAtIndex:pageIndex];
   return photo ? photo.size : CGSizeZero;
-}
-
-- (UIView*)scrollView:(T3ScrollView*)scrollView metaViewForPageAtIndex:(NSInteger)pageIndex {
-  UIView* metaView = [_delegate metaViewForPhotoAtIndex:pageIndex];
-  if (metaView) {
-    return metaView;
-  } else {
-    return nil;
-  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

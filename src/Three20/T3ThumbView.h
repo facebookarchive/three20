@@ -8,7 +8,7 @@
   T3PaintedView* borderView;
 }
 
-@property(nonatomic, copy) NSString* url;
+@property(nonatomic,copy) NSString* url;
 
 - (void)pauseLoading:(BOOL)paused;
 

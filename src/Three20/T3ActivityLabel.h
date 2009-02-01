@@ -20,10 +20,10 @@ typedef enum {
   BOOL centeredToScreen;
 }
 
-@property (nonatomic, readonly) T3ActivityLabelStyle style;
-@property (nonatomic, assign) NSString* text;
-@property (nonatomic) BOOL centered;
-@property (nonatomic) BOOL centeredToScreen;
+@property(nonatomic,readonly) T3ActivityLabelStyle style;
+@property(nonatomic,assign) NSString* text;
+@property(nonatomic) BOOL centered;
+@property(nonatomic) BOOL centeredToScreen;
 
 - (id)initWithFrame:(CGRect)frame style:(T3ActivityLabelStyle)style;
 

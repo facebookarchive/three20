@@ -27,10 +27,10 @@ static NSString* kCacheDirPathName = @"Three20";
   int retriesLeft;
 }
 
-@property(nonatomic, readonly) NSString* url;
-@property(nonatomic, readonly) NSString* contentType;
-@property(nonatomic, readonly) BOOL loading;
-@property(nonatomic, readonly) BOOL convertMedia;
+@property(nonatomic,readonly) NSString* url;
+@property(nonatomic,readonly) NSString* contentType;
+@property(nonatomic,readonly) BOOL loading;
+@property(nonatomic,readonly) BOOL convertMedia;
 
 - (id)initForRequest:(T3URLRequest*)request cache:(T3URLCache*)cache;
 

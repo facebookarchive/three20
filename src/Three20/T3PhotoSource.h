@@ -21,22 +21,22 @@ typedef enum {
 /**
  *
  */
-@property(nonatomic, copy) NSString* title;
+@property(nonatomic,copy) NSString* title;
 
 /**
  * The total number of photos in the source, independent of the number that have been loaded.
  */
-@property(nonatomic, readonly) NSUInteger numberOfPhotos;
+@property(nonatomic,readonly) NSUInteger numberOfPhotos;
 
 /**
  * The maximum index of photos that have already been loaded.
  */
-@property(nonatomic, readonly) NSUInteger maxPhotoIndex;
+@property(nonatomic,readonly) NSUInteger maxPhotoIndex;
 
 /**
  *
  */
-@property(nonatomic, readonly) BOOL loading;
+@property(nonatomic,readonly) BOOL loading;
 
 /**
  *
@@ -87,7 +87,7 @@ typedef enum {
 /**
  * The photo source that the photo belongs to.
  */
-@property(nonatomic, assign) id<T3PhotoSource> photoSource;
+@property(nonatomic,assign) id<T3PhotoSource> photoSource;
 
 /**
  * The index of the photo within its photo source.

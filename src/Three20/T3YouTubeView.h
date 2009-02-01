@@ -4,7 +4,7 @@
   NSString* url;
 }
 
-@property(nonatomic, copy) NSString* url;
+@property(nonatomic,copy) NSString* url;
 
 - (id)initWithURL:(NSString*)url;
 

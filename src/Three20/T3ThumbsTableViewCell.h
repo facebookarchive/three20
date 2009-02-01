@@ -11,7 +11,7 @@
   T3ThumbView* thumbView4;
 }
 
-@property(nonatomic, retain) id<T3Photo> photo;
+@property(nonatomic,retain) id<T3Photo> photo;
 
 - (void)pauseLoading:(BOOL)paused;
 

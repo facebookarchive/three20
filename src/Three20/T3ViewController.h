@@ -40,17 +40,17 @@ typedef enum {
 /**
  * The primary object behind the view.
  */
-@property(nonatomic, readonly) id<T3Object> viewObject;
+@property(nonatomic,readonly) id<T3Object> viewObject;
 
 /**
  * A description of the kind of view to be presented for viewObject when the view is populated.
  */
-@property(nonatomic, readonly) NSString* viewName;
+@property(nonatomic,readonly) NSString* viewName;
 
 /**
  * A temporary holding place for persisted view state waiting to be restored.
  */
-@property(nonatomic, retain) NSDictionary* viewState;
+@property(nonatomic,retain) NSDictionary* viewState;
 
 /**
  * Indicates if content is ready, actively loading, empty, or has an error.
@@ -60,17 +60,17 @@ typedef enum {
 /**
  * User interaction has been disabled;
  */
-@property(nonatomic, readonly) BOOL disabled;
+@property(nonatomic,readonly) BOOL disabled;
 
 /**
  * The view has appeared at least once.
  */
-@property(nonatomic, readonly) BOOL appeared;
+@property(nonatomic,readonly) BOOL appeared;
 
 /**
  * The view is currently visible.
  */
-@property(nonatomic, readonly) BOOL appearing;
+@property(nonatomic,readonly) BOOL appearing;
 
 /**
  * The view which displays activity, emptiness, or an error.
@@ -78,7 +78,7 @@ typedef enum {
  * This value is only non-nil when there is a status to be displayed.  By default, assigning
  * a view to this property will cause it to be displayed on top of all other views.
  */
-@property(nonatomic, retain) UIView* statusView;
+@property(nonatomic,retain) UIView* statusView;
 
 /**
  * Update the view with a new primary object.

@@ -6,6 +6,6 @@
   T3ImageView* imageView;
 }
 
-@property(nonatomic, copy) NSString* imageURL;
+@property(nonatomic,copy) NSString* imageURL;
 
 @end

@@ -7,6 +7,6 @@
   BOOL goingBack;
 }
 
-@property (nonatomic, retain) id<T3PhotoSource> photoSource;
+@property(nonatomic,retain) id<T3PhotoSource> photoSource;
 
 @end

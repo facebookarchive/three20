@@ -11,9 +11,9 @@
   BOOL convertMedia;
 }
 
-@property(nonatomic, readonly) NSString* url;
-@property(nonatomic, readonly) id<T3URLRequestDelegate> delegate;
-@property(nonatomic, assign) T3URLCache* cache;
+@property(nonatomic,readonly) NSString* url;
+@property(nonatomic,readonly) id<T3URLRequestDelegate> delegate;
+@property(nonatomic,assign) T3URLCache* cache;
 @property(nonatomic) NSTimeInterval minTime;
 @property(nonatomic) BOOL convertMedia;
 

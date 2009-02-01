@@ -6,9 +6,9 @@
   UILabel* captionView;
 }
 
-@property(nonatomic, retain) UIImage* image;
-@property(nonatomic, copy) NSString* title;
-@property(nonatomic, copy) NSString* caption;
+@property(nonatomic,retain) UIImage* image;
+@property(nonatomic,copy) NSString* title;
+@property(nonatomic,copy) NSString* caption;
 
 - (id)initWithTitle:(NSString*)title caption:(NSString*)caption image:(UIImage*)image;
 

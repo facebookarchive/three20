@@ -25,9 +25,9 @@ typedef enum {
 }
 
 @property(nonatomic) T3Background background;
-@property(nonatomic, retain) UIColor* fillColor;
-@property(nonatomic, retain) UIColor* fillColor2;
-@property(nonatomic, retain) UIColor* strokeColor;
+@property(nonatomic,retain) UIColor* fillColor;
+@property(nonatomic,retain) UIColor* fillColor2;
+@property(nonatomic,retain) UIColor* strokeColor;
 @property(nonatomic) int strokeRadius;
 
 @end

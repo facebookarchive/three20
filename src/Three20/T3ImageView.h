@@ -10,11 +10,11 @@
   BOOL _autoresizesToImage;
 }
 
-@property (nonatomic, assign) id<T3ImageViewDelegate> delegate;
-@property (nonatomic, copy) NSString* url;
-@property (nonatomic, retain) UIImage* defaultImage;
-@property (nonatomic) BOOL autoresizesToImage;
-@property (nonatomic, readonly) BOOL loading;
+@property(nonatomic,assign) id<T3ImageViewDelegate> delegate;
+@property(nonatomic,copy) NSString* url;
+@property(nonatomic,retain) UIImage* defaultImage;
+@property(nonatomic) BOOL autoresizesToImage;
+@property(nonatomic,readonly) BOOL loading;
 
 - (void)reload;
 - (void)stopLoading;

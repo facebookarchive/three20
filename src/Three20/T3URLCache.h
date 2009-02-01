@@ -40,7 +40,7 @@
 /**
  * Gets the path to the directory of the disk cache.
  */
-@property(nonatomic, copy) NSString* cachePath;
+@property(nonatomic,copy) NSString* cachePath;
 
 /**
  * Gets the shared cache singleton used across the application.

@@ -27,6 +27,7 @@
   UIEdgeInsets _touchEdges;
   UIEdgeInsets _touchStartEdges;
   NSUInteger _touchCount;
+  CGFloat _overshoot;
   UITouch* _touch1;
   UITouch* _touch2;
   BOOL _dragging;
@@ -36,57 +37,57 @@
 /**
  *
  */
-@property (nonatomic, assign) id<T3ScrollViewDelegate> delegate;
+@property(nonatomic,assign) id<T3ScrollViewDelegate> delegate;
 
 /**
  *
  */
-@property (nonatomic, assign) id<T3ScrollViewDataSource> dataSource;
+@property(nonatomic,assign) id<T3ScrollViewDataSource> dataSource;
 
 /**
  *
  */
-@property (nonatomic) NSInteger centerPageIndex;
+@property(nonatomic) NSInteger centerPageIndex;
 
 /**
  *
  */
-@property (nonatomic) BOOL scrollEnabled;
+@property(nonatomic) BOOL scrollEnabled;
 
 /**
  *
  */
-@property (nonatomic) BOOL zoomEnabled;
+@property(nonatomic) BOOL zoomEnabled;
 
 /**
  *
  */
-@property (nonatomic) BOOL rotateEnabled;
+@property(nonatomic) BOOL rotateEnabled;
 
 /**
  *
  */
-@property (nonatomic) CGFloat pageSpacing;
+@property(nonatomic) CGFloat pageSpacing;
 
 /**
  *
  */
-@property (nonatomic) UIInterfaceOrientation orientation;
+@property(nonatomic) UIInterfaceOrientation orientation;
 
 /**
  *
  */
-@property (nonatomic, readonly) NSInteger numberOfPages;
+@property(nonatomic,readonly) NSInteger numberOfPages;
 
 /**
  *
  */
-@property (nonatomic, readonly) UIView* centerPage;
+@property(nonatomic,readonly) UIView* centerPage;
 
 /**
  * A dictionary of visible pages keyed by the index of the page.
  */
-@property (nonatomic, readonly) NSDictionary* visiblePages;
+@property(nonatomic,readonly) NSDictionary* visiblePages;
 
 - (void)setOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated;
 
@@ -190,12 +191,5 @@
  * This is used to determine how to 
  */
 - (CGSize)scrollView:(T3ScrollView*)scrollView sizeOfPageAtIndex:(NSInteger)pageIndex;
-
-@optional
-
-/**
- * Creates a view that displays metadata about the page at the given index.
- */
-- (UIView*)scrollView:(T3ScrollView*)scrollView metaViewForPageAtIndex:(NSInteger)pageIndex;
 
 @end

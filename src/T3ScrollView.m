@@ -15,6 +15,7 @@ static const CGFloat T3MaximumZoom = 3.5;
 static const NSInteger T3InvalidIndex = -1;
 static const NSTimeInterval T3FlickInterval = 0.4;
 static const NSTimeInterval T3BounceInterval = 0.5;
+static const NSTimeInterval kOvershoot = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -53,6 +54,7 @@ static const NSTimeInterval T3BounceInterval = 0.5;
     _touch2 = nil;
     _dragging = NO;
     _zooming = NO;
+    _overshoot = 0;
     
     for (NSInteger i = 0; i < T3_MAX_PAGES; ++i) {
       [_pages addObject:[NSNull null]];
@@ -143,6 +145,10 @@ static const NSTimeInterval T3BounceInterval = 0.5;
   } else {
     return self.height;
   }
+}
+
+- (CGFloat)overshoot {
+  return _pageEdges.left < 0 ? -_overshoot : _overshoot;
 }
 
 - (CGRect)frameOfPageAtIndex:(NSInteger)pageIndex {
@@ -597,15 +603,15 @@ static const NSTimeInterval T3BounceInterval = 0.5;
   } else if (self.flicked) {
     if (_pageEdges.left < 0) {
       if (abs(_pageStartEdges.left) >= abs(_pageEdges.right)) {
-        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.right);
+        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.right + _overshoot);
       } else {
-        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.left);
+        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.left + _overshoot);
       }
     } else {
       if (abs(_pageEdges.left) >= abs(_pageEdges.right)) {
-        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.right);
+        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.right + _overshoot);
       } else {
-        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.left);
+        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.left + _overshoot);
       }
     }
   } else {
@@ -710,12 +716,27 @@ static const NSTimeInterval T3BounceInterval = 0.5;
   }
 }
 
+- (void)startAnimationTo:(UIEdgeInsets)edges duration:(NSTimeInterval)duration {
+  if (!_animationTimer) {
+    _pageStartEdges = _pageEdges;
+    [self updateZooming:edges];
+    [self cancelTapTimer];
+
+    _animateEdges = edges;
+    _animationDuration = duration;
+    _animationStartTime = [[NSDate date] retain];
+    _animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self
+      selector:@selector(animator) userInfo:nil repeats:YES];
+  }
+}
+
 - (void)stopAnimation:(BOOL)resetEdges {
   if (_animationTimer) {
     [_animationTimer invalidate];
     _animationTimer = nil;
     [_animationStartTime release];
     _animationStartTime = nil;
+    _overshoot = 0;
     [self updateZooming:UIEdgeInsetsZero];
     
     NSInteger realIndex = [self realPageIndex];
@@ -744,26 +765,44 @@ static const NSTimeInterval T3BounceInterval = 0.5;
 
   [self setNeedsLayout];
 
-  if (pct >= 1.0) {
+  if (pct == 1.0) {
+    if (_overshoot) {
+      [_animationStartTime release];
+      [_animationTimer invalidate];
+      _animationTimer = nil;
+      [self startAnimationTo:UIEdgeInsetsMake(0, self.overshoot, 0, self.overshoot) duration:0.1];
+      _overshoot = 0;
+    } else {
+      [self stopAnimation:NO];
+      
+      if ([_delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+        [_delegate scrollViewDidEndDecelerating:self];
+      }
+    }
+  }
+}
+
+- (void)animator2 {
+  NSTimeInterval kt = -[_animationStartTime timeIntervalSinceNow];
+  CGFloat pct = kt ? [self tween:kt b:0 c:kt d:_animationDuration]/kt : 0;
+  if (pct > 1.0) {
+    pct = 1.0;
+  }
+  
+  _pageEdges.left = _pageStartEdges.left + _animateEdges.left * pct;
+  _pageEdges.right = _pageStartEdges.right + _animateEdges.right * pct;
+  _pageEdges.top = _pageStartEdges.top + _animateEdges.top * pct;
+  _pageEdges.bottom = _pageStartEdges.bottom + _animateEdges.bottom * pct;
+  //T3LOGEDGES(_pageEdges);
+
+  [self setNeedsLayout];
+
+  if (pct == 1.0) {
     [self stopAnimation:YES];
     
     if ([_delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
       [_delegate scrollViewDidEndDecelerating:self];
     }
-  }
-}
-
-- (void)startAnimationTo:(UIEdgeInsets)edges duration:(NSTimeInterval)duration {
-  if (!_animationTimer) {
-    _pageStartEdges = _pageEdges;
-    [self updateZooming:edges];
-    [self cancelTapTimer];
-
-    _animateEdges = edges;
-    _animationDuration = duration;
-    _animationStartTime = [[NSDate date] retain];
-    _animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self
-      selector:@selector(animator) userInfo:nil repeats:YES];
   }
 }
 
@@ -905,6 +944,7 @@ static const NSTimeInterval T3BounceInterval = 0.5;
       if (self.pinched || (_touchCount == 0 && self.pulled)) {
         UIEdgeInsets edges = [self pageEdgesForAnimation];
         NSTimeInterval dur = self.flicked ? T3FlickInterval : T3BounceInterval;
+        //_overshoot = kOvershoot;
         [self startAnimationTo:edges duration:dur];
       }
     }

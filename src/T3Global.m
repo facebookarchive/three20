@@ -49,7 +49,7 @@ void T3NetworkRequestStopped() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation NSObject (T3Extensions)
+@implementation NSObject (T3Category)
 
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
   NSMethodSignature *sig = [self methodSignatureForSelector:selector];
@@ -205,14 +205,14 @@ void T3NetworkRequestStopped() {
 @implementation UIEventFake
 @end
 
-@interface UITouch (T3Extensions)
+@interface UITouch (T3Category)
 
 - (id)initInView:(UIView *)view location:(CGPoint)location;
 - (void)changeToPhase:(UITouchPhase)phase;
 
 @end
 
-@implementation UITouch (T3Extensions)
+@implementation UITouch (T3Category)
 
 - (id)initInView:(UIView *)view location:(CGPoint)location {
   if (self = [super init]) {
@@ -238,7 +238,7 @@ void T3NetworkRequestStopped() {
 
 @end
 
-@implementation UIEvent (T3Extensions)
+@implementation UIEvent (T3Category)
 
 - (id)initWithTouch:(UITouch *)touch {
   if (self == [super init]) {
@@ -263,7 +263,7 @@ void T3NetworkRequestStopped() {
 
 @end
 
-@implementation UIView (T3Extensions)
+@implementation UIView (T3Category)
 
 - (CGFloat)x {
   return self.frame.origin.x;
@@ -428,7 +428,7 @@ void T3NetworkRequestStopped() {
 
 @end
 
-@implementation UITableView (T3Extensions)
+@implementation UITableView (T3Category)
 
 - (UIView*)indexView {
   Class indexViewClass = NSClassFromString(@"UITableViewIndex");
@@ -443,7 +443,7 @@ void T3NetworkRequestStopped() {
 
 @end
 
-@implementation UIWebView (T3Extensions)
+@implementation UIWebView (T3Category)
 
 - (CGRect)frameOfElement:(NSString*)query {
   NSString* result = [self stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"\
@@ -477,7 +477,7 @@ void T3NetworkRequestStopped() {
 
 @end
 
-@implementation UIViewController (T3Extensions)
+@implementation UIViewController (T3Category)
 
 - (UIViewController*)previousViewController {
   NSArray* viewControllers = self.navigationController.viewControllers;
@@ -502,10 +502,10 @@ void T3NetworkRequestStopped() {
   return nil;
 }
 
-- (void)alert:(NSString*)message title:(NSString*)title delegate:(id)aDelegate {
+- (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate {
   if (message) {
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title message:message
-      delegate:aDelegate cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+      delegate:delegate cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
     [alert show];
   }
 }

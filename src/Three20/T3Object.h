@@ -11,7 +11,7 @@ typedef enum {
 
 @protocol T3Object <NSObject>
 
-@property(nonatomic, readonly) NSString* viewURL;
+@property(nonatomic,readonly) NSString* viewURL;
 @property(nonatomic) T3InvalidState isInvalid;
 
 + (id<T3Object>)fromURL:(NSURL*)url;

@@ -20,19 +20,19 @@
   BOOL _delayLoad;
 }
 
-@property (nonatomic, assign) id<T3PhotoViewControllerDelegate> delegate;
+@property(nonatomic,assign) id<T3PhotoViewControllerDelegate> delegate;
 
 /**
  * The source of a sequential photo collection that will be displayed.
  */
-@property (nonatomic, retain) id<T3PhotoSource> photoSource;
+@property(nonatomic,retain) id<T3PhotoSource> photoSource;
 
 /**
  * The photo that is currently visible and centered.
  *
  * You can assign this directly to change the photoSource to the one that contains the photo.
  */
-@property (nonatomic, assign) id<T3Photo> centerPhoto;
+@property(nonatomic,assign) id<T3Photo> centerPhoto;
 
 /**
  * The index of the currently visible photo.
@@ -40,17 +40,18 @@
  * Because centerPhoto can be nil while waiting for the source to load the photo, this property
  * must be maintained even though centerPhoto has its own index property.
  */
-@property (nonatomic, readonly) NSUInteger centerPhotoIndex;
+@property(nonatomic,readonly) NSUInteger centerPhotoIndex;
 
 /**
  * The default image to show before a photo has been loaded.
  */
-@property (nonatomic, retain) UIImage* defaultImage;
+@property(nonatomic,retain) UIImage* defaultImage;
 
 @end
 
 @protocol T3PhotoViewControllerDelegate
 
-- (UIView*)metaViewForPhotoAtIndex:(NSInteger)photoIndex;
+- (T3PhotoView*)photoViewController:(T3PhotoViewController*)controller
+  viewForPhotoAtIndex:(NSInteger)photoIndex;
 
 @end
