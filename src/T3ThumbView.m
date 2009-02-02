@@ -1,6 +1,6 @@
 #import "Three20/T3ThumbView.h"
 #import "Three20/T3ImageView.h"
-#import "Three20/T3PaintedView.h"
+#import "Three20/T3BackgroundView.h"
 
 @implementation T3ThumbView
 
@@ -13,7 +13,7 @@
     imageView.userInteractionEnabled = NO;
     [self addSubview:imageView];
 
-    borderView = [[T3PaintedView alloc] initWithFrame:CGRectZero];
+    borderView = [[T3BackgroundView alloc] initWithFrame:CGRectZero];
     borderView.opaque = NO;
     borderView.background = T3BackgroundRoundedRect;
     borderView.strokeColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];

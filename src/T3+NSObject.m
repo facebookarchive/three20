@@ -1,4 +1,4 @@
-#import "Three20/T3+NSObject.h"
+#import "Three20/T3Global.h"
 
 @implementation NSObject (T3Category)
 

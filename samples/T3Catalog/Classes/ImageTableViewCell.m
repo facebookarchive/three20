@@ -1,5 +1,4 @@
 #import "ImageTableViewCell.h"
-#import "T3ImageView.h"
 
 @implementation ImageTableViewCell
 

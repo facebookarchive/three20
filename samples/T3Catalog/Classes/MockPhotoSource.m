@@ -39,7 +39,7 @@
   _isInvalid = T3Valid;
 
   if (_type & MockPhotoSourceLoadError) {
-    [_delegate photoSource:self loadLoadDidFailWithError:nil];
+    [_delegate photoSource:self loadDidFailWithError:nil];
   } else {
     NSMutableArray* newPhotos = [NSMutableArray array];
 
@@ -132,7 +132,7 @@
   _delegate = [delegate retain];
   [_delegate photoSourceLoading:self fromIndex:fromIndex toIndex:toIndex];
 
-  _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self
+  _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
     selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];
 }
 

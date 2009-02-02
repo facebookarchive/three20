@@ -4,7 +4,11 @@
 @implementation PhotoTest2Controller
 
 - (void)viewDidLoad {
-  self.photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceNormal
+  self.photoSource = [[MockPhotoSource alloc]
+    initWithType:MockPhotoSourceNormal
+    // initWithType:MockPhotoSourceDelayed
+    // initWithType:MockPhotoSourceLoadError
+    // initWithType:MockPhotoSourceDelayed|MockPhotoSourceLoadError
     photos:[[NSArray alloc] initWithObjects:
     [[[MockPhoto alloc]
       initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
@@ -204,7 +208,16 @@
       smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
       size:CGSizeMake(800, 533)] autorelease],
     nil
-  ] photos2:nil];
+  ]
+
+  photos2:nil
+//  photos2:[[NSArray alloc] initWithObjects:
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
+//      smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
+//      size:CGSizeMake(800, 533)] autorelease],
+//    nil]
+  ];
   self.photoSource.title = @"Flickr Photos";
 }
 

@@ -24,7 +24,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
     _centerPhotoIndex = 0;
     _previousBarStyle = 0;
     _scrollView = nil;
-    _statusView = nil;
+    _photoStatusView = nil;
     _statusText = nil;
     _loadTimer = nil;
     _delayLoad = NO;
@@ -152,22 +152,22 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 - (T3PhotoView*)statusView {
-  if (!_statusView) {
-    _statusView = [[T3PhotoView alloc] initWithFrame:_scrollView.frame];
-    _statusView.defaultImage = _defaultImage;
-    _statusView.photo = nil;
-    [self.view addSubview:_statusView];
+  if (!_photoStatusView) {
+    _photoStatusView = [[T3PhotoView alloc] initWithFrame:_scrollView.frame];
+    _photoStatusView.defaultImage = _defaultImage;
+    _photoStatusView.photo = nil;
+    [self.view addSubview:_photoStatusView];
   }
   
-  return _statusView;
+  return _photoStatusView;
 }
 
 - (void)showProgress:(CGFloat)progress {
-  if ((appeared || appearing) && progress >= 0 && !self.centerPhotoView) {
+  if ((self.appeared || self.appearing) && progress >= 0 && !self.centerPhotoView) {
     [self.statusView showProgress:progress];
     self.statusView.hidden = NO;
   } else {
-    _statusView.hidden = YES;
+    _photoStatusView.hidden = YES;
   }
 }
 
@@ -175,11 +175,11 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   [_statusText release];
   _statusText = [status retain];
 
-  if ((appeared || appearing) && status && !self.centerPhotoView) {
+  if ((self.appeared || self.appearing) && status && !self.centerPhotoView) {
     [self.statusView showStatus:status];
     self.statusView.hidden = NO;
   } else {
-    _statusView.hidden = YES;
+    _photoStatusView.hidden = YES;
   }
 }
 
@@ -252,8 +252,8 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   return _centerPhoto;
 }
 
-- (void)showObject:(id<T3Object>)object inView:(NSString*)name withState:(NSDictionary*)state {
-  [super showObject:object inView:name withState:state];
+- (void)showObject:(id<T3Object>)object inView:(NSString*)viewType withState:(NSDictionary*)state {
+  [super showObject:object inView:viewType withState:state];
   
   if ([object conformsToProtocol:@protocol(T3PhotoSource)]) {
     self.photoSource = (id<T3PhotoSource>)object;
@@ -263,35 +263,35 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 - (void)updateContent {
-  if (!_centerPhoto) {
-    [self loadPhotos];
-  } else if (_photoSource.numberOfPhotos) {
-    self.contentState = T3ViewContentReady;
+  if (_photoSource.numberOfPhotos) {
+    self.contentState = T3ContentReady;
   } else {
-    self.contentState = T3ViewContentEmpty;
+    self.contentState = T3ContentNone;
+  }
+
+  if (_photoSource.loading) {
+    self.contentState |= T3ContentActivity;
+  } else if (!_centerPhoto) {
+    [self loadPhotos];
   }
 }
 
 - (void)updateView {
-  _scrollView.centerPageIndex = _centerPhotoIndex;
-  [self showProgress:-1];
-  [self showStatus:nil];
-  [self updateTitle];
-  [self loadImages];
-}
+  if (self.contentState & T3ContentReady) {
+    _scrollView.centerPageIndex = _centerPhotoIndex;
+    [self showProgress:-1];
+    [self showStatus:nil];
+    [self loadImages];
+  }
 
-- (void)updateViewWithEmptiness {
-  [self showStatus:NSLocalizedString(@"This photo set contains no photos.", "")];
-  [self updateTitle];
-}
+  if (self.contentState & T3ContentActivity) {
+    [self showProgress:0];
+  } else if (self.contentState & T3ContentError) {
+    [self showStatus:NSLocalizedString(@"This photo set could not be loaded.", "")];
+  } else {
+    [self showStatus:NSLocalizedString(@"This photo set contains no photos.", "")];
+  }
 
-- (void)updateViewWithActivity:(NSString*)activityText {
-  [self showProgress:0];
-  [self updateTitle];
-}
-
-- (void)updateViewWithError:(NSError*)error {
-  [self showStatus:NSLocalizedString(@"This photo set could not be loaded.", "")];
   [self updateTitle];
 }
 
@@ -300,8 +300,36 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   _scrollView.dataSource = nil;
   [_scrollView release];
   _scrollView = nil;
-  [_statusView release];
-  _statusView = nil;
+  [_photoStatusView release];
+  _photoStatusView = nil;
+}
+
+- (NSString*)titleForActivity {
+  return NSLocalizedString(@"Loading...", @"");
+}
+
+- (UIImage*)imageForError:(NSError*)error {
+  return [UIImage imageNamed:@"t3images/photoDefault.png"];
+}
+
+- (NSString*)titleForError:(NSError*)error {
+  return NSLocalizedString(@"Error", @"");
+}
+
+- (NSString*)descriptionForError:(NSError*)error {
+  return NSLocalizedString(@"This photo set could not be loaded.", @"");
+}
+
+- (UIImage*)imageForNoContent {
+  return [UIImage imageNamed:@"t3images/photoDefault.png"];
+}
+
+- (NSString*)titleForNoContent {
+  return  NSLocalizedString(@"No Photos", @"");
+}
+
+- (NSString*)descriptionForNoContent {
+  return NSLocalizedString(@"This photo set contains no photos.", @"");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -309,7 +337,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)photoSourceLoading:(id<T3PhotoSource>)photoSource fromIndex:(NSUInteger)fromIndex
     toIndex:(NSUInteger)toIndex {
-  [self setContentStateActivity:nil];
+  self.contentState |= T3ContentActivity;
 }
 
 - (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource {
@@ -321,14 +349,16 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   }
   
   if (_photoSource.numberOfPhotos) {
-    self.contentState = T3ViewContentReady;
+    self.contentState = T3ContentReady;
   } else {
-    self.contentState = T3ViewContentEmpty;
+    self.contentState = T3ContentNone;
   }
 }
 
-- (void)photoSource:(id<T3PhotoSource>)photoSource loadLoadDidFailWithError:(NSError*)error {
-  [self setContentStateError:error];
+- (void)photoSource:(id<T3PhotoSource>)photoSource loadDidFailWithError:(NSError*)error {
+  self.contentState &= ~T3ContentActivity;
+  self.contentState |= T3ContentError;
+  self.contentError = error;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

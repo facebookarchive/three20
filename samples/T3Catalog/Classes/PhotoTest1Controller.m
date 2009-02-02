@@ -4,7 +4,11 @@
 @implementation PhotoTest1Controller
 
 - (void)viewDidLoad {
-  self.photoSource = [[MockPhotoSource alloc] initWithType:MockPhotoSourceDelayed
+  self.photoSource = [[MockPhotoSource alloc]
+    initWithType:MockPhotoSourceNormal
+    // initWithType:MockPhotoSourceDelayed
+    // initWithType:MockPhotoSourceLoadError
+    // initWithType:MockPhotoSourceDelayed|MockPhotoSourceLoadError
     photos:[[NSArray alloc] initWithObjects:
 
     // Request fails immediately due to DNS error
@@ -31,7 +35,7 @@
       size:CGSizeMake(320, 480)] autorelease],
 
     // Causes album to be loaded
-    // [NSNull null],
+    [NSNull null],
 
     [[[MockPhoto alloc]
       initWithURL:@"http://photos-e.ll.facebook.com/photos-ll-sf2p/v646/35/54/223792/n223792_35094388_3743.jpg"
@@ -56,18 +60,20 @@
     nil
   ]
 
-  photos2:[[NSArray alloc] initWithObjects:
-    [[[MockPhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3081/3164978791_3c292029f2.jpg?v=0"
-      smallURL:@"http://farm4.static.flickr.com/3081/3164978791_3c292029f2_t.jpg"
-      size:CGSizeMake(320, 480)] autorelease],
-
-    [[[MockPhoto alloc]
-      initWithURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e.jpg?v=0"
-      smallURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e_t.jpg"
-      size:CGSizeMake(320, 480)] autorelease],
-    nil
-  ]];
+  photos2:nil
+//  photos2:[[NSArray alloc] initWithObjects:
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm4.static.flickr.com/3081/3164978791_3c292029f2.jpg?v=0"
+//      smallURL:@"http://farm4.static.flickr.com/3081/3164978791_3c292029f2_t.jpg"
+//      size:CGSizeMake(320, 480)] autorelease],
+//
+//    [[[MockPhoto alloc]
+//      initWithURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e.jpg?v=0"
+//      smallURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e_t.jpg"
+//      size:CGSizeMake(320, 480)] autorelease],
+//    nil
+//  ]
+  ];
   
   self.photoSource.title = @"Flickr Photos";
 }

@@ -1,6 +1,6 @@
 
 #import "ImageTest1Controller.h"
-#import "Three20/Three20.h"
+#import <Three20/Three20.h>
 
 @implementation ImageTest1Controller
 

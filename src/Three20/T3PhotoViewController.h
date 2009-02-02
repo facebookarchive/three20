@@ -12,7 +12,7 @@
   id<T3Photo> _centerPhoto;
   NSUInteger _centerPhotoIndex;
   T3ScrollView* _scrollView;
-  T3PhotoView* _statusView;
+  T3PhotoView* _photoStatusView;
   UIImage* _defaultImage;
   NSString* _statusText;
   UIBarStyle _previousBarStyle;

@@ -1,4 +1,4 @@
-#import "Three20/T3+UITableView.h"
+#import "Three20/T3Global.h"
 
 @implementation UITableView (T3Category)
 

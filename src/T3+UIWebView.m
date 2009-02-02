@@ -1,8 +1,6 @@
-#import "Three20/T3+UIWebView.h"
-#import "Three20/T3+UIView.h"
+#import "Three20/T3Global.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 @implementation UIWebView (T3Category)
 

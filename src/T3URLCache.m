@@ -672,13 +672,13 @@ static NSString* kCacheDirPathName = @"Three20";
 }
 
 - (void)logMemoryReport {
-  NSLog(@"======= IMAGE CACHE: %d media, %d pixels ========", mediaCache.count, totalPixelCount);
+  T3LOG(@"======= IMAGE CACHE: %d media, %d pixels ========", mediaCache.count, totalPixelCount);
   NSEnumerator* e = [mediaCache keyEnumerator];
   for (NSString* url ; url = [e nextObject]; ) {
     id media = [mediaCache objectForKey:url];
     if ([media isKindOfClass:[UIImage class]]) {
       UIImage* image = media;
-      NSLog(@"  %f x %f %@", image.size.width, image.size.height, url);
+      T3LOG(@"  %f x %f %@", image.size.width, image.size.height, url);
     }
   }  
 }

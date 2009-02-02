@@ -1,4 +1,4 @@
-#import "Three20/T3PaintedView.h"
+#import "Three20/T3BackgroundView.h"
 
 static void addRoundedRectToPath(CGContextRef context, CGRect rect, float radius) {
   CGContextBeginPath(context);
@@ -86,7 +86,7 @@ static void addInvertedRoundedRectPath(CGContextRef context, CGRect rect, float 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation T3PaintedView
+@implementation T3BackgroundView
 
 @synthesize background = _background, fillColor = _fillColor, fillColor2 = _fillColor2,
   strokeColor = _strokeColor, strokeRadius = _strokeRadius;
@@ -368,11 +368,11 @@ static void addInvertedRoundedRectPath(CGContextRef context, CGRect rect, float 
       const CGFloat* fill2 = _fillColor ? CGColorGetComponents(_fillColor2.CGColor) : nil;
       const CGFloat fillColors[] = {fill[0], fill[1], fill[2], fill[3],
         fill2[0], fill2[1], fill2[2], fill2[3]};
-      [T3PaintedView drawBackground:_background rect:rect fill:fillColors fillCount:2
+      [T3BackgroundView drawBackground:_background rect:rect fill:fillColors fillCount:2
         stroke:stroke radius:_strokeRadius];
     } else {
       const CGFloat* fill = _fillColor ? CGColorGetComponents(_fillColor.CGColor) : nil;
-      [T3PaintedView drawBackground:_background rect:rect fill:fill fillCount:1
+      [T3BackgroundView drawBackground:_background rect:rect fill:fill fillCount:1
         stroke:stroke radius:_strokeRadius];
     }
   }

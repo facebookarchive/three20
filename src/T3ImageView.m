@@ -76,8 +76,8 @@
       [_delegate imageViewLoaded:self];
     }
   } else {
-    if ([_delegate respondsToSelector:@selector(imageView:loadLoadDidFailWithError:)]) {
-      [_delegate imageView:self loadLoadDidFailWithError:nil];
+    if ([_delegate respondsToSelector:@selector(imageView:loadDidFailWithError:)]) {
+      [_delegate imageView:self loadDidFailWithError:nil];
     }
   }
 }
@@ -86,8 +86,8 @@
   [_request release];
   _request = nil;
 
-  if ([_delegate respondsToSelector:@selector(imageView:loadLoadDidFailWithError:)]) {
-    [_delegate imageView:self loadLoadDidFailWithError:error];
+  if ([_delegate respondsToSelector:@selector(imageView:loadDidFailWithError:)]) {
+    [_delegate imageView:self loadDidFailWithError:error];
   }
 }
 
@@ -95,8 +95,8 @@
   [_request release];
   _request = nil;
 
-  if ([_delegate respondsToSelector:@selector(imageView:loadLoadDidFailWithError:)]) {
-    [_delegate imageView:self loadLoadDidFailWithError:nil];
+  if ([_delegate respondsToSelector:@selector(imageView:loadDidFailWithError:)]) {
+    [_delegate imageView:self loadDidFailWithError:nil];
   }
 }
 

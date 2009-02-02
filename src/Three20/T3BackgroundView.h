@@ -16,7 +16,7 @@ typedef enum {
 /**
  * A decorational view that can painted using a variety of visual properties.
  */
-@interface T3PaintedView : UIView {
+@interface T3BackgroundView : UIView {
   T3Background _background;
   UIColor* _fillColor;
   UIColor* _fillColor2;

@@ -103,7 +103,7 @@ static const CGFloat T3PhotoViewPadding = 20;
   }
 }
 
-- (void)imageView:(T3ImageView*)imageView loadLoadDidFailWithError:(NSError*)error {
+- (void)imageView:(T3ImageView*)imageView loadDidFailWithError:(NSError*)error {
   if (self.url == [_photo urlForVersion:T3PhotoVersionLarge]) {
     [self showStatus:NSLocalizedString(@"This photo is not available.", @"")];
   } else {

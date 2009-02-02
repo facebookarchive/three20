@@ -4,7 +4,15 @@ typedef enum {
   T3ViewValid = 0,            // Nothing needs to be updated
   T3ViewInvalidContent = 1,   // Content needs to be updated
   T3ViewInvalidView = 2       // Views need to be updated with the latest content
-} T3ViewValidity;
+} T3ViewControllerState;
+
+typedef enum {
+  T3ContentUnknown = 0,
+  T3ContentNone = 1,
+  T3ContentReady = 2,
+  T3ContentActivity = 4,
+  T3ContentError = 8
+} T3ContentState;
 
 @protocol T3Object;
 
@@ -18,20 +26,15 @@ typedef enum {
  * 4. Display errors and activity information for externally loaded content
  */
 @interface T3ViewController : UIViewController {
-  NSDictionary* viewState;
+  UIView* _statusView;
+  NSDictionary* _viewState;
+  T3ViewControllerState _validity;
+  T3ContentState _contentState;
+  NSError* _contentError;
 
-  UIView* statusView;
-  UIView* statusOverView;
-
-  T3ViewValidity validity;
-  T3ViewContentState contentState;
-  NSString* contentActivityText;
-  NSError* contentError;
-
-  BOOL disabled;
-  BOOL appearing;
-  BOOL appeared;
-  BOOL unloaded;
+  BOOL _appearing;
+  BOOL _appeared;
+  BOOL _unloaded;
 }
 
 /**
@@ -42,7 +45,7 @@ typedef enum {
 /**
  * A description of the kind of view to be presented for viewObject when the view is populated.
  */
-@property(nonatomic,readonly) NSString* viewName;
+@property(nonatomic,readonly) NSString* viewType;
 
 /**
  * A temporary holding place for persisted view state waiting to be restored.
@@ -52,12 +55,12 @@ typedef enum {
 /**
  * Indicates if content is ready, actively loading, empty, or has an error.
  */ 
-@property(nonatomic) T3ViewContentState contentState;
+@property(nonatomic) T3ContentState contentState;
 
 /**
- * User interaction has been disabled;
- */
-@property(nonatomic,readonly) BOOL disabled;
+ * An error that occurred while trying to load content.
+ */ 
+@property(nonatomic, retain) NSError* contentError;
 
 /**
  * The view has appeared at least once.
@@ -70,21 +73,13 @@ typedef enum {
 @property(nonatomic,readonly) BOOL appearing;
 
 /**
- * The view which displays activity, emptiness, or an error.
- *
- * This value is only non-nil when there is a status to be displayed.  By default, assigning
- * a view to this property will cause it to be displayed on top of all other views.
- */
-@property(nonatomic,retain) UIView* statusView;
-
-/**
  * Update the view with a new primary object.
  *
  * @param object The primary object to display.
  * @param name A description that hints at how to display the object.
  * @param state A dictionary of attributes persisted in a previous life.
  */
-- (void)showObject:(id<T3Object>)object inView:(NSString*)name withState:(NSDictionary*)state;
+- (void)showObject:(id<T3Object>)object inView:(NSString*)viewType withState:(NSDictionary*)state;
 
 /**
  * Persist attributes of the view to a dictionary that can be restored later.
@@ -103,24 +98,7 @@ typedef enum {
  * the view.  This is necessary because low memory conditions can cause views to be destroyed
  * and re-created behind your back, so you need to maintain important state without them.
  */
-- (void)invalidate:(T3ViewValidity)state;
-
-/**
- * Changes the content state and invalidates the view so that it displays activity.
- */
-- (void)setContentStateActivity:(NSString*)activityText;
-
-/**
- * Changes the content state and invalidates the view so that it displays an error.
- */
-- (void)setContentStateError:(NSError*)error;
-
-/**
- * Reloads content from external source and invalidates the view.
- *
- * This is meant to be implemented by subclasses - the default does nothing.
- */
-- (void)reloadContent;
+- (void)invalidate:(T3ViewControllerState)state;
 
 /**
  * Called to update content after it has been invalidated.
@@ -134,17 +112,23 @@ typedef enum {
 - (void)updateContent;
 
 /**
- * Called when the view needs to be updated as a result of having been initialized or invalidated.
+ * Called to update the view after it has been invalidated.
+ *
+ * Override this function and check contentState to decide how to update the view.  The default
+ * implementation will update the view to indicate activity, errors, and lack of content.
+ */
+- (void)updateView;
+
+/**
+ * Reloads content from external source and invalidates the view.
  *
  * This is meant to be implemented by subclasses - the default does nothing.
  */
-- (void)updateView;
-- (void)updateViewWithEmptiness;
-- (void)updateViewWithActivity:(NSString*)activityText;
-- (void)updateViewWithError:(NSError*)error;
+- (void)reloadContent;
 
 /**
- * Restores a view to the state it was in after calling loadView but before calling updateView.
+ * Restores a view to the state it was in after calling loadView but before calling updateView;
+ * in other words, the views have no content in them yet.
  *
  * This is meant to be implemented by subclasses - the default does nothing.
  */
@@ -159,26 +143,38 @@ typedef enum {
 - (void)unloadView;
 
 /**
- * Displays a view that represents activity, an error, or emptiness.
  *
- * By default, this will show the view above all other views, covering the full bounds of
- * the controller's root view.  You may override this method to display the status view 
- * differently.
  */
-- (void)showStatusView:(UIView*)view;
+- (NSString*)titleForActivity;
 
 /**
- * Called after the view has been enabled.
  *
- * This is meant to be implemented by subclasses - the default does nothing.
  */
-- (void)viewDidEnable;
+- (UIImage*)imageForError:(NSError*)error;
 
 /**
- * Called after the view has been disabled.
  *
- * This is meant to be implemented by subclasses - the default does nothing.
  */
-- (void)viewDidDisable;
+- (NSString*)titleForError:(NSError*)error;
+
+/**
+ *
+ */
+- (NSString*)descriptionForError:(NSError*)error;
+
+/**
+ *
+ */
+- (UIImage*)imageForNoContent;
+
+/**
+ *
+ */
+- (NSString*)titleForNoContent;
+
+/**
+ *
+ */
+- (NSString*)descriptionForNoContent;
 
 @end

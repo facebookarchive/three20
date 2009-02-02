@@ -1,4 +1,5 @@
 #import "Three20/T3TableViewController.h"
+#import "Three20/T3ErrorView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -21,7 +22,11 @@
 // T3ViewController
 
 - (void)updateView {
-  [_tableView reloadData];
+  if (self.contentState & T3ContentReady) {
+    [_tableView reloadData];
+  }
+  
+  [super updateView];
 }
 
 - (void)unloadView {

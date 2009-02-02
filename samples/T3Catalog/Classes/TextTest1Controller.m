@@ -1,6 +1,6 @@
 
 #import "TextTest1Controller.h"
-#import "Three20/Three20.h"
+#import <Three20/Three20.h>
 
 @implementation TextTest1Controller
 

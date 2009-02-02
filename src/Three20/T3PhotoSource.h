@@ -76,7 +76,7 @@ typedef enum {
 /**
  *
  */
-- (void)photoSource:(id<T3PhotoSource>)photoSource loadLoadDidFailWithError:(NSError*)error;
+- (void)photoSource:(id<T3PhotoSource>)photoSource loadDidFailWithError:(NSError*)error;
 
 @end
 

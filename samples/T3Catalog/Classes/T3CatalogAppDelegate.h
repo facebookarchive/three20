@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+#import <Three20/Three20.h>
 
 @interface T3CatalogAppDelegate : NSObject <UIApplicationDelegate> {
 	IBOutlet UIWindow *window;

@@ -21,9 +21,17 @@
 @property(nonatomic,readonly) CGFloat orientationHeight;
 
 - (UIScrollView*)findFirstScrollView;
+
 - (UIView*)firstViewOfClass:(Class)cls;
+
 - (UIView*)firstParentOfClass:(Class)cls;
-- (UIView*)childWithDescendant:(UIView*)descendant;
+
+- (UIView*)findChildWithDescendant:(UIView*)descendant;
+
+/**
+ *
+ */
+- (void)removeSubviews;
 
 /**
  * WARNING: This depends on undocumented APIs and may be fragile.  For testing only.

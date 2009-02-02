@@ -1,5 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Three20/T3+NSObject.h"
+#import "Three20/T3+UIViewController.h"
+#import "Three20/T3+UIView.h"
+#import "Three20/T3+UITableView.h"
+#import "Three20/T3+UIWebView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Logging Helpers
@@ -54,16 +59,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-typedef enum {
-  T3ViewContentNone,
-  T3ViewContentActivity,
-  T3ViewContentReady,
-  T3ViewContentEmpty,
-  T3ViewContentError
-} T3ViewContentState;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 /**
  * Creates a mutable array which does not retain references to the objects it contains.
  */
@@ -106,11 +101,3 @@ void T3NetworkRequestStopped();
  * Resizes and/or rotates an image.
  */
 UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL rotate);
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-#import "T3+NSObject.h"
-#import "T3+UIViewController.h"
-#import "T3+UIView.h"
-#import "T3+UITableView.h"
-#import "T3+UIWebView.h"

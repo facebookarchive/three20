@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+#import <Three20/Three20.h>
 
 @class T3ImageView;
 

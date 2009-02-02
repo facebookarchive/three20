@@ -1,4 +1,4 @@
-#import "Three20/T3+UIView.h"
+#import "Three20/T3Global.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // This code for synthesizing touch events is derived from:
@@ -227,7 +227,7 @@
   }
 }
 
-- (UIView*)childWithDescendant:(UIView*)descendant {
+- (UIView*)findChildWithDescendant:(UIView*)descendant {
   for (UIView* view = descendant; view && view != self; view = view.superview) {
     if (view.superview == self) {
       return view;
@@ -235,6 +235,13 @@
   }
   
   return nil;
+}
+
+- (void)removeSubviews {
+  while (self.subviews.count) {
+    UIView* child = self.subviews.lastObject;
+    [child removeFromSuperview];
+  }
 }
 
 - (void)simulateTapAtPoint:(CGPoint)location {

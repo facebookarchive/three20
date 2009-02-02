@@ -7,105 +7,143 @@
 
 @implementation T3ViewController
 
-@synthesize viewState, contentState, statusView, disabled, appearing, appeared;
+@synthesize viewState = _viewState, contentState = _contentState, contentError = _contentError,
+  appearing = _appearing, appeared = _appeared;
 
 - (id)init {
   if (self = [super init]) {  
-    viewState = nil;
-    statusView = nil;
-    validity = T3ViewValid;
-    contentState = T3ViewContentNone;
-    contentActivityText = nil;
-    contentError = nil;
-    disabled = NO;
-    appearing = NO;
-    appeared = NO;
-    unloaded = NO;
+    _viewState = nil;
+    _validity = T3ViewValid;
+    _contentState = T3ContentUnknown;
+    _contentError = nil;
+    _statusView = nil;
+    _appearing = NO;
+    _appeared = NO;
+    _unloaded = NO;
   }
   return self;
 }
 
 - (void)dealloc {
-  //NSLog(@"DEALLOC %@", self);
-  [viewState release];
-  [contentActivityText release];
-  [contentError release];
-  [statusView release];
+  T3LOG(@"DEALLOC %@", self);
+  [_viewState release];
+  [_contentError release];
+
+  [_statusView release];
   [self unloadView];
+
+  if (_appeared) {
+    // The controller is supposed to handle this but sometimes due to leaks it does not, so
+    // we have to force it here
+    [self.view removeSubviews];
+  }
+
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)restoreViewFromState {
-  if (viewState) {
-    [self restoreView:viewState];
-    [viewState release];
-    viewState = nil;
+  if (_viewState) {
+    [self restoreView:_viewState];
+    [_viewState release];
+    _viewState = nil;
   }
 }
 
 - (void)updateViewInternal {
-  T3ViewValidity currentValidity = validity;
-  validity = T3ViewValid;
+  T3ViewControllerState validity = _validity;
+  _validity = T3ViewValid;
   
-  if (currentValidity & T3ViewInvalidContent) {
+  if (validity & T3ViewInvalidContent) {
     [self updateContent];
   }
 
-  if (currentValidity & T3ViewInvalidView) {
+  if (validity & T3ViewInvalidView) {
     // Ensure the view is loaded
     self.view;
 
-    self.statusView = nil;
-
-    if (contentState == T3ViewContentReady) {
-      [self updateView];
-      [self restoreViewFromState];
-    } else if (contentState == T3ViewContentActivity) {
-      [self updateViewWithActivity:contentActivityText];
-      [contentActivityText release];
-      contentActivityText = nil;
-      [self restoreViewFromState];
-    } else if (contentState == T3ViewContentEmpty) {
-      [self updateViewWithEmptiness];
-      [self restoreViewFromState];
-    } else if (contentState == T3ViewContentError) {
-      [self updateViewWithError:contentError];
-      [contentError release];
-      contentError = nil;
-      [self restoreViewFromState];
-    }
+    [self updateView];
+    [self restoreViewFromState];
   }
+}
+
+//- (void)changeStyleFrom:(T3ViewControllerStyle)from {
+//  if (from != style) {
+//    UINavigationBar* bar = self.navigationController.navigationBar;
+//    if (style == T3ViewControllerStyleTranslucent) {
+//      bar.tintColor = nil;
+//      bar.barStyle = UIBarStyleBlackTranslucent;
+//      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent
+//        animated:YES];
+//    } else {
+//      bar.tintColor = [T3Resources facebookDarkBlue];
+//      bar.barStyle = UIBarStyleDefault;
+//      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault
+//        animated:YES];
+//    }
+//  }
+//}
+//
+//- (void)updateStyle {
+//  T3ViewController* topController = (T3ViewController*)self.navigationController.topViewController;
+//  if (topController != self) {
+//    [self changeStyleFrom:topController.style];
+//  } else {
+//    NSArray* controllers = self.navigationController.viewControllers;
+//    if (controllers.count > 1) {
+//      T3ViewController* backController = [controllers objectAtIndex:controllers.count-2];
+//      [self changeStyleFrom:backController.style];
+//    }
+//  }
+//  [topController release];
+//}
+
+- (void)showStatusView:(UIView*)view {
+    [_statusView removeFromSuperview];
+  [_statusView release];
+  _statusView = [view retain];
+
+  if (_statusView) {
+    [self.view addSubview:_statusView];
+  }
+}
+
+- (void)showStatusCover:(UIView*)view {
+  [self showStatusView:view];
+  _statusView.frame = self.view.bounds;
+}
+
+- (void)showStatusBanner:(UIView*)view {
+  [self showStatusView:view];
+  _statusView.frame = self.view.bounds;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
 - (void)loadView {
-  CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-  UIView* contentView = [[[UIView alloc] initWithFrame:appFrame] autorelease];
+  UIView* contentView = [[[UIView alloc]
+    initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 	contentView.autoresizesSubviews = YES;
-	contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-  contentView.backgroundColor = [UIColor whiteColor];
   self.view = contentView;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  if (unloaded) {
-    unloaded = NO;
+  if (_unloaded) {
+    _unloaded = NO;
     [self loadView];
   }
 
-  appearing = YES;
+  _appearing = YES;
     
   [T3URLCache sharedCache].paused = YES;
   
-  if (!disabled && validity != T3ViewValid) {
+  if (_validity != T3ViewValid) {
     [self updateViewInternal];
   }
 
-  appeared = YES;
+  _appeared = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -113,74 +151,68 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-  appearing = NO;
+  _appearing = NO;
 }
 
 - (void)didReceiveMemoryWarning {
-  NSLog(@"MEMORY WARNING FOR %@", self);
+  T3LOG(@"MEMORY WARNING FOR %@", self);
 
-  if (!appearing) {
-    if (appeared) {
+  if (!_appearing) {
+    if (_appeared) {
       NSMutableDictionary* state = [[NSMutableDictionary alloc] init];
       [self persistView:state];
-      viewState = state;
-      validity = T3ViewInvalidView;
+      _viewState = state;
+      _validity = T3ViewInvalidView;
 
-      NSLog(@"UNLOAD VIEW %@", self);      
       UIView* view = self.view;
-      [super didReceiveMemoryWarning];
-      if (view.superview) {
-        // Sometimes, like when the controller is in a tabbed bar, the view won't
-        // be destroyed here like it should by the superclass - so let's do it ourselves!
-        while (view.subviews.count) {
-          UIView* child = view.subviews.lastObject;
-          [child removeFromSuperview];
-        }
-        unloaded = YES;
-      }      
+      T3LOG(@"UNLOAD VIEW %@", self);      
 
-      appeared = NO;
+      [super didReceiveMemoryWarning];
+
+      // Sometimes, like when the controller is in a tabbed bar, the view won't
+      // be destroyed here like it should by the superclass - so let's do it ourselves!
+      [view removeSubviews];
+
+      _unloaded = YES;
+      _appeared = NO;
       
-      [statusView release];
-      statusView = nil;
+      [_statusView release];
+      _statusView = nil;
       [self unloadView];
     }
   }
   
-  if (!appeared) {
-    validity = T3ViewInvalidContent;
+  if (!_appeared) {
+    _validity = T3ViewInvalidContent;
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (id<T3Object>)viewObject {
-  // Meant to be overridden
   return nil;
 }
 
-- (NSString*)viewName {
-  // Meant to be overridden
+- (NSString*)viewType {
   return nil;
 }
 
-- (void)setDisabled:(BOOL)isDisabled {
-  disabled = isDisabled;
-  if (disabled) {
-    [self viewDidDisable];
-
-    if (appeared) {
-      [self resetView];
-      validity = T3ViewInvalidContent;
+- (void)setContentState:(T3ContentState)contentState {
+  if (_contentState != contentState) {
+    _contentState = contentState;
+    
+    if (!(_contentState & T3ContentError)) {
+      [_contentError release];
+      _contentError = nil;
     }
-  } else {
-    [self viewDidEnable];
+    
+    [self invalidate:T3ViewInvalidView];
   }
 }
 
-- (void)showObject:(id<T3Object>)object inView:(NSString*)name withState:(NSDictionary*)state {
-  [viewState release];
-  viewState = [state retain];
+- (void)showObject:(id<T3Object>)object inView:(NSString*)viewType withState:(NSDictionary*)state {
+  [_viewState release];
+  _viewState = [state retain];
 }
 
 - (void)persistView:(NSMutableDictionary*)state {
@@ -189,40 +221,16 @@
 - (void)restoreView:(NSDictionary*)state {
 } 
 
-- (void)invalidate:(T3ViewValidity)aValidity {
-  if (!(validity & aValidity)) {
-    validity |= aValidity;
-    if (validity & T3ViewInvalidContent) {
-      contentState = T3ViewContentNone;
+- (void)invalidate:(T3ViewControllerState)state {
+  if (!(_validity & state)) {
+    _validity |= state;
+    if (_validity & T3ViewInvalidContent) {
+      _contentState = T3ContentUnknown;
     }
-    if (appearing) {
+    if (_appearing) {
       [self updateViewInternal];
     }
   }
-}
-
-- (void)setContentState:(T3ViewContentState)aContentState {
-  if (contentState != aContentState) {
-    contentState = aContentState;
-    [self invalidate:T3ViewInvalidView];
-  }
-}
-
-- (void)setContentStateActivity:(NSString*)activityText {
-  [contentActivityText release];
-  contentActivityText = [activityText retain];
-  
-  [self setContentState:T3ViewContentActivity];
-}
-
-- (void)setContentStateError:(NSError*)error {
-  [contentError release];
-  contentError = [error retain];
-
-  [self setContentState:T3ViewContentError];
-}
-
-- (void)reloadContent {
 }
 
 - (void)updateContent {
@@ -230,28 +238,32 @@
 }
 
 - (void)updateView {
+  if (_contentState & T3ContentReady) {
+    if (_contentState & T3ContentActivity) {
+      // XXXjoe Create an activity label
+      [self showStatusBanner:nil];
+    } else if (_contentState & T3ContentError) {
+      // XXXjoe Create a yellow banner
+      [self showStatusBanner:nil];
+    } else {
+      [self showStatusBanner:nil];
+    }
+  } else {
+    if (_contentState & T3ContentActivity) {
+      [self showStatusCover:[[[T3ActivityLabel alloc] initWithFrame:CGRectZero
+        style:T3ActivityLabelStyleGray text:[self titleForActivity]] autorelease]];
+    } else if (_contentState & T3ContentError) {
+      [self showStatusCover:[[[T3ErrorView alloc] initWithTitle:[self titleForError:_contentError]
+        caption:[self descriptionForError:_contentError]
+        image:[self imageForError:_contentError]] autorelease]];
+    } else {
+      [self showStatusCover:[[[T3ErrorView alloc] initWithTitle:[self titleForNoContent]
+        caption: [self descriptionForNoContent] image:[self imageForNoContent]] autorelease]];
+    }
+  }
 }
 
-- (void)updateViewWithEmptiness {
-  NSString* caption = NSLocalizedString(@"There is nothing to show here.", @"");
-  self.statusView = [[[T3ErrorView alloc] initWithTitle:nil caption:caption image:nil]
-    autorelease];
-}
-
-- (void)updateViewWithActivity:(NSString*)activityText {
-  T3ActivityLabel* activityView = [[[T3ActivityLabel alloc] initWithFrame:CGRectZero
-      style:T3ActivityLabelStyleGray] autorelease];
-  activityView.text = activityText;
-  self.statusView = activityView;
-}
-
-- (void)updateViewWithError:(NSError*)error {
-  NSString* title = NSLocalizedString(@"Error", @"");
-  NSString* caption = error.description
-    ? error.description
-    : NSLocalizedString(@"An error occurred", @"");
-  self.statusView = [[[T3ErrorView alloc] initWithTitle:title caption:caption image:nil]
-    autorelease];
+- (void)reloadContent {
 }
 
 - (void)resetView {
@@ -260,28 +272,32 @@
 - (void)unloadView {
 }
 
-- (void)setStatusView:(UIView*)view {
-  if (statusView) {
-    [statusView removeFromSuperview];
-  }
-
-  [statusView release];
-  statusView = [view retain];
-
-  if (statusView) {
-    [self showStatusView:statusView];
-  }
+- (NSString*)titleForActivity {
+  return NSLocalizedString(@"Loading...", @"");
 }
 
-- (void)showStatusView:(UIView*)view {
-  statusView.frame = self.view.bounds;
-  [self.view addSubview:statusView];
+- (UIImage*)imageForError:(NSError*)error {
+  return nil;
 }
 
-- (void)viewDidDisable {
+- (NSString*)titleForError:(NSError*)error {
+  return nil;
 }
 
-- (void)viewDidEnable {
+- (NSString*)descriptionForError:(NSError*)error {
+  return NSLocalizedString(@"An error occurred.", @"");
+}
+
+- (UIImage*)imageForNoContent {
+  return nil;
+}
+
+- (NSString*)titleForNoContent {
+  return nil;
+}
+
+- (NSString*)descriptionForNoContent {
+  return NSLocalizedString(@"There is nothing to show here.", @"");
 }
 
 @end
