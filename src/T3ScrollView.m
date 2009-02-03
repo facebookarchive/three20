@@ -321,8 +321,6 @@ static const NSTimeInterval kOvershoot = 2;
       [page removeFromSuperview];
     }
   }
-
-  _visiblePageIndex = T3InvalidIndex;
 }
 
 - (void)adjustPageEdgesForPageAtIndex:(NSInteger)pageIndex {
@@ -366,7 +364,7 @@ static const NSTimeInterval kOvershoot = 2;
         }
       }
     } else {
-      [self enqueueAllPages];
+      [self reloadData];
     }
 
     _pageArrayIndex = [self arrayIndexForPageIndex:pageIndex relativeToIndex:_centerPageIndex];
@@ -909,6 +907,7 @@ static const NSTimeInterval kOvershoot = 2;
   if (!_touchCount) {
     [self stopAnimation:YES];
     [self stopDragging:NO];
+    [self updateZooming:UIEdgeInsetsZero];
     
     _pageEdges = UIEdgeInsetsZero;
     [self setNeedsLayout];
@@ -1051,6 +1050,17 @@ static const NSTimeInterval kOvershoot = 2;
 - (void)reloadData {
   if (_dataSource) {
     [self enqueueAllPages];
+
+    _visiblePageIndex = T3InvalidIndex;
+    _pageEdges = _pageStartEdges = UIEdgeInsetsZero;
+    
+    [self stopAnimation:YES];
+    [self stopDragging:NO];
+    [self updateZooming:UIEdgeInsetsZero];
+    _touch1 = nil;
+    _touch2 = nil;
+    _touchCount = 0;
+
     [self setNeedsLayout];
   }
 }

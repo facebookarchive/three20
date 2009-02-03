@@ -19,6 +19,15 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
+}  
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // T3ViewController
 
 - (void)updateView {
@@ -41,7 +50,8 @@
 	return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)aTableView
+    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return nil;
 }
 

@@ -105,8 +105,8 @@ static CGFloat kThinBezelHeight = 35;
   [super layoutSubviews];
 
   CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  CGSize captionSize = [_textView.text sizeWithFont:_textView.font];
-  CGFloat contentWidth = _spinner.width + kSpacing + captionSize.width;
+  CGSize textSize = [_textView.text sizeWithFont:_textView.font];
+  CGFloat contentWidth = _spinner.width + kSpacing + textSize.width;
 
   CGFloat bezelWidth, bezelHeight, y;
 
@@ -132,17 +132,17 @@ static CGFloat kThinBezelHeight = 35;
       : floor(self.height/2 - bezelHeight/2);
   }
   
-  CGFloat captionMaxWidth = (bezelWidth - (_spinner.width + kSpacing)) - kPadding*2;
-  CGFloat captionWidth = captionSize.width;
-  if (captionWidth > captionMaxWidth) {
-    captionWidth = captionMaxWidth;
+  CGFloat textMaxWidth = (bezelWidth - (_spinner.width + kSpacing)) - kPadding*2;
+  CGFloat textWidth = textSize.width;
+  if (textWidth > textMaxWidth) {
+    textWidth = textMaxWidth;
   }
       
   _bezelView.frame = CGRectMake(floor(self.width/2 - bezelWidth/2), y,
     bezelWidth, bezelHeight);
   
   _textView.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + kPadding + _spinner.width/2),
-    floor(bezelHeight/2 - captionSize.height/2), captionWidth, captionSize.height);
+    floor(bezelHeight/2 - textSize.height/2), textWidth, textSize.height);
 
   _spinner.frame = CGRectMake(_textView.x - (_spinner.width+kSpacing),
     floor(bezelHeight/2 - _spinner.height/2), _spinner.width, _spinner.height);

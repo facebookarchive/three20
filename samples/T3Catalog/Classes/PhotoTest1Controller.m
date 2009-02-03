@@ -9,6 +9,7 @@
     // initWithType:MockPhotoSourceDelayed
     // initWithType:MockPhotoSourceLoadError
     // initWithType:MockPhotoSourceDelayed|MockPhotoSourceLoadError
+    title:@"Flickr Photos"
     photos:[[NSArray alloc] initWithObjects:
 
     // Request fails immediately due to DNS error
@@ -74,8 +75,6 @@
 //    nil
 //  ]
   ];
-  
-  self.photoSource.title = @"Flickr Photos";
 }
 
 @end

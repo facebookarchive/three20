@@ -13,10 +13,10 @@
 - (id)init {
   if (self = [super init]) {  
     _viewState = nil;
-    _validity = T3ViewValid;
     _contentState = T3ContentUnknown;
     _contentError = nil;
     _statusView = nil;
+    _invalid = YES;
     _appearing = NO;
     _appeared = NO;
     _unloaded = NO;
@@ -43,28 +43,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)restoreViewFromState {
-  if (_viewState) {
-    [self restoreView:_viewState];
-    [_viewState release];
-    _viewState = nil;
-  }
-}
-
-- (void)updateViewInternal {
-  T3ViewControllerState validity = _validity;
-  _validity = T3ViewValid;
-  
-  if (validity & T3ViewInvalidContent) {
-    [self updateContent];
-  }
-
-  if (validity & T3ViewInvalidView) {
+- (void)validateView {
+  if (_invalid) {
     // Ensure the view is loaded
     self.view;
 
     [self updateView];
-    [self restoreViewFromState];
+
+    if (_viewState) {
+      [self restoreView:_viewState];
+      [_viewState release];
+      _viewState = nil;
+    }
+
+    _invalid = NO;
   }
 }
 
@@ -110,13 +102,14 @@
 }
 
 - (void)showStatusCover:(UIView*)view {
+  view.frame = self.view.bounds;
   [self showStatusView:view];
-  _statusView.frame = self.view.bounds;
 }
 
 - (void)showStatusBanner:(UIView*)view {
+  view.frame = CGRectMake(0, self.view.height - 50, self.view.width, 50);
+  view.userInteractionEnabled = NO;
   [self showStatusView:view];
-  _statusView.frame = self.view.bounds;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,6 +119,7 @@
   UIView* contentView = [[[UIView alloc]
     initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 	contentView.autoresizesSubviews = YES;
+  contentView.backgroundColor = [UIColor whiteColor];
   self.view = contentView;
 }
 
@@ -135,14 +129,15 @@
     [self loadView];
   }
 
-  _appearing = YES;
-    
   [T3URLCache sharedCache].paused = YES;
-  
-  if (_validity != T3ViewValid) {
-    [self updateViewInternal];
-  }
 
+  if (_contentState == T3ContentUnknown) {
+    [self updateContent];
+  }
+  [self refreshContent];
+
+  _appearing = YES;
+  [self validateView];
   _appeared = YES;
 }
 
@@ -162,11 +157,8 @@
       NSMutableDictionary* state = [[NSMutableDictionary alloc] init];
       [self persistView:state];
       _viewState = state;
-      _validity = T3ViewInvalidView;
 
       UIView* view = self.view;
-      T3LOG(@"UNLOAD VIEW %@", self);      
-
       [super didReceiveMemoryWarning];
 
       // Sometimes, like when the controller is in a tabbed bar, the view won't
@@ -174,8 +166,10 @@
       [view removeSubviews];
 
       _unloaded = YES;
+      _invalid = YES;
       _appeared = NO;
       
+      T3LOG(@"UNLOAD VIEW %@", self);      
       [_statusView release];
       _statusView = nil;
       [self unloadView];
@@ -183,7 +177,7 @@
   }
   
   if (!_appeared) {
-    _validity = T3ViewInvalidContent;
+    _contentState = T3ContentUnknown;
   }
 }
 
@@ -200,13 +194,16 @@
 - (void)setContentState:(T3ContentState)contentState {
   if (_contentState != contentState) {
     _contentState = contentState;
+    _invalid = YES;
     
     if (!(_contentState & T3ContentError)) {
       [_contentError release];
       _contentError = nil;
     }
     
-    [self invalidate:T3ViewInvalidView];
+    if (_appearing) {
+      [self validateView];
+    }
   }
 }
 
@@ -221,32 +218,37 @@
 - (void)restoreView:(NSDictionary*)state {
 } 
 
-- (void)invalidate:(T3ViewControllerState)state {
-  if (!(_validity & state)) {
-    _validity |= state;
-    if (_validity & T3ViewInvalidContent) {
-      _contentState = T3ContentUnknown;
-    }
-    if (_appearing) {
-      [self updateViewInternal];
-    }
+- (void)invalidate {
+  _contentState = T3ContentUnknown;
+  _invalid = YES;
+  if (_appearing) {
+    [self updateContent];
+    [self refreshContent];
   }
 }
 
 - (void)updateContent {
-  [self invalidate:T3ViewInvalidView];
+  self.contentState = T3ContentReady;
+}
+
+- (void)refreshContent {
+}
+
+- (void)reloadContent {
 }
 
 - (void)updateView {
   if (_contentState & T3ContentReady) {
     if (_contentState & T3ContentActivity) {
-      // XXXjoe Create an activity label
-      [self showStatusBanner:nil];
+      T3ActivityLabel* label = [[[T3ActivityLabel alloc] initWithFrame:CGRectZero
+        style:T3ActivityLabelStyleBlackThinBezel text:[self titleForActivity]] autorelease];
+      label.centeredToScreen = NO;
+      [self showStatusBanner:label];
     } else if (_contentState & T3ContentError) {
       // XXXjoe Create a yellow banner
       [self showStatusBanner:nil];
     } else {
-      [self showStatusBanner:nil];
+      [self showStatusView:nil];
     }
   } else {
     if (_contentState & T3ContentActivity) {
@@ -254,38 +256,24 @@
         style:T3ActivityLabelStyleGray text:[self titleForActivity]] autorelease]];
     } else if (_contentState & T3ContentError) {
       [self showStatusCover:[[[T3ErrorView alloc] initWithTitle:[self titleForError:_contentError]
-        caption:[self descriptionForError:_contentError]
+        subtitle:[self subtitleForError:_contentError]
         image:[self imageForError:_contentError]] autorelease]];
     } else {
       [self showStatusCover:[[[T3ErrorView alloc] initWithTitle:[self titleForNoContent]
-        caption: [self descriptionForNoContent] image:[self imageForNoContent]] autorelease]];
+        subtitle: [self subtitleForNoContent] image:[self imageForNoContent]] autorelease]];
     }
   }
-}
-
-- (void)reloadContent {
-}
-
-- (void)resetView {
 }
 
 - (void)unloadView {
 }
 
 - (NSString*)titleForActivity {
-  return NSLocalizedString(@"Loading...", @"");
-}
-
-- (UIImage*)imageForError:(NSError*)error {
-  return nil;
-}
-
-- (NSString*)titleForError:(NSError*)error {
-  return nil;
-}
-
-- (NSString*)descriptionForError:(NSError*)error {
-  return NSLocalizedString(@"An error occurred.", @"");
+  if (_contentState & T3ContentReady) {
+    return NSLocalizedString(@"Updating...", @"");
+  } else {
+    return NSLocalizedString(@"Loading...", @"");
+  }
 }
 
 - (UIImage*)imageForNoContent {
@@ -296,8 +284,20 @@
   return nil;
 }
 
-- (NSString*)descriptionForNoContent {
-  return NSLocalizedString(@"There is nothing to show here.", @"");
+- (NSString*)subtitleForNoContent {
+  return nil;
+}
+
+- (UIImage*)imageForError:(NSError*)error {
+  return nil;
+}
+
+- (NSString*)titleForError:(NSError*)error {
+  return NSLocalizedString(@"Error", @"");
+}
+
+- (NSString*)subtitleForError:(NSError*)error {
+  return NSLocalizedString(@"Sorry, an error has occurred.", @"");
 }
 
 @end

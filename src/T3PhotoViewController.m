@@ -114,7 +114,8 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)loadPhotos {
   if (!_photoSource.loading) {
-    [_photoSource loadPhotosFromIndex:_photoSource.maxPhotoIndex+1 toIndex:-1 delegate:self];
+    [_photoSource loadPhotosFromIndex:_photoSource.maxPhotoIndex+1 toIndex:-1
+      cachePolicy:T3URLRequestCachePolicyAny delegate:self];
   }
 }
 
@@ -263,32 +264,43 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 - (void)updateContent {
-  if (_photoSource.numberOfPhotos) {
-    self.contentState = T3ContentReady;
-  } else {
-    self.contentState = T3ContentNone;
-  }
-
   if (_photoSource.loading) {
-    self.contentState |= T3ContentActivity;
+    self.contentState = T3ContentActivity;
   } else if (!_centerPhoto) {
     [self loadPhotos];
+  } else {
+    if (_photoSource.numberOfPhotos) {
+      self.contentState = T3ContentReady;
+    } else {
+      self.contentState = T3ContentNone;
+    }
   }
 }
 
+- (void)refreshContent {
+  if (_photoSource.isInvalid && !_photoSource.loading) {
+    [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
+      cachePolicy:T3URLRequestCachePolicyNetwork delegate:self];
+  }
+}
+
+- (void)reloadContent {
+  [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
+    cachePolicy:T3URLRequestCachePolicyNetwork delegate:self];
+}
+
 - (void)updateView {
+  _scrollView.centerPageIndex = _centerPhotoIndex;
+  [self loadImages];
+
   if (self.contentState & T3ContentReady) {
-    _scrollView.centerPageIndex = _centerPhotoIndex;
     [self showProgress:-1];
     [self showStatus:nil];
-    [self loadImages];
-  }
-
-  if (self.contentState & T3ContentActivity) {
+  } else if (self.contentState & T3ContentActivity) {
     [self showProgress:0];
   } else if (self.contentState & T3ContentError) {
     [self showStatus:NSLocalizedString(@"This photo set could not be loaded.", "")];
-  } else {
+  } else if (self.contentState & T3ContentNone) {
     [self showStatus:NSLocalizedString(@"This photo set contains no photos.", "")];
   }
 
@@ -308,18 +320,6 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   return NSLocalizedString(@"Loading...", @"");
 }
 
-- (UIImage*)imageForError:(NSError*)error {
-  return [UIImage imageNamed:@"t3images/photoDefault.png"];
-}
-
-- (NSString*)titleForError:(NSError*)error {
-  return NSLocalizedString(@"Error", @"");
-}
-
-- (NSString*)descriptionForError:(NSError*)error {
-  return NSLocalizedString(@"This photo set could not be loaded.", @"");
-}
-
 - (UIImage*)imageForNoContent {
   return [UIImage imageNamed:@"t3images/photoDefault.png"];
 }
@@ -328,8 +328,20 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   return  NSLocalizedString(@"No Photos", @"");
 }
 
-- (NSString*)descriptionForNoContent {
+- (NSString*)subtitleForNoContent {
   return NSLocalizedString(@"This photo set contains no photos.", @"");
+}
+
+- (UIImage*)imageForError:(NSError*)error {
+  return [UIImage imageNamed:@"t3images/photoDefault.png"];
+}
+
+- (NSString*)titleForError:(NSError*)error {
+  return NSLocalizedString(@"Error", @"");
+}
+
+- (NSString*)subtitleForError:(NSError*)error {
+  return NSLocalizedString(@"This photo set could not be loaded.", @"");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -367,7 +379,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 - (void)scrollView:(T3ScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex {
   if (pageIndex != _centerPhotoIndex) {
     [self moveToPhotoAtIndex:pageIndex withDelay:YES];
-    [self invalidate:T3ViewInvalidContent];
+    [self invalidate];
   }
 }
 
@@ -445,7 +457,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
     _photoSource = [photoSource retain];
   
     [self moveToPhotoAtIndex:0 withDelay:NO];
-    [self invalidate:T3ViewInvalidContent];
+    [self invalidate];
   }
 }
 
@@ -457,7 +469,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
     }
 
     [self moveToPhotoAtIndex:photo.index withDelay:NO];
-    [self invalidate:T3ViewInvalidContent];
+    [self invalidate];
   }
 }
 

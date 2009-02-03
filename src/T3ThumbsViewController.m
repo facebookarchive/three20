@@ -132,7 +132,8 @@ static NSInteger kColumnCount = 4;
   if (_photoSource.loading) {
     self.contentState = T3ContentActivity;
   } else if (_photoSource.isInvalid) {
-    [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax delegate:self];
+    [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
+      cachePolicy:T3URLRequestCachePolicyMemory|T3URLRequestCachePolicyDisk delegate:self];
   } else if (_photoSource.numberOfPhotos) {
     self.contentState = T3ContentReady;
   } else {
@@ -140,21 +141,21 @@ static NSInteger kColumnCount = 4;
   }
 }
 
+- (void)refreshContent {
+  if (_photoSource.isInvalid && !_photoSource.loading) {
+    [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
+      cachePolicy:T3URLRequestCachePolicyNetwork delegate:self];
+  }
+}
+
+- (void)reloadContent {
+  [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
+    cachePolicy:T3URLRequestCachePolicyNetwork delegate:self];
+}
+
 - (void)updateView {
   self.navigationItem.title = _photoSource.title;
   [super updateView];
-}
-
-- (UIImage*)imageForError:(NSError*)error {
-  return [UIImage imageNamed:@"t3images/photoDefault.png"];
-}
-
-- (NSString*)titleForError:(NSError*)error {
-  return NSLocalizedString(@"Error", @"");
-}
-
-- (NSString*)descriptionForError:(NSError*)error {
-  return NSLocalizedString(@"This photo set could not be loaded.", @"");
 }
 
 - (UIImage*)imageForNoContent {
@@ -165,8 +166,20 @@ static NSInteger kColumnCount = 4;
   return  NSLocalizedString(@"No Photos", @"");
 }
 
-- (NSString*)descriptionForNoContent {
+- (NSString*)subtitleForNoContent {
   return NSLocalizedString(@"This photo set contains no photos.", @"");
+}
+
+- (UIImage*)imageForError:(NSError*)error {
+  return [UIImage imageNamed:@"t3images/photoDefault.png"];
+}
+
+- (NSString*)titleForError:(NSError*)error {
+  return NSLocalizedString(@"Error", @"");
+}
+
+- (NSString*)subtitleForError:(NSError*)error {
+  return NSLocalizedString(@"This photo set could not be loaded.", @"");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,7 +245,7 @@ static NSInteger kColumnCount = 4;
     [_photoSource release];
     _photoSource = [aPhotoSource retain];
 
-    [self invalidate:T3ViewInvalidContent];
+    [self invalidate];
   }
 }
 

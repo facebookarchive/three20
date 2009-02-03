@@ -1,12 +1,6 @@
 #import "Three20/T3Global.h"
 
 typedef enum {
-  T3ViewValid = 0,            // Nothing needs to be updated
-  T3ViewInvalidContent = 1,   // Content needs to be updated
-  T3ViewInvalidView = 2       // Views need to be updated with the latest content
-} T3ViewControllerState;
-
-typedef enum {
   T3ContentUnknown = 0,
   T3ContentNone = 1,
   T3ContentReady = 2,
@@ -28,10 +22,10 @@ typedef enum {
 @interface T3ViewController : UIViewController {
   UIView* _statusView;
   NSDictionary* _viewState;
-  T3ViewControllerState _validity;
   T3ContentState _contentState;
   NSError* _contentError;
 
+  BOOL _invalid;
   BOOL _appearing;
   BOOL _appeared;
   BOOL _unloaded;
@@ -92,47 +86,52 @@ typedef enum {
 - (void)restoreView:(NSDictionary*)state;
 
 /**
- * Invalidates the state of the view and schedules it to be updated as soon as possible.
+ * Invalidates the state of the content and view and schedules it to be updated as soon as possible.
  *
  * Invalidation functions allow you to change the state of the view without actually changing
  * the view.  This is necessary because low memory conditions can cause views to be destroyed
  * and re-created behind your back, so you need to maintain important state without them.
  */
-- (void)invalidate:(T3ViewControllerState)state;
+- (void)invalidate;
 
 /**
- * Called to update content after it has been invalidated.
+ * Called to update the content state after the primary view object has changed.
  *
- * This is meant to be implemented by subclasses - the default merely invalidates the view.
- * 
- * This function is necessary because low memory conditions can cause views to be destroyed
- * and re-created behind your back, so you need to maintain content without them.  You should
- * not do anything here that relies on the existence of views, nor should you create views here.
+ * You should not call this directly.  Subclasses should implement this method and set
+ * contentState to reflect the state of the primary view object. You should not do anything
+ * here that relies on the existence of views, nor should you create views here.
+ *
+ * This is meant to be implemented by subclasses - the default sets contentState to ready.  
  */
 - (void)updateContent;
 
 /**
- * Called to update the view after it has been invalidated.
+ * Reloads content if it has become out-of-date.
  *
- * Override this function and check contentState to decide how to update the view.  The default
- * implementation will update the view to indicate activity, errors, and lack of content.
+ * When content that has already loaded becomes out of date for any reason, here is the
+ * place to refresh it just before it becomes visible.
+ *
+ * This is meant to be implemented by subclasses - the default does nothing.
  */
-- (void)updateView;
+- (void)refreshContent;
 
 /**
- * Reloads content from external source and invalidates the view.
+ * Reloads content from external sources.
  *
  * This is meant to be implemented by subclasses - the default does nothing.
  */
 - (void)reloadContent;
 
 /**
- * Restores a view to the state it was in after calling loadView but before calling updateView;
- * in other words, the views have no content in them yet.
+ * Called to update the view after it has been invalidated.
  *
- * This is meant to be implemented by subclasses - the default does nothing.
+ * Override this function and check contentState to decide how to update the view.  Do not call
+ * super unless you want it to display activity, error, and no content states.
+ *
+ * This is meant to be implemented by subclasses - the default will update the view to indicate
+ * activity, errors, and lack of content.
  */
-- (void)resetView;
+- (void)updateView;
 
 /**
  * Destroys all views prior to the controller itself being destroyed or going into hibernation
@@ -150,21 +149,6 @@ typedef enum {
 /**
  *
  */
-- (UIImage*)imageForError:(NSError*)error;
-
-/**
- *
- */
-- (NSString*)titleForError:(NSError*)error;
-
-/**
- *
- */
-- (NSString*)descriptionForError:(NSError*)error;
-
-/**
- *
- */
 - (UIImage*)imageForNoContent;
 
 /**
@@ -175,6 +159,21 @@ typedef enum {
 /**
  *
  */
-- (NSString*)descriptionForNoContent;
+- (NSString*)subtitleForNoContent;
+
+/**
+ *
+ */
+- (UIImage*)imageForError:(NSError*)error;
+
+/**
+ *
+ */
+- (NSString*)titleForError:(NSError*)error;
+
+/**
+ *
+ */
+- (NSString*)subtitleForError:(NSError*)error;
 
 @end

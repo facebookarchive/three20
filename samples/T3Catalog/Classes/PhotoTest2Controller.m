@@ -9,6 +9,7 @@
     // initWithType:MockPhotoSourceDelayed
     // initWithType:MockPhotoSourceLoadError
     // initWithType:MockPhotoSourceDelayed|MockPhotoSourceLoadError
+    title:@"Flickr Photos"
     photos:[[NSArray alloc] initWithObjects:
     [[[MockPhoto alloc]
       initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
@@ -218,7 +219,6 @@
 //      size:CGSizeMake(800, 533)] autorelease],
 //    nil]
   ];
-  self.photoSource.title = @"Flickr Photos";
 }
 
 @end

@@ -4,9 +4,11 @@
 
 @synthesize title = _title;
 
-- (id)initWithType:(MockPhotoSourceType)type photos:(NSArray*)photos photos2:(NSArray*)photos2 {
+- (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title photos:(NSArray*)photos
+    photos2:(NSArray*)photos2 {
   if (self = [super init]) {
     _type = type;
+    self.title = title;
     _photos = photos2 ? [[photos mutableCopy] retain] : [[NSMutableArray alloc] init];
     _tempPhotos = photos2 ? [photos2 retain] : [photos retain];
 
@@ -31,6 +33,7 @@
   [_fakeLoadTimer invalidate];
   [_photos release];
   [_tempPhotos release];
+  [_title release];
   [super dealloc];
 }
 
@@ -128,12 +131,14 @@
 }
 
 - (void)loadPhotosFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
-    delegate:(id<T3PhotoSourceDelegate>)delegate {
-  _delegate = [delegate retain];
-  [_delegate photoSourceLoading:self fromIndex:fromIndex toIndex:toIndex];
+    cachePolicy:(T3URLRequestCachePolicy)cachePolicy delegate:(id<T3PhotoSourceDelegate>)delegate {
+  if (cachePolicy & T3URLRequestCachePolicyNetwork) {
+    _delegate = [delegate retain];
+    [_delegate photoSourceLoading:self fromIndex:fromIndex toIndex:toIndex];
 
-  _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
-    selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];
+    _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
+      selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];
+  }
 }
 
 @end

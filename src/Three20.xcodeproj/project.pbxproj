@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE68F09D0F37F4CD00655DBF /* T3Object.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68F09C0F37F4CD00655DBF /* T3Object.m */; };
 		BEC487960F36AAC500420821 /* T3+UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC487950F36AAC500420821 /* T3+UIViewController.m */; };
 		BEC487AF0F36AB4600420821 /* T3+UIViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC487AE0F36AB4600420821 /* T3+UIViewController.h */; };
 		BEF31F700F352E64000DE5D2 /* T3ActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F460F352E64000DE5D2 /* T3ActivityLabel.m */; };
@@ -65,6 +66,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BE68F09C0F37F4CD00655DBF /* T3Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3Object.m; sourceTree = "<group>"; };
 		BEC487950F36AAC500420821 /* T3+UIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "T3+UIViewController.m"; sourceTree = "<group>"; };
 		BEC487AE0F36AB4600420821 /* T3+UIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "T3+UIViewController.h"; path = "Three20/T3+UIViewController.h"; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +225,7 @@
 				BEF31F5C0F352E64000DE5D2 /* T3Global.h */,
 				BEF31F480F352E64000DE5D2 /* T3Global.m */,
 				BEF31F5E0F352E64000DE5D2 /* T3Object.h */,
+				BE68F09C0F37F4CD00655DBF /* T3Object.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				BEF31F800F352E64000DE5D2 /* T3URLRequest.m in Sources */,
 				BEF31F810F352E64000DE5D2 /* T3ViewController.m in Sources */,
 				BEF31F820F352E64000DE5D2 /* T3YouTubeView.m in Sources */,
+				BE68F09D0F37F4CD00655DBF /* T3Object.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

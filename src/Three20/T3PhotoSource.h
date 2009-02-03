@@ -53,10 +53,11 @@ typedef enum {
  *
  * @param fromIndex The starting index.
  * @param toIndex The ending index, or -1 to load the remainder of photos.
+ * @param cachePolicy The policy for using the cache to satisfy the request
  * @param delegate The object to be notified when loading completes.
  */
 - (void)loadPhotosFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
-  delegate:(id<T3PhotoSourceDelegate>)delegate;
+  cachePolicy:(T3URLRequestCachePolicy)cachePolicy delegate:(id<T3PhotoSourceDelegate>)delegate;
 
 @end
 

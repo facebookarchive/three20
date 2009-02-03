@@ -3,13 +3,13 @@
 @interface T3ErrorView : UIView {
   UIImageView* imageView;
   UILabel* titleView;
-  UILabel* captionView;
+  UILabel* subtitleView;
 }
 
 @property(nonatomic,retain) UIImage* image;
 @property(nonatomic,copy) NSString* title;
-@property(nonatomic,copy) NSString* caption;
+@property(nonatomic,copy) NSString* subtitle;
 
-- (id)initWithTitle:(NSString*)title caption:(NSString*)caption image:(UIImage*)image;
+- (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image;
 
 @end

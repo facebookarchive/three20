@@ -50,7 +50,16 @@
 #define T3_TRANSITION_DURATION 0.3
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Cache times
+// URL Cache
+
+typedef enum {
+   T3URLRequestCachePolicyNone = 0,
+   T3URLRequestCachePolicyMemory = 1,
+   T3URLRequestCachePolicyDisk = 2,
+   T3URLRequestCachePolicyNetwork = 4,
+   T3URLRequestCachePolicyAny
+    = (T3URLRequestCachePolicyMemory|T3URLRequestCachePolicyDisk|T3URLRequestCachePolicyNetwork)
+} T3URLRequestCachePolicy;
 
 #define T3_SKIP_CACHE CGFLOAT_MAX
 #define T3_ALWAYS_USE_CACHE 0

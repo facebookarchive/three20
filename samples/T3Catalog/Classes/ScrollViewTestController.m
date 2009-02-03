@@ -51,9 +51,9 @@
 }
 
 - (UIView*)scrollView:(T3ScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
-  T3PaintedView* pageView = (T3PaintedView*)[_scrollView dequeueReusablePage];
+  T3BackgroundView* pageView = (T3BackgroundView*)[_scrollView dequeueReusablePage];
   if (!pageView) {
-    pageView = [[[T3PaintedView alloc] initWithFrame:CGRectZero] autorelease];
+    pageView = [[[T3BackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     pageView.background = T3BackgroundRoundedRect;
     pageView.strokeRadius = 30;
     pageView.strokeColor = [UIColor whiteColor];

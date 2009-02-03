@@ -10,10 +10,10 @@ static CGFloat kVPadding = 50;
 
 @implementation T3ErrorView
 
-- (id)initWithTitle:(NSString*)title caption:(NSString*)caption image:(UIImage*)image {
+- (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image {
   if (self = [self initWithFrame:CGRectZero]) {
     self.title = title;
-    self.caption = caption;
+    self.subtitle = subtitle;
     self.image = image;
   }
   return self;
@@ -33,14 +33,14 @@ static CGFloat kVPadding = 50;
     titleView.textAlignment = UITextAlignmentCenter;
     [self addSubview:titleView];
     
-    captionView = [[UILabel alloc] initWithFrame:CGRectZero];
-    captionView.opaque = NO;
-    captionView.backgroundColor = [UIColor clearColor];
-    captionView.textColor = RGBCOLOR(99, 109, 125);
-    captionView.font = [UIFont boldSystemFontOfSize:14];
-    captionView.textAlignment = UITextAlignmentCenter;
-    captionView.numberOfLines = 0;
-    [self addSubview:captionView];
+    subtitleView = [[UILabel alloc] initWithFrame:CGRectZero];
+    subtitleView.opaque = NO;
+    subtitleView.backgroundColor = [UIColor clearColor];
+    subtitleView.textColor = RGBCOLOR(99, 109, 125);
+    subtitleView.font = [UIFont boldSystemFontOfSize:14];
+    subtitleView.textAlignment = UITextAlignmentCenter;
+    subtitleView.numberOfLines = 0;
+    [self addSubview:subtitleView];
   }
   return self;
 }
@@ -53,23 +53,23 @@ static CGFloat kVPadding = 50;
 // UIView
 
 - (void)layoutSubviews {
-  [captionView sizeToFit];
+  [subtitleView sizeToFit];
   [titleView sizeToFit];
   
   if (titleView.text.length) {
-    captionView.frame = CGRectMake(kHPadding, self.height - kVPadding,
-      self.width-kHPadding*2, captionView.height);
-    titleView.frame = CGRectMake(0, captionView.y-kVPadding, self.width, titleView.height);
+    subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
+      self.width-kHPadding*2, subtitleView.height);
+    titleView.frame = CGRectMake(0, subtitleView.y-kVPadding, self.width, titleView.height);
   } else {
-    captionView.frame = CGRectMake(kHPadding, self.height - kVPadding,
-      self.width-kHPadding*2, captionView.height);
+    subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
+      self.width-kHPadding*2, subtitleView.height);
     titleView.frame = CGRectZero;
   }
 
   if (imageView.image) {
     [imageView sizeToFit];
     
-    CGFloat textTop = titleView.height ? titleView.y : captionView.y;
+    CGFloat textTop = titleView.height ? titleView.y : subtitleView.y;
     imageView.frame = CGRectMake(self.width/2 - kImageSize/2, textTop - (kImageSize + kVPadding),
       kImageSize, kImageSize);
   } else {
@@ -87,12 +87,12 @@ static CGFloat kVPadding = 50;
   titleView.text = title;
 }
 
-- (NSString*)caption {
-  return captionView.text;
+- (NSString*)subtitle {
+  return subtitleView.text;
 }
 
-- (void)setCaption:(NSString*)caption {
-  captionView.text = caption;
+- (void)setSubtitle:(NSString*)subtitle {
+  subtitleView.text = subtitle;
 }
 
 - (UIImage*)image {

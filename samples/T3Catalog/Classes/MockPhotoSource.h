@@ -21,7 +21,8 @@ typedef enum {
   NSTimer* _fakeLoadTimer;
 }
 
-- (id)initWithType:(MockPhotoSourceType)type photos:(NSArray*)photos photos2:(NSArray*)photos2;
+- (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title
+  photos:(NSArray*)photos photos2:(NSArray*)photos2;
 
 @end
 
