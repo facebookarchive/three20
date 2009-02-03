@@ -28,7 +28,6 @@
 @optional
 - (void)imageViewPosted:(T3ImageView*)imageView;
 - (void)imageViewLoading:(T3ImageView*)imageView;
-- (void)imageViewLoaded:(T3ImageView*)imageView;
 - (void)imageView:(T3ImageView*)imageView loadDidFailWithError:(NSError*)error;
 
 @end

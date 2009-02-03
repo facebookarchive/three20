@@ -601,7 +601,7 @@ static NSString* kCacheDirPathName = @"Three20";
   }
 }
 
-- (NSString*)storeDataWithTemporaryURL:(NSData*)data media:(id)media toDisk:(BOOL)toDisk {
+- (NSString*)storeTemporaryData:(NSData*)data media:(id)media toDisk:(BOOL)toDisk {
   static int temporaryURLIncrement = 0;
   
   NSString* url = [NSString stringWithFormat:@"temp:%d", temporaryURLIncrement++];

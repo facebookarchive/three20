@@ -71,10 +71,6 @@
 
   if ([media isKindOfClass:[UIImage class]]) {
     self.image = (UIImage*)media;
-
-    if ([_delegate respondsToSelector:@selector(imageViewLoaded:)]) {
-      [_delegate imageViewLoaded:self];
-    }
   } else {
     if ([_delegate respondsToSelector:@selector(imageView:loadDidFailWithError:)]) {
       [_delegate imageView:self loadDidFailWithError:nil];

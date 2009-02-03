@@ -118,7 +118,7 @@
  *
  * @return The temporary URL
  */
-- (NSString*)storeDataWithTemporaryURL:(NSData*)data media:(id)media toDisk:(BOOL)toDisk;
+- (NSString*)storeTemporaryData:(NSData*)data media:(id)media toDisk:(BOOL)toDisk;
 
 /**
  * Moves the data currently stored under one URL to another URL.
