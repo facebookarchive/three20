@@ -36,92 +36,93 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 
 @implementation T3TabBar
 
-@synthesize delegate, selectedTabIndex, tabItems, tabViews, textColor;
+@synthesize delegate = _delegate, selectedTabIndex = _selectedTabIndex, tabItems = _tabItems,
+  tabViews = _tabViews, textColor = _textColor;
 
-- (id)initWithFrame:(CGRect)frame style:(T3TabBarStyle)aStyle {
+- (id)initWithFrame:(CGRect)frame style:(T3TabBarStyle)style {
   if (self = [super initWithFrame:frame]) {
-    style = aStyle;
-    selectedTabIndex = NSIntegerMax;
-    tabItems = nil;
-    tabViews = [[NSMutableArray alloc] init];
-    trackingTab = nil;
-    textColor = [[UIColor blackColor] retain];
+    _style = style;
+    _selectedTabIndex = NSIntegerMax;
+    _tabItems = nil;
+    _tabViews = [[NSMutableArray alloc] init];
+    _trackingTab = nil;
+    _textColor = [[UIColor blackColor] retain];
     
-    if (style == T3TabBarStyleButtons) {
-      scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-      scrollView.scrollEnabled = NO;
-      scrollView.scrollsToTop = NO;
-      [self addSubview:scrollView];
+    if (_style == T3TabBarStyleButtons) {
+      _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+      _scrollView.scrollEnabled = NO;
+      _scrollView.scrollsToTop = NO;
+      [self addSubview:_scrollView];
 
-      overflowLeft = [[UIImageView alloc] initWithImage:
+      _overflowLeft = [[UIImageView alloc] initWithImage:
         [UIImage imageNamed:@"images/overflowLeft.png"]];
-      overflowRight.hidden = YES;
-      [self addSubview:overflowLeft];
-      overflowRight = [[UIImageView alloc] initWithImage:
+      _overflowRight.hidden = YES;
+      [self addSubview:_overflowLeft];
+      _overflowRight = [[UIImageView alloc] initWithImage:
         [UIImage imageNamed:@"images/overflowRight.png"]];
-      overflowRight.hidden = YES;
-      [self addSubview:overflowRight];
+      _overflowRight.hidden = YES;
+      [self addSubview:_overflowRight];
     } else {
-      scrollView = nil;
-      overflowLeft = nil;
-      overflowRight = nil;
+      _scrollView = nil;
+      _overflowLeft = nil;
+      _overflowRight = nil;
     }
   }
   return self;
 }
 
 - (void)dealloc {
-  [tabItems release];
-  [tabViews release];
-  [overflowLeft release];
-  [overflowRight release];
-  [scrollView release];
-  [textColor release];
+  [_tabItems release];
+  [_tabViews release];
+  [_overflowLeft release];
+  [_overflowRight release];
+  [_scrollView release];
+  [_textColor release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)updateOverflow {
-  if (scrollView.contentOffset.x < (scrollView.contentSize.width-self.width)) {
-    overflowRight.frame = CGRectMake(self.width-overflowRight.width, 2,
-      overflowRight.width, overflowRight.height);
-    overflowRight.hidden = NO;
+  if (_scrollView.contentOffset.x < (_scrollView.contentSize.width-self.width)) {
+    _overflowRight.frame = CGRectMake(self.width-_overflowRight.width, 2,
+      _overflowRight.width, _overflowRight.height);
+    _overflowRight.hidden = NO;
   } else {
-    overflowRight.hidden = YES;
+    _overflowRight.hidden = YES;
   }
-  if (scrollView.contentOffset.x > 0) {
-    overflowLeft.frame = CGRectMake(0, 2, overflowLeft.width, overflowLeft.height);
-    overflowLeft.hidden = NO;
+  if (_scrollView.contentOffset.x > 0) {
+    _overflowLeft.frame = CGRectMake(0, 2, _overflowLeft.width, _overflowLeft.height);
+    _overflowLeft.hidden = NO;
   } else {
-    overflowLeft.hidden = YES;
+    _overflowLeft.hidden = YES;
   }
 }
 
 - (void)layoutTabs {
-  CGFloat x = style == T3TabBarStyleButtons ? kTabMargin2 : kTabMargin;
+  CGFloat x = _style == T3TabBarStyleButtons ? kTabMargin2 : kTabMargin;
 
   if (self.contentMode == UIViewContentModeScaleToFill) {
-    CGFloat tabWidth = floor((self.width - x*2)/tabViews.count);
-    for (int i = 0; i < tabViews.count; ++i) {
-      T3TabView* tab = [tabViews objectAtIndex:i];
+    CGFloat tabWidth = floor((self.width - x*2)/_tabViews.count);
+    for (int i = 0; i < _tabViews.count; ++i) {
+      T3TabView* tab = [_tabViews objectAtIndex:i];
       tab.frame = CGRectMake(x, 0, tabWidth, self.height);
       x += tab.width;
     }
   } else {
-    for (int i = 0; i < tabViews.count; ++i) {
-      T3TabView* tab = [tabViews objectAtIndex:i];
+    for (int i = 0; i < _tabViews.count; ++i) {
+      T3TabView* tab = [_tabViews objectAtIndex:i];
       [tab sizeToFit];
       tab.frame = CGRectMake(x, 0, tab.width, self.height);
       x += tab.width;
     }
   }
     
-  if (style == T3TabBarStyleButtons) {
-    CGPoint contentOffset = scrollView.contentOffset;
-    scrollView.frame = self.bounds;
-    scrollView.contentSize = CGSizeMake(x + kTabMargin2, self.height);
-    scrollView.contentOffset = contentOffset;
+  if (_style == T3TabBarStyleButtons) {
+    CGPoint contentOffset = _scrollView.contentOffset;
+    _scrollView.frame = self.bounds;
+    _scrollView.contentSize = CGSizeMake(x + kTabMargin2, self.height);
+    _scrollView.contentOffset = contentOffset;
   }
 }
 
@@ -133,7 +134,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 // UIView
 
 - (void)drawRect:(CGRect)rect {
-  if (style == T3TabBarStyleLight) {
+  if (_style == T3TabBarStyleLight) {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
 
@@ -156,7 +157,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
     CGContextRestoreGState(context);
     
     CGColorSpaceRelease(space);
-  } else if (style == T3TabBarStyleButtons) {
+  } else if (_style == T3TabBarStyleButtons) {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
 
@@ -207,104 +208,103 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (CGPoint)contentOffset {
-  if (scrollView) {
-    return scrollView.contentOffset;
+  if (_scrollView) {
+    return _scrollView.contentOffset;
   } else {
     return CGPointMake(0, 0);
   }
 }
 
 - (void)setContentOffset:(CGPoint)offset {
-  if (scrollView) {
-    scrollView.contentOffset = offset;
+  if (_scrollView) {
+    _scrollView.contentOffset = offset;
   }
 }
 
 - (T3TabItem*)selectedTabItem {
-  if (selectedTabIndex != NSIntegerMax) {
-    return [tabItems objectAtIndex:selectedTabIndex];
+  if (_selectedTabIndex != NSIntegerMax) {
+    return [_tabItems objectAtIndex:_selectedTabIndex];
   }
   return nil;
 }
 
 - (void)setSelectedTabItem:(T3TabItem*)tabItem {
-  self.selectedTabIndex = [tabItems indexOfObject:tabItem];
+  self.selectedTabIndex = [_tabItems indexOfObject:tabItem];
 }
 
 - (T3TabView*)selectedTabView {
-  if (selectedTabIndex != NSIntegerMax && selectedTabIndex < tabViews.count) {
-    return [tabViews objectAtIndex:selectedTabIndex];
+  if (_selectedTabIndex != NSIntegerMax && _selectedTabIndex < _tabViews.count) {
+    return [_tabViews objectAtIndex:_selectedTabIndex];
   }
   return nil;
 }
 
 - (void)setSelectedTabView:(T3TabView*)tab {
-  self.selectedTabIndex = [tabViews indexOfObject:tab];
+  self.selectedTabIndex = [_tabViews indexOfObject:tab];
 }
 
 - (void)setSelectedTabIndex:(NSInteger)index {
-  if (index != selectedTabIndex) {
-    if (selectedTabIndex != NSIntegerMax) {
+  if (index != _selectedTabIndex) {
+    if (_selectedTabIndex != NSIntegerMax) {
       self.selectedTabView.selected = NO;
     }
 
-    selectedTabIndex = index;
+    _selectedTabIndex = index;
 
-    if (selectedTabIndex != NSIntegerMax) {
+    if (_selectedTabIndex != NSIntegerMax) {
       self.selectedTabView.selected = YES;
     }
     
-    if ([delegate respondsToSelector:@selector(tabbedBar:tabSelected:)]) {
-      [delegate performSelector:@selector(tabbedBar:tabSelected:) withObject:self
-        withObject:(id)selectedTabIndex];
+    if ([_delegate respondsToSelector:@selector(tabBar:tabSelected:)]) {
+      [_delegate tabBar:self tabSelected:_selectedTabIndex];
     }
   }
 }
 
-- (void)setTabItems:(NSArray*)aTabItems {
-  [tabItems release];
-  tabItems =  [aTabItems retain];
+- (void)setTabItems:(NSArray*)tabItems {
+  [_tabItems release];
+  _tabItems =  [tabItems retain];
   
-  for (int i = 0; i < tabViews.count; ++i) {
-    T3TabView* tab = [tabViews objectAtIndex:i];
+  for (int i = 0; i < _tabViews.count; ++i) {
+    T3TabView* tab = [_tabViews objectAtIndex:i];
     [tab removeFromSuperview];
   }
   
-  [tabViews removeAllObjects];
+  [_tabViews removeAllObjects];
 
-  if (selectedTabIndex >= tabViews.count) {
-    selectedTabIndex = 0;
+  if (_selectedTabIndex >= _tabViews.count) {
+    _selectedTabIndex = 0;
   }
 
-  for (int i = 0; i < tabItems.count; ++i) {
-    T3TabItem* tabItem = [tabItems objectAtIndex:i];
-    T3TabView* tab = [[[T3TabView alloc] initWithItem:tabItem tabBar:self style:style] autorelease];
+  for (int i = 0; i < _tabItems.count; ++i) {
+    T3TabItem* tabItem = [_tabItems objectAtIndex:i];
+    T3TabView* tab = [[[T3TabView alloc] initWithItem:tabItem tabBar:self style:_style] autorelease];
     [tab addTarget:self action:@selector(tabTouchedUp:) forControlEvents:UIControlEventTouchUpInside];
-    if (scrollView) {
-      [scrollView addSubview:tab];
+    if (_scrollView) {
+      [_scrollView addSubview:tab];
     } else {
       [self addSubview:tab];
     }
-    [tabViews addObject:tab];
-    if (i == selectedTabIndex) {
+    [_tabViews addObject:tab];
+    if (i == _selectedTabIndex) {
       tab.selected = YES;
     }
   }
   
   [self layoutTabs];
   
-  if (scrollView) {
+  if (_scrollView) {
     [self updateOverflow];
   }
 }
 
 - (void)showTabAtIndex:(NSInteger)tabIndex {
-  T3TabView* tab = [tabViews objectAtIndex:tabIndex];
+  T3TabView* tab = [_tabViews objectAtIndex:tabIndex];
   tab.hidden = NO;
 }
 
 - (void)hideTabAtIndex:(NSInteger)tabIndex {
-  T3TabView* tab = [tabViews objectAtIndex:tabIndex];
+  T3TabView* tab = [_tabViews objectAtIndex:tabIndex];
   tab.hidden = YES;
 }
 
@@ -314,115 +314,115 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 
 @implementation T3TabView
 
-@synthesize tabItem;
+@synthesize tabItem = _tabItem;
 
-- (id)initWithItem:(T3TabItem*)aTabItem tabBar:(T3TabBar*)tabBar style:(T3TabBarStyle)aStyle {
+- (id)initWithItem:(T3TabItem*)tabItem tabBar:(T3TabBar*)tabBar style:(T3TabBarStyle)style {
   if (self = [self initWithFrame:CGRectZero]) {
-    style = aStyle;
-    badgeImage = nil;
-    badgeLabel = nil;
+    _style = style;
+    _badgeImage = nil;
+    _badgeLabel = nil;
     
-    tabImage = [[UIImageView alloc] initWithFrame:CGRectZero];
-    tabImage.hidden = YES;
-    [self addSubview:tabImage];
+    _tabImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _tabImage.hidden = YES;
+    [self addSubview:_tabImage];
 
-    iconView = [[T3ImageView alloc] initWithFrame:CGRectZero];
-    iconView.contentMode = UIViewContentModeRight;
-    iconView.clipsToBounds = YES;
-    [self addSubview:iconView];
+    _iconView = [[T3ImageView alloc] initWithFrame:CGRectZero];
+    _iconView.contentMode = UIViewContentModeRight;
+    _iconView.clipsToBounds = YES;
+    [self addSubview:_iconView];
 
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.contentMode = UIViewContentModeCenter;
-    titleLabel.shadowOffset = CGSizeMake(0, -1);
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _titleLabel.backgroundColor = [UIColor clearColor];
+    _titleLabel.contentMode = UIViewContentModeCenter;
+    _titleLabel.shadowOffset = CGSizeMake(0, -1);
     
-    if (style == T3TabBarStyleDark) {
+    if (_style == T3TabBarStyleDark) {
       if (!selectedTabImage) {
         selectedTabImage = [[[UIImage imageNamed:@"images/darkTab.png"]
           stretchableImageWithLeftCapWidth:5 topCapHeight:0] retain];
       }
 
-      tabImage.image = selectedTabImage;
+      _tabImage.image = selectedTabImage;
 
-      titleLabel.textAlignment = UITextAlignmentCenter;
-      titleLabel.font = [UIFont boldSystemFontOfSize:15];
-      titleLabel.textColor = RGBCOLOR(223, 229, 237);
-      titleLabel.highlightedTextColor = [UIColor colorWithWhite:0.1 alpha:1];
-      titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];
-    } else if (style == T3TabBarStyleLight) {
+      _titleLabel.textAlignment = UITextAlignmentCenter;
+      _titleLabel.font = [UIFont boldSystemFontOfSize:15];
+      _titleLabel.textColor = RGBCOLOR(223, 229, 237);
+      _titleLabel.highlightedTextColor = [UIColor colorWithWhite:0.1 alpha:1];
+      _titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];
+    } else if (_style == T3TabBarStyleLight) {
       if (!selectedLightImage) {
         selectedLightImage = [[[UIImage imageNamed:@"images/lightTab.png"]
           stretchableImageWithLeftCapWidth:5 topCapHeight:0] retain];
       }
 
-      tabImage.image = selectedLightImage;
+      _tabImage.image = selectedLightImage;
 
-      titleLabel.textAlignment = UITextAlignmentCenter;
-      titleLabel.font = [UIFont boldSystemFontOfSize:17];
-      titleLabel.textColor = tabBar.textColor;
-      titleLabel.highlightedTextColor = [UIColor colorWithWhite:0.1 alpha:1];
-      titleLabel.shadowColor = [UIColor whiteColor];
-    } else if (style == T3TabBarStyleButtons) {
+      _titleLabel.textAlignment = UITextAlignmentCenter;
+      _titleLabel.font = [UIFont boldSystemFontOfSize:17];
+      _titleLabel.textColor = tabBar.textColor;
+      _titleLabel.highlightedTextColor = [UIColor colorWithWhite:0.1 alpha:1];
+      _titleLabel.shadowColor = [UIColor whiteColor];
+    } else if (_style == T3TabBarStyleButtons) {
       if (!selectedButtonImage) {
         selectedButtonImage = [[[UIImage imageNamed:@"images/feedButton.png"]
           stretchableImageWithLeftCapWidth:12 topCapHeight:0] retain];
       }
 
-      tabImage.image = selectedButtonImage;
+      _tabImage.image = selectedButtonImage;
 
-      titleLabel.textAlignment = UITextAlignmentLeft;
-      titleLabel.font = [UIFont boldSystemFontOfSize:13];
-      titleLabel.textColor = tabBar.textColor;
-      titleLabel.highlightedTextColor = [UIColor whiteColor];
-      titleLabel.shadowColor = [UIColor whiteColor];
+      _titleLabel.textAlignment = UITextAlignmentLeft;
+      _titleLabel.font = [UIFont boldSystemFontOfSize:13];
+      _titleLabel.textColor = tabBar.textColor;
+      _titleLabel.highlightedTextColor = [UIColor whiteColor];
+      _titleLabel.shadowColor = [UIColor whiteColor];
     }
-    [self addSubview:titleLabel];
+    [self addSubview:_titleLabel];
 
-    self.tabItem = aTabItem;
+    self.tabItem = tabItem;
   }
   return self;
 }
 
 - (void)dealloc {
-  [tabItem release];
-  [tabImage release];
-  [iconView release];
-  [titleLabel release];
-  [badgeImage release];
-  [badgeLabel release];
+  [_tabItem release];
+  [_tabImage release];
+  [_iconView release];
+  [_titleLabel release];
+  [_badgeImage release];
+  [_badgeLabel release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)updateBadgeNumber {
-  if (!badgeImage && tabItem.badgeNumber) {
-    badgeImage = [[UIImageView alloc] initWithFrame:CGRectZero];
-    badgeImage.image = [[UIImage imageNamed:@"images/badge.png"]
+  if (!_badgeImage && _tabItem.badgeNumber) {
+    _badgeImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _badgeImage.image = [[UIImage imageNamed:@"images/badge.png"]
       stretchableImageWithLeftCapWidth:12 topCapHeight:15];
-    [self addSubview:badgeImage];
+    [self addSubview:_badgeImage];
     
-    badgeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    badgeLabel.backgroundColor = [UIColor clearColor];
-    badgeLabel.font = [UIFont boldSystemFontOfSize:14];
-    badgeLabel.textColor = [UIColor whiteColor];
-    badgeLabel.contentMode = UIViewContentModeCenter;
-    badgeLabel.textAlignment = UITextAlignmentCenter;    
-    [self addSubview:badgeLabel];
+    _badgeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _badgeLabel.backgroundColor = [UIColor clearColor];
+    _badgeLabel.font = [UIFont boldSystemFontOfSize:14];
+    _badgeLabel.textColor = [UIColor whiteColor];
+    _badgeLabel.contentMode = UIViewContentModeCenter;
+    _badgeLabel.textAlignment = UITextAlignmentCenter;    
+    [self addSubview:_badgeLabel];
   }
   
-  if (tabItem.badgeNumber) {
-    badgeLabel.text = [NSString stringWithFormat:@"%d", tabItem.badgeNumber];
-    [badgeLabel sizeToFit];
+  if (_tabItem.badgeNumber) {
+    _badgeLabel.text = [NSString stringWithFormat:@"%d", _tabItem.badgeNumber];
+    [_badgeLabel sizeToFit];
     
-    badgeImage.frame = CGRectMake(self.width - (badgeLabel.width + kBadgeHPadding*2), 0,
-      badgeLabel.width + 1 + kBadgeHPadding*2, 28);
-    badgeLabel.frame = CGRectMake(badgeImage.x, badgeImage.y, badgeImage.width, 22);
-    badgeImage.hidden = NO;
-    badgeLabel.hidden = NO;
+    _badgeImage.frame = CGRectMake(self.width - (_badgeLabel.width + kBadgeHPadding*2), 0,
+      _badgeLabel.width + 1 + kBadgeHPadding*2, 28);
+    _badgeLabel.frame = CGRectMake(_badgeImage.x, _badgeImage.y, _badgeImage.width, 22);
+    _badgeImage.hidden = NO;
+    _badgeLabel.hidden = NO;
   } else {
-    badgeImage.hidden = YES;
-    badgeLabel.hidden = YES;
+    _badgeImage.hidden = YES;
+    _badgeLabel.hidden = YES;
   }
 }
 
@@ -432,27 +432,27 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  tabImage.frame = self.bounds;
+  _tabImage.frame = self.bounds;
 
-  if (style == T3TabBarStyleButtons) {
-    CGFloat iconWidth = iconView.url.length ? kIconSize + kIconSpacing : 0;
-    iconView.frame = CGRectMake(kPadding2, floor(self.height/2 - kIconSize/2)+2,
+  if (_style == T3TabBarStyleButtons) {
+    CGFloat iconWidth = _iconView.url.length ? kIconSize + kIconSpacing : 0;
+    _iconView.frame = CGRectMake(kPadding2, floor(self.height/2 - kIconSize/2)+2,
       kIconSize, kIconSize);
-    titleLabel.frame = CGRectOffset(self.bounds, kPadding2 + iconWidth, 0);
-  } else if (style == T3TabBarStyleLight) {
-    iconView.frame = CGRectZero;
-    titleLabel.frame = CGRectOffset(self.bounds, 0, 2);
-  } else if (style == T3TabBarStyleDark) {
-    iconView.frame = CGRectZero;
-    titleLabel.frame = CGRectOffset(self.bounds, 0, 2);
+    _titleLabel.frame = CGRectOffset(self.bounds, kPadding2 + iconWidth, 0);
+  } else if (_style == T3TabBarStyleLight) {
+    _iconView.frame = CGRectZero;
+    _titleLabel.frame = CGRectOffset(self.bounds, 0, 2);
+  } else if (_style == T3TabBarStyleDark) {
+    _iconView.frame = CGRectZero;
+    _titleLabel.frame = CGRectOffset(self.bounds, 0, 2);
   }
 }
 
 - (void)sizeToFit {
-  [titleLabel sizeToFit];
-  CGFloat padding = style == T3TabBarStyleButtons ? kPadding2 : kPadding;
-  CGFloat iconWidth = iconView.url.length ? kIconSize + kIconSpacing : 0;
-  self.frame = CGRectMake(self.x, self.y, titleLabel.width + iconWidth + padding*2, self.height);
+  [_titleLabel sizeToFit];
+  CGFloat padding = _style == T3TabBarStyleButtons ? kPadding2 : kPadding;
+  CGFloat iconWidth = _iconView.url.length ? kIconSize + kIconSpacing : 0;
+  self.frame = CGRectMake(self.x, self.y, _titleLabel.width + iconWidth + padding*2, self.height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -460,22 +460,22 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 
 - (void)setSelected:(BOOL)selected {
   [super setSelected:selected];
-  tabImage.hidden = !selected;
-  titleLabel.highlighted = selected;
-  if (style == T3TabBarStyleButtons) {
+  _tabImage.hidden = !selected;
+  _titleLabel.highlighted = selected;
+  if (_style == T3TabBarStyleButtons) {
     if (selected) {
-      iconView.contentMode = UIViewContentModeLeft;
-      titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
+      _iconView.contentMode = UIViewContentModeLeft;
+      _titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
     } else {
-      iconView.contentMode = UIViewContentModeRight;
-      titleLabel.shadowColor = [UIColor whiteColor];
+      _iconView.contentMode = UIViewContentModeRight;
+      _titleLabel.shadowColor = [UIColor whiteColor];
     }
-  } else if (style == T3TabBarStyleLight) {
-  } else if (style == T3TabBarStyleDark) {
+  } else if (_style == T3TabBarStyleLight) {
+  } else if (_style == T3TabBarStyleDark) {
     if (selected) {
-      titleLabel.shadowColor = [UIColor whiteColor];
+      _titleLabel.shadowColor = [UIColor whiteColor];
     } else {
-      titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];
+      _titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];
     }
   }
 }
@@ -489,15 +489,15 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setTabItem:(T3TabItem*)aTabItem {
-  tabItem.delegate = nil;
-  [tabItem release];
-  tabItem = [aTabItem retain];
-  tabItem.delegate = self;
+- (void)setTabItem:(T3TabItem*)tabItem {
+  [_tabItem performSelector:@selector(setTabBar:) withObject:nil];
+  [_tabItem release];
+  _tabItem = [tabItem retain];
+  [_tabItem performSelector:@selector(setTabBar:) withObject:self];
   
-  titleLabel.text = tabItem.title;
-  iconView.url = tabItem.icon;
-  if (tabItem.badgeNumber) {
+  _titleLabel.text = _tabItem.title;
+  _iconView.url = _tabItem.icon;
+  if (_tabItem.badgeNumber) {
     [self updateBadgeNumber];
   }
 }
@@ -508,40 +508,46 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 
 @implementation T3TabItem
 
-@synthesize delegate, title, icon, object, badgeNumber;
+@synthesize title = _title, icon = _icon, object = _object, badgeNumber = _badgeNumber;
 
-- (id)initWithTitle:(NSString*)aTitle {
+- (id)initWithTitle:(NSString*)title {
   if (self = [self init]) {
-    self.title = aTitle;
+    self.title = title;
   }
   return self;
 }
 
 - (id)init {
   if (self = [super init]) {
-    delegate = nil;
-    title = nil;
-    icon = nil;
-    object = nil;
-    badgeNumber = 0;
+    _title = nil;
+    _icon = nil;
+    _object = nil;
+    _badgeNumber = 0;
+    _tabBar = nil;
   }
   return self;
 }
 
 - (void)dealloc {
-  [title release];
-  [icon release];
-  [object release];
+  [_title release];
+  [_icon release];
+  [_object release];
   [super dealloc];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)setTabBar:(T3TabBar*)tabBar {
+  _tabBar = tabBar;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 - (void)setBadgeNumber:(int)value {
   value = value < 0 ? 0 : value;
-  badgeNumber = value;
-  if ([delegate respondsToSelector:@selector(tabItem:badgeNumberChangedTo:)]) {
-    [delegate performSelector:@selector(tabItem:badgeNumberChangedTo:) withObject:self
-      withObject:(id)value];
-  }
+  _badgeNumber = value;
+  [_tabBar performSelector:@selector(tabItem:badgeNumberChangedTo:) withObject:self
+    withObject:(id)value];
 }
 
 @end

@@ -10,17 +10,19 @@ typedef enum {
   T3TabBarStyleButtons
 } T3TabBarStyle;
 
+@protocol T3TabBarDelegate;
+
 @interface T3TabBar : UIView {
-  id delegate;
-  T3TabBarStyle style;
-  NSInteger selectedTabIndex;
-  UIImageView* overflowLeft;
-  UIImageView* overflowRight;
-  UIScrollView* scrollView;
-  NSArray* tabItems;
-  NSMutableArray* tabViews;
-  T3TabView* trackingTab;
-  UIColor* textColor;
+  id<T3TabBarDelegate> _delegate;
+  T3TabBarStyle _style;
+  NSInteger _selectedTabIndex;
+  UIImageView* _overflowLeft;
+  UIImageView* _overflowRight;
+  UIScrollView* _scrollView;
+  NSArray* _tabItems;
+  NSMutableArray* _tabViews;
+  T3TabView* _trackingTab;
+  UIColor* _textColor;
 }
 
 @property(nonatomic,assign) id delegate;
@@ -40,13 +42,13 @@ typedef enum {
 @end
 
 @interface T3TabView : UIControl {
-  T3TabBarStyle style;
-  T3TabItem* tabItem;
-  UIImageView* tabImage;
-  T3ImageView* iconView;
-  UILabel* titleLabel;
-  UIImageView* badgeImage;
-  UILabel* badgeLabel;
+  T3TabBarStyle _style;
+  T3TabItem* _tabItem;
+  UIImageView* _tabImage;
+  T3ImageView* _iconView;
+  UILabel* _titleLabel;
+  UIImageView* _badgeImage;
+  UILabel* _badgeLabel;
 }
 
 @property(nonatomic,retain) T3TabItem* tabItem;
@@ -56,14 +58,13 @@ typedef enum {
 @end
 
 @interface T3TabItem : NSObject {
-  id delegate;
-  NSString* title;
-  NSString* icon;
-  id object;
-  int badgeNumber;
+  NSString* _title;
+  NSString* _icon;
+  id _object;
+  int _badgeNumber;
+  T3TabBar* _tabBar;
 }
 
-@property(nonatomic,assign) id delegate;
 @property(nonatomic,copy) NSString* title;
 @property(nonatomic,copy) NSString* icon;
 @property(nonatomic,retain) id object;
@@ -71,4 +72,8 @@ typedef enum {
 
 - (id)initWithTitle:(NSString*)title;
 
+@end
+
+@protocol T3TabBarDelegate <NSObject>
+- (void)tabBar:(T3TabBar*)tabBar tabSelected:(NSInteger)selectedIndex;
 @end

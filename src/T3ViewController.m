@@ -161,7 +161,7 @@
       UIView* view = self.view;
       [super didReceiveMemoryWarning];
 
-      // Sometimes, like when the controller is in a tabbed bar, the view won't
+      // Sometimes, like when the controller is in a tab bar, the view won't
       // be destroyed here like it should by the superclass - so let's do it ourselves!
       [view removeSubviews];
 
