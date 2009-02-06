@@ -5,6 +5,7 @@
 #import "Three20/T3URLRequest.h"
 #import "Three20/T3URLCache.h"
 #import "Three20/T3ImageView.h"
+#import "Three20/T3LinkView.h"
 #import "Three20/T3ScrollView.h"
 #import "Three20/T3PhotoSource.h"
 #import "Three20/T3PhotoViewController.h"
@@ -17,3 +18,5 @@
 #import "Three20/T3ShinyLabel.h"
 #import "Three20/T3YouTubeView.h"
 #import "Three20/T3BackgroundView.h"
+#import "Three20/T3ErrorView.h"
+#import "Three20/T3TabBar.h"

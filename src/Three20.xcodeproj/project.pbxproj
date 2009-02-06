@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE42FB130F3BBAA900A3B65A /* T3LinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE42FB120F3BBAA900A3B65A /* T3LinkView.m */; };
+		BE42FB160F3BBAB400A3B65A /* T3LinkView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE42FB150F3BBAB400A3B65A /* T3LinkView.h */; };
+		BE42FB7A0F3BBF3500A3B65A /* T3TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BE42FB790F3BBF3400A3B65A /* T3TabBar.m */; };
+		BE42FB7C0F3BBF3D00A3B65A /* T3TabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = BE42FB7B0F3BBF3D00A3B65A /* T3TabBar.h */; };
 		BE68F5C40F385EBD00655DBF /* T3NavigationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68F5C30F385EBD00655DBF /* T3NavigationCenter.m */; };
 		BE68F5C60F385ECB00655DBF /* T3NavigationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = BE68F5C50F385ECB00655DBF /* T3NavigationCenter.h */; };
 		BEF31F700F352E64000DE5D2 /* T3ActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F460F352E64000DE5D2 /* T3ActivityLabel.m */; };
@@ -57,6 +61,10 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BE42FB120F3BBAA900A3B65A /* T3LinkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3LinkView.m; sourceTree = "<group>"; };
+		BE42FB150F3BBAB400A3B65A /* T3LinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3LinkView.h; path = Three20/T3LinkView.h; sourceTree = "<group>"; };
+		BE42FB790F3BBF3400A3B65A /* T3TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3TabBar.m; sourceTree = "<group>"; };
+		BE42FB7B0F3BBF3D00A3B65A /* T3TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3TabBar.h; path = Three20/T3TabBar.h; sourceTree = "<group>"; };
 		BE68F5C30F385EBD00655DBF /* T3NavigationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3NavigationCenter.m; sourceTree = "<group>"; };
 		BE68F5C50F385ECB00655DBF /* T3NavigationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3NavigationCenter.h; path = Three20/T3NavigationCenter.h; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,12 +160,16 @@
 			children = (
 				BEF31F5D0F352E64000DE5D2 /* T3ImageView.h */,
 				BEF31F490F352E64000DE5D2 /* T3ImageView.m */,
+				BE42FB150F3BBAB400A3B65A /* T3LinkView.h */,
+				BE42FB120F3BBAA900A3B65A /* T3LinkView.m */,
 				BEF31F6E0F352E64000DE5D2 /* T3YouTubeView.h */,
 				BEF31F580F352E64000DE5D2 /* T3YouTubeView.m */,
 				BEF31F5F0F352E64000DE5D2 /* T3BackgroundView.h */,
 				BEF31F4A0F352E64000DE5D2 /* T3BackgroundView.m */,
 				BEF31F630F352E64000DE5D2 /* T3ScrollView.h */,
 				BEF31F4D0F352E64000DE5D2 /* T3ScrollView.m */,
+				BE42FB7B0F3BBF3D00A3B65A /* T3TabBar.h */,
+				BE42FB790F3BBF3400A3B65A /* T3TabBar.m */,
 				BEF31F5A0F352E64000DE5D2 /* T3ActivityLabel.h */,
 				BEF31F460F352E64000DE5D2 /* T3ActivityLabel.m */,
 				BEF31F640F352E64000DE5D2 /* T3ShinyLabel.h */,
@@ -253,6 +265,8 @@
 				BEF31F970F352E64000DE5D2 /* T3YouTubeView.h in Headers */,
 				BEF31F980F352E64000DE5D2 /* Three20.h in Headers */,
 				BE68F5C60F385ECB00655DBF /* T3NavigationCenter.h in Headers */,
+				BE42FB160F3BBAB400A3B65A /* T3LinkView.h in Headers */,
+				BE42FB7C0F3BBF3D00A3B65A /* T3TabBar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +331,8 @@
 				BEF31F810F352E64000DE5D2 /* T3ViewController.m in Sources */,
 				BEF31F820F352E64000DE5D2 /* T3YouTubeView.m in Sources */,
 				BE68F5C40F385EBD00655DBF /* T3NavigationCenter.m in Sources */,
+				BE42FB130F3BBAA900A3B65A /* T3LinkView.m in Sources */,
+				BE42FB7A0F3BBF3500A3B65A /* T3TabBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
