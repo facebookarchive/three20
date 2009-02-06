@@ -96,6 +96,181 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation NSObject (T3Category)
+
+- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
+  NSMethodSignature *sig = [self methodSignatureForSelector:selector];
+  if (sig) {
+    NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
+    [invo setTarget:self];
+    [invo setSelector:selector];
+    [invo setArgument:&p1 atIndex:2];
+    [invo setArgument:&p2 atIndex:3];
+    [invo setArgument:&p3 atIndex:4];
+    [invo invoke];
+    if (sig.methodReturnLength) {
+      id anObject;
+      [invo getReturnValue:&anObject];
+      return anObject;
+    } else {
+      return nil;
+    }
+  } else {
+    return nil;
+  }
+}
+
+- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 
+    withObject:(id)p4 {
+  NSMethodSignature *sig = [self methodSignatureForSelector:selector];
+  if (sig) {
+    NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
+    [invo setTarget:self];
+    [invo setSelector:selector];
+    [invo setArgument:&p1 atIndex:2];
+    [invo setArgument:&p2 atIndex:3];
+    [invo setArgument:&p3 atIndex:4];
+    [invo setArgument:&p4 atIndex:5];
+    [invo invoke];
+    if (sig.methodReturnLength) {
+      id anObject;
+      [invo getReturnValue:&anObject];
+      return anObject;
+    } else {
+      return nil;
+    }
+  } else {
+    return nil;
+  }
+}
+
+- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 
+    withObject:(id)p4 withObject:(id)p5 {
+  NSMethodSignature *sig = [self methodSignatureForSelector:selector];
+  if (sig) {
+    NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
+    [invo setTarget:self];
+    [invo setSelector:selector];
+    [invo setArgument:&p1 atIndex:2];
+    [invo setArgument:&p2 atIndex:3];
+    [invo setArgument:&p3 atIndex:4];
+    [invo setArgument:&p4 atIndex:5];
+    [invo setArgument:&p5 atIndex:6];
+    [invo invoke];
+    if (sig.methodReturnLength) {
+      id anObject;
+      [invo getReturnValue:&anObject];
+      return anObject;
+    } else {
+      return nil;
+    }
+  } else {
+    return nil;
+  }
+}
+
+- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 
+    withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 {
+  NSMethodSignature *sig = [self methodSignatureForSelector:selector];
+  if (sig) {
+    NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
+    [invo setTarget:self];
+    [invo setSelector:selector];
+    [invo setArgument:&p1 atIndex:2];
+    [invo setArgument:&p2 atIndex:3];
+    [invo setArgument:&p3 atIndex:4];
+    [invo setArgument:&p4 atIndex:5];
+    [invo setArgument:&p5 atIndex:6];
+    [invo setArgument:&p6 atIndex:7];
+    [invo invoke];
+    if (sig.methodReturnLength) {
+      id anObject;
+      [invo getReturnValue:&anObject];
+      return anObject;
+    } else {
+      return nil;
+    }
+  } else {
+    return nil;
+  }
+}
+
+- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 
+    withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 withObject:(id)p7 {
+  NSMethodSignature *sig = [self methodSignatureForSelector:selector];
+  if (sig) {
+    NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
+    [invo setTarget:self];
+    [invo setSelector:selector];
+    [invo setArgument:&p1 atIndex:2];
+    [invo setArgument:&p2 atIndex:3];
+    [invo setArgument:&p3 atIndex:4];
+    [invo setArgument:&p4 atIndex:5];
+    [invo setArgument:&p5 atIndex:6];
+    [invo setArgument:&p6 atIndex:7];
+    [invo setArgument:&p7 atIndex:8];
+    [invo invoke];
+    if (sig.methodReturnLength) {
+      id anObject;
+      [invo getReturnValue:&anObject];
+      return anObject;
+    } else {
+      return nil;
+    }
+  } else {
+    return nil;
+  }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation UIViewController (T3Category)
+
+- (UIViewController*)previousViewController {
+  NSArray* viewControllers = self.navigationController.viewControllers;
+  if (viewControllers.count > 1) {
+    NSUInteger index = [viewControllers indexOfObject:self];
+    if (index != NSNotFound) {
+      return [viewControllers objectAtIndex:index-1];
+    }
+  }
+  
+  return nil;
+}
+
+- (UIViewController*)nextViewController {
+  NSArray* viewControllers = self.navigationController.viewControllers;
+  if (viewControllers.count > 1) {
+    NSUInteger index = [viewControllers indexOfObject:self];
+    if (index != NSNotFound && index+1 < viewControllers.count) {
+      return [viewControllers objectAtIndex:index+1];
+    }
+  }
+  return nil;
+}
+
+- (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate {
+  if (message) {
+    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title message:message
+      delegate:delegate cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+    [alert show];
+  }
+}
+
+- (void)alert:(NSString*)message {
+  [self alert:message title:@"Alert" delegate:nil];
+}
+
+- (void)alertError:(NSString*)message {
+  [self alert:message title:@"Error" delegate:nil];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // This code for synthesizing touch events is derived from:
 // http://cocoawithlove.com/2008/10/synthesizing-touch-event-on-iphone.html
 
@@ -402,51 +577,6 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
     }
   }
   return nil;
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation UIViewController (T3Category)
-
-- (UIViewController*)previousViewController {
-  NSArray* viewControllers = self.navigationController.viewControllers;
-  if (viewControllers.count > 1) {
-    NSUInteger index = [viewControllers indexOfObject:self];
-    if (index != NSNotFound) {
-      return [viewControllers objectAtIndex:index-1];
-    }
-  }
-  
-  return nil;
-}
-
-- (UIViewController*)nextViewController {
-  NSArray* viewControllers = self.navigationController.viewControllers;
-  if (viewControllers.count > 1) {
-    NSUInteger index = [viewControllers indexOfObject:self];
-    if (index != NSNotFound && index+1 < viewControllers.count) {
-      return [viewControllers objectAtIndex:index+1];
-    }
-  }
-  return nil;
-}
-
-- (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate {
-  if (message) {
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title message:message
-      delegate:delegate cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
-    [alert show];
-  }
-}
-
-- (void)alert:(NSString*)message {
-  [self alert:message title:@"Alert" delegate:nil];
-}
-
-- (void)alertError:(NSString*)message {
-  [self alert:message title:@"Error" delegate:nil];
 }
 
 @end

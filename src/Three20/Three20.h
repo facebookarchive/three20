@@ -1,5 +1,6 @@
 
 #import "Three20/T3Global.h"
+#import "Three20/T3NavigationCenter.h"
 #import "Three20/T3ViewController.h"
 #import "Three20/T3URLRequest.h"
 #import "Three20/T3URLCache.h"

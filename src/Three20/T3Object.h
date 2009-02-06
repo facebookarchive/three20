@@ -18,6 +18,3 @@ typedef enum {
 
 @end
 
-void T3RegisterObjectLoader(NSString* name, Class cls);
-void T3UnregisterObjectLoader(NSString* name);
-id<T3Object> T3LocateObject(NSURL* url);
