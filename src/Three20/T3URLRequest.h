@@ -7,6 +7,7 @@
   NSString* _url;
   NSString* _httpMethod;
   NSData* _httpBody;
+  NSMutableDictionary* _params;
   NSString* _contentType;
   id<T3URLRequestDelegate> _delegate;
   id<T3URLResponseHandler> _handler;
@@ -39,17 +40,35 @@
 @property(nonatomic,assign) id handlerDelegate;
 
 @property(nonatomic,copy) NSString* url;
+
 @property(nonatomic,copy) NSString* httpMethod;
+
 @property(nonatomic,retain) NSData* httpBody;
+
+@property(nonatomic,retain) NSDictionary* params;
+
 @property(nonatomic,copy) NSString* contentType;
+
+/**
+ * Defaults to "any".
+ */
 @property(nonatomic) T3URLRequestCachePolicy cachePolicy;
+
 @property(nonatomic) NSTimeInterval cacheExpirationAge;
+
 @property(nonatomic,retain) NSString* cacheKey;
+
 @property(nonatomic,retain) NSDate* timestamp;
+
 @property(nonatomic) BOOL loading;
+
 @property(nonatomic) BOOL shouldHandleCookies;
+
 @property(nonatomic) BOOL shouldConvertToMedia;
+
 @property(nonatomic) BOOL responseFromCache;
+
++ (T3URLRequest*)request;
 
 + (T3URLRequest*)requestWithURL:(NSString*)url delegate:(id<T3URLRequestDelegate>)delegate;
 

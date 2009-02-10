@@ -54,6 +54,8 @@
 // T3URLRequestDelegate
 
 - (void)requestLoading:(T3URLRequest*)request {
+  _request = [request retain];
+  
   if ([_delegate respondsToSelector:@selector(imageViewLoading:)]) {
     [_delegate imageViewLoading:self];
   }
@@ -117,10 +119,10 @@
   if (_request)
     return;
   
-  _request = [[T3URLRequest alloc] initWithURL:_url delegate:self];
-  _request.shouldConvertToMedia = YES;
+  T3URLRequest* request = [[[T3URLRequest alloc] initWithURL:_url delegate:self] autorelease];
+  request.shouldConvertToMedia = YES;
   
-  if (_url && ![_request send]) {
+  if (_url && ![request send]) {
     // Put the default image in place while waiting for the request to load
     if (_defaultImage && self.image != _defaultImage) {
       self.image = _defaultImage;

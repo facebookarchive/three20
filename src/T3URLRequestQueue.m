@@ -88,6 +88,7 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)connect {
+  T3LOG(@"Connecting to %@", _url);
   T3NetworkRequestStarted();
 
   NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_url]
@@ -514,6 +515,17 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
   
   if ([self loadRequestFromCache:request]) {
     return YES;
+  }
+  
+  if (!request.url) {
+    NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
+    if ([request.handler respondsToSelector:@selector(request:didFailWithError:)]) {
+      [request.handler request:request didFailWithError:error];
+    }
+    if ([request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
+      [request.delegate request:request didFailWithError:error];
+    }
+    return NO;
   }
 
   request.loading = YES;

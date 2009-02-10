@@ -42,7 +42,7 @@
   _isInvalid = T3Valid;
 
   if (_type & MockPhotoSourceLoadError) {
-    [_delegate photoSource:self loadDidFailWithError:nil];
+    [_request.delegate request:_request didFailWithError:nil];
   } else {
     NSMutableArray* newPhotos = [NSMutableArray array];
 
@@ -68,11 +68,11 @@
       }
     }
 
-    [_delegate photoSourceLoaded:self];
+    [_request.delegate request:_request loadedData:nil media:nil];
   }
   
-  [_delegate release];
-  _delegate = nil;
+  [_request release];
+  _request = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,15 +126,11 @@
   }
 }
 
-- (NSUInteger)indexOfPhoto:(id<T3Photo>)photo {
-  return [_photos indexOfObject:photo];
-}
-
-- (void)loadPhotosFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
-    cachePolicy:(T3URLRequestCachePolicy)cachePolicy delegate:(id<T3PhotoSourceDelegate>)delegate {
-  if (cachePolicy & T3URLRequestCachePolicyNetwork) {
-    _delegate = [delegate retain];
-    [_delegate photoSourceLoading:self fromIndex:fromIndex toIndex:toIndex];
+- (void)loadPhotos:(T3URLRequest*)request fromIndex:(NSUInteger)fromIndex
+    toIndex:(NSUInteger)toIndex {
+  if (request.cachePolicy & T3URLRequestCachePolicyNetwork) {
+    _request = [request retain];
+    [_request.delegate requestLoading:_request];
 
     _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
       selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];

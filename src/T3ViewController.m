@@ -122,6 +122,7 @@
   UIView* contentView = [[[UIView alloc]
     initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 	contentView.autoresizesSubviews = YES;
+	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   contentView.backgroundColor = [UIColor whiteColor];
   self.view = contentView;
 }

@@ -56,7 +56,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 - (void)updateTitle {
-  if (!_photoSource.numberOfPhotos) {
+  if (!_photoSource.numberOfPhotos || _photoSource.numberOfPhotos == T3_INFINITE_PHOTO_INDEX) {
     self.title = _photoSource.title;
   } else {
     self.title = [NSString stringWithFormat:
@@ -100,7 +100,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 - (void)moveToPhotoAtIndex:(NSInteger)photoIndex withDelay:(BOOL)withDelay {
-  _centerPhotoIndex = photoIndex;
+  _centerPhotoIndex = photoIndex == T3_NULL_PHOTO_INDEX ? 0 : photoIndex;
   [_centerPhoto release];
   _centerPhoto = [[_photoSource photoAtIndex:_centerPhotoIndex] retain];
   _delayLoad = withDelay;
@@ -113,10 +113,11 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   }
 }
 
-- (void)loadPhotos {
+- (void)loadPhotosFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
   if (!_photoSource.loading) {
-    [_photoSource loadPhotosFromIndex:_photoSource.maxPhotoIndex+1 toIndex:-1
-      cachePolicy:T3URLRequestCachePolicyAny delegate:self];
+    T3URLRequest* request = [T3URLRequest request];
+    request.delegate = self;
+    [_photoSource loadPhotos:request fromIndex:fromIndex toIndex:toIndex];
   }
 }
 
@@ -126,6 +127,14 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
     T3PhotoView* photoView = [photoViews objectForKey:key];
     id<T3Photo> photo = [_photoSource photoAtIndex:key.intValue];
     [self showPhoto:photo inView:photoView];
+  }
+}
+
+- (void)resetVisiblePhotoViews {
+  NSDictionary* photoViews = _scrollView.visiblePages;
+  for (NSNumber* key in photoViews.keyEnumerator) {
+    T3PhotoView* photoView = [photoViews objectForKey:key];
+    [photoView showProgress:-1];
   }
 }
 
@@ -271,7 +280,10 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   if (_photoSource.loading) {
     self.contentState = T3ContentActivity;
   } else if (!_centerPhoto) {
-    [self loadPhotos];
+    [self loadPhotosFromIndex:_photoSource.isInvalid ? 0 : _photoSource.maxPhotoIndex+1
+      toIndex:T3_INFINITE_PHOTO_INDEX];
+  } else if (_photoSource.numberOfPhotos == T3_INFINITE_PHOTO_INDEX) {
+    [self loadPhotosFromIndex:0 toIndex:T3_INFINITE_PHOTO_INDEX];
   } else {
     if (_photoSource.numberOfPhotos) {
       self.contentState = T3ContentReady;
@@ -281,16 +293,14 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   }
 }
 
-- (void)refreshContent {
-  if (_photoSource.isInvalid && !_photoSource.loading) {
-    [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
-      cachePolicy:T3URLRequestCachePolicyNetwork delegate:self];
-  }
-}
+//- (void)refreshContent {
+//  if (_photoSource.isInvalid && !_photoSource.loading) {
+//    [self loadPhotosFromIndex:0 toIndex:T3_INFINITE_PHOTO_INDEX];
+//  }
+//}
 
 - (void)reloadContent {
-  [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
-    cachePolicy:T3URLRequestCachePolicyNetwork delegate:self];
+    [self loadPhotosFromIndex:0 toIndex:T3_INFINITE_PHOTO_INDEX];
 }
 
 - (void)updateView {
@@ -349,16 +359,15 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3PhotoSourceDelegate
+// T3URLRequestDelegate
 
-- (void)photoSourceLoading:(id<T3PhotoSource>)photoSource fromIndex:(NSUInteger)fromIndex
-    toIndex:(NSUInteger)toIndex {
+- (void)requestLoading:(T3URLRequest*)request {
   self.contentState |= T3ContentActivity;
 }
 
-- (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource {
-  if (_centerPhotoIndex >= photoSource.numberOfPhotos) {
-    [self moveToPhotoAtIndex:photoSource.numberOfPhotos - 1 withDelay:NO];
+- (void)request:(T3URLRequest*)request loadedData:(NSData*)data media:(id)media {
+  if (_centerPhotoIndex >= _photoSource.numberOfPhotos) {
+    [self moveToPhotoAtIndex:_photoSource.numberOfPhotos - 1 withDelay:NO];
     [_scrollView reloadData];
   } else {
     [self refreshVisiblePhotoViews];
@@ -371,10 +380,17 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   }
 }
 
-- (void)photoSource:(id<T3PhotoSource>)photoSource loadDidFailWithError:(NSError*)error {
+- (void)request:(T3URLRequest*)request didFailWithError:(NSError*)error {
+  [self resetVisiblePhotoViews];
+
   self.contentState &= ~T3ContentActivity;
   self.contentState |= T3ContentError;
   self.contentError = error;
+}
+
+- (void)requestCancelled:(T3URLRequest*)request {
+  self.contentState &= ~T3ContentActivity;
+  self.contentState |= T3ContentError;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

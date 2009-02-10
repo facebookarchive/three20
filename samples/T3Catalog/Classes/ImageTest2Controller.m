@@ -26,7 +26,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-  [T3URLCache sharedCache].paused = NO;
+  [T3URLRequestQueue mainQueue].suspended = NO;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -59,26 +59,26 @@
 // UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-  [T3URLCache sharedCache].paused = YES;
+  [T3URLRequestQueue mainQueue].suspended = YES;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
   if (!decelerate) {
-    [T3URLCache sharedCache].paused = NO;
+    [T3URLRequestQueue mainQueue].suspended = NO;
   }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  [T3URLCache sharedCache].paused = NO;
+  [T3URLRequestQueue mainQueue].suspended = NO;
 }
 
 - (BOOL)scrollViewWillScrollToTop:(UIScrollView *)scrollView {
-  [T3URLCache sharedCache].paused = YES;
+  [T3URLRequestQueue mainQueue].suspended = YES;
   return YES;
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
-  [T3URLCache sharedCache].paused = NO;
+  [T3URLRequestQueue mainQueue].suspended = NO;
 }
 
 @end

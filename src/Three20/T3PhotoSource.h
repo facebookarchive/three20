@@ -2,9 +2,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define T3_NULL_PHOTO_INDEX NSUIntegerMax
+#define T3_NULL_PHOTO_INDEX NSIntegerMax
+#define T3_INFINITE_PHOTO_INDEX NSIntegerMax
 
-@protocol T3Photo, T3PhotoSourceDelegate;
+@protocol T3Photo;
+@class T3URLRequest;
 
 typedef enum {
   T3PhotoVersionNone,
@@ -26,12 +28,12 @@ typedef enum {
 /**
  * The total number of photos in the source, independent of the number that have been loaded.
  */
-@property(nonatomic,readonly) NSUInteger numberOfPhotos;
+@property(nonatomic,readonly) NSInteger numberOfPhotos;
 
 /**
  * The maximum index of photos that have already been loaded.
  */
-@property(nonatomic,readonly) NSUInteger maxPhotoIndex;
+@property(nonatomic,readonly) NSInteger maxPhotoIndex;
 
 /**
  *
@@ -41,43 +43,16 @@ typedef enum {
 /**
  *
  */
-- (id<T3Photo>)photoAtIndex:(NSUInteger)index;
-
-/**
- *
- */
-- (NSUInteger)indexOfPhoto:(id<T3Photo>)photo;
+- (id<T3Photo>)photoAtIndex:(NSInteger)index;
 
 /**
  * Loads a range of photos asynchronously.
  *
  * @param fromIndex The starting index.
  * @param toIndex The ending index, or -1 to load the remainder of photos.
- * @param cachePolicy The policy for using the cache to satisfy the request
- * @param delegate The object to be notified when loading completes.
  */
-- (void)loadPhotosFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
-  cachePolicy:(T3URLRequestCachePolicy)cachePolicy delegate:(id<T3PhotoSourceDelegate>)delegate;
-
-@end
-
-@protocol T3PhotoSourceDelegate <NSObject>
-
-/**
- *
- */
-- (void)photoSourceLoading:(id<T3PhotoSource>)photoSource fromIndex:(NSUInteger)fromIndex
-   toIndex:(NSUInteger)toIndex;
-
-/**
- *
- */
-- (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource;
-
-/**
- *
- */
-- (void)photoSource:(id<T3PhotoSource>)photoSource loadDidFailWithError:(NSError*)error;
+- (void)loadPhotos:(T3URLRequest*)request fromIndex:(NSInteger)fromIndex
+  toIndex:(NSInteger)toIndex;
 
 @end
 

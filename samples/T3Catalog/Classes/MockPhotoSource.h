@@ -13,7 +13,7 @@ typedef enum {
 
 @interface MockPhotoSource : NSObject <T3PhotoSource> {
   MockPhotoSourceType _type;
-  id<T3PhotoSourceDelegate> _delegate;
+  T3URLRequest* _request;
   NSString* _title;
   NSMutableArray* _photos;
   NSArray* _tempPhotos;

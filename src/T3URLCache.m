@@ -76,12 +76,12 @@ static NSString* kCacheDirPathName = @"Three20";
 
 - (void)expireImagesFromMemory {
   while (_mediaSortedList.count) {
-    NSString* url = [_mediaSortedList objectAtIndex:0];
-    UIImage* image = [_mediaCache objectForKey:url];
-    T3LOG(@"EXPIRING %@", url);
+    NSString* key = [_mediaSortedList objectAtIndex:0];
+    UIImage* image = [_mediaCache objectForKey:key];
+    // T3LOG(@"EXPIRING %@", key);
 
     _totalPixelCount -= image.size.width * image.size.height;
-    [_mediaCache removeObjectForKey:url];
+    [_mediaCache removeObjectForKey:key];
     [_mediaSortedList removeObjectAtIndex:0];
     
     if (_totalPixelCount <= _maxPixelCount) {
@@ -190,7 +190,8 @@ static NSString* kCacheDirPathName = @"Three20";
 }
 
 - (id)getMediaForURL:(NSString*)url fromDisk:(BOOL)fromDisk {
-  UIImage* media = [_mediaCache objectForKey:url];
+  NSString* key = [self keyForURL:url];
+  UIImage* media = [_mediaCache objectForKey:key];
   if (media) {
     return [[media retain] autorelease];
   } else if (fromDisk) {
@@ -253,27 +254,30 @@ static NSString* kCacheDirPathName = @"Three20";
 }
 
 - (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL {
-  id media = [self getMediaForURL:oldURL fromDisk:NO];
+  NSString* oldKey = [self keyForURL:oldURL];
+  NSString* newKey = [self keyForURL:newURL];
+  id media = [self getMediaForURL:oldKey fromDisk:NO];
   if (media) {
-    [_mediaSortedList removeObject:oldURL];
-    [_mediaCache removeObjectForKey:oldURL];
-    [_mediaSortedList addObject:newURL];
-    [_mediaCache setObject:media forKey:newURL];
+    [_mediaSortedList removeObject:oldKey];
+    [_mediaCache removeObjectForKey:oldKey];
+    [_mediaSortedList addObject:newKey];
+    [_mediaCache setObject:media forKey:newKey];
   }
-  NSString* oldPath = [self getCachePathForURL:oldURL];
+  NSString* oldPath = [self getCachePathForURL:oldKey];
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:oldPath]) {
-    NSString* newPath = [self getCachePathForURL:newURL];
+    NSString* newPath = [self getCachePathForURL:newKey];
     [fm moveItemAtPath:oldPath toPath:newPath error:nil];
   }
 }
 
 - (void)removeURL:(NSString*)url fromDisk:(BOOL)fromDisk {
-  [_mediaSortedList removeObject:url];
-  [_mediaCache removeObjectForKey:url];
+  NSString*  key = [self keyForURL:url];
+  [_mediaSortedList removeObject:key];
+  [_mediaCache removeObjectForKey:key];
   
   if (fromDisk) {
-    NSString* filePath = [self getCachePathForURL:url];
+    NSString* filePath = [self getCachePathForKey:key];
     NSFileManager* fm = [NSFileManager defaultManager];
     if (filePath && [fm fileExistsAtPath:filePath]) {
       [fm removeItemAtPath:filePath error:nil];
@@ -334,11 +338,11 @@ static NSString* kCacheDirPathName = @"Three20";
 - (void)logMemoryReport {
   T3LOG(@"======= IMAGE CACHE: %d media, %d pixels ========", _mediaCache.count, _totalPixelCount);
   NSEnumerator* e = [_mediaCache keyEnumerator];
-  for (NSString* url ; url = [e nextObject]; ) {
-    id media = [_mediaCache objectForKey:url];
+  for (NSString* key ; key = [e nextObject]; ) {
+    id media = [_mediaCache objectForKey:key];
     if ([media isKindOfClass:[UIImage class]]) {
       UIImage* image = media;
-      T3LOG(@"  %f x %f %@", image.size.width, image.size.height, url);
+      T3LOG(@"  %f x %f %@", image.size.width, image.size.height, key);
     }
   }  
 }

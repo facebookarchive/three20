@@ -128,12 +128,19 @@ static NSInteger kColumnCount = 4;
   self.photoSource = (id<T3PhotoSource>)object;
 }
 
+- (void)loadPhotosFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
+    fromCache:(BOOL)fromCache {
+  T3URLRequest* request = [T3URLRequest request];
+  request.delegate = self;
+  request.cachePolicy = fromCache ? T3URLRequestCachePolicyAny : T3URLRequestCachePolicyNetwork;
+  [_photoSource loadPhotos:request fromIndex:fromIndex toIndex:toIndex];
+}
+
 - (void)updateContent {
   if (_photoSource.loading) {
     self.contentState = T3ContentActivity;
   } else if (_photoSource.isInvalid) {
-    [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
-      cachePolicy:T3URLRequestCachePolicyMemory|T3URLRequestCachePolicyDisk delegate:self];
+    [self loadPhotosFromIndex:0 toIndex:T3_INFINITE_PHOTO_INDEX fromCache:YES];
   } else if (_photoSource.numberOfPhotos) {
     self.contentState = T3ContentReady;
   } else {
@@ -143,14 +150,12 @@ static NSInteger kColumnCount = 4;
 
 - (void)refreshContent {
   if (_photoSource.isInvalid && !_photoSource.loading) {
-    [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
-      cachePolicy:T3URLRequestCachePolicyNetwork delegate:self];
+    [self loadPhotosFromIndex:0 toIndex:T3_INFINITE_PHOTO_INDEX fromCache:NO];
   }
 }
 
 - (void)reloadContent {
-  [_photoSource loadPhotosFromIndex:0 toIndex:NSUIntegerMax
-    cachePolicy:T3URLRequestCachePolicyNetwork delegate:self];
+  [self loadPhotosFromIndex:0 toIndex:T3_INFINITE_PHOTO_INDEX fromCache:NO];
 }
 
 - (void)updateView {
@@ -217,14 +222,13 @@ static NSInteger kColumnCount = 4;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3PhotoSourceDelegate
+// T3URLRequestDelegate
 
-- (void)photoSourceLoading:(id<T3PhotoSource>)photoSource fromIndex:(NSUInteger)fromIndex
-   toIndex:(NSUInteger)toIndex {
+- (void)requestLoading:(T3URLRequest*)request {
   self.contentState |= T3ContentActivity;
 }
 
-- (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource {
+- (void)request:(T3URLRequest*)request loadedData:(NSData*)data media:(id)media {
   if (_photoSource.numberOfPhotos) {
     self.contentState = T3ContentReady;
   } else {
@@ -232,10 +236,15 @@ static NSInteger kColumnCount = 4;
   }
 }
 
-- (void)photoSource:(id<T3PhotoSource>)photoSource loadDidFailWithError:(NSError*)error {
+- (void)request:(T3URLRequest*)request didFailWithError:(NSError*)error {
   self.contentState &= ~T3ContentActivity;
   self.contentState |= T3ContentError;
   self.contentError = error;
+}
+
+- (void)requestCancelled:(T3URLRequest*)request {
+  self.contentState &= ~T3ContentActivity;
+  self.contentState |= T3ContentError;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

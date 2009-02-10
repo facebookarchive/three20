@@ -95,9 +95,11 @@ static const CGFloat T3PhotoViewPadding = 20;
 }
 
 - (void)imageView:(T3ImageView*)imageView loaded:(UIImage*)image {
-  [self showProgress:-1];
-  [self showStatus:nil];
-
+  if (!_photo.photoSource.loading) {
+    [self showProgress:-1];
+    [self showStatus:nil];
+  }
+  
   if (!_photo.size.width) {
     _photo.size = image.size;
   }
@@ -120,7 +122,7 @@ static const CGFloat T3PhotoViewPadding = 20;
 
     self.url = nil;
     
-    if (!_photo) {
+    if (!_photo || _photo.photoSource.loading) {
       [self showProgress:0];
     } else {
       [self showStatus:nil];
