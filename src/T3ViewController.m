@@ -1,7 +1,7 @@
 #import "Three20/T3ViewController.h"
 #import "Three20/T3ActivityLabel.h"
 #import "Three20/T3ErrorView.h"
-#import "Three20/T3URLCache.h"
+#import "Three20/T3URLRequestQueue.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,7 +27,7 @@
 - (void)dealloc {
   T3LOG(@"DEALLOC %@", self);
 
-  [[T3URLCache sharedCache] cancelRequestsWithDelegate:self];
+  [[T3URLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
 
   [_viewState release];
   [_contentError release];
@@ -132,7 +132,7 @@
     [self loadView];
   }
 
-  [T3URLCache sharedCache].paused = YES;
+  [T3URLRequestQueue mainQueue].paused = YES;
 
   if (_contentState == T3ContentUnknown) {
     [self updateContent];
@@ -145,7 +145,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  [T3URLCache sharedCache].paused = NO;
+  [T3URLRequestQueue mainQueue].paused = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

@@ -90,7 +90,7 @@ static const CGFloat T3PhotoViewPadding = 20;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIImageViewDelegate
 
-- (void)imageViewPosted:(T3ImageView*)imageView {
+- (void)imageViewLoading:(T3ImageView*)imageView {
   [self showProgress:0];
 }
 

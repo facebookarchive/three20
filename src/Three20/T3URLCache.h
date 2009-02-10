@@ -1,25 +1,17 @@
 #import "Three20/T3Global.h"
 
-@protocol T3URLRequestDelegate;
 @class T3URLRequest;
 
 @interface T3URLCache : NSObject {
   NSString* _cachePath;
-  NSMutableDictionary* _loaders;
-  NSMutableArray* _loaderQueue;
   NSMutableDictionary* _mediaCache;
   NSMutableArray* _mediaSortedList;
   NSUInteger _totalPixelCount;
   NSUInteger _maxPixelCount;
   NSInteger _totalLoading;
-  NSTimer* _loaderQueueTimer;
-  NSString* _userAgent;
-  NSString* _baseURL;
-  NSUInteger _maxContentLength;
   NSTimeInterval _invalidationAge;
   BOOL _disableDiskCache;
   BOOL _disableMediaCache;
-  BOOL _paused;
 }
 
 /**
@@ -33,34 +25,9 @@
 @property(nonatomic) BOOL disableMediaCache;
 
 /**
- * Gets the flag that determines if new load requests are allowed to reach the network.
- *
- * Because network requests tend to slow down performance, this property can be used to
- * temporary delay them.  All requests made while paused is true are queued, and when paused
- * becomes false again they are executed.
- */
-@property(nonatomic) BOOL paused;
-
-/**
  * Gets the path to the directory of the disk cache.
  */
 @property(nonatomic,copy) NSString* cachePath;
-
-/**
- * The user agent string that will be used for all requests.
- *
- * The default value is the user agent string used by Safari.
- */
-@property(nonatomic,copy) NSString* userAgent;
-
-/**
- * The maximum size of a download that is allowed.
- *
- * If a response reports a content length greater than the max, the download will be
- * cancelled.  This is helpful for preventing excessive memory usage.  Setting this to 
- * zero will allow all downloads regardless of size.  The default is a relatively large value.
- */
-@property(nonatomic) NSUInteger maxContentLength;
 
 /**
  * The maximum number of pixels to keep in memory for cached images.
@@ -78,7 +45,7 @@
 /**
  * Gets the shared cache singleton used across the application.
  */
-+ (T3URLCache*) sharedCache;
++ (T3URLCache*)sharedCache;
 
 /**
  * Gets the path to the default directory of the disk cache.
@@ -86,29 +53,9 @@
 + (NSString*)defaultCachePath;
 
 /**
- * Loads a request from the cache or the network if it is not in the cache.
- *
- * @return YES if the request was loaded synchronously from the cache.
+ * Gets the key that would be used to cache a URL response.
  */
-- (BOOL)sendRequest:(T3URLRequest*)request;
-
-/**
- * Cancels a request that is in progress.
- */
-- (void)cancelRequest:(T3URLRequest*)request;
-
-/**
- * Cancels all active or pending requests whose delegate or handler is an object.
- *
- * This is useful for when an object is about to be destroyed and you want to remove pointers
- * to it from active requests to prevent crashes when those pointers are later referenced.
- */
-- (void)cancelRequestsWithDelegate:(id)delegate;
-
-/**
- * Cancel all active or pending requests.
- */
-- (void)cancelAllRequests;
+- (NSString *)keyForURL:(NSString*)url;
 
 /**
  * Determines if there is a cache entry for a URL.
@@ -152,6 +99,11 @@
 - (id)getMediaForURL:(NSString*)url fromDisk:(BOOL)fromDisk;
 
 /**
+ * Converts data to a usable media object, such as a UIImage.
+ */ 
+- (id)convertDataToMedia:(NSData*)data forType:(NSString*)mimeType;
+
+/**
  * Stores a multimedia object in the memory cache and optionally writes its source data to disk.
  *
  * The data argument is optional if you provide media.  If you omit data then the media will be
@@ -160,6 +112,7 @@
  * should definitely include it here to avoid the cost of encoding the image again.
  */
 - (void)storeData:(NSData*)data media:(id)media forURL:(NSString*)url toDisk:(BOOL)toDisk;
+- (void)storeData:(NSData*)data media:(id)media forKey:(NSString*)key toDisk:(BOOL)toDisk;
 
 /**
  * Convenient way to create a temporary URL for an image and cache the image with it.

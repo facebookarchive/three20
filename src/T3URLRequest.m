@@ -1,5 +1,5 @@
 #import "Three20/T3URLRequest.h"
-#import "Three20/T3URLCache.h"
+#import "Three20/T3URLRequestQueue.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -8,9 +8,8 @@
 @synthesize delegate = _delegate, handler = _handler, handlerDelegate = _handlerDelegate,
   url = _url, httpMethod = _httpMethod, httpBody = _httpBody, contentType = _contentType,
   cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge, cacheKey = _cacheKey,
-  timestamp = _timestamp, loading = _loading, canBeDelayed = _canBeDelayed, 
-  shouldHandleCookies = _shouldHandleCookies, shouldConvertToMedia = _shouldConvertToMedia,
-  responseFromCache = _responseFromCache;
+  timestamp = _timestamp, loading = _loading, shouldHandleCookies = _shouldHandleCookies,
+  shouldConvertToMedia = _shouldConvertToMedia, responseFromCache = _responseFromCache;
 
 + (T3URLRequest*)requestWithURL:(NSString*)url delegate:(id<T3URLRequestDelegate>)delegate {
   return [[[T3URLRequest alloc] initWithURL:url delegate:delegate] autorelease];
@@ -38,7 +37,6 @@
     _cacheExpirationAge = 0;
     _loading = NO;
     _shouldHandleCookies = YES;
-    _canBeDelayed = YES;
     _shouldConvertToMedia = NO;
     _responseFromCache = NO;
   }
@@ -61,11 +59,11 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (BOOL)send {
-  return [[T3URLCache sharedCache] sendRequest:self];
+  return [[T3URLRequestQueue mainQueue] sendRequest:self];
 }
 
 - (void)cancel {
-  [[T3URLCache sharedCache] cancelRequest:self];
+  [[T3URLRequestQueue mainQueue] cancelRequest:self];
 }
 
 @end

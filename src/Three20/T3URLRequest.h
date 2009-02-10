@@ -16,7 +16,6 @@
   NSString* _cacheKey;
   NSDate* _timestamp;
   BOOL _loading;
-  BOOL _canBeDelayed;
   BOOL _shouldHandleCookies;
   BOOL _shouldConvertToMedia;
   BOOL _responseFromCache;
@@ -48,7 +47,6 @@
 @property(nonatomic,retain) NSString* cacheKey;
 @property(nonatomic,retain) NSDate* timestamp;
 @property(nonatomic) BOOL loading;
-@property(nonatomic) BOOL canBeDelayed;
 @property(nonatomic) BOOL shouldHandleCookies;
 @property(nonatomic) BOOL shouldConvertToMedia;
 @property(nonatomic) BOOL responseFromCache;
@@ -82,14 +80,7 @@
 @optional
 
 /**
- * The request has been posted but not necessarily sent to the network yet.
- *
- * If the request is served from the cache, this method will not be called.
- */
-- (void)requestPosted:(T3URLRequest*)request;
-
-/**
- * The request has connected to the server and loading has begun.
+ * The request has begun loading.
  */
 - (void)requestLoading:(T3URLRequest*)request;
 

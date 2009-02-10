@@ -26,7 +26,6 @@
 - (void)imageView:(T3ImageView*)imageView loaded:(UIImage*)image;
 
 @optional
-- (void)imageViewPosted:(T3ImageView*)imageView;
 - (void)imageViewLoading:(T3ImageView*)imageView;
 - (void)imageView:(T3ImageView*)imageView loadDidFailWithError:(NSError*)error;
 

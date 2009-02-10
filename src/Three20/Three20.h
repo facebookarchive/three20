@@ -3,6 +3,7 @@
 #import "Three20/T3NavigationCenter.h"
 #import "Three20/T3ViewController.h"
 #import "Three20/T3URLRequest.h"
+#import "Three20/T3URLRequestQueue.h"
 #import "Three20/T3URLCache.h"
 #import "Three20/T3ImageView.h"
 #import "Three20/T3LinkView.h"

@@ -53,12 +53,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // T3URLRequestDelegate
 
-- (void)requestPosted:(T3URLRequest*)request {
-  if ([_delegate respondsToSelector:@selector(imageViewPosted:)]) {
-    [_delegate imageViewPosted:self];
-  }
-}
-
 - (void)requestLoading:(T3URLRequest*)request {
   if ([_delegate respondsToSelector:@selector(imageViewLoading:)]) {
     [_delegate imageViewLoading:self];
