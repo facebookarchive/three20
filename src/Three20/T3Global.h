@@ -53,13 +53,11 @@ typedef enum {
    T3URLRequestCachePolicyDisk = 2,
    T3URLRequestCachePolicyNetwork = 4,
    T3URLRequestCachePolicyAny
-    = (T3URLRequestCachePolicyMemory|T3URLRequestCachePolicyDisk|T3URLRequestCachePolicyNetwork)
+    = (T3URLRequestCachePolicyMemory|T3URLRequestCachePolicyDisk|T3URLRequestCachePolicyNetwork),
+   T3URLRequestCachePolicyNoCache = 8,    
 } T3URLRequestCachePolicy;
 
-#define T3_SKIP_CACHE CGFLOAT_MAX
-#define T3_ALWAYS_USE_CACHE 0
 #define T3_DEFAULT_CACHE_AGE (60*3)
-#define T3_LONG_CACHE_AGE (60*60*24*7)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

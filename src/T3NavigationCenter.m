@@ -11,8 +11,8 @@ static T3NavigationCenter* gDefaultCenter = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface T3NavigationEntry : NSObject {
-  Class cls;
-  T3NavigationRule rule;
+  Class _cls;
+  T3NavigationRule _rule;
 }
 
 @property(nonatomic,readonly) Class cls;
@@ -24,12 +24,12 @@ static T3NavigationCenter* gDefaultCenter = nil;
 
 @implementation T3NavigationEntry
 
-@synthesize cls, rule;
+@synthesize cls = _cls, rule = _rule;
 
-- (id)initWithClass:(Class)aClass rule:(T3NavigationRule)aRule {
+- (id)initWithClass:(Class)controllerClass rule:(T3NavigationRule)rule {
   if (self = [super init]) {
-    cls = aClass;
-    rule = aRule;
+    _cls = controllerClass;
+    _rule = rule;
   }
   return self;
 }
@@ -77,8 +77,7 @@ static T3NavigationCenter* gDefaultCenter = nil;
 - (NSArray*)stateFromNavigationController:(UINavigationController*)navController {
   NSMutableArray* states = [NSMutableArray array];
 
-  NSEnumerator* e = [navController.viewControllers objectEnumerator];
-  for (UIViewController* controller; controller = [e nextObject]; ) {
+  for (UIViewController* controller in navController.viewControllers) {
     if (![self serializeController:controller states:states])
       break;
   }
@@ -336,8 +335,7 @@ static T3NavigationCenter* gDefaultCenter = nil;
       }
       
       if (!viewController.parentViewController) {
-        NSEnumerator* e = [navController.viewControllers objectEnumerator];
-        for (UIViewController* c; c = [e nextObject]; ) {
+        for (UIViewController* c in navController.viewControllers) {
           if (c.hidesBottomBarWhenPushed) {
             viewController.hidesBottomBarWhenPushed = NO;
             break;

@@ -4,18 +4,22 @@
 @class T3URLRequest;
 
 @interface T3URLCache : NSObject {
-  NSString* cachePath;
-  NSMutableDictionary* loaders;
-  NSMutableArray* loaderQueue;
-  NSMutableDictionary* mediaCache;
-  NSMutableArray* mediaSortedList;
-  NSUInteger totalPixelCount;
-  NSUInteger maxPixelCount;
-  NSUInteger totalLoading;
-  NSTimer* loaderQueueTimer;
-  BOOL disableDiskCache;
-  BOOL disableMediaCache;
-  BOOL paused;
+  NSString* _cachePath;
+  NSMutableDictionary* _loaders;
+  NSMutableArray* _loaderQueue;
+  NSMutableDictionary* _mediaCache;
+  NSMutableArray* _mediaSortedList;
+  NSUInteger _totalPixelCount;
+  NSUInteger _maxPixelCount;
+  NSInteger _totalLoading;
+  NSTimer* _loaderQueueTimer;
+  NSString* _userAgent;
+  NSString* _baseURL;
+  NSUInteger _maxContentLength;
+  NSTimeInterval _invalidationAge;
+  BOOL _disableDiskCache;
+  BOOL _disableMediaCache;
+  BOOL _paused;
 }
 
 /**
@@ -43,6 +47,35 @@
 @property(nonatomic,copy) NSString* cachePath;
 
 /**
+ * The user agent string that will be used for all requests.
+ *
+ * The default value is the user agent string used by Safari.
+ */
+@property(nonatomic,copy) NSString* userAgent;
+
+/**
+ * The maximum size of a download that is allowed.
+ *
+ * If a response reports a content length greater than the max, the download will be
+ * cancelled.  This is helpful for preventing excessive memory usage.  Setting this to 
+ * zero will allow all downloads regardless of size.  The default is a relatively large value.
+ */
+@property(nonatomic) NSUInteger maxContentLength;
+
+/**
+ * The maximum number of pixels to keep in memory for cached images.
+ *
+ * Setting this to zero will allow an unlimited number of images to be cached.  The default
+ * is enough to hold roughly 25 small images.
+ */
+@property(nonatomic) NSUInteger maxPixelCount;
+
+/**
+ * The amount of time to set back the modification timestamp on files when invalidating them.
+ */
+@property(nonatomic) NSTimeInterval invalidationAge;
+
+/**
  * Gets the shared cache singleton used across the application.
  */
 + (T3URLCache*) sharedCache;
@@ -63,6 +96,19 @@
  * Cancels a request that is in progress.
  */
 - (void)cancelRequest:(T3URLRequest*)request;
+
+/**
+ * Cancels all active or pending requests whose delegate or handler is an object.
+ *
+ * This is useful for when an object is about to be destroyed and you want to remove pointers
+ * to it from active requests to prevent crashes when those pointers are later referenced.
+ */
+- (void)cancelRequestsWithDelegate:(id)delegate;
+
+/**
+ * Cancel all active or pending requests.
+ */
+- (void)cancelAllRequests;
 
 /**
  * Determines if there is a cache entry for a URL.
@@ -86,7 +132,9 @@
  *
  * @return nil if hthe URL is not cached or if the cache entry is older than the minimum.
  */
-- (NSData*)getDataForURL:(NSString*)url minTime:(NSTimeInterval)minTime
+- (NSData*)getDataForURL:(NSString*)url expires:(NSTimeInterval)expirationAge
+  timestamp:(NSDate**)timestamp;
+- (NSData*)getDataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge
   timestamp:(NSDate**)timestamp;
 
 /**
@@ -133,6 +181,11 @@
  */
 - (void)removeURL:(NSString*)url fromDisk:(BOOL)fromDisk;
 
+/**
+ * 
+ */
+- (void)removeKey:(NSString*)key;
+
 /** 
  * Erases the memory cache and optionally the disk cache.
  */
@@ -146,6 +199,11 @@
  * from the network if the default cache expiration age is used.
  */
 - (void)invalidateURL:(NSString*)url;
+
+/**
+ *
+ */
+- (void)invalidateKey:(NSString*)key;
 
 /**
  * Invalidates all files in the disk cache according to rules explained in `invalidateURL`.

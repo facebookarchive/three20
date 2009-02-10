@@ -26,6 +26,9 @@
 
 - (void)dealloc {
   T3LOG(@"DEALLOC %@", self);
+
+  [[T3URLCache sharedCache] cancelRequestsWithDelegate:self];
+
   [_viewState release];
   [_contentError release];
 

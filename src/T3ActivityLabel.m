@@ -15,13 +15,13 @@ static CGFloat kThinBezelHeight = 35;
 
 @synthesize style = _style, centered = _centered, centeredToScreen = _centeredToScreen;
 
-- (id)initWithFrame:(CGRect)frame style:(T3ActivityLabelStyle)aStyle {
-  return [self initWithFrame:frame style:aStyle text:nil];
+- (id)initWithFrame:(CGRect)frame style:(T3ActivityLabelStyle)style {
+  return [self initWithFrame:frame style:style text:nil];
 }
 
-- (id)initWithFrame:(CGRect)frame style:(T3ActivityLabelStyle)aStyle text:(NSString*)text {
+- (id)initWithFrame:(CGRect)frame style:(T3ActivityLabelStyle)style text:(NSString*)text {
   if (self = [super initWithFrame:frame]) {
-    _style = aStyle;
+    _style = style;
     _centered = YES;
     _centeredToScreen = YES;
     

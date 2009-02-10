@@ -74,8 +74,8 @@
   return imageView.url;
 }
 
-- (void)setUrl:(NSString*)aURL {
-  imageView.url = aURL;
+- (void)setUrl:(NSString*)url {
+  imageView.url = url;
 }
 
 - (void)pauseLoading:(BOOL)paused {

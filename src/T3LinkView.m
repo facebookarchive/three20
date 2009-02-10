@@ -81,9 +81,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setHref:(id)aHref {
+- (void)setHref:(id)href {
   [_href release];
-  _href = [aHref retain];
+  _href = [href retain];
   
   self.userInteractionEnabled = !!_href;
 }

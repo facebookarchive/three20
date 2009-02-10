@@ -463,8 +463,7 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
   if ([self isKindOfClass:[UIScrollView class]])
     return (UIScrollView*)self;
   
-  NSEnumerator* e = [self.subviews objectEnumerator];
-  for (UIView* child; child = [e nextObject]; ) {
+  for (UIView* child in self.subviews) {
     UIScrollView* it = [child findFirstScrollView];
     if (it)
       return it;
@@ -477,8 +476,7 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
   if ([self isKindOfClass:cls])
     return self;
   
-  NSEnumerator* e = [self.subviews objectEnumerator];
-  for (UIView* child; child = [e nextObject]; ) {
+  for (UIView* child in self.subviews) {
     UIView* it = [child firstViewOfClass:cls];
     if (it)
       return it;

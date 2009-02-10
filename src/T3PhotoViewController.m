@@ -23,6 +23,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
     _centerPhoto = nil;
     _centerPhotoIndex = 0;
     _previousBarStyle = 0;
+    _previousBarTintColor = nil;
     _scrollView = nil;
     _photoStatusView = nil;
     _statusText = nil;
@@ -82,7 +83,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)loadImages {
   T3PhotoView* centerPhotoView = self.centerPhotoView;
-  for (T3PhotoView* photoView in _scrollView.visiblePages.objectEnumerator) {
+  for (T3PhotoView* photoView in [_scrollView.visiblePages objectEnumerator]) {
     if (photoView == centerPhotoView) {
       [photoView loadPreview:NO];
     } else {
@@ -205,8 +206,10 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   if (bar.barStyle != UIBarStyleBlackTranslucent) {
     if (!self.nextViewController) {
       _previousBarStyle = bar.barStyle;
+      _previousBarTintColor = bar.tintColor;
     }
 
+    bar.tintColor = nil;
     bar.barStyle = UIBarStyleBlackTranslucent;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent
       animated:YES];
@@ -230,6 +233,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   if (!self.nextViewController) {
     UINavigationBar* bar = self.navigationController.navigationBar;
     if (_previousBarStyle != UIBarStyleBlackTranslucent) {
+      bar.tintColor = _previousBarTintColor;
       bar.barStyle = _previousBarStyle;
       [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     }

@@ -46,11 +46,11 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)aTableView
+- (UITableViewCell *)tableView:(UITableView *)tableView
     cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return nil;
 }

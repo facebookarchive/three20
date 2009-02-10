@@ -210,7 +210,7 @@ static NSInteger kColumnCount = 4;
 	return cell;
 }
 
-- (void)tableView:(UITableView*)aTableView didSelectPhoto:(id<T3Photo>)photo {
+- (void)tableView:(UITableView*)tableView didSelectPhoto:(id<T3Photo>)photo {
   T3PhotoViewController* controller = [[[T3PhotoViewController alloc] init] autorelease];
   controller.centerPhoto = photo;
   [self.navigationController pushViewController:controller animated:YES];  
@@ -219,12 +219,12 @@ static NSInteger kColumnCount = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // T3PhotoSourceDelegate
 
-- (void)photoSourceLoading:(id<T3PhotoSource>)aPhotoSource fromIndex:(NSUInteger)fromIndex
+- (void)photoSourceLoading:(id<T3PhotoSource>)photoSource fromIndex:(NSUInteger)fromIndex
    toIndex:(NSUInteger)toIndex {
   self.contentState |= T3ContentActivity;
 }
 
-- (void)photoSourceLoaded:(id<T3PhotoSource>)aPhotoSource {
+- (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource {
   if (_photoSource.numberOfPhotos) {
     self.contentState = T3ContentReady;
   } else {
@@ -232,7 +232,7 @@ static NSInteger kColumnCount = 4;
   }
 }
 
-- (void)photoSource:(id<T3PhotoSource>)aPhotoSource loadDidFailWithError:(NSError*)error {
+- (void)photoSource:(id<T3PhotoSource>)photoSource loadDidFailWithError:(NSError*)error {
   self.contentState &= ~T3ContentActivity;
   self.contentState |= T3ContentError;
   self.contentError = error;
@@ -240,10 +240,10 @@ static NSInteger kColumnCount = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setPhotoSource:(id<T3PhotoSource>)aPhotoSource {
-  if (aPhotoSource != _photoSource) {
+- (void)setPhotoSource:(id<T3PhotoSource>)photoSource {
+  if (photoSource != _photoSource) {
     [_photoSource release];
-    _photoSource = [aPhotoSource retain];
+    _photoSource = [photoSource retain];
 
     [self invalidate];
   }

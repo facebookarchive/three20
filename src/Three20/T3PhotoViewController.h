@@ -16,6 +16,7 @@
   UIImage* _defaultImage;
   NSString* _statusText;
   UIBarStyle _previousBarStyle;
+  UIColor* _previousBarTintColor;
   NSTimer* _loadTimer;
   BOOL _delayLoad;
 }

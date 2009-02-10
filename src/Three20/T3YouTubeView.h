@@ -1,7 +1,7 @@
 #import "Three20/T3Global.h"
 
 @interface T3YouTubeView : UIWebView {
-  NSString* url;
+  NSString* _url;
 }
 
 @property(nonatomic,copy) NSString* url;

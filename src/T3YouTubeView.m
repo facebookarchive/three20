@@ -14,17 +14,17 @@ static NSString* kEmbedHTML = @"<html><body style=\"margin:0\">\
 
 @implementation T3YouTubeView
 
-@synthesize url;
+@synthesize url = _url;
 
-- (id)initWithURL:(NSString*)aURL {
+- (id)initWithURL:(NSString*)url {
   if (self = [self initWithFrame:CGRectMake(0, 0, kDefaultWidth, kDefaultHeight)]) {
-    self.url = aURL;
+    self.url = url;
   }
   return self;
 }
 
 - (void)dealloc {
-  [url release];
+  [_url release];
   [super dealloc];
 }
 
@@ -38,11 +38,11 @@ static NSString* kEmbedHTML = @"<html><body style=\"margin:0\">\
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setUrl:(NSString*)aURL {
-  [url release];
-  url = [aURL copy];
+- (void)setUrl:(NSString*)url {
+  [_url release];
+  _url = [url copy];
 
-  NSString* html = [NSString stringWithFormat:kEmbedHTML, url, self.width, self.height];
+  NSString* html = [NSString stringWithFormat:kEmbedHTML, _url, self.width, self.height];
   [self loadHTMLString:html baseURL:nil];
 }
 

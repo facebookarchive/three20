@@ -124,7 +124,7 @@
     return;
   
   _request = [[T3URLRequest alloc] initWithURL:_url delegate:self];
-  _request.convertMedia = YES;
+  _request.shouldConvertToMedia = YES;
   
   if (_url && ![_request send]) {
     // Put the default image in place while waiting for the request to load

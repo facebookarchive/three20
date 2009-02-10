@@ -1,19 +1,57 @@
 #import "Three20/T3Global.h"
 
-@protocol T3URLRequestDelegate;
+@protocol T3URLRequestDelegate, T3URLResponseHandler;
 @class T3URLCache;
 
 @interface T3URLRequest : NSObject {
-  NSString* url;
-  id<T3URLRequestDelegate> delegate;
-  NSTimeInterval minTime;
-  BOOL convertMedia;
+  NSString* _url;
+  NSString* _httpMethod;
+  NSData* _httpBody;
+  NSString* _contentType;
+  id<T3URLRequestDelegate> _delegate;
+  id<T3URLResponseHandler> _handler;
+  id _handlerDelegate;
+  T3URLRequestCachePolicy _cachePolicy;
+  NSTimeInterval _cacheExpirationAge;
+  NSString* _cacheKey;
+  NSDate* _timestamp;
+  BOOL _loading;
+  BOOL _canBeDelayed;
+  BOOL _shouldHandleCookies;
+  BOOL _shouldConvertToMedia;
+  BOOL _responseFromCache;
 }
 
-@property(nonatomic,readonly) id<T3URLRequestDelegate> delegate;
-@property(nonatomic,readonly) NSString* url;
-@property(nonatomic) NSTimeInterval minTime;
-@property(nonatomic) BOOL convertMedia;
+/**
+ * An object that receives messages about the progress of the request.
+ */
+@property(nonatomic,assign) id<T3URLRequestDelegate> delegate;
+
+/**
+ * An object that handles the response data and may parse and validate it.
+ */
+@property(nonatomic,retain) id<T3URLResponseHandler> handler;
+
+/**
+ * This delegate may be notified of any messages that are specific to the kind of response
+ * that is received.  The handler may parse the response into certain objects and then
+ * call methods on the handlerDelegate to receive them.
+ */ 
+@property(nonatomic,assign) id handlerDelegate;
+
+@property(nonatomic,copy) NSString* url;
+@property(nonatomic,copy) NSString* httpMethod;
+@property(nonatomic,retain) NSData* httpBody;
+@property(nonatomic,copy) NSString* contentType;
+@property(nonatomic) T3URLRequestCachePolicy cachePolicy;
+@property(nonatomic) NSTimeInterval cacheExpirationAge;
+@property(nonatomic,retain) NSString* cacheKey;
+@property(nonatomic,retain) NSDate* timestamp;
+@property(nonatomic) BOOL loading;
+@property(nonatomic) BOOL canBeDelayed;
+@property(nonatomic) BOOL shouldHandleCookies;
+@property(nonatomic) BOOL shouldConvertToMedia;
+@property(nonatomic) BOOL responseFromCache;
 
 + (T3URLRequest*)requestWithURL:(NSString*)url delegate:(id<T3URLRequestDelegate>)delegate;
 
@@ -71,5 +109,16 @@
  *
  */
 - (void)requestCancelled:(T3URLRequest*)request;
+
+@end
+
+@protocol T3URLResponseHandler <T3URLRequestDelegate>
+
+/**
+ * Processes the data from a successful request and determines if it is valid.
+ *
+ * If the data is not valid, return an error.  The data will not be cached if there is an error.
+ */
+- (NSError*)request:(T3URLRequest*)request validateData:(NSData*)data;
 
 @end
