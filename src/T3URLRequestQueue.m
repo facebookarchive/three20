@@ -292,7 +292,7 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
 
 @implementation T3URLRequestQueue
 
-@synthesize maxContentLength = _maxContentLength, userAgent = _userAgent, paused = _paused;
+@synthesize maxContentLength = _maxContentLength, userAgent = _userAgent, suspended = _suspended;
 
 + (T3URLRequestQueue*)mainQueue {
   static T3URLRequestQueue* mainQueue = nil;
@@ -312,7 +312,7 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
     _totalLoading = 0;
     _maxContentLength = kDefaultMaxContentLength;
     _userAgent = [kSafariUserAgent copy];
-    _paused = NO;
+    _suspended = NO;
   }
   return self;
 }
@@ -358,7 +358,7 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
     NSData* data = nil;
     id media = nil;
     NSDate* timestamp = nil;
-    BOOL delayed = _paused || _totalLoading == kMaxConcurrentLoads;
+    BOOL delayed = _suspended || _totalLoading == kMaxConcurrentLoads;
     
     if ([self loadFromCache:request.url cacheKey:request.cacheKey
         expires:request.cacheExpirationAge
@@ -487,11 +487,11 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setPaused:(BOOL)isPaused {
-  // T3LOG(@"PAUSE CACHE %d", isPaused);
-  _paused = isPaused;
+- (void)setSuspended:(BOOL)isSuspended {
+  // T3LOG(@"SUSPEND LOADING %d", isSuspended);
+  _suspended = isSuspended;
   
-  if (!_paused) {
+  if (!_suspended) {
     [self loadNextInQueue];
   } else if (_loaderQueueTimer) {
     [_loaderQueueTimer invalidate];
@@ -528,10 +528,10 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
     }
   }
   
-  // Finally, create a new loader and hit the network (unless we are paused)
+  // Finally, create a new loader and hit the network (unless we are suspended)
   loader = [[T3RequestLoader alloc] initForRequest:request queue:self];
   [_loaders setObject:loader forKey:request.cacheKey];
-  if (_paused || _totalLoading == kMaxConcurrentLoads) {
+  if (_suspended || _totalLoading == kMaxConcurrentLoads) {
     [_loaderQueue addObject:loader];
   } else {
     ++_totalLoading;

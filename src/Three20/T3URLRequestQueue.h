@@ -9,17 +9,17 @@
   NSInteger _totalLoading;
   NSUInteger _maxContentLength;
   NSString* _userAgent;
-  BOOL _paused;
+  BOOL _suspended;
 }
 
 /**
  * Gets the flag that determines if new load requests are allowed to reach the network.
  *
  * Because network requests tend to slow down performance, this property can be used to
- * temporary delay them.  All requests made while paused is true are queued, and when paused
+ * temporary delay them.  All requests made while suspended is true are queued, and when suspended
  * becomes false again they are executed.
  */
-@property(nonatomic) BOOL paused;
+@property(nonatomic) BOOL suspended;
 
 /**
  * The maximum size of a download that is allowed.

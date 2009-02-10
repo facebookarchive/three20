@@ -31,13 +31,13 @@ static NSInteger kColumnCount = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)pauseLoadingThumbnails:(BOOL)paused {
+- (void)pauseLoadingThumbnails:(BOOL)suspended {
   if (_photoSource.maxPhotoIndex >= 0) {
     NSArray* cells = _tableView.visibleCells;
     for (int i = 0; i < cells.count; ++i) {
       T3ThumbsTableViewCell* cell = [cells objectAtIndex:i];
       if ([cell isKindOfClass:[T3ThumbsTableViewCell class]]) {
-        [cell pauseLoading:paused];
+        [cell pauseLoading:suspended];
       }
     }
   }

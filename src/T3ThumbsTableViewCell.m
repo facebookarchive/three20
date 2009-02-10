@@ -111,11 +111,11 @@ static CGFloat kThumbSize = 75;
   }  
 }
 
-- (void)pauseLoading:(BOOL)paused {
-  [_thumbView1 pauseLoading:paused];
-  [_thumbView2 pauseLoading:paused];
-  [_thumbView3 pauseLoading:paused];
-  [_thumbView4 pauseLoading:paused];
+- (void)pauseLoading:(BOOL)suspended {
+  [_thumbView1 pauseLoading:suspended];
+  [_thumbView2 pauseLoading:suspended];
+  [_thumbView3 pauseLoading:suspended];
+  [_thumbView4 pauseLoading:suspended];
 }
 
 @end

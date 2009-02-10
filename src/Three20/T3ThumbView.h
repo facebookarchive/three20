@@ -10,6 +10,6 @@
 
 @property(nonatomic,copy) NSString* url;
 
-- (void)pauseLoading:(BOOL)paused;
+- (void)pauseLoading:(BOOL)suspended;
 
 @end

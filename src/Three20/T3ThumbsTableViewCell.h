@@ -13,6 +13,6 @@
 
 @property(nonatomic,retain) id<T3Photo> photo;
 
-- (void)pauseLoading:(BOOL)paused;
+- (void)pauseLoading:(BOOL)suspended;
 
 @end

@@ -132,7 +132,7 @@
     [self loadView];
   }
 
-  [T3URLRequestQueue mainQueue].paused = YES;
+  [T3URLRequestQueue mainQueue].suspended = YES;
 
   if (_contentState == T3ContentUnknown) {
     [self updateContent];
@@ -145,7 +145,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  [T3URLRequestQueue mainQueue].paused = NO;
+  [T3URLRequestQueue mainQueue].suspended = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

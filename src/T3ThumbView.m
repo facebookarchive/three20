@@ -78,8 +78,8 @@
   imageView.url = url;
 }
 
-- (void)pauseLoading:(BOOL)paused {
-  if (paused) {
+- (void)pauseLoading:(BOOL)suspended {
+  if (suspended) {
     [imageView stopLoading];
   } else if (!imageView.image) {
     [imageView reload];
