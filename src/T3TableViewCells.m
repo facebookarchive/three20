@@ -418,11 +418,6 @@ static CGFloat kIconSize = 50;
   textField.frame = CGRectOffset(CGRectInset(self.contentView.bounds, 3, 0), 0, 1);
 }
 
-- (void)didMoveToSuperview {
-//  UITableView* tableView = (UITableView*)self.superview;
-//  textField.delegate = tableView;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // T3TableViewCell
 
@@ -432,6 +427,7 @@ static CGFloat kIconSize = 50;
 
     T3TextFieldTableItem* item = object;
     titleLabel.text = [NSString stringWithFormat:@"  %@", item.title];
+    textField.text = item.text;
     textField.placeholder = item.placeholder;
     textField.returnKeyType = item.returnKeyType;
     textField.keyboardType = item.keyboardType;
@@ -439,6 +435,7 @@ static CGFloat kIconSize = 50;
     textField.autocorrectionType = item.autocorrectionType;
     textField.clearButtonMode = item.clearButtonMode;
     textField.secureTextEntry = item.secureTextEntry;
+    textField.delegate = item.delegate;
   }  
 }
 

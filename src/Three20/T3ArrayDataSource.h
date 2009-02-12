@@ -4,4 +4,8 @@
   NSMutableArray* _array;
 }
 
++ (T3ArrayDataSource*)dataSourceWithObjects:(id)object,...;
+
+- (id)initWithArray:(NSArray*)objects;
+
 @end

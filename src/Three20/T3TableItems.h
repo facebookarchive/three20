@@ -67,6 +67,8 @@
 @end
 
 @interface T3TextFieldTableItem : T3TableItem {
+  id<UITextFieldDelegate> _delegate;
+  NSString* _text;
   NSString* title;
   NSString* placeholder;
   UIReturnKeyType returnKeyType;
@@ -78,6 +80,8 @@
 
 }
 
+@property(nonatomic,assign) id<UITextFieldDelegate> delegate;
+@property(nonatomic,copy) NSString* text;
 @property(nonatomic,copy) NSString* title;
 @property(nonatomic,copy) NSString* placeholder;
 @property(nonatomic) UIReturnKeyType returnKeyType;
@@ -92,8 +96,11 @@
 @end
 
 @interface T3TextEditorTableItem : T3TableItem {
-  NSString* placeholder;
+  id<UITextViewDelegate> _delegate;
+  NSString* _placeholder;
 }
+
+@property(nonatomic,assign) id<UITextViewDelegate> delegate;
 
 @property(nonatomic,copy) NSString* placeholder;
 

@@ -5,16 +5,18 @@
 
 @implementation T3TableViewController
 
-@synthesize tableView = _tableView;
+@synthesize tableView = _tableView, dataSource = _dataSource;
 
 - (id)init {
   if (self = [super init]) {
     _tableView = nil;
+    _dataSource = nil;
   }  
   return self;
 }
 
 - (void)dealloc {
+  [_dataSource release];
   [super dealloc];
 }
 

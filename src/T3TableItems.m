@@ -174,12 +174,13 @@
 
 @implementation T3TextFieldTableItem
 
-@synthesize title, placeholder, returnKeyType, keyboardType, autocorrectionType,
-  autocapitalizationType;
-@synthesize clearButtonMode, secureTextEntry;
+@synthesize delegate = _delegate, text = _text, title, placeholder, returnKeyType, keyboardType,
+  autocorrectionType, autocapitalizationType, clearButtonMode, secureTextEntry;
 
 - (id)init {
   if (self = [super init]) {
+    _delegate = nil;
+    _text = nil;
     title = nil;
     placeholder = nil;
     returnKeyType = UIReturnKeyDefault;
@@ -200,6 +201,7 @@
 }
 
 - (void)dealloc {
+  [_text release];
   [title release];
   [placeholder release];
   [super dealloc];
@@ -211,17 +213,18 @@
 
 @implementation T3TextEditorTableItem
 
-@synthesize placeholder;
+@synthesize delegate = _delegate, placeholder = _placeholder;
 
 - (id)init {
   if (self = [super init]) {
-    placeholder = nil;
+    _delegate = nil;
+    _placeholder = nil;
   }
   return self;
 }
 
 - (void)dealloc {
-  [placeholder release];
+  [_placeholder release];
   [super dealloc];
 }
 
