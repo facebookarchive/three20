@@ -31,7 +31,7 @@
 // T3ViewController
 
 - (void)updateView {
-  if (self.contentState & T3ContentReady) {
+  if (self.contentState == T3ContentReady) {
     [_tableView reloadData];
   }
   

@@ -3,10 +3,13 @@
 #import "Three20/T3URLRequest.h"
 #import "Three20/T3UnclippedView.h"
 #import "Three20/T3ErrorView.h"
+#import "Three20/T3TableViewCells.h"
+#import "Three20/T3TableItems.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static NSInteger kColumnCount = 4;
+static NSInteger kPageSize = 60;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -18,6 +21,8 @@ static NSInteger kColumnCount = 4;
   if (self = [super init]) {
     _delegate = nil;
     _photoSource = nil;
+    
+    self.hidesBottomBarWhenPushed = YES;
   }
   
   return self;
@@ -38,6 +43,11 @@ static NSInteger kColumnCount = 4;
   [_photoSource loadPhotos:request fromIndex:fromIndex toIndex:toIndex];
 }
 
+- (void)loadNextPage:(BOOL)fromCache {
+  NSInteger maxIndex = _photoSource.maxPhotoIndex;
+  [self loadPhotosFromIndex:maxIndex+1 toIndex:maxIndex+1+kPageSize fromCache:fromCache];
+}
+
 - (void)suspendLoadingThumbnails:(BOOL)suspended {
   if (_photoSource.maxPhotoIndex >= 0) {
     NSArray* cells = _tableView.visibleCells;
@@ -50,6 +60,10 @@ static NSInteger kColumnCount = 4;
   }
 }
 
+- (BOOL)hasMoreToLoad {
+  return _photoSource.maxPhotoIndex+1 < _photoSource.numberOfPhotos;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
@@ -59,8 +73,8 @@ static NSInteger kColumnCount = 4;
 
   UIView* contentView = [[[T3UnclippedView alloc] initWithFrame:appFrame] autorelease];
   contentView.backgroundColor = [UIColor whiteColor];
-//	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//  contentView.autoresizesSubviews = YES;
+  contentView.autoresizesSubviews = YES;
+	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.view = contentView;
     
   UITableView* tableView = [[UITableView alloc] initWithFrame:frame
@@ -176,7 +190,12 @@ static NSInteger kColumnCount = 4;
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
   NSInteger maxIndex = _photoSource.maxPhotoIndex;
   if (!_photoSource.loading && maxIndex > 0) {
-    return (maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0);
+    NSInteger count =  (maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0);
+    if (self.hasMoreToLoad) {
+      return count + 1;
+    } else {
+      return count;
+    }
   } else {
     return 0;
   }
@@ -184,19 +203,52 @@ static NSInteger kColumnCount = 4;
 
 - (UITableViewCell *)tableView:(UITableView*)tableView
     cellForRowAtIndexPath:(NSIndexPath*)indexPath {
-  static NSString* cellId = @"Thumbs";
-	
-	T3ThumbsTableViewCell* cell =
-    (T3ThumbsTableViewCell*)[_tableView dequeueReusableCellWithIdentifier:cellId];
-	if (cell == nil) {
-		cell = [[[T3ThumbsTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellId]
-      autorelease];
-    cell.delegate = self;
-	}
-	
-  cell.photo = [_photoSource photoAtIndex:indexPath.row * kColumnCount];
- 
-	return cell;
+  static NSString* thumbCellId = @"Thumbs";
+  static NSString* moreCellId = @"More";
+
+  if (indexPath.row == [_tableView numberOfRowsInSection:0]-1 && self.hasMoreToLoad) {
+    T3ActivityTableViewCell* cell =
+      (T3ActivityTableViewCell*)[_tableView dequeueReusableCellWithIdentifier:moreCellId];
+    if (cell == nil) {
+      cell = [[[T3ActivityTableViewCell alloc] initWithFrame:CGRectZero style:0
+        reuseIdentifier:moreCellId] autorelease];
+    }
+    
+    NSString* title = NSLocalizedString(@"Load More Photos...", @"");
+    NSString* subtitle = [NSString stringWithFormat:
+      NSLocalizedString(@"Showing %d of %d Photos", @""), _photoSource.maxPhotoIndex+1,
+      _photoSource.numberOfPhotos];
+
+    cell.object = [[[T3MoreLinkTableItem alloc] initWithTitle:title subtitle:subtitle] autorelease];
+   
+    return cell;
+	} else {
+    T3ThumbsTableViewCell* cell =
+      (T3ThumbsTableViewCell*)[_tableView dequeueReusableCellWithIdentifier:thumbCellId];
+    if (cell == nil) {
+      cell = [[[T3ThumbsTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:thumbCellId]
+        autorelease];
+      cell.delegate = self;
+    }
+    
+    cell.photo = [_photoSource photoAtIndex:indexPath.row * kColumnCount];
+   
+    return cell;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UITableViewDelegate
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+  if (indexPath.row == [_tableView numberOfRowsInSection:0]-1) {
+    [self loadNextPage:NO];
+
+    T3ActivityTableViewCell* cell
+      = (T3ActivityTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    cell.animating = YES;
+    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

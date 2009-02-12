@@ -21,3 +21,5 @@
 #import "Three20/T3BackgroundView.h"
 #import "Three20/T3ErrorView.h"
 #import "Three20/T3TabBar.h"
+#import "Three20/T3TableItems.h"
+#import "Three20/T3TableViewCells.h"

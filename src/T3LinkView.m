@@ -1,5 +1,3 @@
-// Copyright 2004-2009 Facebook. All Rights Reserved.
-
 #include "Three20/T3LinkView.h"
 #include "Three20/T3NavigationCenter.h"
 #include "Three20/T3BackgroundView.h"

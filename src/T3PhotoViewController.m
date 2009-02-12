@@ -387,7 +387,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)scrollViewWillBeginDragging:(T3ScrollView *)scrollView {
   [self cancelImageLoadTimer];
-  [self showBars:NO animated:NO];
+  [self showBars:NO animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(T3ScrollView*)scrollView {

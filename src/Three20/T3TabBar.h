@@ -1,5 +1,3 @@
-// Copyright 2004-2009 Facebook. All Rights Reserved.
-
 #import "Three20/T3Global.h"
 
 @class T3TabItem, T3TabView, T3ImageView;
