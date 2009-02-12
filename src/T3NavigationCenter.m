@@ -6,6 +6,11 @@
 
 static NSTimeInterval kPersistStateAge = 60 * 60 * 4;
 
+static const int kAccelerometerFrequency = 25; //Hz
+static const float kFilteringFactor = 0.1;
+static const float kMinEraseInterval = 0.5;
+static const float kEraseAccelerationThreshold = 3.0;
+
 static T3NavigationCenter* gDefaultCenter = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +45,8 @@ static T3NavigationCenter* gDefaultCenter = nil;
 
 @implementation T3NavigationCenter
 
-@synthesize delegate = _delegate, mainViewController = _mainViewController;
+@synthesize delegate = _delegate, urlSchemes = _urlSchemes,
+  mainViewController = _mainViewController, supportsShakeToReload = _supportsShakeToReload;
 
 + (T3NavigationCenter*)defaultCenter {
   if (!gDefaultCenter) {
@@ -53,11 +59,14 @@ static T3NavigationCenter* gDefaultCenter = nil;
   if (self = [super init]) {
     _mainViewController = nil;
     _delegate = nil;
+    _urlSchemes = nil;
+    _supportsShakeToReload = NO;
     _linkObservers = [[NSMutableArray alloc] init];
     _objectLoaders = [[NSMutableDictionary alloc] init];
     _viewLoaders = [[NSMutableDictionary alloc] init];
     _persistStateAge = kPersistStateAge;
-
+    _lastShakeTime = 0;
+    
     if (!gDefaultCenter) {
       gDefaultCenter = [self retain];
     }
@@ -66,6 +75,7 @@ static T3NavigationCenter* gDefaultCenter = nil;
 }
 
 - (void)dealloc {
+  [_urlSchemes release];
   [_mainViewController release];
   [_linkObservers release];
   [_viewLoaders release];
@@ -73,6 +83,36 @@ static T3NavigationCenter* gDefaultCenter = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (UINavigationController*)topNavigationController {
+  if ([_mainViewController isKindOfClass:[UITabBarController class]]) {
+    UITabBarController* tabBarController = (UITabBarController*)_mainViewController;
+    if (tabBarController.selectedViewController) {
+      return (UINavigationController*)tabBarController.selectedViewController;
+    } else {
+      return (UINavigationController*)[tabBarController.viewControllers objectAtIndex:0];
+    }
+  } else if ([_mainViewController isKindOfClass:[UINavigationController class]]) {
+    return (UINavigationController*)_mainViewController;
+  } else {
+    return nil;
+  }
+}
+
+- (T3ViewController*)currentViewController {
+  UIViewController* controller = nil;
+  UINavigationController* navController = [self topNavigationController];
+  if (navController) {
+    controller = [navController.viewControllers lastObject];
+  } else {
+    controller = _mainViewController;
+  }
+  if ([controller isKindOfClass:[T3ViewController class]]) {
+    return (T3ViewController*)controller;
+  } else {
+    return nil;
+  }
+}
 
 - (NSArray*)stateFromNavigationController:(UINavigationController*)navController {
   NSMutableArray* states = [NSMutableArray array];
@@ -130,6 +170,39 @@ static T3NavigationCenter* gDefaultCenter = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIAccelerometerDelegate
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer
+    didAccelerate:(UIAcceleration *)acceleration {
+	UIAccelerationValue length, x, y, z;
+	_accel[0] = acceleration.x * kFilteringFactor + _accel[0] * (1.0 - kFilteringFactor);
+	_accel[1] = acceleration.y * kFilteringFactor + _accel[1] * (1.0 - kFilteringFactor);
+	_accel[2] = acceleration.z * kFilteringFactor + _accel[2] * (1.0 - kFilteringFactor);
+	x = acceleration.x - _accel[0];
+	y = acceleration.y - _accel[0];
+	z = acceleration.z - _accel[0];
+	length = sqrt(x * x + y * y + z * z);
+  
+	if((length >= kEraseAccelerationThreshold)
+      && (CFAbsoluteTimeGetCurrent() > _lastShakeTime + kMinEraseInterval)) {
+		_lastShakeTime = CFAbsoluteTimeGetCurrent();
+
+    [self.currentViewController reloadContent];
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)setSupportsShakeToReload:(BOOL)supports {
+  _supportsShakeToReload = supports;
+
+  UIAccelerometer* accelerometer = [UIAccelerometer sharedAccelerometer];
+  if (_supportsShakeToReload) {
+    accelerometer.updateInterval = 1.0 / kAccelerometerFrequency;
+    accelerometer.delegate = self;
+  } else {
+    accelerometer.delegate = nil;
+  }
+}
 
 - (void)addController:(Class)cls name:(NSString*)name rule:(T3NavigationRule)rule {
   T3NavigationEntry* entry = [[[T3NavigationEntry alloc] initWithClass:cls rule:rule] autorelease];
@@ -267,7 +340,11 @@ static T3NavigationCenter* gDefaultCenter = nil;
 
 - (BOOL)urlIsSupported:(NSString*)u {
   NSURL* url = [NSURL URLWithString:u];
-  return [url.scheme isEqualToString:@"fb"];
+  if (_urlSchemes) {
+    return [_urlSchemes indexOfObject:url.scheme] != NSNotFound;
+  } else {
+    return NO;
+  }
 }
 
 - (T3ViewController*)displayURL:(NSString*)url {

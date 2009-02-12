@@ -11,18 +11,35 @@ typedef enum {
 @protocol T3NavigationDelegate;
 @class T3ViewController;
 
-@interface T3NavigationCenter : NSObject {
+@interface T3NavigationCenter : NSObject <UIAccelerometerDelegate> {
   id<T3NavigationDelegate> _delegate;
+  BOOL _supportsShakeToReload;
+  NSArray* _urlSchemes;
   UIViewController* _mainViewController;
   UINavigationController* _defaultNavigationController;
   NSMutableDictionary* _viewLoaders;
   NSMutableDictionary* _objectLoaders;
   NSMutableArray* _linkObservers;
   NSTimeInterval _persistStateAge;
+	CFTimeInterval _lastShakeTime;
+	UIAccelerationValue	_accel[3];
 }
 
 @property(nonatomic,assign) id<T3NavigationDelegate> delegate;
 @property(nonatomic,retain) UIViewController* mainViewController;
+
+/**
+ * The URL schemes used by the application.
+ *
+ * When displaying a URL, if the URL scheme is in this array it will be mapped to a controller.
+ * Otherwise, it will be passed to the OS for external use.
+ */
+@property(nonatomic,retain) NSArray* urlSchemes;
+
+/**
+ * Causes the current view controller to be reloaded when shaking the phone.
+ */
+@property(nonatomic) BOOL supportsShakeToReload;
 
 + (T3NavigationCenter*)defaultCenter;
 
