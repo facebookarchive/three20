@@ -8,6 +8,8 @@
     photos2:(NSArray*)photos2 {
   if (self = [super init]) {
     _type = type;
+    _delegates = [[NSMutableArray alloc] init];
+    
     self.title = title;
     _photos = photos2 ? [[photos mutableCopy] retain] : [[NSMutableArray alloc] init];
     _tempPhotos = photos2 ? [photos2 retain] : [photos retain];
@@ -31,6 +33,7 @@
 
 - (void)dealloc {
   [_fakeLoadTimer invalidate];
+  [_delegates release];
   [_photos release];
   [_tempPhotos release];
   [_title release];
@@ -43,6 +46,10 @@
 
   if (_type & MockPhotoSourceLoadError) {
     [_request.delegate request:_request didFailWithError:nil];
+
+    for (id<T3PhotoSourceDelegate> delegate in _delegates) {
+      [delegate photoSourceLoaded:self];
+    }
   } else {
     NSMutableArray* newPhotos = [NSMutableArray array];
 
@@ -131,10 +138,22 @@
   if (request.cachePolicy & T3URLRequestCachePolicyNetwork) {
     _request = [request retain];
     [_request.delegate requestLoading:_request];
-
+    
+    for (id<T3PhotoSourceDelegate> delegate in _delegates) {
+      [delegate photoSourceLoading:self];
+    }
+    
     _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
       selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];
   }
+}
+
+- (void)addDelegate:(id<T3PhotoSourceDelegate>)delegate {
+  [_delegates addObject:delegate];
+}
+
+- (void)removeDelegate:(id<T3PhotoSourceDelegate>)delegate {
+  [_delegates removeObject:delegate];
 }
 
 @end

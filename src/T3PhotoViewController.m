@@ -9,6 +9,8 @@
 static const NSTimeInterval kPhotoLoadLongDelay = 0.5;
 static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
+static const NSTimeInterval kSlideshowInterval = 2;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation T3PhotoViewController
@@ -24,8 +26,12 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
     _centerPhotoIndex = 0;
     _scrollView = nil;
     _photoStatusView = nil;
+    _toolbar = nil;
+    _nextButton = nil;
+    _previousButton = nil;
     _statusText = nil;
     _thumbsController = nil;
+    _slideshowTimer = nil;
     _loadTimer = nil;
     _delayLoad = NO;
     self.defaultImage = [UIImage imageNamed:@"t3images/photoDefault.png"];
@@ -40,6 +46,8 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)dealloc {
   [_thumbsController release];
+  [_slideshowTimer invalidate];
+  _slideshowTimer = nil;
   [_loadTimer invalidate];
   _loadTimer = nil;
   [_centerPhoto release];
@@ -195,6 +203,50 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   [self.navigationController popViewControllerWithTransition:UIViewAnimationTransitionCurlUp];
 }
 
+- (void)slideshowTimer {
+  if (_centerPhotoIndex == _photoSource.numberOfPhotos-1) {
+    _scrollView.centerPageIndex = 0;
+  } else {
+    _scrollView.centerPageIndex = _centerPhotoIndex+1;
+  }
+}
+
+- (void)playAction {
+  if (!_slideshowTimer) {
+    UIBarButtonItem* pauseButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+      UIBarButtonSystemItemPause target:self action:@selector(pauseAction)] autorelease];
+    pauseButton.tag = 1;
+    
+    [_toolbar replaceItemWithTag:1 withItem:pauseButton];
+
+    _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:kSlideshowInterval
+      target:self selector:@selector(slideshowTimer) userInfo:nil repeats:YES];
+  }
+}
+
+- (void)pauseAction {
+  if (_slideshowTimer) {
+    UIBarButtonItem* playButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+      UIBarButtonSystemItemPlay target:self action:@selector(playAction)] autorelease];
+    playButton.tag = 1;
+    
+    [_toolbar replaceItemWithTag:1 withItem:playButton];
+
+    [_slideshowTimer invalidate];
+    _slideshowTimer = nil;
+  }
+}
+
+- (void)nextAction {
+  [self pauseAction];
+  _scrollView.centerPageIndex = _centerPhotoIndex+1;
+}
+
+- (void)previousAction {
+  [self pauseAction];
+  _scrollView.centerPageIndex = _centerPhotoIndex-1;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
@@ -207,6 +259,29 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   _scrollView.dataSource = self;
   _scrollView.backgroundColor = [UIColor blackColor];
   [self.view addSubview:_scrollView];
+  
+  
+  _nextButton = [[UIBarButtonItem alloc] initWithImage:
+    [UIImage imageNamed:@"t3images/nextIcon.png"]
+     style:UIBarButtonItemStylePlain target:self action:@selector(nextAction)];
+  _previousButton = [[UIBarButtonItem alloc] initWithImage:
+    [UIImage imageNamed:@"t3images/previousIcon.png"]
+     style:UIBarButtonItemStylePlain target:self action:@selector(previousAction)];
+
+  UIBarButtonItem* playButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+    UIBarButtonSystemItemPlay target:self action:@selector(playAction)] autorelease];
+  playButton.tag = 1;
+
+  UIBarItem* space = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+   UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+
+  CGFloat y = screenFrame.size.height - (CHROME_HEIGHT + TOOLBAR_HEIGHT);
+  _toolbar = [[UIToolbar alloc] initWithFrame:
+    CGRectMake(0, y, screenFrame.size.width, TOOLBAR_HEIGHT)];
+  _toolbar.barStyle = UIBarStyleBlackTranslucent;
+  _toolbar.items = [NSArray arrayWithObjects:
+    space, _previousButton, space, playButton, space, _nextButton, space, nil];
+  [self.view addSubview:_toolbar];    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -226,9 +301,28 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
+  [self pauseAction];
+
   self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
 
+  [self showBars:YES animated:NO];
   [self restoreNavigationBarStyle];
+}
+
+
+- (void)showBars:(BOOL)show animated:(BOOL)animated {
+  [super showBars:show animated:animated];
+  
+  if (animated) {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+  }
+
+  _toolbar.alpha = show ? 1 : 0;
+  
+  if (animated) {
+    [UIView commitAnimations];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -308,6 +402,12 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   _scrollView = nil;
   [_photoStatusView release];
   _photoStatusView = nil;
+  [_nextButton release];
+  _nextButton = nil;
+  [_previousButton release];
+  _previousButton = nil;
+  [_toolbar release];
+  _toolbar = nil;
 }
 
 - (NSString*)titleForActivity {
@@ -341,11 +441,11 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // T3PhotoSourceDelegate
 
-- (void)photoSourceLoading:(id<T3PhotoSource>*)photoSource {
+- (void)photoSourceLoading:(id<T3PhotoSource>)photoSource {
   self.contentState |= T3ContentActivity;
 }
 
-- (void)photoSourceLoaded:(id<T3PhotoSource>*)photoSource {
+- (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource {
   if (_centerPhotoIndex >= _photoSource.numberOfPhotos) {
     [self moveToPhotoAtIndex:_photoSource.numberOfPhotos - 1 withDelay:NO];
     [_scrollView reloadData];
@@ -360,7 +460,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   }
 }
 
-- (void)photoSource:(id<T3PhotoSource>*)photoSource didFailWithError:(NSError*)error {
+- (void)photoSource:(id<T3PhotoSource>)photoSource didFailWithError:(NSError*)error {
   [self resetVisiblePhotoViews];
 
   self.contentState &= ~T3ContentActivity;
@@ -368,7 +468,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   self.contentError = error;
 }
 
-- (void)photoSourceCancelled:(id<T3PhotoSource>*)photoSource {
+- (void)photoSourceCancelled:(id<T3PhotoSource>)photoSource {
   [self resetVisiblePhotoViews];
 
   self.contentState &= ~T3ContentActivity;
@@ -396,10 +496,6 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)scrollViewWillRotate:(T3ScrollView*)scrollView {
   self.centerPhotoView.extrasHidden = YES;
-
-  if (self.appearing) {
-    [self showBars:NO animated:YES];
-  }
 }
 
 - (void)scrollViewDidRotate:(T3ScrollView*)scrollView {

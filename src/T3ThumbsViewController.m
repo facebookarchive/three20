@@ -254,11 +254,11 @@ static NSInteger kPageSize = 60;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // T3URLRequestDelegate
 
-- (void)photoSourceLoading:(id<T3PhotoSource>*)photoSource {
+- (void)photoSourceLoading:(id<T3PhotoSource>)photoSource {
   self.contentState |= T3ContentActivity;
 }
 
-- (void)photoSourceLoaded:(id<T3PhotoSource>*)photoSource {
+- (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource {
   if (_photoSource.numberOfPhotos) {
     self.contentState = T3ContentReady;
   } else {
@@ -266,13 +266,13 @@ static NSInteger kPageSize = 60;
   }
 }
 
-- (void)photoSource:(id<T3PhotoSource>*)photoSource didFailWithError:(NSError*)error {
+- (void)photoSource:(id<T3PhotoSource>)photoSource didFailWithError:(NSError*)error {
   self.contentState &= ~T3ContentActivity;
   self.contentState |= T3ContentError;
   self.contentError = error;
 }
 
-- (void)photoSourceCancelled:(id<T3PhotoSource>*)photoSource {
+- (void)photoSourceCancelled:(id<T3PhotoSource>)photoSource {
   self.contentState &= ~T3ContentActivity;
   self.contentState |= T3ContentError;
 }

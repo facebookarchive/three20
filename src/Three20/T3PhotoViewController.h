@@ -15,9 +15,13 @@
   NSUInteger _centerPhotoIndex;
   T3ScrollView* _scrollView;
   T3PhotoView* _photoStatusView;
+  UIToolbar* _toolbar;
+  UIBarButtonItem* _nextButton;
+  UIBarButtonItem* _previousButton;
   UIImage* _defaultImage;
   NSString* _statusText;
   T3ThumbsViewController* _thumbsController;
+  NSTimer* _slideshowTimer;
   NSTimer* _loadTimer;
   BOOL _delayLoad;
 }

@@ -195,3 +195,11 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
 - (CGRect)frameOfElement:(NSString*)query;
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface UIToolbar (T3Category)
+
+- (void)replaceItemWithTag:(NSInteger)tag withItem:(UIBarButtonItem*)item;
+
+@end

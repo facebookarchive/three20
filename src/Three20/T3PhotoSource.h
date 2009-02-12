@@ -96,12 +96,12 @@ typedef enum {
 
 @protocol T3PhotoSourceDelegate
 
-- (void)photoSourceLoading:(id<T3PhotoSource>*)photoSource;
+- (void)photoSourceLoading:(id<T3PhotoSource>)photoSource;
 
-- (void)photoSourceLoaded:(id<T3PhotoSource>*)photoSource;
+- (void)photoSourceLoaded:(id<T3PhotoSource>)photoSource;
 
-- (void)photoSource:(id<T3PhotoSource>*)photoSource didFailWithError:(NSError*)error;
+- (void)photoSource:(id<T3PhotoSource>)photoSource didFailWithError:(NSError*)error;
 
-- (void)photoSourceCancelled:(id<T3PhotoSource>*)photoSource;
+- (void)photoSourceCancelled:(id<T3PhotoSource>)photoSource;
 
 @end

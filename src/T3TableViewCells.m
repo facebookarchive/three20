@@ -506,15 +506,13 @@ static CGFloat kIconSize = 50;
     spinnerView = nil;
     
     titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    titleLabel.opaque = YES;
-    titleLabel.backgroundColor = [UIColor whiteColor];
+    titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.highlightedTextColor = [UIColor whiteColor];
     titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
     [self.contentView addSubview:titleLabel];
 
     subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    subtitleLabel.opaque = YES;
-    subtitleLabel.backgroundColor = [UIColor whiteColor];
+    subtitleLabel.backgroundColor = [UIColor clearColor];
     subtitleLabel.font = [UIFont systemFontOfSize:14];
     subtitleLabel.textColor = [UIColor grayColor];
     subtitleLabel.highlightedTextColor = [UIColor whiteColor];
