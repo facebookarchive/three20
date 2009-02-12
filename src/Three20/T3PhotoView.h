@@ -1,4 +1,5 @@
 #import "Three20/T3ImageView.h"
+#import "Three20/T3PhotoSource.h"
 
 @protocol T3Photo;
 @class T3ActivityLabel;
@@ -7,6 +8,7 @@
   id <T3Photo> _photo;
   UIActivityIndicatorView* _statusSpinner;
   UILabel* _statusLabel;
+  T3PhotoVersion _photoVersion;
   BOOL _extrasHidden;
 }
 

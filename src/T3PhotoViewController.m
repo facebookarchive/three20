@@ -1,6 +1,6 @@
 #import "Three20/T3PhotoViewController.h"
-#import "Three20/T3ThumbsViewController.h"
 #import "Three20/T3URLCache.h"
+#import "Three20/T3URLRequest.h"
 #import "Three20/T3UnclippedView.h"
 #import "Three20/T3PhotoView.h"
 
@@ -22,11 +22,10 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
     _photoSource = nil;
     _centerPhoto = nil;
     _centerPhotoIndex = 0;
-    _previousBarStyle = 0;
-    _previousBarTintColor = nil;
     _scrollView = nil;
     _photoStatusView = nil;
     _statusText = nil;
+    _thumbsController = nil;
     _loadTimer = nil;
     _delayLoad = NO;
     self.defaultImage = [UIImage imageNamed:@"t3images/photoDefault.png"];
@@ -40,9 +39,11 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 - (void)dealloc {
+  [_thumbsController release];
   [_loadTimer invalidate];
   _loadTimer = nil;
   [_centerPhoto release];
+  [_photoSource removeDelegate:self];
   [_photoSource release];
   [_statusText release];
   [_defaultImage release];
@@ -116,7 +117,6 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 - (void)loadPhotosFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
   if (!_photoSource.loading) {
     T3URLRequest* request = [T3URLRequest request];
-    request.delegate = self;
     [_photoSource loadPhotos:request fromIndex:fromIndex toIndex:toIndex];
   }
 }
@@ -141,25 +141,6 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 - (BOOL)isShowingChrome {
   UINavigationBar* bar = self.navigationController.navigationBar;
   return bar ? bar.alpha != 0 : 1;
-}
-
-- (void)showNavigationBar:(BOOL)show {
-  self.navigationController.navigationBar.alpha = show ? 1 : 0;
-}
-
-- (void)showChrome:(BOOL)show animated:(BOOL)animated {
-  [[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];
-  
-  if (animated) {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-  }
-  
-  [self showNavigationBar:show];
-
-  if (animated) {
-    [UIView commitAnimations];
-  }
 }
 
 - (T3PhotoView*)statusView {
@@ -194,6 +175,26 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   }
 }
 
+- (void)showThumbnails {
+  if (!_thumbsController) {
+    _thumbsController = [[self createThumbsViewController] retain];
+    _thumbsController.delegate = self;
+    _thumbsController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+    initWithCustomView:[[[UIView alloc] initWithFrame:CGRectZero] autorelease]];
+    _thumbsController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+    initWithTitle:NSLocalizedString(@"Done", @"") style:UIBarButtonItemStyleBordered
+    target:self action:@selector(hideThumbnails)];
+  }
+  
+  _thumbsController.photoSource = _photoSource;
+  [self.navigationController pushViewController:_thumbsController
+    withTransition:UIViewAnimationTransitionCurlDown];
+}
+
+- (void)hideThumbnails {
+  [self.navigationController popViewControllerWithTransition:UIViewAnimationTransitionCurlUp];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
@@ -210,19 +211,8 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-
-  UINavigationBar* bar = self.navigationController.navigationBar;
-  if (bar.barStyle != UIBarStyleBlackTranslucent) {
-    if (!self.nextViewController) {
-      _previousBarStyle = bar.barStyle;
-      _previousBarTintColor = bar.tintColor;
-    }
-
-    bar.tintColor = nil;
-    bar.barStyle = UIBarStyleBlackTranslucent;
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent
-      animated:YES];
-  }
+  [self changeNavigationBarStyle:UIBarStyleBlackTranslucent barColor:nil
+    statusBarStyle:UIStatusBarStyleBlackTranslucent];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -238,25 +228,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
   self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
 
-  // If we're going backwards...
-  if (!self.nextViewController) {
-    UINavigationBar* bar = self.navigationController.navigationBar;
-    if (_previousBarStyle != UIBarStyleBlackTranslucent) {
-      bar.tintColor = _previousBarTintColor;
-      bar.barStyle = _previousBarStyle;
-      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    }
-  }
-
-  [self showNavigationBar:YES];
-
-  UIApplication* app = [UIApplication sharedApplication];
-  if (app.statusBarHidden) {
-    app.statusBarStyle = UIStatusBarStyleDefault;
-    [app setStatusBarHidden:NO animated:YES];
-  } else {
-    [app setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-  }
+  [self restoreNavigationBarStyle];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -304,6 +276,14 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 - (void)updateView {
+  if (![self.previousViewController isKindOfClass:[T3ThumbsViewController class]]) {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+      initWithTitle:NSLocalizedString(@"See All", @"See all photo thumbnails")
+      style:UIBarButtonItemStyleBordered target:self action:@selector(showThumbnails)];
+  } else {
+    self.navigationItem.rightBarButtonItem = nil;
+  }
+
   _scrollView.centerPageIndex = _centerPhotoIndex;
   [self loadImages];
 
@@ -359,13 +339,13 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3URLRequestDelegate
+// T3PhotoSourceDelegate
 
-- (void)requestLoading:(T3URLRequest*)request {
+- (void)photoSourceLoading:(id<T3PhotoSource>*)photoSource {
   self.contentState |= T3ContentActivity;
 }
 
-- (void)request:(T3URLRequest*)request loadedData:(NSData*)data media:(id)media {
+- (void)photoSourceLoaded:(id<T3PhotoSource>*)photoSource {
   if (_centerPhotoIndex >= _photoSource.numberOfPhotos) {
     [self moveToPhotoAtIndex:_photoSource.numberOfPhotos - 1 withDelay:NO];
     [_scrollView reloadData];
@@ -380,7 +360,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   }
 }
 
-- (void)request:(T3URLRequest*)request didFailWithError:(NSError*)error {
+- (void)photoSource:(id<T3PhotoSource>*)photoSource didFailWithError:(NSError*)error {
   [self resetVisiblePhotoViews];
 
   self.contentState &= ~T3ContentActivity;
@@ -388,7 +368,9 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
   self.contentError = error;
 }
 
-- (void)requestCancelled:(T3URLRequest*)request {
+- (void)photoSourceCancelled:(id<T3PhotoSource>*)photoSource {
+  [self resetVisiblePhotoViews];
+
   self.contentState &= ~T3ContentActivity;
   self.contentState |= T3ContentError;
 }
@@ -405,7 +387,7 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)scrollViewWillBeginDragging:(T3ScrollView *)scrollView {
   [self cancelImageLoadTimer];
-  [self showChrome:NO animated:NO];
+  [self showBars:NO animated:NO];
 }
 
 - (void)scrollViewDidEndDecelerating:(T3ScrollView*)scrollView {
@@ -414,7 +396,10 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)scrollViewWillRotate:(T3ScrollView*)scrollView {
   self.centerPhotoView.extrasHidden = YES;
-  [self showChrome:NO animated:YES];
+
+  if (self.appearing) {
+    [self showBars:NO animated:YES];
+  }
 }
 
 - (void)scrollViewDidRotate:(T3ScrollView*)scrollView {
@@ -435,9 +420,9 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 
 - (void)scrollViewTapped:(T3ScrollView*)scrollView {
   if ([self isShowingChrome]) {
-    [self showChrome:NO animated:YES];
+    [self showBars:NO animated:YES];
   } else {
-    [self showChrome:YES animated:NO];
+    [self showBars:YES animated:NO];
   }
 }
 
@@ -451,11 +436,8 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 - (UIView*)scrollView:(T3ScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
   T3PhotoView* photoView = (T3PhotoView*)[_scrollView dequeueReusablePage];
   if (!photoView) {
-    photoView = [_delegate photoViewController:self viewForPhotoAtIndex:pageIndex];
-    if (!photoView) {
-      photoView = [[[T3PhotoView alloc] initWithFrame:CGRectZero] autorelease];
-      photoView.defaultImage = _defaultImage;
-    }
+    photoView = [self createPhotoView];
+    photoView.defaultImage = _defaultImage;
   }
 
   id<T3Photo> photo = [_photoSource photoAtIndex:pageIndex];
@@ -470,11 +452,21 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// T3ThumbsViewControllerDelegate
+
+- (void)thumbsViewController:(T3ThumbsViewController*)controller didSelectPhoto:(id<T3Photo>)photo {
+  self.centerPhoto = photo;
+  [self hideThumbnails];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)setPhotoSource:(id<T3PhotoSource>)photoSource {
   if (_photoSource != photoSource) {
+    [_photoSource removeDelegate:self];
     [_photoSource release];
     _photoSource = [photoSource retain];
+    [_photoSource addDelegate:self];
   
     [self moveToPhotoAtIndex:0 withDelay:NO];
     [self invalidate];
@@ -484,13 +476,23 @@ static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 - (void)setCenterPhoto:(id<T3Photo>)photo {
   if (_centerPhoto != photo) {
     if (photo.photoSource != _photoSource) {
+      [_photoSource removeDelegate:self];
       [_photoSource release];
       _photoSource = [photo.photoSource retain];
+      [_photoSource addDelegate:self];
     }
 
     [self moveToPhotoAtIndex:photo.index withDelay:NO];
     [self invalidate];
   }
+}
+
+- (T3PhotoView*)createPhotoView {
+  return [[[T3PhotoView alloc] initWithFrame:CGRectZero] autorelease];
+}
+
+- (T3ThumbsViewController*)createThumbsViewController {
+  return [[[T3ThumbsViewController alloc] init] autorelease];
 }
 
 @end

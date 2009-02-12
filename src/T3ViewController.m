@@ -15,6 +15,10 @@
     _viewState = nil;
     _contentState = T3ContentUnknown;
     _contentError = nil;
+    _previousBar = nil;
+    _previousBarStyle = 0;
+    _previousBarTintColor = nil;
+    _previousStatusBarStyle = 0;
     _statusView = nil;
     _invalid = YES;
     _appearing = NO;
@@ -302,6 +306,42 @@
 
 - (NSString*)subtitleForError:(NSError*)error {
   return NSLocalizedString(@"Sorry, an error has occurred.", @"");
+}
+
+- (void)changeNavigationBarStyle:(UIBarStyle)barStyle barColor:(UIColor*)barColor
+    statusBarStyle:(UIStatusBarStyle)statusBarStyle {
+  if (!_previousBar) {
+    UINavigationBar* bar = self.navigationController.navigationBar;
+    if (!self.nextViewController) {
+      _previousBar = bar;
+      _previousBarStyle = bar.barStyle;
+      _previousBarTintColor = bar.tintColor;
+      _previousStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
+    }
+
+    bar.tintColor = barColor;
+    bar.barStyle = barStyle;
+
+    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
+  }
+}
+
+- (void)restoreNavigationBarStyle {
+  // If we're going backwards...
+  if (!self.nextViewController && _previousBar) {
+    _previousBar.tintColor = _previousBarTintColor;
+    _previousBar.barStyle = _previousBarStyle;
+
+    UIApplication* app = [UIApplication sharedApplication];
+    if (app.statusBarHidden) {
+      app.statusBarStyle = _previousStatusBarStyle;
+      [app setStatusBarHidden:NO animated:YES];
+    } else {
+      [app setStatusBarStyle:_previousStatusBarStyle animated:YES];
+    }
+    
+    _previousBar = nil;
+  }
 }
 
 @end

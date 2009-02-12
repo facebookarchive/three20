@@ -226,51 +226,6 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation UIViewController (T3Category)
-
-- (UIViewController*)previousViewController {
-  NSArray* viewControllers = self.navigationController.viewControllers;
-  if (viewControllers.count > 1) {
-    NSUInteger index = [viewControllers indexOfObject:self];
-    if (index != NSNotFound) {
-      return [viewControllers objectAtIndex:index-1];
-    }
-  }
-  
-  return nil;
-}
-
-- (UIViewController*)nextViewController {
-  NSArray* viewControllers = self.navigationController.viewControllers;
-  if (viewControllers.count > 1) {
-    NSUInteger index = [viewControllers indexOfObject:self];
-    if (index != NSNotFound && index+1 < viewControllers.count) {
-      return [viewControllers objectAtIndex:index+1];
-    }
-  }
-  return nil;
-}
-
-- (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate {
-  if (message) {
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title message:message
-      delegate:delegate cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
-    [alert show];
-  }
-}
-
-- (void)alert:(NSString*)message {
-  [self alert:message title:@"Alert" delegate:nil];
-}
-
-- (void)alertError:(NSString*)message {
-  [self alert:message title:@"Error" delegate:nil];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // This code for synthesizing touch events is derived from:
 // http://cocoawithlove.com/2008/10/synthesizing-touch-event-on-iphone.html
 
@@ -451,7 +406,7 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
 
 - (CGFloat)orientationWidth {
   return UIDeviceOrientationIsPortrait(T3DeviceOrientation())
-    ? self.height : self.width;
+    ? self.width : self.height;
 }
 
 - (CGFloat)orientationHeight {

@@ -1,9 +1,10 @@
 #import "Three20/T3Global.h"
 
+@protocol T3Photo, T3ThumbsTableViewCellDelegate;
 @class T3ThumbView;
-@protocol T3Photo;
 
 @interface T3ThumbsTableViewCell : UITableViewCell {
+  id<T3ThumbsTableViewCellDelegate> _delegate;
   id<T3Photo> _photo;
   T3ThumbView* _thumbView1;
   T3ThumbView* _thumbView2;
@@ -12,7 +13,14 @@
 }
 
 @property(nonatomic,retain) id<T3Photo> photo;
+@property(nonatomic,assign) id<T3ThumbsTableViewCellDelegate> delegate;
 
-- (void)pauseLoading:(BOOL)suspended;
+- (void)suspendLoading:(BOOL)suspended;
+
+@end
+
+@protocol T3ThumbsTableViewCellDelegate
+
+- (void)thumbsTableViewCell:(T3ThumbsTableViewCell*)cell didSelectPhoto:(id<T3Photo>)photo;
 
 @end

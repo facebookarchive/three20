@@ -5,7 +5,7 @@
 #define T3_NULL_PHOTO_INDEX NSIntegerMax
 #define T3_INFINITE_PHOTO_INDEX NSIntegerMax
 
-@protocol T3Photo;
+@protocol T3Photo, T3PhotoSourceDelegate;
 @class T3URLRequest;
 
 typedef enum {
@@ -21,7 +21,7 @@ typedef enum {
 @protocol T3PhotoSource <T3Object>
 
 /**
- *
+ * The title of this collection of photos.
  */
 @property(nonatomic,copy) NSString* title;
 
@@ -39,6 +39,16 @@ typedef enum {
  *
  */
 @property(nonatomic,readonly) BOOL loading;
+
+/**
+ *
+ */
+- (void)addDelegate:(id<T3PhotoSourceDelegate>)delegate;
+
+/**
+ *
+ */
+- (void)removeDelegate:(id<T3PhotoSourceDelegate>)delegate;
 
 /**
  *
@@ -79,5 +89,19 @@ typedef enum {
  * Gets the url of one of the differently sized versions of the photo.
  */
 - (NSString*)urlForVersion:(T3PhotoVersion)version;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@protocol T3PhotoSourceDelegate
+
+- (void)photoSourceLoading:(id<T3PhotoSource>*)photoSource;
+
+- (void)photoSourceLoaded:(id<T3PhotoSource>*)photoSource;
+
+- (void)photoSource:(id<T3PhotoSource>*)photoSource didFailWithError:(NSError*)error;
+
+- (void)photoSourceCancelled:(id<T3PhotoSource>*)photoSource;
 
 @end

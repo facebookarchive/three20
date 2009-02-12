@@ -97,7 +97,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // T3PhotoSource
 
-- (NSUInteger)numberOfPhotos {
+- (NSInteger)numberOfPhotos {
   if (_tempPhotos) {
     return _photos.count + (_type & MockPhotoSourceVariableCount ? 0 : _tempPhotos.count);
   } else {
@@ -105,7 +105,7 @@
   }
 }
 
-- (NSUInteger)maxPhotoIndex {
+- (NSInteger)maxPhotoIndex {
   return _photos.count-1;
 }
 
@@ -113,7 +113,7 @@
   return !!_fakeLoadTimer;
 }
 
-- (id<T3Photo>)photoAtIndex:(NSUInteger)index {
+- (id<T3Photo>)photoAtIndex:(NSInteger)index {
   if (index < _photos.count) {
     id photo = [_photos objectAtIndex:index];
     if (photo == [NSNull null]) {
@@ -126,8 +126,8 @@
   }
 }
 
-- (void)loadPhotos:(T3URLRequest*)request fromIndex:(NSUInteger)fromIndex
-    toIndex:(NSUInteger)toIndex {
+- (void)loadPhotos:(T3URLRequest*)request fromIndex:(NSInteger)fromIndex
+    toIndex:(NSInteger)toIndex {
   if (request.cachePolicy & T3URLRequestCachePolicyNetwork) {
     _request = [request retain];
     [_request.delegate requestLoading:_request];

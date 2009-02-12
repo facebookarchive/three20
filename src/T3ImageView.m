@@ -95,7 +95,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)setUrl:(NSString*)url {
-  if (self.image && [url isEqualToString:_url])
+  if (self.image && _url && [url isEqualToString:_url])
     return;
   
   [self stopLoading];

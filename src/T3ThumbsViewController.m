@@ -1,7 +1,6 @@
 #import "Three20/T3ThumbsViewController.h"
 #import "Three20/T3PhotoViewController.h"
-#import "Three20/T3ThumbsTableViewCell.h"
-#import "Three20/T3PhotoSource.h"
+#import "Three20/T3URLRequest.h"
 #import "Three20/T3UnclippedView.h"
 #import "Three20/T3ErrorView.h"
 
@@ -13,31 +12,39 @@ static NSInteger kColumnCount = 4;
 
 @implementation T3ThumbsViewController
 
-@synthesize photoSource = _photoSource;
+@synthesize delegate = _delegate, photoSource = _photoSource;
 
 - (id)init {
   if (self = [super init]) {
+    _delegate = nil;
     _photoSource = nil;
-    _previousBarStyle = 0;
   }
   
   return self;
 }
 
 - (void)dealloc {
+  [_photoSource removeDelegate:self];
   [_photoSource release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)pauseLoadingThumbnails:(BOOL)suspended {
+- (void)loadPhotosFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
+    fromCache:(BOOL)fromCache {
+  T3URLRequest* request = [T3URLRequest request];
+  request.cachePolicy = fromCache ? T3URLRequestCachePolicyAny : T3URLRequestCachePolicyNetwork;
+  [_photoSource loadPhotos:request fromIndex:fromIndex toIndex:toIndex];
+}
+
+- (void)suspendLoadingThumbnails:(BOOL)suspended {
   if (_photoSource.maxPhotoIndex >= 0) {
     NSArray* cells = _tableView.visibleCells;
     for (int i = 0; i < cells.count; ++i) {
       T3ThumbsTableViewCell* cell = [cells objectAtIndex:i];
       if ([cell isKindOfClass:[T3ThumbsTableViewCell class]]) {
-        [cell pauseLoading:suspended];
+        [cell suspendLoading:suspended];
       }
     }
   }
@@ -73,22 +80,13 @@ static NSInteger kColumnCount = 4;
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-
-  UINavigationBar* bar = self.navigationController.navigationBar;
-  if (bar.barStyle != UIBarStyleBlackTranslucent) {
-    if (![self nextViewController]) {
-      _previousBarStyle = bar.barStyle;
-    }
-
-    bar.barStyle = UIBarStyleBlackTranslucent;
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent
-      animated:YES];
-  }
+  [self changeNavigationBarStyle:UIBarStyleBlackTranslucent barColor:nil
+    statusBarStyle:UIStatusBarStyleBlackTranslucent];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self pauseLoadingThumbnails:NO];
+  [self suspendLoadingThumbnails:NO];
 
   if (!self.nextViewController) {
     self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
@@ -99,19 +97,12 @@ static NSInteger kColumnCount = 4;
   [super viewWillDisappear:animated];
 
   self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
-
-  // If we're going backwards...
-  if (!self.nextViewController) {
-    UINavigationBar* bar = self.navigationController.navigationBar;
-    if (_previousBarStyle != UIBarStyleBlackTranslucent) {
-      bar.barStyle = _previousBarStyle;
-      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    }
-  }
+  
+  [self restoreNavigationBarStyle];
 }  
 
 - (void)viewDidDisappear:(BOOL)animated {
-  [self pauseLoadingThumbnails:YES];
+  [self suspendLoadingThumbnails:YES];
   [super viewDidDisappear:animated];
 }
 
@@ -126,14 +117,6 @@ static NSInteger kColumnCount = 4;
   [super showObject:object inView:viewType withState:state];
 
   self.photoSource = (id<T3PhotoSource>)object;
-}
-
-- (void)loadPhotosFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
-    fromCache:(BOOL)fromCache {
-  T3URLRequest* request = [T3URLRequest request];
-  request.delegate = self;
-  request.cachePolicy = fromCache ? T3URLRequestCachePolicyAny : T3URLRequestCachePolicyNetwork;
-  [_photoSource loadPhotos:request fromIndex:fromIndex toIndex:toIndex];
 }
 
 - (void)updateContent {
@@ -208,6 +191,7 @@ static NSInteger kColumnCount = 4;
 	if (cell == nil) {
 		cell = [[[T3ThumbsTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellId]
       autorelease];
+    cell.delegate = self;
 	}
 	
   cell.photo = [_photoSource photoAtIndex:indexPath.row * kColumnCount];
@@ -215,20 +199,14 @@ static NSInteger kColumnCount = 4;
 	return cell;
 }
 
-- (void)tableView:(UITableView*)tableView didSelectPhoto:(id<T3Photo>)photo {
-  T3PhotoViewController* controller = [[[T3PhotoViewController alloc] init] autorelease];
-  controller.centerPhoto = photo;
-  [self.navigationController pushViewController:controller animated:YES];  
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // T3URLRequestDelegate
 
-- (void)requestLoading:(T3URLRequest*)request {
+- (void)photoSourceLoading:(id<T3PhotoSource>*)photoSource {
   self.contentState |= T3ContentActivity;
 }
 
-- (void)request:(T3URLRequest*)request loadedData:(NSData*)data media:(id)media {
+- (void)photoSourceLoaded:(id<T3PhotoSource>*)photoSource {
   if (_photoSource.numberOfPhotos) {
     self.contentState = T3ContentReady;
   } else {
@@ -236,26 +214,50 @@ static NSInteger kColumnCount = 4;
   }
 }
 
-- (void)request:(T3URLRequest*)request didFailWithError:(NSError*)error {
+- (void)photoSource:(id<T3PhotoSource>*)photoSource didFailWithError:(NSError*)error {
   self.contentState &= ~T3ContentActivity;
   self.contentState |= T3ContentError;
   self.contentError = error;
 }
 
-- (void)requestCancelled:(T3URLRequest*)request {
+- (void)photoSourceCancelled:(id<T3PhotoSource>*)photoSource {
   self.contentState &= ~T3ContentActivity;
   self.contentState |= T3ContentError;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// T3ThumbsTableViewCellDelegate
+
+- (void)thumbsTableViewCell:(T3ThumbsTableViewCell*)cell didSelectPhoto:(id<T3Photo>)photo {
+  [_delegate thumbsViewController:self didSelectPhoto:photo];
+    
+  BOOL shouldNavigate = YES;
+  if ([_delegate respondsToSelector:@selector(thumbsViewController:shouldNavigateToPhoto:)]) {
+    shouldNavigate = [_delegate thumbsViewController:self shouldNavigateToPhoto:photo];
+  }
+
+  if (shouldNavigate) {
+    T3PhotoViewController* controller = [self createPhotoViewController];
+    controller.centerPhoto = photo;
+    [self.navigationController pushViewController:controller animated:YES];  
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)setPhotoSource:(id<T3PhotoSource>)photoSource {
   if (photoSource != _photoSource) {
+    [_photoSource removeDelegate:self];
     [_photoSource release];
     _photoSource = [photoSource retain];
+    [_photoSource addDelegate:self];
 
     [self invalidate];
   }
+}
+
+- (T3PhotoViewController*)createPhotoViewController {
+  return [[[T3PhotoViewController alloc] init] autorelease];
 }
 
 @end

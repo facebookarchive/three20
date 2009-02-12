@@ -1,13 +1,14 @@
 #import "Three20/T3ViewController.h"
 #import "Three20/T3PhotoSource.h"
-#import "Three20/T3URLRequest.h"
 #import "Three20/T3ScrollView.h"
+#import "Three20/T3ThumbsViewController.h"
 
 @protocol T3PhotoViewControllerDelegate;
 @class T3ScrollView, T3PhotoView;
 
 @interface T3PhotoViewController : T3ViewController
-    <T3ScrollViewDelegate, T3ScrollViewDataSource, T3URLRequestDelegate> {
+    <T3ScrollViewDelegate, T3ScrollViewDataSource, T3PhotoSourceDelegate,
+      T3ThumbsViewControllerDelegate> {
   id<T3PhotoViewControllerDelegate> _delegate;
   id<T3PhotoSource> _photoSource;
   id<T3Photo> _centerPhoto;
@@ -16,8 +17,7 @@
   T3PhotoView* _photoStatusView;
   UIImage* _defaultImage;
   NSString* _statusText;
-  UIBarStyle _previousBarStyle;
-  UIColor* _previousBarTintColor;
+  T3ThumbsViewController* _thumbsController;
   NSTimer* _loadTimer;
   BOOL _delayLoad;
 }
@@ -49,11 +49,8 @@
  */
 @property(nonatomic,retain) UIImage* defaultImage;
 
-@end
+- (T3PhotoView*)createPhotoView;
 
-@protocol T3PhotoViewControllerDelegate
-
-- (T3PhotoView*)photoViewController:(T3PhotoViewController*)controller
-  viewForPhotoAtIndex:(NSInteger)photoIndex;
+- (T3ThumbsViewController*)createThumbsViewController;
 
 @end

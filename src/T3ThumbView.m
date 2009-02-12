@@ -67,7 +67,6 @@
   [borderView setNeedsDisplay];
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSString*)url {
@@ -75,10 +74,11 @@
 }
 
 - (void)setUrl:(NSString*)url {
+  imageView.image = nil;
   imageView.url = url;
 }
 
-- (void)pauseLoading:(BOOL)suspended {
+- (void)suspendLoading:(BOOL)suspended {
   if (suspended) {
     [imageView stopLoading];
   } else if (!imageView.image) {

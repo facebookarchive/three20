@@ -958,9 +958,7 @@ static const NSTimeInterval kOvershoot = 2;
   if (_rotateEnabled
       && (![_delegate respondsToSelector:@selector(scrollView:shouldAutorotateToInterfaceOrientation:)]
       || [_delegate scrollView:self shouldAutorotateToInterfaceOrientation:orientation])) {
-    if ([self supportsOrientation:orientation]) {
-      self.orientation = orientation;
-    }
+    self.orientation = orientation;
   }
 }
 
@@ -1016,7 +1014,7 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 - (void)setOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated {
-  if (orientation != _orientation) {
+  if (orientation != _orientation && [self supportsOrientation:orientation]) {
     _orientation = orientation;
 
     if ([_delegate respondsToSelector:@selector(scrollViewWillRotate:)]) {

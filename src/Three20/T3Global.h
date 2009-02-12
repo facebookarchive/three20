@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Three20/T3+UIViewController.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Logging Helpers
@@ -48,6 +49,8 @@
  * The standard duration for transition animations.
  */
 #define T3_TRANSITION_DURATION 0.3
+
+#define T3_FLIP_TRANSITION_DURATION 0.7
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // URL Cache
@@ -125,39 +128,6 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
   withObject:(id)p4 withObject:(id)p5 withObject:(id)p6;
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
   withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 withObject:(id)p7;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface UIViewController (T3Category)
-
-/**
- * The view controller that comes before this one in a navigation controller's history.
- */
-- (UIViewController*)previousViewController;
-
-/**
- * The view controller that comes after this one in a navigation controller's history.
- */
-- (UIViewController*)nextViewController;
-
-/**
- * Shows a UIAlertView with a message and title.
- *
- * @delegate A UIAlertView delegate
- */ 
-- (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate;
-
-/**
- * Shows a UIAlertView with a message.
- */ 
-- (void)alert:(NSString*)message;
-
-/**
- * Shows a UIAlertView with an error message.
- */ 
-- (void)alertError:(NSString*)message;
 
 @end
 

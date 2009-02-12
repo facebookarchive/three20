@@ -24,6 +24,11 @@ typedef enum {
   NSDictionary* _viewState;
   T3ContentState _contentState;
   NSError* _contentError;
+  
+  UINavigationBar* _previousBar;
+  UIBarStyle _previousBarStyle;
+  UIColor* _previousBarTintColor;
+  UIStatusBarStyle _previousStatusBarStyle;
 
   BOOL _invalid;
   BOOL _appearing;
@@ -175,5 +180,16 @@ typedef enum {
  *
  */
 - (NSString*)subtitleForError:(NSError*)error;
+
+/**
+ *
+ */
+- (void)changeNavigationBarStyle:(UIBarStyle)barStyle barColor:(UIColor*)barColor
+  statusBarStyle:(UIStatusBarStyle)statusBarStyle;
+
+/**
+ *
+ */
+- (void)restoreNavigationBarStyle;
 
 @end

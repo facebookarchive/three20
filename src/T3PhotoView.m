@@ -2,7 +2,6 @@
 #import "Three20/T3ImageView.h"
 #import "Three20/T3ActivityLabel.h"
 #import "Three20/T3URLCache.h"
-#import "Three20/T3PhotoSource.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -19,9 +18,11 @@ static const CGFloat T3PhotoViewPadding = 20;
     _photo = nil;
     _statusSpinner = nil;
     _statusLabel = nil;
+    _photoVersion = T3PhotoVersionNone;
     _extrasHidden = NO;
     
     self.delegate = self;
+    self.clipsToBounds = NO;
   }
   return self;
 }
@@ -41,6 +42,7 @@ static const CGFloat T3PhotoViewPadding = 20;
   if (url) {
     UIImage* image = [[T3URLCache sharedCache] getMediaForURL:url fromDisk:NO];
     if (image || fromNetwork) {
+      _photoVersion = version;
       self.url = url;
       return YES;
     }
@@ -119,7 +121,8 @@ static const CGFloat T3PhotoViewPadding = 20;
   if (!photo || photo != _photo) {
     [_photo release];
     _photo = [photo retain];
-
+    _photoVersion = T3PhotoVersionNone;
+    
     self.url = nil;
     
     if (!_photo || _photo.photoSource.loading) {
@@ -150,6 +153,7 @@ static const CGFloat T3PhotoViewPadding = 20;
 
 - (void)loadImage {
   if (_photo) {
+    _photoVersion = T3PhotoVersionLarge;
     self.url = [_photo urlForVersion:T3PhotoVersionLarge];
   }
 }

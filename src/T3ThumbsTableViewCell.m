@@ -11,12 +11,12 @@ static CGFloat kThumbSize = 75;
 
 @implementation T3ThumbsTableViewCell
 
-@synthesize photo = _photo;
+@synthesize delegate = _delegate, photo = _photo;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _photo = nil;
-    
+    _delegate = nil;
     _thumbView1 = [[T3ThumbView alloc]
       initWithFrame:CGRectMake(kSpacing, 0, kThumbSize, kThumbSize)];
     [_thumbView1 addTarget:self action:@selector(thumbTouched:)
@@ -69,24 +69,20 @@ static CGFloat kThumbSize = 75;
   }
 }
 
-- (void)thumbTouched:(T3ThumbView*)_thumbView {
+- (void)thumbTouched:(T3ThumbView*)thumbView {
   NSUInteger index;
-  if (_thumbView == _thumbView1) {
+  if (thumbView == _thumbView1) {
     index = _photo.index;
-  } else if (_thumbView == _thumbView2) {
+  } else if (thumbView == _thumbView2) {
     index = _photo.index + 1;
-  } else if (_thumbView == _thumbView3) {
+  } else if (thumbView == _thumbView3) {
     index = _photo.index + 2;
-  } else if (_thumbView == _thumbView4) {
+  } else if (thumbView == _thumbView4) {
     index = _photo.index + 3;
   }
   
   id<T3Photo> photo = [_photo.photoSource photoAtIndex:index];
-  UITableView* tableView = (UITableView*)self.superview;
-  if ([tableView.delegate respondsToSelector:@selector(tableView:didSelectPhoto:)]) {
-    [tableView.delegate performSelector:@selector(tableView:didSelectPhoto:)
-      withObject:tableView withObject:photo];    
-  }
+  [_delegate thumbsTableViewCell:self didSelectPhoto:photo];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,11 +107,11 @@ static CGFloat kThumbSize = 75;
   }  
 }
 
-- (void)pauseLoading:(BOOL)suspended {
-  [_thumbView1 pauseLoading:suspended];
-  [_thumbView2 pauseLoading:suspended];
-  [_thumbView3 pauseLoading:suspended];
-  [_thumbView4 pauseLoading:suspended];
+- (void)suspendLoading:(BOOL)suspended {
+  [_thumbView1 suspendLoading:suspended];
+  [_thumbView2 suspendLoading:suspended];
+  [_thumbView3 suspendLoading:suspended];
+  [_thumbView4 suspendLoading:suspended];
 }
 
 @end
