@@ -200,6 +200,8 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
 
 @interface UIToolbar (T3Category)
 
+- (UIBarButtonItem*)itemWithTag:(NSInteger)tag;
+
 - (void)replaceItemWithTag:(NSInteger)tag withItem:(UIBarButtonItem*)item;
 
 @end

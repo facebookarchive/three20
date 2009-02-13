@@ -48,7 +48,7 @@
     [_request.delegate request:_request didFailWithError:nil];
 
     for (id<T3PhotoSourceDelegate> delegate in _delegates) {
-      [delegate photoSourceLoaded:self];
+      [delegate photoSource:self didFailWithError:nil];
     }
   } else {
     NSMutableArray* newPhotos = [NSMutableArray array];
@@ -76,6 +76,10 @@
     }
 
     [_request.delegate request:_request loadedData:nil media:nil];
+
+    for (id<T3PhotoSourceDelegate> delegate in _delegates) {
+      [delegate photoSourceLoaded:self];
+    }
   }
   
   [_request release];
@@ -162,15 +166,21 @@
 
 @implementation MockPhoto
 
-@synthesize photoSource = _photoSource, size = _size, index = _index;
+@synthesize photoSource = _photoSource, size = _size, index = _index, caption = _caption;
 
-- (id)initWithURL:(NSString*)aURL smallURL:(NSString*)aSmallURL size:(CGSize)aSize {
+- (id)initWithURL:(NSString*)url smallURL:(NSString*)smallURL size:(CGSize)size {
+  return [self initWithURL:url smallURL:smallURL size:size caption:nil];
+}
+
+- (id)initWithURL:(NSString*)url smallURL:(NSString*)smallURL size:(CGSize)size
+    caption:(NSString*)caption {
   if (self = [super init]) {
     _photoSource = nil;
-    _url = [aURL copy];
-    _smallURL = [aSmallURL copy];
-    _thumbURL = [aSmallURL copy];
-    _size = aSize;
+    _url = [url copy];
+    _smallURL = [smallURL copy];
+    _thumbURL = [smallURL copy];
+    _size = size;
+    _caption = [caption copy];
     _index = NSIntegerMax;
   }
   return self;
@@ -180,6 +190,7 @@
   [_url release];
   [_smallURL release];
   [_thumbURL release];
+  [_caption release];
   [super dealloc];
 }
 

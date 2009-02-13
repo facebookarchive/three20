@@ -538,10 +538,19 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
 
 @implementation UIToolbar (T3Category)
 
+- (UIBarButtonItem*)itemWithTag:(NSInteger)tag {
+  for (UIBarButtonItem* button in self.items) {
+    if (button.tag == tag) {
+      return button;
+    }
+  }
+  return nil;  
+}
+
 - (void)replaceItemWithTag:(NSInteger)tag withItem:(UIBarButtonItem*)item {
   NSInteger index = 0;
   for (UIBarButtonItem* button in self.items) {
-    if (button.tag == 1) {
+    if (button.tag == tag) {
       NSMutableArray* newItems = [NSMutableArray arrayWithArray:self.items];
       [newItems replaceObjectAtIndex:index withObject:item];
       self.items = newItems;

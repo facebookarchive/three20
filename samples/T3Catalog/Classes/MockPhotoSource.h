@@ -36,8 +36,12 @@ typedef enum {
   NSString* _url;
   CGSize _size;
   NSInteger _index;
+  NSString* _caption;
 }
 
 - (id)initWithURL:(NSString*)url smallURL:(NSString*)smallURL size:(CGSize)size;
+
+- (id)initWithURL:(NSString*)url smallURL:(NSString*)smallURL size:(CGSize)size
+  caption:(NSString*)caption;
 
 @end

@@ -33,7 +33,8 @@
     [[[MockPhoto alloc]
       initWithURL:@"http://farm4.static.flickr.com/3444/3223645618_13fe36887a_o.jpg"
       smallURL:@"http://farm4.static.flickr.com/3444/3223645618_f5e2fa7fea_t.jpg"
-      size:CGSizeMake(320, 480)] autorelease],
+      size:CGSizeMake(320, 480)
+      caption:@"These are the wood tiles that we had installed after the accident."] autorelease],
 
     // Causes album to be loaded
     [NSNull null],
@@ -46,7 +47,8 @@
     [[[MockPhoto alloc]
       initWithURL:@"http://farm2.static.flickr.com/1124/3164979509_bcfdd72123.jpg?v=0"
       smallURL:@"http://farm2.static.flickr.com/1124/3164979509_bcfdd72123_t.jpg"
-      size:CGSizeMake(320, 480)] autorelease],
+      size:CGSizeMake(320, 480)
+      caption:@"A hike."] autorelease],
 
     [[[MockPhoto alloc]
       initWithURL:@"http://farm4.static.flickr.com/3106/3203111597_d849ef615b.jpg?v=0"

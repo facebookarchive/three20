@@ -86,6 +86,11 @@ typedef enum {
 @property(nonatomic) NSInteger index;
 
 /**
+ * The caption of the photo.
+ */
+@property(nonatomic,copy) NSString* caption;
+
+/**
  * Gets the url of one of the differently sized versions of the photo.
  */
 - (NSString*)urlForVersion:(T3PhotoVersion)version;

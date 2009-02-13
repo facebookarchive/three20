@@ -8,12 +8,15 @@
   id <T3Photo> _photo;
   UIActivityIndicatorView* _statusSpinner;
   UILabel* _statusLabel;
+  UILabel* _captionLabel;
   T3PhotoVersion _photoVersion;
   BOOL _extrasHidden;
+  BOOL _captionHidden;
 }
 
 @property(nonatomic,retain) id<T3Photo> photo;
 @property(nonatomic) BOOL extrasHidden;
+@property(nonatomic) BOOL captionHidden;
 
 - (BOOL)loadPreview:(BOOL)fromNetwork;
 - (void)loadImage;

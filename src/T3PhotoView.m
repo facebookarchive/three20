@@ -5,21 +5,27 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-static const CGFloat T3PhotoViewPadding = 20;
+static const CGFloat kPadding = 20;
+static const CGFloat kMarginBottom = 15;
+  
+static const CGFloat kCaptionWidth = 230;
+static const CGFloat kMaxCaptionHeight = 100;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation T3PhotoView
 
-@synthesize photo = _photo, extrasHidden = _extrasHidden;
+@synthesize photo = _photo, extrasHidden = _extrasHidden, captionHidden = _captionHidden;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _photo = nil;
     _statusSpinner = nil;
     _statusLabel = nil;
+    _captionLabel = nil;
     _photoVersion = T3PhotoVersionNone;
     _extrasHidden = NO;
+    _captionHidden = NO;
     
     self.delegate = self;
     self.clipsToBounds = NO;
@@ -32,6 +38,7 @@ static const CGFloat T3PhotoViewPadding = 20;
   [_photo release];
   [_statusSpinner release];
   [_statusLabel release];
+  [_captionLabel release];
   [super dealloc];
 }
 
@@ -48,6 +55,26 @@ static const CGFloat T3PhotoViewPadding = 20;
     }
   }
   return NO;
+}
+
+- (void)showCaption:(NSString*)caption {
+  if (caption) {
+    if (!_captionLabel) {
+      _captionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+      _captionLabel.opaque = NO;
+      _captionLabel.textColor = [UIColor whiteColor];
+      _captionLabel.font = [UIFont boldSystemFontOfSize:13.0];
+      _captionLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.9];
+      _captionLabel.shadowOffset = CGSizeMake(1, 1);
+      _captionLabel.backgroundColor = [UIColor clearColor];
+      _captionLabel.lineBreakMode = UILineBreakModeWordWrap;
+      _captionLabel.textAlignment = UITextAlignmentCenter;
+      _captionLabel.numberOfLines = 6;
+      [self addSubview:_captionLabel];
+    }
+  }
+
+  _captionLabel.text = caption;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,16 +97,21 @@ static const CGFloat T3PhotoViewPadding = 20;
 - (void)layoutSubviews {
   CGRect screenBounds = T3ScreenBounds();
   CGFloat height = self.orientationHeight;
+  CGFloat cx = self.bounds.origin.x + self.orientationWidth/2;
+  CGFloat cy = self.bounds.origin.y + self.orientationHeight/2;
 
+  BOOL landscape = self.width == self.orientationWidth;
+  CGFloat marginBottom = landscape ? TOOLBAR_HEIGHT : 0;
+  
   // Since the photo view is constrained to the size of the image, but we want to position
   // the status views relative to the screen, offset by the difference
   CGFloat screenOffset = -floor(screenBounds.size.height/2 - height/2);
   
   // Vertically center in the space between the bottom of the image and the bottom of the screen
   CGFloat imageBottom = screenBounds.size.height/2 + self.defaultImage.size.height/2;
-  CGFloat offsetBottom = (imageBottom + (screenBounds.size.height - imageBottom)/2);
+  CGFloat offsetBottom = imageBottom + (screenBounds.size.height - (imageBottom + marginBottom))/2;
   
-  _statusLabel.frame = CGRectMake(0, 0, self.width - T3PhotoViewPadding, 0);
+  _statusLabel.frame = CGRectMake(0, 0, self.width - kPadding, 0);
   [_statusLabel sizeToFit];
   _statusLabel.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width/2,
     screenOffset + self.bounds.origin.y + offsetBottom);
@@ -87,6 +119,16 @@ static const CGFloat T3PhotoViewPadding = 20;
   [_statusSpinner sizeToFit];
   _statusSpinner.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width/2,
     screenOffset + self.bounds.origin.y + offsetBottom);
+
+  CGSize captionSize = [_captionLabel.text sizeWithFont:_captionLabel.font
+    constrainedToSize:CGSizeMake(kCaptionWidth, CGFLOAT_MAX)];
+  CGFloat captionHeight = captionSize.height > kMaxCaptionHeight
+    ? kMaxCaptionHeight : captionSize.height;
+
+  _captionLabel.frame = CGRectMake(
+    floor(cx - captionSize.width/2),
+    floor(cy + screenBounds.size.height/2 - (captionHeight+kMarginBottom+marginBottom)),
+    captionSize.width, captionHeight);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,11 +167,13 @@ static const CGFloat T3PhotoViewPadding = 20;
     
     self.url = nil;
     
-    if (!_photo || _photo.photoSource.loading) {
-      [self showProgress:0];
-    } else {
-      [self showStatus:nil];
-    }
+    [self showCaption:photo.caption];
+  }
+  
+  if (!_photo || _photo.photoSource.loading) {
+    [self showProgress:0];
+  } else {
+    [self showStatus:nil];
   }
 }
 
@@ -137,6 +181,13 @@ static const CGFloat T3PhotoViewPadding = 20;
   _extrasHidden = extrasHidden;
    _statusSpinner.alpha = _extrasHidden ? 0 : 1;
    _statusLabel.alpha = _extrasHidden ? 0 : 1;
+   _captionLabel.alpha = _extrasHidden || _captionHidden ? 0 : 1;
+}
+
+
+- (void)setCaptionHidden:(BOOL)captionHidden {
+  _captionHidden = captionHidden;
+  _captionLabel.alpha = captionHidden ? 0 : 1;
 }
 
 - (BOOL)loadPreview:(BOOL)fromNetwork {
@@ -170,9 +221,11 @@ static const CGFloat T3PhotoViewPadding = 20;
     _statusSpinner.hidden = NO;
     [self showStatus:nil];
     [self setNeedsLayout];
+    _captionLabel.hidden = YES;
   } else {
     [_statusSpinner stopAnimating];
     _statusSpinner.hidden = YES;
+    _captionLabel.hidden = !!_statusLabel.text;
   }
 }
 
@@ -189,13 +242,16 @@ static const CGFloat T3PhotoViewPadding = 20;
       _statusLabel.numberOfLines = 0;
       [self addSubview:_statusLabel];
     }
-    _statusLabel.text = text;
     _statusLabel.hidden = NO;
     [self showProgress:-1];
     [self setNeedsLayout];
+    _captionLabel.hidden = YES;
   } else {
     _statusLabel.hidden = YES;
+    _captionLabel.hidden = _statusSpinner.isAnimating;
   }
+
+  _statusLabel.text = text;
 }
 
 @end

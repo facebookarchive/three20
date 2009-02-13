@@ -133,6 +133,8 @@ static const NSTimeInterval kSlideshowInterval = 2;
   NSDictionary* photoViews = _scrollView.visiblePages;
   for (NSNumber* key in photoViews.keyEnumerator) {
     T3PhotoView* photoView = [photoViews objectForKey:key];
+    [photoView showProgress:-1];
+
     id<T3Photo> photo = [_photoSource photoAtIndex:key.intValue];
     [self showPhoto:photo inView:photoView];
   }
@@ -142,7 +144,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
   NSDictionary* photoViews = _scrollView.visiblePages;
   for (NSNumber* key in photoViews.keyEnumerator) {
     T3PhotoView* photoView = [photoViews objectForKey:key];
-    [photoView showProgress:-1];
+    if (!photoView.loading) {
+      [photoView showProgress:-1];
+    }
   }
 }
 
@@ -239,12 +243,16 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)nextAction {
   [self pauseAction];
-  _scrollView.centerPageIndex = _centerPhotoIndex+1;
+  if (_centerPhotoIndex < _photoSource.numberOfPhotos-1) {
+    _scrollView.centerPageIndex = _centerPhotoIndex+1;
+  }
 }
 
 - (void)previousAction {
   [self pauseAction];
-  _scrollView.centerPageIndex = _centerPhotoIndex-1;
+  if (_centerPhotoIndex > 0) {
+    _scrollView.centerPageIndex = _centerPhotoIndex-1;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -318,6 +326,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
     [UIView setAnimationDuration:0.3];
   }
 
+  for (T3PhotoView* photoView in [_scrollView.visiblePages objectEnumerator]) {
+    photoView.captionHidden = !show;
+  }
+  
   _toolbar.alpha = show ? 1 : 0;
   
   if (animated) {
@@ -371,9 +383,18 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)updateView {
   if (![self.previousViewController isKindOfClass:[T3ThumbsViewController class]]) {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-      initWithTitle:NSLocalizedString(@"See All", @"See all photo thumbnails")
-      style:UIBarButtonItemStyleBordered target:self action:@selector(showThumbnails)];
+    UIBarButtonItem* playButton = [_toolbar itemWithTag:1];
+    playButton.enabled = _photoSource.numberOfPhotos > 1;
+    _previousButton.enabled = _centerPhotoIndex > 0;
+    _nextButton.enabled = _centerPhotoIndex < _photoSource.numberOfPhotos-1;
+
+    if (_photoSource.numberOfPhotos > 1) {
+      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+        initWithTitle:NSLocalizedString(@"See All", @"See all photo thumbnails")
+        style:UIBarButtonItemStyleBordered target:self action:@selector(showThumbnails)];
+    } else {
+      self.navigationItem.rightBarButtonItem = nil;
+    }
   } else {
     self.navigationItem.rightBarButtonItem = nil;
   }
@@ -449,6 +470,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   if (_centerPhotoIndex >= _photoSource.numberOfPhotos) {
     [self moveToPhotoAtIndex:_photoSource.numberOfPhotos - 1 withDelay:NO];
     [_scrollView reloadData];
+    [self resetVisiblePhotoViews];
   } else {
     [self refreshVisiblePhotoViews];
   }
@@ -534,6 +556,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   if (!photoView) {
     photoView = [self createPhotoView];
     photoView.defaultImage = _defaultImage;
+    photoView.captionHidden = _toolbar.alpha == 0;
   }
 
   id<T3Photo> photo = [_photoSource photoAtIndex:pageIndex];
