@@ -187,6 +187,12 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
 }
 
+- (void)showCaptions:(BOOL)show {
+  for (T3PhotoView* photoView in [_scrollView.visiblePages objectEnumerator]) {
+    photoView.captionHidden = !show;
+  }
+}
+
 - (void)showThumbnails {
   if (!_thumbsController) {
     _thumbsController = [[self createThumbsViewController] retain];
@@ -317,7 +323,6 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [self restoreNavigationBarStyle];
 }
 
-
 - (void)showBars:(BOOL)show animated:(BOOL)animated {
   [super showBars:show animated:animated];
   
@@ -326,9 +331,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     [UIView setAnimationDuration:0.3];
   }
 
-  for (T3PhotoView* photoView in [_scrollView.visiblePages objectEnumerator]) {
-    photoView.captionHidden = !show;
-  }
+  [self showCaptions:show];
   
   _toolbar.alpha = show ? 1 : 0;
   
@@ -509,6 +512,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)scrollViewWillBeginDragging:(T3ScrollView *)scrollView {
   [self cancelImageLoadTimer];
+  [self showCaptions:NO];
   [self showBars:NO animated:YES];
 }
 

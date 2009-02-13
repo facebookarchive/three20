@@ -16,6 +16,7 @@
 
   NSMutableArray* _pages;
   NSMutableArray* _pageQueue;
+  NSInteger _maxPages;
   NSInteger _pageArrayIndex;
   NSTimer* _tapTimer;
   NSTimer* _animationTimer;

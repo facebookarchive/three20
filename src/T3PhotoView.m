@@ -184,7 +184,6 @@ static const CGFloat kMaxCaptionHeight = 100;
    _captionLabel.alpha = _extrasHidden || _captionHidden ? 0 : 1;
 }
 
-
 - (void)setCaptionHidden:(BOOL)captionHidden {
   _captionHidden = captionHidden;
   _captionLabel.alpha = captionHidden ? 0 : 1;
