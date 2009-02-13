@@ -6,6 +6,7 @@
 #import "TextTest1Controller.h"
 #import "YouTubeTestController.h"
 #import "ScrollViewTestController.h"
+#import "TabBarTestController.h"
 
 @implementation RootViewController
 
@@ -34,10 +35,11 @@
     [[NSArray alloc] initWithObjects:
       @"YouTube Player", [YouTubeTestController class],
       @"Scroll View", [ScrollViewTestController class],
+      @"Tab Bars", [TabBarTestController class],
       nil],
     nil];
 
-  [self pushControllerAtRow:[NSIndexPath indexPathForRow:2 inSection:0] animated:NO];
+  [self pushControllerAtRow:[NSIndexPath indexPathForRow:2 inSection:2] animated:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

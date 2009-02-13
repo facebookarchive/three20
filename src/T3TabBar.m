@@ -14,10 +14,6 @@ static CGFloat kIconSpacing = 3;
 
 static CGFloat kBadgeHPadding = 8;
 
-static UIImage* selectedTabImage = nil;
-static UIImage* selectedLightImage = nil;
-static UIImage* selectedButtonImage = nil;
-
 static CGFloat kGradient1[] = {RGBA(233, 238, 246, 1), RGBA(229, 235, 243, 1), 1};
 
 static CGFloat kReflectionBottom[] = {RGBA(228, 230, 235, 1)};
@@ -35,7 +31,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 @implementation T3TabBar
 
 @synthesize delegate = _delegate, selectedTabIndex = _selectedTabIndex, tabItems = _tabItems,
-  tabViews = _tabViews, textColor = _textColor;
+  tabViews = _tabViews, textColor = _textColor, tabImage = _tabImage;
 
 - (id)initWithFrame:(CGRect)frame style:(T3TabBarStyle)style {
   if (self = [super initWithFrame:frame]) {
@@ -43,24 +39,41 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
     _selectedTabIndex = NSIntegerMax;
     _tabItems = nil;
     _tabViews = [[NSMutableArray alloc] init];
-    _trackingTab = nil;
-    _textColor = [[UIColor blackColor] retain];
+    _textColor = [RGBCOLOR(87, 107, 149) retain];
+    
+    self.contentMode = UIViewContentModeLeft;
     
     if (_style == T3TabBarStyleButtons) {
+      self.tabImage = [[UIImage imageNamed:@"t3images/tabButton.png"]
+        stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+            
       _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-      _scrollView.scrollEnabled = NO;
+      _scrollView.scrollEnabled = YES;
       _scrollView.scrollsToTop = NO;
+      _scrollView.showsVerticalScrollIndicator = NO;
+      _scrollView.showsHorizontalScrollIndicator = NO;
       [self addSubview:_scrollView];
 
       _overflowLeft = [[UIImageView alloc] initWithImage:
-        [UIImage imageNamed:@"images/overflowLeft.png"]];
+        [UIImage imageNamed:@"t3images/overflowLeft.png"]];
       _overflowRight.hidden = YES;
       [self addSubview:_overflowLeft];
       _overflowRight = [[UIImageView alloc] initWithImage:
-        [UIImage imageNamed:@"images/overflowRight.png"]];
+        [UIImage imageNamed:@"t3images/overflowRight.png"]];
       _overflowRight.hidden = YES;
       [self addSubview:_overflowRight];
     } else {
+      if (_style == T3TabBarStyleLight) {
+        self.tabImage = [[UIImage imageNamed:@"t3images/lightTab.png"]
+          stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+
+        self.backgroundColor = RGBCOLOR(237, 239, 244);
+      } else if (_style == T3TabBarStyleDark) {
+        self.tabImage = [[UIImage imageNamed:@"t3images/darkTab.png"]
+                  stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+
+        self.backgroundColor = RGBCOLOR(110, 132, 162);
+      }
       _scrollView = nil;
       _overflowLeft = nil;
       _overflowRight = nil;
@@ -333,41 +346,23 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.contentMode = UIViewContentModeCenter;
     _titleLabel.shadowOffset = CGSizeMake(0, -1);
+
+    _tabImage.image = tabBar.tabImage;
     
     if (_style == T3TabBarStyleDark) {
-      if (!selectedTabImage) {
-        selectedTabImage = [[[UIImage imageNamed:@"images/darkTab.png"]
-          stretchableImageWithLeftCapWidth:5 topCapHeight:0] retain];
-      }
-
-      _tabImage.image = selectedTabImage;
 
       _titleLabel.textAlignment = UITextAlignmentCenter;
       _titleLabel.font = [UIFont boldSystemFontOfSize:15];
       _titleLabel.textColor = RGBCOLOR(223, 229, 237);
       _titleLabel.highlightedTextColor = [UIColor colorWithWhite:0.1 alpha:1];
-      _titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];
+      _titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.4];
     } else if (_style == T3TabBarStyleLight) {
-      if (!selectedLightImage) {
-        selectedLightImage = [[[UIImage imageNamed:@"images/lightTab.png"]
-          stretchableImageWithLeftCapWidth:5 topCapHeight:0] retain];
-      }
-
-      _tabImage.image = selectedLightImage;
-
       _titleLabel.textAlignment = UITextAlignmentCenter;
       _titleLabel.font = [UIFont boldSystemFontOfSize:17];
       _titleLabel.textColor = tabBar.textColor;
       _titleLabel.highlightedTextColor = [UIColor colorWithWhite:0.1 alpha:1];
       _titleLabel.shadowColor = [UIColor whiteColor];
     } else if (_style == T3TabBarStyleButtons) {
-      if (!selectedButtonImage) {
-        selectedButtonImage = [[[UIImage imageNamed:@"images/feedButton.png"]
-          stretchableImageWithLeftCapWidth:12 topCapHeight:0] retain];
-      }
-
-      _tabImage.image = selectedButtonImage;
-
       _titleLabel.textAlignment = UITextAlignmentLeft;
       _titleLabel.font = [UIFont boldSystemFontOfSize:13];
       _titleLabel.textColor = tabBar.textColor;
@@ -396,7 +391,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 - (void)updateBadgeNumber {
   if (!_badgeImage && _tabItem.badgeNumber) {
     _badgeImage = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _badgeImage.image = [[UIImage imageNamed:@"images/badge.png"]
+    _badgeImage.image = [[UIImage imageNamed:@"t3images/badge.png"]
       stretchableImageWithLeftCapWidth:12 topCapHeight:15];
     [self addSubview:_badgeImage];
     

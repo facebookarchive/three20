@@ -19,8 +19,8 @@ typedef enum {
   UIScrollView* _scrollView;
   NSArray* _tabItems;
   NSMutableArray* _tabViews;
-  T3TabView* _trackingTab;
   UIColor* _textColor;
+  UIImage* _tabImage;
 }
 
 @property(nonatomic,assign) id delegate;
@@ -31,6 +31,7 @@ typedef enum {
 @property(nonatomic) NSInteger selectedTabIndex;
 @property(nonatomic) CGPoint contentOffset;
 @property(nonatomic,retain) UIColor* textColor;
+@property(nonatomic,retain) UIImage* tabImage;
 
 - (id)initWithFrame:(CGRect)frame style:(T3TabBarStyle)style;
 
