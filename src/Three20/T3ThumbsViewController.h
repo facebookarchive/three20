@@ -6,7 +6,7 @@
 @class T3PhotoViewController;
 
 @interface T3ThumbsViewController : T3TableViewController
-    <T3PhotoSourceDelegate, T3ThumbsTableViewCellDelegate> {
+    <T3PhotoSourceDelegate, T3ThumbsTableViewCellDelegate, UITableViewDataSource> {
   id<T3ThumbsViewControllerDelegate> _delegate;
   id<T3PhotoSource> _photoSource;
 }

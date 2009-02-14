@@ -3,8 +3,8 @@
 #import "Three20/T3URLRequest.h"
 #import "Three20/T3UnclippedView.h"
 #import "Three20/T3ErrorView.h"
-#import "Three20/T3TableViewCells.h"
-#import "Three20/T3TableItems.h"
+#import "Three20/T3TableFieldCell.h"
+#import "Three20/T3TableField.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -207,10 +207,10 @@ static NSInteger kPageSize = 60;
   static NSString* moreCellId = @"More";
 
   if (indexPath.row == [_tableView numberOfRowsInSection:0]-1 && self.hasMoreToLoad) {
-    T3ActivityTableViewCell* cell =
-      (T3ActivityTableViewCell*)[_tableView dequeueReusableCellWithIdentifier:moreCellId];
+    T3ActivityTableFieldCell* cell =
+      (T3ActivityTableFieldCell*)[_tableView dequeueReusableCellWithIdentifier:moreCellId];
     if (cell == nil) {
-      cell = [[[T3ActivityTableViewCell alloc] initWithFrame:CGRectZero style:0
+      cell = [[[T3ActivityTableFieldCell alloc] initWithFrame:CGRectZero style:0
         reuseIdentifier:moreCellId] autorelease];
     }
     
@@ -219,7 +219,7 @@ static NSInteger kPageSize = 60;
       NSLocalizedString(@"Showing %d of %d Photos", @""), _photoSource.maxPhotoIndex+1,
       _photoSource.numberOfPhotos];
 
-    cell.object = [[[T3MoreLinkTableItem alloc] initWithTitle:title subtitle:subtitle] autorelease];
+    cell.object = [[[T3MoreButtonTableField alloc] initWithText:title subtitle:subtitle] autorelease];
    
     return cell;
 	} else {
@@ -244,8 +244,8 @@ static NSInteger kPageSize = 60;
   if (indexPath.row == [_tableView numberOfRowsInSection:0]-1) {
     [self loadNextPage:NO];
 
-    T3ActivityTableViewCell* cell
-      = (T3ActivityTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    T3ActivityTableFieldCell* cell
+      = (T3ActivityTableFieldCell*)[tableView cellForRowAtIndexPath:indexPath];
     cell.animating = YES;
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
   }

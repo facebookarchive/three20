@@ -87,11 +87,11 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)connect {
+- (void)connectToURL:(NSURL*)url {
   T3LOG(@"Connecting to %@", _url);
   T3NetworkRequestStarted();
 
-  NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:_url]
+  NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url
                                     cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                     timeoutInterval:kTimeout];
   [urlRequest setValue:_queue.userAgent forHTTPHeaderField:@"User-Agent"];
@@ -166,6 +166,23 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
   }
 }
 
+- (void)loadFromBundle:(NSURL*)url {
+  NSString* urlPath = url.path.length
+    ? [NSString stringWithFormat:@"%@/%@", url.host, url.path]
+    : url.host;
+  NSString* path = [[NSBundle mainBundle] pathForResource:urlPath ofType:nil];
+
+  NSFileManager* fm = [NSFileManager defaultManager];
+  if (path && [fm fileExistsAtPath:path]) {
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    [_queue performSelector:@selector(loader:loadedData:) withObject:self withObject:data];
+  } else {
+    NSError* error = [NSError errorWithDomain:NSCocoaErrorDomain
+      code:NSFileReadNoSuchFileError userInfo:nil];
+    [_queue performSelector:@selector(loader:didFailWithError:) withObject:self withObject:error];
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // NSURLConnectionDelegate
  
@@ -230,7 +247,7 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
     // If there is a network error then we will wait and retry a few times just in case
     // it was just a temporary blip in connectivity
     --_retriesLeft;
-    [self connect];
+    [self load];
   } else {
     [_queue performSelector:@selector(loader:didFailWithError:) withObject:self withObject:error];
   }
@@ -255,7 +272,12 @@ static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 
 
 - (void)load {
   if (!_connection) {
-    [self connect];
+    NSURL* url = [NSURL URLWithString:_url];
+    if ([url.scheme isEqualToString:@"bundle"]) {
+      [self loadFromBundle:url];
+    } else {
+      [self connectToURL:url];
+    }
   }
 }
 

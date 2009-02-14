@@ -1,83 +1,84 @@
 #import "RootViewController.h"
-#import "ImageTest1Controller.h"
-#import "ImageTest2Controller.h"
 #import "PhotoTest1Controller.h"
 #import "PhotoTest2Controller.h"
-#import "TextTest1Controller.h"
+#import "ImageTest1Controller.h"
+#import "ImageTest2Controller.h"
 #import "YouTubeTestController.h"
-#import "ScrollViewTestController.h"
+#import "TableFieldTestController.h"
 #import "TabBarTestController.h"
+#import "TextTest1Controller.h"
+#import "ScrollViewTestController.h"
 
 @implementation RootViewController
 
-- (void)pushControllerAtRow:(NSIndexPath*)indexPath animated:(BOOL)animated {
-  NSArray* section = [controllers objectAtIndex:indexPath.section*2+1];
-  Class controllerClass = [section objectAtIndex:indexPath.row*2+1];
-  UIViewController* controller = [[[controllerClass alloc] init] autorelease];
-  controller.title = [section objectAtIndex:indexPath.row*2];
-  [self.navigationController pushViewController:controller animated:animated];  
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
+
+- (void)loadView {
+  [super loadView];
+
+  self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds
+    style:UITableViewStyleGrouped];
+	self.tableView.autoresizingMask = 
+    UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  [self.view addSubview:self.tableView];
 }
 
 - (void)viewDidLoad {
-  controllers = [[NSArray alloc] initWithObjects:
-    @"Images",
-    [[NSArray alloc] initWithObjects:
-      @"Simple Image", [ImageTest1Controller class],
-      @"Images in Table", [ImageTest2Controller class],
-      @"Photo Browser", [PhotoTest1Controller class],
-      @"Photo Thumbnails", [PhotoTest2Controller class],
-      nil],
-    @"Activity",
-    [[NSArray alloc] initWithObjects:      
-      @"Shiny Label", [TextTest1Controller class],
-      nil],
-    @"Media",
-    [[NSArray alloc] initWithObjects:
-      @"YouTube Player", [YouTubeTestController class],
-      @"Scroll View", [ScrollViewTestController class],
-      @"Tab Bars", [TabBarTestController class],
-      nil],
+  T3NavigationCenter* nav = [T3NavigationCenter defaultCenter];
+  nav.mainViewController = self.navigationController;
+  nav.delegate = self;
+  nav.urlSchemes = [NSArray arrayWithObject:@"t3"];
+  nav.supportsShakeToReload = YES;
+  
+  [nav addController:[PhotoTest1Controller class] forView:@"photoTest1"];
+  [nav addController:[PhotoTest2Controller class] forView:@"photoTest2"];
+  [nav addController:[ImageTest1Controller class] forView:@"imageTest1"];
+  [nav addController:[ImageTest2Controller class] forView:@"imageTest2"];
+  [nav addController:[YouTubeTestController class] forView:@"youTubeTest"];
+  [nav addController:[TableFieldTestController class] forView:@"tableFieldTest"];
+  [nav addController:[TabBarTestController class] forView:@"tabBarTest"];
+  [nav addController:[TextTest1Controller class] forView:@"textTest1"];
+  [nav addController:[ScrollViewTestController class] forView:@"scrollViewTest"];
+  
+  self.dataSource = [T3SectionedDataSource dataSourceWithObjects:
+    @"Photos",
+    [[[T3TableField alloc] initWithText:@"Photo Browser"
+      href:@"t3://photoTest1"] autorelease],
+    [[[T3TableField alloc] initWithText:@"Photo Thumbnails"
+      href:@"t3://photoTest2"] autorelease],
+
+    @"Web Media",
+    [[[T3TableField alloc] initWithText:@"Web Image"
+      href:@"t3://imageTest1"] autorelease],
+    [[[T3TableField alloc] initWithText:@"Web Images in Table"
+      href:@"t3://imageTest2"] autorelease],
+    [[[T3TableField alloc] initWithText:@"YouTube Player"
+      href:@"t3://youTubeTest"] autorelease],
+
+    @"Controls",
+    [[[T3TableField alloc] initWithText:@"Table Fields"
+      href:@"t3://tableFieldTest"] autorelease],
+    [[[T3TableField alloc] initWithText:@"Tab Bars"
+      href:@"t3://tabBarTest"] autorelease],
+    [[[T3TableField alloc] initWithText:@"Shiny Label"
+      href:@"t3://textTest1"] autorelease],
+    [[[T3TableField alloc] initWithText:@"Scroll View"
+      href:@"t3://scrollViewTest"] autorelease],
     nil];
 
-  [self pushControllerAtRow:[NSIndexPath indexPathForRow:2 inSection:2] animated:NO];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return controllers.count/2;
-}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// T3NavigationDelegate
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)aSection {
-  NSArray* section = [controllers objectAtIndex:aSection*2+1];
-	return section.count/2;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  return [controllers objectAtIndex:section*2];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *cellId = @"cell";
-  
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellId] autorelease];
-	}
-	
-  NSArray* section = [controllers objectAtIndex:indexPath.section*2+1];
-  cell.text = [section objectAtIndex:indexPath.row*2];
-  
-	return cell;
-}
-
- - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [self pushControllerAtRow:indexPath animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-  
-  // Empty out the image cache to free up memory
-  [[T3URLCache sharedCache] removeAll:NO];
+- (void)willNavigateToObject:(id<T3Object>)object inView:(NSString*)viewType
+    withController:(UIViewController*)viewController {
+  NSIndexPath* indexPath = self.tableView.indexPathForSelectedRow;
+  T3LinkTableField* field = [self.dataSource objectForRowAtIndexPath:indexPath];
+  viewController.title = field.text;
 }
 
 @end

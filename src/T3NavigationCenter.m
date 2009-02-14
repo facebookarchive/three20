@@ -204,13 +204,17 @@ static T3NavigationCenter* gDefaultCenter = nil;
   }
 }
 
-- (void)addController:(Class)cls name:(NSString*)name rule:(T3NavigationRule)rule {
-  T3NavigationEntry* entry = [[[T3NavigationEntry alloc] initWithClass:cls rule:rule] autorelease];
-  [_viewLoaders setObject:entry forKey:name];
+- (void)addController:(Class)cls forView:(NSString*)viewType {
+  [self addController:cls forView:viewType rule:T3NavigationCreate];
 }
 
-- (void)removeController:(NSString*)name {
-  [_viewLoaders removeObjectForKey:name];
+- (void)addController:(Class)cls forView:(NSString*)viewType rule:(T3NavigationRule)rule {
+  T3NavigationEntry* entry = [[[T3NavigationEntry alloc] initWithClass:cls rule:rule] autorelease];
+  [_viewLoaders setObject:entry forKey:viewType];
+}
+
+- (void)removeController:(NSString*)viewType {
+  [_viewLoaders removeObjectForKey:viewType];
 }
 
 - (void)addObjectLoader:(Class)cls name:(NSString*)name {
@@ -358,20 +362,24 @@ static T3NavigationCenter* gDefaultCenter = nil;
 - (T3ViewController*)displayURL:(NSString*)u withState:(NSDictionary*)state
     animated:(BOOL)animated {
   NSURL* url = [NSURL URLWithString:u];
-  if (![url.scheme isEqualToString:@"fb"]) {
+  if ([_urlSchemes indexOfObject:url.scheme] == NSNotFound) {
     [[UIApplication sharedApplication] openURL:url];
   } else if (_viewLoaders) {
     id<T3Object> object = [self locateObject:url];
-    if (!object)
-      return nil;
-    
-    NSString* viewType = url.query ? url.query : url.host;
+    NSString* viewType = object && url.query ? url.query : url.host;
     if (![self dispatchLink:object inView:viewType animated:animated]) {
       return nil;
     }
     
-    UINavigationController* navController
-      = [_delegate getNavigationControllerForObject:object view:viewType];
+    UINavigationController* navController = nil;
+    
+    if ([_delegate respondsToSelector:@selector(navigationControllerForObject:inView:)]) {
+      navController = [_delegate navigationControllerForObject:object inView:viewType];
+    }
+    
+    if (!navController) {
+      navController = self.topNavigationController;
+    }
     
     T3NavigationEntry* entry = [_viewLoaders objectForKey:viewType];
     if (!entry)
@@ -397,9 +405,15 @@ static T3NavigationCenter* gDefaultCenter = nil;
     if (!viewController) {
       viewController = [[[entry.cls alloc] init] autorelease];
     }
-
-    [viewController showObject:object inView:viewType withState:state];
-
+    
+    if (object) {
+      [viewController showObject:object inView:viewType withState:state];
+    }
+    
+    if ([_delegate respondsToSelector:@selector(willNavigateToObject:inView:withController:)]) {
+      [_delegate willNavigateToObject:object inView:viewType withController:viewController];
+    }
+    
     if (entry.rule == T3NavigationModal) {
       [navController presentModalViewController:viewController animated:animated];
     } else if (entry.rule == T3NavigationCommand) {
@@ -423,6 +437,10 @@ static T3NavigationCenter* gDefaultCenter = nil;
       } else {
         [navController popToViewController:viewController animated:animated];
       }
+    }
+
+    if ([_delegate respondsToSelector:@selector(didNavigateToObject:inView:withController:)]) {
+      [_delegate didNavigateToObject:object inView:viewType withController:viewController];
     }
     
     return viewController;

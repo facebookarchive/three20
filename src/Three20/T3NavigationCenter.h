@@ -43,7 +43,8 @@ typedef enum {
 
 + (T3NavigationCenter*)defaultCenter;
 
-- (void)addController:(Class)cls name:(NSString*)name rule:(T3NavigationRule)rule;
+- (void)addController:(Class)cls forView:(NSString*)viewType;
+- (void)addController:(Class)cls forView:(NSString*)viewType rule:(T3NavigationRule)rule;
 - (void)removeController:(NSString*)name;
 
 - (void)addObjectLoader:(Class)cls name:(NSString*)name;
@@ -77,7 +78,15 @@ typedef enum {
 
 @protocol T3NavigationDelegate <NSObject>
 
-- (UINavigationController*)getNavigationControllerForObject:(id<T3Object>)object
-  view:(NSString*)viewType;
+@optional
 
+- (UINavigationController*)navigationControllerForObject:(id<T3Object>)object
+  inView:(NSString*)viewType;
+
+- (void)willNavigateToObject:(id<T3Object>)object inView:(NSString*)viewType
+  withController:(UIViewController*)viewController;
+
+- (void)didNavigateToObject:(id<T3Object>)object inView:(NSString*)viewType
+  withController:(UIViewController*)viewController;
+  
 @end

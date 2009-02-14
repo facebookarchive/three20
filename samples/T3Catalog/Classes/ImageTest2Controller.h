@@ -1,6 +1,6 @@
 #import <Three20/Three20.h>
 
-@interface ImageTest2Controller : UITableViewController {
+@interface ImageTest2Controller : T3TableViewController <UITableViewDataSource> {
   NSArray* imageURLs;
 }
 

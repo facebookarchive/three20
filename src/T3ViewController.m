@@ -123,8 +123,8 @@
 // UIViewController
 
 - (void)loadView {
-  UIView* contentView = [[[UIView alloc]
-    initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+  CGRect frame = [UIScreen mainScreen].applicationFrame;
+  UIView* contentView = [[[UIView alloc] initWithFrame:frame] autorelease];
 	contentView.autoresizesSubviews = YES;
 	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   contentView.backgroundColor = [UIColor whiteColor];

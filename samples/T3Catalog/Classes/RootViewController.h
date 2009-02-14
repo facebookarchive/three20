@@ -1,6 +1,6 @@
 #import <Three20/Three20.h>
 
-@interface RootViewController : UITableViewController {
+@interface RootViewController : T3TableViewController <T3NavigationDelegate> {
   NSArray* controllers;
 }
 

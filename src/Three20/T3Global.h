@@ -170,6 +170,8 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
  */
 - (void)simulateTapAtPoint:(CGPoint)location;
 
+- (void)sizeToFitKeyboard:(BOOL)keyboard animated:(BOOL)animated;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -180,6 +182,16 @@ UIImage* T3TransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
  * The view that contains the "index" along the right side of the table.
  */
 @property(nonatomic,readonly) UIView* indexView;
+
+- (void)touchRowAtIndexPath:(NSIndexPath*)indexPath animated:(BOOL)animated;
+
+/**
+ * Expand or contract the table to fit the keyboard.
+ *
+ * @param indexPath The index path to make visible after the expansion.
+ */
+- (void)sizeToFitKeyboard:(BOOL)keyboard atIndexPath:(NSIndexPath*)indexPath
+    animated:(BOOL)animated;
 
 @end
 

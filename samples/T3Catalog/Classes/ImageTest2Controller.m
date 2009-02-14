@@ -4,30 +4,46 @@
 
 @implementation ImageTest2Controller
 
-- (void)viewDidLoad {
-  imageURLs = [[NSArray alloc] initWithObjects:
-    @"http://ecx.images-amazon.com/images/I/41WZ2SA9MXL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/61kJCUXbJcL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/51ew2Gt8XfL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/51HNJzq9L6L._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/61kf7tWTUoL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/51PrwPHighL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/617vLnxZ9jL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/4102AVDXS4L._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/41WT0H8RHHL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/511KZDNW1GL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/51ltArHi27L._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/415NG3SBHDL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/31TIYo%2BzR5L._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/519sCNd1qrL._SL160_AA115_.jpg",
-    @"http://ecx.images-amazon.com/images/I/51pLRnH5RKL._SL160_AA115_.jpg",
-    nil
-  ];
+- (id)init {
+  if (self = [super init]) {
+    imageURLs = [[NSArray alloc] initWithObjects:
+      @"http://ecx.images-amazon.com/images/I/41WZ2SA9MXL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/61kJCUXbJcL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/51ew2Gt8XfL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/51HNJzq9L6L._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/61kf7tWTUoL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/51PrwPHighL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/617vLnxZ9jL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/4102AVDXS4L._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/41WT0H8RHHL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/511KZDNW1GL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/51ltArHi27L._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/415NG3SBHDL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/31TIYo%2BzR5L._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/519sCNd1qrL._SL160_AA115_.jpg",
+      @"http://ecx.images-amazon.com/images/I/51pLRnH5RKL._SL160_AA115_.jpg",
+      nil
+    ];
+  }
+  return self;
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-  [T3URLRequestQueue mainQueue].suspended = NO;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
+
+- (void)loadView {
+  [super loadView];
+
+  self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds
+    style:UITableViewStylePlain];
+	self.tableView.autoresizingMask = 
+    UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  self.tableView.dataSource = self;
+  [self.view addSubview:self.tableView];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
@@ -40,45 +56,19 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return 30;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	ImageTableViewCell* cell = (ImageTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"image"];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	ImageTableViewCell* cell =
+    (ImageTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"image"];
 	if (cell == nil) {
-		cell = [[[ImageTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"image"] autorelease];
+		cell = [[[ImageTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"image"]
+      autorelease];
 	}
 
   cell.imageURL = [imageURLs objectAtIndex:indexPath.row % imageURLs.count];
   cell.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
 	return cell;
-}
-
-- (void)dealloc {
-	[super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIScrollViewDelegate
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-  [T3URLRequestQueue mainQueue].suspended = YES;
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-  if (!decelerate) {
-    [T3URLRequestQueue mainQueue].suspended = NO;
-  }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  [T3URLRequestQueue mainQueue].suspended = NO;
-}
-
-- (BOOL)scrollViewWillScrollToTop:(UIScrollView *)scrollView {
-  [T3URLRequestQueue mainQueue].suspended = YES;
-  return YES;
-}
-
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
-  [T3URLRequestQueue mainQueue].suspended = NO;
 }
 
 @end
