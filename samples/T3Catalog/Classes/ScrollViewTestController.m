@@ -56,7 +56,7 @@
     pageView = [[[T3BackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     pageView.background = T3BackgroundRoundedRect;
     pageView.strokeRadius = 30;
-    pageView.strokeColor = [UIColor whiteColor];
+    pageView.strokeColor = [UIColor blueColor];
     pageView.fillColor2 = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
   }
 

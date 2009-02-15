@@ -1,17 +1,4 @@
-#import "Three20/T3Global.h"
-
-typedef enum {
-  T3BackgroundNone,
-  T3BackgroundGrayBar,
-  T3BackgroundInnerShadow,
-  T3BackgroundRoundedRect,
-  T3BackgroundPointedRect,
-  T3BackgroundRoundedMask,
-  T3BackgroundStrokeTop,
-  T3BackgroundStrokeRight,
-  T3BackgroundStrokeBottom,
-  T3BackgroundStrokeLeft
-} T3Background;
+#import "Three20/T3Appearance.h"
 
 /**
  * A decorational view that can painted using a variety of visual properties.
