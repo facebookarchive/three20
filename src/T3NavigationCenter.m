@@ -55,6 +55,15 @@ static T3NavigationCenter* gDefaultCenter = nil;
   return gDefaultCenter;
 }
 
++ (void)setDefaultCenter:(T3NavigationCenter*)center {
+  if (gDefaultCenter != center) {
+    [gDefaultCenter release];
+    gDefaultCenter = [center retain];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 - (id)init {
   if (self = [super init]) {
     _mainViewController = nil;

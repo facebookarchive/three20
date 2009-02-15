@@ -25,8 +25,8 @@
 		BE8A9C190F4143DA00FD8C43 /* T3URLRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8A9C180F4143DA00FD8C43 /* T3URLRequestQueue.h */; };
 		BE8AA1910F428A3700FD8C43 /* T3+UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8AA1900F428A3700FD8C43 /* T3+UIViewController.m */; };
 		BE8AA1930F428A4900FD8C43 /* T3+UIViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8AA1920F428A4900FD8C43 /* T3+UIViewController.h */; };
-		BECB1EC60F46C39F00AE5B52 /* T3Theme.h in Headers */ = {isa = PBXBuildFile; fileRef = BECB1EC50F46C39F00AE5B52 /* T3Theme.h */; };
-		BECB1EC80F46C3B000AE5B52 /* T3Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = BECB1EC70F46C3B000AE5B52 /* T3Theme.m */; };
+		BECB1EC60F46C39F00AE5B52 /* T3Appearance.h in Headers */ = {isa = PBXBuildFile; fileRef = BECB1EC50F46C39F00AE5B52 /* T3Appearance.h */; };
+		BECB1EC80F46C3B000AE5B52 /* T3Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = BECB1EC70F46C3B000AE5B52 /* T3Appearance.m */; };
 		BEF31F700F352E64000DE5D2 /* T3ActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F460F352E64000DE5D2 /* T3ActivityLabel.m */; };
 		BEF31F710F352E64000DE5D2 /* T3ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F470F352E64000DE5D2 /* T3ErrorView.m */; };
 		BEF31F720F352E64000DE5D2 /* T3Global.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F480F352E64000DE5D2 /* T3Global.m */; };
@@ -93,8 +93,8 @@
 		BE8A9C180F4143DA00FD8C43 /* T3URLRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3URLRequestQueue.h; path = Three20/T3URLRequestQueue.h; sourceTree = "<group>"; };
 		BE8AA1900F428A3700FD8C43 /* T3+UIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "T3+UIViewController.m"; sourceTree = "<group>"; };
 		BE8AA1920F428A4900FD8C43 /* T3+UIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "T3+UIViewController.h"; path = "Three20/T3+UIViewController.h"; sourceTree = "<group>"; };
-		BECB1EC50F46C39F00AE5B52 /* T3Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3Theme.h; path = Three20/T3Theme.h; sourceTree = "<group>"; };
-		BECB1EC70F46C3B000AE5B52 /* T3Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3Theme.m; sourceTree = "<group>"; };
+		BECB1EC50F46C39F00AE5B52 /* T3Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3Appearance.h; path = Three20/T3Appearance.h; sourceTree = "<group>"; };
+		BECB1EC70F46C3B000AE5B52 /* T3Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3Appearance.m; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF31F460F352E64000DE5D2 /* T3ActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ActivityLabel.m; sourceTree = "<group>"; };
 		BEF31F470F352E64000DE5D2 /* T3ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ErrorView.m; sourceTree = "<group>"; };
@@ -259,8 +259,8 @@
 				BEF31F5E0F352E64000DE5D2 /* T3Object.h */,
 				BE68F5C50F385ECB00655DBF /* T3NavigationCenter.h */,
 				BE68F5C30F385EBD00655DBF /* T3NavigationCenter.m */,
-				BECB1EC50F46C39F00AE5B52 /* T3Theme.h */,
-				BECB1EC70F46C3B000AE5B52 /* T3Theme.m */,
+				BECB1EC50F46C39F00AE5B52 /* T3Appearance.h */,
+				BECB1EC70F46C3B000AE5B52 /* T3Appearance.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -331,7 +331,7 @@
 				BE702EF10F43F6720028A119 /* T3DataSource.h in Headers */,
 				BE702EFB0F43F9DC0028A119 /* T3TableField.h in Headers */,
 				BE6E4A540F465243001CE9B4 /* T3TableViewCell.h in Headers */,
-				BECB1EC60F46C39F00AE5B52 /* T3Theme.h in Headers */,
+				BECB1EC60F46C39F00AE5B52 /* T3Appearance.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +404,7 @@
 				BE702EF30F43F6800028A119 /* T3DataSource.m in Sources */,
 				BE702EF90F43F9D20028A119 /* T3TableField.m in Sources */,
 				BE6E4A520F465237001CE9B4 /* T3TableViewCell.m in Sources */,
-				BECB1EC80F46C3B000AE5B52 /* T3Theme.m in Sources */,
+				BECB1EC80F46C3B000AE5B52 /* T3Appearance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

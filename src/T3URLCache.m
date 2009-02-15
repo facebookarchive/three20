@@ -9,6 +9,8 @@
 
 static NSString* kCacheDirPathName = @"Three20";
 
+static T3URLCache* gSharedCache = nil;
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation T3URLCache
@@ -17,11 +19,17 @@ static NSString* kCacheDirPathName = @"Three20";
   cachePath = _cachePath, maxPixelCount = _maxPixelCount, invalidationAge = _invalidationAge;
 
 + (T3URLCache*)sharedCache {
-  static T3URLCache* sharedCache = nil;
-  if (!sharedCache) {
-    sharedCache = [[T3URLCache alloc] init];
+  if (!gSharedCache) {
+    gSharedCache = [[T3URLCache alloc] init];
   }
-  return sharedCache;
+  return gSharedCache;
+}
+
++ (void)setSharedCache:(T3URLCache*)cache {
+  if (gSharedCache != cache) {
+    [gSharedCache release];
+    gSharedCache = [cache retain];
+  }
 }
 
 + (NSString*)defaultCachePath {

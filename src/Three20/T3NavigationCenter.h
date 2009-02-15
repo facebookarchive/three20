@@ -42,6 +42,7 @@ typedef enum {
 @property(nonatomic) BOOL supportsShakeToReload;
 
 + (T3NavigationCenter*)defaultCenter;
++ (void)setDefaultCenter:(T3NavigationCenter*)center;
 
 - (void)addController:(Class)cls forView:(NSString*)viewType;
 - (void)addController:(Class)cls forView:(NSString*)viewType rule:(T3NavigationRule)rule;

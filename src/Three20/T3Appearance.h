@@ -1,10 +1,11 @@
 #import "Three20/T3Global.h"
 
-@interface T3Theme : NSObject {
+@interface T3Appearance : NSObject {
   UIColor* _linkTextColor;
 }
 
-+ (T3Theme*)theme;
++ (T3Appearance*)appearance;
++ (void)setAppearance:(T3Appearance*)appearance;
 
 @property(nonatomic,retain) UIColor* linkTextColor;
 

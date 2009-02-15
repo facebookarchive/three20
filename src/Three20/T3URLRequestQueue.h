@@ -38,7 +38,12 @@
 /**
  * Gets the shared cache singleton used across the application.
  */
-+ (T3URLRequestQueue*) mainQueue;
++ (T3URLRequestQueue*)mainQueue;
+
+/**
+ * Sets the shared cache singleton used across the application.
+ */
++ (void)setMainQueue:(T3URLRequestQueue*)queue;
 
 /**
  * Loads a request from the cache or the network if it is not in the cache.

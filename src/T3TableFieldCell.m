@@ -4,7 +4,7 @@
 #import "Three20/T3ErrorView.h"
 #import "Three20/T3NavigationCenter.h"
 #import "Three20/T3URLCache.h"
-#import "Three20/T3Theme.h"
+#import "Three20/T3Appearance.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -82,13 +82,13 @@ static CGFloat kDefaultIconSize = 50;
 
     if ([object isKindOfClass:[T3ButtonTableField class]]) {
       _label.font = [UIFont boldSystemFontOfSize:15];
-      _label.textColor = [T3Theme theme].linkTextColor;
+      _label.textColor = [T3Appearance appearance].linkTextColor;
       _label.textAlignment = UITextAlignmentCenter;
       self.accessoryType = UITableViewCellAccessoryNone;
       self.selectionStyle = UITableViewCellSelectionStyleBlue;
     } else if ([object isKindOfClass:[T3LinkTableField class]]) {
       _label.font = [UIFont boldSystemFontOfSize:16];
-      _label.textColor = [T3Theme theme].linkTextColor;
+      _label.textColor = [T3Appearance appearance].linkTextColor;
       _label.textAlignment = UITextAlignmentLeft;
     } else if ([object isKindOfClass:[T3SummaryTableField class]]) {
       _label.font = [UIFont systemFontOfSize:17];
@@ -193,7 +193,7 @@ static CGFloat kDefaultIconSize = 50;
     _titleLabel.opaque = YES;
     _titleLabel.backgroundColor = [UIColor whiteColor];
     _titleLabel.font = [UIFont boldSystemFontOfSize:13];
-    _titleLabel.textColor = [T3Theme theme].linkTextColor;
+    _titleLabel.textColor = [T3Appearance appearance].linkTextColor;
     _titleLabel.highlightedTextColor = [UIColor whiteColor];
     _titleLabel.textAlignment = UITextAlignmentRight;
     _titleLabel.contentMode = UIViewContentModeTop;
@@ -356,8 +356,10 @@ static CGFloat kDefaultIconSize = 50;
 
   CGSize textSize = [field.text sizeWithFont:[UIFont boldSystemFontOfSize:17]
     constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-  CGSize subtitleSize = [field.subtitle sizeWithFont:[UIFont systemFontOfSize:14]
-    constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+  CGSize subtitleSize = field.subtitle
+    ? [field.subtitle sizeWithFont:[UIFont systemFontOfSize:14]
+      constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap]
+    : CGSizeMake(0, 0);
   
   return kVPadding*2 + textSize.height + subtitleSize.height;
 }

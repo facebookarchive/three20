@@ -2,7 +2,7 @@
 #import "Three20/T3Global.h"
 #import "Three20/T3Object.h"
 #import "Three20/T3NavigationCenter.h"
-#import "Three20/T3Theme.h"
+#import "Three20/T3Appearance.h"
 
 #import "Three20/T3ViewController.h"
 #import "Three20/T3TableViewController.h"

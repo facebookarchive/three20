@@ -48,6 +48,11 @@
 + (T3URLCache*)sharedCache;
 
 /**
+ * Sets the shared cache singleton used across the application.
+ */
++ (void)setSharedCache:(T3URLCache*)cache;
+
+/**
  * Gets the path to the default directory of the disk cache.
  */
 + (NSString*)defaultCachePath;
