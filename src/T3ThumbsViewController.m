@@ -10,6 +10,7 @@
 
 static NSInteger kColumnCount = 4;
 static NSInteger kPageSize = 60;
+static CGFloat kThumbnailRowHeight = 79;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -242,7 +243,7 @@ static NSInteger kPageSize = 60;
 // UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView*)aTableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-  return 79;
+  return kThumbnailRowHeight;
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {

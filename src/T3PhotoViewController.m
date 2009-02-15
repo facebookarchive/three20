@@ -386,11 +386,6 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)updateView {
   if (![self.previousViewController isKindOfClass:[T3ThumbsViewController class]]) {
-    UIBarButtonItem* playButton = [_toolbar itemWithTag:1];
-    playButton.enabled = _photoSource.numberOfPhotos > 1;
-    _previousButton.enabled = _centerPhotoIndex > 0;
-    _nextButton.enabled = _centerPhotoIndex < _photoSource.numberOfPhotos-1;
-
     if (_photoSource.numberOfPhotos > 1) {
       self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
         initWithTitle:NSLocalizedString(@"See All", @"See all photo thumbnails")
@@ -401,6 +396,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
   } else {
     self.navigationItem.rightBarButtonItem = nil;
   }
+
+  UIBarButtonItem* playButton = [_toolbar itemWithTag:1];
+  playButton.enabled = _photoSource.numberOfPhotos > 1;
+  _previousButton.enabled = _centerPhotoIndex > 0;
+  _nextButton.enabled = _centerPhotoIndex < _photoSource.numberOfPhotos-1;
 
   _scrollView.centerPageIndex = _centerPhotoIndex;
   [self loadImages];

@@ -186,6 +186,14 @@ static const NSTimeInterval kOvershoot = 2;
   return CGRectMake(-xd/2, -yd/2, width, height);
 }
 
+- (CGFloat)overflowForFrame:(CGRect)frame {
+  if (UIInterfaceOrientationIsLandscape(_orientation)) {
+    return frame.origin.y < 0 ? fabs(frame.origin.y) : 0;
+  } else {
+    return frame.origin.x < 0 ? fabs(frame.origin.x) : 0;
+  }
+}
+
 - (CGPoint)offsetForOrientation:(CGFloat)x y:(CGFloat)y {
   if (UIInterfaceOrientationIsLandscape(_orientation)) {
     return CGPointMake(y, x);
@@ -324,13 +332,20 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 - (void)adjustPageEdgesForPageAtIndex:(NSInteger)pageIndex {
+  CGRect centerFrame = [self frameOfPageAtIndex:_centerPageIndex];
+  CGFloat centerPageOverflow = [self overflowForFrame:centerFrame] * self.zoomFactor;
+  CGRect frame = [self frameOfPageAtIndex:pageIndex];
+  CGFloat overflow = [self overflowForFrame:frame];
+
   if (self.flipped) {
-    CGFloat xd = (_centerPageIndex - pageIndex) * -(self.pageWidth + _pageSpacing);
+    CGFloat factor = _centerPageIndex > pageIndex ? -1 : 1;
+    CGFloat xd =  (self.pageWidth + _pageSpacing + centerPageOverflow + overflow) * factor;
     CGFloat left = _pageEdges.right > 0 ? _pageEdges.right : _pageEdges.left;
     CGFloat right = _pageEdges.left < 0 ? _pageEdges.left : _pageEdges.right;
     _pageEdges = _pageStartEdges = UIEdgeInsetsMake(0, left - xd, 0, right - xd);
   } else {
-    CGFloat xd = (_centerPageIndex - pageIndex) * (self.pageWidth + _pageSpacing);
+    CGFloat factor = _centerPageIndex > pageIndex ? 1 : -1;
+    CGFloat xd =  (self.pageWidth + _pageSpacing + centerPageOverflow + overflow) * factor;
     CGFloat left = _pageEdges.right < 0 ? _pageEdges.right : _pageEdges.left;
     CGFloat right = _pageEdges.left > 0 ? _pageEdges.left : _pageEdges.right;
     _pageEdges = _pageStartEdges = UIEdgeInsetsMake(0, right - xd, 0, left - xd);
@@ -370,10 +385,6 @@ static const NSTimeInterval kOvershoot = 2;
     _pageArrayIndex = [self arrayIndexForPageIndex:pageIndex relativeToIndex:_centerPageIndex];
     _centerPageIndex = pageIndex;
   }
-
-  // XXXjoe Move the center page to to the top of the views - temporary fix until
-  // I work out how to clip photos
-  [self addSubview:self.centerPage];
 }
 
 - (void)layoutPage {
@@ -395,14 +406,6 @@ static const NSTimeInterval kOvershoot = 2;
       page.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
         frame.size.width, frame.size.height);
     }
-  }
-}
-
-- (CGFloat)overflowForFrame:(CGRect)frame {
-  if (UIInterfaceOrientationIsLandscape(_orientation)) {
-    return frame.origin.y < 0 ? fabs(frame.origin.y) : 0;
-  } else {
-    return frame.origin.x < 0 ? fabs(frame.origin.x) : 0;
   }
 }
 
@@ -553,11 +556,12 @@ static const NSTimeInterval kOvershoot = 2;
     edges.bottom + yd/2, edges.right + xd/2);
 }
 
-- (CGFloat)mm:(CGFloat)m1 t:(CGFloat)m2 max:(CGFloat)max {
-    CGFloat rl = (1 - (fabs(m2) / max)) * 0.1;
-    if (rl < 0) rl = 0;
-    if (rl > 1) rl = 1;
-    return m1 + ((m2 - m1) * rl);
+- (CGFloat)resist:(CGFloat)x1 to:(CGFloat)x2 max:(CGFloat)max {
+  // The closer we get to the maximum, the less we are allowed to increment
+  CGFloat rl = (1 - (fabs(x2) / max)) * 0.1;
+  if (rl < 0) rl = 0;
+  if (rl > 1) rl = 1;
+  return x1 + ((x2 - x1) * rl);
 }
 
 - (UIEdgeInsets)resistPageEdges:(UIEdgeInsets)edges {
@@ -566,14 +570,14 @@ static const NSTimeInterval kOvershoot = 2;
   
   if (-left + right < 0 || -top + bottom < 0) {
     CGFloat zoom = self.zoomFactor;
-    left = [self mm:_pageEdges.left t:left max:width * zoom];
-    right = [self mm:_pageEdges.right t:right max:width * zoom];
-    top = [self mm:_pageEdges.top t:top max:height * zoom];
-    bottom = [self mm:_pageEdges.bottom t:bottom max:height * zoom];
+    left = [self resist:_pageEdges.left to:left max:width * zoom];
+    right = [self resist:_pageEdges.right to:right max:width * zoom];
+    top = [self resist:_pageEdges.top to:top max:height * zoom];
+    bottom = [self resist:_pageEdges.bottom to:bottom max:height * zoom];
   } else {
     if (_touchCount == 2 || self.zoomed) {
       if (top > 0) {
-        top = [self mm:_pageEdges.top t:top max:height];
+        top = [self resist:_pageEdges.top to:top max:height];
         if (_touchCount == 2) {
           bottom = bottom + (top - _pageEdges.top);
         } else {
@@ -586,7 +590,7 @@ static const NSTimeInterval kOvershoot = 2;
         left -= xd/2;
         right += xd/2;
       } else if (bottom < 0) {
-        bottom = [self mm:_pageEdges.bottom t:bottom max:height];
+        bottom = [self resist:_pageEdges.bottom to:bottom max:height];
         if (_touchCount == 2) {
           top = top + (bottom - _pageEdges.bottom);
         } else {
@@ -601,8 +605,11 @@ static const NSTimeInterval kOvershoot = 2;
       }
     }
 
-    if (left > 0 && ([self isFirstPage] || self.zoomed)) {
-      left = [self mm:_pageEdges.left t:left max:width];
+    BOOL flipped = self.flipped;
+    BOOL flickPrevious = (left > 0 && !flipped) || (left < 0 && flipped);
+    BOOL flickNext = (right < 0 && !flipped) || (right > 0 && flipped);
+    if (flickPrevious && ([self isFirstPage] || self.zoomed)) {
+      left = [self resist:_pageEdges.left to:left max:width];
       if (_touchCount == 2) {
         right = right + (left - _pageEdges.left);
       } else {
@@ -614,8 +621,8 @@ static const NSTimeInterval kOvershoot = 2;
       CGFloat yd = newHeight - (-top + height + bottom);
       top -= yd/2;
       bottom += yd/2;
-    } else if (right < 0 && ([self isLastPage] || self.zoomed)) {
-      right = [self mm:_pageEdges.right t:right max:width];
+    } else if (flickNext && ([self isLastPage] || self.zoomed)) {
+      right = [self resist:_pageEdges.right to:right max:width];
       if (_touchCount == 2) {
         left = left + (right - _pageEdges.right);
       } else {
@@ -1017,7 +1024,7 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 - (void)setCenterPageIndex:(NSInteger)index {
-  [self moveToPageAtIndex:index resetEdges:YES];
+  [self moveToPageAtIndex:index resetEdges:!_touchCount];
 }
 
 - (NSInteger)numberOfPages {
