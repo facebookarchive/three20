@@ -8,7 +8,9 @@ static T3Appearance* gAppearance = nil;
 
 @implementation T3Appearance
 
-@synthesize linkTextColor = _linkTextColor, navigationBarTintColor = _navigationBarTintColor;
+@synthesize linkTextColor = _linkTextColor, navigationBarTintColor = _navigationBarTintColor,
+  searchTableBackgroundColor = _searchTableBackgroundColor,
+  searchTableSeparatorColor = _searchTableSeparatorColor;
 
 + (T3Appearance*)appearance {
   if (!gAppearance) {
@@ -29,6 +31,8 @@ static T3Appearance* gAppearance = nil;
 - (id)init {
   if (self = [super init]) {
     self.linkTextColor = RGBCOLOR(87, 107, 149);
+    self.searchTableBackgroundColor = RGBCOLOR(235, 235, 235);
+    self.searchTableSeparatorColor = [UIColor colorWithWhite:0.85 alpha:1];
     self.navigationBarTintColor = nil;
   }
   return self;
@@ -37,6 +41,8 @@ static T3Appearance* gAppearance = nil;
 - (void)dealloc {
   [_linkTextColor release];
   [_navigationBarTintColor release];
+  [_searchTableBackgroundColor release];
+  [_searchTableSeparatorColor release];
   [super dealloc];
 }
 

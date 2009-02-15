@@ -1,9 +1,8 @@
 #import "Three20/T3SearchTextField.h"
 
-@class T3MenuViewCell, T3MenuTextFieldInternal;
+@class T3MenuViewCell;
 
 @interface T3MenuTextField : T3SearchTextField {
-  T3MenuTextFieldInternal* _internal;
   NSMutableArray* _cellViews;
   T3MenuViewCell* _selectedCell;
   int _visibleLineCount;
@@ -16,7 +15,6 @@
 @property(nonatomic,assign) T3MenuViewCell* selectedCell;
 @property(nonatomic) int visibleLineCount;
 @property(nonatomic,readonly) int lineCount;
-@property(nonatomic,readonly) BOOL hasText;
 
 - (void)addCellWithObject:(id)object label:(NSString*)label;
 
@@ -38,12 +36,10 @@
 
 @end
 
-@protocol T3MenuTextFieldDelegate
+@protocol T3MenuTextFieldDelegate <UITextFieldDelegate>
 
-- (void)menuTextField:(T3MenuTextField*)textField didAddCell:(T3MenuViewCell*)cell
-  atIndex:(NSInteger)index;
+- (void)textField:(T3MenuTextField*)textField didAddCellAtIndex:(NSInteger)index;
 
-- (void)menuTextField:(T3MenuTextField*)textField didRemoveCell:(T3MenuViewCell*)cell
-  atIndex:(NSInteger)index;
+- (void)textField:(T3MenuTextField*)textField didRemoveCellAtIndex:(NSInteger)index;
 
 @end

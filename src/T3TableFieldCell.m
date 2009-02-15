@@ -36,8 +36,6 @@ static CGFloat kDefaultIconSize = 50;
 - (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
-    _label.opaque = YES;
-    _label.backgroundColor = [UIColor whiteColor];
     _label.highlightedTextColor = [UIColor whiteColor];
     [self.contentView addSubview:_label];
 	}
@@ -56,6 +54,13 @@ static CGFloat kDefaultIconSize = 50;
   [super layoutSubviews];
 
   _label.frame = CGRectInset(self.contentView.bounds, kHPadding, 0);
+}
+
+-(void)didMoveToSuperview {
+  [super didMoveToSuperview];
+  if (self.superview && [(UITableView*)self.superview style] == UITableViewStylePlain) {
+    _label.backgroundColor = self.superview.backgroundColor;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -190,8 +195,6 @@ static CGFloat kDefaultIconSize = 50;
 - (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _titleLabel.opaque = YES;
-    _titleLabel.backgroundColor = [UIColor whiteColor];
     _titleLabel.font = [UIFont boldSystemFontOfSize:13];
     _titleLabel.textColor = [T3Appearance appearance].linkTextColor;
     _titleLabel.highlightedTextColor = [UIColor whiteColor];
@@ -218,6 +221,13 @@ static CGFloat kDefaultIconSize = 50;
   _titleLabel.frame = CGRectMake(kHPadding, kVPadding-1, kKeyWidth, kKeyHeight);
   _label.frame = CGRectMake(kHPadding + kKeyWidth + kKeySpacing, kVPadding,
     valueWidth, innerHeight);
+}
+
+-(void)didMoveToSuperview {
+  [super didMoveToSuperview];
+  if (self.superview && [(UITableView*)self.superview style] == UITableViewStylePlain) {
+    _titleLabel.backgroundColor = self.superview.backgroundColor;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -276,8 +286,6 @@ static CGFloat kDefaultIconSize = 50;
 - (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
     _subtextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _subtextLabel.opaque = YES;
-    _subtextLabel.backgroundColor = [UIColor whiteColor];
     _subtextLabel.font = [UIFont systemFontOfSize:14];
     _subtextLabel.textColor = [UIColor grayColor];
     _subtextLabel.highlightedTextColor = [UIColor whiteColor];
@@ -309,6 +317,13 @@ static CGFloat kDefaultIconSize = 50;
   CGSize subtextSize = [_subtextLabel.text sizeWithFont:_subtextLabel.font
     constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX) lineBreakMode:_subtextLabel.lineBreakMode];
   _subtextLabel.frame = CGRectMake(kHPadding, _label.bottom, subtextSize.width, subtextSize.height);
+}
+
+-(void)didMoveToSuperview {
+  [super didMoveToSuperview];
+  if (self.superview && [(UITableView*)self.superview style] == UITableViewStylePlain) {
+    _subtextLabel.backgroundColor = self.superview.backgroundColor;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -369,7 +384,6 @@ static CGFloat kDefaultIconSize = 50;
     _spinnerView = nil;
     
     _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _subtitleLabel.backgroundColor = [UIColor clearColor];
     _subtitleLabel.font = [UIFont systemFontOfSize:14];
     _subtitleLabel.textColor = [UIColor grayColor];
     _subtitleLabel.highlightedTextColor = [UIColor whiteColor];
@@ -408,6 +422,13 @@ static CGFloat kDefaultIconSize = 50;
   _label.x = _label.y*2;
   _subtitleLabel.x = _label.y*2;
   _spinnerView.x = _label.x + titleWidth + kSpacing;
+}
+
+-(void)didMoveToSuperview {
+  [super didMoveToSuperview];
+  if (self.superview && [(UITableView*)self.superview style] == UITableViewStylePlain) {
+    _subtitleLabel.backgroundColor = self.superview.backgroundColor;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -611,8 +632,6 @@ static CGFloat kDefaultIconSize = 50;
 - (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
     _spinnerView = nil;
-    
-    self.accessoryType = UITableViewCellAccessoryNone;
   }
   return self;
 }
@@ -650,13 +669,13 @@ static CGFloat kDefaultIconSize = 50;
     _label.text = field.text;
     _label.font = [UIFont systemFontOfSize:17];
     _label.textColor = [UIColor grayColor];
-    _label.backgroundColor = [UIColor clearColor];
     _label.highlightedTextColor = [UIColor whiteColor];
     _label.lineBreakMode = UILineBreakModeTailTruncation;
     
+    self.accessoryType = UITableViewCellAccessoryNone;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.animating = YES;
 
+    self.animating = YES;
   }  
 }
 

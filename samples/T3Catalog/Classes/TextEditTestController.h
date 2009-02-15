@@ -1,7 +1,9 @@
 #import <Three20/Three20.h>
 
-@interface TextEditTestController : UIViewController <T3SearchSource> {
+@class TestSearchSource;
 
+@interface TextEditTestController : UIViewController {
+  TestSearchSource* _searchSource;
 }
 
 @end

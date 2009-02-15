@@ -2,7 +2,7 @@
 
 @class T3TableViewCell;
 
-@interface T3DataSource : NSObject <UITableViewDataSource>
+@protocol T3DataSource <UITableViewDataSource>
 
 - (id)objectForRowAtIndexPath:(NSIndexPath*)indexPath;
 
@@ -12,7 +12,17 @@
 
 @end
 
-@interface T3BasicDataSource : T3DataSource {
+@interface T3BaseDataSource : NSObject <T3DataSource>
+
+- (id)objectForRowAtIndexPath:(NSIndexPath*)indexPath;
+
+- (Class)cellClassForObject:(id)object;
+
+- (void)decorateCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath;
+
+@end
+
+@interface T3BasicDataSource : T3BaseDataSource {
   NSMutableArray* _items;
 }
 
@@ -22,7 +32,7 @@
 
 @end
 
-@interface T3SectionedDataSource : T3DataSource {
+@interface T3SectionedDataSource : T3BaseDataSource {
   NSMutableArray* _sections;
   NSMutableArray* _items;
 }

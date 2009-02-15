@@ -10,98 +10,8 @@ static CGFloat kCellPaddingY = 3;
 static CGFloat kPaddingX = 8;
 static CGFloat kSpacingY = 6;
 static CGFloat kPaddingRatio = 1.75;
-static CGFloat kClearButtonWidth = 38;
+static CGFloat kClearButtonSize = 38;
 static CGFloat kMinCursorWidth = 50;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface T3MenuTextFieldInternal : NSObject <UITextFieldDelegate> {
-  T3MenuTextField* _textField;
-  id<UITextFieldDelegate> _delegate;
-}
-
-@property(nonatomic,assign) id<UITextFieldDelegate> delegate;
-
-- (id)initWithTextField:(T3MenuTextField*)textField;
-
-@end
-
-@implementation T3MenuTextFieldInternal
-
-@synthesize delegate = _delegate;
-
-- (id)initWithTextField:(T3MenuTextField*)textField {
-  if (self = [super init]) {
-    _textField = textField;
-  }
-  return self;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITextFieldDelegate
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-  if ([_delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)]) {
-    return [_delegate textFieldShouldBeginEditing:textField];
-  } else {
-    return YES;
-  }
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-  if ([_delegate respondsToSelector:@selector(textFieldDidBeginEditing:)]) {
-    [_delegate textFieldDidBeginEditing:textField];
-  }
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-  if ([_delegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
-    return [_delegate textFieldShouldEndEditing:textField];
-  } else {
-    return YES;
-  }
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-  if ([_delegate respondsToSelector:@selector(textFieldDidEndEditing:)]) {
-    return [_delegate textFieldDidEndEditing:textField];
-  }
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
-    replacementString:(NSString *)string {
-  if (![_textField performSelector:@selector(update:) withObject:string]) {
-    return NO;
-  }
-
-  SEL sel = @selector(textField:shouldChangeCharactersInRange:replacementString:);
-  if ([_delegate respondsToSelector:sel]) {
-    return [_delegate textField:textField shouldChangeCharactersInRange:range
-      replacementString:string];
-  } else {
-    return YES;
-  }
-}
-
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-  [_textField performSelector:@selector(update:) withObject:@""];
-
-  if ([_delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
-    return [_delegate textFieldShouldClear:textField];
-  } else {
-    return YES;
-  }
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-  if ([_delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
-    return [_delegate textFieldShouldReturn:textField];
-  } else {
-    return YES;
-  }
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -112,14 +22,12 @@ static CGFloat kMinCursorWidth = 50;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _internal = [[T3MenuTextFieldInternal alloc] initWithTextField:self];
     _cellViews = [[NSMutableArray alloc] init];
     _selectedCell = nil;
     _lineCount = 1;
     _visibleLineCount = NSUIntegerMax;
     _cursorOrigin = CGPointZero;
     
-    [super setDelegate:_internal];
     self.text = kEmpty;
   }
   return self;
@@ -139,7 +47,7 @@ static CGFloat kMinCursorWidth = 50;
   CGFloat marginLeft = self.leftView
     ? kPaddingX + self.leftView.width + kPaddingX/2
     : kPaddingX;
-  CGFloat marginRight = kPaddingX + (self.rightView ? kClearButtonWidth : 0);
+  CGFloat marginRight = kPaddingX + (self.rightView ? kClearButtonSize : 0);
 
   _cursorOrigin.x = marginLeft;
   _cursorOrigin.y = marginY;
@@ -176,9 +84,10 @@ static CGFloat kMinCursorWidth = 50;
     self.height = newHeight;
     [self setNeedsDisplay];
     
-//    if ([self.delegate respondsToSelector:@selector(menuTextFieldDidResize:)]) {
-//      [self.delegate menuTextFieldDidResize:self];
-//    }
+    SEL sel = @selector(textFieldDidResize:);
+    if ([self.delegate respondsToSelector:sel]) {
+      [self.delegate performSelector:sel withObject:self];
+    }
 
     [self scrollToVisibleLine:YES];
   }
@@ -193,19 +102,6 @@ static CGFloat kMinCursorWidth = 50;
   self.selectedCell = [_cellViews objectAtIndex:_cellViews.count-1];
 }
 
-- (BOOL)update:(NSString*)string {
-  if (!string.length && !self.hasText && !self.selectedCell && self.cells.count) {
-    [self selectLastCell];
-    return NO;
-  } else if (!string.length && self.selectedCell) {
-    [self removeSelectedCell];
-//    [self delayedUpdate];
-    return NO;
-  } else {
-//    [self delayedUpdate];
-    return YES;
-  }
-}
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
@@ -250,12 +146,11 @@ static CGFloat kMinCursorWidth = 50;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITextField
 
-- (id<UITextFieldDelegate>)delegate {
-  return _internal.delegate;
-}
-
-- (void)setDelegate:(id<UITextFieldDelegate>)delegate {
-  _internal.delegate = delegate;
+- (void)setText:(NSString*)text {
+  if (_searchSource) {
+    [self updateHeight];
+  }
+  [super setText:text];
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds {
@@ -266,7 +161,7 @@ static CGFloat kMinCursorWidth = 50;
     return CGRectOffset(bounds, _cursorOrigin.x, floor(bounds.size.height/2 - lineHeight/2));
   } else {
     CGRect frame = CGRectOffset(bounds, _cursorOrigin.x, _cursorOrigin.y);
-    frame.size.width -= (_cursorOrigin.x + kPaddingX + (self.rightView ? kClearButtonWidth : 0));
+    frame.size.width -= (_cursorOrigin.x + kPaddingX + (self.rightView ? kClearButtonSize : 0));
     return frame;
   }
 }
@@ -282,7 +177,7 @@ static CGFloat kMinCursorWidth = 50;
 - (CGRect)leftViewRectForBounds:(CGRect)bounds {
   if (self.leftView) {
     return CGRectMake(
-      bounds.origin.x+kPaddingX, floor(bounds.size.height/2 - self.leftView.frame.size.height/2),
+      bounds.origin.x+kPaddingX, self.marginY,
       self.leftView.frame.size.width, self.leftView.frame.size.height);
   } else {
     return bounds;
@@ -291,10 +186,43 @@ static CGFloat kMinCursorWidth = 50;
 
 - (CGRect)rightViewRectForBounds:(CGRect)bounds {
   if (self.rightView) {
-    return CGRectMake(bounds.size.width - kClearButtonWidth, bounds.size.height - kClearButtonWidth,
-      kClearButtonWidth, kClearButtonWidth);
+    return CGRectMake(bounds.size.width - kClearButtonSize, bounds.size.height - kClearButtonSize,
+      kClearButtonSize, kClearButtonSize);
   } else {
     return bounds;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// T3SearchTextField
+
+- (BOOL)empty {
+  return !self.text.length || [self.text isEqualToString:kEmpty]
+    || [self.text isEqualToString:kSelected];
+}
+
+- (BOOL)shouldUpdate:(BOOL)emptyText {
+  if (emptyText && self.empty && !self.selectedCell && self.cells.count) {
+    [self selectLastCell];
+    return NO;
+  } else if (emptyText && self.selectedCell) {
+    [self removeSelectedCell];
+    [super shouldUpdate:emptyText];
+    return NO;
+  } else {
+    return [super shouldUpdate:emptyText];
+  }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UITableViewDelegate
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+  [_tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+  id object = [_searchSource objectForRowAtIndexPath:indexPath];
+  NSString* label = [_searchSource textField:self labelForRowAtIndexPath:indexPath];
+  if (label) {
+    [self addCellWithObject:object label:label];
   }
 }
 
@@ -308,11 +236,6 @@ static CGFloat kMinCursorWidth = 50;
   return cells;
 }
 
-- (BOOL)hasText {
-  return self.text.length && ![self.text isEqualToString:kEmpty]
-    && ![self.text isEqualToString:kSelected];
-}
-
 - (void)addCellWithObject:(id)object label:(NSString*)label {
   T3MenuViewCell* cell = [[[T3MenuViewCell alloc] initWithFrame:CGRectZero] autorelease];
 
@@ -324,9 +247,10 @@ static CGFloat kMinCursorWidth = 50;
   // Reset text so the cursor moves to be at the end of the cellViews
   self.text = kEmpty;
 
-//  if ([self.delegate respondsToSelector:@selector(menuTextField:didAddCell:atIndex:)]) {
-//    [self.delegate menuTextField:self didAddCell:cell atIndex:_cellViews.count-1];
-//  }
+  SEL sel = @selector(textField:didAddCellAtIndex:);
+  if ([self.delegate respondsToSelector:sel]) {
+    [self.delegate performSelector:sel withObject:self withObject:(id)_cellViews.count-1];
+  }
 }
 
 - (void)removeCellWithObject:(id)object {
@@ -335,9 +259,11 @@ static CGFloat kMinCursorWidth = 50;
     if (cell.object == object) {
       [_cellViews removeObjectAtIndex:i];
       [cell removeFromSuperview];
-//      if ([self.delegate respondsToSelector:@selector(menuTextField:didRemoveCell:atIndex:)]) {
-//        [self.delegate menuTextField:self didRemoveCell:cell atIndex:i];
-//      }
+
+      SEL sel = @selector(textField:didRemoveCellAtIndex:);
+      if ([self.delegate respondsToSelector:sel]) {
+        [self.delegate performSelector:sel withObject:self withObject:(id)i];
+      }
       break;
     }
   }
@@ -345,7 +271,6 @@ static CGFloat kMinCursorWidth = 50;
   // Reset text so the cursor oves to be at the end of the cellViews
   self.text = self.text;
 }
-
 
 - (void)removeAllCells {
   while (_cellViews.count) {

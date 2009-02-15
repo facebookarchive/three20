@@ -134,7 +134,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setDataSource:(T3DataSource*)dataSource {
+- (void)setDataSource:(id<T3DataSource>)dataSource {
   if (dataSource != _dataSource) {
     [_dataSource release];
     _dataSource = [dataSource retain];
