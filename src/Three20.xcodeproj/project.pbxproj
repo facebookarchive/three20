@@ -27,6 +27,12 @@
 		BE8AA1930F428A4900FD8C43 /* T3+UIViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8AA1920F428A4900FD8C43 /* T3+UIViewController.h */; };
 		BECB1EC60F46C39F00AE5B52 /* T3Appearance.h in Headers */ = {isa = PBXBuildFile; fileRef = BECB1EC50F46C39F00AE5B52 /* T3Appearance.h */; };
 		BECB1EC80F46C3B000AE5B52 /* T3Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = BECB1EC70F46C3B000AE5B52 /* T3Appearance.m */; };
+		BEE3419D0F480B87008C826E /* T3MenuTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE3419C0F480B87008C826E /* T3MenuTextField.h */; };
+		BEE341A60F480BA2008C826E /* T3MenuTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341A50F480BA2008C826E /* T3MenuTextField.m */; };
+		BEE341BE0F48133F008C826E /* T3MenuViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE341BD0F48133F008C826E /* T3MenuViewCell.h */; };
+		BEE341C00F481345008C826E /* T3MenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341BF0F481345008C826E /* T3MenuViewCell.m */; };
+		BEE341CD0F48159F008C826E /* T3SearchTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE341CC0F48159F008C826E /* T3SearchTextField.h */; };
+		BEE341CF0F4815B0008C826E /* T3SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341CE0F4815B0008C826E /* T3SearchTextField.m */; };
 		BEF31F700F352E64000DE5D2 /* T3ActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F460F352E64000DE5D2 /* T3ActivityLabel.m */; };
 		BEF31F710F352E64000DE5D2 /* T3ErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F470F352E64000DE5D2 /* T3ErrorView.m */; };
 		BEF31F720F352E64000DE5D2 /* T3Global.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F480F352E64000DE5D2 /* T3Global.m */; };
@@ -95,6 +101,12 @@
 		BE8AA1920F428A4900FD8C43 /* T3+UIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "T3+UIViewController.h"; path = "Three20/T3+UIViewController.h"; sourceTree = "<group>"; };
 		BECB1EC50F46C39F00AE5B52 /* T3Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3Appearance.h; path = Three20/T3Appearance.h; sourceTree = "<group>"; };
 		BECB1EC70F46C3B000AE5B52 /* T3Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3Appearance.m; sourceTree = "<group>"; };
+		BEE3419C0F480B87008C826E /* T3MenuTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3MenuTextField.h; path = Three20/T3MenuTextField.h; sourceTree = "<group>"; };
+		BEE341A50F480BA2008C826E /* T3MenuTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3MenuTextField.m; sourceTree = "<group>"; };
+		BEE341BD0F48133F008C826E /* T3MenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3MenuViewCell.h; path = Three20/T3MenuViewCell.h; sourceTree = "<group>"; };
+		BEE341BF0F481345008C826E /* T3MenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3MenuViewCell.m; sourceTree = "<group>"; };
+		BEE341CC0F48159F008C826E /* T3SearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = T3SearchTextField.h; path = Three20/T3SearchTextField.h; sourceTree = "<group>"; };
+		BEE341CE0F4815B0008C826E /* T3SearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3SearchTextField.m; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF31F460F352E64000DE5D2 /* T3ActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ActivityLabel.m; sourceTree = "<group>"; };
 		BEF31F470F352E64000DE5D2 /* T3ErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T3ErrorView.m; sourceTree = "<group>"; };
@@ -166,6 +178,7 @@
 				BE8AA1870F428A0F00FD8C43 /* Additions */,
 				BEF321B30F353B78000DE5D2 /* General Controllers */,
 				BEF31F450F352E64000DE5D2 /* General Views */,
+				BEE341A40F480B91008C826E /* Text Views */,
 				BE702EEF0F43F46E0028A119 /* Tables */,
 				BEF321B20F353B50000DE5D2 /* Photos */,
 				BEF321B00F353B15000DE5D2 /* Network */,
@@ -207,6 +220,19 @@
 				BE8AA1900F428A3700FD8C43 /* T3+UIViewController.m */,
 			);
 			name = Additions;
+			sourceTree = "<group>";
+		};
+		BEE341A40F480B91008C826E /* Text Views */ = {
+			isa = PBXGroup;
+			children = (
+				BEE341CC0F48159F008C826E /* T3SearchTextField.h */,
+				BEE341CE0F4815B0008C826E /* T3SearchTextField.m */,
+				BEE3419C0F480B87008C826E /* T3MenuTextField.h */,
+				BEE341A50F480BA2008C826E /* T3MenuTextField.m */,
+				BEE341BD0F48133F008C826E /* T3MenuViewCell.h */,
+				BEE341BF0F481345008C826E /* T3MenuViewCell.m */,
+			);
+			name = "Text Views";
 			sourceTree = "<group>";
 		};
 		BEF31F450F352E64000DE5D2 /* General Views */ = {
@@ -332,6 +358,9 @@
 				BE702EFB0F43F9DC0028A119 /* T3TableField.h in Headers */,
 				BE6E4A540F465243001CE9B4 /* T3TableViewCell.h in Headers */,
 				BECB1EC60F46C39F00AE5B52 /* T3Appearance.h in Headers */,
+				BEE3419D0F480B87008C826E /* T3MenuTextField.h in Headers */,
+				BEE341BE0F48133F008C826E /* T3MenuViewCell.h in Headers */,
+				BEE341CD0F48159F008C826E /* T3SearchTextField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +434,9 @@
 				BE702EF90F43F9D20028A119 /* T3TableField.m in Sources */,
 				BE6E4A520F465237001CE9B4 /* T3TableViewCell.m in Sources */,
 				BECB1EC80F46C3B000AE5B52 /* T3Appearance.m in Sources */,
+				BEE341A60F480BA2008C826E /* T3MenuTextField.m in Sources */,
+				BEE341C00F481345008C826E /* T3MenuViewCell.m in Sources */,
+				BEE341CF0F4815B0008C826E /* T3SearchTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

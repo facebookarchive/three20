@@ -29,6 +29,7 @@
 		BEB5220D0F32AE7100F51876 /* t3images in Resources */ = {isa = PBXBuildFile; fileRef = BEB5220A0F32AE7100F51876 /* t3images */; };
 		BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BECB1CC10F46AE9600AE5B52 /* person.jpg */; };
 		BEE0FDDB0EB2A6850052C05F /* PhotoTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */; };
+		BEE341B40F480C76008C826E /* TextEditTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341B30F480C76008C826E /* TextEditTestController.m */; };
 		BEE38E810EB288BA00189902 /* TextTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE38E800EB288BA00189902 /* TextTest1Controller.m */; };
 		BEE7FD150F3581C1002788A5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE7FD130F358198002788A5 /* libThree20.a */; };
 		BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */; };
@@ -88,6 +89,8 @@
 		BECB1CC10F46AE9600AE5B52 /* person.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = person.jpg; sourceTree = "<group>"; };
 		BEE0FDD90EB2A6850052C05F /* PhotoTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest1Controller.h; sourceTree = "<group>"; };
 		BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest1Controller.m; sourceTree = "<group>"; };
+		BEE341B20F480C76008C826E /* TextEditTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditTestController.h; sourceTree = "<group>"; };
+		BEE341B30F480C76008C826E /* TextEditTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditTestController.m; sourceTree = "<group>"; };
 		BEE38E7F0EB288BA00189902 /* TextTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextTest1Controller.h; sourceTree = "<group>"; };
 		BEE38E800EB288BA00189902 /* TextTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTest1Controller.m; sourceTree = "<group>"; };
 		BEE7FD0E0F358198002788A5 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -131,6 +134,8 @@
 				BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */,
 				BE6E4AA30F4655A4001CE9B4 /* TableFieldTestController.h */,
 				BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */,
+				BEE341B20F480C76008C826E /* TextEditTestController.h */,
+				BEE341B30F480C76008C826E /* TextEditTestController.m */,
 				BE6E46EA0F4578BA001CE9B4 /* TabBarTestController.h */,
 				BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */,
 				BEE38E7F0EB288BA00189902 /* TextTest1Controller.h */,
@@ -303,6 +308,7 @@
 				BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */,
 				BE6E46EC0F4578BA001CE9B4 /* TabBarTestController.m in Sources */,
 				BE6E4AA50F4655A4001CE9B4 /* TableFieldTestController.m in Sources */,
+				BEE341B40F480C76008C826E /* TextEditTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

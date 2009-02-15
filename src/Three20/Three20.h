@@ -17,6 +17,9 @@
 #import "Three20/T3ShinyLabel.h"
 #import "Three20/T3ErrorView.h"
 
+#import "Three20/T3SearchTextField.h"
+#import "Three20/T3MenuTextField.h"
+
 #import "Three20/T3DataSource.h"
 #import "Three20/T3TableField.h"
 #import "Three20/T3TableViewCell.h"

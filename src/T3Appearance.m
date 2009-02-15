@@ -8,7 +8,7 @@ static T3Appearance* gAppearance = nil;
 
 @implementation T3Appearance
 
-@synthesize linkTextColor = _linkTextColor;
+@synthesize linkTextColor = _linkTextColor, navigationBarTintColor = _navigationBarTintColor;
 
 + (T3Appearance*)appearance {
   if (!gAppearance) {
@@ -29,11 +29,14 @@ static T3Appearance* gAppearance = nil;
 - (id)init {
   if (self = [super init]) {
     self.linkTextColor = RGBCOLOR(87, 107, 149);
+    self.navigationBarTintColor = nil;
   }
   return self;
 }
 
 - (void)dealloc {
+  [_linkTextColor release];
+  [_navigationBarTintColor release];
   [super dealloc];
 }
 
@@ -115,7 +118,7 @@ static T3Appearance* gAppearance = nil;
     stroke:(UIColor*)strokeColor radius:(CGFloat)radius {
   CGContextRef context = UIGraphicsGetCurrentContext();
 
-  if (radius == NSUIntegerMax) {
+  if (radius == T3_RADIUS_ROUNDED) {
     radius = rect.size.height/2;
   }
   
@@ -138,7 +141,7 @@ static T3Appearance* gAppearance = nil;
     radius:(CGFloat)radius {
   CGContextRef context = UIGraphicsGetCurrentContext();
 
-  if (radius == NSUIntegerMax) {
+  if (radius == T3_RADIUS_ROUNDED) {
     radius = rect.size.height/2;
   }
   
@@ -241,7 +244,7 @@ static T3Appearance* gAppearance = nil;
 
 - (void)drawBackground:(T3Background)background rect:(CGRect)rect {
   [self drawBackground:background rect:rect fill:nil fillCount:0 stroke:nil
-    radius:NSUIntegerMax];
+    radius:T3_RADIUS_ROUNDED];
 }
 
 - (void)drawLine:(CGPoint)from to:(CGPoint)to color:(UIColor*)color {
