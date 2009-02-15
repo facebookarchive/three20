@@ -236,7 +236,7 @@ static const NSTimeInterval kOvershoot = 2;
   }
   
   NSInteger indexDiff = pageIndex - baseIndex;
-  if (abs(indexDiff) > kOffscreenPages) {
+  if (fabs(indexDiff) > kOffscreenPages) {
     return kInvalidIndex;
   }
 
@@ -349,7 +349,7 @@ static const NSTimeInterval kOvershoot = 2;
 
   NSInteger indexDiff = pageIndex - _centerPageIndex;
   if (indexDiff) {
-    if (abs(indexDiff) <= kOffscreenPages) {
+    if (fabs(indexDiff) <= kOffscreenPages) {
       if (indexDiff > 0) {
         NSInteger edgeIndex = _centerPageIndex - kOffscreenPages;
         NSInteger newEdgeIndex = pageIndex - kOffscreenPages;
@@ -370,6 +370,10 @@ static const NSTimeInterval kOvershoot = 2;
     _pageArrayIndex = [self arrayIndexForPageIndex:pageIndex relativeToIndex:_centerPageIndex];
     _centerPageIndex = pageIndex;
   }
+
+  // XXXjoe Move the center page to to the top of the views - temporary fix until
+  // I work out how to clip photos
+  [self addSubview:self.centerPage];
 }
 
 - (void)layoutPage {
@@ -394,6 +398,14 @@ static const NSTimeInterval kOvershoot = 2;
   }
 }
 
+- (CGFloat)overflowForFrame:(CGRect)frame {
+  if (UIInterfaceOrientationIsLandscape(_orientation)) {
+    return frame.origin.y < 0 ? fabs(frame.origin.y) : 0;
+  } else {
+    return frame.origin.x < 0 ? fabs(frame.origin.x) : 0;
+  }
+}
+
 - (void)layoutAdjacentPages {
   BOOL flipped = self.flipped;
   BOOL pinched = self.pinched;
@@ -402,15 +414,21 @@ static const NSTimeInterval kOvershoot = 2;
   NSInteger minPageIndex = _centerPageIndex - kOffscreenPages;
   NSInteger maxPageIndex = _centerPageIndex + kOffscreenPages;
 
+  CGRect centerFrame = [self frameOfPageAtIndex:_centerPageIndex];
+  CGFloat centerPageOverflow = [self overflowForFrame:centerFrame] * self.zoomFactor;
+  
+  CGFloat overflow = centerPageOverflow;
   for (NSInteger i = _centerPageIndex - 1; i >= 0 && i >= minPageIndex; --i) {
     UIView* page = [self pageAtIndex:i create:YES];
     if (page) {
+      CGRect frame = [self frameOfPageAtIndex:i];
+      overflow += [self overflowForFrame:frame];
+
       NSInteger relativeIndex = -(_centerPageIndex - i);
       CGFloat x = flipped
-        ? ((self.pageWidth + _pageSpacing) * -relativeIndex) + _pageEdges.right
-        : ((self.pageWidth + _pageSpacing) * relativeIndex) + _pageEdges.left;
+        ? ((self.pageWidth + _pageSpacing) * -relativeIndex) + _pageEdges.right + overflow
+        : ((self.pageWidth + _pageSpacing) * relativeIndex) + _pageEdges.left - overflow;
       CGPoint offset = [self offsetForOrientation:x y:0];
-      CGRect frame = [self frameOfPageAtIndex:i];
 
       page.transform = rotation;
       page.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
@@ -419,16 +437,19 @@ static const NSTimeInterval kOvershoot = 2;
     }
   }
 
+  overflow = centerPageOverflow;
   NSInteger pageCount = [_dataSource numberOfPagesInScrollView:self];
   for (NSInteger i = _centerPageIndex + 1; i < pageCount && i <= maxPageIndex; ++i) {
     UIView* page = [self pageAtIndex:i create:YES];
     if (page) {
+      CGRect frame = [self frameOfPageAtIndex:i];
+      overflow += [self overflowForFrame:frame];
+
       NSInteger relativeIndex = i - _centerPageIndex;
       CGFloat x = flipped
-        ? ((self.pageWidth + _pageSpacing) * -relativeIndex) + _pageEdges.left
-        : ((self.pageWidth + _pageSpacing) * relativeIndex) + _pageEdges.right;
+        ? ((self.pageWidth + _pageSpacing) * -relativeIndex) + _pageEdges.left - overflow
+        : ((self.pageWidth + _pageSpacing) * relativeIndex) + _pageEdges.right + overflow;
       CGPoint offset = [self offsetForOrientation:x y:0];
-      CGRect frame = [self frameOfPageAtIndex:i];
 
       page.transform = rotation;
       page.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
@@ -533,7 +554,7 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 - (CGFloat)mm:(CGFloat)m1 t:(CGFloat)m2 max:(CGFloat)max {
-    CGFloat rl = (1 - (abs(m2) / max)) * 0.1;
+    CGFloat rl = (1 - (fabs(m2) / max)) * 0.1;
     if (rl < 0) rl = 0;
     if (rl > 1) rl = 1;
     return m1 + ((m2 - m1) * rl);
@@ -619,17 +640,24 @@ static const NSTimeInterval kOvershoot = 2;
     top = -_pageEdges.top;
     bottom = -_pageEdges.bottom;
   } else if (self.flicked) {
+    CGRect centerFrame = [self frameOfPageAtIndex:_centerPageIndex];
+    CGFloat centerPageOverflow = [self overflowForFrame:centerFrame] * self.zoomFactor;
+
     if (_pageEdges.left < 0) {
-      if (abs(_pageStartEdges.left) >= abs(_pageEdges.right)) {
-        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.right + _overshoot);
+      CGRect frame = [self frameOfPageAtIndex:_centerPageIndex + (self.flipped ? -1 : 1)];
+      CGFloat overflow = centerPageOverflow + [self overflowForFrame:frame];
+      if (fabs(_pageStartEdges.left) >= fabs(_pageEdges.right)) {
+        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.right + _overshoot + overflow);
       } else {
-        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.left + _overshoot);
+        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.left + _overshoot + overflow);
       }
     } else {
-      if (abs(_pageEdges.left) >= abs(_pageEdges.right)) {
-        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.right + _overshoot);
+      CGRect frame = [self frameOfPageAtIndex:_centerPageIndex + (self.flipped ? 1 : -1)];
+      CGFloat overflow = centerPageOverflow + [self overflowForFrame:frame];
+      if (fabs(_pageEdges.left) >= fabs(_pageEdges.right)) {
+        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.right + _overshoot + overflow);
       } else {
-        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.left + _overshoot);
+        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.left + _overshoot + overflow);
       }
     }
   } else {

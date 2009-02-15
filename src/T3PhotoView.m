@@ -85,7 +85,7 @@ static const CGFloat kMaxCaptionHeight = 100;
     if (image == _defaultImage) {
       self.contentMode = UIViewContentModeCenter;
     } else {
-      self.contentMode = UIViewContentModeScaleToFill;
+      self.contentMode = UIViewContentModeScaleAspectFill;
     }
     [super setImage:image];
   }

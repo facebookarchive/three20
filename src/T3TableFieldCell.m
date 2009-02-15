@@ -255,6 +255,95 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@implementation T3SubtextTableFieldCell
+
++ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
+  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
+  CGFloat maxWidth = appFrame.size.width - kHPadding*2;
+  T3SubtextTableField* field = item;
+
+  CGSize textSize = [field.text sizeWithFont:[UIFont boldSystemFontOfSize:15]
+    constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
+    lineBreakMode:UILineBreakModeWordWrap];
+  CGSize subtextSize = [field.subtext sizeWithFont:[UIFont systemFontOfSize:14]
+    constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+  
+  return kVPadding*2 + textSize.height + subtextSize.height;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+    _subtextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _subtextLabel.opaque = YES;
+    _subtextLabel.backgroundColor = [UIColor whiteColor];
+    _subtextLabel.font = [UIFont systemFontOfSize:14];
+    _subtextLabel.textColor = [UIColor grayColor];
+    _subtextLabel.highlightedTextColor = [UIColor whiteColor];
+    _subtextLabel.textAlignment = UITextAlignmentLeft;
+    _subtextLabel.contentMode = UIViewContentModeTop;
+    _subtextLabel.lineBreakMode = UILineBreakModeWordWrap;
+    _subtextLabel.numberOfLines = 0;
+    [self.contentView addSubview:_subtextLabel];
+	}
+	return self;
+}
+
+- (void)dealloc {
+  [_subtextLabel release];
+	[super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIView
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  [_label sizeToFit];
+  _label.x = kHPadding;
+  _label.y = kVPadding;
+
+  CGFloat maxWidth = self.contentView.width - kHPadding*2;
+  CGSize subtextSize = [_subtextLabel.text sizeWithFont:_subtextLabel.font
+    constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX) lineBreakMode:_subtextLabel.lineBreakMode];
+  _subtextLabel.frame = CGRectMake(kHPadding, _label.bottom, subtextSize.width, subtextSize.height);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// T3TableViewCell
+
+- (void)setObject:(id)anObject {
+  if (object != anObject) {
+    [super setObject:anObject];
+  
+    T3SubtextTableField* field = object;
+    _label.text = field.text;
+    _label.font = [UIFont boldSystemFontOfSize:15];
+    _label.textColor = [UIColor blackColor];
+    _label.adjustsFontSizeToFitWidth = YES;
+
+    _subtextLabel.text = field.subtext;
+
+    if (field.href) {
+      if ([[T3NavigationCenter defaultCenter] urlIsSupported:field.href]) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+      } else {
+        self.accessoryType = UITableViewCellAccessoryNone;
+      }
+      self.selectionStyle = UITableViewCellSelectionStyleBlue;
+    } else {
+      self.accessoryType = UITableViewCellAccessoryNone;
+      self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+  }  
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation T3MoreButtonTableFieldCell
 
 @synthesize animating = _animating;
@@ -399,7 +488,6 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_label release];
   [_iconView release];
 	[super dealloc];
 }

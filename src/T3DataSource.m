@@ -46,6 +46,8 @@
       return [T3TextTableFieldCell class];
     } else if ([object isKindOfClass:[T3TitledTableField class]]) {
       return [T3TitledTableFieldCell class];
+    } else if ([object isKindOfClass:[T3SubtextTableField class]]) {
+      return [T3SubtextTableFieldCell class];
     } else if ([object isKindOfClass:[T3MoreButtonTableField class]]) {
       return [T3MoreButtonTableFieldCell class];
     } else if ([object isKindOfClass:[T3IconTableField class]]) {

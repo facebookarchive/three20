@@ -51,6 +51,17 @@
 
 @end
 
+@interface T3SubtextTableField : T3TableField {
+  NSString* _subtext;
+}
+
+@property(nonatomic,copy) NSString* subtext;
+
+- (id)initWithText:(NSString*)text subtext:(NSString*)subtext;
+- (id)initWithText:(NSString*)text subtext:(NSString*)subtext href:(NSString*)href;
+
+@end
+
 @interface T3ImageTableField : T3TableField {
   UIImage* _defaultImage;
   NSString* _image;

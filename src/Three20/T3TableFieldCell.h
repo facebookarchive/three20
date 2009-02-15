@@ -15,6 +15,10 @@
 }
 @end
 
+@interface T3SubtextTableFieldCell : T3TableFieldCell
+  UILabel* _subtextLabel;
+@end
+
 @interface T3MoreButtonTableFieldCell : T3TableFieldCell {
   UIActivityIndicatorView* _spinnerView;
   UILabel* _subtitleLabel;

@@ -133,6 +133,40 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@implementation T3SubtextTableField
+
+@synthesize subtext = _subtext;
+
+- (id)init {
+  if (self = [super init]) {
+    _subtext = nil;
+  }
+  return self;
+}
+
+- (id)initWithText:(NSString*)text subtext:(NSString*)subtext {
+  if (self = [super initWithText:text]) {
+    self.subtext = subtext;
+  }
+  return self;
+}
+
+- (id)initWithText:(NSString*)text subtext:(NSString*)subtext href:(NSString*)href {
+  if (self = [self initWithText:text href:href]) {
+    self.subtext = subtext;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_subtext release];
+  [super dealloc];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation T3ImageTableField
 
 @synthesize defaultImage = _defaultImage, image = _image;
