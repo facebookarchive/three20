@@ -33,6 +33,11 @@
   nav.urlSchemes = [NSArray arrayWithObject:@"tt"];
   nav.supportsShakeToReload = YES;
   
+//  self.navigationController.navigationBar.tintColor = RGBCOLOR(236, 106, 45);
+//  
+//  TTAppearance* appearance = [TTAppearance appearance];
+//  appearance.barTintColor = RGBCOLOR(236, 106, 45);
+  
   [nav addController:[PhotoTest1Controller class] forView:@"photoTest1"];
   [nav addController:[PhotoTest2Controller class] forView:@"photoTest2"];
   [nav addController:[ImageTest1Controller class] forView:@"imageTest1"];
@@ -63,10 +68,10 @@
     @"Controls",
     [[[TTTableField alloc] initWithText:@"Table Fields"
       href:@"tt://tableFieldTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Search Bar"
+      href:@"tt://searchTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Text Editing"
       href:@"tt://textEditTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Search Field"
-      href:@"tt://searchTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Tab Bars"
       href:@"tt://tabBarTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Shiny Label"

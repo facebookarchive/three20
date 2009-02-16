@@ -30,12 +30,12 @@ static CGFloat kThinBezelHeight = 35;
     _bezelView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
     if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleBlackThinBezel) {
       _bezelView.opaque = NO;
-      _bezelView.background = TTBackgroundRoundedRect;
+      _bezelView.style = TTDrawFillRect;
       _bezelView.fillColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
       _bezelView.strokeRadius = 10;
     } else if (_style == TTActivityLabelStyleWhiteBezel) {
       _bezelView.opaque = NO;
-      _bezelView.background = TTBackgroundRoundedRect;
+      _bezelView.style = TTDrawFillRect;
       _bezelView.fillColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
       _bezelView.strokeColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
       _bezelView.strokeRadius = 10;

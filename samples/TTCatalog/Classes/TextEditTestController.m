@@ -30,7 +30,7 @@
   label.font = [UIFont systemFontOfSize:15];
   label.textColor = [UIColor colorWithWhite:0.7 alpha:1];
   [label sizeToFit];
-  label.frame = CGRectInset(label.frame, -5, 0);
+  label.frame = CGRectInset(label.frame, -2, 0);
   textField.leftView = label;
   textField.leftViewMode = UITextFieldViewModeAlways;
 

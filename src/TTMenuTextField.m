@@ -245,6 +245,7 @@ static CGFloat kMinCursorWidth = 50;
 
   cell.object = object;
   cell.label = label;
+  cell.font = self.font;
   [_cellViews addObject:cell];
   [self addSubview:cell];  
 

@@ -231,8 +231,8 @@ static const CGFloat kShadowHeight = 24;
 
     if (!_shadowView) {
       _shadowView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
+      _shadowView.style = TTDrawInnerShadow;
       _shadowView.backgroundColor = [UIColor clearColor];
-      _shadowView.background = TTBackgroundInnerShadow;
       _shadowView.contentMode = UIViewContentModeRedraw;
       _shadowView.userInteractionEnabled = NO;
     }

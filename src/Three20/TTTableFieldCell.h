@@ -52,8 +52,7 @@
 }
 @end
 
-@interface TTTextFieldTableFieldCell : TTTableViewCell <UITextFieldDelegate>  {
-  UILabel* _titleLabel;
+@interface TTTextFieldTableFieldCell : TTTableFieldCell <UITextFieldDelegate>  {
   UITextField* _textField;
 }
 

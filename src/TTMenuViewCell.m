@@ -45,13 +45,13 @@ static CGFloat kMaxWidth = 250;
     UIColor* fill[] = {RGBACOLOR(79, 144, 255, 1), RGBACOLOR(49, 90, 255, 1)};
     UIColor* stroke = RGBACOLOR(53, 94, 255, 1);
 
-    [[TTAppearance appearance] drawBackground:TTBackgroundRoundedRect rect:CGRectInset(rect, 1, 1)
+    [[TTAppearance appearance] draw:TTDrawFillRect rect:CGRectInset(rect, 1, 1)
       fill:fill fillCount:2 stroke:stroke radius:TT_RADIUS_ROUNDED];
   } else {
     UIColor* fill[] = {RGBACOLOR(221, 231, 248, 1), RGBACOLOR(188, 206, 241, 1)};
     UIColor* stroke = RGBACOLOR(121, 133, 217, 1);
 
-    [[TTAppearance appearance] drawBackground:TTBackgroundRoundedRect rect:CGRectInset(rect, 1, 1)
+    [[TTAppearance appearance] draw:TTDrawFillRect rect:CGRectInset(rect, 1, 1)
       fill:fill fillCount:2 stroke:stroke radius:TT_RADIUS_ROUNDED];
   }
 }

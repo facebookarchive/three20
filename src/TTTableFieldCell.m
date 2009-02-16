@@ -100,7 +100,7 @@ static CGFloat kDefaultIconSize = 50;
       _label.textColor = [UIColor grayColor];
       _label.textAlignment = UITextAlignmentCenter;
     } else {
-      _label.font = [UIFont boldSystemFontOfSize:15];
+      _label.font = [UIFont boldSystemFontOfSize:17];
       _label.textColor = [UIColor blackColor];
       _label.textAlignment = UITextAlignmentLeft;
     }
@@ -552,17 +552,8 @@ static CGFloat kDefaultIconSize = 50;
     [super setObject:anObject];
   
     TTImageTableField* field = object;
-    _label.text = field.text;
-
-    _label.font = [UIFont boldSystemFontOfSize:15];
-    _label.textAlignment = UITextAlignmentCenter;
-    _label.lineBreakMode = UILineBreakModeWordWrap;
-    _label.numberOfLines = 0;
-
     _iconView.defaultImage = field.defaultImage;
     _iconView.url = field.image;
-
-    self.accessoryType = UITableViewCellAccessoryNone;
   }  
 }
 
@@ -762,14 +753,7 @@ static CGFloat kDefaultIconSize = 50;
 
 - (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _titleLabel.font = [UIFont boldSystemFontOfSize:17];
-
     _textField = [[UITextField alloc] initWithFrame:CGRectZero];
-    _textField.font = [UIFont systemFontOfSize:15];
-    _textField.leftView = _titleLabel;
-    _textField.leftViewMode = UITextFieldViewModeAlways;
-    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [_textField addTarget:self action:@selector(valueChanged)
       forControlEvents:UIControlEventEditingChanged];
     [self.contentView addSubview:_textField];
@@ -781,7 +765,6 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_titleLabel release];
   [_textField release];
   [super dealloc];
 }
@@ -792,9 +775,9 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  [_titleLabel sizeToFit];
-  _titleLabel.width = kTextFieldTitleWidth;
-
+  [_label sizeToFit];
+  _label.width = kTextFieldTitleWidth;
+  
   _textField.frame = CGRectOffset(CGRectInset(self.contentView.bounds, 3, 0), 0, 1);
 }
 
@@ -806,16 +789,20 @@ static CGFloat kDefaultIconSize = 50;
     [super setObject:anObject];
 
     TTTextFieldTableField* field = object;
-    _titleLabel.text = [NSString stringWithFormat:@"  %@", field.title];
+    _label.text = [NSString stringWithFormat:@"  %@", field.title];
 
     _textField.text = field.text;
     _textField.placeholder = field.placeholder;
+    _textField.font = [UIFont systemFontOfSize:15];
     _textField.returnKeyType = field.returnKeyType;
     _textField.keyboardType = field.keyboardType;
     _textField.autocapitalizationType = field.autocapitalizationType;
     _textField.autocorrectionType = field.autocorrectionType;
     _textField.clearButtonMode = field.clearButtonMode;
     _textField.secureTextEntry = field.secureTextEntry;
+    _textField.leftView = _label;
+    _textField.leftViewMode = UITextFieldViewModeAlways;
+    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _textField.delegate = self;
   }  
 }
@@ -1070,6 +1057,8 @@ static CGFloat kDefaultIconSize = 50;
 - (void)setObject:(id)anObject {
   if (object != anObject) {
     [super setObject:anObject];
+
+    _label.font = [UIFont boldSystemFontOfSize:15];
 
     TTSwitchTableField* field = object;
     _switch.on = field.on;

@@ -18,8 +18,8 @@ static const CGFloat kPaddingY = 0;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    self.tintColor = RGBCOLOR(109, 132, 162);
-//    self.tintColor = [UIColor colorWithRed:0.23046875 green:0.34765625 blue:0.59375 alpha:1.0];
+    self.contentMode = UIViewContentModeRedraw;
+    self.tintColor = [TTAppearance appearance].barTintColor;
     
     _searchField = [[TTSearchTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     _searchField.placeholder = NSLocalizedString(@"Search", @"");
@@ -47,22 +47,32 @@ static const CGFloat kPaddingY = 0;
 
 - (void)drawRect:(CGRect)rect {
   UIColor* ligherTint = [_tintColor transformHue:1 saturation:0.4 value:1.2];
-  UIColor* barFill[] = {ligherTint, _tintColor, _tintColor};
+  UIColor* barFill[] = {ligherTint, _tintColor};
+  
+  CGRect topRect = CGRectMake(rect.origin.x, rect.origin.y,
+    rect.size.width, rect.size.height/1.5);
+  [[TTAppearance appearance] draw:TTDrawFillRect rect:topRect
+    fill:barFill fillCount:2 stroke:nil radius:0];
 
-  [[TTAppearance appearance] drawBackground:TTBackgroundRoundedRect rect:rect
-    fill:barFill fillCount:3 stroke:nil radius:0];
+  UIColor* tintFill[] = {_tintColor};
+  CGRect bottomRect = CGRectMake(rect.origin.x, floor(rect.origin.y+rect.size.height/(2*2))+1,
+    rect.size.width, (rect.size.height/2)-2);
+  [[TTAppearance appearance] draw:TTDrawFillRect rect:bottomRect
+    fill:tintFill fillCount:1 stroke:nil radius:0];
 
-  UIColor* highlight = RGBACOLOR(255, 255, 255, 0.4);
+  UIColor* highlight = [UIColor colorWithWhite:1 alpha:0.3];
 
-  [[TTAppearance appearance] drawBackground:TTBackgroundStrokeTop rect:CGRectInset(rect, 0, 1)
+  [[TTAppearance appearance] draw:TTDrawStrokeTop rect:CGRectInset(rect, 0, 1)
     fill:nil fillCount:0 stroke:highlight radius:0];
 
-  UIColor* textFill[] = {RGBACOLOR(255, 255, 255, 1)};
-  UIColor* textStroke = [_tintColor transformHue:1 saturation:1 value:0.9];
+  UIImage* image = [[UIImage imageNamed:@"ttimages/textBox.png"]
+    stretchableImageWithLeftCapWidth:15 topCapHeight:15];
+  [image drawInRect:CGRectInset(rect, kMarginX, kMarginY)];
 
-  [[TTAppearance appearance] drawBackground:TTBackgroundRoundedRect
+  UIColor* textStroke = [_tintColor transformHue:1 saturation:1 value:0.9];
+  [[TTAppearance appearance] draw:TTDrawFillRect
     rect:CGRectInset(rect, kMarginX, kMarginY)
-    fill:textFill fillCount:1 stroke:textStroke radius:TT_RADIUS_ROUNDED];
+    fill:nil fillCount:0 stroke:textStroke radius:TT_RADIUS_ROUNDED];
 }
 
 - (void)layoutSubviews {
@@ -101,3 +111,4 @@ static const CGFloat kPaddingY = 0;
 }
 
 @end
+

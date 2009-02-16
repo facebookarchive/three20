@@ -20,6 +20,7 @@ typedef enum {
   NSArray* _tabItems;
   NSMutableArray* _tabViews;
   UIColor* _textColor;
+  UIColor* _tintColor;
   UIImage* _tabImage;
 }
 
@@ -31,6 +32,7 @@ typedef enum {
 @property(nonatomic) NSInteger selectedTabIndex;
 @property(nonatomic) CGPoint contentOffset;
 @property(nonatomic,retain) UIColor* textColor;
+@property(nonatomic,retain) UIColor* tintColor;
 @property(nonatomic,retain) UIImage* tabImage;
 
 - (id)initWithFrame:(CGRect)frame style:(TTTabBarStyle)style;

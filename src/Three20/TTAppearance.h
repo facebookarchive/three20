@@ -1,20 +1,21 @@
 #import "Three20/TTGlobal.h"
 
 typedef enum {
-  TTBackgroundNone,
-  TTBackgroundRoundedRect,
-  TTBackgroundRoundedMask,
-  TTBackgroundInnerShadow,
-  TTBackgroundStrokeTop,
-  TTBackgroundStrokeRight,
-  TTBackgroundStrokeBottom,
-  TTBackgroundStrokeLeft
-} TTBackground;
+  TTDrawStyleNone,
+  TTDrawFillRect,
+  TTDrawFillRectInverted,
+  TTDrawInnerShadow,
+  TTDrawStrokeTop,
+  TTDrawStrokeRight,
+  TTDrawStrokeBottom,
+  TTDrawStrokeLeft
+} TTDrawStyle;
 
 #define TT_RADIUS_ROUNDED NSUIntegerMax
 
 @interface TTAppearance : NSObject {
   UIColor* _navigationBarTintColor;
+  UIColor* _barTintColor;
   UIColor* _linkTextColor;
   UIColor* _searchTableBackgroundColor;
   UIColor* _searchTableSeparatorColor;
@@ -24,16 +25,17 @@ typedef enum {
 + (void)setAppearance:(TTAppearance*)appearance;
 
 @property(nonatomic,retain) UIColor* navigationBarTintColor;
+@property(nonatomic,retain) UIColor* barTintColor;
 
 @property(nonatomic,retain) UIColor* linkTextColor;
 
 @property(nonatomic,retain) UIColor* searchTableBackgroundColor;
 @property(nonatomic,retain) UIColor* searchTableSeparatorColor;
 
-- (void)drawBackground:(TTBackground)background rect:(CGRect)rect fill:(UIColor**)fillColor
+- (void)draw:(TTDrawStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
   fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius;
 
-- (void)drawBackground:(TTBackground)background rect:(CGRect)rect;
+- (void)draw:(TTDrawStyle)background rect:(CGRect)rect;
 
 - (void)drawLine:(CGPoint)from to:(CGPoint)to color:(UIColor*)color;
 
