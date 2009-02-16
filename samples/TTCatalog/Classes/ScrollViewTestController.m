@@ -54,7 +54,7 @@
   TTBackgroundView* pageView = (TTBackgroundView*)[_scrollView dequeueReusablePage];
   if (!pageView) {
     pageView = [[[TTBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
-    pageView.style = TTDrawFillRectInverted;
+    pageView.style = TTDrawFillRect;
     pageView.strokeRadius = 30;
     pageView.strokeColor = [UIColor blueColor];
     pageView.fillColor2 = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];

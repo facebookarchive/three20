@@ -16,12 +16,18 @@ static TTNavigationCenter* gDefaultCenter = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTNavigationEntry : NSObject {
+  id _target;
+  SEL _action;
   Class _cls;
   TTNavigationRule _rule;
 }
 
+@property(nonatomic,readonly) id target;
+@property(nonatomic,readonly) SEL action;
 @property(nonatomic,readonly) Class cls;
 @property(nonatomic,readonly) TTNavigationRule rule;
+
+- (id)initWithTarget:(id)target action:(SEL)action;
 
 - (id)initWithClass:(Class)cls rule:(TTNavigationRule)rule;
 
@@ -29,12 +35,24 @@ static TTNavigationCenter* gDefaultCenter = nil;
 
 @implementation TTNavigationEntry
 
-@synthesize cls = _cls, rule = _rule;
+@synthesize target = _target, action = _action, cls = _cls, rule = _rule;
+
+- (id)initWithTarget:(id)target action:(SEL)action {
+  if (self = [super init]) {
+    _target = target;
+    _action = action;
+    _cls = nil;
+    _rule = 0;
+  }
+  return self;
+}
 
 - (id)initWithClass:(Class)controllerClass rule:(TTNavigationRule)rule {
   if (self = [super init]) {
     _cls = controllerClass;
     _rule = rule;
+    _target = nil;
+    _action = nil;
   }
   return self;
 }
@@ -236,16 +254,22 @@ static TTNavigationCenter* gDefaultCenter = nil;
   }
 }
 
-- (void)addController:(Class)cls forView:(NSString*)viewType {
-  [self addController:cls forView:viewType rule:TTNavigationCreate];
+- (void)addView:(NSString*)viewType target:(id)target action:(SEL)action {
+  TTNavigationEntry* entry = [[[TTNavigationEntry alloc] initWithTarget:target action:action]
+    autorelease];
+  [_viewLoaders setObject:entry forKey:viewType];
 }
 
-- (void)addController:(Class)cls forView:(NSString*)viewType rule:(TTNavigationRule)rule {
+- (void)addView:(NSString*)viewType controller:(Class)cls {
+  [self addView:viewType controller:cls rule:TTNavigationCreate];
+}
+
+- (void)addView:(NSString*)viewType controller:(Class)cls rule:(TTNavigationRule)rule {
   TTNavigationEntry* entry = [[[TTNavigationEntry alloc] initWithClass:cls rule:rule] autorelease];
   [_viewLoaders setObject:entry forKey:viewType];
 }
 
-- (void)removeController:(NSString*)viewType {
+- (void)removeView:(NSString*)viewType {
   [_viewLoaders removeObjectForKey:viewType];
 }
 
@@ -391,91 +415,94 @@ static TTNavigationCenter* gDefaultCenter = nil;
   return [self displayURL:url withState:nil animated:animated];
 }
 
-- (TTViewController*)displayURL:(NSString*)u withState:(NSDictionary*)state
+- (TTViewController*)displayURL:(NSString*)url withState:(NSDictionary*)state
     animated:(BOOL)animated {
-  NSURL* url = [NSURL URLWithString:u];
-  if ([_urlSchemes indexOfObject:url.scheme] == NSNotFound) {
-    [[UIApplication sharedApplication] openURL:url];
+  NSURL* u = [NSURL URLWithString:url];
+  if ([_urlSchemes indexOfObject:u.scheme] == NSNotFound) {
+    [[UIApplication sharedApplication] openURL:u];
   } else if (_viewLoaders) {
-    id<TTObject> object = [self locateObject:url];
-    NSString* viewType = object && url.query ? url.query : url.host;
+    id<TTObject> object = [self locateObject:u];
+    NSString* viewType = object && u.query ? u.query : u.host;
     if (![self dispatchLink:object inView:viewType animated:animated]) {
       return nil;
     }
-    
-    UINavigationController* navController = nil;
-    
-    if ([_delegate respondsToSelector:@selector(navigationControllerForObject:inView:)]) {
-      navController = [_delegate navigationControllerForObject:object inView:viewType];
-    }
-    
-    if (!navController) {
-      navController = self.frontNavigationController;
-    }
-    
-    TTNavigationEntry* entry = [_viewLoaders objectForKey:viewType];
-    if (!entry)
-      return nil;
-    
-    TTViewController* viewController = nil;
-    if (entry.rule == TTNavigationSingleton) {
-      for (int i = 0; i < navController.viewControllers.count; ++i) {
-        UIViewController* controller = [navController.viewControllers objectAtIndex:i];
-        if ([controller isKindOfClass:entry.cls]) {
-          viewController = (TTViewController*)controller;
-        }
-      }
-    } else if (entry.rule == TTNavigationUpdate) {
-      if ([navController.topViewController isKindOfClass:entry.cls]) {
-        TTViewController* topViewController = (TTViewController*)navController.topViewController;
-        if (topViewController.viewObject == object) {
-          viewController = topViewController;
-        }
-      }
-    }
 
-    if (!viewController) {
-      viewController = [[[entry.cls alloc] init] autorelease];
-    }
-    
-    if (object) {
-      [viewController showObject:object inView:viewType withState:state];
-    }
-    
-    if ([_delegate respondsToSelector:@selector(willNavigateToObject:inView:withController:)]) {
-      [_delegate willNavigateToObject:object inView:viewType withController:viewController];
-    }
-    
-    if (entry.rule == TTNavigationModal) {
-      [navController presentModalViewController:viewController animated:animated];
-    } else if (entry.rule == TTNavigationCommand) {
-      if ([viewController respondsToSelector:@selector(performCommand:)]) {
-        [viewController performSelector:@selector(performCommand:) withObject:navController];
+    TTNavigationEntry* entry = [_viewLoaders objectForKey:viewType];
+    if (!entry) {
+      return nil;
+    } else if (entry.target) {
+      if (entry.action && [entry.target respondsToSelector:entry.action]) {
+        [entry.target performSelector:entry.action withObject:object withObject:viewType
+          withObject:state];
       }
+      return nil;
     } else {
-      if (!state && navController.tabBarController) {
-        navController.tabBarController.selectedViewController = navController;
+      UINavigationController* navController = nil;
+      
+      if ([_delegate respondsToSelector:@selector(navigationControllerForObject:inView:)]) {
+        navController = [_delegate navigationControllerForObject:object inView:viewType];
       }
       
-      if (!viewController.parentViewController) {
-        for (UIViewController* c in navController.viewControllers) {
-          if (c.hidesBottomBarWhenPushed) {
-            viewController.hidesBottomBarWhenPushed = NO;
-            break;
+      if (!navController) {
+        navController = self.frontNavigationController;
+      }
+          
+      TTViewController* viewController = nil;
+      if (entry.rule == TTNavigationSingleton) {
+        for (int i = 0; i < navController.viewControllers.count; ++i) {
+          UIViewController* controller = [navController.viewControllers objectAtIndex:i];
+          if ([controller isKindOfClass:entry.cls]) {
+            viewController = (TTViewController*)controller;
           }
         }
-
-        [navController pushViewController:viewController animated:animated];
-      } else {
-        [navController popToViewController:viewController animated:animated];
+      } else if (entry.rule == TTNavigationUpdate) {
+        if ([navController.topViewController isKindOfClass:entry.cls]) {
+          TTViewController* topViewController = (TTViewController*)navController.topViewController;
+          if (topViewController.viewObject == object) {
+            viewController = topViewController;
+          }
+        }
       }
-    }
 
-    if ([_delegate respondsToSelector:@selector(didNavigateToObject:inView:withController:)]) {
-      [_delegate didNavigateToObject:object inView:viewType withController:viewController];
+      if (!viewController) {
+        viewController = [[[entry.cls alloc] init] autorelease];
+      }
+      
+      if (object) {
+        [viewController showObject:object inView:viewType withState:state];
+      }
+      
+      if ([_delegate respondsToSelector:@selector(willNavigateToObject:inView:withController:)]) {
+        [_delegate willNavigateToObject:object inView:viewType withController:viewController];
+      }
+      
+      if (entry.rule == TTNavigationModal) {
+        [navController presentModalViewController:viewController animated:animated];
+      } else {
+        if (!state && navController.tabBarController) {
+          navController.tabBarController.selectedViewController = navController;
+        }
+        
+        if (!viewController.parentViewController) {
+          for (UIViewController* c in navController.viewControllers) {
+            if (c.hidesBottomBarWhenPushed) {
+              viewController.hidesBottomBarWhenPushed = NO;
+              break;
+            }
+          }
+
+          [navController pushViewController:viewController animated:animated];
+        } else {
+          [navController popToViewController:viewController animated:animated];
+        }
+      }
+
+      if ([_delegate respondsToSelector:@selector(didNavigateToObject:inView:withController:)]) {
+        [_delegate didNavigateToObject:object inView:viewType withController:viewController];
+      }
+      
+      return viewController;
     }
-    
-    return viewController;
   }
   
   return nil;

@@ -8,7 +8,7 @@ static const CGFloat kMarginX = 5;
 static const CGFloat kMarginY = 5;
 
 static const CGFloat kPaddingX = 10;
-static const CGFloat kPaddingY = 0;
+static const CGFloat kPaddingY = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,7 +81,8 @@ static const CGFloat kPaddingY = 0;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-  return CGSizeMake(size.width, 41);
+  CGSize fontSize = [@"M" sizeWithFont:self.font];
+  return CGSizeMake(size.width, fontSize.height+kPaddingY*2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,6 +109,14 @@ static const CGFloat kPaddingY = 0;
 
 - (void)setShowsDarkScreen:(BOOL)showsDarkScreen {
   _searchField.showsDarkScreen = showsDarkScreen;
+}
+
+- (UIFont*)font {
+  return _searchField.font;
+}
+
+- (void)setFont:(UIFont*)font {
+  _searchField.font = font;
 }
 
 - (id<TTSearchSource>)searchSource {

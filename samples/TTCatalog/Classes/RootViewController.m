@@ -38,17 +38,17 @@
 //  TTAppearance* appearance = [TTAppearance appearance];
 //  appearance.barTintColor = RGBCOLOR(236, 106, 45);
   
-  [nav addController:[PhotoTest1Controller class] forView:@"photoTest1"];
-  [nav addController:[PhotoTest2Controller class] forView:@"photoTest2"];
-  [nav addController:[ImageTest1Controller class] forView:@"imageTest1"];
-  [nav addController:[ImageTest2Controller class] forView:@"imageTest2"];
-  [nav addController:[YouTubeTestController class] forView:@"youTubeTest"];
-  [nav addController:[TableFieldTestController class] forView:@"tableFieldTest"];
-  [nav addController:[ComposerTestController class] forView:@"composerTest"];
-  [nav addController:[SearchTestController class] forView:@"searchTest"];
-  [nav addController:[TabBarTestController class] forView:@"tabBarTest"];
-  [nav addController:[ActivityTestController class] forView:@"activityTest"];
-  [nav addController:[ScrollViewTestController class] forView:@"scrollViewTest"];
+  [nav addView:@"photoTest1" controller:[PhotoTest1Controller class]];
+  [nav addView:@"photoTest2" controller:[PhotoTest2Controller class]];
+  [nav addView:@"imageTest1" controller:[ImageTest1Controller class]];
+  [nav addView:@"imageTest2" controller:[ImageTest2Controller class]];
+  [nav addView:@"youTubeTest" controller:[YouTubeTestController class]];
+  [nav addView:@"tableFieldTest" controller:[TableFieldTestController class]];
+  [nav addView:@"composerTest" controller:[ComposerTestController class]];
+  [nav addView:@"searchTest" controller:[SearchTestController class]];
+  [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
+  [nav addView:@"activityTest" controller:[ActivityTestController class]];
+  [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
   
   self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
     @"Photos",

@@ -5,7 +5,6 @@ typedef enum {
   TTNavigationUpdate,
   TTNavigationSingleton,
   TTNavigationModal,
-  TTNavigationCommand
 } TTNavigationRule;
 
 #define TT_NULL_URL @" "
@@ -51,9 +50,10 @@ typedef enum {
 + (TTNavigationCenter*)defaultCenter;
 + (void)setDefaultCenter:(TTNavigationCenter*)center;
 
-- (void)addController:(Class)cls forView:(NSString*)viewType;
-- (void)addController:(Class)cls forView:(NSString*)viewType rule:(TTNavigationRule)rule;
-- (void)removeController:(NSString*)name;
+- (void)addView:(NSString*)viewType target:(id)target action:(SEL)action;
+- (void)addView:(NSString*)viewType controller:(Class)cls;
+- (void)addView:(NSString*)viewType controller:(Class)cls rule:(TTNavigationRule)rule;
+- (void)removeView:(NSString*)name;
 
 - (void)addObjectLoader:(Class)cls name:(NSString*)name;
 - (void)removeObjectLoader:(NSString*)name;

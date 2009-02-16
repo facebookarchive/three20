@@ -11,6 +11,7 @@
 @property(nonatomic,assign) id<UITextFieldDelegate> delegate;
 @property(nonatomic,retain) id<TTSearchSource> searchSource;
 @property(nonatomic,retain) UIColor* tintColor;
+@property(nonatomic,retain) UIFont* font;
 @property(nonatomic) BOOL showsDoneButton;
 @property(nonatomic) BOOL showsDarkScreen;
 

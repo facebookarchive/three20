@@ -5,7 +5,8 @@
 
 - (void)loadView {
   self.view = [[[UIView alloc] init] autorelease];
-
+  self.view.backgroundColor = [UIColor whiteColor];
+  
   TTImageView* imageView = [[[TTImageView alloc] initWithFrame:CGRectMake(30, 30, 0, 0)]
     autorelease];
   imageView.autoresizesToImage = YES;

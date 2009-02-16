@@ -247,8 +247,6 @@
 				BEE3476F0F48F604008C826E /* TTSearchBar.m */,
 				BEE34F260F496620008C826E /* TTTextEditor.h */,
 				BEE34F240F496615008C826E /* TTTextEditor.m */,
-				BEE34EAF0F495C4A008C826E /* TTComposeController.h */,
-				BEE34EAD0F495C42008C826E /* TTComposeController.m */,
 			);
 			name = "Text Views";
 			sourceTree = "<group>";
@@ -334,6 +332,8 @@
 				BEF31F570F352E64000DE5D2 /* TTViewController.m */,
 				BEF31F650F352E64000DE5D2 /* TTTableViewController.h */,
 				BEF31F4F0F352E64000DE5D2 /* TTTableViewController.m */,
+				BEE34EAF0F495C4A008C826E /* TTComposeController.h */,
+				BEE34EAD0F495C42008C826E /* TTComposeController.m */,
 			);
 			name = "General Controllers";
 			sourceTree = "<group>";

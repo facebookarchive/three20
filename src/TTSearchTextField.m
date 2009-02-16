@@ -372,7 +372,7 @@ static const CGFloat kShadowHeight = 24;
   CGFloat keyboardHeight = withKeyboard ? KEYBOARD_HEIGHT : 0;
   CGFloat tableHeight = self.window.height - (y + height + keyboardHeight);
 
-  return CGRectMake(0, self.bottom-1, superview.frame.size.width, tableHeight);
+  return CGRectMake(0, self.bottom-1, superview.frame.size.width, tableHeight+1);
 }
 
 - (BOOL)shouldUpdate:(BOOL)emptyText {
