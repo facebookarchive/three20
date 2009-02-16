@@ -29,12 +29,12 @@
 
 @end
 
-@interface TTImageTableFieldCell : TTTableFieldCell {
+@interface TTIconTableFieldCell : TTTableFieldCell {
   TTImageView* _iconView;
 }
 @end
 
-@interface TTIconTableFieldCell : TTImageTableFieldCell
+@interface TTImageTableFieldCell : TTIconTableFieldCell
 
 @end
 

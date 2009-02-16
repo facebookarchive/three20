@@ -102,6 +102,26 @@ static TTNavigationCenter* gDefaultCenter = nil;
   }
 }
 
+- (UIViewController*)frontViewControllerForController:(UIViewController*)controller {
+  if ([controller isKindOfClass:[UITabBarController class]]) {
+    UITabBarController* tabBarController = (UITabBarController*)controller;
+    if (tabBarController.selectedViewController) {
+      controller = tabBarController.selectedViewController;
+    } else {
+      controller = [tabBarController.viewControllers objectAtIndex:0];
+    }
+  } else if ([controller isKindOfClass:[UINavigationController class]]) {
+    UINavigationController* navController = (UINavigationController*)controller;
+    controller = [navController.viewControllers lastObject];
+  }
+  
+  if (controller.modalViewController) {
+    return [self frontViewControllerForController:controller.modalViewController];
+  } else {
+    return controller;
+  }
+}
+
 - (NSArray*)stateFromNavigationController:(UINavigationController*)navController {
   NSMutableArray* states = [NSMutableArray array];
 
@@ -198,9 +218,9 @@ static TTNavigationCenter* gDefaultCenter = nil;
 - (UIViewController*)frontViewController {
   UINavigationController* navController = self.frontNavigationController;
   if (navController) {
-    return [navController.viewControllers lastObject];
+    return [self frontViewControllerForController:navController];
   } else {
-    return _mainViewController;
+    return [self frontViewControllerForController:_mainViewController];
   }
 }
 

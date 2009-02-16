@@ -43,12 +43,11 @@
     _items = nil;
   }
   
-  [textField updateResults];
+  [textField reloadSearchResults];
 }
 
-- (NSString*)textField:(TTSearchTextField*)textField
-    labelForRowAtIndexPath:(NSIndexPath*)indexPath {
-  TTTableField* field = [self objectForRowAtIndexPath:indexPath];
+- (NSString*)textField:(TTSearchTextField*)textField labelForObject:(id)object {
+  TTTableField* field = object;
   return field.text;
 }
 

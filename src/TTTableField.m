@@ -36,6 +36,10 @@
   return self;
 }
 
+- (NSString*)description {
+  return _text;
+}
+
 - (void)dealloc {
   [_text release];
   [_href release];

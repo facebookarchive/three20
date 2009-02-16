@@ -145,22 +145,6 @@ static const CGFloat kShadowHeight = 24;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (CGRect)frameForScreen {
-  UIView* parent = self.superview;
-  CGFloat bottom = self.screenY + self.height;
-  CGFloat tableHeight = self.window.height - (self.screenY + self.height);
-
-  return CGRectMake(0, bottom-1, parent.frame.size.width, tableHeight);
-}
-
-- (CGRect)frameForResults {
-  UIView* parent = self.superview;
-  CGFloat bottom = self.screenY + self.height;
-  CGFloat tableHeight = self.window.height - (self.screenY + self.height + KEYBOARD_HEIGHT);
-
-  return CGRectMake(0, bottom-1, parent.frame.size.width, tableHeight);
-}
-
 - (void)showDoneButton:(BOOL)show {
   UIViewController* controller = [TTNavigationCenter defaultCenter].frontViewController;
   if (controller) {
@@ -172,7 +156,7 @@ static const CGFloat kShadowHeight = 24;
       target:self action:@selector(doneAction)];
       [controller.navigationItem setRightBarButtonItem:doneButton animated:YES];
     } else {
-      [controller.navigationItem setRightBarButtonItem:nil animated:YES];
+      [controller.navigationItem setRightBarButtonItem:_previousRightBarButtonItem animated:YES];
       [_previousRightBarButtonItem release];
       _previousRightBarButtonItem = nil;
     }
@@ -183,14 +167,14 @@ static const CGFloat kShadowHeight = 24;
   if (show && !_screenView) {
     _screenView = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
     _screenView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
-    _screenView.frame = self.frameForScreen;
+    _screenView.frame = [self rectForSearchResults:NO];
     _screenView.alpha = 0;
     [_screenView addTarget:self action:@selector(doneAction)
       forControlEvents:UIControlEventTouchUpInside];
   }
   
   if (show) {
-    [self.window addSubview:_screenView];
+    [self.superviewForSearchResults addSubview:_screenView];
   }
   
   [UIView beginAnimations:nil context:nil];
@@ -219,50 +203,13 @@ static const CGFloat kShadowHeight = 24;
   }
 }
 
-- (void)searchForText:(NSString*)text {
-  if (text.length) {// && !self.selectedEntry) {
-    if (!_tableView) {
-      _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-      _tableView.backgroundColor = [TTAppearance appearance].searchTableBackgroundColor;
-      _tableView.separatorColor = [TTAppearance appearance].searchTableSeparatorColor;
-      _tableView.dataSource = _searchSource;
-      _tableView.delegate = self;
-    }
-
-    if (!_shadowView) {
-      _shadowView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
-      _shadowView.style = TTDrawInnerShadow;
-      _shadowView.backgroundColor = [UIColor clearColor];
-      _shadowView.contentMode = UIViewContentModeRedraw;
-      _shadowView.userInteractionEnabled = NO;
-    }
-    
-    if (!_tableView.superview) {
-      UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
-      scrollView.scrollEnabled = NO;
-
-      _tableView.frame = self.frameForResults;
-      _shadowView.frame = CGRectMake(_tableView.x, _tableView.y, _tableView.width, kShadowHeight);
-      
-      [self.window addSubview:_tableView];
-      [self.window addSubview:_shadowView];
-    }
-
-    //[self scrollToEditingLine:YES];
+- (NSString*)searchText {
+  if (!self.hasText) {
+    return @"";
   } else {
-    UIView* parent = self.superview;
-    if (parent) {
-      UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
-      scrollView.scrollEnabled = YES;
-      
-      [_tableView removeFromSuperview];
-      [_shadowView removeFromSuperview];
-    }
-    //[self scrollToVisibleLine:YES];
+    NSCharacterSet* whitespace = [NSCharacterSet whitespaceCharacterSet];
+    return [self.text stringByTrimmingCharactersInSet:whitespace];
   }
-
-  [_searchSource textField:self searchForText:text];
-  _tableView.hidden = ![_tableView numberOfRowsInSection:0];
 }
 
 - (void)autoSearch {
@@ -318,13 +265,21 @@ static const CGFloat kShadowHeight = 24;
   return [cls rowHeightForItem:item tableView:_tableView];
 }
 
-- (void)tableView:(UITableView*)aTableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+  if ([_internal.delegate respondsToSelector:@selector(textField:didSelectObject:)]) {
+    id object = [_searchSource objectForRowAtIndexPath:indexPath];
+    [_internal.delegate performSelector:@selector(textField:didSelectObject:) withObject:self
+      withObject:object];      
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIControlEvents
 
 - (void)didBeginEditing {
+  UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+  scrollView.scrollEnabled = NO;
+
   if (_showsDoneButton) {
     [self showDoneButton:YES];
   }
@@ -336,6 +291,9 @@ static const CGFloat kShadowHeight = 24;
 }
 
 - (void)didEndEditing {
+  UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+  scrollView.scrollEnabled = YES;
+
   if (_showsDoneButton) {
     [self showDoneButton:NO];
   }
@@ -348,25 +306,78 @@ static const CGFloat kShadowHeight = 24;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (BOOL)empty {
-  return !self.text.length;
+- (BOOL)hasText {
+  return self.text.length;
+}
+
+- (void)search {
+  if (_searchSource) {
+    NSString* text = self.searchText;
+    [self showSearchResults:!!text.length];
+    [_searchSource textField:self searchForText:text];
+    _tableView.hidden = ![_tableView numberOfRowsInSection:0];
+  }
+}
+
+- (void)showSearchResults:(BOOL)show {
+  if (show) {
+    if (!_tableView) {
+      _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+      _tableView.backgroundColor = [TTAppearance appearance].searchTableBackgroundColor;
+      _tableView.separatorColor = [TTAppearance appearance].searchTableSeparatorColor;
+      _tableView.dataSource = _searchSource;
+      _tableView.delegate = self;
+      _tableView.scrollsToTop = NO;
+      _tableView.hidden = YES;
+    }
+
+    if (!_shadowView) {
+      _shadowView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
+      _shadowView.style = TTDrawInnerShadow;
+      _shadowView.backgroundColor = [UIColor clearColor];
+      _shadowView.contentMode = UIViewContentModeRedraw;
+      _shadowView.userInteractionEnabled = NO;
+    }
+
+    if (!_tableView.superview) {
+      _tableView.frame = [self rectForSearchResults:YES];
+      _shadowView.frame = CGRectMake(_tableView.x, _tableView.y, _tableView.width, kShadowHeight);
+      
+      UIView* superview = self.superviewForSearchResults;
+      [superview addSubview:_tableView];
+      [superview addSubview:_shadowView];
+    }
+  } else {
+    UIView* parent = self.superview;
+    if (parent) {
+      [_tableView removeFromSuperview];
+      [_shadowView removeFromSuperview];
+    }
+  }
+}
+
+- (void)reloadSearchResults {
+  [_tableView reloadData];
+}
+
+- (UIView*)superviewForSearchResults {
+  UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+  return scrollView ? scrollView : self.superview;
+}
+
+- (CGRect)rectForSearchResults:(BOOL)withKeyboard {
+  UIView* superview = self.superviewForSearchResults;
+  CGFloat y = superview.screenY;
+  CGFloat height = self.height;
+  CGFloat keyboardHeight = withKeyboard ? KEYBOARD_HEIGHT : 0;
+  CGFloat tableHeight = self.window.height - (y + height + keyboardHeight);
+
+  return CGRectMake(0, self.bottom-1, superview.frame.size.width, tableHeight);
 }
 
 - (BOOL)shouldUpdate:(BOOL)emptyText {
   [self delayedUpdate];
   return YES;
-}
-
-- (void)search {
-  if (_searchSource) {
-    NSCharacterSet* whitespace = [NSCharacterSet whitespaceCharacterSet];
-    NSString* text = [self.text stringByTrimmingCharactersInSet:whitespace];
-    [self searchForText:!self.empty ? text : @""];
-  }
-}
-
-- (void)updateResults {
-  [_tableView reloadData];
 }
 
 @end

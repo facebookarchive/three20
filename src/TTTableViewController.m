@@ -64,13 +64,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView*)aTableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
   id item = [_dataSource objectForRowAtIndexPath:indexPath];
   Class cls = [_dataSource cellClassForObject:item];
   return [cls rowHeightForItem:item tableView:_tableView];
 }
 
-- (void)tableView:(UITableView*)aTableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
   id item = [_dataSource objectForRowAtIndexPath:indexPath];
   if ([item isKindOfClass:[TTTableField class]]) {
     TTTableField* field = item;

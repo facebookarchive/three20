@@ -193,6 +193,12 @@ static TTAppearance* gAppearance = nil;
     CGPointMake(0, rect.size.height), kCGGradientDrawsBeforeStartLocation);
   CGGradientRelease(gradient);
 
+  CGPoint topLine[] = {0, 0, rect.size.width, 0};
+  CGFloat shadowColor[] = {130/256.0, 130/256.0, 130/256.0, 1};
+  CGContextSetStrokeColorSpace(context, space);
+  CGContextSetStrokeColor(context, shadowColor);
+  CGContextStrokeLineSegments(context, topLine, 2);
+
   CGColorSpaceRelease(space);
   CGContextRestoreGState(context);
 }

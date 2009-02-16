@@ -4,7 +4,7 @@
 @implementation MockDataSource
 
 + (TTSectionedDataSource*)mockDataSource {
-  NSString* url = @"tt://photoTest1";
+  NSString* url = TT_NULL_URL;
   
   return [MockDataSource dataSourceWithObjects:
     @"A",

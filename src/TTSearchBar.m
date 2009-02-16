@@ -86,6 +86,14 @@ static const CGFloat kPaddingY = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+- (id<UITextFieldDelegate>)delegate {
+  return _searchField.delegate;
+}
+
+- (void)setDelegate:(id<UITextFieldDelegate>)delegate {
+  _searchField.delegate = delegate;
+}
+
 - (BOOL)showsDoneButton {
   return _searchField.showsDoneButton;
 }

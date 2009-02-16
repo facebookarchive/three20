@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@protocol TTSearchSource;
+@protocol TTSearchSource, TTSearchTextFieldDelegate;
 @class TTSearchTextField;
 
 @interface TTSearchBar : UIView {
@@ -8,6 +8,7 @@
   UIColor* _tintColor;
 }
 
+@property(nonatomic,assign) id<UITextFieldDelegate> delegate;
 @property(nonatomic,retain) id<TTSearchSource> searchSource;
 @property(nonatomic,retain) UIColor* tintColor;
 @property(nonatomic) BOOL showsDoneButton;

@@ -477,7 +477,7 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTImageTableFieldCell
+@implementation TTIconTableFieldCell
 
 + (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
   TTImageTableField* field = item;
@@ -524,54 +524,6 @@ static CGFloat kDefaultIconSize = 50;
   TTImageTableField* field = object;
   UIImage* image = field.image ? [[TTURLCache sharedCache] getMediaForURL:field.image] : nil;
   
-  CGFloat iconWidth = image
-    ? image.size.width
-    : (field.image ? kDefaultIconSize : 0);
-  CGFloat iconHeight = image
-    ? image.size.height
-    : (field.image ? kDefaultIconSize : 0);
-  
-  if (_iconView.url) {
-    CGFloat innerWidth = self.contentView.width - (kHPadding*2 + iconWidth + kKeySpacing);
-    CGFloat innerHeight = self.contentView.height - kVPadding*2;
-    _label.frame = CGRectMake(kHPadding, kVPadding, innerWidth, innerHeight);
-
-    _iconView.frame = CGRectMake(_label.right + kKeySpacing,
-      floor(self.height/2 - iconHeight/2), iconWidth, iconHeight);
-  } else {
-    _label.frame = CGRectInset(self.contentView.bounds, kHPadding, kVPadding);
-    _iconView.frame = CGRectZero;
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewCell
-
-- (void)setObject:(id)anObject {
-  if (object != anObject) {
-    [super setObject:anObject];
-  
-    TTImageTableField* field = object;
-    _iconView.defaultImage = field.defaultImage;
-    _iconView.url = field.image;
-  }  
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTIconTableFieldCell
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-
-  TTImageTableField* field = object;
-  UIImage* image = field.image ? [[TTURLCache sharedCache] getMediaForURL:field.image] : nil;
-  
   if (_iconView.url) {
     CGFloat iconWidth = image
       ? image.size.width
@@ -600,9 +552,58 @@ static CGFloat kDefaultIconSize = 50;
   if (object != anObject) {
     [super setObject:anObject];
   
-    _label.textAlignment = UITextAlignmentLeft;
+    TTImageTableField* field = object;
+    _iconView.defaultImage = field.defaultImage;
+    _iconView.url = field.image;
   }  
 }
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTImageTableFieldCell
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIView
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  TTImageTableField* field = object;
+  UIImage* image = field.image ? [[TTURLCache sharedCache] getMediaForURL:field.image] : nil;
+  
+  CGFloat iconWidth = image
+    ? image.size.width
+    : (field.image ? kDefaultIconSize : 0);
+  CGFloat iconHeight = image
+    ? image.size.height
+    : (field.image ? kDefaultIconSize : 0);
+  
+  if (_iconView.url) {
+    CGFloat innerWidth = self.contentView.width - (kHPadding*2 + iconWidth + kKeySpacing);
+    CGFloat innerHeight = self.contentView.height - kVPadding*2;
+    _label.frame = CGRectMake(kHPadding, kVPadding, innerWidth, innerHeight);
+
+    _iconView.frame = CGRectMake(_label.right + kKeySpacing,
+      floor(self.height/2 - iconHeight/2), iconWidth, iconHeight);
+  } else {
+    _label.frame = CGRectInset(self.contentView.bounds, kHPadding, kVPadding);
+    _iconView.frame = CGRectZero;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewCell
+
+- (void)setObject:(id)anObject {
+  if (object != anObject) {
+    [super setObject:anObject];
+  
+    _label.textAlignment = UITextAlignmentCenter;
+    self.accessoryType = UITableViewCellAccessoryNone;
+  }  
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

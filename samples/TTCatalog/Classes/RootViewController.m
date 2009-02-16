@@ -6,7 +6,7 @@
 #import "YouTubeTestController.h"
 #import "TableFieldTestController.h"
 #import "SearchTestController.h"
-#import "TextEditTestController.h"
+#import "ComposerTestController.h"
 #import "TabBarTestController.h"
 #import "ActivityTestController.h"
 #import "ScrollViewTestController.h"
@@ -44,7 +44,7 @@
   [nav addController:[ImageTest2Controller class] forView:@"imageTest2"];
   [nav addController:[YouTubeTestController class] forView:@"youTubeTest"];
   [nav addController:[TableFieldTestController class] forView:@"tableFieldTest"];
-  [nav addController:[TextEditTestController class] forView:@"textEditTest"];
+  [nav addController:[ComposerTestController class] forView:@"composerTest"];
   [nav addController:[SearchTestController class] forView:@"searchTest"];
   [nav addController:[TabBarTestController class] forView:@"tabBarTest"];
   [nav addController:[ActivityTestController class] forView:@"activityTest"];
@@ -70,8 +70,8 @@
       href:@"tt://tableFieldTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Search Bar"
       href:@"tt://searchTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Text Editing"
-      href:@"tt://textEditTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Message Composer"
+      href:@"tt://composerTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Tab Bars"
       href:@"tt://tabBarTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Shiny Label"

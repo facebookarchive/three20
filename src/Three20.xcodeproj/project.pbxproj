@@ -35,6 +35,10 @@
 		BEE341CF0F4815B0008C826E /* TTSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341CE0F4815B0008C826E /* TTSearchTextField.m */; };
 		BEE3476E0F48F5F6008C826E /* TTSearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE3476D0F48F5F6008C826E /* TTSearchBar.h */; };
 		BEE347700F48F604008C826E /* TTSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE3476F0F48F604008C826E /* TTSearchBar.m */; };
+		BEE34EAE0F495C42008C826E /* TTComposeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE34EAD0F495C42008C826E /* TTComposeController.m */; };
+		BEE34EB00F495C4A008C826E /* TTComposeController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE34EAF0F495C4A008C826E /* TTComposeController.h */; };
+		BEE34F250F496615008C826E /* TTTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE34F240F496615008C826E /* TTTextEditor.m */; };
+		BEE34F270F496620008C826E /* TTTextEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE34F260F496620008C826E /* TTTextEditor.h */; };
 		BEF31F700F352E64000DE5D2 /* TTActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F460F352E64000DE5D2 /* TTActivityLabel.m */; };
 		BEF31F710F352E64000DE5D2 /* TTErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F470F352E64000DE5D2 /* TTErrorView.m */; };
 		BEF31F720F352E64000DE5D2 /* TTGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F480F352E64000DE5D2 /* TTGlobal.m */; };
@@ -111,6 +115,10 @@
 		BEE341CE0F4815B0008C826E /* TTSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSearchTextField.m; sourceTree = "<group>"; };
 		BEE3476D0F48F5F6008C826E /* TTSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSearchBar.h; path = Three20/TTSearchBar.h; sourceTree = "<group>"; };
 		BEE3476F0F48F604008C826E /* TTSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSearchBar.m; sourceTree = "<group>"; };
+		BEE34EAD0F495C42008C826E /* TTComposeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTComposeController.m; sourceTree = "<group>"; };
+		BEE34EAF0F495C4A008C826E /* TTComposeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTComposeController.h; path = Three20/TTComposeController.h; sourceTree = "<group>"; };
+		BEE34F240F496615008C826E /* TTTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTextEditor.m; sourceTree = "<group>"; };
+		BEE34F260F496620008C826E /* TTTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextEditor.h; path = Three20/TTTextEditor.h; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF31F460F352E64000DE5D2 /* TTActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTActivityLabel.m; sourceTree = "<group>"; };
 		BEF31F470F352E64000DE5D2 /* TTErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTErrorView.m; sourceTree = "<group>"; };
@@ -237,6 +245,10 @@
 				BEE341BF0F481345008C826E /* TTMenuViewCell.m */,
 				BEE3476D0F48F5F6008C826E /* TTSearchBar.h */,
 				BEE3476F0F48F604008C826E /* TTSearchBar.m */,
+				BEE34F260F496620008C826E /* TTTextEditor.h */,
+				BEE34F240F496615008C826E /* TTTextEditor.m */,
+				BEE34EAF0F495C4A008C826E /* TTComposeController.h */,
+				BEE34EAD0F495C42008C826E /* TTComposeController.m */,
 			);
 			name = "Text Views";
 			sourceTree = "<group>";
@@ -368,6 +380,8 @@
 				BEE341BE0F48133F008C826E /* TTMenuViewCell.h in Headers */,
 				BEE341CD0F48159F008C826E /* TTSearchTextField.h in Headers */,
 				BEE3476E0F48F5F6008C826E /* TTSearchBar.h in Headers */,
+				BEE34EB00F495C4A008C826E /* TTComposeController.h in Headers */,
+				BEE34F270F496620008C826E /* TTTextEditor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +459,8 @@
 				BEE341C00F481345008C826E /* TTMenuViewCell.m in Sources */,
 				BEE341CF0F4815B0008C826E /* TTSearchTextField.m in Sources */,
 				BEE347700F48F604008C826E /* TTSearchBar.m in Sources */,
+				BEE34EAE0F495C42008C826E /* TTComposeController.m in Sources */,
+				BEE34F250F496615008C826E /* TTTextEditor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
