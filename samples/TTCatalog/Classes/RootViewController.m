@@ -5,6 +5,7 @@
 #import "ImageTest2Controller.h"
 #import "YouTubeTestController.h"
 #import "TableFieldTestController.h"
+#import "SearchTestController.h"
 #import "TextEditTestController.h"
 #import "TabBarTestController.h"
 #import "TextTest1Controller.h"
@@ -39,6 +40,7 @@
   [nav addController:[YouTubeTestController class] forView:@"youTubeTest"];
   [nav addController:[TableFieldTestController class] forView:@"tableFieldTest"];
   [nav addController:[TextEditTestController class] forView:@"textEditTest"];
+  [nav addController:[SearchTestController class] forView:@"searchTest"];
   [nav addController:[TabBarTestController class] forView:@"tabBarTest"];
   [nav addController:[TextTest1Controller class] forView:@"textTest1"];
   [nav addController:[ScrollViewTestController class] forView:@"scrollViewTest"];
@@ -63,6 +65,8 @@
       href:@"tt://tableFieldTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Text Editing"
       href:@"tt://textEditTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Search Field"
+      href:@"tt://searchTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Tab Bars"
       href:@"tt://tabBarTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Shiny Label"
@@ -71,8 +75,8 @@
       href:@"tt://scrollViewTest"] autorelease],
     nil];
 
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
-  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
+//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+//  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

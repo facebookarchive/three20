@@ -126,7 +126,7 @@
 						<int key="objectID">3</int>
 						<reference key="object" ref="664661524"/>
 						<reference key="parent" ref="957960031"/>
-						<string key="objectName">T3Catalog App Delegate</string>
+						<string key="objectName">TTCatalog App Delegate</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">-2</int>
@@ -199,7 +199,7 @@
 					</object>
 					<string>{{673, 376}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>T3CatalogAppDelegate</string>
+					<string>TTCatalogAppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{547, 343}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -231,22 +231,15 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="571039202">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../../src/Three20/T3Global.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">RootViewController</string>
-					<string key="superclassName">UITableViewController</string>
+					<string key="superclassName">TTTableViewController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/RootViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">T3CatalogAppDelegate</string>
+					<string key="className">TTCatalogAppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -263,16 +256,8 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/T3CatalogAppDelegate.h</string>
+						<string key="minorKey">Classes/TTCatalogAppDelegate.h</string>
 					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIView</string>
-					<reference key="sourceIdentifier" ref="571039202"/>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIViewController</string>
-					<reference key="sourceIdentifier" ref="571039202"/>
 				</object>
 			</object>
 		</object>

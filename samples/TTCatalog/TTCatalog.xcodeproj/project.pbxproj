@@ -30,6 +30,8 @@
 		BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BECB1CC10F46AE9600AE5B52 /* person.jpg */; };
 		BEE0FDDB0EB2A6850052C05F /* PhotoTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */; };
 		BEE341B40F480C76008C826E /* TextEditTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341B30F480C76008C826E /* TextEditTestController.m */; };
+		BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE346BB0F48F15C008C826E /* SearchTestController.m */; };
+		BEE346D50F48F1C7008C826E /* TestSearchSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE346D40F48F1C7008C826E /* TestSearchSource.m */; };
 		BEE38E810EB288BA00189902 /* TextTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE38E800EB288BA00189902 /* TextTest1Controller.m */; };
 		BEE7FD150F3581C1002788A5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE7FD130F358198002788A5 /* libThree20.a */; };
 		BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */; };
@@ -56,11 +58,11 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TTCatalogAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCatalogAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* TTCatalogAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCatalogAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* T3Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = T3Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* TTCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E55F0DE3E45000AC0155 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
-		28A0AAE50D9B0CCF005BE974 /* T3Catalog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = T3Catalog_Prefix.pch; sourceTree = "<group>"; };
+		28A0AAE50D9B0CCF005BE974 /* TTCatalog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCatalog_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
@@ -91,6 +93,10 @@
 		BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest1Controller.m; sourceTree = "<group>"; };
 		BEE341B20F480C76008C826E /* TextEditTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditTestController.h; sourceTree = "<group>"; };
 		BEE341B30F480C76008C826E /* TextEditTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditTestController.m; sourceTree = "<group>"; };
+		BEE346BA0F48F15C008C826E /* SearchTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTestController.h; sourceTree = "<group>"; };
+		BEE346BB0F48F15C008C826E /* SearchTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTestController.m; sourceTree = "<group>"; };
+		BEE346D30F48F1C7008C826E /* TestSearchSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSearchSource.h; sourceTree = "<group>"; };
+		BEE346D40F48F1C7008C826E /* TestSearchSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSearchSource.m; sourceTree = "<group>"; };
 		BEE38E7F0EB288BA00189902 /* TextTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextTest1Controller.h; sourceTree = "<group>"; };
 		BEE38E800EB288BA00189902 /* TextTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextTest1Controller.m; sourceTree = "<group>"; };
 		BEE7FD0E0F358198002788A5 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -136,6 +142,8 @@
 				BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */,
 				BEE341B20F480C76008C826E /* TextEditTestController.h */,
 				BEE341B30F480C76008C826E /* TextEditTestController.m */,
+				BEE346BA0F48F15C008C826E /* SearchTestController.h */,
+				BEE346BB0F48F15C008C826E /* SearchTestController.m */,
 				BE6E46EA0F4578BA001CE9B4 /* TabBarTestController.h */,
 				BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */,
 				BEE38E7F0EB288BA00189902 /* TextTest1Controller.h */,
@@ -144,6 +152,8 @@
 				BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */,
 				BE80E2480EAEFF6100743358 /* MockPhotoSource.h */,
 				BE80E2490EAEFF6100743358 /* MockPhotoSource.m */,
+				BEE346D30F48F1C7008C826E /* TestSearchSource.h */,
+				BEE346D40F48F1C7008C826E /* TestSearchSource.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -151,7 +161,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* T3Catalog.app */,
+				1D6058910D05DD3D006BFB54 /* TTCatalog.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,7 +181,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				28A0AAE50D9B0CCF005BE974 /* T3Catalog_Prefix.pch */,
+				28A0AAE50D9B0CCF005BE974 /* TTCatalog_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -214,9 +224,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* T3Catalog */ = {
+		1D6058900D05DD3D006BFB54 /* TTCatalog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "T3Catalog" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTCatalog" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -227,9 +237,9 @@
 			dependencies = (
 				BEE7FD170F3581D1002788A5 /* PBXTargetDependency */,
 			);
-			name = T3Catalog;
+			name = TTCatalog;
 			productName = PhotoBrowser;
-			productReference = 1D6058910D05DD3D006BFB54 /* T3Catalog.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* TTCatalog.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -237,7 +247,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "T3Catalog" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTCatalog" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -257,7 +267,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* T3Catalog */,
+				1D6058900D05DD3D006BFB54 /* TTCatalog */,
 			);
 		};
 /* End PBXProject section */
@@ -309,6 +319,8 @@
 				BE6E46EC0F4578BA001CE9B4 /* TabBarTestController.m in Sources */,
 				BE6E4AA50F4655A4001CE9B4 /* TableFieldTestController.m in Sources */,
 				BEE341B40F480C76008C826E /* TextEditTestController.m in Sources */,
+				BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */,
+				BEE346D50F48F1C7008C826E /* TestSearchSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,10 +344,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = T3Catalog_Prefix.pch;
+				GCC_PREFIX_HEADER = TTCatalog_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = T3Catalog;
+				PRODUCT_NAME = TTCatalog;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "394697A6-6692-459E-85EF-70C5F4CCA7C6";
 			};
 			name = Debug;
@@ -346,9 +358,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = T3Catalog_Prefix.pch;
+				GCC_PREFIX_HEADER = TTCatalog_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = T3Catalog;
+				PRODUCT_NAME = TTCatalog;
 			};
 			name = Release;
 		};
@@ -388,7 +400,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "T3Catalog" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTCatalog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -397,7 +409,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "T3Catalog" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTCatalog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
