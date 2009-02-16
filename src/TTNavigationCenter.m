@@ -93,29 +93,8 @@ static TTNavigationCenter* gDefaultCenter = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (UINavigationController*)topNavigationController {
-  if ([_mainViewController isKindOfClass:[UITabBarController class]]) {
-    UITabBarController* tabBarController = (UITabBarController*)_mainViewController;
-    if (tabBarController.selectedViewController) {
-      return (UINavigationController*)tabBarController.selectedViewController;
-    } else {
-      return (UINavigationController*)[tabBarController.viewControllers objectAtIndex:0];
-    }
-  } else if ([_mainViewController isKindOfClass:[UINavigationController class]]) {
-    return (UINavigationController*)_mainViewController;
-  } else {
-    return nil;
-  }
-}
-
-- (TTViewController*)currentViewController {
-  UIViewController* controller = nil;
-  UINavigationController* navController = [self topNavigationController];
-  if (navController) {
-    controller = [navController.viewControllers lastObject];
-  } else {
-    controller = _mainViewController;
-  }
+- (TTViewController*)frontTTViewController {
+  UIViewController* controller = self.frontViewController;
   if ([controller isKindOfClass:[TTViewController class]]) {
     return (TTViewController*)controller;
   } else {
@@ -196,10 +175,34 @@ static TTNavigationCenter* gDefaultCenter = nil;
       && (CFAbsoluteTimeGetCurrent() > _lastShakeTime + kMinEraseInterval)) {
 		_lastShakeTime = CFAbsoluteTimeGetCurrent();
 
-    [self.currentViewController reloadContent];
+    [self.frontTTViewController reloadContent];
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (UINavigationController*)frontNavigationController {
+  if ([_mainViewController isKindOfClass:[UITabBarController class]]) {
+    UITabBarController* tabBarController = (UITabBarController*)_mainViewController;
+    if (tabBarController.selectedViewController) {
+      return (UINavigationController*)tabBarController.selectedViewController;
+    } else {
+      return (UINavigationController*)[tabBarController.viewControllers objectAtIndex:0];
+    }
+  } else if ([_mainViewController isKindOfClass:[UINavigationController class]]) {
+    return (UINavigationController*)_mainViewController;
+  } else {
+    return nil;
+  }
+}
+
+- (UIViewController*)frontViewController {
+  UINavigationController* navController = self.frontNavigationController;
+  if (navController) {
+    return [navController.viewControllers lastObject];
+  } else {
+    return _mainViewController;
+  }
+}
 
 - (void)setSupportsShakeToReload:(BOOL)supports {
   _supportsShakeToReload = supports;
@@ -387,7 +390,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
     }
     
     if (!navController) {
-      navController = self.topNavigationController;
+      navController = self.frontNavigationController;
     }
     
     TTNavigationEntry* entry = [_viewLoaders objectForKey:viewType];

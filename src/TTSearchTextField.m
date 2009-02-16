@@ -1,6 +1,11 @@
 #import "Three20/TTSearchTextField.h"
+#import "Three20/TTNavigationCenter.h"
 #import "Three20/TTBackgroundView.h"
 #import "Three20/TTTableFieldCell.h"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+static const CGFloat kShadowHeight = 24;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,7 +102,8 @@
 @implementation TTSearchTextField
 
 @synthesize searchSource = _searchSource, tableView = _tableView,
-  searchAutomatically = _searchAutomatically;;
+  searchesAutomatically = _searchesAutomatically, showsDoneButton = _showsDoneButton,
+  showsDarkScreen = _showsDarkScreen;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
@@ -106,8 +112,22 @@
     _searchTimer = nil;
     _tableView = nil;
     _shadowView = nil;
-    _searchAutomatically = YES;
+    _screenView = nil;
+    _previousRightBarButtonItem = nil;
+    _searchesAutomatically = YES;
+    _showsDoneButton = NO;
+    _showsDarkScreen = NO;
+
+    self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    self.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.returnKeyType = UIReturnKeySearch;
+    self.enablesReturnKeyAutomatically = YES;
     
+    [self addTarget:self action:@selector(didBeginEditing)
+      forControlEvents:UIControlEventEditingDidBegin];
+    [self addTarget:self action:@selector(didEndEditing)
+      forControlEvents:UIControlEventEditingDidEnd];
+
     [super setDelegate:_internal];
   }
   return self;
@@ -118,10 +138,86 @@
   [_internal release];
   [_tableView release];
   [_shadowView release];
+  [_screenView release];
+  [_previousRightBarButtonItem release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (CGRect)frameForScreen {
+  UIView* parent = self.superview;
+  CGFloat bottom = self.screenY + self.height;
+  CGFloat tableHeight = self.window.height - (self.screenY + self.height);
+
+  return CGRectMake(0, bottom-1, parent.frame.size.width, tableHeight);
+}
+
+- (CGRect)frameForResults {
+  UIView* parent = self.superview;
+  CGFloat bottom = self.screenY + self.height;
+  CGFloat tableHeight = self.window.height - (self.screenY + self.height + KEYBOARD_HEIGHT);
+
+  return CGRectMake(0, bottom-1, parent.frame.size.width, tableHeight);
+}
+
+- (void)showDoneButton:(BOOL)show {
+  UIViewController* controller = [TTNavigationCenter defaultCenter].frontViewController;
+  if (controller) {
+    if (show) {
+      _previousRightBarButtonItem = [controller.navigationItem.rightBarButtonItem retain];
+      
+      UIBarButtonItem* doneButton = [[UIBarButtonItem alloc]
+      initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+      target:self action:@selector(doneAction)];
+      [controller.navigationItem setRightBarButtonItem:doneButton animated:YES];
+    } else {
+      [controller.navigationItem setRightBarButtonItem:nil animated:YES];
+      [_previousRightBarButtonItem release];
+      _previousRightBarButtonItem = nil;
+    }
+  }
+}
+
+- (void)showDarkScreen:(BOOL)show {
+  if (show && !_screenView) {
+    _screenView = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    _screenView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+    _screenView.frame = self.frameForScreen;
+    _screenView.alpha = 0;
+    [_screenView addTarget:self action:@selector(doneAction)
+      forControlEvents:UIControlEventTouchUpInside];
+  }
+  
+  if (show) {
+    [self.window addSubview:_screenView];
+  }
+  
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+  [UIView setAnimationDelegate:self];
+  [UIView setAnimationDidStopSelector:@selector(screenAnimationDidStop)];
+
+  _screenView.alpha = show ? 1 : 0;
+  
+  [UIView commitAnimations];
+}
+
+- (void)showIndexView:(BOOL)show {
+  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
+  if (tableView) {
+    UIView* indexView = tableView.indexView;
+    if (indexView) {
+      [UIView beginAnimations:nil context:nil];
+      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+      
+      CGFloat offset = show ? -indexView.frame.size.width : indexView.frame.size.width;
+      indexView.frame = CGRectOffset(indexView.frame, offset, 0);
+
+      [UIView commitAnimations];
+    }
+  }
+}
 
 - (void)searchForText:(NSString*)text {
   if (text.length) {// && !self.selectedEntry) {
@@ -142,31 +238,23 @@
     }
     
     if (!_tableView.superview) {
-      UIView* parent = self.superview;
-      CGFloat bottom = self.y + self.height;
-      CGFloat height = 0;//[self heightWithLines:1];
-      if ([parent isKindOfClass:[UIScrollView class]]) {
-        UIScrollView* scrollView = (UIScrollView*)parent;
-        scrollView.scrollEnabled = NO;
-      }
+      UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+      scrollView.scrollEnabled = NO;
 
-      _tableView.frame = CGRectMake(0, bottom, parent.frame.size.width,
-        parent.frame.size.height-height+1);
-      _shadowView.frame = CGRectMake(_tableView.x, _tableView.y, _tableView.width, 24);
+      _tableView.frame = self.frameForResults;
+      _shadowView.frame = CGRectMake(_tableView.x, _tableView.y, _tableView.width, kShadowHeight);
       
-      [parent addSubview:_tableView];
-      [parent addSubview:_shadowView];
+      [self.window addSubview:_tableView];
+      [self.window addSubview:_shadowView];
     }
 
     //[self scrollToEditingLine:YES];
   } else {
     UIView* parent = self.superview;
     if (parent) {
-      if ([parent isKindOfClass:[UIScrollView class]]) {
-        UIScrollView* scrollView = (UIScrollView*)parent;
-        scrollView.scrollEnabled = YES;
-      }
-
+      UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+      scrollView.scrollEnabled = YES;
+      
       [_tableView removeFromSuperview];
       [_shadowView removeFromSuperview];
     }
@@ -178,7 +266,7 @@
 }
 
 - (void)autoSearch {
-  if (_searchAutomatically) {
+  if (_searchesAutomatically) {
     [self search];
   }
 }
@@ -192,6 +280,17 @@
   [_searchTimer invalidate];
   _searchTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self
     selector:@selector(dispatchUpdate:) userInfo:nil repeats:NO];
+}
+
+- (void)screenAnimationDidStop {
+  if (_screenView.alpha == 0) {
+    [_screenView removeFromSuperview];
+  }
+}
+
+- (void)doneAction {
+  self.text = @"";
+  [self resignFirstResponder];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,6 +319,31 @@
 }
 
 - (void)tableView:(UITableView*)aTableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIControlEvents
+
+- (void)didBeginEditing {
+  if (_showsDoneButton) {
+    [self showDoneButton:YES];
+  }
+  if (_showsDarkScreen) {
+    [self showDarkScreen:YES];
+  }
+  
+  [self showIndexView:NO];
+}
+
+- (void)didEndEditing {
+  if (_showsDoneButton) {
+    [self showDoneButton:NO];
+  }
+  if (_showsDarkScreen) {
+    [self showDarkScreen:NO];
+  }
+
+  [self showIndexView:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

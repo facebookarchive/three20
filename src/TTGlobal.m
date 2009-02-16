@@ -5,6 +5,86 @@
 static int gNetworkTaskCount = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Color algorithms from http://www.cs.rit.edu/~ncs/color/t_convert.html
+
+#define MAX3(a,b,c) (a > b ? (a > c ? a : c) : (b > c ? b : c))
+#define MIN3(a,b,c) (a < b ? (a < c ? a : c) : (b < c ? b : c))
+
+void RGBtoHSV(float r, float g, float b, float* h, float* s, float* v) {
+	float min, max, delta;
+	min = MIN3(r, g, b);
+	max = MAX3(r, g, b);
+	*v = max;				// v
+	delta = max - min;
+	if( max != 0 )
+		*s = delta / max;		// s
+	else {
+		// r = g = b = 0		// s = 0, v is undefined
+		*s = 0;
+		*h = -1;
+		return;
+	}
+	if( r == max )
+		*h = ( g - b ) / delta;		// between yellow & magenta
+	else if( g == max )
+		*h = 2 + ( b - r ) / delta;	// between cyan & yellow
+	else
+		*h = 4 + ( r - g ) / delta;	// between magenta & cyan
+	*h *= 60;				// degrees
+	if( *h < 0 )
+		*h += 360;
+}
+
+void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
+{
+	int i;
+	float f, p, q, t;
+	if( s == 0 ) {
+		// achromatic (grey)
+		*r = *g = *b = v;
+		return;
+	}
+	h /= 60;			// sector 0 to 5
+	i = floor( h );
+	f = h - i;			// factorial part of h
+	p = v * ( 1 - s );
+	q = v * ( 1 - s * f );
+	t = v * ( 1 - s * ( 1 - f ) );
+	switch( i ) {
+		case 0:
+			*r = v;
+			*g = t;
+			*b = p;
+			break;
+		case 1:
+			*r = q;
+			*g = v;
+			*b = p;
+			break;
+		case 2:
+			*r = p;
+			*g = v;
+			*b = t;
+			break;
+		case 3:
+			*r = p;
+			*g = q;
+			*b = v;
+			break;
+		case 4:
+			*r = t;
+			*g = p;
+			*b = v;
+			break;
+		default:		// case 5:
+			*r = v;
+			*g = p;
+			*b = q;
+			break;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 const void* RetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 void ReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
@@ -53,46 +133,6 @@ void TTNetworkRequestStopped() {
   if (--gNetworkTaskCount == 0) {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   }
-}
-
-UIImage* TTTransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL rotate) {
-  CGFloat destW = width;
-  CGFloat destH = height;
-  CGFloat sourceW = width;
-  CGFloat sourceH = height;
-  if (rotate) {
-    if (image.imageOrientation == UIImageOrientationRight || image.imageOrientation == UIImageOrientationLeft) {
-      sourceW = height;
-      sourceH = width;
-    }
-  }
-  
-  CGImageRef imageRef = image.CGImage;
-  CGContextRef bitmap = CGBitmapContextCreate(NULL, destW, destH,
-    CGImageGetBitsPerComponent(imageRef), 4*destW, CGImageGetColorSpace(imageRef),
-    CGImageGetBitmapInfo(imageRef));
-
-  if (rotate) {
-    if (image.imageOrientation == UIImageOrientationDown) {
-      CGContextTranslateCTM(bitmap, sourceW, sourceH);
-      CGContextRotateCTM(bitmap, 180 * (M_PI/180));
-    } else if (image.imageOrientation == UIImageOrientationLeft) {
-      CGContextTranslateCTM(bitmap, sourceH, 0);
-      CGContextRotateCTM(bitmap, 90 * (M_PI/180));
-    } else if (image.imageOrientation == UIImageOrientationRight) {
-      CGContextTranslateCTM(bitmap, 0, sourceW);
-      CGContextRotateCTM(bitmap, -90 * (M_PI/180));
-    }
-  }
-
-  CGContextDrawImage(bitmap, CGRectMake(0,0,sourceW,sourceH), imageRef);
-
-  CGImageRef ref = CGBitmapContextCreateImage(bitmap);
-  UIImage* result = [UIImage imageWithCGImage:ref];
-  CGContextRelease(bitmap);
-  CGImageRelease(ref);
-
-  return result;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -611,6 +651,78 @@ UIImage* TTTransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
     ++index;
   }
   
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation UIColor (TTCategory)
+
+- (UIColor*)transformHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd {
+  const CGFloat* rgba = CGColorGetComponents(self.CGColor);
+  CGFloat r = rgba[0];
+  CGFloat g = rgba[1];
+  CGFloat b = rgba[2];
+  CGFloat a = rgba[3];
+
+  CGFloat h, s, v;
+  RGBtoHSV(r, g, b, &h, &s, &v);
+
+  h *= hd;
+  v *= vd;
+  s *= sd;
+  
+  HSVtoRGB(&r, &g, &b, h, s, v);
+  
+  return [UIColor colorWithRed:r green:g blue:b alpha:a];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation UIImage (TTCategory)
+
+- (UIImage*)transformWidth:(CGFloat)width height:(CGFloat)height rotate:(BOOL)rotate {
+  CGFloat destW = width;
+  CGFloat destH = height;
+  CGFloat sourceW = width;
+  CGFloat sourceH = height;
+  if (rotate) {
+    if (self.imageOrientation == UIImageOrientationRight
+        || self.imageOrientation == UIImageOrientationLeft) {
+      sourceW = height;
+      sourceH = width;
+    }
+  }
+  
+  CGImageRef imageRef = self.CGImage;
+  CGContextRef bitmap = CGBitmapContextCreate(NULL, destW, destH,
+    CGImageGetBitsPerComponent(imageRef), 4*destW, CGImageGetColorSpace(imageRef),
+    CGImageGetBitmapInfo(imageRef));
+
+  if (rotate) {
+    if (self.imageOrientation == UIImageOrientationDown) {
+      CGContextTranslateCTM(bitmap, sourceW, sourceH);
+      CGContextRotateCTM(bitmap, 180 * (M_PI/180));
+    } else if (self.imageOrientation == UIImageOrientationLeft) {
+      CGContextTranslateCTM(bitmap, sourceH, 0);
+      CGContextRotateCTM(bitmap, 90 * (M_PI/180));
+    } else if (self.imageOrientation == UIImageOrientationRight) {
+      CGContextTranslateCTM(bitmap, 0, sourceW);
+      CGContextRotateCTM(bitmap, -90 * (M_PI/180));
+    }
+  }
+
+  CGContextDrawImage(bitmap, CGRectMake(0,0,sourceW,sourceH), imageRef);
+
+  CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+  UIImage* result = [UIImage imageWithCGImage:ref];
+  CGContextRelease(bitmap);
+  CGImageRelease(ref);
+
+  return result;
 }
 
 @end

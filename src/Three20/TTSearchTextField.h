@@ -9,13 +9,19 @@
   NSTimer* _searchTimer;
   UITableView* _tableView;
   TTBackgroundView* _shadowView;
-  BOOL _searchAutomatically;
+  UIButton* _screenView;
+  UIBarButtonItem* _previousRightBarButtonItem;
+  BOOL _searchesAutomatically;
+  BOOL _showsDoneButton;
+  BOOL _showsDarkScreen;
 }
 
 @property(nonatomic,retain) id<TTSearchSource> searchSource;
 @property(nonatomic,readonly) UITableView* tableView;
-@property(nonatomic,readonly) BOOL searchAutomatically;
+@property(nonatomic,readonly) BOOL searchesAutomatically;
 @property(nonatomic,readonly) BOOL empty;
+@property(nonatomic) BOOL showsDoneButton;
+@property(nonatomic) BOOL showsDarkScreen;
 
 - (void)search;
 - (void)updateResults;

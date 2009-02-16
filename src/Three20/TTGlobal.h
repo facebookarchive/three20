@@ -107,11 +107,6 @@ void TTNetworkRequestStarted();
  */
 void TTNetworkRequestStopped();
 
-/*
- * Resizes and/or rotates an image.
- */
-UIImage* TTTransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL rotate);
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface NSObject (TTCategory)
@@ -215,5 +210,24 @@ UIImage* TTTransformImage(UIImage* image, CGFloat width, CGFloat height, BOOL ro
 - (UIBarButtonItem*)itemWithTag:(NSInteger)tag;
 
 - (void)replaceItemWithTag:(NSInteger)tag withItem:(UIBarButtonItem*)item;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface UIColor (TTCategory)
+
+- (UIColor*)transformHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface UIImage (TTCategory)
+
+/*
+ * Resizes and/or rotates an image.
+ */
+- (UIImage*)transformWidth:(CGFloat)width height:(CGFloat)height rotate:(BOOL)rotate;
 
 @end

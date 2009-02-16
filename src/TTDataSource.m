@@ -200,4 +200,19 @@
   return items.count;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (NSArray*)lettersForSections {
+  NSMutableArray* titles = [NSMutableArray array];
+  
+  for (NSString* label in _sections) {
+    if (label.length) {
+      NSString* letter = [label substringToIndex:1];
+      [titles addObject:letter];    
+    }
+  }
+
+  return titles;
+}
+
 @end

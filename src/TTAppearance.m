@@ -104,7 +104,7 @@ static TTAppearance* gAppearance = nil;
 - (CGGradientRef)gradientWithColors:(UIColor**)colors count:(int)count
     space:(CGColorSpaceRef)space {
   CGFloat* components = malloc(sizeof(CGFloat)*4*count);
-  CGFloat* locations = malloc(sizeof(CGFloat)*count);
+  CGFloat* locations = nil;//malloc(sizeof(CGFloat)*count);
   for (int i = 0; i < count; ++i) {
     UIColor* color = colors[i];
     const CGFloat* rgba = CGColorGetComponents(color.CGColor);
@@ -112,11 +112,11 @@ static TTAppearance* gAppearance = nil;
     components[i*4+1] = rgba[1];
     components[i*4+2] = rgba[2];
     components[i*4+3] = rgba[3];
-    locations[i] = (i+1)/count;
+    //locations[i] = i/(count-1);
   }
   CGGradientRef gradient = CGGradientCreateWithColorComponents(space, components, locations, count);
   free(components);
-  free(locations);
+  //free(locations);
   return gradient;
 }
 
@@ -252,6 +252,7 @@ static TTAppearance* gAppearance = nil;
   [self drawBackground:background rect:rect fill:nil fillCount:0 stroke:nil
     radius:TT_RADIUS_ROUNDED];
 }
+
 
 - (void)drawLine:(CGPoint)from to:(CGPoint)to color:(UIColor*)color {
   CGContextRef context = UIGraphicsGetCurrentContext();

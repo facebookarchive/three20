@@ -1,9 +1,9 @@
 #import <Three20/Three20.h>
 
-@class TestSearchSource;
+@class MockSearchSource;
 
 @interface SearchTestController : TTTableViewController {
-  TestSearchSource* _searchSource;
+  MockSearchSource* _searchSource;
 }
 
 @end

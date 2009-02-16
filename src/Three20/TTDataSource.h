@@ -37,6 +37,8 @@
   NSMutableArray* _items;
 }
 
+@property(nonatomic,readonly) NSArray* lettersForSections;
+
 + (TTSectionedDataSource*)dataSourceWithObjects:(id)object,...;
 
 - (id)initWithItems:(NSArray*)items sections:(NSArray*)sections;

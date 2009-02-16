@@ -8,6 +8,8 @@ typedef enum {
   TTNavigationCommand
 } TTNavigationRule;
 
+#define TT_NULL_URL @" "
+
 @protocol TTNavigationDelegate;
 @class TTViewController;
 
@@ -26,7 +28,12 @@ typedef enum {
 }
 
 @property(nonatomic,assign) id<TTNavigationDelegate> delegate;
+
 @property(nonatomic,retain) UIViewController* mainViewController;
+
+@property(nonatomic,readonly) UINavigationController* frontNavigationController;
+
+@property(nonatomic,readonly) UIViewController* frontViewController;
 
 /**
  * The URL schemes used by the application.

@@ -121,15 +121,15 @@
 // UIKeyboardNotifications
 
 - (void)keyboardWillShow {
-  if (self.appearing) {
-    [self.view sizeToFitKeyboard:YES animated:YES];
-  }
+//  if (self.appearing) {
+//    [self.view sizeToFitKeyboard:YES animated:YES];
+//  }
 }
 
 - (void)keyboardWillHide {
-  if (self.appearing) {
-    [self.view sizeToFitKeyboard:NO animated:YES];
-  }
+//  if (self.appearing) {
+//    [self.view sizeToFitKeyboard:NO animated:YES];
+//  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

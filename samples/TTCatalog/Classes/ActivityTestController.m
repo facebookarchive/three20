@@ -1,8 +1,8 @@
 
-#import "TextTest1Controller.h"
+#import "ActivityTestController.h"
 #import <Three20/Three20.h>
 
-@implementation TextTest1Controller
+@implementation ActivityTestController
 
 - (void)loadView {
   self.view = [[[UIView alloc] init] autorelease];

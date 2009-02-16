@@ -1,10 +1,11 @@
 
 #import "TextEditTestController.h"
-#import "TestSearchSource.h"
+#import "MockSearchSource.h"
 
 @implementation TextEditTestController
 
 - (void)dealloc {
+  [_searchSource release];
 	[super dealloc];
 }
 
@@ -15,7 +16,7 @@
   self.view = [[[UIView alloc] init] autorelease];
   self.view.backgroundColor = [UIColor grayColor];
   
-  _searchSource = [[TestSearchSource alloc] init];
+  _searchSource = [[MockSearchSource alloc] init];
   
   TTMenuTextField* textField = [[[TTMenuTextField alloc] initWithFrame:
     CGRectMake(0, 0, 320, 0)] autorelease];
@@ -46,8 +47,5 @@
 
   [textField sizeToFit];
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTSearchSource
 
 @end

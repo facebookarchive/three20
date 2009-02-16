@@ -29,6 +29,10 @@ static CGFloat kMinCursorWidth = 50;
     _cursorOrigin = CGPointZero;
     
     self.text = kEmpty;
+    self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+    self.clearButtonMode = UITextFieldViewModeNever;
+    self.returnKeyType = UIReturnKeyDone;
+    self.enablesReturnKeyAutomatically = NO;
   }
   return self;
 }

@@ -8,7 +8,7 @@
 #import "SearchTestController.h"
 #import "TextEditTestController.h"
 #import "TabBarTestController.h"
-#import "TextTest1Controller.h"
+#import "ActivityTestController.h"
 #import "ScrollViewTestController.h"
 
 @implementation RootViewController
@@ -42,7 +42,7 @@
   [nav addController:[TextEditTestController class] forView:@"textEditTest"];
   [nav addController:[SearchTestController class] forView:@"searchTest"];
   [nav addController:[TabBarTestController class] forView:@"tabBarTest"];
-  [nav addController:[TextTest1Controller class] forView:@"textTest1"];
+  [nav addController:[ActivityTestController class] forView:@"activityTest"];
   [nav addController:[ScrollViewTestController class] forView:@"scrollViewTest"];
   
   self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
@@ -70,13 +70,13 @@
     [[[TTTableField alloc] initWithText:@"Tab Bars"
       href:@"tt://tabBarTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Shiny Label"
-      href:@"tt://textTest1"] autorelease],
+      href:@"tt://activityTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Scroll View"
       href:@"tt://scrollViewTest"] autorelease],
     nil];
 
-//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
-//  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:2 inSection:2];
+  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

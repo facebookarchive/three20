@@ -19,6 +19,7 @@
 
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTMenuTextField.h"
+#import "Three20/TTSearchBar.h"
 
 #import "Three20/TTDataSource.h"
 #import "Three20/TTTableField.h"
