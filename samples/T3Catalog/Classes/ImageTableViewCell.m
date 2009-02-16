@@ -7,7 +7,7 @@
     self.indentationLevel = 1;
     self.indentationWidth = 35;
 
-		imageView = [[T3ImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+		imageView = [[TTImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
     imageView.defaultImage = [UIImage imageNamed:@"DefaultAlbum.png"];
     [self addSubview:imageView];
 	}

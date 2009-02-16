@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'T3Catalog' target in the 'T3Catalog' project
+// Prefix header for all source files of the 'TTCatalog' target in the 'TTCatalog' project
 //
 
 #ifdef __OBJC__

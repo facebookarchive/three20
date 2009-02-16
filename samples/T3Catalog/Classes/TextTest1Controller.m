@@ -8,7 +8,7 @@
   self.view = [[[UIView alloc] init] autorelease];
   self.view.backgroundColor = [UIColor blackColor];
 
-  T3ShinyLabel* label = [[[T3ShinyLabel alloc] initWithFrame:CGRectMake(0,150,320,100)] autorelease];
+  TTShinyLabel* label = [[[TTShinyLabel alloc] initWithFrame:CGRectMake(0,150,320,100)] autorelease];
   label.text = @"One Shiny Label";
   label.font = [UIFont systemFontOfSize:25];
   label.textAlignment = UITextAlignmentCenter;

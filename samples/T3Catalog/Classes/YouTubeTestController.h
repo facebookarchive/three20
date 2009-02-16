@@ -1,7 +1,7 @@
 #import <Three20/Three20.h>
 
-@interface YouTubeTestController : T3ViewController <UIWebViewDelegate> {
-  T3YouTubeView* youTubeView;
+@interface YouTubeTestController : TTViewController <UIWebViewDelegate> {
+  TTYouTubeView* youTubeView;
 }
 
 @end

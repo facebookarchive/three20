@@ -16,7 +16,7 @@
   CGRect frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height - 44);
   self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
       
-  _scrollView = [[T3ScrollView alloc] initWithFrame:self.view.bounds];
+  _scrollView = [[TTScrollView alloc] initWithFrame:self.view.bounds];
   _scrollView.delegate = self;
   _scrollView.dataSource = self;
   _scrollView.backgroundColor = [UIColor blackColor];
@@ -38,23 +38,23 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3ScrollViewDelegate
+// TTScrollViewDelegate
 
-- (void)scrollView:(T3ScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex {
+- (void)scrollView:(TTScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3ScrollViewDataSource
+// TTScrollViewDataSource
 
-- (NSInteger)numberOfPagesInScrollView:(T3ScrollView*)scrollView {
+- (NSInteger)numberOfPagesInScrollView:(TTScrollView*)scrollView {
   return objects.count;
 }
 
-- (UIView*)scrollView:(T3ScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
-  T3BackgroundView* pageView = (T3BackgroundView*)[_scrollView dequeueReusablePage];
+- (UIView*)scrollView:(TTScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
+  TTBackgroundView* pageView = (TTBackgroundView*)[_scrollView dequeueReusablePage];
   if (!pageView) {
-    pageView = [[[T3BackgroundView alloc] initWithFrame:CGRectZero] autorelease];
-    pageView.background = T3BackgroundRoundedRect;
+    pageView = [[[TTBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
+    pageView.background = TTBackgroundRoundedRect;
     pageView.strokeRadius = 30;
     pageView.strokeColor = [UIColor blueColor];
     pageView.fillColor2 = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
@@ -65,7 +65,7 @@
   return pageView;
 }
 
-- (CGSize)scrollView:(T3ScrollView*)scrollView sizeOfPageAtIndex:(NSInteger)pageIndex {
+- (CGSize)scrollView:(TTScrollView*)scrollView sizeOfPageAtIndex:(NSInteger)pageIndex {
   return CGSizeMake(320, 416);
 }
 

@@ -26,10 +26,10 @@
 }
 
 - (void)viewDidLoad {
-  T3NavigationCenter* nav = [T3NavigationCenter defaultCenter];
+  TTNavigationCenter* nav = [TTNavigationCenter defaultCenter];
   nav.mainViewController = self.navigationController;
   nav.delegate = self;
-  nav.urlSchemes = [NSArray arrayWithObject:@"t3"];
+  nav.urlSchemes = [NSArray arrayWithObject:@"tt"];
   nav.supportsShakeToReload = YES;
   
   [nav addController:[PhotoTest1Controller class] forView:@"photoTest1"];
@@ -43,32 +43,32 @@
   [nav addController:[TextTest1Controller class] forView:@"textTest1"];
   [nav addController:[ScrollViewTestController class] forView:@"scrollViewTest"];
   
-  self.dataSource = [T3SectionedDataSource dataSourceWithObjects:
+  self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
     @"Photos",
-    [[[T3TableField alloc] initWithText:@"Photo Browser"
-      href:@"t3://photoTest1"] autorelease],
-    [[[T3TableField alloc] initWithText:@"Photo Thumbnails"
-      href:@"t3://photoTest2"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Photo Browser"
+      href:@"tt://photoTest1"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Photo Thumbnails"
+      href:@"tt://photoTest2"] autorelease],
 
     @"Web Media",
-    [[[T3TableField alloc] initWithText:@"Web Image"
-      href:@"t3://imageTest1"] autorelease],
-    [[[T3TableField alloc] initWithText:@"Web Images in Table"
-      href:@"t3://imageTest2"] autorelease],
-    [[[T3TableField alloc] initWithText:@"YouTube Player"
-      href:@"t3://youTubeTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Web Image"
+      href:@"tt://imageTest1"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Web Images in Table"
+      href:@"tt://imageTest2"] autorelease],
+    [[[TTTableField alloc] initWithText:@"YouTube Player"
+      href:@"tt://youTubeTest"] autorelease],
 
     @"Controls",
-    [[[T3TableField alloc] initWithText:@"Table Fields"
-      href:@"t3://tableFieldTest"] autorelease],
-    [[[T3TableField alloc] initWithText:@"Text Editing"
-      href:@"t3://textEditTest"] autorelease],
-    [[[T3TableField alloc] initWithText:@"Tab Bars"
-      href:@"t3://tabBarTest"] autorelease],
-    [[[T3TableField alloc] initWithText:@"Shiny Label"
-      href:@"t3://textTest1"] autorelease],
-    [[[T3TableField alloc] initWithText:@"Scroll View"
-      href:@"t3://scrollViewTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Table Fields"
+      href:@"tt://tableFieldTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Text Editing"
+      href:@"tt://textEditTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Tab Bars"
+      href:@"tt://tabBarTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Shiny Label"
+      href:@"tt://textTest1"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Scroll View"
+      href:@"tt://scrollViewTest"] autorelease],
     nil];
 
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
@@ -76,12 +76,12 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3NavigationDelegate
+// TTNavigationDelegate
 
-- (void)willNavigateToObject:(id<T3Object>)object inView:(NSString*)viewType
+- (void)willNavigateToObject:(id<TTObject>)object inView:(NSString*)viewType
     withController:(UIViewController*)viewController {
   NSIndexPath* indexPath = self.tableView.indexPathForSelectedRow;
-  T3LinkTableField* field = [self.dataSource objectForRowAtIndexPath:indexPath];
+  TTLinkTableField* field = [self.dataSource objectForRowAtIndexPath:indexPath];
   viewController.title = field.text;
 }
 

@@ -1,9 +1,9 @@
 #import <Three20/Three20.h>
 
-@class T3ImageView;
+@class TTImageView;
 
 @interface ImageTableViewCell : UITableViewCell {
-  T3ImageView* imageView;
+  TTImageView* imageView;
 }
 
 @property(nonatomic,copy) NSString* imageURL;

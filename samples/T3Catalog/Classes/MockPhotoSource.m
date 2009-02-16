@@ -15,7 +15,7 @@
     _tempPhotos = photos2 ? [photos2 retain] : [photos retain];
 
     for (int i = 0; i < _photos.count; ++i) {
-      id<T3Photo> photo = [_photos objectAtIndex:i];
+      id<TTPhoto> photo = [_photos objectAtIndex:i];
       if ((NSNull*)photo != [NSNull null]) {
         photo.photoSource = self;
         photo.index = i;
@@ -23,7 +23,7 @@
     }
 
     if (_type & MockPhotoSourceDelayed || photos2) {
-      _isInvalid = T3Invalid;
+      _isInvalid = TTInvalid;
     } else {
       [self performSelector:@selector(fakeLoadReady)];
     }
@@ -42,19 +42,19 @@
 
 - (void)fakeLoadReady {
   _fakeLoadTimer = nil;
-  _isInvalid = T3Valid;
+  _isInvalid = TTValid;
 
   if (_type & MockPhotoSourceLoadError) {
     [_request.delegate request:_request didFailWithError:nil];
 
-    for (id<T3PhotoSourceDelegate> delegate in _delegates) {
+    for (id<TTPhotoSourceDelegate> delegate in _delegates) {
       [delegate photoSource:self didFailWithError:nil];
     }
   } else {
     NSMutableArray* newPhotos = [NSMutableArray array];
 
     for (int i = 0; i < _photos.count; ++i) {
-      id<T3Photo> photo = [_photos objectAtIndex:i];
+      id<TTPhoto> photo = [_photos objectAtIndex:i];
       if ((NSNull*)photo != [NSNull null]) {
         [newPhotos addObject:photo];
       }
@@ -68,7 +68,7 @@
     _photos = [newPhotos retain];
     
     for (int i = 0; i < _photos.count; ++i) {
-      id<T3Photo> photo = [_photos objectAtIndex:i];
+      id<TTPhoto> photo = [_photos objectAtIndex:i];
       if ((NSNull*)photo != [NSNull null]) {
         photo.photoSource = self;
         photo.index = i;
@@ -77,7 +77,7 @@
 
     [_request.delegate request:_request loadedData:nil media:nil];
 
-    for (id<T3PhotoSourceDelegate> delegate in _delegates) {
+    for (id<TTPhotoSourceDelegate> delegate in _delegates) {
       [delegate photoSourceLoaded:self];
     }
   }
@@ -87,13 +87,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3Object
+// TTObject
 
-- (T3InvalidState)isInvalid {
+- (TTInvalidState)isInvalid {
   return _isInvalid;
 }
 
-- (void)setIsInvalid:(T3InvalidState)state {
+- (void)setIsInvalid:(TTInvalidState)state {
   _isInvalid = state;
 }
 
@@ -101,12 +101,12 @@
   return nil;
 }
 
-+ (id<T3Object>)fromURL:(NSURL*)url {
++ (id<TTObject>)fromURL:(NSURL*)url {
   return nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3PhotoSource
+// TTPhotoSource
 
 - (NSInteger)numberOfPhotos {
   if (_tempPhotos) {
@@ -124,7 +124,7 @@
   return !!_fakeLoadTimer;
 }
 
-- (id<T3Photo>)photoAtIndex:(NSInteger)index {
+- (id<TTPhoto>)photoAtIndex:(NSInteger)index {
   if (index < _photos.count) {
     id photo = [_photos objectAtIndex:index];
     if (photo == [NSNull null]) {
@@ -137,13 +137,13 @@
   }
 }
 
-- (void)loadPhotos:(T3URLRequest*)request fromIndex:(NSInteger)fromIndex
+- (void)loadPhotos:(TTURLRequest*)request fromIndex:(NSInteger)fromIndex
     toIndex:(NSInteger)toIndex {
-  if (request.cachePolicy & T3URLRequestCachePolicyNetwork) {
+  if (request.cachePolicy & TTURLRequestCachePolicyNetwork) {
     _request = [request retain];
     [_request.delegate requestLoading:_request];
     
-    for (id<T3PhotoSourceDelegate> delegate in _delegates) {
+    for (id<TTPhotoSourceDelegate> delegate in _delegates) {
       [delegate photoSourceLoading:self];
     }
     
@@ -152,11 +152,11 @@
   }
 }
 
-- (void)addDelegate:(id<T3PhotoSourceDelegate>)delegate {
+- (void)addDelegate:(id<TTPhotoSourceDelegate>)delegate {
   [_delegates addObject:delegate];
 }
 
-- (void)removeDelegate:(id<T3PhotoSourceDelegate>)delegate {
+- (void)removeDelegate:(id<TTPhotoSourceDelegate>)delegate {
   [_delegates removeObject:delegate];
 }
 
@@ -195,34 +195,34 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3Object
+// TTObject
 
-- (T3InvalidState)isInvalid {
-  return T3Valid;
+- (TTInvalidState)isInvalid {
+  return TTValid;
 }
 
-- (void)setIsInvalid:(T3InvalidState)state {
+- (void)setIsInvalid:(TTInvalidState)state {
 }
 
 - (NSString*)viewURL {
   return nil;
 }
 
-+ (id<T3Object>)fromURL:(NSURL*)url {
++ (id<TTObject>)fromURL:(NSURL*)url {
   return nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3Photo
+// TTPhoto
 
-- (NSString*)urlForVersion:(T3PhotoVersion)version {
-  if (version == T3PhotoVersionLarge) {
+- (NSString*)urlForVersion:(TTPhotoVersion)version {
+  if (version == TTPhotoVersionLarge) {
     return _url;
-  } else if (version == T3PhotoVersionMedium) {
+  } else if (version == TTPhotoVersionMedium) {
     return _url;
-  } else if (version == T3PhotoVersionSmall) {
+  } else if (version == TTPhotoVersionSmall) {
     return _smallURL;
-  } else if (version == T3PhotoVersionThumbnail) {
+  } else if (version == TTPhotoVersionThumbnail) {
     return _thumbURL;
   } else {
     return nil;

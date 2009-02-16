@@ -2,23 +2,23 @@
 #import "TextEditTestController.h"
 #import <Three20/Three20.h>
 
-@interface TestSearchSource : T3BasicDataSource <T3SearchSource>
+@interface TestSearchSource : TTBasicDataSource <TTSearchSource>
 
 @end
 
 @implementation TestSearchSource
 
-- (void)textField:(T3SearchTextField*)textField searchForText:(NSString*)text {
+- (void)textField:(TTSearchTextField*)textField searchForText:(NSString*)text {
 //  _items = [[NSMutableArray alloc] initWithObjects:
-//    [[[T3ActivityTableField alloc] initWithText:@"Searching..."] autorelease],
+//    [[[TTActivityTableField alloc] initWithText:@"Searching..."] autorelease],
 //    nil];
 
   [_items release];
 
   if (text.length) {
     _items = [[NSMutableArray alloc] initWithObjects:
-      [[[T3TableField alloc] initWithText:@"Robert Anderson" href:@"fb://x"] autorelease],
-      [[[T3TableField alloc] initWithText:@"Jim James" href:@"fb://x"] autorelease],
+      [[[TTTableField alloc] initWithText:@"Robert Anderson" href:@"fb://x"] autorelease],
+      [[[TTTableField alloc] initWithText:@"Jim James" href:@"fb://x"] autorelease],
       nil];
   } else {
     _items = nil;
@@ -26,9 +26,9 @@
   [textField updateResults];
 }
 
-- (NSString*)textField:(T3SearchTextField*)textField
+- (NSString*)textField:(TTSearchTextField*)textField
     labelForRowAtIndexPath:(NSIndexPath*)indexPath {
-  T3TableField* field = [self objectForRowAtIndexPath:indexPath];
+  TTTableField* field = [self objectForRowAtIndexPath:indexPath];
   return field.text;
 }
 
@@ -51,7 +51,7 @@
   
   _searchSource = [[TestSearchSource alloc] init];
   
-  T3MenuTextField* textField = [[[T3MenuTextField alloc] initWithFrame:
+  TTMenuTextField* textField = [[[TTMenuTextField alloc] initWithFrame:
     CGRectMake(0, 0, 320, 0)] autorelease];
   textField.searchSource = _searchSource;
   textField.visibleLineCount = 2;
@@ -82,6 +82,6 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// T3SearchSource
+// TTSearchSource
 
 @end

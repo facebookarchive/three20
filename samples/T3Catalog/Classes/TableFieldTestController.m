@@ -31,40 +31,40 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
 }
 
 - (void)viewDidLoad {
-  self.dataSource = [T3SectionedDataSource dataSourceWithObjects:
+  self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
     @"Buttons",
-    [[[T3TableField alloc] initWithText:@"T3TableField"
-      href:@"t3://tableFieldTest"] autorelease],
-    [[[T3TableField alloc] initWithText:@"T3TableField (external)"
+    [[[TTTableField alloc] initWithText:@"TTTableField"
+      href:@"tt://tableFieldTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"TTTableField (external)"
       href:@"http://foo.com"] autorelease],
-    [[[T3LinkTableField alloc] initWithText:@"T3LinkTableField"
-      href:@"t3://tableFieldTest"] autorelease],
-    [[[T3IconTableField alloc] initWithText:@"T3IconTableField" href:@"t3://tableFieldTest"
+    [[[TTLinkTableField alloc] initWithText:@"TTLinkTableField"
+      href:@"tt://tableFieldTest"] autorelease],
+    [[[TTIconTableField alloc] initWithText:@"TTIconTableField" href:@"tt://tableFieldTest"
       image:@"bundle://tableIcon.png" ] autorelease],
-    [[[T3ImageTableField alloc] initWithText:@"T3ImageTableField" href:@"t3://tableFieldTest"
+    [[[TTImageTableField alloc] initWithText:@"TTImageTableField" href:@"tt://tableFieldTest"
       image:@"bundle://person.jpg"] autorelease],
-    [[[T3ButtonTableField alloc] initWithText:@"T3ButtonTableField"] autorelease],
-    [[[T3TitledTableField alloc] initWithTitle:@"title"
-      text:@"T3TitledTableField" href:@"t3://tableFieldTest"] autorelease],
-    [[[T3MoreButtonTableField alloc] initWithText:@"T3MoreButtonTableField"
+    [[[TTButtonTableField alloc] initWithText:@"TTButtonTableField"] autorelease],
+    [[[TTTitledTableField alloc] initWithTitle:@"title"
+      text:@"TTTitledTableField" href:@"tt://tableFieldTest"] autorelease],
+    [[[TTMoreButtonTableField alloc] initWithText:@"TTMoreButtonTableField"
       subtitle:@"Showing 1 of 100"] autorelease],
 
     @"Static Text",
-    [[[T3TableField alloc] initWithText:@"T3TableField"] autorelease],
-    [[[T3TitledTableField alloc] initWithTitle:@"title"
-      text:@"T3TitledTableField"] autorelease],
-    [[[T3SubtextTableField alloc] initWithText:@"T3SubtextTableField"
+    [[[TTTableField alloc] initWithText:@"TTTableField"] autorelease],
+    [[[TTTitledTableField alloc] initWithTitle:@"title"
+      text:@"TTTitledTableField"] autorelease],
+    [[[TTSubtextTableField alloc] initWithText:@"TTSubtextTableField"
       subtext:kLoremIpsum] autorelease],
-    [[[T3TextTableField alloc] initWithText:kLoremIpsum] autorelease],
-    [[[T3GrayTextTableField alloc] initWithText:kLoremIpsum] autorelease],
-    [[[T3ActivityTableField alloc] initWithText:@"T3ActivityTableField"] autorelease],
-    [[[T3SummaryTableField alloc] initWithText:@"T3SummaryTableField"] autorelease],
+    [[[TTTextTableField alloc] initWithText:kLoremIpsum] autorelease],
+    [[[TTGrayTextTableField alloc] initWithText:kLoremIpsum] autorelease],
+    [[[TTActivityTableField alloc] initWithText:@"TTActivityTableField"] autorelease],
+    [[[TTSummaryTableField alloc] initWithText:@"TTSummaryTableField"] autorelease],
 
     @"Controls",
-    [[[T3SwitchTableField alloc] initWithText:@"T3SwitchTableField"] autorelease],
-    [[[T3TextFieldTableField alloc] initWithTitle:@"Title" text:@"T3TextFieldTableField"]
+    [[[TTSwitchTableField alloc] initWithText:@"TTSwitchTableField"] autorelease],
+    [[[TTTextFieldTableField alloc] initWithTitle:@"Title" text:@"TTTextFieldTableField"]
       autorelease],
-    [[[T3TextViewTableField alloc] initWithText:@"T3TextViewTableField"] autorelease],
+    [[[TTTextViewTableField alloc] initWithText:@"TTTextViewTableField"] autorelease],
 
     nil];
 }
