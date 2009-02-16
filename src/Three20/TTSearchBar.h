@@ -1,10 +1,11 @@
 #import "Three20/TTGlobal.h"
 
 @protocol TTSearchSource, TTSearchTextFieldDelegate;
-@class TTSearchTextField;
+@class TTSearchTextField, TTBackgroundView;
 
 @interface TTSearchBar : UIView {
   TTSearchTextField* _searchField;
+  TTBackgroundView* _boxView;
   UIColor* _tintColor;
 }
 

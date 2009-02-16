@@ -228,6 +228,7 @@
       textField.delegate = self;
       textField.backgroundColor = [UIColor whiteColor];
       textField.font = [UIFont systemFontOfSize:15];
+      textField.returnKeyType = UIReturnKeyNext;
       [textField sizeToFit];
       
       UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -401,9 +402,16 @@
     label.text = @"Sending...";
     label.centeredToScreen = NO;
     [self.view addSubview:label];
+
+    [_statusView release];
+    _statusView = [label retain];
   }
   
   if (self.contentState == TTContentReady) {
+    [_statusView removeFromSuperview];
+    [_statusView release];
+    _statusView = nil;
+    
     if (_initialRecipients) {
       for (id recipient in _initialRecipients) {
         [self addRecipient:recipient forFieldAtIndex:0];
@@ -438,6 +446,15 @@
       selector:@selector(setTitleToSubject) userInfo:nil repeats:NO];
   }
   return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  NSUInteger fieldIndex = [_fieldViews indexOfObject:textField];
+  UIView* nextView = fieldIndex == _fieldViews.count-1
+    ? _textEditor.textView
+    : [_fieldViews objectAtIndex:fieldIndex+1];
+  [nextView becomeFirstResponder];
+  return NO;
 }
 
 - (void)textField:(TTMenuTextField*)textField didAddCellAtIndex:(NSInteger)index {

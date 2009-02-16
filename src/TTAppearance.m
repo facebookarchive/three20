@@ -181,6 +181,31 @@ static TTAppearance* gAppearance = nil;
   }
 }
 
+- (void)drawReflection:(CGRect)rect fill:(UIColor**)fillColors fillCount:(int)fillCount
+    stroke:(UIColor*)strokeColor radius:(CGFloat)radius {
+  if (fillColors && fillCount) {
+    UIColor* tintColor = fillColors[0];
+    UIColor* ligherTint = [tintColor transformHue:1 saturation:0.4 value:1.2];
+    UIColor* barFill[] = {ligherTint, tintColor};
+    
+    CGRect topRect = CGRectMake(rect.origin.x, rect.origin.y,
+      rect.size.width, rect.size.height/1.5);
+    [[TTAppearance appearance] draw:TTDrawFillRect rect:topRect
+      fill:barFill fillCount:2 stroke:nil radius:0];
+
+    UIColor* tintFill[] = {tintColor};
+    CGRect bottomRect = CGRectMake(rect.origin.x, floor(rect.origin.y+rect.size.height/(2*2))+1,
+      rect.size.width, (rect.size.height/2)-2);
+    [self draw:TTDrawFillRect rect:bottomRect
+      fill:tintFill fillCount:1 stroke:nil radius:0];
+
+    UIColor* highlight = [UIColor colorWithWhite:1 alpha:0.3];
+
+    [self draw:TTDrawStrokeTop rect:CGRectInset(rect, 0, 1)
+      fill:nil fillCount:0 stroke:highlight radius:0];
+  }
+}
+
 - (void)drawInnerShadow:(CGRect)rect {
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGColorSpaceRef space = CGBitmapContextGetColorSpace(context);
@@ -201,6 +226,17 @@ static TTAppearance* gAppearance = nil;
 
   CGColorSpaceRelease(space);
   CGContextRestoreGState(context);
+}
+
+- (void)drawRoundInnerShadow:(CGRect)rect fill:(UIColor**)fillColors fillCount:(int)fillCount
+    stroke:(UIColor*)strokeColor radius:(CGFloat)radius {
+  UIImage* image = [[UIImage imageNamed:@"ttimages/textBox.png"]
+    stretchableImageWithLeftCapWidth:15 topCapHeight:15];
+  [image drawInRect:rect];
+
+  if (strokeColor) {
+    [self drawRoundedRect:rect fill:nil fillCount:0 stroke:strokeColor radius:TT_RADIUS_ROUNDED];
+  }
 }
 
 - (void)strokeLines:(CGRect)rect style:(TTDrawStyle)style stroke:(UIColor*)strokeColor {
@@ -246,8 +282,16 @@ static TTAppearance* gAppearance = nil;
     case TTDrawFillRectInverted:
       [self drawRoundedMask:rect fill:fillColors stroke:strokeColor radius:radius];
       break;
+    case TTDrawReflection:
+      [self drawReflection:rect fill:fillColors fillCount:fillCount stroke:strokeColor
+        radius:radius];
+      break;
     case TTDrawInnerShadow:
       [self drawInnerShadow:rect];
+      break;
+    case TTDrawRoundInnerShadow:
+      [self drawRoundInnerShadow:rect fill:fillColors fillCount:fillCount stroke:strokeColor
+        radius:radius];
       break;
     case TTDrawStrokeTop:
     case TTDrawStrokeRight:

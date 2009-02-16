@@ -187,22 +187,6 @@ static const CGFloat kShadowHeight = 24;
   [UIView commitAnimations];
 }
 
-- (void)showIndexView:(BOOL)show {
-  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
-  if (tableView) {
-    UIView* indexView = tableView.indexView;
-    if (indexView) {
-      [UIView beginAnimations:nil context:nil];
-      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-      
-      CGFloat offset = show ? -indexView.frame.size.width : indexView.frame.size.width;
-      indexView.frame = CGRectOffset(indexView.frame, offset, 0);
-
-      [UIView commitAnimations];
-    }
-  }
-}
-
 - (NSString*)searchText {
   if (!self.hasText) {
     return @"";
@@ -286,8 +270,6 @@ static const CGFloat kShadowHeight = 24;
   if (_showsDarkScreen) {
     [self showDarkScreen:YES];
   }
-  
-  [self showIndexView:NO];
 }
 
 - (void)didEndEditing {
@@ -300,8 +282,6 @@ static const CGFloat kShadowHeight = 24;
   if (_showsDarkScreen) {
     [self showDarkScreen:NO];
   }
-
-  [self showIndexView:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

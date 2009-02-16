@@ -80,7 +80,7 @@
       href:@"tt://scrollViewTest"] autorelease],
     nil];
 
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:2 inSection:2];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
   [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 

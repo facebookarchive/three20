@@ -1,5 +1,6 @@
 #import "Three20/TTSearchBar.h"
 #import "Three20/TTSearchTextField.h"
+#import "Three20/TTBackgroundView.h"
 #import "Three20/TTAppearance.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -10,6 +11,8 @@ static const CGFloat kMarginY = 5;
 static const CGFloat kPaddingX = 10;
 static const CGFloat kPaddingY = 10;
 
+static const CGFloat kIndexViewMargin = 4;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTSearchBar
@@ -18,12 +21,15 @@ static const CGFloat kPaddingY = 10;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    self.contentMode = UIViewContentModeRedraw;
-    self.tintColor = [TTAppearance appearance].barTintColor;
+    _boxView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
+    _boxView.backgroundColor = [UIColor clearColor];
+    _boxView.style = TTDrawRoundInnerShadow;
+    _boxView.contentMode = UIViewContentModeRedraw;
+    [self addSubview:_boxView];
     
-    _searchField = [[TTSearchTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    _searchField = [[TTSearchTextField alloc] initWithFrame:CGRectZero];
     _searchField.placeholder = NSLocalizedString(@"Search", @"");
-    
+        
     UIImageView* iconView = [[[UIImageView alloc] initWithImage:
       [UIImage imageNamed:@"ttimages/searchIcon.png"]] autorelease];
     [iconView sizeToFit];
@@ -31,53 +37,107 @@ static const CGFloat kPaddingY = 10;
     iconView.frame = CGRectInset(iconView.frame, -2, 0);
     _searchField.leftView = iconView;
     _searchField.leftViewMode = UITextFieldViewModeAlways;
+
+    [_searchField addTarget:self action:@selector(textFieldDidBeginEditing)
+      forControlEvents:UIControlEventEditingDidBegin];
+    [_searchField addTarget:self action:@selector(textFieldDidEndEditing)
+      forControlEvents:UIControlEventEditingDidEnd];
     
     [self addSubview:_searchField];
+
+    self.contentMode = UIViewContentModeRedraw;
+    self.tintColor = [TTAppearance appearance].barTintColor;
   }
   return self;
 }
 
 - (void)dealloc {
+  [_searchField release];
+  [_boxView release];
   [_tintColor release];
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (CGFloat)indexViewWidth {
+  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
+  if (tableView) {
+    UIView* indexView = tableView.indexView;
+    if (indexView) {
+      return indexView.width - kMarginX;
+    }
+  }
+  return 0;
+}
+
+- (void)showIndexView:(BOOL)show {
+  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
+  if (tableView) {
+    UIView* indexView = tableView.indexView;
+    if (indexView) {
+      [UIView beginAnimations:nil context:nil];
+      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+      
+      if (show) {
+        CGRect frame = indexView.frame;
+        frame.origin.x = self.width - (indexView.width + kIndexViewMargin);
+        indexView.frame = frame;
+      } else {
+        indexView.frame = CGRectOffset(indexView.frame, indexView.width + kIndexViewMargin, 0);
+      }
+      indexView.alpha = show ? 1 : 0;
+      
+      CGRect searchFrame = _searchField.frame;
+      searchFrame.size.width += show ? -self.indexViewWidth : self.indexViewWidth;
+      _searchField.frame = searchFrame;
+
+      CGRect boxFrame = _boxView.frame;
+      boxFrame.size.width += show ? -self.indexViewWidth : self.indexViewWidth;
+      _boxView.frame = boxFrame;
+      
+      [UIView commitAnimations];
+    }
+  }
+}
+
+- (void)scrollToTop {
+  UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+  if (scrollView) {
+    CGPoint offset = scrollView.contentOffset;
+    if (offset.y != self.y) {
+      [scrollView setContentOffset:CGPointMake(offset.x, self.y) animated:YES];
+    }
+  }
+}
+
+- (void)textFieldDidBeginEditing {
+  [self scrollToTop];
+  [self showIndexView:NO];
+}
+
+- (void)textFieldDidEndEditing {
+  [self showIndexView:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
 - (void)drawRect:(CGRect)rect {
-  UIColor* ligherTint = [_tintColor transformHue:1 saturation:0.4 value:1.2];
-  UIColor* barFill[] = {ligherTint, _tintColor};
-  
-  CGRect topRect = CGRectMake(rect.origin.x, rect.origin.y,
-    rect.size.width, rect.size.height/1.5);
-  [[TTAppearance appearance] draw:TTDrawFillRect rect:topRect
-    fill:barFill fillCount:2 stroke:nil radius:0];
-
-  UIColor* tintFill[] = {_tintColor};
-  CGRect bottomRect = CGRectMake(rect.origin.x, floor(rect.origin.y+rect.size.height/(2*2))+1,
-    rect.size.width, (rect.size.height/2)-2);
-  [[TTAppearance appearance] draw:TTDrawFillRect rect:bottomRect
-    fill:tintFill fillCount:1 stroke:nil radius:0];
-
-  UIColor* highlight = [UIColor colorWithWhite:1 alpha:0.3];
-
-  [[TTAppearance appearance] draw:TTDrawStrokeTop rect:CGRectInset(rect, 0, 1)
-    fill:nil fillCount:0 stroke:highlight radius:0];
-
-  UIImage* image = [[UIImage imageNamed:@"ttimages/textBox.png"]
-    stretchableImageWithLeftCapWidth:15 topCapHeight:15];
-  [image drawInRect:CGRectInset(rect, kMarginX, kMarginY)];
-
-  UIColor* textStroke = [_tintColor transformHue:1 saturation:1 value:0.9];
-  [[TTAppearance appearance] draw:TTDrawFillRect
-    rect:CGRectInset(rect, kMarginX, kMarginY)
-    fill:nil fillCount:0 stroke:textStroke radius:TT_RADIUS_ROUNDED];
+  UIColor* fill[] = {_tintColor};
+  [[TTAppearance appearance] draw:TTDrawReflection rect:rect
+    fill:fill fillCount:1 stroke:nil radius:0];
 }
 
 - (void)layoutSubviews {
+  CGFloat indexViewWidth = [_searchField isEditing] ? 0 : self.indexViewWidth;
+
+  CGRect boxRect = CGRectInset(self.frame, kMarginX, kMarginY);
+  boxRect.size.width -= indexViewWidth;
+  _boxView.frame = boxRect;
+  
   _searchField.frame = CGRectMake(kMarginX+kPaddingX, 0,
-    self.width - (kMarginX+kPaddingX+kMarginX), self.height);
+    self.width - (kMarginX*2+kPaddingX+indexViewWidth), self.height);
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -117,6 +177,15 @@ static const CGFloat kPaddingY = 10;
 
 - (void)setFont:(UIFont*)font {
   _searchField.font = font;
+}
+
+- (void)setTintColor:(UIColor*)tintColor {
+  if (tintColor != _tintColor) {
+    [_tintColor release];
+    _tintColor = [tintColor retain];
+    
+    _boxView.strokeColor = [_tintColor transformHue:1 saturation:1 value:0.9];
+  }
 }
 
 - (id<TTSearchSource>)searchSource {
