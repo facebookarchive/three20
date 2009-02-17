@@ -14,7 +14,7 @@
 @property(nonatomic,assign) TTMenuViewCell* selectedCell;
 @property(nonatomic,readonly) int lineCount;
 
-- (void)addCellWithObject:(id)object label:(NSString*)label;
+- (void)addCellWithObject:(id)object;
 
 - (void)removeCellWithObject:(id)object;
 

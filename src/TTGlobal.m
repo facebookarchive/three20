@@ -353,24 +353,32 @@ void TTNetworkRequestStopped() {
 
 @implementation UIView (TTCategory)
 
-- (CGFloat)x {
+- (CGFloat)left {
   return self.frame.origin.x;
 }
 
-- (void)setX:(CGFloat)x {
+- (void)setLeft:(CGFloat)x {
   CGRect frame = self.frame;
   frame.origin.x = x;
   self.frame = frame;
 }
 
-- (CGFloat)y {
+- (CGFloat)top {
   return self.frame.origin.y;
 }
 
-- (void)setY:(CGFloat)y {
+- (void)setTop:(CGFloat)y {
   CGRect frame = self.frame;
   frame.origin.y = y;
   self.frame = frame;
+}
+
+- (CGFloat)right {
+  return self.frame.origin.x + self.frame.size.width;
+}
+
+- (CGFloat)bottom {
+  return self.frame.origin.y + self.frame.size.height;
 }
 
 - (CGFloat)width {
@@ -393,18 +401,10 @@ void TTNetworkRequestStopped() {
   self.frame = frame;
 }
 
-- (CGFloat)right {
-  return self.frame.origin.x + self.frame.size.width;
-}
-
-- (CGFloat)bottom {
-  return self.frame.origin.y + self.frame.size.height;
-}
-
 - (CGFloat)screenX {
   CGFloat x = 0;
   for (UIView* view = self; view; view = view.superview) {
-    x += view.x;
+    x += view.left;
   }
   return x;
 }
@@ -412,7 +412,7 @@ void TTNetworkRequestStopped() {
 - (CGFloat)screenY {
   CGFloat y = 0;
   for (UIView* view = self; view; view = view.superview) {
-    y += view.y;
+    y += view.top;
 //    if ([view isKindOfClass:[UIScrollView class]]) {
 //      UIScrollView* scrollView = (UIScrollView*)view;
 //      y += scrollView.contentOffset.y;
@@ -424,7 +424,7 @@ void TTNetworkRequestStopped() {
 - (CGFloat)screenViewX {
   CGFloat x = 0;
   for (UIView* view = self; view; view = view.superview) {
-      x += view.x;
+      x += view.left;
 
     if ([view isKindOfClass:[UIScrollView class]]) {
       UIScrollView* scrollView = (UIScrollView*)view;
@@ -438,7 +438,7 @@ void TTNetworkRequestStopped() {
 - (CGFloat)screenViewY {
   CGFloat y = 0;
   for (UIView* view = self; view; view = view.superview) {
-    y += view.y;
+    y += view.top;
 
     if ([view isKindOfClass:[UIScrollView class]]) {
       UIScrollView* scrollView = (UIScrollView*)view;

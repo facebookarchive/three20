@@ -354,43 +354,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-//- (id<TTObject>)viewObject {
-//  return nil;
-//}
-
-//- (NSString*)viewType {
-//  return @"compose";
-//}
-
 - (void)showObject:(id<TTObject>)object inView:(NSString*)viewType withState:(NSDictionary*)state {
   [super showObject:object inView:viewType withState:state];
   
   _initialRecipients = [[NSArray alloc] initWithObjects:object,nil];
   [self invalidate];
-}
-
-- (void)persistView:(NSMutableDictionary*)state {
-//  NSArray* userInfo = [TTUser dictionaryForUsers:_toField.cells
-//    fields:[NSArray arrayWithObjects:@"name", nil]];
-//  TTLOG(@"PERSIST %@", userInfo);
-//  
-//  [state setObject:userInfo forKey:@"recipients"];
-//  [state setObject:_subjectField.text forKey:@"subject"];
-//  [state setObject:_textEditor.text forKey:@"body"];
-}
-
-- (void)restoreView:(NSDictionary*)state {
-//  NSArray* userInfo = [state objectForKey:@"recipients"];
-//  TTLOG(@"RESTORE %@", userInfo);
-//
-//  NSArray* users = [TTUser usersFromDictionary:userInfo];
-//  for (int i = 0; i < users.count; ++i) {
-//    TTUser* user = [users objectAtIndex:i];
-//    [self addRecipient:user];
-//  }
-//  
-//  _subjectField.text = [state objectForKey:@"subject"];
-//  _textEditor.text = [state objectForKey:@"body"];
 }
 
 - (void)updateView {
@@ -405,9 +373,7 @@
 
     [_statusView release];
     _statusView = [label retain];
-  }
-  
-  if (self.contentState == TTContentReady) {
+  } else if (self.contentState == TTContentReady) {
     [_statusView removeFromSuperview];
     [_statusView release];
     _statusView = nil;
@@ -420,8 +386,6 @@
       _initialRecipients = nil;
     }
   }
-
-  [super updateView];
 }
 
 - (void)unloadView {
@@ -522,7 +486,7 @@
   if ([textField isKindOfClass:[TTMenuTextField class]]) {
     NSString* label = [_searchSource textField:textField labelForObject:recipient];
     if (label) {
-      [textField addCellWithObject:recipient label:label];
+      [textField addCellWithObject:recipient];
     }
   }
 }

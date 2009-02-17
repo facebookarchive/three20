@@ -6,13 +6,13 @@
 
 @synthesize object;
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   return TOOLBAR_HEIGHT;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     object = nil;
   }

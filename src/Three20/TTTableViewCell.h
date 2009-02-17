@@ -6,8 +6,8 @@
 
 @property(nonatomic,retain) id object;
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView;
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item;
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier;
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier;
 
 @end

@@ -28,6 +28,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewDataSource
+
+- (NSMutableArray*)delegates {
+  return [super delegates];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTSearchDataSource
 
 - (void)textField:(TTSearchTextField*)textField searchForText:(NSString*)text {
@@ -43,7 +50,7 @@
     _items = nil;
   }
   
-  [textField reloadSearchResults];
+  [self dataSourceLoaded];
 }
 
 - (NSString*)textField:(TTSearchTextField*)textField labelForObject:(id)object {

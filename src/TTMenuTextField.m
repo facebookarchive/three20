@@ -135,6 +135,14 @@ static CGFloat kMinCursorWidth = 50;
   self.selectedCell = [_cellViews objectAtIndex:_cellViews.count-1];
 }
 
+- (NSString*)labelForObject:(id)object {
+  NSString* label = nil;
+  if ([_searchSource respondsToSelector:@selector(textField:labelForObject:)]) {
+    label = [_searchSource textField:self labelForObject:object];
+  }
+  return label ? label : [NSString stringWithFormat:@"%@", object];
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
@@ -266,10 +274,7 @@ static CGFloat kMinCursorWidth = 50;
   [_tableView deselectRowAtIndexPath:indexPath animated:NO];
 
   id object = [_searchSource objectForRowAtIndexPath:indexPath];
-  NSString* label = [_searchSource textField:self labelForObject:object];
-  if (label) {
-    [self addCellWithObject:object label:label];
-  }
+  [self addCellWithObject:object];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -291,9 +296,11 @@ static CGFloat kMinCursorWidth = 50;
   return cells;
 }
 
-- (void)addCellWithObject:(id)object label:(NSString*)label {
+- (void)addCellWithObject:(id)object {
   TTMenuViewCell* cell = [[[TTMenuViewCell alloc] initWithFrame:CGRectZero] autorelease];
 
+  NSString* label = [self labelForObject:object];
+  
   cell.object = object;
   cell.label = label;
   cell.font = self.font;
@@ -370,7 +377,7 @@ static CGFloat kMinCursorWidth = 50;
   if (self.editing) {
     UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
     if (scrollView) {
-      [scrollView setContentOffset:CGPointMake(0, self.y) animated:animated];
+      [scrollView setContentOffset:CGPointMake(0, self.top) animated:animated];
     }
   }
 }
@@ -379,7 +386,7 @@ static CGFloat kMinCursorWidth = 50;
   UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
   if (scrollView) {
     CGFloat offset = _lineCount == 1 ? 0 : [self topOfLine:_lineCount-1];
-    [scrollView setContentOffset:CGPointMake(0, self.y+offset) animated:animated];
+    [scrollView setContentOffset:CGPointMake(0, self.top+offset) animated:animated];
   }
 }
 

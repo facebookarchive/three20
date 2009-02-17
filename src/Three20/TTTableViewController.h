@@ -1,13 +1,13 @@
 #import "Three20/TTViewController.h"
 
-@protocol TTDataSource;
+@protocol TTTableViewDataSource;
 
 @interface TTTableViewController : TTViewController <UITableViewDelegate> {
   UITableView* _tableView;
-  id<TTDataSource> _dataSource;
+  id<TTTableViewDataSource> _dataSource;
 }
 
 @property(nonatomic,retain) UITableView* tableView;
-@property(nonatomic,retain) id<TTDataSource> dataSource;
+@property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
 
 @end

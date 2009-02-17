@@ -130,13 +130,13 @@ void TTNetworkRequestStopped();
 
 @interface UIView (TTCategory)
 
-@property(nonatomic) CGFloat x;
-@property(nonatomic) CGFloat y;
-@property(nonatomic) CGFloat width;
-@property(nonatomic) CGFloat height;
-
+@property(nonatomic) CGFloat left;
+@property(nonatomic) CGFloat top;
 @property(nonatomic,readonly) CGFloat right;
 @property(nonatomic,readonly) CGFloat bottom;
+
+@property(nonatomic) CGFloat width;
+@property(nonatomic) CGFloat height;
 
 @property(nonatomic,readonly) CGFloat screenX;
 @property(nonatomic,readonly) CGFloat screenY;

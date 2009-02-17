@@ -1,10 +1,24 @@
-#import "Three20/TTDataSource.h"
+#import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableField.h"
 #import "Three20/TTTableFieldCell.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTBaseDataSource
+
+@synthesize delegates = _delegates;
+
+- (id)init {
+  if (self = [super init]) {
+    _delegates = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_delegates release];
+  [super dealloc];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableViewDataSource
@@ -21,8 +35,7 @@
   NSString* className = NSStringFromClass(cellClass);
   UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:className];
   if (cell == nil) {
-    cell = [[[cellClass alloc] initWithFrame:CGRectZero style:0
-      reuseIdentifier:className] autorelease];
+    cell = [[[cellClass alloc] initWithFrame:CGRectZero reuseIdentifier:className] autorelease];
   }
   
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
@@ -35,6 +48,14 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewDataSource
+
+- (NSMutableArray*)delegates {
+  if (!_delegates) {
+    _delegates = [[NSMutableArray alloc] init];
+  }
+  return _delegates;
+}
 
 - (id)objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   return nil;
@@ -75,13 +96,39 @@
 - (void)decorateCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)dataSourceLoading {
+  for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
+    if ([delegate respondsToSelector:@selector(dataSourceLoading:)]) {
+      [delegate dataSourceLoading:self];
+    }
+  }
+}
+
+- (void)dataSourceLoaded {
+  for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
+    if ([delegate respondsToSelector:@selector(dataSourceLoaded:)]) {
+      [delegate dataSourceLoaded:self];
+    }
+  }
+}
+
+- (void)dataSourceLoadDidFailWithError:(NSError*)error {
+  for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
+    if ([delegate respondsToSelector:@selector(dataSource:loadDidFailWithError:)]) {
+      [delegate dataSource:self loadDidFailWithError:error];
+    }
+  }
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTBasicDataSource
+@implementation TTListDataSource
 
-+ (TTBasicDataSource*)dataSourceWithObjects:(id)object,... {
++ (TTListDataSource*)dataSourceWithObjects:(id)object,... {
   NSMutableArray* items = [NSMutableArray array];
   va_list ap;
   va_start(ap, object);
@@ -114,7 +161,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTDataSource
+// TTTableViewDataSource
 
 - (id)objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   return [_items objectAtIndex:indexPath.row];
@@ -177,7 +224,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTDataSource
+// TTTableViewDataSource
 
 - (id)objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   NSArray* section = [_items objectAtIndex:indexPath.section];

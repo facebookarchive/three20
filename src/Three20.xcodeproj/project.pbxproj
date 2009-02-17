@@ -17,8 +17,8 @@
 		BE6E4A540F465243001CE9B4 /* TTTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */; };
 		BE702ED00F43F32E0028A119 /* TTTableFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702ECF0F43F32E0028A119 /* TTTableFieldCell.m */; };
 		BE702ED20F43F3390028A119 /* TTTableFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702ED10F43F3390028A119 /* TTTableFieldCell.h */; };
-		BE702EF10F43F6720028A119 /* TTDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702EF00F43F6720028A119 /* TTDataSource.h */; };
-		BE702EF30F43F6800028A119 /* TTDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF20F43F6800028A119 /* TTDataSource.m */; };
+		BE702EF10F43F6720028A119 /* TTTableViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */; };
+		BE702EF30F43F6800028A119 /* TTTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */; };
 		BE702EF90F43F9D20028A119 /* TTTableField.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF80F43F9D20028A119 /* TTTableField.m */; };
 		BE702EFB0F43F9DC0028A119 /* TTTableField.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702EFA0F43F9DC0028A119 /* TTTableField.h */; };
 		BE8A9C170F4143C800FD8C43 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */; };
@@ -97,8 +97,8 @@
 		BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewCell.h; path = Three20/TTTableViewCell.h; sourceTree = "<group>"; };
 		BE702ECF0F43F32E0028A119 /* TTTableFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableFieldCell.m; sourceTree = "<group>"; };
 		BE702ED10F43F3390028A119 /* TTTableFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableFieldCell.h; path = Three20/TTTableFieldCell.h; sourceTree = "<group>"; };
-		BE702EF00F43F6720028A119 /* TTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDataSource.h; path = Three20/TTDataSource.h; sourceTree = "<group>"; };
-		BE702EF20F43F6800028A119 /* TTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDataSource.m; sourceTree = "<group>"; };
+		BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewDataSource.h; path = Three20/TTTableViewDataSource.h; sourceTree = "<group>"; };
+		BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewDataSource.m; sourceTree = "<group>"; };
 		BE702EF80F43F9D20028A119 /* TTTableField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableField.m; sourceTree = "<group>"; };
 		BE702EFA0F43F9DC0028A119 /* TTTableField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableField.h; path = Three20/TTTableField.h; sourceTree = "<group>"; };
 		BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestQueue.m; sourceTree = "<group>"; };
@@ -213,8 +213,8 @@
 		BE702EEF0F43F46E0028A119 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
-				BE702EF00F43F6720028A119 /* TTDataSource.h */,
-				BE702EF20F43F6800028A119 /* TTDataSource.m */,
+				BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */,
+				BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */,
 				BE702EFA0F43F9DC0028A119 /* TTTableField.h */,
 				BE702EF80F43F9D20028A119 /* TTTableField.m */,
 				BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */,
@@ -372,7 +372,7 @@
 				BE8A9C190F4143DA00FD8C43 /* TTURLRequestQueue.h in Headers */,
 				BE8AA1930F428A4900FD8C43 /* TT+UIViewController.h in Headers */,
 				BE702ED20F43F3390028A119 /* TTTableFieldCell.h in Headers */,
-				BE702EF10F43F6720028A119 /* TTDataSource.h in Headers */,
+				BE702EF10F43F6720028A119 /* TTTableViewDataSource.h in Headers */,
 				BE702EFB0F43F9DC0028A119 /* TTTableField.h in Headers */,
 				BE6E4A540F465243001CE9B4 /* TTTableViewCell.h in Headers */,
 				BECB1EC60F46C39F00AE5B52 /* TTAppearance.h in Headers */,
@@ -451,7 +451,7 @@
 				BE8A9C170F4143C800FD8C43 /* TTURLRequestQueue.m in Sources */,
 				BE8AA1910F428A3700FD8C43 /* TT+UIViewController.m in Sources */,
 				BE702ED00F43F32E0028A119 /* TTTableFieldCell.m in Sources */,
-				BE702EF30F43F6800028A119 /* TTDataSource.m in Sources */,
+				BE702EF30F43F6800028A119 /* TTTableViewDataSource.m in Sources */,
 				BE702EF90F43F9D20028A119 /* TTTableField.m in Sources */,
 				BE6E4A520F465237001CE9B4 /* TTTableViewCell.m in Sources */,
 				BECB1EC80F46C3B000AE5B52 /* TTAppearance.m in Sources */,

@@ -22,7 +22,7 @@
 #import "Three20/TTSearchBar.h"
 #import "Three20/TTComposeController.h"
 
-#import "Three20/TTDataSource.h"
+#import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableField.h"
 #import "Three20/TTTableViewCell.h"
 #import "Three20/TTTableFieldCell.h"

@@ -144,7 +144,7 @@ static CGFloat kThinBezelHeight = 35;
   _textView.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + kPadding + _spinner.width/2),
     floor(bezelHeight/2 - textSize.height/2), textWidth, textSize.height);
 
-  _spinner.frame = CGRectMake(_textView.x - (_spinner.width+kSpacing),
+  _spinner.frame = CGRectMake(_textView.left - (_spinner.width+kSpacing),
     floor(bezelHeight/2 - _spinner.height/2), _spinner.width, _spinner.height);
 }
 

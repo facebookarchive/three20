@@ -52,7 +52,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
     @"Static Text",
     [[[TTTableField alloc] initWithText:@"TTTableField"] autorelease],
     [[[TTTitledTableField alloc] initWithTitle:@"title"
-      text:@"TTTitledTableField"] autorelease],
+      text:@"TTTitledTableField which wraps to several lines"] autorelease],
     [[[TTSubtextTableField alloc] initWithText:@"TTSubtextTableField"
       subtext:kLoremIpsum] autorelease],
     [[[TTTextTableField alloc] initWithText:kLoremIpsum] autorelease],

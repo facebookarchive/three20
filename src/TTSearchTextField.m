@@ -88,6 +88,10 @@ static const CGFloat kShadowHeight = 24;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  if (!_textField.searchesAutomatically) {
+    [_textField search];
+  }
+  
   if ([_delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
     return [_delegate textFieldShouldReturn:textField];
   } else {
@@ -109,10 +113,10 @@ static const CGFloat kShadowHeight = 24;
   if (self = [super initWithFrame:frame]) {
     _internal = [[TTSearchTextFieldInternal alloc] initWithTextField:self];
     _searchSource = nil;
-    _searchTimer = nil;
     _tableView = nil;
     _shadowView = nil;
     _screenView = nil;
+    _searchTimer = nil;
     _previousRightBarButtonItem = nil;
     _searchesAutomatically = YES;
     _showsDoneButton = NO;
@@ -134,6 +138,7 @@ static const CGFloat kShadowHeight = 24;
 }
 
 - (void)dealloc {
+  [_searchSource.delegates removeObject:self];
   [_searchSource release];
   [_internal release];
   [_tableView release];
@@ -225,7 +230,7 @@ static const CGFloat kShadowHeight = 24;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITextFieldd
+// UITextField
 
 - (id<UITextFieldDelegate>)delegate {
   return _internal.delegate;
@@ -246,15 +251,29 @@ static const CGFloat kShadowHeight = 24;
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
   id item = [_searchSource objectForRowAtIndexPath:indexPath];
   Class cls = [_searchSource cellClassForObject:item];
-  return [cls rowHeightForItem:item tableView:_tableView];
+  return [cls tableView:_tableView rowHeightForItem:item];
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
   if ([_internal.delegate respondsToSelector:@selector(textField:didSelectObject:)]) {
     id object = [_searchSource objectForRowAtIndexPath:indexPath];
-    [_internal.delegate performSelector:@selector(textField:didSelectObject:) withObject:self
-      withObject:object];      
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell.selectionStyle != UITableViewCellSeparatorStyleNone) {
+      [_internal.delegate performSelector:@selector(textField:didSelectObject:) withObject:self
+        withObject:object];      
+    }
   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewDataSourceDelegate
+
+- (void)dataSourceLoaded:(id<TTTableViewDataSource>)dataSource {
+  [_tableView reloadData];
+}
+
+- (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailWithError:(NSError*)error {
+  [_tableView reloadData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -263,6 +282,7 @@ static const CGFloat kShadowHeight = 24;
 - (void)didBeginEditing {
   UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
   scrollView.scrollEnabled = NO;
+  scrollView.scrollsToTop = NO;
 
   if (_showsDoneButton) {
     [self showDoneButton:YES];
@@ -270,12 +290,18 @@ static const CGFloat kShadowHeight = 24;
   if (_showsDarkScreen) {
     [self showDarkScreen:YES];
   }
+  if (self.hasText) {
+    [self showSearchResults:YES];
+  }
 }
 
 - (void)didEndEditing {
   UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
   scrollView.scrollEnabled = YES;
-
+  scrollView.scrollsToTop = YES;
+  
+  [self showSearchResults:NO];
+  
   if (_showsDoneButton) {
     [self showDoneButton:NO];
   }
@@ -285,6 +311,15 @@ static const CGFloat kShadowHeight = 24;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)setSearchSource:(id<TTSearchSource>)searchSource {
+  if (searchSource != _searchSource) {
+    [_searchSource.delegates removeObject:self];
+    [_searchSource release];
+    _searchSource = [searchSource retain];
+    [_searchSource.delegates addObject:self];
+  }
+}
 
 - (BOOL)hasText {
   return self.text.length;
@@ -321,7 +356,8 @@ static const CGFloat kShadowHeight = 24;
 
     if (!_tableView.superview) {
       _tableView.frame = [self rectForSearchResults:YES];
-      _shadowView.frame = CGRectMake(_tableView.x, _tableView.y, _tableView.width, kShadowHeight);
+      _shadowView.frame = CGRectMake(_tableView.left, _tableView.top,
+        _tableView.width, kShadowHeight);
       
       UIView* superview = self.superviewForSearchResults;
       [superview addSubview:_tableView];
@@ -336,10 +372,6 @@ static const CGFloat kShadowHeight = 24;
   }
 }
 
-- (void)reloadSearchResults {
-  [_tableView reloadData];
-}
-
 - (UIView*)superviewForSearchResults {
   UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
   return scrollView ? scrollView : self.superview;
@@ -347,12 +379,18 @@ static const CGFloat kShadowHeight = 24;
 
 - (CGRect)rectForSearchResults:(BOOL)withKeyboard {
   UIView* superview = self.superviewForSearchResults;
-  CGFloat y = superview.screenY;
   CGFloat height = self.height;
   CGFloat keyboardHeight = withKeyboard ? KEYBOARD_HEIGHT : 0;
-  CGFloat tableHeight = self.window.height - (y + height + keyboardHeight);
-
-  return CGRectMake(0, self.bottom-1, superview.frame.size.width, tableHeight+1);
+  CGFloat tableHeight = self.window.height - (superview.screenY + height + keyboardHeight);
+  
+  CGFloat y = 0;
+  UIView* view = self;
+  while (view != superview) {
+    y += view.top;
+    view = view.superview;
+  }  
+  
+  return CGRectMake(0, y + self.height-1, superview.frame.size.width, tableHeight+1);
 }
 
 - (BOOL)shouldUpdate:(BOOL)emptyText {

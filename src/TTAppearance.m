@@ -195,12 +195,11 @@ static TTAppearance* gAppearance = nil;
 
     UIColor* tintFill[] = {tintColor};
     CGRect bottomRect = CGRectMake(rect.origin.x, floor(rect.origin.y+rect.size.height/(2*2))+1,
-      rect.size.width, (rect.size.height/2)-2);
+      rect.size.width, (rect.size.height/2)-1);
     [self draw:TTDrawFillRect rect:bottomRect
       fill:tintFill fillCount:1 stroke:nil radius:0];
 
     UIColor* highlight = [UIColor colorWithWhite:1 alpha:0.3];
-
     [self draw:TTDrawStrokeTop rect:CGRectInset(rect, 0, 1)
       fill:nil fillCount:0 stroke:highlight radius:0];
   }

@@ -59,7 +59,7 @@ static CGFloat kVPadding = 50;
   if (titleView.text.length) {
     subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
       self.width-kHPadding*2, subtitleView.height);
-    titleView.frame = CGRectMake(0, subtitleView.y-kVPadding, self.width, titleView.height);
+    titleView.frame = CGRectMake(0, subtitleView.top-kVPadding, self.width, titleView.height);
   } else {
     subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
       self.width-kHPadding*2, subtitleView.height);
@@ -69,7 +69,7 @@ static CGFloat kVPadding = 50;
   if (imageView.image) {
     [imageView sizeToFit];
     
-    CGFloat textTop = titleView.height ? titleView.y : subtitleView.y;
+    CGFloat textTop = titleView.height ? titleView.top : subtitleView.top;
     imageView.frame = CGRectMake(self.width/2 - kImageSize/2, textTop - (kImageSize + kVPadding),
       kImageSize, kImageSize);
   } else {

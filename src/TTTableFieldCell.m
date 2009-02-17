@@ -15,7 +15,6 @@ static CGFloat kSpacing = 8;
 
 static CGFloat kKeySpacing = 12;
 static CGFloat kKeyWidth = 75;
-static CGFloat kKeyHeight = 18;
 static CGFloat kMaxLabelHeight = 2000;
 
 static CGFloat kTextFieldTitleWidth = 100;
@@ -27,14 +26,14 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTTableFieldCell
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   return TOOLBAR_HEIGHT;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
     _label.highlightedTextColor = [UIColor whiteColor];
     [self.contentView addSubview:_label];
@@ -113,9 +112,8 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTTextTableFieldCell
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
-  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  CGFloat maxWidth = appFrame.size.width - (kHPadding*2 + kMargin*2);
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
+  CGFloat maxWidth = tableView.width - (kHPadding*2 + kMargin*2);
   TTTextTableField* field = item;
 
   UIFont* font = nil;
@@ -140,7 +138,7 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  _label.frame = CGRectInset(self.contentView.bounds, kHPadding, 0);
+  _label.frame = CGRectInset(self.contentView.bounds, kHPadding, kVPadding);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -177,9 +175,8 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTTitledTableFieldCell
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
-  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  CGFloat maxWidth = appFrame.size.width - (kKeyWidth + kKeySpacing + kHPadding*2 + kMargin*2);
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
+  CGFloat maxWidth = tableView.width - (kKeyWidth + kKeySpacing + kHPadding*2 + kMargin*2);
   TTTitledTableField* field = item;
 
   CGSize size = [field.text sizeWithFont:[UIFont boldSystemFontOfSize:15]
@@ -192,8 +189,8 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _titleLabel.font = [UIFont boldSystemFontOfSize:13];
     _titleLabel.textColor = [TTAppearance appearance].linkTextColor;
@@ -201,6 +198,8 @@ static CGFloat kDefaultIconSize = 50;
     _titleLabel.textAlignment = UITextAlignmentRight;
     _titleLabel.contentMode = UIViewContentModeTop;
     [self.contentView addSubview:_titleLabel];
+
+    _label.contentMode = UIViewContentModeTop;
 	}
 	return self;
 }
@@ -216,9 +215,11 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
+  CGSize titleSize = [@"M" sizeWithFont:[UIFont boldSystemFontOfSize:13]];
+  _titleLabel.frame = CGRectMake(kHPadding, kVPadding, kKeyWidth, titleSize.height);
+
   CGFloat valueWidth = self.contentView.width - (kHPadding*2 + kKeyWidth + kKeySpacing);
   CGFloat innerHeight = self.contentView.height - kVPadding*2;
-  _titleLabel.frame = CGRectMake(kHPadding, kVPadding-1, kKeyWidth, kKeyHeight);
   _label.frame = CGRectMake(kHPadding + kKeyWidth + kKeySpacing, kVPadding,
     valueWidth, innerHeight);
 }
@@ -267,9 +268,8 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTSubtextTableFieldCell
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
-  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  CGFloat maxWidth = appFrame.size.width - kHPadding*2;
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
+  CGFloat maxWidth = tableView.width - kHPadding*2;
   TTSubtextTableField* field = item;
 
   CGSize textSize = [field.text sizeWithFont:[UIFont boldSystemFontOfSize:15]
@@ -283,8 +283,8 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _subtextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _subtextLabel.font = [UIFont systemFontOfSize:14];
     _subtextLabel.textColor = [UIColor grayColor];
@@ -310,8 +310,8 @@ static CGFloat kDefaultIconSize = 50;
   [super layoutSubviews];
 
   [_label sizeToFit];
-  _label.x = kHPadding;
-  _label.y = kVPadding;
+  _label.left = kHPadding;
+  _label.top = kVPadding;
 
   CGFloat maxWidth = self.contentView.width - kHPadding*2;
   CGSize subtextSize = [_subtextLabel.text sizeWithFont:_subtextLabel.font
@@ -363,11 +363,10 @@ static CGFloat kDefaultIconSize = 50;
 
 @synthesize animating = _animating;
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTMoreButtonTableField* field = item;
   
-  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  CGFloat maxWidth = appFrame.size.width - kHPadding*2;
+  CGFloat maxWidth = tableView.width - kHPadding*2;
 
   CGSize textSize = [field.text sizeWithFont:[UIFont boldSystemFontOfSize:17]
     constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
@@ -379,8 +378,8 @@ static CGFloat kDefaultIconSize = 50;
   return kVPadding*2 + textSize.height + subtitleSize.height;
 }
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _spinnerView = nil;
     
     _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -415,13 +414,13 @@ static CGFloat kDefaultIconSize = 50;
     ? _label.width
     : _subtitleLabel.width;
   
-  _spinnerView.y = floor(self.contentView.height/2 - _spinnerView.height/2);
-  _label.y = floor(self.contentView.height/2 - titleHeight/2);
-  _subtitleLabel.y = _label.bottom;
+  _spinnerView.top = floor(self.contentView.height/2 - _spinnerView.height/2);
+  _label.top = floor(self.contentView.height/2 - titleHeight/2);
+  _subtitleLabel.top = _label.bottom;
   
-  _label.x = _label.y*2;
-  _subtitleLabel.x = _label.y*2;
-  _spinnerView.x = _label.x + titleWidth + kSpacing;
+  _label.left = _label.top*2;
+  _subtitleLabel.left = _label.top*2;
+  _spinnerView.left = _label.left + titleWidth + kSpacing;
 }
 
 -(void)didMoveToSuperview {
@@ -479,7 +478,7 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTIconTableFieldCell
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTImageTableField* field = item;
 
   UIImage* image = field.image ? [[TTURLCache sharedCache] getMediaForURL:field.image] : nil;
@@ -491,8 +490,7 @@ static CGFloat kDefaultIconSize = 50;
     ? image.size.height
     : (field.image ? kDefaultIconSize : 0);
     
-  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  CGFloat maxWidth = appFrame.size.width - (iconWidth + kHPadding*2 + kMargin*2);
+  CGFloat maxWidth = tableView.width - (iconWidth + kHPadding*2 + kMargin*2);
 
   CGSize textSize = [field.text sizeWithFont:[UIFont boldSystemFontOfSize:15]
     constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
@@ -502,8 +500,8 @@ static CGFloat kDefaultIconSize = 50;
   return contentHeight + kVPadding*2;
 }
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _iconView = [[TTImageView alloc] initWithFrame:CGRectZero];
     [self.contentView addSubview:_iconView];
 	}
@@ -599,6 +597,7 @@ static CGFloat kDefaultIconSize = 50;
   if (object != anObject) {
     [super setObject:anObject];
   
+    _label.font = [UIFont boldSystemFontOfSize:15];
     _label.textAlignment = UITextAlignmentCenter;
     self.accessoryType = UITableViewCellAccessoryNone;
   }  
@@ -612,17 +611,17 @@ static CGFloat kDefaultIconSize = 50;
 
 @synthesize animating = _animating;
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTActivityTableField* field = item;
   if (field.sizeToFit) {
     return tableView.height - tableView.tableHeaderView.height;
   } else {
-    return [super rowHeightForItem:item tableView:tableView];
+    return [super tableView:tableView rowHeightForItem:item];
   }
 }
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _spinnerView = nil;
   }
   return self;
@@ -642,11 +641,11 @@ static CGFloat kDefaultIconSize = 50;
   [_label sizeToFit];
 
   CGFloat totalWidth = _label.width + kSpacing + _spinnerView.width;
-  _spinnerView.x = floor(self.contentView.width/2 - totalWidth/2);
-  _spinnerView.y = floor(self.contentView.height/2 - _spinnerView.height/2);
+  _spinnerView.left = floor(self.contentView.width/2 - totalWidth/2);
+  _spinnerView.top = floor(self.contentView.height/2 - _spinnerView.height/2);
 
-  _label.x = _spinnerView.right + kSpacing;
-  _label.y = floor(self.contentView.height/2 - _label.height/2);
+  _label.left = _spinnerView.right + kSpacing;
+  _label.top = floor(self.contentView.height/2 - _label.height/2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -694,18 +693,18 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTErrorTableFieldCell
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTStatusTableField* field = item;
   if (field.sizeToFit) {
     return tableView.height - tableView.tableHeaderView.height;
   } else {
   }
 
-  return [super rowHeightForItem:item tableView:tableView];
+  return [super tableView:tableView rowHeightForItem:item];
 }
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _errorView = [[TTErrorView alloc] initWithFrame:CGRectZero];
     [self addSubview:_errorView];
 
@@ -752,8 +751,8 @@ static CGFloat kDefaultIconSize = 50;
 
 @synthesize textField = _textField;
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _textField = [[UITextField alloc] initWithFrame:CGRectZero];
     [_textField addTarget:self action:@selector(valueChanged)
       forControlEvents:UIControlEventEditingChanged];
@@ -899,14 +898,14 @@ static CGFloat kDefaultIconSize = 50;
 
 @synthesize textView = _textView;
 
-+ (CGFloat)rowHeightForItem:(id)item tableView:(UITableView*)tableView {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   return kTableViewFieldCellHeight;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _textView = [[UITextView alloc] initWithFrame:CGRectZero];
     _textView.delegate = self;
     _textView.font = [UIFont systemFontOfSize:15];
@@ -1023,8 +1022,8 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTSwitchTableFieldCell
 
-- (id)initWithFrame:(CGRect)frame style:(int)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame style:style reuseIdentifier:identifier]) {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _switch = [[UISwitch alloc] initWithFrame:CGRectZero];
     [_switch addTarget:self action:@selector(valueChanged)
       forControlEvents:UIControlEventValueChanged];
@@ -1048,8 +1047,8 @@ static CGFloat kDefaultIconSize = 50;
   [super layoutSubviews];
   
   [_switch sizeToFit];
-  _switch.x = self.contentView.width - (kHPadding + _switch.width);
-  _switch.y = kVPadding;
+  _switch.left = self.contentView.width - (kHPadding + _switch.width);
+  _switch.top = kVPadding;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

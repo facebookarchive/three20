@@ -413,7 +413,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
     
     _badgeImage.frame = CGRectMake(self.width - (_badgeLabel.width + kBadgeHPadding*2), 0,
       _badgeLabel.width + 1 + kBadgeHPadding*2, 28);
-    _badgeLabel.frame = CGRectMake(_badgeImage.x, _badgeImage.y, _badgeImage.width, 22);
+    _badgeLabel.frame = CGRectMake(_badgeImage.left, _badgeImage.top, _badgeImage.width, 22);
     _badgeImage.hidden = NO;
     _badgeLabel.hidden = NO;
   } else {
@@ -448,7 +448,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
   [_titleLabel sizeToFit];
   CGFloat padding = _style == TTTabBarStyleButtons ? kPadding2 : kPadding;
   CGFloat iconWidth = _iconView.url.length ? kIconSize + kIconSpacing : 0;
-  self.frame = CGRectMake(self.x, self.y, _titleLabel.width + iconWidth + padding*2, self.height);
+  self.frame = CGRectMake(self.left, self.top, _titleLabel.width + iconWidth + padding*2, self.height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

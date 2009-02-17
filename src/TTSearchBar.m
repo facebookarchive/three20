@@ -34,7 +34,7 @@ static const CGFloat kIndexViewMargin = 4;
       [UIImage imageNamed:@"ttimages/searchIcon.png"]] autorelease];
     [iconView sizeToFit];
     iconView.contentMode = UIViewContentModeLeft;
-    iconView.frame = CGRectInset(iconView.frame, -2, 0);
+    iconView.frame = CGRectInset(iconView.frame, -floor(kMarginX/2), 0);
     _searchField.leftView = iconView;
     _searchField.leftViewMode = UITextFieldViewModeAlways;
 
@@ -65,7 +65,7 @@ static const CGFloat kIndexViewMargin = 4;
   if (tableView) {
     UIView* indexView = tableView.indexView;
     if (indexView) {
-      return indexView.width - kMarginX;
+      return indexView.width;
     }
   }
   return 0;
@@ -105,8 +105,8 @@ static const CGFloat kIndexViewMargin = 4;
   UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
   if (scrollView) {
     CGPoint offset = scrollView.contentOffset;
-    if (offset.y != self.y) {
-      [scrollView setContentOffset:CGPointMake(offset.x, self.y) animated:YES];
+    if (offset.y != self.top) {
+      [scrollView setContentOffset:CGPointMake(offset.x, self.top) animated:YES];
     }
   }
 }
@@ -132,7 +132,7 @@ static const CGFloat kIndexViewMargin = 4;
 - (void)layoutSubviews {
   CGFloat indexViewWidth = [_searchField isEditing] ? 0 : self.indexViewWidth;
 
-  CGRect boxRect = CGRectInset(self.frame, kMarginX, kMarginY);
+  CGRect boxRect = CGRectInset(self.bounds, kMarginX, kMarginY);
   boxRect.size.width -= indexViewWidth;
   _boxView.frame = boxRect;
   
@@ -155,6 +155,18 @@ static const CGFloat kIndexViewMargin = 4;
   _searchField.delegate = delegate;
 }
 
+- (id<TTSearchSource>)searchSource {
+  return _searchField.searchSource;
+}
+
+- (void)setSearchSource:(id<TTSearchSource>)searchSource {
+  _searchField.searchSource = searchSource;
+}
+
+- (BOOL)editing {
+  return _searchField.editing;
+}
+
 - (BOOL)showsDoneButton {
   return _searchField.showsDoneButton;
 }
@@ -169,6 +181,26 @@ static const CGFloat kIndexViewMargin = 4;
 
 - (void)setShowsDarkScreen:(BOOL)showsDarkScreen {
   _searchField.showsDarkScreen = showsDarkScreen;
+}
+
+- (BOOL)searchesAutomatically {
+  return _searchField.searchesAutomatically;
+}
+
+- (void)setSearchesAutomatically:(BOOL)searchesAutomatically {
+  _searchField.searchesAutomatically = searchesAutomatically;
+}
+
+- (NSString*)text {
+  return _searchField.text;
+}
+
+- (void)setText:(NSString*)text {
+  _searchField.text = text;
+}
+
+- (UITableView*)tableView {
+  return _searchField.tableView;
 }
 
 - (UIFont*)font {
@@ -186,14 +218,6 @@ static const CGFloat kIndexViewMargin = 4;
     
     _boxView.strokeColor = [_tintColor transformHue:1 saturation:1 value:0.9];
   }
-}
-
-- (id<TTSearchSource>)searchSource {
-  return _searchField.searchSource;
-}
-
-- (void)setSearchSource:(id<TTSearchSource>)searchSource {
-  _searchField.searchSource = searchSource;
 }
 
 @end

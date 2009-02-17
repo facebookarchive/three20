@@ -99,7 +99,7 @@
 //}
 
 - (void)showStatusView:(UIView*)view {
-    [_statusView removeFromSuperview];
+  [_statusView removeFromSuperview];
   [_statusView release];
   _statusView = [view retain];
 

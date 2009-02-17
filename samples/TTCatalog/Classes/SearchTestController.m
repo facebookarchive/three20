@@ -23,7 +23,8 @@
 // UIViewController
 //
 - (void)loadView {
-  self.view = [[[UIView alloc] init] autorelease];
+  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
+  self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];
     
   self.dataSource = [MockDataSource mockDataSource];
   
@@ -36,7 +37,7 @@
   _searchSource = [[MockSearchSource alloc] init];
   
   TTSearchBar* searchBar = [[[TTSearchBar alloc] initWithFrame:
-    CGRectMake(0, 0, 320, 0)] autorelease];
+    CGRectMake(0, 0, appFrame.size.width, 0)] autorelease];
   searchBar.delegate = self;
   searchBar.searchSource = _searchSource;
   searchBar.showsDoneButton = YES;

@@ -1,5 +1,5 @@
 #import "Three20/TTTableViewController.h"
-#import "Three20/TTDataSource.h"
+#import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTTableField.h"
@@ -16,7 +16,7 @@
   if (self = [super init]) {
     _tableView = nil;
     _dataSource = nil;
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
       selector:@selector(keyboardWillShow) name:@"UIKeyboardWillShowNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -67,7 +67,7 @@
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
   id item = [_dataSource objectForRowAtIndexPath:indexPath];
   Class cls = [_dataSource cellClassForObject:item];
-  return [cls rowHeightForItem:item tableView:_tableView];
+  return [cls tableView:_tableView rowHeightForItem:item];
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
@@ -134,7 +134,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setDataSource:(id<TTDataSource>)dataSource {
+- (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
   if (dataSource != _dataSource) {
     [_dataSource release];
     _dataSource = [dataSource retain];

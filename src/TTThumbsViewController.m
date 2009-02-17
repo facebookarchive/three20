@@ -211,7 +211,7 @@ static CGFloat kThumbnailRowHeight = 79;
     TTMoreButtonTableFieldCell* cell =
       (TTMoreButtonTableFieldCell*)[_tableView dequeueReusableCellWithIdentifier:moreCellId];
     if (cell == nil) {
-      cell = [[[TTMoreButtonTableFieldCell alloc] initWithFrame:CGRectZero style:0
+      cell = [[[TTMoreButtonTableFieldCell alloc] initWithFrame:CGRectZero
         reuseIdentifier:moreCellId] autorelease];
     }
     

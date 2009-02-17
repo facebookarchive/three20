@@ -5,6 +5,8 @@
 static CGFloat kPaddingX = 11;
 static CGFloat kPaddingY = 12;
 
+static CGFloat kPadding = 6;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTTextEditorInternal : NSObject <UITextViewDelegate> {
@@ -190,7 +192,7 @@ static CGFloat kPaddingY = 12;
 }
 
 - (void)constrainToBounds:(CGRect)frame {
-  textView.frame = CGRectMake(textView.x, textView.y,
+  textView.frame = CGRectMake(textView.left, textView.top,
     frame.size.width-4, (frame.size.height*3)-kPaddingY);
   
   self.frame = frame;
@@ -273,13 +275,15 @@ static CGFloat kPaddingY = 12;
   if (autoresizeToText) {
     [self constrainToText:NO];
   } else {
-    textView.frame = CGRectMake(6, 6, self.frame.size.width-12, self.frame.size.height-12);
+    textView.frame = CGRectMake(kPadding, kPadding,
+      self.frame.size.width-kPadding*2, self.frame.size.height-kPadding*2);
   }
-  _placeholderLabel.frame = CGRectMake(6, 6, self.frame.size.width-12, self.frame.size.height-12);
+  _placeholderLabel.frame = CGRectMake(kPadding, kPadding,
+    self.frame.size.width-kPadding*2, self.frame.size.height-kPadding*2);
     
   if (fixedTextLabel) {
     [fixedTextLabel sizeToFit];
-    fixedTextLabel.frame = CGRectMake(textView.x+6, textView.y+6,
+    fixedTextLabel.frame = CGRectMake(textView.left+kPadding, textView.top+kPadding,
       fixedTextLabel.width+2, fixedTextLabel.height+4);
   }
 }
