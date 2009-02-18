@@ -80,7 +80,7 @@
       href:@"tt://scrollViewTest"] autorelease],
     nil];
 
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
   [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -90,7 +90,9 @@
 - (void)willNavigateToObject:(id<TTObject>)object inView:(NSString*)viewType
     withController:(UIViewController*)viewController {
   NSIndexPath* indexPath = self.tableView.indexPathForSelectedRow;
-  TTLinkTableField* field = [self.dataSource objectForRowAtIndexPath:indexPath];
+  TTLinkTableField* field = [self.dataSource tableView:self.tableView
+    objectForRowAtIndexPath:indexPath];
+  
   viewController.title = field.text;
 }
 

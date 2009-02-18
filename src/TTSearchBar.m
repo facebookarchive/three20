@@ -17,7 +17,7 @@ static const CGFloat kIndexViewMargin = 4;
 
 @implementation TTSearchBar
 
-@synthesize searchSource = _searchSource, tintColor = _tintColor;
+@synthesize tintColor = _tintColor;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
@@ -155,12 +155,12 @@ static const CGFloat kIndexViewMargin = 4;
   _searchField.delegate = delegate;
 }
 
-- (id<TTSearchSource>)searchSource {
-  return _searchField.searchSource;
+- (id<TTTableViewDataSource>)dataSource {
+  return _searchField.dataSource;
 }
 
-- (void)setSearchSource:(id<TTSearchSource>)searchSource {
-  _searchField.searchSource = searchSource;
+- (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
+  _searchField.dataSource = dataSource;
 }
 
 - (BOOL)editing {

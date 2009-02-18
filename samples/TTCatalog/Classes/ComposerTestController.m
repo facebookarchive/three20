@@ -1,21 +1,21 @@
 
 #import "ComposerTestController.h"
 #import "SearchTestController.h"
-#import "MockSearchSource.h"
+#import "MockDataSource.h"
 
 @implementation ComposerTestController
 
 - (id)init {
   if (self = [super init]) {
     _sendTimer = nil;
-    _searchSource = nil;
+    _dataSource = nil;
   }
   return self;
 }
 
 - (void)dealloc {
   [_sendTimer invalidate];
-  [_searchSource release];
+  [_dataSource release];
 	[super dealloc];
 }
 
@@ -25,7 +25,7 @@
   id recipient = [[[TTTableField alloc] initWithText:@"Alan Jones" href:TT_NULL_URL] autorelease];
   TTComposeController* controller = [[[TTComposeController alloc] 
     initWithRecipients:[NSArray arrayWithObject:recipient]] autorelease];
-  controller.searchSource = _searchSource;
+  controller.dataSource = _dataSource;
   controller.delegate = self;
   [self presentModalViewController:controller animated:YES];
 }
@@ -63,7 +63,7 @@
   self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];;
   self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
   
-  _searchSource = [[MockSearchSource alloc] init];
+  _dataSource = [[MockDataSource mockDataSource:YES] retain];
   
   UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [button setTitle:@"Compose Message" forState:UIControlStateNormal];

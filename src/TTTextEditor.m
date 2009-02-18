@@ -101,8 +101,10 @@ static CGFloat kPadding = 6;
 
 @implementation TTTextEditor
 
-@synthesize delegate = _delegate, textView, placeholder = _placeholder, fixedText, minNumberOfLines, editing,
-  multiline, autoresizeToText, showExtraLine, font, textColor, textAlignment, returnKeyType;
+@synthesize delegate = _delegate, textView, placeholder = _placeholder, fixedText = _fixedText,
+  font = _font, textColor = _textColor, textAlignment = _textAlignment,
+  returnKeyType = _returnKeyType, minNumberOfLines = _minNumberOfLines, editing = _editing,
+  multiline = _multiline, autoresizeToText = _autoresizeToText, showExtraLine= _showExtraLine;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -110,64 +112,64 @@ static CGFloat kPadding = 6;
   if (self = [super initWithFrame:frame]) {
     _delegate = nil;
     _internal = [[TTTextEditorInternal alloc] initWithTextEditor:self];
-    editing = NO;
-    multiline = YES;
     _placeholder = nil;
-    fixedText = nil;
-    autoresizeToText = YES;
-    showExtraLine = NO;
-    minNumberOfLines = 0;
-    self.font = [UIFont systemFontOfSize:15];
-    self.textColor = [UIColor blackColor];
-    textAlignment = UITextAlignmentLeft;
-    returnKeyType = UIReturnKeyDefault;
-    textView = nil;
+    _fixedText = nil;
+    _font = [[UIFont systemFontOfSize:15] retain];
+    _textColor = [[UIColor blackColor] retain];
+    _textAlignment = UITextAlignmentLeft;
+    _returnKeyType = UIReturnKeyDefault;
+    _autoresizeToText = YES;
+    _showExtraLine = NO;
+    _minNumberOfLines = 0;
+    _editing = NO;
+    _multiline = YES;
+    _textView = nil;
     _placeholderLabel = nil;
-    fixedTextLabel = nil;
+    _fixedTextLabel = nil;
   }
   return self;
 }
 
 - (void)dealloc {
   [_internal release];
-  [textView release];
+  [_textView release];
   [_placeholderLabel release];
   [_placeholder release];
-  [fixedText release];
-  [font release];
-  [textColor release];
+  [_fixedText release];
+  [_font release];
+  [_textColor release];
   [_placeholder release];
-  [fixedTextLabel release];
+  [_fixedTextLabel release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)updateText {
-  if (!textView) {
-    textView = [[UITextView alloc] initWithFrame:CGRectMake(4, -2, 0, 0)];
-    textView.delegate = _internal;
-    textView.editable = YES;
-    textView.opaque = NO;
-    textView.backgroundColor = [UIColor clearColor];
-    textView.textColor = textColor;
-    textView.textAlignment = textAlignment;
-    textView.returnKeyType = returnKeyType;
-    textView.font = font;
-    textView.scrollsToTop = NO;
-    [self addSubview:textView];
+  if (!_textView) {
+    _textView = [[UITextView alloc] initWithFrame:CGRectMake(4, -2, 0, 0)];
+    _textView.delegate = _internal;
+    _textView.editable = YES;
+    _textView.opaque = NO;
+    _textView.backgroundColor = [UIColor clearColor];
+    _textView.textColor = _textColor;
+    _textView.textAlignment = _textAlignment;
+    _textView.returnKeyType = _returnKeyType;
+    _textView.font = _font;
+    _textView.scrollsToTop = NO;
+    [self addSubview:_textView];
 
-    if (fixedTextLabel) {
-      [self bringSubviewToFront:fixedTextLabel];
+    if (_fixedTextLabel) {
+      [self bringSubviewToFront:_fixedTextLabel];
     }
   }
 }
 
 - (void)updatePlaceholder {
-  if (_placeholder && !editing && !textView.text.length) {
+  if (_placeholder && !_editing && !_textView.text.length) {
     if (!_placeholderLabel) {
       _placeholderLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-      if (textColor == [UIColor whiteColor]) {
+      if (_textColor == [UIColor whiteColor]) {
         _placeholderLabel.textColor = [UIColor whiteColor];
       } else {
         _placeholderLabel.textColor = [UIColor grayColor];
@@ -176,8 +178,8 @@ static CGFloat kPadding = 6;
       [self addSubview:_placeholderLabel];
     }
     
-    _placeholderLabel.font = font;
-    _placeholderLabel.textAlignment = textAlignment;
+    _placeholderLabel.font = _font;
+    _placeholderLabel.textAlignment = _textAlignment;
     _placeholderLabel.text = _placeholder;
     [self bringSubviewToFront:_placeholderLabel];
     _placeholderLabel.hidden = NO;
@@ -188,11 +190,11 @@ static CGFloat kPadding = 6;
 
 - (void)focus {
   [self updateText];
-  [textView becomeFirstResponder];
+  [_textView becomeFirstResponder];
 }
 
 - (void)constrainToBounds:(CGRect)frame {
-  textView.frame = CGRectMake(textView.left, textView.top,
+  _textView.frame = CGRectMake(_textView.left, _textView.top,
     frame.size.width-4, (frame.size.height*3)-kPaddingY);
   
   self.frame = frame;
@@ -200,17 +202,17 @@ static CGFloat kPadding = 6;
 
 - (void)constrainToText:(BOOL)onlyIfNeeded {
   NSString* text = self.text.length ? self.text : @"M";
-  CGSize textSize = [text sizeWithFont:font
+  CGSize textSize = [text sizeWithFont:_font
     constrainedToSize:CGSizeMake(self.frame.size.width - kPaddingX*2, CGFLOAT_MAX)
     lineBreakMode:UILineBreakModeWordWrap];
 
-  CGFloat lineHeight = [@"Mg" sizeWithFont:textView.font].height;
-  CGFloat minHeight = minNumberOfLines * lineHeight;
+  CGFloat lineHeight = [@"Mg" sizeWithFont:_textView.font].height;
+  CGFloat minHeight = _minNumberOfLines * lineHeight;
   CGFloat newHeight = textSize.height + kPaddingY;
   if (newHeight < minHeight) {
     newHeight = minHeight;
   }
-  if (showExtraLine) {
+  if (_showExtraLine) {
     newHeight += lineHeight;
   }
   
@@ -230,12 +232,12 @@ static CGFloat kPadding = 6;
 }
 
 - (BOOL)shouldChangeText:(NSString*)text inRange:(NSUInteger)location {
-  if (fixedText && location < fixedText.length) {
+  if (_fixedText && location < _fixedText.length) {
     return NO;
   }
   
-  if (!multiline && [text isEqualToString:@"\n"]) {
-    [textView resignFirstResponder];
+  if (!_multiline && [text isEqualToString:@"\n"]) {
+    [_textView resignFirstResponder];
     return NO;
   } else {
     return YES;
@@ -243,28 +245,28 @@ static CGFloat kPadding = 6;
 }
 
 - (void)didChangeText {
-  if (autoresizeToText) {
+  if (_autoresizeToText) {
     [self constrainToText:YES];
   }
 }
 
 - (void)didBeginEditing {
-  editing = YES;
+  _editing = YES;
   [self updatePlaceholder];
 }
 
 - (void)didEndEditing {
-  if (editing) {
-    editing = NO;
+  if (_editing) {
+    _editing = NO;
     [self updatePlaceholder];
   }
 }
 
-//- (void)textViewDidChangeSelection:(UITextView *)textView {
+//- (void)_textViewDidChangeSelection:(UITextView *)_textView {
 //  // Workaround for weird bug - if user touches and holds placeholder, keyboard appears
-//  // but textViewDidBeginEditing isn't called, so we call it here
-//  if (!editing) {
-//    [self textViewDidBeginEditing:textView];
+//  // but _textViewDidBeginEditing isn't called, so we call it here
+//  if (!_editing) {
+//    [self _textViewDidBeginEditing:_textView];
 //  }
 //}
 
@@ -272,19 +274,19 @@ static CGFloat kPadding = 6;
 // UIView
 
 - (void)layoutSubviews {
-  if (autoresizeToText) {
+  if (_autoresizeToText) {
     [self constrainToText:NO];
   } else {
-    textView.frame = CGRectMake(kPadding, kPadding,
+    _textView.frame = CGRectMake(kPadding, kPadding,
       self.frame.size.width-kPadding*2, self.frame.size.height-kPadding*2);
   }
   _placeholderLabel.frame = CGRectMake(kPadding, kPadding,
     self.frame.size.width-kPadding*2, self.frame.size.height-kPadding*2);
     
-  if (fixedTextLabel) {
-    [fixedTextLabel sizeToFit];
-    fixedTextLabel.frame = CGRectMake(textView.left+kPadding, textView.top+kPadding,
-      fixedTextLabel.width+2, fixedTextLabel.height+4);
+  if (_fixedTextLabel) {
+    [_fixedTextLabel sizeToFit];
+    _fixedTextLabel.frame = CGRectMake(_textView.left+kPadding, _textView.top+kPadding,
+      _fixedTextLabel.width+2, _fixedTextLabel.height+4);
   }
 }
 
@@ -297,7 +299,7 @@ static CGFloat kPadding = 6;
 
 - (UITextView*)textView {
   [self updateText];
-  return textView;
+  return _textView;
 }
 
 - (void)setPlaceholder:(NSString*)placeholder {
@@ -308,15 +310,15 @@ static CGFloat kPadding = 6;
 }
 
 - (NSString*)text {
-  return textView.text;
+  return _textView.text;
 }
 
 - (void)setText:(NSString*)aText {
   [self updateText];
-  if (fixedText && aText) {
-    textView.text = [fixedText stringByAppendingString:aText];
+  if (_fixedText && aText) {
+    _textView.text = [_fixedText stringByAppendingString:aText];
   } else {
-    textView.text = aText;
+    _textView.text = aText;
   }
   [self updatePlaceholder];
   [self setNeedsLayout];
@@ -328,48 +330,48 @@ static CGFloat kPadding = 6;
 }
 
 - (void)setFixedText:(NSString*)aText {
-  [fixedText release];
-  fixedText = [aText copy];
+  [_fixedText release];
+  _fixedText = [aText copy];
   
-  if (fixedText && !fixedTextLabel) {
-    fixedTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    fixedTextLabel.textColor = [UIColor grayColor];
-    fixedTextLabel.font = font;
-    fixedTextLabel.contentMode = UIViewContentModeBottom;
-    [self addSubview:fixedTextLabel];
+  if (_fixedText && !_fixedTextLabel) {
+    _fixedTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _fixedTextLabel.textColor = [UIColor grayColor];
+    _fixedTextLabel.font = _font;
+    _fixedTextLabel.contentMode = UIViewContentModeBottom;
+    [self addSubview:_fixedTextLabel];
   }
 
-  fixedTextLabel.hidden = !fixedText;
-  fixedTextLabel.text = fixedText;
+  _fixedTextLabel.hidden = !_fixedText;
+  _fixedTextLabel.text = _fixedText;
 }
 
-- (void)setFont:(UIFont*)aFont {
-  [font release];
-  font = [aFont retain];
-  textView.font = font;
+- (void)setFont:(UIFont*)font {
+  [_font release];
+  _font = [font retain];
+  _textView.font = _font;
 }
 
-- (void)setTextColor:(UIColor*)aColor {
-  [textColor release];
-  textColor = [aColor retain];
-  textView.textColor = textColor;
+- (void)setTextColor:(UIColor*)color {
+  [_textColor release];
+  _textColor = [color retain];
+  _textView.textColor = _textColor;
 }
 
 - (void)setTextAlignment:(UITextAlignment)alignment {
-  textAlignment = alignment;
-  textView.textAlignment = _placeholderLabel.textAlignment = alignment;
+  _textAlignment = alignment;
+  _textView.textAlignment = _placeholderLabel.textAlignment = alignment;
 }
 
-- (void)setReturnKeyType:(UIReturnKeyType)aType {
-  returnKeyType = aType;
-  textView.returnKeyType = returnKeyType;
+- (void)setReturnKeyType:(UIReturnKeyType)returnKeyType {
+  _returnKeyType = returnKeyType;
+  _textView.returnKeyType = _returnKeyType;
 }
 
 - (void)scrollContainerToCursor:(UIScrollView*)scrollView {
-  if (textView.hasText) {
+  if (_textView.hasText) {
     if (scrollView.contentSize.height > scrollView.height) {
-      NSRange range = textView.selectedRange;
-      if (range.location == textView.text.length) {
+      NSRange range = _textView.selectedRange;
+      if (range.location == _textView.text.length) {
         [scrollView scrollRectToVisible:CGRectMake(0,scrollView.contentSize.height-1,1,1)
           animated:NO];
       }

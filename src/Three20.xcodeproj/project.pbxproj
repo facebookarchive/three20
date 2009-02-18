@@ -243,10 +243,10 @@
 				BEE341A50F480BA2008C826E /* TTMenuTextField.m */,
 				BEE341BD0F48133F008C826E /* TTMenuViewCell.h */,
 				BEE341BF0F481345008C826E /* TTMenuViewCell.m */,
-				BEE3476D0F48F5F6008C826E /* TTSearchBar.h */,
-				BEE3476F0F48F604008C826E /* TTSearchBar.m */,
 				BEE34F260F496620008C826E /* TTTextEditor.h */,
 				BEE34F240F496615008C826E /* TTTextEditor.m */,
+				BEE3476D0F48F5F6008C826E /* TTSearchBar.h */,
+				BEE3476F0F48F604008C826E /* TTSearchBar.m */,
 			);
 			name = "Text Views";
 			sourceTree = "<group>";

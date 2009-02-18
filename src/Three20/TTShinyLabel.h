@@ -1,15 +1,15 @@
 #import "Three20/TTGlobal.h"
 
 @interface TTShinyLabel : UIView {
-  NSString* text;
-  UIFont* font;
+  NSString* _text;
+  UIFont* _font;
   UIColor* textColor;
-  UIColor* spotlightColor;
-  UITextAlignment textAlignment;
-  NSTimer* timer;
-  CGFloat spotlightPoint;
-  CGContextRef maskContext;
-  void* maskData;
+  UIColor* _spotlightColor;
+  UITextAlignment _textAlignment;
+  NSTimer* _timer;
+  CGFloat _spotlightPoint;
+  CGContextRef _maskContext;
+  void* _maskData;
 }
 
 @property(nonatomic,copy) NSString* text;

@@ -4,7 +4,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTBaseDataSource
+@implementation TTDataSource
 
 @synthesize delegates = _delegates;
 
@@ -29,8 +29,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
     cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  id object = [self objectForRowAtIndexPath:indexPath];
-  Class cellClass = [self cellClassForObject:object];
+  id object = [self tableView:tableView objectForRowAtIndexPath:indexPath];
+  Class cellClass = [self tableView:tableView cellClassForObject:object];
 
   NSString* className = NSStringFromClass(cellClass);
   UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:className];
@@ -42,7 +42,7 @@
     [(TTTableViewCell*)cell setObject:object];
   }
   
-  [self decorateCell:cell forRowAtIndexPath:indexPath];
+  [self tableView:tableView prepareCell:cell forRowAtIndexPath:indexPath];
       
   return cell;
 }
@@ -57,11 +57,11 @@
   return _delegates;
 }
 
-- (id)objectForRowAtIndexPath:(NSIndexPath*)indexPath {
+- (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   return nil;
 }
 
-- (Class)cellClassForObject:(id)object {
+- (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
   if ([object isKindOfClass:[TTTableField class]]) {
     if ([object isKindOfClass:[TTTextTableField class]]) {
       return [TTTextTableFieldCell class];
@@ -93,7 +93,15 @@
   return nil;
 }
 
-- (void)decorateCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
+- (NSString*)tableView:(UITableView*)tableView labelForObject:(id)object {
+  return [NSString stringWithFormat:@"%@", object];
+}
+
+- (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
+    forRowAtIndexPath:(NSIndexPath*)indexPath {
+}
+
+- (void)tableView:(UITableView*)tableView search:(NSString*)text {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,17 +169,17 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewDataSource
-
-- (id)objectForRowAtIndexPath:(NSIndexPath*)indexPath {
-  return [_items objectAtIndex:indexPath.row];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return _items.count;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewDataSource
+
+- (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
+  return [_items objectAtIndex:indexPath.row];
 }
 
 @end
@@ -224,42 +232,58 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewDataSource
-
-- (id)objectForRowAtIndexPath:(NSIndexPath*)indexPath {
-  NSArray* section = [_items objectAtIndex:indexPath.section];
-  return [section objectAtIndex:indexPath.row];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableViewDataSource
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  return [_sections objectAtIndex:section];
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return _sections.count;
+	return _sections.count ? _sections.count : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSArray* items = [_items objectAtIndex:section];
-  return items.count;
+  if (_sections) {
+    NSArray* items = [_items objectAtIndex:section];
+    return items.count;
+  } else {
+    return _items.count;
+  }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+  if (_sections) {
+    return [_sections objectAtIndex:section];
+  } else {
+    return nil;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewDataSource
+
+- (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
+  if (_sections) {
+    NSArray* section = [_items objectAtIndex:indexPath.section];
+    return [section objectAtIndex:indexPath.row];
+  } else {
+    return [_items objectAtIndex:indexPath.row];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSArray*)lettersForSections {
-  NSMutableArray* titles = [NSMutableArray array];
-  
-  for (NSString* label in _sections) {
-    if (label.length) {
-      NSString* letter = [label substringToIndex:1];
-      [titles addObject:letter];    
+  if (_sections) {
+    NSMutableArray* titles = [NSMutableArray array];
+    
+    for (NSString* label in _sections) {
+      if (label.length) {
+        NSString* letter = [label substringToIndex:1];
+        [titles addObject:letter];    
+      }
     }
-  }
 
-  return titles;
+    return titles;
+  } else {
+    return nil;
+  }
 }
 
 @end

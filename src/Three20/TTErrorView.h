@@ -1,9 +1,9 @@
 #import "Three20/TTGlobal.h"
 
 @interface TTErrorView : UIView {
-  UIImageView* imageView;
-  UILabel* titleView;
-  UILabel* subtitleView;
+  UIImageView* _imageView;
+  UILabel* _titleView;
+  UILabel* _subtitleView;
 }
 
 @property(nonatomic,retain) UIImage* image;

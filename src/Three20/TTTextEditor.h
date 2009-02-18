@@ -6,20 +6,20 @@
 @interface TTTextEditor : UIView {
   id<TTTextEditorDelegate> _delegate;
   TTTextEditorInternal* _internal;
-  UITextView* textView;
+  UITextView* _textView;
   UILabel* _placeholderLabel;
-  UILabel* fixedTextLabel;
+  UILabel* _fixedTextLabel;
   NSString* _placeholder;
-  NSString* fixedText;
-  UIFont* font;
-  UIColor* textColor;
-  UITextAlignment textAlignment;
-  UIReturnKeyType returnKeyType;
-  int minNumberOfLines;
-  BOOL editing;
-  BOOL multiline;
-  BOOL autoresizeToText;
-  BOOL showExtraLine;
+  NSString* _fixedText;
+  UIFont* _font;
+  UIColor* _textColor;
+  UITextAlignment _textAlignment;
+  UIReturnKeyType _returnKeyType;
+  int _minNumberOfLines;
+  BOOL _editing;
+  BOOL _multiline;
+  BOOL _autoresizeToText;
+  BOOL _showExtraLine;
 }
 
 @property(nonatomic,assign) id<TTTextEditorDelegate> delegate;
@@ -44,6 +44,8 @@
 @end
 
 @protocol TTTextEditorDelegate <UITextViewDelegate>
+
+@optional
 
 - (void)textEditor:(TTTextEditor*)textEditor didResizeBy:(CGFloat)height;
 

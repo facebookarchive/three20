@@ -1,6 +1,6 @@
 #import <Three20/Three20.h>
 
-@interface MockSearchSource : TTListDataSource <TTSearchSource> {
+@interface MockDataSource : TTListDataSource <TTDataSource> {
   NSMutableArray* _allItems;
 }
 

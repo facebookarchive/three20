@@ -65,13 +65,13 @@
 // UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-  id item = [_dataSource objectForRowAtIndexPath:indexPath];
-  Class cls = [_dataSource cellClassForObject:item];
+  id item = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+  Class cls = [_dataSource tableView:tableView cellClassForObject:item];
   return [cls tableView:_tableView rowHeightForItem:item];
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  id item = [_dataSource objectForRowAtIndexPath:indexPath];
+  id item = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([item isKindOfClass:[TTTableField class]]) {
     TTTableField* field = item;
     if (field.href) {

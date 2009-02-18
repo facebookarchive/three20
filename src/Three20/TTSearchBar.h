@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@protocol TTSearchSource, TTSearchTextFieldDelegate;
+@protocol TTTableViewDataSource, TTSearchTextFieldDelegate;
 @class TTSearchTextField, TTBackgroundView;
 
 @interface TTSearchBar : UIView {
@@ -10,7 +10,7 @@
 }
 
 @property(nonatomic,assign) id<UITextFieldDelegate> delegate;
-@property(nonatomic,retain) id<TTSearchSource> searchSource;
+@property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
 @property(nonatomic,copy) NSString* text;
 @property(nonatomic,readonly) UITableView* tableView;
 @property(nonatomic,retain) UIColor* tintColor;

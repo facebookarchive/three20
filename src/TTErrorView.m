@@ -21,31 +21,34 @@ static CGFloat kVPadding = 50;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    imageView.contentMode = UIViewContentModeCenter;
-    [self addSubview:imageView];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _imageView.contentMode = UIViewContentModeCenter;
+    [self addSubview:_imageView];
 
-    titleView = [[UILabel alloc] initWithFrame:CGRectZero];
-    titleView.opaque = NO;
-    titleView.backgroundColor = [UIColor clearColor];
-    titleView.textColor = RGBCOLOR(99, 109, 125);
-    titleView.font = [UIFont boldSystemFontOfSize:18];
-    titleView.textAlignment = UITextAlignmentCenter;
-    [self addSubview:titleView];
+    _titleView = [[UILabel alloc] initWithFrame:CGRectZero];
+    _titleView.opaque = NO;
+    _titleView.backgroundColor = [UIColor clearColor];
+    _titleView.textColor = RGBCOLOR(99, 109, 125);
+    _titleView.font = [UIFont boldSystemFontOfSize:18];
+    _titleView.textAlignment = UITextAlignmentCenter;
+    [self addSubview:_titleView];
     
-    subtitleView = [[UILabel alloc] initWithFrame:CGRectZero];
-    subtitleView.opaque = NO;
-    subtitleView.backgroundColor = [UIColor clearColor];
-    subtitleView.textColor = RGBCOLOR(99, 109, 125);
-    subtitleView.font = [UIFont boldSystemFontOfSize:14];
-    subtitleView.textAlignment = UITextAlignmentCenter;
-    subtitleView.numberOfLines = 0;
-    [self addSubview:subtitleView];
+    _subtitleView = [[UILabel alloc] initWithFrame:CGRectZero];
+    _subtitleView.opaque = NO;
+    _subtitleView.backgroundColor = [UIColor clearColor];
+    _subtitleView.textColor = RGBCOLOR(99, 109, 125);
+    _subtitleView.font = [UIFont boldSystemFontOfSize:14];
+    _subtitleView.textAlignment = UITextAlignmentCenter;
+    _subtitleView.numberOfLines = 0;
+    [self addSubview:_subtitleView];
   }
   return self;
 }
 
 - (void)dealloc {
+  [_imageView release];
+  [_titleView release];
+  [_subtitleView release];
   [super dealloc];
 }
 
@@ -53,54 +56,54 @@ static CGFloat kVPadding = 50;
 // UIView
 
 - (void)layoutSubviews {
-  [subtitleView sizeToFit];
-  [titleView sizeToFit];
+  [_subtitleView sizeToFit];
+  [_titleView sizeToFit];
   
-  if (titleView.text.length) {
-    subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
-      self.width-kHPadding*2, subtitleView.height);
-    titleView.frame = CGRectMake(0, subtitleView.top-kVPadding, self.width, titleView.height);
+  if (_titleView.text.length) {
+    _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
+      self.width-kHPadding*2, _subtitleView.height);
+    _titleView.frame = CGRectMake(0, _subtitleView.top-kVPadding, self.width, _titleView.height);
   } else {
-    subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
-      self.width-kHPadding*2, subtitleView.height);
-    titleView.frame = CGRectZero;
+    _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
+      self.width-kHPadding*2, _subtitleView.height);
+    _titleView.frame = CGRectZero;
   }
 
-  if (imageView.image) {
-    [imageView sizeToFit];
+  if (_imageView.image) {
+    [_imageView sizeToFit];
     
-    CGFloat textTop = titleView.height ? titleView.top : subtitleView.top;
-    imageView.frame = CGRectMake(self.width/2 - kImageSize/2, textTop - (kImageSize + kVPadding),
+    CGFloat textTop = _titleView.height ? _titleView.top : _subtitleView.top;
+    _imageView.frame = CGRectMake(self.width/2 - kImageSize/2, textTop - (kImageSize + kVPadding),
       kImageSize, kImageSize);
   } else {
-    imageView.frame = CGRectZero;
+    _imageView.frame = CGRectZero;
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSString*)title {
-  return titleView.text;
+  return _titleView.text;
 }
 
 - (void)setTitle:(NSString*)title {
-  titleView.text = title;
+  _titleView.text = title;
 }
 
 - (NSString*)subtitle {
-  return subtitleView.text;
+  return _subtitleView.text;
 }
 
 - (void)setSubtitle:(NSString*)subtitle {
-  subtitleView.text = subtitle;
+  _subtitleView.text = subtitle;
 }
 
 - (UIImage*)image {
-  return imageView.image;
+  return _imageView.image;
 }
 
 - (void)setImage:(UIImage*)image {
-  imageView.image = image;
+  _imageView.image = image;
 }
 
 @end

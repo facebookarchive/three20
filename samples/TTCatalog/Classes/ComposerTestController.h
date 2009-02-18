@@ -1,10 +1,10 @@
 #import "SearchTestController.h"
 
-@class MockSearchSource;
+@class MockDataSource;
 
 @interface ComposerTestController : UIViewController
   <TTComposeControllerDelegate, SearchTestControllerDelegate> {
-  MockSearchSource* _searchSource;
+  MockDataSource* _dataSource;
   NSTimer* _sendTimer;
 }
 

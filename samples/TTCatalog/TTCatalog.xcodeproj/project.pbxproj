@@ -31,7 +31,6 @@
 		BEE0FDDB0EB2A6850052C05F /* PhotoTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */; };
 		BEE341B40F480C76008C826E /* ComposerTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341B30F480C76008C826E /* ComposerTestController.m */; };
 		BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE346BB0F48F15C008C826E /* SearchTestController.m */; };
-		BEE346D50F48F1C7008C826E /* MockSearchSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE346D40F48F1C7008C826E /* MockSearchSource.m */; };
 		BEE348AC0F490F43008C826E /* MockDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE348AB0F490F43008C826E /* MockDataSource.m */; };
 		BEE38E810EB288BA00189902 /* ActivityTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE38E800EB288BA00189902 /* ActivityTestController.m */; };
 		BEE7FD150F3581C1002788A5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE7FD130F358198002788A5 /* libThree20.a */; };
@@ -96,8 +95,6 @@
 		BEE341B30F480C76008C826E /* ComposerTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposerTestController.m; sourceTree = "<group>"; };
 		BEE346BA0F48F15C008C826E /* SearchTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTestController.h; sourceTree = "<group>"; };
 		BEE346BB0F48F15C008C826E /* SearchTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTestController.m; sourceTree = "<group>"; };
-		BEE346D30F48F1C7008C826E /* MockSearchSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockSearchSource.h; sourceTree = "<group>"; };
-		BEE346D40F48F1C7008C826E /* MockSearchSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockSearchSource.m; sourceTree = "<group>"; };
 		BEE348AA0F490F43008C826E /* MockDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockDataSource.h; sourceTree = "<group>"; };
 		BEE348AB0F490F43008C826E /* MockDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockDataSource.m; sourceTree = "<group>"; };
 		BEE38E7F0EB288BA00189902 /* ActivityTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTestController.h; sourceTree = "<group>"; };
@@ -157,8 +154,6 @@
 				BE80E2490EAEFF6100743358 /* MockPhotoSource.m */,
 				BEE348AA0F490F43008C826E /* MockDataSource.h */,
 				BEE348AB0F490F43008C826E /* MockDataSource.m */,
-				BEE346D30F48F1C7008C826E /* MockSearchSource.h */,
-				BEE346D40F48F1C7008C826E /* MockSearchSource.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -325,7 +320,6 @@
 				BE6E4AA50F4655A4001CE9B4 /* TableFieldTestController.m in Sources */,
 				BEE341B40F480C76008C826E /* ComposerTestController.m in Sources */,
 				BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */,
-				BEE346D50F48F1C7008C826E /* MockSearchSource.m in Sources */,
 				BEE348AC0F490F43008C826E /* MockDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

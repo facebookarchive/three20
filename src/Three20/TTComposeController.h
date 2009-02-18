@@ -1,12 +1,12 @@
 #import "Three20/TTViewController.h"
 #import "Three20/TTTextEditor.h"
 
-@protocol TTSearchSource, TTComposeControllerDelegate;
+@protocol TTTableViewDataSource, TTComposeControllerDelegate;
 @class TTMenuTextField;
 
 @interface TTComposeController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
   id<TTComposeControllerDelegate> _delegate;
-  id<TTSearchSource> _searchSource;
+  id<TTTableViewDataSource> _dataSource;
   NSArray* _fields;
   NSMutableArray* _fieldViews;
   UINavigationBar* _navigationBar;
@@ -16,7 +16,7 @@
 }
 
 @property(nonatomic,assign) id<TTComposeControllerDelegate> delegate;
-@property(nonatomic,retain) id<TTSearchSource> searchSource;
+@property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
 @property(nonatomic,retain) NSArray* fields;
 
 - (id)initWithRecipients:(NSArray*)recipients;

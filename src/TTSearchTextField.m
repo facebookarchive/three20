@@ -105,14 +105,14 @@ static const CGFloat kShadowHeight = 24;
 
 @implementation TTSearchTextField
 
-@synthesize searchSource = _searchSource, tableView = _tableView,
+@synthesize dataSource = _dataSource, tableView = _tableView,
   searchesAutomatically = _searchesAutomatically, showsDoneButton = _showsDoneButton,
   showsDarkScreen = _showsDarkScreen;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _internal = [[TTSearchTextFieldInternal alloc] initWithTextField:self];
-    _searchSource = nil;
+    _dataSource = nil;
     _tableView = nil;
     _shadowView = nil;
     _screenView = nil;
@@ -138,8 +138,8 @@ static const CGFloat kShadowHeight = 24;
 }
 
 - (void)dealloc {
-  [_searchSource.delegates removeObject:self];
-  [_searchSource release];
+  [_dataSource.delegates removeObject:self];
+  [_dataSource release];
   [_internal release];
   [_tableView release];
   [_shadowView release];
@@ -249,14 +249,14 @@ static const CGFloat kShadowHeight = 24;
 // UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-  id item = [_searchSource objectForRowAtIndexPath:indexPath];
-  Class cls = [_searchSource cellClassForObject:item];
+  id item = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+  Class cls = [_dataSource tableView:tableView cellClassForObject:item];
   return [cls tableView:_tableView rowHeightForItem:item];
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
   if ([_internal.delegate respondsToSelector:@selector(textField:didSelectObject:)]) {
-    id object = [_searchSource objectForRowAtIndexPath:indexPath];
+    id object = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     if (cell.selectionStyle != UITableViewCellSeparatorStyleNone) {
       [_internal.delegate performSelector:@selector(textField:didSelectObject:) withObject:self
@@ -312,12 +312,12 @@ static const CGFloat kShadowHeight = 24;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setSearchSource:(id<TTSearchSource>)searchSource {
-  if (searchSource != _searchSource) {
-    [_searchSource.delegates removeObject:self];
-    [_searchSource release];
-    _searchSource = [searchSource retain];
-    [_searchSource.delegates addObject:self];
+- (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
+  if (dataSource != _dataSource) {
+    [_dataSource.delegates removeObject:self];
+    [_dataSource release];
+    _dataSource = [dataSource retain];
+    [_dataSource.delegates addObject:self];
   }
 }
 
@@ -326,10 +326,10 @@ static const CGFloat kShadowHeight = 24;
 }
 
 - (void)search {
-  if (_searchSource) {
+  if (_dataSource) {
     NSString* text = self.searchText;
     [self showSearchResults:!!text.length];
-    [_searchSource textField:self searchForText:text];
+    [_dataSource tableView:_tableView search:text];
     _tableView.hidden = ![_tableView numberOfRowsInSection:0];
   }
 }
@@ -340,7 +340,7 @@ static const CGFloat kShadowHeight = 24;
       _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
       _tableView.backgroundColor = [TTAppearance appearance].searchTableBackgroundColor;
       _tableView.separatorColor = [TTAppearance appearance].searchTableSeparatorColor;
-      _tableView.dataSource = _searchSource;
+      _tableView.dataSource = _dataSource;
       _tableView.delegate = self;
       _tableView.scrollsToTop = NO;
       _tableView.hidden = YES;

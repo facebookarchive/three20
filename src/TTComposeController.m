@@ -105,7 +105,7 @@
 
 @implementation TTComposeController
 
-@synthesize delegate = _delegate, searchSource = _searchSource, fields = _fields;
+@synthesize delegate = _delegate, dataSource = _dataSource, fields = _fields;
 
 - (id)initWithRecipients:(NSArray*)recipients {
   if (self = [self init]) {
@@ -117,7 +117,7 @@
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;
-    _searchSource = nil;
+    _dataSource = nil;
     _fields = [[NSArray alloc] initWithObjects:
       [[[TTComposerRecipientField alloc] initWithTitle:NSLocalizedString(@"To:", @"")
         required:YES] autorelease],
@@ -141,7 +141,7 @@
 }
 
 - (void)dealloc {
-  [_searchSource release];
+  [_dataSource release];
   [_fields release];
   [_initialRecipients release];
   [super dealloc];
@@ -209,7 +209,7 @@
     TTMenuTextField* textField = nil;
     if ([field isKindOfClass:[TTComposerRecipientField class]]) {
       textField = [[TTMenuTextField alloc] initWithFrame:CGRectZero];
-      textField.searchSource = _searchSource;
+      textField.dataSource = _dataSource;
       textField.autocorrectionType = UITextAutocorrectionTypeNo;
       textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
       textField.rightViewMode = UITextFieldViewModeAlways;
@@ -456,15 +456,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setSearchSource:(id<TTSearchSource>)searchSource {
-  if (searchSource != _searchSource) {
-    [_searchSource release];
-    _searchSource = [searchSource retain];
+- (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
+  if (dataSource != _dataSource) {
+    [_dataSource release];
+    _dataSource = [dataSource retain];
     
     for (UITextField* textField in _fieldViews) {
       if ([textField isKindOfClass:[TTMenuTextField class]]) {
         TTMenuTextField* menuTextField = (TTMenuTextField*)textField;
-        menuTextField.searchSource = searchSource;
+        menuTextField.dataSource = dataSource;
       }
     }
   }
@@ -484,7 +484,7 @@
 - (void)addRecipient:(id)recipient forFieldAtIndex:(NSUInteger)fieldIndex {
   TTMenuTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
   if ([textField isKindOfClass:[TTMenuTextField class]]) {
-    NSString* label = [_searchSource textField:textField labelForObject:recipient];
+    NSString* label = [_dataSource tableView:textField.tableView labelForObject:recipient];
     if (label) {
       [textField addCellWithObject:recipient];
     }

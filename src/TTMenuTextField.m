@@ -137,8 +137,8 @@ static CGFloat kMinCursorWidth = 50;
 
 - (NSString*)labelForObject:(id)object {
   NSString* label = nil;
-  if ([_searchSource respondsToSelector:@selector(textField:labelForObject:)]) {
-    label = [_searchSource textField:self labelForObject:object];
+  if ([_dataSource respondsToSelector:@selector(tableView:labelForObject:)]) {
+    label = [_dataSource tableView:_tableView labelForObject:object];
   }
   return label ? label : [NSString stringWithFormat:@"%@", object];
 }
@@ -147,7 +147,7 @@ static CGFloat kMinCursorWidth = 50;
 // UIView
 
 - (void)layoutSubviews {
-  if (_searchSource) {
+  if (_dataSource) {
     [self layoutCells];
   } else {
     _cursorOrigin.x = kPaddingX;
@@ -167,7 +167,7 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-  if (_searchSource) {
+  if (_dataSource) {
     UITouch* touch = [touches anyObject];
     if (touch.view == self) {
       self.selectedCell = nil;
@@ -184,14 +184,14 @@ static CGFloat kMinCursorWidth = 50;
 // UITextField
 
 - (void)setText:(NSString*)text {
-  if (_searchSource) {
+  if (_dataSource) {
     [self updateHeight];
   }
   [super setText:text];
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds {
-  if (_searchSource && [self.text isEqualToString:kSelected]) {
+  if (_dataSource && [self.text isEqualToString:kSelected]) {
     return CGRectMake(0, 0, 0, 0);
   } else {
     CGRect frame = CGRectOffset(bounds, _cursorOrigin.x, _cursorOrigin.y);
@@ -273,7 +273,7 @@ static CGFloat kMinCursorWidth = 50;
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
   [_tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-  id object = [_searchSource objectForRowAtIndexPath:indexPath];
+  id object = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   [self addCellWithObject:object];
 }
 

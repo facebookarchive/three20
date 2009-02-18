@@ -6,11 +6,16 @@
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
 
-- (id)objectForRowAtIndexPath:(NSIndexPath*)indexPath;
+- (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;
 
-- (Class)cellClassForObject:(id)object;
+- (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object;
 
-- (void)decorateCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath;
+- (NSString*)tableView:(UITableView*)tableView labelForObject:(id)object;
+
+- (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
+  forRowAtIndexPath:(NSIndexPath*)indexPath;
+
+- (void)tableView:(UITableView*)tableView search:(NSString*)text;
 
 @end
 
@@ -24,7 +29,7 @@
 
 @end
 
-@interface TTBaseDataSource : NSObject <TTTableViewDataSource> {
+@interface TTDataSource : NSObject <TTTableViewDataSource> {
   NSMutableArray* _delegates;
 }
 
@@ -36,7 +41,7 @@
 
 @end
 
-@interface TTListDataSource : TTBaseDataSource {
+@interface TTListDataSource : TTDataSource {
   NSMutableArray* _items;
 }
 
@@ -46,7 +51,7 @@
 
 @end
 
-@interface TTSectionedDataSource : TTBaseDataSource {
+@interface TTSectionedDataSource : TTDataSource {
   NSMutableArray* _sections;
   NSMutableArray* _items;
 }

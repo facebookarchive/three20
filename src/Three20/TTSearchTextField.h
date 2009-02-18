@@ -1,10 +1,10 @@
 #import "Three20/TTTableViewDataSource.h"
 
-@protocol TTSearchSource;
+@protocol TTTableViewDataSource;
 @class TTSearchTextFieldInternal, TTBackgroundView;
 
 @interface TTSearchTextField : UITextField <UITableViewDelegate> {
-  id<TTSearchSource> _searchSource;
+  id<TTTableViewDataSource> _dataSource;
   TTSearchTextFieldInternal* _internal;
   UITableView* _tableView;
   TTBackgroundView* _shadowView;
@@ -16,7 +16,7 @@
   BOOL _showsDarkScreen;
 }
 
-@property(nonatomic,retain) id<TTSearchSource> searchSource;
+@property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
 @property(nonatomic,readonly) UITableView* tableView;
 @property(nonatomic,readonly) BOOL hasText;
 @property(nonatomic) BOOL searchesAutomatically;
@@ -32,16 +32,6 @@
 - (CGRect)rectForSearchResults:(BOOL)withKeyboard;
 
 - (BOOL)shouldUpdate:(BOOL)emptyText;
-
-@end
-
-@protocol TTSearchSource <TTTableViewDataSource>
-
-- (void)textField:(TTSearchTextField*)textField searchForText:(NSString*)text;
-
-@optional
-
-- (NSString*)textField:(TTSearchTextField*)textField labelForObject:(id)object;
 
 @end
 

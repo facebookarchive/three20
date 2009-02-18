@@ -1,7 +1,7 @@
 
-#import "MockSearchSource.h"
+#import "MockDataSource.h"
 
-@implementation MockSearchSource
+@implementation MockDataSource
 
 - (id)init {
   if (self = [super init]) {
@@ -32,30 +32,6 @@
 
 - (NSMutableArray*)delegates {
   return [super delegates];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTSearchDataSource
-
-- (void)textField:(TTSearchTextField*)textField searchForText:(NSString*)text {
-  [_items release];
-
-//  _items = [[NSMutableArray alloc] initWithObjects:
-//    [[[TTActivityTableField alloc] initWithText:@"Searching..."] autorelease],
-//    nil];
-
-  if (text.length) {
-    _items = [_allItems retain];
-  } else {
-    _items = nil;
-  }
-  
-  [self dataSourceLoaded];
-}
-
-- (NSString*)textField:(TTSearchTextField*)textField labelForObject:(id)object {
-  TTTableField* field = object;
-  return field.text;
 }
 
 @end

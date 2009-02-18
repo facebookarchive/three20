@@ -1,7 +1,6 @@
 
 #import "SearchTestController.h"
 #import "MockDataSource.h"
-#import "MockSearchSource.h"
 
 @implementation SearchTestController
 
@@ -15,7 +14,6 @@
 }
 
 - (void)dealloc {
-  [_searchSource release];
 	[super dealloc];
 }
 
@@ -26,20 +24,19 @@
   CGRect appFrame = [UIScreen mainScreen].applicationFrame;
   self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];
     
-  self.dataSource = [MockDataSource mockDataSource];
+  self.dataSource = [MockDataSource mockDataSource:NO];
   
-  self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+  self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
+    style:UITableViewStylePlain] autorelease];
 	self.tableView.autoresizingMask = 
     UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.tableView.sectionIndexMinimumDisplayRowCount = 2;
   [self.view addSubview:self.tableView];
 
-  _searchSource = [[MockSearchSource alloc] init];
-  
   TTSearchBar* searchBar = [[[TTSearchBar alloc] initWithFrame:
     CGRectMake(0, 0, appFrame.size.width, 0)] autorelease];
   searchBar.delegate = self;
-  searchBar.searchSource = _searchSource;
+  searchBar.dataSource = [MockDataSource mockDataSource:YES];
   searchBar.showsDoneButton = YES;
   searchBar.showsDarkScreen = YES;
   [searchBar sizeToFit];
@@ -52,7 +49,7 @@
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
   [super tableView:tableView didSelectRowAtIndexPath:indexPath];
   
-  id object = [self.dataSource objectForRowAtIndexPath:indexPath];
+  id object = [self.dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   [_delegate searchTestController:self didSelectObject:object];
 }
 
