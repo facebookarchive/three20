@@ -15,6 +15,12 @@
   TTLOG(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
     rect.size.width, rect.size.height)
 
+#define TTLOGPOINT(pt) \
+  TTLOG(@"%s x=%f, y=%f", #pt, pt.x, pt.y)
+
+#define TTLOGSIZE(size) \
+  TTLOG(@"%s w=%f, h=%f", #size, size.width, size.height)
+
 #define TTLOGEDGES(edges) \
   TTLOG(@"%s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
     edges.top, edges.bottom)
@@ -92,6 +98,16 @@ UIInterfaceOrientation TTDeviceOrientation();
  * Gets the bounds of the screen with device orientation factored in.
  */
 CGRect TTScreenBounds();
+
+/**
+ * Gets the application frame below the navigation bar.
+ */
+CGRect TTNavigationFrame();
+
+/**
+ * Returns a rectangle that is smaller or larger than the source rectangle.
+ */
+CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy);
  
 /**
  * Increment the number of active network request.

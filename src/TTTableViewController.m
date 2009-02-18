@@ -18,9 +18,9 @@
     _dataSource = nil;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-      selector:@selector(keyboardWillShow) name:@"UIKeyboardWillShowNotification" object:nil];
+      selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-      selector:@selector(keyboardWillHide) name:@"UIKeyboardWillHideNotification" object:nil];
+      selector:@selector(keyboardWillHide:) name:@"UIKeyboardWillHideNotification" object:nil];
   }  
   return self;
 }
@@ -33,6 +33,39 @@
     
   [_dataSource release];
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)resizeForKeyboard:(NSNotification*)notification {
+  NSValue* v1 = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
+  CGRect keyboardBounds;
+  [v1 getValue:&keyboardBounds];
+
+  NSValue* v2 = [notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey];
+  CGPoint keyboardStart;
+  [v2 getValue:&keyboardStart];
+
+  NSValue* v3 = [notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey];
+  CGPoint keyboardEnd;
+  [v3 getValue:&keyboardEnd];
+  
+  CGFloat keyboardTop = keyboardEnd.y - floor(keyboardBounds.size.height/2);
+  CGFloat screenBottom = self.view.screenY + self.view.height;
+  if (screenBottom != keyboardTop) {
+    BOOL animated = keyboardStart.y != keyboardEnd.y;
+    if (animated) {
+      [UIView beginAnimations:nil context:nil];
+      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+    }
+    
+    CGFloat dy = screenBottom - keyboardTop;
+    self.view.frame = TTRectContract(self.view.frame, 0, dy);
+
+    if (animated) {
+      [UIView commitAnimations];
+    }
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,16 +153,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIKeyboardNotifications
 
-- (void)keyboardWillShow {
-//  if (self.appearing) {
-//    [self.view sizeToFitKeyboard:YES animated:YES];
-//  }
+- (void)keyboardWillShow:(NSNotification*)notification {
+  if (self.appearing) {
+    [self resizeForKeyboard:notification];
+  }
 }
 
-- (void)keyboardWillHide {
-//  if (self.appearing) {
-//    [self.view sizeToFitKeyboard:NO animated:YES];
-//  }
+- (void)keyboardWillHide:(NSNotification*)notification {
+  if (self.appearing) {
+    [self resizeForKeyboard:notification];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

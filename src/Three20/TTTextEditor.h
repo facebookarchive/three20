@@ -1,9 +1,9 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTBackgroundView.h"
 
 @protocol TTTextEditorDelegate;
 @class TTTextEditorInternal;
 
-@interface TTTextEditor : UIView {
+@interface TTTextEditor : TTBackgroundView {
   id<TTTextEditorDelegate> _delegate;
   TTTextEditorInternal* _internal;
   UITextView* _textView;

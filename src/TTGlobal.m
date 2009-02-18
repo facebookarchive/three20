@@ -123,6 +123,15 @@ CGRect TTScreenBounds() {
   return bounds;
 }
 
+CGRect TTNavigationFrame() {
+  CGRect frame = [UIScreen mainScreen].applicationFrame;
+  return CGRectMake(0, 0, frame.size.width, frame.size.height - TOOLBAR_HEIGHT);
+}
+
+CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
+  return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
+}
+
 void TTNetworkRequestStarted() {
   if (gNetworkTaskCount++ == 0) {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

@@ -1,6 +1,6 @@
 #import <Three20/Three20.h>
 
-@interface BookViewTestController : TTViewController <TTBookViewDelegate, TTBookViewDataSource> {
+@interface BookViewTestController : TTViewController <TTBookViewDataSource> {
   TTBookView* _bookView;
   NSArray* _colors;
 }

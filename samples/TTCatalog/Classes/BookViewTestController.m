@@ -19,7 +19,6 @@
   self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
       
   _bookView = [[TTBookView alloc] initWithFrame:self.view.bounds];
-  _bookView.delegate = self;
   _bookView.dataSource = self;
   _bookView.backgroundColor = [UIColor whiteColor];
   [self.view addSubview:_bookView];
@@ -38,27 +37,6 @@
     nil
   ] retain];
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTBookViewDelegate
-
-- (void)bookView:(TTBookView*)bookView didMoveToPageAtIndex:(NSInteger)pageIndex {
-}
-
-//- (void)bookViewWillRotate:(TTBookView*)bookView toOrientation:(UIInterfaceOrientation)orientation {
-//  TTBackgroundView* boxView = (TTBackgroundView*)[bookView.centerPage.subviews objectAtIndex:0];
-//  boxView.hidden = YES;
-////  boxView.transform = CGAffineTransformIdentity;
-////  boxView.frame = CGRectMake(10, 10, 300, 
-////  460-CHROME_HEIGHT);
-//}
-//
-//- (void)bookViewDidRotate:(TTBookView*)bookView {
-//  TTBackgroundView* boxView = (TTBackgroundView*)[bookView.centerPage.subviews objectAtIndex:0];
-//  boxView.hidden = NO;
-//  boxView.transform = CGAffineTransformIdentity;
-//  boxView.frame = CGRectMake(10, 10, 460-CHROME_HEIGHT, 300);
-//}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTBookViewDataSource
