@@ -24,7 +24,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     _photoSource = nil;
     _centerPhoto = nil;
     _centerPhotoIndex = 0;
-    _scrollView = nil;
+    _bookView = nil;
     _photoStatusView = nil;
     _toolbar = nil;
     _nextButton = nil;
@@ -61,7 +61,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (TTPhotoView*)centerPhotoView {
-  return (TTPhotoView*)_scrollView.centerPage;
+  return (TTPhotoView*)_bookView.centerPage;
 }
 
 - (void)updateTitle {
@@ -92,7 +92,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)loadImages {
   TTPhotoView* centerPhotoView = self.centerPhotoView;
-  for (TTPhotoView* photoView in [_scrollView.visiblePages objectEnumerator]) {
+  for (TTPhotoView* photoView in [_bookView.visiblePages objectEnumerator]) {
     if (photoView == centerPhotoView) {
       [photoView loadPreview:NO];
     } else {
@@ -130,7 +130,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)refreshVisiblePhotoViews {
-  NSDictionary* photoViews = _scrollView.visiblePages;
+  NSDictionary* photoViews = _bookView.visiblePages;
   for (NSNumber* key in photoViews.keyEnumerator) {
     TTPhotoView* photoView = [photoViews objectForKey:key];
     [photoView showProgress:-1];
@@ -141,7 +141,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)resetVisiblePhotoViews {
-  NSDictionary* photoViews = _scrollView.visiblePages;
+  NSDictionary* photoViews = _bookView.visiblePages;
   for (NSNumber* key in photoViews.keyEnumerator) {
     TTPhotoView* photoView = [photoViews objectForKey:key];
     if (!photoView.loading) {
@@ -157,7 +157,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (TTPhotoView*)statusView {
   if (!_photoStatusView) {
-    _photoStatusView = [[TTPhotoView alloc] initWithFrame:_scrollView.frame];
+    _photoStatusView = [[TTPhotoView alloc] initWithFrame:_bookView.frame];
     _photoStatusView.defaultImage = _defaultImage;
     _photoStatusView.photo = nil;
     [self.view addSubview:_photoStatusView];
@@ -188,7 +188,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)showCaptions:(BOOL)show {
-  for (TTPhotoView* photoView in [_scrollView.visiblePages objectEnumerator]) {
+  for (TTPhotoView* photoView in [_bookView.visiblePages objectEnumerator]) {
     photoView.captionHidden = !show;
   }
 }
@@ -215,9 +215,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)slideshowTimer {
   if (_centerPhotoIndex == _photoSource.numberOfPhotos-1) {
-    _scrollView.centerPageIndex = 0;
+    _bookView.centerPageIndex = 0;
   } else {
-    _scrollView.centerPageIndex = _centerPhotoIndex+1;
+    _bookView.centerPageIndex = _centerPhotoIndex+1;
   }
 }
 
@@ -250,14 +250,14 @@ static const NSTimeInterval kSlideshowInterval = 2;
 - (void)nextAction {
   [self pauseAction];
   if (_centerPhotoIndex < _photoSource.numberOfPhotos-1) {
-    _scrollView.centerPageIndex = _centerPhotoIndex+1;
+    _bookView.centerPageIndex = _centerPhotoIndex+1;
   }
 }
 
 - (void)previousAction {
   [self pauseAction];
   if (_centerPhotoIndex > 0) {
-    _scrollView.centerPageIndex = _centerPhotoIndex-1;
+    _bookView.centerPageIndex = _centerPhotoIndex-1;
   }
 }
 
@@ -268,11 +268,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
   CGRect screenFrame = [UIScreen mainScreen].bounds;
   self.view = [[[TTUnclippedView alloc] initWithFrame:screenFrame] autorelease];
   
-  _scrollView = [[TTScrollView alloc] initWithFrame:CGRectOffset(screenFrame, 0, -CHROME_HEIGHT)];
-  _scrollView.delegate = self;
-  _scrollView.dataSource = self;
-  _scrollView.backgroundColor = [UIColor blackColor];
-  [self.view addSubview:_scrollView];
+  _bookView = [[TTBookView alloc] initWithFrame:CGRectOffset(screenFrame, 0, -CHROME_HEIGHT)];
+  _bookView.delegate = self;
+  _bookView.dataSource = self;
+  _bookView.backgroundColor = [UIColor blackColor];
+  [self.view addSubview:_bookView];
   
   
   _nextButton = [[UIBarButtonItem alloc] initWithImage:
@@ -402,7 +402,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   _previousButton.enabled = _centerPhotoIndex > 0;
   _nextButton.enabled = _centerPhotoIndex < _photoSource.numberOfPhotos-1;
 
-  _scrollView.centerPageIndex = _centerPhotoIndex;
+  _bookView.centerPageIndex = _centerPhotoIndex;
   [self loadImages];
 
   if (self.contentState & TTContentReady) {
@@ -420,10 +420,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)unloadView {
-  _scrollView.delegate = nil;
-  _scrollView.dataSource = nil;
-  [_scrollView release];
-  _scrollView = nil;
+  _bookView.delegate = nil;
+  _bookView.dataSource = nil;
+  [_bookView release];
+  _bookView = nil;
   [_photoStatusView release];
   _photoStatusView = nil;
   [_nextButton release];
@@ -472,7 +472,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 - (void)photoSourceLoaded:(id<TTPhotoSource>)photoSource {
   if (_centerPhotoIndex >= _photoSource.numberOfPhotos) {
     [self moveToPhotoAtIndex:_photoSource.numberOfPhotos - 1 withDelay:NO];
-    [_scrollView reloadData];
+    [_bookView reloadData];
     [self resetVisiblePhotoViews];
   } else {
     [self refreshVisiblePhotoViews];
@@ -501,46 +501,46 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTScrollViewDelegate
+// TTBookViewDelegate
 
-- (void)scrollView:(TTScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex {
+- (void)bookView:(TTBookView*)bookView didMoveToPageAtIndex:(NSInteger)pageIndex {
   if (pageIndex != _centerPhotoIndex) {
     [self moveToPhotoAtIndex:pageIndex withDelay:YES];
     [self invalidate];
   }
 }
 
-- (void)scrollViewWillBeginDragging:(TTScrollView *)scrollView {
+- (void)bookViewWillBeginDragging:(TTBookView *)bookView {
   [self cancelImageLoadTimer];
   [self showCaptions:NO];
   [self showBars:NO animated:YES];
 }
 
-- (void)scrollViewDidEndDecelerating:(TTScrollView*)scrollView {
+- (void)bookViewDidEndDecelerating:(TTBookView*)bookView {
   [self startImageLoadTimer:kPhotoLoadShortDelay];
 }
 
-- (void)scrollViewWillRotate:(TTScrollView*)scrollView {
+- (void)bookViewWillRotate:(TTBookView*)bookView toOrientation:(UIInterfaceOrientation)orientation {
   self.centerPhotoView.extrasHidden = YES;
 }
 
-- (void)scrollViewDidRotate:(TTScrollView*)scrollView {
+- (void)bookViewDidRotate:(TTBookView*)bookView {
   self.centerPhotoView.extrasHidden = NO;
 }
 
-- (BOOL)scrollViewShouldZoom:(TTScrollView*)scrollView {
+- (BOOL)bookViewShouldZoom:(TTBookView*)bookView {
   return self.centerPhotoView.image != self.centerPhotoView.defaultImage;
 }
 
-- (void)scrollViewDidBeginZooming:(TTScrollView*)scrollView {
+- (void)bookViewDidBeginZooming:(TTBookView*)bookView {
   self.centerPhotoView.extrasHidden = YES;
 }
 
-- (void)scrollViewDidEndZooming:(TTScrollView*)scrollView {
+- (void)bookViewDidEndZooming:(TTBookView*)bookView {
   self.centerPhotoView.extrasHidden = NO;
 }
 
-- (void)scrollViewTapped:(TTScrollView*)scrollView {
+- (void)bookViewTapped:(TTBookView*)bookView {
   if ([self isShowingChrome]) {
     [self showBars:NO animated:YES];
   } else {
@@ -549,14 +549,14 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTScrollViewDataSource
+// TTBookViewDataSource
 
-- (NSInteger)numberOfPagesInScrollView:(TTScrollView*)scrollView {
+- (NSInteger)numberOfPagesInBookView:(TTBookView*)bookView {
   return _photoSource.numberOfPhotos;
 }
 
-- (UIView*)scrollView:(TTScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
-  TTPhotoView* photoView = (TTPhotoView*)[_scrollView dequeueReusablePage];
+- (UIView*)bookView:(TTBookView*)bookView pageAtIndex:(NSInteger)pageIndex {
+  TTPhotoView* photoView = (TTPhotoView*)[_bookView dequeueReusablePage];
   if (!photoView) {
     photoView = [self createPhotoView];
     photoView.defaultImage = _defaultImage;
@@ -569,7 +569,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   return photoView;
 }
 
-- (CGSize)scrollView:(TTScrollView*)scrollView sizeOfPageAtIndex:(NSInteger)pageIndex {
+- (CGSize)bookView:(TTBookView*)bookView sizeOfPageAtIndex:(NSInteger)pageIndex {
   id<TTPhoto> photo = [_photoSource photoAtIndex:pageIndex];
   return photo ? photo.size : CGSizeZero;
 }

@@ -9,7 +9,7 @@
 #import "ComposerTestController.h"
 #import "TabBarTestController.h"
 #import "ActivityTestController.h"
-#import "ScrollViewTestController.h"
+#import "BookViewTestController.h"
 
 @implementation RootViewController
 
@@ -48,7 +48,7 @@
   [nav addView:@"searchTest" controller:[SearchTestController class]];
   [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
   [nav addView:@"activityTest" controller:[ActivityTestController class]];
-  [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
+  [nav addView:@"bookViewTest" controller:[BookViewTestController class]];
   
   self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
     @"Photos",
@@ -76,11 +76,11 @@
       href:@"tt://tabBarTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Shiny Label"
       href:@"tt://activityTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Scroll View"
-      href:@"tt://scrollViewTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Book View"
+      href:@"tt://bookViewTest"] autorelease],
     nil];
 
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:5 inSection:2];
   [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 

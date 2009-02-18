@@ -5,7 +5,7 @@
 @implementation TTBackgroundView
 
 @synthesize style = _style, fillColor = _fillColor, fillColor2 = _fillColor2,
-  strokeColor = _strokeColor, strokeRadius = _strokeRadius;
+  strokeColor = _strokeColor, strokeRadius = _strokeRadius, backgroundInset = _backgroundInset;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -16,6 +16,7 @@
     _fillColor2 = nil;
     _strokeColor = nil;
     _strokeRadius = 0;
+    _backgroundInset = UIEdgeInsetsZero;
   }
   return self;
 }
@@ -32,15 +33,20 @@
 
 - (void)drawRect:(CGRect)rect {
   if (_style) {
+    CGRect frame = CGRectMake(rect.origin.x + _backgroundInset.left,
+      rect.origin.y + _backgroundInset.top,
+      rect.size.width - (_backgroundInset.left + _backgroundInset.right),
+      rect.size.height - (_backgroundInset.top + _backgroundInset.bottom));
+
     if (_fillColor2 && _fillColor) {
       UIColor* fillColors[] = {_fillColor, _fillColor2};
-      [[TTAppearance appearance] draw:_style rect:rect fill:fillColors fillCount:2
+      [[TTAppearance appearance] draw:_style rect:frame fill:fillColors fillCount:2
         stroke:_strokeColor radius:_strokeRadius];
     } else if (_fillColor) {
-      [[TTAppearance appearance] draw:_style rect:rect fill:&_fillColor fillCount:1
+      [[TTAppearance appearance] draw:_style rect:frame fill:&_fillColor fillCount:1
         stroke:_strokeColor radius:_strokeRadius];
     } else {
-      [[TTAppearance appearance] draw:_style rect:rect fill:nil fillCount:0
+      [[TTAppearance appearance] draw:_style rect:frame fill:nil fillCount:0
         stroke:_strokeColor radius:_strokeRadius];
     }
   }
