@@ -218,8 +218,6 @@ static TTURLRequestQueue* gMainQueue = nil;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
   TTNetworkRequestStopped();
 
-  //TTLOG(@"Loaded: %s", _responseData.bytes);
-
   if (_statusCode == 200) {
     [_queue performSelector:@selector(loader:loadedData:) withObject:self withObject:_responseData];
   } else {

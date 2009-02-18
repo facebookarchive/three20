@@ -336,10 +336,10 @@
   _textEditor = [[TTTextEditor alloc] initWithFrame:CGRectMake(0, 0, appFrame.size.width, 0)];
   _textEditor.delegate = self;
   _textEditor.backgroundColor = [UIColor whiteColor];
-  _textEditor.autoresizeToText = YES;
   _textEditor.textView.font = [UIFont systemFontOfSize:15];
+  _textEditor.autoresizesToText = YES;
+  _textEditor.showsExtraLine = YES;
   _textEditor.minNumberOfLines = 5;
-  _textEditor.showExtraLine = YES;
 
   [self createFieldViews];
 }
@@ -440,9 +440,11 @@
   [self updateSendCommand];
 }
 
-- (void)textEditor:(TTTextEditor*)textEditor didResizeBy:(CGFloat)height {
+- (BOOL)textEditor:(TTTextEditor*)textEditor shouldResizeBy:(CGFloat)height {
+  _textEditor.frame = TTRectContract(_textEditor.frame, 0, -height);
   [self layoutViews];
   [_textEditor scrollContainerToCursor:_scrollView];
+  return NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

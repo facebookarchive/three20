@@ -194,8 +194,8 @@ static TTAppearance* gAppearance = nil;
       fill:barFill fillCount:2 stroke:nil radius:0];
 
     UIColor* tintFill[] = {tintColor};
-    CGRect bottomRect = CGRectMake(rect.origin.x, floor(rect.origin.y+rect.size.height/(2*2))+1,
-      rect.size.width, (rect.size.height/2)-1);
+    CGRect bottomRect = CGRectMake(rect.origin.x, ceil(rect.origin.y+rect.size.height/(2*2)),
+      rect.size.width, (rect.size.height/2));
     [self draw:TTDrawFillRect rect:bottomRect
       fill:tintFill fillCount:1 stroke:nil radius:0];
 

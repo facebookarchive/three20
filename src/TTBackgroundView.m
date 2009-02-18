@@ -17,6 +17,7 @@
     _strokeColor = nil;
     _strokeRadius = 0;
     _backgroundInset = UIEdgeInsetsZero;
+    self.contentMode = UIViewContentModeRedraw;
   }
   return self;
 }

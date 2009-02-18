@@ -235,6 +235,10 @@ void TTNetworkRequestStopped();
 
 - (UIColor*)transformHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd;
 
+- (UIColor*)highlight;
+
+- (UIColor*)shadow;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

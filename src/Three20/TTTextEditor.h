@@ -6,20 +6,17 @@
 @interface TTTextEditor : TTBackgroundView {
   id<TTTextEditorDelegate> _delegate;
   TTTextEditorInternal* _internal;
+  NSString* _placeholder;
+  NSString* _fixedText;
   UITextView* _textView;
   UILabel* _placeholderLabel;
   UILabel* _fixedTextLabel;
-  NSString* _placeholder;
-  NSString* _fixedText;
-  UIFont* _font;
-  UIColor* _textColor;
-  UITextAlignment _textAlignment;
-  UIReturnKeyType _returnKeyType;
-  int _minNumberOfLines;
+  NSInteger _minNumberOfLines;
+  NSInteger _maxNumberOfLines;
   BOOL _editing;
-  BOOL _multiline;
-  BOOL _autoresizeToText;
-  BOOL _showExtraLine;
+  BOOL _overflowed;
+  BOOL _autoresizesToText;
+  BOOL _showsExtraLine;
 }
 
 @property(nonatomic,assign) id<TTTextEditorDelegate> delegate;
@@ -27,17 +24,11 @@
 @property(nonatomic,copy) NSString* placeholder;
 @property(nonatomic,copy) NSString* fixedText;
 @property(nonatomic,assign) NSString* text;
-@property(nonatomic,retain) UIFont* font;
-@property(nonatomic,retain) UIColor* textColor;
-@property(nonatomic) UITextAlignment textAlignment;
-@property(nonatomic) UIReturnKeyType returnKeyType;
-@property(nonatomic) int minNumberOfLines;
+@property(nonatomic) NSInteger minNumberOfLines;
+@property(nonatomic) NSInteger maxNumberOfLines;
 @property(nonatomic,readonly) BOOL editing;
-@property(nonatomic) BOOL multiline;
-@property(nonatomic) BOOL autoresizeToText;
-@property(nonatomic) BOOL showExtraLine;
-
-- (id)initWithFrame:(CGRect)frame;
+@property(nonatomic) BOOL autoresizesToText;
+@property(nonatomic) BOOL showsExtraLine;
 
 - (void)scrollContainerToCursor:(UIScrollView*)scrollView;
 
@@ -47,6 +38,6 @@
 
 @optional
 
-- (void)textEditor:(TTTextEditor*)textEditor didResizeBy:(CGFloat)height;
+- (BOOL)textEditor:(TTTextEditor*)textEditor shouldResizeBy:(CGFloat)height;
 
 @end

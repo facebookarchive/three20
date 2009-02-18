@@ -691,6 +691,14 @@ void TTNetworkRequestStopped() {
   return [UIColor colorWithRed:r green:g blue:b alpha:a];
 }
 
+- (UIColor*)highlight {
+  return [self transformHue:1 saturation:0.4 value:1.2];
+}
+
+- (UIColor*)shadow {
+  return [self transformHue:1 saturation:0.6 value:0.8];
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
