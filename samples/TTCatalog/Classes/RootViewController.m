@@ -33,11 +33,6 @@
   nav.urlSchemes = [NSArray arrayWithObject:@"tt"];
   nav.supportsShakeToReload = YES;
   
-//  self.navigationController.navigationBar.tintColor = RGBCOLOR(236, 106, 45);
-//  
-//  TTAppearance* appearance = [TTAppearance appearance];
-//  appearance.barTintColor = RGBCOLOR(236, 106, 45);
-  
   [nav addView:@"photoTest1" controller:[PhotoTest1Controller class]];
   [nav addView:@"photoTest2" controller:[PhotoTest2Controller class]];
   [nav addView:@"imageTest1" controller:[ImageTest1Controller class]];
@@ -50,7 +45,17 @@
   [nav addView:@"activityTest" controller:[ActivityTestController class]];
   [nav addView:@"bookViewTest" controller:[BookViewTestController class]];
   
-  self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
+  [self validate];
+  
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewController
+
+- (id<TTTableViewDataSource>)createDataSource {
+  return [TTSectionedDataSource dataSourceWithObjects:
     @"Photos",
     [[[TTTableField alloc] initWithText:@"Photo Browser"
       href:@"tt://photoTest1"] autorelease],
@@ -79,9 +84,6 @@
     [[[TTTableField alloc] initWithText:@"Book View"
       href:@"tt://bookViewTest"] autorelease],
     nil];
-
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:5 inSection:2];
-  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

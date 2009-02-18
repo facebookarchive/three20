@@ -16,56 +16,16 @@
   if (self = [super init]) {
     _tableView = nil;
     _dataSource = nil;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-      selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-      selector:@selector(keyboardWillHide:) name:@"UIKeyboardWillHideNotification" object:nil];
+    _statusDataSource = nil;
   }  
   return self;
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-    name:@"UIKeyboardWillShowNotification" object:nil];
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-    name:@"UIKeyboardWillHideNotification" object:nil];
-    
+  [_dataSource.delegates removeObject:self];
   [_dataSource release];
+  [_statusDataSource release];
   [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)resizeForKeyboard:(NSNotification*)notification {
-  NSValue* v1 = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
-  CGRect keyboardBounds;
-  [v1 getValue:&keyboardBounds];
-
-  NSValue* v2 = [notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey];
-  CGPoint keyboardStart;
-  [v2 getValue:&keyboardStart];
-
-  NSValue* v3 = [notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey];
-  CGPoint keyboardEnd;
-  [v3 getValue:&keyboardEnd];
-  
-  CGFloat keyboardTop = keyboardEnd.y - floor(keyboardBounds.size.height/2);
-  CGFloat screenBottom = self.view.screenY + self.view.height;
-  if (screenBottom != keyboardTop) {
-    BOOL animated = keyboardStart.y != keyboardEnd.y;
-    if (animated) {
-      [UIView beginAnimations:nil context:nil];
-      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-    }
-    
-    CGFloat dy = screenBottom - keyboardTop;
-    self.view.frame = TTRectContract(self.view.frame, 0, dy);
-
-    if (animated) {
-      [UIView commitAnimations];
-    }
-  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,15 +40,74 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
+- (void)persistView:(NSMutableDictionary*)state {
+  CGFloat scrollY = _tableView.contentOffset.y;
+  [state setObject:[NSNumber numberWithFloat:scrollY] forKey:@"scrollOffsetY"];
+}
+
+- (void)restoreView:(NSDictionary*)state {
+  NSNumber* scrollY = [state objectForKey:@"scrollOffsetY"];
+  _tableView.contentOffset = CGPointMake(0, scrollY.floatValue);
+}
+
+- (void)updateContent {
+  self.dataSource = [self createDataSource];
+  
+  if (_dataSource.loading) {
+    self.contentState = TTContentActivity;
+  } else if (!_dataSource.loaded) {
+    [_dataSource loadFromIndex:0 toIndex:NSIntegerMax fromCache:YES];
+  } else {
+    if (_dataSource.empty) {
+      self.contentState = TTContentNone;
+    } else {
+      self.contentState = TTContentReady;
+    }
+  }
+}
+
+- (void)refreshContent {
+  if (!_dataSource.loading) {
+    if (_dataSource.needsReload) {
+      [self reloadContent];
+//    } else if (_dataSource.needsRebuild) {
+//      [_dataSource rebuild];
+//
+//      if (_dataSource.empty) {
+//        self.contentState = TTContentNone;
+//      } else {
+//        self.contentState = TTContentReady;
+//      }
+    }
+  }
+}
+
+- (void)reloadContent {
+  [_dataSource loadFromIndex:0 toIndex:NSIntegerMax fromCache:NO];
+}
+
 - (void)updateView {
-  if (self.contentState == TTContentReady) {
+  if (self.contentState & TTContentReady) {
+    [_statusDataSource release];
+    _statusDataSource = nil;
+
+    _tableView.dataSource = _dataSource;
+    [_tableView reloadData];
+
+    [super updateView];
+  } else {
+    _statusDataSource = [[self createDataSourceForStatus] retain];
+    _tableView.dataSource = _statusDataSource;
     [_tableView reloadData];
   }
-  
-  [super updateView];
 }
 
 - (void)unloadView {
+  [_dataSource.delegates removeObject:self];
+  [_dataSource release];
+  _dataSource = nil;
+  [_statusDataSource release];
+  _statusDataSource = nil;
   [_tableView release];
   _tableView = nil;
   [super unloadView];
@@ -98,13 +117,16 @@
 // UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-  id item = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
-  Class cls = [_dataSource tableView:tableView cellClassForObject:item];
+  id<TTTableViewDataSource> dataSource = _statusDataSource ? _statusDataSource : _dataSource;
+  id item = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+  Class cls = [dataSource tableView:tableView cellClassForObject:item];
   return [cls tableView:_tableView rowHeightForItem:item];
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  id item = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+  id<TTTableViewDataSource> dataSource = _statusDataSource ? _statusDataSource : _dataSource;
+
+  id item = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([item isKindOfClass:[TTTableField class]]) {
     TTTableField* field = item;
     if (field.href) {
@@ -119,7 +141,7 @@
         = (TTActivityTableFieldCell*)[self.tableView cellForRowAtIndexPath:indexPath];
       cell.animating = YES;
       [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-      //[_dataSource loadMore];
+      //[dataSource loadMore];
     }
   }
 }
@@ -151,29 +173,35 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIKeyboardNotifications
+// TTTableViewDataSourceDelegate
 
-- (void)keyboardWillShow:(NSNotification*)notification {
-  if (self.appearing) {
-    [self resizeForKeyboard:notification];
+- (void)dataSourceLoading:(id<TTTableViewDataSource>)dataSource {
+  self.contentState |= TTContentActivity;
+}
+
+- (void)dataSourceLoaded:(id<TTTableViewDataSource>)dataSource {
+  if (!dataSource.empty) {
+    self.contentState = TTContentReady;
+  } else {
+    self.contentState = TTContentNone;
   }
 }
 
-- (void)keyboardWillHide:(NSNotification*)notification {
-  if (self.appearing) {
-    [self resizeForKeyboard:notification];
-  }
+- (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailWithError:(NSError*)error {
+  self.contentState &= ~TTContentActivity;
+  self.contentState |= TTContentError;
+  self.contentError = error;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
   if (dataSource != _dataSource) {
+    [_dataSource.delegates removeObject:self];
     [_dataSource release];
     _dataSource = [dataSource retain];
-    
-    _tableView.dataSource = dataSource;
-  }  
+    [_dataSource.delegates addObject:self];
+  }
 }
 
 - (void)setTableView:(UITableView*)tableView {
@@ -181,14 +209,34 @@
     [_tableView release];
     _tableView = [tableView retain];
 
-    if (_dataSource) {
-      _tableView.dataSource = _dataSource;
-    }
-    
     if (!_tableView.delegate) {
       _tableView.delegate = self;
     }
   }
+}
+
+- (id<TTTableViewDataSource>)createDataSource {
+  return nil;
+}
+
+- (id<TTTableViewDataSource>)createDataSourceForStatus {
+  TTStatusTableField* statusItem = nil;
+  
+  if (_contentState & TTContentActivity) {
+    statusItem = [[[TTActivityTableField alloc] initWithText:[self titleForActivity]] autorelease];
+  } else if (_contentState & TTContentError) {
+    statusItem = [[[TTErrorTableField alloc] initWithText:[self titleForError:_contentError]
+      subtitle:[self subtitleForError:_contentError]
+      image:[self imageForError:_contentError]] autorelease];
+  } else {
+    statusItem = [[[TTErrorTableField alloc] initWithText:[self titleForNoContent]
+      subtitle:[self subtitleForNoContent]
+      image:[self imageForNoContent]] autorelease];
+  }
+
+  statusItem.sizeToFit = YES;
+  return [[[TTListDataSource alloc] initWithItems:
+    [NSArray arrayWithObject:statusItem]] autorelease];
 }
 
 @end

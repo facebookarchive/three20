@@ -23,6 +23,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
 - (void)loadView {
   [super loadView];
 
+  self.autoresizesForKeyboard = YES;
+
   self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds
     style:UITableViewStyleGrouped];
 	self.tableView.autoresizingMask = 
@@ -30,8 +32,11 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   [self.view addSubview:self.tableView];
 }
 
-- (void)viewDidLoad {
-  self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewController
+
+- (id<TTTableViewDataSource>)createDataSource {
+  return [TTSectionedDataSource dataSourceWithObjects:
     @"Buttons",
     [[[TTTableField alloc] initWithText:@"TTTableField"
       href:@"tt://tableFieldTest"] autorelease],

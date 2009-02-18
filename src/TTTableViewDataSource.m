@@ -57,6 +57,30 @@
   return _delegates;
 }
 
+- (NSDate*)loadedTimestamp {
+  return nil;
+}
+
+- (BOOL)empty {
+  return NO;
+}
+
+- (BOOL)loading {
+  return NO;
+}
+
+- (BOOL)loaded {
+  return YES;
+}
+
+- (BOOL)needsReload {
+  if (self.loadedTimestamp) {
+    return -[self.loadedTimestamp timeIntervalSinceNow] > TT_DEFAULT_CACHE_EXPIRATION_AGE;
+  } else {
+    return YES;
+  }
+}
+
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   return nil;
 }
@@ -102,6 +126,9 @@
 }
 
 - (void)tableView:(UITableView*)tableView search:(NSString*)text {
+}
+
+- (void)loadFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex fromCache:(BOOL)fromCache {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -177,6 +204,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
+
+- (BOOL)empty {
+  return !_items.count;
+}
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   return [_items objectAtIndex:indexPath.row];
@@ -257,6 +288,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
+
+- (BOOL)empty {
+  return !_items.count;
+}
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   if (_sections) {

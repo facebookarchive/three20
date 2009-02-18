@@ -829,8 +829,6 @@ static CGFloat kDefaultIconSize = 50;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
   UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
-  [tableView sizeToFitKeyboard:YES animated:YES];
-
   NSIndexPath* indexPath = [tableView indexPathForCell:self];
   [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle
     animated:YES];
@@ -851,9 +849,6 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
-  [tableView sizeToFitKeyboard:NO animated:YES];
-
   TTTextFieldTableField* field = object;
   if ([field.delegate respondsToSelector:@selector(textFieldDidEndEditing:)]) {
     [field.delegate textFieldDidEndEditing:textField];
@@ -967,8 +962,6 @@ static CGFloat kDefaultIconSize = 50;
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
   UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
-  [tableView sizeToFitKeyboard:YES animated:YES];
-
   NSIndexPath* indexPath = [tableView indexPathForCell:self];
   [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle
     animated:YES];
@@ -980,9 +973,6 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
-  [tableView sizeToFitKeyboard:NO animated:YES];
-
   TTTextViewTableField* field = object;
   if ([field.delegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
     [field.delegate textViewDidEndEditing:textView];

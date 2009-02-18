@@ -23,9 +23,7 @@
 - (void)loadView {
   CGRect appFrame = [UIScreen mainScreen].applicationFrame;
   self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];
-    
-  self.dataSource = [MockDataSource mockDataSource:NO];
-  
+     
   self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
     style:UITableViewStylePlain] autorelease];
 	self.tableView.autoresizingMask = 
@@ -41,6 +39,13 @@
   searchBar.showsDarkScreen = YES;
   [searchBar sizeToFit];
   self.tableView.tableHeaderView = searchBar;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewController
+
+- (id<TTTableViewDataSource>)createDataSource {
+  return [MockDataSource mockDataSource:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

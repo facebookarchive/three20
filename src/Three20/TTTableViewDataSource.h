@@ -5,6 +5,11 @@
 @protocol TTTableViewDataSource <UITableViewDataSource>
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
+@property(nonatomic,readonly) NSDate* loadedTimestamp;
+@property(nonatomic,readonly) BOOL empty;
+@property(nonatomic,readonly) BOOL loading;
+@property(nonatomic,readonly) BOOL loaded;
+@property(nonatomic,readonly) BOOL needsReload;
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;
 
@@ -17,9 +22,13 @@
 
 - (void)tableView:(UITableView*)tableView search:(NSString*)text;
 
+- (void)loadFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex fromCache:(BOOL)fromCache;
+
 @end
 
 @protocol TTTableViewDataSourceDelegate <NSObject>
+
+@optional
 
 - (void)dataSourceLoading:(id<TTTableViewDataSource>)dataSource;
 

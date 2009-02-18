@@ -344,7 +344,6 @@
   return field.text;
 }
 
-
 - (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
         forRowAtIndexPath:(NSIndexPath*)indexPath {
   cell.accessoryType = UITableViewCellAccessoryNone;

@@ -340,8 +340,10 @@
   _textEditor.autoresizesToText = YES;
   _textEditor.showsExtraLine = YES;
   _textEditor.minNumberOfLines = 5;
-
+  [_textEditor sizeToFit];
+  
   [self createFieldViews];
+  [self layoutViews];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -71,7 +71,7 @@ typedef enum {
    TTURLRequestCachePolicyNoCache = 8,    
 } TTURLRequestCachePolicy;
 
-#define TT_DEFAULT_CACHE_AGE (60*3)
+#define TT_DEFAULT_CACHE_EXPIRATION_AGE (60*60*24) // 1 day
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -98,6 +98,11 @@ UIInterfaceOrientation TTDeviceOrientation();
  * Gets the bounds of the screen with device orientation factored in.
  */
 CGRect TTScreenBounds();
+
+/**
+ * Gets the application frame.
+ */
+CGRect TTApplicationFrame();
 
 /**
  * Gets the application frame below the navigation bar.
@@ -181,8 +186,6 @@ void TTNetworkRequestStopped();
  */
 - (void)simulateTapAtPoint:(CGPoint)location;
 
-- (void)sizeToFitKeyboard:(BOOL)keyboard animated:(BOOL)animated;
-
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -196,13 +199,7 @@ void TTNetworkRequestStopped();
 
 - (void)touchRowAtIndexPath:(NSIndexPath*)indexPath animated:(BOOL)animated;
 
-/**
- * Expand or contract the table to fit the keyboard.
- *
- * @param indexPath The index path to make visible after the expansion.
- */
-- (void)sizeToFitKeyboard:(BOOL)keyboard atIndexPath:(NSIndexPath*)indexPath
-    animated:(BOOL)animated;
+- (void)scrollToBottom:(BOOL)animated;
 
 @end
 

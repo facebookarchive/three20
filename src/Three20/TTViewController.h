@@ -34,6 +34,7 @@ typedef enum {
   BOOL _appearing;
   BOOL _appeared;
   BOOL _unloaded;
+  BOOL _autoresizesForKeyboard;
 }
 
 /**
@@ -72,6 +73,11 @@ typedef enum {
 @property(nonatomic,readonly) BOOL appearing;
 
 /**
+ * Determines if the view will be resized automatically to fit the keyboard.
+ */
+@property(nonatomic) BOOL autoresizesForKeyboard;
+
+/**
  * Update the view with a new primary object.
  *
  * @param object The primary object to display.
@@ -98,6 +104,11 @@ typedef enum {
  * and re-created behind your back, so you need to maintain important state without them.
  */
 - (void)invalidate;
+
+/**
+ * Updates the content and view if they are invalid.
+ */
+- (void)validate;
 
 /**
  * Called to update the content state after the primary view object has changed.
@@ -145,6 +156,16 @@ typedef enum {
  * This is meant to be implemented by subclasses - the default does nothing.
  */
 - (void)unloadView;
+
+/**
+ * Sent to the controller before the keyboard slides in.
+ */
+- (void)keyboardWillAppear:(BOOL)animated;
+
+/**
+ * Sent to the controller before the keyboard slides out.
+ */
+- (void)keyboardWillDisappear:(BOOL)animated;
 
 /**
  *

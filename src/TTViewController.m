@@ -8,7 +8,7 @@
 @implementation TTViewController
 
 @synthesize viewState = _viewState, contentState = _contentState, contentError = _contentError,
-  appearing = _appearing, appeared = _appeared;
+  appearing = _appearing, appeared = _appeared, autoresizesForKeyboard = _autoresizesForKeyboard;
 
 - (id)init {
   if (self = [super init]) {  
@@ -24,13 +24,16 @@
     _appearing = NO;
     _appeared = NO;
     _unloaded = NO;
+    _autoresizesForKeyboard = NO;
   }
   return self;
 }
 
 - (void)dealloc {
   TTLOG(@"DEALLOC %@", self);
-
+  
+  self.autoresizesForKeyboard = NO;
+  
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
 
   [_viewState release];
@@ -57,7 +60,7 @@
 
     [self updateView];
 
-    if (_viewState) {
+    if (_viewState && _contentState & TTContentReady) {
       [self restoreView:_viewState];
       [_viewState release];
       _viewState = nil;
@@ -119,12 +122,46 @@
   [self showStatusView:view];
 }
 
+- (BOOL)resizeForKeyboard:(NSNotification*)notification {
+  NSValue* v1 = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
+  CGRect keyboardBounds;
+  [v1 getValue:&keyboardBounds];
+
+  NSValue* v2 = [notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey];
+  CGPoint keyboardStart;
+  [v2 getValue:&keyboardStart];
+
+  NSValue* v3 = [notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey];
+  CGPoint keyboardEnd;
+  [v3 getValue:&keyboardEnd];
+  
+  CGFloat keyboardTop = keyboardEnd.y - floor(keyboardBounds.size.height/2);
+  CGFloat screenBottom = self.view.screenY + self.view.height;
+  if (screenBottom != keyboardTop) {
+    BOOL animated = keyboardStart.y != keyboardEnd.y;
+    if (animated) {
+      [UIView beginAnimations:nil context:nil];
+      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+    }
+    
+    CGFloat dy = screenBottom - keyboardTop;
+    self.view.frame = TTRectContract(self.view.frame, 0, dy);
+
+    if (animated) {
+      [UIView commitAnimations];
+    }
+    
+    return animated;
+  }
+  
+  return NO;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
 - (void)loadView {
-  CGRect frame = [UIScreen mainScreen].applicationFrame;
-  UIView* contentView = [[[UIView alloc] initWithFrame:frame] autorelease];
+  UIView* contentView = [[[UIView alloc] initWithFrame:TTApplicationFrame()] autorelease];
 	contentView.autoresizesSubviews = YES;
 	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   contentView.backgroundColor = [UIColor whiteColor];
@@ -137,15 +174,11 @@
     [self loadView];
   }
 
+  [self validate];
+
   [TTURLRequestQueue mainQueue].suspended = YES;
-
-  if (_contentState == TTContentUnknown) {
-    [self updateContent];
-  }
-  [self refreshContent];
-
+  
   _appearing = YES;
-  [self validateView];
   _appeared = YES;
 }
 
@@ -190,6 +223,23 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIKeyboardNotifications
+
+- (void)keyboardWillShow:(NSNotification*)notification {
+  if (self.appearing) {
+    BOOL animated = [self resizeForKeyboard:notification];
+    [self keyboardWillAppear:animated];
+  }
+}
+
+- (void)keyboardWillHide:(NSNotification*)notification {
+  if (self.appearing) {
+    BOOL animated = [self resizeForKeyboard:notification];
+    [self keyboardWillDisappear:animated];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (id<TTObject>)viewObject {
   return nil;
@@ -197,6 +247,24 @@
 
 - (NSString*)viewType {
   return nil;
+}
+
+- (void)setAutoresizesForKeyboard:(BOOL)autoresizesForKeyboard {
+  if (autoresizesForKeyboard != _autoresizesForKeyboard) {
+    _autoresizesForKeyboard = autoresizesForKeyboard;
+    
+    if (_autoresizesForKeyboard) {
+      [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(keyboardWillHide:) name:@"UIKeyboardWillHideNotification" object:nil];
+    } else {
+      [[NSNotificationCenter defaultCenter] removeObserver:self
+        name:@"UIKeyboardWillShowNotification" object:nil];
+      [[NSNotificationCenter defaultCenter] removeObserver:self
+        name:@"UIKeyboardWillHideNotification" object:nil];
+    }
+  }
 }
 
 - (void)setContentState:(TTContentState)contentState {
@@ -233,6 +301,15 @@
     [self updateContent];
     [self refreshContent];
   }
+}
+
+- (void)validate {
+  if (_contentState == TTContentUnknown) {
+    [self updateContent];
+  }
+  [self refreshContent];
+
+  [self validateView];
 }
 
 - (void)updateContent {
@@ -274,6 +351,12 @@
 }
 
 - (void)unloadView {
+}
+
+- (void)keyboardWillAppear:(BOOL)animated {
+}
+
+- (void)keyboardWillDisappear:(BOOL)animated {
 }
 
 - (NSString*)titleForActivity {

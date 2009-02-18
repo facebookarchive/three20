@@ -123,6 +123,11 @@ CGRect TTScreenBounds() {
   return bounds;
 }
 
+CGRect TTApplicationFrame() {
+  CGRect frame = [UIScreen mainScreen].applicationFrame;
+  return CGRectMake(0, 0, frame.size.width, frame.size.height);
+}
+
 CGRect TTNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
   return CGRectMake(0, 0, frame.size.width, frame.size.height - TOOLBAR_HEIGHT);
@@ -532,20 +537,6 @@ void TTNetworkRequestStopped() {
   [touch.view touchesEnded:[NSSet setWithObject:touch] withEvent:eventUp];
 }
 
-- (void)sizeToFitKeyboard:(BOOL)keyboard animated:(BOOL)animated {
-  CGRect frame = self.frame;
-  if (keyboard) {// && frame.size.height > CONTENT_HEIGHT) {
-    frame.size.height -= KEYBOARD_HEIGHT;
-  } else {
-    frame.size.height += KEYBOARD_HEIGHT;
-  }
-
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-  self.frame = frame;
-  [UIView commitAnimations];
-}
-
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -599,6 +590,19 @@ void TTNetworkRequestStopped() {
   return nil;
 }
 
+- (void)scrollToBottom:(BOOL)animated {
+  NSUInteger sectionCount = [self numberOfSections];
+  if (sectionCount) {
+    NSUInteger rowCount = [self numberOfRowsInSection:0];
+    if (rowCount) {
+      NSUInteger ii[2] = {0, rowCount-1};
+      NSIndexPath* indexPath = [NSIndexPath indexPathWithIndexes:ii length:2];
+      [self scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom
+        animated:animated];
+    }
+  }
+}
+
 - (void)touchRowAtIndexPath:(NSIndexPath*)indexPath animated:(BOOL)animated {
   if (![self cellForRowAtIndexPath:indexPath]) {
     [self reloadData];
@@ -613,27 +617,6 @@ void TTNetworkRequestStopped() {
 
   if ([self.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
     [self.delegate tableView:self didSelectRowAtIndexPath:indexPath];
-  }
-}
-
-- (void)sizeToFitKeyboard:(BOOL)keyboard atIndexPath:(NSIndexPath*)indexPath
-    animated:(BOOL)animated {
-  [super sizeToFitKeyboard:keyboard animated:animated];
-  CGRect frame = self.frame;
-  if (keyboard) {// && frame.size.height > CONTENT_HEIGHT) {
-    frame.size.height -= KEYBOARD_HEIGHT;
-  } else {
-    frame.size.height += KEYBOARD_HEIGHT;
-  }
-
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-  self.frame = frame;
-  [UIView commitAnimations];
-
-  if (indexPath) {
-    [self scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop
-      animated:YES];
   }
 }
 
