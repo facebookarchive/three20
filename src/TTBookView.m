@@ -814,8 +814,6 @@ static const NSTimeInterval kOvershoot = 2;
   _pageEdges.right = _pageStartEdges.right + _animateEdges.right * pct;
   _pageEdges.top = _pageStartEdges.top + _animateEdges.top * pct;
   _pageEdges.bottom = _pageStartEdges.bottom + _animateEdges.bottom * pct;
-  //TTLOGEDGES(_pageEdges);
-
   [self setNeedsLayout];
 
   if (pct == 1.0) {
@@ -846,7 +844,6 @@ static const NSTimeInterval kOvershoot = 2;
   _pageEdges.right = _pageStartEdges.right + _animateEdges.right * pct;
   _pageEdges.top = _pageStartEdges.top + _animateEdges.top * pct;
   _pageEdges.bottom = _pageStartEdges.bottom + _animateEdges.bottom * pct;
-  //TTLOGEDGES(_pageEdges);
 
   [self setNeedsLayout];
 
@@ -923,8 +920,6 @@ static const NSTimeInterval kOvershoot = 2;
     _touchEdges = UIEdgeInsetsZero;
     for (UITouch* touch in [event allTouches]) {
       if (touch == _touch1 || touch == _touch2) {
-        // CGPoint pt = [self touchLocation:touch];
-        // TTLOG(@"MOVE %d/%d %f x %f", i, [[event allTouches] count], pt.x, pt.y);
         _touchEdges = [self stretchTouchEdges:_touchEdges toPoint:[self touchLocation:touch]];
       }
     }

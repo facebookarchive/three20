@@ -298,7 +298,7 @@ static CGFloat kTextViewInset = 19;
     _textView.text = text;
   }
   [self updatePlaceholder];
-  [self setNeedsLayout];
+  [self constrainToText];
 }
 
 - (void)setPlaceholder:(NSString*)placeholder {

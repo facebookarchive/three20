@@ -77,7 +77,7 @@
   if (self.loadedTimestamp) {
     return -[self.loadedTimestamp timeIntervalSinceNow] > TT_DEFAULT_CACHE_EXPIRATION_AGE;
   } else {
-    return YES;
+    return NO;
   }
 }
 

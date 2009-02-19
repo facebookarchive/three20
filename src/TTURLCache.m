@@ -78,9 +78,6 @@ static TTURLCache* gSharedCache = nil;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (NSString*)getCachePathForKey:(NSString*)key {
-  return [_cachePath stringByAppendingPathComponent:key];
-}
 
 - (void)expireImagesFromMemory {
   while (_mediaSortedList.count) {
@@ -118,7 +115,7 @@ static TTURLCache* gSharedCache = nil;
 }
 
 - (NSData*)loadDataFromDisk:(NSString*)url {
-  NSString* filePath = [self getCachePathForURL:url];
+  NSString* filePath = [self cachePathForURL:url];
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:filePath]) {
     return [[[NSData alloc] initWithContentsOfFile:filePath] autorelease];
@@ -128,7 +125,7 @@ static TTURLCache* gSharedCache = nil;
 }
 
 - (void)writeDataToDisk:(NSData*)imageData withType:(NSString*)type forKey:(NSString*)key {
-  NSString* filePath = [self getCachePathForKey:key];
+  NSString* filePath = [self cachePathForKey:key];
   NSFileManager* fm = [NSFileManager defaultManager];
   [fm createFileAtPath:filePath contents:imageData attributes:nil];
 }
@@ -152,13 +149,17 @@ static TTURLCache* gSharedCache = nil;
   ];
 }
 
-- (NSString*)getCachePathForURL:(NSString*)url {
+- (NSString*)cachePathForURL:(NSString*)url {
   NSString* key = [self keyForURL:url];
-  return [self getCachePathForKey:key];
+  return [self cachePathForKey:key];
+}
+
+- (NSString*)cachePathForKey:(NSString*)key {
+  return [_cachePath stringByAppendingPathComponent:key];
 }
 
 - (BOOL)hasDataForURL:(NSString*)url {
-  NSString* filePath = [self getCachePathForURL:url];
+  NSString* filePath = [self cachePathForURL:url];
   NSFileManager* fm = [NSFileManager defaultManager];
   return [fm fileExistsAtPath:filePath];
 }
@@ -175,7 +176,7 @@ static TTURLCache* gSharedCache = nil;
 
 - (NSData*)getDataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge
     timestamp:(NSDate**)timestamp {
-  NSString* filePath = [self getCachePathForKey:key];
+  NSString* filePath = [self cachePathForKey:key];
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:filePath]) {
     NSDictionary* attrs = [fm attributesOfItemAtPath:filePath error:nil];
@@ -271,10 +272,10 @@ static TTURLCache* gSharedCache = nil;
     [_mediaSortedList addObject:newKey];
     [_mediaCache setObject:media forKey:newKey];
   }
-  NSString* oldPath = [self getCachePathForURL:oldKey];
+  NSString* oldPath = [self cachePathForURL:oldKey];
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:oldPath]) {
-    NSString* newPath = [self getCachePathForURL:newKey];
+    NSString* newPath = [self cachePathForURL:newKey];
     [fm moveItemAtPath:oldPath toPath:newPath error:nil];
   }
 }
@@ -285,7 +286,7 @@ static TTURLCache* gSharedCache = nil;
   [_mediaCache removeObjectForKey:key];
   
   if (fromDisk) {
-    NSString* filePath = [self getCachePathForKey:key];
+    NSString* filePath = [self cachePathForKey:key];
     NSFileManager* fm = [NSFileManager defaultManager];
     if (filePath && [fm fileExistsAtPath:filePath]) {
       [fm removeItemAtPath:filePath error:nil];
@@ -294,7 +295,7 @@ static TTURLCache* gSharedCache = nil;
 }
 
 - (void)removeKey:(NSString*)key {
-  NSString* filePath = [self getCachePathForKey:key];
+  NSString* filePath = [self cachePathForKey:key];
   NSFileManager* fm = [NSFileManager defaultManager];
   if (filePath && [fm fileExistsAtPath:filePath]) {
     [fm removeItemAtPath:filePath error:nil];
@@ -319,7 +320,7 @@ static TTURLCache* gSharedCache = nil;
 }
 
 - (void)invalidateKey:(NSString*)key {
-  NSString* filePath = [self getCachePathForKey:key];
+  NSString* filePath = [self cachePathForKey:key];
   NSFileManager* fm = [NSFileManager defaultManager];
   if (filePath && [fm fileExistsAtPath:filePath]) {
     NSDate* invalidDate = [NSDate dateWithTimeIntervalSinceNow:-_invalidationAge];

@@ -13,7 +13,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 @synthesize delegate = _delegate, handler = _handler, handlerDelegate = _handlerDelegate,
   url = _url, httpMethod = _httpMethod, httpBody = _httpBody, params = _params,
   contentType = _contentType, cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge,
-  cacheKey = _cacheKey, timestamp = _timestamp, loading = _loading,
+  cacheKey = _cacheKey, timestamp = _timestamp, userInfo = _userInfo, loading = _loading,
   shouldHandleCookies = _shouldHandleCookies, shouldConvertToMedia = _shouldConvertToMedia,
   responseFromCache = _responseFromCache;
 
@@ -46,6 +46,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _cachePolicy = TTURLRequestCachePolicyAny;
     _shouldConvertToMedia = NO;
     _cacheExpirationAge = 0;
+    _timestamp = nil;
+    _cacheKey = nil;
+    _userInfo = nil;
     _loading = NO;
     _shouldHandleCookies = YES;
     _shouldConvertToMedia = NO;
@@ -61,6 +64,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   [_params release];
   [_contentType release];
   [_handler release];
+  [_timestamp release];
+  [_cacheKey release];
+  [_userInfo release];
   [super dealloc];
 }
 

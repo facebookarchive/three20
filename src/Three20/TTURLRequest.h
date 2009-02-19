@@ -16,6 +16,7 @@
   NSTimeInterval _cacheExpirationAge;
   NSString* _cacheKey;
   NSDate* _timestamp;
+  id _userInfo;
   BOOL _loading;
   BOOL _shouldHandleCookies;
   BOOL _shouldConvertToMedia;
@@ -59,6 +60,8 @@
 @property(nonatomic,retain) NSString* cacheKey;
 
 @property(nonatomic,retain) NSDate* timestamp;
+
+@property(nonatomic,retain) id userInfo;
 
 @property(nonatomic) BOOL loading;
 

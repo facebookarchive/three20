@@ -70,7 +70,12 @@
 /**
  * Gets the path in the cache where a URL may be stored.
  */
-- (NSString*)getCachePathForURL:(NSString*)url;
+- (NSString*)cachePathForURL:(NSString*)url;
+
+/**
+ * Gets the path in the cache where a key may be stored.
+ */
+- (NSString*)cachePathForKey:(NSString*)key;
 
 /**
  * Gets the data for a URL from the cache if it exists.
