@@ -121,6 +121,10 @@
   return [NSString stringWithFormat:@"%@", object];
 }
 
+- (NSIndexPath*)tableView:(UITableView*)tableView indexPathForObject:(id)object {
+  return nil;
+}
+
 - (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
     forRowAtIndexPath:(NSIndexPath*)indexPath {
 }
@@ -213,6 +217,14 @@
   return [_items objectAtIndex:indexPath.row];
 }
 
+- (NSIndexPath*)tableView:(UITableView*)tableView indexPathForObject:(id)object {
+  NSUInteger index = [_items indexOfObject:object];
+  if (index != NSNotFound) {
+    return [NSIndexPath indexPathForRow:index inSection:0];
+  }
+  return nil;
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -300,6 +312,25 @@
   } else {
     return [_items objectAtIndex:indexPath.row];
   }
+}
+
+- (NSIndexPath*)tableView:(UITableView*)tableView indexPathForObject:(id)object {
+  if (_sections) {
+    for (int i = 0; i < _items.count; ++i) {
+      NSMutableArray* section = [_items objectAtIndex:i];
+      NSUInteger index = [section indexOfObject:object];
+      if (index != NSNotFound) {
+        return [NSIndexPath indexPathForRow:index inSection:i];
+      }
+    }
+  } else {
+    NSUInteger index = [_items indexOfObject:object];
+    if (index != NSNotFound) {
+      return [NSIndexPath indexPathForRow:index inSection:0];
+    }
+  }
+
+  return nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
