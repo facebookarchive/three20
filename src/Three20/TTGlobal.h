@@ -1,6 +1,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Three20/TT+NSObject.h"
+#import "Three20/TT+UIColor.h"
+#import "Three20/TT+UIImage.h"
 #import "Three20/TT+UIViewController.h"
+#import "Three20/TT+UIView.h"
+#import "Three20/TT+UITableView.h"
+#import "Three20/TT+UIWebView.h"
+#import "Three20/TT+UIToolbar.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Logging Helpers
@@ -127,124 +134,3 @@ void TTNetworkRequestStarted();
  * The status bar activity indicator will be spinning while there are active requests.
  */
 void TTNetworkRequestStopped();
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface NSObject (TTCategory)
-
-/**
- * Additional performSelector signatures that support up to 7 arguments.
- */
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3;
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
-  withObject:(id)p4;
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
-  withObject:(id)p4 withObject:(id)p5;
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
-  withObject:(id)p4 withObject:(id)p5 withObject:(id)p6;
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
-  withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 withObject:(id)p7;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface UIView (TTCategory)
-
-@property(nonatomic) CGFloat left;
-@property(nonatomic) CGFloat top;
-@property(nonatomic,readonly) CGFloat right;
-@property(nonatomic,readonly) CGFloat bottom;
-
-@property(nonatomic) CGFloat width;
-@property(nonatomic) CGFloat height;
-
-@property(nonatomic,readonly) CGFloat screenX;
-@property(nonatomic,readonly) CGFloat screenY;
-
-@property(nonatomic,readonly) CGFloat screenViewX;
-@property(nonatomic,readonly) CGFloat screenViewY;
-
-@property(nonatomic,readonly) CGFloat orientationWidth;
-@property(nonatomic,readonly) CGFloat orientationHeight;
-
-- (UIScrollView*)findFirstScrollView;
-
-- (UIView*)firstViewOfClass:(Class)cls;
-
-- (UIView*)firstParentOfClass:(Class)cls;
-
-- (UIView*)findChildWithDescendant:(UIView*)descendant;
-
-/**
- *
- */
-- (void)removeSubviews;
-
-/**
- * WARNING: This depends on undocumented APIs and may be fragile.  For testing only.
- */
-- (void)simulateTapAtPoint:(CGPoint)location;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface UITableView (TTCategory)
-
-/**
- * The view that contains the "index" along the right side of the table.
- */
-@property(nonatomic,readonly) UIView* indexView;
-
-- (void)touchRowAtIndexPath:(NSIndexPath*)indexPath animated:(BOOL)animated;
-
-- (void)scrollToBottom:(BOOL)animated;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface UIWebView (TTCategory)
-
-/**
- * Gets the frame of a DOM element in the page.
- *
- * @query A JavaScript expression that evaluates to a single DOM element.
- */
-- (CGRect)frameOfElement:(NSString*)query;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface UIToolbar (TTCategory)
-
-- (UIBarButtonItem*)itemWithTag:(NSInteger)tag;
-
-- (void)replaceItemWithTag:(NSInteger)tag withItem:(UIBarButtonItem*)item;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface UIColor (TTCategory)
-
-- (UIColor*)transformHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd;
-
-- (UIColor*)highlight;
-
-- (UIColor*)shadow;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface UIImage (TTCategory)
-
-/*
- * Resizes and/or rotates an image.
- */
-- (UIImage*)transformWidth:(CGFloat)width height:(CGFloat)height rotate:(BOOL)rotate;
-
-@end
