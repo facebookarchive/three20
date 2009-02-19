@@ -229,7 +229,7 @@ static TTAppearance* gAppearance = nil;
 
 - (void)drawRoundInnerShadow:(CGRect)rect fill:(UIColor**)fillColors fillCount:(int)fillCount
     stroke:(UIColor*)strokeColor radius:(CGFloat)radius {
-  UIImage* image = [[UIImage imageNamed:@"ttimages/textBox.png"]
+  UIImage* image = [[UIImage imageNamed:@"Three20.bundle/images/textBox.png"]
     stretchableImageWithLeftCapWidth:15 topCapHeight:15];
   [image drawInRect:rect];
 

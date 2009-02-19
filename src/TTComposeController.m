@@ -119,21 +119,21 @@
     _delegate = nil;
     _dataSource = nil;
     _fields = [[NSArray alloc] initWithObjects:
-      [[[TTComposerRecipientField alloc] initWithTitle:NSLocalizedString(@"To:", @"")
-        required:YES] autorelease],
-      [[[TTComposerSubjectField alloc] initWithTitle:NSLocalizedString(@"Subject:", @"")
-        required:NO] autorelease],
+      [[[TTComposerRecipientField alloc] initWithTitle:
+        TTLocalizedString(@"To:", @"") required:YES] autorelease],
+      [[[TTComposerSubjectField alloc] initWithTitle:
+        TTLocalizedString(@"Subject:", @"") required:NO] autorelease],
       nil];
     _fieldViews = nil;
     _initialRecipients = nil;
     
-    self.title = NSLocalizedString(@"New Message", @"");
+    self.title = TTLocalizedString(@"New Message", @"");
 
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
-      NSLocalizedString(@"Cancel", @"")
+      TTLocalizedString(@"Cancel", @"")
       style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
-      NSLocalizedString(@"Send", @"")
+      TTLocalizedString(@"Send", @"")
       style:UIBarButtonItemStyleDone target:self action:@selector(send)] autorelease];
     self.navigationItem.rightBarButtonItem.enabled = NO;
   }
@@ -184,11 +184,11 @@
 - (void)cancel {
   if (_textEditor.text.length && self.contentState == TTContentReady) {
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
-      NSLocalizedString(@"Are you sure?", @"")
-      message:NSLocalizedString(@"Are you sure you want to cancel?", @"")
+      TTLocalizedString(@"Are you sure?", @"")
+      message:TTLocalizedString(@"Are you sure you want to cancel?", @"")
       delegate:self
-      cancelButtonTitle:NSLocalizedString(@"Yes", @"")
-      otherButtonTitles:NSLocalizedString(@"No", @""), nil] autorelease];
+      cancelButtonTitle:TTLocalizedString(@"Yes", @"")
+      otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
     [cancelAlertView show];
   } else {
     [self dismiss];

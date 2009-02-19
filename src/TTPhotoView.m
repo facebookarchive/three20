@@ -151,7 +151,7 @@ static const CGFloat kMaxCaptionHeight = 100;
 
 - (void)imageView:(TTImageView*)imageView loadDidFailWithError:(NSError*)error {
   if (self.url == [_photo urlForVersion:TTPhotoVersionLarge]) {
-    [self showStatus:NSLocalizedString(@"This photo is not available.", @"")];
+    [self showStatus:TTLocalizedString(@"This photo is not available.", @"")];
   } else {
     [self showProgress:0];
   }

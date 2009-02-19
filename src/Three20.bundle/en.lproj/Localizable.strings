@@ -1,0 +1,51 @@
+﻿/* Current page in photo browser (1 of 10) */
+"%d of %d" = "%1$d of %2$d";
+
+"Are you sure you want to cancel?" = "Are you sure you want to cancel?";
+
+"Are you sure?" = "Are you sure?";
+
+"Cancel" = "Cancel";
+
+"Done" = "Done";
+
+"Error" = "Error";
+
+"Load More Photos..." = "Load More Photos...";
+
+"Loading..." = "Loading...";
+
+"New Message" = "New Message";
+
+"No" = "No";
+
+"No Photos" = "No Photos";
+
+/* Title for back button that returns to photo browser */
+"Photo" = "Photo";
+
+"Search" = "Search";
+
+/* See all photo thumbnails */
+"See All" = "See All";
+
+"Send" = "Send";
+
+"Showing %d of %d Photos" = "Showing %1$d of %2$d Photos";
+
+"Sorry, an error has occurred." = "Sorry, an error has occurred.";
+
+"Subject:" = "Subject:";
+
+"This photo is not available." = "This photo is not available.";
+
+"This photo set contains no photos." = "This photo set contains no photos.";
+
+"This photo set could not be loaded." = "This photo set could not be loaded.";
+
+"To:" = "To:";
+
+"Updating..." = "Updating...";
+
+"Yes" = "Yes";
+

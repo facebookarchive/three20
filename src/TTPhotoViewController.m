@@ -34,11 +34,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
     _slideshowTimer = nil;
     _loadTimer = nil;
     _delayLoad = NO;
-    self.defaultImage = [UIImage imageNamed:@"ttimages/photoDefault.png"];
+    self.defaultImage = [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
     
     self.hidesBottomBarWhenPushed = YES;
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
-      NSLocalizedString(@"Photo", @"Title for back button that returns to photo browser")
+      TTLocalizedString(@"Photo", @"Title for back button that returns to photo browser")
       style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
   }
   return self;
@@ -69,7 +69,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     self.title = _photoSource.title;
   } else {
     self.title = [NSString stringWithFormat:
-      NSLocalizedString(@"%d of %d", @"Current page in photo browser (1 of 10)"),
+      TTLocalizedString(@"%d of %d", @"Current page in photo browser (1 of 10)"),
       _centerPhotoIndex+1, _photoSource.numberOfPhotos];
   }
 }
@@ -200,7 +200,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     _thumbsController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
     initWithCustomView:[[[UIView alloc] initWithFrame:CGRectZero] autorelease]];
     _thumbsController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-    initWithTitle:NSLocalizedString(@"Done", @"") style:UIBarButtonItemStyleBordered
+    initWithTitle:TTLocalizedString(@"Done", @"") style:UIBarButtonItemStyleBordered
     target:self action:@selector(hideThumbnails)];
   }
   
@@ -276,10 +276,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
   
   
   _nextButton = [[UIBarButtonItem alloc] initWithImage:
-    [UIImage imageNamed:@"ttimages/nextIcon.png"]
+    [UIImage imageNamed:@"Three20.bundle/images/nextIcon.png"]
      style:UIBarButtonItemStylePlain target:self action:@selector(nextAction)];
   _previousButton = [[UIBarButtonItem alloc] initWithImage:
-    [UIImage imageNamed:@"ttimages/previousIcon.png"]
+    [UIImage imageNamed:@"Three20.bundle/images/previousIcon.png"]
      style:UIBarButtonItemStylePlain target:self action:@selector(previousAction)];
 
   UIBarButtonItem* playButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
@@ -388,7 +388,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   if (![self.previousViewController isKindOfClass:[TTThumbsViewController class]]) {
     if (_photoSource.numberOfPhotos > 1) {
       self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-        initWithTitle:NSLocalizedString(@"See All", @"See all photo thumbnails")
+        initWithTitle:TTLocalizedString(@"See All", @"See all photo thumbnails")
         style:UIBarButtonItemStyleBordered target:self action:@selector(showThumbnails)];
     } else {
       self.navigationItem.rightBarButtonItem = nil;
@@ -411,9 +411,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
   } else if (self.contentState & TTContentActivity) {
     [self showProgress:0];
   } else if (self.contentState & TTContentError) {
-    [self showStatus:NSLocalizedString(@"This photo set could not be loaded.", "")];
+    [self showStatus:TTLocalizedString(@"This photo set could not be loaded.", @"")];
   } else if (self.contentState & TTContentNone) {
-    [self showStatus:NSLocalizedString(@"This photo set contains no photos.", "")];
+    [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
   }
 
   [self updateTitle];
@@ -435,31 +435,31 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (NSString*)titleForActivity {
-  return NSLocalizedString(@"Loading...", @"");
+  return TTLocalizedString(@"Loading...", @"");
 }
 
 - (UIImage*)imageForNoContent {
-  return [UIImage imageNamed:@"ttimages/photoDefault.png"];
+  return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
 }
 
 - (NSString*)titleForNoContent {
-  return  NSLocalizedString(@"No Photos", @"");
+  return  TTLocalizedString(@"No Photos", @"");
 }
 
 - (NSString*)subtitleForNoContent {
-  return NSLocalizedString(@"This photo set contains no photos.", @"");
+  return TTLocalizedString(@"This photo set contains no photos.", @"");
 }
 
 - (UIImage*)imageForError:(NSError*)error {
-  return [UIImage imageNamed:@"ttimages/photoDefault.png"];
+  return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
 }
 
 - (NSString*)titleForError:(NSError*)error {
-  return NSLocalizedString(@"Error", @"");
+  return TTLocalizedString(@"Error", @"");
 }
 
 - (NSString*)subtitleForError:(NSError*)error {
-  return NSLocalizedString(@"This photo set could not be loaded.", @"");
+  return TTLocalizedString(@"This photo set could not be loaded.", @"");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

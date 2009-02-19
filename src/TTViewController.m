@@ -361,9 +361,9 @@
 
 - (NSString*)titleForActivity {
   if (_contentState & TTContentReady) {
-    return NSLocalizedString(@"Updating...", @"");
+    return TTLocalizedString(@"Updating...", @"");
   } else {
-    return NSLocalizedString(@"Loading...", @"");
+    return TTLocalizedString(@"Loading...", @"");
   }
 }
 
@@ -384,11 +384,11 @@
 }
 
 - (NSString*)titleForError:(NSError*)error {
-  return NSLocalizedString(@"Error", @"");
+  return TTLocalizedString(@"Error", @"");
 }
 
 - (NSString*)subtitleForError:(NSError*)error {
-  return NSLocalizedString(@"Sorry, an error has occurred.", @"");
+  return TTLocalizedString(@"Sorry, an error has occurred.", @"");
 }
 
 - (void)changeNavigationBarStyle:(UIBarStyle)barStyle barColor:(UIColor*)barColor

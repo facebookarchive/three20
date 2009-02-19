@@ -134,3 +134,8 @@ void TTNetworkRequestStarted();
  * The status bar activity indicator will be spinning while there are active requests.
  */
 void TTNetworkRequestStopped();
+
+/**
+ * Returns a localized string from the Three20 bundle.
+ */
+NSString* TTLocalizedString(NSString* key, NSString* comment);

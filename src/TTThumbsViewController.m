@@ -162,27 +162,27 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 - (UIImage*)imageForNoContent {
-  return [UIImage imageNamed:@"ttimages/photoDefault.png"];
+  return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
 }
 
 - (NSString*)titleForNoContent {
-  return  NSLocalizedString(@"No Photos", @"");
+  return  TTLocalizedString(@"No Photos", @"");
 }
 
 - (NSString*)subtitleForNoContent {
-  return NSLocalizedString(@"This photo set contains no photos.", @"");
+  return TTLocalizedString(@"This photo set contains no photos.", @"");
 }
 
 - (UIImage*)imageForError:(NSError*)error {
-  return [UIImage imageNamed:@"ttimages/photoDefault.png"];
+  return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
 }
 
 - (NSString*)titleForError:(NSError*)error {
-  return NSLocalizedString(@"Error", @"");
+  return TTLocalizedString(@"Error", @"");
 }
 
 - (NSString*)subtitleForError:(NSError*)error {
-  return NSLocalizedString(@"This photo set could not be loaded.", @"");
+  return TTLocalizedString(@"This photo set could not be loaded.", @"");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,9 +215,9 @@ static CGFloat kThumbnailRowHeight = 79;
         reuseIdentifier:moreCellId] autorelease];
     }
     
-    NSString* title = NSLocalizedString(@"Load More Photos...", @"");
+    NSString* title = TTLocalizedString(@"Load More Photos...", @"");
     NSString* subtitle = [NSString stringWithFormat:
-      NSLocalizedString(@"Showing %d of %d Photos", @""), _photoSource.maxPhotoIndex+1,
+      TTLocalizedString(@"Showing %d of %d Photos", @""), _photoSource.maxPhotoIndex+1,
       _photoSource.numberOfPhotos];
 
     cell.object = [[[TTMoreButtonTableField alloc] initWithText:title subtitle:subtitle]

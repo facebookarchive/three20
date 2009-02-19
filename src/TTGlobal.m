@@ -68,3 +68,14 @@ void TTNetworkRequestStopped() {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
   }
 }
+
+NSString* TTLocalizedString(NSString* key, NSString* comment) {
+  static NSBundle* bundle = nil;
+  if (!bundle) {
+    NSString* path = [[[NSBundle mainBundle] resourcePath]
+          stringByAppendingPathComponent:@"Three20.bundle"];
+    bundle = [NSBundle bundleWithPath:path];
+  }
+  
+  return [bundle localizedStringForKey:key value:key table:nil];
+}

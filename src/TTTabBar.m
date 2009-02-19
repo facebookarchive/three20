@@ -46,7 +46,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
     self.contentMode = UIViewContentModeLeft;
     
     if (_style == TTTabBarStyleButtons) {
-      self.tabImage = [[UIImage imageNamed:@"ttimages/tabButton.png"]
+      self.tabImage = [[UIImage imageNamed:@"Three20.bundle/images/tabButton.png"]
         stretchableImageWithLeftCapWidth:12 topCapHeight:0];
             
       _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
@@ -57,21 +57,21 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
       [self addSubview:_scrollView];
 
       _overflowLeft = [[UIImageView alloc] initWithImage:
-        [UIImage imageNamed:@"ttimages/overflowLeft.png"]];
+        [UIImage imageNamed:@"Three20.bundle/images/overflowLeft.png"]];
       _overflowRight.hidden = YES;
       [self addSubview:_overflowLeft];
       _overflowRight = [[UIImageView alloc] initWithImage:
-        [UIImage imageNamed:@"ttimages/overflowRight.png"]];
+        [UIImage imageNamed:@"Three20.bundle/images/overflowRight.png"]];
       _overflowRight.hidden = YES;
       [self addSubview:_overflowRight];
     } else {
       if (_style == TTTabBarStyleLight) {
-        self.tabImage = [[UIImage imageNamed:@"ttimages/lightTab.png"]
+        self.tabImage = [[UIImage imageNamed:@"Three20.bundle/images/lightTab.png"]
           stretchableImageWithLeftCapWidth:5 topCapHeight:0];
 
         self.backgroundColor = RGBCOLOR(237, 239, 244);
       } else if (_style == TTTabBarStyleDark) {
-        self.tabImage = [[UIImage imageNamed:@"ttimages/darkTab.png"]
+        self.tabImage = [[UIImage imageNamed:@"Three20.bundle/images/darkTab.png"]
                   stretchableImageWithLeftCapWidth:5 topCapHeight:0];
 
         self.backgroundColor = RGBCOLOR(110, 132, 162);
@@ -394,7 +394,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 - (void)updateBadgeNumber {
   if (!_badgeImage && _tabItem.badgeNumber) {
     _badgeImage = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _badgeImage.image = [[UIImage imageNamed:@"ttimages/badge.png"]
+    _badgeImage.image = [[UIImage imageNamed:@"Three20.bundle/images/badge.png"]
       stretchableImageWithLeftCapWidth:12 topCapHeight:15];
     [self addSubview:_badgeImage];
     

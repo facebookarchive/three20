@@ -28,10 +28,10 @@ static const CGFloat kIndexViewMargin = 4;
     [self addSubview:_boxView];
     
     _searchField = [[TTSearchTextField alloc] initWithFrame:CGRectZero];
-    _searchField.placeholder = NSLocalizedString(@"Search", @"");
+    _searchField.placeholder = TTLocalizedString(@"Search", @"");
         
     UIImageView* iconView = [[[UIImageView alloc] initWithImage:
-      [UIImage imageNamed:@"ttimages/searchIcon.png"]] autorelease];
+      [UIImage imageNamed:@"Three20.bundle/images/searchIcon.png"]] autorelease];
     [iconView sizeToFit];
     iconView.contentMode = UIViewContentModeLeft;
     iconView.frame = CGRectInset(iconView.frame, -floor(kMarginX/2), 0);
