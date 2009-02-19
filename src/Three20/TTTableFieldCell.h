@@ -1,8 +1,9 @@
 #import "Three20/TTTableViewCell.h"
 
-@class TTImageView, TTErrorView;
+@class TTTableField, TTImageView, TTErrorView;
 
 @interface TTTableFieldCell : TTTableViewCell {
+  TTTableField* _field;
   UILabel* _label;
 }
 @end
@@ -48,6 +49,7 @@
 @end
 
 @interface TTErrorTableFieldCell : TTTableViewCell {
+  TTTableField* _field;
   TTErrorView* _errorView;
 }
 @end
@@ -61,6 +63,7 @@
 @end
 
 @interface TTTextViewTableFieldCell : TTTableViewCell <UITextViewDelegate> {
+  TTTableField* _field;
   UITextView* _textView;
 }
 

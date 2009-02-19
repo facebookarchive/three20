@@ -1,7 +1,6 @@
 #import "Three20/TTGlobal.h"
 
 @interface TTTableViewCell : UITableViewCell {
-  id object;
 }
 
 @property(nonatomic,retain) id object;
