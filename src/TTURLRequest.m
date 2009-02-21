@@ -193,6 +193,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 - (BOOL)send {
+  if (_parameters) {
+    TTLOG(@"SEND %@ %@", self.url, self.parameters);
+  }
   return [[TTURLRequestQueue mainQueue] sendRequest:self];
 }
 

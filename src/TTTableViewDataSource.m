@@ -52,7 +52,7 @@
 
 - (NSMutableArray*)delegates {
   if (!_delegates) {
-    _delegates = [[NSMutableArray alloc] init];
+    _delegates = TTCreateNonRetainingArray();
   }
   return _delegates;
 }
