@@ -58,17 +58,7 @@
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:a]
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Animation
-
-/**
- * The standard duration for transition animations.
- */
-#define TT_TRANSITION_DURATION 0.3
-
-#define TT_FLIP_TRANSITION_DURATION 0.7
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// URL Cache
+// Networking
 
 typedef enum {
    TTURLRequestCachePolicyNone = 0,
@@ -78,9 +68,18 @@ typedef enum {
    TTURLRequestCachePolicyAny
     = (TTURLRequestCachePolicyMemory|TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyNetwork),
    TTURLRequestCachePolicyNoCache = 8,    
+   TTURLRequestCachePolicyDefault = TTURLRequestCachePolicyAny,
 } TTURLRequestCachePolicy;
 
-#define TT_DEFAULT_CACHE_EXPIRATION_AGE (60*60*24) // 1 day
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Animation
+
+/**
+ * The standard duration for transition animations.
+ */
+#define TT_TRANSITION_DURATION 0.3
+
+#define TT_FLIP_TRANSITION_DURATION 0.7
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

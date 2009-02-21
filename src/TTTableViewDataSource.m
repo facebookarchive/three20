@@ -1,6 +1,7 @@
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableField.h"
 #import "Three20/TTTableFieldCell.h"
+#import "Three20/TTURLCache.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -75,7 +76,7 @@
 
 - (BOOL)needsReload {
   if (self.loadedTime) {
-    return -[self.loadedTime timeIntervalSinceNow] > TT_DEFAULT_CACHE_EXPIRATION_AGE;
+    return -[self.loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
   } else {
     return NO;
   }
@@ -132,7 +133,8 @@
 - (void)tableView:(UITableView*)tableView search:(NSString*)text {
 }
 
-- (void)loadFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex fromCache:(BOOL)fromCache {
+- (void)loadFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
+  cachePolicy:(TTURLRequestCachePolicy)cachePolicy {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

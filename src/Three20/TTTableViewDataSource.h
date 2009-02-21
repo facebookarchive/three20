@@ -24,7 +24,8 @@
 
 - (void)tableView:(UITableView*)tableView search:(NSString*)text;
 
-- (void)loadFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex fromCache:(BOOL)fromCache;
+- (void)loadFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
+  cachePolicy:(TTURLRequestCachePolicy)cachePolicy;
 
 @end
 

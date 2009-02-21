@@ -61,8 +61,8 @@ typedef enum {
  * @param fromIndex The starting index.
  * @param toIndex The ending index, or -1 to load the remainder of photos.
  */
-- (void)loadPhotos:(TTURLRequest*)request fromIndex:(NSInteger)fromIndex
-  toIndex:(NSInteger)toIndex;
+- (void)loadPhotosFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
+  cachePolicy:(TTURLRequestCachePolicy)cachePolicy;
 
 @end
 

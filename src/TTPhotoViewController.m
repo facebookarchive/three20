@@ -124,8 +124,8 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)loadPhotosFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
   if (!_photoSource.loading) {
-    TTURLRequest* request = [TTURLRequest request];
-    [_photoSource loadPhotos:request fromIndex:fromIndex toIndex:toIndex];
+    [_photoSource loadPhotosFromIndex:fromIndex toIndex:toIndex
+      cachePolicy:TTURLRequestCachePolicyDefault];
   }
 }
 

@@ -14,11 +14,10 @@ typedef enum {
 @interface MockPhotoSource : NSObject <TTPhotoSource> {
   MockPhotoSourceType _type;
   NSMutableArray* _delegates;
-  TTURLRequest* _request;
   NSString* _title;
   NSMutableArray* _photos;
   NSArray* _tempPhotos;
-  TTInvalidState _isInvalid;
+  TTInvalidState _invalid;
   NSTimer* _fakeLoadTimer;
 }
 

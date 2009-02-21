@@ -12,7 +12,7 @@ static NSInteger kColumnCount = 4;
 static NSInteger kPageSize = 60;
 static CGFloat kThumbnailRowHeight = 79;
 
-//////////////////////////////////////// ///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTThumbsViewController
 
@@ -38,15 +38,14 @@ static CGFloat kThumbnailRowHeight = 79;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)loadPhotosFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex
-    fromCache:(BOOL)fromCache {
-  TTURLRequest* request = [TTURLRequest request];
-  request.cachePolicy = fromCache ? TTURLRequestCachePolicyAny : TTURLRequestCachePolicyNetwork;
-  [_photoSource loadPhotos:request fromIndex:fromIndex toIndex:toIndex];
+    forceReload:(BOOL)forceReload {
+  [_photoSource loadPhotosFromIndex:fromIndex toIndex:toIndex
+    cachePolicy:forceReload ? TTURLRequestCachePolicyNetwork : TTURLRequestCachePolicyDefault];
 }
 
-- (void)loadNextPage:(BOOL)fromCache {
+- (void)loadNextPage:(BOOL)forceReload {
   NSInteger maxIndex = _photoSource.maxPhotoIndex;
-  [self loadPhotosFromIndex:maxIndex+1 toIndex:maxIndex+1+kPageSize fromCache:fromCache];
+  [self loadPhotosFromIndex:maxIndex+1 toIndex:maxIndex+1+kPageSize forceReload:forceReload];
 }
 
 - (void)suspendLoadingThumbnails:(BOOL)suspended {
@@ -138,7 +137,7 @@ static CGFloat kThumbnailRowHeight = 79;
   if (_photoSource.loading) {
     self.contentState = TTContentActivity;
   } else if (_photoSource.invalid) {
-    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX fromCache:YES];
+    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:NO];
   } else if (_photoSource.numberOfPhotos) {
     self.contentState = TTContentReady;
   } else {
@@ -148,17 +147,12 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (void)refreshContent {
   if (_photoSource.invalid && !_photoSource.loading) {
-    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX fromCache:NO];
+    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:YES];
   }
 }
 
 - (void)reloadContent {
-  [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX fromCache:NO];
-}
-
-- (void)updateView {
-  self.navigationItem.title = _photoSource.title;
-  [super updateView];
+  [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:YES];
 }
 
 - (UIImage*)imageForNoContent {
@@ -310,6 +304,7 @@ static CGFloat kThumbnailRowHeight = 79;
     _photoSource = [photoSource retain];
     [_photoSource addDelegate:self];
 
+    self.navigationItem.title = _photoSource.title;
     [self invalidate];
   }
 }

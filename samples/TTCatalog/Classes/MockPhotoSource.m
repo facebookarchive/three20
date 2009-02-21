@@ -23,7 +23,7 @@
     }
 
     if (_type & MockPhotoSourceDelayed || photos2) {
-      _isInvalid = TTInvalid;
+      _invalid = TTInvalid;
     } else {
       [self performSelector:@selector(fakeLoadReady)];
     }
@@ -42,11 +42,9 @@
 
 - (void)fakeLoadReady {
   _fakeLoadTimer = nil;
-  _isInvalid = TTValid;
+  _invalid = TTValid;
 
   if (_type & MockPhotoSourceLoadError) {
-    [_request.delegate request:_request didFailWithError:nil];
-
     for (id<TTPhotoSourceDelegate> delegate in _delegates) {
       [delegate photoSource:self didFailWithError:nil];
     }
@@ -75,29 +73,24 @@
       }
     }
 
-    [_request.delegate request:_request loadedData:nil media:nil];
-
     for (id<TTPhotoSourceDelegate> delegate in _delegates) {
       [delegate photoSourceLoaded:self];
     }
   }
-  
-  [_request release];
-  _request = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTObject
 
-- (TTInvalidState)isInvalid {
-  return _isInvalid;
+- (TTInvalidState)invalid {
+  return _invalid;
 }
 
-- (void)setIsInvalid:(TTInvalidState)state {
-  _isInvalid = state;
+- (void)setInvalid:(TTInvalidState)state {
+  _invalid = state;
 }
 
-- (NSString*) viewURL {
+- (NSString*)viewURL {
   return nil;
 }
 
@@ -137,12 +130,9 @@
   }
 }
 
-- (void)loadPhotos:(TTURLRequest*)request fromIndex:(NSInteger)fromIndex
-    toIndex:(NSInteger)toIndex {
-  if (request.cachePolicy & TTURLRequestCachePolicyNetwork) {
-    _request = [request retain];
-    [_request.delegate requestLoading:_request];
-    
+- (void)loadPhotosFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
+    cachePolicy:(TTURLRequestCachePolicy)cachePolicy {
+  if (cachePolicy & TTURLRequestCachePolicyNetwork) {
     for (id<TTPhotoSourceDelegate> delegate in _delegates) {
       [delegate photoSourceLoading:self];
     }
@@ -197,11 +187,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTObject
 
-- (TTInvalidState)isInvalid {
+- (TTInvalidState)invalid {
   return TTValid;
 }
 
-- (void)setIsInvalid:(TTInvalidState)state {
+- (void)setInvalid:(TTInvalidState)state {
 }
 
 - (NSString*)viewURL {

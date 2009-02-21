@@ -26,8 +26,8 @@
 		BE80E3A70EAF108500743358 /* ImageTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3A60EAF108500743358 /* ImageTest1Controller.m */; };
 		BE80E3B60EAF116700743358 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE80E3B50EAF116700743358 /* Icon.png */; };
 		BE8C0F7D0F2018C600EB0E98 /* YouTubeTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */; };
-		BEB5220D0F32AE7100F51876 /* ttimages in Resources */ = {isa = PBXBuildFile; fileRef = BEB5220A0F32AE7100F51876 /* ttimages */; };
 		BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BECB1CC10F46AE9600AE5B52 /* person.jpg */; };
+		BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */; };
 		BEE0FDDB0EB2A6850052C05F /* PhotoTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */; };
 		BEE341B40F480C76008C826E /* ComposerTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341B30F480C76008C826E /* ComposerTestController.m */; };
 		BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE346BB0F48F15C008C826E /* SearchTestController.m */; };
@@ -87,8 +87,8 @@
 		BE80E3B50EAF116700743358 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BE8C0F7B0F2018C600EB0E98 /* YouTubeTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeTestController.h; sourceTree = "<group>"; };
 		BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeTestController.m; sourceTree = "<group>"; };
-		BEB5220A0F32AE7100F51876 /* ttimages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ttimages; path = ../../resources/ttimages; sourceTree = SOURCE_ROOT; };
 		BECB1CC10F46AE9600AE5B52 /* person.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = person.jpg; sourceTree = "<group>"; };
+		BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../../src/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		BEE0FDD90EB2A6850052C05F /* PhotoTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest1Controller.h; sourceTree = "<group>"; };
 		BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest1Controller.m; sourceTree = "<group>"; };
 		BEE341B20F480C76008C826E /* ComposerTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposerTestController.h; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BEB5220A0F32AE7100F51876 /* ttimages */,
+				BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */,
 				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				BE80E3B50EAF116700743358 /* Icon.png */,
@@ -291,9 +291,9 @@
 				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
 				BE80E39D0EAF103200743358 /* DefaultAlbum.png in Resources */,
 				BE80E3B60EAF116700743358 /* Icon.png in Resources */,
-				BEB5220D0F32AE7100F51876 /* ttimages in Resources */,
 				BE6E4DC00F46A352001CE9B4 /* tableIcon.png in Resources */,
 				BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */,
+				BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

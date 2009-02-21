@@ -3,9 +3,11 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
   
-#define SMALL_IMAGE_SIZE (50*50)
-#define MEDIUM_IMAGE_SIZE (130*97)
-#define LARGE_IMAGE_SIZE (600*400)
+#define TT_SMALL_IMAGE_SIZE (50*50)
+#define TT_MEDIUM_IMAGE_SIZE (130*97)
+#define TT_LARGE_IMAGE_SIZE (600*400)
+
+#define TT_DEFAULT_CACHE_EXPIRATION_AGE (60*60*24) // 1 day
 
 static NSString* kCacheDirPathName = @"Three20";
 
@@ -57,7 +59,7 @@ static TTURLCache* gSharedCache = nil;
     _disableDiskCache = NO;
     _disableImageCache = NO;
     _invalidationAge = 0;
-    _maxPixelCount = (SMALL_IMAGE_SIZE*20) + (MEDIUM_IMAGE_SIZE*12);
+    _maxPixelCount = (TT_SMALL_IMAGE_SIZE*20) + (TT_MEDIUM_IMAGE_SIZE*12);
     _totalPixelCount = 0;
     
     // Disable the built-in cache to save memory
@@ -194,7 +196,7 @@ static TTURLCache* gSharedCache = nil;
 - (void)storeImage:(UIImage*)image forKey:(NSString*)key {
   if (!_disableImageCache && image) {
     int pixelCount = image.size.width * image.size.height;
-    if (pixelCount < LARGE_IMAGE_SIZE) {
+    if (pixelCount < TT_LARGE_IMAGE_SIZE) {
       _totalPixelCount += pixelCount;
       if (_totalPixelCount > _maxPixelCount && _maxPixelCount) {
         [self expireImagesFromMemory];

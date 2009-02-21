@@ -53,7 +53,7 @@
   if (_dataSource.loading) {
     self.contentState = TTContentActivity;
   } else if (!_dataSource.loaded) {
-    [_dataSource loadFromIndex:0 toIndex:NSIntegerMax fromCache:YES];
+    [_dataSource loadFromIndex:0 toIndex:NSIntegerMax cachePolicy:TTURLRequestCachePolicyDefault];
   } else {
     if (_dataSource.empty) {
       self.contentState = TTContentNone;
@@ -80,7 +80,7 @@
 }
 
 - (void)reloadContent {
-  [_dataSource loadFromIndex:0 toIndex:NSIntegerMax fromCache:NO];
+  [_dataSource loadFromIndex:0 toIndex:NSIntegerMax cachePolicy:TTURLRequestCachePolicyNetwork];
 }
 
 - (void)updateView {
@@ -88,7 +88,14 @@
     [_statusDataSource release];
     _statusDataSource = nil;
 
-    _tableView.dataSource = _dataSource;
+    if (_dataSource) {
+      _tableView.dataSource = _dataSource;
+    } else if ([self conformsToProtocol:@protocol(UITableViewDataSource)]) {
+      _tableView.dataSource = (id<UITableViewDataSource>)self;
+    } else {
+      _tableView.dataSource = nil;
+    }
+
     [_tableView reloadData];
 
     [super updateView];
