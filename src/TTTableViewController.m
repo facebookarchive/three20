@@ -22,9 +22,6 @@
 }
 
 - (void)dealloc {
-  [_dataSource.delegates removeObject:self];
-  [_dataSource release];
-  [_statusDataSource release];
   [super dealloc];
 }
 

@@ -15,7 +15,7 @@ static TTURLCache* gSharedCache = nil;
 
 @implementation TTURLCache
 
-@synthesize disableDiskCache = _disableDiskCache, disableMediaCache = _disableMediaCache,
+@synthesize disableDiskCache = _disableDiskCache, disableImageCache = _disableImageCache,
   cachePath = _cachePath, maxPixelCount = _maxPixelCount, invalidationAge = _invalidationAge;
 
 + (TTURLCache*)sharedCache {
@@ -51,11 +51,11 @@ static TTURLCache* gSharedCache = nil;
 - (id)init {
   if (self == [super init]) {
     _cachePath = [[TTURLCache defaultCachePath] retain];
-    _mediaCache = [[NSMutableDictionary alloc] init];
-    _mediaSortedList = [[NSMutableArray alloc] init];
+    _imageCache = [[NSMutableDictionary alloc] init];
+    _imageSortedList = [[NSMutableArray alloc] init];
     _totalLoading = 0;
     _disableDiskCache = NO;
-    _disableMediaCache = NO;
+    _disableImageCache = NO;
     _invalidationAge = 0;
     _maxPixelCount = (SMALL_IMAGE_SIZE*20) + (MEDIUM_IMAGE_SIZE*12);
     _totalPixelCount = 0;
@@ -70,8 +70,8 @@ static TTURLCache* gSharedCache = nil;
 }
 
 - (void)dealloc {
-  [_mediaCache release];
-  [_mediaSortedList release];
+  [_imageCache release];
+  [_imageSortedList release];
   [_cachePath release];
   [super dealloc];
 }
@@ -80,38 +80,19 @@ static TTURLCache* gSharedCache = nil;
 
 
 - (void)expireImagesFromMemory {
-  while (_mediaSortedList.count) {
-    NSString* key = [_mediaSortedList objectAtIndex:0];
-    UIImage* image = [_mediaCache objectForKey:key];
+  while (_imageSortedList.count) {
+    NSString* key = [_imageSortedList objectAtIndex:0];
+    UIImage* image = [_imageCache objectForKey:key];
     // TTLOG(@"EXPIRING %@", key);
 
     _totalPixelCount -= image.size.width * image.size.height;
-    [_mediaCache removeObjectForKey:key];
-    [_mediaSortedList removeObjectAtIndex:0];
+    [_imageCache removeObjectForKey:key];
+    [_imageSortedList removeObjectAtIndex:0];
     
     if (_totalPixelCount <= _maxPixelCount) {
       break;
     }
   }
-}
-
-- (BOOL)isImageMimeType:(NSString*)mimeType {
-  static  NSDictionary* imageMimeTypes = nil;
-  if (!imageMimeTypes) {
-    imageMimeTypes = [[NSDictionary dictionaryWithObjectsAndKeys:
-      [NSNull null], @"image/jpeg",
-      [NSNull null], @"image/jpg",
-      [NSNull null], @"image/gif",
-      [NSNull null], @"image/png",
-      [NSNull null], @"image/bmp",
-      [NSNull null], @"image/tiff",
-      [NSNull null], @"image/ico",
-      [NSNull null], @"image/cur",
-      [NSNull null], @"image/xbm",
-      nil] retain];
-  }
-  
-  return !![imageMimeTypes objectForKey:mimeType];
 }
 
 - (NSData*)loadDataFromDisk:(NSString*)url {
@@ -124,18 +105,10 @@ static TTURLCache* gSharedCache = nil;
   }
 }
 
-- (void)writeDataToDisk:(NSData*)imageData withType:(NSString*)type forKey:(NSString*)key {
-  NSString* filePath = [self cachePathForKey:key];
-  NSFileManager* fm = [NSFileManager defaultManager];
-  [fm createFileAtPath:filePath contents:imageData attributes:nil];
+- (NSString*)createTemporaryURL {
+  static int temporaryURLIncrement = 0;
+  return [NSString stringWithFormat:@"temp:%d", temporaryURLIncrement++];
 }
-
-- (void)writeImageToDisk:(UIImage*)image forKey:(NSString*)key {
-  NSData* imageData = UIImagePNGRepresentation(image);
-  [self writeDataToDisk:imageData withType:@"image" forKey:key];
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSString *)keyForURL:(NSString*)url {
   const char* str = [url UTF8String];
@@ -164,17 +137,17 @@ static TTURLCache* gSharedCache = nil;
   return [fm fileExistsAtPath:filePath];
 }
 
-- (NSData*)getDataForURL:(NSString*)url {
-  return [self getDataForURL:url expires:0 timestamp:nil];
+- (NSData*)dataForURL:(NSString*)url {
+  return [self dataForURL:url expires:0 timestamp:nil];
 }
 
-- (NSData*)getDataForURL:(NSString*)url expires:(NSTimeInterval)expirationAge
+- (NSData*)dataForURL:(NSString*)url expires:(NSTimeInterval)expirationAge
     timestamp:(NSDate**)timestamp {
   NSString* key = [self keyForURL:url];
-  return [self getDataForKey:key expires:expirationAge timestamp:timestamp];
+  return [self dataForKey:key expires:expirationAge timestamp:timestamp];
 }
 
-- (NSData*)getDataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge
+- (NSData*)dataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge
     timestamp:(NSDate**)timestamp {
   NSString* filePath = [self cachePathForKey:key];
   NSFileManager* fm = [NSFileManager defaultManager];
@@ -194,83 +167,69 @@ static TTURLCache* gSharedCache = nil;
   return nil;
 }
 
-- (id)getMediaForURL:(NSString*)url {
-  return [self getMediaForURL:url fromDisk:YES];
+- (id)imageForURL:(NSString*)url {
+  NSString* key = [self keyForURL:url];
+  UIImage* image = [_imageCache objectForKey:key];
+  return image ? [[image retain] autorelease] : nil;
 }
 
-- (id)getMediaForURL:(NSString*)url fromDisk:(BOOL)fromDisk {
+- (void)storeData:(NSData*)data forURL:(NSString*)url {
   NSString* key = [self keyForURL:url];
-  UIImage* media = [_mediaCache objectForKey:key];
-  if (media) {
-    return [[media retain] autorelease];
-  } else if (fromDisk) {
-    NSData* data = [self loadDataFromDisk:url];
-    return [self convertDataToMedia:data forType:nil];
-  } else {
-    return nil;
+  [self storeData:data forKey:key];
+}
+
+- (void)storeData:(NSData*)data forKey:(NSString*)key {
+  if (!_disableDiskCache) {
+    NSString* filePath = [self cachePathForKey:key];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    [fm createFileAtPath:filePath contents:data attributes:nil];
   }
 }
 
-- (id)convertDataToMedia:(NSData*)data forType:(NSString*)mimeType {
-  if (!mimeType || [self isImageMimeType:mimeType]) {
-    return [UIImage imageWithData:data];
-  } else {
-    return nil;
-  }
-}
-
-- (void)storeData:(NSData*)data media:(id)media forURL:(NSString*)url toDisk:(BOOL)toDisk {
+- (void)storeImage:(UIImage*)image forURL:(NSString*)url {
   NSString* key = [self keyForURL:url];
-  [self storeData:data media:media forKey:key toDisk:toDisk];
+  [self storeImage:image forKey:key];
 }
 
-- (void)storeData:(NSData*)data media:(id)media forKey:(NSString*)key toDisk:(BOOL)toDisk {
-  if (!_disableMediaCache && media) {
-    if ([media isKindOfClass:[UIImage class]]) {
-      UIImage* image = media;
-      int pixelCount = image.size.width * image.size.height;
-      if (pixelCount < LARGE_IMAGE_SIZE) {
-        _totalPixelCount += pixelCount;
-        if (_totalPixelCount > _maxPixelCount && _maxPixelCount) {
-          [self expireImagesFromMemory];
-        }
-    
-        [_mediaSortedList addObject:key];
-        [_mediaCache setObject:image forKey:key];
+- (void)storeImage:(UIImage*)image forKey:(NSString*)key {
+  if (!_disableImageCache && image) {
+    int pixelCount = image.size.width * image.size.height;
+    if (pixelCount < LARGE_IMAGE_SIZE) {
+      _totalPixelCount += pixelCount;
+      if (_totalPixelCount > _maxPixelCount && _maxPixelCount) {
+        [self expireImagesFromMemory];
       }
-    }
-  }
   
-  if (toDisk && !_disableDiskCache) {
-    if ([media isKindOfClass:[UIImage class]]) {
-      if (data) {
-        [self writeDataToDisk:data withType:@"image" forKey:key];
-      } else {
-        [self writeImageToDisk:media forKey:key];
-      }
-    } else if (data) {
-      [self writeDataToDisk:data withType:nil forKey:key];
+      [_imageSortedList addObject:key];
+      [_imageCache setObject:image forKey:key];
     }
   }
 }
-
-- (NSString*)storeTemporaryData:(NSData*)data media:(id)media toDisk:(BOOL)toDisk {
-  static int temporaryURLIncrement = 0;
   
-  NSString* url = [NSString stringWithFormat:@"temp:%d", temporaryURLIncrement++];
-  [self storeData:data media:media forURL:url toDisk:toDisk];
+- (NSString*)storeTemporaryData:(NSData*)data {
+  NSString* url = [self createTemporaryURL];
+  [self storeData:data forURL:url];
+  return url;
+}
+
+- (NSString*)storeTemporaryImage:(UIImage*)image toDisk:(BOOL)toDisk {
+  NSString* url = [self createTemporaryURL];
+  [self storeImage:image forURL:url];
+  
+  NSData* data = UIImagePNGRepresentation(image);
+  [self storeData:data forURL:url];
   return url;
 }
 
 - (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL {
   NSString* oldKey = [self keyForURL:oldURL];
   NSString* newKey = [self keyForURL:newURL];
-  id media = [self getMediaForURL:oldKey fromDisk:NO];
-  if (media) {
-    [_mediaSortedList removeObject:oldKey];
-    [_mediaCache removeObjectForKey:oldKey];
-    [_mediaSortedList addObject:newKey];
-    [_mediaCache setObject:media forKey:newKey];
+  id image = [self imageForURL:oldKey];
+  if (image) {
+    [_imageSortedList removeObject:oldKey];
+    [_imageCache removeObjectForKey:oldKey];
+    [_imageSortedList addObject:newKey];
+    [_imageCache setObject:image forKey:newKey];
   }
   NSString* oldPath = [self cachePathForURL:oldKey];
   NSFileManager* fm = [NSFileManager defaultManager];
@@ -282,8 +241,8 @@ static TTURLCache* gSharedCache = nil;
 
 - (void)removeURL:(NSString*)url fromDisk:(BOOL)fromDisk {
   NSString*  key = [self keyForURL:url];
-  [_mediaSortedList removeObject:key];
-  [_mediaCache removeObjectForKey:key];
+  [_imageSortedList removeObject:key];
+  [_imageCache removeObjectForKey:key];
   
   if (fromDisk) {
     NSString* filePath = [self cachePathForKey:key];
@@ -303,8 +262,8 @@ static TTURLCache* gSharedCache = nil;
 }
 
 - (void)removeAll:(BOOL)fromDisk {
-  [_mediaCache removeAllObjects];
-  [_mediaSortedList removeAllObjects];
+  [_imageCache removeAllObjects];
+  [_imageSortedList removeAllObjects];
   _totalPixelCount = 0;
 
   if (fromDisk) {
@@ -345,14 +304,11 @@ static TTURLCache* gSharedCache = nil;
 }
 
 - (void)logMemoryReport {
-  TTLOG(@"======= IMAGE CACHE: %d media, %d pixels ========", _mediaCache.count, _totalPixelCount);
-  NSEnumerator* e = [_mediaCache keyEnumerator];
+  TTLOG(@"======= IMAGE CACHE: %d images, %d pixels ========", _imageCache.count, _totalPixelCount);
+  NSEnumerator* e = [_imageCache keyEnumerator];
   for (NSString* key ; key = [e nextObject]; ) {
-    id media = [_mediaCache objectForKey:key];
-    if ([media isKindOfClass:[UIImage class]]) {
-      UIImage* image = media;
-      TTLOG(@"  %f x %f %@", image.size.width, image.size.height, key);
-    }
+    UIImage* image = [_imageCache objectForKey:key];
+    TTLOG(@"  %f x %f %@", image.size.width, image.size.height, key);
   }  
 }
 

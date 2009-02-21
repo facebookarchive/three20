@@ -486,7 +486,7 @@ static CGFloat kDefaultIconSize = 50;
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTImageTableField* field = item;
 
-  UIImage* image = field.image ? [[TTURLCache sharedCache] getMediaForURL:field.image] : nil;
+  UIImage* image = field.image ? [[TTURLCache sharedCache] imageForURL:field.image] : nil;
   
   CGFloat iconWidth = image
     ? image.size.width + kKeySpacing
@@ -525,7 +525,7 @@ static CGFloat kDefaultIconSize = 50;
   [super layoutSubviews];
 
   TTImageTableField* field = self.object;
-  UIImage* image = field.image ? [[TTURLCache sharedCache] getMediaForURL:field.image] : nil;
+  UIImage* image = field.image ? [[TTURLCache sharedCache] imageForURL:field.image] : nil;
   
   if (_iconView.url) {
     CGFloat iconWidth = image
@@ -573,7 +573,7 @@ static CGFloat kDefaultIconSize = 50;
   [super layoutSubviews];
 
   TTImageTableField* field = self.object;
-  UIImage* image = field.image ? [[TTURLCache sharedCache] getMediaForURL:field.image] : nil;
+  UIImage* image = field.image ? [[TTURLCache sharedCache] imageForURL:field.image] : nil;
   
   CGFloat iconWidth = image
     ? image.size.width

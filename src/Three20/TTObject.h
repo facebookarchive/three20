@@ -12,7 +12,7 @@ typedef enum {
 @protocol TTObject <NSObject>
 
 @property(nonatomic,readonly) NSString* viewURL;
-@property(nonatomic) TTInvalidState isInvalid;
+@property(nonatomic) TTInvalidState invalid;
 
 + (id<TTObject>)fromURL:(NSURL*)url;
 

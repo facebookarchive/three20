@@ -1,4 +1,5 @@
 #import "Three20/TTURLRequest.h"
+#import "Three20/TTURLResponse.h"
 #import "Three20/TTURLRequestQueue.h"
 #import <CommonCrypto/CommonDigest.h>
 
@@ -10,12 +11,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 @implementation TTURLRequest
 
-@synthesize delegate = _delegate, handler = _handler, handlerDelegate = _handlerDelegate,
-  url = _url, httpMethod = _httpMethod, httpBody = _httpBody, params = _params,
-  contentType = _contentType, cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge,
-  cacheKey = _cacheKey, timestamp = _timestamp, userInfo = _userInfo, loading = _loading,
-  shouldHandleCookies = _shouldHandleCookies, shouldConvertToMedia = _shouldConvertToMedia,
-  responseFromCache = _responseFromCache;
+@synthesize delegates = _delegates, url = _url, response = _response, httpMethod = _httpMethod,
+  httpBody = _httpBody, parameters = _parameters, contentType = _contentType,
+  cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge, cacheKey = _cacheKey,
+  timestamp = _timestamp, userInfo = _userInfo, loading = _loading,
+  shouldHandleCookies = _shouldHandleCookies, respondedFromCache = _respondedFromCache;
 
 + (TTURLRequest*)request {
   return [[[TTURLRequest alloc] init] autorelease];
@@ -28,7 +28,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (id)initWithURL:(NSString*)url delegate:(id<TTURLRequestDelegate>)delegate {
   if (self = [self init]) {
     _url = [url retain];
-    _delegate = delegate;
+    [_delegates addObject:delegate];
   }
   return self;
 }
@@ -38,21 +38,18 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _url = nil;
     _httpMethod = nil;
     _httpBody = nil;
-    _params = nil;
+    _parameters = nil;
     _contentType = nil;
-    _delegate = nil;
-    _handler = nil;
-    _handlerDelegate = nil;
+    _delegates = TTCreateNonRetainingArray();
+    _response = nil;
     _cachePolicy = TTURLRequestCachePolicyAny;
-    _shouldConvertToMedia = NO;
     _cacheExpirationAge = 0;
     _timestamp = nil;
     _cacheKey = nil;
     _userInfo = nil;
     _loading = NO;
     _shouldHandleCookies = YES;
-    _shouldConvertToMedia = NO;
-    _responseFromCache = NO;
+    _respondedFromCache = NO;
   }
   return self;
 }
@@ -61,9 +58,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   [_url release];
   [_httpMethod release];
   [_httpBody release];
-  [_params release];
+  [_parameters release];
   [_contentType release];
-  [_handler release];
+  [_response release];
   [_timestamp release];
   [_cacheKey release];
   [_userInfo release];
@@ -91,11 +88,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (NSString*)generateCacheKey {
   if ([_httpMethod isEqualToString:@"POST"]) {
     NSMutableString* joined = [[[NSMutableString alloc] initWithString:self.url] autorelease]; 
-    NSEnumerator* e = [_params keyEnumerator];
+    NSEnumerator* e = [_parameters keyEnumerator];
     for (id key; key = [e nextObject]; ) {
       [joined appendString:key];
       [joined appendString:@"="];
-      NSObject* value = [_params valueForKey:key];
+      NSObject* value = [_parameters valueForKey:key];
       if ([value isKindOfClass:[NSString class]]) {
         [joined appendString:(NSString*)value];
       }
@@ -114,28 +111,64 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   [body appendData:[[NSString stringWithFormat:@"--%@\r\n", kStringBoundary]
     dataUsingEncoding:NSUTF8StringEncoding]];
   
-  for (id key in [_params keyEnumerator]) {
-    if (![[_params objectForKey:key] isKindOfClass:[UIImage class]]) {
+  for (id key in [_parameters keyEnumerator]) {
+    if (![[_parameters objectForKey:key] isKindOfClass:[UIImage class]]) {
+      NSString* value = [_parameters valueForKey:key];
+      
       [body appendData:[[NSString
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
           dataUsingEncoding:NSUTF8StringEncoding]];
-      [body appendData:[[_params valueForKey:key] dataUsingEncoding:NSUTF8StringEncoding]];
+      [body appendData:[value dataUsingEncoding:NSUTF8StringEncoding]];
       [body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];        
     }
   }
 
-  [body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
+  NSString* imageKey = nil;
+  for (id key in [_parameters keyEnumerator]) {
+    if ([[_parameters objectForKey:key] isKindOfClass:[UIImage class]]) {
+      UIImage* image = [_parameters objectForKey:key];
+      CGFloat quality = [TTURLRequestQueue mainQueue].imageCompressionQuality;
+      NSData* imageData = UIImageJPEGRepresentation(image, quality);
+      
+      [body appendData:[[NSString
+        stringWithFormat:@"Content-Disposition: form-data; filename=\"photo\"\r\n"]
+          dataUsingEncoding:NSUTF8StringEncoding]];
+      [body appendData:[[NSString
+        stringWithFormat:@"Content-Length: %d\r\n", imageData.length]
+          dataUsingEncoding:NSUTF8StringEncoding]];  
+      [body appendData:[[NSString
+        stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
+          dataUsingEncoding:NSUTF8StringEncoding]];  
+      [body appendData:imageData];
+      [body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
+//      [imageData release];
+      imageKey = key;
+    }
+  }
   
+  // If an image was found, remove it from the dictionary to save memory while we
+  // perform the upload
+  if (imageKey) {
+    [_parameters removeObjectForKey:imageKey];
+  }
+
   //TTLOG(@"Sending %s", [body bytes]);
   return body;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+- (NSMutableDictionary*)parameters {
+  if (!_parameters) {
+    _parameters = [[NSMutableDictionary alloc] init];
+  }
+  return _parameters;
+}
+
 - (NSData*)httpBody {
   if (_httpBody) {
     return _httpBody;
-  } else if ([_httpMethod isEqualToString:@"POST"]) {
+  } else if ([[_httpMethod uppercaseString] isEqualToString:@"POST"]) {
     return [self generatePostBody];
   } else {
     return nil;
@@ -168,4 +201,3 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 @end
-

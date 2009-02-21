@@ -41,6 +41,8 @@
 		BEAF21420F4D32E100D75F3B /* TT+UIWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEAF213B0F4D32E100D75F3B /* TT+UIWebView.h */; };
 		BECB1EC60F46C39F00AE5B52 /* TTAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = BECB1EC50F46C39F00AE5B52 /* TTAppearance.h */; };
 		BECB1EC80F46C3B000AE5B52 /* TTAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = BECB1EC70F46C3B000AE5B52 /* TTAppearance.m */; };
+		BEDCF3270F4EBE1D0060B7D1 /* TTURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDCF3260F4EBE1D0060B7D1 /* TTURLResponse.m */; };
+		BEDCF3290F4EBE2F0060B7D1 /* TTURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */; };
 		BEE3419D0F480B87008C826E /* TTMenuTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE3419C0F480B87008C826E /* TTMenuTextField.h */; };
 		BEE341A60F480BA2008C826E /* TTMenuTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341A50F480BA2008C826E /* TTMenuTextField.m */; };
 		BEE341BE0F48133F008C826E /* TTMenuViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE341BD0F48133F008C826E /* TTMenuViewCell.h */; };
@@ -135,6 +137,8 @@
 		BEAF213B0F4D32E100D75F3B /* TT+UIWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TT+UIWebView.h"; path = "Three20/TT+UIWebView.h"; sourceTree = "<group>"; };
 		BECB1EC50F46C39F00AE5B52 /* TTAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTAppearance.h; path = Three20/TTAppearance.h; sourceTree = "<group>"; };
 		BECB1EC70F46C3B000AE5B52 /* TTAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTAppearance.m; sourceTree = "<group>"; };
+		BEDCF3260F4EBE1D0060B7D1 /* TTURLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLResponse.m; sourceTree = "<group>"; };
+		BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLResponse.h; path = Three20/TTURLResponse.h; sourceTree = "<group>"; };
 		BEE3419C0F480B87008C826E /* TTMenuTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMenuTextField.h; path = Three20/TTMenuTextField.h; sourceTree = "<group>"; };
 		BEE341A50F480BA2008C826E /* TTMenuTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMenuTextField.m; sourceTree = "<group>"; };
 		BEE341BD0F48133F008C826E /* TTMenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMenuViewCell.h; path = Three20/TTMenuViewCell.h; sourceTree = "<group>"; };
@@ -324,12 +328,14 @@
 		BEF321B00F353B15000DE5D2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				BEF31F6A0F352E64000DE5D2 /* TTURLCache.h */,
-				BEF31F540F352E64000DE5D2 /* TTURLCache.m */,
-				BE8A9C180F4143DA00FD8C43 /* TTURLRequestQueue.h */,
-				BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */,
 				BEF31F6C0F352E64000DE5D2 /* TTURLRequest.h */,
 				BEF31F560F352E64000DE5D2 /* TTURLRequest.m */,
+				BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */,
+				BEDCF3260F4EBE1D0060B7D1 /* TTURLResponse.m */,
+				BE8A9C180F4143DA00FD8C43 /* TTURLRequestQueue.h */,
+				BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */,
+				BEF31F6A0F352E64000DE5D2 /* TTURLCache.h */,
+				BEF31F540F352E64000DE5D2 /* TTURLCache.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -431,6 +437,7 @@
 				BEAF21400F4D32E100D75F3B /* TT+UIToolbar.h in Headers */,
 				BEAF21410F4D32E100D75F3B /* TT+UIView.h in Headers */,
 				BEAF21420F4D32E100D75F3B /* TT+UIWebView.h in Headers */,
+				BEDCF3290F4EBE2F0060B7D1 /* TTURLResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +524,7 @@
 				BEAF21260F4D329600D75F3B /* TT+UIToolbar.m in Sources */,
 				BEAF21270F4D329600D75F3B /* TT+UIView.m in Sources */,
 				BEAF21280F4D329600D75F3B /* TT+UIWebView.m in Sources */,
+				BEDCF3270F4EBE1D0060B7D1 /* TTURLResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

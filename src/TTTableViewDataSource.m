@@ -57,7 +57,7 @@
   return _delegates;
 }
 
-- (NSDate*)loadedTimestamp {
+- (NSDate*)loadedTime {
   return nil;
 }
 
@@ -74,8 +74,8 @@
 }
 
 - (BOOL)needsReload {
-  if (self.loadedTimestamp) {
-    return -[self.loadedTimestamp timeIntervalSinceNow] > TT_DEFAULT_CACHE_EXPIRATION_AGE;
+  if (self.loadedTime) {
+    return -[self.loadedTime timeIntervalSinceNow] > TT_DEFAULT_CACHE_EXPIRATION_AGE;
   } else {
     return NO;
   }

@@ -47,7 +47,7 @@ static const CGFloat kMaxCaptionHeight = 100;
 - (BOOL)loadVersion:(TTPhotoVersion)version fromNetwork:(BOOL)fromNetwork {
   NSString* url = [_photo urlForVersion:version];
   if (url) {
-    UIImage* image = [[TTURLCache sharedCache] getMediaForURL:url fromDisk:NO];
+    UIImage* image = [[TTURLCache sharedCache] imageForURL:url];
     if (image || fromNetwork) {
       _photoVersion = version;
       self.url = url;

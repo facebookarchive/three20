@@ -1,6 +1,7 @@
 #import "Three20/TTURLRequestQueue.h"
-#import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequest.h"
+#import "Three20/TTURLResponse.h"
+#import "Three20/TTURLCache.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
   
@@ -19,27 +20,23 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 @interface TTRequestLoader : NSObject {
   NSString* _url;
-  NSString* _cacheKey;
   TTURLRequestQueue* _queue;
+  NSString* _cacheKey;
   TTURLRequestCachePolicy _cachePolicy;
+  NSTimeInterval _cacheExpirationAge;
   NSMutableArray* _requests;
   NSURLConnection* _connection;
+  NSHTTPURLResponse* _response;
   NSMutableData* _responseData;
-  NSInteger _statusCode;
-  NSString* _contentType;
-  NSTimeInterval _cacheExpirationAge;
-  BOOL _shouldConvertToMedia;
   int _retriesLeft;
 }
 
 @property(nonatomic,readonly) NSArray* requests;
 @property(nonatomic,readonly) NSString* url;
 @property(nonatomic,readonly) NSString* cacheKey;
-@property(nonatomic,readonly) NSString* contentType;
 @property(nonatomic,readonly) TTURLRequestCachePolicy cachePolicy;
 @property(nonatomic,readonly) NSTimeInterval cacheExpirationAge;
 @property(nonatomic,readonly) BOOL loading;
-@property(nonatomic,readonly) BOOL shouldConvertToMedia;
 
 - (id)initForRequest:(TTURLRequest*)request queue:(TTURLRequestQueue*)queue;
 
@@ -53,24 +50,21 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 @implementation TTRequestLoader
 
-@synthesize url = _url, requests = _requests, contentType = _contentType, cacheKey = _cacheKey,
-  cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge,
-  shouldConvertToMedia = _shouldConvertToMedia;
+@synthesize url = _url, requests = _requests, cacheKey = _cacheKey,
+  cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge;
 
 - (id)initForRequest:(TTURLRequest*)request queue:(TTURLRequestQueue*)queue {
   if (self = [super init]) {
     _url = [request.url copy];
+    _queue = queue;
     _cacheKey = [request.cacheKey copy];
     _cachePolicy = request.cachePolicy;
     _cacheExpirationAge = request.cacheExpirationAge;
-    _queue = queue;
-    _connection = nil;
-    _statusCode = 0;
-    _contentType = nil;
-    _shouldConvertToMedia = NO;
-    _retriesLeft = kLoadMaxRetries;
-    _responseData = nil;
     _requests = [[NSMutableArray alloc] init];
+    _connection = nil;
+    _retriesLeft = kLoadMaxRetries;
+    _response = nil;
+    _responseData = nil;
     [self addRequest:request];
   }
   return self;
@@ -79,11 +73,11 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (void)dealloc {
   [_connection cancel];
   [_connection release];
+  [_response release];
   [_responseData release];
   [_url release];
   [_cacheKey release];
-  [_contentType release];
-  [_requests release];  
+  [_requests release]; 
   [super dealloc];
 }
 
@@ -129,9 +123,9 @@ static TTURLRequestQueue* gMainQueue = nil;
   [requestsToCancel release];
 }
 
-- (NSError*)validateData:(NSData*)data {
+- (NSError*)processResponse:(NSHTTPURLResponse*)response data:(NSData*)data {
   for (TTURLRequest* request in _requests) {
-    NSError* error = [request.handler request:request validateData:data];
+    NSError* error = [request.response request:request processResponse:response data:data];
     if (error) {
       return error;
     }
@@ -139,17 +133,19 @@ static TTURLRequestQueue* gMainQueue = nil;
   return nil;
 }
 
-- (void)dispatchData:(NSData*)data media:(id)media timestamp:(NSDate*)timestamp {
+- (void)dispatchLoaded:(NSDate*)timestamp {
   for (TTURLRequest* request in [[_requests copy] autorelease]) {
     request.timestamp = timestamp;
     request.loading = NO;
 
-    if ([request.handler respondsToSelector:@selector(request:loadedData:media:)]) {
-      [request.handler request:request loadedData:data media:media];
+    if ([request.response respondsToSelector:@selector(requestLoaded:)]) {
+      [request.response requestLoaded:request];
     }
     
-    if ([request.delegate respondsToSelector:@selector(request:loadedData:media:)]) {
-      [request.delegate request:request loadedData:data media:media];
+    for (id<TTURLRequestDelegate> delegate in request.delegates) {
+      if ([delegate respondsToSelector:@selector(requestLoaded:)]) {
+        [delegate requestLoaded:request];
+      }
     }
   }
 }
@@ -158,12 +154,14 @@ static TTURLRequestQueue* gMainQueue = nil;
   for (TTURLRequest* request in [[_requests copy] autorelease]) {
     request.loading = NO;
 
-    if ([request.handler respondsToSelector:@selector(request:didFailWithError:)]) {
-      [request.handler request:request didFailWithError:error];
+    if ([request.response respondsToSelector:@selector(request:didFailWithError:)]) {
+      [request.response request:request didFailWithError:error];
     }
 
-    if ([request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-      [request.delegate request:request didFailWithError:error];
+    for (id<TTURLRequestDelegate> delegate in request.delegates) {
+      if ([delegate respondsToSelector:@selector(request:didFailWithError:)]) {
+        [delegate request:request didFailWithError:error];
+      }
     }
   }
 }
@@ -177,7 +175,8 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSFileManager* fm = [NSFileManager defaultManager];
   if (path && [fm fileExistsAtPath:path]) {
     NSData* data = [NSData dataWithContentsOfFile:path];
-    [_queue performSelector:@selector(loader:loadedData:) withObject:self withObject:data];
+    [_queue performSelector:@selector(loader:loadedResponse:data:) withObject:self
+      withObject:nil withObject:data];
   } else {
     NSError* error = [NSError errorWithDomain:NSCocoaErrorDomain
       code:NSFileReadNoSuchFileError userInfo:nil];
@@ -189,18 +188,11 @@ static TTURLRequestQueue* gMainQueue = nil;
 // NSURLConnectionDelegate
  
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response {
-  _statusCode = response.statusCode;
+  _response = [response retain];
   NSDictionary* headers = [response allHeaderFields];
   int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
   if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
     [self cancel];
-  }
-
-  if (_shouldConvertToMedia) {
-    NSDictionary* headers = [response allHeaderFields];
-    if (headers) {
-      _contentType = [[headers objectForKey:@"Content-Type"] retain];
-    }
   }
 
   _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
@@ -218,11 +210,13 @@ static TTURLRequestQueue* gMainQueue = nil;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
   TTNetworkRequestStopped();
 
-  if (_statusCode == 200) {
-    [_queue performSelector:@selector(loader:loadedData:) withObject:self withObject:_responseData];
+  if (_response.statusCode == 200) {
+    [_queue performSelector:@selector(loader:loadedResponse:data:) withObject:self
+      withObject:_response withObject:_responseData];
   } else {
-    TTLOG(@"  FAILED LOADING (%d) %@", _statusCode, _url);
-    NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_statusCode userInfo:nil];
+    TTLOG(@"  FAILED LOADING (%d) %@", _response.statusCode, _url);
+    NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
+      userInfo:nil];
     [_queue performSelector:@selector(loader:didFailWithError:) withObject:self withObject:error];
   }
 
@@ -261,9 +255,6 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 - (void)addRequest:(TTURLRequest*)request {
   [_requests addObject:request];
-  if (request.shouldConvertToMedia) {
-    _shouldConvertToMedia = YES;
-  }
 }
 
 - (void)removeRequest:(TTURLRequest*)request {
@@ -288,11 +279,13 @@ static TTURLRequestQueue* gMainQueue = nil;
     
     request.loading = NO;
 
-    if ([request.handler respondsToSelector:@selector(requestCancelled:)]) {
-      [request.handler requestCancelled:request];
+    if ([request.response respondsToSelector:@selector(requestCancelled:)]) {
+      [request.response requestCancelled:request];
     }    
-    if ([request.delegate respondsToSelector:@selector(requestCancelled:)]) {
-      [request.delegate requestCancelled:request];
+    for (id<TTURLRequestDelegate> delegate in request.delegates) {
+      if ([delegate respondsToSelector:@selector(requestCancelled:)]) {
+        [delegate requestCancelled:request];
+      }
     }
   }
   if (![_requests count]) {
@@ -315,7 +308,8 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 @implementation TTURLRequestQueue
 
-@synthesize maxContentLength = _maxContentLength, userAgent = _userAgent, suspended = _suspended;
+@synthesize maxContentLength = _maxContentLength, userAgent = _userAgent, suspended = _suspended,
+  imageCompressionQuality = _imageCompressionQuality;
 
 + (TTURLRequestQueue*)mainQueue {
   if (!gMainQueue) {
@@ -340,6 +334,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     _loaderQueueTimer = nil;
     _totalLoading = 0;
     _maxContentLength = kDefaultMaxContentLength;
+    _imageCompressionQuality = 0.75;
     _userAgent = [kSafariUserAgent copy];
     _suspended = NO;
   }
@@ -357,24 +352,12 @@ static TTURLRequestQueue* gMainQueue = nil;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (BOOL)loadFromCache:(NSString*)url cacheKey:(NSString*)cacheKey
-    expires:(NSTimeInterval)expirationAge shouldConvertToMedia:(BOOL)shouldConvertToMedia
-    fromDisk:(BOOL)fromDisk data:(NSData**)data media:(id*)media timestamp:(NSDate**)timestamp {
-  if (shouldConvertToMedia) {
-    *media = [[TTURLCache sharedCache] getMediaForURL:url fromDisk:NO];
-    if (*media) {
-      return YES;
-    }
-  }
-  
+    expires:(NSTimeInterval)expirationAge fromDisk:(BOOL)fromDisk data:(NSData**)data
+    timestamp:(NSDate**)timestamp {
   if (fromDisk) {
-    *data = [[TTURLCache sharedCache] getDataForKey:cacheKey expires:expirationAge
+    *data = [[TTURLCache sharedCache] dataForKey:cacheKey expires:expirationAge
       timestamp:timestamp];
     if (*data) {
-      if (shouldConvertToMedia) {
-        *media = [[TTURLCache sharedCache] convertDataToMedia:*data forType:nil];
-        [[TTURLCache sharedCache] storeData:nil media:*media forKey:cacheKey toDisk:NO];
-      }
-
       return YES;
     }
   }
@@ -385,36 +368,38 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (BOOL)loadRequestFromCache:(TTURLRequest*)request {
   if (request.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory)) {
     NSData* data = nil;
-    id media = nil;
     NSDate* timestamp = nil;
     BOOL delayed = _suspended || _totalLoading == kMaxConcurrentLoads;
     
     if ([self loadFromCache:request.url cacheKey:request.cacheKey
         expires:request.cacheExpirationAge
-        shouldConvertToMedia:request.shouldConvertToMedia
         fromDisk:!delayed && request.cachePolicy & TTURLRequestCachePolicyDisk
-        data:&data media:&media timestamp:&timestamp]) {
+        data:&data timestamp:&timestamp]) {
 
-      NSError* error = [request.handler request:request validateData:data];
+      NSError* error = [request.response request:request processResponse:nil data:data];
       if (error) {
-        if ([request.handler respondsToSelector:@selector(request:didFailWithError:)]) {
-          [request.handler request:request didFailWithError:error];
+        if ([request.response respondsToSelector:@selector(request:didFailWithError:)]) {
+          [request.response request:request didFailWithError:error];
         }
 
-        if ([request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-          [request.delegate request:request didFailWithError:error];
+        for (id<TTURLRequestDelegate> delegate in request.delegates) {
+          if ([delegate respondsToSelector:@selector(request:didFailWithError:)]) {
+            [delegate request:request didFailWithError:error];
+          }
         }
       } else {
-        request.responseFromCache = YES;
+        request.respondedFromCache = YES;
         request.timestamp = timestamp;
         request.loading = NO;
 
-        if ([request.handler respondsToSelector:@selector(request:loadedData:media:)]) {
-          [request.handler request:request loadedData:data media:media];
+        if ([request.response respondsToSelector:@selector(requestLoaded:)]) {
+          [request.response requestLoaded:request];
         }
         
-        if ([request.delegate respondsToSelector:@selector(request:loadedData:media:)]) {
-          [request.delegate request:request loadedData:data media:media];
+        for (id<TTURLRequestDelegate> delegate in request.delegates) {
+          if ([delegate respondsToSelector:@selector(requestLoaded:)]) {
+            [delegate requestLoaded:request];
+          }
         }
       }
       
@@ -427,20 +412,18 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 - (void)executeLoader:(TTRequestLoader*)loader {
   NSData* data = nil;
-  id media = nil;
   NSDate* timestamp = nil;
   BOOL canUseCache = loader.cachePolicy
     & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory);
   
   if (canUseCache && [self loadFromCache:loader.url cacheKey:loader.cacheKey
-      expires:loader.cacheExpirationAge shouldConvertToMedia:loader.shouldConvertToMedia
-      fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
-      data:&data media:&media timestamp:&timestamp]) {
-    NSError* error = [loader validateData:data];
+      expires:loader.cacheExpirationAge fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
+      data:&data timestamp:&timestamp]) {
+    NSError* error = [loader processResponse:nil data:data];
     if (error) {
       [loader dispatchError:error];
     } else {
-      [loader dispatchData:data media:media timestamp:timestamp];
+      [loader dispatchLoaded:timestamp];
     }
     
     [_loaders removeObjectForKey:loader.cacheKey];
@@ -484,23 +467,16 @@ static TTURLRequestQueue* gMainQueue = nil;
   [self loadNextInQueueAfterLoader:loader];
 }
 
-- (void)loader:(TTRequestLoader*)loader loadedData:(NSData*)data {
-  NSError* error = [loader validateData:data];
+- (void)loader:(TTRequestLoader*)loader loadedResponse:(NSHTTPURLResponse*)response
+    data:(NSData*)data {
+  NSError* error = [loader processResponse:response data:data];
   if (error) {
     [loader dispatchError:error];
   } else {
-    id media = nil;
-    if (loader.shouldConvertToMedia) {
-      media = [[TTURLCache sharedCache] convertDataToMedia:data forType:loader.contentType];
-      if (!media) {
-        return [self loader:loader didFailWithError:nil];
-      }
-    }
-
     if (!(loader.cachePolicy & TTURLRequestCachePolicyNoCache)) {
-      [[TTURLCache sharedCache] storeData:data media:media forKey:loader.cacheKey toDisk:YES];
+      [[TTURLCache sharedCache] storeData:data forKey:loader.cacheKey];
     }
-    [loader dispatchData:data media:media timestamp:[NSDate date]];
+    [loader dispatchLoaded:[NSDate date]];
   }
 
   [self loadNextInQueueAfterLoader:loader];
@@ -533,12 +509,14 @@ static TTURLRequestQueue* gMainQueue = nil;
     request.cacheKey = [[TTURLCache sharedCache] keyForURL:request.url];
   }
   
-  if ([request.handler respondsToSelector:@selector(requestLoading:)]) {
-    [request.handler requestLoading:request];
+  if ([request.response respondsToSelector:@selector(requestLoading:)]) {
+    [request.response requestLoading:request];
   }
   
-  if ([request.delegate respondsToSelector:@selector(requestLoading:)]) {
-    [request.delegate requestLoading:request];
+  for (id<TTURLRequestDelegate> delegate in request.delegates) {
+    if ([delegate respondsToSelector:@selector(requestLoading:)]) {
+      [delegate requestLoading:request];
+    }
   }
   
   if ([self loadRequestFromCache:request]) {
@@ -547,11 +525,13 @@ static TTURLRequestQueue* gMainQueue = nil;
   
   if (!request.url) {
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
-    if ([request.handler respondsToSelector:@selector(request:didFailWithError:)]) {
-      [request.handler request:request didFailWithError:error];
+    if ([request.response respondsToSelector:@selector(request:didFailWithError:)]) {
+      [request.response request:request didFailWithError:error];
     }
-    if ([request.delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-      [request.delegate request:request didFailWithError:error];
+    for (id<TTURLRequestDelegate> delegate in request.delegates) {
+      if ([delegate respondsToSelector:@selector(request:didFailWithError:)]) {
+        [delegate request:request didFailWithError:error];
+      }
     }
     return NO;
   }
@@ -598,12 +578,13 @@ static TTURLRequestQueue* gMainQueue = nil;
   
   for (TTRequestLoader* loader in [_loaders objectEnumerator]) {
     for (TTURLRequest* request in loader.requests) {
-      if (request.delegate == delegate || request.handler == delegate
-          || request.handlerDelegate == delegate) {
-        if (!requestsToCancel) {
-          requestsToCancel = [NSMutableArray array];
+    for (id<TTURLRequestDelegate> requestDelegate in request.delegates) {
+        if (requestDelegate == delegate) {
+          if (!requestsToCancel) {
+            requestsToCancel = [NSMutableArray array];
+          }
+          [requestsToCancel addObject:request];
         }
-        [requestsToCancel addObject:request];
       }
     }
   }

@@ -1,4 +1,7 @@
 #import "Three20/TTImageView.h"
+#import "Three20/TTURLResponse.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTImageView
 
@@ -61,17 +64,12 @@
   }
 }
 
-- (void)request:(TTURLRequest*)request loadedData:(NSData*)data media:(id)media {
+- (void)requestLoaded:(TTURLRequest*)request {
+  TTURLImageResponse* response = request.response;
+  self.image = response.image;
+  
   [_request release];
   _request = nil;
-
-  if ([media isKindOfClass:[UIImage class]]) {
-    self.image = (UIImage*)media;
-  } else {
-    if ([_delegate respondsToSelector:@selector(imageView:loadDidFailWithError:)]) {
-      [_delegate imageView:self loadDidFailWithError:nil];
-    }
-  }
 }
 
 - (void)request:(TTURLRequest*)request didFailWithError:(NSError*)error {
@@ -119,9 +117,8 @@
   if (_request)
     return;
   
-  TTURLRequest* request = [[[TTURLRequest alloc] initWithURL:_url delegate:self] autorelease];
-  request.shouldConvertToMedia = YES;
-  
+  TTURLRequest* request = [TTURLRequest requestWithURL:_url delegate:self];
+  request.response = [[[TTURLImageResponse alloc] init] autorelease];
   if (_url && ![request send]) {
     // Put the default image in place while waiting for the request to load
     if (_defaultImage && self.image != _defaultImage) {

@@ -37,3 +37,4 @@
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTURLRequest.h"
+#import "Three20/TTURLResponse.h"

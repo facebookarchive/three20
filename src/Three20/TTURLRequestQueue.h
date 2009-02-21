@@ -9,6 +9,7 @@
   NSInteger _totalLoading;
   NSUInteger _maxContentLength;
   NSString* _userAgent;
+  CGFloat _imageCompressionQuality;
   BOOL _suspended;
 }
 
@@ -36,6 +37,11 @@
 @property(nonatomic,copy) NSString* userAgent;
 
 /**
+ * The compression quality used for encoding images sent with HTTP posts.
+ */
+@property(nonatomic) CGFloat imageCompressionQuality;
+
+/**
  * Gets the shared cache singleton used across the application.
  */
 + (TTURLRequestQueue*)mainQueue;
@@ -58,7 +64,7 @@
 - (void)cancelRequest:(TTURLRequest*)request;
 
 /**
- * Cancels all active or pending requests whose delegate or handler is an object.
+ * Cancels all active or pending requests whose delegate or response is an object.
  *
  * This is useful for when an object is about to be destroyed and you want to remove pointers
  * to it from active requests to prevent crashes when those pointers are later referenced.

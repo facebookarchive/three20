@@ -137,7 +137,7 @@ static CGFloat kThumbnailRowHeight = 79;
 - (void)updateContent {
   if (_photoSource.loading) {
     self.contentState = TTContentActivity;
-  } else if (_photoSource.isInvalid) {
+  } else if (_photoSource.invalid) {
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX fromCache:YES];
   } else if (_photoSource.numberOfPhotos) {
     self.contentState = TTContentReady;
@@ -147,7 +147,7 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 - (void)refreshContent {
-  if (_photoSource.isInvalid && !_photoSource.loading) {
+  if (_photoSource.invalid && !_photoSource.loading) {
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX fromCache:NO];
   }
 }

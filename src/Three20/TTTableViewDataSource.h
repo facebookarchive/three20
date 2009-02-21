@@ -5,7 +5,7 @@
 @protocol TTTableViewDataSource <UITableViewDataSource>
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
-@property(nonatomic,readonly) NSDate* loadedTimestamp;
+@property(nonatomic,readonly) NSDate* loadedTime;
 @property(nonatomic,readonly) BOOL empty;
 @property(nonatomic,readonly) BOOL loading;
 @property(nonatomic,readonly) BOOL loaded;

@@ -349,7 +349,8 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.contentMode = UIViewContentModeCenter;
     _titleLabel.shadowOffset = CGSizeMake(0, -1);
-
+    _titleLabel.adjustsFontSizeToFitWidth = YES;
+    _titleLabel.minimumFontSize = 8;
     _tabImage.image = tabBar.tabImage;
     
     if (_style == TTTabBarStyleDark) {
@@ -430,6 +431,15 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 
   _tabImage.frame = self.bounds;
 
+  CGSize titleSize = [_titleLabel.text sizeWithFont:_titleLabel.font];
+  
+  CGFloat textWidth = self.width;
+  CGFloat textLeft = 0;
+  if (titleSize.width > self.width) {
+    textLeft = 4;
+    textWidth -= 8;
+  }
+  
   if (_style == TTTabBarStyleButtons) {
     CGFloat iconWidth = _iconView.url.length ? kIconSize + kIconSpacing : 0;
     _iconView.frame = CGRectMake(kPadding2, floor(self.height/2 - kIconSize/2)+2,
@@ -437,18 +447,21 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
     _titleLabel.frame = CGRectOffset(self.bounds, kPadding2 + iconWidth, 0);
   } else if (_style == TTTabBarStyleLight) {
     _iconView.frame = CGRectZero;
-    _titleLabel.frame = CGRectOffset(self.bounds, 0, 2);
+    _titleLabel.frame = CGRectMake(textLeft, self.bounds.origin.y + 2,
+      textWidth, self.height);
   } else if (_style == TTTabBarStyleDark) {
     _iconView.frame = CGRectZero;
-    _titleLabel.frame = CGRectOffset(self.bounds, 0, 2);
+    _titleLabel.frame = CGRectMake(textLeft, self.bounds.origin.y + 2,
+      textWidth, self.height);
   }
 }
 
-- (void)sizeToFit {
-  [_titleLabel sizeToFit];
+- (CGSize)sizeThatFits:(CGSize)size {
+  CGSize titleSize = [_titleLabel sizeThatFits:size];
   CGFloat padding = _style == TTTabBarStyleButtons ? kPadding2 : kPadding;
   CGFloat iconWidth = _iconView.url.length ? kIconSize + kIconSpacing : 0;
-  self.frame = CGRectMake(self.left, self.top, _titleLabel.width + iconWidth + padding*2, self.height);
+  
+  return CGSizeMake(iconWidth + titleSize.width + padding*2, size.height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

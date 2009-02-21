@@ -74,7 +74,7 @@ NSString* TTLocalizedString(NSString* key, NSString* comment) {
   if (!bundle) {
     NSString* path = [[[NSBundle mainBundle] resourcePath]
           stringByAppendingPathComponent:@"Three20.bundle"];
-    bundle = [NSBundle bundleWithPath:path];
+    bundle = [[NSBundle bundleWithPath:path] retain];
   }
   
   return [bundle localizedStringForKey:key value:key table:nil];

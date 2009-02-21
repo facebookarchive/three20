@@ -5,7 +5,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-static const CGFloat kMarginX = 5;
+static const CGFloat kMarginX = 5;  
 static const CGFloat kMarginY = 5;
 
 static const CGFloat kPaddingX = 10;

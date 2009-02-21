@@ -361,7 +361,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   if (_photoSource.loading) {
     self.contentState = TTContentActivity;
   } else if (!_centerPhoto) {
-    [self loadPhotosFromIndex:_photoSource.isInvalid ? 0 : _photoSource.maxPhotoIndex+1
+    [self loadPhotosFromIndex:_photoSource.invalid ? 0 : _photoSource.maxPhotoIndex+1
       toIndex:TT_INFINITE_PHOTO_INDEX];
   } else if (_photoSource.numberOfPhotos == TT_INFINITE_PHOTO_INDEX) {
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
@@ -375,7 +375,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 //- (void)refreshContent {
-//  if (_photoSource.isInvalid && !_photoSource.loading) {
+//  if (_photoSource.invalid && !_photoSource.loading) {
 //    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
 //  }
 //}

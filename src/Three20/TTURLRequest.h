@@ -1,17 +1,15 @@
 #import "Three20/TTGlobal.h"
 
-@protocol TTURLRequestDelegate, TTURLResponseHandler;
-@class TTURLCache;
+@protocol TTURLRequestDelegate, TTURLResponse;
 
 @interface TTURLRequest : NSObject {
   NSString* _url;
   NSString* _httpMethod;
   NSData* _httpBody;
-  NSMutableDictionary* _params;
+  NSMutableDictionary* _parameters;
   NSString* _contentType;
-  id<TTURLRequestDelegate> _delegate;
-  id<TTURLResponseHandler> _handler;
-  id _handlerDelegate;
+  NSMutableArray* _delegates;
+  id<TTURLResponse> _response;
   TTURLRequestCachePolicy _cachePolicy;
   NSTimeInterval _cacheExpirationAge;
   NSString* _cacheKey;
@@ -19,57 +17,65 @@
   id _userInfo;
   BOOL _loading;
   BOOL _shouldHandleCookies;
-  BOOL _shouldConvertToMedia;
-  BOOL _responseFromCache;
+  BOOL _respondedFromCache;
 }
 
 /**
  * An object that receives messages about the progress of the request.
  */
-@property(nonatomic,assign) id<TTURLRequestDelegate> delegate;
+@property(nonatomic,readonly) NSMutableArray* delegates;
 
 /**
  * An object that handles the response data and may parse and validate it.
  */
-@property(nonatomic,retain) id<TTURLResponseHandler> handler;
+@property(nonatomic,retain) id<TTURLResponse> response;
 
 /**
- * This delegate may be notified of any messages that are specific to the kind of response
- * that is received.  The handler may parse the response into certain objects and then
- * call methods on the handlerDelegate to receive them.
- */ 
-@property(nonatomic,assign) id handlerDelegate;
-
+ * The URL to be loaded by the request.
+ */
 @property(nonatomic,copy) NSString* url;
 
+/**
+ * The HTTP method to send with the request.
+ */
 @property(nonatomic,copy) NSString* httpMethod;
 
-@property(nonatomic,retain) NSData* httpBody;
+/**
+ * The HTTP body to send with the request.
+ */
+@property(nonatomic,readonly) NSData* httpBody;
 
-@property(nonatomic,retain) NSDictionary* params;
-
+/**
+ * The content type of the data in the request.
+ */
 @property(nonatomic,copy) NSString* contentType;
+
+/**
+ * Parameters to use for an HTTP post.
+ */
+@property(nonatomic,readonly) NSMutableDictionary* parameters;
 
 /**
  * Defaults to "any".
  */
 @property(nonatomic) TTURLRequestCachePolicy cachePolicy;
 
+/**
+ * The maximum age of cached data that can be used as a response.
+ */
 @property(nonatomic) NSTimeInterval cacheExpirationAge;
 
 @property(nonatomic,retain) NSString* cacheKey;
 
-@property(nonatomic,retain) NSDate* timestamp;
-
 @property(nonatomic,retain) id userInfo;
+
+@property(nonatomic,retain) NSDate* timestamp;
 
 @property(nonatomic) BOOL loading;
 
 @property(nonatomic) BOOL shouldHandleCookies;
 
-@property(nonatomic) BOOL shouldConvertToMedia;
-
-@property(nonatomic) BOOL responseFromCache;
+@property(nonatomic) BOOL respondedFromCache;
 
 + (TTURLRequest*)request;
 
@@ -107,11 +113,11 @@
 - (void)requestLoading:(TTURLRequest*)request;
 
 /**
- * The request has loaded data and optionally converted it to a media object.
+ * The request has loaded data has loaded and been processed into a response.
  *
- * If the request is served from the cache, the is the only delegate method that will be called.
+ * If the request is served from the cache, this is the only delegate method that will be called.
  */
-- (void)request:(TTURLRequest*)request loadedData:(NSData*)data media:(id)media;
+- (void)requestLoaded:(TTURLRequest*)request;
 
 /**
  *
@@ -122,16 +128,5 @@
  *
  */
 - (void)requestCancelled:(TTURLRequest*)request;
-
-@end
-
-@protocol TTURLResponseHandler <TTURLRequestDelegate>
-
-/**
- * Processes the data from a successful request and determines if it is valid.
- *
- * If the data is not valid, return an error.  The data will not be cached if there is an error.
- */
-- (NSError*)request:(TTURLRequest*)request validateData:(NSData*)data;
 
 @end

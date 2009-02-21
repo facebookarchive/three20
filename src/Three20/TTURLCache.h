@@ -4,14 +4,14 @@
 
 @interface TTURLCache : NSObject {
   NSString* _cachePath;
-  NSMutableDictionary* _mediaCache;
-  NSMutableArray* _mediaSortedList;
+  NSMutableDictionary* _imageCache;
+  NSMutableArray* _imageSortedList;
   NSUInteger _totalPixelCount;
   NSUInteger _maxPixelCount;
   NSInteger _totalLoading;
   NSTimeInterval _invalidationAge;
   BOOL _disableDiskCache;
-  BOOL _disableMediaCache;
+  BOOL _disableImageCache;
 }
 
 /**
@@ -20,9 +20,9 @@
 @property(nonatomic) BOOL disableDiskCache;
 
 /**
- * Disables the in-memory cache for multimedia objects.
+ * Disables the in-memory cache for images.
  */
-@property(nonatomic) BOOL disableMediaCache;
+@property(nonatomic) BOOL disableImageCache;
 
 /**
  * Gets the path to the directory of the disk cache.
@@ -82,54 +82,50 @@
  *
  * @return nil if the URL is not cached. 
  */
-- (NSData*)getDataForURL:(NSString*)url;
+- (NSData*)dataForURL:(NSString*)url;
 
 /**
  * Gets the data for a URL from the cache if it exists and is newer than a minimum timestamp.
  *
  * @return nil if hthe URL is not cached or if the cache entry is older than the minimum.
  */
-- (NSData*)getDataForURL:(NSString*)url expires:(NSTimeInterval)expirationAge
+- (NSData*)dataForURL:(NSString*)url expires:(NSTimeInterval)expirationAge
   timestamp:(NSDate**)timestamp;
-- (NSData*)getDataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge
+- (NSData*)dataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge
   timestamp:(NSDate**)timestamp;
 
 /**
- * Gets the multimedia object (such as a UIImage) for a URL from the memory cache or disk cache.
+ * Gets an image from the in-memory image cache.
  *
  * @return nil if the URL is not cached.
  */
-- (id)getMediaForURL:(NSString*)url;
+- (id)imageForURL:(NSString*)url;
 
 /**
- * Gets the multimedia object for a URL from the memory cache and optionally the disk cache.
- *
- * @return nil if the URL is not cached.
+ * Stores a data on disk.
  */
-- (id)getMediaForURL:(NSString*)url fromDisk:(BOOL)fromDisk;
+- (void)storeData:(NSData*)data forURL:(NSString*)url;
+- (void)storeData:(NSData*)data forKey:(NSString*)key;
 
 /**
- * Converts data to a usable media object, such as a UIImage.
- */ 
-- (id)convertDataToMedia:(NSData*)data forType:(NSString*)mimeType;
-
-/**
- * Stores a multimedia object in the memory cache and optionally writes its source data to disk.
- *
- * The data argument is optional if you provide media.  If you omit data then the media will be
- * converted to a file format before being stored on disk.  For example, UIImage objects will be
- * converted to PNGs.  If you happen to have the data that was used to create the image then you
- * should definitely include it here to avoid the cost of encoding the image again.
+ * Stores an image the memory cache.
  */
-- (void)storeData:(NSData*)data media:(id)media forURL:(NSString*)url toDisk:(BOOL)toDisk;
-- (void)storeData:(NSData*)data media:(id)media forKey:(NSString*)key toDisk:(BOOL)toDisk;
+- (void)storeImage:(UIImage*)image forURL:(NSString*)url;
+- (void)storeImage:(UIImage*)image forKey:(NSString*)key;
 
 /**
- * Convenient way to create a temporary URL for an image and cache the image with it.
+ * Convenient way to create a temporary URL for some data and cache it in memory.
  *
  * @return The temporary URL
  */
-- (NSString*)storeTemporaryData:(NSData*)data media:(id)media toDisk:(BOOL)toDisk;
+- (NSString*)storeTemporaryImage:(UIImage*)image toDisk:(BOOL)toDisk;
+
+/**
+ * Convenient way to create a temporary URL for some data and cache in on disk.
+ *
+ * @return The temporary URL
+ */
+- (NSString*)storeTemporaryData:(NSData*)data;
 
 /**
  * Moves the data currently stored under one URL to another URL.
