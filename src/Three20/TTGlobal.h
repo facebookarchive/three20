@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "Three20/TT+NSObject.h"
+#import "Three20/TT+NSArray.h"
 #import "Three20/TT+UIColor.h"
 #import "Three20/TT+UIImage.h"
 #import "Three20/TT+UIViewController.h"

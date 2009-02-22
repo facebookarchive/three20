@@ -129,7 +129,7 @@
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  if ([TTAppearance appearance].tableHeaderTintColor) {
+  if (tableView.style == UITableViewStylePlain && [TTAppearance appearance].tableHeaderTintColor) {
     if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
     NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
     if (!title.length)

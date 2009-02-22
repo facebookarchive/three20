@@ -195,7 +195,7 @@ static TTAppearance* gAppearance = nil;
     stroke:(UIColor*)strokeColor radius:(CGFloat)radius {
   if (fillColors && fillCount) {
     UIColor* tintColor = fillColors[0];
-    UIColor* ligherTint = [tintColor transformHue:1 saturation:0.4 value:1.2];
+    UIColor* ligherTint = [tintColor transformHue:1 saturation:0.4 value:1.1];
     UIColor* barFill[] = {ligherTint, tintColor};
     
     CGRect topRect = CGRectMake(rect.origin.x, rect.origin.y,

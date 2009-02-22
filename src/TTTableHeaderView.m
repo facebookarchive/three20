@@ -3,13 +3,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-static CGFloat kGradient1[] = {RGBA(234, 239, 248, 0.8), RGBA(224, 231, 241, 0.8)};
-static CGFloat kGradient2[] = {RGBA(216, 223, 234, 0.8)};
-static CGFloat kStroke1[] = {RGBA(256, 256, 256, 1)};
-static CGFloat kStroke2[] = {RGBA(183, 183, 183, 1)};
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 @implementation TTTableHeaderView
 
 - (id)initWithTitle:(NSString*)title {

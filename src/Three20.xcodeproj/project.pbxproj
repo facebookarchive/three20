@@ -43,6 +43,8 @@
 		BEAF21420F4D32E100D75F3B /* TT+UIWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEAF213B0F4D32E100D75F3B /* TT+UIWebView.h */; };
 		BECB1EC60F46C39F00AE5B52 /* TTAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = BECB1EC50F46C39F00AE5B52 /* TTAppearance.h */; };
 		BECB1EC80F46C3B000AE5B52 /* TTAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = BECB1EC70F46C3B000AE5B52 /* TTAppearance.m */; };
+		BED623920F50F34B003EF242 /* TT+NSArray.h in Headers */ = {isa = PBXBuildFile; fileRef = BED623910F50F34B003EF242 /* TT+NSArray.h */; };
+		BED623940F50F350003EF242 /* TT+NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = BED623930F50F350003EF242 /* TT+NSArray.m */; };
 		BEDCF3270F4EBE1D0060B7D1 /* TTURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDCF3260F4EBE1D0060B7D1 /* TTURLResponse.m */; };
 		BEDCF3290F4EBE2F0060B7D1 /* TTURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */; };
 		BEE3419D0F480B87008C826E /* TTMenuTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE3419C0F480B87008C826E /* TTMenuTextField.h */; };
@@ -141,6 +143,8 @@
 		BEAF213B0F4D32E100D75F3B /* TT+UIWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TT+UIWebView.h"; path = "Three20/TT+UIWebView.h"; sourceTree = "<group>"; };
 		BECB1EC50F46C39F00AE5B52 /* TTAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTAppearance.h; path = Three20/TTAppearance.h; sourceTree = "<group>"; };
 		BECB1EC70F46C3B000AE5B52 /* TTAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTAppearance.m; sourceTree = "<group>"; };
+		BED623910F50F34B003EF242 /* TT+NSArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TT+NSArray.h"; path = "Three20/TT+NSArray.h"; sourceTree = "<group>"; };
+		BED623930F50F350003EF242 /* TT+NSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TT+NSArray.m"; sourceTree = "<group>"; };
 		BEDCF3260F4EBE1D0060B7D1 /* TTURLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLResponse.m; sourceTree = "<group>"; };
 		BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLResponse.h; path = Three20/TTURLResponse.h; sourceTree = "<group>"; };
 		BEE3419C0F480B87008C826E /* TTMenuTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMenuTextField.h; path = Three20/TTMenuTextField.h; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 			children = (
 				BEAF21350F4D32E100D75F3B /* TT+NSObject.h */,
 				BEAF211B0F4D329600D75F3B /* TT+NSObject.m */,
+				BED623910F50F34B003EF242 /* TT+NSArray.h */,
+				BED623930F50F350003EF242 /* TT+NSArray.m */,
 				BEAF21360F4D32E100D75F3B /* TT+UIColor.h */,
 				BEAF211C0F4D329600D75F3B /* TT+UIColor.m */,
 				BEAF21370F4D32E100D75F3B /* TT+UIImage.h */,
@@ -445,6 +451,7 @@
 				BEAF21420F4D32E100D75F3B /* TT+UIWebView.h in Headers */,
 				BEDCF3290F4EBE2F0060B7D1 /* TTURLResponse.h in Headers */,
 				BE7EB6550F50D339008A4B05 /* TTTableHeaderView.h in Headers */,
+				BED623920F50F34B003EF242 /* TT+NSArray.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +540,7 @@
 				BEAF21280F4D329600D75F3B /* TT+UIWebView.m in Sources */,
 				BEDCF3270F4EBE1D0060B7D1 /* TTURLResponse.m in Sources */,
 				BE7EB6410F50D30C008A4B05 /* TTTableHeaderView.m in Sources */,
+				BED623940F50F350003EF242 /* TT+NSArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
