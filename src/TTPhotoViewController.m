@@ -51,7 +51,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [_loadTimer invalidate];
   _loadTimer = nil;
   [_centerPhoto release];
-  [_photoSource removeDelegate:self];
+  [_photoSource.delegates removeObject:self];
   [_photoSource release];
   [_statusText release];
   [_defaultImage release];
@@ -586,10 +586,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)setPhotoSource:(id<TTPhotoSource>)photoSource {
   if (_photoSource != photoSource) {
-    [_photoSource removeDelegate:self];
+    [_photoSource.delegates removeObject:self];
     [_photoSource release];
     _photoSource = [photoSource retain];
-    [_photoSource addDelegate:self];
+    [_photoSource.delegates addObject:self];
   
     [self moveToPhotoAtIndex:0 withDelay:NO];
     [self invalidate];
@@ -599,10 +599,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
 - (void)setCenterPhoto:(id<TTPhoto>)photo {
   if (_centerPhoto != photo) {
     if (photo.photoSource != _photoSource) {
-      [_photoSource removeDelegate:self];
+      [_photoSource.delegates removeObject:self];
       [_photoSource release];
       _photoSource = [photo.photoSource retain];
-      [_photoSource addDelegate:self];
+      [_photoSource.delegates addObject:self];
     }
 
     [self moveToPhotoAtIndex:photo.index withDelay:NO];

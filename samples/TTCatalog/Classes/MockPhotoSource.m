@@ -8,7 +8,7 @@
     photos2:(NSArray*)photos2 {
   if (self = [super init]) {
     _type = type;
-    _delegates = [[NSMutableArray alloc] init];
+    _delegates = nil;
     
     self.title = title;
     _photos = photos2 ? [[photos mutableCopy] retain] : [[NSMutableArray alloc] init];
@@ -101,6 +101,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTPhotoSource
 
+- (NSMutableArray*)delegates {
+  if (!_delegates) {
+    _delegates = TTCreateNonRetainingArray();
+  }
+  return _delegates;
+}
+
 - (NSInteger)numberOfPhotos {
   if (_tempPhotos) {
     return _photos.count + (_type & MockPhotoSourceVariableCount ? 0 : _tempPhotos.count);
@@ -140,14 +147,6 @@
     _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
       selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];
   }
-}
-
-- (void)addDelegate:(id<TTPhotoSourceDelegate>)delegate {
-  [_delegates addObject:delegate];
-}
-
-- (void)removeDelegate:(id<TTPhotoSourceDelegate>)delegate {
-  [_delegates removeObject:delegate];
 }
 
 @end

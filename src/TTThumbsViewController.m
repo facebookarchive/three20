@@ -30,7 +30,7 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 - (void)dealloc {
-  [_photoSource removeDelegate:self];
+  [_photoSource.delegates removeObject:self];
   [_photoSource release];
   [super dealloc];
 }
@@ -299,10 +299,10 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (void)setPhotoSource:(id<TTPhotoSource>)photoSource {
   if (photoSource != _photoSource) {
-    [_photoSource removeDelegate:self];
+    [_photoSource.delegates removeObject:self];
     [_photoSource release];
     _photoSource = [photoSource retain];
-    [_photoSource addDelegate:self];
+    [_photoSource.delegates addObject:self];
 
     self.navigationItem.title = _photoSource.title;
     [self invalidate];

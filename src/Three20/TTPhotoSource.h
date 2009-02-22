@@ -20,6 +20,8 @@ typedef enum {
 
 @protocol TTPhotoSource <TTObject>
 
+@property(nonatomic,readonly) NSMutableArray* delegates;
+
 /**
  * The title of this collection of photos.
  */
@@ -39,16 +41,6 @@ typedef enum {
  *
  */
 @property(nonatomic,readonly) BOOL loading;
-
-/**
- *
- */
-- (void)addDelegate:(id<TTPhotoSourceDelegate>)delegate;
-
-/**
- *
- */
-- (void)removeDelegate:(id<TTPhotoSourceDelegate>)delegate;
 
 /**
  *
