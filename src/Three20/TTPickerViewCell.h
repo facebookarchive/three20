@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@interface TTMenuViewCell : UIView {
+@interface TTPickerViewCell : UIView {
   id _object;
   UILabel* _labelView;
   BOOL _selected;

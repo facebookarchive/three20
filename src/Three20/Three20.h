@@ -18,7 +18,7 @@
 #import "Three20/TTErrorView.h"
 
 #import "Three20/TTSearchTextField.h"
-#import "Three20/TTMenuTextField.h"
+#import "Three20/TTPickerTextField.h"
 #import "Three20/TTSearchBar.h"
 #import "Three20/TTComposeController.h"
 

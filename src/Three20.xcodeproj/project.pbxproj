@@ -47,10 +47,10 @@
 		BED623940F50F350003EF242 /* TT+NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = BED623930F50F350003EF242 /* TT+NSArray.m */; };
 		BEDCF3270F4EBE1D0060B7D1 /* TTURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDCF3260F4EBE1D0060B7D1 /* TTURLResponse.m */; };
 		BEDCF3290F4EBE2F0060B7D1 /* TTURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */; };
-		BEE3419D0F480B87008C826E /* TTMenuTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE3419C0F480B87008C826E /* TTMenuTextField.h */; };
-		BEE341A60F480BA2008C826E /* TTMenuTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341A50F480BA2008C826E /* TTMenuTextField.m */; };
-		BEE341BE0F48133F008C826E /* TTMenuViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE341BD0F48133F008C826E /* TTMenuViewCell.h */; };
-		BEE341C00F481345008C826E /* TTMenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341BF0F481345008C826E /* TTMenuViewCell.m */; };
+		BEE3419D0F480B87008C826E /* TTPickerTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE3419C0F480B87008C826E /* TTPickerTextField.h */; };
+		BEE341A60F480BA2008C826E /* TTPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341A50F480BA2008C826E /* TTPickerTextField.m */; };
+		BEE341BE0F48133F008C826E /* TTPickerViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE341BD0F48133F008C826E /* TTPickerViewCell.h */; };
+		BEE341C00F481345008C826E /* TTPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341BF0F481345008C826E /* TTPickerViewCell.m */; };
 		BEE341CD0F48159F008C826E /* TTSearchTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE341CC0F48159F008C826E /* TTSearchTextField.h */; };
 		BEE341CF0F4815B0008C826E /* TTSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341CE0F4815B0008C826E /* TTSearchTextField.m */; };
 		BEE3476E0F48F5F6008C826E /* TTSearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE3476D0F48F5F6008C826E /* TTSearchBar.h */; };
@@ -147,10 +147,10 @@
 		BED623930F50F350003EF242 /* TT+NSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TT+NSArray.m"; sourceTree = "<group>"; };
 		BEDCF3260F4EBE1D0060B7D1 /* TTURLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLResponse.m; sourceTree = "<group>"; };
 		BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLResponse.h; path = Three20/TTURLResponse.h; sourceTree = "<group>"; };
-		BEE3419C0F480B87008C826E /* TTMenuTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMenuTextField.h; path = Three20/TTMenuTextField.h; sourceTree = "<group>"; };
-		BEE341A50F480BA2008C826E /* TTMenuTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMenuTextField.m; sourceTree = "<group>"; };
-		BEE341BD0F48133F008C826E /* TTMenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMenuViewCell.h; path = Three20/TTMenuViewCell.h; sourceTree = "<group>"; };
-		BEE341BF0F481345008C826E /* TTMenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMenuViewCell.m; sourceTree = "<group>"; };
+		BEE3419C0F480B87008C826E /* TTPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPickerTextField.h; path = Three20/TTPickerTextField.h; sourceTree = "<group>"; };
+		BEE341A50F480BA2008C826E /* TTPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPickerTextField.m; sourceTree = "<group>"; };
+		BEE341BD0F48133F008C826E /* TTPickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPickerViewCell.h; path = Three20/TTPickerViewCell.h; sourceTree = "<group>"; };
+		BEE341BF0F481345008C826E /* TTPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPickerViewCell.m; sourceTree = "<group>"; };
 		BEE341CC0F48159F008C826E /* TTSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSearchTextField.h; path = Three20/TTSearchTextField.h; sourceTree = "<group>"; };
 		BEE341CE0F4815B0008C826E /* TTSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSearchTextField.m; sourceTree = "<group>"; };
 		BEE3476D0F48F5F6008C826E /* TTSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSearchBar.h; path = Three20/TTSearchBar.h; sourceTree = "<group>"; };
@@ -297,10 +297,10 @@
 			children = (
 				BEE341CC0F48159F008C826E /* TTSearchTextField.h */,
 				BEE341CE0F4815B0008C826E /* TTSearchTextField.m */,
-				BEE3419C0F480B87008C826E /* TTMenuTextField.h */,
-				BEE341A50F480BA2008C826E /* TTMenuTextField.m */,
-				BEE341BD0F48133F008C826E /* TTMenuViewCell.h */,
-				BEE341BF0F481345008C826E /* TTMenuViewCell.m */,
+				BEE3419C0F480B87008C826E /* TTPickerTextField.h */,
+				BEE341A50F480BA2008C826E /* TTPickerTextField.m */,
+				BEE341BD0F48133F008C826E /* TTPickerViewCell.h */,
+				BEE341BF0F481345008C826E /* TTPickerViewCell.m */,
 				BEE34F260F496620008C826E /* TTTextEditor.h */,
 				BEE34F240F496615008C826E /* TTTextEditor.m */,
 				BEE3476D0F48F5F6008C826E /* TTSearchBar.h */,
@@ -436,8 +436,8 @@
 				BE702EFB0F43F9DC0028A119 /* TTTableField.h in Headers */,
 				BE6E4A540F465243001CE9B4 /* TTTableViewCell.h in Headers */,
 				BECB1EC60F46C39F00AE5B52 /* TTAppearance.h in Headers */,
-				BEE3419D0F480B87008C826E /* TTMenuTextField.h in Headers */,
-				BEE341BE0F48133F008C826E /* TTMenuViewCell.h in Headers */,
+				BEE3419D0F480B87008C826E /* TTPickerTextField.h in Headers */,
+				BEE341BE0F48133F008C826E /* TTPickerViewCell.h in Headers */,
 				BEE341CD0F48159F008C826E /* TTSearchTextField.h in Headers */,
 				BEE3476E0F48F5F6008C826E /* TTSearchBar.h in Headers */,
 				BEE34EB00F495C4A008C826E /* TTComposeController.h in Headers */,
@@ -525,8 +525,8 @@
 				BE702EF90F43F9D20028A119 /* TTTableField.m in Sources */,
 				BE6E4A520F465237001CE9B4 /* TTTableViewCell.m in Sources */,
 				BECB1EC80F46C3B000AE5B52 /* TTAppearance.m in Sources */,
-				BEE341A60F480BA2008C826E /* TTMenuTextField.m in Sources */,
-				BEE341C00F481345008C826E /* TTMenuViewCell.m in Sources */,
+				BEE341A60F480BA2008C826E /* TTPickerTextField.m in Sources */,
+				BEE341C00F481345008C826E /* TTPickerViewCell.m in Sources */,
 				BEE341CF0F4815B0008C826E /* TTSearchTextField.m in Sources */,
 				BEE347700F48F604008C826E /* TTSearchBar.m in Sources */,
 				BEE34EAE0F495C42008C826E /* TTComposeController.m in Sources */,

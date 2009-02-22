@@ -2,7 +2,7 @@
 #import "Three20/TTTextEditor.h"
 
 @protocol TTTableViewDataSource, TTComposeControllerDelegate;
-@class TTMenuTextField;
+@class TTPickerTextField;
 
 @interface TTComposeController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
   id<TTComposeControllerDelegate> _delegate;

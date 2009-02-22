@@ -1,5 +1,5 @@
-#import "Three20/TTMenuTextField.h"
-#import "TTMenuViewCell.h"
+#import "Three20/TTPickerTextField.h"
+#import "TTPickerViewCell.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -15,7 +15,7 @@ static CGFloat kMinCursorWidth = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTMenuTextField
+@implementation TTPickerTextField
 
 @synthesize cellViews = _cellViews, selectedCell = _selectedCell, lineCount = _lineCount;
 
@@ -59,7 +59,7 @@ static CGFloat kMinCursorWidth = 50;
   _lineCount = 1;
 
   if (self.width) {
-    for (TTMenuViewCell* cell in _cellViews) {
+    for (TTPickerViewCell* cell in _cellViews) {
       [cell sizeToFit];
 
       CGFloat lineWidth = _cursorOrigin.x + cell.frame.size.width + marginRight;
@@ -172,8 +172,8 @@ static CGFloat kMinCursorWidth = 50;
     if (touch.view == self) {
       self.selectedCell = nil;
     } else {
-      if ([touch.view isKindOfClass:[TTMenuViewCell class]]) {
-        self.selectedCell = (TTMenuViewCell*)touch.view;
+      if ([touch.view isKindOfClass:[TTPickerViewCell class]]) {
+        self.selectedCell = (TTPickerViewCell*)touch.view;
       }
     }
   }
@@ -290,14 +290,14 @@ static CGFloat kMinCursorWidth = 50;
 
 - (NSArray*)cells {
   NSMutableArray* cells = [NSMutableArray array];
-  for (TTMenuViewCell* cellView in _cellViews) {
+  for (TTPickerViewCell* cellView in _cellViews) {
     [cells addObject:cellView.object ? cellView.object : [NSNull null]];
   }
   return cells;
 }
 
 - (void)addCellWithObject:(id)object {
-  TTMenuViewCell* cell = [[[TTMenuViewCell alloc] initWithFrame:CGRectZero] autorelease];
+  TTPickerViewCell* cell = [[[TTPickerViewCell alloc] initWithFrame:CGRectZero] autorelease];
 
   NSString* label = [self labelForObject:object];
   
@@ -318,7 +318,7 @@ static CGFloat kMinCursorWidth = 50;
 
 - (void)removeCellWithObject:(id)object {
   for (int i = 0; i < _cellViews.count; ++i) {
-    TTMenuViewCell* cell = [_cellViews objectAtIndex:i];
+    TTPickerViewCell* cell = [_cellViews objectAtIndex:i];
     if (cell.object == object) {
       [_cellViews removeObjectAtIndex:i];
       [cell removeFromSuperview];
@@ -337,7 +337,7 @@ static CGFloat kMinCursorWidth = 50;
 
 - (void)removeAllCells {
   while (_cellViews.count) {
-    TTMenuViewCell* cell = [_cellViews objectAtIndex:0];
+    TTPickerViewCell* cell = [_cellViews objectAtIndex:0];
     [cell removeFromSuperview];
     [_cellViews removeObjectAtIndex:0];
   }
@@ -345,7 +345,7 @@ static CGFloat kMinCursorWidth = 50;
   _selectedCell = nil;
 }
 
-- (void)setSelectedCell:(TTMenuViewCell*)cell {
+- (void)setSelectedCell:(TTPickerViewCell*)cell {
   if (_selectedCell) {
     _selectedCell.selected = NO;
   }

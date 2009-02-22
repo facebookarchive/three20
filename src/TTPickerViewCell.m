@@ -1,4 +1,4 @@
-#import "Three20/TTMenuViewCell.h"
+#import "Three20/TTPickerViewCell.h"
 #import "Three20/TTAppearance.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -9,7 +9,7 @@ static CGFloat kMaxWidth = 250;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTMenuViewCell
+@implementation TTPickerViewCell
 
 @synthesize object = _object, selected = _selected;
 

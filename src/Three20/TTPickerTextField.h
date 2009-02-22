@@ -1,17 +1,17 @@
 #import "Three20/TTSearchTextField.h"
 
-@class TTMenuViewCell;
+@class TTPickerViewCell;
 
-@interface TTMenuTextField : TTSearchTextField {
+@interface TTPickerTextField : TTSearchTextField {
   NSMutableArray* _cellViews;
-  TTMenuViewCell* _selectedCell;
+  TTPickerViewCell* _selectedCell;
   int _lineCount;
   CGPoint _cursorOrigin;
 }
 
 @property(nonatomic,readonly) NSArray* cellViews;
 @property(nonatomic,readonly) NSArray* cells;
-@property(nonatomic,assign) TTMenuViewCell* selectedCell;
+@property(nonatomic,assign) TTPickerViewCell* selectedCell;
 @property(nonatomic,readonly) int lineCount;
 
 - (void)addCellWithObject:(id)object;
@@ -28,12 +28,12 @@
 
 @end
 
-@protocol TTMenuTextFieldDelegate <TTSearchTextFieldDelegate>
+@protocol TTPickerTextFieldDelegate <TTSearchTextFieldDelegate>
 
-- (void)textField:(TTMenuTextField*)textField didAddCellAtIndex:(NSInteger)index;
+- (void)textField:(TTPickerTextField*)textField didAddCellAtIndex:(NSInteger)index;
 
-- (void)textField:(TTMenuTextField*)textField didRemoveCellAtIndex:(NSInteger)index;
+- (void)textField:(TTPickerTextField*)textField didRemoveCellAtIndex:(NSInteger)index;
 
-- (void)textFieldDidResize:(TTMenuTextField*)textField;
+- (void)textFieldDidResize:(TTPickerTextField*)textField;
 
 @end

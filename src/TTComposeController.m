@@ -1,7 +1,7 @@
 #import "Three20/TTComposeController.h"
 #import "Three20/TTObject.h"
 #import "Three20/TTAppearance.h"
-#import "Three20/TTMenuTextField.h"
+#import "Three20/TTPickerTextField.h"
 #import "Three20/TTTextEditor.h"
 #import "Three20/TTActivityLabel.h"
 
@@ -157,7 +157,7 @@
     for (int i = 0; i < fields.count; ++i) {
       id field = [fields objectAtIndex:i];
       if ([field isKindOfClass:[TTComposerRecipientField class]]) {
-        TTMenuTextField* textField = [_fieldViews objectAtIndex:i];
+        TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
         [(TTComposerRecipientField*)field setRecipients:textField.cells];
       } else if ([field isKindOfClass:[TTComposerTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
@@ -206,9 +206,9 @@
   _fieldViews = [[NSMutableArray alloc] init];
 
   for (TTComposerField* field in _fields) {
-    TTMenuTextField* textField = nil;
+    TTPickerTextField* textField = nil;
     if ([field isKindOfClass:[TTComposerRecipientField class]]) {
-      textField = [[TTMenuTextField alloc] initWithFrame:CGRectZero];
+      textField = [[TTPickerTextField alloc] initWithFrame:CGRectZero];
       textField.dataSource = _dataSource;
       textField.autocorrectionType = UITextAutocorrectionTypeNo;
       textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -221,7 +221,7 @@
         textField.rightView = addButton;
       }
     } else if ([field isKindOfClass:[TTComposerTextField class]]) {
-      textField = [[TTMenuTextField alloc] initWithFrame:CGRectZero];
+      textField = [[TTPickerTextField alloc] initWithFrame:CGRectZero];
     }
     
     if (textField) {
@@ -270,7 +270,7 @@
     TTComposerField* field = [_fields objectAtIndex:i];
     if (field.required) {
       if ([field isKindOfClass:[TTComposerRecipientField class]]) {
-        TTMenuTextField* textField = [_fieldViews objectAtIndex:i];
+        TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
         if (!textField.cells.count) {
           compliant = NO;
         }
@@ -423,15 +423,15 @@
   return NO;
 }
 
-- (void)textField:(TTMenuTextField*)textField didAddCellAtIndex:(NSInteger)index {
+- (void)textField:(TTPickerTextField*)textField didAddCellAtIndex:(NSInteger)index {
   [self updateSendCommand];
 }
 
-- (void)textField:(TTMenuTextField*)textField didRemoveCellAtIndex:(NSInteger)index {
+- (void)textField:(TTPickerTextField*)textField didRemoveCellAtIndex:(NSInteger)index {
   [self updateSendCommand];
 }
 
-- (void)textFieldDidResize:(TTMenuTextField*)textField {
+- (void)textFieldDidResize:(TTPickerTextField*)textField {
   [self layoutViews];
 }
 
@@ -466,8 +466,8 @@
     _dataSource = [dataSource retain];
     
     for (UITextField* textField in _fieldViews) {
-      if ([textField isKindOfClass:[TTMenuTextField class]]) {
-        TTMenuTextField* menuTextField = (TTMenuTextField*)textField;
+      if ([textField isKindOfClass:[TTPickerTextField class]]) {
+        TTPickerTextField* menuTextField = (TTPickerTextField*)textField;
         menuTextField.dataSource = dataSource;
       }
     }
@@ -486,8 +486,8 @@
 }
 
 - (void)addRecipient:(id)recipient forFieldAtIndex:(NSUInteger)fieldIndex {
-  TTMenuTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
-  if ([textField isKindOfClass:[TTMenuTextField class]]) {
+  TTPickerTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
+  if ([textField isKindOfClass:[TTPickerTextField class]]) {
     NSString* label = [_dataSource tableView:textField.tableView labelForObject:recipient];
     if (label) {
       [textField addCellWithObject:recipient];
