@@ -42,8 +42,12 @@ static NSString* kEmbedHTML = @"<html><body style=\"margin:0\">\
   [_url release];
   _url = [url copy];
 
-  NSString* html = [NSString stringWithFormat:kEmbedHTML, _url, self.width, self.height];
-  [self loadHTMLString:html baseURL:nil];
+  if (_url) {
+    NSString* html = [NSString stringWithFormat:kEmbedHTML, _url, self.width, self.height];
+    [self loadHTMLString:html baseURL:nil];
+  } else {
+    [self loadHTMLString:@"&nbsp;" baseURL:nil];
+  }
 }
 
 

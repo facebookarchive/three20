@@ -9,7 +9,7 @@
 @property(nonatomic,readonly) BOOL empty;
 @property(nonatomic,readonly) BOOL loading;
 @property(nonatomic,readonly) BOOL loaded;
-@property(nonatomic,readonly) BOOL needsReload;
+@property(nonatomic,readonly) BOOL outdated;
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;
 

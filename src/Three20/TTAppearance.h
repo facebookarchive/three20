@@ -21,6 +21,9 @@ typedef enum {
   UIColor* _linkTextColor;
   UIColor* _searchTableBackgroundColor;
   UIColor* _searchTableSeparatorColor;
+  UIColor* _tableHeaderTextColor;
+  UIColor* _tableHeaderShadowColor;
+  UIColor* _tableHeaderTintColor;
 }
 
 + (TTAppearance*)appearance;
@@ -33,6 +36,10 @@ typedef enum {
 
 @property(nonatomic,retain) UIColor* searchTableBackgroundColor;
 @property(nonatomic,retain) UIColor* searchTableSeparatorColor;
+
+@property(nonatomic,retain) UIColor* tableHeaderTextColor;
+@property(nonatomic,retain) UIColor* tableHeaderShadowColor;
+@property(nonatomic,retain) UIColor* tableHeaderTintColor;
 
 - (void)draw:(TTDrawStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
   fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius;

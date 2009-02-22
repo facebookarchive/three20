@@ -74,7 +74,7 @@
   return YES;
 }
 
-- (BOOL)needsReload {
+- (BOOL)outdated {
   if (self.loadedTime) {
     return -[self.loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
   } else {

@@ -7,7 +7,9 @@
 #define TT_MEDIUM_IMAGE_SIZE (130*97)
 #define TT_LARGE_IMAGE_SIZE (600*400)
 
-#define TT_DEFAULT_CACHE_EXPIRATION_AGE (60*60*24) // 1 day
+#define TT_DEFAULT_CACHE_INVALIDATION_AGE (60*60*24) // 1 day
+
+#define TT_DEFAULT_CACHE_EXPIRATION_AGE (60*60*24*7) // 1 week
 
 static NSString* kCacheDirPathName = @"Three20";
 
@@ -58,7 +60,7 @@ static TTURLCache* gSharedCache = nil;
     _totalLoading = 0;
     _disableDiskCache = NO;
     _disableImageCache = NO;
-    _invalidationAge = 0;
+    _invalidationAge = TT_DEFAULT_CACHE_INVALIDATION_AGE;
     _maxPixelCount = (TT_SMALL_IMAGE_SIZE*20) + (TT_MEDIUM_IMAGE_SIZE*12);
     _totalPixelCount = 0;
     

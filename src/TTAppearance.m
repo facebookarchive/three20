@@ -11,7 +11,10 @@ static TTAppearance* gAppearance = nil;
 @synthesize linkTextColor = _linkTextColor, navigationBarTintColor = _navigationBarTintColor,
   barTintColor = _barTintColor,
   searchTableBackgroundColor = _searchTableBackgroundColor,
-  searchTableSeparatorColor = _searchTableSeparatorColor;
+  searchTableSeparatorColor = _searchTableSeparatorColor,
+  tableHeaderTextColor = _tableHeaderTextColor,
+  tableHeaderShadowColor = _tableHeaderShadowColor,
+  tableHeaderTintColor = _tableHeaderTintColor;
 
 + (TTAppearance*)appearance {
   if (!gAppearance) {
@@ -36,6 +39,10 @@ static TTAppearance* gAppearance = nil;
     self.barTintColor = RGBCOLOR(109, 132, 162);
     self.searchTableBackgroundColor = RGBCOLOR(235, 235, 235);
     self.searchTableSeparatorColor = [UIColor colorWithWhite:0.85 alpha:1];
+
+    _tableHeaderTextColor = nil;
+    _tableHeaderShadowColor = nil;
+    _tableHeaderTintColor = nil;
   }
   return self;
 }
@@ -46,6 +53,9 @@ static TTAppearance* gAppearance = nil;
   [_barTintColor release];
   [_searchTableBackgroundColor release];
   [_searchTableSeparatorColor release];
+  [_tableHeaderTextColor release];
+  [_tableHeaderShadowColor release];
+  [_tableHeaderTintColor release];
   [super dealloc];
 }
 

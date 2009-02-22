@@ -1,10 +1,11 @@
 #import "Three20/TTTableViewController.h"
 #import "Three20/TTTableViewDataSource.h"
+#import "Three20/TTAppearance.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTTableField.h"
 #import "Three20/TTTableFieldCell.h"
-#import "Three20/TTErrorView.h"
+#import "Three20/TTTableHeaderView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,11 +66,11 @@
 
 - (void)refreshContent {
   if (!_dataSource.loading) {
-    if (_dataSource.needsReload) {
+    if (_dataSource.outdated) {
       [self reloadContent];
 //    } else if (_dataSource.needsRebuild) {
 //      [_dataSource rebuild];
-//
+//  
 //      if (_dataSource.empty) {
 //        self.contentState = TTContentNone;
 //      } else {
@@ -125,6 +126,22 @@
   id item = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   Class cls = [dataSource tableView:tableView cellClassForObject:item];
   return [cls tableView:_tableView rowHeightForItem:item];
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+  if ([TTAppearance appearance].tableHeaderTintColor) {
+    if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
+    NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+    if (!title.length)
+      return nil;
+
+    return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
+    } else {
+      return nil;
+    }
+  } else {
+    return nil;
+  }
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {

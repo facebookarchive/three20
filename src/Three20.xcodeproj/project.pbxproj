@@ -21,6 +21,8 @@
 		BE702EF30F43F6800028A119 /* TTTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */; };
 		BE702EF90F43F9D20028A119 /* TTTableField.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF80F43F9D20028A119 /* TTTableField.m */; };
 		BE702EFB0F43F9DC0028A119 /* TTTableField.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702EFA0F43F9DC0028A119 /* TTTableField.h */; };
+		BE7EB6410F50D30C008A4B05 /* TTTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */; };
+		BE7EB6550F50D339008A4B05 /* TTTableHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */; };
 		BE8A9C170F4143C800FD8C43 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */; };
 		BE8A9C190F4143DA00FD8C43 /* TTURLRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8A9C180F4143DA00FD8C43 /* TTURLRequestQueue.h */; };
 		BE8AA1910F428A3700FD8C43 /* TT+UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8AA1900F428A3700FD8C43 /* TT+UIViewController.m */; };
@@ -117,6 +119,8 @@
 		BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewDataSource.m; sourceTree = "<group>"; };
 		BE702EF80F43F9D20028A119 /* TTTableField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableField.m; sourceTree = "<group>"; };
 		BE702EFA0F43F9DC0028A119 /* TTTableField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableField.h; path = Three20/TTTableField.h; sourceTree = "<group>"; };
+		BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableHeaderView.m; sourceTree = "<group>"; };
+		BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableHeaderView.h; path = Three20/TTTableHeaderView.h; sourceTree = "<group>"; };
 		BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestQueue.m; sourceTree = "<group>"; };
 		BE8A9C180F4143DA00FD8C43 /* TTURLRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestQueue.h; path = Three20/TTURLRequestQueue.h; sourceTree = "<group>"; };
 		BE8AA1900F428A3700FD8C43 /* TT+UIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TT+UIViewController.m"; sourceTree = "<group>"; };
@@ -220,7 +224,7 @@
 			children = (
 				BEF321B10F353B25000DE5D2 /* Global */,
 				BE8AA1870F428A0F00FD8C43 /* Additions */,
-				BEF321B30F353B78000DE5D2 /* General Controllers */,
+				BEF321B30F353B78000DE5D2 /* View Controllers */,
 				BEF31F450F352E64000DE5D2 /* General Views */,
 				BEE341A40F480B91008C826E /* Text Views */,
 				BE702EEF0F43F46E0028A119 /* Tables */,
@@ -253,6 +257,8 @@
 				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
 				BE702ED10F43F3390028A119 /* TTTableFieldCell.h */,
 				BE702ECF0F43F32E0028A119 /* TTTableFieldCell.m */,
+				BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */,
+				BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -373,7 +379,7 @@
 			name = Photos;
 			sourceTree = "<group>";
 		};
-		BEF321B30F353B78000DE5D2 /* General Controllers */ = {
+		BEF321B30F353B78000DE5D2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				BEF31F6D0F352E64000DE5D2 /* TTViewController.h */,
@@ -383,7 +389,7 @@
 				BEE34EAF0F495C4A008C826E /* TTComposeController.h */,
 				BEE34EAD0F495C42008C826E /* TTComposeController.m */,
 			);
-			name = "General Controllers";
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +444,7 @@
 				BEAF21410F4D32E100D75F3B /* TT+UIView.h in Headers */,
 				BEAF21420F4D32E100D75F3B /* TT+UIWebView.h in Headers */,
 				BEDCF3290F4EBE2F0060B7D1 /* TTURLResponse.h in Headers */,
+				BE7EB6550F50D339008A4B05 /* TTTableHeaderView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +532,7 @@
 				BEAF21270F4D329600D75F3B /* TT+UIView.m in Sources */,
 				BEAF21280F4D329600D75F3B /* TT+UIWebView.m in Sources */,
 				BEDCF3270F4EBE1D0060B7D1 /* TTURLResponse.m in Sources */,
+				BE7EB6410F50D30C008A4B05 /* TTTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
