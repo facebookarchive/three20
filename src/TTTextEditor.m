@@ -307,9 +307,9 @@ static CGFloat kTextViewInset = 19;
   [self updatePlaceholder];
 }
 
-- (void)setFixedText:(NSString*)aText {
+- (void)setFixedText:(NSString*)text {
   [_fixedText release];
-  _fixedText = [aText copy];
+  _fixedText = [text copy];
   
   if (_fixedText && !_fixedTextLabel) {
     _fixedTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];

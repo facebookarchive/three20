@@ -163,6 +163,14 @@
   }
 }
 
+- (void)dataSourceLoadCancelled {
+  for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
+    if ([delegate respondsToSelector:@selector(dataSourceLoadCancelled:)]) {
+      [delegate dataSourceLoadCancelled:self];
+    }
+  }
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

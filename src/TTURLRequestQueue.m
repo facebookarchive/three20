@@ -138,10 +138,6 @@ static TTURLRequestQueue* gMainQueue = nil;
     request.timestamp = timestamp;
     request.loading = NO;
 
-    if ([request.response respondsToSelector:@selector(requestLoaded:)]) {
-      [request.response requestLoaded:request];
-    }
-    
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
       if ([delegate respondsToSelector:@selector(requestLoaded:)]) {
         [delegate requestLoaded:request];
@@ -153,10 +149,6 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (void)dispatchError:(NSError*)error {
   for (TTURLRequest* request in [[_requests copy] autorelease]) {
     request.loading = NO;
-
-    if ([request.response respondsToSelector:@selector(request:didFailWithError:)]) {
-      [request.response request:request didFailWithError:error];
-    }
 
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
       if ([delegate respondsToSelector:@selector(request:didFailWithError:)]) {
@@ -279,9 +271,6 @@ static TTURLRequestQueue* gMainQueue = nil;
     
     request.loading = NO;
 
-    if ([request.response respondsToSelector:@selector(requestCancelled:)]) {
-      [request.response requestCancelled:request];
-    }    
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
       if ([delegate respondsToSelector:@selector(requestCancelled:)]) {
         [delegate requestCancelled:request];
@@ -372,30 +361,21 @@ static TTURLRequestQueue* gMainQueue = nil;
     BOOL delayed = _suspended || _totalLoading == kMaxConcurrentLoads;
     
     if ([self loadFromCache:request.url cacheKey:request.cacheKey
-        expires:request.cacheExpirationAge
-        fromDisk:!delayed && request.cachePolicy & TTURLRequestCachePolicyDisk
-        data:&data timestamp:&timestamp]) {
+              expires:request.cacheExpirationAge
+              fromDisk:!delayed && request.cachePolicy & TTURLRequestCachePolicyDisk
+              data:&data timestamp:&timestamp]) {
+      request.respondedFromCache = YES;
+      request.timestamp = timestamp;
+      request.loading = NO;
 
       NSError* error = [request.response request:request processResponse:nil data:data];
       if (error) {
-        if ([request.response respondsToSelector:@selector(request:didFailWithError:)]) {
-          [request.response request:request didFailWithError:error];
-        }
-
         for (id<TTURLRequestDelegate> delegate in request.delegates) {
           if ([delegate respondsToSelector:@selector(request:didFailWithError:)]) {
             [delegate request:request didFailWithError:error];
           }
         }
       } else {
-        request.respondedFromCache = YES;
-        request.timestamp = timestamp;
-        request.loading = NO;
-
-        if ([request.response respondsToSelector:@selector(requestLoaded:)]) {
-          [request.response requestLoaded:request];
-        }
-        
         for (id<TTURLRequestDelegate> delegate in request.delegates) {
           if ([delegate respondsToSelector:@selector(requestLoaded:)]) {
             [delegate requestLoaded:request];
@@ -416,9 +396,11 @@ static TTURLRequestQueue* gMainQueue = nil;
   BOOL canUseCache = loader.cachePolicy
     & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory);
   
-  if (canUseCache && [self loadFromCache:loader.url cacheKey:loader.cacheKey
-      expires:loader.cacheExpirationAge fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
-      data:&data timestamp:&timestamp]) {
+  if (canUseCache
+      && [self loadFromCache:loader.url cacheKey:loader.cacheKey
+               expires:loader.cacheExpirationAge
+               fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
+               data:&data timestamp:&timestamp]) {
     NSError* error = [loader processResponse:nil data:data];
     if (error) {
       [loader dispatchError:error];
@@ -443,8 +425,10 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (void)loadNextInQueue {
   _loaderQueueTimer = nil;
 
-  for (int i = 0; i < kMaxConcurrentLoads && _totalLoading < kMaxConcurrentLoads
-      && _loaderQueue.count; ++i) {
+  for (int i = 0;
+       i < kMaxConcurrentLoads && _totalLoading < kMaxConcurrentLoads
+       && _loaderQueue.count;
+       ++i) {
     TTRequestLoader* loader = [[_loaderQueue objectAtIndex:0] retain];
     [_loaderQueue removeObjectAtIndex:0];
     [self executeLoader:loader];
@@ -462,11 +446,6 @@ static TTURLRequestQueue* gMainQueue = nil;
   [self loadNextInQueue];
 }
 
-- (void)loader:(TTRequestLoader*)loader didFailWithError:(NSError*)error {
-  [loader dispatchError:error];
-  [self loadNextInQueueAfterLoader:loader];
-}
-
 - (void)loader:(TTRequestLoader*)loader loadedResponse:(NSHTTPURLResponse*)response
     data:(NSData*)data {
   NSError* error = [loader processResponse:response data:data];
@@ -479,6 +458,11 @@ static TTURLRequestQueue* gMainQueue = nil;
     [loader dispatchLoaded:[NSDate date]];
   }
 
+  [self loadNextInQueueAfterLoader:loader];
+}
+
+- (void)loader:(TTRequestLoader*)loader didFailWithError:(NSError*)error {
+  [loader dispatchError:error];
   [self loadNextInQueueAfterLoader:loader];
 }
 
@@ -509,10 +493,6 @@ static TTURLRequestQueue* gMainQueue = nil;
     request.cacheKey = [[TTURLCache sharedCache] keyForURL:request.url];
   }
   
-  if ([request.response respondsToSelector:@selector(requestLoading:)]) {
-    [request.response requestLoading:request];
-  }
-  
   for (id<TTURLRequestDelegate> delegate in request.delegates) {
     if ([delegate respondsToSelector:@selector(requestLoading:)]) {
       [delegate requestLoading:request];
@@ -525,9 +505,6 @@ static TTURLRequestQueue* gMainQueue = nil;
   
   if (!request.url) {
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
-    if ([request.response respondsToSelector:@selector(request:didFailWithError:)]) {
-      [request.response request:request didFailWithError:error];
-    }
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
       if ([delegate respondsToSelector:@selector(request:didFailWithError:)]) {
         [delegate request:request didFailWithError:error];

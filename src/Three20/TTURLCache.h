@@ -169,6 +169,6 @@
  */
 - (void)invalidateAll;
 
-- (void)logMemoryReport;
+- (void)logMemoryUsage;
 
 @end

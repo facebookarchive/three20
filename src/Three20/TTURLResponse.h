@@ -1,9 +1,8 @@
-// XXXjoe Switch to FBGlobal after the conversion
-#import "Three20/TTURLRequest.h"
+#import "Three20/TTGlobal.h"
 
 @class TTURLRequest;
 
-@protocol TTURLResponse <TTURLRequestDelegate>
+@protocol TTURLResponse <NSObject>
 
 /**
  * Processes the data from a successful request and determines if it is valid.

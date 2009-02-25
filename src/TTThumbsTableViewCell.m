@@ -58,14 +58,14 @@ static CGFloat kThumbSize = 75;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)assignPhotoAtIndex:(int)index toView:(TTThumbView*)_thumbView {
+- (void)assignPhotoAtIndex:(int)index toView:(TTThumbView*)thumbView {
   id<TTPhoto> photo = [_photo.photoSource photoAtIndex:index];
   if (photo) {
-    _thumbView.url = [photo urlForVersion:TTPhotoVersionThumbnail];
-    _thumbView.hidden = NO;
+    thumbView.url = [photo urlForVersion:TTPhotoVersionThumbnail];
+    thumbView.hidden = NO;
   } else {
-    _thumbView.url = nil;
-    _thumbView.hidden = YES;
+    thumbView.url = nil;
+    thumbView.hidden = YES;
   }
 }
 

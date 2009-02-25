@@ -7,12 +7,12 @@ typedef enum {
   TTInvalidForceReload = 4,
   TTInvalidError = 8,
   TTLoading = 16
-} TTInvalidState;
+} TTValidity;
 
 @protocol TTObject <NSObject>
 
 @property(nonatomic,readonly) NSString* viewURL;
-@property(nonatomic) TTInvalidState invalid;
+@property(nonatomic) TTValidity invalid;
 
 + (id<TTObject>)fromURL:(NSURL*)url;
 

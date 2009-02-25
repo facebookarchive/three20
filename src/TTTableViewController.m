@@ -131,17 +131,13 @@
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
   if (tableView.style == UITableViewStylePlain && [TTAppearance appearance].tableHeaderTintColor) {
     if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
-    NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-    if (!title.length)
-      return nil;
-
-    return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
-    } else {
-      return nil;
+      NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+      if (title.length) {
+        return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
+      }
     }
-  } else {
-    return nil;
   }
+  return nil;
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {

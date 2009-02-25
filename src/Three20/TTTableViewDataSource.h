@@ -39,6 +39,8 @@
 
 - (void)dataSource:(id<TTTableViewDataSource>)dataSource loadDidFailWithError:(NSError*)error;
 
+- (void)dataSourceLoadCancelled:(id<TTTableViewDataSource>)dataSource;
+
 @end
 
 @interface TTDataSource : NSObject <TTTableViewDataSource> {
@@ -50,6 +52,8 @@
 - (void)dataSourceLoaded;
 
 - (void)dataSourceLoadDidFailWithError:(NSError*)error;
+
+- (void)dataSourceLoadCancelled;
 
 @end
 

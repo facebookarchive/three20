@@ -307,7 +307,7 @@ static TTURLCache* gSharedCache = nil;
   }
 }
 
-- (void)logMemoryReport {
+- (void)logMemoryUsage {
   TTLOG(@"======= IMAGE CACHE: %d images, %d pixels ========", _imageCache.count, _totalPixelCount);
   NSEnumerator* e = [_imageCache keyEnumerator];
   for (NSString* key ; key = [e nextObject]; ) {
