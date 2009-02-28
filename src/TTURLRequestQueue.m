@@ -555,8 +555,16 @@ static TTURLRequestQueue* gMainQueue = nil;
   
   for (TTRequestLoader* loader in [_loaders objectEnumerator]) {
     for (TTURLRequest* request in loader.requests) {
-    for (id<TTURLRequestDelegate> requestDelegate in request.delegates) {
-        if (requestDelegate == delegate) {
+      for (id<TTURLRequestDelegate> requestDelegate in request.delegates) {
+        if (!requestsToCancel) {
+          requestsToCancel = [NSMutableArray array];
+        }
+        [requestsToCancel addObject:request];
+      }
+
+      if ([request.userInfo isKindOfClass:[TTUserInfo class]]) {
+        TTUserInfo* userInfo = request.userInfo;
+        if (userInfo.weak == delegate) {
           if (!requestsToCancel) {
             requestsToCancel = [NSMutableArray array];
           }

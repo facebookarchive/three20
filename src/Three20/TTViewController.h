@@ -8,7 +8,7 @@ typedef enum {
   TTContentError = 8
 } TTContentState;
 
-@protocol TTObject;
+@protocol TTPersistable;
 
 /**
  * XXXjoe Re-write this as a short description of the class.
@@ -40,7 +40,7 @@ typedef enum {
 /**
  * The primary object behind the view.
  */
-@property(nonatomic,readonly) id<TTObject> viewObject;
+@property(nonatomic,readonly) id<TTPersistable> viewObject;
 
 /**
  * A description of the kind of view to be presented for viewObject when the view is populated.
@@ -84,7 +84,7 @@ typedef enum {
  * @param name A description that hints at how to display the object.
  * @param state A dictionary of attributes persisted in a previous life.
  */
-- (void)showObject:(id<TTObject>)object inView:(NSString*)viewType withState:(NSDictionary*)state;
+- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state;
 
 /**
  * Persist attributes of the view to a dictionary that can be restored later.

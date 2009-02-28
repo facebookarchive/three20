@@ -241,7 +241,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id<TTObject>)viewObject {
+- (id<TTPersistable>)viewObject {
   return nil;
 }
 
@@ -283,7 +283,7 @@
   }
 }
 
-- (void)showObject:(id<TTObject>)object inView:(NSString*)viewType withState:(NSDictionary*)state {
+- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
   [_viewState release];
   _viewState = [state retain];
 }

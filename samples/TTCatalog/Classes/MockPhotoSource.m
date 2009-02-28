@@ -4,41 +4,8 @@
 
 @synthesize title = _title;
 
-- (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title photos:(NSArray*)photos
-    photos2:(NSArray*)photos2 {
-  if (self = [super init]) {
-    _type = type;
-    _delegates = nil;
-    
-    self.title = title;
-    _photos = photos2 ? [[photos mutableCopy] retain] : [[NSMutableArray alloc] init];
-    _tempPhotos = photos2 ? [photos2 retain] : [photos retain];
-
-    for (int i = 0; i < _photos.count; ++i) {
-      id<TTPhoto> photo = [_photos objectAtIndex:i];
-      if ((NSNull*)photo != [NSNull null]) {
-        photo.photoSource = self;
-        photo.index = i;
-      }
-    }
-
-    if (_type & MockPhotoSourceDelayed || photos2) {
-      _invalid = TTInvalid;
-    } else {
-      [self performSelector:@selector(fakeLoadReady)];
-    }
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_fakeLoadTimer invalidate];
-  [_delegates release];
-  [_photos release];
-  [_tempPhotos release];
-  [_title release];
-  [super dealloc];
-}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
 
 - (void)fakeLoadReady {
   _fakeLoadTimer = nil;
@@ -80,22 +47,64 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTObject
+// NSObject
 
-- (TTInvalidState)invalid {
-  return _invalid;
+- (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title photos:(NSArray*)photos
+    photos2:(NSArray*)photos2 {
+  if (self = [super init]) {
+    _type = type;
+    _delegates = nil;
+    
+    self.title = title;
+    _photos = photos2 ? [[photos mutableCopy] retain] : [[NSMutableArray alloc] init];
+    _tempPhotos = photos2 ? [photos2 retain] : [photos retain];
+
+    for (int i = 0; i < _photos.count; ++i) {
+      id<TTPhoto> photo = [_photos objectAtIndex:i];
+      if ((NSNull*)photo != [NSNull null]) {
+        photo.photoSource = self;
+        photo.index = i;
+      }
+    }
+
+    if (_type & MockPhotoSourceDelayed || photos2) {
+      _invalid = TTInvalid;
+    } else {
+      [self performSelector:@selector(fakeLoadReady)];
+    }
+  }
+  return self;
 }
 
-- (void)setInvalid:(TTInvalidState)state {
-  _invalid = state;
+- (void)dealloc {
+  [_fakeLoadTimer invalidate];
+  [_delegates release];
+  [_photos release];
+  [_tempPhotos release];
+  [_title release];
+  [super dealloc];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTPersistable
 
 - (NSString*)viewURL {
   return nil;
 }
 
-+ (id<TTObject>)fromURL:(NSURL*)url {
++ (id<TTPersistable>)fromURL:(NSURL*)url {
   return nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTLoadable
+
+- (TTValidity)invalid {
+  return _invalid;
+}
+
+- (void)setInvalid:(TTValidity)state {
+  _invalid = state;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -157,6 +166,9 @@
 
 @synthesize photoSource = _photoSource, size = _size, index = _index, caption = _caption;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
 - (id)initWithURL:(NSString*)url smallURL:(NSString*)smallURL size:(CGSize)size {
   return [self initWithURL:url smallURL:smallURL size:size caption:nil];
 }
@@ -184,20 +196,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTObject
-
-- (TTInvalidState)invalid {
-  return TTValid;
-}
-
-- (void)setInvalid:(TTInvalidState)state {
-}
+// TTPersistable
 
 - (NSString*)viewURL {
   return nil;
 }
 
-+ (id<TTObject>)fromURL:(NSURL*)url {
++ (id<TTPersistable>)fromURL:(NSURL*)url {
   return nil;
 }
 

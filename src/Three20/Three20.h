@@ -1,6 +1,5 @@
 
 #import "Three20/TTGlobal.h"
-#import "Three20/TTObject.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTAppearance.h"
 

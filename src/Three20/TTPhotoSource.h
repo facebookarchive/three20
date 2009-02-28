@@ -1,4 +1,4 @@
-#import "Three20/TTObject.h"
+#import "Three20/TTGlobal.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -18,7 +18,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTPhotoSource <TTObject>
+@protocol TTPhotoSource <TTLoadable>
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
 
@@ -60,7 +60,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTPhoto <TTObject>
+@protocol TTPhoto <TTPersistable>
 
 /**
  * The photo source that the photo belongs to.
@@ -91,7 +91,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTPhotoSourceDelegate
+@protocol TTPhotoSourceDelegate <NSObject>
 
 - (void)photoSourceLoading:(id<TTPhotoSource>)photoSource;
 

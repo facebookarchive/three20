@@ -123,11 +123,11 @@ static CGFloat kThumbnailRowHeight = 79;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (id<TTObject>)viewObject {
+- (id<TTPersistable>)viewObject {
   return _photoSource;
 }
 
-- (void)showObject:(id<TTObject>)object inView:(NSString*)viewType withState:(NSDictionary*)state {
+- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
   [super showObject:object inView:viewType withState:state];
 
   self.photoSource = (id<TTPhotoSource>)object;

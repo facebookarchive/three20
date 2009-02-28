@@ -103,6 +103,8 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @protocol TTURLRequestDelegate <NSObject>
 
 @optional
@@ -128,5 +130,34 @@
  *
  */
 - (void)requestCancelled:(TTURLRequest*)request;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * A helper class for storing user info to help identify a request.
+ *
+ * This class lets you store both a strong reference and a weak reference for the duration of
+ * the request.  The weak reference is special because TTURLRequestQueue will examine it when
+ * you call cancelRequestsWithDelegate to see if the weak object is the delegate in question.
+ * For this reason, this object is a safe way to store an object that may be destroyed before
+ * the request completes if you call cancelRequestsWithDelegate in the object's destructor.
+ */
+@interface TTUserInfo : NSObject {
+  NSString* _topic;
+  id _strong;
+  id _weak;
+}
+
+@property(nonatomic,retain) NSString* topic;
+@property(nonatomic,retain) id strong;
+@property(nonatomic,assign) id weak;
+
++ (id)topic:(NSString*)topic strong:(id)strong weak:(id)weak;
++ (id)topic:(NSString*)topic;
++ (id)weak:(id)weak;
+
+- (id)initWithTopic:(NSString*)topic strong:(id)strong weak:(id)weak;
 
 @end

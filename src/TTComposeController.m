@@ -1,5 +1,4 @@
 #import "Three20/TTComposeController.h"
-#import "Three20/TTObject.h"
 #import "Three20/TTAppearance.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTTextEditor.h"
@@ -356,7 +355,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (void)showObject:(id<TTObject>)object inView:(NSString*)viewType withState:(NSDictionary*)state {
+- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
   [super showObject:object inView:viewType withState:state];
   
   _initialRecipients = [[NSArray alloc] initWithObjects:object,nil];

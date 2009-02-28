@@ -69,6 +69,17 @@ void TTNetworkRequestStopped() {
   }
 }
 
+NSLocale* TTCurrentLocale() {
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  NSArray* languages = [defaults objectForKey:@"AppleLanguages"];
+  if (languages.count > 0) {
+    NSString *currentLanguage = [languages objectAtIndex:0];
+    return [[[NSLocale alloc] initWithLocaleIdentifier:currentLanguage] autorelease];
+  } else {
+    return [NSLocale currentLocale];
+  }
+}
+
 NSString* TTLocalizedString(NSString* key, NSString* comment) {
   static NSBundle* bundle = nil;
   if (!bundle) {

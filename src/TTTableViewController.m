@@ -54,7 +54,7 @@
   if (_dataSource.loading) {
     self.contentState = TTContentActivity;
   } else if (!_dataSource.loaded) {
-    [_dataSource loadFromIndex:0 toIndex:NSIntegerMax cachePolicy:TTURLRequestCachePolicyDefault];
+    [_dataSource load:TTURLRequestCachePolicyDefault nextPage:NO];
   } else {
     if (_dataSource.empty) {
       self.contentState = TTContentNone;
@@ -81,7 +81,7 @@
 }
 
 - (void)reloadContent {
-  [_dataSource loadFromIndex:0 toIndex:NSIntegerMax cachePolicy:TTURLRequestCachePolicyNetwork];
+  [_dataSource load:TTURLRequestCachePolicyNetwork nextPage:NO];
 }
 
 - (void)updateView {
@@ -101,6 +101,10 @@
 
     [super updateView];
   } else {
+    [_statusView removeFromSuperview];
+    [_statusView release];
+    _statusView = nil;
+
     _statusDataSource = [[self createDataSourceForStatus] retain];
     _tableView.dataSource = _statusDataSource;
     [_tableView reloadData];
@@ -158,7 +162,9 @@
         = (TTActivityTableFieldCell*)[self.tableView cellForRowAtIndexPath:indexPath];
       cell.animating = YES;
       [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-      //[dataSource loadMore];
+      
+      
+      [_dataSource load:TTURLRequestCachePolicyDefault nextPage:YES];
     }
   }
 }

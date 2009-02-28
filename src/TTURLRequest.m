@@ -204,3 +204,44 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 @end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTUserInfo
+
+@synthesize topic = _topic, strong = _strong, weak = _weak;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (id)topic:(NSString*)topic strong:(id)strong weak:(id)weak {
+  return [[[TTUserInfo alloc] initWithTopic:topic strong:strong weak:weak] autorelease];
+}
+
++ (id)topic:(NSString*)topic {
+  return [[[TTUserInfo alloc] initWithTopic:topic strong:nil weak:nil] autorelease];
+}
+
++ (id)weak:(id)weak {
+  return [[[TTUserInfo alloc] initWithTopic:nil strong:nil weak:weak] autorelease];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithTopic:(NSString*)topic strong:(id)strong weak:(id)weak {
+  if (self = [super init]) {
+    self.topic = topic;
+    self.strong = strong;
+    self.weak = weak;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_topic release];
+  [_strong release];
+  [super dealloc];
+}
+
+@end

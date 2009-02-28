@@ -1,6 +1,5 @@
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTViewController.h"
-#import "Three20/TTObject.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -178,7 +177,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
   return nil;
 }
 
-- (BOOL)dispatchLink:(id<TTObject>)object inView:(NSString*)viewType animated:(BOOL)animated {
+- (BOOL)dispatchLink:(id)object inView:(NSString*)viewType animated:(BOOL)animated {
   if (_linkObservers) {
     SEL selector = @selector(linkVisited:viewType:animated:);
     for (int i = 0; i < _linkObservers.count; ++i) {
@@ -281,7 +280,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
   [_objectLoaders removeObjectForKey:name];
 }
 
-- (id<TTObject>)locateObject:(NSURL*)url {
+- (id<TTPersistable>)locateObject:(NSURL*)url {
   if (_objectLoaders) {
     Class cls = [_objectLoaders objectForKey:url.host];
     if (cls) {
@@ -303,7 +302,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
 - (BOOL)serializeController:(UIViewController*)controller states:(NSMutableArray*)states {
   if ([controller isKindOfClass:[TTViewController class]]) {
     TTViewController* viewController = (TTViewController*)controller;
-    id<TTObject> object = viewController.viewObject;
+    id<TTPersistable> object = viewController.viewObject;
     if (object) {
       NSString* url = [self urlForObject:object inView:viewController.viewType];
       if (url) {
@@ -390,7 +389,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
   }
 }
 
-- (NSString*)urlForObject:(id<TTObject>)object inView:(NSString*)viewType {
+- (NSString*)urlForObject:(id<TTPersistable>)object inView:(NSString*)viewType {
   if (viewType) {
     return [NSString stringWithFormat:@"%@?%@", object.viewURL, viewType];
   } else {
@@ -421,7 +420,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
   if ([_urlSchemes indexOfObject:u.scheme] == NSNotFound) {
     [[UIApplication sharedApplication] openURL:u];
   } else if (_viewLoaders) {
-    id<TTObject> object = [self locateObject:u];
+    id<TTPersistable> object = [self locateObject:u];
     NSString* viewType = object && u.query ? u.query : u.host;
     if (![self dispatchLink:object inView:viewType animated:animated]) {
       return nil;
@@ -508,25 +507,30 @@ static TTNavigationCenter* gDefaultCenter = nil;
   return nil;
 }
 
-- (TTViewController*)displayObject:(id<TTObject>)object {
+- (TTViewController*)displayObject:(id)object {
   return [self displayObject:object inView:nil withState:nil animated:YES];
 }
 
-- (TTViewController*)displayObject:(id<TTObject>)object inView:(NSString*)viewType {
+- (TTViewController*)displayObject:(id)object inView:(NSString*)viewType {
   return [self displayObject:object inView:viewType withState:nil animated:YES];
 }
 
-- (TTViewController*)displayObject:(id<TTObject>) object inView:(NSString*)viewType
+- (TTViewController*)displayObject:(id<TTPersistable>) object inView:(NSString*)viewType
     animated:(BOOL)animated {
   return [self displayObject:object inView:viewType withState:nil animated:animated];
 }
 
-- (TTViewController*)displayObject:(id<TTObject>)object inView:(NSString*)viewType 
+- (TTViewController*)displayObject:(id)object inView:(NSString*)viewType 
   withState:(NSDictionary*)state animated:(BOOL)animated {
-  NSString* url = [object isKindOfClass:[NSString class]]
-    ? (NSString*)object
-    : [self urlForObject:object inView:viewType];
-  return url ? [self displayURL:url withState:state animated:animated] : nil;
+  if ([object isKindOfClass:[NSString class]]) {
+    return object;
+  } else if ([object conformsToProtocol:@protocol(TTPersistable)]) {
+    NSString* url = [self urlForObject:object inView:viewType];
+    
+    return url ? [self displayURL:url withState:state animated:animated] : nil;
+  } else {
+    return nil;
+  }
 }
 
 @end

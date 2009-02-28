@@ -343,11 +343,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (id<TTObject>)viewObject {
+- (id<TTPersistable>)viewObject {
   return _centerPhoto;
 }
 
-- (void)showObject:(id<TTObject>)object inView:(NSString*)viewType withState:(NSDictionary*)state {
+- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
   [super showObject:object inView:viewType withState:state];
   
   if ([object conformsToProtocol:@protocol(TTPhotoSource)]) {

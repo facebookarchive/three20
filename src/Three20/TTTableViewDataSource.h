@@ -6,9 +6,10 @@
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
 @property(nonatomic,readonly) NSDate* loadedTime;
-@property(nonatomic,readonly) BOOL empty;
 @property(nonatomic,readonly) BOOL loading;
+@property(nonatomic,readonly) BOOL loadingMore;
 @property(nonatomic,readonly) BOOL loaded;
+@property(nonatomic,readonly) BOOL empty;
 @property(nonatomic,readonly) BOOL outdated;
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;
@@ -24,8 +25,7 @@
 
 - (void)tableView:(UITableView*)tableView search:(NSString*)text;
 
-- (void)loadFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
-  cachePolicy:(TTURLRequestCachePolicy)cachePolicy;
+- (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage;
 
 @end
 

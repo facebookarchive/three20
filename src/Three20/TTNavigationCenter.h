@@ -1,4 +1,4 @@
-#import "Three20/TTObject.h"
+#import "Three20/TTGlobal.h"
 
 typedef enum {
   TTNavigationCreate,
@@ -57,7 +57,7 @@ typedef enum {
 
 - (void)addObjectLoader:(Class)cls name:(NSString*)name;
 - (void)removeObjectLoader:(NSString*)name;
-- (id<TTObject>)locateObject:(NSURL*)url;
+- (id<TTPersistable>)locateObject:(NSURL*)url;
 
 - (void)addLinkObserver:(id)observer;
 - (void)removeLinkObserver:(id)observer;
@@ -68,18 +68,18 @@ typedef enum {
 - (void)persistControllers;
 - (void)unpersistControllers;
 
-- (NSString*)urlForObject:(id<TTObject>)object inView:(NSString*)viewType;
+- (NSString*)urlForObject:(id<TTPersistable>)object inView:(NSString*)viewType;
 - (BOOL)urlIsSupported:(NSString*)url;
 
 - (TTViewController*)displayURL:(NSString*)url;
 - (TTViewController*)displayURL:(NSString*)url animated:(BOOL)animated;
 - (TTViewController*)displayURL:(NSString*)url withState:(NSDictionary*)state animated:(BOOL)animated;
 
-- (TTViewController*)displayObject:(id<TTObject>)object;
-- (TTViewController*)displayObject:(id<TTObject>)object inView:(NSString*)viewType;
-- (TTViewController*)displayObject:(id<TTObject>) object inView:(NSString*)viewType
+- (TTViewController*)displayObject:(id)object;
+- (TTViewController*)displayObject:(id)object inView:(NSString*)viewType;
+- (TTViewController*)displayObject:(id<TTPersistable>) object inView:(NSString*)viewType
   animated:(BOOL)animated;
-- (TTViewController*)displayObject:(id<TTObject>)object inView:(NSString*)viewType 
+- (TTViewController*)displayObject:(id)object inView:(NSString*)viewType 
   withState:(NSDictionary*)state animated:(BOOL)animated;
 
 @end
@@ -88,13 +88,13 @@ typedef enum {
 
 @optional
 
-- (UINavigationController*)navigationControllerForObject:(id<TTObject>)object
+- (UINavigationController*)navigationControllerForObject:(id)object
   inView:(NSString*)viewType;
 
-- (void)willNavigateToObject:(id<TTObject>)object inView:(NSString*)viewType
+- (void)willNavigateToObject:(id)object inView:(NSString*)viewType
   withController:(UIViewController*)viewController;
 
-- (void)didNavigateToObject:(id<TTObject>)object inView:(NSString*)viewType
+- (void)didNavigateToObject:(id)object inView:(NSString*)viewType
   withController:(UIViewController*)viewController;
   
 @end

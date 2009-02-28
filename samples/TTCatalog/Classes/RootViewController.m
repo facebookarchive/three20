@@ -89,7 +89,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTNavigationDelegate
 
-- (void)willNavigateToObject:(id<TTObject>)object inView:(NSString*)viewType
+- (void)willNavigateToObject:(id)object inView:(NSString*)viewType
     withController:(UIViewController*)viewController {
   NSIndexPath* indexPath = self.tableView.indexPathForSelectedRow;
   TTLinkTableField* field = [self.dataSource tableView:self.tableView

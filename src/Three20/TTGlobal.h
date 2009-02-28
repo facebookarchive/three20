@@ -59,6 +59,17 @@
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:a]
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Content
+
+typedef enum {
+  TTValid = 0,
+  TTInvalid = 1,
+  TTInvalidTemporarily = 2,
+  TTInvalidForceReload = 4,
+  TTLoading = 8,
+} TTValidity;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Networking
 
 typedef enum {
@@ -138,6 +149,48 @@ void TTNetworkRequestStarted();
 void TTNetworkRequestStopped();
 
 /**
+ * Gets the current system locale chosen by the user.
+ *
+ * This is necessary because [NSLocale currentLocale] always returns en_US.
+ */
+NSLocale* TTCurrentLocale();
+
+/**
  * Returns a localized string from the Three20 bundle.
  */
 NSString* TTLocalizedString(NSString* key, NSString* comment);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@protocol TTPersistable <NSObject>
+
+@property(nonatomic,readonly) NSString* viewURL;
+
++ (id<TTPersistable>)fromURL:(NSURL*)url;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@protocol TTLoadable <TTPersistable>
+
+@property(nonatomic) TTValidity invalid;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@protocol TTLoadableX <TTPersistable>
+
+@property(nonatomic,readonly) NSMutableArray* delegates;
+@property(nonatomic,readonly) NSDate* loadedTime;
+@property(nonatomic,readonly) BOOL loaded;
+@property(nonatomic,readonly) BOOL loading;
+@property(nonatomic,readonly) BOOL loadingMore;
+@property(nonatomic,readonly) BOOL empty;
+
+- (void)invalidate:(BOOL)erase;
+- (void)cancel;
+
+@end
+

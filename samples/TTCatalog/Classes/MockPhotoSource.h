@@ -17,7 +17,7 @@ typedef enum {
   NSString* _title;
   NSMutableArray* _photos;
   NSArray* _tempPhotos;
-  TTInvalidState _invalid;
+  TTValidity _invalid;
   NSTimer* _fakeLoadTimer;
 }
 
@@ -28,7 +28,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface MockPhoto : NSObject<TTPhoto> {
+@interface MockPhoto : NSObject <TTPhoto> {
   id<TTPhotoSource> _photoSource;
   NSString* _thumbURL;
   NSString* _smallURL;

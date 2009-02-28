@@ -62,11 +62,11 @@
   return nil;
 }
 
-- (BOOL)empty {
+- (BOOL)loading {
   return NO;
 }
 
-- (BOOL)loading {
+- (BOOL)loadingMore {
   return NO;
 }
 
@@ -74,9 +74,14 @@
   return YES;
 }
 
+- (BOOL)empty {
+  return YES;
+}
+
 - (BOOL)outdated {
-  if (self.loadedTime) {
-    return -[self.loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
+  NSDate* loadedTime = self.loadedTime;
+  if (loadedTime) {
+    return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
   } else {
     return NO;
   }
@@ -133,8 +138,7 @@
 - (void)tableView:(UITableView*)tableView search:(NSString*)text {
 }
 
-- (void)loadFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
-  cachePolicy:(TTURLRequestCachePolicy)cachePolicy {
+- (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
