@@ -174,14 +174,6 @@ NSString* TTLocalizedString(NSString* key, NSString* comment);
 
 @protocol TTLoadable <TTPersistable>
 
-@property(nonatomic) TTValidity invalid;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@protocol TTLoadableX <TTPersistable>
-
 @property(nonatomic,readonly) NSMutableArray* delegates;
 @property(nonatomic,readonly) NSDate* loadedTime;
 @property(nonatomic,readonly) BOOL loaded;

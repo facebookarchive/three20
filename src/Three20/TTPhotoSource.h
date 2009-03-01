@@ -18,7 +18,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTPhotoSource <TTLoadableX>
+@protocol TTPhotoSource <TTLoadable>
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
 
