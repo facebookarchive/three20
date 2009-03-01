@@ -59,17 +59,6 @@
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:a]
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Content
-
-typedef enum {
-  TTValid = 0,
-  TTInvalid = 1,
-  TTInvalidTemporarily = 2,
-  TTInvalidForceReload = 4,
-  TTLoading = 8,
-} TTValidity;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Networking
 
 typedef enum {
