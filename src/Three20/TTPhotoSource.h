@@ -18,7 +18,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTPhotoSource <TTLoadable>
+@protocol TTPhotoSource <TTLoadableX>
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
 
@@ -54,7 +54,7 @@ typedef enum {
  * @param toIndex The ending index, or -1 to load the remainder of photos.
  */
 - (void)loadPhotosFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
-  cachePolicy:(TTURLRequestCachePolicy)cachePolicy;
+        cachePolicy:(TTURLRequestCachePolicy)cachePolicy;
 
 @end
 

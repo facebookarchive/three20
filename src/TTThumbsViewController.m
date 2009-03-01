@@ -5,6 +5,7 @@
 #import "Three20/TTErrorView.h"
 #import "Three20/TTTableFieldCell.h"
 #import "Three20/TTTableField.h"
+#import "Three20/TTURLCache.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +58,15 @@ static CGFloat kThumbnailRowHeight = 79;
         [cell suspendLoading:suspended];
       }
     }
+  }
+}
+
+- (BOOL)outdated {
+  NSDate* loadedTime = _photoSource.loadedTime;
+  if (loadedTime) {
+    return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
+  } else {
+    return NO;
   }
 }
 
@@ -136,7 +146,7 @@ static CGFloat kThumbnailRowHeight = 79;
 - (void)updateContent {
   if (_photoSource.loading) {
     self.contentState = TTContentActivity;
-  } else if (_photoSource.invalid) {
+  } else if (!_photoSource.loaded) {
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:NO];
   } else if (_photoSource.numberOfPhotos) {
     self.contentState = TTContentReady;
@@ -146,8 +156,8 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 - (void)refreshContent {
-  if (_photoSource.invalid && !_photoSource.loading) {
-    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:YES];
+  if (!_photoSource.loading && [self outdated]) {
+    [self reloadContent];
   }
 }
 
@@ -160,7 +170,7 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 - (NSString*)titleForNoContent {
-  return  TTLocalizedString(@"No Photos", @"");
+  return TTLocalizedString(@"No Photos", @"");
 }
 
 - (NSString*)subtitleForNoContent {

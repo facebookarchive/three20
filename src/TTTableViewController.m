@@ -65,18 +65,8 @@
 }
 
 - (void)refreshContent {
-  if (!_dataSource.loading) {
-    if (_dataSource.outdated) {
-      [self reloadContent];
-//    } else if (_dataSource.needsRebuild) {
-//      [_dataSource rebuild];
-//  
-//      if (_dataSource.empty) {
-//        self.contentState = TTContentNone;
-//      } else {
-//        self.contentState = TTContentReady;
-//      }
-    }
+  if (!_dataSource.loading && _dataSource.outdated) {
+    [self reloadContent];
   }
 }
 

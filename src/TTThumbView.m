@@ -44,29 +44,6 @@
   borderView.frame = self.bounds;
 }
 
-- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
-  if ([self pointInside:[touch locationInView:self] withEvent:event]) {
-    return YES;
-  } else {
-    self.highlighted = NO;
-    return NO;
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIControl
-
-- (void)setHighlighted:(BOOL)highlighted {
-  [super setHighlighted:highlighted];
-  
-  if (highlighted) {
-    borderView.fillColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-  } else {
-    borderView.fillColor = nil;
-  }
-  [borderView setNeedsDisplay];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSString*)url {

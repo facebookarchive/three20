@@ -1,9 +1,9 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTLinkView.h"
 
 @class TTImageView;
 @class TTBackgroundView;
 
-@interface TTThumbView : UIControl {
+@interface TTThumbView : TTLinkView {
   TTImageView* imageView;
   TTBackgroundView* borderView;
 }

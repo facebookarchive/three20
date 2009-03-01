@@ -523,7 +523,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
 - (TTViewController*)displayObject:(id)object inView:(NSString*)viewType 
   withState:(NSDictionary*)state animated:(BOOL)animated {
   if ([object isKindOfClass:[NSString class]]) {
-    return object;
+    return [self displayURL:object withState:state animated:animated];
   } else if ([object conformsToProtocol:@protocol(TTPersistable)]) {
     NSString* url = [self urlForObject:object inView:viewType];
     
