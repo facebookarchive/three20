@@ -37,7 +37,8 @@ static const CGFloat kIndexViewMargin = 4;
     iconView.frame = CGRectInset(iconView.frame, -floor(kMarginX/2), 0);
     _searchField.leftView = iconView;
     _searchField.leftViewMode = UITextFieldViewModeAlways;
-
+    _searchField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    
     [_searchField addTarget:self action:@selector(textFieldDidBeginEditing)
       forControlEvents:UIControlEventEditingDidBegin];
     [_searchField addTarget:self action:@selector(textFieldDidEndEditing)

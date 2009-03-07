@@ -1,4 +1,4 @@
-#import "Three20/TTBookView.h"
+#import "Three20/TTScrollView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -13,7 +13,7 @@ static const NSTimeInterval kOvershoot = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTBookView
+@implementation TTScrollView
 
 @synthesize delegate = _delegate, dataSource = _dataSource, centerPageIndex = _centerPageIndex,
   pageSpacing = _pageSpacing, scrollEnabled = _scrollEnabled, zoomEnabled = _zoomEnabled,
@@ -82,7 +82,7 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 - (BOOL)isLastPage {
-  return _centerPageIndex+1 >= [_dataSource numberOfPagesInBookView:self];
+  return _centerPageIndex+1 >= [_dataSource numberOfPagesInScrollView:self];
 }
 
 - (BOOL)draggingFromEdge {
@@ -153,8 +153,8 @@ static const NSTimeInterval kOvershoot = 2;
 
 - (CGRect)frameOfPageAtIndex:(NSInteger)pageIndex {
   CGSize size;
-  if ([_dataSource respondsToSelector:@selector(bookView:sizeOfPageAtIndex:)]) {
-    size = [_dataSource bookView:self sizeOfPageAtIndex:pageIndex];
+  if ([_dataSource respondsToSelector:@selector(scrollView:sizeOfPageAtIndex:)]) {
+    size = [_dataSource scrollView:self sizeOfPageAtIndex:pageIndex];
     if (!size.width || !size.height) {
       size = CGSizeMake(self.pageWidth, self.pageHeight);
     }
@@ -289,7 +289,7 @@ static const NSTimeInterval kOvershoot = 2;
   UIView* page = [_pages objectAtIndex:arrayIndex];
   if ((NSNull*)page == [NSNull null]) {
     if (create) {
-      page = [_dataSource bookView:self pageAtIndex:pageIndex];
+      page = [_dataSource scrollView:self pageAtIndex:pageIndex];
       page.multipleTouchEnabled = YES;
       page.userInteractionEnabled = YES;
       [self addSubview:page];
@@ -441,7 +441,7 @@ static const NSTimeInterval kOvershoot = 2;
   }
 
   overflow = centerPageOverflow;
-  NSInteger pageCount = [_dataSource numberOfPagesInBookView:self];
+  NSInteger pageCount = [_dataSource numberOfPagesInScrollView:self];
   for (NSInteger i = _centerPageIndex + 1; i < pageCount && i <= maxPageIndex; ++i) {
     UIView* page = [self pageAtIndex:i create:YES];
     if (page) {
@@ -709,8 +709,8 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 - (BOOL)canZoom {
-  return _zooming || ![_delegate respondsToSelector:@selector(bookViewShouldZoom:)]
-      || [_delegate bookViewShouldZoom:self];
+  return _zooming || ![_delegate respondsToSelector:@selector(scrollViewShouldZoom:)]
+      || [_delegate scrollViewShouldZoom:self];
 }
 
 - (BOOL)edgesAreZoomed:(UIEdgeInsets)edges {
@@ -722,15 +722,15 @@ static const NSTimeInterval kOvershoot = 2;
     _zooming = YES;
     self.centerPage.userInteractionEnabled = NO;
     
-    if ([_delegate respondsToSelector:@selector(bookViewDidBeginZooming:)]) {
-      [_delegate bookViewDidBeginZooming:self];
+    if ([_delegate respondsToSelector:@selector(scrollViewDidBeginZooming:)]) {
+      [_delegate scrollViewDidBeginZooming:self];
     }
   } else if (_zooming && !self.zoomed) {
     _zooming = NO;
     self.centerPage.userInteractionEnabled = YES;
     
-    if ([_delegate respondsToSelector:@selector(bookViewDidEndZooming:)]) {
-      [_delegate bookViewDidEndZooming:self];
+    if ([_delegate respondsToSelector:@selector(scrollViewDidEndZooming:)]) {
+      [_delegate scrollViewDidEndZooming:self];
     }
   }
 }
@@ -739,15 +739,15 @@ static const NSTimeInterval kOvershoot = 2;
   if (_dragging) {
     _dragging = NO;
 
-    if ([_delegate respondsToSelector:@selector(bookViewDidEndDragging:willDecelerate:)]) {
-      [_delegate bookViewDidEndDragging:self willDecelerate:willDecelerate];
+    if ([_delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
+      [_delegate scrollViewDidEndDragging:self willDecelerate:willDecelerate];
     }
   }
 }
 
 - (void)rotationDidStop {
-  if ([_delegate respondsToSelector:@selector(bookViewDidRotate:)]) {
-    [_delegate bookViewDidRotate:self];
+  if ([_delegate respondsToSelector:@selector(scrollViewDidRotate:)]) {
+    [_delegate scrollViewDidRotate:self];
   }
 }
 
@@ -764,8 +764,8 @@ static const NSTimeInterval kOvershoot = 2;
 - (void)tapTimer {
   _tapTimer = nil;
 
-  if ([_delegate respondsToSelector:@selector(bookViewTapped:)]) {
-    [_delegate bookViewTapped:self];
+  if ([_delegate respondsToSelector:@selector(scrollViewTapped:)]) {
+    [_delegate scrollViewTapped:self];
   }
 }
 
@@ -826,8 +826,8 @@ static const NSTimeInterval kOvershoot = 2;
     } else {
       [self stopAnimation:NO];
       
-      if ([_delegate respondsToSelector:@selector(bookViewDidEndDecelerating:)]) {
-        [_delegate bookViewDidEndDecelerating:self];
+      if ([_delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+        [_delegate scrollViewDidEndDecelerating:self];
       }
     }
   }
@@ -850,8 +850,8 @@ static const NSTimeInterval kOvershoot = 2;
   if (pct == 1.0) {
     [self stopAnimation:YES];
     
-    if ([_delegate respondsToSelector:@selector(bookViewDidEndDecelerating:)]) {
-      [_delegate bookViewDidEndDecelerating:self];
+    if ([_delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+      [_delegate scrollViewDidEndDecelerating:self];
     }
   }
 }
@@ -865,7 +865,7 @@ static const NSTimeInterval kOvershoot = 2;
 
   if (_visiblePageIndex != _centerPageIndex && self.centerPage) {
     _visiblePageIndex = _centerPageIndex;
-    [_delegate bookView:self didMoveToPageAtIndex:_centerPageIndex];
+    [_delegate scrollView:self didMoveToPageAtIndex:_centerPageIndex];
   }
 }
 
@@ -912,8 +912,8 @@ static const NSTimeInterval kOvershoot = 2;
       _dragging = YES;
       [self cancelTapTimer];
       
-      if ([_delegate respondsToSelector:@selector(bookViewWillBeginDragging:)]) {
-        [_delegate bookViewWillBeginDragging:self];
+      if ([_delegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
+        [_delegate scrollViewWillBeginDragging:self];
       }
     }
 
@@ -1005,15 +1005,15 @@ static const NSTimeInterval kOvershoot = 2;
 - (void)deviceOrientationDidChange:(void*)object {
   UIInterfaceOrientation orientation = TTDeviceOrientation();
   if (_rotateEnabled
-      && (![_delegate respondsToSelector:@selector(bookView:shouldAutorotateToInterfaceOrientation:)]
-      || [_delegate bookView:self shouldAutorotateToInterfaceOrientation:orientation])) {
+      && (![_delegate respondsToSelector:@selector(scrollView:shouldAutorotateToInterfaceOrientation:)]
+      || [_delegate scrollView:self shouldAutorotateToInterfaceOrientation:orientation])) {
     self.orientation = orientation;
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setDataSource:(id<TTBookViewDataSource>)dataSource {
+- (void)setDataSource:(id<TTScrollViewDataSource>)dataSource {
   _dataSource = dataSource;
   [self reloadData];
 }
@@ -1023,7 +1023,7 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 - (NSInteger)numberOfPages {
-  return [_dataSource numberOfPagesInBookView:self];
+  return [_dataSource numberOfPagesInScrollView:self];
 }
 
 - (UIView*)centerPage {
@@ -1047,7 +1047,7 @@ static const NSTimeInterval kOvershoot = 2;
   }
 
   NSInteger maxPageIndex = _centerPageIndex + kOffscreenPages;
-  NSInteger pageCount = [_dataSource numberOfPagesInBookView:self];
+  NSInteger pageCount = [_dataSource numberOfPagesInScrollView:self];
   for (NSInteger i = _centerPageIndex + 1; i < pageCount && i <= maxPageIndex; ++i) {  
     UIView* page = [self pageAtIndex:i create:YES];
     if (page) {
@@ -1064,8 +1064,8 @@ static const NSTimeInterval kOvershoot = 2;
 
 - (void)setOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated {
   if (orientation != _orientation && [self supportsOrientation:orientation]) {
-    if ([_delegate respondsToSelector:@selector(bookViewWillRotate:toOrientation:)]) {
-      [_delegate bookViewWillRotate:self toOrientation:orientation];
+    if ([_delegate respondsToSelector:@selector(scrollViewWillRotate:toOrientation:)]) {
+      [_delegate scrollViewWillRotate:self toOrientation:orientation];
     }
 
     _orientation = orientation;

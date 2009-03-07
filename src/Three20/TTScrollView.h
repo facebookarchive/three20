@@ -1,11 +1,11 @@
 #import "Three20/TTGlobal.h"
 
-@protocol TTBookViewDelegate;
-@protocol TTBookViewDataSource;
+@protocol TTScrollViewDelegate;
+@protocol TTScrollViewDataSource;
 
-@interface TTBookView : UIView {
-  id<TTBookViewDelegate> _delegate;
-  id<TTBookViewDataSource> _dataSource;
+@interface TTScrollView : UIView {
+  id<TTScrollViewDelegate> _delegate;
+  id<TTScrollViewDataSource> _dataSource;
   NSInteger _centerPageIndex;
   NSInteger _visiblePageIndex;
   BOOL _scrollEnabled;
@@ -38,12 +38,12 @@
 /**
  *
  */
-@property(nonatomic,assign) id<TTBookViewDelegate> delegate;
+@property(nonatomic,assign) id<TTScrollViewDelegate> delegate;
 
 /**
  *
  */
-@property(nonatomic,assign) id<TTBookViewDataSource> dataSource;
+@property(nonatomic,assign) id<TTScrollViewDataSource> dataSource;
 
 /**
  *
@@ -109,73 +109,73 @@
 
 @end
 
-@protocol TTBookViewDelegate <NSObject>
+@protocol TTScrollViewDelegate <NSObject>
 
 /**
  *
  */
-- (void)bookView:(TTBookView*)bookView didMoveToPageAtIndex:(NSInteger)pageIndex;
+- (void)scrollView:(TTScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex;
 
 @optional
 
 /**
  *
  */
-- (void)bookViewWillRotate:(TTBookView*)bookView toOrientation:(UIInterfaceOrientation)orientation;
+- (void)scrollViewWillRotate:(TTScrollView*)scrollView toOrientation:(UIInterfaceOrientation)orientation;
 
 /**
  *
  */
-- (void)bookViewDidRotate:(TTBookView*)bookView;
+- (void)scrollViewDidRotate:(TTScrollView*)scrollView;
 
 /**
  *
  */
-- (void)bookViewWillBeginDragging:(TTBookView*)bookView;
+- (void)scrollViewWillBeginDragging:(TTScrollView*)scrollView;
 
 /**
  *
  */
-- (void)bookViewDidEndDragging:(TTBookView*)bookView willDecelerate:(BOOL)willDecelerate;
+- (void)scrollViewDidEndDragging:(TTScrollView*)scrollView willDecelerate:(BOOL)willDecelerate;
 
 /**
  *
  */
-- (void)bookViewDidEndDecelerating:(TTBookView*)bookView;
+- (void)scrollViewDidEndDecelerating:(TTScrollView*)scrollView;
 
 /**
  *
  */
-- (BOOL)bookViewShouldZoom:(TTBookView*)bookView;
+- (BOOL)scrollViewShouldZoom:(TTScrollView*)scrollView;
 
 /**
  *
  */
-- (void)bookViewDidBeginZooming:(TTBookView*)bookView;
+- (void)scrollViewDidBeginZooming:(TTScrollView*)scrollView;
 
 /**
  *
  */
-- (void)bookViewDidEndZooming:(TTBookView*)bookView;
+- (void)scrollViewDidEndZooming:(TTScrollView*)scrollView;
 
 /**
  *
  */
-- (void)bookViewTapped:(TTBookView*)bookView;
+- (void)scrollViewTapped:(TTScrollView*)scrollView;
 
 @optional
 
-- (BOOL)bookView:(TTBookView*)bookView 
+- (BOOL)scrollView:(TTScrollView*)scrollView 
   shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation;
 
 @end
 
-@protocol TTBookViewDataSource <NSObject>
+@protocol TTScrollViewDataSource <NSObject>
 
 /**
  *
  */
-- (NSInteger)numberOfPagesInBookView:(TTBookView*)bookView;
+- (NSInteger)numberOfPagesInScrollView:(TTScrollView*)scrollView;
 
 /**
  * Gets a view to display for the page at the given index.
@@ -183,7 +183,7 @@
  * You do not need to position or size the view as that is done for you later.  You should
  * call dequeueReusablePage first, and only create a new view if it returns nil.
  */
-- (UIView*)bookView:(TTBookView*)bookView pageAtIndex:(NSInteger)pageIndex;
+- (UIView*)scrollView:(TTScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex;
 
 /**
  * Gets the natural size of the page. 
@@ -191,6 +191,6 @@
  * The actual width and height are not as important as the ratio between width and height.
  * This is used to determine how to 
  */
-- (CGSize)bookView:(TTBookView*)bookView sizeOfPageAtIndex:(NSInteger)pageIndex;
+- (CGSize)scrollView:(TTScrollView*)scrollView sizeOfPageAtIndex:(NSInteger)pageIndex;
 
 @end

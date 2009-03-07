@@ -40,11 +40,6 @@ typedef enum {
 /**
  *
  */
-@property(nonatomic,readonly) BOOL loading;
-
-/**
- *
- */
 - (id<TTPhoto>)photoAtIndex:(NSInteger)index;
 
 /**

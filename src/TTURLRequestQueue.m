@@ -543,9 +543,11 @@ static TTURLRequestQueue* gMainQueue = nil;
   if (request) {
     TTRequestLoader* loader = [_loaders objectForKey:request.cacheKey];
     if (loader) {
+      [loader retain];
       if (![loader cancel:request]) {
         [_loaderQueue removeObject:loader];
       }
+      [loader release];
     }
   }
 }
@@ -556,15 +558,18 @@ static TTURLRequestQueue* gMainQueue = nil;
   for (TTRequestLoader* loader in [_loaders objectEnumerator]) {
     for (TTURLRequest* request in loader.requests) {
       for (id<TTURLRequestDelegate> requestDelegate in request.delegates) {
-        if (!requestsToCancel) {
-          requestsToCancel = [NSMutableArray array];
+        if (delegate == requestDelegate) {
+          if (!requestsToCancel) {
+            requestsToCancel = [NSMutableArray array];
+          }
+          [requestsToCancel addObject:request];
+          break;
         }
-        [requestsToCancel addObject:request];
       }
 
       if ([request.userInfo isKindOfClass:[TTUserInfo class]]) {
         TTUserInfo* userInfo = request.userInfo;
-        if (userInfo.weak == delegate) {
+        if (userInfo.weak && userInfo.weak == delegate) {
           if (!requestsToCancel) {
             requestsToCancel = [NSMutableArray array];
           }

@@ -114,14 +114,48 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 }
 
 - (void)layoutTabs {
-  CGFloat x = _style == TTTabBarStyleButtons ? kTabMargin2 : kTabMargin;
+  CGFloat margin = _style == TTTabBarStyleButtons ? kTabMargin2 : kTabMargin;
+  CGFloat padding = _style == TTTabBarStyleButtons ? kPadding2 : kPadding;
+  CGFloat x = margin;
 
   if (self.contentMode == UIViewContentModeScaleToFill) {
-    CGFloat tabWidth = floor((self.width - x*2)/_tabViews.count);
+    CGFloat maxTextWidth = self.width - (margin*2 + padding*2*_tabViews.count);
+    CGFloat totalTextWidth = 0;
+    CGFloat totalTabWidth = margin*2;
+    CGFloat maxTabWidth = 0;
     for (int i = 0; i < _tabViews.count; ++i) {
       TTTabView* tab = [_tabViews objectAtIndex:i];
-      tab.frame = CGRectMake(x, 0, tabWidth, self.height);
-      x += tab.width;
+      [tab sizeToFit];
+      totalTextWidth += tab.width - padding*2;
+      totalTabWidth += tab.width;
+      if (tab.width > maxTabWidth) {
+        maxTabWidth = tab.width;
+      }
+    }
+
+    if (totalTextWidth > maxTextWidth) {
+      CGFloat shrinkFactor = maxTextWidth/totalTextWidth;
+      for (int i = 0; i < _tabViews.count; ++i) {
+        TTTabView* tab = [_tabViews objectAtIndex:i];
+        CGFloat textWidth = tab.width - padding*2;
+        tab.frame = CGRectMake(x, 0, ceil(textWidth * shrinkFactor) + padding*2 , self.height);
+        x += tab.width;
+      }
+    } else {
+      CGFloat averageTabWidth = ceil((self.width - margin*2)/_tabViews.count);
+      if (maxTabWidth > averageTabWidth && self.width - totalTabWidth < margin) {
+        for (int i = 0; i < _tabViews.count; ++i) {
+          TTTabView* tab = [_tabViews objectAtIndex:i];
+          tab.frame = CGRectMake(x, 0, tab.width, self.height);
+          x += tab.width;
+        }
+      } else {
+        for (int i = 0; i < _tabViews.count; ++i) {
+          TTTabView* tab = [_tabViews objectAtIndex:i];
+          tab.frame = CGRectMake(x, 0, averageTabWidth, self.height);
+          x += tab.width;
+        }
+      }
     }
   } else {
     for (int i = 0; i < _tabViews.count; ++i) {
@@ -360,12 +394,16 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
       _titleLabel.textColor = RGBCOLOR(223, 229, 237);
       _titleLabel.highlightedTextColor = [UIColor colorWithWhite:0.1 alpha:1];
       _titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.4];
+      _titleLabel.adjustsFontSizeToFitWidth = YES;
+      _titleLabel.minimumFontSize = 9;
     } else if (_style == TTTabBarStyleLight) {
       _titleLabel.textAlignment = UITextAlignmentCenter;
       _titleLabel.font = [UIFont boldSystemFontOfSize:17];
       _titleLabel.textColor = tabBar.textColor;
       _titleLabel.highlightedTextColor = [UIColor colorWithWhite:0.1 alpha:1];
       _titleLabel.shadowColor = [UIColor whiteColor];
+      _titleLabel.adjustsFontSizeToFitWidth = YES;
+      _titleLabel.minimumFontSize = 9;
     } else if (_style == TTTabBarStyleButtons) {
       _titleLabel.textAlignment = UITextAlignmentLeft;
       _titleLabel.font = [UIFont boldSystemFontOfSize:13];

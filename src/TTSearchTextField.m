@@ -117,6 +117,7 @@ static const CGFloat kShadowHeight = 24;
     _shadowView = nil;
     _screenView = nil;
     _searchTimer = nil;
+    _previousNavigationItem = nil;
     _previousRightBarButtonItem = nil;
     _searchesAutomatically = YES;
     _showsDoneButton = NO;
@@ -144,6 +145,7 @@ static const CGFloat kShadowHeight = 24;
   [_tableView release];
   [_shadowView release];
   [_screenView release];
+  [_previousNavigationItem release];
   [_previousRightBarButtonItem release];
   [super dealloc];
 }
@@ -151,9 +153,10 @@ static const CGFloat kShadowHeight = 24;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)showDoneButton:(BOOL)show {
-  UIViewController* controller = [TTNavigationCenter defaultCenter].frontViewController;
+  UIViewController* controller = [TTNavigationCenter defaultCenter].visibleViewController;
   if (controller) {
     if (show) {
+      _previousNavigationItem = [controller.navigationItem retain];
       _previousRightBarButtonItem = [controller.navigationItem.rightBarButtonItem retain];
       
       UIBarButtonItem* doneButton = [[UIBarButtonItem alloc]
@@ -161,9 +164,11 @@ static const CGFloat kShadowHeight = 24;
       target:self action:@selector(doneAction)];
       [controller.navigationItem setRightBarButtonItem:doneButton animated:YES];
     } else {
-      [controller.navigationItem setRightBarButtonItem:_previousRightBarButtonItem animated:YES];
+      [_previousNavigationItem setRightBarButtonItem:_previousRightBarButtonItem animated:YES];
       [_previousRightBarButtonItem release];
       _previousRightBarButtonItem = nil;
+      [_previousNavigationItem release];
+      _previousNavigationItem = nil;
     }
   }
 }
@@ -202,11 +207,10 @@ static const CGFloat kShadowHeight = 24;
 }
 
 - (void)autoSearch {
-  if (_searchesAutomatically) {
+  if (_searchesAutomatically || !self.text.length) {
     [self search];
   }
 }
-
 - (void)dispatchUpdate:(NSTimer*)timer {
   _searchTimer = nil;
   [self autoSearch];
@@ -216,6 +220,11 @@ static const CGFloat kShadowHeight = 24;
   [_searchTimer invalidate];
   _searchTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self
     selector:@selector(dispatchUpdate:) userInfo:nil repeats:NO];
+}
+
+- (void)reloadTable {
+  [_tableView reloadData];
+  _tableView.hidden = ![_tableView numberOfRowsInSection:0];
 }
 
 - (void)screenAnimationDidStop {
@@ -268,12 +277,18 @@ static const CGFloat kShadowHeight = 24;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSourceDelegate
 
-- (void)dataSourceLoaded:(id<TTTableViewDataSource>)dataSource {
-  [_tableView reloadData];
+- (void)dataSourceLoading:(id<TTTableViewDataSource>)dataSource {
+  if (!_searchesAutomatically) {
+    [self reloadTable];
+  }
 }
 
-- (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailWithError:(NSError*)error {
-  [_tableView reloadData];
+- (void)dataSourceLoaded:(id<TTTableViewDataSource>)dataSource {
+  [self reloadTable];
+}
+
+- (void)dataSource:(id<TTTableViewDataSource>)dataSource loadDidFailWithError:(NSError*)error {
+  [self reloadTable];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -330,7 +345,6 @@ static const CGFloat kShadowHeight = 24;
     NSString* text = self.searchText;
     [self showSearchResults:!!text.length];
     [_dataSource tableView:_tableView search:text];
-    _tableView.hidden = ![_tableView numberOfRowsInSection:0];
   }
 }
 
@@ -343,7 +357,7 @@ static const CGFloat kShadowHeight = 24;
       _tableView.dataSource = _dataSource;
       _tableView.delegate = self;
       _tableView.scrollsToTop = NO;
-      _tableView.hidden = YES;
+//      _tableView.hidden = YES;
     }
 
     if (!_shadowView) {

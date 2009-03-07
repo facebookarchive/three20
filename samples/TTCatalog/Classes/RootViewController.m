@@ -9,7 +9,7 @@
 #import "ComposerTestController.h"
 #import "TabBarTestController.h"
 #import "ActivityTestController.h"
-#import "BookViewTestController.h"
+#import "ScrollViewTestController.h"
 
 @implementation RootViewController
 
@@ -43,7 +43,7 @@
   [nav addView:@"searchTest" controller:[SearchTestController class]];
   [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
   [nav addView:@"activityTest" controller:[ActivityTestController class]];
-  [nav addView:@"bookViewTest" controller:[BookViewTestController class]];
+  [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
   
   [self validate];
   
@@ -81,8 +81,8 @@
       href:@"tt://tabBarTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Shiny Label"
       href:@"tt://activityTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Book View"
-      href:@"tt://bookViewTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Scroll View"
+      href:@"tt://scrollViewTest"] autorelease],
     nil];
 }
 

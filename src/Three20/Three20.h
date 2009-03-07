@@ -10,7 +10,7 @@
 #import "Three20/TTLinkView.h"
 #import "Three20/TTYouTubeView.h"
 #import "Three20/TTBackgroundView.h"
-#import "Three20/TTBookView.h"
+#import "Three20/TTScrollView.h"
 #import "Three20/TTTabBar.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTShinyLabel.h"

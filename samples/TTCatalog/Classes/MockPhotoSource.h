@@ -17,8 +17,8 @@ typedef enum {
   NSString* _title;
   NSMutableArray* _photos;
   NSArray* _tempPhotos;
-  TTValidity _invalid;
   NSTimer* _fakeLoadTimer;
+  NSDate* _loadedTime;
 }
 
 - (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title

@@ -1,19 +1,19 @@
 #import "Three20/TTViewController.h"
 #import "Three20/TTPhotoSource.h"
-#import "Three20/TTBookView.h"
+#import "Three20/TTScrollView.h"
 #import "Three20/TTThumbsViewController.h"
 
 @protocol TTPhotoViewControllerDelegate;
-@class TTBookView, TTPhotoView;
+@class TTScrollView, TTPhotoView;
 
 @interface TTPhotoViewController : TTViewController
-    <TTBookViewDelegate, TTBookViewDataSource, TTPhotoSourceDelegate,
+    <TTScrollViewDelegate, TTScrollViewDataSource, TTPhotoSourceDelegate,
       TTThumbsViewControllerDelegate> {
   id<TTPhotoViewControllerDelegate> _delegate;
   id<TTPhotoSource> _photoSource;
   id<TTPhoto> _centerPhoto;
   NSUInteger _centerPhotoIndex;
-  TTBookView* _bookView;
+  TTScrollView* _scrollView;
   TTPhotoView* _photoStatusView;
   UIToolbar* _toolbar;
   UIBarButtonItem* _nextButton;

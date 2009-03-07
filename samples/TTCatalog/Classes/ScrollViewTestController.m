@@ -1,14 +1,14 @@
-#import "BookViewTestController.h"
+#import "ScrollViewTestController.h"
 #import "MockPhotoSource.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation BookViewTestController
+@implementation ScrollViewTestController
 
 - (void)dealloc {
-  _bookView.delegate = nil;
-  _bookView.dataSource = nil;
-  [_bookView release];
+  _scrollView.delegate = nil;
+  _scrollView.dataSource = nil;
+  [_scrollView release];
   [_colors release];
   [super dealloc];
 }
@@ -18,10 +18,10 @@
   CGRect frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height - 44);
   self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
       
-  _bookView = [[TTBookView alloc] initWithFrame:self.view.bounds];
-  _bookView.dataSource = self;
-  _bookView.backgroundColor = [UIColor whiteColor];
-  [self.view addSubview:_bookView];
+  _scrollView = [[TTScrollView alloc] initWithFrame:self.view.bounds];
+  _scrollView.dataSource = self;
+  _scrollView.backgroundColor = [UIColor whiteColor];
+  [self.view addSubview:_scrollView];
   
   _colors = [[NSArray arrayWithObjects:
     [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1],
@@ -39,13 +39,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTBookViewDataSource
+// TTScrollViewDataSource
 
-- (NSInteger)numberOfPagesInBookView:(TTBookView*)bookView {
+- (NSInteger)numberOfPagesInScrollView:(TTScrollView*)scrollView {
   return _colors.count;
 }
 
-- (UIView*)bookView:(TTBookView*)bookView pageAtIndex:(NSInteger)pageIndex {
+- (UIView*)scrollView:(TTScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
   TTBackgroundView* pageView = nil;
   if (!pageView) {
     pageView = [[[TTBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
@@ -63,7 +63,7 @@
   return pageView;
 }
 
-- (CGSize)bookView:(TTBookView*)bookView sizeOfPageAtIndex:(NSInteger)pageIndex {
+- (CGSize)scrollView:(TTScrollView*)scrollView sizeOfPageAtIndex:(NSInteger)pageIndex {
   return CGSizeMake(320, 416);
 }
 

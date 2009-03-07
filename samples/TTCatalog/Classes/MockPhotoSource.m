@@ -9,7 +9,7 @@
 
 - (void)fakeLoadReady {
   _fakeLoadTimer = nil;
-  _invalid = TTValid;
+  _loadedTime = [[NSDate date] retain];
 
   if (_type & MockPhotoSourceLoadError) {
     for (id<TTPhotoSourceDelegate> delegate in _delegates) {
@@ -54,6 +54,7 @@
   if (self = [super init]) {
     _type = type;
     _delegates = nil;
+    _loadedTime = nil;
     
     self.title = title;
     _photos = photos2 ? [[photos mutableCopy] retain] : [[NSMutableArray alloc] init];
@@ -68,7 +69,6 @@
     }
 
     if (_type & MockPhotoSourceDelayed || photos2) {
-      _invalid = TTInvalid;
     } else {
       [self performSelector:@selector(fakeLoadReady)];
     }
@@ -99,12 +99,32 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTLoadable
 
-- (TTValidity)invalid {
-  return _invalid;
+- (NSDate*)loadedTime {
+  return nil;
 }
 
-- (void)setInvalid:(TTValidity)state {
-  _invalid = state;
+- (BOOL)loading {
+  return NO;
+}
+
+- (BOOL)loadingMore {
+  return NO;
+}
+
+- (BOOL)loaded {
+  return YES;
+}
+
+- (BOOL)empty {
+  return YES;
+}
+
+- (void)invalidate:(BOOL)erase {
+}
+
+- (void)cancel {
+  [_fakeLoadTimer invalidate];
+  _fakeLoadTimer = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -127,10 +147,6 @@
 
 - (NSInteger)maxPhotoIndex {
   return _photos.count-1;
-}
-
-- (BOOL)loading {
-  return !!_fakeLoadTimer;
 }
 
 - (id<TTPhoto>)photoAtIndex:(NSInteger)index {

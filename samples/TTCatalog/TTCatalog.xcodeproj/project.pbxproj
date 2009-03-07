@@ -34,7 +34,7 @@
 		BEE348AC0F490F43008C826E /* MockDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE348AB0F490F43008C826E /* MockDataSource.m */; };
 		BEE38E810EB288BA00189902 /* ActivityTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE38E800EB288BA00189902 /* ActivityTestController.m */; };
 		BEE7FD150F3581C1002788A5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE7FD130F358198002788A5 /* libThree20.a */; };
-		BEF6EC370F280CB300CF4096 /* BookViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* BookViewTestController.m */; };
+		BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,8 +100,8 @@
 		BEE38E7F0EB288BA00189902 /* ActivityTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTestController.h; sourceTree = "<group>"; };
 		BEE38E800EB288BA00189902 /* ActivityTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTestController.m; sourceTree = "<group>"; };
 		BEE7FD0E0F358198002788A5 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
-		BEF6EC350F280CB300CF4096 /* BookViewTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewTestController.h; sourceTree = "<group>"; };
-		BEF6EC360F280CB300CF4096 /* BookViewTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewTestController.m; sourceTree = "<group>"; };
+		BEF6EC350F280CB300CF4096 /* ScrollViewTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewTestController.h; sourceTree = "<group>"; };
+		BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewTestController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +148,8 @@
 				BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */,
 				BEE38E7F0EB288BA00189902 /* ActivityTestController.h */,
 				BEE38E800EB288BA00189902 /* ActivityTestController.m */,
-				BEF6EC350F280CB300CF4096 /* BookViewTestController.h */,
-				BEF6EC360F280CB300CF4096 /* BookViewTestController.m */,
+				BEF6EC350F280CB300CF4096 /* ScrollViewTestController.h */,
+				BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */,
 				BE80E2480EAEFF6100743358 /* MockPhotoSource.h */,
 				BE80E2490EAEFF6100743358 /* MockPhotoSource.m */,
 				BEE348AA0F490F43008C826E /* MockDataSource.h */,
@@ -315,7 +315,7 @@
 				BEE0FDDB0EB2A6850052C05F /* PhotoTest1Controller.m in Sources */,
 				BE5F25920EBA5F0400FD59A6 /* PhotoTest2Controller.m in Sources */,
 				BE8C0F7D0F2018C600EB0E98 /* YouTubeTestController.m in Sources */,
-				BEF6EC370F280CB300CF4096 /* BookViewTestController.m in Sources */,
+				BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */,
 				BE6E46EC0F4578BA001CE9B4 /* TabBarTestController.m in Sources */,
 				BE6E4AA50F4655A4001CE9B4 /* TableFieldTestController.m in Sources */,
 				BEE341B40F480C76008C826E /* ComposerTestController.m in Sources */,

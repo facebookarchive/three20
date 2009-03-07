@@ -9,6 +9,7 @@
   UITableView* _tableView;
   TTBackgroundView* _shadowView;
   UIButton* _screenView;
+  UINavigationItem* _previousNavigationItem;
   UIBarButtonItem* _previousRightBarButtonItem;
   NSTimer* _searchTimer;
   BOOL _searchesAutomatically;

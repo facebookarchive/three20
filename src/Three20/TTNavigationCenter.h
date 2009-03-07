@@ -34,6 +34,8 @@ typedef enum {
 
 @property(nonatomic,readonly) UIViewController* frontViewController;
 
+@property(nonatomic,readonly) UIViewController* visibleViewController;
+
 /**
  * The URL schemes used by the application.
  *

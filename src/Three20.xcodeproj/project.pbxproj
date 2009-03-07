@@ -66,7 +66,7 @@
 		BEF31F740F352E64000DE5D2 /* TTBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4A0F352E64000DE5D2 /* TTBackgroundView.m */; };
 		BEF31F750F352E64000DE5D2 /* TTPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4B0F352E64000DE5D2 /* TTPhotoView.m */; };
 		BEF31F760F352E64000DE5D2 /* TTPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4C0F352E64000DE5D2 /* TTPhotoViewController.m */; };
-		BEF31F770F352E64000DE5D2 /* TTBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4D0F352E64000DE5D2 /* TTBookView.m */; };
+		BEF31F770F352E64000DE5D2 /* TTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4D0F352E64000DE5D2 /* TTScrollView.m */; };
 		BEF31F780F352E64000DE5D2 /* TTShinyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4E0F352E64000DE5D2 /* TTShinyLabel.m */; };
 		BEF31F790F352E64000DE5D2 /* TTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4F0F352E64000DE5D2 /* TTTableViewController.m */; };
 		BEF31F7A0F352E64000DE5D2 /* TTThumbsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F500F352E64000DE5D2 /* TTThumbsTableViewCell.m */; };
@@ -85,7 +85,7 @@
 		BEF31F890F352E64000DE5D2 /* TTPhotoSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F600F352E64000DE5D2 /* TTPhotoSource.h */; };
 		BEF31F8A0F352E64000DE5D2 /* TTPhotoView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F610F352E64000DE5D2 /* TTPhotoView.h */; };
 		BEF31F8B0F352E64000DE5D2 /* TTPhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F620F352E64000DE5D2 /* TTPhotoViewController.h */; };
-		BEF31F8C0F352E64000DE5D2 /* TTBookView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F630F352E64000DE5D2 /* TTBookView.h */; };
+		BEF31F8C0F352E64000DE5D2 /* TTScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F630F352E64000DE5D2 /* TTScrollView.h */; };
 		BEF31F8D0F352E64000DE5D2 /* TTShinyLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F640F352E64000DE5D2 /* TTShinyLabel.h */; };
 		BEF31F8E0F352E64000DE5D2 /* TTTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F650F352E64000DE5D2 /* TTTableViewController.h */; };
 		BEF31F8F0F352E64000DE5D2 /* TTThumbsTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F660F352E64000DE5D2 /* TTThumbsTableViewCell.h */; };
@@ -166,7 +166,7 @@
 		BEF31F4A0F352E64000DE5D2 /* TTBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTBackgroundView.m; sourceTree = "<group>"; };
 		BEF31F4B0F352E64000DE5D2 /* TTPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPhotoView.m; sourceTree = "<group>"; };
 		BEF31F4C0F352E64000DE5D2 /* TTPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPhotoViewController.m; sourceTree = "<group>"; };
-		BEF31F4D0F352E64000DE5D2 /* TTBookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTBookView.m; sourceTree = "<group>"; };
+		BEF31F4D0F352E64000DE5D2 /* TTScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTScrollView.m; sourceTree = "<group>"; };
 		BEF31F4E0F352E64000DE5D2 /* TTShinyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShinyLabel.m; sourceTree = "<group>"; };
 		BEF31F4F0F352E64000DE5D2 /* TTTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewController.m; sourceTree = "<group>"; };
 		BEF31F500F352E64000DE5D2 /* TTThumbsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTThumbsTableViewCell.m; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		BEF31F600F352E64000DE5D2 /* TTPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoSource.h; path = Three20/TTPhotoSource.h; sourceTree = "<group>"; };
 		BEF31F610F352E64000DE5D2 /* TTPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoView.h; path = Three20/TTPhotoView.h; sourceTree = "<group>"; };
 		BEF31F620F352E64000DE5D2 /* TTPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoViewController.h; path = Three20/TTPhotoViewController.h; sourceTree = "<group>"; };
-		BEF31F630F352E64000DE5D2 /* TTBookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTBookView.h; path = Three20/TTBookView.h; sourceTree = "<group>"; };
+		BEF31F630F352E64000DE5D2 /* TTScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTScrollView.h; path = Three20/TTScrollView.h; sourceTree = "<group>"; };
 		BEF31F640F352E64000DE5D2 /* TTShinyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTShinyLabel.h; path = Three20/TTShinyLabel.h; sourceTree = "<group>"; };
 		BEF31F650F352E64000DE5D2 /* TTTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewController.h; path = Three20/TTTableViewController.h; sourceTree = "<group>"; };
 		BEF31F660F352E64000DE5D2 /* TTThumbsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsTableViewCell.h; path = Three20/TTThumbsTableViewCell.h; sourceTree = "<group>"; };
@@ -322,8 +322,8 @@
 				BEF31F530F352E64000DE5D2 /* TTUnclippedView.m */,
 				BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */,
 				BE42FB790F3BBF3400A3B65A /* TTTabBar.m */,
-				BEF31F630F352E64000DE5D2 /* TTBookView.h */,
-				BEF31F4D0F352E64000DE5D2 /* TTBookView.m */,
+				BEF31F630F352E64000DE5D2 /* TTScrollView.h */,
+				BEF31F4D0F352E64000DE5D2 /* TTScrollView.m */,
 				BEF31F5A0F352E64000DE5D2 /* TTActivityLabel.h */,
 				BEF31F460F352E64000DE5D2 /* TTActivityLabel.m */,
 				BEF31F640F352E64000DE5D2 /* TTShinyLabel.h */,
@@ -410,7 +410,7 @@
 				BEF31F890F352E64000DE5D2 /* TTPhotoSource.h in Headers */,
 				BEF31F8A0F352E64000DE5D2 /* TTPhotoView.h in Headers */,
 				BEF31F8B0F352E64000DE5D2 /* TTPhotoViewController.h in Headers */,
-				BEF31F8C0F352E64000DE5D2 /* TTBookView.h in Headers */,
+				BEF31F8C0F352E64000DE5D2 /* TTScrollView.h in Headers */,
 				BEF31F8D0F352E64000DE5D2 /* TTShinyLabel.h in Headers */,
 				BEF31F8E0F352E64000DE5D2 /* TTTableViewController.h in Headers */,
 				BEF31F8F0F352E64000DE5D2 /* TTThumbsTableViewCell.h in Headers */,
@@ -500,7 +500,7 @@
 				BEF31F740F352E64000DE5D2 /* TTBackgroundView.m in Sources */,
 				BEF31F750F352E64000DE5D2 /* TTPhotoView.m in Sources */,
 				BEF31F760F352E64000DE5D2 /* TTPhotoViewController.m in Sources */,
-				BEF31F770F352E64000DE5D2 /* TTBookView.m in Sources */,
+				BEF31F770F352E64000DE5D2 /* TTScrollView.m in Sources */,
 				BEF31F780F352E64000DE5D2 /* TTShinyLabel.m in Sources */,
 				BEF31F790F352E64000DE5D2 /* TTTableViewController.m in Sources */,
 				BEF31F7A0F352E64000DE5D2 /* TTThumbsTableViewCell.m in Sources */,

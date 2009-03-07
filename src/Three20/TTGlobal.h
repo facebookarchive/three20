@@ -45,11 +45,8 @@
 
 #define STATUS_HEIGHT 20
 #define TOOLBAR_HEIGHT 44
-#define TABBAR_HEIGHT 47
-#define PROMPT_HEIGHT 30
-#define CHROME_HEIGHT 64
 #define KEYBOARD_HEIGHT 216
-#define CONTENT_HEIGHT (KEYBOARD_HEIGHT - TOOLBAR_HEIGHT)
+#define CHROME_HEIGHT (STATUS_HEIGHT + TOOLBAR_HEIGHT)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Color helpers

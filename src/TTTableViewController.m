@@ -200,7 +200,7 @@
   }
 }
 
-- (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailWithError:(NSError*)error {
+- (void)dataSource:(id<TTTableViewDataSource>)dataSource loadDidFailWithError:(NSError*)error {
   self.contentState &= ~TTContentActivity;
   self.contentState |= TTContentError;
   self.contentError = error;

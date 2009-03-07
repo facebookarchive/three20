@@ -186,18 +186,26 @@
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
   _appearing = NO;
 }
+
+//- (void)viewDidDisappear:(BOOL)animated {
+//  _appearing = NO;
+//}
 
 - (void)didReceiveMemoryWarning {
   TTLOG(@"MEMORY WARNING FOR %@", self);
 
   if (!_appearing) {
     if (_appeared) {
+      TTLOG(@"UNLOAD VIEW %@", self);      
+
       NSMutableDictionary* state = [[NSMutableDictionary alloc] init];
       [self persistView:state];
       _viewState = state;
+
+      NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
       UIView* view = self.view;
       [super didReceiveMemoryWarning];
@@ -210,9 +218,11 @@
       _invalid = YES;
       _appeared = NO;
       
-      TTLOG(@"UNLOAD VIEW %@", self);      
       [_statusView release];
       _statusView = nil;
+
+      [pool release];
+
       [self unloadView];
     }
   }

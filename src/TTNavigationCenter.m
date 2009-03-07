@@ -241,6 +241,28 @@ static TTNavigationCenter* gDefaultCenter = nil;
   }
 }
 
+- (UIViewController*)visibleViewController {
+  UINavigationController* navController = self.frontNavigationController;
+  if (navController) {
+    UIViewController* controller = navController.topViewController;
+    while (controller) {
+      if ([controller isKindOfClass:[UIViewController class]]) {
+        TTViewController* ttcontroller = (TTViewController*)controller;
+        if (!ttcontroller.appearing) {
+          controller = ttcontroller.previousViewController;
+        } else {
+          break;
+        }
+      } else {
+        break;
+      }
+    }
+    return controller;
+  } else {
+    return [self frontViewControllerForController:_mainViewController];
+  }
+}
+
 - (void)setSupportsShakeToReload:(BOOL)supports {
   _supportsShakeToReload = supports;
 
