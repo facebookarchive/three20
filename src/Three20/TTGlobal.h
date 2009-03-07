@@ -46,6 +46,7 @@
 #define STATUS_HEIGHT 20
 #define TOOLBAR_HEIGHT 44
 #define KEYBOARD_HEIGHT 216
+#define TABLE_GROUPED_PADDING 10
 #define CHROME_HEIGHT (STATUS_HEIGHT + TOOLBAR_HEIGHT)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

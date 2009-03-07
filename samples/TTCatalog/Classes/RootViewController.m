@@ -5,6 +5,7 @@
 #import "ImageTest2Controller.h"
 #import "YouTubeTestController.h"
 #import "TableFieldTestController.h"
+#import "TableTestController.h"
 #import "SearchTestController.h"
 #import "ComposerTestController.h"
 #import "TabBarTestController.h"
@@ -39,6 +40,7 @@
   [nav addView:@"imageTest2" controller:[ImageTest2Controller class]];
   [nav addView:@"youTubeTest" controller:[YouTubeTestController class]];
   [nav addView:@"tableFieldTest" controller:[TableFieldTestController class]];
+  [nav addView:@"tableTest" controller:[TableTestController class]];
   [nav addView:@"composerTest" controller:[ComposerTestController class]];
   [nav addView:@"searchTest" controller:[SearchTestController class]];
   [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
@@ -47,8 +49,8 @@
   
   [self validate];
   
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
-  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
+//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+//  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,6 +73,8 @@
       href:@"tt://youTubeTest"] autorelease],
 
     @"Controls",
+    [[[TTTableField alloc] initWithText:@"Loading Table"
+      href:@"tt://tableTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Table Fields"
       href:@"tt://tableFieldTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Search Bar"

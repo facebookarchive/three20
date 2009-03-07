@@ -2,13 +2,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-static CGFloat kImageSize = 180;
 static CGFloat kHPadding = 20;
 static CGFloat kVPadding = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTErrorView
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
 
 - (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image {
   if (self = [self initWithFrame:CGRectZero]) {
@@ -58,23 +60,34 @@ static CGFloat kVPadding = 50;
 - (void)layoutSubviews {
   [_subtitleView sizeToFit];
   [_titleView sizeToFit];
+  [_imageView sizeToFit];
   
   if (_titleView.text.length) {
-    _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
-      self.width-kHPadding*2, _subtitleView.height);
-    _titleView.frame = CGRectMake(0, _subtitleView.top-kVPadding, self.width, _titleView.height);
+    if (_subtitleView.text.length || _imageView.image) {
+      _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
+        self.width-kHPadding*2, _subtitleView.height);
+      _titleView.frame = CGRectMake(0, _subtitleView.top-kVPadding, self.width, _titleView.height);
+    } else {
+      _subtitleView.frame = CGRectZero;
+      _titleView.frame = CGRectMake(kHPadding, floor(self.height/2 - _titleView.height/2),
+        self.width - kHPadding*2, _titleView.height);
+    }
   } else {
-    _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
-      self.width-kHPadding*2, _subtitleView.height);
     _titleView.frame = CGRectZero;
+    if (_imageView.image) {
+      _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
+        self.width-kHPadding*2, _subtitleView.height);
+    } else {
+      _subtitleView.frame = CGRectMake(kHPadding, floor(self.height/2 - _subtitleView.height/2),
+        self.width-kHPadding*2, _subtitleView.height);
+    }
   }
 
   if (_imageView.image) {
-    [_imageView sizeToFit];
-    
     CGFloat textTop = _titleView.height ? _titleView.top : _subtitleView.top;
-    _imageView.frame = CGRectMake(self.width/2 - kImageSize/2, textTop - (kImageSize + kVPadding),
-      kImageSize, kImageSize);
+    
+    _imageView.frame = CGRectMake(self.width/2 - _imageView.width/2,
+      textTop/2 - (_imageView.height/2), _imageView.width, _imageView.height);
   } else {
     _imageView.frame = CGRectZero;
   }

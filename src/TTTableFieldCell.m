@@ -619,7 +619,11 @@ static CGFloat kDefaultIconSize = 50;
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTActivityTableField* field = item;
   if (field.sizeToFit) {
-    return tableView.height - tableView.tableHeaderView.height;
+    if (tableView.style == UITableViewStyleGrouped) {
+      return (tableView.height - TABLE_GROUPED_PADDING*2) - tableView.tableHeaderView.height;
+    } else {
+      return tableView.height - tableView.tableHeaderView.height;
+    }
   } else {
     return [super tableView:tableView rowHeightForItem:item];
   }

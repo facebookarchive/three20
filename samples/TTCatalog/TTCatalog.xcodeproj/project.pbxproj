@@ -16,6 +16,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		BE5F25920EBA5F0400FD59A6 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */; };
+		BE69B7590F62874900C02928 /* TableTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE69B7580F62874900C02928 /* TableTestController.m */; };
 		BE6E46EC0F4578BA001CE9B4 /* TabBarTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */; };
 		BE6E4AA50F4655A4001CE9B4 /* TableFieldTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */; };
 		BE6E4DC00F46A352001CE9B4 /* tableIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E4DBF0F46A352001CE9B4 /* tableIcon.png */; };
@@ -70,6 +71,8 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5F25900EBA5F0400FD59A6 /* PhotoTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest2Controller.h; sourceTree = "<group>"; };
 		BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest2Controller.m; sourceTree = "<group>"; };
+		BE69B7570F62874900C02928 /* TableTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTestController.h; sourceTree = "<group>"; };
+		BE69B7580F62874900C02928 /* TableTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTestController.m; sourceTree = "<group>"; };
 		BE6E46EA0F4578BA001CE9B4 /* TabBarTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarTestController.h; sourceTree = "<group>"; };
 		BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarTestController.m; sourceTree = "<group>"; };
 		BE6E4AA30F4655A4001CE9B4 /* TableFieldTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableFieldTestController.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				BEE38E800EB288BA00189902 /* ActivityTestController.m */,
 				BEF6EC350F280CB300CF4096 /* ScrollViewTestController.h */,
 				BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */,
+				BE69B7570F62874900C02928 /* TableTestController.h */,
+				BE69B7580F62874900C02928 /* TableTestController.m */,
 				BE80E2480EAEFF6100743358 /* MockPhotoSource.h */,
 				BE80E2490EAEFF6100743358 /* MockPhotoSource.m */,
 				BEE348AA0F490F43008C826E /* MockDataSource.h */,
@@ -321,6 +326,7 @@
 				BEE341B40F480C76008C826E /* ComposerTestController.m in Sources */,
 				BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */,
 				BEE348AC0F490F43008C826E /* MockDataSource.m in Sources */,
+				BE69B7590F62874900C02928 /* TableTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

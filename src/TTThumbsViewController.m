@@ -156,7 +156,7 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 - (void)refreshContent {
-  if (!_photoSource.loading && [self outdated]) {
+  if (!_photoSource.loading && self.outdated) {
     [self reloadContent];
   }
 }
