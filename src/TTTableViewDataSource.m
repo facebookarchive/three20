@@ -9,6 +9,9 @@
 
 @synthesize delegates = _delegates;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
 - (id)init {
   if (self = [super init]) {
     _delegates = nil;
@@ -28,8 +31,8 @@
   return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*)tableView:(UITableView *)tableView
+                    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   id object = [self tableView:tableView objectForRowAtIndexPath:indexPath];
   Class cellClass = [self tableView:tableView cellClassForObject:object];
 
@@ -132,7 +135,7 @@
 }
 
 - (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
-    forRowAtIndexPath:(NSIndexPath*)indexPath {
+        forRowAtIndexPath:(NSIndexPath*)indexPath {
 }
 
 - (void)tableView:(UITableView*)tableView search:(NSString*)text {
@@ -142,6 +145,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (void)dataSourceLoading {
   for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
@@ -181,6 +185,9 @@
 
 @implementation TTListDataSource
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
 + (TTListDataSource*)dataSourceWithObjects:(id)object,... {
   NSMutableArray* items = [NSMutableArray array];
   va_list ap;
@@ -193,6 +200,9 @@
 
   return [[[self alloc] initWithItems:items] autorelease];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
 
 - (id)initWithItems:(NSArray*)items {
   if (self = [self init]) {
@@ -245,6 +255,9 @@
 
 @implementation TTSectionedDataSource
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
 + (TTSectionedDataSource*)dataSourceWithObjects:(id)object,... {
   NSMutableArray* items = [NSMutableArray array];
   NSMutableArray* sections = [NSMutableArray array];
@@ -265,6 +278,9 @@
 
   return [[[self alloc] initWithItems:items sections:sections] autorelease];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
 
 - (id)initWithItems:(NSArray*)items sections:(NSArray*)sections {
   if (self = [self init]) {
@@ -348,10 +364,14 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
-- (NSArray*)lettersForSections {
+- (NSArray*)lettersForSectionsWithSearch:(BOOL)withSearch withCount:(BOOL)withCount {
   if (_sections) {
     NSMutableArray* titles = [NSMutableArray array];
+    if (withSearch) {
+      [titles addObject:@"{search}"];
+    }
     
     for (NSString* label in _sections) {
       if (label.length) {
@@ -359,7 +379,11 @@
         [titles addObject:letter];    
       }
     }
-
+    
+    if (withCount) {
+      [titles addObject:@"#"];
+    }
+    
     return titles;
   } else {
     return nil;

@@ -29,6 +29,8 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @protocol TTTableViewDataSourceDelegate <NSObject>
 
 @optional
@@ -42,6 +44,8 @@
 - (void)dataSourceLoadCancelled:(id<TTTableViewDataSource>)dataSource;
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTDataSource : NSObject <TTTableViewDataSource> {
   NSMutableArray* _delegates;
@@ -57,6 +61,8 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TTListDataSource : TTDataSource {
   NSMutableArray* _items;
 }
@@ -67,15 +73,17 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TTSectionedDataSource : TTDataSource {
   NSMutableArray* _sections;
   NSMutableArray* _items;
 }
 
-@property(nonatomic,readonly) NSArray* lettersForSections;
-
 + (TTSectionedDataSource*)dataSourceWithObjects:(id)object,...;
 
 - (id)initWithItems:(NSArray*)items sections:(NSArray*)sections;
+
+- (NSArray*)lettersForSectionsWithSearch:(BOOL)withSearch withCount:(BOOL)withCount;
 
 @end

@@ -333,7 +333,7 @@
 // UITableViewDataSource
 
 - (NSArray*)sectionIndexTitlesForTableView:(UITableView*)tableView {
-  return self.lettersForSections;
+  return [self lettersForSectionsWithSearch:YES withCount:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
