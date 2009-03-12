@@ -330,8 +330,8 @@ static TTNavigationCenter* gDefaultCenter = nil;
       if (url) {
         [states addObject:url];
 
-        if (viewController.viewState) {
-          [states addObject:viewController.viewState];
+        if (viewController.frozenState) {
+          [states addObject:viewController.frozenState];
         } else {
           NSMutableDictionary* viewState = [NSMutableDictionary dictionary];
           if (viewController.appeared) {
@@ -368,8 +368,8 @@ static TTNavigationCenter* gDefaultCenter = nil;
       break;
     
     TTViewController* topController = (TTViewController*)navController.topViewController;
-    [topController updateContent];
-    if (!topController.contentState & TTContentReady) {
+    [topController validateView];
+    if (!topController.viewState & TTViewDataLoaded) {
       break;
     }
   }

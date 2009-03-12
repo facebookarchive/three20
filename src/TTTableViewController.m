@@ -6,121 +6,38 @@
 #import "Three20/TTTableField.h"
 #import "Three20/TTTableFieldCell.h"
 #import "Three20/TTTableHeaderView.h"
+#import "Three20/TTActivityLabel.h"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// global
+
+static const CGFloat kEmptyHeaderHeight = 1;
+static const CGFloat kSectionHeaderHeight = 35;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableViewController
+@interface TTTableViewDelegate : NSObject <UITableViewDelegate> {
+  TTTableViewController* _controller;
+}
 
-@synthesize tableView = _tableView, dataSource = _dataSource;
+- (id)initWithController:(TTTableViewController*)controller;
 
-- (id)init {
+@end
+
+@implementation TTTableViewDelegate
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithController:(TTTableViewController*)controller {
   if (self = [super init]) {
-    _tableView = nil;
-    _dataSource = nil;
-    _statusDataSource = nil;
-  }  
+    _controller = controller;
+  }
   return self;
-}
-
-- (void)dealloc {
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIViewController
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
-}  
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTViewController
-
-- (void)persistView:(NSMutableDictionary*)state {
-  CGFloat scrollY = _tableView.contentOffset.y;
-  [state setObject:[NSNumber numberWithFloat:scrollY] forKey:@"scrollOffsetY"];
-}
-
-- (void)restoreView:(NSDictionary*)state {
-  NSNumber* scrollY = [state objectForKey:@"scrollOffsetY"];
-  _tableView.contentOffset = CGPointMake(0, scrollY.floatValue);
-}
-
-- (void)updateContent {
-  self.dataSource = [self createDataSource];
-  
-  if (_dataSource.loading) {
-    self.contentState = TTContentActivity;
-  } else if (!_dataSource.loaded) {
-    [_dataSource load:TTURLRequestCachePolicyDefault nextPage:NO];
-  } else {
-    if (_dataSource.empty) {
-      self.contentState = TTContentNone;
-    } else {
-      self.contentState = TTContentReady;
-    }
-  }
-}
-
-- (void)refreshContent {
-  if (!_dataSource.loading && _dataSource.outdated) {
-    [self reloadContent];
-  }
-}
-
-- (void)reloadContent {
-  [_dataSource load:TTURLRequestCachePolicyNetwork nextPage:NO];
-}
-
-- (void)updateView {
-  if (self.contentState & TTContentReady) {
-    [_statusDataSource release];
-    _statusDataSource = nil;
-
-    if (_dataSource) {
-      _tableView.dataSource = _dataSource;
-    } else if ([self conformsToProtocol:@protocol(UITableViewDataSource)]) {
-      _tableView.dataSource = (id<UITableViewDataSource>)self;
-    } else {
-      _tableView.dataSource = nil;
-    }
-
-    [_tableView reloadData];
-
-    [super updateView];
-  } else {
-    [_statusView removeFromSuperview];
-    [_statusView release];
-    _statusView = nil;
-
-    _statusDataSource = [[self createDataSourceForStatus] retain];
-    _tableView.dataSource = _statusDataSource;
-    [_tableView reloadData];
-  }
-}
-
-- (void)unloadView {
-  [_dataSource.delegates removeObject:self];
-  [_dataSource release];
-  _dataSource = nil;
-  [_statusDataSource release];
-  _statusDataSource = nil;
-  [_tableView release];
-  _tableView = nil;
-  [super unloadView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-  id<TTTableViewDataSource> dataSource = _statusDataSource ? _statusDataSource : _dataSource;
-  id item = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
-  Class cls = [dataSource tableView:tableView cellClassForObject:item];
-  return [cls tableView:_tableView rowHeightForItem:item];
-}
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
   if (tableView.style == UITableViewStylePlain && [TTAppearance appearance].tableHeaderTintColor) {
@@ -135,28 +52,30 @@
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  id<TTTableViewDataSource> dataSource = _statusDataSource ? _statusDataSource : _dataSource;
+  id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
 
-  id item = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
-  if ([item isKindOfClass:[TTTableField class]]) {
-    TTTableField* field = item;
+  id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+  if ([object isKindOfClass:[TTTableField class]]) {
+    TTTableField* field = object;
     if (field.href) {
       [[TTNavigationCenter defaultCenter] displayURL:field.href];
     }
+
     if ([field isKindOfClass:[TTButtonTableField class]]) {
-      [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    } else if ([item isKindOfClass:[TTMoreButtonTableField class]]) {
-      TTMoreButtonTableField* moreLink = (TTMoreButtonTableField*)item;
+      [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    } else if ([object isKindOfClass:[TTMoreButtonTableField class]]) {
+      TTMoreButtonTableField* moreLink = (TTMoreButtonTableField*)object;
       moreLink.loading = YES;
       TTActivityTableFieldCell* cell
-        = (TTActivityTableFieldCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        = (TTActivityTableFieldCell*)[tableView cellForRowAtIndexPath:indexPath];
       cell.animating = YES;
-      [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+      [tableView deselectRowAtIndexPath:indexPath animated:YES];
       
-      
-      [_dataSource load:TTURLRequestCachePolicyDefault nextPage:YES];
+      [dataSource load:TTURLRequestCachePolicyDefault nextPage:YES];
     }
   }
+
+  [_controller didSelectObject:object atIndexPath:indexPath];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -185,25 +104,300 @@
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
 
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTTableViewVarHeightDelegate : TTTableViewDelegate
+@end
+
+@implementation TTTableViewVarHeightDelegate
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
+  id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
+
+  id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+  Class cls = [dataSource tableView:tableView cellClassForObject:object];
+  return [cls tableView:tableView rowHeightForItem:object];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTTableViewPlainDelegate : TTTableViewDelegate
+@end
+
+@implementation TTTableViewPlainDelegate
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UITableViewDelegate
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+  NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+  if (!title.length)
+    return nil;
+
+  return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTTableViewPlainVarHeightDelegate : TTTableViewVarHeightDelegate
+@end
+
+@implementation TTTableViewPlainVarHeightDelegate
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UITableViewDelegate
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+  NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+  if (!title.length)
+    return nil;
+
+  return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTTableViewGroupedVarHeightDelegate : TTTableViewVarHeightDelegate
+@end
+
+@implementation TTTableViewGroupedVarHeightDelegate
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+  NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+  if (!title.length) {
+    return kEmptyHeaderHeight;
+  } else {
+    return kSectionHeaderHeight;
+  }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableViewController
+
+@synthesize tableView = _tableView, dataSource = _dataSource, variableHeight = _variableHeight;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (void)updateTableDelegate {
+  if (!_tableView.delegate || [_tableView.delegate isKindOfClass:[TTTableViewDelegate class]]) {
+    [_tableDelegate release];
+    if (_variableHeight || _statusDataSource) {
+      _tableDelegate = [[TTTableViewVarHeightDelegate alloc] initWithController:self];
+    } else {
+      _tableDelegate = [[TTTableViewDelegate alloc] initWithController:self];
+    }
+    _tableView.delegate = nil;
+    _tableView.delegate = _tableDelegate;
+  }
+}
+
+- (void)reloadTableData {
+  [self updateTableDelegate];
+  [_tableView reloadData];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _tableView = nil;
+    _refreshingView = nil;
+    _dataSource = nil;
+    _statusDataSource = nil;
+    _tableDelegate = nil;
+    _variableHeight = NO;
+  }  
+  return self;
+}
+
+- (void)dealloc {
+  [_tableDelegate release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
+}  
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTViewController
+
+- (void)persistView:(NSMutableDictionary*)state {
+  CGFloat scrollY = _tableView.contentOffset.y;
+  [state setObject:[NSNumber numberWithFloat:scrollY] forKey:@"scrollOffsetY"];
+}
+
+- (void)restoreView:(NSDictionary*)state {
+  NSNumber* scrollY = [state objectForKey:@"scrollOffsetY"];
+  _tableView.contentOffset = CGPointMake(0, scrollY.floatValue);
+}
+
+- (void)reloadContent {
+  [_dataSource load:TTURLRequestCachePolicyNetwork nextPage:NO];
+}
+
+- (void)refreshContent {
+  if (!_dataSource.loading && _dataSource.outdated) {
+    [self reloadContent];
+  }
+}
+
+- (void)updateView {
+  self.dataSource = [self createDataSource];
+  
+  if (_dataSource.loading) {
+    if (_dataSource.loadingMore) {
+      [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
+    } else {
+      [self invalidateViewState:TTViewLoading];
+    }
+  } else if (!_dataSource.loaded) {
+    [_dataSource load:TTURLRequestCachePolicyDefault nextPage:NO];
+  } else {
+    if (_contentError) {
+      [self invalidateViewState:TTViewDataLoadedError];
+    } else if (_dataSource.empty) {
+      [self invalidateViewState:TTViewDataLoadedNothing];
+    } else {
+      [self invalidateViewState:TTViewDataLoaded];
+    }
+  }
+}
+
+- (void)updateLoadingView {
+  if (self.viewState & TTViewLoading) {
+    NSString* title = [self titleForActivity];
+    TTStatusTableField* statusItem = [[[TTActivityTableField alloc] initWithText:title]
+      autorelease];
+    statusItem.sizeToFit = YES;
+
+    _statusDataSource = [[TTListDataSource alloc] initWithItems:
+      [NSArray arrayWithObject:statusItem]];
+    _tableView.dataSource = _statusDataSource;
+    [self reloadTableData];
+  }
+  
+  if (self.viewState & TTViewRefreshing) {
+    [_refreshingView removeFromSuperview];
+    [_refreshingView release];
+
+    _refreshingView = [[TTActivityLabel alloc] initWithFrame:
+      CGRectMake(0, self.view.height - 50, self.view.width, 50)
+      style:TTActivityLabelStyleBlackThinBezel text:[self titleForActivity]];
+    _refreshingView.centeredToScreen = NO;
+    _refreshingView.userInteractionEnabled = NO;
+    [self.view addSubview:_refreshingView];
+  } else {
+    [_refreshingView removeFromSuperview];
+    [_refreshingView release];
+    _refreshingView = nil;
+  }
+}
+
+- (void)updateDataView {
+  if (self.viewState & TTViewDataLoaded) {
+    [_statusDataSource release];
+    _statusDataSource = nil;
+
+    if (_dataSource) {
+      _tableView.dataSource = _dataSource;
+    } else if ([self conformsToProtocol:@protocol(UITableViewDataSource)]) {
+      _tableView.dataSource = (id<UITableViewDataSource>)self;
+    } else {
+      _tableView.dataSource = nil;
+    }
+  } else if (self.viewState & TTViewDataLoadedNothing) {
+    NSString* title = [self titleForNoData];
+    NSString* subtitle = [self subtitleForNoData];
+    UIImage* image = [self imageForNoData];
+    
+    TTStatusTableField* statusItem = [[[TTErrorTableField alloc] initWithText:title
+      subtitle:subtitle image:image] autorelease];
+    statusItem.sizeToFit = YES;
+
+    _statusDataSource = [[TTListDataSource alloc] initWithItems:
+      [NSArray arrayWithObject:statusItem]];
+    _tableView.dataSource = _statusDataSource;
+  } else if (self.viewState & TTViewDataLoadedError) {
+    NSString* title = [self titleForError:_contentError];
+    NSString* subtitle = [self subtitleForError:_contentError];
+    UIImage* image = [self imageForError:_contentError];
+    
+    TTStatusTableField* statusItem = [[[TTErrorTableField alloc] initWithText:title
+      subtitle:subtitle image:image] autorelease];
+    statusItem.sizeToFit = YES;
+
+    _statusDataSource = [[TTListDataSource alloc] initWithItems:
+      [NSArray arrayWithObject:statusItem]];
+    _tableView.dataSource = _statusDataSource;
+  }
+
+  [self reloadTableData];
+}
+
+- (void)unloadView {
+  [_dataSource.delegates removeObject:self];
+  [_dataSource release];
+  _dataSource = nil;
+  [_statusDataSource release];
+  _statusDataSource = nil;
+  [_tableView release];
+  _tableView = nil;
+  [_refreshingView release];
+  _refreshingView = nil;
+  [super unloadView];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSourceDelegate
 
 - (void)dataSourceLoading:(id<TTTableViewDataSource>)dataSource {
-  self.contentState |= TTContentActivity;
+  if (dataSource.loadingMore) {
+    [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
+  } else {
+    [self invalidateViewState:TTViewLoading];
+  }
 }
 
 - (void)dataSourceLoaded:(id<TTTableViewDataSource>)dataSource {
-  if (!dataSource.empty) {
-    self.contentState = TTContentReady;
+  if (dataSource.empty) {
+    [self invalidateViewState:TTViewDataLoadedNothing];
   } else {
-    self.contentState = TTContentNone;
+    [self invalidateViewState:TTViewDataLoaded];
   }
 }
 
 - (void)dataSource:(id<TTTableViewDataSource>)dataSource loadDidFailWithError:(NSError*)error {
-  self.contentState &= ~TTContentActivity;
-  self.contentState |= TTContentError;
   self.contentError = error;
+  [self invalidateViewState:TTViewDataLoadedError];
+}
+
+- (void)dataSourceLoadCancelled:(id<TTTableViewDataSource>)dataSource {
+  [self invalidateViewState:TTViewDataLoadedError];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -217,39 +411,11 @@
   }
 }
 
-- (void)setTableView:(UITableView*)tableView {
-  if (_tableView != tableView) {
-    [_tableView release];
-    _tableView = [tableView retain];
-
-    if (!_tableView.delegate) {
-      _tableView.delegate = self;
-    }
-  }
-}
-
 - (id<TTTableViewDataSource>)createDataSource {
   return nil;
 }
 
-- (id<TTTableViewDataSource>)createDataSourceForStatus {
-  TTStatusTableField* statusItem = nil;
-  
-  if (_contentState & TTContentActivity) {
-    statusItem = [[[TTActivityTableField alloc] initWithText:[self titleForActivity]] autorelease];
-  } else if (_contentState & TTContentError) {
-    statusItem = [[[TTErrorTableField alloc] initWithText:[self titleForError:_contentError]
-      subtitle:[self subtitleForError:_contentError]
-      image:[self imageForError:_contentError]] autorelease];
-  } else {
-    statusItem = [[[TTErrorTableField alloc] initWithText:[self titleForNoContent]
-      subtitle:[self subtitleForNoContent]
-      image:[self imageForNoContent]] autorelease];
-  }
-
-  statusItem.sizeToFit = YES;
-  return [[[TTListDataSource alloc] initWithItems:
-    [NSArray arrayWithObject:statusItem]] autorelease];
+- (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
 }
 
 @end

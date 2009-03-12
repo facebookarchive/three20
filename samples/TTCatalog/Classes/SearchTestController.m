@@ -48,13 +48,7 @@
   return [MockDataSource mockDataSource:NO];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-  
-  id object = [self.dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+- (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   [_delegate searchTestController:self didSelectObject:object];
 }
 

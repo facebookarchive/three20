@@ -112,7 +112,7 @@
 }
 
 - (BOOL)loaded {
-  return YES;
+  return !!_loadedTime;
 }
 
 - (BOOL)empty {

@@ -1,5 +1,4 @@
 #import "Three20/TTViewController.h"
-#import "Three20/TTActivityLabel.h"
 #import "Three20/TTErrorView.h"
 #import "Three20/TTURLRequestQueue.h"
 
@@ -7,26 +6,34 @@
 
 @implementation TTViewController
 
-@synthesize viewState = _viewState, contentState = _contentState, contentError = _contentError,
-  appearing = _appearing, appeared = _appeared, autoresizesForKeyboard = _autoresizesForKeyboard;
+@synthesize frozenState = _frozenState, viewState = _viewState,
+  contentError = _contentError, appearing = _appearing, appeared = _appeared,
+  autoresizesForKeyboard = _autoresizesForKeyboard;
 
 - (id)init {
   if (self = [super init]) {  
-    _viewState = nil;
-    _contentState = TTContentUnknown;
+    _frozenState = nil;
+    _viewState = TTViewStateUnknown;
     _contentError = nil;
     _previousBar = nil;
     _previousBarStyle = 0;
     _previousBarTintColor = nil;
     _previousStatusBarStyle = 0;
-    _statusView = nil;
-    _invalid = YES;
+    _invalidContent = YES;
+    _invalidView = YES;
+    _invalidViewLoading = NO;
+    _invalidViewData = NO;
+    _validating = NO;
     _appearing = NO;
     _appeared = NO;
     _unloaded = NO;
     _autoresizesForKeyboard = NO;
   }
   return self;
+}
+
+- (void)awakeFromNib {
+  [self init];
 }
 
 - (void)dealloc {
@@ -36,10 +43,8 @@
   
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
 
-  [_viewState release];
+  [_frozenState release];
   [_contentError release];
-
-  [_statusView release];
   [self unloadView];
 
   if (_appeared) {
@@ -52,23 +57,6 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)validateView {
-  if (_invalid) {
-    // Ensure the view is loaded
-    self.view;
-
-    [self updateView];
-
-    if (_viewState && _contentState & TTContentReady) {
-      [self restoreView:_viewState];
-      [_viewState release];
-      _viewState = nil;
-    }
-
-    _invalid = NO;
-  }
-}
 
 //- (void)changeStyleFrom:(TTViewControllerStyle)from {
 //  if (from != style) {
@@ -100,27 +88,6 @@
 //  }
 //  [topController release];
 //}
-
-- (void)showStatusView:(UIView*)view {
-  [_statusView removeFromSuperview];
-  [_statusView release];
-  _statusView = [view retain];
-
-  if (_statusView) {
-    [self.view addSubview:_statusView];
-  }
-}
-
-- (void)showStatusCover:(UIView*)view {
-  view.frame = self.view.bounds;
-  [self showStatusView:view];
-}
-
-- (void)showStatusBanner:(UIView*)view {
-  view.frame = CGRectMake(0, self.view.height - 50, self.view.width, 50);
-  view.userInteractionEnabled = NO;
-  [self showStatusView:view];
-}
 
 - (BOOL)resizeForKeyboard:(NSNotification*)notification {
   NSValue* v1 = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
@@ -161,7 +128,7 @@
 // UIViewController
 
 - (void)loadView {
-  UIView* contentView = [[[UIView alloc] initWithFrame:TTApplicationFrame()] autorelease];
+  UIView* contentView = [[[UIView alloc] initWithFrame:TTNavigationFrame()] autorelease];
 	contentView.autoresizesSubviews = YES;
 	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   contentView.backgroundColor = [UIColor whiteColor];
@@ -174,12 +141,13 @@
     [self loadView];
   }
 
-  [self validate];
-
-  [TTURLRequestQueue mainQueue].suspended = YES;
-  
   _appearing = YES;
   _appeared = YES;
+
+  [self validateView];
+  [self refreshContent];
+
+  [TTURLRequestQueue mainQueue].suspended = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -203,7 +171,7 @@
 
       NSMutableDictionary* state = [[NSMutableDictionary alloc] init];
       [self persistView:state];
-      _viewState = state;
+      _frozenState = state;
 
       NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
@@ -214,21 +182,15 @@
       // be destroyed here like it should by the superclass - so let's do it ourselves!
       [view removeSubviews];
 
-      _unloaded = YES;
-      _invalid = YES;
+      _viewState = TTViewStateUnknown;
+      _invalidView = YES;
       _appeared = NO;
+      _unloaded = YES;
       
-      [_statusView release];
-      _statusView = nil;
-
       [pool release];
 
       [self unloadView];
     }
-  }
-  
-  if (!_appeared) {
-    _contentState = TTContentUnknown;
   }
 }
 
@@ -277,25 +239,9 @@
   }
 }
 
-- (void)setContentState:(TTContentState)contentState {
-  if (_contentState != contentState) {
-    _contentState = contentState;
-    _invalid = YES;
-    
-    if (!(_contentState & TTContentError)) {
-      [_contentError release];
-      _contentError = nil;
-    }
-    
-    if (_appearing) {
-      [self validateView];
-    }
-  }
-}
-
 - (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
-  [_viewState release];
-  _viewState = [state retain];
+  [_frozenState release];
+  _frozenState = [state retain];
 }
 
 - (void)persistView:(NSMutableDictionary*)state {
@@ -304,60 +250,75 @@
 - (void)restoreView:(NSDictionary*)state {
 } 
 
-- (void)invalidate {
-  _contentState = TTContentUnknown;
-  _invalid = YES;
-  if (_appearing) {
-    [self updateContent];
-    [self refreshContent];
-  }
-}
-
-- (void)validate {
-  if (_contentState == TTContentUnknown) {
-    [self updateContent];
-  }
-  [self refreshContent];
-
-  [self validateView];
-}
-
-- (void)updateContent {
-  self.contentState = TTContentReady;
+- (void)reloadContent {
 }
 
 - (void)refreshContent {
 }
 
-- (void)reloadContent {
+- (void)invalidateView {
+  _invalidView = YES;
+  _viewState = TTViewStateUnknown;
+  if (_appearing) {
+    [self validateView];
+  }
+}
+
+- (void)invalidateViewState:(TTViewState)state {
+  if (!_invalidViewLoading) {
+    _invalidViewLoading = (_viewState & TTViewLoadingStates) != (state & TTViewLoadingStates);
+  }
+  if (!_invalidViewData) {
+    _invalidViewData = state == TTViewDataLoaded
+                       || (_viewState & TTViewDataStates) != (state & TTViewDataStates);
+  }
+  
+  _viewState = state;
+  
+  if (_appearing) {
+    [self validateView];
+  }
+}
+
+- (void)validateView {
+  if (!_validating) {
+    _validating = YES;
+    if (_invalidView) {
+      // Ensure the view is loaded
+      self.view;
+
+      [self updateView];
+
+      if (_frozenState && self.viewState & TTViewDataLoaded) {
+        [self restoreView:_frozenState];
+        [_frozenState release];
+        _frozenState = nil;
+      }
+
+      _invalidView = NO;
+    }
+    
+    if (_invalidViewLoading) {
+      [self updateLoadingView];
+      _invalidViewLoading = NO;
+    }
+
+    if (_invalidViewData) {
+      [self updateDataView];
+      _invalidViewData = NO;
+    }
+
+    _validating = NO;
+  }
 }
 
 - (void)updateView {
-  if (_contentState & TTContentReady) {
-    if (_contentState & TTContentActivity) {
-      TTActivityLabel* label = [[[TTActivityLabel alloc] initWithFrame:CGRectZero
-        style:TTActivityLabelStyleBlackThinBezel text:[self titleForActivity]] autorelease];
-      label.centeredToScreen = NO;
-      [self showStatusBanner:label];
-    } else if (_contentState & TTContentError) {
-      // XXXjoe Create a yellow banner
-      [self showStatusBanner:nil];
-    } else {
-      [self showStatusView:nil];
-    }
-  } else {
-    if (_contentState & TTContentActivity) {
-      [self showStatusCover:[[[TTActivityLabel alloc] initWithFrame:CGRectZero
-        style:TTActivityLabelStyleGray text:[self titleForActivity]] autorelease]];
-    } else if (_contentState & TTContentError) {
-      [self showStatusCover:[[[TTErrorView alloc] initWithTitle:[self titleForError:_contentError]
-        subtitle:[self subtitleForError:_contentError]
-        image:[self imageForError:_contentError]] autorelease]];
-    } else {
-      [self showStatusCover:[[[TTErrorView alloc] initWithTitle:[self titleForNoContent]
-        subtitle: [self subtitleForNoContent] image:[self imageForNoContent]] autorelease]];
-    }
-  }
+}
+
+- (void)updateLoadingView {
+}
+
+- (void)updateDataView {
 }
 
 - (void)unloadView {
@@ -370,22 +331,22 @@
 }
 
 - (NSString*)titleForActivity {
-  if (_contentState & TTContentReady) {
+  if (self.viewState & TTViewRefreshing) {
     return TTLocalizedString(@"Updating...", @"");
   } else {
     return TTLocalizedString(@"Loading...", @"");
   }
 }
 
-- (UIImage*)imageForNoContent {
+- (UIImage*)imageForNoData {
   return nil;
 }
 
-- (NSString*)titleForNoContent {
+- (NSString*)titleForNoData {
   return nil;
 }
 
-- (NSString*)subtitleForNoContent {
+- (NSString*)subtitleForNoData {
   return nil;
 }
 

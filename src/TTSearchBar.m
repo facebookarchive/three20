@@ -29,7 +29,7 @@ static const CGFloat kIndexViewMargin = 4;
     
     _searchField = [[TTSearchTextField alloc] initWithFrame:CGRectZero];
     _searchField.placeholder = TTLocalizedString(@"Search", @"");
-        
+    
     UIImageView* iconView = [[[UIImageView alloc] initWithImage:
       [UIImage imageNamed:@"Three20.bundle/images/searchIcon.png"]] autorelease];
     [iconView sizeToFit];
@@ -210,6 +210,14 @@ static const CGFloat kIndexViewMargin = 4;
 
 - (void)setFont:(UIFont*)font {
   _searchField.font = font;
+}
+
+- (CGFloat)rowHeight {
+  return _searchField.rowHeight;
+}
+
+- (void)setRowHeight:(CGFloat)rowHeight {
+  _searchField.rowHeight = rowHeight;
 }
 
 - (void)setTintColor:(UIColor*)tintColor {

@@ -1,18 +1,23 @@
 #import "Three20/TTViewController.h"
 #import "Three20/TTTableViewDataSource.h"
 
-@interface TTTableViewController : TTViewController
-    <UITableViewDelegate, TTTableViewDataSourceDelegate> {
+@class TTActivityLabel;
+
+@interface TTTableViewController : TTViewController <TTTableViewDataSourceDelegate> {
   UITableView* _tableView;
+  TTActivityLabel* _refreshingView;
   id<TTTableViewDataSource> _dataSource;
   id<TTTableViewDataSource> _statusDataSource;
+  id<UITableViewDelegate> _tableDelegate;
+  BOOL _variableHeight;
 }
 
 @property(nonatomic,retain) UITableView* tableView;
 @property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
+@property(nonatomic) BOOL variableHeight;
 
 - (id<TTTableViewDataSource>)createDataSource;
 
-- (id<TTTableViewDataSource>)createDataSourceForStatus;
+- (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
 
 @end

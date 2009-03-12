@@ -358,11 +358,10 @@ static TTURLRequestQueue* gMainQueue = nil;
   if (request.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory)) {
     NSData* data = nil;
     NSDate* timestamp = nil;
-    BOOL delayed = _suspended || _totalLoading == kMaxConcurrentLoads;
     
     if ([self loadFromCache:request.url cacheKey:request.cacheKey
               expires:request.cacheExpirationAge
-              fromDisk:!delayed && request.cachePolicy & TTURLRequestCachePolicyDisk
+              fromDisk:!_suspended && request.cachePolicy & TTURLRequestCachePolicyDisk
               data:&data timestamp:&timestamp]) {
       request.respondedFromCache = YES;
       request.timestamp = timestamp;

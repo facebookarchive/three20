@@ -5,8 +5,7 @@
 
 - (void)viewDidLoad {
   self.photoSource = [[MockPhotoSource alloc]
-    initWithType:MockPhotoSourceNormal
-    // initWithType:MockPhotoSourceDelayed
+    initWithType:MockPhotoSourceDelayed
     // initWithType:MockPhotoSourceLoadError
     // initWithType:MockPhotoSourceDelayed|MockPhotoSourceLoadError
     title:@"Flickr Photos"

@@ -12,6 +12,7 @@
   UINavigationItem* _previousNavigationItem;
   UIBarButtonItem* _previousRightBarButtonItem;
   NSTimer* _searchTimer;
+  CGFloat _rowHeight;
   BOOL _searchesAutomatically;
   BOOL _showsDoneButton;
   BOOL _showsDarkScreen;
@@ -19,6 +20,7 @@
 
 @property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
 @property(nonatomic,readonly) UITableView* tableView;
+@property(nonatomic) CGFloat rowHeight;
 @property(nonatomic,readonly) BOOL hasText;
 @property(nonatomic) BOOL searchesAutomatically;
 @property(nonatomic) BOOL showsDoneButton;

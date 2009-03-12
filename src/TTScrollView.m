@@ -205,14 +205,17 @@ static const NSTimeInterval kOvershoot = 2;
 - (BOOL)supportsOrientation:(UIInterfaceOrientation)orientation {
   return orientation == UIInterfaceOrientationLandscapeLeft
           || orientation == UIInterfaceOrientationLandscapeRight
-          || orientation == UIInterfaceOrientationPortrait;
+          || orientation == UIInterfaceOrientationPortrait
+          || orientation == UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (CGAffineTransform)rotateTransform:(CGAffineTransform)transform {
   if (_orientation == UIInterfaceOrientationLandscapeLeft) {
-    return CGAffineTransformRotate(transform, 4.71238898);
+    return CGAffineTransformRotate(transform, M_PI*1.5);
   } else if (_orientation == UIInterfaceOrientationLandscapeRight) {
-    return CGAffineTransformRotate(transform, 1.57079633);
+    return CGAffineTransformRotate(transform, M_PI/2);
+  } else if (_orientation == UIInterfaceOrientationPortraitUpsideDown) {
+    return CGAffineTransformRotate(transform, -M_PI);
   } else {
     return transform;
   }
@@ -220,9 +223,11 @@ static const NSTimeInterval kOvershoot = 2;
 
 - (CGAffineTransform)transformForOrientation:(UIInterfaceOrientation)orientation {
   if (orientation == UIInterfaceOrientationLandscapeLeft) {
-    return CGAffineTransformMakeRotation(4.71238898);
+    return CGAffineTransformMakeRotation(M_PI*1.5);
   } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-    return CGAffineTransformMakeRotation(1.57079633);
+    return CGAffineTransformMakeRotation(M_PI/2);
+  } else if (_orientation == UIInterfaceOrientationPortraitUpsideDown) {
+    return CGAffineTransformMakeRotation(-M_PI);
   } else {
     return CGAffineTransformIdentity;
   }

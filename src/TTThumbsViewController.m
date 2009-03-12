@@ -10,7 +10,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static NSInteger kColumnCount = 4;
-static NSInteger kPageSize = 60;
 static CGFloat kThumbnailRowHeight = 79;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,11 +43,6 @@ static CGFloat kThumbnailRowHeight = 79;
     cachePolicy:forceReload ? TTURLRequestCachePolicyNetwork : TTURLRequestCachePolicyDefault];
 }
 
-- (void)loadNextPage:(BOOL)forceReload {
-  NSInteger maxIndex = _photoSource.maxPhotoIndex;
-  [self loadPhotosFromIndex:maxIndex+1 toIndex:maxIndex+1+kPageSize forceReload:forceReload];
-}
-
 - (void)suspendLoadingThumbnails:(BOOL)suspended {
   if (_photoSource.maxPhotoIndex >= 0) {
     NSArray* cells = _tableView.visibleCells;
@@ -78,28 +72,22 @@ static CGFloat kThumbnailRowHeight = 79;
 // UIViewController
 
 - (void)loadView {
-  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  CGRect frame = CGRectMake(0, 0, appFrame.size.width, appFrame.size.height - TOOLBAR_HEIGHT);
-
-  UIView* contentView = [[[TTUnclippedView alloc] initWithFrame:appFrame] autorelease];
-  contentView.backgroundColor = [UIColor whiteColor];
-  contentView.autoresizesSubviews = YES;
-	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  self.view = contentView;
-    
-  UITableView* tableView = [[UITableView alloc] initWithFrame:frame
-    style:UITableViewStylePlain];
-  tableView.rowHeight = 79;
-//  tableView.autoresizesSubviews = YES;
-//	tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  tableView.backgroundColor = [UIColor whiteColor];
-  tableView.separatorColor = [UIColor whiteColor];
-  tableView.contentInset = UIEdgeInsetsMake(4, 0, 0, 0);
-  tableView.clipsToBounds = NO;
-  tableView.delegate = self;
-  tableView.dataSource = self;
-  [self.view addSubview:tableView];
-  self.tableView = tableView;
+  self.view = [[[TTUnclippedView alloc] initWithFrame:TTApplicationFrame()] autorelease];
+  self.view.backgroundColor = [UIColor whiteColor];
+  self.view.autoresizesSubviews = YES;
+	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  
+  self.tableView = [[[UITableView alloc] initWithFrame:TTNavigationFrame()
+                                         style:UITableViewStylePlain] autorelease];
+  self.tableView.dataSource = self;
+  self.tableView.rowHeight = kThumbnailRowHeight;
+	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth
+    | UIViewAutoresizingFlexibleHeight;
+  self.tableView.backgroundColor = [UIColor whiteColor];
+  self.tableView.separatorColor = [UIColor whiteColor];
+  self.tableView.contentInset = UIEdgeInsetsMake(4, 0, 0, 0);
+  self.tableView.clipsToBounds = NO;
+  [self.view addSubview:self.tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -143,16 +131,8 @@ static CGFloat kThumbnailRowHeight = 79;
   self.photoSource = (id<TTPhotoSource>)object;
 }
 
-- (void)updateContent {
-  if (_photoSource.loading) {
-    self.contentState = TTContentActivity;
-  } else if (!_photoSource.loaded) {
-    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:NO];
-  } else if (_photoSource.numberOfPhotos) {
-    self.contentState = TTContentReady;
-  } else {
-    self.contentState = TTContentNone;
-  }
+- (void)reloadContent {
+  [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:YES];
 }
 
 - (void)refreshContent {
@@ -161,19 +141,35 @@ static CGFloat kThumbnailRowHeight = 79;
   }
 }
 
-- (void)reloadContent {
-  [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:YES];
+- (void)updateView {
+  if (_photoSource.loading) {
+    if (_photoSource.loadingMore) {
+      [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
+    } else {
+      [self invalidateViewState:TTViewLoading];
+    }
+  } else if (!_photoSource.loaded) {
+    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:NO];
+  } else {
+    if (_contentError) {
+      [self invalidateViewState:TTViewDataLoadedError];
+    } else if (!_photoSource.numberOfPhotos) {
+      [self invalidateViewState:TTViewDataLoadedNothing];
+    } else {
+      [self invalidateViewState:TTViewDataLoaded];
+    }
+  }
 }
 
-- (UIImage*)imageForNoContent {
+- (UIImage*)imageForNoData {
   return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
 }
 
-- (NSString*)titleForNoContent {
+- (NSString*)titleForNoData {
   return TTLocalizedString(@"No Photos", @"");
 }
 
-- (NSString*)subtitleForNoContent {
+- (NSString*)subtitleForNoData {
   return TTLocalizedString(@"This photo set contains no photos.", @"");
 }
 
@@ -193,9 +189,9 @@ static CGFloat kThumbnailRowHeight = 79;
 // UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-  NSInteger maxIndex = _photoSource.maxPhotoIndex;
+  NSInteger maxIndex = _photoSource.maxPhotoIndex+1;
   if (!_photoSource.loading && maxIndex > 0) {
-    NSInteger count =  (maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0);
+    NSInteger count =  ceil((maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0));
     if (self.hasMoreToLoad) {
       return count + 1;
     } else {
@@ -244,47 +240,31 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-  return kThumbnailRowHeight;
-}
-
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  if (indexPath.row == [_tableView numberOfRowsInSection:0]-1) {
-    [self loadNextPage:NO];
-
-    TTMoreButtonTableFieldCell* cell
-      = (TTMoreButtonTableFieldCell*)[tableView cellForRowAtIndexPath:indexPath];
-    cell.animating = YES;
-    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTURLRequestDelegate
 
 - (void)photoSourceLoading:(id<TTPhotoSource>)photoSource {
-  self.contentState |= TTContentActivity;
+  if (photoSource.loadingMore) {
+    [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
+  } else {
+    [self invalidateViewState:TTViewLoading];
+  }
 }
 
 - (void)photoSourceLoaded:(id<TTPhotoSource>)photoSource {
-  if (_photoSource.numberOfPhotos) {
-    self.contentState = TTContentReady;
+  if (!_photoSource.numberOfPhotos) {
+    [self invalidateViewState:TTViewDataLoadedNothing];
   } else {
-    self.contentState = TTContentNone;
+    [self invalidateViewState:TTViewDataLoaded];
   }
 }
 
 - (void)photoSource:(id<TTPhotoSource>)photoSource didFailWithError:(NSError*)error {
-  self.contentState &= ~TTContentActivity;
-  self.contentState |= TTContentError;
   self.contentError = error;
+  [self invalidateViewState:TTViewDataLoadedError];
 }
 
 - (void)photoSourceCancelled:(id<TTPhotoSource>)photoSource {
-  self.contentState &= ~TTContentActivity;
-  self.contentState |= TTContentError;
+  [self invalidateViewState:TTViewDataLoadedError];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -315,7 +295,7 @@ static CGFloat kThumbnailRowHeight = 79;
     [_photoSource.delegates addObject:self];
 
     self.navigationItem.title = _photoSource.title;
-    [self invalidate];
+    [self invalidateView];
   }
 }
 

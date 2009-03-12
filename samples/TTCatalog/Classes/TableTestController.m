@@ -4,9 +4,11 @@
 
 @implementation TableTestController
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
 - (id)init {
   if (self = [super init]) {
-    self.contentState = TTContentError;
   }
   return self;
 }

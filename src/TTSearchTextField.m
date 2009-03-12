@@ -105,7 +105,7 @@ static const CGFloat kShadowHeight = 24;
 
 @implementation TTSearchTextField
 
-@synthesize dataSource = _dataSource, tableView = _tableView,
+@synthesize dataSource = _dataSource, tableView = _tableView, rowHeight = _rowHeight,
   searchesAutomatically = _searchesAutomatically, showsDoneButton = _showsDoneButton,
   showsDarkScreen = _showsDarkScreen;
 
@@ -119,6 +119,7 @@ static const CGFloat kShadowHeight = 24;
     _searchTimer = nil;
     _previousNavigationItem = nil;
     _previousRightBarButtonItem = nil;
+    _rowHeight = 0;
     _searchesAutomatically = YES;
     _showsDoneButton = NO;
     _showsDarkScreen = NO;
@@ -258,9 +259,13 @@ static const CGFloat kShadowHeight = 24;
 // UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-  id item = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
-  Class cls = [_dataSource tableView:tableView cellClassForObject:item];
-  return [cls tableView:_tableView rowHeightForItem:item];
+  if (_rowHeight) {
+    return _rowHeight;
+  } else {
+    id item = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+    Class cls = [_dataSource tableView:tableView cellClassForObject:item];
+    return [cls tableView:_tableView rowHeightForItem:item];
+  }
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
@@ -326,6 +331,7 @@ static const CGFloat kShadowHeight = 24;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
   if (dataSource != _dataSource) {
@@ -354,10 +360,10 @@ static const CGFloat kShadowHeight = 24;
       _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
       _tableView.backgroundColor = [TTAppearance appearance].searchTableBackgroundColor;
       _tableView.separatorColor = [TTAppearance appearance].searchTableSeparatorColor;
+      _tableView.rowHeight = _rowHeight;
       _tableView.dataSource = _dataSource;
       _tableView.delegate = self;
       _tableView.scrollsToTop = NO;
-//      _tableView.hidden = YES;
     }
 
     if (!_shadowView) {

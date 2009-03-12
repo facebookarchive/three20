@@ -2,7 +2,7 @@
 #import "Three20/TTTextEditor.h"
 
 @protocol TTTableViewDataSource, TTComposeControllerDelegate;
-@class TTPickerTextField;
+@class TTPickerTextField, TTActivityLabel;
 
 @interface TTComposeController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
   id<TTComposeControllerDelegate> _delegate;
@@ -12,6 +12,7 @@
   UINavigationBar* _navigationBar;
   UIScrollView* _scrollView;
   TTTextEditor* _textEditor;
+  TTActivityLabel* _statusView;
   NSArray* _initialRecipients;
 }
 

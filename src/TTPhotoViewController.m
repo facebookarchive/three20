@@ -64,16 +64,6 @@ static const NSTimeInterval kSlideshowInterval = 2;
   return (TTPhotoView*)_scrollView.centerPage;
 }
 
-- (void)updateTitle {
-  if (!_photoSource.numberOfPhotos || _photoSource.numberOfPhotos == TT_INFINITE_PHOTO_INDEX) {
-    self.title = _photoSource.title;
-  } else {
-    self.title = [NSString stringWithFormat:
-      TTLocalizedString(@"%d of %d", @"Current page in photo browser (1 of 10)"),
-      _centerPhotoIndex+1, _photoSource.numberOfPhotos];
-  }
-}
-
 - (void)loadImageDelayed {
   _loadTimer = nil;
   [self.centerPhotoView loadImage];
@@ -106,6 +96,42 @@ static const NSTimeInterval kSlideshowInterval = 2;
   } else {
     [centerPhotoView loadImage];
   }
+}
+
+- (void)updateTitle {
+  if (!_photoSource.numberOfPhotos || _photoSource.numberOfPhotos == TT_INFINITE_PHOTO_INDEX) {
+    self.title = _photoSource.title;
+  } else {
+    self.title = [NSString stringWithFormat:
+      TTLocalizedString(@"%d of %d", @"Current page in photo browser (1 of 10)"),
+      _centerPhotoIndex+1, _photoSource.numberOfPhotos];
+  }
+}
+
+- (void)updateChrome {
+  [self updateTitle];
+
+  if (![self.previousViewController isKindOfClass:[TTThumbsViewController class]]) {
+    if (_photoSource.numberOfPhotos > 1) {
+      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+        initWithTitle:TTLocalizedString(@"See All", @"See all photo thumbnails")
+        style:UIBarButtonItemStyleBordered target:self action:@selector(showThumbnails)];
+    } else {
+      self.navigationItem.rightBarButtonItem = nil;
+    }
+  } else {
+    self.navigationItem.rightBarButtonItem = nil;
+  }
+
+  UIBarButtonItem* playButton = [_toolbar itemWithTag:1];
+  playButton.enabled = _photoSource.numberOfPhotos > 1;
+  _previousButton.enabled = _centerPhotoIndex > 0;
+  _nextButton.enabled = _centerPhotoIndex < _photoSource.numberOfPhotos-1;
+}
+
+- (void)updatePhotoView {
+  _scrollView.centerPageIndex = _centerPhotoIndex;
+  [self loadImages];
 }
 
 - (void)moveToPhotoAtIndex:(NSInteger)photoIndex withDelay:(BOOL)withDelay {
@@ -357,66 +383,53 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
 }
 
-- (void)updateContent {
+- (void)reloadContent {
+  [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
+}
+
+- (void)updateView {
   if (_photoSource.loading) {
-    self.contentState = TTContentActivity;
+    if (_photoSource.loadingMore) {
+      [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
+    } else {
+      [self invalidateViewState:TTViewLoading];
+    }
   } else if (!_centerPhoto) {
     [self loadPhotosFromIndex:!_photoSource.loaded ? 0 : _photoSource.maxPhotoIndex+1
       toIndex:TT_INFINITE_PHOTO_INDEX];
   } else if (_photoSource.numberOfPhotos == TT_INFINITE_PHOTO_INDEX) {
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
   } else {
-    if (_photoSource.numberOfPhotos) {
-      self.contentState = TTContentReady;
+    if (_contentError) {
+      [self invalidateViewState:TTViewDataLoadedError];
+    } else if (!_photoSource.numberOfPhotos) {
+      [self invalidateViewState:TTViewDataLoadedNothing];
     } else {
-      self.contentState = TTContentNone;
+      [self invalidateViewState:TTViewDataLoaded];
     }
   }
+
+  [self updateChrome];
 }
 
-//- (void)refreshContent {
-//  if (_photoSource.invalid && !_photoSource.loading) {
-//    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
-//  }
-//}
-
-- (void)reloadContent {
-    [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
-}
-
-- (void)updateView {
-  if (![self.previousViewController isKindOfClass:[TTThumbsViewController class]]) {
-    if (_photoSource.numberOfPhotos > 1) {
-      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-        initWithTitle:TTLocalizedString(@"See All", @"See all photo thumbnails")
-        style:UIBarButtonItemStyleBordered target:self action:@selector(showThumbnails)];
-    } else {
-      self.navigationItem.rightBarButtonItem = nil;
-    }
-  } else {
-    self.navigationItem.rightBarButtonItem = nil;
-  }
-
-  UIBarButtonItem* playButton = [_toolbar itemWithTag:1];
-  playButton.enabled = _photoSource.numberOfPhotos > 1;
-  _previousButton.enabled = _centerPhotoIndex > 0;
-  _nextButton.enabled = _centerPhotoIndex < _photoSource.numberOfPhotos-1;
-
-  _scrollView.centerPageIndex = _centerPhotoIndex;
-  [self loadImages];
-
-  if (self.contentState & TTContentReady) {
-    [self showProgress:-1];
-    [self showStatus:nil];
-  } else if (self.contentState & TTContentActivity) {
+- (void)updateLoadingView {
+  if (self.viewState & TTViewLoading) {
     [self showProgress:0];
-  } else if (self.contentState & TTContentError) {
+  } else {
+    [self showProgress:-1];
+  }
+}
+
+- (void)updateDataView {
+  if (self.viewState & TTViewDataLoaded) {
+    [self showStatus:nil];
+  } else if (self.viewState & TTViewDataLoadedError) {
     [self showStatus:TTLocalizedString(@"This photo set could not be loaded.", @"")];
-  } else if (self.contentState & TTContentNone) {
+  } else if (self.viewState & TTViewDataLoadedNothing) {
     [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
   }
-
-  [self updateTitle];
+  
+  [self updatePhotoView];
 }
 
 - (void)unloadView {
@@ -438,15 +451,15 @@ static const NSTimeInterval kSlideshowInterval = 2;
   return TTLocalizedString(@"Loading...", @"");
 }
 
-- (UIImage*)imageForNoContent {
+- (UIImage*)imageForNoData {
   return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
 }
 
-- (NSString*)titleForNoContent {
+- (NSString*)titleForNoData {
   return  TTLocalizedString(@"No Photos", @"");
 }
 
-- (NSString*)subtitleForNoContent {
+- (NSString*)subtitleForNoData {
   return TTLocalizedString(@"This photo set contains no photos.", @"");
 }
 
@@ -466,7 +479,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 // TTPhotoSourceDelegate
 
 - (void)photoSourceLoading:(id<TTPhotoSource>)photoSource {
-  self.contentState |= TTContentActivity;
+  [self invalidateViewState:TTViewLoading];
 }
 
 - (void)photoSourceLoaded:(id<TTPhotoSource>)photoSource {
@@ -478,26 +491,25 @@ static const NSTimeInterval kSlideshowInterval = 2;
     [self refreshVisiblePhotoViews];
   }
   
-  if (_photoSource.numberOfPhotos) {
-    self.contentState = TTContentReady;
+  if (!_photoSource.numberOfPhotos) {
+    [self invalidateViewState:TTViewDataLoadedNothing];
   } else {
-    self.contentState = TTContentNone;
+    [self invalidateViewState:TTViewDataLoaded];
   }
 }
 
 - (void)photoSource:(id<TTPhotoSource>)photoSource didFailWithError:(NSError*)error {
   [self resetVisiblePhotoViews];
 
-  self.contentState &= ~TTContentActivity;
-  self.contentState |= TTContentError;
   self.contentError = error;
+  [self invalidateViewState:TTViewDataLoadedError];
 }
 
 - (void)photoSourceCancelled:(id<TTPhotoSource>)photoSource {
   [self resetVisiblePhotoViews];
 
-  self.contentState &= ~TTContentActivity;
-  self.contentState |= TTContentError;
+  self.contentError = nil;
+  [self invalidateViewState:TTViewDataLoadedError];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -506,7 +518,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 - (void)scrollView:(TTScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex {
   if (pageIndex != _centerPhotoIndex) {
     [self moveToPhotoAtIndex:pageIndex withDelay:YES];
-    [self invalidate];
+    [self invalidateView];
   }
 }
 
@@ -592,7 +604,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     [_photoSource.delegates addObject:self];
   
     [self moveToPhotoAtIndex:0 withDelay:NO];
-    [self invalidate];
+    [self invalidateView];
   }
 }
 
@@ -606,7 +618,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     }
 
     [self moveToPhotoAtIndex:photo.index withDelay:NO];
-    [self invalidate];
+    [self invalidateView];
   }
 }
 

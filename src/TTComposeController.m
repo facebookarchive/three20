@@ -125,6 +125,7 @@
       nil];
     _fieldViews = nil;
     _initialRecipients = nil;
+    _statusView = nil;
     
     self.title = TTLocalizedString(@"New Message", @"");
 
@@ -169,7 +170,7 @@
     bodyField.text = _textEditor.text;
     [fields addObject:bodyField];
     
-    self.contentState |= TTContentActivity;
+    [self invalidateViewState:TTViewLoading];
     [_delegate composeController:self didSendFields:fields];
   }
 }
@@ -181,7 +182,7 @@
 }
 
 - (void)cancel {
-  if (_textEditor.text.length && self.contentState == TTContentReady) {
+  if (_textEditor.text.length && self.viewState == TTViewDataLoaded) {
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
       TTLocalizedString(@"Are you sure?", @"")
       message:TTLocalizedString(@"Are you sure you want to cancel?", @"")
@@ -359,33 +360,33 @@
   [super showObject:object inView:viewType withState:state];
   
   _initialRecipients = [[NSArray alloc] initWithObjects:object,nil];
-  [self invalidate];
 }
 
 - (void)updateView {
-  if (self.contentState & TTContentActivity) {
-    CGRect frame = CGRectMake(0, _navigationBar.bottom,
-      self.view.width, _scrollView.height);
+  if (_initialRecipients) {
+    for (id recipient in _initialRecipients) {
+      [self addRecipient:recipient forFieldAtIndex:0];
+    }
+    [_initialRecipients release];
+    _initialRecipients = nil;
+  }
+}
+
+- (void)updateLoadingView {
+  if (self.viewState & TTViewLoading) {
+    CGRect frame = CGRectMake(0, _navigationBar.bottom, self.view.width, _scrollView.height);
     TTActivityLabel* label = [[[TTActivityLabel alloc] initWithFrame:frame
       style:TTActivityLabelStyleWhiteBox] autorelease];
-    label.text = @"Sending...";
+    label.text = NSLocalizedString(@"Sending...", @"");
     label.centeredToScreen = NO;
     [self.view addSubview:label];
 
     [_statusView release];
     _statusView = [label retain];
-  } else if (self.contentState == TTContentReady) {
+  } else {
     [_statusView removeFromSuperview];
     [_statusView release];
     _statusView = nil;
-    
-    if (_initialRecipients) {
-      for (id recipient in _initialRecipients) {
-        [self addRecipient:recipient forFieldAtIndex:0];
-      }
-      [_initialRecipients release];
-      _initialRecipients = nil;
-    }
   }
 }
 
@@ -395,10 +396,12 @@
   [_scrollView release];
   [_fieldViews release];
   [_textEditor release];
+  [_statusView release];
   _navigationBar = nil;
   _scrollView = nil;
   _fieldViews = nil;
   _textEditor = nil;
+  _statusView = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

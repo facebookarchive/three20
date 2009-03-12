@@ -15,6 +15,7 @@
 @property(nonatomic,readonly) UITableView* tableView;
 @property(nonatomic,retain) UIColor* tintColor;
 @property(nonatomic,retain) UIFont* font;
+@property(nonatomic) CGFloat rowHeight;
 @property(nonatomic,readonly) BOOL editing;
 @property(nonatomic) BOOL searchesAutomatically;
 @property(nonatomic) BOOL showsDoneButton;

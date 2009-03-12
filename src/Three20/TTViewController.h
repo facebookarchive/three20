@@ -1,12 +1,17 @@
 #import "Three20/TTGlobal.h"
 
 typedef enum {
-  TTContentUnknown = 0,
-  TTContentNone = 1,
-  TTContentReady = 2,
-  TTContentActivity = 4,
-  TTContentError = 8
-} TTContentState;
+  TTViewStateUnknown = 0,
+  TTViewNotLoading = 1,
+  TTViewLoading = 2,
+  TTViewLoadingMore = 4,
+  TTViewRefreshing = 8,
+  TTViewLoadingStates = (TTViewNotLoading|TTViewLoading|TTViewLoadingMore|TTViewRefreshing),
+  TTViewDataLoaded = 16,
+  TTViewDataLoadedError = 32,
+  TTViewDataLoadedNothing = 64,
+  TTViewDataStates = (TTViewDataLoaded|TTViewDataLoadedError|TTViewDataLoadedNothing),
+} TTViewState;
 
 @protocol TTPersistable;
 
@@ -20,9 +25,8 @@ typedef enum {
  * 4. Display errors and activity information for externally loaded content
  */
 @interface TTViewController : UIViewController {
-  UIView* _statusView;
-  NSDictionary* _viewState;
-  TTContentState _contentState;
+  NSDictionary* _frozenState;
+  TTViewState _viewState;
   NSError* _contentError;
   
   UINavigationBar* _previousBar;
@@ -30,7 +34,11 @@ typedef enum {
   UIColor* _previousBarTintColor;
   UIStatusBarStyle _previousStatusBarStyle;
 
-  BOOL _invalid;
+  BOOL _invalidContent;
+  BOOL _invalidView;
+  BOOL _invalidViewLoading;
+  BOOL _invalidViewData;
+  BOOL _validating;
   BOOL _appearing;
   BOOL _appeared;
   BOOL _unloaded;
@@ -50,12 +58,12 @@ typedef enum {
 /**
  * A temporary holding place for persisted view state waiting to be restored.
  */
-@property(nonatomic,retain) NSDictionary* viewState;
+@property(nonatomic,retain) NSDictionary* frozenState;
 
 /**
- * Indicates if content is ready, actively loading, empty, or has an error.
+ * Indicates the state of the view with regards to the content it displays.
  */ 
-@property(nonatomic) TTContentState contentState;
+@property(nonatomic,readonly) TTViewState viewState;
 
 /**
  * An error that occurred while trying to load content.
@@ -97,29 +105,11 @@ typedef enum {
 - (void)restoreView:(NSDictionary*)state;
 
 /**
- * Invalidates the state of the content and view and schedules it to be updated as soon as possible.
+ * Reloads content from external sources.
  *
- * Invalidation functions allow you to change the state of the view without actually changing
- * the view.  This is necessary because low memory conditions can cause views to be destroyed
- * and re-created behind your back, so you need to maintain important state without them.
+ * This is meant to be implemented by subclasses - the default does nothing.
  */
-- (void)invalidate;
-
-/**
- * Updates the content and view if they are invalid.
- */
-- (void)validate;
-
-/**
- * Called to update the content state after the primary view object has changed.
- *
- * You should not call this directly.  Subclasses should implement this method and set
- * contentState to reflect the state of the primary view object. You should not do anything
- * here that relies on the existence of views, nor should you create views here.
- *
- * This is meant to be implemented by subclasses - the default sets contentState to ready.  
- */
-- (void)updateContent;
+- (void)reloadContent;
 
 /**
  * Reloads content if it has become out-of-date.
@@ -132,22 +122,43 @@ typedef enum {
 - (void)refreshContent;
 
 /**
- * Reloads content from external sources.
+ * Invalidates the view and schedules it to be updated as soon as possible.
  *
- * This is meant to be implemented by subclasses - the default does nothing.
+ * Invalidation allow you to change the state of the view without actually changing
+ * the view.  This is necessary because low memory conditions can cause views to be destroyed
+ * and re-created behind your back, so you need to maintain important state without them.
  */
-- (void)reloadContent;
+- (void)invalidateView;
+
+/**
+ * Invalidates a particular aspect of the view.
+ */
+- (void)invalidateViewState:(TTViewState)state;
+
+/**
+ * Updates all invalid aspects of the view.
+ */
+- (void)validateView;
 
 /**
  * Called to update the view after it has been invalidated.
  *
- * Override this function and check contentState to decide how to update the view.  Do not call
- * super unless you want it to display activity, error, and no content states.
+ * Override this function and check viewState to decide how to update the view.
  *
  * This is meant to be implemented by subclasses - the default will update the view to indicate
  * activity, errors, and lack of content.
  */
 - (void)updateView;
+
+/**
+ *
+ */
+- (void)updateLoadingView;
+
+/**
+ *
+ */
+- (void)updateDataView;
 
 /**
  * Destroys all views prior to the controller itself being destroyed or going into hibernation
@@ -175,17 +186,17 @@ typedef enum {
 /**
  *
  */
-- (UIImage*)imageForNoContent;
+- (UIImage*)imageForNoData;
 
 /**
  *
  */
-- (NSString*)titleForNoContent;
+- (NSString*)titleForNoData;
 
 /**
  *
  */
-- (NSString*)subtitleForNoContent;
+- (NSString*)subtitleForNoData;
 
 /**
  *
