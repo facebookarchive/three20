@@ -15,15 +15,6 @@ typedef enum {
 
 @protocol TTPersistable;
 
-/**
- * XXXjoe Re-write this as a short description of the class.
- * Purposes:
- *
- * 1. Postpone updating views until absolutely necessary
- * 2. Maintain state but release memory in the face of low memory conditions
- * 3. Persist and restore when app is shut down and restarts
- * 4. Display errors and activity information for externally loaded content
- */
 @interface TTViewController : UIViewController {
   NSDictionary* _frozenState;
   TTViewState _viewState;

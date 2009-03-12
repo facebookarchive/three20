@@ -272,6 +272,8 @@ static const CGFloat kSectionHeaderHeight = 35;
   if (_dataSource.loading) {
     if (_dataSource.loadingMore) {
       [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
+    } else if (_dataSource.loaded) {
+      [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewRefreshing];
     } else {
       [self invalidateViewState:TTViewLoading];
     }
@@ -378,6 +380,8 @@ static const CGFloat kSectionHeaderHeight = 35;
 - (void)dataSourceLoading:(id<TTTableViewDataSource>)dataSource {
   if (dataSource.loadingMore) {
     [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
+  } else if (_viewState & TTViewDataStates) {
+    [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewRefreshing];
   } else {
     [self invalidateViewState:TTViewLoading];
   }

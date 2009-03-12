@@ -389,11 +389,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)updateView {
   if (_photoSource.loading) {
-    if (_photoSource.loadingMore) {
-      [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
-    } else {
-      [self invalidateViewState:TTViewLoading];
-    }
+    [self invalidateViewState:TTViewLoading];
   } else if (!_centerPhoto) {
     [self loadPhotosFromIndex:!_photoSource.loaded ? 0 : _photoSource.maxPhotoIndex+1
       toIndex:TT_INFINITE_PHOTO_INDEX];
