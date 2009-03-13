@@ -191,7 +191,8 @@ static const CGFloat kSectionHeaderHeight = 35;
 
 @implementation TTTableViewController
 
-@synthesize tableView = _tableView, dataSource = _dataSource, variableHeight = _variableHeight;
+@synthesize tableView = _tableView, dataSource = _dataSource,
+            variableHeightRows = _variableHeightRows;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -199,7 +200,7 @@ static const CGFloat kSectionHeaderHeight = 35;
 - (void)updateTableDelegate {
   if (!_tableView.delegate || [_tableView.delegate isKindOfClass:[TTTableViewDelegate class]]) {
     [_tableDelegate release];
-    if (_variableHeight || _statusDataSource) {
+    if (_variableHeightRows || _statusDataSource) {
       _tableDelegate = [[TTTableViewVarHeightDelegate alloc] initWithController:self];
     } else {
       _tableDelegate = [[TTTableViewDelegate alloc] initWithController:self];
@@ -224,7 +225,7 @@ static const CGFloat kSectionHeaderHeight = 35;
     _dataSource = nil;
     _statusDataSource = nil;
     _tableDelegate = nil;
-    _variableHeight = NO;
+    _variableHeightRows = NO;
   }  
   return self;
 }
@@ -344,7 +345,7 @@ static const CGFloat kSectionHeaderHeight = 35;
     _statusDataSource = [[TTListDataSource alloc] initWithItems:
       [NSArray arrayWithObject:statusItem]];
     _tableView.dataSource = _statusDataSource;
-  } else {
+  } else if (!(self.viewState & TTViewLoadingStates)) {
     NSString* title = [self titleForNoData];
     NSString* subtitle = [self subtitleForNoData];
     UIImage* image = [self imageForNoData];

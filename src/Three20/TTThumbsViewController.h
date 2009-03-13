@@ -1,12 +1,10 @@
 #import "Three20/TTTableViewController.h"
-#import "Three20/TTPhotoSource.h"
 #import "Three20/TTThumbsTableViewCell.h"
 
-@protocol TTThumbsViewControllerDelegate;
+@protocol TTThumbsViewControllerDelegate, TTPhotoSource;
 @class TTPhotoViewController;
 
-@interface TTThumbsViewController : TTTableViewController
-    <TTPhotoSourceDelegate, TTThumbsTableViewCellDelegate, UITableViewDataSource> {
+@interface TTThumbsViewController : TTTableViewController {
   id<TTThumbsViewControllerDelegate> _delegate;
   id<TTPhotoSource> _photoSource;
 }
@@ -23,7 +21,8 @@
 - (void)thumbsViewController:(TTThumbsViewController*)controller didSelectPhoto:(id<TTPhoto>)photo;
 
 @optional
+
 - (BOOL)thumbsViewController:(TTThumbsViewController*)controller
-  shouldNavigateToPhoto:(id<TTPhoto>)photo;
+        shouldNavigateToPhoto:(id<TTPhoto>)photo;
 
 @end

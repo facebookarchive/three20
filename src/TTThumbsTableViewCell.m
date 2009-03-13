@@ -13,6 +13,39 @@ static CGFloat kThumbSize = 75;
 
 @synthesize delegate = _delegate, photo = _photo;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (void)assignPhotoAtIndex:(int)index toView:(TTThumbView*)thumbView {
+  id<TTPhoto> photo = [_photo.photoSource photoAtIndex:index];
+  if (photo) {
+    thumbView.url = [photo urlForVersion:TTPhotoVersionThumbnail];
+    thumbView.hidden = NO;
+  } else {
+    thumbView.url = nil;
+    thumbView.hidden = YES;
+  }
+}
+
+- (void)thumbTouched:(TTThumbView*)thumbView {
+  NSUInteger index;
+  if (thumbView == _thumbView1) {
+    index = _photo.index;
+  } else if (thumbView == _thumbView2) {
+    index = _photo.index + 1;
+  } else if (thumbView == _thumbView3) {
+    index = _photo.index + 2;
+  } else if (thumbView == _thumbView4) {
+    index = _photo.index + 3;
+  }
+  
+  id<TTPhoto> photo = [_photo.photoSource photoAtIndex:index];
+  [_delegate thumbsTableViewCell:self didSelectPhoto:photo];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _photo = nil;
@@ -57,40 +90,24 @@ static CGFloat kThumbSize = 75;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewCell
 
-- (void)assignPhotoAtIndex:(int)index toView:(TTThumbView*)thumbView {
-  id<TTPhoto> photo = [_photo.photoSource photoAtIndex:index];
-  if (photo) {
-    thumbView.url = [photo urlForVersion:TTPhotoVersionThumbnail];
-    thumbView.hidden = NO;
-  } else {
-    thumbView.url = nil;
-    thumbView.hidden = YES;
-  }
+- (id)object {
+  return _photo;
 }
 
-- (void)thumbTouched:(TTThumbView*)thumbView {
-  NSUInteger index;
-  if (thumbView == _thumbView1) {
-    index = _photo.index;
-  } else if (thumbView == _thumbView2) {
-    index = _photo.index + 1;
-  } else if (thumbView == _thumbView3) {
-    index = _photo.index + 2;
-  } else if (thumbView == _thumbView4) {
-    index = _photo.index + 3;
-  }
-  
-  id<TTPhoto> photo = [_photo.photoSource photoAtIndex:index];
-  [_delegate thumbsTableViewCell:self didSelectPhoto:photo];
+- (void)setObject:(id)object {
+  [self setPhoto:object];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (void)setPhoto:(id<TTPhoto>)photo {
   if (_photo != photo) {
     [_photo release];
     _photo = [photo retain];
+
     if (!_photo) {
       _thumbView1.url = nil;
       _thumbView2.url = nil;

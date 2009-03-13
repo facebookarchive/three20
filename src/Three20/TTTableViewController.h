@@ -9,12 +9,12 @@
   id<TTTableViewDataSource> _dataSource;
   id<TTTableViewDataSource> _statusDataSource;
   id<UITableViewDelegate> _tableDelegate;
-  BOOL _variableHeight;
+  BOOL _variableHeightRows;
 }
 
 @property(nonatomic,retain) UITableView* tableView;
 @property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
-@property(nonatomic) BOOL variableHeight;
+@property(nonatomic) BOOL variableHeightRows;
 
 - (id<TTTableViewDataSource>)createDataSource;
 

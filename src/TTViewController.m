@@ -19,7 +19,6 @@
     _previousBarStyle = 0;
     _previousBarTintColor = nil;
     _previousStatusBarStyle = 0;
-    _invalidContent = YES;
     _invalidView = YES;
     _invalidViewLoading = NO;
     _invalidViewData = YES;

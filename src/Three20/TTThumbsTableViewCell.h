@@ -1,9 +1,9 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTTableViewCell.h"
 
 @protocol TTPhoto, TTThumbsTableViewCellDelegate;
 @class TTThumbView;
 
-@interface TTThumbsTableViewCell : UITableViewCell {
+@interface TTThumbsTableViewCell : TTTableViewCell {
   id<TTThumbsTableViewCellDelegate> _delegate;
   id<TTPhoto> _photo;
   TTThumbView* _thumbView1;

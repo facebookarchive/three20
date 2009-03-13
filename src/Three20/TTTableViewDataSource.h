@@ -21,7 +21,7 @@
 - (NSIndexPath*)tableView:(UITableView*)tableView indexPathForObject:(id)object;
 
 - (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
-  forRowAtIndexPath:(NSIndexPath*)indexPath;
+        forRowAtIndexPath:(NSIndexPath*)indexPath;
 
 - (void)tableView:(UITableView*)tableView search:(NSString*)text;
 

@@ -2,13 +2,12 @@
 
 typedef enum {
   TTViewEmpty = 0,
-  TTViewNotLoading = 1,
-  TTViewLoading = 2,
-  TTViewLoadingMore = 4,
-  TTViewRefreshing = 8,
-  TTViewLoadingStates = (TTViewNotLoading|TTViewLoading|TTViewLoadingMore|TTViewRefreshing),
-  TTViewDataLoaded = 16,
-  TTViewDataLoadedError = 32,
+  TTViewLoading = 1,
+  TTViewLoadingMore = 2,
+  TTViewRefreshing = 4,
+  TTViewDataLoaded = 8,
+  TTViewDataLoadedError = 16,
+  TTViewLoadingStates = (TTViewLoading|TTViewLoadingMore|TTViewRefreshing),
   TTViewDataStates = (TTViewDataLoaded|TTViewDataLoadedError),
 } TTViewState;
 
@@ -24,7 +23,6 @@ typedef enum {
   UIColor* _previousBarTintColor;
   UIStatusBarStyle _previousStatusBarStyle;
 
-  BOOL _invalidContent;
   BOOL _invalidView;
   BOOL _invalidViewLoading;
   BOOL _invalidViewData;

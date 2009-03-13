@@ -100,11 +100,11 @@
 // TTLoadable
 
 - (NSDate*)loadedTime {
-  return nil;
+  return _loadedTime;
 }
 
 - (BOOL)isLoading {
-  return NO;
+  return !!_fakeLoadTimer;
 }
 
 - (BOOL)isLoadingMore {
@@ -116,7 +116,7 @@
 }
 
 - (BOOL)isEmpty {
-  return YES;
+  return NO;
 }
 
 - (void)invalidate:(BOOL)erase {
