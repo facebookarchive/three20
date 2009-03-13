@@ -15,7 +15,7 @@
   NSString* _cacheKey;
   NSDate* _timestamp;
   id _userInfo;
-  BOOL _loading;
+  BOOL _isLoading;
   BOOL _shouldHandleCookies;
   BOOL _respondedFromCache;
 }
@@ -71,7 +71,7 @@
 
 @property(nonatomic,retain) NSDate* timestamp;
 
-@property(nonatomic) BOOL loading;
+@property(nonatomic) BOOL isLoading;
 
 @property(nonatomic) BOOL shouldHandleCookies;
 
@@ -112,24 +112,24 @@
 /**
  * The request has begun loading.
  */
-- (void)requestLoading:(TTURLRequest*)request;
+- (void)requestDidStartLoad:(TTURLRequest*)request;
 
 /**
  * The request has loaded data has loaded and been processed into a response.
  *
  * If the request is served from the cache, this is the only delegate method that will be called.
  */
-- (void)requestLoaded:(TTURLRequest*)request;
+- (void)requestDidFinishLoad:(TTURLRequest*)request;
 
 /**
  *
  */
-- (void)request:(TTURLRequest*)request didFailWithError:(NSError*)error;
+- (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error;
 
 /**
  *
  */
-- (void)requestCancelled:(TTURLRequest*)request;
+- (void)requestDidCancelLoad:(TTURLRequest*)request;
 
 @end
 

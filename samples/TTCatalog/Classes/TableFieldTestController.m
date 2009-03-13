@@ -24,7 +24,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   [super loadView];
 
   self.autoresizesForKeyboard = YES;
-
+  self.variableHeight = YES;
+  
   self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds
     style:UITableViewStyleGrouped];
 	self.tableView.autoresizingMask = 

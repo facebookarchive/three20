@@ -134,12 +134,12 @@ static const CGFloat kMaxCaptionHeight = 100;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIImageViewDelegate
 
-- (void)imageViewLoading:(TTImageView*)imageView {
+- (void)imageViewDidStartLoad:(TTImageView*)imageView {
   [self showProgress:0];
 }
 
-- (void)imageView:(TTImageView*)imageView loaded:(UIImage*)image {
-  if (!_photo.photoSource.loading) {
+- (void)imageView:(TTImageView*)imageView didLoadImage:(UIImage*)image {
+  if (!_photo.photoSource.isLoading) {
     [self showProgress:-1];
     [self showStatus:nil];
   }
@@ -149,7 +149,7 @@ static const CGFloat kMaxCaptionHeight = 100;
   }
 }
 
-- (void)imageView:(TTImageView*)imageView loadDidFailWithError:(NSError*)error {
+- (void)imageView:(TTImageView*)imageView didFailLoadWithError:(NSError*)error {
   if (self.url == [_photo urlForVersion:TTPhotoVersionLarge]) {
     [self showStatus:TTLocalizedString(@"This photo is not available.", @"")];
   } else {
@@ -170,7 +170,7 @@ static const CGFloat kMaxCaptionHeight = 100;
     [self showCaption:photo.caption];
   }
   
-  if (!_photo || _photo.photoSource.loading) {
+  if (!_photo || _photo.photoSource.isLoading) {
     [self showProgress:0];
   } else {
     [self showStatus:nil];

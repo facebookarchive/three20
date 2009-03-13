@@ -121,7 +121,8 @@
 /**
  *
  */
-- (void)scrollViewWillRotate:(TTScrollView*)scrollView toOrientation:(UIInterfaceOrientation)orientation;
+- (void)scrollViewWillRotate:(TTScrollView*)scrollView
+        toOrientation:(UIInterfaceOrientation)orientation;
 
 /**
  *
@@ -166,7 +167,7 @@
 @optional
 
 - (BOOL)scrollView:(TTScrollView*)scrollView 
-  shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation;
+        shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation;
 
 @end
 

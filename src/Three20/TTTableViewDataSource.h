@@ -6,11 +6,11 @@
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
 @property(nonatomic,readonly) NSDate* loadedTime;
-@property(nonatomic,readonly) BOOL loading;
-@property(nonatomic,readonly) BOOL loadingMore;
-@property(nonatomic,readonly) BOOL loaded;
-@property(nonatomic,readonly) BOOL empty;
-@property(nonatomic,readonly) BOOL outdated;
+@property(nonatomic,readonly) BOOL isLoading;
+@property(nonatomic,readonly) BOOL isLoadingMore;
+@property(nonatomic,readonly) BOOL isLoaded;
+@property(nonatomic,readonly) BOOL isEmpty;
+@property(nonatomic,readonly) BOOL isOutdated;
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;
 
@@ -35,13 +35,13 @@
 
 @optional
 
-- (void)dataSourceLoading:(id<TTTableViewDataSource>)dataSource;
+- (void)dataSourceDidStartLoad:(id<TTTableViewDataSource>)dataSource;
 
-- (void)dataSourceLoaded:(id<TTTableViewDataSource>)dataSource;
+- (void)dataSourceDidFinishLoad:(id<TTTableViewDataSource>)dataSource;
 
-- (void)dataSource:(id<TTTableViewDataSource>)dataSource loadDidFailWithError:(NSError*)error;
+- (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailLoadWithError:(NSError*)error;
 
-- (void)dataSourceLoadCancelled:(id<TTTableViewDataSource>)dataSource;
+- (void)dataSourceDidCancelLoad:(id<TTTableViewDataSource>)dataSource;
 
 @end
 
@@ -51,13 +51,13 @@
   NSMutableArray* _delegates;
 }
 
-- (void)dataSourceLoading;
+- (void)dataSourceDidStartLoad;
 
-- (void)dataSourceLoaded;
+- (void)dataSourceDidFinishLoad;
 
-- (void)dataSourceLoadDidFailWithError:(NSError*)error;
+- (void)dataSourceDidFailLoadWithError:(NSError*)error;
 
-- (void)dataSourceLoadCancelled;
+- (void)dataSourceDidCancelLoad;
 
 @end
 

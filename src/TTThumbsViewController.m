@@ -55,7 +55,7 @@ static CGFloat kThumbnailRowHeight = 79;
   }
 }
 
-- (BOOL)outdated {
+- (BOOL)isOutdated {
   NSDate* loadedTime = _photoSource.loadedTime;
   if (loadedTime) {
     return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
@@ -136,21 +136,21 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 - (void)refreshContent {
-  if (!_photoSource.loading && self.outdated) {
+  if (!_photoSource.isLoading && self.isOutdated) {
     [self reloadContent];
   }
 }
 
 - (void)updateView {
-  if (_photoSource.loading) {
-    if (_photoSource.loadingMore) {
+  if (_photoSource.isLoading) {
+    if (_photoSource.isLoadingMore) {
       [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
-    } else if (_photoSource.loaded) {
+    } else if (_photoSource.isLoaded) {
       [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewRefreshing];
     } else {
       [self invalidateViewState:TTViewLoading];
     }
-  } else if (!_photoSource.loaded) {
+  } else if (!_photoSource.isLoaded) {
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX forceReload:NO];
   } else {
     if (_contentError) {
@@ -192,7 +192,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
   NSInteger maxIndex = _photoSource.maxPhotoIndex+1;
-  if (!_photoSource.loading && maxIndex > 0) {
+  if (!_photoSource.isLoading && maxIndex > 0) {
     NSInteger count =  ceil((maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0));
     if (self.hasMoreToLoad) {
       return count + 1;
@@ -244,8 +244,8 @@ static CGFloat kThumbnailRowHeight = 79;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTURLRequestDelegate
 
-- (void)photoSourceLoading:(id<TTPhotoSource>)photoSource {
-  if (photoSource.loadingMore) {
+- (void)photoSourceDidStartLoad:(id<TTPhotoSource>)photoSource {
+  if (photoSource.isLoadingMore) {
     [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
   } else if (_viewState & TTViewDataStates) {
     [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewRefreshing];
@@ -254,7 +254,7 @@ static CGFloat kThumbnailRowHeight = 79;
   }
 }
 
-- (void)photoSourceLoaded:(id<TTPhotoSource>)photoSource {
+- (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource {
   if (!_photoSource.numberOfPhotos) {
     [self invalidateViewState:TTViewDataLoadedNothing];
   } else {
@@ -262,12 +262,12 @@ static CGFloat kThumbnailRowHeight = 79;
   }
 }
 
-- (void)photoSource:(id<TTPhotoSource>)photoSource didFailWithError:(NSError*)error {
+- (void)photoSource:(id<TTPhotoSource>)photoSource didFailLoadWithError:(NSError*)error {
   self.contentError = error;
   [self invalidateViewState:TTViewDataLoadedError];
 }
 
-- (void)photoSourceCancelled:(id<TTPhotoSource>)photoSource {
+- (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource {
   [self invalidateViewState:TTViewDataLoadedError];
 }
 

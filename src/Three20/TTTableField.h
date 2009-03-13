@@ -29,11 +29,11 @@
 @end
 
 @interface TTMoreButtonTableField : TTTableField {
-  BOOL _loading;
+  BOOL _isLoading;
   NSString* _subtitle;
 }
 
-@property(nonatomic) BOOL loading;
+@property(nonatomic) BOOL isLoading;
 @property(nonatomic,copy) NSString* subtitle;
 
 - (id)initWithText:(NSString*)text subtitle:(NSString*)subtitle;

@@ -36,7 +36,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 @property(nonatomic,readonly) NSString* cacheKey;
 @property(nonatomic,readonly) TTURLRequestCachePolicy cachePolicy;
 @property(nonatomic,readonly) NSTimeInterval cacheExpirationAge;
-@property(nonatomic,readonly) BOOL loading;
+@property(nonatomic,readonly) BOOL isLoading;
 
 - (id)initForRequest:(TTURLRequest*)request queue:(TTURLRequestQueue*)queue;
 
@@ -136,11 +136,11 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (void)dispatchLoaded:(NSDate*)timestamp {
   for (TTURLRequest* request in [[_requests copy] autorelease]) {
     request.timestamp = timestamp;
-    request.loading = NO;
+    request.isLoading = NO;
 
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
-      if ([delegate respondsToSelector:@selector(requestLoaded:)]) {
-        [delegate requestLoaded:request];
+      if ([delegate respondsToSelector:@selector(requestDidFinishLoad:)]) {
+        [delegate requestDidFinishLoad:request];
       }
     }
   }
@@ -148,11 +148,11 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 - (void)dispatchError:(NSError*)error {
   for (TTURLRequest* request in [[_requests copy] autorelease]) {
-    request.loading = NO;
+    request.isLoading = NO;
 
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
-      if ([delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-        [delegate request:request didFailWithError:error];
+      if ([delegate respondsToSelector:@selector(request:didFailLoadWithError:)]) {
+        [delegate request:request didFailLoadWithError:error];
       }
     }
   }
@@ -167,12 +167,13 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSFileManager* fm = [NSFileManager defaultManager];
   if (path && [fm fileExistsAtPath:path]) {
     NSData* data = [NSData dataWithContentsOfFile:path];
-    [_queue performSelector:@selector(loader:loadedResponse:data:) withObject:self
+    [_queue performSelector:@selector(loader:didLoadResponse:data:) withObject:self
       withObject:nil withObject:data];
   } else {
     NSError* error = [NSError errorWithDomain:NSCocoaErrorDomain
       code:NSFileReadNoSuchFileError userInfo:nil];
-    [_queue performSelector:@selector(loader:didFailWithError:) withObject:self withObject:error];
+    [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
+      withObject:error];
   }
 }
 
@@ -203,13 +204,14 @@ static TTURLRequestQueue* gMainQueue = nil;
   TTNetworkRequestStopped();
 
   if (_response.statusCode == 200) {
-    [_queue performSelector:@selector(loader:loadedResponse:data:) withObject:self
+    [_queue performSelector:@selector(loader:didLoadResponse:data:) withObject:self
       withObject:_response withObject:_responseData];
   } else {
     TTLOG(@"  FAILED LOADING (%d) %@", _response.statusCode, _url);
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
       userInfo:nil];
-    [_queue performSelector:@selector(loader:didFailWithError:) withObject:self withObject:error];
+    [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
+      withObject:error];
   }
 
   [_responseData release];
@@ -235,13 +237,14 @@ static TTURLRequestQueue* gMainQueue = nil;
     --_retriesLeft;
     [self load];
   } else {
-    [_queue performSelector:@selector(loader:didFailWithError:) withObject:self withObject:error];
+    [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
+            withObject:error];
   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (BOOL)loading {
+- (BOOL)isLoading {
   return !!_connection;
 }
 
@@ -269,11 +272,11 @@ static TTURLRequestQueue* gMainQueue = nil;
   if (index != NSNotFound) {
     [_requests removeObjectAtIndex:index];
     
-    request.loading = NO;
+    request.isLoading = NO;
 
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
-      if ([delegate respondsToSelector:@selector(requestCancelled:)]) {
-        [delegate requestCancelled:request];
+      if ([delegate respondsToSelector:@selector(requestDidCancelLoad:)]) {
+        [delegate requestDidCancelLoad:request];
       }
     }
   }
@@ -365,19 +368,19 @@ static TTURLRequestQueue* gMainQueue = nil;
               data:&data timestamp:&timestamp]) {
       request.respondedFromCache = YES;
       request.timestamp = timestamp;
-      request.loading = NO;
+      request.isLoading = NO;
 
       NSError* error = [request.response request:request processResponse:nil data:data];
       if (error) {
         for (id<TTURLRequestDelegate> delegate in request.delegates) {
-          if ([delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-            [delegate request:request didFailWithError:error];
+          if ([delegate respondsToSelector:@selector(request:didFailLoadWithError:)]) {
+            [delegate request:request didFailLoadWithError:error];
           }
         }
       } else {
         for (id<TTURLRequestDelegate> delegate in request.delegates) {
-          if ([delegate respondsToSelector:@selector(requestLoaded:)]) {
-            [delegate requestLoaded:request];
+          if ([delegate respondsToSelector:@selector(requestDidFinishLoad:)]) {
+            [delegate requestDidFinishLoad:request];
           }
         }
       }
@@ -445,7 +448,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   [self loadNextInQueue];
 }
 
-- (void)loader:(TTRequestLoader*)loader loadedResponse:(NSHTTPURLResponse*)response
+- (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response
     data:(NSData*)data {
   NSError* error = [loader processResponse:response data:data];
   if (error) {
@@ -460,7 +463,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   [self loadNextInQueueAfterLoader:loader];
 }
 
-- (void)loader:(TTRequestLoader*)loader didFailWithError:(NSError*)error {
+- (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error {
   [loader dispatchError:error];
   [self loadNextInQueueAfterLoader:loader];
 }
@@ -493,8 +496,8 @@ static TTURLRequestQueue* gMainQueue = nil;
   }
   
   for (id<TTURLRequestDelegate> delegate in request.delegates) {
-    if ([delegate respondsToSelector:@selector(requestLoading:)]) {
-      [delegate requestLoading:request];
+    if ([delegate respondsToSelector:@selector(requestDidStartLoad:)]) {
+      [delegate requestDidStartLoad:request];
     }
   }
   
@@ -505,14 +508,14 @@ static TTURLRequestQueue* gMainQueue = nil;
   if (!request.url) {
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
-      if ([delegate respondsToSelector:@selector(request:didFailWithError:)]) {
-        [delegate request:request didFailWithError:error];
+      if ([delegate respondsToSelector:@selector(request:didFailLoadWithError:)]) {
+        [delegate request:request didFailLoadWithError:error];
       }
     }
     return NO;
   }
 
-  request.loading = YES;
+  request.isLoading = YES;
   
   TTRequestLoader* loader = nil;
   if (![request.httpMethod isEqualToString:@"POST"]) {

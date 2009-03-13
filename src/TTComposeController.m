@@ -359,7 +359,9 @@
 - (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
   [super showObject:object inView:viewType withState:state];
   
-  _initialRecipients = [[NSArray alloc] initWithObjects:object,nil];
+  if (object) {
+    _initialRecipients = [[NSArray alloc] initWithObjects:object,nil];
+  }
 }
 
 - (void)updateView {
@@ -488,6 +490,7 @@
 }
 
 - (void)addRecipient:(id)recipient forFieldAtIndex:(NSUInteger)fieldIndex {
+  self.view;
   TTPickerTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
   if ([textField isKindOfClass:[TTPickerTextField class]]) {
     NSString* label = [_dataSource tableView:textField.tableView labelForObject:recipient];

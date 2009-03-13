@@ -49,22 +49,22 @@
   }
 
   if (!_defaultImage || image != _defaultImage) {
-    [_delegate imageView:self loaded:image];
+    [_delegate imageView:self didLoadImage:image];
   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // TTURLRequestDelegate
 
-- (void)requestLoading:(TTURLRequest*)request {
+- (void)requestDidStartLoad:(TTURLRequest*)request {
   _request = [request retain];
   
-  if ([_delegate respondsToSelector:@selector(imageViewLoading:)]) {
-    [_delegate imageViewLoading:self];
+  if ([_delegate respondsToSelector:@selector(imageViewDidStartLoad:)]) {
+    [_delegate imageViewDidStartLoad:self];
   }
 }
 
-- (void)requestLoaded:(TTURLRequest*)request {
+- (void)requestDidFinishLoad:(TTURLRequest*)request {
   TTURLImageResponse* response = request.response;
   self.image = response.image;
   
@@ -72,21 +72,21 @@
   _request = nil;
 }
 
-- (void)request:(TTURLRequest*)request didFailWithError:(NSError*)error {
+- (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
   [_request release];
   _request = nil;
 
-  if ([_delegate respondsToSelector:@selector(imageView:loadDidFailWithError:)]) {
-    [_delegate imageView:self loadDidFailWithError:error];
+  if ([_delegate respondsToSelector:@selector(imageView:didFailLoadWithError:)]) {
+    [_delegate imageView:self didFailLoadWithError:error];
   }
 }
 
-- (void)requestCancelled:(TTURLRequest*)request {
+- (void)requestDidCancelLoad:(TTURLRequest*)request {
   [_request release];
   _request = nil;
 
-  if ([_delegate respondsToSelector:@selector(imageView:loadDidFailWithError:)]) {
-    [_delegate imageView:self loadDidFailWithError:nil];
+  if ([_delegate respondsToSelector:@selector(imageView:didFailLoadWithError:)]) {
+    [_delegate imageView:self didFailLoadWithError:nil];
   }
 }
 
@@ -109,7 +109,7 @@
   }
 }
 
-- (BOOL)loading {
+- (BOOL)isLoading {
   return !!_request;
 }
 

@@ -88,12 +88,12 @@ typedef enum {
 
 @protocol TTPhotoSourceDelegate <NSObject>
 
-- (void)photoSourceLoading:(id<TTPhotoSource>)photoSource;
+- (void)photoSourceDidStartLoad:(id<TTPhotoSource>)photoSource;
 
-- (void)photoSourceLoaded:(id<TTPhotoSource>)photoSource;
+- (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource;
 
-- (void)photoSource:(id<TTPhotoSource>)photoSource didFailWithError:(NSError*)error;
+- (void)photoSource:(id<TTPhotoSource>)photoSource didFailLoadWithError:(NSError*)error;
 
-- (void)photoSourceCancelled:(id<TTPhotoSource>)photoSource;
+- (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource;
 
 @end

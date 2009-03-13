@@ -282,17 +282,17 @@ static const CGFloat kShadowHeight = 24;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSourceDelegate
 
-- (void)dataSourceLoading:(id<TTTableViewDataSource>)dataSource {
+- (void)dataSourceDidStartLoad:(id<TTTableViewDataSource>)dataSource {
   if (!_searchesAutomatically) {
     [self reloadTable];
   }
 }
 
-- (void)dataSourceLoaded:(id<TTTableViewDataSource>)dataSource {
+- (void)dataSourceDidFinishLoad:(id<TTTableViewDataSource>)dataSource {
   [self reloadTable];
 }
 
-- (void)dataSource:(id<TTTableViewDataSource>)dataSource loadDidFailWithError:(NSError*)error {
+- (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailLoadWithError:(NSError*)error {
   [self reloadTable];
 }
 

@@ -65,7 +65,7 @@ static const CGFloat kSectionHeaderHeight = 35;
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
     } else if ([object isKindOfClass:[TTMoreButtonTableField class]]) {
       TTMoreButtonTableField* moreLink = (TTMoreButtonTableField*)object;
-      moreLink.loading = YES;
+      moreLink.isLoading = YES;
       TTActivityTableFieldCell* cell
         = (TTActivityTableFieldCell*)[tableView cellForRowAtIndexPath:indexPath];
       cell.animating = YES;
@@ -261,7 +261,7 @@ static const CGFloat kSectionHeaderHeight = 35;
 }
 
 - (void)refreshContent {
-  if (!_dataSource.loading && _dataSource.outdated) {
+  if (!_dataSource.isLoading && _dataSource.isOutdated) {
     [self reloadContent];
   }
 }
@@ -269,20 +269,20 @@ static const CGFloat kSectionHeaderHeight = 35;
 - (void)updateView {
   self.dataSource = [self createDataSource];
   
-  if (_dataSource.loading) {
-    if (_dataSource.loadingMore) {
+  if (_dataSource.isLoading) {
+    if (_dataSource.isLoadingMore) {
       [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
-    } else if (_dataSource.loaded) {
+    } else if (_dataSource.isLoaded) {
       [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewRefreshing];
     } else {
       [self invalidateViewState:TTViewLoading];
     }
-  } else if (!_dataSource.loaded) {
+  } else if (!_dataSource.isLoaded) {
     [_dataSource load:TTURLRequestCachePolicyDefault nextPage:NO];
   } else {
     if (_contentError) {
       [self invalidateViewState:TTViewDataLoadedError];
-    } else if (_dataSource.empty) {
+    } else if (_dataSource.isEmpty) {
       [self invalidateViewState:TTViewDataLoadedNothing];
     } else {
       [self invalidateViewState:TTViewDataLoaded];
@@ -377,8 +377,8 @@ static const CGFloat kSectionHeaderHeight = 35;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSourceDelegate
 
-- (void)dataSourceLoading:(id<TTTableViewDataSource>)dataSource {
-  if (dataSource.loadingMore) {
+- (void)dataSourceDidStartLoad:(id<TTTableViewDataSource>)dataSource {
+  if (dataSource.isLoadingMore) {
     [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
   } else if (_viewState & TTViewDataStates) {
     [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewRefreshing];
@@ -387,20 +387,20 @@ static const CGFloat kSectionHeaderHeight = 35;
   }
 }
 
-- (void)dataSourceLoaded:(id<TTTableViewDataSource>)dataSource {
-  if (dataSource.empty) {
+- (void)dataSourceDidFinishLoad:(id<TTTableViewDataSource>)dataSource {
+  if (dataSource.isEmpty) {
     [self invalidateViewState:TTViewDataLoadedNothing];
   } else {
     [self invalidateViewState:TTViewDataLoaded];
   }
 }
 
-- (void)dataSource:(id<TTTableViewDataSource>)dataSource loadDidFailWithError:(NSError*)error {
+- (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailLoadWithError:(NSError*)error {
   self.contentError = error;
   [self invalidateViewState:TTViewDataLoadedError];
 }
 
-- (void)dataSourceLoadCancelled:(id<TTTableViewDataSource>)dataSource {
+- (void)dataSourceDidCancelLoad:(id<TTTableViewDataSource>)dataSource {
   [self invalidateViewState:TTViewDataLoadedError];
 }
 

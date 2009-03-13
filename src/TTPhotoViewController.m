@@ -149,7 +149,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)loadPhotosFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
-  if (!_photoSource.loading) {
+  if (!_photoSource.isLoading) {
     [_photoSource loadPhotosFromIndex:fromIndex toIndex:toIndex
       cachePolicy:TTURLRequestCachePolicyDefault];
   }
@@ -170,7 +170,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   NSDictionary* photoViews = _scrollView.visiblePages;
   for (NSNumber* key in photoViews.keyEnumerator) {
     TTPhotoView* photoView = [photoViews objectForKey:key];
-    if (!photoView.loading) {
+    if (!photoView.isLoading) {
       [photoView showProgress:-1];
     }
   }
@@ -388,10 +388,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)updateView {
-  if (_photoSource.loading) {
+  if (_photoSource.isLoading) {
     [self invalidateViewState:TTViewLoading];
   } else if (!_centerPhoto) {
-    [self loadPhotosFromIndex:!_photoSource.loaded ? 0 : _photoSource.maxPhotoIndex+1
+    [self loadPhotosFromIndex:!_photoSource.isLoaded ? 0 : _photoSource.maxPhotoIndex+1
       toIndex:TT_INFINITE_PHOTO_INDEX];
   } else if (_photoSource.numberOfPhotos == TT_INFINITE_PHOTO_INDEX) {
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
@@ -474,11 +474,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTPhotoSourceDelegate
 
-- (void)photoSourceLoading:(id<TTPhotoSource>)photoSource {
+- (void)photoSourceDidStartLoad:(id<TTPhotoSource>)photoSource {
   [self invalidateViewState:TTViewLoading];
 }
 
-- (void)photoSourceLoaded:(id<TTPhotoSource>)photoSource {
+- (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource {
   if (_centerPhotoIndex >= _photoSource.numberOfPhotos) {
     [self moveToPhotoAtIndex:_photoSource.numberOfPhotos - 1 withDelay:NO];
     [_scrollView reloadData];
@@ -494,14 +494,14 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
 }
 
-- (void)photoSource:(id<TTPhotoSource>)photoSource didFailWithError:(NSError*)error {
+- (void)photoSource:(id<TTPhotoSource>)photoSource didFailLoadWithError:(NSError*)error {
   [self resetVisiblePhotoViews];
 
   self.contentError = error;
   [self invalidateViewState:TTViewDataLoadedError];
 }
 
-- (void)photoSourceCancelled:(id<TTPhotoSource>)photoSource {
+- (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource {
   [self resetVisiblePhotoViews];
 
   self.contentError = nil;

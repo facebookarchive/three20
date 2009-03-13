@@ -39,11 +39,4 @@
   return [MockDataSource mockDataSource:NO];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-}
-
 @end

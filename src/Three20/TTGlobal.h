@@ -90,12 +90,12 @@ NSMutableArray* TTCreateNonRetainingArray();
 /**
  * Tests if an object is an array which is empty.
  */
-BOOL TTEmptyArray(NSObject* object);
+BOOL TTIsEmptyArray(NSObject* object);
 
 /**
  * Tests if an object is a string which is empty.
  */
-BOOL TTEmptyString(NSObject* object);
+BOOL TTIsEmptyString(NSObject* object);
 /**
  * Gets the current device orientation.
  */
@@ -163,10 +163,10 @@ NSString* TTLocalizedString(NSString* key, NSString* comment);
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
 @property(nonatomic,readonly) NSDate* loadedTime;
-@property(nonatomic,readonly) BOOL loaded;
-@property(nonatomic,readonly) BOOL loading;
-@property(nonatomic,readonly) BOOL loadingMore;
-@property(nonatomic,readonly) BOOL empty;
+@property(nonatomic,readonly) BOOL isLoaded;
+@property(nonatomic,readonly) BOOL isLoading;
+@property(nonatomic,readonly) BOOL isLoadingMore;
+@property(nonatomic,readonly) BOOL isEmpty;
 
 - (void)invalidate:(BOOL)erase;
 - (void)cancel;

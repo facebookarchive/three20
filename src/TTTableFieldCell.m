@@ -456,7 +456,7 @@ static CGFloat kDefaultIconSize = 50;
     }
 
     self.selectionStyle = UITableViewCellSelectionStyleBlue;
-    self.animating = field.loading;
+    self.animating = field.isLoading;
   }  
 }
 

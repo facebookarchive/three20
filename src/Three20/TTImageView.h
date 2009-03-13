@@ -14,7 +14,7 @@
 @property(nonatomic,copy) NSString* url;
 @property(nonatomic,retain) UIImage* defaultImage;
 @property(nonatomic) BOOL autoresizesToImage;
-@property(nonatomic,readonly) BOOL loading;
+@property(nonatomic,readonly) BOOL isLoading;
 
 - (void)reload;
 - (void)stopLoading;
@@ -23,10 +23,10 @@
 
 @protocol TTImageViewDelegate <NSObject>
 
-- (void)imageView:(TTImageView*)imageView loaded:(UIImage*)image;
+- (void)imageView:(TTImageView*)imageView didLoadImage:(UIImage*)image;
 
 @optional
-- (void)imageViewLoading:(TTImageView*)imageView;
-- (void)imageView:(TTImageView*)imageView loadDidFailWithError:(NSError*)error;
+- (void)imageViewDidStartLoad:(TTImageView*)imageView;
+- (void)imageView:(TTImageView*)imageView didFailLoadWithError:(NSError*)error;
 
 @end

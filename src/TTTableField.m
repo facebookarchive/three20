@@ -77,11 +77,11 @@
 
 @implementation TTMoreButtonTableField
 
-@synthesize loading = _loading, subtitle = _subtitle;
+@synthesize isLoading = _isLoading, subtitle = _subtitle;
 
 - (id)init {
   if (self = [super init]) {
-    _loading = NO;
+    _isLoading = NO;
     _subtitle = nil;
   }
   return self;

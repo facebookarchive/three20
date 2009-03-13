@@ -16,11 +16,11 @@ NSMutableArray* TTCreateNonRetainingArray() {
   return (NSMutableArray*)CFArrayCreateMutable(nil, 0, &callbacks);
 }
 
-BOOL TTEmptyArray(NSObject* object) {
+BOOL TTIsEmptyArray(NSObject* object) {
   return [object isKindOfClass:[NSArray class]] && ![(NSArray*)object count];
 }
 
-BOOL TTEmptyString(NSObject* object) {
+BOOL TTIsEmptyString(NSObject* object) {
   return [object isKindOfClass:[NSString class]] && ![(NSString*)object length];
 }
 

@@ -14,7 +14,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 @synthesize delegates = _delegates, url = _url, response = _response, httpMethod = _httpMethod,
   httpBody = _httpBody, parameters = _parameters, contentType = _contentType,
   cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge, cacheKey = _cacheKey,
-  timestamp = _timestamp, userInfo = _userInfo, loading = _loading,
+  timestamp = _timestamp, userInfo = _userInfo, isLoading = _isLoading,
   shouldHandleCookies = _shouldHandleCookies, respondedFromCache = _respondedFromCache;
 
 + (TTURLRequest*)request {
@@ -47,7 +47,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _timestamp = nil;
     _cacheKey = nil;
     _userInfo = nil;
-    _loading = NO;
+    _isLoading = NO;
     _shouldHandleCookies = YES;
     _respondedFromCache = NO;
   }

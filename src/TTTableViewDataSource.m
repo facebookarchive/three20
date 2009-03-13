@@ -65,23 +65,23 @@
   return nil;
 }
 
-- (BOOL)loading {
+- (BOOL)isLoading {
   return NO;
 }
 
-- (BOOL)loadingMore {
+- (BOOL)isLoadingMore {
   return NO;
 }
 
-- (BOOL)loaded {
+- (BOOL)isLoaded {
   return YES;
 }
 
-- (BOOL)empty {
+- (BOOL)isEmpty {
   return YES;
 }
 
-- (BOOL)outdated {
+- (BOOL)isOutdated {
   NSDate* loadedTime = self.loadedTime;
   if (loadedTime) {
     return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
@@ -147,34 +147,34 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (void)dataSourceLoading {
+- (void)dataSourceDidStartLoad {
   for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
-    if ([delegate respondsToSelector:@selector(dataSourceLoading:)]) {
-      [delegate dataSourceLoading:self];
+    if ([delegate respondsToSelector:@selector(dataSourceDidStartLoad:)]) {
+      [delegate dataSourceDidStartLoad:self];
     }
   }
 }
 
-- (void)dataSourceLoaded {
+- (void)dataSourceDidFinishLoad {
   for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
-    if ([delegate respondsToSelector:@selector(dataSourceLoaded:)]) {
-      [delegate dataSourceLoaded:self];
+    if ([delegate respondsToSelector:@selector(dataSourceDidFinishLoad:)]) {
+      [delegate dataSourceDidFinishLoad:self];
     }
   }
 }
 
-- (void)dataSourceLoadDidFailWithError:(NSError*)error {
+- (void)dataSourceDidFailLoadWithError:(NSError*)error {
   for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
-    if ([delegate respondsToSelector:@selector(dataSource:loadDidFailWithError:)]) {
-      [delegate dataSource:self loadDidFailWithError:error];
+    if ([delegate respondsToSelector:@selector(dataSource:didFailLoadWithError:)]) {
+      [delegate dataSource:self didFailLoadWithError:error];
     }
   }
 }
 
-- (void)dataSourceLoadCancelled {
+- (void)dataSourceDidCancelLoad {
   for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
-    if ([delegate respondsToSelector:@selector(dataSourceLoadCancelled:)]) {
-      [delegate dataSourceLoadCancelled:self];
+    if ([delegate respondsToSelector:@selector(dataSourceDidCancelLoad:)]) {
+      [delegate dataSourceDidCancelLoad:self];
     }
   }
 }
@@ -233,7 +233,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (BOOL)empty {
+- (BOOL)isEmpty {
   return !_items.count;
 }
 
@@ -331,7 +331,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (BOOL)empty {
+- (BOOL)isEmpty {
   return !_items.count;
 }
 
