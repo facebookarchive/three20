@@ -13,7 +13,7 @@
 
   if (_type & MockPhotoSourceLoadError) {
     for (id<TTPhotoSourceDelegate> delegate in _delegates) {
-      [delegate photoSource:self didFailWithError:nil];
+      [delegate photoSource:self didFailLoadWithError:nil];
     }
   } else {
     NSMutableArray* newPhotos = [NSMutableArray array];
@@ -41,7 +41,7 @@
     }
 
     for (id<TTPhotoSourceDelegate> delegate in _delegates) {
-      [delegate photoSourceLoaded:self];
+      [delegate photoSourceDidFinishLoad:self];
     }
   }
 }
@@ -103,19 +103,19 @@
   return nil;
 }
 
-- (BOOL)loading {
+- (BOOL)isLoading {
   return NO;
 }
 
-- (BOOL)loadingMore {
+- (BOOL)isLoadingMore {
   return NO;
 }
 
-- (BOOL)loaded {
+- (BOOL)isLoaded {
   return !!_loadedTime;
 }
 
-- (BOOL)empty {
+- (BOOL)isEmpty {
   return YES;
 }
 
@@ -166,7 +166,7 @@
     cachePolicy:(TTURLRequestCachePolicy)cachePolicy {
   if (cachePolicy & TTURLRequestCachePolicyNetwork) {
     for (id<TTPhotoSourceDelegate> delegate in _delegates) {
-      [delegate photoSourceLoading:self];
+      [delegate photoSourceDidStartLoad:self];
     }
     
     _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self

@@ -13,7 +13,7 @@
 - (id)init {
   if (self = [super init]) {  
     _frozenState = nil;
-    _viewState = TTViewStateUnknown;
+    _viewState = TTViewEmpty;
     _contentError = nil;
     _previousBar = nil;
     _previousBarStyle = 0;
@@ -22,7 +22,7 @@
     _invalidContent = YES;
     _invalidView = YES;
     _invalidViewLoading = NO;
-    _invalidViewData = NO;
+    _invalidViewData = YES;
     _validating = NO;
     _appearing = NO;
     _appeared = NO;
@@ -182,7 +182,7 @@
       // be destroyed here like it should by the superclass - so let's do it ourselves!
       [view removeSubviews];
 
-      _viewState = TTViewStateUnknown;
+      _viewState = TTViewEmpty;
       _invalidView = YES;
       _appeared = NO;
       _unloaded = YES;
@@ -258,7 +258,7 @@
 
 - (void)invalidateView {
   _invalidView = YES;
-  _viewState = TTViewStateUnknown;
+  _viewState = TTViewEmpty;
   if (_appearing) {
     [self validateView];
   }

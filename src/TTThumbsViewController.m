@@ -156,7 +156,7 @@ static CGFloat kThumbnailRowHeight = 79;
     if (_contentError) {
       [self invalidateViewState:TTViewDataLoadedError];
     } else if (!_photoSource.numberOfPhotos) {
-      [self invalidateViewState:TTViewDataLoadedNothing];
+      [self invalidateViewState:TTViewEmpty];
     } else {
       [self invalidateViewState:TTViewDataLoaded];
     }
@@ -256,7 +256,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource {
   if (!_photoSource.numberOfPhotos) {
-    [self invalidateViewState:TTViewDataLoadedNothing];
+    [self invalidateViewState:TTViewEmpty];
   } else {
     [self invalidateViewState:TTViewDataLoaded];
   }

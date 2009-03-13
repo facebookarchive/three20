@@ -399,7 +399,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     if (_contentError) {
       [self invalidateViewState:TTViewDataLoadedError];
     } else if (!_photoSource.numberOfPhotos) {
-      [self invalidateViewState:TTViewDataLoadedNothing];
+      [self invalidateViewState:TTViewEmpty];
     } else {
       [self invalidateViewState:TTViewDataLoaded];
     }
@@ -421,7 +421,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     [self showStatus:nil];
   } else if (self.viewState & TTViewDataLoadedError) {
     [self showStatus:TTLocalizedString(@"This photo set could not be loaded.", @"")];
-  } else if (self.viewState & TTViewDataLoadedNothing) {
+  } else {
     [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
   }
   
@@ -488,7 +488,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
   
   if (!_photoSource.numberOfPhotos) {
-    [self invalidateViewState:TTViewDataLoadedNothing];
+    [self invalidateViewState:TTViewEmpty];
   } else {
     [self invalidateViewState:TTViewDataLoaded];
   }

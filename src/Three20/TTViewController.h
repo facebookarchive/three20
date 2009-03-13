@@ -1,7 +1,7 @@
 #import "Three20/TTGlobal.h"
 
 typedef enum {
-  TTViewStateUnknown = 0,
+  TTViewEmpty = 0,
   TTViewNotLoading = 1,
   TTViewLoading = 2,
   TTViewLoadingMore = 4,
@@ -9,8 +9,7 @@ typedef enum {
   TTViewLoadingStates = (TTViewNotLoading|TTViewLoading|TTViewLoadingMore|TTViewRefreshing),
   TTViewDataLoaded = 16,
   TTViewDataLoadedError = 32,
-  TTViewDataLoadedNothing = 64,
-  TTViewDataStates = (TTViewDataLoaded|TTViewDataLoadedError|TTViewDataLoadedNothing),
+  TTViewDataStates = (TTViewDataLoaded|TTViewDataLoadedError),
 } TTViewState;
 
 @protocol TTPersistable;

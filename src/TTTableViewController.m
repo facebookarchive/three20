@@ -283,7 +283,7 @@ static const CGFloat kSectionHeaderHeight = 35;
     if (_contentError) {
       [self invalidateViewState:TTViewDataLoadedError];
     } else if (_dataSource.isEmpty) {
-      [self invalidateViewState:TTViewDataLoadedNothing];
+      [self invalidateViewState:TTViewEmpty];
     } else {
       [self invalidateViewState:TTViewDataLoaded];
     }
@@ -332,10 +332,10 @@ static const CGFloat kSectionHeaderHeight = 35;
     } else {
       _tableView.dataSource = nil;
     }
-  } else if (self.viewState & TTViewDataLoadedNothing) {
-    NSString* title = [self titleForNoData];
-    NSString* subtitle = [self subtitleForNoData];
-    UIImage* image = [self imageForNoData];
+  } else if (self.viewState & TTViewDataLoadedError) {
+    NSString* title = [self titleForError:_contentError];
+    NSString* subtitle = [self subtitleForError:_contentError];
+    UIImage* image = [self imageForError:_contentError];
     
     TTStatusTableField* statusItem = [[[TTErrorTableField alloc] initWithText:title
       subtitle:subtitle image:image] autorelease];
@@ -344,10 +344,10 @@ static const CGFloat kSectionHeaderHeight = 35;
     _statusDataSource = [[TTListDataSource alloc] initWithItems:
       [NSArray arrayWithObject:statusItem]];
     _tableView.dataSource = _statusDataSource;
-  } else if (self.viewState & TTViewDataLoadedError) {
-    NSString* title = [self titleForError:_contentError];
-    NSString* subtitle = [self subtitleForError:_contentError];
-    UIImage* image = [self imageForError:_contentError];
+  } else {
+    NSString* title = [self titleForNoData];
+    NSString* subtitle = [self subtitleForNoData];
+    UIImage* image = [self imageForNoData];
     
     TTStatusTableField* statusItem = [[[TTErrorTableField alloc] initWithText:title
       subtitle:subtitle image:image] autorelease];
@@ -389,7 +389,7 @@ static const CGFloat kSectionHeaderHeight = 35;
 
 - (void)dataSourceDidFinishLoad:(id<TTTableViewDataSource>)dataSource {
   if (dataSource.isEmpty) {
-    [self invalidateViewState:TTViewDataLoadedNothing];
+    [self invalidateViewState:TTViewEmpty];
   } else {
     [self invalidateViewState:TTViewDataLoaded];
   }

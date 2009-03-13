@@ -64,27 +64,29 @@
     [[[TTTableField alloc] initWithText:@"Photo Thumbnails"
       href:@"tt://photoTest2"] autorelease],
 
-    @"Web Media",
-    [[[TTTableField alloc] initWithText:@"Web Image"
-      href:@"tt://imageTest1"] autorelease],
+    @"Tables",
+    [[[TTTableField alloc] initWithText:@"Table States"
+      href:@"tt://tableTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Table Cells"
+      href:@"tt://tableFieldTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Web Images in Table"
       href:@"tt://imageTest2"] autorelease],
-    [[[TTTableField alloc] initWithText:@"YouTube Player"
-      href:@"tt://youTubeTest"] autorelease],
 
-    @"Controls",
-    [[[TTTableField alloc] initWithText:@"Loading Table"
-      href:@"tt://tableTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Table Fields"
-      href:@"tt://tableFieldTest"] autorelease],
+    @"Text",
+    [[[TTTableField alloc] initWithText:@"Composer"
+      href:@"tt://composerTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Search Bar"
       href:@"tt://searchTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Message Composer"
-      href:@"tt://composerTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Activity Labels"
+      href:@"tt://activityTest"] autorelease],
+
+    @"Views",
     [[[TTTableField alloc] initWithText:@"Tab Bars"
       href:@"tt://tabBarTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Shiny Label"
-      href:@"tt://activityTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Web Image"
+      href:@"tt://imageTest1"] autorelease],
+    [[[TTTableField alloc] initWithText:@"YouTube Player"
+      href:@"tt://youTubeTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Scroll View"
       href:@"tt://scrollViewTest"] autorelease],
     nil];
