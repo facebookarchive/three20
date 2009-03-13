@@ -21,8 +21,9 @@
 
 - (void)dealloc {
   _delegate = nil;
-  self.url = nil;
+  [_request cancel];
   [_request release];
+  [_url release];
   [_defaultImage release];
   [super dealloc];
 }

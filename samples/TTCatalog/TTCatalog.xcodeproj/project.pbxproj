@@ -22,7 +22,6 @@
 		BE6E4DC00F46A352001CE9B4 /* tableIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E4DBF0F46A352001CE9B4 /* tableIcon.png */; };
 		BE80E24A0EAEFF6100743358 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E2490EAEFF6100743358 /* MockPhotoSource.m */; };
 		BE80E3710EAF0F3000743358 /* ImageTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3700EAF0F3000743358 /* ImageTest2Controller.m */; };
-		BE80E3750EAF0F6E00743358 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3740EAF0F6E00743358 /* ImageTableViewCell.m */; };
 		BE80E39D0EAF103200743358 /* DefaultAlbum.png in Resources */ = {isa = PBXBuildFile; fileRef = BE80E39C0EAF103200743358 /* DefaultAlbum.png */; };
 		BE80E3A70EAF108500743358 /* ImageTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3A60EAF108500743358 /* ImageTest1Controller.m */; };
 		BE80E3B60EAF116700743358 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE80E3B50EAF116700743358 /* Icon.png */; };
@@ -82,8 +81,6 @@
 		BE80E2490EAEFF6100743358 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
 		BE80E36F0EAF0F3000743358 /* ImageTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTest2Controller.h; sourceTree = "<group>"; };
 		BE80E3700EAF0F3000743358 /* ImageTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTest2Controller.m; sourceTree = "<group>"; };
-		BE80E3730EAF0F6E00743358 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTableViewCell.h; sourceTree = "<group>"; };
-		BE80E3740EAF0F6E00743358 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
 		BE80E39C0EAF103200743358 /* DefaultAlbum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAlbum.png; sourceTree = "<group>"; };
 		BE80E3A50EAF108500743358 /* ImageTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTest1Controller.h; sourceTree = "<group>"; };
 		BE80E3A60EAF108500743358 /* ImageTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTest1Controller.m; sourceTree = "<group>"; };
@@ -137,8 +134,6 @@
 				BE80E3A60EAF108500743358 /* ImageTest1Controller.m */,
 				BE80E36F0EAF0F3000743358 /* ImageTest2Controller.h */,
 				BE80E3700EAF0F3000743358 /* ImageTest2Controller.m */,
-				BE80E3730EAF0F6E00743358 /* ImageTableViewCell.h */,
-				BE80E3740EAF0F6E00743358 /* ImageTableViewCell.m */,
 				BE8C0F7B0F2018C600EB0E98 /* YouTubeTestController.h */,
 				BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */,
 				BE6E4AA30F4655A4001CE9B4 /* TableFieldTestController.h */,
@@ -314,7 +309,6 @@
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				BE80E24A0EAEFF6100743358 /* MockPhotoSource.m in Sources */,
 				BE80E3710EAF0F3000743358 /* ImageTest2Controller.m in Sources */,
-				BE80E3750EAF0F6E00743358 /* ImageTableViewCell.m in Sources */,
 				BE80E3A70EAF108500743358 /* ImageTest1Controller.m in Sources */,
 				BEE38E810EB288BA00189902 /* ActivityTestController.m in Sources */,
 				BEE0FDDB0EB2A6850052C05F /* PhotoTest1Controller.m in Sources */,

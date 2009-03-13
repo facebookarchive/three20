@@ -246,7 +246,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
   if (navController) {
     UIViewController* controller = navController.topViewController;
     while (controller) {
-      if ([controller isKindOfClass:[UIViewController class]]) {
+      if ([controller isKindOfClass:[TTViewController class]]) {
         TTViewController* ttcontroller = (TTViewController*)controller;
         if (!ttcontroller.appearing) {
           controller = ttcontroller.previousViewController;

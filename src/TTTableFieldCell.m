@@ -525,8 +525,12 @@ static CGFloat kDefaultIconSize = 50;
   [super layoutSubviews];
 
   TTImageTableField* field = self.object;
-  UIImage* image = field.image ? [[TTURLCache sharedCache] imageForURL:field.image] : nil;
-  
+  UIImage* image = field.image
+    ? [[TTURLCache sharedCache] imageForURL:field.image]
+    : nil;
+  if (!image) {
+    image = field.defaultImage;
+  }
   if (_iconView.url) {
     CGFloat iconWidth = image
       ? image.size.width

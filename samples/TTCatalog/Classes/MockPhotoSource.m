@@ -57,7 +57,7 @@
     _loadedTime = nil;
     
     self.title = title;
-    _photos = photos2 ? [[photos mutableCopy] retain] : [[NSMutableArray alloc] init];
+    _photos = photos2 ? [photos mutableCopy] : [[NSMutableArray alloc] init];
     _tempPhotos = photos2 ? [photos2 retain] : [photos retain];
 
     for (int i = 0; i < _photos.count; ++i) {
