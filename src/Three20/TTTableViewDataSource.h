@@ -2,14 +2,8 @@
 
 @class TTTableViewCell;
 
-@protocol TTTableViewDataSource <UITableViewDataSource>
+@protocol TTTableViewDataSource <TTLoadable, UITableViewDataSource>
 
-@property(nonatomic,readonly) NSMutableArray* delegates;
-@property(nonatomic,readonly) NSDate* loadedTime;
-@property(nonatomic,readonly) BOOL isLoading;
-@property(nonatomic,readonly) BOOL isLoadingMore;
-@property(nonatomic,readonly) BOOL isLoaded;
-@property(nonatomic,readonly) BOOL isEmpty;
 @property(nonatomic,readonly) BOOL isOutdated;
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;

@@ -159,7 +159,7 @@ NSString* TTLocalizedString(NSString* key, NSString* comment);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTLoadable <TTPersistable>
+@protocol TTLoadable <NSObject>
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
 @property(nonatomic,readonly) NSDate* loadedTime;

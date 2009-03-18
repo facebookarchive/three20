@@ -52,7 +52,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewDataSource
+// TTLoadable
 
 - (NSMutableArray*)delegates {
   if (!_delegates) {
@@ -80,6 +80,15 @@
 - (BOOL)isEmpty {
   return YES;
 }
+
+- (void)invalidate:(BOOL)erase {
+}
+
+- (void)cancel {
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTLoadable
 
 - (BOOL)isOutdated {
   NSDate* loadedTime = self.loadedTime;
@@ -196,7 +205,7 @@
     [items addObject:object];
     object = va_arg(ap, id);
   }
-  va_end(ap);
+  va_end(ap); 
 
   return [[[self alloc] initWithItems:items] autorelease];
 }
