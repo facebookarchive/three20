@@ -1,14 +1,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "Three20/TT+NSObject.h"
-#import "Three20/TT+NSArray.h"
-#import "Three20/TT+UIColor.h"
-#import "Three20/TT+UIImage.h"
-#import "Three20/TT+UIViewController.h"
-#import "Three20/TT+UIView.h"
-#import "Three20/TT+UITableView.h"
-#import "Three20/TT+UIWebView.h"
-#import "Three20/TT+UIToolbar.h"
+#import "Three20/NSObjectAdditions.h"
+#import "Three20/NSArrayAdditions.h"
+#import "Three20/UIColorAdditions.h"
+#import "Three20/UIImageAdditions.h"
+#import "Three20/UIViewControllerAdditions.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UITableViewAdditions.h"
+#import "Three20/UIWebViewAdditions.h"
+#import "Three20/UIToolbarAdditions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Logging Helpers
