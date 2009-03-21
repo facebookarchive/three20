@@ -148,10 +148,6 @@
   CGFloat y = 0;
   for (UIView* view = self; view; view = view.superview) {
     y += view.top;
-//    if ([view isKindOfClass:[UIScrollView class]]) {
-//      UIScrollView* scrollView = (UIScrollView*)view;
-//      y += scrollView.contentOffset.y;
-//    }
   }
   return y;
 }
@@ -181,6 +177,15 @@
     }
   }
   return y;
+}
+
+- (CGPoint)offsetFromView:(UIView*)otherView {
+  CGFloat x = 0, y = 0;
+  for (UIView* view = self; view && view != otherView; view = view.superview) {
+    x += view.left;
+    y += view.top;
+  }
+  return CGPointMake(x, y);
 }
 
 - (CGFloat)orientationWidth {

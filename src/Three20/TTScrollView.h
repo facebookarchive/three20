@@ -162,7 +162,17 @@
 /**
  *
  */
-- (void)scrollViewTapped:(TTScrollView*)scrollView;
+- (void)scrollView:(TTScrollView*)scrollView touchedDown:(UITouch*)touch;
+
+/**
+ *
+ */
+- (void)scrollView:(TTScrollView*)scrollView touchedUpInside:(UITouch*)touch;
+
+/**
+ *
+ */
+- (void)scrollView:(TTScrollView*)scrollView tapped:(UITouch*)touch;
 
 @optional
 

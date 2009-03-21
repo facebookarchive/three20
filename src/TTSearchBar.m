@@ -7,9 +7,10 @@
 
 static const CGFloat kMarginX = 5;  
 static const CGFloat kMarginY = 5;
-
 static const CGFloat kPaddingX = 10;
 static const CGFloat kPaddingY = 10;
+static const CGFloat kSpacingX = 5;
+static const CGFloat kButtonHeight = 30;
 
 static const CGFloat kIndexViewMargin = 4;
 
@@ -17,49 +18,11 @@ static const CGFloat kIndexViewMargin = 4;
 
 @implementation TTSearchBar
 
-@synthesize tintColor = _tintColor;
-
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    _boxView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
-    _boxView.backgroundColor = [UIColor clearColor];
-    _boxView.style = TTDrawRoundInnerShadow;
-    _boxView.contentMode = UIViewContentModeRedraw;
-    [self addSubview:_boxView];
-    
-    _searchField = [[TTSearchTextField alloc] initWithFrame:CGRectZero];
-    _searchField.placeholder = TTLocalizedString(@"Search", @"");
-    
-    UIImageView* iconView = [[[UIImageView alloc] initWithImage:
-      [UIImage imageNamed:@"Three20.bundle/images/searchIcon.png"]] autorelease];
-    [iconView sizeToFit];
-    iconView.contentMode = UIViewContentModeLeft;
-    iconView.frame = CGRectInset(iconView.frame, -floor(kMarginX/2), 0);
-    _searchField.leftView = iconView;
-    _searchField.leftViewMode = UITextFieldViewModeAlways;
-    _searchField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    
-    [_searchField addTarget:self action:@selector(textFieldDidBeginEditing)
-      forControlEvents:UIControlEventEditingDidBegin];
-    [_searchField addTarget:self action:@selector(textFieldDidEndEditing)
-      forControlEvents:UIControlEventEditingDidEnd];
-    
-    [self addSubview:_searchField];
-
-    self.contentMode = UIViewContentModeRedraw;
-    self.tintColor = [TTAppearance appearance].barTintColor;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_searchField release];
-  [_boxView release];
-  [_tintColor release];
-  [super dealloc];
-}
+@synthesize boxView = _boxView, tintColor = _tintColor, showsCancelButton = _showsCancelButton,
+            showsSearchIcon = _showsSearchIcon;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
 
 - (CGFloat)indexViewWidth {
   UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
@@ -122,23 +85,85 @@ static const CGFloat kIndexViewMargin = 4;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _boxView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
+    _boxView.backgroundColor = [UIColor clearColor];
+    _boxView.style = TTDrawRoundInnerShadow;
+    _boxView.contentMode = UIViewContentModeRedraw;
+    [self addSubview:_boxView];
+    
+    _searchField = [[TTSearchTextField alloc] initWithFrame:CGRectZero];
+    _searchField.placeholder = TTLocalizedString(@"Search", @"");
+    _searchField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    [_searchField addTarget:self action:@selector(textFieldDidBeginEditing)
+      forControlEvents:UIControlEventEditingDidBegin];
+    [_searchField addTarget:self action:@selector(textFieldDidEndEditing)
+      forControlEvents:UIControlEventEditingDidEnd];
+    [self addSubview:_searchField];
+
+    self.contentMode = UIViewContentModeRedraw;
+    self.tintColor = [TTAppearance appearance].barTintColor;
+    self.showsSearchIcon = YES;
+    self.showsCancelButton = NO;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_searchField release];
+  [_boxView release];
+  [_tintColor release];
+  [_cancelButton release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIResponder
+
+- (BOOL)becomeFirstResponder {
+  return [_searchField becomeFirstResponder];
+}
+
+- (BOOL)resignFirstResponder {
+  return [_searchField resignFirstResponder];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
 - (void)drawRect:(CGRect)rect {
-  UIColor* fill[] = {_tintColor};
-  [[TTAppearance appearance] draw:TTDrawReflection rect:rect
-    fill:fill fillCount:1 stroke:nil radius:0];
+  if (_tintColor && _tintColor != [UIColor clearColor]) {
+    UIColor* fill[] = {_tintColor};
+    [[TTAppearance appearance] draw:TTDrawReflection rect:rect
+      fill:fill fillCount:1 stroke:nil radius:0];
+  }
 }
 
 - (void)layoutSubviews {
   CGFloat indexViewWidth = [_searchField isEditing] ? 0 : self.indexViewWidth;
+  CGFloat leftPadding = _showsSearchIcon ? 0 : kSpacingX;
+
+  CGFloat buttonWidth = 0;
+  if (_showsCancelButton) {
+    [_cancelButton sizeToFit];
+    buttonWidth = _cancelButton.width + kSpacingX + kPaddingX*2;
+  }
 
   CGRect boxRect = CGRectInset(self.bounds, kMarginX, kMarginY);
-  boxRect.size.width -= indexViewWidth;
+  boxRect.size.width -= indexViewWidth + buttonWidth;
   _boxView.frame = boxRect;
+    
+  _searchField.frame = CGRectMake(kMarginX+kPaddingX+leftPadding, 0,
+    self.width - (kMarginX*2+kPaddingX+leftPadding+buttonWidth+indexViewWidth), self.height);
   
-  _searchField.frame = CGRectMake(kMarginX+kPaddingX, 0,
-    self.width - (kMarginX*2+kPaddingX+indexViewWidth), self.height);
+  if (_showsCancelButton) {
+    _cancelButton.frame = CGRectMake(_boxView.right + kSpacingX,
+                                     ceil(self.height/2 - kButtonHeight/2),
+                                     _cancelButton.width + kPaddingX*2, kButtonHeight);
+  }
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -147,6 +172,7 @@ static const CGFloat kIndexViewMargin = 4;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (id<UITextFieldDelegate>)delegate {
   return _searchField.delegate;
@@ -184,6 +210,53 @@ static const CGFloat kIndexViewMargin = 4;
   _searchField.showsDarkScreen = showsDarkScreen;
 }
 
+- (void)setShowsCancelButton:(BOOL)showsCancelButton {
+  if (showsCancelButton != _showsCancelButton) {
+    _showsCancelButton = showsCancelButton;
+    
+    if (_showsCancelButton) {
+      UIImage* image = [[UIImage imageNamed:@"images/blackerButton.png"]
+          stretchableImageWithLeftCapWidth:5 topCapHeight:15];
+
+      _cancelButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+      _cancelButton.font = [UIFont boldSystemFontOfSize:12];
+      [_cancelButton setBackgroundImage:image forState:UIControlStateNormal];
+      [_cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+      [_cancelButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+      [_cancelButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.5]
+        forState:UIControlStateNormal];
+      [_cancelButton setTitleShadowOffset:CGSizeMake(0, 1)];
+      [_cancelButton setTitle:TTLocalizedString(@"Cancel", @"") forState:UIControlStateNormal];
+      [_cancelButton addTarget:_searchField action:@selector(resignFirstResponder)
+                     forControlEvents:UIControlEventTouchUpInside];
+      [self addSubview:_cancelButton];
+    } else {
+      [_cancelButton removeFromSuperview];
+      [_cancelButton release];
+      _cancelButton = nil;
+    }
+  }
+}
+
+- (void)setShowsSearchIcon:(BOOL)showsSearchIcon {
+  if (showsSearchIcon != _showsSearchIcon) {
+    _showsSearchIcon = showsSearchIcon;
+    
+    if (_showsSearchIcon) {
+      UIImageView* iconView = [[[UIImageView alloc] initWithImage:
+        [UIImage imageNamed:@"Three20.bundle/images/searchIcon.png"]] autorelease];
+      [iconView sizeToFit];
+      iconView.contentMode = UIViewContentModeLeft;
+      iconView.frame = CGRectInset(iconView.frame, -floor(kMarginX/2), 0);
+      _searchField.leftView = iconView;
+      _searchField.leftViewMode = UITextFieldViewModeAlways;
+    } else {
+      _searchField.leftView = nil;
+      _searchField.leftViewMode = UITextFieldViewModeNever;
+    }
+  }
+}
+
 - (BOOL)searchesAutomatically {
   return _searchField.searchesAutomatically;
 }
@@ -200,8 +273,32 @@ static const CGFloat kIndexViewMargin = 4;
   _searchField.text = text;
 }
 
+- (NSString*)placeholder {
+  return _searchField.placeholder;
+}
+
+- (void)setPlaceholder:(NSString*)placeholder {
+  _searchField.placeholder = placeholder;
+}
+
 - (UITableView*)tableView {
   return _searchField.tableView;
+}
+- (void)setTintColor:(UIColor*)tintColor {
+  if (tintColor != _tintColor) {
+    [_tintColor release];
+    _tintColor = [tintColor retain];
+    
+    _boxView.strokeColor = [_tintColor transformHue:1 saturation:1 value:0.9];
+  }
+}
+
+- (UIColor*)textColor {
+  return _searchField.textColor;
+}
+
+- (void)setTextColor:(UIColor*)textColor {
+  _searchField.textColor = textColor;
 }
 
 - (UIFont*)font {
@@ -220,13 +317,20 @@ static const CGFloat kIndexViewMargin = 4;
   _searchField.rowHeight = rowHeight;
 }
 
-- (void)setTintColor:(UIColor*)tintColor {
-  if (tintColor != _tintColor) {
-    [_tintColor release];
-    _tintColor = [tintColor retain];
-    
-    _boxView.strokeColor = [_tintColor transformHue:1 saturation:1 value:0.9];
-  }
+- (UIReturnKeyType)returnKeyType {
+  return _searchField.returnKeyType;
+}
+
+- (void)setReturnKeyType:(UIReturnKeyType)returnKeyType {
+  _searchField.returnKeyType = returnKeyType;
+}
+
+- (void)search {
+  [_searchField search];
+}
+
+- (void)showSearchResults:(BOOL)show {
+  [_searchField showSearchResults:show];
 }
 
 @end

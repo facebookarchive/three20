@@ -123,6 +123,10 @@ static CGFloat kThumbnailRowHeight = 79;
   return _controller.photoSource.isLoaded;
 }
 
+- (BOOL)isOutdated {
+  return _controller.photoSource.isOutdated;
+}
+
 - (BOOL)isEmpty {
   return _controller.photoSource.isEmpty;
 }

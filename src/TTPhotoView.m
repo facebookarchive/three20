@@ -17,32 +17,8 @@ static const CGFloat kMaxCaptionHeight = 100;
 
 @synthesize photo = _photo, extrasHidden = _extrasHidden, captionHidden = _captionHidden;
 
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    _photo = nil;
-    _statusSpinner = nil;
-    _statusLabel = nil;
-    _captionLabel = nil;
-    _photoVersion = TTPhotoVersionNone;
-    _extrasHidden = NO;
-    _captionHidden = NO;
-    
-    self.delegate = self;
-    self.clipsToBounds = NO;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [super setDelegate:nil];
-  [_photo release];
-  [_statusSpinner release];
-  [_statusLabel release];
-  [_captionLabel release];
-  [super dealloc];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
 
 - (BOOL)loadVersion:(TTPhotoVersion)version fromNetwork:(BOOL)fromNetwork {
   NSString* url = [_photo urlForVersion:version];
@@ -77,6 +53,33 @@ static const CGFloat kMaxCaptionHeight = 100;
   _captionLabel.text = caption;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _photo = nil;
+    _statusSpinner = nil;
+    _statusLabel = nil;
+    _captionLabel = nil;
+    _photoVersion = TTPhotoVersionNone;
+    _extrasHidden = NO;
+    _captionHidden = NO;
+    
+    self.clipsToBounds = NO;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [super setDelegate:nil];
+  [_photo release];
+  [_statusSpinner release];
+  [_statusLabel release];
+  [_captionLabel release];
+  [super dealloc];
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIImageView
 
@@ -88,6 +91,29 @@ static const CGFloat kMaxCaptionHeight = 100;
       self.contentMode = UIViewContentModeScaleAspectFill;
     }
     [super setImage:image];
+  }
+}
+
+- (void)imageViewDidStartLoad {
+  [self showProgress:0];
+}
+
+- (void)imageViewDidLoadImage:(UIImage*)image {
+  if (!_photo.photoSource.isLoading) {
+    [self showProgress:-1];
+    [self showStatus:nil];
+  }
+  
+  if (!_photo.size.width) {
+    _photo.size = image.size;
+  }
+}
+
+- (void)imageViewDidFailLoadWithError:(NSError*)error {
+  if (self.url == [_photo urlForVersion:TTPhotoVersionLarge]) {
+    [self showStatus:TTLocalizedString(@"This photo is not available.", @"")];
+  } else {
+    [self showProgress:0];
   }
 }
 
@@ -132,32 +158,7 @@ static const CGFloat kMaxCaptionHeight = 100;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// UIImageViewDelegate
-
-- (void)imageViewDidStartLoad:(TTImageView*)imageView {
-  [self showProgress:0];
-}
-
-- (void)imageView:(TTImageView*)imageView didLoadImage:(UIImage*)image {
-  if (!_photo.photoSource.isLoading) {
-    [self showProgress:-1];
-    [self showStatus:nil];
-  }
-  
-  if (!_photo.size.width) {
-    _photo.size = image.size;
-  }
-}
-
-- (void)imageView:(TTImageView*)imageView didFailLoadWithError:(NSError*)error {
-  if (self.url == [_photo urlForVersion:TTPhotoVersionLarge]) {
-    [self showStatus:TTLocalizedString(@"This photo is not available.", @"")];
-  } else {
-    [self showProgress:0];
-  }
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (void)setPhoto:(id<TTPhoto>)photo {
   if (!photo || photo != _photo) {

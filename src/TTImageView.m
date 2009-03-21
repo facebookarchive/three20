@@ -50,7 +50,10 @@
   }
 
   if (!_defaultImage || image != _defaultImage) {
-    [_delegate imageView:self didLoadImage:image];
+    [self imageViewDidLoadImage:image];
+    if ([_delegate respondsToSelector:@selector(imageView:didLoadImage:)]) {
+      [_delegate imageView:self didLoadImage:image];
+    }
   }
 }
 
@@ -60,6 +63,7 @@
 - (void)requestDidStartLoad:(TTURLRequest*)request {
   _request = [request retain];
   
+  [self imageViewDidStartLoad];
   if ([_delegate respondsToSelector:@selector(imageViewDidStartLoad:)]) {
     [_delegate imageViewDidStartLoad:self];
   }
@@ -77,6 +81,7 @@
   [_request release];
   _request = nil;
 
+  [self imageViewDidFailLoadWithError:error];
   if ([_delegate respondsToSelector:@selector(imageView:didFailLoadWithError:)]) {
     [_delegate imageView:self didFailLoadWithError:error];
   }
@@ -86,12 +91,14 @@
   [_request release];
   _request = nil;
 
+  [self imageViewDidFailLoadWithError:nil];
   if ([_delegate respondsToSelector:@selector(imageView:didFailLoadWithError:)]) {
     [_delegate imageView:self didFailLoadWithError:nil];
   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (void)setUrl:(NSString*)url {
   if (self.image && _url && [url isEqualToString:_url])
@@ -114,6 +121,10 @@
   return !!_request;
 }
 
+- (BOOL)isLoaded {
+  return self.image && self.image != _defaultImage;
+}
+
 - (void)reload {
   if (_request)
     return;
@@ -130,6 +141,15 @@
 
 - (void)stopLoading {
   [_request cancel];
+}
+
+- (void)imageViewDidStartLoad {
+}
+
+- (void)imageViewDidLoadImage:(UIImage*)image {
+}
+
+- (void)imageViewDidFailLoadWithError:(NSError*)error {
 }
 
 @end

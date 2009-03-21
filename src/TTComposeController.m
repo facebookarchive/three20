@@ -379,7 +379,7 @@
     CGRect frame = CGRectMake(0, _navigationBar.bottom, self.view.width, _scrollView.height);
     TTActivityLabel* label = [[[TTActivityLabel alloc] initWithFrame:frame
       style:TTActivityLabelStyleWhiteBox] autorelease];
-    label.text = NSLocalizedString(@"Sending...", @"");
+    label.text = TTLocalizedString(@"Sending...", @"");
     label.centeredToScreen = NO;
     [self.view addSubview:label];
 

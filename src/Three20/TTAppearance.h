@@ -13,7 +13,7 @@ typedef enum {
   TTDrawStrokeLeft
 } TTDrawStyle;
 
-#define TT_RADIUS_ROUNDED NSUIntegerMax
+#define TT_RADIUS_ROUNDED NSIntegerMax
 
 @interface TTAppearance : NSObject {
   UIColor* _navigationBarTintColor;

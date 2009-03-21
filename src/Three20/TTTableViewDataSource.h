@@ -4,8 +4,6 @@
 
 @protocol TTTableViewDataSource <TTLoadable, UITableViewDataSource>
 
-@property(nonatomic,readonly) BOOL isOutdated;
-
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;
 
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object;

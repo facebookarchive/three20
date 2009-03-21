@@ -714,8 +714,9 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 - (BOOL)canZoom {
-  return _zooming || ![_delegate respondsToSelector:@selector(scrollViewShouldZoom:)]
-      || [_delegate scrollViewShouldZoom:self];
+  return _zoomEnabled
+        && (_zooming || ![_delegate respondsToSelector:@selector(scrollViewShouldZoom:)]
+            || [_delegate scrollViewShouldZoom:self]);
 }
 
 - (BOOL)edgesAreZoomed:(UIEdgeInsets)edges {
@@ -756,9 +757,9 @@ static const NSTimeInterval kOvershoot = 2;
   }
 }
 
-- (void)startTapTimer {
-  _tapTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(tapTimer)
-    userInfo:nil repeats:NO];
+- (void)startTapTimer:(UITouch*)touch {
+  _tapTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(tapTimer:)
+    userInfo:touch repeats:NO];
 }
 
 - (void)cancelTapTimer {
@@ -766,11 +767,12 @@ static const NSTimeInterval kOvershoot = 2;
   _tapTimer = nil;
 }
 
-- (void)tapTimer {
+- (void)tapTimer:(NSTimer*)timer {
   _tapTimer = nil;
 
-  if ([_delegate respondsToSelector:@selector(scrollViewTapped:)]) {
-    [_delegate scrollViewTapped:self];
+  if ([_delegate respondsToSelector:@selector(scrollView:tapped:)]) {
+    UITouch* touch = timer.userInfo;
+    [_delegate scrollView:self tapped:touch];
   }
 }
 
@@ -889,12 +891,18 @@ static const NSTimeInterval kOvershoot = 2;
     for (UITouch* touch in touches) {
       [self acquireTouch:touch];
 
-      if (_scrollEnabled) {
-        if (_touchCount == 1) {
+      if (_touchCount == 1) {
+        if ([_delegate respondsToSelector:@selector(scrollView:touchedDown:)]) {
+          [_delegate scrollView:self touchedDown:touch];
+        }
+
+        if (_scrollEnabled) {
           CGPoint pt = [self touchLocation:touch];
           _touchStartEdges = _touchEdges = [self touchEdgesForPoint:pt];
           _pageStartEdges = _pageEdges;
-        } else if (_touchCount == 2) {
+        }
+      } else if (_touchCount == 2) {
+        if (_scrollEnabled) {
           CGPoint pt = [self touchLocation:touch];
           _touchEdges = [self squareTouchEdges:[self stretchTouchEdges:_touchEdges toPoint:pt]];
           _touchStartEdges = _touchEdges;
@@ -934,7 +942,7 @@ static const NSTimeInterval kOvershoot = 2;
     CGFloat right = _pageStartEdges.right + (edges.right - _touchStartEdges.right);
     CGFloat top = _pageEdges.top;
     CGFloat bottom = _pageEdges.bottom;
-    if (_touchCount == 2 || self.zoomed) {
+    if ((_touchCount == 2 || self.zoomed) && _zoomEnabled) {
       CGFloat r = self.pageHeight / self.pageWidth;
       top = _pageStartEdges.top + (edges.top - _touchStartEdges.top) * r;
       bottom = _pageStartEdges.bottom + (edges.bottom - _touchStartEdges.bottom) * r;
@@ -981,7 +989,11 @@ static const NSTimeInterval kOvershoot = 2;
         _pageStartEdges = _pageEdges;
       } else if (_touchCount == 0) {
         if (touch.tapCount == 1 && !_dragging) {
-          [self startTapTimer];
+          if ([_delegate respondsToSelector:@selector(scrollView:touchedUpInside:)]) {
+            [_delegate scrollView:self touchedUpInside:touch];
+          }
+
+          [self startTapTimer:touch];
         } else if (touch.tapCount == 2 && self.canZoom) {
           CGPoint pt = [self touchLocation:touch];
           if (self.zoomed) {

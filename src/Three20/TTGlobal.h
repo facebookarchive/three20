@@ -166,6 +166,7 @@ NSString* TTLocalizedString(NSString* key, NSString* comment);
 @property(nonatomic,readonly) BOOL isLoaded;
 @property(nonatomic,readonly) BOOL isLoading;
 @property(nonatomic,readonly) BOOL isLoadingMore;
+@property(nonatomic,readonly) BOOL isOutdated;
 @property(nonatomic,readonly) BOOL isEmpty;
 
 - (void)invalidate:(BOOL)erase;

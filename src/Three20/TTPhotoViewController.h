@@ -3,16 +3,15 @@
 #import "Three20/TTScrollView.h"
 #import "Three20/TTThumbsViewController.h"
 
-@protocol TTPhotoViewControllerDelegate;
 @class TTScrollView, TTPhotoView;
 
 @interface TTPhotoViewController : TTViewController
     <TTScrollViewDelegate, TTScrollViewDataSource, TTPhotoSourceDelegate,
       TTThumbsViewControllerDelegate> {
-  id<TTPhotoViewControllerDelegate> _delegate;
   id<TTPhotoSource> _photoSource;
   id<TTPhoto> _centerPhoto;
   NSUInteger _centerPhotoIndex;
+  UIView* _innerView;
   TTScrollView* _scrollView;
   TTPhotoView* _photoStatusView;
   UIToolbar* _toolbar;
@@ -25,8 +24,6 @@
   NSTimer* _loadTimer;
   BOOL _delayLoad;
 }
-
-@property(nonatomic,assign) id<TTPhotoViewControllerDelegate> delegate;
 
 /**
  * The source of a sequential photo collection that will be displayed.

@@ -77,6 +77,15 @@
   return YES;
 }
 
+- (BOOL)isOutdated {
+  NSDate* loadedTime = self.loadedTime;
+  if (loadedTime) {
+    return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
+  } else {
+    return NO;
+  }
+}
+
 - (BOOL)isEmpty {
   return YES;
 }
@@ -89,15 +98,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTLoadable
-
-- (BOOL)isOutdated {
-  NSDate* loadedTime = self.loadedTime;
-  if (loadedTime) {
-    return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
-  } else {
-    return NO;
-  }
-}
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   return nil;

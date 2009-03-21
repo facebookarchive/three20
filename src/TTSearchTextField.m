@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static const CGFloat kShadowHeight = 24;
+static const CGFloat kDesiredTableHeight = 150;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -58,8 +59,10 @@ static const CGFloat kShadowHeight = 24;
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
   if ([_delegate respondsToSelector:@selector(textFieldDidEndEditing:)]) {
-    return [_delegate textFieldDidEndEditing:textField];
+    [_delegate textFieldDidEndEditing:textField];
   }
+  
+  textField.text = @"";
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
@@ -88,15 +91,19 @@ static const CGFloat kShadowHeight = 24;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-  if (!_textField.searchesAutomatically) {
-    [_textField search];
+  BOOL shouldReturn = YES;
+  if ([_delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
+    shouldReturn = [_delegate textFieldShouldReturn:textField];
   }
   
-  if ([_delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
-    return [_delegate textFieldShouldReturn:textField];
-  } else {
-    return YES;
+  if (shouldReturn) {
+    if (!_textField.searchesAutomatically) {
+      [_textField search];
+    } else {
+      [_textField resignFirstResponder];
+    }
   }
+  return shouldReturn;
 }
 
 @end
@@ -120,14 +127,13 @@ static const CGFloat kShadowHeight = 24;
     _previousNavigationItem = nil;
     _previousRightBarButtonItem = nil;
     _rowHeight = 0;
-    _searchesAutomatically = YES;
     _showsDoneButton = NO;
     _showsDarkScreen = NO;
 
+    self.autocorrectionType = UITextAutocorrectionTypeNo;
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.returnKeyType = UIReturnKeySearch;
-    self.enablesReturnKeyAutomatically = YES;
+    self.searchesAutomatically = YES;
     
     [self addTarget:self action:@selector(didBeginEditing)
       forControlEvents:UIControlEventEditingDidBegin];
@@ -235,7 +241,6 @@ static const CGFloat kShadowHeight = 24;
 }
 
 - (void)doneAction {
-  self.text = @"";
   [self resignFirstResponder];
 }
 
@@ -342,6 +347,31 @@ static const CGFloat kShadowHeight = 24;
   }
 }
 
+- (UITableView*)tableView {
+  if (!_tableView) {
+    _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView.backgroundColor = [TTAppearance appearance].searchTableBackgroundColor;
+    _tableView.separatorColor = [TTAppearance appearance].searchTableSeparatorColor;
+    _tableView.rowHeight = _rowHeight;
+    _tableView.dataSource = _dataSource;
+    _tableView.delegate = self;
+    _tableView.scrollsToTop = NO;
+  }
+  
+  return _tableView;
+}
+
+- (void)setSearchesAutomatically:(BOOL)searchesAutomatically {
+  _searchesAutomatically = searchesAutomatically;
+  if (searchesAutomatically) {
+    self.returnKeyType = UIReturnKeyDone;
+    self.enablesReturnKeyAutomatically = NO;
+  } else {
+    self.returnKeyType = UIReturnKeySearch;
+    self.enablesReturnKeyAutomatically = YES;
+  }
+}
+
 - (BOOL)hasText {
   return self.text.length;
 }
@@ -356,16 +386,8 @@ static const CGFloat kShadowHeight = 24;
 
 - (void)showSearchResults:(BOOL)show {
   if (show) {
-    if (!_tableView) {
-      _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-      _tableView.backgroundColor = [TTAppearance appearance].searchTableBackgroundColor;
-      _tableView.separatorColor = [TTAppearance appearance].searchTableSeparatorColor;
-      _tableView.rowHeight = _rowHeight;
-      _tableView.dataSource = _dataSource;
-      _tableView.delegate = self;
-      _tableView.scrollsToTop = NO;
-    }
-
+    self.tableView;
+    
     if (!_shadowView) {
       _shadowView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
       _shadowView.style = TTDrawInnerShadow;
@@ -381,7 +403,10 @@ static const CGFloat kShadowHeight = 24;
       
       UIView* superview = self.superviewForSearchResults;
       [superview addSubview:_tableView];
-      [superview addSubview:_shadowView];
+
+      if (_tableView.separatorStyle != UITableViewCellSeparatorStyleNone) {
+        [superview addSubview:_shadowView];
+      }
     }
   } else {
     UIView* parent = self.superview;
@@ -394,22 +419,33 @@ static const CGFloat kShadowHeight = 24;
 
 - (UIView*)superviewForSearchResults {
   UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
-  return scrollView ? scrollView : self.superview;
+  if (scrollView) {
+    return scrollView;
+  } else {
+    for (UIView* view = self.superview; view; view = view.superview) {
+      if (view.height > kDesiredTableHeight) {
+        return view;
+      }
+    }
+    
+    return self.superview;
+  }
 }
 
 - (CGRect)rectForSearchResults:(BOOL)withKeyboard {
   UIView* superview = self.superviewForSearchResults;
-  CGFloat height = self.height;
-  CGFloat keyboardHeight = withKeyboard ? KEYBOARD_HEIGHT : 0;
-  CGFloat tableHeight = self.window.height - (superview.screenY + height + keyboardHeight);
-  
+
   CGFloat y = 0;
   UIView* view = self;
   while (view != superview) {
     y += view.top;
     view = view.superview;
   }  
-  
+
+  CGFloat height = self.height;
+  CGFloat keyboardHeight = withKeyboard ? KEYBOARD_HEIGHT : 0;
+  CGFloat tableHeight = self.window.height - (self.screenY + height + keyboardHeight);
+    
   return CGRectMake(0, y + self.height-1, superview.frame.size.width, tableHeight+1);
 }
 

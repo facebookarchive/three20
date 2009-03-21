@@ -38,4 +38,6 @@
  */
 - (void)simulateTapAtPoint:(CGPoint)location;
 
+- (CGPoint)offsetFromView:(UIView*)otherView;
+
 @end

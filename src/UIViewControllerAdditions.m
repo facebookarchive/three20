@@ -8,7 +8,7 @@
 - (void)showNavigationBar:(BOOL)show animated:(BOOL)animated {
   if (animated) {
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   }
 
   self.navigationController.navigationBar.alpha = show ? 1 : 0;

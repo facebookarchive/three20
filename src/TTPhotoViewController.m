@@ -15,12 +15,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 @implementation TTPhotoViewController
 
-@synthesize delegate = _delegate, photoSource = _photoSource, centerPhoto = _centerPhoto,
+@synthesize photoSource = _photoSource, centerPhoto = _centerPhoto,
   centerPhotoIndex = _centerPhotoIndex, defaultImage = _defaultImage;
 
 - (id)init {
   if (self = [super init]) {
-    _delegate = nil;
     _photoSource = nil;
     _centerPhoto = nil;
     _centerPhotoIndex = 0;
@@ -156,6 +155,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)refreshVisiblePhotoViews {
+  [_centerPhoto release];
+  _centerPhoto = [[_photoSource photoAtIndex:_centerPhotoIndex] retain];
+
   NSDictionary* photoViews = _scrollView.visiblePages;
   for (NSNumber* key in photoViews.keyEnumerator) {
     TTPhotoView* photoView = [photoViews objectForKey:key];
@@ -186,7 +188,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     _photoStatusView = [[TTPhotoView alloc] initWithFrame:_scrollView.frame];
     _photoStatusView.defaultImage = _defaultImage;
     _photoStatusView.photo = nil;
-    [self.view addSubview:_photoStatusView];
+    [_innerView addSubview:_photoStatusView];
   }
   
   return _photoStatusView;
@@ -287,6 +289,22 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
 }
 
+- (void)showBarsAnimationDidStop {
+  _innerView.top = -CHROME_HEIGHT;
+  self.view.top = TOOLBAR_HEIGHT;
+  self.view.height -= TOOLBAR_HEIGHT;
+
+  self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)hideBarsAnimationDidStop {
+  _innerView.top = -STATUS_HEIGHT;
+  self.view.top = 0;
+  self.view.height += TOOLBAR_HEIGHT;
+  
+  self.navigationController.navigationBarHidden = YES;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
@@ -294,12 +312,16 @@ static const NSTimeInterval kSlideshowInterval = 2;
   CGRect screenFrame = [UIScreen mainScreen].bounds;
   self.view = [[[TTUnclippedView alloc] initWithFrame:screenFrame] autorelease];
   
-  _scrollView = [[TTScrollView alloc] initWithFrame:CGRectOffset(screenFrame, 0, -CHROME_HEIGHT)];
+  CGRect innerFrame = CGRectMake(0, -CHROME_HEIGHT,
+                                 screenFrame.size.width, screenFrame.size.height + CHROME_HEIGHT);
+  _innerView = [[UIView alloc] initWithFrame:innerFrame];
+  [self.view addSubview:_innerView];
+  
+  _scrollView = [[TTScrollView alloc] initWithFrame:screenFrame];
   _scrollView.delegate = self;
   _scrollView.dataSource = self;
   _scrollView.backgroundColor = [UIColor blackColor];
-  [self.view addSubview:_scrollView];
-  
+  [_innerView addSubview:_scrollView];
   
   _nextButton = [[UIBarButtonItem alloc] initWithImage:
     [UIImage imageNamed:@"Three20.bundle/images/nextIcon.png"]
@@ -315,13 +337,12 @@ static const NSTimeInterval kSlideshowInterval = 2;
   UIBarItem* space = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
    UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
 
-  CGFloat y = screenFrame.size.height - (CHROME_HEIGHT + TOOLBAR_HEIGHT);
   _toolbar = [[UIToolbar alloc] initWithFrame:
-    CGRectMake(0, y, screenFrame.size.width, TOOLBAR_HEIGHT)];
+    CGRectMake(0, screenFrame.size.height - TOOLBAR_HEIGHT, screenFrame.size.width, TOOLBAR_HEIGHT)];
   _toolbar.barStyle = UIBarStyleBlackTranslucent;
   _toolbar.items = [NSArray arrayWithObjects:
     space, _previousButton, space, _nextButton, space, nil];
-  [self.view addSubview:_toolbar];    
+  [_innerView addSubview:_toolbar];    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -336,6 +357,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
   if (!self.nextViewController) {
     self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
   }
+
+  [self hideBarsAnimationDidStop];
+  [self showBarsAnimationDidStop];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -344,6 +368,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [self pauseAction];
 
   self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
+  self.view.frame = CGRectOffset(self.view.frame, 0, -TOOLBAR_HEIGHT);
 
   [self showBars:YES animated:NO];
   [self restoreNavigationBarStyle];
@@ -354,7 +379,19 @@ static const NSTimeInterval kSlideshowInterval = 2;
   
   if (animated) {
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+    [UIView setAnimationDelegate:self];
+    if (show) {
+      [UIView setAnimationDidStopSelector:@selector(showBarsAnimationDidStop)];
+    } else {
+      [UIView setAnimationDidStopSelector:@selector(hideBarsAnimationDidStop)];
+    }
+  } else {
+    if (show) {
+      [self showBarsAnimationDidStop];
+    } else {
+      [self hideBarsAnimationDidStop];
+    }
   }
 
   [self showCaptions:show];
@@ -429,6 +466,8 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)unloadView {
+  [_innerView release];
+  _innerView = nil;
   _scrollView.delegate = nil;
   _scrollView.dataSource = nil;
   [_scrollView release];
@@ -548,7 +587,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   self.centerPhotoView.extrasHidden = NO;
 }
 
-- (void)scrollViewTapped:(TTScrollView*)scrollView {
+- (void)scrollView:(TTScrollView*)scrollView tapped:(UITouch*)touch {
   if ([self isShowingChrome]) {
     [self showBars:NO animated:YES];
   } else {
