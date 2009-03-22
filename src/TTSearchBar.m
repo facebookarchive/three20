@@ -149,7 +149,7 @@ static const CGFloat kIndexViewMargin = 4;
   CGFloat buttonWidth = 0;
   if (_showsCancelButton) {
     [_cancelButton sizeToFit];
-    buttonWidth = _cancelButton.width + kSpacingX + kPaddingX*2;
+    buttonWidth = _cancelButton.width + kSpacingX;
   }
 
   CGRect boxRect = CGRectInset(self.bounds, kMarginX, kMarginY);
@@ -162,7 +162,7 @@ static const CGFloat kIndexViewMargin = 4;
   if (_showsCancelButton) {
     _cancelButton.frame = CGRectMake(_boxView.right + kSpacingX,
                                      ceil(self.height/2 - kButtonHeight/2),
-                                     _cancelButton.width + kPaddingX*2, kButtonHeight);
+                                     _cancelButton.width, kButtonHeight);
   }
 }
 
@@ -215,17 +215,7 @@ static const CGFloat kIndexViewMargin = 4;
     _showsCancelButton = showsCancelButton;
     
     if (_showsCancelButton) {
-      UIImage* image = [[UIImage imageNamed:@"images/blackerButton.png"]
-          stretchableImageWithLeftCapWidth:5 topCapHeight:15];
-
-      _cancelButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-      _cancelButton.font = [UIFont boldSystemFontOfSize:12];
-      [_cancelButton setBackgroundImage:image forState:UIControlStateNormal];
-      [_cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-      [_cancelButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-      [_cancelButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.5]
-        forState:UIControlStateNormal];
-      [_cancelButton setTitleShadowOffset:CGSizeMake(0, 1)];
+      _cancelButton = [[UIButton blackButton] retain];
       [_cancelButton setTitle:TTLocalizedString(@"Cancel", @"") forState:UIControlStateNormal];
       [_cancelButton addTarget:_searchField action:@selector(resignFirstResponder)
                      forControlEvents:UIControlEventTouchUpInside];

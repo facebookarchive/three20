@@ -360,6 +360,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
   [self hideBarsAnimationDidStop];
   [self showBarsAnimationDidStop];
+  if (!_toolbar.alpha) {
+    [self hideBarsAnimationDidStop];
+  }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -369,8 +372,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
   self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
   self.view.frame = CGRectOffset(self.view.frame, 0, -TOOLBAR_HEIGHT);
-
-  [self showBars:YES animated:NO];
+  
+  if (self.nextViewController) {
+    [self showBars:YES animated:NO];
+  }
   [self restoreNavigationBarStyle];
 }
 

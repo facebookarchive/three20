@@ -82,7 +82,6 @@ static TTURLCache* gSharedCache = nil;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 - (void)expireImagesFromMemory {
   while (_imageSortedList.count) {
     NSString* key = [_imageSortedList objectAtIndex:0];
@@ -95,6 +94,21 @@ static TTURLCache* gSharedCache = nil;
     
     if (_totalPixelCount <= _maxPixelCount) {
       break;
+    }
+  }
+}
+
+- (void)storeImage:(UIImage*)image forKey:(NSString*)key force:(BOOL)force{
+  if (image && (force || !_disableImageCache)) {
+    int pixelCount = image.size.width * image.size.height;
+    if (force || pixelCount < TT_LARGE_IMAGE_SIZE) {
+      _totalPixelCount += pixelCount;
+      if (_totalPixelCount > _maxPixelCount && _maxPixelCount) {
+        [self expireImagesFromMemory];
+      }
+  
+      [_imageSortedList addObject:key];
+      [_imageCache setObject:image forKey:key];
     }
   }
 }
@@ -196,18 +210,7 @@ static TTURLCache* gSharedCache = nil;
 }
 
 - (void)storeImage:(UIImage*)image forKey:(NSString*)key {
-  if (!_disableImageCache && image) {
-    int pixelCount = image.size.width * image.size.height;
-    if (pixelCount < TT_LARGE_IMAGE_SIZE) {
-      _totalPixelCount += pixelCount;
-      if (_totalPixelCount > _maxPixelCount && _maxPixelCount) {
-        [self expireImagesFromMemory];
-      }
-  
-      [_imageSortedList addObject:key];
-      [_imageCache setObject:image forKey:key];
-    }
-  }
+  [self storeImage:image forKey:key force:NO];
 }
   
 - (NSString*)storeTemporaryData:(NSData*)data {
@@ -218,7 +221,8 @@ static TTURLCache* gSharedCache = nil;
 
 - (NSString*)storeTemporaryImage:(UIImage*)image toDisk:(BOOL)toDisk {
   NSString* url = [self createTemporaryURL];
-  [self storeImage:image forURL:url];
+  NSString* key = [self keyForURL:url];
+  [self storeImage:image forKey:key force:YES];
   
   NSData* data = UIImagePNGRepresentation(image);
   [self storeData:data forURL:url];

@@ -39,5 +39,6 @@
 @optional
 
 - (BOOL)textEditor:(TTTextEditor*)textEditor shouldResizeBy:(CGFloat)height;
+- (BOOL)textEditorShouldReturn:(TTTextEditor*)textEditor;
 
 @end

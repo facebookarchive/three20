@@ -13,7 +13,20 @@ static CGFloat kThinBezelHeight = 35;
 
 @implementation TTActivityLabel
 
-@synthesize style = _style, centered = _centered, centeredToScreen = _centeredToScreen;
+@synthesize delegate = _delegate, style = _style, centered = _centered,
+            centeredToScreen = _centeredToScreen, showsStopButton = _showsStopButton;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (void)touchedStopButton {
+  if ([_delegate respondsToSelector:@selector(activityLabelDidStop:)]) {
+    [_delegate activityLabelDidStop:self];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
 
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style {
   return [self initWithFrame:frame style:style text:nil];
@@ -22,8 +35,11 @@ static CGFloat kThinBezelHeight = 35;
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text {
   if (self = [super initWithFrame:frame]) {
     _style = style;
+    _delegate = nil;
+    _stopButton = nil;
     _centered = YES;
     _centeredToScreen = YES;
+    _showsStopButton = NO;
     
     self.backgroundColor = [UIColor clearColor];
   
@@ -95,6 +111,7 @@ static CGFloat kThinBezelHeight = 35;
   [_bezelView release];
   [_spinner release];
   [_textView release];
+  [_stopButton release];
   [super dealloc];
 }
 
@@ -107,7 +124,12 @@ static CGFloat kThinBezelHeight = 35;
   CGRect appFrame = [UIScreen mainScreen].applicationFrame;
   CGSize textSize = [_textView.text sizeWithFont:_textView.font];
   CGFloat contentWidth = _spinner.width + kSpacing + textSize.width;
-
+  if (_stopButton) {
+    [_stopButton sizeToFit];
+    _stopButton.height = 30;
+    contentWidth += _stopButton.width + kSpacing;
+  }
+  
   CGFloat bezelWidth, bezelHeight, y;
 
   if (_style == TTActivityLabelStyleBlackThinBezel) {
@@ -146,9 +168,13 @@ static CGFloat kThinBezelHeight = 35;
 
   _spinner.frame = CGRectMake(_textView.left - (_spinner.width+kSpacing),
     floor(bezelHeight/2 - _spinner.height/2), _spinner.width, _spinner.height);
+
+  _stopButton.frame = CGRectMake(_textView.right + kSpacing*2,
+    floor(bezelHeight/2 - _stopButton.height/2), _stopButton.width, _stopButton.height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (NSString*)text {
   return _textView.text;
@@ -157,6 +183,24 @@ static CGFloat kThinBezelHeight = 35;
 - (void)setText:(NSString*)text {
   _textView.text = text;
   [self setNeedsLayout];
+}
+
+- (void)setShowsStopButton:(BOOL)showsStopButton {
+  if (showsStopButton != _showsStopButton) {
+    _showsStopButton = showsStopButton;
+    
+    if (_showsStopButton) {
+      _stopButton = [[UIButton blackButton] retain];
+      [_stopButton setTitle:TTLocalizedString(@"Stop", @"") forState:UIControlStateNormal];
+      [_stopButton addTarget:self action:@selector(touchedStopButton)
+                   forControlEvents:UIControlEventTouchUpInside];
+      [_bezelView addSubview:_stopButton];
+    } else {
+      [_stopButton removeFromSuperview];
+      [_stopButton release];
+      _stopButton = nil;
+    }
+  }
 }
 
 @end

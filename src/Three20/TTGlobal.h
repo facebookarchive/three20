@@ -6,6 +6,7 @@
 #import "Three20/UIImageAdditions.h"
 #import "Three20/UIViewControllerAdditions.h"
 #import "Three20/UIViewAdditions.h"
+#import "Three20/UIButtonAdditions.h"
 #import "Three20/UITableViewAdditions.h"
 #import "Three20/UIWebViewAdditions.h"
 #import "Three20/UIToolbarAdditions.h"

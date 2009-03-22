@@ -69,6 +69,14 @@ static CGFloat kTextViewInset = 19;
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
     replacementText:(NSString *)text {
+  if ([text isEqualToString:@"\n"]) {
+    if ([_delegate respondsToSelector:@selector(textEditorShouldReturn:)]) {
+      if (![_delegate performSelector:@selector(textEditorShouldReturn:) withObject:_textEditor]) {
+        return NO;
+      }
+    }
+  }
+
   if (![_textEditor performSelector:@selector(shouldChangeText:inRange:) withObject:text
     withObject:(id)range.location]) {
     return NO;
@@ -132,6 +140,7 @@ static CGFloat kTextViewInset = 19;
     _textView.backgroundColor = [UIColor clearColor];
     _textView.scrollsToTop = NO;
     [self addSubview:_textView];
+
   }
   return self;
 }
@@ -157,7 +166,7 @@ static CGFloat kTextViewInset = 19;
     }
     
     if (_textView.textColor == [UIColor whiteColor]) {
-      _placeholderLabel.textColor = [UIColor whiteColor];
+      _placeholderLabel.textColor = [UIColor colorWithWhite:0.8 alpha:1];
     } else {
       _placeholderLabel.textColor = [UIColor grayColor];
     }
@@ -266,7 +275,7 @@ static CGFloat kTextViewInset = 19;
   if (!_overflowed) {
     _textView.contentOffset = CGPointMake(0, 0);
   }
-  _placeholderLabel.frame = _textView.frame;
+  _placeholderLabel.frame = CGRectMake(kPaddingX, 0, self.width-kPaddingX*2, self.height);
     
   if (_fixedTextLabel) {
     [_fixedTextLabel sizeToFit];
