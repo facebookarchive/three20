@@ -29,7 +29,7 @@
 		BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BECB1CC10F46AE9600AE5B52 /* person.jpg */; };
 		BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */; };
 		BEE0FDDB0EB2A6850052C05F /* PhotoTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */; };
-		BEE341B40F480C76008C826E /* ComposerTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341B30F480C76008C826E /* ComposerTestController.m */; };
+		BEE341B40F480C76008C826E /* MessageTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341B30F480C76008C826E /* MessageTestController.m */; };
 		BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE346BB0F48F15C008C826E /* SearchTestController.m */; };
 		BEE348AC0F490F43008C826E /* MockDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE348AB0F490F43008C826E /* MockDataSource.m */; };
 		BEE38E810EB288BA00189902 /* ActivityTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE38E800EB288BA00189902 /* ActivityTestController.m */; };
@@ -91,8 +91,8 @@
 		BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../../src/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		BEE0FDD90EB2A6850052C05F /* PhotoTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest1Controller.h; sourceTree = "<group>"; };
 		BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest1Controller.m; sourceTree = "<group>"; };
-		BEE341B20F480C76008C826E /* ComposerTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposerTestController.h; sourceTree = "<group>"; };
-		BEE341B30F480C76008C826E /* ComposerTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposerTestController.m; sourceTree = "<group>"; };
+		BEE341B20F480C76008C826E /* MessageTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTestController.h; sourceTree = "<group>"; };
+		BEE341B30F480C76008C826E /* MessageTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTestController.m; sourceTree = "<group>"; };
 		BEE346BA0F48F15C008C826E /* SearchTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTestController.h; sourceTree = "<group>"; };
 		BEE346BB0F48F15C008C826E /* SearchTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTestController.m; sourceTree = "<group>"; };
 		BEE348AA0F490F43008C826E /* MockDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockDataSource.h; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 				BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */,
 				BE6E4AA30F4655A4001CE9B4 /* TableFieldTestController.h */,
 				BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */,
-				BEE341B20F480C76008C826E /* ComposerTestController.h */,
-				BEE341B30F480C76008C826E /* ComposerTestController.m */,
+				BEE341B20F480C76008C826E /* MessageTestController.h */,
+				BEE341B30F480C76008C826E /* MessageTestController.m */,
 				BEE346BA0F48F15C008C826E /* SearchTestController.h */,
 				BEE346BB0F48F15C008C826E /* SearchTestController.m */,
 				BE6E46EA0F4578BA001CE9B4 /* TabBarTestController.h */,
@@ -317,7 +317,7 @@
 				BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */,
 				BE6E46EC0F4578BA001CE9B4 /* TabBarTestController.m in Sources */,
 				BE6E4AA50F4655A4001CE9B4 /* TableFieldTestController.m in Sources */,
-				BEE341B40F480C76008C826E /* ComposerTestController.m in Sources */,
+				BEE341B40F480C76008C826E /* MessageTestController.m in Sources */,
 				BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */,
 				BEE348AC0F490F43008C826E /* MockDataSource.m in Sources */,
 				BE69B7590F62874900C02928 /* TableTestController.m in Sources */,

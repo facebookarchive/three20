@@ -15,6 +15,12 @@ typedef enum {
 
 #define TT_RADIUS_ROUNDED NSIntegerMax
 
+/**
+ * TTAppearance is a singleton which holds all of the standard visual styles used by various views.
+ *
+ * When you'd like to "skin" your app by changing some of the colors and styles that are used
+ * by standard Three20 components, you can just modify the properties of TTAppearance.
+ */
 @interface TTAppearance : NSObject {
   UIColor* _navigationBarTintColor;
   UIColor* _barTintColor;

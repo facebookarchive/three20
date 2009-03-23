@@ -115,6 +115,10 @@
   return !!_loadedTime;
 }
 
+- (BOOL)isOutdated {
+  return NO;
+}
+
 - (BOOL)isEmpty {
   return NO;
 }

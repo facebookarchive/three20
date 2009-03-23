@@ -19,7 +19,7 @@
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTSearchBar.h"
-#import "Three20/TTComposeController.h"
+#import "Three20/TTMessageController.h"
 
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableField.h"

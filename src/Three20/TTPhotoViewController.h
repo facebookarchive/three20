@@ -50,8 +50,18 @@
  */
 @property(nonatomic,retain) UIImage* defaultImage;
 
+/**
+ * Creates a photo view for a new page.
+ *
+ * Do not call this directly. It is meant to be overriden by subclasses.
+ */
 - (TTPhotoView*)createPhotoView;
 
+/**
+ * Creates the thumbnail controller used by the "See All" button.
+ *
+ * Do not call this directly. It is meant to be overriden by subclasses.
+ */
 - (TTThumbsViewController*)createThumbsViewController;
 
 @end

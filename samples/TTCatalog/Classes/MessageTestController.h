@@ -2,8 +2,8 @@
 
 @class MockDataSource;
 
-@interface ComposerTestController : UIViewController
-  <TTComposeControllerDelegate, SearchTestControllerDelegate> {
+@interface MessageTestController : UIViewController
+  <TTMessageControllerDelegate, SearchTestControllerDelegate> {
   MockDataSource* _dataSource;
   NSTimer* _sendTimer;
 }

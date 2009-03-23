@@ -1,4 +1,4 @@
-#import "Three20/TTComposeController.h"
+#import "Three20/TTMessageController.h"
 #import "Three20/TTAppearance.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTTextEditor.h"
@@ -24,7 +24,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTComposerField
+@implementation TTMessageField
 
 @synthesize title = _title, required = _required;
 
@@ -49,7 +49,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTComposerRecipientField
+@implementation TTMessageRecipientField
 
 @synthesize recipients = _recipients;
 
@@ -73,7 +73,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTComposerTextField
+@implementation TTMessageTextField
 
 @synthesize text = _text;
 
@@ -97,12 +97,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTComposerSubjectField
+@implementation TTMessageSubjectField
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTComposeController
+@implementation TTMessageController
 
 @synthesize delegate = _delegate, dataSource = _dataSource, fields = _fields;
 
@@ -118,9 +118,9 @@
     _delegate = nil;
     _dataSource = nil;
     _fields = [[NSArray alloc] initWithObjects:
-      [[[TTComposerRecipientField alloc] initWithTitle:
+      [[[TTMessageRecipientField alloc] initWithTitle:
         TTLocalizedString(@"To:", @"") required:YES] autorelease],
-      [[[TTComposerSubjectField alloc] initWithTitle:
+      [[[TTMessageSubjectField alloc] initWithTitle:
         TTLocalizedString(@"Subject:", @"") required:NO] autorelease],
       nil];
     _fieldViews = nil;
@@ -156,16 +156,16 @@
     NSMutableArray* fields = [_fields mutableCopy];
     for (int i = 0; i < fields.count; ++i) {
       id field = [fields objectAtIndex:i];
-      if ([field isKindOfClass:[TTComposerRecipientField class]]) {
+      if ([field isKindOfClass:[TTMessageRecipientField class]]) {
         TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
-        [(TTComposerRecipientField*)field setRecipients:textField.cells];
-      } else if ([field isKindOfClass:[TTComposerTextField class]]) {
+        [(TTMessageRecipientField*)field setRecipients:textField.cells];
+      } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
-        [(TTComposerTextField*)field setText:textField.text];
+        [(TTMessageTextField*)field setText:textField.text];
       }
     }
     
-    TTComposerTextField* bodyField = [[[TTComposerTextField alloc] initWithTitle:nil
+    TTMessageTextField* bodyField = [[[TTMessageTextField alloc] initWithTitle:nil
       required:NO] autorelease];
     bodyField.text = _textEditor.text;
     [fields addObject:bodyField];
@@ -205,9 +205,9 @@
   [_fieldViews release];
   _fieldViews = [[NSMutableArray alloc] init];
 
-  for (TTComposerField* field in _fields) {
+  for (TTMessageField* field in _fields) {
     TTPickerTextField* textField = nil;
-    if ([field isKindOfClass:[TTComposerRecipientField class]]) {
+    if ([field isKindOfClass:[TTMessageRecipientField class]]) {
       textField = [[TTPickerTextField alloc] initWithFrame:CGRectZero];
       textField.dataSource = _dataSource;
       textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -220,7 +220,7 @@
           forControlEvents:UIControlEventTouchUpInside];
         textField.rightView = addButton;
       }
-    } else if ([field isKindOfClass:[TTComposerTextField class]]) {
+    } else if ([field isKindOfClass:[TTMessageTextField class]]) {
       textField = [[TTPickerTextField alloc] initWithFrame:CGRectZero];
     }
     
@@ -267,14 +267,14 @@
   BOOL compliant = YES;
   
   for (int i = 0; i < _fields.count; ++i) {
-    TTComposerField* field = [_fields objectAtIndex:i];
+    TTMessageField* field = [_fields objectAtIndex:i];
     if (field.required) {
-      if ([field isKindOfClass:[TTComposerRecipientField class]]) {
+      if ([field isKindOfClass:[TTMessageRecipientField class]]) {
         TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
         if (!textField.cells.count) {
           compliant = NO;
         }
-      } else if ([field isKindOfClass:[TTComposerTextField class]]) {
+      } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
         if (!textField.text.length) {
           compliant = NO;
@@ -288,8 +288,8 @@
 
 - (UITextField*)subjectField {
   for (int i = 0; i < _fields.count; ++i) {
-    TTComposerField* field = [_fields objectAtIndex:i];
-    if ([field isKindOfClass:[TTComposerSubjectField class]]) {
+    TTMessageField* field = [_fields objectAtIndex:i];
+    if ([field isKindOfClass:[TTMessageSubjectField class]]) {
       return [_fieldViews objectAtIndex:i];
     }
   }

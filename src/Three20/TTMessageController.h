@@ -1,11 +1,11 @@
 #import "Three20/TTViewController.h"
 #import "Three20/TTTextEditor.h"
 
-@protocol TTTableViewDataSource, TTComposeControllerDelegate;
+@protocol TTTableViewDataSource, TTMessageControllerDelegate;
 @class TTPickerTextField, TTActivityLabel;
 
-@interface TTComposeController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
-  id<TTComposeControllerDelegate> _delegate;
+@interface TTMessageController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
+  id<TTMessageControllerDelegate> _delegate;
   id<TTTableViewDataSource> _dataSource;
   NSArray* _fields;
   NSMutableArray* _fieldViews;
@@ -16,7 +16,7 @@
   NSArray* _initialRecipients;
 }
 
-@property(nonatomic,assign) id<TTComposeControllerDelegate> delegate;
+@property(nonatomic,assign) id<TTMessageControllerDelegate> delegate;
 @property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
 @property(nonatomic,retain) NSArray* fields;
 
@@ -28,21 +28,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTComposeControllerDelegate <NSObject>
+@protocol TTMessageControllerDelegate <NSObject>
 
 @optional
 
-- (void)composeController:(TTComposeController*)controller didSendFields:(NSArray*)fields;
+- (void)composeController:(TTMessageController*)controller didSendFields:(NSArray*)fields;
 
-- (void)composeControllerDidCancel:(TTComposeController*)controller;
+- (void)composeControllerDidCancel:(TTMessageController*)controller;
 
-- (void)composeControllerShowRecipientPicker:(TTComposeController*)controller;
+- (void)composeControllerShowRecipientPicker:(TTMessageController*)controller;
 
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTComposerField : NSObject {
+@interface TTMessageField : NSObject {
   NSString* _title;
   BOOL _required;
 } 
@@ -54,7 +54,7 @@
 
 @end
 
-@interface TTComposerRecipientField : TTComposerField {
+@interface TTMessageRecipientField : TTMessageField {
   NSArray* _recipients;
 } 
 
@@ -62,7 +62,7 @@
 
 @end
 
-@interface TTComposerTextField : TTComposerField {
+@interface TTMessageTextField : TTMessageField {
   NSString* _text;
 } 
 
@@ -70,6 +70,6 @@
 
 @end
 
-@interface TTComposerSubjectField : TTComposerTextField
+@interface TTMessageSubjectField : TTMessageTextField
 
 @end

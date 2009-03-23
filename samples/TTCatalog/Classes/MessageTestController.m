@@ -1,9 +1,9 @@
 
-#import "ComposerTestController.h"
+#import "MessageTestController.h"
 #import "SearchTestController.h"
 #import "MockDataSource.h"
 
-@implementation ComposerTestController
+@implementation MessageTestController
 
 - (id)init {
   if (self = [super init]) {
@@ -23,7 +23,7 @@
 
 - (void)compose {
   id recipient = [[[TTTableField alloc] initWithText:@"Alan Jones" href:TT_NULL_URL] autorelease];
-  TTComposeController* controller = [[[TTComposeController alloc] 
+  TTMessageController* controller = [[[TTMessageController alloc] 
     initWithRecipients:[NSArray arrayWithObject:recipient]] autorelease];
   controller.dataSource = _dataSource;
   controller.delegate = self;
@@ -41,7 +41,7 @@
   UIView* lastView = [self.view.subviews lastObject];
   CGFloat y = lastView.bottom + 20;
   
-  TTComposerRecipientField* toField = [fields objectAtIndex:0];
+  TTMessageRecipientField* toField = [fields objectAtIndex:0];
   for (id recipient in toField.recipients) {
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
     label.backgroundColor = self.view.backgroundColor;
@@ -74,21 +74,21 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTComposeControllerDelegate
+// TTMessageControllerDelegate
 
-- (void)composeController:(TTComposeController*)controller didSendFields:(NSArray*)fields {
+- (void)composeController:(TTMessageController*)controller didSendFields:(NSArray*)fields {
   _sendTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
     selector:@selector(sendDelayed:) userInfo:fields repeats:NO];
 }
 
-- (void)composeControllerDidCancel:(TTComposeController*)controller {
+- (void)composeControllerDidCancel:(TTMessageController*)controller {
   [_sendTimer invalidate];
   _sendTimer = nil;
 
   [controller dismissModalViewControllerAnimated:YES];
 }
 
-- (void)composeControllerShowRecipientPicker:(TTComposeController*)controller {
+- (void)composeControllerShowRecipientPicker:(TTMessageController*)controller {
   SearchTestController* searchController = [[[SearchTestController alloc] init] autorelease];
   searchController.delegate = self;
   searchController.title = @"Address Book";
@@ -106,7 +106,7 @@
 // SearchTestControllerDelegate
 
 - (void)searchTestController:(SearchTestController*)controller didSelectObject:(id)object {
-  TTComposeController* composeController = (TTComposeController*)self.modalViewController;
+  TTMessageController* composeController = (TTMessageController*)self.modalViewController;
   [composeController addRecipient:object forFieldAtIndex:0];
   [controller dismissModalViewControllerAnimated:YES];
 }

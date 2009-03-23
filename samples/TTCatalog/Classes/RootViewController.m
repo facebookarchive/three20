@@ -7,7 +7,7 @@
 #import "TableFieldTestController.h"
 #import "TableTestController.h"
 #import "SearchTestController.h"
-#import "ComposerTestController.h"
+#import "MessageTestController.h"
 #import "TabBarTestController.h"
 #import "ActivityTestController.h"
 #import "ScrollViewTestController.h"
@@ -41,7 +41,7 @@
   [nav addView:@"youTubeTest" controller:[YouTubeTestController class]];
   [nav addView:@"tableFieldTest" controller:[TableFieldTestController class]];
   [nav addView:@"tableTest" controller:[TableTestController class]];
-  [nav addView:@"composerTest" controller:[ComposerTestController class]];
+  [nav addView:@"composerTest" controller:[MessageTestController class]];
   [nav addView:@"searchTest" controller:[SearchTestController class]];
   [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
   [nav addView:@"activityTest" controller:[ActivityTestController class]];
