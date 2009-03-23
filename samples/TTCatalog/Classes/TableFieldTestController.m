@@ -37,21 +37,23 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
 // TTTableViewController
 
 - (id<TTTableViewDataSource>)createDataSource {
+  // This demonstrates how to create a table with standard table "fields".  Many of these
+  // fields with URLs that will be visited when the row is selected
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Buttons",
     [[[TTTableField alloc] initWithText:@"TTTableField"
-      href:@"tt://tableFieldTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"TTTableField (external)"
-      href:@"http://foo.com"] autorelease],
+      url:@"tt://tableFieldTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"TTTableField (external link)"
+      url:@"http://foo.com"] autorelease],
     [[[TTLinkTableField alloc] initWithText:@"TTLinkTableField"
-      href:@"tt://tableFieldTest"] autorelease],
-    [[[TTIconTableField alloc] initWithText:@"TTIconTableField" href:@"tt://tableFieldTest"
+      url:@"tt://tableFieldTest"] autorelease],
+    [[[TTIconTableField alloc] initWithText:@"TTIconTableField" url:@"tt://tableFieldTest"
       image:@"bundle://tableIcon.png" ] autorelease],
-    [[[TTImageTableField alloc] initWithText:@"TTImageTableField" href:@"tt://tableFieldTest"
+    [[[TTImageTableField alloc] initWithText:@"TTImageTableField" url:@"tt://tableFieldTest"
       image:@"bundle://person.jpg"] autorelease],
     [[[TTButtonTableField alloc] initWithText:@"TTButtonTableField"] autorelease],
     [[[TTTitledTableField alloc] initWithTitle:@"title"
-      text:@"TTTitledTableField" href:@"tt://tableFieldTest"] autorelease],
+      text:@"TTTitledTableField" url:@"tt://tableFieldTest"] autorelease],
     [[[TTMoreButtonTableField alloc] initWithText:@"TTMoreButtonTableField"
       subtitle:@"Showing 1 of 100"] autorelease],
 

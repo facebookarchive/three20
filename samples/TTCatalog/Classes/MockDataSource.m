@@ -364,7 +364,7 @@
     text = [text lowercaseString];
     for (NSString* name in _names) {
       if ([[name lowercaseString] rangeOfString:text].location == 0) {
-          TTTableField* field = [[[TTTableField alloc] initWithText:name href:TT_NULL_URL]
+          TTTableField* field = [[[TTTableField alloc] initWithText:name url:TT_NULL_URL]
             autorelease];
           [_items addObject:field];
       }
@@ -388,7 +388,7 @@
       [map setObject:section forKey:letter];
     }
     
-    TTTableField* field = [[[TTTableField alloc] initWithText:name href:TT_NULL_URL] autorelease];
+    TTTableField* field = [[[TTTableField alloc] initWithText:name url:TT_NULL_URL] autorelease];
     [section addObject:field];
   }
   

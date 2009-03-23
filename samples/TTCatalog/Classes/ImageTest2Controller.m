@@ -7,7 +7,7 @@
 // private
 
 - (TTImageTableField*)fieldForURL:(NSString*)url {
-  return [[[TTIconTableField alloc] initWithText:@"Table Row" href:nil image:url
+  return [[[TTIconTableField alloc] initWithText:@"Table Row" url:nil image:url
     defaultImage:[UIImage imageNamed:@"DefaultAlbum.png"]] autorelease];
 }
 

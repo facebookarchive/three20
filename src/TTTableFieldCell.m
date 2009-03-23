@@ -78,8 +78,8 @@ static CGFloat kDefaultIconSize = 50;
   
     _label.text = _field.text;
     
-    if (_field.href) {
-      if ([[TTNavigationCenter defaultCenter] urlIsSupported:_field.href]) {
+    if (_field.url) {
+      if ([[TTNavigationCenter defaultCenter] urlIsSupported:_field.url]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       } else {
         self.accessoryType = UITableViewCellAccessoryNone;
@@ -253,8 +253,8 @@ static CGFloat kDefaultIconSize = 50;
     _label.lineBreakMode = UILineBreakModeWordWrap;
     _label.numberOfLines = 0;
 
-    if (field.href) {
-      if ([[TTNavigationCenter defaultCenter] urlIsSupported:field.href]) {
+    if (field.url) {
+      if ([[TTNavigationCenter defaultCenter] urlIsSupported:field.url]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       } else {
         self.accessoryType = UITableViewCellAccessoryNone;
@@ -346,8 +346,8 @@ static CGFloat kDefaultIconSize = 50;
 
     _subtextLabel.text = field.subtext;
 
-    if (field.href) {
-      if ([[TTNavigationCenter defaultCenter] urlIsSupported:field.href]) {
+    if (field.url) {
+      if ([[TTNavigationCenter defaultCenter] urlIsSupported:field.url]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       } else {
         self.accessoryType = UITableViewCellAccessoryNone;

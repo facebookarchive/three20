@@ -36,7 +36,7 @@
       caption:@"These are the wood tiles that we had installed after the accident."] autorelease],
 
     // Causes album to be loaded
-    [NSNull null],
+//    [NSNull null],
 
     [[[MockPhoto alloc]
       initWithURL:@"http://farm2.static.flickr.com/1124/3164979509_bcfdd72123.jpg?v=0"

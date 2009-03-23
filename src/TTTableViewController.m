@@ -57,8 +57,8 @@ static const CGFloat kSectionHeaderHeight = 35;
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableField class]]) {
     TTTableField* field = object;
-    if (field.href) {
-      [[TTNavigationCenter defaultCenter] displayURL:field.href];
+    if (field.url) {
+      [[TTNavigationCenter defaultCenter] displayURL:field.url];
     }
 
     if ([field isKindOfClass:[TTButtonTableField class]]) {

@@ -51,7 +51,7 @@
     pageView = [[[TTBackgroundView alloc] initWithFrame:CGRectZero] autorelease];
     pageView.style = TTDrawFillRect;
     pageView.backgroundInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    pageView.strokeRadius = 30;
+    pageView.borderRadius = 30;
     pageView.strokeColor = [UIColor blueColor];
     pageView.fillColor2 = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     pageView.backgroundColor = [UIColor clearColor];

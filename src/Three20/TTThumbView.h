@@ -8,7 +8,7 @@
   TTBackgroundView* borderView;
 }
 
-@property(nonatomic,copy) NSString* url;
+@property(nonatomic,copy) NSString* thumbURL;
 
 - (void)suspendLoading:(BOOL)suspended;
 

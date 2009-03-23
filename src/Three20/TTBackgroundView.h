@@ -8,7 +8,7 @@
   UIColor* _fillColor;
   UIColor* _fillColor2;
   UIColor* _strokeColor;
-  NSInteger _strokeRadius;
+  NSInteger _borderRadius;
   UIEdgeInsets _backgroundInset;
 }
 
@@ -16,7 +16,7 @@
 @property(nonatomic,retain) UIColor* fillColor;
 @property(nonatomic,retain) UIColor* fillColor2;
 @property(nonatomic,retain) UIColor* strokeColor;
-@property(nonatomic) NSInteger strokeRadius;
+@property(nonatomic) NSInteger borderRadius;
 @property(nonatomic) UIEdgeInsets backgroundInset;
 
 @end

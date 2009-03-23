@@ -5,7 +5,7 @@
 @implementation TTBackgroundView
 
 @synthesize style = _style, fillColor = _fillColor, fillColor2 = _fillColor2,
-  strokeColor = _strokeColor, strokeRadius = _strokeRadius, backgroundInset = _backgroundInset;
+  strokeColor = _strokeColor, borderRadius = _borderRadius, backgroundInset = _backgroundInset;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -15,7 +15,7 @@
     _fillColor = nil;
     _fillColor2 = nil;
     _strokeColor = nil;
-    _strokeRadius = 0;
+    _borderRadius = 0;
     _backgroundInset = UIEdgeInsetsZero;
     self.contentMode = UIViewContentModeRedraw;
   }
@@ -42,13 +42,13 @@
     if (_fillColor2 && _fillColor) {
       UIColor* fillColors[] = {_fillColor, _fillColor2};
       [[TTAppearance appearance] draw:_style rect:frame fill:fillColors fillCount:2
-        stroke:_strokeColor radius:_strokeRadius];
+        stroke:_strokeColor radius:_borderRadius];
     } else if (_fillColor) {
       [[TTAppearance appearance] draw:_style rect:frame fill:&_fillColor fillCount:1
-        stroke:_strokeColor radius:_strokeRadius];
+        stroke:_strokeColor radius:_borderRadius];
     } else {
       [[TTAppearance appearance] draw:_style rect:frame fill:nil fillCount:0
-        stroke:_strokeColor radius:_strokeRadius];
+        stroke:_strokeColor radius:_borderRadius];
     }
   }
 }

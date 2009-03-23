@@ -6,12 +6,12 @@
 
 @implementation TTLinkView
 
-@synthesize delegate = _delegate, href = _href, borderRadius = _borderRadius;
+@synthesize delegate = _delegate, url = _url, borderRadius = _borderRadius;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _delegate = nil;
-    _href = nil;
+    _url = nil;
     _screenView = nil;
     _borderRadius = 4;
     
@@ -22,7 +22,7 @@
 }
 
 - (void)dealloc {
-  [_href release];
+  [_url release];
   [_screenView release];
   [super dealloc];
 }
@@ -33,11 +33,11 @@
   BOOL okToDispatch = YES;
   if ([_delegate respondsToSelector:@selector(linkVisited:link:animated:)]) {
     okToDispatch = (BOOL)(int)[_delegate performSelector:@selector(linkVisited:link:animated:)
-      withObject:_href withObject:self withObject:(id)(int)YES];
+      withObject:_url withObject:self withObject:(id)(int)YES];
   }
 
   if (okToDispatch) {
-    [[TTNavigationCenter defaultCenter] displayObject:_href];
+    [[TTNavigationCenter defaultCenter] displayObject:_url];
   }
 }
 
@@ -69,7 +69,7 @@
   }
   
   if (highlighted) {
-    _screenView.strokeRadius = _borderRadius;
+    _screenView.borderRadius = _borderRadius;
     _screenView.frame = self.bounds;
     _screenView.hidden = NO;
   } else {
@@ -79,11 +79,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setHref:(id)href {
-  [_href release];
-  _href = [href retain];
+- (void)setURL:(id)url {
+  [_url release];
+  _url = [url retain];
   
-  self.userInteractionEnabled = !!_href;
+  self.userInteractionEnabled = !!_url;
 }
 
 @end

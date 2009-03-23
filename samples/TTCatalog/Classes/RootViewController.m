@@ -47,8 +47,7 @@
   [nav addView:@"activityTest" controller:[ActivityTestController class]];
   [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
   
-  [self validateView];
-  
+//  [self validateView];
 //  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
 //  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
@@ -60,35 +59,35 @@
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Photos",
     [[[TTTableField alloc] initWithText:@"Photo Browser"
-      href:@"tt://photoTest1"] autorelease],
+      url:@"tt://photoTest1"] autorelease],
     [[[TTTableField alloc] initWithText:@"Photo Thumbnails"
-      href:@"tt://photoTest2"] autorelease],
-
-    @"Tables",
-    [[[TTTableField alloc] initWithText:@"Table States"
-      href:@"tt://tableTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Table Cells"
-      href:@"tt://tableFieldTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Web Images in Table"
-      href:@"tt://imageTest2"] autorelease],
+      url:@"tt://photoTest2"] autorelease],
 
     @"Text",
     [[[TTTableField alloc] initWithText:@"Composer"
-      href:@"tt://composerTest"] autorelease],
+      url:@"tt://composerTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Search Bar"
-      href:@"tt://searchTest"] autorelease],
+      url:@"tt://searchTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Activity Labels"
-      href:@"tt://activityTest"] autorelease],
+      url:@"tt://activityTest"] autorelease],
+
+    @"Tables",
+    [[[TTTableField alloc] initWithText:@"Table States"
+      url:@"tt://tableTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Table Cells"
+      url:@"tt://tableFieldTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Web Images in Table"
+      url:@"tt://imageTest2"] autorelease],
 
     @"Views",
     [[[TTTableField alloc] initWithText:@"Tab Bars"
-      href:@"tt://tabBarTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Web Image"
-      href:@"tt://imageTest1"] autorelease],
+      url:@"tt://tabBarTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"YouTube Player"
-      href:@"tt://youTubeTest"] autorelease],
+      url:@"tt://youTubeTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Web Image"
+      url:@"tt://imageTest1"] autorelease],
     [[[TTTableField alloc] initWithText:@"Scroll View"
-      href:@"tt://scrollViewTest"] autorelease],
+      url:@"tt://scrollViewTest"] autorelease],
     nil];
 }
 

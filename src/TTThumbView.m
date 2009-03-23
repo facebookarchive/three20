@@ -46,11 +46,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (NSString*)url {
+- (NSString*)thumbURL {
   return imageView.url;
 }
 
-- (void)setUrl:(NSString*)url {
+- (void)setThumbURL:(NSString*)url {
   imageView.image = nil;
   imageView.url = url;
 }

@@ -2,14 +2,14 @@
 
 @interface TTTableField : NSObject {
   NSString* _text;
-  NSString* _href;
+  NSString* _url;
 }
   
 @property(nonatomic,copy) NSString* text;
-@property(nonatomic,copy) NSString* href;
+@property(nonatomic,copy) NSString* url;
 
 - (id)initWithText:(NSString*)text;
-- (id)initWithText:(NSString*)text href:(NSString*)href;
+- (id)initWithText:(NSString*)text url:(NSString*)url;
 
 @end
 
@@ -47,7 +47,7 @@
 @property(nonatomic,copy) NSString* title;
 
 - (id)initWithTitle:(NSString*)title text:(NSString*)text;
-- (id)initWithTitle:(NSString*)title text:(NSString*)text href:(NSString*)href;
+- (id)initWithTitle:(NSString*)title text:(NSString*)text url:(NSString*)url;
 
 @end
 
@@ -58,7 +58,7 @@
 @property(nonatomic,copy) NSString* subtext;
 
 - (id)initWithText:(NSString*)text subtext:(NSString*)subtext;
-- (id)initWithText:(NSString*)text subtext:(NSString*)subtext href:(NSString*)href;
+- (id)initWithText:(NSString*)text subtext:(NSString*)subtext url:(NSString*)url;
 
 @end
 
@@ -70,9 +70,9 @@
 @property(nonatomic,retain) UIImage* defaultImage;
 @property(nonatomic,copy) NSString* image;
 
-- (id)initWithText:(NSString*)text href:(NSString*)href image:(NSString*)image;
+- (id)initWithText:(NSString*)text url:(NSString*)url image:(NSString*)image;
 
-- (id)initWithText:(NSString*)text href:(NSString*)href image:(NSString*)image
+- (id)initWithText:(NSString*)text url:(NSString*)url image:(NSString*)image
   defaultImage:(UIImage*)image;
 
 @end

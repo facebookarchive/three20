@@ -1,4 +1,102 @@
 Three20
 =======
 
-Three20 is an iPhone UI library.
+Three20 is an Objective-C library for iPhone developers containing UI classes, like a photo viewer, and general utilities, like an HTTP disk cache.
+
+[![](http://farm4.static.flickr.com/3447/3378092101_40a62a04b2_m.jpg)](http://farm4.static.flickr.com/3447/3378092101_b064d8e339_o.jpg)
+[![](http://farm4.static.flickr.com/3432/3378117315_846547cfba_m.jpg)](http://farm4.static.flickr.com/3432/3378117315_3bf905bdb6_o.jpg) 
+[![](http://farm4.static.flickr.com/3462/3378171111_ec1208541d_m.jpg)](http://farm4.static.flickr.com/3462/3378171111_666173111d_o.jpg)
+[![](http://farm4.static.flickr.com/3646/3378998444_d0534d337f_m.jpg)](http://farm4.static.flickr.com/3646/3378998444_8d3b1eeef8_o.jpg)
+[![](http://farm4.static.flickr.com/3552/3378940896_7b23cca98e_m.jpg)](http://farm4.static.flickr.com/3552/3378940896_8ccb5ea1c8_o.jpg)
+[![](http://farm4.static.flickr.com/3592/3378941824_2fab2317c7_m.jpg)](http://farm4.static.flickr.com/3592/3378941824_6b7928e391_o.jpg)
+
+Adding Three20 to your project
+==============================
+
+Three20 is compiled as a static library, and the easiest way to add it to your project is to use Xcode's "dependent project" facilities.  Here is how:
+
+1. Clone the three20 git repository: `git clone git://github.com/joehewitt/three20.git`
+ 
+   Make sure you store the repository in a permanent place because Xcode will need
+   to reference the files every time you compile your project.
+
+2. Locate the "Three20.xcodeproj" file under three20/src.  Drag Three20.xcodeproj and drop it onto
+   the root of your Xcode project's "Groups and Files"  sidebar.  A dialog will appear -- make sure 
+   "Copy items" is unchecked and "Reference Type" is "Relative to Project" and then click "Add".
+
+3. Now you need to link the Three20 static library to your project.  Click the "Three20.xcodeproj" 
+   item that has just been added to the sidebar.  Under the "Details" table, you will see a single
+   item: libThree20.a.  Check the checkbox on the far right  of libThree20.a.
+
+4. Now we need to add Three20 as a dependency of your project, so Xcode compiles it whenever
+   you compile your project.  Expand the "Targets" section of the sidebar and double-click your
+   application's target.  Under the "General" tab you will see a "Direct Dependencies" section. 
+   Click the "+" button, select "Three20", and click "Add Target".
+
+5. Finally, we need to tell your project where to find the Three20 headers.  Open your
+  "Project Settings" and go to the "Build" tab. Look for "Header Search Paths" and double-click
+  it.  Add the relative path from your project's directory to the "three20/src" directory.
+  
+What's in Three20?
+==================
+                  
+Photo Viewer
+------------
+
+[TTPhotoViewController][] emulates Apple's Photos app with all of its flick n' pinch delight.  You can supply your own "photo sources", which works similiarly to the data sources used by UITableView.  Unlike Apple's Photos app, it isn't limited to photos stored locally.  Your photos can be loaded from the network, and long lists of photos can be loaded incrementally.  This version is also better than the one in the shipping Facebook app because it supports zooming.
+
+Message composer
+----------------
+
+[TTMessageController][] emulates the message composer in Apple's Mail app.  You can customize it to send any kind of message you want. Include your own set of message fields, or use the standard "To:" and "Subject:".  Recipient names can be autocompleted from a data source that you provide.
+
+Web image views
+-----------------------
+
+[TTImageView][] makes it as easy to display an image as it is in HTML.  Just supply the URL of the image, and TTImageView loads it and displays it efficiently.  TTImageView also works with the HTTP cache described below to avoid hitting the network when possible.
+
+Internet-aware table view controllers
+---------------------------------------
+
+[TTTableViewController][] and [TTTableViewDataSource][] help you to build tables which load their content from the Internet.  Rather than just assuming you have all the data ready to go, like UITableView does by default, TTTableViewController lets you communicate when your data is loading, and when there is an error or nothing to display.  It also helps you to add a "More" button to load the next page of data, and optionally supports reloading the data by shaking the device.
+
+Better text fields
+------------------
+
+[TTTextEditor][] is a UITextView which can grow in height automatically as you type.  I use this for entering messages in Facebook Chat, and it behaves similarly to the editor in Apple's SMS app.
+
+[TTPickerTextField][] is a type-ahead UITextField.  As you type it searches a data source, and it adds bubbles into the flow of text when you choose a type-ahead option.  I use this in TTMessageController for selecting the names of message recipients.
+
+HTTP disk cache
+--------------
+
+[TTURLRequest][] is a replacement for NSURLRequest which supports a disk cache (NSURLRequest can only cache in RAM).  It has some other nice features too.  HTTP posts are as easy as supplying a dictionary of parameters.  The TTURL loading system can also be suspended and resumed at any time, which is a great performance helper.  Network threads often fight with the UI thread, so you can suspend the network any time your app is momentarily graphically intensive.
+
+URL-based Navigation
+--------------------
+
+[TTNavigationCenter][] is for those grizzled old web developers like myself who want to organize their app by "pages" which can be displayed by visiting a URL.
+
+Your view controllers can simply register URL patterns that they handle, and when those URLs are visited the controllers will be created and displayed.  You can also register generic actions that are called when a URL is visited.
+
+TTNavigationCenter also persists and restores the full path of navigation controllers and modal view controllers, so your users can quite the app and come back exactly where they left off.
+
+[Facebook Connect for iPhone]: http://developers.facebook.com/connect_iphone.php
+[Five months ago]: http://joehewitt.com/post/developing-facebook-for-iphone/
+[Facebook iPhone app]: http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284882215&mt=8
+[Three20]: http://github.com/joehewitt/three20/
+[hosted on github]: http://github.com/joehewitt/three20/
+[TTPhotoViewController]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTPhotoViewController.h
+[TTMessageController]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTMessageController.h
+[TTImageView]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTImageView.h
+[TTTableViewController]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTTableViewController.h
+[TTTableViewDataSource]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTTableViewDataSource.h
+[TTActivityLabel]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTActivityLabel.h
+[TTShinyLabel]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTShinyLabel.h
+[TTURLRequest]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTURLRequest.h
+[TTBackgroundView]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTBackgroundView.h
+[TTAppearance]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTAppearance.h
+[UIColor]: http://github.com/joehewitt/three20/blob/master/src/Three20/UIColorAdditions.h
+[TTTextEditor]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTTextEditor.h
+[TTPickerTextField]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTPickerTextField.h
+[TTNavigationCenter]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTNavigationCenter.h

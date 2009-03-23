@@ -4,12 +4,12 @@
 
 @implementation TTTableField
 
-@synthesize text = _text, href = _href;
+@synthesize text = _text, url = _url;
 
 - (id)init {
   if (self = [super init]) {
     _text = nil;
-    _href = nil;
+    _url = nil;
   }
   return self;
 }
@@ -21,17 +21,10 @@
   return self;
 }
 
-- (id)initWithText:(NSString*)text href:(NSString*)href {
+- (id)initWithText:(NSString*)text url:(NSString*)url {
   if (self = [self init]) {
     self.text = text;
-    self.href = href;
-  }
-  return self;
-}
-
-- (id)initWithHref:(NSString*)href {
-  if (self = [self init]) {
-    self.href = href;
+    self.url = url;
   }
   return self;
 }
@@ -42,7 +35,7 @@
 
 - (void)dealloc {
   [_text release];
-  [_href release];
+  [_url release];
   [super dealloc];
 }
 
@@ -121,8 +114,8 @@
   return self;
 }
 
-- (id)initWithTitle:(NSString*)title text:(NSString*)text href:(NSString*)href {
-  if (self = [self initWithText:text href:href]) {
+- (id)initWithTitle:(NSString*)title text:(NSString*)text url:(NSString*)url {
+  if (self = [self initWithText:text url:url]) {
     self.title = title;
   }
   return self;
@@ -155,8 +148,8 @@
   return self;
 }
 
-- (id)initWithText:(NSString*)text subtext:(NSString*)subtext href:(NSString*)href {
-  if (self = [self initWithText:text href:href]) {
+- (id)initWithText:(NSString*)text subtext:(NSString*)subtext url:(NSString*)url {
+  if (self = [self initWithText:text url:url]) {
     self.subtext = subtext;
   }
   return self;
@@ -183,17 +176,17 @@
   return self;
 }
 
-- (id)initWithText:(NSString*)text href:(NSString*)href image:(NSString*)icon
+- (id)initWithText:(NSString*)text url:(NSString*)url image:(NSString*)icon
     defaultImage:(UIImage*)image {
-  if (self = [super initWithText:text href:href]) {
+  if (self = [super initWithText:text url:url]) {
     self.image = icon;
     self.defaultImage = image;
   }
   return self;
 }
 
-- (id)initWithText:(NSString*)text href:(NSString*)href image:(NSString*)image {
-  return [self initWithText:text href:href image:image defaultImage:nil];
+- (id)initWithText:(NSString*)text url:(NSString*)url image:(NSString*)image {
+  return [self initWithText:text url:url image:image defaultImage:nil];
 }
 
 - (void)dealloc {
