@@ -240,7 +240,7 @@ static CGFloat kThumbnailRowHeight = 79;
   [super viewDidAppear:animated];
   [self suspendLoadingThumbnails:NO];
 
-  if (!self.nextViewController) {
+  if (animated && !self.nextViewController) {
     self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
   }
 }
@@ -248,7 +248,9 @@ static CGFloat kThumbnailRowHeight = 79;
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
-  self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
+  if (animated) {
+    self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
+  }
   
   [self restoreNavigationBarStyle];
 }  
