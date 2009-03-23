@@ -234,7 +234,7 @@
       UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
       label.text = field.title;
       label.font = [UIFont systemFontOfSize:15];
-      label.textColor = [UIColor colorWithWhite:0.7 alpha:1];
+      label.textColor = [UIColor colorWithWhite:0.5 alpha:1];
       [label sizeToFit];
       label.frame = CGRectInset(label.frame, -2, 0);
       textField.leftView = label;

@@ -62,7 +62,9 @@ static const CGFloat kDesiredTableHeight = 150;
     [_delegate textFieldDidEndEditing:textField];
   }
   
-  textField.text = @"";
+  if (_textField.dataSource) {
+    textField.text = @"";
+  }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
