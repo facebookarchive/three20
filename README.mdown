@@ -1,7 +1,7 @@
 Three20
 =======
 
-Three20 is an Objective-C library for iPhone developers containing UI classes, like a photo viewer, and general utilities, like an HTTP disk cache.
+Three20 is a collection of iPhone UI classes, like a photo viewer, and general utilities, like an HTTP disk cache.  Three20 is derived from the [Facebook iPhone app][], which is one of the most downloaded iPhone apps ever.  
 
 [![](http://farm4.static.flickr.com/3447/3378092101_40a62a04b2_m.jpg)](http://farm4.static.flickr.com/3447/3378092101_b064d8e339_o.jpg)
 [![](http://farm4.static.flickr.com/3432/3378117315_846547cfba_m.jpg)](http://farm4.static.flickr.com/3432/3378117315_3bf905bdb6_o.jpg) 
@@ -15,18 +15,18 @@ Adding Three20 to your project
 
 Three20 is compiled as a static library, and the easiest way to add it to your project is to use Xcode's "dependent project" facilities.  Here is how:
 
-1. Clone the three20 git repository: `git clone git://github.com/joehewitt/three20.git`
- 
-   Make sure you store the repository in a permanent place because Xcode will need
-   to reference the files every time you compile your project.
+1. Clone the three20 git repository: `git clone git://github.com/joehewitt/three20.git`.  Make sure 
+   you store the repository in a permanent place because Xcode will need to reference the files
+   every time you compile your project.
 
-2. Locate the "Three20.xcodeproj" file under three20/src.  Drag Three20.xcodeproj and drop it onto
+2. Locate the "Three20.xcodeproj" file under "three20/src".  Drag Three20.xcodeproj and drop it onto
    the root of your Xcode project's "Groups and Files"  sidebar.  A dialog will appear -- make sure 
-   "Copy items" is unchecked and "Reference Type" is "Relative to Project" and then click "Add".
+   "Copy items" is unchecked and that "Reference Type" is "Relative to Project" and then click
+   "Add".
 
 3. Now you need to link the Three20 static library to your project.  Click the "Three20.xcodeproj" 
    item that has just been added to the sidebar.  Under the "Details" table, you will see a single
-   item: libThree20.a.  Check the checkbox on the far right  of libThree20.a.
+   item: libThree20.a.  Check the checkbox on the far right of libThree20.a.
 
 4. Now we need to add Three20 as a dependency of your project, so Xcode compiles it whenever
    you compile your project.  Expand the "Targets" section of the sidebar and double-click your
@@ -34,8 +34,8 @@ Three20 is compiled as a static library, and the easiest way to add it to your p
    Click the "+" button, select "Three20", and click "Add Target".
 
 5. Finally, we need to tell your project where to find the Three20 headers.  Open your
-  "Project Settings" and go to the "Build" tab. Look for "Header Search Paths" and double-click
-  it.  Add the relative path from your project's directory to the "three20/src" directory.
+   "Project Settings" and go to the "Build" tab. Look for "Header Search Paths" and double-click
+   it.  Add the relative path from your project's directory to the "three20/src" directory.
   
 What's in Three20?
 ==================
@@ -43,7 +43,7 @@ What's in Three20?
 Photo Viewer
 ------------
 
-[TTPhotoViewController][] emulates Apple's Photos app with all of its flick n' pinch delight.  You can supply your own "photo sources", which works similiarly to the data sources used by UITableView.  Unlike Apple's Photos app, it isn't limited to photos stored locally.  Your photos can be loaded from the network, and long lists of photos can be loaded incrementally.  This version is also better than the one in the shipping Facebook app because it supports zooming.
+[TTPhotoViewController][] emulates Apple's Photos app with all of its flick n' pinch delight.  You can supply your own "photo sources", which works similiarly to the data sources used by UITableView.  Unlike Apple's Photos app, it isn't limited to photos stored locally.  Your photos can be loaded from the network, and long lists of photos can be loaded incrementally.
 
 Message composer
 ----------------
@@ -81,22 +81,13 @@ Your view controllers can simply register URL patterns that they handle, and whe
 
 TTNavigationCenter also persists and restores the full path of navigation controllers and modal view controllers, so your users can quite the app and come back exactly where they left off.
 
-[Facebook Connect for iPhone]: http://developers.facebook.com/connect_iphone.php
-[Five months ago]: http://joehewitt.com/post/developing-facebook-for-iphone/
 [Facebook iPhone app]: http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284882215&mt=8
-[Three20]: http://github.com/joehewitt/three20/
-[hosted on github]: http://github.com/joehewitt/three20/
 [TTPhotoViewController]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTPhotoViewController.h
 [TTMessageController]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTMessageController.h
 [TTImageView]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTImageView.h
 [TTTableViewController]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTTableViewController.h
 [TTTableViewDataSource]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTTableViewDataSource.h
-[TTActivityLabel]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTActivityLabel.h
-[TTShinyLabel]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTShinyLabel.h
 [TTURLRequest]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTURLRequest.h
-[TTBackgroundView]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTBackgroundView.h
-[TTAppearance]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTAppearance.h
-[UIColor]: http://github.com/joehewitt/three20/blob/master/src/Three20/UIColorAdditions.h
 [TTTextEditor]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTTextEditor.h
 [TTPickerTextField]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTPickerTextField.h
 [TTNavigationCenter]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTNavigationCenter.h
