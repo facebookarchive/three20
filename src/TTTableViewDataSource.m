@@ -330,7 +330,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  if (_sections) {
+  if (_sections.count) {
     return [_sections objectAtIndex:section];
   } else {
     return nil;

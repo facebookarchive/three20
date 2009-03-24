@@ -232,8 +232,14 @@ static const CGFloat kDesiredTableHeight = 150;
 }
 
 - (void)reloadTable {
-  [_tableView reloadData];
-  _tableView.hidden = ![_tableView numberOfRowsInSection:0];
+  if ([_tableView.dataSource tableView:_tableView numberOfRowsInSection:0]) {
+    [_tableView reloadData];
+    _tableView.hidden = NO;
+    _shadowView.hidden = NO;
+  } else {
+    _tableView.hidden = YES;
+    _shadowView.hidden = YES;
+  }
 }
 
 - (void)screenAnimationDidStop {

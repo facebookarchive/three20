@@ -25,7 +25,7 @@
 #import "Three20/TTTableField.h"
 #import "Three20/TTTableViewCell.h"
 #import "Three20/TTTableFieldCell.h"
-#import "THree20/TTTableHeaderView.h"
+#import "Three20/TTTableHeaderView.h"
 
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTPhotoViewController.h"

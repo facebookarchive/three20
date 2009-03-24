@@ -364,9 +364,8 @@
     text = [text lowercaseString];
     for (NSString* name in _names) {
       if ([[name lowercaseString] rangeOfString:text].location == 0) {
-          TTTableField* field = [[[TTTableField alloc] initWithText:name url:TT_NULL_URL]
-            autorelease];
-          [_items addObject:field];
+        TTTableField* field = [[[TTTableField alloc] initWithText:name url:TT_NULL_URL] autorelease];
+        [_items addObject:field];
       }
     }    
   } else {
