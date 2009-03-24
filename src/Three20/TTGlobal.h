@@ -37,7 +37,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Errors
 
-#define TT_ERROR_DOMAIN @"three20i.org"
+#define TT_ERROR_DOMAIN @"three20.net"
 
 #define TT_EC_INVALID_IMAGE 101
 
@@ -123,7 +123,7 @@ CGRect TTNavigationFrame();
 CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy);
  
 /**
- * Increment the number of active network request.
+ * Increment the number of active network requests.
  *
  * The status bar activity indicator will be spinning while there are active requests.
  */

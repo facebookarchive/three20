@@ -27,7 +27,7 @@ Three20 is compiled as a static library, and the easiest way to add it to your p
    item that has just been added to the sidebar.  Under the "Details" table, you will see a single
    item: libThree20.a.  Check the checkbox on the far right of libThree20.a.
 
-4. Now we need to add Three20 as a dependency of your project, so Xcode compiles it whenever
+4. Now you need to add Three20 as a dependency of your project, so Xcode compiles it whenever
    you compile your project.  Expand the "Targets" section of the sidebar and double-click your
    application's target.  Under the "General" tab you will see a "Direct Dependencies" section. 
    Click the "+" button, select "Three20", and click "Add Target".
@@ -39,7 +39,8 @@ Three20 is compiled as a static library, and the easiest way to add it to your p
 
 6. Finally, we need to tell your project where to find the Three20 headers.  Open your
    "Project Settings" and go to the "Build" tab. Look for "Header Search Paths" and double-click
-   it.  Add the relative path from your project's directory to the "three20/src" directory.
+   it.  Add the relative path from your project's directory to the "three20/src" directory.  Then
+   go to "Other Linker Flags" under the "Linker" section, and add "-ObjC" to the list of flags.
   
 What's in Three20?
 ==================
