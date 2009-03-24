@@ -21,8 +21,7 @@ Three20 is compiled as a static library, and the easiest way to add it to your p
 
 2. Locate the "Three20.xcodeproj" file under "three20/src".  Drag Three20.xcodeproj and drop it onto
    the root of your Xcode project's "Groups and Files"  sidebar.  A dialog will appear -- make sure 
-   "Copy items" is unchecked and that "Reference Type" is "Relative to Project" and then click
-   "Add".
+   "Copy items" is unchecked and "Reference Type" is "Relative to Project" before clicking "Add".
 
 3. Now you need to link the Three20 static library to your project.  Click the "Three20.xcodeproj" 
    item that has just been added to the sidebar.  Under the "Details" table, you will see a single
@@ -33,7 +32,12 @@ Three20 is compiled as a static library, and the easiest way to add it to your p
    application's target.  Under the "General" tab you will see a "Direct Dependencies" section. 
    Click the "+" button, select "Three20", and click "Add Target".
 
-5. Finally, we need to tell your project where to find the Three20 headers.  Open your
+5. Now you need to add the bundle of images and strings to your app.  Locate "Three20.bundle" under
+   "three20/src" and drag and drop it into your project.  A dialog will appear -- make sure 
+   "Create Folder References" is selected,  "Copy items" is unchecked, and "Reference Type" is 
+   "Relative to Project" before clicking "Add".
+
+6. Finally, we need to tell your project where to find the Three20 headers.  Open your
    "Project Settings" and go to the "Build" tab. Look for "Header Search Paths" and double-click
    it.  Add the relative path from your project's directory to the "three20/src" directory.
   
