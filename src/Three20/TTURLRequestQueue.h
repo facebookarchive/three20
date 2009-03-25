@@ -17,8 +17,8 @@
  * Gets the flag that determines if new load requests are allowed to reach the network.
  *
  * Because network requests tend to slow down performance, this property can be used to
- * temporary delay them.  All requests made while suspended is true are queued, and when suspended
- * becomes false again they are executed.
+ * temporarily delay them.  All requests made while suspended are queued, and when 
+ * suspended becomes false again they are executed.
  */
 @property(nonatomic) BOOL suspended;
 

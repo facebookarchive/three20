@@ -108,7 +108,7 @@
 - (void)storeData:(NSData*)data forKey:(NSString*)key;
 
 /**
- * Stores an image the memory cache.
+ * Stores an image in the memory cache.
  */
 - (void)storeImage:(UIImage*)image forURL:(NSString*)url;
 - (void)storeImage:(UIImage*)image forKey:(NSString*)key;

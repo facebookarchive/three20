@@ -49,7 +49,7 @@
   _maskData = nil;
 }
 
-- (CGImageRef)createShinyMask:(CGRect)rect origin:(CGPoint)origin radius:(CGFloat)radius {
+- (CGImageRef)createSpotlightMask:(CGRect)rect origin:(CGPoint)origin radius:(CGFloat)radius {
   CGContextClearRect(_maskContext, rect);
 
   CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
@@ -63,7 +63,7 @@
   return CGBitmapContextCreateImage(_maskContext);
 }
 
-- (void)updateShiny {
+- (void)updateSpotlight {
   _spotlightPoint += 1.3/32;
   if (_spotlightPoint > 2) {
     _spotlightPoint = -0.5;
@@ -109,7 +109,7 @@
       y - ceil(self.font.capHeight/2));
     CGFloat spotRadius = self.font.capHeight*2;
 
-    CGImageRef mask = [self createShinyMask:rect origin:spotOrigin radius:spotRadius];
+    CGImageRef mask = [self createSpotlightMask:rect origin:spotOrigin radius:spotRadius];
     CGContextClipToMask(context, rect, mask);
     CGImageRelease(mask);
     
@@ -127,7 +127,7 @@
 - (void)startAnimating {
   if (!_timer) {
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0/32 target:self
-      selector:@selector(updateShiny) userInfo:nil repeats:YES];
+      selector:@selector(updateSpotlight) userInfo:nil repeats:YES];
     _spotlightPoint = -0.5;
     [self createMask];
   }

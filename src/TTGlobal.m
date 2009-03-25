@@ -6,13 +6,13 @@ static int gNetworkTaskCount = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-const void* RetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
-void ReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
+static const void* TTRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
+static void TTReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
 NSMutableArray* TTCreateNonRetainingArray() {
   CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
-  callbacks.retain = RetainNoOp;
-  callbacks.release = ReleaseNoOp;
+  callbacks.retain = TTRetainNoOp;
+  callbacks.release = TTReleaseNoOp;
   return (NSMutableArray*)CFArrayCreateMutable(nil, 0, &callbacks);
 }
 

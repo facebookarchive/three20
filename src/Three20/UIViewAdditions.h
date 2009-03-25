@@ -29,7 +29,7 @@
 - (UIView*)findChildWithDescendant:(UIView*)descendant;
 
 /**
- *
+ * Removes all subviews.
  */
 - (void)removeSubviews;
 

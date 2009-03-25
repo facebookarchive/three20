@@ -39,9 +39,15 @@
 
 @interface UINavigationController (TTCategory)
 
+/**
+ * Pushes a view controller with a transition other than the standard sliding animation.
+ */
 - (void)pushViewController:(UIViewController*)controller
-  withTransition:(UIViewAnimationTransition)transition;
+        withTransition:(UIViewAnimationTransition)transition;
 
+/**
+ * Pops a view controller with a transition other than the standard sliding animation.
+ */
 - (void)popViewControllerWithTransition:(UIViewAnimationTransition)transition;
 
 @end

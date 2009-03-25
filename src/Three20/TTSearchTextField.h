@@ -38,6 +38,8 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @protocol TTSearchTextFieldDelegate <UITextFieldDelegate>
 
 - (void)textField:(TTSearchTextField*)textField didSelectObject:(id)object;
