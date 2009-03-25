@@ -159,11 +159,14 @@ static TTURLRequestQueue* gMainQueue = nil;
 }
 
 - (void)loadFromBundle:(NSURL*)url {
-  NSString* urlPath = url.path.length
-    ? [NSString stringWithFormat:@"%@/%@", url.host, url.path]
-    : url.host;
-  NSString* path = [[NSBundle mainBundle] pathForResource:urlPath ofType:nil];
-
+  NSString* path = nil;
+  if (url.path.length) {
+    NSString* fileName = [url.path substringFromIndex:1];
+    path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil inDirectory:url.host];
+  } else {
+    path = [[NSBundle mainBundle] pathForResource:url.host ofType:nil];
+  }
+  
   NSFileManager* fm = [NSFileManager defaultManager];
   if (path && [fm fileExistsAtPath:path]) {
     NSData* data = [NSData dataWithContentsOfFile:path];

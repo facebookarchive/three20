@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static const CGFloat kMarginX = 5;  
-static const CGFloat kMarginY = 5;
+static const CGFloat kMarginY = 6;
 static const CGFloat kPaddingX = 10;
 static const CGFloat kPaddingY = 10;
 static const CGFloat kSpacingX = 5;
@@ -156,7 +156,9 @@ static const CGFloat kIndexViewMargin = 4;
     buttonWidth = _cancelButton.width + kSpacingX;
   }
 
-  CGRect boxRect = CGRectInset(self.bounds, kMarginX, kMarginY);
+  CGFloat boxHeight = TOOLBAR_HEIGHT - kMarginY*2;
+  CGRect boxRect = CGRectMake(kMarginX, floor(self.height/2 - boxHeight/2),
+                              self.width - kMarginX*2, boxHeight);
   boxRect.size.width -= indexViewWidth + buttonWidth;
   _boxView.frame = boxRect;
     
