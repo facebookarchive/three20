@@ -1,6 +1,6 @@
 #include "Three20/TTLinkView.h"
 #include "Three20/TTNavigationCenter.h"
-#include "Three20/TTBackgroundView.h"
+#include "Three20/TTStyleView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,7 +59,7 @@
 - (void)setHighlighted:(BOOL)highlighted {
   [super setHighlighted:highlighted];
   if (!_screenView) {
-    _screenView = [[TTBackgroundView alloc] initWithFrame:self.bounds];
+    _screenView = [[TTStyleView alloc] initWithFrame:self.bounds];
     _screenView.style = TTDrawFillRect;
     _screenView.fillColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     _screenView.opaque = NO;

@@ -8,4 +8,9 @@
  */
 - (UIImage*)transformWidth:(CGFloat)width height:(CGFloat)height rotate:(BOOL)rotate;
 
+/**
+ * Draws the image as a rounded rectangle.
+ */
+- (void)drawInRect:(CGRect)rect radius:(CGFloat)radius;
+
 @end

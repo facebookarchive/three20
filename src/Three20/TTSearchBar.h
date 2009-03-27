@@ -1,11 +1,11 @@
-#import "Three20/TTBackgroundView.h"
+#import "Three20/TTStyleView.h"
 
 @protocol TTTableViewDataSource, TTSearchTextFieldDelegate;
 @class TTSearchTextField;
 
-@interface TTSearchBar : TTBackgroundView {
+@interface TTSearchBar : TTStyleView {
   TTSearchTextField* _searchField;
-  TTBackgroundView* _boxView;
+  TTStyleView* _boxView;
   UIColor* _tintColor;
   UIButton* _cancelButton;
   BOOL _showsCancelButton;
@@ -17,7 +17,7 @@
 @property(nonatomic,copy) NSString* text;
 @property(nonatomic,copy) NSString* placeholder;
 @property(nonatomic,readonly) UITableView* tableView;
-@property(nonatomic,readonly) TTBackgroundView* boxView;
+@property(nonatomic,readonly) TTStyleView* boxView;
 @property(nonatomic,retain) UIColor* tintColor;
 @property(nonatomic,retain) UIColor* textColor;
 @property(nonatomic,retain) UIFont* font;

@@ -1,10 +1,10 @@
-#import "Three20/TTBackgroundView.h"
+#import "Three20/TTStyleView.h"
 
 @protocol TTTextEditorDelegate;
 @class TTTextEditorInternal;
 
-@interface TTTextEditor : TTBackgroundView {
-  id<TTTextEditorDelegate> _delegate;
+@interface TTTextEditor : TTStyleView {
+  id<TTTextEditorDelegate> _textDelegate;
   TTTextEditorInternal* _internal;
   NSString* _placeholder;
   NSString* _fixedText;
@@ -19,7 +19,7 @@
   BOOL _showsExtraLine;
 }
 
-@property(nonatomic,assign) id<TTTextEditorDelegate> delegate;
+@property(nonatomic,assign) id<TTTextEditorDelegate> textDelegate;
 @property(nonatomic,readonly) UITextView* textView;
 @property(nonatomic,copy) NSString* placeholder;
 @property(nonatomic,copy) NSString* fixedText;

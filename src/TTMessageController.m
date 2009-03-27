@@ -334,7 +334,7 @@
   [self.view addSubview:_scrollView];
 
   _textEditor = [[TTTextEditor alloc] initWithFrame:CGRectMake(0, 0, appFrame.size.width, 0)];
-  _textEditor.delegate = self;
+  _textEditor.textDelegate = self;
   _textEditor.backgroundColor = [UIColor whiteColor];
   _textEditor.textView.font = [UIFont systemFontOfSize:15];
   _textEditor.autoresizesToText = YES;

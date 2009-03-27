@@ -1,6 +1,6 @@
 #import "Three20/TTTableFieldCell.h"
 #import "Three20/TTTableField.h"
-#import "Three20/TTImageView.h"
+#import "Three20/TTStyleView.h"
 #import "Three20/TTErrorView.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTURLCache.h"
@@ -507,7 +507,9 @@ static CGFloat kDefaultIconSize = 50;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
-    _iconView = [[TTImageView alloc] initWithFrame:CGRectZero];
+    _iconView = [[TTStyleView alloc] initWithFrame:CGRectZero];
+    _iconView.borderRadius = 8;
+    _iconView.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:_iconView];
 	}
 	return self;
@@ -531,7 +533,7 @@ static CGFloat kDefaultIconSize = 50;
   if (!image) {
     image = field.defaultImage;
   }
-  if (_iconView.url) {
+  if (_iconView.backgroundImageURL) {
     CGFloat iconWidth = image
       ? image.size.width
       : (field.image ? kDefaultIconSize : 0);
@@ -560,8 +562,8 @@ static CGFloat kDefaultIconSize = 50;
     [super setObject:object];
   
     TTImageTableField* field = object;
-    _iconView.defaultImage = field.defaultImage;
-    _iconView.url = field.image;
+    _iconView.backgroundImageDefault = field.defaultImage;
+    _iconView.backgroundImageURL = field.image;
   }  
 }
 @end
@@ -586,7 +588,7 @@ static CGFloat kDefaultIconSize = 50;
     ? image.size.height
     : (field.image ? kDefaultIconSize : 0);
   
-  if (_iconView.url) {
+  if (_iconView.backgroundImageURL) {
     CGFloat innerWidth = self.contentView.width - (kHPadding*2 + iconWidth + kKeySpacing);
     CGFloat innerHeight = self.contentView.height - kVPadding*2;
     _label.frame = CGRectMake(kHPadding, kVPadding, innerWidth, innerHeight);

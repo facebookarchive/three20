@@ -2,7 +2,7 @@
 
 @protocol TTImageViewDelegate;
 
-@interface TTImageView : UIImageView<TTURLRequestDelegate> {
+@interface TTImageView : UIImageView <TTURLRequestDelegate> {
   id<TTImageViewDelegate> _delegate;
   TTURLRequest* _request;
   NSString* _url;
@@ -25,6 +25,8 @@
 - (void)imageViewDidFailLoadWithError:(NSError*)error;
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @protocol TTImageViewDelegate <NSObject>
 

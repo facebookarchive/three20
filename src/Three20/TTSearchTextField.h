@@ -1,13 +1,13 @@
 #import "Three20/TTTableViewDataSource.h"
 
 @protocol TTTableViewDataSource;
-@class TTSearchTextFieldInternal, TTBackgroundView;
+@class TTSearchTextFieldInternal, TTStyleView;
 
 @interface TTSearchTextField : UITextField <UITableViewDelegate> {
   id<TTTableViewDataSource> _dataSource;
   TTSearchTextFieldInternal* _internal;
   UITableView* _tableView;
-  TTBackgroundView* _shadowView;
+  TTStyleView* _shadowView;
   UIButton* _screenView;
   UINavigationItem* _previousNavigationItem;
   UIBarButtonItem* _previousRightBarButtonItem;

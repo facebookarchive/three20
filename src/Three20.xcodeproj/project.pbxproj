@@ -63,7 +63,7 @@
 		BEF31F710F352E64000DE5D2 /* TTErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F470F352E64000DE5D2 /* TTErrorView.m */; };
 		BEF31F720F352E64000DE5D2 /* TTGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F480F352E64000DE5D2 /* TTGlobal.m */; };
 		BEF31F730F352E64000DE5D2 /* TTImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F490F352E64000DE5D2 /* TTImageView.m */; };
-		BEF31F740F352E64000DE5D2 /* TTBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4A0F352E64000DE5D2 /* TTBackgroundView.m */; };
+		BEF31F740F352E64000DE5D2 /* TTStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4A0F352E64000DE5D2 /* TTStyleView.m */; };
 		BEF31F750F352E64000DE5D2 /* TTPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4B0F352E64000DE5D2 /* TTPhotoView.m */; };
 		BEF31F760F352E64000DE5D2 /* TTPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4C0F352E64000DE5D2 /* TTPhotoViewController.m */; };
 		BEF31F770F352E64000DE5D2 /* TTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4D0F352E64000DE5D2 /* TTScrollView.m */; };
@@ -81,7 +81,7 @@
 		BEF31F840F352E64000DE5D2 /* TTErrorView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */; };
 		BEF31F850F352E64000DE5D2 /* TTGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5C0F352E64000DE5D2 /* TTGlobal.h */; };
 		BEF31F860F352E64000DE5D2 /* TTImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5D0F352E64000DE5D2 /* TTImageView.h */; };
-		BEF31F880F352E64000DE5D2 /* TTBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5F0F352E64000DE5D2 /* TTBackgroundView.h */; };
+		BEF31F880F352E64000DE5D2 /* TTStyleView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5F0F352E64000DE5D2 /* TTStyleView.h */; };
 		BEF31F890F352E64000DE5D2 /* TTPhotoSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F600F352E64000DE5D2 /* TTPhotoSource.h */; };
 		BEF31F8A0F352E64000DE5D2 /* TTPhotoView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F610F352E64000DE5D2 /* TTPhotoView.h */; };
 		BEF31F8B0F352E64000DE5D2 /* TTPhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F620F352E64000DE5D2 /* TTPhotoViewController.h */; };
@@ -165,7 +165,7 @@
 		BEF31F470F352E64000DE5D2 /* TTErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTErrorView.m; sourceTree = "<group>"; };
 		BEF31F480F352E64000DE5D2 /* TTGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobal.m; sourceTree = "<group>"; };
 		BEF31F490F352E64000DE5D2 /* TTImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageView.m; sourceTree = "<group>"; };
-		BEF31F4A0F352E64000DE5D2 /* TTBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTBackgroundView.m; sourceTree = "<group>"; };
+		BEF31F4A0F352E64000DE5D2 /* TTStyleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyleView.m; sourceTree = "<group>"; };
 		BEF31F4B0F352E64000DE5D2 /* TTPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPhotoView.m; sourceTree = "<group>"; };
 		BEF31F4C0F352E64000DE5D2 /* TTPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPhotoViewController.m; sourceTree = "<group>"; };
 		BEF31F4D0F352E64000DE5D2 /* TTScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTScrollView.m; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 		BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorView.h; path = Three20/TTErrorView.h; sourceTree = "<group>"; };
 		BEF31F5C0F352E64000DE5D2 /* TTGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobal.h; path = Three20/TTGlobal.h; sourceTree = "<group>"; };
 		BEF31F5D0F352E64000DE5D2 /* TTImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageView.h; path = Three20/TTImageView.h; sourceTree = "<group>"; };
-		BEF31F5F0F352E64000DE5D2 /* TTBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTBackgroundView.h; path = Three20/TTBackgroundView.h; sourceTree = "<group>"; };
+		BEF31F5F0F352E64000DE5D2 /* TTStyleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyleView.h; path = Three20/TTStyleView.h; sourceTree = "<group>"; };
 		BEF31F600F352E64000DE5D2 /* TTPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoSource.h; path = Three20/TTPhotoSource.h; sourceTree = "<group>"; };
 		BEF31F610F352E64000DE5D2 /* TTPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoView.h; path = Three20/TTPhotoView.h; sourceTree = "<group>"; };
 		BEF31F620F352E64000DE5D2 /* TTPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoViewController.h; path = Three20/TTPhotoViewController.h; sourceTree = "<group>"; };
@@ -322,8 +322,8 @@
 				BEF31F580F352E64000DE5D2 /* TTYouTubeView.m */,
 				BE42FB150F3BBAB400A3B65A /* TTLinkView.h */,
 				BE42FB120F3BBAA900A3B65A /* TTLinkView.m */,
-				BEF31F5F0F352E64000DE5D2 /* TTBackgroundView.h */,
-				BEF31F4A0F352E64000DE5D2 /* TTBackgroundView.m */,
+				BEF31F5F0F352E64000DE5D2 /* TTStyleView.h */,
+				BEF31F4A0F352E64000DE5D2 /* TTStyleView.m */,
 				BEF31F690F352E64000DE5D2 /* TTUnclippedView.h */,
 				BEF31F530F352E64000DE5D2 /* TTUnclippedView.m */,
 				BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */,
@@ -412,7 +412,7 @@
 				BEF31F830F352E64000DE5D2 /* TTActivityLabel.h in Headers */,
 				BEF31F840F352E64000DE5D2 /* TTErrorView.h in Headers */,
 				BEF31F860F352E64000DE5D2 /* TTImageView.h in Headers */,
-				BEF31F880F352E64000DE5D2 /* TTBackgroundView.h in Headers */,
+				BEF31F880F352E64000DE5D2 /* TTStyleView.h in Headers */,
 				BEF31F890F352E64000DE5D2 /* TTPhotoSource.h in Headers */,
 				BEF31F8A0F352E64000DE5D2 /* TTPhotoView.h in Headers */,
 				BEF31F8B0F352E64000DE5D2 /* TTPhotoViewController.h in Headers */,
@@ -504,7 +504,7 @@
 				BEF31F700F352E64000DE5D2 /* TTActivityLabel.m in Sources */,
 				BEF31F710F352E64000DE5D2 /* TTErrorView.m in Sources */,
 				BEF31F730F352E64000DE5D2 /* TTImageView.m in Sources */,
-				BEF31F740F352E64000DE5D2 /* TTBackgroundView.m in Sources */,
+				BEF31F740F352E64000DE5D2 /* TTStyleView.m in Sources */,
 				BEF31F750F352E64000DE5D2 /* TTPhotoView.m in Sources */,
 				BEF31F760F352E64000DE5D2 /* TTPhotoViewController.m in Sources */,
 				BEF31F770F352E64000DE5D2 /* TTScrollView.m in Sources */,

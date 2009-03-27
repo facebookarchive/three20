@@ -120,14 +120,18 @@ typedef enum {
 @property(nonatomic,retain) UIImage* blackButtonImage;
 
 - (void)draw:(TTDrawStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
-  fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius;
+        fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius;
+
+- (void)draw:(TTDrawStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
+        fillCount:(int)fillCount stroke:(UIColor*)strokeColor thickness:(CGFloat)thickness
+        radius:(CGFloat)radius;
 
 - (void)draw:(TTDrawStyle)background rect:(CGRect)rect;
 
-- (void)drawLine:(CGPoint)from to:(CGPoint)to color:(UIColor*)color;
+- (void)drawLine:(CGPoint)from to:(CGPoint)to color:(UIColor*)color thickness:(CGFloat)thickness;
 
 - (void)fill:(CGRect)rect fillColors:(UIColor**)fillColors count:(int)count;
 
-- (void)stroke:(UIColor*)strokeColor;
+- (void)stroke:(UIColor*)strokeColor thickness:(CGFloat)thickness;
 
 @end

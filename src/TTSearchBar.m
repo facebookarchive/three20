@@ -1,6 +1,6 @@
 #import "Three20/TTSearchBar.h"
 #import "Three20/TTSearchTextField.h"
-#import "Three20/TTBackgroundView.h"
+#import "Three20/TTStyleView.h"
 #import "Three20/TTAppearance.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ static const CGFloat kIndexViewMargin = 4;
   if (self = [super initWithFrame:frame]) {
     _style = TTDrawReflection;
     
-    _boxView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
+    _boxView = [[TTStyleView alloc] initWithFrame:CGRectZero];
     _boxView.backgroundColor = [UIColor clearColor];
     _boxView.style = TTDrawRoundInnerShadow;
     _boxView.contentMode = UIViewContentModeRedraw;
@@ -285,7 +285,7 @@ static const CGFloat kIndexViewMargin = 4;
     [_tintColor release];
     _tintColor = [tintColor retain];
     
-    _boxView.strokeColor = [_tintColor transformHue:1 saturation:1 value:0.9];
+    _boxView.borderColor = [_tintColor transformHue:1 saturation:1 value:0.9];
   }
 }
 

@@ -1,6 +1,6 @@
 #import "Three20/TTTableViewCell.h"
 
-@class TTTableField, TTImageView, TTErrorView;
+@class TTTableField, TTStyleView, TTErrorView;
 
 @interface TTTableFieldCell : TTTableViewCell {
   TTTableField* _field;
@@ -32,7 +32,7 @@
 @end
 
 @interface TTIconTableFieldCell : TTTableFieldCell {
-  TTImageView* _iconView;
+  TTStyleView* _iconView;
 }
 @end
 

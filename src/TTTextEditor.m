@@ -110,7 +110,7 @@ static CGFloat kTextViewInset = 19;
 
 @implementation TTTextEditor
 
-@synthesize delegate = _delegate, textView = _textView, placeholder = _placeholder,
+@synthesize textDelegate = _textDelegate, textView = _textView, placeholder = _placeholder,
   fixedText = _fixedText, minNumberOfLines = _minNumberOfLines,
   maxNumberOfLines = _maxNumberOfLines, editing = _editing, autoresizesToText = _autoresizesToText,
   showsExtraLine= _showsExtraLine;
@@ -119,7 +119,7 @@ static CGFloat kTextViewInset = 19;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _delegate = nil;
+    _textDelegate = nil;
     _internal = [[TTTextEditorInternal alloc] initWithTextEditor:self];
     _placeholder = nil;
     _fixedText = nil;
@@ -223,8 +223,8 @@ static CGFloat kTextViewInset = 19;
   CGFloat diff = newHeight - oldHeight;
   
   if (oldHeight && diff) {
-    if ([_delegate respondsToSelector:@selector(textEditor:shouldResizeBy:)]) {
-      if (![_delegate textEditor:self shouldResizeBy:diff]) {
+    if ([_textDelegate respondsToSelector:@selector(textEditor:shouldResizeBy:)]) {
+      if (![_textDelegate textEditor:self shouldResizeBy:diff]) {
         return;
       }
     }
@@ -292,7 +292,7 @@ static CGFloat kTextViewInset = 19;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)setDelegate:(id<TTTextEditorDelegate>)delegate {
-  _delegate = delegate;
+  _textDelegate = delegate;
   _internal.delegate = delegate;
 }
 

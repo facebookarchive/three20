@@ -1,6 +1,6 @@
 #import "Three20/TTThumbView.h"
 #import "Three20/TTImageView.h"
-#import "Three20/TTBackgroundView.h"
+#import "Three20/TTStyleView.h"
 
 @implementation TTThumbView
 
@@ -13,10 +13,10 @@
     imageView.userInteractionEnabled = NO;
     [self addSubview:imageView];
 
-    borderView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
+    borderView = [[TTStyleView alloc] initWithFrame:CGRectZero];
     borderView.opaque = NO;
     borderView.style = TTDrawFillRect;
-    borderView.strokeColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
+    borderView.borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
     borderView.contentMode = UIViewContentModeRedraw;
     borderView.userInteractionEnabled = NO;
     [self addSubview:borderView];

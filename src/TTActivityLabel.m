@@ -1,5 +1,5 @@
 #import "Three20/TTActivityLabel.h"
-#import "Three20/TTBackgroundView.h"
+#import "Three20/TTStyleView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -43,7 +43,7 @@ static CGFloat kThinBezelHeight = 35;
     
     self.backgroundColor = [UIColor clearColor];
   
-    _bezelView = [[TTBackgroundView alloc] initWithFrame:CGRectZero];
+    _bezelView = [[TTStyleView alloc] initWithFrame:CGRectZero];
     if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleBlackThinBezel) {
       _bezelView.opaque = NO;
       _bezelView.style = TTDrawFillRect;
@@ -53,7 +53,7 @@ static CGFloat kThinBezelHeight = 35;
       _bezelView.opaque = NO;
       _bezelView.style = TTDrawFillRect;
       _bezelView.fillColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-      _bezelView.strokeColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
+      _bezelView.borderColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
       _bezelView.borderRadius = 10;
     } else if (_style == TTActivityLabelStyleWhiteBox) {
       _bezelView.backgroundColor = [UIColor whiteColor];
