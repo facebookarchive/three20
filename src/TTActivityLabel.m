@@ -58,6 +58,9 @@ static CGFloat kThinBezelHeight = 35;
     } else if (_style == TTActivityLabelStyleWhiteBox) {
       _bezelView.backgroundColor = [UIColor whiteColor];
       self.backgroundColor = [UIColor whiteColor];
+    } else if (_style == TTActivityLabelStyleBlackBox) {
+      _bezelView.backgroundColor = [UIColor clearColor];
+      self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
     } else {
       _bezelView.backgroundColor = [UIColor clearColor];
     }
@@ -82,7 +85,7 @@ static CGFloat kThinBezelHeight = 35;
         UIActivityIndicatorViewStyleGray];
       _textView.font = [UIFont systemFontOfSize:17];
       _textView.textColor = [TTAppearance appearance].tableActivityTextColor;
-    } else if (_style == TTActivityLabelStyleBlackBezel) {
+    } else if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleBlackBox) {
       _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleWhiteLarge];
       _spinner.frame = CGRectMake(0, 0, 24, 24);
@@ -121,9 +124,14 @@ static CGFloat kThinBezelHeight = 35;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
   CGSize textSize = [_textView.text sizeWithFont:_textView.font];
-  CGFloat contentWidth = _spinner.width + kSpacing + textSize.width;
+
+  CGFloat spinnerSize = _spinner.height;
+  if (spinnerSize + kPadding > self.height) {
+    spinnerSize = textSize.height;
+  }
+
+  CGFloat contentWidth = spinnerSize + kSpacing + textSize.width;
   if (_stopButton) {
     [_stopButton sizeToFit];
     _stopButton.height = 30;
@@ -143,10 +151,12 @@ static CGFloat kThinBezelHeight = 35;
     y = -10;
   } else {
     bezelWidth = kPadding + contentWidth + kPadding;
+
+    CGRect appFrame = [UIScreen mainScreen].applicationFrame;
     CGFloat maxBevelWidth = appFrame.size.width - kPadding*2;
     if (bezelWidth > maxBevelWidth) {
       bezelWidth = maxBevelWidth;
-      contentWidth = bezelWidth - (kSpacing + _spinner.width);
+      contentWidth = bezelWidth - (kSpacing + spinnerSize);
     }
     
     y = _centeredToScreen
@@ -154,7 +164,7 @@ static CGFloat kThinBezelHeight = 35;
       : floor(self.height/2 - bezelHeight/2);
   }
   
-  CGFloat textMaxWidth = (bezelWidth - (_spinner.width + kSpacing)) - kPadding*2;
+  CGFloat textMaxWidth = (bezelWidth - (spinnerSize + kSpacing)) - kPadding*2;
   CGFloat textWidth = textSize.width;
   if (textWidth > textMaxWidth) {
     textWidth = textMaxWidth;
@@ -163,11 +173,11 @@ static CGFloat kThinBezelHeight = 35;
   _bezelView.frame = CGRectMake(floor(self.width/2 - bezelWidth/2), y,
     bezelWidth, bezelHeight);
   
-  _textView.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + kPadding + _spinner.width/2),
+  _textView.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + kPadding + spinnerSize/2),
     floor(bezelHeight/2 - textSize.height/2), textWidth, textSize.height);
 
-  _spinner.frame = CGRectMake(_textView.left - (_spinner.width+kSpacing),
-    floor(bezelHeight/2 - _spinner.height/2), _spinner.width, _spinner.height);
+  _spinner.frame = CGRectMake(_textView.left - (spinnerSize+kSpacing),
+    floor(bezelHeight/2 - spinnerSize/2), spinnerSize, spinnerSize);
 
   _stopButton.frame = CGRectMake(_textView.right + kSpacing*2,
     floor(bezelHeight/2 - _stopButton.height/2), _stopButton.width, _stopButton.height);
@@ -182,6 +192,15 @@ static CGFloat kThinBezelHeight = 35;
 
 - (void)setText:(NSString*)text {
   _textView.text = text;
+  [self setNeedsLayout];
+}
+
+- (UIFont*)font {
+  return _textView.font;
+}
+
+- (void)setFont:(UIFont*)font {
+  _textView.font = font;
   [self setNeedsLayout];
 }
 

@@ -10,52 +10,8 @@
   contentError = _contentError, appearing = _appearing, appeared = _appeared,
   autoresizesForKeyboard = _autoresizesForKeyboard;
 
-- (id)init {
-  if (self = [super init]) {  
-    _frozenState = nil;
-    _viewState = TTViewEmpty;
-    _contentError = nil;
-    _previousBar = nil;
-    _previousBarStyle = 0;
-    _previousBarTintColor = nil;
-    _previousStatusBarStyle = 0;
-    _invalidView = YES;
-    _invalidViewLoading = NO;
-    _invalidViewData = YES;
-    _validating = NO;
-    _appearing = NO;
-    _appeared = NO;
-    _unloaded = NO;
-    _autoresizesForKeyboard = NO;
-  }
-  return self;
-}
-
-- (void)awakeFromNib {
-  [self init];
-}
-
-- (void)dealloc {
-  TTLOG(@"DEALLOC %@", self);
-  
-  self.autoresizesForKeyboard = NO;
-  
-  [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
-
-  [_frozenState release];
-  [_contentError release];
-  [self unloadView];
-
-  if (_appeared) {
-    // The controller is supposed to handle this but sometimes due to leaks it does not, so
-    // we have to force it here
-    [self.view removeSubviews];
-  }
-
-  [super dealloc];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
 
 //- (void)changeStyleFrom:(TTViewControllerStyle)from {
 //  if (from != style) {
@@ -124,6 +80,54 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {  
+    _frozenState = nil;
+    _viewState = TTViewEmpty;
+    _contentError = nil;
+    _previousBar = nil;
+    _previousBarStyle = 0;
+    _previousBarTintColor = nil;
+    _previousStatusBarStyle = 0;
+    _invalidView = YES;
+    _invalidViewLoading = NO;
+    _invalidViewData = YES;
+    _validating = NO;
+    _appearing = NO;
+    _appeared = NO;
+    _unloaded = NO;
+    _autoresizesForKeyboard = NO;
+  }
+  return self;
+}
+
+- (void)awakeFromNib {
+  [self init];
+}
+
+- (void)dealloc {
+  TTLOG(@"DEALLOC %@", self);
+  
+  self.autoresizesForKeyboard = NO;
+  
+  [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
+
+  [_frozenState release];
+  [_contentError release];
+  [self unloadView];
+
+  if (_appeared) {
+    // The controller is supposed to handle this but sometimes due to leaks it does not, so
+    // we have to force it here
+    [self.view removeSubviews];
+  }
+
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
 - (void)loadView {
@@ -144,7 +148,6 @@
   _appeared = YES;
 
   [self validateView];
-  [self refreshContent];
 
   [TTURLRequestQueue mainQueue].suspended = YES;
 }
@@ -211,6 +214,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (id<TTPersistable>)viewObject {
   return nil;
@@ -261,6 +265,7 @@
   if (_appearing) {
     [self validateView];
   }
+  [self refreshContent];
 }
 
 - (void)invalidateViewState:(TTViewState)state {

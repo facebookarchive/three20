@@ -2,6 +2,7 @@
 #import "Three20/TTTableField.h"
 #import "Three20/TTStyleView.h"
 #import "Three20/TTErrorView.h"
+#import "Three20/TTActivityLabel.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTAppearance.h"
@@ -620,12 +621,11 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTActivityTableFieldCell
 
-@synthesize animating = _animating;
-
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTActivityTableField* field = item;
   if (field.sizeToFit) {
     if (tableView.style == UITableViewStyleGrouped) {
+      [tableView.tableHeaderView layoutIfNeeded];
       return (tableView.height - TABLE_GROUPED_PADDING*2) - tableView.tableHeaderView.height;
     } else {
       return tableView.height - tableView.tableHeaderView.height;
@@ -637,13 +637,16 @@ static CGFloat kDefaultIconSize = 50;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
-    _spinnerView = nil;
+    _activityLabel = [[TTActivityLabel alloc] initWithFrame:CGRectZero
+                                              style:TTActivityLabelStyleGray];
+    _activityLabel.centeredToScreen = NO;
+    [self.contentView addSubview:_activityLabel];
   }
   return self;
 }
 
 - (void)dealloc {
-  [_spinnerView release];
+  [_activityLabel release];
   [super dealloc];
 }
 
@@ -653,14 +656,13 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  [_label sizeToFit];
-
-  CGFloat totalWidth = _label.width + kSpacing + _spinnerView.width;
-  _spinnerView.left = floor(self.contentView.width/2 - totalWidth/2);
-  _spinnerView.top = floor(self.contentView.height/2 - _spinnerView.height/2);
-
-  _label.left = _spinnerView.right + kSpacing;
-  _label.top = floor(self.contentView.height/2 - _label.height/2);
+  UITableView* tableView = (UITableView*)self.superview;
+  if (tableView.style == UITableViewStylePlain) {
+    _activityLabel.frame = self.contentView.bounds;
+  } else {
+    _activityLabel.frame = CGRectInset(self.contentView.bounds, -1, -1);
+    _activityLabel.backgroundColor = self.superview.backgroundColor;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -669,37 +671,14 @@ static CGFloat kDefaultIconSize = 50;
 - (void)setObject:(id)object {
   if (_field != object) {
     [super setObject:object];
-
+  
     TTActivityTableField* field = object;
-
-    _label.text = field.text;
-    _label.font = [UIFont systemFontOfSize:17];
-    _label.textColor = [TTAppearance appearance].tableActivityTextColor;
-    _label.highlightedTextColor = [UIColor whiteColor];
-    _label.lineBreakMode = UILineBreakModeTailTruncation;
+    _activityLabel.text = field.text;
     
+    _label.hidden = YES;
     self.accessoryType = UITableViewCellAccessoryNone;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    self.animating = YES;
   }  
-}
-
-- (void)setAnimating:(BOOL)isAnimating {
-  _animating = isAnimating;
-  
-  if (_animating) {
-    if (!_spinnerView) {
-      _spinnerView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-        UIActivityIndicatorViewStyleGray];
-      [self.contentView addSubview:_spinnerView];
-    }
-
-    [_spinnerView startAnimating];
-  } else {
-    [_spinnerView stopAnimating];
-  }
-  [self setNeedsLayout];
 }
 
 @end

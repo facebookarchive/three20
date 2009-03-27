@@ -1,6 +1,6 @@
 #import "Three20/TTTableViewCell.h"
 
-@class TTTableField, TTStyleView, TTErrorView;
+@class TTTableField, TTStyleView, TTErrorView, TTActivityLabel;
 
 @interface TTTableFieldCell : TTTableViewCell {
   TTTableField* _field;
@@ -41,11 +41,8 @@
 @end
 
 @interface TTActivityTableFieldCell : TTTableFieldCell {
-  UIActivityIndicatorView* _spinnerView;
-  BOOL _animating;
+  TTActivityLabel* _activityLabel;
 }
-
-@property(nonatomic) BOOL animating;
 
 @end
 

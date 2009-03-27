@@ -3,6 +3,7 @@
 typedef enum {
   TTActivityLabelStyleWhite,
   TTActivityLabelStyleGray,
+  TTActivityLabelStyleBlackBox,
   TTActivityLabelStyleBlackBezel,
   TTActivityLabelStyleBlackThinBezel,
   TTActivityLabelStyleWhiteBezel,
@@ -27,6 +28,7 @@ typedef enum {
 @property(nonatomic,assign) id<TTActivityLabelDelegate> delegate;
 @property(nonatomic,readonly) TTActivityLabelStyle style;
 @property(nonatomic,assign) NSString* text;
+@property(nonatomic,assign) UIFont* font;
 @property(nonatomic) BOOL centered;
 @property(nonatomic) BOOL centeredToScreen;
 @property(nonatomic) BOOL showsStopButton;

@@ -13,6 +13,7 @@
 
 static const CGFloat kEmptyHeaderHeight = 1;
 static const CGFloat kSectionHeaderHeight = 35;
+static const CGFloat kRefreshingViewHeight = 22;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -66,8 +67,8 @@ static const CGFloat kSectionHeaderHeight = 35;
     } else if ([object isKindOfClass:[TTMoreButtonTableField class]]) {
       TTMoreButtonTableField* moreLink = (TTMoreButtonTableField*)object;
       moreLink.isLoading = YES;
-      TTActivityTableFieldCell* cell
-        = (TTActivityTableFieldCell*)[tableView cellForRowAtIndexPath:indexPath];
+      TTMoreButtonTableFieldCell* cell
+        = (TTMoreButtonTableFieldCell*)[tableView cellForRowAtIndexPath:indexPath];
       cell.animating = YES;
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
       
@@ -215,6 +216,12 @@ static const CGFloat kSectionHeaderHeight = 35;
   [_tableView reloadData];
 }
 
+- (void)refreshingHideAnimationStopped {
+  [_refreshingView removeFromSuperview];
+  [_refreshingView release];
+  _refreshingView = nil;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -241,7 +248,7 @@ static const CGFloat kSectionHeaderHeight = 35;
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
+  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];
 }  
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -309,15 +316,27 @@ static const CGFloat kSectionHeaderHeight = 35;
     [_refreshingView release];
 
     _refreshingView = [[TTActivityLabel alloc] initWithFrame:
-      CGRectMake(0, self.view.height - 50, self.view.width, 50)
-      style:TTActivityLabelStyleBlackThinBezel text:[self titleForActivity]];
+      CGRectMake(0, _tableView.height, self.view.width, kRefreshingViewHeight)
+      style:TTActivityLabelStyleBlackBox text:[self titleForActivity]];
     _refreshingView.centeredToScreen = NO;
     _refreshingView.userInteractionEnabled = NO;
-    [self.view addSubview:_refreshingView];
-  } else {
-    [_refreshingView removeFromSuperview];
-    [_refreshingView release];
-    _refreshingView = nil;
+    _refreshingView.font = [UIFont boldSystemFontOfSize:12];
+    
+    NSInteger tableIndex = [self.view.subviews indexOfObject:_tableView];
+    [self.view insertSubview:_refreshingView atIndex:tableIndex+1];
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    _refreshingView.frame = CGRectOffset(_refreshingView.frame, 0, -kRefreshingViewHeight);
+    [UIView commitAnimations];
+  } else if (_refreshingView) {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:TT_TRANSITION_DURATION*2];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(refreshingHideAnimationStopped)];
+    _refreshingView.alpha = 0;
+    [UIView commitAnimations];
   }
 }
 

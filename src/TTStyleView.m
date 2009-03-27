@@ -31,6 +31,9 @@
     } else if (_fillColor) {
       [[TTAppearance appearance] draw:_style rect:rect fill:&_fillColor fillCount:1
         stroke:nil thickness:_borderWidth radius:_borderRadius];
+    } else if (_style != TTStyleFill) {
+      [[TTAppearance appearance] draw:_style rect:rect fill:nil fillCount:0
+        stroke:nil thickness:_borderWidth radius:_borderRadius];
     }
   }
 }

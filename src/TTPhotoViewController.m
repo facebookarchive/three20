@@ -383,7 +383,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [super showBars:show animated:animated];
   
   if (animated) {
-    [UIView beginAnimations:nil context:NULL];
+    [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_TRANSITION_DURATION];
     [UIView setAnimationDelegate:self];
     if (show) {
