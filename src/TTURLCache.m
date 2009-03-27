@@ -187,6 +187,10 @@ static TTURLCache* gSharedCache = nil;
 
 - (id)imageForURL:(NSString*)url {
   NSString* key = [self keyForURL:url];
+  return [self imageForKey:key];
+}
+
+- (id)imageForKey:(NSString*)key {
   UIImage* image = [_imageCache objectForKey:key];
   return image ? [[image retain] autorelease] : nil;
 }

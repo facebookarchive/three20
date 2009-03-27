@@ -1,4 +1,5 @@
 #import "Three20/TTStyleView.h"
+#import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTURLResponse.h"
 
@@ -65,7 +66,7 @@
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _delegate = nil;
-    _request = nil;
+    _imageRequest = nil;
     _style = TTStyleFill;
     _fillColor = nil;
     _fillColor2 = nil;
@@ -84,8 +85,8 @@
 
 - (void)dealloc {
   _delegate = nil;
-  [_request cancel];
-  [_request release];
+  [_imageRequest cancel];
+  [_imageRequest release];
   [_fillColor release];
   [_fillColor2 release];
   [_borderColor release];
@@ -109,7 +110,7 @@
 // TTURLRequestDelegate
 
 - (void)requestDidStartLoad:(TTURLRequest*)request {
-  _request = [request retain];
+  _imageRequest = [request retain];
   
   if ([_delegate respondsToSelector:@selector(styleViewDidStartLoad:)]) {
     [_delegate styleViewDidStartLoad:self];
@@ -120,13 +121,13 @@
   TTURLImageResponse* response = request.response;
   self.backgroundImage = response.image;
   
-  [_request release];
-  _request = nil;
+  [_imageRequest release];
+  _imageRequest = nil;
 }
 
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
-  [_request release];
-  _request = nil;
+  [_imageRequest release];
+  _imageRequest = nil;
 
   if ([_delegate respondsToSelector:@selector(styleView:didFailLoadWithError:)]) {
     [_delegate styleView:self didFailLoadWithError:error];
@@ -134,8 +135,8 @@
 }
 
 - (void)requestDidCancelLoad:(TTURLRequest*)request {
-  [_request release];
-  _request = nil;
+  [_imageRequest release];
+  _imageRequest = nil;
 
   if ([_delegate respondsToSelector:@selector(styleView:didFailLoadWithError:)]) {
     [_delegate styleView:self didFailLoadWithError:nil];
@@ -156,7 +157,7 @@
   if (self.backgroundImage && _backgroundImageURL && [url isEqualToString:_backgroundImageURL])
     return;
   
-  [self stopLoading];
+  [self stopLoadingImages];
   [_backgroundImageURL release];
   _backgroundImageURL = [url retain];
   
@@ -165,7 +166,7 @@
       self.backgroundImage = _backgroundImageDefault;
     }
   } else {
-    [self reload];
+    [self reloadImages];
   }
 }
 
@@ -184,29 +185,34 @@
 }
 
 - (BOOL)isLoading {
-  return !!_request;
+  return !!_imageRequest;
 }
 
 - (BOOL)isLoaded {
   return self.backgroundImage && self.backgroundImage != _backgroundImageDefault;
 }
 
-- (void)reload {
-  if (_request)
+- (void)reloadImages {
+  if (_imageRequest)
     return;
   
-  TTURLRequest* request = [TTURLRequest requestWithURL:_backgroundImageURL delegate:self];
-  request.response = [[[TTURLImageResponse alloc] init] autorelease];
-  if (_backgroundImageURL && ![request send]) {
-    // Put the default image in place while waiting for the request to load
-    if (_backgroundImageDefault && self.backgroundImage != _backgroundImageDefault) {
-      self.backgroundImage = _backgroundImageDefault;
+  UIImage* image = [[TTURLCache sharedCache] imageForURL:_backgroundImageURL];
+  if (image) {
+    self.backgroundImage = image;
+  } else {
+    TTURLRequest* request = [TTURLRequest requestWithURL:_backgroundImageURL delegate:self];
+    request.response = [[[TTURLImageResponse alloc] init] autorelease];
+    if (_backgroundImageURL && ![request send]) {
+      // Put the default image in place while waiting for the request to load
+      if (_backgroundImageDefault && self.backgroundImage != _backgroundImageDefault) {
+        self.backgroundImage = _backgroundImageDefault;
+      }
     }
   }
 }
 
-- (void)stopLoading {
-  [_request cancel];
+- (void)stopLoadingImages {
+  [_imageRequest cancel];
 }
 
 

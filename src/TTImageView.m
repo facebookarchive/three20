@@ -1,4 +1,5 @@
 #import "Three20/TTImageView.h"
+#import "Three20/TTURLCache.h"
 #import "Three20/TTURLResponse.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,12 +130,17 @@
   if (_request)
     return;
   
-  TTURLRequest* request = [TTURLRequest requestWithURL:_url delegate:self];
-  request.response = [[[TTURLImageResponse alloc] init] autorelease];
-  if (_url && ![request send]) {
-    // Put the default image in place while waiting for the request to load
-    if (_defaultImage && self.image != _defaultImage) {
-      self.image = _defaultImage;
+  UIImage* image = [[TTURLCache sharedCache] imageForURL:_url];
+  if (image) {
+    self.image = image;
+  } else {
+    TTURLRequest* request = [TTURLRequest requestWithURL:_url delegate:self];
+    request.response = [[[TTURLImageResponse alloc] init] autorelease];
+    if (_url && ![request send]) {
+      // Put the default image in place while waiting for the request to load
+      if (_defaultImage && self.image != _defaultImage) {
+        self.image = _defaultImage;
+      }
     }
   }
 }

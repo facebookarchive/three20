@@ -100,6 +100,7 @@
  * @return nil if the URL is not cached.
  */
 - (id)imageForURL:(NSString*)url;
+- (id)imageForKey:(NSString*)key;
 
 /**
  * Stores a data on disk.

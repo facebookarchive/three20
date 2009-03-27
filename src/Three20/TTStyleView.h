@@ -9,7 +9,7 @@
  */
 @interface TTStyleView : UIView <TTURLRequestDelegate> {
   id<TTStyleViewDelegate> _delegate;
-  TTURLRequest* _request;
+  TTURLRequest* _imageRequest;
   TTStyle _style;
   UIColor* _fillColor;
   UIColor* _fillColor2;
@@ -34,8 +34,8 @@
 @property(nonatomic,retain) UIImage* backgroundImage;
 @property(nonatomic,retain) UIImage* backgroundImageDefault;
 
-- (void)reload;
-- (void)stopLoading;
+- (void)reloadImages;
+- (void)stopLoadingImages;
 
 @end
 

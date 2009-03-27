@@ -76,11 +76,31 @@
 }
 
 - (void)drawInRect:(CGRect)rect radius:(CGFloat)radius {
+  [self drawInRect:rect radius:radius contentMode:UIViewContentModeScaleToFill];
+}
+
+- (void)drawInRect:(CGRect)rect radius:(CGFloat)radius contentMode:(UIViewContentMode)contentMode {
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextSaveGState(context);
   [self addRoundedRectToPath:context rect:rect radius:radius];
   CGContextClip(context);
+  
+  if (self.size.width != rect.size.width || self.size.height != rect.size.height) {
+    // XXXjoe Support all of the different content modes
+    if (contentMode == UIViewContentModeLeft) {
+      rect = CGRectMake(rect.origin.x, rect.origin.y, self.size.width, self.size.height);
+    } else if (contentMode == UIViewContentModeRight) {
+      rect = CGRectMake((rect.origin.x+rect.size.width) - self.size.width, rect.origin.y,
+                        self.size.width, self.size.height);
+    } else if (contentMode == UIViewContentModeCenter) {
+      rect = CGRectMake(rect.origin.x + floor(rect.size.width/2 - self.size.width/2),
+                        rect.origin.y + floor(rect.size.height/2 - self.size.height/2),
+                        self.size.width, self.size.height);
+    }
+  }
+
   [self drawInRect:rect];
+    
   CGContextRestoreGState(context);
 }
 
