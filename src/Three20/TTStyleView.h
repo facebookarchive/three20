@@ -10,7 +10,7 @@
 @interface TTStyleView : UIView <TTURLRequestDelegate> {
   id<TTStyleViewDelegate> _delegate;
   TTURLRequest* _request;
-  TTDrawStyle _style;
+  TTStyle _style;
   UIColor* _fillColor;
   UIColor* _fillColor2;
   UIColor* _borderColor;
@@ -23,7 +23,7 @@
 }
 
 @property(nonatomic,assign) id<TTStyleViewDelegate> delegate;
-@property(nonatomic) TTDrawStyle style;
+@property(nonatomic) TTStyle style;
 @property(nonatomic,retain) UIColor* fillColor;
 @property(nonatomic,retain) UIColor* fillColor2;
 @property(nonatomic,retain) UIColor* borderColor;

@@ -222,21 +222,21 @@ static TTAppearance* gAppearance = nil;
     
     CGRect topRect = CGRectMake(rect.origin.x, rect.origin.y,
       rect.size.width, rect.size.height/1.5);
-    [self draw:TTDrawFillRect rect:topRect
+    [self draw:TTStyleFill rect:topRect
           fill:barFill fillCount:2 stroke:nil thickness:thickness radius:0];
 
     UIColor* tintFill[] = {tintColor};
     CGRect bottomRect = CGRectMake(rect.origin.x, ceil(rect.origin.y+rect.size.height/(2*2)),
       rect.size.width, (rect.size.height/2));
-    [self draw:TTDrawFillRect rect:bottomRect
+    [self draw:TTStyleFill rect:bottomRect
           fill:tintFill fillCount:1 stroke:nil thickness:thickness radius:0];
 
     UIColor* highlight = [UIColor colorWithWhite:1 alpha:0.3];
-    [self draw:TTDrawStrokeTop rect:CGRectInset(rect, 0, 1)
+    [self draw:TTStyleStrokeTop rect:CGRectInset(rect, 0, 1)
           fill:nil fillCount:0 stroke:highlight thickness:thickness radius:0];
 
     UIColor* shadow = [UIColor colorWithWhite:0 alpha:0.1];
-    [self draw:TTDrawStrokeBottom rect:rect
+    [self draw:TTStyleStrokeBottom rect:rect
           fill:nil fillCount:0 stroke:shadow thickness:thickness radius:0];
   }
 }
@@ -275,7 +275,7 @@ static TTAppearance* gAppearance = nil;
   }
 }
 
-- (void)strokeLines:(CGRect)rect style:(TTDrawStyle)style stroke:(UIColor*)strokeColor
+- (void)strokeLines:(CGRect)rect style:(TTStyle)style stroke:(UIColor*)strokeColor
         thickness:(CGFloat)thickness {
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextSaveGState(context);
@@ -283,22 +283,22 @@ static TTAppearance* gAppearance = nil;
   [strokeColor setStroke];
   CGContextSetLineWidth(context, thickness);
   
-  if (style == TTDrawStrokeTop) {
+  if (style == TTStyleStrokeTop) {
     CGPoint points[] = {rect.origin.x, rect.origin.y-0.5,
       rect.origin.x+rect.size.width, rect.origin.y-0.5};
     CGContextStrokeLineSegments(context, points, 2);
   }
-  if (style == TTDrawStrokeRight) {
+  if (style == TTStyleStrokeRight) {
     CGPoint points[] = {rect.origin.x+rect.size.width, rect.origin.y,
       rect.origin.x+rect.size.width, rect.origin.y+rect.size.height};
     CGContextStrokeLineSegments(context, points, 2);
   }
-  if (style == TTDrawStrokeBottom) {
+  if (style == TTStyleStrokeBottom) {
     CGPoint points[] = {rect.origin.x, rect.origin.y+rect.size.height-0.5,
       rect.origin.x+rect.size.width, rect.origin.y+rect.size.height-0.5};
     CGContextStrokeLineSegments(context, points, 2);
   }
-  if (style == TTDrawStrokeLeft) {
+  if (style == TTStyleStrokeLeft) {
     CGPoint points[] = {rect.origin.x, rect.origin.y,
       rect.origin.x, rect.origin.y+rect.size.height};
     CGContextStrokeLineSegments(context, points, 2);
@@ -318,39 +318,39 @@ static TTAppearance* gAppearance = nil;
   return _blackButtonImage;
 }
 
-- (void)draw:(TTDrawStyle)style rect:(CGRect)rect fill:(UIColor**)fillColors
+- (void)draw:(TTStyle)style rect:(CGRect)rect fill:(UIColor**)fillColors
     fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius {
   [self draw:style rect:rect fill:fillColors fillCount:fillCount stroke:strokeColor
         thickness:1 radius:radius];
 }
 
-- (void)draw:(TTDrawStyle)style rect:(CGRect)rect fill:(UIColor**)fillColors
+- (void)draw:(TTStyle)style rect:(CGRect)rect fill:(UIColor**)fillColors
     fillCount:(int)fillCount stroke:(UIColor*)strokeColor thickness:(CGFloat)thickness
     radius:(CGFloat)radius {
   switch (style) {
-    case TTDrawFillRect:
+    case TTStyleFill:
       [self drawRoundedRect:rect fill:fillColors fillCount:fillCount stroke:strokeColor
         thickness:thickness radius:radius];
       break;
-    case TTDrawFillRectInverted:
+    case TTStyleFillInverted:
       [self drawRoundedMask:rect fill:fillColors stroke:strokeColor thickness:thickness
             radius:radius];
       break;
-    case TTDrawReflection:
+    case TTStyleReflection:
       [self drawReflection:rect fill:fillColors fillCount:fillCount stroke:strokeColor
             thickness:thickness radius:radius];
       break;
-    case TTDrawInnerShadow:
+    case TTStyleInnerShadow:
       [self drawInnerShadow:rect];
       break;
-    case TTDrawRoundInnerShadow:
+    case TTStyleRoundInnerShadow:
       [self drawRoundInnerShadow:rect fill:fillColors fillCount:fillCount stroke:strokeColor
         thickness:thickness radius:radius];
       break;
-    case TTDrawStrokeTop:
-    case TTDrawStrokeRight:
-    case TTDrawStrokeBottom:
-    case TTDrawStrokeLeft:
+    case TTStyleStrokeTop:
+    case TTStyleStrokeRight:
+    case TTStyleStrokeBottom:
+    case TTStyleStrokeLeft:
       [self strokeLines:rect style:style stroke:strokeColor thickness:thickness];
       break;
     default:
@@ -358,7 +358,7 @@ static TTAppearance* gAppearance = nil;
   }
 }
 
-- (void)draw:(TTDrawStyle)style rect:(CGRect)rect {
+- (void)draw:(TTStyle)style rect:(CGRect)rect {
   [self draw:style rect:rect fill:nil fillCount:0 stroke:nil
     radius:TT_RADIUS_ROUNDED];
 }

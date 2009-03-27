@@ -89,11 +89,11 @@ static const CGFloat kIndexViewMargin = 4;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _style = TTDrawReflection;
+    _style = TTStyleReflection;
     
     _boxView = [[TTStyleView alloc] initWithFrame:CGRectZero];
     _boxView.backgroundColor = [UIColor clearColor];
-    _boxView.style = TTDrawRoundInnerShadow;
+    _boxView.style = TTStyleRoundInnerShadow;
     _boxView.contentMode = UIViewContentModeRedraw;
     [self addSubview:_boxView];
     
@@ -137,9 +137,9 @@ static const CGFloat kIndexViewMargin = 4;
 // UIView
 
 - (void)drawRect:(CGRect)rect {
-  if (_style == TTDrawReflection) {
+  if (_style == TTStyleReflection) {
     UIColor* fill[] = {_tintColor};
-    [[TTAppearance appearance] draw:TTDrawReflection rect:rect
+    [[TTAppearance appearance] draw:TTStyleReflection rect:rect
       fill:fill fillCount:1 stroke:nil radius:0];
   } else {
     [super drawRect:rect];

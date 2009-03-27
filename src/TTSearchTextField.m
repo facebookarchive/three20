@@ -398,7 +398,7 @@ static const CGFloat kDesiredTableHeight = 150;
     
     if (!_shadowView) {
       _shadowView = [[TTStyleView alloc] initWithFrame:CGRectZero];
-      _shadowView.style = TTDrawInnerShadow;
+      _shadowView.style = TTStyleInnerShadow;
       _shadowView.backgroundColor = [UIColor clearColor];
       _shadowView.contentMode = UIViewContentModeRedraw;
       _shadowView.userInteractionEnabled = NO;

@@ -66,7 +66,7 @@
   if (self = [super initWithFrame:frame]) {
     _delegate = nil;
     _request = nil;
-    _style = TTDrawFillRect;
+    _style = TTStyleFill;
     _fillColor = nil;
     _fillColor2 = nil;
     _borderColor = nil;

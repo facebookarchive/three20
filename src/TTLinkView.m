@@ -60,7 +60,7 @@
   [super setHighlighted:highlighted];
   if (!_screenView) {
     _screenView = [[TTStyleView alloc] initWithFrame:self.bounds];
-    _screenView.style = TTDrawFillRect;
+    _screenView.style = TTStyleFill;
     _screenView.fillColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     _screenView.opaque = NO;
     _screenView.contentMode = UIViewContentModeRedraw;

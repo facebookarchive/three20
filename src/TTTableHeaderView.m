@@ -34,12 +34,12 @@
 - (void)drawRect:(CGRect)rect {
   UIColor* tint = [TTAppearance appearance].tableHeaderTintColor;
   UIColor* fill[] = {tint};
-  [[TTAppearance appearance] draw:TTDrawReflection rect:rect
+  [[TTAppearance appearance] draw:TTStyleReflection rect:rect
     fill:fill fillCount:1 stroke:nil radius:0];
 
-  [[TTAppearance appearance] draw:TTDrawStrokeTop rect:CGRectOffset(rect, 0, 1)
+  [[TTAppearance appearance] draw:TTStyleStrokeTop rect:CGRectOffset(rect, 0, 1)
     fill:nil fillCount:0 stroke:[UIColor whiteColor] radius:0];
-  [[TTAppearance appearance] draw:TTDrawStrokeBottom rect:rect
+  [[TTAppearance appearance] draw:TTStyleStrokeBottom rect:rect
     fill:nil fillCount:0 stroke:RGBACOLOR(0,0,0,0.2) radius:0];
 }
 

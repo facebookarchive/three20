@@ -15,7 +15,7 @@
 
     borderView = [[TTStyleView alloc] initWithFrame:CGRectZero];
     borderView.opaque = NO;
-    borderView.style = TTDrawFillRect;
+    borderView.style = TTStyleFill;
     borderView.borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
     borderView.contentMode = UIViewContentModeRedraw;
     borderView.userInteractionEnabled = NO;

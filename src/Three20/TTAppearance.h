@@ -1,17 +1,17 @@
 #import "Three20/TTGlobal.h"
 
 typedef enum {
-  TTDrawStyleNone,
-  TTDrawFillRect,
-  TTDrawFillRectInverted,
-  TTDrawReflection,
-  TTDrawInnerShadow,
-  TTDrawRoundInnerShadow,
-  TTDrawStrokeTop,
-  TTDrawStrokeRight,
-  TTDrawStrokeBottom,
-  TTDrawStrokeLeft
-} TTDrawStyle;
+  TTStyleNone,
+  TTStyleFill,
+  TTStyleFillInverted,
+  TTStyleReflection,
+  TTStyleInnerShadow,
+  TTStyleRoundInnerShadow,
+  TTStyleStrokeTop,
+  TTStyleStrokeRight,
+  TTStyleStrokeBottom,
+  TTStyleStrokeLeft
+} TTStyle;
 
 #define TT_RADIUS_ROUNDED NSIntegerMax
 
@@ -119,14 +119,14 @@ typedef enum {
  */
 @property(nonatomic,retain) UIImage* blackButtonImage;
 
-- (void)draw:(TTDrawStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
+- (void)draw:(TTStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
         fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius;
 
-- (void)draw:(TTDrawStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
+- (void)draw:(TTStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
         fillCount:(int)fillCount stroke:(UIColor*)strokeColor thickness:(CGFloat)thickness
         radius:(CGFloat)radius;
 
-- (void)draw:(TTDrawStyle)background rect:(CGRect)rect;
+- (void)draw:(TTStyle)background rect:(CGRect)rect;
 
 - (void)drawLine:(CGPoint)from to:(CGPoint)to color:(UIColor*)color thickness:(CGFloat)thickness;
 
