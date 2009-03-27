@@ -40,7 +40,7 @@
   [[TTAppearance appearance] draw:TTDrawStrokeTop rect:CGRectOffset(rect, 0, 1)
     fill:nil fillCount:0 stroke:[UIColor whiteColor] radius:0];
   [[TTAppearance appearance] draw:TTDrawStrokeBottom rect:rect
-    fill:nil fillCount:0 stroke:RGBCOLOR(200,200,200) radius:0];
+    fill:nil fillCount:0 stroke:RGBACOLOR(0,0,0,0.2) radius:0];
 }
 
 - (void)layoutSubviews {

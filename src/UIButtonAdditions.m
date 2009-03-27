@@ -1,10 +1,9 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTAppearance.h"
 
 @implementation UIButton (TTCategory)
 
 + (UIButton*)blackButton {
-  UIImage* image = [[UIImage imageNamed:@"Three20.bundle/images/blackButton.png"]
-      stretchableImageWithLeftCapWidth:5 topCapHeight:15];
+  UIImage* image = [TTAppearance appearance].blackButtonImage;
 
   UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   button.font = [UIFont boldSystemFontOfSize:12];

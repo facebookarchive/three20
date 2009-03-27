@@ -102,7 +102,7 @@ static CGFloat kDefaultIconSize = 50;
       _label.textAlignment = UITextAlignmentLeft;
     } else if ([object isKindOfClass:[TTSummaryTableField class]]) {
       _label.font = [UIFont systemFontOfSize:17];
-      _label.textColor = [UIColor grayColor];
+      _label.textColor = [TTAppearance appearance].tableSubTextColor;
       _label.textAlignment = UITextAlignmentCenter;
     } else {
       _label.font = [UIFont boldSystemFontOfSize:17];
@@ -161,7 +161,7 @@ static CGFloat kDefaultIconSize = 50;
 
     if ([object isKindOfClass:[TTGrayTextTableField class]]) {
       _label.font = [UIFont systemFontOfSize:14];
-      _label.textColor = [UIColor grayColor];
+      _label.textColor = [TTAppearance appearance].tableSubTextColor;
       _label.textAlignment = UITextAlignmentCenter;
     } else {
       _label.font = [UIFont boldSystemFontOfSize:15];
@@ -292,7 +292,7 @@ static CGFloat kDefaultIconSize = 50;
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _subtextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _subtextLabel.font = [UIFont systemFontOfSize:14];
-    _subtextLabel.textColor = [UIColor grayColor];
+    _subtextLabel.textColor = [TTAppearance appearance].tableSubTextColor;
     _subtextLabel.highlightedTextColor = [UIColor whiteColor];
     _subtextLabel.textAlignment = UITextAlignmentLeft;
     _subtextLabel.contentMode = UIViewContentModeTop;
@@ -389,7 +389,7 @@ static CGFloat kDefaultIconSize = 50;
     
     _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _subtitleLabel.font = [UIFont systemFontOfSize:14];
-    _subtitleLabel.textColor = [UIColor grayColor];
+    _subtitleLabel.textColor = [TTAppearance appearance].tableSubTextColor;
     _subtitleLabel.highlightedTextColor = [UIColor whiteColor];
     _subtitleLabel.lineBreakMode = UILineBreakModeTailTruncation;
     [self.contentView addSubview:_subtitleLabel];
@@ -446,7 +446,7 @@ static CGFloat kDefaultIconSize = 50;
 
     _label.text = field.text;
     _label.font = [UIFont boldSystemFontOfSize:17];
-    _label.textColor = RGBCOLOR(36, 112, 216);
+    _label.textColor = [TTAppearance appearance].moreLinkTextColor;
 
     if (field.subtitle) {
       _subtitleLabel.text = field.subtitle;
@@ -672,7 +672,7 @@ static CGFloat kDefaultIconSize = 50;
 
     _label.text = field.text;
     _label.font = [UIFont systemFontOfSize:17];
-    _label.textColor = [UIColor grayColor];
+    _label.textColor = [TTAppearance appearance].tableActivityTextColor;
     _label.highlightedTextColor = [UIColor whiteColor];
     _label.lineBreakMode = UILineBreakModeTailTruncation;
     

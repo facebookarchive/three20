@@ -1,4 +1,5 @@
 #import "Three20/TTPhotoView.h"
+#import "Three20/TTAppearance.h"
 #import "Three20/TTImageView.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTURLCache.h"
@@ -234,7 +235,7 @@ static const CGFloat kMaxCaptionHeight = 100;
     if (!_statusLabel) {
       _statusLabel = [[UILabel alloc] initWithFrame:CGRectZero];
       _statusLabel.font = [UIFont boldSystemFontOfSize:17];
-      _statusLabel.textColor = [UIColor colorWithRed:0.42 green:0.44 blue:0.49 alpha:1];
+      _statusLabel.textColor = [TTAppearance appearance].tableErrorTextColor;
       _statusLabel.backgroundColor = [UIColor clearColor];
       _statusLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.7];
       _statusLabel.shadowOffset = CGSizeMake(1, 1);

@@ -1,4 +1,5 @@
 #import "Three20/TTErrorView.h"
+#import "Three20/TTAppearance.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -30,7 +31,7 @@ static CGFloat kVPadding = 50;
     _titleView = [[UILabel alloc] initWithFrame:CGRectZero];
     _titleView.opaque = NO;
     _titleView.backgroundColor = [UIColor clearColor];
-    _titleView.textColor = RGBCOLOR(99, 109, 125);
+    _titleView.textColor = [TTAppearance appearance].tableErrorTextColor;
     _titleView.font = [UIFont boldSystemFontOfSize:18];
     _titleView.textAlignment = UITextAlignmentCenter;
     [self addSubview:_titleView];
@@ -38,7 +39,7 @@ static CGFloat kVPadding = 50;
     _subtitleView = [[UILabel alloc] initWithFrame:CGRectZero];
     _subtitleView.opaque = NO;
     _subtitleView.backgroundColor = [UIColor clearColor];
-    _subtitleView.textColor = RGBCOLOR(99, 109, 125);
+    _subtitleView.textColor = [TTAppearance appearance].tableErrorTextColor;
     _subtitleView.font = [UIFont boldSystemFontOfSize:14];
     _subtitleView.textAlignment = UITextAlignmentCenter;
     _subtitleView.numberOfLines = 0;

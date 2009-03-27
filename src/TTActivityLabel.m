@@ -81,7 +81,7 @@ static CGFloat kThinBezelHeight = 35;
       _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleGray];
       _textView.font = [UIFont systemFontOfSize:17];
-      _textView.textColor = [UIColor grayColor];
+      _textView.textColor = [TTAppearance appearance].tableActivityTextColor;
     } else if (_style == TTActivityLabelStyleBlackBezel) {
       _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleWhiteLarge];

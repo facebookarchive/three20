@@ -15,6 +15,10 @@
   return nil;
 }
 
+- (void)scrollToTop:(BOOL)animated {
+  [self setContentOffset:CGPointMake(0,0) animated:animated];
+}
+
 - (void)scrollToBottom:(BOOL)animated {
   NSUInteger sectionCount = [self numberOfSections];
   if (sectionCount) {

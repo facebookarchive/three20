@@ -118,6 +118,11 @@ CGRect TTApplicationFrame();
 CGRect TTNavigationFrame();
 
 /**
+ * Gets the application frame below the navigation bar and above a toolbar.
+ */
+CGRect TTToolbarNavigationFrame();
+
+/**
  * Returns a rectangle that is smaller or larger than the source rectangle.
  */
 CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy);

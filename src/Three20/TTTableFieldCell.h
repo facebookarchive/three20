@@ -16,8 +16,9 @@
 }
 @end
 
-@interface TTSubtextTableFieldCell : TTTableFieldCell
+@interface TTSubtextTableFieldCell : TTTableFieldCell {
   UILabel* _subtextLabel;
+}
 @end
 
 @interface TTMoreButtonTableFieldCell : TTTableFieldCell {

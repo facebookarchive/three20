@@ -107,7 +107,7 @@ static const CGFloat kIndexViewMargin = 4;
     [self addSubview:_searchField];
 
     self.contentMode = UIViewContentModeRedraw;
-    self.tintColor = [TTAppearance appearance].barTintColor;
+    self.tintColor = [TTAppearance appearance].toolbarTintColor;
     self.showsSearchIcon = YES;
     self.showsCancelButton = NO;
   }

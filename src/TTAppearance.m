@@ -8,13 +8,21 @@ static TTAppearance* gAppearance = nil;
 
 @implementation TTAppearance
 
-@synthesize linkTextColor = _linkTextColor, navigationBarTintColor = _navigationBarTintColor,
-  barTintColor = _barTintColor,
+@synthesize navigationBarTintColor = _navigationBarTintColor,
+  toolbarTintColor = _toolbarTintColor,
+  linkTextColor = _linkTextColor,
+  moreLinkTextColor = _moreLinkTextColor,
+  tableActivityTextColor = _tableActivityTextColor, 
+  tableErrorTextColor = _tableErrorTextColor, 
+  tableSubTextColor = _tableSubTextColor, 
+  tableTitleTextColor = _tableTitleTextColor, 
+  placeholderTextColor = _placeholderTextColor, 
   searchTableBackgroundColor = _searchTableBackgroundColor,
   searchTableSeparatorColor = _searchTableSeparatorColor,
   tableHeaderTextColor = _tableHeaderTextColor,
   tableHeaderShadowColor = _tableHeaderShadowColor,
-  tableHeaderTintColor = _tableHeaderTintColor;
+  tableHeaderTintColor = _tableHeaderTintColor,
+  blackButtonImage = _blackButtonImage;
 
 + (TTAppearance*)appearance {
   if (!gAppearance) {
@@ -34,28 +42,42 @@ static TTAppearance* gAppearance = nil;
 
 - (id)init {
   if (self = [super init]) {
-    self.linkTextColor = RGBCOLOR(87, 107, 149);
     self.navigationBarTintColor = nil;
-    self.barTintColor = RGBCOLOR(109, 132, 162);
+    self.toolbarTintColor = RGBCOLOR(109, 132, 162);
+    self.linkTextColor = RGBCOLOR(87, 107, 149);
+    self.moreLinkTextColor = RGBCOLOR(36, 112, 216);
+    self.tableActivityTextColor = RGBCOLOR(99, 109, 125);
+    self.tableErrorTextColor = RGBCOLOR(99, 109, 125);
+    self.tableSubTextColor = RGBCOLOR(99, 109, 125);
+    self.tableTitleTextColor = RGBCOLOR(99, 109, 125);
+    self.placeholderTextColor = RGBCOLOR(180, 180, 180);
     self.searchTableBackgroundColor = RGBCOLOR(235, 235, 235);
     self.searchTableSeparatorColor = [UIColor colorWithWhite:0.85 alpha:1];
-
+    
     _tableHeaderTextColor = nil;
     _tableHeaderShadowColor = nil;
     _tableHeaderTintColor = nil;
+    _blackButtonImage = nil;
   }
   return self;
 }
 
 - (void)dealloc {
-  [_linkTextColor release];
   [_navigationBarTintColor release];
-  [_barTintColor release];
+  [_toolbarTintColor release];
+  [_linkTextColor release];
+  [_moreLinkTextColor release];
+  [_tableActivityTextColor release];
+  [_tableErrorTextColor release];
+  [_tableSubTextColor release];
+  [_tableTitleTextColor release];
+  [_placeholderTextColor release];
   [_searchTableBackgroundColor release];
   [_searchTableSeparatorColor release];
   [_tableHeaderTextColor release];
   [_tableHeaderShadowColor release];
   [_tableHeaderTintColor release];
+  [_blackButtonImage release];
   [super dealloc];
 }
 
@@ -212,6 +234,10 @@ static TTAppearance* gAppearance = nil;
     UIColor* highlight = [UIColor colorWithWhite:1 alpha:0.3];
     [self draw:TTDrawStrokeTop rect:CGRectInset(rect, 0, 1)
       fill:nil fillCount:0 stroke:highlight radius:0];
+
+    UIColor* shadow = [UIColor colorWithWhite:0 alpha:0.1];
+    [self draw:TTDrawStrokeBottom rect:rect
+      fill:nil fillCount:0 stroke:shadow radius:0];
   }
 }
 
@@ -280,6 +306,15 @@ static TTAppearance* gAppearance = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (UIImage*)blackButtonImage {
+  if (!_blackButtonImage) {
+    _blackButtonImage = [[[UIImage imageNamed:@"Three20.bundle/images/blackButton.png"]
+          stretchableImageWithLeftCapWidth:5 topCapHeight:15] retain];
+  }
+  return _blackButtonImage;
+}
 
 - (void)draw:(TTDrawStyle)style rect:(CGRect)rect fill:(UIColor**)fillColors
     fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius {

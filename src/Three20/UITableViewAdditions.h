@@ -10,6 +10,7 @@
 
 - (void)touchRowAtIndexPath:(NSIndexPath*)indexPath animated:(BOOL)animated;
 
+- (void)scrollToTop:(BOOL)animated;
 - (void)scrollToBottom:(BOOL)animated;
 
 @end
