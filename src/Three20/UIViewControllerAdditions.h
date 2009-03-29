@@ -43,11 +43,11 @@
  * Pushes a view controller with a transition other than the standard sliding animation.
  */
 - (void)pushViewController:(UIViewController*)controller
-        withTransition:(UIViewAnimationTransition)transition;
+        animatedWithTransition:(UIViewAnimationTransition)transition;
 
 /**
  * Pops a view controller with a transition other than the standard sliding animation.
  */
-- (void)popViewControllerWithTransition:(UIViewAnimationTransition)transition;
+- (void)popViewControllerAnimatedWithTransition:(UIViewAnimationTransition)transition;
 
 @end

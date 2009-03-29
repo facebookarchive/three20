@@ -76,7 +76,7 @@
 }
 
 - (void)pushViewController:(UIViewController*)controller
-    withTransition:(UIViewAnimationTransition)transition {
+    animatedWithTransition:(UIViewAnimationTransition)transition {
   [TTURLRequestQueue mainQueue].suspended = YES;
 
   [self pushViewController:controller animated:NO];
@@ -89,7 +89,7 @@
   [UIView commitAnimations];
 }
 
-- (void)popViewControllerWithTransition:(UIViewAnimationTransition)transition {
+- (void)popViewControllerAnimatedWithTransition:(UIViewAnimationTransition)transition {
   [TTURLRequestQueue mainQueue].suspended = YES;
 
   [self popViewControllerAnimated:NO];
