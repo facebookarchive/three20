@@ -89,7 +89,7 @@
   [UIView commitAnimations];
 }
 
-- (void)popViewControllerWithTransition:(UIViewAnimationTransition)transition {
+- (void)ttPopViewControllerWithTransition:(UIViewAnimationTransition)transition {
   [TTURLRequestQueue mainQueue].suspended = YES;
 
   [self popViewControllerAnimated:NO];

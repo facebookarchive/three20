@@ -238,7 +238,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)hideThumbnails {
-  [self.navigationController popViewControllerWithTransition:UIViewAnimationTransitionCurlUp];
+  [self.navigationController ttPopViewControllerWithTransition:UIViewAnimationTransitionCurlUp];
 }
 
 - (void)slideshowTimer {
