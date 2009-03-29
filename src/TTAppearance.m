@@ -22,7 +22,9 @@ static TTAppearance* gAppearance = nil;
   tableHeaderTextColor = _tableHeaderTextColor,
   tableHeaderShadowColor = _tableHeaderShadowColor,
   tableHeaderTintColor = _tableHeaderTintColor,
-  blackButtonImage = _blackButtonImage;
+  blackButtonImage = _blackButtonImage,
+  textBoxDarkImage = _textBoxDarkImage,
+  textBoxLightImage = _textBoxLightImage;
 
 + (TTAppearance*)appearance {
   if (!gAppearance) {
@@ -58,6 +60,8 @@ static TTAppearance* gAppearance = nil;
     _tableHeaderShadowColor = nil;
     _tableHeaderTintColor = nil;
     _blackButtonImage = nil;
+    _textBoxDarkImage = nil;
+    _textBoxLightImage = nil;
   }
   return self;
 }
@@ -78,10 +82,13 @@ static TTAppearance* gAppearance = nil;
   [_tableHeaderShadowColor release];
   [_tableHeaderTintColor release];
   [_blackButtonImage release];
+  [_textBoxDarkImage release];
+  [_textBoxLightImage release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
 
 - (void)addRoundedRectToPath:(CGContextRef)context rect:(CGRect)rect radius:(float)radius {
   CGContextBeginPath(context);
@@ -265,9 +272,14 @@ static TTAppearance* gAppearance = nil;
 
 - (void)drawRoundInnerShadow:(CGRect)rect fill:(UIColor**)fillColors fillCount:(int)fillCount
     stroke:(UIColor*)strokeColor thickness:(CGFloat)thickness radius:(CGFloat)radius {
-  UIImage* image = [[UIImage imageNamed:@"Three20.bundle/images/textBox.png"]
-    stretchableImageWithLeftCapWidth:15 topCapHeight:15];
-  [image drawInRect:rect];
+  if (fillCount) {
+    UIColor* color = fillColors[0];
+    if (color.value > 0.75) {
+      [self.textBoxLightImage drawInRect:rect];
+    } else {
+      [self.textBoxDarkImage drawInRect:rect];
+    }
+  }
 
   if (strokeColor) {
     [self drawRoundedRect:rect fill:nil fillCount:0 stroke:strokeColor thickness:thickness
@@ -316,6 +328,22 @@ static TTAppearance* gAppearance = nil;
           stretchableImageWithLeftCapWidth:5 topCapHeight:15] retain];
   }
   return _blackButtonImage;
+}
+
+- (UIImage*)textBoxDarkImage {
+  if (!_textBoxDarkImage) {
+    _textBoxDarkImage = [[[UIImage imageNamed:@"Three20.bundle/images/textBoxDark.png"]
+      stretchableImageWithLeftCapWidth:15 topCapHeight:15] retain];
+  }
+  return _textBoxDarkImage;
+}
+
+- (UIImage*)textBoxLightImage {
+  if (!_textBoxLightImage) {
+    _textBoxLightImage = [[[UIImage imageNamed:@"Three20.bundle/images/textBoxLight.png"]
+      stretchableImageWithLeftCapWidth:15 topCapHeight:15] retain];
+  }
+  return _textBoxLightImage;
 }
 
 - (void)draw:(TTStyle)style rect:(CGRect)rect fill:(UIColor**)fillColors

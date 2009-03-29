@@ -111,4 +111,25 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
   return [self transformHue:1 saturation:0.6 value:0.8];
 }
 
+- (CGFloat)hue {
+  const CGFloat* rgba = CGColorGetComponents(self.CGColor);
+  CGFloat h, s, v;
+  RGBtoHSV(rgba[0], rgba[1], rgba[2], &h, &s, &v);
+  return h;
+}
+
+- (CGFloat)saturation {
+  const CGFloat* rgba = CGColorGetComponents(self.CGColor);
+  CGFloat h, s, v;
+  RGBtoHSV(rgba[0], rgba[1], rgba[2], &h, &s, &v);
+  return s;
+}
+
+- (CGFloat)value {
+  const CGFloat* rgba = CGColorGetComponents(self.CGColor);
+  CGFloat h, s, v;
+  RGBtoHSV(rgba[0], rgba[1], rgba[2], &h, &s, &v);
+  return v;
+}
+
 @end

@@ -37,6 +37,8 @@ typedef enum {
   UIColor* _tableHeaderShadowColor;
   UIColor* _tableHeaderTintColor;
   UIImage* _blackButtonImage;
+  UIImage* _textBoxDarkImage;
+  UIImage* _textBoxLightImage;
 }
 
 + (TTAppearance*)appearance;
@@ -113,11 +115,20 @@ typedef enum {
  */
 @property(nonatomic,retain) UIColor* tableHeaderTintColor;
 
-
 /**
  * Image used for the background of black buttons.
  */
 @property(nonatomic,retain) UIImage* blackButtonImage;
+
+/**
+ * Image used for the background of text boxes against a dark background
+ */
+@property(nonatomic,retain) UIImage* textBoxDarkImage;
+
+/**
+ * Image used for the background of text boxes against a light background
+ */
+@property(nonatomic,retain) UIImage* textBoxLightImage;
 
 - (void)draw:(TTStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
         fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius;

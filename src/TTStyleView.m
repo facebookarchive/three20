@@ -185,6 +185,8 @@
       [_delegate styleView:self didLoadImage:image];
     }
   }
+  
+  [self setNeedsDisplay];
 }
 
 - (BOOL)isLoading {

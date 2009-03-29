@@ -15,4 +15,10 @@
  */
 - (UIColor*)shadow;
 
+- (CGFloat)hue;
+
+- (CGFloat)saturation;
+
+- (CGFloat)value;
+
 @end
