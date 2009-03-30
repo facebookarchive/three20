@@ -4,7 +4,7 @@
 
 @implementation TTHTMLNode
 
-@synthesize nextSibling = _nextSibling, firstChild = _firstChild;
+@synthesize nextNode = _nextNode;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -27,7 +27,7 @@
       NSString* text = [string substringWithRange:searchRange];
       TTHTMLText* node = [[[TTHTMLText alloc] initWithText:text] autorelease];
       if (lastNode) {
-        lastNode.nextSibling = node;
+        lastNode.nextNode = node;
       } else {
         rootNode = node;
       }
@@ -41,7 +41,7 @@
 
         TTHTMLText* node = [[[TTHTMLText alloc] initWithText:text] autorelease];
         if (lastNode) {
-          lastNode.nextSibling = node;
+          lastNode.nextNode = node;
         } else {
           rootNode = node;
         }
@@ -53,9 +53,9 @@
                                  range:searchRange];
       if (endRange.location == NSNotFound) {
         NSString* url = [string substringWithRange:searchRange];
-        TTHTMLLinkNode* node = [[[TTHTMLLinkNode alloc] initWithText:url] autorelease];
+        TTHTMLNode* node = [[[TTHTMLLinkNode alloc] initWithText:url] autorelease];
         if (lastNode) {
-          lastNode.nextSibling = node;
+          lastNode.nextNode = node;
         } else {
           rootNode = node;
         }
@@ -65,9 +65,9 @@
         NSRange urlRange = NSMakeRange(startRange.location,
                                              endRange.location - startRange.location);
         NSString* url = [string substringWithRange:urlRange];
-        TTHTMLLinkNode* node = [[[TTHTMLLinkNode alloc] initWithText:url] autorelease];
+        TTHTMLNode* node = [[[TTHTMLLinkNode alloc] initWithText:url] autorelease];
         if (lastNode) {
-          lastNode.nextSibling = node;
+          lastNode.nextNode = node;
         } else {
           rootNode = node;
         }
@@ -84,15 +84,13 @@
 
 - (id)init {
   if (self = [super init]) {
-    _nextSibling = nil;
-    _firstChild = nil;
+    _nextNode = nil;
   }
   return self;
 }
 
 - (void)dealloc {
-  [_nextSibling release];
-  [_firstChild release];
+  [_nextNode release];
   [super dealloc];
 }
 
@@ -114,6 +112,13 @@
 - (id)initWithText:(NSString*)text {
   if (self = [self init]) {
     self.text = text;
+  }
+  return self;
+}
+
+- (id)initWithText:(NSString*)text next:(TTHTMLNode*)nextNode {
+  if (self = [self initWithText:text]) {
+    self.nextNode = nextNode;
   }
   return self;
 }

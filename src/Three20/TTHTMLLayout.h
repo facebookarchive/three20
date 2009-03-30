@@ -33,14 +33,14 @@
 @interface TTHTMLFrame : NSObject {
   TTHTMLNode* _node;
   NSString* _text;
-  TTHTMLFrame* _next;
+  TTHTMLFrame* _nextFrame;
   CGFloat _width;
   BOOL _lineBreak;
 }
 
 @property(nonatomic, readonly) TTHTMLNode* node;
 @property(nonatomic, readonly) NSString* text;
-@property(nonatomic, retain) TTHTMLFrame* next;
+@property(nonatomic, retain) TTHTMLFrame* nextFrame;
 @property(nonatomic) CGFloat width;
 @property(nonatomic) BOOL lineBreak;
 

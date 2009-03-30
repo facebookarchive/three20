@@ -16,7 +16,7 @@
                   after:(TTHTMLFrame*)lastFrame {
   TTHTMLFrame* frame = [[[TTHTMLFrame alloc] initWithText:text node:node] autorelease];
   if (lastFrame) {
-    lastFrame.next = frame;
+    lastFrame.nextFrame = frame;
   } else {
     _rootFrame = [frame retain];
   }
@@ -40,7 +40,8 @@
       TTHTMLText* textNode = (TTHTMLText*)node;
       NSString* text = textNode.text;
       
-      UIFont* font = [node isKindOfClass:[TTHTMLLinkNode class]] ? boldFont : _font;
+      UIFont* font = [node isKindOfClass:[TTHTMLLinkNode class]]
+                     || [node isKindOfClass:[TTHTMLBoldNode class]] ? boldFont : _font;
     
       NSInteger index = 0;
       NSInteger lineStartIndex = 0;
@@ -97,7 +98,7 @@
       }
     }
     
-    node = node.nextSibling;
+    node = node.nextNode;
   }
   
   _height = ceil(_height);
@@ -190,22 +191,23 @@
       }
       
       [frame.text drawAtPoint:origin withFont:boldFont];
-      origin.x += frame.width;
 
       if (!highlighted) {
         CGContextRestoreGState(context);
       }
+    } else if ([frame.node isKindOfClass:[TTHTMLBoldNode class]]) {
+      [frame.text drawAtPoint:origin withFont:boldFont];
     } else {
       [frame.text drawAtPoint:origin withFont:_font];
-      origin.x += frame.width;
     }
 
+    origin.x += frame.width;
     if (frame.lineBreak) {
       origin.x = 0;
       origin.y += _lineHeight;
     }
     
-    frame = frame.next;
+    frame = frame.nextFrame;
   }
 }
 
@@ -224,7 +226,7 @@
       origin.y += _lineHeight;
     }
     
-    frame = frame.next;
+    frame = frame.nextFrame;
   }
   return nil;
 }
@@ -235,7 +237,8 @@
 
 @implementation TTHTMLFrame
 
-@synthesize node = _node, text = _text, next = _next, width = _width, lineBreak = _lineBreak;
+@synthesize node = _node, text = _text, nextFrame = _nextFrame, width = _width,
+            lineBreak = _lineBreak;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -244,7 +247,7 @@
   if (self = [super init]) {
     _text = [text retain];
     _node = [node retain];
-    _next = nil;
+    _nextFrame = nil;
     _lineBreak = NO;
   }
   return self;
@@ -253,7 +256,7 @@
 - (void)dealloc {
   [_text release];
   [_node release];
-  [_next release];
+  [_nextFrame release];
   [super dealloc];
 }
 
@@ -262,7 +265,7 @@
   TTHTMLFrame* frame = self;
   while (frame) {
     [string appendFormat:@"%@ (%d)\n", frame.text, frame.lineBreak];
-    frame = frame.next;
+    frame = frame.nextFrame;
   }
   
   return string;

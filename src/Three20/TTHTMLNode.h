@@ -7,8 +7,7 @@
  * this code is very experimental.
  */
 @interface TTHTMLNode : NSObject {
-  TTHTMLNode* _nextSibling;
-  TTHTMLNode* _firstChild;
+  TTHTMLNode* _nextNode;
 }
 
 /**
@@ -25,8 +24,7 @@
  */ 
 + (TTHTMLNode*)htmlFromURLString:(NSString*)string;
 
-@property(nonatomic, retain) TTHTMLNode* nextSibling;
-@property(nonatomic, retain) TTHTMLNode* firstChild;
+@property(nonatomic, retain) TTHTMLNode* nextNode;
 
 @end
 
@@ -39,6 +37,7 @@
 @property(nonatomic,retain) NSString* text;
 
 - (id)initWithText:(NSString*)text;
+- (id)initWithText:(NSString*)text next:(TTHTMLNode*)nextNode;
 
 @end
 
