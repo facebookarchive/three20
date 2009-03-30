@@ -49,9 +49,9 @@
   [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
   [nav addView:@"htmlTest" controller:[HTMLTestController class]];
   
-  [self validateView];
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:3 inSection:1];
-  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
+//  [self validateView];
+//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:3 inSection:1];
+//  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

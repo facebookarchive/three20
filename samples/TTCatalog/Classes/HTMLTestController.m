@@ -34,8 +34,8 @@
   for (int i = 0; i < 50; ++i) {
     NSString* string = [strings objectAtIndex:i % strings.count];
     TTHTMLNode* html = [TTHTMLNode htmlFromURLString:string];
-    TTHTMLTableField* field = [[[TTHTMLTableField alloc] initWithHTML:html
-        url:@"tt://htmlTest"] autorelease];
+    TTHTMLTableField* field = [[[TTHTMLTableField alloc] initWithHTML:html url:@"tt://htmlTest"]
+                                 autorelease];
     [dataSource.items addObject:field];
   }
   return dataSource;
