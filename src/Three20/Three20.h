@@ -5,6 +5,7 @@
 
 #import "Three20/TTViewController.h"
 #import "Three20/TTTableViewController.h"
+#import "Three20/TTMessageController.h"
 
 #import "Three20/TTImageView.h"
 #import "Three20/TTLinkView.h"
@@ -19,7 +20,8 @@
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTSearchBar.h"
-#import "Three20/TTMessageController.h"
+#import "Three20/TTHTMLNode.h"
+#import "Three20/TTHTMLView.h"
 
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableField.h"

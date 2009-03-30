@@ -1,5 +1,7 @@
 #import "Three20/TTGlobal.h"
 
+@class TTHTMLNode, TTHTMLLayout;
+
 @interface TTTableField : NSObject {
   NSString* _text;
   NSString* _url;
@@ -145,11 +147,23 @@
 
 @interface TTSwitchTableField : TTTableField {
   BOOL _on;
-
 }
 
 @property(nonatomic) BOOL on;
 
 - (id)initWithText:(NSString*)text on:(BOOL)on;
+
+@end
+
+@interface TTHTMLTableField : TTTableField {
+  TTHTMLNode* _html;
+  TTHTMLLayout* _layout;
+}
+
+@property(nonatomic,retain) TTHTMLNode* html;
+@property(nonatomic,readonly) TTHTMLLayout* layout;
+
+- (id)initWithHTML:(TTHTMLNode*)html;
+- (id)initWithHTML:(TTHTMLNode*)html url:(NSString*)url;
 
 @end

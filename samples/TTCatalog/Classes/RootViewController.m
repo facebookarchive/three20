@@ -11,6 +11,7 @@
 #import "TabBarTestController.h"
 #import "ActivityTestController.h"
 #import "ScrollViewTestController.h"
+#import "HTMLTestController.h"
 
 @implementation RootViewController
 
@@ -46,10 +47,11 @@
   [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
   [nav addView:@"activityTest" controller:[ActivityTestController class]];
   [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
+  [nav addView:@"htmlTest" controller:[HTMLTestController class]];
   
-//  [self validateView];
-//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
-//  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
+  [self validateView];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:3 inSection:1];
+  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +72,8 @@
       url:@"tt://searchTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Activity Labels"
       url:@"tt://activityTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"HTML"
+      url:@"tt://htmlTest"] autorelease],
 
     @"Tables",
     [[[TTTableField alloc] initWithText:@"Table States"

@@ -127,6 +127,8 @@
       return [TTTextViewTableFieldCell class];
     } else if ([object isKindOfClass:[TTSwitchTableField class]]) {
       return [TTSwitchTableFieldCell class];
+    } else if ([object isKindOfClass:[TTHTMLTableField class]]) {
+      return [TTHTMLTableFieldCell class];
     } else {
       return [TTTableFieldCell class];
     }
@@ -194,6 +196,8 @@
 
 @implementation TTListDataSource
 
+@synthesize items = _items;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
 
@@ -256,6 +260,16 @@
     return [NSIndexPath indexPathForRow:index inSection:0];
   }
   return nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (NSMutableArray*)items {
+  if (!_items) {
+    _items = [[NSMutableArray alloc] init];
+  }
+  return _items;
 }
 
 @end

@@ -80,7 +80,7 @@ typedef enum {
 - (TTViewController*)displayObject:(id)object;
 - (TTViewController*)displayObject:(id)object inView:(NSString*)viewType;
 - (TTViewController*)displayObject:(id<TTPersistable>) object inView:(NSString*)viewType
-  animated:(BOOL)animated;
+                     animated:(BOOL)animated;
 - (TTViewController*)displayObject:(id)object inView:(NSString*)viewType 
   withState:(NSDictionary*)state animated:(BOOL)animated;
 
@@ -91,12 +91,12 @@ typedef enum {
 @optional
 
 - (UINavigationController*)navigationControllerForObject:(id)object
-  inView:(NSString*)viewType;
+                           inView:(NSString*)viewType;
 
 - (void)willNavigateToObject:(id)object inView:(NSString*)viewType
-  withController:(UIViewController*)viewController;
+        withController:(UIViewController*)viewController;
 
 - (void)didNavigateToObject:(id)object inView:(NSString*)viewType
-  withController:(UIViewController*)viewController;
+        withController:(UIViewController*)viewController;
   
 @end

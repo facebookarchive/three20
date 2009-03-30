@@ -1,6 +1,6 @@
 #import "Three20/TTTableViewCell.h"
 
-@class TTTableField, TTStyleView, TTErrorView, TTActivityLabel;
+@class TTTableField, TTStyleView, TTErrorView, TTActivityLabel, TTHTMLView;
 
 @interface TTTableFieldCell : TTTableViewCell {
   TTTableField* _field;
@@ -69,9 +69,14 @@
 
 @end
 
-
 @interface TTSwitchTableFieldCell : TTTableFieldCell {
   UISwitch* _switch;
+}
+
+@end
+
+@interface TTHTMLTableFieldCell : TTTableFieldCell {
+  TTHTMLView* _htmlView;
 }
 
 @end

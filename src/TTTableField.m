@@ -1,4 +1,6 @@
 #include "Three20/TTTableField.h"
+#include "Three20/TTHTMLNode.h"
+#include "Three20/TTHTMLLayout.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -331,7 +333,6 @@
 
 @end
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTSwitchTableField
@@ -358,3 +359,46 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTHTMLTableField
+
+@synthesize html = _html;
+
+- (id)initWithHTML:(TTHTMLNode*)html {
+  if (self = [self init]) {
+    self.html = html;
+  }
+  return self;
+}
+
+- (id)initWithHTML:(TTHTMLNode*)html url:(NSString*)url {
+  if (self = [self init]) {
+    self.html = html;
+    self.url = url;
+  }
+  return self;
+}
+
+- (id)init {
+  if (self = [super init]) {
+    _html = nil;
+    _layout = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_html release];
+  [_layout release];
+  [super dealloc];
+}
+
+- (TTHTMLLayout*)layout {
+  if (!_layout) {
+    _layout = [[TTHTMLLayout alloc] initWithHTML:_html];
+  }
+  return _layout;
+}
+
+@end

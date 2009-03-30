@@ -2,6 +2,9 @@
 #import "Three20/TTTableField.h"
 #import "Three20/TTStyleView.h"
 #import "Three20/TTErrorView.h"
+#import "Three20/TTHTMLNode.h"
+#import "Three20/TTHTMLLayout.h"
+#import "Three20/TTHTMLView.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTURLCache.h"
@@ -13,10 +16,12 @@ static CGFloat kHPadding = 10;
 static CGFloat kVPadding = 10;
 static CGFloat kMargin = 10;
 static CGFloat kSpacing = 8;
+static CGFloat kGroupMargin = 10;
 
 static CGFloat kKeySpacing = 12;
 static CGFloat kKeyWidth = 75;
 static CGFloat kMaxLabelHeight = 2000;
+static CGFloat kDisclosureIndicatorWidth = 23;
 
 static CGFloat kTextFieldTitleWidth = 100;
 static CGFloat kTableViewFieldCellHeight = 180;
@@ -1075,3 +1080,65 @@ static CGFloat kDefaultIconSize = 50;
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTHTMLTableFieldCell
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
+  TTHTMLTableField* field = item;
+  field.layout.font = [UIFont systemFontOfSize:14];
+  
+  CGFloat padding = kHPadding*2;
+  if (tableView.style == UITableViewStyleGrouped) {
+    padding += kGroupMargin*2;
+  }
+  if (field.url) {
+    padding += kDisclosureIndicatorWidth;
+  }
+  
+  field.layout.width = tableView.width - padding;
+  
+  return field.layout.height + (kVPadding*2);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
+    _htmlView = [[TTHTMLView alloc] initWithFrame:CGRectZero];
+    [self.contentView addSubview:_htmlView];
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_htmlView release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIView
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  
+  _htmlView.frame = CGRectInset(self.contentView.bounds, kHPadding, kVPadding);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewCell
+
+- (void)setObject:(id)object {
+  if (_field != object) {
+    [super setObject:object];
+    
+    TTHTMLTableField* field = object;
+    _htmlView.layout = field.layout;
+  }  
+}
+
+@end
