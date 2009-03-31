@@ -93,17 +93,19 @@
 }
 
 - (UIFont*)boldVersionOfFont:(UIFont*)font {
+  // XXXjoe Construct the family name + bold and use that instead of this
   return [UIFont boldSystemFontOfSize:font.pointSize];
 }
 
 - (TTStyledTextFrame*)addFrameForText:(NSString*)text node:(TTStyledTextNode*)node
                   after:(TTStyledTextFrame*)lastFrame {
-  TTStyledTextFrame* frame = [[[TTStyledTextFrame alloc] initWithText:text node:node] autorelease];
+  TTStyledTextFrame* frame = [[TTStyledTextFrame alloc] initWithText:text node:node];
   if (lastFrame) {
     lastFrame.nextFrame = frame;
   } else {
     _rootFrame = [frame retain];
   }
+  [frame release];
   return frame;
 }
 
@@ -154,7 +156,6 @@
           NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
           if (lineRange.length) {
             NSString* line = [text substringWithRange:lineRange];
-            TTLOG(@"ADD FINAL LINE %f %@", frameWidth, line);
             lastFrame = [self addFrameForText:line node:node after:lastFrame];
             lastFrame.width = frameWidth;
             frameWidth = 0;
@@ -175,7 +176,6 @@
           NSRange lineRange = NSMakeRange(lineStartIndex,
                                           (wordRange.location + wordRange.length) - lineStartIndex);
           NSString* line = [text substringWithRange:lineRange];
-          TTLOG(@"ADD FINAL LINE %f %@", frameWidth, line);
           lastFrame = [self addFrameForText:line node:node after:lastFrame];
           lastFrame.width = frameWidth;
           frameWidth = 0;

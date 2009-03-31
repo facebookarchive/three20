@@ -6,8 +6,6 @@
 // private
 
 - (void)addRoundedRectToPath:(CGContextRef)context rect:(CGRect)rect radius:(float)radius {
-  TTLOGRECT(rect);
-  
   CGContextBeginPath(context);
   CGContextSaveGState(context);
 

@@ -351,7 +351,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joe Hewitt";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -360,7 +359,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = TTCatalog;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "394697A6-6692-459E-85EF-70C5F4CCA7C6";
 			};
 			name = Debug;
 		};
@@ -388,7 +386,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "394697A6-6692-459E-85EF-70C5F4CCA7C6";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
