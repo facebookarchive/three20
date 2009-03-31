@@ -1,11 +1,11 @@
 #import "Three20/TTLinkView.h"
 
 @class TTImageView;
-@class TTStyleView;
+@class TTStyledView;
 
 @interface TTThumbView : TTLinkView {
   TTImageView* imageView;
-  TTStyleView* borderView;
+  TTStyledView* borderView;
 }
 
 @property(nonatomic,copy) NSString* thumbURL;

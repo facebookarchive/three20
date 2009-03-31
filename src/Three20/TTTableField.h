@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@class TTHTMLNode, TTHTMLLayout;
+@class TTStyledText;
 
 @interface TTTableField : NSObject {
   NSString* _text;
@@ -155,15 +155,13 @@
 
 @end
 
-@interface TTHTMLTableField : TTTableField {
-  TTHTMLNode* _html;
-  TTHTMLLayout* _layout;
+@interface TTStyledTextTableField : TTTableField {
+  TTStyledText* _styledText;
 }
 
-@property(nonatomic,retain) TTHTMLNode* html;
-@property(nonatomic,readonly) TTHTMLLayout* layout;
+@property(nonatomic,retain) TTStyledText* styledText;
 
-- (id)initWithHTML:(TTHTMLNode*)html;
-- (id)initWithHTML:(TTHTMLNode*)html url:(NSString*)url;
+- (id)initWithStyledText:(TTStyledText*)text;
+- (id)initWithStyledText:(TTStyledText*)text url:(NSString*)url;
 
 @end

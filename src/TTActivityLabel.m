@@ -1,5 +1,5 @@
 #import "Three20/TTActivityLabel.h"
-#import "Three20/TTStyleView.h"
+#import "Three20/TTStyledView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -43,7 +43,7 @@ static CGFloat kThinBezelHeight = 35;
     
     self.backgroundColor = [UIColor clearColor];
   
-    _bezelView = [[TTStyleView alloc] initWithFrame:CGRectZero];
+    _bezelView = [[TTStyledView alloc] initWithFrame:CGRectZero];
     if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleBlackThinBezel) {
       _bezelView.opaque = NO;
       _bezelView.style = TTStyleFill;

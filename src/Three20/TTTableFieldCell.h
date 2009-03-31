@@ -1,27 +1,33 @@
 #import "Three20/TTTableViewCell.h"
 
-@class TTTableField, TTStyleView, TTErrorView, TTActivityLabel, TTHTMLView;
+@class TTTableField, TTStyledView, TTErrorView, TTActivityLabel, TTStyledLabel;
 
 @interface TTTableFieldCell : TTTableViewCell {
   TTTableField* _field;
+}
+@end
+
+@interface TTTextTableFieldCell : TTTableFieldCell {
   UILabel* _label;
 }
 @end
 
-@interface TTTextTableFieldCell : TTTableFieldCell
+@interface TTStyledTextTableFieldCell : TTTableFieldCell {
+  TTStyledLabel* _label;
+}
 @end
 
-@interface TTTitledTableFieldCell : TTTableFieldCell {
+@interface TTTitledTableFieldCell : TTTextTableFieldCell {
   UILabel* _titleLabel;
 }
 @end
 
-@interface TTSubtextTableFieldCell : TTTableFieldCell {
+@interface TTSubtextTableFieldCell : TTTextTableFieldCell {
   UILabel* _subtextLabel;
 }
 @end
 
-@interface TTMoreButtonTableFieldCell : TTTableFieldCell {
+@interface TTMoreButtonTableFieldCell : TTTextTableFieldCell {
   UIActivityIndicatorView* _spinnerView;
   UILabel* _subtitleLabel;
   BOOL _animating;
@@ -31,8 +37,8 @@
 
 @end
 
-@interface TTIconTableFieldCell : TTTableFieldCell {
-  TTStyleView* _iconView;
+@interface TTIconTableFieldCell : TTTextTableFieldCell {
+  TTStyledView* _iconView;
 }
 @end
 
@@ -52,7 +58,7 @@
 }
 @end
 
-@interface TTTextFieldTableFieldCell : TTTableFieldCell <UITextFieldDelegate>  {
+@interface TTTextFieldTableFieldCell : TTTextTableFieldCell <UITextFieldDelegate>  {
   UITextField* _textField;
 }
 
@@ -69,14 +75,8 @@
 
 @end
 
-@interface TTSwitchTableFieldCell : TTTableFieldCell {
+@interface TTSwitchTableFieldCell : TTTextTableFieldCell {
   UISwitch* _switch;
-}
-
-@end
-
-@interface TTHTMLTableFieldCell : TTTableFieldCell {
-  TTHTMLView* _htmlView;
 }
 
 @end

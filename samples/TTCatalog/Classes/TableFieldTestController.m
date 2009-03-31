@@ -26,8 +26,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   self.autoresizesForKeyboard = YES;
   self.variableHeightRows = YES;
   
-  self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds
-    style:UITableViewStyleGrouped];
+  self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
+    style:UITableViewStyleGrouped] autorelease];
 	self.tableView.autoresizingMask = 
     UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [self.view addSubview:self.tableView];
@@ -65,8 +65,10 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
       subtext:kLoremIpsum] autorelease],
     [[[TTTextTableField alloc] initWithText:kLoremIpsum] autorelease],
     [[[TTGrayTextTableField alloc] initWithText:kLoremIpsum] autorelease],
-    [[[TTActivityTableField alloc] initWithText:@"TTActivityTableField"] autorelease],
     [[[TTSummaryTableField alloc] initWithText:@"TTSummaryTableField"] autorelease],
+
+    @"Activity",
+    [[[TTActivityTableField alloc] initWithText:@"TTActivityTableField"] autorelease],
 
     @"Controls",
     [[[TTSwitchTableField alloc] initWithText:@"TTSwitchTableField"] autorelease],

@@ -1,36 +1,27 @@
 #import "Three20/TTGlobal.h"
 
-@class TTHTMLNode, TTHTMLLayout, TTHTMLLinkNode;
+@class TTStyledText, TTStyledLinkNode;
 
 /**
- * A view that can display HTML text.
+ * A view that can display styled text.
  */
-@interface TTHTMLView : UIView {
-  TTHTMLNode* _html;
-  TTHTMLLayout* _layout;
+@interface TTStyledLabel : UIView {
+  TTStyledText* _text;
   UIFont* _font;
   UIColor* _textColor;
   UIColor* _linkTextColor;
   UIColor* _highlightedTextColor;
   BOOL _highlighted;
-  TTHTMLLinkNode* _highlightedNode;
+  TTStyledLinkNode* _highlightedNode;
 }
 
 /**
- * The html text displayed by the view.
- *
- * Setting this will reset the layout and automatically re-compute it based on
- * the styles and dimensions of this view.
- */
-@property(nonatomic, retain) TTHTMLNode* html;
-
-/**
- * The layout calculations for the html to be displayed by the view.
+ * The styled text displayed by the view.
  *
  * Settings this will set text to the html belonging to this layout.  If this layout
  * has already been computed for the dimensions of this view, it will not be re-computed.
  */
-@property(nonatomic, retain) TTHTMLLayout* layout;
+@property(nonatomic, retain) TTStyledText* text;
 
 /**
  * The font of the text.
@@ -57,12 +48,20 @@
  */
 @property(nonatomic) BOOL highlighted;
 
+@property(nonatomic,retain) TTStyledLinkNode* highlightedNode;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * You must use TTHTMLTableView if you want links in your html to be touchable.
+ * You must use TTStyledTextTableView if you want links in your html to be touchable.
  */
-@interface TTHTMLTableView : UITableView
+@interface TTStyledTextTableView : UITableView {
+  TTStyledLabel* _highlightedLabel;
+  CGPoint _highlightStartPoint;
+}
+
+@property(nonatomic,retain) TTStyledLabel* highlightedLabel;
+
 @end

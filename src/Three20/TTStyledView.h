@@ -7,7 +7,7 @@
 /**
  * A decorational view that can styled using a variety of visual properties.
  */
-@interface TTStyleView : UIView <TTURLRequestDelegate> {
+@interface TTStyledView : UIView <TTURLRequestDelegate> {
   id<TTStyleViewDelegate> _delegate;
   TTURLRequest* _imageRequest;
   TTStyle _style;
@@ -45,8 +45,8 @@
 
 @optional
 
-- (void)styleView:(TTStyleView*)imageView didLoadImage:(UIImage*)image;
-- (void)styleViewDidStartLoad:(TTStyleView*)styleView;
-- (void)styleView:(TTStyleView*)styleView didFailLoadWithError:(NSError*)error;
+- (void)styleView:(TTStyledView*)imageView didLoadImage:(UIImage*)image;
+- (void)styleViewDidStartLoad:(TTStyledView*)styleView;
+- (void)styleView:(TTStyledView*)styleView didFailLoadWithError:(NSError*)error;
 
 @end

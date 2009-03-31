@@ -46,9 +46,9 @@
 }
 
 - (UIView*)scrollView:(TTScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
-  TTStyleView* pageView = nil;
+  TTStyledView* pageView = nil;
   if (!pageView) {
-    pageView = [[[TTStyleView alloc] initWithFrame:CGRectZero] autorelease];
+    pageView = [[[TTStyledView alloc] initWithFrame:CGRectZero] autorelease];
     pageView.backgroundInset = UIEdgeInsetsMake(10, 10, 10, 10);
     pageView.borderRadius = 30;
     pageView.borderColor = [UIColor blueColor];

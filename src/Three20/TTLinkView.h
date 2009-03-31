@@ -1,11 +1,11 @@
 #import "Three20/TTGlobal.h"
 
-@class TTStyleView;
+@class TTStyledView;
 
 @interface TTLinkView : UIControl {
   id _delegate;
   id _url;
-  TTStyleView* _screenView;
+  TTStyledView* _screenView;
   int _borderRadius;
 }
 

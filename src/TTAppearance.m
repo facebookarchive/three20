@@ -274,7 +274,7 @@ static TTAppearance* gAppearance = nil;
     stroke:(UIColor*)strokeColor thickness:(CGFloat)thickness radius:(CGFloat)radius {
   if (fillCount) {
     UIColor* color = fillColors[0];
-    if (color.value > 0.75) {
+    if (color.value > 0.6) {
       [self.textBoxLightImage drawInRect:rect];
     } else {
       [self.textBoxDarkImage drawInRect:rect];

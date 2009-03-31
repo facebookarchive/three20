@@ -1,6 +1,6 @@
 #include "Three20/TTTableField.h"
-#include "Three20/TTHTMLNode.h"
-#include "Three20/TTHTMLLayout.h"
+#include "Three20/TTStyledTextNode.h"
+#include "Three20/TTStyledText.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -361,20 +361,19 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTHTMLTableField
+@implementation TTStyledTextTableField
 
-@synthesize html = _html;
+@synthesize styledText = _styledText;
 
-- (id)initWithHTML:(TTHTMLNode*)html {
+- (id)initWithStyledText:(TTStyledText*)styledText {
   if (self = [self init]) {
-    self.html = html;
+    self.styledText = styledText;
   }
   return self;
 }
 
-- (id)initWithHTML:(TTHTMLNode*)html url:(NSString*)url {
-  if (self = [self init]) {
-    self.html = html;
+- (id)initWithStyledText:(TTStyledText*)styledText url:(NSString*)url {
+  if (self = [self initWithStyledText:styledText]) {
     self.url = url;
   }
   return self;
@@ -382,23 +381,14 @@
 
 - (id)init {
   if (self = [super init]) {
-    _html = nil;
-    _layout = nil;
+    _styledText = nil;
   }
   return self;
 }
 
 - (void)dealloc {
-  [_html release];
-  [_layout release];
+  [_styledText release];
   [super dealloc];
-}
-
-- (TTHTMLLayout*)layout {
-  if (!_layout) {
-    _layout = [[TTHTMLLayout alloc] initWithHTML:_html];
-  }
-  return _layout;
 }
 
 @end

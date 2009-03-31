@@ -1,11 +1,11 @@
-#import "Three20/TTStyleView.h"
+#import "Three20/TTStyledView.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTURLResponse.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTStyleView
+@implementation TTStyledView
 
 @synthesize delegate = _delegate, style = _style, fillColor = _fillColor, fillColor2 = _fillColor2,
   borderColor = _borderColor, borderWidth = _borderWidth, borderRadius = _borderRadius,

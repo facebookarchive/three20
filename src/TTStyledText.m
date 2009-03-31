@@ -1,20 +1,104 @@
-#import "Three20/TTHTMLLayout.h"
-#import "Three20/TTHTMLNode.h"
+#import "Three20/TTStyledText.h"
+#import "Three20/TTStyledTextNode.h"
 #import "Three20/TTAppearance.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTHTMLLayout
+@implementation TTStyledText
 
-@synthesize html = _html, font = _font, width = _width, height = _height,
+@synthesize rootNode = _rootNode, font = _font, width = _width, height = _height,
             lastLineWidth = _lastLineWidth;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (TTStyledText*)textFromHTMLString:(NSString*)string {
+  // XXXjoe XHTML parser yet to be implemented
+  return nil;
+}
+
++ (TTStyledText*)textFromURLString:(NSString*)string {
+  TTStyledTextNode* rootNode = nil;
+  TTStyledTextNode* lastNode = nil;
+  
+  NSInteger index = 0;
+  while (index < string.length) {
+    NSRange searchRange = NSMakeRange(index, string.length - index);
+    NSRange startRange = [string rangeOfString:@"http://" options:NSCaseInsensitiveSearch
+                                 range:searchRange];
+    if (startRange.location == NSNotFound) {
+      NSString* text = [string substringWithRange:searchRange];
+      TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:text] autorelease];
+      if (lastNode) {
+        lastNode.nextNode = node;
+      } else {
+        rootNode = node;
+      }
+      lastNode = node;
+      break;
+    } else {
+      NSRange beforeRange = NSMakeRange(searchRange.location,
+        startRange.location - searchRange.location);
+      if (beforeRange.length) {
+        NSString* text = [string substringWithRange:beforeRange];
+
+        TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:text] autorelease];
+        if (lastNode) {
+          lastNode.nextNode = node;
+        } else {
+          rootNode = node;
+        }
+        lastNode = node;
+      }
+
+      NSRange searchRange = NSMakeRange(startRange.location, string.length - startRange.location);
+      NSRange endRange = [string rangeOfString:@" " options:NSCaseInsensitiveSearch
+                                 range:searchRange];
+      if (endRange.location == NSNotFound) {
+        NSString* url = [string substringWithRange:searchRange];
+        TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:url] autorelease];
+        node.url = url;
+        if (lastNode) {
+          lastNode.nextNode = node;
+        } else {
+          rootNode = node;
+        }
+        lastNode = node;
+        break;
+      } else {
+        NSRange urlRange = NSMakeRange(startRange.location,
+                                             endRange.location - startRange.location);
+        NSString* url = [string substringWithRange:urlRange];
+        TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:url] autorelease];
+        node.url = url;
+        if (lastNode) {
+          lastNode.nextNode = node;
+        } else {
+          rootNode = node;
+        }
+        lastNode = node;
+        index = endRange.location;
+      }
+    }
+  }
+  
+  return [[[TTStyledText alloc] initWithNode:rootNode] autorelease];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (TTHTMLFrame*)addFrameForText:(NSString*)text node:(TTHTMLNode*)node
-                  after:(TTHTMLFrame*)lastFrame {
-  TTHTMLFrame* frame = [[[TTHTMLFrame alloc] initWithText:text node:node] autorelease];
+- (UIFont*)defaultFont {
+  return [UIFont systemFontOfSize:14];
+}
+
+- (UIFont*)boldVersionOfFont:(UIFont*)font {
+  return [UIFont boldSystemFontOfSize:font.pointSize];
+}
+
+- (TTStyledTextFrame*)addFrameForText:(NSString*)text node:(TTStyledTextNode*)node
+                  after:(TTStyledTextFrame*)lastFrame {
+  TTStyledTextFrame* frame = [[[TTStyledTextFrame alloc] initWithText:text node:node] autorelease];
   if (lastFrame) {
     lastFrame.nextFrame = frame;
   } else {
@@ -24,24 +108,25 @@
 }
 
 - (void)layoutFrames {
-  UIFont* boldFont = [UIFont boldSystemFontOfSize:_font.pointSize];
-  CGSize spaceSize = [@" " sizeWithFont:_font];
+  UIFont* baseFont = _font ? _font : [self defaultFont];
+  UIFont* boldFont = [self boldVersionOfFont:baseFont];
+  CGSize spaceSize = [@" " sizeWithFont:baseFont];
   NSCharacterSet* whitespace = [NSCharacterSet whitespaceCharacterSet];
   
   _lineHeight = spaceSize.height;
   _height = _lineHeight;
   _lastLineWidth = 0;
 
-  TTHTMLFrame* lastFrame = nil;
+  TTStyledTextFrame* lastFrame = nil;
 
-  TTHTMLNode* node = _html;
+  TTStyledTextNode* node = _rootNode;
   while (node) {
-    if ([node isKindOfClass:[TTHTMLText class]]) {
-      TTHTMLText* textNode = (TTHTMLText*)node;
+    if ([node isKindOfClass:[TTStyledTextNode class]]) {
+      TTStyledTextNode* textNode = (TTStyledTextNode*)node;
       NSString* text = textNode.text;
       
-      UIFont* font = [node isKindOfClass:[TTHTMLLinkNode class]]
-                     || [node isKindOfClass:[TTHTMLBoldNode class]] ? boldFont : _font;
+      UIFont* font = [node isKindOfClass:[TTStyledLinkNode class]]
+                     || [node isKindOfClass:[TTStyledBoldNode class]] ? boldFont : baseFont;
     
       NSInteger index = 0;
       NSInteger lineStartIndex = 0;
@@ -108,9 +193,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithHTML:(TTHTMLNode*)html {
+- (id)initWithNode:(TTStyledTextNode*)rootNode {
   if (self = [super init]) {
-    _html = [html retain];
+    _rootNode = [rootNode retain];
     _rootFrame = nil;
     _font = nil;
     _width = 0;
@@ -121,7 +206,7 @@
 }
 
 - (void)dealloc {
-  [_html release];
+  [_rootNode release];
   [_rootFrame release];
   [_font release];
   [super dealloc];
@@ -134,7 +219,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (TTHTMLFrame*)rootFrame {
+- (TTStyledTextFrame*)rootFrame {
   if (!_rootFrame) {
     [self layoutFrames];
   }
@@ -145,18 +230,14 @@
   if (font != _font) {
     [_font release];
     _font = [font retain];
-    [_rootFrame release];
-    _rootFrame = nil;
-    _height = 0;
+    [self setNeedsLayout];
   }
 }
 
 - (void)setWidth:(CGFloat)width {
   if (width != _width) {
     _width = width;
-    _height = 0;
-    [_rootFrame release];
-    _rootFrame = nil;
+    [self setNeedsLayout];
   }
 }
 
@@ -165,19 +246,28 @@
   return _height;
 }
 
+- (void)setNeedsLayout {
+  [_rootFrame release];
+  _rootFrame = nil;
+  _height = 0;
+}
+
 - (void)drawAtPoint:(CGPoint)point {
   [self drawAtPoint:point highlighted:NO];
 }
 
 - (void)drawAtPoint:(CGPoint)point highlighted:(BOOL)highlighted {
   CGContextRef context = UIGraphicsGetCurrentContext();
-  UIFont* boldFont = [UIFont boldSystemFontOfSize:_font.pointSize];
 
+  UIFont* baseFont = _font ? _font : [self defaultFont];
+  UIFont* boldFont = [self boldVersionOfFont:baseFont];
+  
   CGPoint origin = point;
-  TTHTMLFrame* frame = self.rootFrame;
+  TTStyledTextFrame* frame = self.rootFrame;
+  
   while (frame) {
-    if ([frame.node isKindOfClass:[TTHTMLLinkNode class]]) {
-      TTHTMLLinkNode* linkNode = (TTHTMLLinkNode*)frame.node;
+    if ([frame.node isKindOfClass:[TTStyledLinkNode class]]) {
+      TTStyledLinkNode* linkNode = (TTStyledLinkNode*)frame.node;
       if (linkNode.highlighted) {
         CGRect frameRect = CGRectMake(origin.x, origin.y, frame.width, _lineHeight);
         UIColor* fill[] = {[UIColor colorWithWhite:0 alpha:0.3]};
@@ -195,10 +285,10 @@
       if (!highlighted) {
         CGContextRestoreGState(context);
       }
-    } else if ([frame.node isKindOfClass:[TTHTMLBoldNode class]]) {
+    } else if ([frame.node isKindOfClass:[TTStyledBoldNode class]]) {
       [frame.text drawAtPoint:origin withFont:boldFont];
     } else {
-      [frame.text drawAtPoint:origin withFont:_font];
+      [frame.text drawAtPoint:origin withFont:baseFont];
     }
 
     origin.x += frame.width;
@@ -211,9 +301,9 @@
   }
 }
 
-- (TTHTMLFrame*)hitTest:(CGPoint)point {
+- (TTStyledTextFrame*)hitTest:(CGPoint)point {
   CGPoint origin = CGPointMake(0, 0);
-  TTHTMLFrame* frame = self.rootFrame;
+  TTStyledTextFrame* frame = self.rootFrame;
   while (frame) {
     CGRect rect = CGRectMake(origin.x, origin.y, frame.width, _lineHeight);
     if (CGRectContainsPoint(rect, point)) {
@@ -235,7 +325,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTHTMLFrame
+@implementation TTStyledTextFrame
 
 @synthesize node = _node, text = _text, nextFrame = _nextFrame, width = _width,
             lineBreak = _lineBreak;
@@ -243,7 +333,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithText:(NSString*)text node:(TTHTMLNode*)node {
+- (id)initWithText:(NSString*)text node:(TTStyledTextNode*)node {
   if (self = [super init]) {
     _text = [text retain];
     _node = [node retain];
@@ -262,7 +352,7 @@
 
 - (NSString*)description {
   NSMutableString* string = [NSMutableString string];
-  TTHTMLFrame* frame = self;
+  TTStyledTextFrame* frame = self;
   while (frame) {
     [string appendFormat:@"%@ (%d)\n", frame.text, frame.lineBreak];
     frame = frame.nextFrame;

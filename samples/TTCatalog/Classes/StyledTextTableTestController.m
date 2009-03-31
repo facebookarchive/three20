@@ -1,6 +1,6 @@
-#import "HTMLTestController.h"
+#import "StyledTextTableTestController.h"
 
-@implementation HTMLTestController
+@implementation StyledTextTableTestController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
@@ -11,8 +11,8 @@
   self.autoresizesForKeyboard = YES;
   self.variableHeightRows = YES;
   
-  self.tableView = [[TTHTMLTableView alloc] initWithFrame:self.view.bounds
-    style:UITableViewStylePlain];
+  self.tableView = [[[TTStyledTextTableView alloc] initWithFrame:self.view.bounds
+    style:UITableViewStylePlain] autorelease];
 	self.tableView.autoresizingMask = 
     UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [self.view addSubview:self.tableView];
@@ -29,16 +29,19 @@
 //    @"Let's test out some line breaks.\n\nOh yeah.",
 //    @"This is a message with a long url in it http://www.foo.com/abra/cadabra/abrabra/dabarababa",
     nil];
+  NSString* url = @"tt://styledTextTableTest";
 
   TTListDataSource* dataSource = [[[TTListDataSource alloc] init] autorelease];
   for (int i = 0; i < 50; ++i) {
     NSString* string = [strings objectAtIndex:i % strings.count];
+    TTStyledText* text = [TTStyledText textFromURLString:string];
+    
+    // Add a bold prefix to the text
     NSString* title = [NSString stringWithFormat:@"Row %d: ", i+1];
-    TTHTMLNode* body = [TTHTMLNode htmlFromURLString:string];
-    TTHTMLNode* html = [[[TTHTMLBoldNode alloc] initWithText:title next:body] autorelease];
-    TTHTMLTableField* field = [[[TTHTMLTableField alloc] initWithHTML:html url:@"tt://htmlTest"]
-                                 autorelease];
-    [dataSource.items addObject:field];
+    text.rootNode = [[[TTStyledBoldNode alloc] initWithText:title next:text.rootNode] autorelease];
+    
+    [dataSource.items addObject:
+      [[[TTStyledTextTableField alloc] initWithStyledText:text url:url] autorelease]];
   }
   return dataSource;
 }

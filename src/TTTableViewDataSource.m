@@ -127,10 +127,10 @@
       return [TTTextViewTableFieldCell class];
     } else if ([object isKindOfClass:[TTSwitchTableField class]]) {
       return [TTSwitchTableFieldCell class];
-    } else if ([object isKindOfClass:[TTHTMLTableField class]]) {
-      return [TTHTMLTableFieldCell class];
+    } else if ([object isKindOfClass:[TTStyledTextTableField class]]) {
+      return [TTStyledTextTableFieldCell class];
     } else {
-      return [TTTableFieldCell class];
+      return [TTTextTableFieldCell class];
     }
   }
   
