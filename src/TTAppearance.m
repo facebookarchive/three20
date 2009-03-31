@@ -10,6 +10,7 @@ static TTAppearance* gAppearance = nil;
 
 @synthesize navigationBarTintColor = _navigationBarTintColor,
   toolbarTintColor = _toolbarTintColor,
+  searchBarTintColor = _searchBarTintColor,
   linkTextColor = _linkTextColor,
   moreLinkTextColor = _moreLinkTextColor,
   tableActivityTextColor = _tableActivityTextColor, 
@@ -46,6 +47,7 @@ static TTAppearance* gAppearance = nil;
   if (self = [super init]) {
     self.navigationBarTintColor = nil;
     self.toolbarTintColor = RGBCOLOR(109, 132, 162);
+    self.searchBarTintColor = RGBCOLOR(200, 200, 200);
     self.linkTextColor = RGBCOLOR(87, 107, 149);
     self.moreLinkTextColor = RGBCOLOR(36, 112, 216);
     self.tableActivityTextColor = RGBCOLOR(99, 109, 125);
@@ -69,6 +71,7 @@ static TTAppearance* gAppearance = nil;
 - (void)dealloc {
   [_navigationBarTintColor release];
   [_toolbarTintColor release];
+  [_searchBarTintColor release];
   [_linkTextColor release];
   [_moreLinkTextColor release];
   [_tableActivityTextColor release];

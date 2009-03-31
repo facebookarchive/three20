@@ -24,6 +24,7 @@ typedef enum {
 @interface TTAppearance : NSObject {
   UIColor* _navigationBarTintColor;
   UIColor* _toolbarTintColor;
+  UIColor* _searchBarTintColor;
   UIColor* _linkTextColor;
   UIColor* _moreLinkTextColor;
   UIColor* _tableActivityTextColor;
@@ -51,9 +52,14 @@ typedef enum {
 @property(nonatomic,retain) UIColor* navigationBarTintColor;
 
 /**
- * Color used for tinting toolbars and searchbars.
+ * Color used for tinting toolbars.
  */
 @property(nonatomic,retain) UIColor* toolbarTintColor;
+
+/**
+ * Color used for tinting search bars.
+ */
+@property(nonatomic,retain) UIColor* searchBarTintColor;
 
 /**
  * Color used for hyperlinks.
