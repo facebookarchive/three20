@@ -111,4 +111,14 @@
   viewController.title = field.text;
 }
 
+- (BOOL)shouldLoadExternalURL:(NSURL*)url {
+  NSString* message = [NSString stringWithFormat:@"You touched a link to %@", url];
+  UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Link"
+    message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"")
+    otherButtonTitles:nil] autorelease];
+  [alertView show];
+
+  return NO;
+}
+
 @end

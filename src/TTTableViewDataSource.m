@@ -2,6 +2,7 @@
 #import "Three20/TTTableField.h"
 #import "Three20/TTTableFieldCell.h"
 #import "Three20/TTURLCache.h"
+#import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,13 +35,18 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView
                     cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   id object = [self tableView:tableView objectForRowAtIndexPath:indexPath];
-  Class cellClass = [self tableView:tableView cellClassForObject:object];
 
-  NSString* className = NSStringFromClass(cellClass);
-  UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:className];
+  Class cellClass = [self tableView:tableView cellClassForObject:object];
+  const char* className = class_getName(cellClass);
+  NSString* identifier = [[NSString alloc] initWithBytesNoCopy:(char*)className
+                                           length:strlen(className)
+                                           encoding:NSASCIIStringEncoding freeWhenDone:NO];
+
+  UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
   if (cell == nil) {
-    cell = [[[cellClass alloc] initWithFrame:CGRectZero reuseIdentifier:className] autorelease];
+    cell = [[[cellClass alloc] initWithFrame:CGRectZero reuseIdentifier:identifier] autorelease];
   }
+  [identifier release];
   
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
     [(TTTableViewCell*)cell setObject:object];

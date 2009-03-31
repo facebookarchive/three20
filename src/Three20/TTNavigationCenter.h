@@ -98,5 +98,7 @@ typedef enum {
 
 - (void)didNavigateToObject:(id)object inView:(NSString*)viewType
         withController:(UIViewController*)viewController;
+
+- (BOOL)shouldLoadExternalURL:(NSURL*)url;
   
 @end

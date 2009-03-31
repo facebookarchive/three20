@@ -15,6 +15,7 @@
 		2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* RootViewController.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		BE3188A10F822E2C00E3067D /* smiley.png in Resources */ = {isa = PBXBuildFile; fileRef = BE3188A00F822E2C00E3067D /* smiley.png */; };
 		BE5F25920EBA5F0400FD59A6 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */; };
 		BE69B7590F62874900C02928 /* TableTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE69B7580F62874900C02928 /* TableTestController.m */; };
 		BE6E46EC0F4578BA001CE9B4 /* TabBarTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */; };
@@ -70,6 +71,7 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE3188A00F822E2C00E3067D /* smiley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smiley.png; sourceTree = "<group>"; };
 		BE5F25900EBA5F0400FD59A6 /* PhotoTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest2Controller.h; sourceTree = "<group>"; };
 		BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest2Controller.m; sourceTree = "<group>"; };
 		BE69B7570F62874900C02928 /* TableTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTestController.h; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				BE80E39C0EAF103200743358 /* DefaultAlbum.png */,
 				BE6E4DBF0F46A352001CE9B4 /* tableIcon.png */,
 				BECB1CC10F46AE9600AE5B52 /* person.jpg */,
+				BE3188A00F822E2C00E3067D /* smiley.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = Resources;
@@ -304,6 +307,7 @@
 				BE6E4DC00F46A352001CE9B4 /* tableIcon.png in Resources */,
 				BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */,
 				BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */,
+				BE3188A10F822E2C00E3067D /* smiley.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,16 +8,28 @@
 - (void)loadView {
   [super loadView];
 
-  NSString* kSampleText = @"This is a test of http://foo.com styled text. This test will \
-be more interesting when I implement the HTML parser.  See the 'Styled Labels in Table' test \
-for another example of styled text.  Gratuitous URL alert: http://www.foo.com";
+  NSString* kText = @"This is a test of styled labels. Styled labels support \
+<b>bold text</b> and <i>italic text</i>. They also support \
+<a href=\"http://www.google.com\">hyperlinks</a> and inline images \
+<img src=\"bundle://smiley.png\"/>. You can also embed a URL inline and it will be turned into \
+a link, like the following URL: http://www.foo.com";
 
-  TTStyledLabel* label = [[[TTStyledLabel alloc] initWithFrame:
+  TTStyledLabel* label1 = [[[TTStyledLabel alloc] initWithFrame:
                             CGRectInset(self.view.bounds, 10, 10)] autorelease];
-  label.font = [UIFont systemFontOfSize:18];
-  label.text = [TTStyledText textFromURLString:kSampleText];
-   
-  [self.view addSubview:label];
+  label1.font = [UIFont systemFontOfSize:17];
+  label1.text = [TTStyledText textFromXHTML:kText];
+  [label1 sizeToFit];
+  [self.view addSubview:label1];
+
+  TTStyledLabel* label2 = [[[TTStyledLabel alloc] initWithFrame:
+                            CGRectInset(self.view.bounds, 10, 10)] autorelease];
+  label2.font = [UIFont systemFontOfSize:12];
+  label2.text = [TTStyledText textFromXHTML:kText];
+  label2.textColor = [UIColor grayColor];
+  [label2 sizeToFit];
+  label2.top = label1.bottom + 20;
+  [self.view addSubview:label2];
 }
 
 @end
+  

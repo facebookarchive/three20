@@ -229,18 +229,6 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewCell
-
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-//  if (_label.highlightedNode) {
-//    self.selectionStyle = UITableViewCellSelectionStyleNone;
-//  } else {
-//    self.selectionStyle = UITableViewCellSelectionStyleBlue;
-//    [super setSelected:selected animated:animated];
-//  }
-//}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell
 
 - (void)setObject:(id)object {

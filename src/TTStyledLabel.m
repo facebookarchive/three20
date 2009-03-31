@@ -77,8 +77,12 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
+  _text.width = size.width;
   return CGSizeMake(_text.width, _text.height);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIResponder
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   UITouch* touch = [touches anyObject];
@@ -97,8 +101,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
   if (_highlightedNode) {
-    // XXXjoe Still deciding whether to do this, or use a delegate
-    // [[TTNavigationCenter defaultCenter] displayURL:_highlightedNode.url];
+    [[TTNavigationCenter defaultCenter] displayURL:_highlightedNode.url];
     
     self.highlightedNode = nil;
 
@@ -164,6 +167,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
   if (self = [super initWithFrame:frame style:style]) {
     _highlightedLabel = nil;
     _highlightStartPoint = CGPointZero;
+    _highlightTimer = nil;
     self.delaysContentTouches = NO;
   }
   return self;
@@ -171,15 +175,28 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)dealloc {
   [_highlightedLabel release];
+  [_highlightTimer invalidate];
   [super dealloc];
 }
 
+- (void)delayedTouchesEnded:(NSTimer*)timer {
+  _highlightTimer = nil;
+  
+  self.highlightedLabel = nil;
+  
+  NSString* url = timer.userInfo;
+  [[TTNavigationCenter defaultCenter] displayURL:url];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
+// UIResponder
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
 
+  [_highlightTimer invalidate];
+  _highlightTimer = nil;
+  
   if (_highlightedLabel) {
     UITouch* touch = [touches anyObject];
     _highlightStartPoint = [touch locationInView:self];
@@ -204,8 +221,11 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
   if (_highlightedLabel) {
+    NSString* url = _highlightedLabel.highlightedNode.url;
     _highlightedLabel.highlightedNode = nil;
-    self.highlightedLabel = nil;
+
+    _highlightTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self
+             selector:@selector(delayedTouchesEnded:) userInfo:url repeats:NO];
   } else {
     [super touchesEnded:touches withEvent:event];
   }

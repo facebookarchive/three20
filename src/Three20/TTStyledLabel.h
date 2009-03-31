@@ -60,6 +60,7 @@
 @interface TTStyledTextTableView : UITableView {
   TTStyledLabel* _highlightedLabel;
   CGPoint _highlightStartPoint;
+  NSTimer* _highlightTimer;
 }
 
 @property(nonatomic,retain) TTStyledLabel* highlightedLabel;

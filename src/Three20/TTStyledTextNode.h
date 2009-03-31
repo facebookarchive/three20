@@ -26,6 +26,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@interface TTStyledItalicNode : TTStyledTextNode
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TTStyledLinkNode : TTStyledTextNode {
   NSString* _url;
   BOOL _highlighted;
@@ -33,5 +38,17 @@
 
 @property(nonatomic) BOOL highlighted;
 @property(nonatomic,retain) NSString* url;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTStyledImageNode : TTStyledTextNode {
+  NSString* _url;
+  UIImage* _image;
+}
+
+@property(nonatomic,retain) NSString* url;
+@property(nonatomic,retain) UIImage* image;
 
 @end

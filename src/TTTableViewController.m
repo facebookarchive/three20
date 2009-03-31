@@ -213,7 +213,9 @@ static const CGFloat kRefreshingViewHeight = 22;
 
 - (void)reloadTableData {
   [self updateTableDelegate];
+  //NSDate* date = [NSDate date];
   [_tableView reloadData];
+  //NSLog(@"TABLE LAYOUT %fs", [date timeIntervalSinceNow]);
 }
 
 - (void)refreshingHideAnimationStopped {

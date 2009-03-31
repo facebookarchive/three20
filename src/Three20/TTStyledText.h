@@ -8,8 +8,6 @@
   UIFont* _font;
   CGFloat _width;
   CGFloat _height;
-  CGFloat _lineHeight;
-  CGFloat _lastLineWidth;
 }
 
 @property(nonatomic, retain) TTStyledTextNode* rootNode;
@@ -17,21 +15,18 @@
 @property(nonatomic, retain) UIFont* font;
 @property(nonatomic) CGFloat width;
 @property(nonatomic, readonly) CGFloat height;
-@property(nonatomic, readonly) CGFloat lastLineWidth;
 
 /**
- * Constructs a tree of HTML nodes from a well-formatted XHTML string.
- *
- * NOT YET IMPLEMENTED.
+ * Constructs a tree of HTML nodes from a well-formed XHTML fragment.
  */
-+ (TTStyledText*)textFromHTMLString:(NSString*)string;
++ (TTStyledText*)textFromXHTML:(NSString*)source;
 
 /**
  * Constructs a tree of HTML nodes from a string containing URLs.
  *
  * Only URLs are parsed, not HTML markup. URLs are turned into links.
  */ 
-+ (TTStyledText*)textFromURLString:(NSString*)string;
++ (TTStyledText*)textWithURLs:(NSString*)source;
 
 - (id)initWithNode:(TTStyledTextNode*)rootNode;
 
@@ -48,16 +43,20 @@
 
 @interface TTStyledTextFrame : NSObject {
   TTStyledTextNode* _node;
-  NSString* _text;
   TTStyledTextFrame* _nextFrame;
+  NSString* _text;
+  UIFont* _font;
   CGFloat _width;
+  CGFloat _height;
   BOOL _lineBreak;
 }
 
 @property(nonatomic, readonly) TTStyledTextNode* node;
-@property(nonatomic, readonly) NSString* text;
 @property(nonatomic, retain) TTStyledTextFrame* nextFrame;
+@property(nonatomic, readonly) NSString* text;
+@property(nonatomic, retain) UIFont* font;
 @property(nonatomic) CGFloat width;
+@property(nonatomic) CGFloat height;
 @property(nonatomic) BOOL lineBreak;
 
 - (id)initWithText:(NSString*)text node:(TTStyledTextNode*)node;

@@ -440,7 +440,10 @@ static TTNavigationCenter* gDefaultCenter = nil;
     animated:(BOOL)animated {
   NSURL* u = [NSURL URLWithString:url];
   if ([_urlSchemes indexOfObject:u.scheme] == NSNotFound) {
-    [[UIApplication sharedApplication] openURL:u];
+    if (![_delegate respondsToSelector:@selector(shouldLoadExternalURL:)]
+        || [_delegate shouldLoadExternalURL:u]) {
+      [[UIApplication sharedApplication] openURL:u];
+    }
   } else if (_viewLoaders) {
     id<TTPersistable> object = [self locateObject:u];
     NSString* viewType = object && u.query ? u.query : u.host;
