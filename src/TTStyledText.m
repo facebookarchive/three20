@@ -191,8 +191,6 @@
           NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
                                                           - lineStartIndex);
           NSString* line = !lineWidth ? word : [text substringWithRange:lineRange];
-          TTLOG(@"LINE '%@'", line);
-          
           lastFrame = [self addFrameForText:line node:node after:lastFrame];
           lastFrame.width = frameWidth;
           lastFrame.height = wordSize.height;
