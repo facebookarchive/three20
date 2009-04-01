@@ -91,7 +91,6 @@ static TTURLRequestQueue* gMainQueue = nil;
                                     cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                     timeoutInterval:kTimeout];
   [urlRequest setValue:_queue.userAgent forHTTPHeaderField:@"User-Agent"];
-  [urlRequest addValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
 
   if (_requests.count == 1) {
     TTURLRequest* request = [_requests objectAtIndex:0];

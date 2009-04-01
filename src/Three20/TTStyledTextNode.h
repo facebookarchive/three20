@@ -39,6 +39,8 @@
 @property(nonatomic) BOOL highlighted;
 @property(nonatomic,retain) NSString* url;
 
+- (id)initWithText:(NSString*)text url:(NSString*)url next:(TTStyledTextNode*)nextNode;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

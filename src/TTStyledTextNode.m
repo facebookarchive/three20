@@ -82,6 +82,13 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
+- (id)initWithText:(NSString*)text url:(NSString*)url next:(TTStyledTextNode*)nextNode {
+  if (self = [super initWithText:text next:nextNode]) {
+    self.url = url;
+  }
+  return self;
+}
+
 - (id)init {
   if (self = [super init]) {
     _url = nil;
