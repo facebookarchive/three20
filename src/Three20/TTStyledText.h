@@ -30,11 +30,26 @@
 
 - (id)initWithNode:(TTStyledTextNode*)rootNode;
 
+/**
+ * Called to indicate that the layout needs to be re-calculated.
+ */
 - (void)setNeedsLayout;
 
+/** 
+ * Draws the text at a point.
+ */
 - (void)drawAtPoint:(CGPoint)point;
+
+/**
+ * Draws the text at a point with optional highlighting.
+ *
+ * If highlighted is YES, text colors will be ignored and all text will be drawn in the same color.
+ */
 - (void)drawAtPoint:(CGPoint)point highlighted:(BOOL)highlighted;
 
+/**
+ * Determines which frame is intersected by a point.
+ */
 - (TTStyledTextFrame*)hitTest:(CGPoint)point;
 
 @end

@@ -14,7 +14,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
 @implementation TTStyledLabel
 
 @synthesize text = _text, font = _font, textColor = _textColor, linkTextColor = _linkTextColor,
-            highlightedTextColor = _highlightedTextColor, highlighted = _highlighted,
+            highlightedTextColor = _highlightedTextColor, textAlignment = _textAlignment,
+            contentInset = _contentInset, highlighted = _highlighted,
             highlightedNode = _highlightedNode;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +36,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _textColor = nil;
     _highlightedTextColor = nil;
     _linkTextColor = nil;
+    _textAlignment = UITextAlignmentLeft;
+    _contentInset = UIEdgeInsetsZero;
     _highlighted = NO;
     _highlightedNode = nil;
     
@@ -68,17 +71,21 @@ static const CGFloat kCancelHighlightThreshold = 4;
     [_textColor setFill];
   }
   
-  [_text drawAtPoint:rect.origin highlighted:_highlighted];
+  CGPoint origin = CGPointMake(rect.origin.x + _contentInset.left,
+                               rect.origin.y + _contentInset.top);
+  [_text drawAtPoint:origin highlighted:_highlighted];
 }
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  _text.width = self.width;
+  _text.width = self.width - (_contentInset.left + _contentInset.right);
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-  _text.width = size.width;
-  return CGSizeMake(_text.width, _text.height);
+  [self layoutIfNeeded];
+  //_text.width = size.width + (_contentInset.left + _contentInset.right);
+  return CGSizeMake(_text.width + (_contentInset.left + _contentInset.right),
+                    _text.height+ (_contentInset.top + _contentInset.bottom));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

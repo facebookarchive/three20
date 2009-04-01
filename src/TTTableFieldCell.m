@@ -209,6 +209,7 @@ static CGFloat kDefaultIconSize = 50;
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _label = [[TTStyledLabel alloc] initWithFrame:CGRectZero];
+    _label.contentInset = UIEdgeInsetsMake(kVPadding, kHPadding, kVPadding, kHPadding);
     [self.contentView addSubview:_label];
   }
   return self;
@@ -225,7 +226,7 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  _label.frame = CGRectInset(self.contentView.bounds, kHPadding, kVPadding);
+  _label.frame = self.contentView.bounds;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

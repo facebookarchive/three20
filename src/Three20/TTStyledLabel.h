@@ -11,15 +11,14 @@
   UIColor* _textColor;
   UIColor* _linkTextColor;
   UIColor* _highlightedTextColor;
+  UITextAlignment _textAlignment;
+  UIEdgeInsets _contentInset;
   BOOL _highlighted;
   TTStyledLinkNode* _highlightedNode;
 }
 
 /**
- * The styled text displayed by the view.
- *
- * Settings this will set text to the html belonging to this layout.  If this layout
- * has already been computed for the dimensions of this view, it will not be re-computed.
+ * The styled text displayed by the label.
  */
 @property(nonatomic, retain) TTStyledText* text;
 
@@ -34,20 +33,35 @@
 @property(nonatomic, retain) UIColor* textColor;
 
 /**
- * The color applied to links in the html.
+ * The color applied to links in the text.
  */
 @property(nonatomic, retain) UIColor* linkTextColor;
 
 /**
- * The highlight color applied to the label’s text.
+ * The highlight color applied to the text.
  */
 @property(nonatomic, retain) UIColor* highlightedTextColor;
+
+/**
+ * The alignment of the text. (NOT YET IMPLEMENTED)
+ */
+@property(nonatomic) UITextAlignment textAlignment;
+
+/** 
+ * The inset of the edges around the text.
+ *
+ * This will increase the size of the label when sizeToFit is called.
+ */
+@property(nonatomic) UIEdgeInsets contentInset;
 
 /**
  * A Boolean value indicating whether the receiver should be drawn with a highlight.
  */
 @property(nonatomic) BOOL highlighted;
 
+/**
+ * The link node which is being touched and highlighted by the user.
+ */
 @property(nonatomic,retain) TTStyledLinkNode* highlightedNode;
 
 @end

@@ -284,9 +284,9 @@
     if ([frame.node isKindOfClass:[TTStyledLinkNode class]]) {
       TTStyledLinkNode* linkNode = (TTStyledLinkNode*)frame.node;
       if (linkNode.highlighted) {
-        UIColor* fill[] = {[UIColor colorWithWhite:0 alpha:0.3]};
-        [[TTAppearance appearance] draw:TTStyleFill rect:frameRect fill:fill fillCount:1
-                                   stroke:nil radius:3];
+        UIColor* fill[] = {[UIColor colorWithWhite:0 alpha:0.25]};
+        [[TTAppearance appearance] draw:TTStyleFill rect:CGRectInset(frameRect, -4, -3)
+                                   fill:fill fillCount:1 stroke:nil radius:4];
       }
       
       if (!highlighted) {
@@ -315,7 +315,7 @@
 
     origin.x += frame.width;
     if (frame.lineBreak) {
-      origin.x = 0;
+      origin.x = point.x;
       origin.y += frame.height;
     }
     
