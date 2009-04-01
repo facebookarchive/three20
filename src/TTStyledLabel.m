@@ -94,6 +94,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   UITouch* touch = [touches anyObject];
   CGPoint point = [touch locationInView:self];
+  point.x -= _contentInset.left;
+  point.y -= _contentInset.top;
+  
   TTStyledTextFrame* frame = [_text hitTest:point];
   if (frame && [frame.node isKindOfClass:[TTStyledLinkNode class]]) {
     self.highlightedNode = (TTStyledLinkNode*)frame.node;
