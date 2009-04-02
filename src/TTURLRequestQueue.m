@@ -246,8 +246,6 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (BOOL)cancel:(TTURLRequest*)request {
   NSUInteger index = [_requests indexOfObject:request];
   if (index != NSNotFound) {
-    [_requests removeObjectAtIndex:index];
-    
     request.isLoading = NO;
 
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
@@ -255,10 +253,12 @@ static TTURLRequestQueue* gMainQueue = nil;
         [delegate requestDidCancelLoad:request];
       }
     }
+
+    [_requests removeObjectAtIndex:index];
   }
   if (![_requests count]) {
     [_queue performSelector:@selector(loaderDidCancel:wasLoading:) withObject:self
-      withObject:(id)!!_connection];
+            withObject:(id)!!_connection];
     if (_connection) {
       TTNetworkRequestStopped();
       [_connection cancel];

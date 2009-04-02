@@ -62,6 +62,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   [_httpBody release];
   [_parameters release];
   [_contentType release];
+  [_delegates release];
   [_response release];
   [_timestamp release];
   [_cacheKey release];
