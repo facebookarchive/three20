@@ -189,13 +189,13 @@
 }
 
 - (CGFloat)orientationWidth {
-  return UIDeviceOrientationIsPortrait(TTDeviceOrientation())
-    ? self.width : self.height;
+  return UIDeviceOrientationIsLandscape(TTDeviceOrientation())
+    ? self.height: self.width;
 }
 
 - (CGFloat)orientationHeight {
-  return UIDeviceOrientationIsPortrait(TTDeviceOrientation())
-    ? self.height : self.width;
+  return UIDeviceOrientationIsLandscape(TTDeviceOrientation())
+    ? self.width: self.height;
 }
 
 - (UIScrollView*)findFirstScrollView {
