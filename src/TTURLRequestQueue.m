@@ -43,7 +43,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (void)addRequest:(TTURLRequest*)request;
 - (void)removeRequest:(TTURLRequest*)request;
 
-- (void)load;
+- (void)load:(NSURL*)url;
 - (BOOL)cancel:(TTURLRequest*)request;
 
 @end
@@ -158,28 +158,6 @@ static TTURLRequestQueue* gMainQueue = nil;
   }
 }
 
-- (void)loadFromBundle:(NSURL*)url {
-  NSString* path = nil;
-  if (url.path.length) {
-    NSString* fileName = [url.path substringFromIndex:1];
-    path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil inDirectory:url.host];
-  } else {
-    path = [[NSBundle mainBundle] pathForResource:url.host ofType:nil];
-  }
-  
-  NSFileManager* fm = [NSFileManager defaultManager];
-  if (path && [fm fileExistsAtPath:path]) {
-    NSData* data = [NSData dataWithContentsOfFile:path];
-    [_queue performSelector:@selector(loader:didLoadResponse:data:) withObject:self
-      withObject:nil withObject:data];
-  } else {
-    NSError* error = [NSError errorWithDomain:NSCocoaErrorDomain
-      code:NSFileReadNoSuchFileError userInfo:nil];
-    [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
-      withObject:error];
-  }
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // NSURLConnectionDelegate
  
@@ -238,7 +216,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     // If there is a network error then we will wait and retry a few times just in case
     // it was just a temporary blip in connectivity
     --_retriesLeft;
-    [self load];
+    [self load:[NSURL URLWithString:_url]];
   } else {
     [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
             withObject:error];
@@ -259,22 +237,15 @@ static TTURLRequestQueue* gMainQueue = nil;
   [_requests removeObject:request];
 }
 
-- (void)load {
+- (void)load:(NSURL*)url {
   if (!_connection) {
-    NSURL* url = [NSURL URLWithString:_url];
-    if ([url.scheme isEqualToString:@"bundle"]) {
-      [self loadFromBundle:url];
-    } else {
-      [self connectToURL:url];
-    }
+    [self connectToURL:url];
   }
 }
 
 - (BOOL)cancel:(TTURLRequest*)request {
   NSUInteger index = [_requests indexOfObject:request];
   if (index != NSNotFound) {
-    [_requests removeObjectAtIndex:index];
-    
     request.isLoading = NO;
 
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
@@ -282,10 +253,12 @@ static TTURLRequestQueue* gMainQueue = nil;
         [delegate requestDidCancelLoad:request];
       }
     }
+
+    [_requests removeObjectAtIndex:index];
   }
   if (![_requests count]) {
     [_queue performSelector:@selector(loaderDidCancel:wasLoading:) withObject:self
-      withObject:(id)!!_connection];
+            withObject:(id)!!_connection];
     if (_connection) {
       TTNetworkRequestStopped();
       [_connection cancel];
@@ -416,7 +389,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     [_loaders removeObjectForKey:loader.cacheKey];
   } else {
     ++_totalLoading;
-    [loader load];
+    [loader load:[NSURL URLWithString:loader.url]];
   }
 }
 
@@ -479,6 +452,45 @@ static TTURLRequestQueue* gMainQueue = nil;
   }
 }
 
+- (void)loadFromBundle:(NSURL*)url request:(TTURLRequest*)request {
+  request.respondedFromCache = YES;
+  
+  NSString* path = nil;
+  if (url.path.length) {
+    NSString* fileName = [url.path substringFromIndex:1];
+    path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil inDirectory:url.host];
+  } else {
+    path = [[NSBundle mainBundle] pathForResource:url.host ofType:nil];
+  }
+  
+  NSFileManager* fm = [NSFileManager defaultManager];
+  if (path && [fm fileExistsAtPath:path]) {
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    NSError* error = [request.response request:request processResponse:nil data:data];
+    if (error) {
+      for (id<TTURLRequestDelegate> delegate in request.delegates) {
+        if ([delegate respondsToSelector:@selector(request:didFailLoadWithError:)]) {
+          [delegate request:request didFailLoadWithError:error];
+        }
+      }
+    } else {
+      for (id<TTURLRequestDelegate> delegate in request.delegates) {
+        if ([delegate respondsToSelector:@selector(requestDidFinishLoad:)]) {
+          [delegate requestDidFinishLoad:request];
+        }
+      }
+    }
+  } else {
+    NSError* error = [NSError errorWithDomain:NSCocoaErrorDomain
+      code:NSFileReadNoSuchFileError userInfo:nil];
+    for (id<TTURLRequestDelegate> delegate in request.delegates) {
+      if ([delegate respondsToSelector:@selector(request:didFailLoadWithError:)]) {
+        [delegate request:request didFailLoadWithError:error];
+      }
+    }
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)setSuspended:(BOOL)isSuspended {
@@ -494,6 +506,12 @@ static TTURLRequestQueue* gMainQueue = nil;
 }
 
 - (BOOL)sendRequest:(TTURLRequest*)request {
+  NSURL* url = [NSURL URLWithString:request.url];
+  if ([url.scheme isEqualToString:@"bundle"]) {
+    [self loadFromBundle:url request:request];
+    return YES;
+  }
+  
   if (!request.cacheKey) {
     request.cacheKey = [[TTURLCache sharedCache] keyForURL:request.url];
   }
@@ -529,7 +547,7 @@ static TTURLRequestQueue* gMainQueue = nil;
       return NO;
     }
   }
-  
+
   // Finally, create a new loader and hit the network (unless we are suspended)
   loader = [[TTRequestLoader alloc] initForRequest:request queue:self];
   [_loaders setObject:loader forKey:request.cacheKey];
@@ -537,10 +555,10 @@ static TTURLRequestQueue* gMainQueue = nil;
     [_loaderQueue addObject:loader];
   } else {
     ++_totalLoading;
-    [loader load];
+    [loader load:url];
   }
   [loader release];
-
+  
   return NO;
 }
 

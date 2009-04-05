@@ -1,5 +1,7 @@
 #import "Three20/TTGlobal.h"
 
+@class TTStyledText;
+
 @interface TTTableField : NSObject {
   NSString* _text;
   NSString* _url;
@@ -145,11 +147,21 @@
 
 @interface TTSwitchTableField : TTTableField {
   BOOL _on;
-
 }
 
 @property(nonatomic) BOOL on;
 
 - (id)initWithText:(NSString*)text on:(BOOL)on;
+
+@end
+
+@interface TTStyledTextTableField : TTTableField {
+  TTStyledText* _styledText;
+}
+
+@property(nonatomic,retain) TTStyledText* styledText;
+
+- (id)initWithStyledText:(TTStyledText*)text;
+- (id)initWithStyledText:(TTStyledText*)text url:(NSString*)url;
 
 @end

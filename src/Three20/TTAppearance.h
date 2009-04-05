@@ -24,6 +24,7 @@ typedef enum {
 @interface TTAppearance : NSObject {
   UIColor* _navigationBarTintColor;
   UIColor* _toolbarTintColor;
+  UIColor* _searchBarTintColor;
   UIColor* _linkTextColor;
   UIColor* _moreLinkTextColor;
   UIColor* _tableActivityTextColor;
@@ -37,6 +38,8 @@ typedef enum {
   UIColor* _tableHeaderShadowColor;
   UIColor* _tableHeaderTintColor;
   UIImage* _blackButtonImage;
+  UIImage* _textBoxDarkImage;
+  UIImage* _textBoxLightImage;
 }
 
 + (TTAppearance*)appearance;
@@ -49,9 +52,14 @@ typedef enum {
 @property(nonatomic,retain) UIColor* navigationBarTintColor;
 
 /**
- * Color used for tinting toolbars and searchbars.
+ * Color used for tinting toolbars.
  */
 @property(nonatomic,retain) UIColor* toolbarTintColor;
+
+/**
+ * Color used for tinting search bars.
+ */
+@property(nonatomic,retain) UIColor* searchBarTintColor;
 
 /**
  * Color used for hyperlinks.
@@ -113,11 +121,20 @@ typedef enum {
  */
 @property(nonatomic,retain) UIColor* tableHeaderTintColor;
 
-
 /**
  * Image used for the background of black buttons.
  */
 @property(nonatomic,retain) UIImage* blackButtonImage;
+
+/**
+ * Image used for the background of text boxes against a dark background
+ */
+@property(nonatomic,retain) UIImage* textBoxDarkImage;
+
+/**
+ * Image used for the background of text boxes against a light background
+ */
+@property(nonatomic,retain) UIImage* textBoxLightImage;
 
 - (void)draw:(TTStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
         fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius;

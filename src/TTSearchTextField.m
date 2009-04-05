@@ -1,6 +1,6 @@
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTNavigationCenter.h"
-#import "Three20/TTStyleView.h"
+#import "Three20/TTStyledView.h"
 #import "Three20/TTTableFieldCell.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -397,7 +397,7 @@ static const CGFloat kDesiredTableHeight = 150;
     self.tableView;
     
     if (!_shadowView) {
-      _shadowView = [[TTStyleView alloc] initWithFrame:CGRectZero];
+      _shadowView = [[TTStyledView alloc] initWithFrame:CGRectZero];
       _shadowView.style = TTStyleInnerShadow;
       _shadowView.backgroundColor = [UIColor clearColor];
       _shadowView.contentMode = UIViewContentModeRedraw;

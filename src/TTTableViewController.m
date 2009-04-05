@@ -213,7 +213,9 @@ static const CGFloat kRefreshingViewHeight = 22;
 
 - (void)reloadTableData {
   [self updateTableDelegate];
+  //NSDate* date = [NSDate date];
   [_tableView reloadData];
+  //NSLog(@"TABLE LAYOUT %fs", [date timeIntervalSinceNow]);
 }
 
 - (void)refreshingHideAnimationStopped {
@@ -312,24 +314,23 @@ static const CGFloat kRefreshingViewHeight = 22;
   }
   
   if (self.viewState & TTViewRefreshing) {
-    [_refreshingView removeFromSuperview];
-    [_refreshingView release];
-
-    _refreshingView = [[TTActivityLabel alloc] initWithFrame:
-      CGRectMake(0, _tableView.height, self.view.width, kRefreshingViewHeight)
-      style:TTActivityLabelStyleBlackBox text:[self titleForActivity]];
-    _refreshingView.centeredToScreen = NO;
-    _refreshingView.userInteractionEnabled = NO;
-    _refreshingView.font = [UIFont boldSystemFontOfSize:12];
-    
-    NSInteger tableIndex = [self.view.subviews indexOfObject:_tableView];
-    [self.view insertSubview:_refreshingView atIndex:tableIndex+1];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    _refreshingView.frame = CGRectOffset(_refreshingView.frame, 0, -kRefreshingViewHeight);
-    [UIView commitAnimations];
+    if (!_refreshingView) {
+      _refreshingView = [[TTActivityLabel alloc] initWithFrame:
+        CGRectMake(0, _tableView.height, self.view.width, kRefreshingViewHeight)
+        style:TTActivityLabelStyleBlackBox text:[self titleForActivity]];
+      _refreshingView.centeredToScreen = NO;
+      _refreshingView.userInteractionEnabled = NO;
+      _refreshingView.font = [UIFont boldSystemFontOfSize:12];
+      
+      NSInteger tableIndex = [self.view.subviews indexOfObject:_tableView];
+      [self.view insertSubview:_refreshingView atIndex:tableIndex+1];
+      
+      [UIView beginAnimations:nil context:nil];
+      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+      [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+      _refreshingView.frame = CGRectOffset(_refreshingView.frame, 0, -kRefreshingViewHeight);
+      [UIView commitAnimations];
+    }
   } else if (_refreshingView) {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_TRANSITION_DURATION*2];

@@ -5,21 +5,25 @@
 
 #import "Three20/TTViewController.h"
 #import "Three20/TTTableViewController.h"
+#import "Three20/TTMessageController.h"
 
 #import "Three20/TTImageView.h"
 #import "Three20/TTLinkView.h"
 #import "Three20/TTYouTubeView.h"
-#import "Three20/TTStyleView.h"
+#import "Three20/TTStyledView.h"
 #import "Three20/TTScrollView.h"
 #import "Three20/TTTabBar.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTShinyLabel.h"
 #import "Three20/TTErrorView.h"
 
+#import "Three20/TTStyledLabel.h"
+#import "Three20/TTStyledText.h"
+#import "Three20/TTStyledTextNode.h"
+
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTSearchBar.h"
-#import "Three20/TTMessageController.h"
 
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableField.h"

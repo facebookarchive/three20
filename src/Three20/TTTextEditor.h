@@ -1,9 +1,9 @@
-#import "Three20/TTStyleView.h"
+#import "Three20/TTStyledView.h"
 
 @protocol TTTextEditorDelegate;
 @class TTTextEditorInternal;
 
-@interface TTTextEditor : TTStyleView {
+@interface TTTextEditor : TTStyledView {
   id<TTTextEditorDelegate> _textDelegate;
   TTTextEditorInternal* _internal;
   NSString* _placeholder;

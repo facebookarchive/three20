@@ -28,7 +28,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (id)initWithURL:(NSString*)url delegate:(id<TTURLRequestDelegate>)delegate {
   if (self = [self init]) {
     _url = [url retain];
-    [_delegates addObject:delegate];
+    if (delegate) {
+      [_delegates addObject:delegate];
+    }
   }
   return self;
 }
@@ -60,6 +62,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   [_httpBody release];
   [_parameters release];
   [_contentType release];
+  [_delegates release];
   [_response release];
   [_timestamp release];
   [_cacheKey release];

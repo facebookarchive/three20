@@ -11,6 +11,8 @@
 #import "TabBarTestController.h"
 #import "ActivityTestController.h"
 #import "ScrollViewTestController.h"
+#import "StyledTextTestController.h"
+#import "StyledTextTableTestController.h"
 
 @implementation RootViewController
 
@@ -20,8 +22,8 @@
 - (void)loadView {
   [super loadView];
 
-  self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds
-    style:UITableViewStyleGrouped];
+  self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
+    style:UITableViewStyleGrouped] autorelease];
 	self.tableView.autoresizingMask = 
     UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [self.view addSubview:self.tableView];
@@ -46,9 +48,11 @@
   [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
   [nav addView:@"activityTest" controller:[ActivityTestController class]];
   [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
+  [nav addView:@"styledTextTest" controller:[StyledTextTestController class]];
+  [nav addView:@"styledTextTableTest" controller:[StyledTextTableTestController class]];
   
 //  [self validateView];
-//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:2 inSection:2];
 //  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -70,12 +74,16 @@
       url:@"tt://searchTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Activity Labels"
       url:@"tt://activityTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Styled Labels"
+      url:@"tt://styledTextTest"] autorelease],
 
     @"Tables",
     [[[TTTableField alloc] initWithText:@"Table States"
       url:@"tt://tableTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Table Cells"
       url:@"tt://tableFieldTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Styled Labels in Table"
+      url:@"tt://styledTextTableTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Web Images in Table"
       url:@"tt://imageTest2"] autorelease],
 
@@ -101,6 +109,16 @@
     objectForRowAtIndexPath:indexPath];
   
   viewController.title = field.text;
+}
+
+- (BOOL)shouldLoadExternalURL:(NSURL*)url {
+  NSString* message = [NSString stringWithFormat:@"You touched a link to %@", url];
+  UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Link"
+    message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"")
+    otherButtonTitles:nil] autorelease];
+  [alertView show];
+
+  return NO;
 }
 
 @end

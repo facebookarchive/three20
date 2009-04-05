@@ -1,12 +1,12 @@
 #import "Three20/TTSearchBar.h"
 #import "Three20/TTSearchTextField.h"
-#import "Three20/TTStyleView.h"
+#import "Three20/TTStyledView.h"
 #import "Three20/TTAppearance.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static const CGFloat kMarginX = 5;  
-static const CGFloat kMarginY = 6;
+static const CGFloat kMarginY = 7;
 static const CGFloat kPaddingX = 10;
 static const CGFloat kPaddingY = 10;
 static const CGFloat kSpacingX = 5;
@@ -91,7 +91,7 @@ static const CGFloat kIndexViewMargin = 4;
   if (self = [super initWithFrame:frame]) {
     _style = TTStyleReflection;
     
-    _boxView = [[TTStyleView alloc] initWithFrame:CGRectZero];
+    _boxView = [[TTStyledView alloc] initWithFrame:CGRectZero];
     _boxView.backgroundColor = [UIColor clearColor];
     _boxView.style = TTStyleRoundInnerShadow;
     _boxView.contentMode = UIViewContentModeRedraw;
@@ -107,7 +107,8 @@ static const CGFloat kIndexViewMargin = 4;
     [self addSubview:_searchField];
 
     self.contentMode = UIViewContentModeRedraw;
-    self.tintColor = [TTAppearance appearance].toolbarTintColor;
+    self.tintColor = [TTAppearance appearance].searchBarTintColor;
+    self.font = [UIFont systemFontOfSize:14];
     self.showsSearchIcon = YES;
     self.showsCancelButton = NO;
   }
@@ -156,13 +157,13 @@ static const CGFloat kIndexViewMargin = 4;
     buttonWidth = _cancelButton.width + kSpacingX;
   }
 
-  CGFloat boxHeight = TOOLBAR_HEIGHT - kMarginY*2;
-  CGRect boxRect = CGRectMake(kMarginX, floor(self.height/2 - boxHeight/2),
+  CGFloat boxHeight = self.height - kMarginY*2;
+  CGRect boxRect = CGRectMake(kMarginX, ceil(self.height/2 - boxHeight/2)+1,
                               self.width - kMarginX*2, boxHeight);
   boxRect.size.width -= indexViewWidth + buttonWidth;
   _boxView.frame = boxRect;
     
-  _searchField.frame = CGRectMake(kMarginX+kPaddingX+leftPadding, 0,
+  _searchField.frame = CGRectMake(kMarginX+kPaddingX+leftPadding, 1,
     self.width - (kMarginX*2+kPaddingX+leftPadding+buttonWidth+indexViewWidth), self.height);
   
   if (_showsCancelButton) {
@@ -174,7 +175,11 @@ static const CGFloat kIndexViewMargin = 4;
 
 - (CGSize)sizeThatFits:(CGSize)size {
   CGSize fontSize = [@"M" sizeWithFont:self.font];
-  return CGSizeMake(size.width, fontSize.height+kPaddingY*2);
+  CGFloat height = fontSize.height+kPaddingY*2;
+  if (height < TOOLBAR_HEIGHT) {
+    height = TOOLBAR_HEIGHT;
+  }
+  return CGSizeMake(size.width, height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -284,8 +289,7 @@ static const CGFloat kIndexViewMargin = 4;
   if (tintColor != _tintColor) {
     [_tintColor release];
     _tintColor = [tintColor retain];
-    
-    _boxView.borderColor = [_tintColor transformHue:1 saturation:1 value:0.9];
+    _boxView.fillColor = tintColor;
   }
 }
 

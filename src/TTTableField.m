@@ -1,4 +1,6 @@
 #include "Three20/TTTableField.h"
+#include "Three20/TTStyledTextNode.h"
+#include "Three20/TTStyledText.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -331,7 +333,6 @@
 
 @end
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTSwitchTableField
@@ -358,3 +359,36 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTStyledTextTableField
+
+@synthesize styledText = _styledText;
+
+- (id)initWithStyledText:(TTStyledText*)styledText {
+  if (self = [self init]) {
+    self.styledText = styledText;
+  }
+  return self;
+}
+
+- (id)initWithStyledText:(TTStyledText*)styledText url:(NSString*)url {
+  if (self = [self initWithStyledText:styledText]) {
+    self.url = url;
+  }
+  return self;
+}
+
+- (id)init {
+  if (self = [super init]) {
+    _styledText = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_styledText release];
+  [super dealloc];
+}
+
+@end

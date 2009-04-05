@@ -10,6 +10,7 @@ static TTAppearance* gAppearance = nil;
 
 @synthesize navigationBarTintColor = _navigationBarTintColor,
   toolbarTintColor = _toolbarTintColor,
+  searchBarTintColor = _searchBarTintColor,
   linkTextColor = _linkTextColor,
   moreLinkTextColor = _moreLinkTextColor,
   tableActivityTextColor = _tableActivityTextColor, 
@@ -22,7 +23,9 @@ static TTAppearance* gAppearance = nil;
   tableHeaderTextColor = _tableHeaderTextColor,
   tableHeaderShadowColor = _tableHeaderShadowColor,
   tableHeaderTintColor = _tableHeaderTintColor,
-  blackButtonImage = _blackButtonImage;
+  blackButtonImage = _blackButtonImage,
+  textBoxDarkImage = _textBoxDarkImage,
+  textBoxLightImage = _textBoxLightImage;
 
 + (TTAppearance*)appearance {
   if (!gAppearance) {
@@ -44,6 +47,7 @@ static TTAppearance* gAppearance = nil;
   if (self = [super init]) {
     self.navigationBarTintColor = nil;
     self.toolbarTintColor = RGBCOLOR(109, 132, 162);
+    self.searchBarTintColor = RGBCOLOR(200, 200, 200);
     self.linkTextColor = RGBCOLOR(87, 107, 149);
     self.moreLinkTextColor = RGBCOLOR(36, 112, 216);
     self.tableActivityTextColor = RGBCOLOR(99, 109, 125);
@@ -58,6 +62,8 @@ static TTAppearance* gAppearance = nil;
     _tableHeaderShadowColor = nil;
     _tableHeaderTintColor = nil;
     _blackButtonImage = nil;
+    _textBoxDarkImage = nil;
+    _textBoxLightImage = nil;
   }
   return self;
 }
@@ -65,6 +71,7 @@ static TTAppearance* gAppearance = nil;
 - (void)dealloc {
   [_navigationBarTintColor release];
   [_toolbarTintColor release];
+  [_searchBarTintColor release];
   [_linkTextColor release];
   [_moreLinkTextColor release];
   [_tableActivityTextColor release];
@@ -78,10 +85,13 @@ static TTAppearance* gAppearance = nil;
   [_tableHeaderShadowColor release];
   [_tableHeaderTintColor release];
   [_blackButtonImage release];
+  [_textBoxDarkImage release];
+  [_textBoxLightImage release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
 
 - (void)addRoundedRectToPath:(CGContextRef)context rect:(CGRect)rect radius:(float)radius {
   CGContextBeginPath(context);
@@ -265,9 +275,14 @@ static TTAppearance* gAppearance = nil;
 
 - (void)drawRoundInnerShadow:(CGRect)rect fill:(UIColor**)fillColors fillCount:(int)fillCount
     stroke:(UIColor*)strokeColor thickness:(CGFloat)thickness radius:(CGFloat)radius {
-  UIImage* image = [[UIImage imageNamed:@"Three20.bundle/images/textBox.png"]
-    stretchableImageWithLeftCapWidth:15 topCapHeight:15];
-  [image drawInRect:rect];
+  if (fillCount) {
+    UIColor* color = fillColors[0];
+    if (color.value > 0.6) {
+      [self.textBoxLightImage drawInRect:rect];
+    } else {
+      [self.textBoxDarkImage drawInRect:rect];
+    }
+  }
 
   if (strokeColor) {
     [self drawRoundedRect:rect fill:nil fillCount:0 stroke:strokeColor thickness:thickness
@@ -316,6 +331,22 @@ static TTAppearance* gAppearance = nil;
           stretchableImageWithLeftCapWidth:5 topCapHeight:15] retain];
   }
   return _blackButtonImage;
+}
+
+- (UIImage*)textBoxDarkImage {
+  if (!_textBoxDarkImage) {
+    _textBoxDarkImage = [[[UIImage imageNamed:@"Three20.bundle/images/textBoxDark.png"]
+      stretchableImageWithLeftCapWidth:15 topCapHeight:15] retain];
+  }
+  return _textBoxDarkImage;
+}
+
+- (UIImage*)textBoxLightImage {
+  if (!_textBoxLightImage) {
+    _textBoxLightImage = [[[UIImage imageNamed:@"Three20.bundle/images/textBoxLight.png"]
+      stretchableImageWithLeftCapWidth:15 topCapHeight:15] retain];
+  }
+  return _textBoxLightImage;
 }
 
 - (void)draw:(TTStyle)style rect:(CGRect)rect fill:(UIColor**)fillColors

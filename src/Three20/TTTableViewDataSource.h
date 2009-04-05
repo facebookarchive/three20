@@ -59,6 +59,8 @@
   NSMutableArray* _items;
 }
 
+@property(nonatomic,readonly) NSMutableArray* items;
+
 + (TTListDataSource*)dataSourceWithObjects:(id)object,...;
 
 - (id)initWithItems:(NSArray*)items;

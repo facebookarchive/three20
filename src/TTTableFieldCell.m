@@ -1,7 +1,10 @@
 #import "Three20/TTTableFieldCell.h"
 #import "Three20/TTTableField.h"
-#import "Three20/TTStyleView.h"
+#import "Three20/TTStyledView.h"
 #import "Three20/TTErrorView.h"
+#import "Three20/TTStyledTextNode.h"
+#import "Three20/TTStyledText.h"
+#import "Three20/TTStyledLabel.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTURLCache.h"
@@ -13,10 +16,12 @@ static CGFloat kHPadding = 10;
 static CGFloat kVPadding = 10;
 static CGFloat kMargin = 10;
 static CGFloat kSpacing = 8;
+static CGFloat kGroupMargin = 10;
 
 static CGFloat kKeySpacing = 12;
 static CGFloat kKeyWidth = 75;
 static CGFloat kMaxLabelHeight = 2000;
+static CGFloat kDisclosureIndicatorWidth = 23;
 
 static CGFloat kTextFieldTitleWidth = 100;
 static CGFloat kTableViewFieldCellHeight = 180;
@@ -36,33 +41,13 @@ static CGFloat kDefaultIconSize = 50;
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _field = nil;
-    _label = [[UILabel alloc] initWithFrame:CGRectZero];
-    _label.highlightedTextColor = [UIColor whiteColor];
-    [self.contentView addSubview:_label];
 	}
 	return self;
 }
 
 - (void)dealloc {
   [_field release];
-  [_label release];
 	[super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-
-  _label.frame = CGRectInset(self.contentView.bounds, kHPadding, 0);
-}
-
--(void)didMoveToSuperview {
-  [super didMoveToSuperview];
-  if (self.superview && [(UITableView*)self.superview style] == UITableViewStylePlain) {
-    _label.backgroundColor = self.superview.backgroundColor;
-  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,8 +62,6 @@ static CGFloat kDefaultIconSize = 50;
     [_field release];
     _field = [object retain];
   
-    _label.text = _field.text;
-    
     if (_field.url) {
       if ([[TTNavigationCenter defaultCenter] urlIsSupported:_field.url]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -90,26 +73,6 @@ static CGFloat kDefaultIconSize = 50;
       self.accessoryType = UITableViewCellAccessoryNone;
       self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-
-    if ([object isKindOfClass:[TTButtonTableField class]]) {
-      _label.font = [UIFont boldSystemFontOfSize:15];
-      _label.textColor = [TTAppearance appearance].linkTextColor;
-      _label.textAlignment = UITextAlignmentCenter;
-      self.accessoryType = UITableViewCellAccessoryNone;
-      self.selectionStyle = UITableViewCellSelectionStyleBlue;
-    } else if ([object isKindOfClass:[TTLinkTableField class]]) {
-      _label.font = [UIFont boldSystemFontOfSize:16];
-      _label.textColor = [TTAppearance appearance].linkTextColor;
-      _label.textAlignment = UITextAlignmentLeft;
-    } else if ([object isKindOfClass:[TTSummaryTableField class]]) {
-      _label.font = [UIFont systemFontOfSize:17];
-      _label.textColor = [TTAppearance appearance].tableSubTextColor;
-      _label.textAlignment = UITextAlignmentCenter;
-    } else {
-      _label.font = [UIFont boldSystemFontOfSize:17];
-      _label.textColor = [UIColor blackColor];
-      _label.textAlignment = UITextAlignmentLeft;
-    }
   }  
 }
 
@@ -119,13 +82,18 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTTextTableFieldCell
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   CGFloat maxWidth = tableView.width - (kHPadding*2 + kMargin*2);
   UIFont* font = nil;
   if ([item isKindOfClass:[TTGrayTextTableField class]]) {
     font = [UIFont systemFontOfSize:14];
+  } else if ([item isKindOfClass:[TTButtonTableField class]]) {
+    font = [UIFont systemFontOfSize:15];
   } else {
-    font = [UIFont boldSystemFontOfSize:15];
+    font = [UIFont boldSystemFontOfSize:17];
   }
 
   TTTitledTableField* field = item;
@@ -140,12 +108,36 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
+    _label = [[UILabel alloc] initWithFrame:CGRectZero];
+    _label.highlightedTextColor = [UIColor whiteColor];
+    [self.contentView addSubview:_label];
+	}
+	return self;
+}
+
+- (void)dealloc {
+  [_label release];
+	[super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
 - (void)layoutSubviews {
   [super layoutSubviews];
   
   _label.frame = CGRectInset(self.contentView.bounds, kHPadding, kVPadding);
+}
+
+-(void)didMoveToSuperview {
+  [super didMoveToSuperview];
+  if (self.superview && [(UITableView*)self.superview style] == UITableViewStylePlain) {
+    _label.backgroundColor = self.superview.backgroundColor;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,7 +148,6 @@ static CGFloat kDefaultIconSize = 50;
     [super setObject:object];
   
     _label.text = _field.text;
-
     _label.lineBreakMode = UILineBreakModeWordWrap;
     _label.numberOfLines = 0;
 
@@ -164,15 +155,90 @@ static CGFloat kDefaultIconSize = 50;
       _label.font = [UIFont systemFontOfSize:14];
       _label.textColor = [TTAppearance appearance].tableSubTextColor;
       _label.textAlignment = UITextAlignmentCenter;
+    } else if ([object isKindOfClass:[TTButtonTableField class]]) {
+      _label.font = [UIFont boldSystemFontOfSize:16];
+      _label.textColor = [TTAppearance appearance].linkTextColor;
+      _label.textAlignment = UITextAlignmentCenter;
+      self.accessoryType = UITableViewCellAccessoryNone;
+      self.selectionStyle = UITableViewCellSelectionStyleBlue;
+    } else if ([object isKindOfClass:[TTLinkTableField class]]) {
+      _label.font = [UIFont boldSystemFontOfSize:17];
+      _label.textColor = [TTAppearance appearance].linkTextColor;
+      _label.textAlignment = UITextAlignmentLeft;
+    } else if ([object isKindOfClass:[TTSummaryTableField class]]) {
+      _label.font = [UIFont systemFontOfSize:17];
+      _label.textColor = [TTAppearance appearance].tableSubTextColor;
+      _label.textAlignment = UITextAlignmentCenter;
     } else {
-      _label.font = [UIFont boldSystemFontOfSize:15];
+      _label.font = [UIFont boldSystemFontOfSize:17];
       _label.textColor = [UIColor blackColor];
       _label.textAlignment = UITextAlignmentLeft;
     }
-
-    self.accessoryType = UITableViewCellAccessoryNone;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
   }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTStyledTextTableFieldCell
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
+  TTStyledTextTableField* field = item;
+  field.styledText.font = [UIFont systemFontOfSize:14];
+  
+  CGFloat padding = kHPadding*2;
+  if (tableView.style == UITableViewStyleGrouped) {
+    padding += kGroupMargin*2;
+  }
+  if (field.url) {
+    padding += kDisclosureIndicatorWidth;
+  }
+  
+  field.styledText.width = tableView.width - padding;
+  
+  return field.styledText.height + (kVPadding*2);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
+    _label = [[TTStyledLabel alloc] initWithFrame:CGRectZero];
+    _label.contentInset = UIEdgeInsetsMake(kVPadding, kHPadding, kVPadding, kHPadding);
+    [self.contentView addSubview:_label];
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_label release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIView
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  
+  _label.frame = self.contentView.bounds;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewCell
+
+- (void)setObject:(id)object {
+  if (_field != object) {
+    [super setObject:object];
+    
+    TTStyledTextTableField* field = object;
+    _label.text = field.styledText;
+  }  
 }
 
 @end
@@ -508,7 +574,7 @@ static CGFloat kDefaultIconSize = 50;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
-    _iconView = [[TTStyleView alloc] initWithFrame:CGRectZero];
+    _iconView = [[TTStyledView alloc] initWithFrame:CGRectZero];
     _iconView.borderRadius = 8;
     _iconView.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:_iconView];
@@ -674,10 +740,6 @@ static CGFloat kDefaultIconSize = 50;
   
     TTActivityTableField* field = object;
     _activityLabel.text = field.text;
-    
-    _label.hidden = YES;
-    self.accessoryType = UITableViewCellAccessoryNone;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
   }  
 }
 
@@ -1074,4 +1136,3 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 @end
-

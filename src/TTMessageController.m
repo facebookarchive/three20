@@ -481,7 +481,7 @@
 - (void)setFields:(NSArray*)fields {
   if (fields != _fields) {
     [_fields release];
-    fields = [fields retain];
+    _fields = [fields retain];
     
     if (_fieldViews) {
       [self createFieldViews];

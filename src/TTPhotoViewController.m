@@ -234,11 +234,12 @@ static const NSTimeInterval kSlideshowInterval = 2;
   
   _thumbsController.photoSource = _photoSource;
   [self.navigationController pushViewController:_thumbsController
-    withTransition:UIViewAnimationTransitionCurlDown];
+    animatedWithTransition:UIViewAnimationTransitionCurlDown];
 }
 
 - (void)hideThumbnails {
-  [self.navigationController ttPopViewControllerWithTransition:UIViewAnimationTransitionCurlUp];
+  [self.navigationController popViewControllerAnimatedWithTransition:
+                             UIViewAnimationTransitionCurlUp];
 }
 
 - (void)slideshowTimer {

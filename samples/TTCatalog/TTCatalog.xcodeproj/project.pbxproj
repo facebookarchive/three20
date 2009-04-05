@@ -15,6 +15,7 @@
 		2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* RootViewController.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		BE3188A10F822E2C00E3067D /* smiley.png in Resources */ = {isa = PBXBuildFile; fileRef = BE3188A00F822E2C00E3067D /* smiley.png */; };
 		BE5F25920EBA5F0400FD59A6 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */; };
 		BE69B7590F62874900C02928 /* TableTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE69B7580F62874900C02928 /* TableTestController.m */; };
 		BE6E46EC0F4578BA001CE9B4 /* TabBarTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */; };
@@ -34,6 +35,8 @@
 		BEE348AC0F490F43008C826E /* MockDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE348AB0F490F43008C826E /* MockDataSource.m */; };
 		BEE38E810EB288BA00189902 /* ActivityTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE38E800EB288BA00189902 /* ActivityTestController.m */; };
 		BEE7FD150F3581C1002788A5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE7FD130F358198002788A5 /* libThree20.a */; };
+		BEF199220F818E720010D36E /* StyledTextTableTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF1991F0F818E720010D36E /* StyledTextTableTestController.m */; };
+		BEF199230F818E720010D36E /* StyledTextTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF199210F818E720010D36E /* StyledTextTestController.m */; };
 		BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,7 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE3188A00F822E2C00E3067D /* smiley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smiley.png; sourceTree = "<group>"; };
 		BE5F25900EBA5F0400FD59A6 /* PhotoTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest2Controller.h; sourceTree = "<group>"; };
 		BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest2Controller.m; sourceTree = "<group>"; };
 		BE69B7570F62874900C02928 /* TableTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableTestController.h; sourceTree = "<group>"; };
@@ -100,6 +104,10 @@
 		BEE38E7F0EB288BA00189902 /* ActivityTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTestController.h; sourceTree = "<group>"; };
 		BEE38E800EB288BA00189902 /* ActivityTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTestController.m; sourceTree = "<group>"; };
 		BEE7FD0E0F358198002788A5 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
+		BEF1991E0F818E720010D36E /* StyledTextTableTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyledTextTableTestController.h; sourceTree = "<group>"; };
+		BEF1991F0F818E720010D36E /* StyledTextTableTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyledTextTableTestController.m; sourceTree = "<group>"; };
+		BEF199200F818E720010D36E /* StyledTextTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyledTextTestController.h; sourceTree = "<group>"; };
+		BEF199210F818E720010D36E /* StyledTextTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyledTextTestController.m; sourceTree = "<group>"; };
 		BEF6EC350F280CB300CF4096 /* ScrollViewTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewTestController.h; sourceTree = "<group>"; };
 		BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewTestController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,8 +144,6 @@
 				BE80E3700EAF0F3000743358 /* ImageTest2Controller.m */,
 				BE8C0F7B0F2018C600EB0E98 /* YouTubeTestController.h */,
 				BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */,
-				BE6E4AA30F4655A4001CE9B4 /* TableFieldTestController.h */,
-				BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */,
 				BEE341B20F480C76008C826E /* MessageTestController.h */,
 				BEE341B30F480C76008C826E /* MessageTestController.m */,
 				BEE346BA0F48F15C008C826E /* SearchTestController.h */,
@@ -150,6 +156,12 @@
 				BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */,
 				BE69B7570F62874900C02928 /* TableTestController.h */,
 				BE69B7580F62874900C02928 /* TableTestController.m */,
+				BE6E4AA30F4655A4001CE9B4 /* TableFieldTestController.h */,
+				BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */,
+				BEF199200F818E720010D36E /* StyledTextTestController.h */,
+				BEF199210F818E720010D36E /* StyledTextTestController.m */,
+				BEF1991E0F818E720010D36E /* StyledTextTableTestController.h */,
+				BEF1991F0F818E720010D36E /* StyledTextTableTestController.m */,
 				BE80E2480EAEFF6100743358 /* MockPhotoSource.h */,
 				BE80E2490EAEFF6100743358 /* MockPhotoSource.m */,
 				BEE348AA0F490F43008C826E /* MockDataSource.h */,
@@ -197,6 +209,7 @@
 				BE80E39C0EAF103200743358 /* DefaultAlbum.png */,
 				BE6E4DBF0F46A352001CE9B4 /* tableIcon.png */,
 				BECB1CC10F46AE9600AE5B52 /* person.jpg */,
+				BE3188A00F822E2C00E3067D /* smiley.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = Resources;
@@ -294,6 +307,7 @@
 				BE6E4DC00F46A352001CE9B4 /* tableIcon.png in Resources */,
 				BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */,
 				BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */,
+				BE3188A10F822E2C00E3067D /* smiley.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +335,8 @@
 				BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */,
 				BEE348AC0F490F43008C826E /* MockDataSource.m in Sources */,
 				BE69B7590F62874900C02928 /* TableTestController.m in Sources */,
+				BEF199220F818E720010D36E /* StyledTextTableTestController.m in Sources */,
+				BEF199230F818E720010D36E /* StyledTextTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +355,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joe Hewitt";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -348,7 +363,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = TTCatalog;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "394697A6-6692-459E-85EF-70C5F4CCA7C6";
 			};
 			name = Debug;
 		};
@@ -368,7 +382,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joe Hewitt";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -376,7 +390,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "394697A6-6692-459E-85EF-70C5F4CCA7C6";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;

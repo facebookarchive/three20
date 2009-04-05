@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE3EDE410F80C78500A732BE /* TTStyledText.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3EDE400F80C78500A732BE /* TTStyledText.h */; };
+		BE3EDE430F80C79600A732BE /* TTStyledText.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3EDE420F80C79600A732BE /* TTStyledText.m */; };
 		BE42FB130F3BBAA900A3B65A /* TTLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE42FB120F3BBAA900A3B65A /* TTLinkView.m */; };
 		BE42FB160F3BBAB400A3B65A /* TTLinkView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE42FB150F3BBAB400A3B65A /* TTLinkView.h */; };
 		BE42FB7A0F3BBF3500A3B65A /* TTTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BE42FB790F3BBF3400A3B65A /* TTTabBar.m */; };
@@ -59,11 +61,15 @@
 		BEE34EB00F495C4A008C826E /* TTMessageController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE34EAF0F495C4A008C826E /* TTMessageController.h */; };
 		BEE34F250F496615008C826E /* TTTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE34F240F496615008C826E /* TTTextEditor.m */; };
 		BEE34F270F496620008C826E /* TTTextEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE34F260F496620008C826E /* TTTextEditor.h */; };
+		BEF198E00F818A1C0010D36E /* TTStyledTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF198DF0F818A1C0010D36E /* TTStyledTextNode.m */; };
+		BEF198E20F818A240010D36E /* TTStyledTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF198E10F818A240010D36E /* TTStyledTextNode.h */; };
+		BEF19D6B0F81B8440010D36E /* TTStyledTextParser.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF19D6A0F81B8440010D36E /* TTStyledTextParser.h */; };
+		BEF19D6D0F81B8530010D36E /* TTStyledTextParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF19D6C0F81B8530010D36E /* TTStyledTextParser.m */; };
 		BEF31F700F352E64000DE5D2 /* TTActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F460F352E64000DE5D2 /* TTActivityLabel.m */; };
 		BEF31F710F352E64000DE5D2 /* TTErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F470F352E64000DE5D2 /* TTErrorView.m */; };
 		BEF31F720F352E64000DE5D2 /* TTGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F480F352E64000DE5D2 /* TTGlobal.m */; };
 		BEF31F730F352E64000DE5D2 /* TTImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F490F352E64000DE5D2 /* TTImageView.m */; };
-		BEF31F740F352E64000DE5D2 /* TTStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4A0F352E64000DE5D2 /* TTStyleView.m */; };
+		BEF31F740F352E64000DE5D2 /* TTStyledView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4A0F352E64000DE5D2 /* TTStyledView.m */; };
 		BEF31F750F352E64000DE5D2 /* TTPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4B0F352E64000DE5D2 /* TTPhotoView.m */; };
 		BEF31F760F352E64000DE5D2 /* TTPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4C0F352E64000DE5D2 /* TTPhotoViewController.m */; };
 		BEF31F770F352E64000DE5D2 /* TTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4D0F352E64000DE5D2 /* TTScrollView.m */; };
@@ -81,7 +87,7 @@
 		BEF31F840F352E64000DE5D2 /* TTErrorView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */; };
 		BEF31F850F352E64000DE5D2 /* TTGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5C0F352E64000DE5D2 /* TTGlobal.h */; };
 		BEF31F860F352E64000DE5D2 /* TTImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5D0F352E64000DE5D2 /* TTImageView.h */; };
-		BEF31F880F352E64000DE5D2 /* TTStyleView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5F0F352E64000DE5D2 /* TTStyleView.h */; };
+		BEF31F880F352E64000DE5D2 /* TTStyledView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5F0F352E64000DE5D2 /* TTStyledView.h */; };
 		BEF31F890F352E64000DE5D2 /* TTPhotoSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F600F352E64000DE5D2 /* TTPhotoSource.h */; };
 		BEF31F8A0F352E64000DE5D2 /* TTPhotoView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F610F352E64000DE5D2 /* TTPhotoView.h */; };
 		BEF31F8B0F352E64000DE5D2 /* TTPhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F620F352E64000DE5D2 /* TTPhotoViewController.h */; };
@@ -100,6 +106,8 @@
 		BEF320350F352E7A000DE5D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		BEF320360F352E7A000DE5D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		BEF320370F352E7A000DE5D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		BEF341950F8042440027E93C /* TTStyledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF341940F8042440027E93C /* TTStyledLabel.m */; };
+		BEF341970F8042520027E93C /* TTStyledLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF341960F8042520027E93C /* TTStyledLabel.h */; };
 		BEFBE3B10F76288A00328FD6 /* UIButtonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEFBE3B00F76288A00328FD6 /* UIButtonAdditions.h */; };
 		BEFBE3BF0F7628BA00328FD6 /* UIButtonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFBE3BE0F7628BA00328FD6 /* UIButtonAdditions.m */; };
 /* End PBXBuildFile section */
@@ -108,6 +116,8 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BE3EDE400F80C78500A732BE /* TTStyledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledText.h; path = Three20/TTStyledText.h; sourceTree = "<group>"; };
+		BE3EDE420F80C79600A732BE /* TTStyledText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledText.m; sourceTree = "<group>"; };
 		BE42FB120F3BBAA900A3B65A /* TTLinkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLinkView.m; sourceTree = "<group>"; };
 		BE42FB150F3BBAB400A3B65A /* TTLinkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLinkView.h; path = Three20/TTLinkView.h; sourceTree = "<group>"; };
 		BE42FB790F3BBF3400A3B65A /* TTTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTabBar.m; sourceTree = "<group>"; };
@@ -160,12 +170,16 @@
 		BEE34EAF0F495C4A008C826E /* TTMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMessageController.h; path = Three20/TTMessageController.h; sourceTree = "<group>"; };
 		BEE34F240F496615008C826E /* TTTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTextEditor.m; sourceTree = "<group>"; };
 		BEE34F260F496620008C826E /* TTTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextEditor.h; path = Three20/TTTextEditor.h; sourceTree = "<group>"; };
+		BEF198DF0F818A1C0010D36E /* TTStyledTextNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledTextNode.m; sourceTree = "<group>"; };
+		BEF198E10F818A240010D36E /* TTStyledTextNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextNode.h; path = Three20/TTStyledTextNode.h; sourceTree = "<group>"; };
+		BEF19D6A0F81B8440010D36E /* TTStyledTextParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextParser.h; path = Three20/TTStyledTextParser.h; sourceTree = "<group>"; };
+		BEF19D6C0F81B8530010D36E /* TTStyledTextParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledTextParser.m; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF31F460F352E64000DE5D2 /* TTActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTActivityLabel.m; sourceTree = "<group>"; };
 		BEF31F470F352E64000DE5D2 /* TTErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTErrorView.m; sourceTree = "<group>"; };
 		BEF31F480F352E64000DE5D2 /* TTGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobal.m; sourceTree = "<group>"; };
 		BEF31F490F352E64000DE5D2 /* TTImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageView.m; sourceTree = "<group>"; };
-		BEF31F4A0F352E64000DE5D2 /* TTStyleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyleView.m; sourceTree = "<group>"; };
+		BEF31F4A0F352E64000DE5D2 /* TTStyledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledView.m; sourceTree = "<group>"; };
 		BEF31F4B0F352E64000DE5D2 /* TTPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPhotoView.m; sourceTree = "<group>"; };
 		BEF31F4C0F352E64000DE5D2 /* TTPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPhotoViewController.m; sourceTree = "<group>"; };
 		BEF31F4D0F352E64000DE5D2 /* TTScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTScrollView.m; sourceTree = "<group>"; };
@@ -183,7 +197,7 @@
 		BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorView.h; path = Three20/TTErrorView.h; sourceTree = "<group>"; };
 		BEF31F5C0F352E64000DE5D2 /* TTGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobal.h; path = Three20/TTGlobal.h; sourceTree = "<group>"; };
 		BEF31F5D0F352E64000DE5D2 /* TTImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageView.h; path = Three20/TTImageView.h; sourceTree = "<group>"; };
-		BEF31F5F0F352E64000DE5D2 /* TTStyleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyleView.h; path = Three20/TTStyleView.h; sourceTree = "<group>"; };
+		BEF31F5F0F352E64000DE5D2 /* TTStyledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledView.h; path = Three20/TTStyledView.h; sourceTree = "<group>"; };
 		BEF31F600F352E64000DE5D2 /* TTPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoSource.h; path = Three20/TTPhotoSource.h; sourceTree = "<group>"; };
 		BEF31F610F352E64000DE5D2 /* TTPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoView.h; path = Three20/TTPhotoView.h; sourceTree = "<group>"; };
 		BEF31F620F352E64000DE5D2 /* TTPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoViewController.h; path = Three20/TTPhotoViewController.h; sourceTree = "<group>"; };
@@ -199,6 +213,8 @@
 		BEF31F6D0F352E64000DE5D2 /* TTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTViewController.h; path = Three20/TTViewController.h; sourceTree = "<group>"; };
 		BEF31F6E0F352E64000DE5D2 /* TTYouTubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTYouTubeView.h; path = Three20/TTYouTubeView.h; sourceTree = "<group>"; };
 		BEF31F6F0F352E64000DE5D2 /* Three20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20.h; path = Three20/Three20.h; sourceTree = "<group>"; };
+		BEF341940F8042440027E93C /* TTStyledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledLabel.m; sourceTree = "<group>"; };
+		BEF341960F8042520027E93C /* TTStyledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledLabel.h; path = Three20/TTStyledLabel.h; sourceTree = "<group>"; };
 		BEFBE3B00F76288A00328FD6 /* UIButtonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIButtonAdditions.h; path = Three20/UIButtonAdditions.h; sourceTree = "<group>"; };
 		BEFBE3BE0F7628BA00328FD6 /* UIButtonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonAdditions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,6 +248,7 @@
 				BE8AA1870F428A0F00FD8C43 /* Additions */,
 				BEF321B30F353B78000DE5D2 /* View Controllers */,
 				BEF31F450F352E64000DE5D2 /* General Views */,
+				BE3EDB620F809F8400A732BE /* Styled Text */,
 				BEE341A40F480B91008C826E /* Text Views */,
 				BE702EEF0F43F46E0028A119 /* Tables */,
 				BEF321B20F353B50000DE5D2 /* Photos */,
@@ -252,6 +269,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BE3EDB620F809F8400A732BE /* Styled Text */ = {
+			isa = PBXGroup;
+			children = (
+				BEF341960F8042520027E93C /* TTStyledLabel.h */,
+				BEF341940F8042440027E93C /* TTStyledLabel.m */,
+				BE3EDE400F80C78500A732BE /* TTStyledText.h */,
+				BE3EDE420F80C79600A732BE /* TTStyledText.m */,
+				BEF198E10F818A240010D36E /* TTStyledTextNode.h */,
+				BEF198DF0F818A1C0010D36E /* TTStyledTextNode.m */,
+				BEF19D6A0F81B8440010D36E /* TTStyledTextParser.h */,
+				BEF19D6C0F81B8530010D36E /* TTStyledTextParser.m */,
+			);
+			name = "Styled Text";
+			sourceTree = "<group>";
+		};
 		BE702EEF0F43F46E0028A119 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,10 +291,10 @@
 				BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */,
 				BE702EFA0F43F9DC0028A119 /* TTTableField.h */,
 				BE702EF80F43F9D20028A119 /* TTTableField.m */,
-				BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */,
-				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
 				BE702ED10F43F3390028A119 /* TTTableFieldCell.h */,
 				BE702ECF0F43F32E0028A119 /* TTTableFieldCell.m */,
+				BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */,
+				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
 				BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */,
 				BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */,
 			);
@@ -322,8 +354,8 @@
 				BEF31F580F352E64000DE5D2 /* TTYouTubeView.m */,
 				BE42FB150F3BBAB400A3B65A /* TTLinkView.h */,
 				BE42FB120F3BBAA900A3B65A /* TTLinkView.m */,
-				BEF31F5F0F352E64000DE5D2 /* TTStyleView.h */,
-				BEF31F4A0F352E64000DE5D2 /* TTStyleView.m */,
+				BEF31F5F0F352E64000DE5D2 /* TTStyledView.h */,
+				BEF31F4A0F352E64000DE5D2 /* TTStyledView.m */,
 				BEF31F690F352E64000DE5D2 /* TTUnclippedView.h */,
 				BEF31F530F352E64000DE5D2 /* TTUnclippedView.m */,
 				BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */,
@@ -412,7 +444,7 @@
 				BEF31F830F352E64000DE5D2 /* TTActivityLabel.h in Headers */,
 				BEF31F840F352E64000DE5D2 /* TTErrorView.h in Headers */,
 				BEF31F860F352E64000DE5D2 /* TTImageView.h in Headers */,
-				BEF31F880F352E64000DE5D2 /* TTStyleView.h in Headers */,
+				BEF31F880F352E64000DE5D2 /* TTStyledView.h in Headers */,
 				BEF31F890F352E64000DE5D2 /* TTPhotoSource.h in Headers */,
 				BEF31F8A0F352E64000DE5D2 /* TTPhotoView.h in Headers */,
 				BEF31F8B0F352E64000DE5D2 /* TTPhotoViewController.h in Headers */,
@@ -455,6 +487,10 @@
 				BE7EB6550F50D339008A4B05 /* TTTableHeaderView.h in Headers */,
 				BED623920F50F34B003EF242 /* NSArrayAdditions.h in Headers */,
 				BEFBE3B10F76288A00328FD6 /* UIButtonAdditions.h in Headers */,
+				BEF341970F8042520027E93C /* TTStyledLabel.h in Headers */,
+				BE3EDE410F80C78500A732BE /* TTStyledText.h in Headers */,
+				BEF198E20F818A240010D36E /* TTStyledTextNode.h in Headers */,
+				BEF19D6B0F81B8440010D36E /* TTStyledTextParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +540,7 @@
 				BEF31F700F352E64000DE5D2 /* TTActivityLabel.m in Sources */,
 				BEF31F710F352E64000DE5D2 /* TTErrorView.m in Sources */,
 				BEF31F730F352E64000DE5D2 /* TTImageView.m in Sources */,
-				BEF31F740F352E64000DE5D2 /* TTStyleView.m in Sources */,
+				BEF31F740F352E64000DE5D2 /* TTStyledView.m in Sources */,
 				BEF31F750F352E64000DE5D2 /* TTPhotoView.m in Sources */,
 				BEF31F760F352E64000DE5D2 /* TTPhotoViewController.m in Sources */,
 				BEF31F770F352E64000DE5D2 /* TTScrollView.m in Sources */,
@@ -545,6 +581,10 @@
 				BE7EB6410F50D30C008A4B05 /* TTTableHeaderView.m in Sources */,
 				BED623940F50F350003EF242 /* NSArrayAdditions.m in Sources */,
 				BEFBE3BF0F7628BA00328FD6 /* UIButtonAdditions.m in Sources */,
+				BEF341950F8042440027E93C /* TTStyledLabel.m in Sources */,
+				BE3EDE430F80C79600A732BE /* TTStyledText.m in Sources */,
+				BEF198E00F818A1C0010D36E /* TTStyledTextNode.m in Sources */,
+				BEF19D6D0F81B8530010D36E /* TTStyledTextParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
