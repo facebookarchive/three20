@@ -3,12 +3,16 @@
 
 @implementation TTCatalogAppDelegate
 
-@synthesize window;
-@synthesize navigationController;
+@synthesize window, navigationController;
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+- (void)applicationDidFinishLaunching:(UIApplication*)application {
 	[window addSubview:[navigationController view]];
 	[window makeKeyAndVisible];
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application {  
+  [[TTStyleSheet globalStyleSheet] freeMemory];
+  [[TTURLCache sharedCache] removeAll:NO];
 }
 
 - (void)dealloc {

@@ -1,5 +1,5 @@
 #import "Three20/TTMessageController.h"
-#import "Three20/TTAppearance.h"
+#import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTTextEditor.h"
 #import "Three20/TTActivityLabel.h"
@@ -320,7 +320,7 @@
   
   _navigationBar = [[UINavigationBar alloc] initWithFrame:
     CGRectMake(0, 0, appFrame.size.width, TOOLBAR_HEIGHT)];
-  _navigationBar.tintColor = [TTAppearance appearance].navigationBarTintColor;
+  _navigationBar.tintColor = TTSTYLEVAR(navigationBarTintColor);
   [_navigationBar pushNavigationItem:self.navigationItem animated:NO];
   [self.view addSubview:_navigationBar];
 

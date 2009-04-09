@@ -1,7 +1,7 @@
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTStyledView.h"
-#import "Three20/TTAppearance.h"
+#import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTTableFieldCell.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -359,8 +359,8 @@ static const CGFloat kDesiredTableHeight = 150;
 - (UITableView*)tableView {
   if (!_tableView) {
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    _tableView.backgroundColor = [TTAppearance appearance].searchTableBackgroundColor;
-    _tableView.separatorColor = [TTAppearance appearance].searchTableSeparatorColor;
+    _tableView.backgroundColor = TTSTYLEVAR(searchTableBackgroundColor);
+    _tableView.separatorColor = TTSTYLEVAR(searchTableSeparatorColor);
     _tableView.rowHeight = _rowHeight;
     _tableView.dataSource = _dataSource;
     _tableView.delegate = self;
@@ -399,7 +399,7 @@ static const CGFloat kDesiredTableHeight = 150;
     
     if (!_shadowView) {
       _shadowView = [[TTStyledView alloc] initWithFrame:CGRectZero];
-      _shadowView.style = [TTAppearance appearance].searchTableShadowStyle;
+      _shadowView.style = TTSTYLE(searchTableShadow);
       _shadowView.backgroundColor = [UIColor clearColor];
       _shadowView.userInteractionEnabled = NO;
     }

@@ -1,5 +1,5 @@
 #import "Three20/TTPickerViewCell.h"
-#import "Three20/TTAppearance.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -53,9 +53,9 @@ static CGFloat kMaxWidth = 250;
 
 - (TTStyle*)style {
   if (self.selected) {
-    return [TTAppearance appearance].pickerCellSelectedStyle;
+    return TTSTYLESTATE(pickerCell:, UIControlStateSelected);
   } else {
-    return [TTAppearance appearance].pickerCellStyle;
+    return TTSTYLESTATE(pickerCell:, UIControlStateNormal);
   }
 }
 

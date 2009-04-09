@@ -1,5 +1,5 @@
 #import "Three20/TTTextEditor.h"
-#import "Three20/TTAppearance.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -169,7 +169,7 @@ static CGFloat kTextViewInset = 19;
     if (_textView.textColor == [UIColor whiteColor]) {
       _placeholderLabel.textColor = [UIColor colorWithWhite:0.8 alpha:1];
     } else {
-      _placeholderLabel.textColor = [TTAppearance appearance].placeholderTextColor;
+      _placeholderLabel.textColor = TTSTYLEVAR(placeholderTextColor);
     }
     _placeholderLabel.font = _textView.font;
     _placeholderLabel.textAlignment = _textView.textAlignment;
@@ -323,7 +323,7 @@ static CGFloat kTextViewInset = 19;
   
   if (_fixedText && !_fixedTextLabel) {
     _fixedTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _fixedTextLabel.textColor = [TTAppearance appearance].placeholderTextColor;
+    _fixedTextLabel.textColor = TTSTYLEVAR(placeholderTextColor);
     _fixedTextLabel.font = _textView.font;
     _fixedTextLabel.contentMode = UIViewContentModeBottom;
     [self addSubview:_fixedTextLabel];

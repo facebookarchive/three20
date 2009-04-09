@@ -5,7 +5,7 @@
 #import "Three20/TTTableFieldCell.h"
 #import "Three20/TTTableHeaderView.h"
 #import "Three20/TTNavigationCenter.h"
-#import "Three20/TTAppearance.h"
+#import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTURLRequestQueue.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ static const CGFloat kSectionHeaderHeight = 35;
 // UITableViewDelegate
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  if (tableView.style == UITableViewStylePlain && [TTAppearance appearance].tableHeaderTintColor) {
+  if (tableView.style == UITableViewStylePlain && TTSTYLEVAR(tableHeaderTintColor)) {
     if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
       NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
       if (title.length) {
