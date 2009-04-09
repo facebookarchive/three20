@@ -10,7 +10,7 @@
     self.opaque = YES;
     self.clipsToBounds = YES;
     
-    [self setStylesWithClassName:@"thumbView:"];
+    [self setStylesWithSelector:@"thumbView:"];
 	}
 	return self;
 }

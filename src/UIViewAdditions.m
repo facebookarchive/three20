@@ -190,12 +190,12 @@
 
 - (CGFloat)orientationWidth {
   return UIDeviceOrientationIsLandscape(TTDeviceOrientation())
-    ? self.height: self.width;
+    ? self.height : self.width;
 }
 
 - (CGFloat)orientationHeight {
   return UIDeviceOrientationIsLandscape(TTDeviceOrientation())
-    ? self.width: self.height;
+    ? self.width : self.height;
 }
 
 - (UIScrollView*)findFirstScrollView {

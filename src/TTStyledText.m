@@ -105,7 +105,7 @@
           style = linkStyle;
         }
         TTStyledSpanNode* span = (TTStyledSpanNode*)node;
-        TTStyle* spanStyle = [[TTStyleSheet globalStyleSheet] styleWithClassName:span.className];
+        TTStyle* spanStyle = [[TTStyleSheet globalStyleSheet] styleWithSelector:span.className];
         if (spanStyle) {
           style = spanStyle;
         }

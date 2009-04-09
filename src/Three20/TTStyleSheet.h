@@ -9,8 +9,8 @@
 + (TTStyleSheet*)globalStyleSheet;
 + (void)setGlobalStyleSheet:(TTStyleSheet*)styleSheet;
 
-- (TTStyle*)styleWithClassName:(NSString*)className;
-- (TTStyle*)styleWithClassName:(NSString*)className forState:(UIControlState)state;
+- (TTStyle*)styleWithSelector:(NSString*)selector;
+- (TTStyle*)styleWithSelector:(NSString*)selector forState:(UIControlState)state;
 
 - (void)freeMemory;
 

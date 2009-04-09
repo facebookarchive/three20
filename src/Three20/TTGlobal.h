@@ -67,10 +67,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Style helpers
 
-#define TTSTYLE(_CLASSNAME) [[TTStyleSheet globalStyleSheet] styleWithClassName:@#_CLASSNAME]
+#define TTSTYLE(_SELECTOR) [[TTStyleSheet globalStyleSheet] styleWithSelector:@#_SELECTOR]
 
-#define TTSTYLESTATE(_CLASSNAME, _STATE) [[TTStyleSheet globalStyleSheet] \
-                                           styleWithClassName:@#_CLASSNAME forState:_STATE]
+#define TTSTYLESTATE(_SELECTOR, _STATE) [[TTStyleSheet globalStyleSheet] \
+                                           styleWithSelector:@#_SELECTOR forState:_STATE]
 
 #define TTSTYLEVAR(_VARNAME) [(id)[TTStyleSheet globalStyleSheet] _VARNAME]
 

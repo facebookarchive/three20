@@ -7,7 +7,7 @@
 
 @property(nonatomic,retain) UIFont* font;
 
-+ (TTButton*)buttonWithStyle:(NSString*)className title:(NSString*)title;
++ (TTButton*)buttonWithStyle:(NSString*)selector title:(NSString*)title;
 
 - (NSString*)titleForState:(UIControlState)state;
 - (void)setTitle:(NSString*)title forState:(UIControlState)state;
@@ -17,7 +17,14 @@
 
 - (TTStyle*)styleForState:(UIControlState)state;
 - (void)setStyle:(TTStyle*)style forState:(UIControlState)state;
-- (void)setStylesWithClassName:(NSString*)className;
+
+/**
+ * Sets the styles for all control states using a single style selector.
+ *
+ * The method for the selector must accept a single argument for the control state.  It will
+ * be called to return a style for each of the different control states.
+ */
+- (void)setStylesWithSelector:(NSString*)selector;
 
 - (void)suspendLoadingImages:(BOOL)suspended;
 

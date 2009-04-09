@@ -496,7 +496,6 @@ static const NSTimeInterval kOvershoot = 2;
     CGFloat midY = edges.top + (height/2);
 
     return UIEdgeInsetsMake(midY - d/2, midX - d/2, midY + d/2, midX + d/2);
-    return UIEdgeInsetsMake(edges.top, edges.left, edges.top + d, edges.left + d);
   }
 }
 

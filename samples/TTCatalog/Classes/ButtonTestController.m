@@ -30,8 +30,8 @@
     [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(255, 255, 255)
                                color2:RGBCOLOR(216, 221, 231) next:
     [TTSolidBorderStyle styleWithColor:RGBCOLOR(161, 167, 178) width:1 next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, -1, 0) next:
-    [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(4, 8, 4-1, 8) next:
+    [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]
                  color:TTSTYLEVAR(linkTextColor)
                  shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
                  shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
@@ -43,8 +43,8 @@
       [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(225, 225, 225)
                                  color2:RGBCOLOR(196, 201, 221) next:
       [TTSolidBorderStyle styleWithColor:RGBCOLOR(161, 167, 178) width:1 next:
-      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, -1, 0) next:
-      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(4, 8, 4-1, 8) next:
+      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]
                    color:[UIColor whiteColor] shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
   } else {
