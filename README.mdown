@@ -8,7 +8,7 @@ Three20 is a collection of iPhone UI classes, like a photo viewer, and general u
 [![](http://farm4.static.flickr.com/3462/3378171111_ec1208541d_m.jpg)](http://farm4.static.flickr.com/3462/3378171111_666173111d_o.jpg)
 [![](http://farm4.static.flickr.com/3646/3378998444_d0534d337f_m.jpg)](http://farm4.static.flickr.com/3646/3378998444_8d3b1eeef8_o.jpg)
 [![](http://farm4.static.flickr.com/3552/3378940896_7b23cca98e_m.jpg)](http://farm4.static.flickr.com/3552/3378940896_8ccb5ea1c8_o.jpg)
-[![](http://farm4.static.flickr.com/3592/3378941824_2fab2317c7_m.jpg)](http://farm4.static.flickr.com/3592/3378941824_6b7928e391_o.jpg)
+[![](http://farm4.static.flickr.com/3382/3425636810_483f1b65a6_m.jpg)](http://farm4.static.flickr.com/3382/3425636810_b0a578bb22_o.jpg)
 
 Adding Three20 to your project
 ==============================
@@ -37,12 +37,16 @@ Three20 is compiled as a static library, and the easiest way to add it to your p
    "Create Folder References" is selected,  "Copy items" is unchecked, and "Reference Type" is 
    "Relative to Project" before clicking "Add".
 
-6. Finally, we need to tell your project where to find the Three20 headers.  Open your
+6. Now you need to add the Core Animation framework to your project.  Right click on the
+   "Frameworks" group in your project (or equivalent) and select Add > Existing Frameworks. 
+   Then locate QuartzCore.framework and add it to the project.
+
+7. Finally, we need to tell your project where to find the Three20 headers.  Open your
    "Project Settings" and go to the "Build" tab. Look for "Header Search Paths" and double-click
    it.  Add the relative path from your project's directory to the "three20/src" directory.  Then
    go to "Other Linker Flags" under the "Linker" section, and add "-ObjC" to the list of flags.
 
-7. You're ready to go.  Just #import "Three20/Three20.h" anywhere you want to use Three20 classes
+8. You're ready to go.  Just #import "Three20/Three20.h" anywhere you want to use Three20 classes
    in your project.
   
 What's in Three20?
