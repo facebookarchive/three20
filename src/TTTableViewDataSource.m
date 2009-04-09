@@ -209,6 +209,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
 
++ (TTListDataSource*)dataSourceWithObjectsArray:(NSMutableArray*)items {
+  return [[[self alloc] initWithItems:items] autorelease];
+}
+
 + (TTListDataSource*)dataSourceWithObjects:(id)object,... {
   NSMutableArray* items = [NSMutableArray array];
   va_list ap;
