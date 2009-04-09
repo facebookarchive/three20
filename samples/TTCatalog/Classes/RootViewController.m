@@ -2,17 +2,19 @@
 #import "PhotoTest1Controller.h"
 #import "PhotoTest2Controller.h"
 #import "ImageTest1Controller.h"
-#import "ImageTest2Controller.h"
+#import "TableImageTestController.h"
 #import "YouTubeTestController.h"
 #import "TableFieldTestController.h"
 #import "TableTestController.h"
 #import "SearchTestController.h"
 #import "MessageTestController.h"
-#import "TabBarTestController.h"
 #import "ActivityTestController.h"
 #import "ScrollViewTestController.h"
 #import "StyledTextTestController.h"
 #import "StyledTextTableTestController.h"
+#import "StyleTestController.h"
+#import "ButtonTestController.h"
+#import "TabBarTestController.h"
 
 @implementation RootViewController
 
@@ -39,20 +41,22 @@
   [nav addView:@"photoTest1" controller:[PhotoTest1Controller class]];
   [nav addView:@"photoTest2" controller:[PhotoTest2Controller class]];
   [nav addView:@"imageTest1" controller:[ImageTest1Controller class]];
-  [nav addView:@"imageTest2" controller:[ImageTest2Controller class]];
-  [nav addView:@"youTubeTest" controller:[YouTubeTestController class]];
-  [nav addView:@"tableFieldTest" controller:[TableFieldTestController class]];
   [nav addView:@"tableTest" controller:[TableTestController class]];
+  [nav addView:@"tableFieldTest" controller:[TableFieldTestController class]];
+  [nav addView:@"styledTextTableTest" controller:[StyledTextTableTestController class]];
   [nav addView:@"composerTest" controller:[MessageTestController class]];
   [nav addView:@"searchTest" controller:[SearchTestController class]];
-  [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
   [nav addView:@"activityTest" controller:[ActivityTestController class]];
-  [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
+  [nav addView:@"styleTest" controller:[StyleTestController class]];
   [nav addView:@"styledTextTest" controller:[StyledTextTestController class]];
-  [nav addView:@"styledTextTableTest" controller:[StyledTextTableTestController class]];
+  [nav addView:@"buttonTest" controller:[ButtonTestController class]];
+  [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
+  [nav addView:@"youTubeTest" controller:[YouTubeTestController class]];
+  [nav addView:@"imageTest2" controller:[TableImageTestController class]];
+  [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
   
 //  [self validateView];
-//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:2 inSection:2];
+//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:3];
 //  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -67,15 +71,23 @@
     [[[TTTableField alloc] initWithText:@"Photo Thumbnails"
       url:@"tt://photoTest2"] autorelease],
 
-    @"Text",
+    @"Text Fields",
     [[[TTTableField alloc] initWithText:@"Composer"
       url:@"tt://composerTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Search Bar"
       url:@"tt://searchTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Activity Labels"
-      url:@"tt://activityTest"] autorelease],
+
+    @"Styles",
+    [[[TTTableField alloc] initWithText:@"Styled Views"
+      url:@"tt://styleTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Styled Labels"
       url:@"tt://styledTextTest"] autorelease],
+
+    @"Controls",
+    [[[TTTableField alloc] initWithText:@"Buttons"
+      url:@"tt://buttonTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Tabs"
+      url:@"tt://tabBarTest"] autorelease],
 
     @"Tables",
     [[[TTTableField alloc] initWithText:@"Table States"
@@ -88,12 +100,12 @@
       url:@"tt://imageTest2"] autorelease],
 
     @"Views",
-    [[[TTTableField alloc] initWithText:@"Tab Bars"
-      url:@"tt://tabBarTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"YouTube Player"
-      url:@"tt://youTubeTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Web Image"
       url:@"tt://imageTest1"] autorelease],
+    [[[TTTableField alloc] initWithText:@"YouTube Player"
+      url:@"tt://youTubeTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Activity Views"
+      url:@"tt://activityTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Scroll View"
       url:@"tt://scrollViewTest"] autorelease],
     nil];

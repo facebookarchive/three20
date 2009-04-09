@@ -73,16 +73,7 @@
   return result;
 }
 
-- (void)drawInRect:(CGRect)rect radius:(CGFloat)radius {
-  [self drawInRect:rect radius:radius contentMode:UIViewContentModeScaleToFill];
-}
-
-- (void)drawInRect:(CGRect)rect radius:(CGFloat)radius contentMode:(UIViewContentMode)contentMode {
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  CGContextSaveGState(context);
-  [self addRoundedRectToPath:context rect:rect radius:radius];
-  CGContextClip(context);
-  
+- (void)drawInRect:(CGRect)rect contentMode:(UIViewContentMode)contentMode {
   if (self.size.width != rect.size.width || self.size.height != rect.size.height) {
     // XXXjoe Support all of the different content modes
     if (contentMode == UIViewContentModeLeft) {
@@ -94,11 +85,36 @@
       rect = CGRectMake(rect.origin.x + floor(rect.size.width/2 - self.size.width/2),
                         rect.origin.y + floor(rect.size.height/2 - self.size.height/2),
                         self.size.width, self.size.height);
+    } else if (contentMode == UIViewContentModeScaleAspectFill) {
+      CGSize imageSize = self.size;
+      if (imageSize.height < imageSize.width) {
+        imageSize.width = (imageSize.width/imageSize.height) * rect.size.height;
+        imageSize.height = rect.size.height;
+      } else {
+        imageSize.height = (imageSize.height/imageSize.width) * rect.size.width;
+        imageSize.width = rect.size.width;
+      }
+      rect = CGRectMake(rect.origin.x + floor(rect.size.width/2 - imageSize.width/2),
+                        rect.origin.y + floor(rect.size.height/2 - imageSize.height/2),
+                        imageSize.width, imageSize.height);
     }
   }
 
   [self drawInRect:rect];
-    
+}
+
+- (void)drawInRect:(CGRect)rect radius:(CGFloat)radius {
+  [self drawInRect:rect radius:radius contentMode:UIViewContentModeScaleToFill];
+}
+
+- (void)drawInRect:(CGRect)rect radius:(CGFloat)radius contentMode:(UIViewContentMode)contentMode {
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  CGContextSaveGState(context);
+  [self addRoundedRectToPath:context rect:rect radius:radius];
+  CGContextClip(context);
+  
+  [self drawInRect:rect contentMode:contentMode];
+  
   CGContextRestoreGState(context);
 }
 

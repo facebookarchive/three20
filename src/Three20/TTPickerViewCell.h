@@ -1,6 +1,6 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTStyledView.h"
 
-@interface TTPickerViewCell : UIView {
+@interface TTPickerViewCell : TTStyledView {
   id _object;
   UILabel* _labelView;
   BOOL _selected;

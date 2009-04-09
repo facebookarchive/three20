@@ -2,6 +2,7 @@
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTStyledView.h"
 #import "Three20/TTAppearance.h"
+#import "Three20/TTButton.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -9,7 +10,7 @@ static const CGFloat kMarginX = 5;
 static const CGFloat kMarginY = 7;
 static const CGFloat kPaddingX = 10;
 static const CGFloat kPaddingY = 10;
-static const CGFloat kSpacingX = 5;
+static const CGFloat kSpacingX = 4;
 static const CGFloat kButtonHeight = 30;
 
 static const CGFloat kIndexViewMargin = 4;
@@ -18,7 +19,7 @@ static const CGFloat kIndexViewMargin = 4;
 
 @implementation TTSearchBar
 
-@synthesize boxView = _boxView, tintColor = _tintColor,
+@synthesize boxView = _boxView, tintColor = _tintColor, textFieldStyle = _textFieldStyle,
             showsCancelButton = _showsCancelButton, showsSearchIcon = _showsSearchIcon;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,14 +90,10 @@ static const CGFloat kIndexViewMargin = 4;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _style = TTStyleReflection;
-    
     _boxView = [[TTStyledView alloc] initWithFrame:CGRectZero];
     _boxView.backgroundColor = [UIColor clearColor];
-    _boxView.style = TTStyleRoundInnerShadow;
-    _boxView.contentMode = UIViewContentModeRedraw;
     [self addSubview:_boxView];
-    
+        
     _searchField = [[TTSearchTextField alloc] initWithFrame:CGRectZero];
     _searchField.placeholder = TTLocalizedString(@"Search", @"");
     _searchField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -106,8 +103,9 @@ static const CGFloat kIndexViewMargin = 4;
       forControlEvents:UIControlEventEditingDidEnd];
     [self addSubview:_searchField];
 
-    self.contentMode = UIViewContentModeRedraw;
     self.tintColor = [TTAppearance appearance].searchBarTintColor;
+    self.style = [TTAppearance appearance].searchBarStyle;
+    self.textFieldStyle = [TTAppearance appearance].searchTextFieldStyle;
     self.font = [UIFont systemFontOfSize:14];
     self.showsSearchIcon = YES;
     self.showsCancelButton = NO;
@@ -118,6 +116,7 @@ static const CGFloat kIndexViewMargin = 4;
 - (void)dealloc {
   [_searchField release];
   [_boxView release];
+  [_textFieldStyle release];
   [_tintColor release];
   [_cancelButton release];
   [super dealloc];
@@ -137,16 +136,6 @@ static const CGFloat kIndexViewMargin = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
-- (void)drawRect:(CGRect)rect {
-  if (_style == TTStyleReflection) {
-    UIColor* fill[] = {_tintColor};
-    [[TTAppearance appearance] draw:TTStyleReflection rect:rect
-      fill:fill fillCount:1 stroke:nil radius:0];
-  } else {
-    [super drawRect:rect];
-  }
-}
-
 - (void)layoutSubviews {
   CGFloat indexViewWidth = [_searchField isEditing] ? 0 : self.indexViewWidth;
   CGFloat leftPadding = _showsSearchIcon ? 0 : kSpacingX;
@@ -158,17 +147,15 @@ static const CGFloat kIndexViewMargin = 4;
   }
 
   CGFloat boxHeight = self.height - kMarginY*2;
-  CGRect boxRect = CGRectMake(kMarginX, ceil(self.height/2 - boxHeight/2)+1,
-                              self.width - kMarginX*2, boxHeight);
-  boxRect.size.width -= indexViewWidth + buttonWidth;
-  _boxView.frame = boxRect;
+  _boxView.frame = CGRectMake(kMarginX, floor(self.height/2 - boxHeight/2)+1,
+                              self.width - (kMarginX*2 + indexViewWidth + buttonWidth), boxHeight);
     
   _searchField.frame = CGRectMake(kMarginX+kPaddingX+leftPadding, 1,
     self.width - (kMarginX*2+kPaddingX+leftPadding+buttonWidth+indexViewWidth), self.height);
   
   if (_showsCancelButton) {
     _cancelButton.frame = CGRectMake(_boxView.right + kSpacingX,
-                                     ceil(self.height/2 - kButtonHeight/2),
+                                     floor(self.height/2 - kButtonHeight/2)+1,
                                      _cancelButton.width, kButtonHeight);
   }
 }
@@ -226,8 +213,9 @@ static const CGFloat kIndexViewMargin = 4;
     _showsCancelButton = showsCancelButton;
     
     if (_showsCancelButton) {
-      _cancelButton = [[UIButton blackButton] retain];
-      [_cancelButton setTitle:TTLocalizedString(@"Cancel", @"") forState:UIControlStateNormal];
+      _cancelButton = [[TTButton buttonWithType:TTButtonTypeToolbarRound
+                                 title:TTLocalizedString(@"Cancel", @"")
+                                 color:RGBCOLOR(0, 0, 0)] retain];
       [_cancelButton addTarget:_searchField action:@selector(resignFirstResponder)
                      forControlEvents:UIControlEventTouchUpInside];
       [self addSubview:_cancelButton];
@@ -285,11 +273,19 @@ static const CGFloat kIndexViewMargin = 4;
 - (UITableView*)tableView {
   return _searchField.tableView;
 }
+
 - (void)setTintColor:(UIColor*)tintColor {
   if (tintColor != _tintColor) {
     [_tintColor release];
     _tintColor = [tintColor retain];
-    _boxView.fillColor = tintColor;
+  }
+}
+
+- (void)setTextFieldStyle:(TTStyle*)textFieldStyle {
+  if (textFieldStyle != _textFieldStyle) {
+    [_textFieldStyle release];
+    _textFieldStyle = [textFieldStyle retain];
+    _boxView.style = _textFieldStyle;
   }
 }
 

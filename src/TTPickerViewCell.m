@@ -40,22 +40,6 @@ static CGFloat kMaxWidth = 250;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
-- (void)drawRect:(CGRect)rect {
-  if (_selected) {
-    UIColor* fill[] = {RGBACOLOR(79, 144, 255, 1), RGBACOLOR(49, 90, 255, 1)};
-    UIColor* stroke = RGBACOLOR(53, 94, 255, 1);
-
-    [[TTAppearance appearance] draw:TTStyleFill rect:CGRectInset(rect, 1, 1)
-      fill:fill fillCount:2 stroke:stroke radius:TT_RADIUS_ROUNDED];
-  } else {
-    UIColor* fill[] = {RGBACOLOR(221, 231, 248, 1), RGBACOLOR(188, 206, 241, 1)};
-    UIColor* stroke = RGBACOLOR(121, 133, 217, 1);
-
-    [[TTAppearance appearance] draw:TTStyleFill rect:CGRectInset(rect, 1, 1)
-      fill:fill fillCount:2 stroke:stroke radius:TT_RADIUS_ROUNDED];
-  }
-}
-
 - (void)layoutSubviews {
   _labelView.frame = CGRectMake(kPaddingX, kPaddingY,
     self.frame.size.width-kPaddingX*2, self.frame.size.height-kPaddingY*2);
@@ -65,6 +49,14 @@ static CGFloat kMaxWidth = 250;
   CGSize labelSize = [_labelView.text sizeWithFont:_labelView.font];
   CGFloat width = labelSize.width + kPaddingX*2;
   return CGSizeMake(width > kMaxWidth ? kMaxWidth : width, labelSize.height + kPaddingY*2);
+}
+
+- (TTStyle*)style {
+  if (self.selected) {
+    return [TTAppearance appearance].pickerCellSelectedStyle;
+  } else {
+    return [TTAppearance appearance].pickerCellStyle;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

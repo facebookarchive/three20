@@ -1,19 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-typedef enum {
-  TTStyleNone,
-  TTStyleFill,
-  TTStyleFillInverted,
-  TTStyleReflection,
-  TTStyleInnerShadow,
-  TTStyleRoundInnerShadow,
-  TTStyleStrokeTop,
-  TTStyleStrokeRight,
-  TTStyleStrokeBottom,
-  TTStyleStrokeLeft
-} TTStyle;
-
-#define TT_RADIUS_ROUNDED NSIntegerMax
+@class TTStyle;
 
 /**
  * TTAppearance is a singleton which holds all of the standard visual styles used by various views.
@@ -22,6 +9,8 @@ typedef enum {
  * by standard Three20 components, you can just modify the properties of TTAppearance.
  */
 @interface TTAppearance : NSObject {
+  NSMutableArray* _styleSheets;
+  NSMutableDictionary* _styles;
   UIColor* _navigationBarTintColor;
   UIColor* _toolbarTintColor;
   UIColor* _searchBarTintColor;
@@ -37,9 +26,17 @@ typedef enum {
   UIColor* _tableHeaderTextColor;
   UIColor* _tableHeaderShadowColor;
   UIColor* _tableHeaderTintColor;
-  UIImage* _blackButtonImage;
-  UIImage* _textBoxDarkImage;
-  UIImage* _textBoxLightImage;
+  
+  TTStyle* _linkStyle;
+  TTStyle* _linkHighlightedStyle;
+  TTStyle* _searchTextFieldStyle;
+  TTStyle* _searchBarStyle;
+  TTStyle* _tableHeaderStyle;
+  TTStyle* _pickerCellStyle;
+  TTStyle* _pickerCellSelectedStyle;
+  TTStyle* _searchTableShadowStyle;
+  TTStyle* _blackBezelStyle;
+  TTStyle* _whiteBezelStyle;
 }
 
 + (TTAppearance*)appearance;
@@ -87,7 +84,7 @@ typedef enum {
 @property(nonatomic,retain) UIColor* tableSubTextColor;
 
 /**
- * Color used for titels (the left side of a titled field cell) in a table view.
+ * Color used for titles (the left side of a titled field cell) in a table view.
  */
 @property(nonatomic,retain) UIColor* tableTitleTextColor;
 
@@ -121,34 +118,21 @@ typedef enum {
  */
 @property(nonatomic,retain) UIColor* tableHeaderTintColor;
 
-/**
- * Image used for the background of black buttons.
- */
-@property(nonatomic,retain) UIImage* blackButtonImage;
+@property(nonatomic,retain) TTStyle* linkStyle;
+@property(nonatomic,retain) TTStyle* linkHighlightedStyle;
+@property(nonatomic,retain) TTStyle* searchTextFieldStyle;
+@property(nonatomic,retain) TTStyle* searchBarStyle;
+@property(nonatomic,retain) TTStyle* tableHeaderStyle;
+@property(nonatomic,retain) TTStyle* pickerCellStyle;
+@property(nonatomic,retain) TTStyle* pickerCellSelectedStyle;
+@property(nonatomic,retain) TTStyle* searchTableShadowStyle;
+@property(nonatomic,retain) TTStyle* blackBezelStyle;
+@property(nonatomic,retain) TTStyle* whiteBezelStyle;
 
-/**
- * Image used for the background of text boxes against a dark background
- */
-@property(nonatomic,retain) UIImage* textBoxDarkImage;
+- (void)addStyleSheet:(Class)styleSheet;
+- (void)removeStyleSheet:(Class)styleSheet;
 
-/**
- * Image used for the background of text boxes against a light background
- */
-@property(nonatomic,retain) UIImage* textBoxLightImage;
-
-- (void)draw:(TTStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
-        fillCount:(int)fillCount stroke:(UIColor*)strokeColor radius:(CGFloat)radius;
-
-- (void)draw:(TTStyle)background rect:(CGRect)rect fill:(UIColor**)fillColor
-        fillCount:(int)fillCount stroke:(UIColor*)strokeColor thickness:(CGFloat)thickness
-        radius:(CGFloat)radius;
-
-- (void)draw:(TTStyle)background rect:(CGRect)rect;
-
-- (void)drawLine:(CGPoint)from to:(CGPoint)to color:(UIColor*)color thickness:(CGFloat)thickness;
-
-- (void)fill:(CGRect)rect fillColors:(UIColor**)fillColors count:(int)count;
-
-- (void)stroke:(UIColor*)strokeColor thickness:(CGFloat)thickness;
+- (TTStyle*)styleWithClassName:(NSString*)className;
+- (TTStyle*)styleWithClassName:(NSString*)className forState:(UIControlState)state;
 
 @end

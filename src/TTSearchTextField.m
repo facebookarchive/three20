@@ -1,6 +1,7 @@
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTStyledView.h"
+#import "Three20/TTAppearance.h"
 #import "Three20/TTTableFieldCell.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -168,9 +169,9 @@ static const CGFloat kDesiredTableHeight = 150;
       _previousNavigationItem = [controller.navigationItem retain];
       _previousRightBarButtonItem = [controller.navigationItem.rightBarButtonItem retain];
       
-      UIBarButtonItem* doneButton = [[UIBarButtonItem alloc]
+      UIBarButtonItem* doneButton = [[[UIBarButtonItem alloc]
       initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-      target:self action:@selector(doneAction)];
+      target:self action:@selector(doneAction)] autorelease];
       [controller.navigationItem setRightBarButtonItem:doneButton animated:YES];
     } else {
       [_previousNavigationItem setRightBarButtonItem:_previousRightBarButtonItem animated:YES];
@@ -398,15 +399,14 @@ static const CGFloat kDesiredTableHeight = 150;
     
     if (!_shadowView) {
       _shadowView = [[TTStyledView alloc] initWithFrame:CGRectZero];
-      _shadowView.style = TTStyleInnerShadow;
+      _shadowView.style = [TTAppearance appearance].searchTableShadowStyle;
       _shadowView.backgroundColor = [UIColor clearColor];
-      _shadowView.contentMode = UIViewContentModeRedraw;
       _shadowView.userInteractionEnabled = NO;
     }
 
     if (!_tableView.superview) {
       _tableView.frame = [self rectForSearchResults:YES];
-      _shadowView.frame = CGRectMake(_tableView.left, _tableView.top,
+      _shadowView.frame = CGRectMake(_tableView.left, _tableView.top-1,
         _tableView.width, kShadowHeight);
       
       UIView* superview = self.superviewForSearchResults;

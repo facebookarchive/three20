@@ -1,6 +1,6 @@
 #import "Three20/TTTableFieldCell.h"
 #import "Three20/TTTableField.h"
-#import "Three20/TTStyledView.h"
+#import "Three20/TTImageView.h"
 #import "Three20/TTErrorView.h"
 #import "Three20/TTStyledTextNode.h"
 #import "Three20/TTStyledText.h"
@@ -447,7 +447,13 @@ static CGFloat kDefaultIconSize = 50;
       constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap]
     : CGSizeMake(0, 0);
   
-  return kVPadding*2 + textSize.height + subtitleSize.height;
+  CGFloat height = kVPadding*2 + textSize.height + subtitleSize.height;
+  CGFloat minHeight = TOOLBAR_HEIGHT*1.5;
+  if (height < minHeight) {
+    return minHeight;
+  } else {
+    return height;
+  }
 }
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
@@ -574,9 +580,7 @@ static CGFloat kDefaultIconSize = 50;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
-    _iconView = [[TTStyledView alloc] initWithFrame:CGRectZero];
-    _iconView.borderRadius = 8;
-    _iconView.backgroundColor = [UIColor clearColor];
+    _iconView = [[TTImageView alloc] initWithFrame:CGRectZero];
     [self.contentView addSubview:_iconView];
 	}
 	return self;
@@ -600,7 +604,7 @@ static CGFloat kDefaultIconSize = 50;
   if (!image) {
     image = field.defaultImage;
   }
-  if (_iconView.backgroundImageURL) {
+  if (_iconView.url) {
     CGFloat iconWidth = image
       ? image.size.width
       : (field.image ? kDefaultIconSize : 0);
@@ -629,8 +633,8 @@ static CGFloat kDefaultIconSize = 50;
     [super setObject:object];
   
     TTImageTableField* field = object;
-    _iconView.backgroundImageDefault = field.defaultImage;
-    _iconView.backgroundImageURL = field.image;
+    _iconView.defaultImage = field.defaultImage;
+    _iconView.url = field.image;
   }  
 }
 @end
@@ -655,7 +659,7 @@ static CGFloat kDefaultIconSize = 50;
     ? image.size.height
     : (field.image ? kDefaultIconSize : 0);
   
-  if (_iconView.backgroundImageURL) {
+  if (_iconView.url) {
     CGFloat innerWidth = self.contentView.width - (kHPadding*2 + iconWidth + kKeySpacing);
     CGFloat innerHeight = self.contentView.height - kVPadding*2;
     _label.frame = CGRectMake(kHPadding, kVPadding, innerWidth, innerHeight);

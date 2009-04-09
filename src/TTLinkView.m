@@ -1,19 +1,19 @@
 #include "Three20/TTLinkView.h"
 #include "Three20/TTNavigationCenter.h"
+#include "Three20/TTShape.h"
 #include "Three20/TTStyledView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTLinkView
 
-@synthesize delegate = _delegate, url = _url, borderRadius = _borderRadius;
+@synthesize delegate = _delegate, url = _url;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _delegate = nil;
     _url = nil;
     _screenView = nil;
-    _borderRadius = 4;
     
     self.clipsToBounds = YES;
     [self addTarget:self action:@selector(tapped) forControlEvents:UIControlEventTouchUpInside];
@@ -60,16 +60,15 @@
   [super setHighlighted:highlighted];
   if (!_screenView) {
     _screenView = [[TTStyledView alloc] initWithFrame:self.bounds];
-    _screenView.style = TTStyleFill;
-    _screenView.fillColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    _screenView.opaque = NO;
-    _screenView.contentMode = UIViewContentModeRedraw;
+    _screenView.style =
+      [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:
+      [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0 alpha:0.4] next:nil]];
+    _screenView.backgroundColor = [UIColor clearColor];
     _screenView.userInteractionEnabled = NO;
     [self addSubview:_screenView];
   }
   
   if (highlighted) {
-    _screenView.borderRadius = _borderRadius;
     _screenView.frame = self.bounds;
     _screenView.hidden = NO;
   } else {
@@ -79,7 +78,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setURL:(id)url {
+- (void)setUrl:(id)url {
   [_url release];
   _url = [url retain];
   

@@ -9,6 +9,11 @@
 - (UIImage*)transformWidth:(CGFloat)width height:(CGFloat)height rotate:(BOOL)rotate;
 
 /**
+ * Draws the image using content mode rules.
+ */
+- (void)drawInRect:(CGRect)rect contentMode:(UIViewContentMode)contentMode;
+
+/**
  * Draws the image as a rounded rectangle.
  */
 - (void)drawInRect:(CGRect)rect radius:(CGFloat)radius;

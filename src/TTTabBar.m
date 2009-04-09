@@ -90,6 +90,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
   [_overflowLeft release];
   [_overflowRight release];
   [_scrollView release];
+  [_tabImage release];
   [_textColor release];
   [_tintColor release];
   [super dealloc];

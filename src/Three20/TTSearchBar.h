@@ -1,13 +1,14 @@
 #import "Three20/TTStyledView.h"
 
 @protocol TTTableViewDataSource, TTSearchTextFieldDelegate;
-@class TTSearchTextField;
+@class TTSearchTextField, TTButton;
 
 @interface TTSearchBar : TTStyledView {
   TTSearchTextField* _searchField;
   TTStyledView* _boxView;
   UIColor* _tintColor;
-  UIButton* _cancelButton;
+  TTStyle* _textFieldStyle;
+  TTButton* _cancelButton;
   BOOL _showsCancelButton;
   BOOL _showsSearchIcon;
 }
@@ -21,6 +22,7 @@
 @property(nonatomic,retain) UIColor* tintColor;
 @property(nonatomic,retain) UIColor* textColor;
 @property(nonatomic,retain) UIFont* font;
+@property(nonatomic,retain) TTStyle* textFieldStyle;
 @property(nonatomic) UIReturnKeyType returnKeyType;
 @property(nonatomic) CGFloat rowHeight;
 @property(nonatomic,readonly) BOOL editing;

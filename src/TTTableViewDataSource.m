@@ -140,7 +140,9 @@
     }
   }
   
-  return nil;
+  // This will display an empty white table cell - probably not what you want, but it
+  // is better than crashing, which is what happens if you return nil here
+  return [TTTableViewCell class];
 }
 
 - (NSString*)tableView:(UITableView*)tableView labelForObject:(id)object {

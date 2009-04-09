@@ -1,192 +1,14 @@
 #import "Three20/TTTableViewController.h"
 #import "Three20/TTTableViewDataSource.h"
-#import "Three20/TTAppearance.h"
-#import "Three20/TTNavigationCenter.h"
-#import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTTableField.h"
 #import "Three20/TTTableFieldCell.h"
-#import "Three20/TTTableHeaderView.h"
 #import "Three20/TTActivityLabel.h"
+#import "Three20/TTTableViewDelegate.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
 
-static const CGFloat kEmptyHeaderHeight = 1;
-static const CGFloat kSectionHeaderHeight = 35;
 static const CGFloat kRefreshingViewHeight = 22;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTTableViewDelegate : NSObject <UITableViewDelegate> {
-  TTTableViewController* _controller;
-}
-
-- (id)initWithController:(TTTableViewController*)controller;
-
-@end
-
-@implementation TTTableViewDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithController:(TTTableViewController*)controller {
-  if (self = [super init]) {
-    _controller = controller;
-  }
-  return self;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  if (tableView.style == UITableViewStylePlain && [TTAppearance appearance].tableHeaderTintColor) {
-    if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
-      NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-      if (title.length) {
-        return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
-      }
-    }
-  }
-  return nil;
-}
-
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
-
-  id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
-  if ([object isKindOfClass:[TTTableField class]]) {
-    TTTableField* field = object;
-    if (field.url) {
-      [[TTNavigationCenter defaultCenter] displayURL:field.url];
-    }
-
-    if ([field isKindOfClass:[TTButtonTableField class]]) {
-      [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    } else if ([object isKindOfClass:[TTMoreButtonTableField class]]) {
-      TTMoreButtonTableField* moreLink = (TTMoreButtonTableField*)object;
-      moreLink.isLoading = YES;
-      TTMoreButtonTableFieldCell* cell
-        = (TTMoreButtonTableFieldCell*)[tableView cellForRowAtIndexPath:indexPath];
-      cell.animating = YES;
-      [tableView deselectRowAtIndexPath:indexPath animated:YES];
-      
-      [dataSource load:TTURLRequestCachePolicyDefault nextPage:YES];
-    }
-  }
-
-  [_controller didSelectObject:object atIndexPath:indexPath];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIScrollViewDelegate
-
-- (BOOL)scrollViewWillScrollToTop:(UIScrollView *)scrollView {
-  [TTURLRequestQueue mainQueue].suspended = YES;
-  return YES;
-}
-
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
-  [TTURLRequestQueue mainQueue].suspended = NO;
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-  [TTURLRequestQueue mainQueue].suspended = YES;
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-  if (!decelerate) {
-    [TTURLRequestQueue mainQueue].suspended = NO;
-  }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  [TTURLRequestQueue mainQueue].suspended = NO;
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTTableViewVarHeightDelegate : TTTableViewDelegate
-@end
-
-@implementation TTTableViewVarHeightDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-  id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
-
-  id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
-  Class cls = [dataSource tableView:tableView cellClassForObject:object];
-  return [cls tableView:tableView rowHeightForItem:object];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTTableViewPlainDelegate : TTTableViewDelegate
-@end
-
-@implementation TTTableViewPlainDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-  if (!title.length)
-    return nil;
-
-  return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTTableViewPlainVarHeightDelegate : TTTableViewVarHeightDelegate
-@end
-
-@implementation TTTableViewPlainVarHeightDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-  if (!title.length)
-    return nil;
-
-  return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTTableViewGroupedVarHeightDelegate : TTTableViewVarHeightDelegate
-@end
-
-@implementation TTTableViewGroupedVarHeightDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-  NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-  if (!title.length) {
-    return kEmptyHeaderHeight;
-  } else {
-    return kSectionHeaderHeight;
-  }
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -201,11 +23,8 @@ static const CGFloat kRefreshingViewHeight = 22;
 - (void)updateTableDelegate {
   if (!_tableView.delegate || [_tableView.delegate isKindOfClass:[TTTableViewDelegate class]]) {
     [_tableDelegate release];
-    if (_variableHeightRows || _statusDataSource) {
-      _tableDelegate = [[TTTableViewVarHeightDelegate alloc] initWithController:self];
-    } else {
-      _tableDelegate = [[TTTableViewDelegate alloc] initWithController:self];
-    }
+    _tableDelegate = [[self createDelegate] retain];
+    
     _tableView.delegate = nil;
     _tableView.delegate = _tableDelegate;
   }
@@ -426,6 +245,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
   if (dataSource != _dataSource) {
@@ -440,7 +260,27 @@ static const CGFloat kRefreshingViewHeight = 22;
   return nil;
 }
 
+- (id<UITableViewDelegate>)createDelegate {
+  if (_variableHeightRows || _statusDataSource) {
+    return [[[TTTableViewVarHeightDelegate alloc] initWithController:self] autorelease];
+  } else {
+    return [[[TTTableViewDelegate alloc] initWithController:self] autorelease];
+  }
+}
+
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+}
+
+- (void)didBeginDragging {
+}
+
+- (void)didEndDragging {
+}
+
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+}
+
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
 }
 
 @end

@@ -1,4 +1,4 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTStyle.h"
 
 @class TTStyledTextNode, TTStyledTextFrame, TTStyledTextNode;
 
@@ -81,9 +81,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTStyledTextFrame : NSObject {
+@interface TTStyledTextFrame : NSObject <TTStyleDelegate> {
   TTStyledTextNode* _node;
   TTStyledTextFrame* _nextFrame;
+  TTStyle* _style;
   NSString* _text;
   UIFont* _font;
   CGFloat _width;
@@ -100,6 +101,11 @@
  * The next in the linked list of frames.
  */
 @property(nonatomic, retain) TTStyledTextFrame* nextFrame;
+
+/**
+ * The style used to render the frame;
+ */
+@property(nonatomic, retain) TTStyle* style;
 
 /**
  * The text that is displayed by this frame.
@@ -127,5 +133,10 @@
 @property(nonatomic) BOOL lineBreak;
 
 - (id)initWithText:(NSString*)text node:(TTStyledTextNode*)node;
+
+/**
+ * Draws the frame.
+ */
+- (void)drawInRect:(CGRect)rect;
 
 @end

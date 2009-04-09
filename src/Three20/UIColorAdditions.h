@@ -3,15 +3,21 @@
 
 @interface UIColor (TTCategory)
 
-- (UIColor*)transformHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd;
++ (UIColor*)colorWithHue:(CGFloat)h saturation:(CGFloat)s value:(CGFloat)v alpha:(CGFloat)a;
+
+- (UIColor*)multiplyHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd;
+
+- (UIColor*)addHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd;
+
+- (UIColor*)copyWithAlpha:(CGFloat)newAlpha;
 
 /**
- * Uses transformHue to create a lighter version of the color.
+ * Uses multiplyHue to create a lighter version of the color.
  */
 - (UIColor*)highlight;
 
 /**
- * Uses transformHue to create a darker version of the color.
+ * Uses multiplyHue to create a darker version of the color.
  */
 - (UIColor*)shadow;
 

@@ -84,7 +84,13 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
 
 @implementation UIColor (TTCategory)
 
-- (UIColor*)transformHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd {
++ (UIColor*)colorWithHue:(CGFloat)h saturation:(CGFloat)s value:(CGFloat)v alpha:(CGFloat)a {
+  CGFloat r, g, b;
+  HSVtoRGB(&r, &g, &b, h, s, v);
+  return [UIColor colorWithRed:r green:g blue:b alpha:a];
+}
+
+- (UIColor*)multiplyHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd {
   const CGFloat* rgba = CGColorGetComponents(self.CGColor);
   CGFloat r = rgba[0];
   CGFloat g = rgba[1];
@@ -103,12 +109,40 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
   return [UIColor colorWithRed:r green:g blue:b alpha:a];
 }
 
+- (UIColor*)copyWithAlpha:(CGFloat)newAlpha {
+  const CGFloat* rgba = CGColorGetComponents(self.CGColor);
+  CGFloat r = rgba[0];
+  CGFloat g = rgba[1];
+  CGFloat b = rgba[2];
+
+  return [UIColor colorWithRed:r green:g blue:b alpha:newAlpha];
+}
+
+- (UIColor*)addHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd {
+  const CGFloat* rgba = CGColorGetComponents(self.CGColor);
+  CGFloat r = rgba[0];
+  CGFloat g = rgba[1];
+  CGFloat b = rgba[2];
+  CGFloat a = rgba[3];
+
+  CGFloat h, s, v;
+  RGBtoHSV(r, g, b, &h, &s, &v);
+
+  h += hd;
+  v += vd;
+  s += sd;
+  
+  HSVtoRGB(&r, &g, &b, h, s, v);
+  
+  return [UIColor colorWithRed:r green:g blue:b alpha:a];
+}
+
 - (UIColor*)highlight {
-  return [self transformHue:1 saturation:0.4 value:1.2];
+  return [self multiplyHue:1 saturation:0.4 value:1.2];
 }
 
 - (UIColor*)shadow {
-  return [self transformHue:1 saturation:0.6 value:0.8];
+  return [self multiplyHue:1 saturation:0.6 value:0.6];
 }
 
 - (CGFloat)hue {

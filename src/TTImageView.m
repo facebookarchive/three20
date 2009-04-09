@@ -1,21 +1,59 @@
 #import "Three20/TTImageView.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLResponse.h"
+#import "Three20/TTShape.h"
+#import "QuartzCore/CALayer.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTImageLayer : CALayer {
+  TTImageView* _override;
+}
+
+@property(nonatomic,assign) TTImageView* override;
+
+@end
+
+@implementation TTImageLayer
+
+@synthesize override = _override;
+
+- (id)init {
+  if (self = [super init]) {
+    _override = NO;
+  }
+  return self;
+}
+
+- (void)display {
+  if (_override) {
+    self.contents = (id)_override.image.CGImage;
+  } else {
+    return [super display];
+  }
+}
+
+@end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTImageView
 
-@synthesize delegate = _delegate, url = _url, defaultImage = _defaultImage,
+@synthesize delegate = _delegate, url = _url, image = _image, defaultImage = _defaultImage,
   autoresizesToImage = _autoresizesToImage;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _delegate = nil;
     _request = nil;
     _url = nil;
+    _image = nil;
     _defaultImage = nil;
     _autoresizesToImage = NO;
+    self.opaque = YES;
   }
   return self;
 }
@@ -25,36 +63,32 @@
   [_request cancel];
   [_request release];
   [_url release];
+  [_image release];
   [_defaultImage release];
   [super dealloc];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// UIImageView
+// UIView
 
-- (void)setImage:(UIImage*)image {
-  [super setImage:image];
++ (Class)layerClass {
+  return [TTImageLayer class];
+}
 
-  CGRect frame = self.frame;
-  if (_autoresizesToImage) {
-    self.frame = CGRectMake(frame.origin.x, frame.origin.y, image.size.width, image.size.height);
-  } else {
-    if (!frame.size.width && !frame.size.height) {
-      self.frame = CGRectMake(frame.origin.x, frame.origin.y, image.size.width, image.size.height);
-    } else if (frame.size.width && !frame.size.height) {
-      self.frame = CGRectMake(frame.origin.x, frame.origin.y,
-        frame.size.width, floor((image.size.height/image.size.width) * frame.size.width));
-    } else if (frame.size.height && !frame.size.width) {
-      self.frame = CGRectMake(frame.origin.x, frame.origin.y,
-        floor((image.size.width/image.size.height) * frame.size.height), frame.size.height);
-    }
+- (void)drawRect:(CGRect)rect {
+  if (self.style) {
+    [super drawRect:rect];
   }
+}
 
-  if (!_defaultImage || image != _defaultImage) {
-    [self imageViewDidLoadImage:image];
-    if ([_delegate respondsToSelector:@selector(imageView:didLoadImage:)]) {
-      [_delegate imageView:self didLoadImage:image];
-    }
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyledView
+
+- (void)drawContent:(CGRect)rect {
+  if (_image) {
+    [_image drawInRect:rect contentMode:self.contentMode];
+  } else {
+    [_defaultImage drawInRect:rect contentMode:self.contentMode];
   }
 }
 
@@ -62,6 +96,7 @@
 // TTURLRequestDelegate
 
 - (void)requestDidStartLoad:(TTURLRequest*)request {
+  [_request release];
   _request = [request retain];
   
   [self imageViewDidStartLoad];
@@ -98,6 +133,20 @@
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyleDelegate
+
+- (void)drawContent:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
+  if ([style isKindOfClass:[TTContentStyle class]]) {
+    [shape addToPath:rect];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    CGContextClip(context);
+    [self drawContent:rect];
+    CGContextRestoreGState(context);
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
@@ -115,6 +164,46 @@
     }
   } else {
     [self reload];
+  }
+}
+
+- (void)setImage:(UIImage*)image {
+  if (image != _image) {
+    [_image release];
+    _image = [image retain];
+
+    TTImageLayer* layer = (TTImageLayer*)self.layer;
+    if (self.style) {
+      layer.override = nil;
+      [self setNeedsDisplay];
+    } else {
+      // This is dramatically faster than calling drawRect.  Since we don't have any styles
+      // to draw in this case, we can take this shortcut.
+      layer.override = self;
+      [layer setNeedsDisplay];
+    }
+    
+    CGRect frame = self.frame;
+    if (_autoresizesToImage) {
+      self.frame = CGRectMake(frame.origin.x, frame.origin.y, image.size.width, image.size.height);
+    } else {
+      if (!frame.size.width && !frame.size.height) {
+        self.frame = CGRectMake(frame.origin.x, frame.origin.y, image.size.width, image.size.height);
+      } else if (frame.size.width && !frame.size.height) {
+        self.frame = CGRectMake(frame.origin.x, frame.origin.y,
+          frame.size.width, floor((image.size.height/image.size.width) * frame.size.width));
+      } else if (frame.size.height && !frame.size.width) {
+        self.frame = CGRectMake(frame.origin.x, frame.origin.y,
+          floor((image.size.width/image.size.height) * frame.size.height), frame.size.height);
+      }
+    }
+
+    if (!_defaultImage || image != _defaultImage) {
+      [self imageViewDidLoadImage:image];
+      if ([_delegate respondsToSelector:@selector(imageView:didLoadImage:)]) {
+        [_delegate imageView:self didLoadImage:image];
+      }
+    }
   }
 }
 

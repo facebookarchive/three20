@@ -64,7 +64,16 @@
   [self flushCharacters];
 
   NSString* tag = [elementName lowercaseString];
-  if ([tag isEqualToString:@"b"]) {
+  if ([tag isEqualToString:@"span"]) {
+    TTStyledSpanNode* node = [[[TTStyledSpanNode alloc] init] autorelease];
+    node.className =  [attributeDict objectForKey:@"class"];
+    [self addNode:node];
+    if (_openNode) {
+      // XXXjoe Merge styles
+    } else {
+      _openNode = node;
+    }
+  } else if ([tag isEqualToString:@"b"]) {
     TTStyledBoldNode* node = [[[TTStyledBoldNode alloc] init] autorelease];
     [self addNode:node];
     if (_openNode) {

@@ -6,61 +6,31 @@
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-    imageView = [[TTImageView alloc] initWithFrame:CGRectZero];
-    imageView.opaque = YES;
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.clipsToBounds = YES;
-    imageView.userInteractionEnabled = NO;
-    [self addSubview:imageView];
-
-    borderView = [[TTStyledView alloc] initWithFrame:CGRectZero];
-    borderView.opaque = NO;
-    borderView.style = TTStyleFill;
-    borderView.borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-    borderView.contentMode = UIViewContentModeRedraw;
-    borderView.userInteractionEnabled = NO;
-    [self addSubview:borderView];
-
-    self.opaque = YES;
     self.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+    self.opaque = YES;
     self.clipsToBounds = YES;
+    
+    [self setStyle:[TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.4) width:1 next:nil]
+          forState:UIControlStateNormal];
+    [self setStyle:[TTSolidFillStyle styleWithColor:RGBACOLOR(0,0,0,0.6) next:
+                   [TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.4) width:1 next:nil]]
+          forState:UIControlStateHighlighted];
 	}
 	return self;
 }
 
 - (void)dealloc {
-  [imageView release];
-  [borderView release];
 	[super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-
-  imageView.frame = self.bounds;
-  borderView.frame = self.bounds;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSString*)thumbURL {
-  return imageView.url;
+  return [self imageForState:UIControlStateNormal];
 }
 
 - (void)setThumbURL:(NSString*)url {
-  imageView.image = nil;
-  imageView.url = url;
-}
-
-- (void)suspendLoading:(BOOL)suspended {
-  if (suspended) {
-    [imageView stopLoading];
-  } else if (!imageView.image) {
-    [imageView reload];
-  }
+  [self setImage:url forState:UIControlStateNormal];
 }
 
 @end

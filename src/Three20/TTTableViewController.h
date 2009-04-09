@@ -17,7 +17,14 @@
 @property(nonatomic) BOOL variableHeightRows;
 
 - (id<TTTableViewDataSource>)createDataSource;
+- (id<UITableViewDelegate>)createDelegate;
 
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
+
+- (void)didBeginDragging;
+- (void)didEndDragging;
+
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 
 @end

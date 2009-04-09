@@ -166,6 +166,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSDictionary* headers = [response allHeaderFields];
   int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
   if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
+    TTLOG(@"MAX CONTENT LENGTH EXCEEDED (%d) %@", contentLength, _url);
     [self cancel];
   }
 
@@ -413,7 +414,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     [loader release];
   }
 
-  if (_loaderQueue.count) {
+  if (_loaderQueue.count && !_suspended) {
     [self loadNextInQueueDelayed];
   }
 }

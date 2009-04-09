@@ -49,15 +49,18 @@
   TTStyledView* pageView = nil;
   if (!pageView) {
     pageView = [[[TTStyledView alloc] initWithFrame:CGRectZero] autorelease];
-    pageView.backgroundInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    pageView.borderRadius = 30;
-    pageView.borderColor = [UIColor blueColor];
-    pageView.fillColor2 = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     pageView.backgroundColor = [UIColor clearColor];
     pageView.userInteractionEnabled = NO;
+    //pageView.contentMode = UIViewContentModeLeft;
   }
 
-  pageView.fillColor = [_colors objectAtIndex:pageIndex];
+  pageView.style =
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:30] next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(10, 10, 10, 10) next:
+    [TTLinearGradientFillStyle styleWithColor1:[_colors objectAtIndex:pageIndex]
+                               color2:[UIColor whiteColor] next:
+    [TTSolidBorderStyle styleWithColor:[UIColor blueColor] width:1 next:
+    nil]]]];
   
   return pageView;
 }

@@ -125,10 +125,10 @@ static CGFloat kThumbSize = 75;
 }
 
 - (void)suspendLoading:(BOOL)suspended {
-  [_thumbView1 suspendLoading:suspended];
-  [_thumbView2 suspendLoading:suspended];
-  [_thumbView3 suspendLoading:suspended];
-  [_thumbView4 suspendLoading:suspended];
+  [_thumbView1 suspendLoadingImages:suspended];
+  [_thumbView2 suspendLoadingImages:suspended];
+  [_thumbView3 suspendLoadingImages:suspended];
+  [_thumbView4 suspendLoadingImages:suspended];
 }
 
 @end

@@ -327,6 +327,7 @@
 }
 
 - (void)dealloc {
+  [_text release];
   [_placeholder release];
   [super dealloc];
 }

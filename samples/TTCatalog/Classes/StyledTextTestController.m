@@ -1,18 +1,53 @@
 #import "StyledTextTestController.h"
 
+@interface TextTestStyleSheet : NSObject
+@end
+
+@implementation TextTestStyleSheet
+
++ (TTStyle*)blueText {
+  return [TTTextStyle styleWithColor:[UIColor blueColor] next:nil];
+}
+
++ (TTStyle*)blueBox {
+  return 
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, -3, 2, -3) next:
+    [TTShadowStyle styleWithColor:[UIColor grayColor] blur:2 offset:CGSizeMake(1,1) next:
+    [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
+    [TTSolidBorderStyle styleWithColor:[UIColor grayColor] width:1 next:nil]]]]];
+}
+
+@end
+
 @implementation StyledTextTestController
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    [[TTAppearance appearance] addStyleSheet:[TextTestStyleSheet class]];
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [[TTAppearance appearance] removeStyleSheet:[TextTestStyleSheet class]];
+	[super dealloc];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
 - (void)loadView {
   [super loadView];
-
-  NSString* kText = @"This is a test of styled labels. Styled labels support \
-<b>bold text</b> and <i>italic text</i>. They also support \
-<a href=\"http://www.google.com\">hyperlinks</a> and inline images \
-<img src=\"bundle://smiley.png\"/>. You can also embed a URL inline and it will be turned into \
-a link, like the following URL: http://www.foo.com";
+  
+  NSString* kText = @"This is a test of styled labels.  Styled labels support \
+<b>bold text</b>, <i>italic text</i>, <span class=\"blueText\">colored text</span>, \
+<span class=\"blueBox\">spans with backgrounds</span>, inline images \
+<img src=\"bundle://smiley.png\"/>, and <a href=\"http://www.google.com\">hyperlinks</a> you can \
+actually touch. URLs are automatically converted into links, like this: http://www.foo.com";
 
   TTStyledLabel* label1 = [[[TTStyledLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];

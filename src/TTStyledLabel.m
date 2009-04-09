@@ -3,6 +3,8 @@
 #import "Three20/TTStyledText.h"
 #import "Three20/TTAppearance.h"
 #import "Three20/TTNavigationCenter.h"
+#import "Three20/TTTableViewController.h"
+#import "Three20/TTTableViewDelegate.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
@@ -13,7 +15,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 @implementation TTStyledLabel
 
-@synthesize text = _text, font = _font, textColor = _textColor, linkTextColor = _linkTextColor,
+@synthesize text = _text, font = _font, textColor = _textColor,
             highlightedTextColor = _highlightedTextColor, textAlignment = _textAlignment,
             contentInset = _contentInset, highlighted = _highlighted,
             highlightedNode = _highlightedNode;
@@ -35,7 +37,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _font = nil;
     _textColor = nil;
     _highlightedTextColor = nil;
-    _linkTextColor = nil;
     _textAlignment = UITextAlignmentLeft;
     _contentInset = UIEdgeInsetsZero;
     _highlighted = NO;
@@ -44,7 +45,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
     self.font = [UIFont systemFontOfSize:14];
     self.textColor = [UIColor blackColor];
     self.highlightedTextColor = [UIColor whiteColor];
-    self.linkTextColor = [TTAppearance appearance].linkTextColor;
     self.backgroundColor = [UIColor whiteColor];
     self.opaque = YES;
   }
@@ -55,7 +55,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
   [_text release];
   [_font release];
   [_textColor release];
-  [_linkTextColor release];
   [_highlightedTextColor release];
   [_highlightedNode release];
   [super dealloc];
@@ -211,6 +210,11 @@ static const CGFloat kCancelHighlightThreshold = 4;
     UITouch* touch = [touches anyObject];
     _highlightStartPoint = [touch locationInView:self];
   }
+  
+  if ([self.delegate isKindOfClass:[TTTableViewDelegate class]]) {
+    TTTableViewDelegate* delegate = (TTTableViewDelegate*)self.delegate;
+    [delegate.controller touchesBegan:touches withEvent:event];
+  }
 }
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
@@ -238,6 +242,11 @@ static const CGFloat kCancelHighlightThreshold = 4;
              selector:@selector(delayedTouchesEnded:) userInfo:url repeats:NO];
   } else {
     [super touchesEnded:touches withEvent:event];
+
+    if ([self.delegate isKindOfClass:[TTTableViewDelegate class]]) {
+      TTTableViewDelegate* delegate = (TTTableViewDelegate*)self.delegate;
+      [delegate.controller touchesEnded:touches withEvent:event];
+    }
   }
 }
 

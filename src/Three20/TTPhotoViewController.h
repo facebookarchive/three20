@@ -35,7 +35,7 @@
  *
  * You can assign this directly to change the photoSource to the one that contains the photo.
  */
-@property(nonatomic,assign) id<TTPhoto> centerPhoto;
+@property(nonatomic,retain) id<TTPhoto> centerPhoto;
 
 /**
  * The index of the currently visible photo.

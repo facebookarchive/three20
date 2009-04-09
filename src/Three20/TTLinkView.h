@@ -6,7 +6,6 @@
   id _delegate;
   id _url;
   TTStyledView* _screenView;
-  int _borderRadius;
 }
 
 @property(nonatomic,assign) id delegate;
@@ -17,7 +16,5 @@
  * This can be a string or an object that whose type is registered with TTNavigationCenter.
  */
 @property(nonatomic,retain) id url;
-
-@property(nonatomic) int borderRadius;
 
 @end

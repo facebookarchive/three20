@@ -1,6 +1,4 @@
 #import <Three20/Three20.h>
 
-@interface StyledTextTableTestController : TTTableViewController {
-}
-
+@interface StyledTextTableTestController : TTTableViewController
 @end

@@ -62,6 +62,13 @@ CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
   return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
 }
 
+CGRect TTRectInset(CGRect rect, UIEdgeInsets insets) {
+  return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
+                    rect.size.width - (insets.left + insets.right),
+                    rect.size.height - (insets.top + insets.bottom));
+                    
+}
+
 void TTNetworkRequestStarted() {
   if (gNetworkTaskCount++ == 0) {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

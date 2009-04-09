@@ -1,15 +1,7 @@
-#import "Three20/TTLinkView.h"
+#import "Three20/TTButton.h"
 
-@class TTImageView;
-@class TTStyledView;
-
-@interface TTThumbView : TTLinkView {
-  TTImageView* imageView;
-  TTStyledView* borderView;
-}
+@interface TTThumbView : TTButton
 
 @property(nonatomic,copy) NSString* thumbURL;
-
-- (void)suspendLoading:(BOOL)suspended;
 
 @end

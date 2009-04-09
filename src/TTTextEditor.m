@@ -1,4 +1,5 @@
 #import "Three20/TTTextEditor.h"
+#import "Three20/TTAppearance.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -291,7 +292,7 @@ static CGFloat kTextViewInset = 19;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setDelegate:(id<TTTextEditorDelegate>)delegate {
+- (void)setTextDelegate:(id<TTTextEditorDelegate>)delegate {
   _textDelegate = delegate;
   _internal.delegate = delegate;
 }
