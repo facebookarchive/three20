@@ -134,7 +134,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       NSData* imageData = UIImageJPEGRepresentation(image, quality);
       
       [body appendData:[[NSString
-        stringWithFormat:@"Content-Disposition: form-data; filename=\"photo\"\r\n"]
+        stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"photo\"\r\n", key]
           dataUsingEncoding:NSUTF8StringEncoding]];
       [body appendData:[[NSString
         stringWithFormat:@"Content-Length: %d\r\n", imageData.length]
