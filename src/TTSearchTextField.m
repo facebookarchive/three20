@@ -314,33 +314,37 @@ static const CGFloat kDesiredTableHeight = 150;
 // UIControlEvents
 
 - (void)didBeginEditing {
-  UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
-  scrollView.scrollEnabled = NO;
-  scrollView.scrollsToTop = NO;
+  if (_dataSource) {
+    UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+    scrollView.scrollEnabled = NO;
+    scrollView.scrollsToTop = NO;
 
-  if (_showsDoneButton) {
-    [self showDoneButton:YES];
-  }
-  if (_showsDarkScreen) {
-    [self showDarkScreen:YES];
-  }
-  if (self.hasText) {
-    [self showSearchResults:YES];
+    if (_showsDoneButton) {
+      [self showDoneButton:YES];
+    }
+    if (_showsDarkScreen) {
+      [self showDarkScreen:YES];
+    }
+    if (self.hasText) {
+      [self showSearchResults:YES];
+    }
   }
 }
 
 - (void)didEndEditing {
-  UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
-  scrollView.scrollEnabled = YES;
-  scrollView.scrollsToTop = YES;
-  
-  [self showSearchResults:NO];
-  
-  if (_showsDoneButton) {
-    [self showDoneButton:NO];
-  }
-  if (_showsDarkScreen) {
-    [self showDarkScreen:NO];
+  if (_dataSource) {
+    UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+    scrollView.scrollEnabled = YES;
+    scrollView.scrollsToTop = YES;
+    
+    [self showSearchResults:NO];
+    
+    if (_showsDoneButton) {
+      [self showDoneButton:NO];
+    }
+    if (_showsDarkScreen) {
+      [self showDarkScreen:NO];
+    }
   }
 }
 
@@ -394,7 +398,7 @@ static const CGFloat kDesiredTableHeight = 150;
 }
 
 - (void)showSearchResults:(BOOL)show {
-  if (show) {
+  if (show && _dataSource) {
     self.tableView;
     
     if (!_shadowView) {
