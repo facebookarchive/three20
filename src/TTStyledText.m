@@ -152,31 +152,26 @@
         NSString* word = [text substringWithRange:wordRange];
 
         // Measure the word and check to see if it fits on the current line
-        CGSize wordSize = [word sizeWithFont:font forWidth:_width
-                                      lineBreakMode:UILineBreakModeWordWrap];
+        CGSize wordSize = [word sizeWithFont:font
+                                constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
+                                lineBreakMode:UILineBreakModeWordWrap];
         if (lineWidth + wordSize.width > _width) {
-          if (wordSize.width > _width) {
-            // The word is larger than an entire line, so we need to split it across lines
-            // XXXjoe TODO
-            lastFrame.lineBreak = YES;
-          } {
-            // The word will be placed on the next line, so create a new frame for
-            // the current line and mark it with a line break
-            NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
-            if (lineRange.length) {
-              NSString* line = [text substringWithRange:lineRange];
-              lastFrame = [self addFrameForText:line node:node after:lastFrame];
-              lastFrame.style = style;
-              lastFrame.width = frameWidth;
-              lastFrame.height = wordSize.height;
-              lastFrame.font = font;
-            }
-            
-            lastFrame.lineBreak = YES;
-            lineStartIndex = lineRange.location + lineRange.length;
-            frameWidth = 0;
-            lineWidth = 0;
+          // The word will be placed on the next line, so create a new frame for
+          // the current line and mark it with a line break
+          NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
+          if (lineRange.length) {
+            NSString* line = [text substringWithRange:lineRange];
+            lastFrame = [self addFrameForText:line node:node after:lastFrame];
+            lastFrame.style = style;
+            lastFrame.width = frameWidth;
+            lastFrame.height = font.ascender - font.descender;
+            lastFrame.font = font;
           }
+          
+          lastFrame.lineBreak = YES;
+          lineStartIndex = lineRange.location + lineRange.length;
+          frameWidth = 0;
+          lineWidth = 0;
         }
 
         if (!lineWidth) {
@@ -184,11 +179,17 @@
           if (node.nextNode) {
             // Count the height of the new line
             height += wordSize.height;
+
+            if (wordSize.width > _width) {
+              // The word is larger than an entire line, so we need to split it across lines
+              // XXXjoe TODO
+            }
           } else {
             // This is the last node, so we don't need to keep measuring every word.  We
             // can just measure all remaining text and create a new frame for all of it.
             NSString* lines = [text substringWithRange:searchRange];
-            CGSize linesSize = [lines sizeWithFont:font forWidth:_width
+            CGSize linesSize = [lines sizeWithFont:font
+                                      constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
                                       lineBreakMode:UILineBreakModeWordWrap];
 
             lastFrame = [self addFrameForText:lines node:node after:lastFrame];
