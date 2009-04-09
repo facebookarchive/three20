@@ -43,7 +43,7 @@
 - (TTStyle*)toolbarButton:(UIControlState)state {
   return [self toolbarButtonForState:state
                shape:[TTRoundedRectangleShape shapeWithRadius:4.5]
-               tintColor:self.toolbarTintColor
+               tintColor:TTSTYLEVAR(navigationBarTintColor)
                font:TTSTYLEVAR(toolbarButtonFont)];
 }
 
@@ -51,7 +51,7 @@
   return
     [self toolbarButtonForState:state
           shape:[TTRoundedLeftArrowShape shapeWithRadius:4.5]
-          tintColor:self.toolbarTintColor
+          tintColor:TTSTYLEVAR(navigationBarTintColor)
           font:TTSTYLEVAR(toolbarButtonFont)];
 }
 
@@ -59,7 +59,7 @@
   return
     [self toolbarButtonForState:state
           shape:[TTRoundedRightArrowShape shapeWithRadius:4.5]
-          tintColor:self.toolbarTintColor
+          tintColor:TTSTYLEVAR(navigationBarTintColor)
           font:TTSTYLEVAR(toolbarButtonFont)];
 }
 
@@ -67,7 +67,7 @@
   return
     [self toolbarButtonForState:state
           shape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED]
-          tintColor:self.toolbarTintColor
+          tintColor:TTSTYLEVAR(navigationBarTintColor)
           font:TTSTYLEVAR(toolbarButtonFont)];
 }
 
@@ -75,15 +75,23 @@
   return
     [self toolbarButtonForState:state
           shape:[TTRoundedRectangleShape shapeWithRadius:4.5]
-          tintColor:[UIColor blackColor]
+          tintColor:RGBCOLOR(10, 10, 10)
           font:TTSTYLEVAR(toolbarButtonFont)];
 }
 
-- (TTStyle*)blackRoundToolbarButton:(UIControlState)state {
+- (TTStyle*)blackToolbarForwardButton:(UIControlState)state {
+  return
+    [self toolbarButtonForState:state
+          shape:[TTRoundedRightArrowShape shapeWithRadius:4.5]
+          tintColor:RGBCOLOR(10, 10, 10)
+          font:TTSTYLEVAR(toolbarButtonFont)];
+}
+
+- (TTStyle*)blackToolbarRoundButton:(UIControlState)state {
   return
     [self toolbarButtonForState:state
           shape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED]
-          tintColor:[UIColor blackColor]
+          tintColor:RGBCOLOR(10, 10, 10)
           font:TTSTYLEVAR(toolbarButtonFont)];
 }
 
@@ -100,12 +108,21 @@
 
 
 - (TTStyle*)searchBar {
-  UIColor* highlight = [self.searchBarTintColor multiplyHue:0 saturation:0 value:1.2];
-  UIColor* shadow = [self.searchBarTintColor multiplyHue:0 saturation:0 value:0.82];
-
+  UIColor* color = TTSTYLEVAR(searchBarTintColor);
+  UIColor* highlight = [color multiplyHue:0 saturation:0 value:1.2];
+  UIColor* shadow = [color multiplyHue:0 saturation:0 value:0.82];
   return
-    [TTLinearGradientFillStyle styleWithColor1:highlight color2:self.searchBarTintColor next:
+    [TTLinearGradientFillStyle styleWithColor1:highlight color2:color next:
     [TTFourBorderStyle styleWithTop:nil right:nil bottom:shadow left:nil width:1 next:nil]];
+}
+
+- (TTStyle*)searchBarBottom {
+  UIColor* color = TTSTYLEVAR(searchBarTintColor);
+  UIColor* highlight = [color multiplyHue:0 saturation:0 value:1.2];
+  UIColor* shadow = [color multiplyHue:0 saturation:0 value:0.82];
+  return
+    [TTLinearGradientFillStyle styleWithColor1:highlight color2:color next:
+    [TTFourBorderStyle styleWithTop:shadow right:nil bottom:nil left:nil width:1 next:nil]];
 }
 
 - (TTStyle*)tableHeader {
@@ -234,18 +251,22 @@
 // private
 
 - (UIColor*)toolbarButtonColorWithTintColor:(UIColor*)color forState:(UIControlState)state {
-  if (state == UIControlStateNormal) {
-    return [color multiplyHue:1 saturation:1.6 value:0.97];
-  } else if (state & UIControlStateHighlighted) {
+  if (state & UIControlStateHighlighted) {
     if (color.value < 0.2) {
       return [color addHue:0 saturation:0 value:0.2];
+    } else if (color.saturation > 0.3) {
+      return [color multiplyHue:1 saturation:1 value:0.4];
     } else {
-      return [color multiplyHue:1 saturation:2.3 value:0.58];
+      return [color multiplyHue:1 saturation:2.3 value:0.64];
     }
   } else if (state & UIControlStateDisabled) {
     return [color multiplyHue:1 saturation:0.5 value:1];
   } else {
-    return color;
+    if (color.saturation < 0.5) {
+      return [color multiplyHue:1 saturation:1.6 value:0.97];
+    } else {
+      return [color multiplyHue:1 saturation:1.25 value:0.75];
+    }
   }
 }
 

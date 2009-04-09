@@ -15,7 +15,7 @@
 
 - (TTStyle*)blueToolbarButton:(UIControlState)state {
   TTShape* shape = [TTRoundedRectangleShape shapeWithRadius:4.5];
-  UIColor* tintColor = RGBCOLOR(0, 120, 240);
+  UIColor* tintColor = RGBCOLOR(30, 110, 255);
   UIFont* font = TTSTYLEVAR(toolbarButtonFont);
   
   return [TTSTYLESHEET toolbarButtonForState:state shape:shape tintColor:tintColor font:font];

@@ -213,7 +213,7 @@ static const CGFloat kIndexViewMargin = 4;
     _showsCancelButton = showsCancelButton;
     
     if (_showsCancelButton) {
-      _cancelButton = [[TTButton buttonWithStyle:@"blackRoundToolbarButton:"
+      _cancelButton = [[TTButton buttonWithStyle:@"blackToolbarRoundButton:"
                                  title:TTLocalizedString(@"Cancel", @"")] retain];
       [_cancelButton addTarget:_searchField action:@selector(resignFirstResponder)
                      forControlEvents:UIControlEventTouchUpInside];

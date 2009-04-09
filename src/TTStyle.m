@@ -477,10 +477,15 @@ static const NSInteger kDefaultLightSource = 125;
   [_color setFill];
   CGContextFillRect(context, rect);
 
+  // XXjoe These numbers are totally biased towards the colors I tested with.  I need to figure out
+  // a formula that works well for all colors
   UIColor* lighter = nil, *darker = nil;
   if (_color.value < 0.5) {
-    lighter = HSVCOLOR(_color.hue, ZEROLIMIT(_color.saturation-0.5), ZEROLIMIT(_color.value+0.35));
+    lighter = HSVCOLOR(_color.hue, ZEROLIMIT(_color.saturation-0.5), ZEROLIMIT(_color.value+0.25));
     darker = HSVCOLOR(_color.hue, ZEROLIMIT(_color.saturation-0.1), ZEROLIMIT(_color.value+0.1));
+  } else if (_color.saturation > 0.6) {
+    lighter = HSVCOLOR(_color.hue, _color.saturation*0.3, _color.value*1);
+    darker = HSVCOLOR(_color.hue, _color.saturation*0.9, _color.value+0.05);
   } else {
     lighter = HSVCOLOR(_color.hue, _color.saturation*0.4, _color.value*1.2);
     darker = HSVCOLOR(_color.hue, _color.saturation*0.9, _color.value+0.05);

@@ -114,6 +114,8 @@
   
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
 
+  [_previousBar release];
+  [_previousBarTintColor release];
   [_frozenState release];
   [_contentError release];
   [self unloadView];
@@ -371,9 +373,11 @@
   if (!_previousBar) {
     UINavigationBar* bar = self.navigationController.navigationBar;
     if (!self.nextViewController) {
-      _previousBar = bar;
+      [_previousBar release];
+      [_previousBarTintColor release];
+      _previousBar = [bar retain];
       _previousBarStyle = bar.barStyle;
-      _previousBarTintColor = bar.tintColor;
+      _previousBarTintColor = [bar.tintColor retain];
       _previousStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
     }
 
@@ -398,6 +402,9 @@
       [app setStatusBarStyle:_previousStatusBarStyle animated:YES];
     }
     
+    [_previousBarTintColor release];
+    _previousBarTintColor = nil;
+    [_previousBar release];
     _previousBar = nil;
   }
 }
