@@ -8,7 +8,7 @@
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTURLCache.h"
-#import "Three20/TTAppearance.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -153,21 +153,21 @@ static CGFloat kDefaultIconSize = 50;
 
     if ([object isKindOfClass:[TTGrayTextTableField class]]) {
       _label.font = [UIFont systemFontOfSize:14];
-      _label.textColor = [TTAppearance appearance].tableSubTextColor;
+      _label.textColor = TTSTYLEVAR(tableSubTextColor);
       _label.textAlignment = UITextAlignmentCenter;
     } else if ([object isKindOfClass:[TTButtonTableField class]]) {
       _label.font = [UIFont boldSystemFontOfSize:16];
-      _label.textColor = [TTAppearance appearance].linkTextColor;
+      _label.textColor = TTSTYLEVAR(linkTextColor);
       _label.textAlignment = UITextAlignmentCenter;
       self.accessoryType = UITableViewCellAccessoryNone;
       self.selectionStyle = UITableViewCellSelectionStyleBlue;
     } else if ([object isKindOfClass:[TTLinkTableField class]]) {
       _label.font = [UIFont boldSystemFontOfSize:17];
-      _label.textColor = [TTAppearance appearance].linkTextColor;
+      _label.textColor = TTSTYLEVAR(linkTextColor);
       _label.textAlignment = UITextAlignmentLeft;
     } else if ([object isKindOfClass:[TTSummaryTableField class]]) {
       _label.font = [UIFont systemFontOfSize:17];
-      _label.textColor = [TTAppearance appearance].tableSubTextColor;
+      _label.textColor = TTSTYLEVAR(tableSubTextColor);
       _label.textAlignment = UITextAlignmentCenter;
     } else {
       _label.font = [UIFont boldSystemFontOfSize:17];
@@ -265,7 +265,7 @@ static CGFloat kDefaultIconSize = 50;
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _titleLabel.font = [UIFont boldSystemFontOfSize:13];
-    _titleLabel.textColor = [TTAppearance appearance].linkTextColor;
+    _titleLabel.textColor = TTSTYLEVAR(linkTextColor);
     _titleLabel.highlightedTextColor = [UIColor whiteColor];
     _titleLabel.textAlignment = UITextAlignmentRight;
     _titleLabel.contentMode = UIViewContentModeTop;
@@ -359,7 +359,7 @@ static CGFloat kDefaultIconSize = 50;
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
     _subtextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _subtextLabel.font = [UIFont systemFontOfSize:14];
-    _subtextLabel.textColor = [TTAppearance appearance].tableSubTextColor;
+    _subtextLabel.textColor = TTSTYLEVAR(tableSubTextColor);
     _subtextLabel.highlightedTextColor = [UIColor whiteColor];
     _subtextLabel.textAlignment = UITextAlignmentLeft;
     _subtextLabel.contentMode = UIViewContentModeTop;
@@ -462,7 +462,7 @@ static CGFloat kDefaultIconSize = 50;
     
     _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _subtitleLabel.font = [UIFont systemFontOfSize:14];
-    _subtitleLabel.textColor = [TTAppearance appearance].tableSubTextColor;
+    _subtitleLabel.textColor = TTSTYLEVAR(tableSubTextColor);
     _subtitleLabel.highlightedTextColor = [UIColor whiteColor];
     _subtitleLabel.lineBreakMode = UILineBreakModeTailTruncation;
     [self.contentView addSubview:_subtitleLabel];
@@ -519,7 +519,7 @@ static CGFloat kDefaultIconSize = 50;
 
     _label.text = field.text;
     _label.font = [UIFont boldSystemFontOfSize:17];
-    _label.textColor = [TTAppearance appearance].moreLinkTextColor;
+    _label.textColor = TTSTYLEVAR(moreLinkTextColor);
 
     if (field.subtitle) {
       _subtitleLabel.text = field.subtitle;

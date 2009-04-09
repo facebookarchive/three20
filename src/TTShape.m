@@ -8,7 +8,7 @@ static TTRectangleShape* sharedRectangleShape = nil;
 static const CGFloat kArrowPointWidth = 2.8;
 static const CGFloat kArrowRadius = 2;
 
-#define RD(RADIUS) (RADIUS == TT_ROUNDED ? floor(fh/2) : RADIUS)
+#define RD(_RADIUS) (_RADIUS == TT_ROUNDED ? round(fh/2) : _RADIUS)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -258,10 +258,11 @@ static const CGFloat kArrowRadius = 2;
 }
 
 - (UIEdgeInsets)insetsForSize:(CGSize)size {
-  return UIEdgeInsetsMake(floor(MAX(_topLeftRadius, _topRightRadius)),
-                          floor(MAX(_topLeftRadius, _bottomLeftRadius)),
-                          floor(MAX(_bottomLeftRadius, _bottomRightRadius)),
-                          floor(MAX(_topRightRadius, _bottomRightRadius)));
+  CGFloat fh = size.height/2;
+  return UIEdgeInsetsMake(floor(MAX(RD(_topLeftRadius), RD(_topRightRadius))),
+                          floor(MAX(RD(_topLeftRadius), RD(_bottomLeftRadius))),
+                          floor(MAX(RD(_bottomLeftRadius), RD(_bottomRightRadius))),
+                          floor(MAX(RD(_topRightRadius), RD(_bottomRightRadius))));
 }
 
 @end

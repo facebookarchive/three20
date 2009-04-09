@@ -1,11 +1,27 @@
 #import "ButtonTestController.h"
 
-@interface ButtonTestStyleSheet : NSObject
+@interface ButtonTestStyleSheet : TTDefaultStyleSheet
 @end
 
 @implementation ButtonTestStyleSheet
 
-+ (TTStyle*)embossedButton:(UIControlState)state {
+- (TTStyle*)blackForwardButton:(UIControlState)state {
+  TTShape* shape = [TTRoundedRightArrowShape shapeWithRadius:4.5];
+  UIColor* tintColor = RGBCOLOR(0, 0, 0);
+  UIFont* font = TTSTYLEVAR(toolbarButtonFont);
+  
+  return [TTSTYLESHEET toolbarButtonForState:state shape:shape tintColor:tintColor font:font];
+}
+
+- (TTStyle*)blueToolbarButton:(UIControlState)state {
+  TTShape* shape = [TTRoundedRectangleShape shapeWithRadius:4.5];
+  UIColor* tintColor = RGBCOLOR(30, 110, 255);
+  UIFont* font = TTSTYLEVAR(toolbarButtonFont);
+  
+  return [TTSTYLESHEET toolbarButtonForState:state shape:shape tintColor:tintColor font:font];
+}
+
+- (TTStyle*)embossedButton:(UIControlState)state {
   if (state == UIControlStateNormal) {
   return 
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
@@ -16,7 +32,7 @@
     [TTSolidBorderStyle styleWithColor:RGBCOLOR(161, 167, 178) width:1 next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, -1, 0) next:
     [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
-                 color:[TTAppearance appearance].linkTextColor
+                 color:TTSTYLEVAR(linkTextColor)
                  shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
                  shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
   } else if (state == UIControlStateHighlighted) {
@@ -36,21 +52,21 @@
   }
 }
 
-+ (TTStyle*)dropButton:(UIControlState)state {
+- (TTStyle*)dropButton:(UIControlState)state {
   if (state == UIControlStateNormal) {
-  return 
-    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, 5, 5) next:
-    [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.7) blur:3 offset:CGSizeMake(2, 2) next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0.25, 0.25, 0.25, 0.25) next:
-    [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-0.25, -0.25, -0.25, -0.25) next:
-    [TTSolidBorderStyle styleWithColor:RGBCOLOR(161, 167, 178) width:1 next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 0, 0) next:
-    [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
-                 color:[TTAppearance appearance].linkTextColor
-                 shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
-                 shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];
+    return 
+      [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, 5, 5) next:
+      [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.7) blur:3 offset:CGSizeMake(2, 2) next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0.25, 0.25, 0.25, 0.25) next:
+      [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-0.25, -0.25, -0.25, -0.25) next:
+      [TTSolidBorderStyle styleWithColor:RGBCOLOR(161, 167, 178) width:1 next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 0, 0) next:
+      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
+                   color:TTSTYLEVAR(linkTextColor)
+                   shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
+                   shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];
   } else if (state == UIControlStateHighlighted) {
     return 
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(3, 3, 2, 2) next:
@@ -59,7 +75,7 @@
       [TTSolidBorderStyle styleWithColor:RGBCOLOR(161, 167, 178) width:1 next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 0, 0) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
-                   color:[TTAppearance appearance].linkTextColor
+                   color:TTSTYLEVAR(linkTextColor)
                    shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]]];
   } else {
@@ -104,13 +120,13 @@
   if (self = [super init]) {
     _fontSize = 12;
     
-    [[TTAppearance appearance] addStyleSheet:[ButtonTestStyleSheet class]];
+    [TTStyleSheet setGlobalStyleSheet:[[[ButtonTestStyleSheet alloc] init] autorelease]];
   }
   return self;
 }
 
 - (void)dealloc {
-  [[TTAppearance appearance] removeStyleSheet:[ButtonTestStyleSheet class]];
+  [TTStyleSheet setGlobalStyleSheet:nil];
 	[super dealloc];
 }
 
@@ -132,16 +148,13 @@
   self.view = scrollView;
   
   NSArray* buttons = [NSArray arrayWithObjects:
-    [TTButton buttonWithType:TTButtonTypeToolbar title:@"Toolbar Button"
-              color:RGBCOLOR(119, 140, 168)],
-    [TTButton buttonWithType:TTButtonTypeToolbarBack title:@"Back Button"
-              color:RGBCOLOR(119, 140, 168)],
-    [TTButton buttonWithType:TTButtonTypeToolbarForward title:@"Forward Button"
-              color:RGBCOLOR(119, 140, 168)],
-    [TTButton buttonWithType:TTButtonTypeToolbarForward title:@"Black Button"
-              color:RGBCOLOR(0, 0, 0)],
-    [TTButton buttonWithType:TTButtonTypeToolbar title:@"Blue Button"
-              color:RGBCOLOR(0, 120, 240)],
+    [TTButton buttonWithStyle:@"toolbarButton:" title:@"Toolbar Button"],
+    [TTButton buttonWithStyle:@"toolbarRoundButton:" title:@"Round Button"],
+    [TTButton buttonWithStyle:@"toolbarBackButton:" title:@"Back Button"],
+    [TTButton buttonWithStyle:@"toolbarForwardButton:" title:@"Forward Button"],
+            
+    [TTButton buttonWithStyle:@"blackForwardButton:" title:@"Black Button"],
+    [TTButton buttonWithStyle:@"blueToolbarButton:" title:@"Blue Button"],
     [TTButton buttonWithStyle:@"embossedButton:" title:@"Embossed Button"],
     [TTButton buttonWithStyle:@"dropButton:" title:@"Shadow Button"],
     nil];

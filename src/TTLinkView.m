@@ -2,6 +2,7 @@
 #include "Three20/TTNavigationCenter.h"
 #include "Three20/TTShape.h"
 #include "Three20/TTStyledView.h"
+#include "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,9 +61,7 @@
   [super setHighlighted:highlighted];
   if (!_screenView) {
     _screenView = [[TTStyledView alloc] initWithFrame:self.bounds];
-    _screenView.style =
-      [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:
-      [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0 alpha:0.4] next:nil]];
+    _screenView.style = TTSTYLE(linkHighlighted);
     _screenView.backgroundColor = [UIColor clearColor];
     _screenView.userInteractionEnabled = NO;
     [self addSubview:_screenView];

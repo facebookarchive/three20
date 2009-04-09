@@ -3,7 +3,7 @@
 #import "Three20/TTStyledTextParser.h"
 #import "Three20/TTStyle.h"
 #import "Three20/TTShape.h"
-#import "Three20/TTAppearance.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +65,7 @@
   UIFont* baseFont = _font ? _font : [self defaultFont];
   UIFont* boldFont = nil;
   UIFont* italicFont = nil;
+  TTStyle* linkStyle = nil;
   NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
   
   TTStyledTextFrame* lastFrame = nil;
@@ -98,10 +99,13 @@
       TTStyle* style = nil;
       if ([node isKindOfClass:[TTStyledSpanNode class]]) {
         if ([node isKindOfClass:[TTStyledLinkNode class]]) {
-          style = [TTAppearance appearance].linkStyle;
+          if (!linkStyle) {
+            linkStyle = TTSTYLE(linkText);
+          }
+          style = linkStyle;
         }
         TTStyledSpanNode* span = (TTStyledSpanNode*)node;
-        TTStyle* spanStyle = [[TTAppearance appearance] styleWithClassName:span.className];
+        TTStyle* spanStyle = [[TTStyleSheet globalStyleSheet] styleWithClassName:span.className];
         if (spanStyle) {
           style = spanStyle;
         }
@@ -411,7 +415,8 @@
 
 - (void)drawInRect:(CGRect)rect {
   if ([_node isKindOfClass:[TTStyledLinkNode class]] && [(TTStyledLinkNode*)_node highlighted]) {
-    [[TTAppearance appearance].linkHighlightedStyle drawRect:rect shape:[TTRectangleShape shape] delegate:self];
+    TTStyle* style = TTSTYLE(linkTextHighlighted);
+    [style drawRect:rect shape:[TTRectangleShape shape] delegate:self];
   } else {
     if (_style) {
       if ([_style drawRect:rect shape:[TTRectangleShape shape] delegate:self]) {

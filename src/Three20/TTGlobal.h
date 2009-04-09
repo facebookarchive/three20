@@ -56,12 +56,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Color helpers
 
-#define RGBA(r,g,b,a) r/256.0, g/256.0, b/256.0, a
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/256.0 green:g/256.0 blue:b/256.0 alpha:a]
 
 #define HSVCOLOR(h,s,v) [UIColor colorWithHue:h saturation:s value:v alpha:1]
 #define HSVACOLOR(h,s,v,a) [UIColor colorWithHue:h saturation:s value:v alpha:a]
+
+#define RGBA(r,g,b,a) r/256.0, g/256.0, b/256.0, a
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Style helpers
+
+#define TTSTYLE(_CLASSNAME) [[TTStyleSheet globalStyleSheet] styleWithClassName:@#_CLASSNAME]
+
+#define TTSTYLESTATE(_CLASSNAME, _STATE) [[TTStyleSheet globalStyleSheet] \
+                                           styleWithClassName:@#_CLASSNAME forState:_STATE]
+
+#define TTSTYLEVAR(_VARNAME) [(id)[TTStyleSheet globalStyleSheet] _VARNAME]
+
+#define TTSTYLESHEET ((id)[TTStyleSheet globalStyleSheet])
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Networking

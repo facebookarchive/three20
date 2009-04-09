@@ -1,7 +1,7 @@
 #import "Three20/TTSearchBar.h"
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTStyledView.h"
-#import "Three20/TTAppearance.h"
+#import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTButton.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,9 +103,9 @@ static const CGFloat kIndexViewMargin = 4;
       forControlEvents:UIControlEventEditingDidEnd];
     [self addSubview:_searchField];
 
-    self.tintColor = [TTAppearance appearance].searchBarTintColor;
-    self.style = [TTAppearance appearance].searchBarStyle;
-    self.textFieldStyle = [TTAppearance appearance].searchTextFieldStyle;
+    self.tintColor = TTSTYLEVAR(searchBarTintColor);
+    self.style = TTSTYLE(searchBar);
+    self.textFieldStyle = TTSTYLE(searchTextField);
     self.font = [UIFont systemFontOfSize:14];
     self.showsSearchIcon = YES;
     self.showsCancelButton = NO;
@@ -213,9 +213,8 @@ static const CGFloat kIndexViewMargin = 4;
     _showsCancelButton = showsCancelButton;
     
     if (_showsCancelButton) {
-      _cancelButton = [[TTButton buttonWithType:TTButtonTypeToolbarRound
-                                 title:TTLocalizedString(@"Cancel", @"")
-                                 color:RGBCOLOR(0, 0, 0)] retain];
+      _cancelButton = [[TTButton buttonWithStyle:@"blackToolbarRoundButton:"
+                                 title:TTLocalizedString(@"Cancel", @"")] retain];
       [_cancelButton addTarget:_searchField action:@selector(resignFirstResponder)
                      forControlEvents:UIControlEventTouchUpInside];
       [self addSubview:_cancelButton];

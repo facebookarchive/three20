@@ -10,11 +10,7 @@
     self.opaque = YES;
     self.clipsToBounds = YES;
     
-    [self setStyle:[TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.4) width:1 next:nil]
-          forState:UIControlStateNormal];
-    [self setStyle:[TTSolidFillStyle styleWithColor:RGBACOLOR(0,0,0,0.6) next:
-                   [TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.4) width:1 next:nil]]
-          forState:UIControlStateHighlighted];
+    [self setStylesWithClassName:@"thumbView:"];
 	}
 	return self;
 }

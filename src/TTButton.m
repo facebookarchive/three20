@@ -1,6 +1,6 @@
 #include "Three20/TTButton.h"
 #include "Three20/TTShape.h"
-#include "Three20/TTAppearance.h"
+#include "Three20/TTDefaultStyleSheet.h"
 #include "Three20/TTURLRequest.h"
 #include "Three20/TTURLResponse.h"
 #include "Three20/TTURLCache.h"
@@ -136,142 +136,12 @@ static const CGFloat kVPadding = 7;
 @synthesize font = _font;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// class private
-
-+ (TTShape*)toolbarButtonShapeWithType:(TTButtonType)type {
-  switch (type) {
-    case TTButtonTypeToolbar:
-      return [TTRoundedRectangleShape shapeWithRadius:4.5];
-    case TTButtonTypeToolbarBack:
-      return [TTRoundedLeftArrowShape shapeWithRadius:4.5];
-    case TTButtonTypeToolbarForward:
-      return [TTRoundedRightArrowShape shapeWithRadius:4.5];
-    case TTButtonTypeToolbarRound:
-      return [TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED];
-    default:
-      return nil;
-  }
-}
-
-+ (UIColor*)toolbarColorForColor:(UIColor*)color forState:(UIControlState)state {
-  if (state == UIControlStateNormal) {
-    return [color multiplyHue:1 saturation:1.6 value:0.97];
-  } else if (state == UIControlStateHighlighted) {
-    if (color.value < 0.2) {
-      return [color addHue:0 saturation:0 value:0.2];
-    } else {
-      return [color multiplyHue:1 saturation:2.3 value:0.58];
-    }
-  } else if (state == UIControlStateDisabled) {
-    return [color multiplyHue:1 saturation:0.5 value:1];
-  } else {
-    return color;
-  }
-}
-
-+ (UIColor*)toolbarTextColorWithState:(UIControlState)state {
-  if (state == UIControlStateDisabled) {
-    return [UIColor colorWithWhite:1 alpha:0.4];
-  } else {
-    return [UIColor whiteColor];
-  }
-}
-
-+ (TTStyle*)toolbarButtonStyleWithType:(TTButtonType)type color:(UIColor*)color
-            forState:(UIControlState)state {
-  TTShape* shape = [self toolbarButtonShapeWithType:type];
-  UIColor* stateColor = [self toolbarColorForColor:color forState:state];
-  UIColor* textColor = [self toolbarTextColorWithState:state];
-  
-  return 
-    [TTShapeStyle styleWithShape:shape next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, 1, 0) next:
-    [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.55) blur:0 offset:CGSizeMake(0, 1) next:
-    [TTReflectiveFillStyle styleWithColor:stateColor next:
-    [TTBevelBorderStyle styleWithHighlight:[stateColor multiplyHue:1 saturation:0.9 value:0.7]
-                        shadow:[stateColor multiplyHue:1 saturation:0.5 value:0.45]
-                        width:1 lightSource:270 next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, -1, 0, -1) next:
-    [TTBevelBorderStyle styleWithHighlight:nil shadow:RGBACOLOR(0,0,0,0.15)
-                        width:1 lightSource:270 next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(4, 5, 2, 6) next:
-    [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:12]
-                 color:textColor shadowColor:[UIColor colorWithWhite:0 alpha:0.4]
-                 shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];
-}
-
-+ (TTStyle*)toolbarRoundButtonStyleWithType:(TTButtonType)type color:(UIColor*)color
-            forState:(UIControlState)state {
-  TTShape* shape = [self toolbarButtonShapeWithType:type];
-  UIColor* stateColor = [self toolbarColorForColor:color forState:state];
-  UIColor* textColor = [self toolbarTextColorWithState:state];
-  
-  return 
-    [TTShapeStyle styleWithShape:shape next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, 1, 0) next:
-    [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.55) blur:0 offset:CGSizeMake(0, 1) next:
-    [TTReflectiveFillStyle styleWithColor:stateColor next:
-    [TTBevelBorderStyle styleWithHighlight:[stateColor multiplyHue:1 saturation:0.9 value:0.7]
-                        shadow:[stateColor multiplyHue:1 saturation:0.5 value:0.45]
-                        width:1 lightSource:270 next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, -1, 0, -1) next:
-    [TTBevelBorderStyle styleWithHighlight:nil shadow:RGBACOLOR(0,0,0,0.15)
-                        width:1 lightSource:270 next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(4, 11, 2, 12) next:
-    [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:15]
-                 color:textColor shadowColor:[UIColor colorWithWhite:0 alpha:0.4]
-                 shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];
-}
-
-+ (TTStyle*)styleForType:(TTButtonType)type color:(UIColor*)color forState:(UIControlState)state {
-  switch (type) {
-    case TTButtonTypeToolbar:
-    case TTButtonTypeToolbarBack:
-    case TTButtonTypeToolbarForward:
-      return [self toolbarButtonStyleWithType:type color:color forState:state];
-    case TTButtonTypeToolbarRound:
-      return [self toolbarRoundButtonStyleWithType:type color:color forState:state];
-    default:
-      return nil;
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
-
-+ (TTButton*)buttonWithType:(TTButtonType)type title:(NSString*)title color:(UIColor*)color {
-  TTButton* button = [[[TTButton alloc] initWithFrame:CGRectZero] autorelease];
-  [button setTitle:title forState:UIControlStateNormal];
-
-  TTStyle* normalStyle = [self styleForType:type color:color forState:UIControlStateNormal];
-  [button setStyle:normalStyle forState:UIControlStateNormal];
-
-  TTStyle* highlightedStyle = [self styleForType:type color:color
-                                    forState:UIControlStateHighlighted];
-  [button setStyle:highlightedStyle forState:UIControlStateHighlighted];
-
-  TTStyle* disabledStyle = [self styleForType:type color:color
-                                                   forState:UIControlStateDisabled];
-  [button setStyle:disabledStyle forState:UIControlStateDisabled];
-  
-  return button;
-}
 
 + (TTButton*)buttonWithStyle:(NSString*)className title:(NSString*)title {
   TTButton* button = [[[TTButton alloc] initWithFrame:CGRectZero] autorelease];
   [button setTitle:title forState:UIControlStateNormal];
-  
-  TTStyle* normalStyle = [[TTAppearance appearance] styleWithClassName:className
-                                                    forState:UIControlStateNormal];
-  [button setStyle:normalStyle forState:UIControlStateNormal];
-
-  TTStyle* highlightedStyle = [[TTAppearance appearance] styleWithClassName:className
-                                                         forState:UIControlStateHighlighted];
-  [button setStyle:highlightedStyle forState:UIControlStateHighlighted];
-
-  TTStyle* disabledStyle = [[TTAppearance appearance] styleWithClassName:className
-                                                      forState:UIControlStateDisabled];
-  [button setStyle:disabledStyle forState:UIControlStateDisabled];
+  [button setStylesWithClassName:className];
 
   return button;
 }
@@ -280,7 +150,7 @@ static const CGFloat kVPadding = 7;
 // private
 
 - (UIFont*)defaultFont {
-  return _font ? _font : [UIFont boldSystemFontOfSize:12];
+  return _font ? _font : TTSTYLEVAR(toolbarButtonFont);
 }
 
 - (CGRect)rectForTitle:(NSString*)title forSize:(CGSize)size withFont:(UIFont*)font {
@@ -531,6 +401,22 @@ static const CGFloat kVPadding = 7;
 - (void)setStyle:(TTStyle*)style forState:(UIControlState)state {
   TTButtonContent* content = [self contentForState:state];
   content.style = style;
+}
+
+- (void)setStylesWithClassName:(NSString*)className {
+  TTStyleSheet* ss = [TTStyleSheet globalStyleSheet];
+  
+  TTStyle* normalStyle = [ss styleWithClassName:className forState:UIControlStateNormal];
+  [self setStyle:normalStyle forState:UIControlStateNormal];
+
+  TTStyle* highlightedStyle = [ss styleWithClassName:className forState:UIControlStateHighlighted];
+  [self setStyle:highlightedStyle forState:UIControlStateHighlighted];
+
+  TTStyle* selectedStyle = [ss styleWithClassName:className forState:UIControlStateSelected];
+  [self setStyle:selectedStyle forState:UIControlStateSelected];
+
+  TTStyle* disabledStyle = [ss styleWithClassName:className forState:UIControlStateDisabled];
+  [self setStyle:disabledStyle forState:UIControlStateDisabled];
 }
 
 - (void)suspendLoadingImages:(BOOL)suspended {

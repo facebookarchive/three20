@@ -1,15 +1,15 @@
 #import "StyledTextTestController.h"
 
-@interface TextTestStyleSheet : NSObject
+@interface TextTestStyleSheet : TTDefaultStyleSheet
 @end
 
 @implementation TextTestStyleSheet
 
-+ (TTStyle*)blueText {
+- (TTStyle*)blueText {
   return [TTTextStyle styleWithColor:[UIColor blueColor] next:nil];
 }
 
-+ (TTStyle*)blueBox {
+- (TTStyle*)blueBox {
   return 
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, -3, 1, -3) next:
@@ -27,13 +27,13 @@
 
 - (id)init {
   if (self = [super init]) {
-    [[TTAppearance appearance] addStyleSheet:[TextTestStyleSheet class]];
+    [TTStyleSheet setGlobalStyleSheet:[[[TextTestStyleSheet alloc] init] autorelease]];
   }
   return self;
 }
 
 - (void)dealloc {
-  [[TTAppearance appearance] removeStyleSheet:[TextTestStyleSheet class]];
+  [TTStyleSheet setGlobalStyleSheet:nil];
 	[super dealloc];
 }
 
