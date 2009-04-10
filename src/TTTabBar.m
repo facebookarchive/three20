@@ -378,6 +378,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
     _iconView = [[TTImageView alloc] initWithFrame:CGRectZero];
     _iconView.contentMode = UIViewContentModeRight;
     _iconView.clipsToBounds = YES;
+    _iconView.backgroundColor = [UIColor clearColor];
     [self addSubview:_iconView];
 
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -545,6 +546,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
   
   _titleLabel.text = _tabItem.title;
   _iconView.url = _tabItem.icon;
+  _iconView.hidden = !_tabItem.icon;
   if (_tabItem.badgeNumber) {
     [self updateBadgeNumber];
   }

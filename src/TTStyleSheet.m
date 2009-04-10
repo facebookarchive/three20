@@ -1,7 +1,5 @@
 #import "Three20/TTStyleSheet.h"
 #import "Three20/TTDefaultStyleSheet.h"
-#import "Three20/TTStyle.h"
-#import "Three20/TTShape.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
