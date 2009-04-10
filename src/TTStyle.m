@@ -172,6 +172,18 @@ static const NSInteger kDefaultLightSource = 125;
   }
 }
 
+- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate {
+  UIEdgeInsets shapeInsets = [_shape insetsForSize:size];
+  size.width += shapeInsets.left + shapeInsets.right;
+  size.height += shapeInsets.top + shapeInsets.bottom;
+
+  if (_next) {
+    return [self.next addToSize:size delegate:delegate];
+  } else {
+    return size;
+  }
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -251,15 +263,14 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
-  insets.top += _padding.top;
-  insets.right += _padding.right;
-  insets.bottom += _padding.bottom;
-  insets.left += _padding.left;
-  if (self.next) {
-    return [self.next addToInsets:insets forSize:size];
+- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate {
+  size.width += _padding.left + _padding.right;
+  size.height += _padding.top + _padding.bottom;
+
+  if (_next) {
+    return [self.next addToSize:size delegate:delegate];
   } else {
-    return insets;
+    return size;
   }
 }
 
@@ -270,7 +281,8 @@ static const NSInteger kDefaultLightSource = 125;
 @implementation TTTextStyle
 
 @synthesize font = _font, color = _color, shadowColor = _shadowColor, shadowOffset = _shadowOffset,
-            textAlignment = _textAlignment, verticalAlignment = _verticalAlignment;
+            minimumFontSize = _minimumFontSize, textAlignment = _textAlignment,
+            verticalAlignment = _verticalAlignment;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -300,6 +312,19 @@ static const NSInteger kDefaultLightSource = 125;
   TTTextStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.font = font;
   style.color = color;
+  style.shadowColor = shadowColor;
+  style.shadowOffset = shadowOffset;
+  return style;
+}
+
++ (TTTextStyle*)styleWithFont:(UIFont*)font color:(UIColor*)color
+                minimumFontSize:(CGFloat)minimumFontSize
+                shadowColor:(UIColor*)shadowColor shadowOffset:(CGSize)shadowOffset
+                next:(TTStyle*)next {
+  TTTextStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.font = font;
+  style.color = color;
+  style.minimumFontSize = minimumFontSize;
   style.shadowColor = shadowColor;
   style.shadowOffset = shadowOffset;
   return style;
@@ -361,6 +386,7 @@ static const NSInteger kDefaultLightSource = 125;
   if (self = [super initWithNext:next]) {
     _font = nil;
     _color = nil;
+    _minimumFontSize = 0;
     _shadowColor = nil;
     _shadowOffset = CGSizeZero;
     _textAlignment = UITextAlignmentCenter;
@@ -424,6 +450,12 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
 
++ (TTImageStyle*)styleWithImageURL:(NSString*)imageURL next:(TTStyle*)next {
+  TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.imageURL = imageURL;
+  return style;
+}
+
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next {
   TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
@@ -432,7 +464,13 @@ static const NSInteger kDefaultLightSource = 125;
   return style;
 }
 
-+ (TTImageStyle*)initWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
++ (TTImageStyle*)styleWithImage:(UIImage*)image  next:(TTStyle*)next {
+  TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.image = image;
+  return style;
+}
+
++ (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next {
   TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.image = image;
@@ -457,6 +495,32 @@ static const NSInteger kDefaultLightSource = 125;
   [_image release];
   [_defaultImage release];
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyle
+
+- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
+  if (_image) {
+    [_image drawInRect:rect];
+  } else if (_defaultImage) {
+    [_defaultImage drawInRect:rect];
+  }
+  return [self.next drawRect:rect shape:shape delegate:delegate];
+}
+
+- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate {  
+  UIImage* image = _image ? _image : _defaultImage;
+  if (image) {
+    size.width += image.size.width;
+    size.height += image.size.height;
+  }
+  
+  if (_next) {
+    return [self.next addToSize:size delegate:delegate];
+  } else {
+    return size;
+  }
 }
 
 @end

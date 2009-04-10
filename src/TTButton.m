@@ -222,10 +222,10 @@ static const CGFloat kVPadding = 7;
 
 - (TTButtonContent*)contentForCurrentState {
   TTButtonContent* content = nil;
-  if (self.highlighted) {
-    content = [self contentForState:UIControlStateHighlighted];
-  } else if (self.selected) {
+  if (self.selected) {
     content = [self contentForState:UIControlStateSelected];
+  } else if (self.highlighted) {
+    content = [self contentForState:UIControlStateHighlighted];
   } else if (!self.enabled) {
     content = [self contentForState:UIControlStateDisabled];
   }
@@ -305,14 +305,21 @@ static const CGFloat kVPadding = 7;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-  NSString* title = [self titleForCurrentState];
-  UIFont* font = [self fontForCurrentState];
+  TTStyle* style = [self styleForCurrentState];
+  if (style) {
+    return [style addToSize:CGSizeZero delegate:self];
+  } else {
+    return size;
+  }
 
-  CGRect textRect = [self rectForTitle:title forSize:size withFont:font];
-  UIEdgeInsets insets = [self insetsForCurrentStateWithSize:textRect.size];
-  
-  return CGSizeMake(textRect.size.width + insets.left + insets.right,
-                    textRect.size.height + insets.top + insets.bottom);
+//  NSString* title = [self titleForCurrentState];
+//  UIFont* font = [self fontForCurrentState];
+//
+//  CGRect textRect = [self rectForTitle:title forSize:size withFont:font];
+//  UIEdgeInsets insets = [self insetsForCurrentStateWithSize:textRect.size];
+//  
+//  return CGSizeMake(textRect.size.width + insets.left + insets.right,
+//                    textRect.size.height + insets.top + insets.bottom);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -363,6 +370,10 @@ static const CGFloat kVPadding = 7;
       [self drawTitle:title inRect:innerRect withFont:[self defaultFont]];
     }
   }
+}
+
+- (NSString*)textForLayerWithStyle:(TTStyle*)style {
+  return [self titleForCurrentState];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

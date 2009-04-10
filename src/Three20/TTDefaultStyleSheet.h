@@ -19,6 +19,8 @@
 @property(nonatomic,readonly) UIColor* tableHeaderTextColor;
 @property(nonatomic,readonly) UIColor* tableHeaderShadowColor;
 @property(nonatomic,readonly) UIColor* tableHeaderTintColor;
+@property(nonatomic,readonly) UIColor* tabTintColor;
+@property(nonatomic,readonly) UIColor* tabBarTintColor;
 
 @property(nonatomic,readonly) UIFont* toolbarButtonFont;
 

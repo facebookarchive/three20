@@ -13,6 +13,7 @@
 - (id)initWithMessage:(NSString*)message {
   if (self = [self initWithFrame:CGRectZero]) {
     self.message = message;
+    self.userInteractionEnabled = NO;
   }
   return self;
 }

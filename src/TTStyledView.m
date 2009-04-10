@@ -48,10 +48,7 @@
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-  CGSize styleSize = [_style addToSize:CGSizeZero delegate:self];
-  UIEdgeInsets insets = [_style addToInsets:UIEdgeInsetsZero forSize:styleSize];
-  return CGSizeMake(styleSize.width + insets.left + insets.right,
-                    styleSize.height + insets.top + insets.bottom);
+  return [_style addToSize:CGSizeZero delegate:self];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

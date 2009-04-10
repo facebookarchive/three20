@@ -185,9 +185,82 @@
     [TTReflectiveFillStyle styleWithColor:RGBCOLOR(221, 17, 27) next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
     [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:2 next:
-    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(-4, 0, -4, 0) next:
+    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(2, 6, 2, 6) next:
     [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
                  color:[UIColor whiteColor] next:nil]]]]]]]];
+}
+
+- (TTStyle*)tabBar {
+  UIColor* border = [TTSTYLEVAR(tabBarTintColor) multiplyHue:0 saturation:0 value:0.7];
+  return
+    [TTSolidFillStyle styleWithColor:TTSTYLEVAR(tabBarTintColor) next:
+    [TTFourBorderStyle styleWithTop:nil right:nil bottom:border left:nil width:1 next:nil]];
+}
+
+- (TTStyle*)tabBarSmall {
+  UIColor* border = [TTSTYLEVAR(tabTintColor) multiplyHue:0 saturation:0 value:0.4];
+  return
+    [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabTintColor) next:
+    [TTFourBorderStyle styleWithTop:nil right:nil bottom:border left:nil width:1 next:nil]];
+}
+
+- (TTStyle*)tab:(UIControlState)state {
+  if (state == UIControlStateSelected) {
+    UIColor* border = [TTSTYLEVAR(tabBarTintColor) multiplyHue:0 saturation:0 value:0.7];
+    
+    return
+      [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4.5 topRight:4.5
+                                                            bottomRight:0 bottomLeft:0] next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(5, 1, 0, 1) next:
+      [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabTintColor) next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, 0, -1) next:
+      [TTFourBorderStyle styleWithTop:border right:border bottom:nil left:border width:1 next:
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(4, 8, 4, 8) next:
+      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]  color:[UIColor blackColor]
+                   minimumFontSize:8 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
+                   shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
+  } else {
+    return
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(5, 1, 1, 1) next:
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(4, 8, 4, 8) next:
+      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]  color:[UIColor whiteColor]
+                   minimumFontSize:8 shadowColor:[UIColor colorWithWhite:0 alpha:0.6]
+                   shadowOffset:CGSizeMake(0, -1) next:nil]]];
+  }
+}
+
+- (TTStyle*)tabRound:(UIControlState)state {
+  if (state == UIControlStateSelected) {
+    return
+      [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(7, 1, 8, 1) next:
+      [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.8) blur:0 offset:CGSizeMake(0, 1) next:
+      [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabBarTintColor) next:
+      [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.3) blur:1 offset:CGSizeMake(1, 1) next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(0, 9, 0, 9) next:
+      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]  color:[UIColor whiteColor]
+                   minimumFontSize:8 shadowColor:[UIColor colorWithWhite:0 alpha:0.5]
+                   shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]];
+  } else {
+    return
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(0, 9, 0, 9) next:
+      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]  color:self.linkTextColor
+                   minimumFontSize:8 shadowColor:[UIColor colorWithWhite:1 alpha:0.9]
+                   shadowOffset:CGSizeMake(0, -1) next:nil]];
+  }
+}
+
+- (TTStyle*)tabOverflowLeft {
+  UIImage* image = [UIImage imageNamed:@"Three20.bundle/images/overflowLeft.png"];
+  return
+    [TTImageStyle styleWithImage:image next:nil];
+}
+
+- (TTStyle*)tabOverflowRight {
+  UIImage* image = [UIImage imageNamed:@"Three20.bundle/images/overflowRight.png"];
+  return
+    [TTImageStyle styleWithImage:image next:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -203,6 +276,10 @@
 
 - (UIColor*)searchBarTintColor {
   return RGBCOLOR(200, 200, 200);
+}
+
+- (UIColor*)tabBarTintColor {
+  return RGBCOLOR(119, 140, 168);
 }
 
 - (UIColor*)linkTextColor {
@@ -251,6 +328,10 @@
 
 - (UIColor*)tableHeaderTintColor {
   return nil;
+}
+
+- (UIColor*)tabTintColor {
+  return RGBCOLOR(228, 230, 235);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -11,11 +11,11 @@
 
 - (void)loadView {
   self.view = [[[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-  self.view.backgroundColor = RGBCOLOR(240, 242, 245);
+  self.view.backgroundColor = TTSTYLEVAR(tabTintColor);
     
-  _tabBar1 = [[TTTabBar alloc] initWithFrame:CGRectMake(0, -1, 320, 43)
-    style:TTTabBarStyleButtons];
-  _tabBar1.delegate = self;
+  _tabBar1 = [[TTTabBar alloc] initWithFrame:CGRectMake(0, 0, 320, 41)];
+  _tabBar1.tabStyle = @"tabRound:";
+  _tabBar1.style = TTSTYLE(tabBarSmall);
   [self.view addSubview:_tabBar1];
 
   _tabBar1.tabItems = [NSArray arrayWithObjects:
@@ -31,9 +31,7 @@
     [[[TTTabItem alloc] initWithTitle:@"Item 10"] autorelease],
     nil];
 
-  _tabBar2 = [[TTTabBar alloc] initWithFrame:CGRectMake(0, 42, 320, 41)
-    style:TTTabBarStyleDark];
-  _tabBar2.delegate = self;
+  _tabBar2 = [[TTTabBar alloc] initWithFrame:CGRectMake(0, _tabBar1.bottom, 320, 40)];
   _tabBar2.contentMode = UIViewContentModeScaleToFill;
   [self.view addSubview:_tabBar2];
 
@@ -48,18 +46,6 @@
   
   TTTabItem* item = [_tabBar2.tabItems objectAtIndex:1];
   item.badgeNumber = 2;
-
-  _tabBar3 = [[TTTabBar alloc] initWithFrame:CGRectMake(0, 100, 320, 41)
-    style:TTTabBarStyleLight];
-  _tabBar3.delegate = self;
-  _tabBar3.contentMode = UIViewContentModeScaleToFill;
-  [self.view addSubview:_tabBar3];
-
-  _tabBar3.tabItems = [NSArray arrayWithObjects:
-    [[[TTTabItem alloc] initWithTitle:@"Red"] autorelease],
-    [[[TTTabItem alloc] initWithTitle:@"Green"] autorelease],
-    [[[TTTabItem alloc] initWithTitle:@"Blue"] autorelease],
-    nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

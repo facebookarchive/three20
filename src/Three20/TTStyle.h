@@ -74,6 +74,7 @@
   UIColor* _color;
   UIColor* _shadowColor;
   CGSize _shadowOffset;
+  CGFloat _minimumFontSize;
   UITextAlignment _textAlignment;
   UIControlContentVerticalAlignment _verticalAlignment;
 }
@@ -81,6 +82,7 @@
 @property(nonatomic,retain) UIFont* font;
 @property(nonatomic,retain) UIColor* color;
 @property(nonatomic,retain) UIColor* shadowColor;
+@property(nonatomic) CGFloat minimumFontSize;
 @property(nonatomic) CGSize shadowOffset;
 @property(nonatomic) UITextAlignment textAlignment;
 @property(nonatomic) UIControlContentVerticalAlignment verticalAlignment;
@@ -89,6 +91,10 @@
 + (TTTextStyle*)styleWithColor:(UIColor*)color next:(TTStyle*)next;
 + (TTTextStyle*)styleWithFont:(UIFont*)font color:(UIColor*)color next:(TTStyle*)next;
 + (TTTextStyle*)styleWithFont:(UIFont*)font color:(UIColor*)color
+                shadowColor:(UIColor*)shadowColor shadowOffset:(CGSize)shadowOffset
+                next:(TTStyle*)next;
++ (TTTextStyle*)styleWithFont:(UIFont*)font color:(UIColor*)color
+                minimumFontSize:(CGFloat)minimumFontSize
                 shadowColor:(UIColor*)shadowColor shadowOffset:(CGSize)shadowOffset
                 next:(TTStyle*)next;
 
@@ -106,9 +112,11 @@
 @property(nonatomic,retain) UIImage* image;
 @property(nonatomic,retain) UIImage* defaultImage;
 
++ (TTImageStyle*)styleWithImageURL:(NSString*)imageURL next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next;
-+ (TTImageStyle*)initWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
++ (TTImageStyle*)styleWithImage:(UIImage*)image next:(TTStyle*)next;
++ (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next;
 
 @end
