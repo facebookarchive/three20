@@ -1,7 +1,7 @@
 #import "Three20/TTGlobal.h"
 
 @protocol TTStyleDelegate;
-@class TTShape;
+@class TTShape, TTStyleContext;
 
 @interface TTStyle : NSObject {
   TTStyle* _next;
@@ -11,10 +11,10 @@
 
 - (id)initWithNext:(TTStyle*)next;
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate;
+- (BOOL)draw:(TTStyleContext*)context;
 
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;
-- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate;
+- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context;
 
 - (TTStyle*)firstStyleOfClass:(Class)cls;
 
@@ -241,6 +241,24 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@interface TTStyleContext : NSObject {
+  id<TTStyleDelegate> _delegate;
+  CGRect _frame;
+  CGRect _contentFrame;
+  TTShape* _shape;
+  UIFont* _font;
+}
+
+@property(nonatomic,assign) id<TTStyleDelegate> delegate;
+@property(nonatomic) CGRect frame;
+@property(nonatomic) CGRect contentFrame;
+@property(nonatomic,retain) TTShape* shape;
+@property(nonatomic,retain) UIFont* font;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @protocol TTStyleDelegate <NSObject>
 
 @optional
@@ -249,6 +267,6 @@
 
 - (UIImage*)imageForLayerWithStyle:(TTStyle*)style;
 
-- (void)drawLayer:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape;
+- (void)drawLayer:(TTStyleContext*)context withStyle:(TTStyle*)style;
 
 @end

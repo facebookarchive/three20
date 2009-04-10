@@ -392,7 +392,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyleDelegate
 
-- (void)drawLayer:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
+- (void)drawLayer:(TTStyleContext*)context withStyle:(TTStyle*)style {
+  CGRect rect = context.frame;
   if ([style isKindOfClass:[TTTextStyle class]]) {
     TTTextStyle* textStyle = (TTTextStyle*)style;
     UIFont* font = textStyle.font ? textStyle.font : _font;
@@ -414,12 +415,17 @@
 // public
 
 - (void)drawInRect:(CGRect)rect {
+  TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+  context.delegate = self;
+  context.frame = rect;
+  context.contentFrame = rect;
+
   if ([_node isKindOfClass:[TTStyledLinkNode class]] && [(TTStyledLinkNode*)_node highlighted]) {
     TTStyle* style = TTSTYLE(linkTextHighlighted);
-    [style drawRect:rect shape:[TTRectangleShape shape] delegate:self];
+    [style draw:context];
   } else {
     if (_style) {
-      if ([_style drawRect:rect shape:[TTRectangleShape shape] delegate:self]) {
+      if ([_style draw:context]) {
         return;
       }
     }

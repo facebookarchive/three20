@@ -41,20 +41,28 @@
 
 - (void)drawRect:(CGRect)rect {
   CGRect bounds = self.backgroundBounds;
-  TTRectangleShape* shape = [TTRectangleShape shape];
-  if (![self.style drawRect:bounds shape:shape delegate:self]) {
+
+  TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+  context.delegate = self;
+  context.frame = bounds;
+  context.contentFrame = bounds;
+
+  if (![self.style draw:context]) {
     [self drawContent:rect];
   }
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-  return [_style addToSize:CGSizeZero delegate:self];
+  TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+  context.delegate = self;
+  context.font = nil;
+  return [_style addToSize:CGSizeZero context:context];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyleDelegate
 
-- (void)drawLayer:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
+- (void)drawLayer:(TTStyleContext*)context withStyle:(TTStyle*)style {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

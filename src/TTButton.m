@@ -142,52 +142,11 @@ static const CGFloat kVPadding = 7;
   TTButton* button = [[[TTButton alloc] initWithFrame:CGRectZero] autorelease];
   [button setTitle:title forState:UIControlStateNormal];
   [button setStylesWithSelector:selector];
-
   return button;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
-
-- (UIFont*)defaultFont {
-  return _font ? _font : TTSTYLEVAR(toolbarButtonFont);
-}
-
-- (CGRect)rectForTitle:(NSString*)title forSize:(CGSize)size withFont:(UIFont*)font {
-  CGRect rect = CGRectZero;
-  if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft
-      && self.contentVerticalAlignment == UIControlContentVerticalAlignmentTop) {
-    rect.size = size;
-  } else {
-    CGSize textSize = [title sizeWithFont:font];
-
-    if (size.width < textSize.width) {
-      size.width = textSize.width;
-    }
-    
-    rect.size = textSize;
-    
-    if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentCenter) {
-      rect.origin.x = floor(size.width/2 - textSize.width/2);
-    } else if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentRight) {
-      rect.origin.x = size.width - textSize.width;
-    }
-
-    if (self.contentVerticalAlignment == UIControlContentVerticalAlignmentCenter) {
-      rect.origin.y = floor(size.height/2 - textSize.height/2);
-    } else if (self.contentVerticalAlignment == UIControlContentVerticalAlignmentBottom) {
-      rect.origin.y = size.height - textSize.height;
-    }
-  }
-  return rect;
-}
-
-- (void)drawTitle:(NSString*)title inRect:(CGRect)rect withFont:(UIFont*)font {
-  CGSize size = CGSizeMake(rect.size.width, rect.size.height);
-  CGRect titleRect = [self rectForTitle:title forSize:size withFont:font];
-  [title drawInRect:CGRectOffset(titleRect, rect.origin.x, rect.origin.y) withFont:font];
-}
-
 
 - (id)keyForState:(UIControlState)state {
   static NSString* normal = @"normal";
@@ -257,14 +216,9 @@ static const CGFloat kVPadding = 7;
     if (textStyle) {
       return textStyle.font;
     } else {
-      return [self defaultFont];
+      return self.font;
     }
   }
-}
-
-- (UIEdgeInsets)insetsForCurrentStateWithSize:(CGSize)size {
-  TTStyle* style = [self styleForCurrentState];
-  return [style addToInsets:UIEdgeInsetsZero forSize:size];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -295,31 +249,27 @@ static const CGFloat kVPadding = 7;
     UIImage* image = [self imageForCurrentState];
     [image drawInRect:rect radius:0 contentMode:UIViewContentModeScaleAspectFill];
 
-    if (![style drawRect:rect shape:[TTRectangleShape shape] delegate:self]) {
-      NSString* title = [self titleForCurrentState];
-      if (title) {
-        [self drawTitle:title inRect:rect withFont:[self defaultFont]];
-      }
-    }
+    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+    context.delegate = self;
+    context.frame = rect;
+    context.contentFrame = rect;
+    context.font = [self fontForCurrentState];
+
+    [style draw:context];
   }
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
+  TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+  context.delegate = self;
+  context.font = [self fontForCurrentState];
+
   TTStyle* style = [self styleForCurrentState];
   if (style) {
-    return [style addToSize:CGSizeZero delegate:self];
+    return [style addToSize:CGSizeZero context:context];
   } else {
     return size;
   }
-
-//  NSString* title = [self titleForCurrentState];
-//  UIFont* font = [self fontForCurrentState];
-//
-//  CGRect textRect = [self rectForTitle:title forSize:size withFont:font];
-//  UIEdgeInsets insets = [self insetsForCurrentStateWithSize:textRect.size];
-//  
-//  return CGSizeMake(textRect.size.width + insets.left + insets.right,
-//                    textRect.size.height + insets.top + insets.bottom);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -343,41 +293,19 @@ static const CGFloat kVPadding = 7;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyleDelegate
 
-- (void)drawLayer:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
-  NSString* title = [self titleForCurrentState];
-  UIEdgeInsets shapeInsets = [shape insetsForSize:rect.size];
-  CGRect innerRect = TTRectInset(rect, shapeInsets);
-  if (title) {
-    if ([style isKindOfClass:[TTTextStyle class]]) {
-      TTTextStyle* textStyle = (TTTextStyle*)style;
-      UIFont* font = _font ? _font : (textStyle.font ? textStyle.font : [self defaultFont]);
-      CGContextRef context = UIGraphicsGetCurrentContext();
-      CGContextSaveGState(context);
-
-      if (textStyle.shadowColor) {
-        CGSize offset = CGSizeMake(textStyle.shadowOffset.width, -textStyle.shadowOffset.height);
-        CGContextSetShadowWithColor(context, offset, 0, textStyle.shadowColor.CGColor);
-      }
-
-      if (textStyle.color) {
-        [textStyle.color setFill];
-      }
-      
-      [self drawTitle:title inRect:innerRect withFont:font];
-      
-      CGContextRestoreGState(context);
-    } else {
-      [self drawTitle:title inRect:innerRect withFont:[self defaultFont]];
-    }
-  }
-}
-
 - (NSString*)textForLayerWithStyle:(TTStyle*)style {
   return [self titleForCurrentState];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
+
+- (UIFont*)font {
+  if (!_font) {
+    _font = [TTSTYLEVAR(buttonFont) retain];
+  }
+  return _font;
+}
 
 - (void)setFont:(UIFont*)font {
   if (font != _font) {

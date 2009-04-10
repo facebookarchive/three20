@@ -44,7 +44,7 @@
   return [self toolbarButtonForState:state
                shape:[TTRoundedRectangleShape shapeWithRadius:4.5]
                tintColor:TTSTYLEVAR(navigationBarTintColor)
-               font:TTSTYLEVAR(toolbarButtonFont)];
+               font:nil];
 }
 
 - (TTStyle*)toolbarBackButton:(UIControlState)state {
@@ -52,7 +52,7 @@
     [self toolbarButtonForState:state
           shape:[TTRoundedLeftArrowShape shapeWithRadius:4.5]
           tintColor:TTSTYLEVAR(navigationBarTintColor)
-          font:TTSTYLEVAR(toolbarButtonFont)];
+          font:nil];
 }
 
 - (TTStyle*)toolbarForwardButton:(UIControlState)state {
@@ -60,7 +60,7 @@
     [self toolbarButtonForState:state
           shape:[TTRoundedRightArrowShape shapeWithRadius:4.5]
           tintColor:TTSTYLEVAR(navigationBarTintColor)
-          font:TTSTYLEVAR(toolbarButtonFont)];
+          font:nil];
 }
 
 - (TTStyle*)toolbarRoundButton:(UIControlState)state {
@@ -68,7 +68,7 @@
     [self toolbarButtonForState:state
           shape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED]
           tintColor:TTSTYLEVAR(navigationBarTintColor)
-          font:TTSTYLEVAR(toolbarButtonFont)];
+          font:nil];
 }
 
 - (TTStyle*)blackToolbarButton:(UIControlState)state {
@@ -76,7 +76,7 @@
     [self toolbarButtonForState:state
           shape:[TTRoundedRectangleShape shapeWithRadius:4.5]
           tintColor:RGBCOLOR(10, 10, 10)
-          font:TTSTYLEVAR(toolbarButtonFont)];
+          font:nil];
 }
 
 - (TTStyle*)blackToolbarForwardButton:(UIControlState)state {
@@ -84,7 +84,7 @@
     [self toolbarButtonForState:state
           shape:[TTRoundedRightArrowShape shapeWithRadius:4.5]
           tintColor:RGBCOLOR(10, 10, 10)
-          font:TTSTYLEVAR(toolbarButtonFont)];
+          font:nil];
 }
 
 - (TTStyle*)blackToolbarRoundButton:(UIControlState)state {
@@ -92,7 +92,7 @@
     [self toolbarButtonForState:state
           shape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED]
           tintColor:RGBCOLOR(10, 10, 10)
-          font:TTSTYLEVAR(toolbarButtonFont)];
+          font:nil];
 }
 
 - (TTStyle*)searchTextField {
@@ -215,14 +215,14 @@
       [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabTintColor) next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, 0, -1) next:
       [TTFourBorderStyle styleWithTop:border right:border bottom:nil left:border width:1 next:
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(4, 8, 4, 8) next:
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(6, 8, 2, 8) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]  color:[UIColor blackColor]
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
   } else {
     return
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(5, 1, 1, 1) next:
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(4, 8, 4, 8) next:
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(6, 8, 2, 8) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]  color:[UIColor whiteColor]
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:0 alpha:0.6]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]];
@@ -337,7 +337,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public fonts
 
-- (UIFont*)toolbarButtonFont {
+- (UIFont*)buttonFont {
   return [UIFont boldSystemFontOfSize:12];
 }
 
@@ -382,7 +382,7 @@
 
   return 
     [TTShapeStyle styleWithShape:shape next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, 1, 0) next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 0, 1, 0) next:
     [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.55) blur:0 offset:CGSizeMake(0, 1) next:
     [TTReflectiveFillStyle styleWithColor:stateTintColor next:
     [TTBevelBorderStyle styleWithHighlight:[stateTintColor multiplyHue:1 saturation:0.9 value:0.7]
@@ -391,7 +391,7 @@
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, -1, 0, -1) next:
     [TTBevelBorderStyle styleWithHighlight:nil shadow:RGBACOLOR(0,0,0,0.15)
                         width:1 lightSource:270 next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(4, 5, 2, 7) next:
+    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(9, 8, 7, 8) next:
     [TTTextStyle styleWithFont:font
                  color:stateTextColor shadowColor:[UIColor colorWithWhite:0 alpha:0.4]
                  shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];

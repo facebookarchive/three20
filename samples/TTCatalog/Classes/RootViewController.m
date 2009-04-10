@@ -57,7 +57,7 @@
 
 #ifdef JOE
   [self validateView];
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:3];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:3];
   [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 #endif
 }

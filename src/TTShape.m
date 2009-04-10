@@ -257,13 +257,13 @@ static const CGFloat kArrowRadius = 2;
   }
 }
 
-- (UIEdgeInsets)insetsForSize:(CGSize)size {
-  CGFloat fh = size.height/2;
-  return UIEdgeInsetsMake(floor(MAX(RD(_topLeftRadius), RD(_topRightRadius))),
-                          floor(MAX(RD(_topLeftRadius), RD(_bottomLeftRadius))),
-                          floor(MAX(RD(_bottomLeftRadius), RD(_bottomRightRadius))),
-                          floor(MAX(RD(_topRightRadius), RD(_bottomRightRadius))));
-}
+//- (UIEdgeInsets)insetsForSize:(CGSize)size {
+//  CGFloat fh = size.height/3;
+//  return UIEdgeInsetsMake(floor(MAX(RD(_topLeftRadius), RD(_topRightRadius))),
+//                          floor(MAX(RD(_topLeftRadius), RD(_bottomLeftRadius))),
+//                          floor(MAX(RD(_bottomLeftRadius), RD(_bottomRightRadius))),
+//                          floor(MAX(RD(_topRightRadius), RD(_bottomRightRadius))));
+//}
 
 @end
 
@@ -363,9 +363,11 @@ static const CGFloat kArrowRadius = 2;
 }
 
 - (UIEdgeInsets)insetsForSize:(CGSize)size {
-  CGFloat fh = size.height;
-  CGFloat point = floor(fh/kArrowPointWidth)+1;
-  return UIEdgeInsetsMake(floor(_radius), floor(_radius)-1, floor(_radius), point+floor(_radius/2));
+  CGFloat fh = size.height/3;
+  return UIEdgeInsetsMake(0, 0, 0, floor(RD(_radius)));
+//  CGFloat fh = size.height/3;
+//  return UIEdgeInsetsMake(floor(RD(_radius)), floor(RD(_radius)),
+//                          floor(RD(_radius)), floor(RD(_radius))*2);
 }
 
 @end
@@ -493,9 +495,11 @@ static const CGFloat kArrowRadius = 2;
 }
 
 - (UIEdgeInsets)insetsForSize:(CGSize)size {
-  CGFloat fh = size.height;
-  CGFloat point = floor((fh/kArrowPointWidth))-1;
-  return UIEdgeInsetsMake(floor(_radius), point+floor(_radius/2), floor(_radius), floor(_radius)+1);
+  CGFloat fh = size.height/3;
+  return UIEdgeInsetsMake(0, floor(RD(_radius)), 0, 0);
+//  CGFloat fh = size.height/3;
+//  return UIEdgeInsetsMake(floor(RD(_radius)), floor(RD(_radius))*2,
+//                          floor(RD(_radius)), floor(RD(_radius)));
 }
 
 @end

@@ -65,9 +65,9 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
+- (BOOL)draw:(TTStyleContext*)context {
   if (_next) {
-    return [self.next drawRect:rect shape:shape delegate:delegate];
+    return [self.next draw:context];
   } else {
     return NO;
   }
@@ -89,9 +89,9 @@ static const NSInteger kDefaultLightSource = 125;
   }
 }
 
-- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate {
+- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
   if (_next) {
-    return [self.next addToSize:size delegate:delegate];
+    return [self.next addToSize:size context:context];
   } else {
     return size;
   }
@@ -113,9 +113,9 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  [delegate drawLayer:rect withStyle:self shape:shape];
-  [self.next drawRect:rect shape:shape delegate:delegate];
+- (BOOL)draw:(TTStyleContext*)context {
+  [context.delegate drawLayer:context withStyle:self];
+  [self.next draw:context];
   return YES;
 }
 
@@ -154,8 +154,11 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  return [self.next drawRect:rect shape:_shape delegate:delegate];
+- (BOOL)draw:(TTStyleContext*)context {
+  UIEdgeInsets shapeInsets = [_shape insetsForSize:context.frame.size];
+  context.contentFrame = TTRectInset(context.contentFrame, shapeInsets);
+  context.shape = _shape;
+  return [self.next draw:context];
 }
 
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
@@ -172,16 +175,13 @@ static const NSInteger kDefaultLightSource = 125;
   }
 }
 
-- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate {
-  UIEdgeInsets shapeInsets = [_shape insetsForSize:size];
-  size.width += shapeInsets.left + shapeInsets.right;
-  size.height += shapeInsets.top + shapeInsets.bottom;
+- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
+  CGSize innerSize = [self.next addToSize:size context:context];
+  UIEdgeInsets shapeInsets = [_shape insetsForSize:innerSize];
+  innerSize.width += shapeInsets.left + shapeInsets.right;
+  innerSize.height += shapeInsets.top + shapeInsets.bottom;
 
-  if (_next) {
-    return [self.next addToSize:size delegate:delegate];
-  } else {
-    return size;
-  }
+  return innerSize;
 }
 
 @end
@@ -214,11 +214,12 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  CGRect innerRect = CGRectMake(rect.origin.x+_inset.left, rect.origin.y+_inset.top,
+- (BOOL)draw:(TTStyleContext*)context {
+  CGRect rect = context.frame;
+  context.frame = CGRectMake(rect.origin.x+_inset.left, rect.origin.y+_inset.top,
     rect.size.width - (_inset.left + _inset.right),
     rect.size.height - (_inset.top + _inset.bottom));
-  return [self.next drawRect:innerRect shape:shape delegate:delegate];
+  return [self.next draw:context];
 }
 
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
@@ -263,12 +264,17 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate {
+- (BOOL)draw:(TTStyleContext*)context {
+  context.contentFrame = TTRectInset(context.contentFrame, _padding);
+  return [self.next draw:context];
+}
+
+- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
   size.width += _padding.left + _padding.right;
   size.height += _padding.top + _padding.bottom;
 
   if (_next) {
-    return [self.next addToSize:size delegate:delegate];
+    return [self.next addToSize:size context:context];
   } else {
     return size;
   }
@@ -362,21 +368,24 @@ static const NSInteger kDefaultLightSource = 125;
   return rect;
 }
 
-- (void)drawText:(NSString*)text inRect:(CGRect)rect {
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  CGContextSaveGState(context);
+- (void)drawText:(NSString*)text context:(TTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGContextSaveGState(ctx);
 
+  UIFont* font = _font ? _font : context.font;
+  
   if (_shadowColor) {
     CGSize offset = CGSizeMake(_shadowOffset.width, -_shadowOffset.height);
-    CGContextSetShadowWithColor(context, offset, 0, _shadowColor.CGColor);
+    CGContextSetShadowWithColor(ctx, offset, 0, _shadowColor.CGColor);
   }
 
   if (_color) {
     [_color setFill];
   }
 
-  CGRect titleRect = [self rectForText:text forSize:rect.size withFont:_font];
-  [text drawInRect:CGRectOffset(titleRect, rect.origin.x, rect.origin.y) withFont:_font];
+  CGRect rect = context.contentFrame;
+  CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
+  [text drawInRect:CGRectOffset(titleRect, rect.origin.x, rect.origin.y) withFont:font];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -401,39 +410,41 @@ static const NSInteger kDefaultLightSource = 125;
   [_shadowColor release];
   [super dealloc];
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
+- (BOOL)draw:(TTStyleContext*)context {
   BOOL handled = NO;
   
-  if ([delegate respondsToSelector:@selector(textForLayerWithStyle:)]) {
-    NSString* text = [delegate textForLayerWithStyle:self];
+  if ([context.delegate respondsToSelector:@selector(textForLayerWithStyle:)]) {
+    NSString* text = [context.delegate textForLayerWithStyle:self];
     if (text) {
       handled = YES;
-      [self drawText:text inRect:rect];
+      [self drawText:text context:context];
     }
   }
   
-  if (!handled && [delegate respondsToSelector:@selector(drawLayer:withStyle:shape:)]) {
-    [delegate drawLayer:rect withStyle:self shape:shape];
+  if (!handled && [context.delegate respondsToSelector:@selector(drawLayer:withStyle:)]) {
+    [context.delegate drawLayer:context withStyle:self];
     handled = YES;
   }
   
-  [self.next drawRect:rect shape:shape delegate:delegate];
+  [self.next draw:context];
   return handled;
 }
 
-- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate {
-  if ([delegate respondsToSelector:@selector(textForLayerWithStyle:)]) {
-    NSString* text = [delegate textForLayerWithStyle:self];
-    CGSize textSize = [text sizeWithFont:_font];
+- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
+  if ([context.delegate respondsToSelector:@selector(textForLayerWithStyle:)]) {
+    NSString* text = [context.delegate textForLayerWithStyle:self];
+    UIFont* font = _font ? _font : context.font;
+    CGSize textSize = [text sizeWithFont:font];
     size.width += textSize.width;
     size.height += textSize.height;
   }
   
   if (_next) {
-    return [self.next addToSize:size delegate:delegate];
+    return [self.next addToSize:size context:context];
   } else {
     return size;
   }
@@ -500,16 +511,16 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
+- (BOOL)draw:(TTStyleContext*)context {
   if (_image) {
-    [_image drawInRect:rect];
+    [_image drawInRect:context.frame];
   } else if (_defaultImage) {
-    [_defaultImage drawInRect:rect];
+    [_defaultImage drawInRect:context.frame];
   }
-  return [self.next drawRect:rect shape:shape delegate:delegate];
+  return [self.next draw:context];
 }
 
-- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate {  
+- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {  
   UIImage* image = _image ? _image : _defaultImage;
   if (image) {
     size.width += image.size.width;
@@ -517,7 +528,7 @@ static const NSInteger kDefaultLightSource = 125;
   }
   
   if (_next) {
-    return [self.next addToSize:size delegate:delegate];
+    return [self.next addToSize:size context:context];
   } else {
     return size;
   }
@@ -558,16 +569,16 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  CGContextRef context = UIGraphicsGetCurrentContext();
+- (BOOL)draw:(TTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
 
-  CGContextSaveGState(context);
-  [shape addToPath:rect];
+  CGContextSaveGState(ctx);
+  [context.shape addToPath:context.frame];
   [_color setFill];
-  CGContextFillPath(context);
-  CGContextRestoreGState(context);
+  CGContextFillPath(ctx);
+  CGContextRestoreGState(ctx);
 
-  return [self.next drawRect:rect shape:shape delegate:delegate];
+  return [self.next draw:context];
 }
 
 @end
@@ -609,22 +620,23 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  CGContextRef context = UIGraphicsGetCurrentContext();
-
-  CGContextSaveGState(context);
-  [shape addToPath:rect];
-  CGContextClip(context);
+- (BOOL)draw:(TTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGRect rect = context.frame;
+  
+  CGContextSaveGState(ctx);
+  [context.shape addToPath:rect];
+  CGContextClip(ctx);
 
   UIColor* colors[] = {_color1, _color2};
   CGGradientRef gradient = [self newGradientWithColors:colors count:2];
-  CGContextDrawLinearGradient(context, gradient, CGPointMake(rect.origin.x, rect.origin.y),
+  CGContextDrawLinearGradient(ctx, gradient, CGPointMake(rect.origin.x, rect.origin.y),
     CGPointMake(rect.origin.x, rect.origin.y+rect.size.height), kCGGradientDrawsAfterEndLocation);
   CGGradientRelease(gradient);
 
-  CGContextRestoreGState(context);
+  CGContextRestoreGState(ctx);
 
-  return [self.next drawRect:rect shape:shape delegate:delegate];
+  return [self.next draw:context];
 }
 
 @end
@@ -662,15 +674,16 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  CGContextRef context = UIGraphicsGetCurrentContext();
-
-  CGContextSaveGState(context);
-  [shape addToPath:rect];
-  CGContextClip(context);
+- (BOOL)draw:(TTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGRect rect = context.frame;
+  
+  CGContextSaveGState(ctx);
+  [context.shape addToPath:rect];
+  CGContextClip(ctx);
 
   [_color setFill];
-  CGContextFillRect(context, rect);
+  CGContextFillRect(ctx, rect);
 
   // XXjoe These numbers are totally biased towards the colors I tested with.  I need to figure out
   // a formula that works well for all colors
@@ -690,14 +703,14 @@ static const NSInteger kDefaultLightSource = 125;
   UIColor* colors[] = {lighter, darker};
   
   CGGradientRef gradient = [self newGradientWithColors:colors count:2];
-  CGContextDrawLinearGradient(context, gradient, CGPointMake(rect.origin.x, rect.origin.y),
+  CGContextDrawLinearGradient(ctx, gradient, CGPointMake(rect.origin.x, rect.origin.y),
     CGPointMake(rect.origin.x, rect.origin.y+rect.size.height*0.5),
     kCGGradientDrawsBeforeStartLocation);
   CGGradientRelease(gradient);
 
-  CGContextRestoreGState(context);
+  CGContextRestoreGState(ctx);
 
-  return [self.next drawRect:rect shape:shape delegate:delegate];
+  return [self.next draw:context];
 }
 
 @end
@@ -740,45 +753,43 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  rect.size.width -= fabs(_offset.width);
-  rect.size.height -= fabs(_offset.height);
-
+- (BOOL)draw:(TTStyleContext*)context {
+  UIEdgeInsets inset = UIEdgeInsetsZero;
   CGFloat blurSize = round(_blur / 2);
-
   if (_offset.width < 0) {
-    rect.origin.x += -_offset.width;
-    rect.size.width -= blurSize;
+    inset.left += fabs(_offset.width) + blurSize;
   } else if (_offset.width > 0) {
-    rect.size.width -= blurSize;
+    inset.right += fabs(_offset.width) + blurSize;
   }
   if (_offset.height < 0) {
-    rect.origin.y += -_offset.height;
-    rect.size.height -= blurSize;
+    inset.top += fabs(_offset.height) + blurSize;
   } else if (_offset.height > 0) {
-    rect.size.height -= blurSize;
+    inset.bottom += fabs(_offset.height) + blurSize;
   }
 
-  CGContextRef context = UIGraphicsGetCurrentContext();
+  context.frame = TTRectInset(context.frame, inset);
+  context.contentFrame = TTRectInset(context.contentFrame, inset);
 
-  CGContextSaveGState(context);
-  [shape addToPath:rect];
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+
+  CGContextSaveGState(ctx);
+  [context.shape addToPath:context.frame];
   [_color setFill];
-  CGContextSetShadowWithColor(context, CGSizeMake(_offset.width, -_offset.height), _blur,
+  CGContextSetShadowWithColor(ctx, CGSizeMake(_offset.width, -_offset.height), _blur,
                               _color.CGColor);
-  CGContextFillPath(context);
-  CGContextRestoreGState(context);
+  CGContextFillPath(ctx);
+  CGContextRestoreGState(ctx);
   
-  return [self.next drawRect:rect shape:shape delegate:delegate];
+  return [self.next draw:context];
 }
 
-- (CGSize)addToSize:(CGSize)size delegate:(id<TTStyleDelegate>)delegate {
+- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
   CGFloat blurSize = round(_blur / 2);
   size.width += _offset.width + (_offset.width ? blurSize : 0);
   size.height += _offset.height + (_offset.height ? blurSize : 0);
   
   if (_next) {
-    return [self.next addToSize:size delegate:delegate];
+    return [self.next addToSize:size context:context];
   } else {
     return size;
   }
@@ -792,22 +803,21 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  CGContextRef context = UIGraphicsGetCurrentContext();
+- (BOOL)draw:(TTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGContextSaveGState(ctx);
 
-  CGContextSaveGState(context);
-
-  [shape addToPath:rect];
-  CGContextClip(context);
+  [context.shape addToPath:context.frame];
+  CGContextClip(ctx);
   
-  [shape addInverseToPath:rect];
+  [context.shape addInverseToPath:context.frame];
   [[UIColor whiteColor] setFill];
-  CGContextSetShadowWithColor(context, CGSizeMake(_offset.width, -_offset.height), _blur,
+  CGContextSetShadowWithColor(ctx, CGSizeMake(_offset.width, -_offset.height), _blur,
                               _color.CGColor);
-  CGContextEOFillPath(context);
-  CGContextRestoreGState(context);
+  CGContextEOFillPath(ctx);
+  CGContextRestoreGState(ctx);
 
-  return [self.next drawRect:rect shape:shape delegate:delegate];
+  return [self.next draw:context];
 }
 
 @end
@@ -847,21 +857,21 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  CGContextSaveGState(context);
+- (BOOL)draw:(TTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGContextSaveGState(ctx);
 
-  CGRect strokeRect = CGRectInset(rect, _width/2, _width/2);
-  [shape addToPath:strokeRect];
+  CGRect strokeRect = CGRectInset(context.frame, _width/2, _width/2);
+  [context.shape addToPath:strokeRect];
 
   [_color setStroke];
-  CGContextSetLineWidth(context, _width);
-  CGContextStrokePath(context);
+  CGContextSetLineWidth(ctx, _width);
+  CGContextStrokePath(ctx);
 
-  CGContextRestoreGState(context);
+  CGContextRestoreGState(ctx);
 
-  CGRect innerRect = CGRectInset(rect, _width, _width);
-  return [self.next drawRect:innerRect shape:shape delegate:delegate];
+  context.frame = CGRectInset(context.frame, _width, _width);
+  return [self.next draw:context];
 }
 
 @end
@@ -911,52 +921,53 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
+- (BOOL)draw:(TTStyleContext*)context {
+  CGRect rect = context.frame;
   CGRect strokeRect = CGRectInset(rect, _width/2, _width/2);
-  [shape openPath:strokeRect];
+  [context.shape openPath:strokeRect];
 
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  CGContextSetLineWidth(context, _width);
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGContextSetLineWidth(ctx, _width);
 
-  [shape addTopEdgeToPath:strokeRect lightSource:kDefaultLightSource];
+  [context.shape addTopEdgeToPath:strokeRect lightSource:kDefaultLightSource];
   if (_top) {
     [_top setStroke];
   } else {
     [[UIColor clearColor] setStroke];
   }
-  CGContextStrokePath(context);
+  CGContextStrokePath(ctx);
   
-  [shape addRightEdgeToPath:strokeRect lightSource:kDefaultLightSource];
+  [context.shape addRightEdgeToPath:strokeRect lightSource:kDefaultLightSource];
   if (_right) {
     [_right setStroke];
   } else {
     [[UIColor clearColor] setStroke];
   }
-  CGContextStrokePath(context);
+  CGContextStrokePath(ctx);
   
-  [shape addBottomEdgeToPath:strokeRect lightSource:kDefaultLightSource];
+  [context.shape addBottomEdgeToPath:strokeRect lightSource:kDefaultLightSource];
   if (_bottom) {
     [_bottom setStroke];
   } else {
     [[UIColor clearColor] setStroke];
   }
-  CGContextStrokePath(context);
+  CGContextStrokePath(ctx);
   
-  [shape addLeftEdgeToPath:strokeRect lightSource:kDefaultLightSource];
+  [context.shape addLeftEdgeToPath:strokeRect lightSource:kDefaultLightSource];
   if (_left) {
     [_left setStroke];
   } else {
     [[UIColor clearColor] setStroke];
   }
-  CGContextStrokePath(context);
+  CGContextStrokePath(ctx);
   
-  CGContextRestoreGState(context);
+  CGContextRestoreGState(ctx);
 
-  CGRect innerRect = CGRectMake(rect.origin.x + (_left ? _width : 0),
+  context.frame = CGRectMake(rect.origin.x + (_left ? _width : 0),
                                 rect.origin.y + (_top ? _width : 0),
                                 rect.size.width - ((_left ? _width : 0) + (_right ? _width : 0)),
                                 rect.size.height - ((_top ? _width : 0) + (_bottom ? _width : 0)));
-  return [self.next drawRect:innerRect shape:shape delegate:delegate];
+  return [self.next draw:context];
 }
 
 @end
@@ -1007,12 +1018,12 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)drawRect:(CGRect)rect shape:(TTShape*)shape delegate:(id<TTStyleDelegate>)delegate {
-  CGRect strokeRect = CGRectInset(rect, _width/2, _width/2);
-  [shape openPath:strokeRect];
+- (BOOL)draw:(TTStyleContext*)context {
+  CGRect strokeRect = CGRectInset(context.frame, _width/2, _width/2);
+  [context.shape openPath:strokeRect];
 
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  CGContextSetLineWidth(context, _width);
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGContextSetLineWidth(ctx, _width);
 
   UIColor* topColor = _lightSource >= 0 && _lightSource <= 180 ? _highlight : _shadow;
   UIColor* leftColor = _lightSource >= 90 && _lightSource <= 270
@@ -1023,53 +1034,93 @@ static const NSInteger kDefaultLightSource = 125;
                        || (_lightSource >= 0 && _lightSource <= 90)
                        ? _highlight : _shadow;
 
-  CGRect innerRect = rect;
+  CGRect rect = context.frame;
 
-  [shape addTopEdgeToPath:strokeRect lightSource:_lightSource];
+  [context.shape addTopEdgeToPath:strokeRect lightSource:_lightSource];
   if (topColor) {
     [topColor setStroke];
 
-    innerRect.origin.y += _width;
-    innerRect.size.height -= _width;
+    rect.origin.y += _width;
+    rect.size.height -= _width;
   } else {
     [[UIColor clearColor] setStroke];
   }
-  CGContextStrokePath(context);
+  CGContextStrokePath(ctx);
 
-  [shape addRightEdgeToPath:strokeRect lightSource:_lightSource];
+  [context.shape addRightEdgeToPath:strokeRect lightSource:_lightSource];
   if (rightColor) {
     [rightColor setStroke];
 
-    innerRect.size.width -= _width;
+    rect.size.width -= _width;
   } else {
     [[UIColor clearColor] setStroke];
   }
-  CGContextStrokePath(context);
+  CGContextStrokePath(ctx);
   
-  [shape addBottomEdgeToPath:strokeRect lightSource:_lightSource];
+  [context.shape addBottomEdgeToPath:strokeRect lightSource:_lightSource];
   if (bottomColor) {
     [bottomColor setStroke];
 
-    innerRect.size.height -= _width;
+    rect.size.height -= _width;
   } else {
     [[UIColor clearColor] setStroke];
   }
-  CGContextStrokePath(context);
+  CGContextStrokePath(ctx);
   
-  [shape addLeftEdgeToPath:strokeRect lightSource:_lightSource];
+  [context.shape addLeftEdgeToPath:strokeRect lightSource:_lightSource];
   if (leftColor) {
     [leftColor setStroke];
 
-    innerRect.origin.x += _width;
-    innerRect.size.width -= _width;
+    rect.origin.x += _width;
+    rect.size.width -= _width;
   } else {
     [[UIColor clearColor] setStroke];
   }
-  CGContextStrokePath(context);
+  CGContextStrokePath(ctx);
   
-  CGContextRestoreGState(context);
+  CGContextRestoreGState(ctx);
 
-  return [self.next drawRect:innerRect shape:shape delegate:delegate];
+  context.frame = rect;
+  return [self.next draw:context];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTStyleContext
+
+@synthesize delegate = _delegate, frame = _frame, contentFrame = _contentFrame, shape = _shape,
+            font = _font;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _delegate = nil;
+    _frame = CGRectZero;
+    _contentFrame = CGRectZero;
+    _shape = nil;
+    _font = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_shape release];
+  [_font release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (TTShape*)shape {
+  if (!_shape) {
+    _shape = [[TTRectangleShape shape] retain];
+  }
+  return _shape;
 }
 
 @end
