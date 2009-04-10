@@ -273,6 +273,8 @@
 				BEF321B10F353B25000DE5D2 /* Global */,
 				BE8AA1870F428A0F00FD8C43 /* Additions */,
 				BE1287F40F8969C100F65EA2 /* Style */,
+				BEB46A860F8F8170004B34A0 /* Layout */,
+				BEB46A870F8F818F004B34A0 /* Styled Text */,
 				BEF321B30F353B78000DE5D2 /* View Controllers */,
 				BEF31F450F352E64000DE5D2 /* Views */,
 				BEB460380F8EDE60004B34A0 /* Labels */,
@@ -308,14 +310,6 @@
 				BE1288070F896A1900F65EA2 /* TTStyle.m */,
 				BE1288CC0F89813A00F65EA2 /* TTShape.h */,
 				BE1288CA0F89812E00F65EA2 /* TTShape.m */,
-				BEC270B10F8C9D1900EA638F /* TTLayout.h */,
-				BEC270B30F8C9D2600EA638F /* TTLayout.m */,
-				BE3EDE400F80C78500A732BE /* TTStyledText.h */,
-				BE3EDE420F80C79600A732BE /* TTStyledText.m */,
-				BEF198E10F818A240010D36E /* TTStyledTextNode.h */,
-				BEF198DF0F818A1C0010D36E /* TTStyledTextNode.m */,
-				BEF19D6A0F81B8440010D36E /* TTStyledTextParser.h */,
-				BEF19D6C0F81B8530010D36E /* TTStyledTextParser.m */,
 			);
 			name = Style;
 			sourceTree = "<group>";
@@ -390,6 +384,28 @@
 				BEE341BF0F481345008C826E /* TTPickerViewCell.m */,
 			);
 			name = "Helper Views";
+			sourceTree = "<group>";
+		};
+		BEB46A860F8F8170004B34A0 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				BEC270B10F8C9D1900EA638F /* TTLayout.h */,
+				BEC270B30F8C9D2600EA638F /* TTLayout.m */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
+		BEB46A870F8F818F004B34A0 /* Styled Text */ = {
+			isa = PBXGroup;
+			children = (
+				BE3EDE400F80C78500A732BE /* TTStyledText.h */,
+				BE3EDE420F80C79600A732BE /* TTStyledText.m */,
+				BEF198E10F818A240010D36E /* TTStyledTextNode.h */,
+				BEF198DF0F818A1C0010D36E /* TTStyledTextNode.m */,
+				BEF19D6A0F81B8440010D36E /* TTStyledTextParser.h */,
+				BEF19D6C0F81B8530010D36E /* TTStyledTextParser.m */,
+			);
+			name = "Styled Text";
 			sourceTree = "<group>";
 		};
 		BED631A10F88554F009923D8 /* Buttons and Tabs */ = {

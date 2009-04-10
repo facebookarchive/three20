@@ -1,5 +1,4 @@
 #include "Three20/TTButton.h"
-#include "Three20/TTShape.h"
 #include "Three20/TTDefaultStyleSheet.h"
 #include "Three20/TTURLRequest.h"
 #include "Three20/TTURLResponse.h"

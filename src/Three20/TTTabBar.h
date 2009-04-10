@@ -1,27 +1,24 @@
 #import "Three20/TTView.h"
 #import "Three20/TTButton.h"
 
-@class TTTabItem, TTTabView, TTImageView, TTLabel;
+@class TTTabItem, TTTab, TTImageView, TTLabel;
 
-@protocol TTTabBarDelegate;
+@protocol TTTabDelegate;
 
 @interface TTTabBar : TTView {
-  id<TTTabBarDelegate> _delegate;
+  id<TTTabDelegate> _delegate;
   NSString* _tabStyle;
   NSInteger _selectedTabIndex;
-  TTView* _overflowLeft;
-  TTView* _overflowRight;
-  UIScrollView* _scrollView;
   NSArray* _tabItems;
   NSMutableArray* _tabViews;
 }
 
-@property(nonatomic,assign) id<TTTabBarDelegate> delegate;
+@property(nonatomic,assign) id<TTTabDelegate> delegate;
 @property(nonatomic,retain) NSArray* tabItems;
 @property(nonatomic,readonly) NSArray* tabViews;
 @property(nonatomic,copy) NSString* tabStyle;
 @property(nonatomic,assign) TTTabItem* selectedTabItem;
-@property(nonatomic,assign) TTTabView* selectedTabView;
+@property(nonatomic,assign) TTTab* selectedTabView;
 @property(nonatomic) NSInteger selectedTabIndex;
 
 - (id)initWithFrame:(CGRect)frame;
@@ -33,7 +30,22 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTTabView : TTButton {
+@interface TTTabStrip : TTTabBar {
+  TTView* _overflowLeft;
+  TTView* _overflowRight;
+  UIScrollView* _scrollView;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTTabGrid : TTTabBar
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTTab : TTButton {
   TTTabItem* _tabItem;
   TTLabel* _badge;
 }
@@ -65,7 +77,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTTabBarDelegate <NSObject>
+@protocol TTTabDelegate <NSObject>
 
 - (void)tabBar:(TTTabBar*)tabBar tabSelected:(NSInteger)selectedIndex;
 

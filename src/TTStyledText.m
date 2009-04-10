@@ -2,7 +2,6 @@
 #import "Three20/TTStyledTextNode.h"
 #import "Three20/TTStyledTextParser.h"
 #import "Three20/TTStyle.h"
-#import "Three20/TTShape.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

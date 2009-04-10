@@ -15,6 +15,7 @@
 #import "StyleTestController.h"
 #import "ButtonTestController.h"
 #import "TabBarTestController.h"
+#import "Three20/developer.h"
 
 @implementation RootViewController
 
@@ -57,7 +58,7 @@
 
 #ifdef JOE
   [self validateView];
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:3];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:TEST_ROW inSection:TEST_SECTION];
   [self.tableView touchRowAtIndexPath:indexPath animated:NO];
 #endif
 }

@@ -794,6 +794,7 @@ static const NSInteger kDefaultLightSource = 125;
     return size;
   }
 }
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -818,6 +819,14 @@ static const NSInteger kDefaultLightSource = 125;
   CGContextRestoreGState(ctx);
 
   return [self.next draw:context];
+}
+
+- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
+  if (_next) {
+    return [self.next addToSize:size context:context];
+  } else {
+    return size;
+  }
 }
 
 @end

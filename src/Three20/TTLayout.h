@@ -17,3 +17,17 @@
 @property(nonatomic) CGFloat spacing;
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTGridLayout : TTLayout {
+  NSInteger _columnCount;
+  CGFloat _padding;
+  CGFloat _spacing;
+}
+
+@property(nonatomic) NSInteger columnCount;
+@property(nonatomic) CGFloat padding;
+@property(nonatomic) CGFloat spacing;
+
+@end

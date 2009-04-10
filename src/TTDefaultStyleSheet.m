@@ -97,8 +97,8 @@
 
 - (TTStyle*)searchTextField {
   return
-    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:13] next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 0, 2, 0) next:
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 0, 1, 0) next:
     [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.6) blur:0 offset:CGSizeMake(0, 1) next:
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
     [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.4) blur:3 offset:CGSizeMake(0, 2) next:
@@ -197,11 +197,82 @@
     [TTFourBorderStyle styleWithTop:nil right:nil bottom:border left:nil width:1 next:nil]];
 }
 
-- (TTStyle*)tabBarSmall {
+- (TTStyle*)tabStrip {
   UIColor* border = [TTSTYLEVAR(tabTintColor) multiplyHue:0 saturation:0 value:0.4];
   return
     [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabTintColor) next:
     [TTFourBorderStyle styleWithTop:nil right:nil bottom:border left:nil width:1 next:nil]];
+}
+
+- (TTStyle*)tabGrid {
+  UIColor* color = TTSTYLEVAR(tabTintColor);
+  UIColor* lighter = [color multiplyHue:1 saturation:0.9 value:1.1];
+
+  UIColor* highlight = RGBACOLOR(255, 255, 255, 0.7);
+  UIColor* shadow = [color multiplyHue:1 saturation:1.1 value:0.86];
+  return
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0,0,-1,-1) next:
+    [TTShadowStyle styleWithColor:highlight blur:1 offset:CGSizeMake(0, 1) next:
+    [TTLinearGradientFillStyle styleWithColor1:lighter color2:color next:
+    [TTSolidBorderStyle styleWithColor:shadow width:1 next:nil]]]]];
+}
+
+- (TTStyle*)tabGridTab:(UIControlState)state corner:(short)corner {
+  TTShape* shape = nil;
+  if (corner == 1) {
+    shape = [TTRoundedRectangleShape shapeWithTopLeft:8 topRight:0 bottomRight:0 bottomLeft:0];
+  } else if (corner == 2) {
+    shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:8 bottomRight:0 bottomLeft:0];
+  } else if (corner == 3) {
+    shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:8 bottomLeft:0];
+  } else if (corner == 4) {
+    shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:0 bottomLeft:8];
+  } else {
+    shape = [TTRectangleShape shape];
+  }
+  
+  UIColor* highlight = RGBACOLOR(255, 255, 255, 0.7);
+  UIColor* shadow = [TTSTYLEVAR(tabTintColor) multiplyHue:1 saturation:1.1 value:0.88];
+  
+  if (state == UIControlStateSelected) {
+    return
+      [TTShapeStyle styleWithShape:shape next:
+      [TTSolidFillStyle styleWithColor:RGBCOLOR(150, 168, 191) next:
+      [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.6) blur:3 offset:CGSizeMake(0, 0) next:
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
+      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:12]  color:RGBCOLOR(255, 255, 255)
+                   minimumFontSize:8 shadowColor:RGBACOLOR(0,0,0,0.1) shadowOffset:CGSizeMake(-1,-1)
+                   next:nil]]]]];
+  } else {
+    return
+      [TTShapeStyle styleWithShape:shape next:
+      [TTBevelBorderStyle styleWithHighlight:highlight shadow:shadow width:1 lightSource:125 next:
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
+      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:12]  color:self.linkTextColor
+                   minimumFontSize:8 shadowColor:[UIColor whiteColor]
+                   shadowOffset:CGSizeMake(0, -1) next:nil]]]];
+  }
+}
+
+- (TTStyle*)tabGridTabTopLeft:(UIControlState)state {
+  return [self tabGridTab:state corner:1];
+}
+
+- (TTStyle*)tabGridTabTopRight:(UIControlState)state {
+  return [self tabGridTab:state corner:2];
+}
+
+- (TTStyle*)tabGridTabBottomRight:(UIControlState)state {
+  return [self tabGridTab:state corner:3];
+}
+
+- (TTStyle*)tabGridTabBottomLeft:(UIControlState)state {
+  return [self tabGridTab:state corner:4];
+}
+
+- (TTStyle*)tabGridTabCenter:(UIControlState)state {
+  return [self tabGridTab:state corner:0];
 }
 
 - (TTStyle*)tab:(UIControlState)state {
