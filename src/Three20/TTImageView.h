@@ -1,9 +1,9 @@
-#import "Three20/TTStyledView.h"
+#import "Three20/TTView.h"
 #import "Three20/TTURLRequest.h"
 
 @protocol TTImageViewDelegate;
 
-@interface TTImageView : TTStyledView <TTURLRequestDelegate> {
+@interface TTImageView : TTView <TTURLRequestDelegate> {
   id<TTImageViewDelegate> _delegate;
   TTURLRequest* _request;
   NSString* _url;

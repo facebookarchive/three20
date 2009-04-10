@@ -1,6 +1,6 @@
 #import "Three20/TTThumbView.h"
 #import "Three20/TTImageView.h"
-#import "Three20/TTStyledView.h"
+#import "Three20/TTView.h"
 
 @implementation TTThumbView
 

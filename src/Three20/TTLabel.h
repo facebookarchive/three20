@@ -1,6 +1,6 @@
-#import "Three20/TTStyledView.h"
+#import "Three20/TTView.h"
 
-@interface TTStyledLabel : TTStyledView {
+@interface TTLabel : TTView {
   NSString* _text;
   UIFont* _font;
 }

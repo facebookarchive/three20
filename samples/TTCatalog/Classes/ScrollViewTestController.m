@@ -46,9 +46,9 @@
 }
 
 - (UIView*)scrollView:(TTScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
-  TTStyledView* pageView = nil;
+  TTView* pageView = nil;
   if (!pageView) {
-    pageView = [[[TTStyledView alloc] initWithFrame:CGRectZero] autorelease];
+    pageView = [[[TTView alloc] initWithFrame:CGRectZero] autorelease];
     pageView.backgroundColor = [UIColor clearColor];
     pageView.userInteractionEnabled = NO;
     //pageView.contentMode = UIViewContentModeLeft;

@@ -11,12 +11,12 @@ typedef enum {
 } TTActivityLabelStyle;
 
 @protocol TTActivityLabelDelegate;
-@class TTStyledView, TTButton;
+@class TTView, TTButton;
 
 @interface TTActivityLabel : UIView {
   id<TTActivityLabelDelegate> _delegate;
   TTActivityLabelStyle _style;
-  TTStyledView* _bezelView;
+  TTView* _bezelView;
   UIActivityIndicatorView* _spinner;
   UILabel* _textView;
   TTButton* _stopButton;

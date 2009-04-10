@@ -1,9 +1,9 @@
-#import "Three20/TTStyledLabel.h"
+#import "Three20/TTLabel.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTStyledLabel
+@implementation TTLabel
 
 @synthesize font = _font, text = _text;
 

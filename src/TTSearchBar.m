@@ -1,6 +1,6 @@
 #import "Three20/TTSearchBar.h"
 #import "Three20/TTSearchTextField.h"
-#import "Three20/TTStyledView.h"
+#import "Three20/TTView.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTButton.h"
 
@@ -90,7 +90,7 @@ static const CGFloat kIndexViewMargin = 4;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _boxView = [[TTStyledView alloc] initWithFrame:CGRectZero];
+    _boxView = [[TTView alloc] initWithFrame:CGRectZero];
     _boxView.backgroundColor = [UIColor clearColor];
     [self addSubview:_boxView];
         

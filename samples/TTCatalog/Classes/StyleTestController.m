@@ -97,24 +97,24 @@
     nil];
   
   CGFloat padding = 10;
-  CGFloat viewWidth = scrollView.width/2;
-  CGFloat viewHeight = 44;
+  CGFloat viewWidth = scrollView.width/2 - padding*2;
+  CGFloat viewHeight = TOOLBAR_HEIGHT;
   
-  CGFloat x = 0;
-  CGFloat y = 0;
+  CGFloat x = padding;
+  CGFloat y = padding;
   for (TTStyle* style in styles) {
-    CGRect frame = CGRectMake(x, y, viewWidth, viewHeight + padding*2);
-    TTStyledView* view = [[[TTStyledView alloc] initWithFrame:frame] autorelease];
+    if (x + viewWidth >= scrollView.width) {
+      x = padding;
+      y += viewHeight + padding;
+    }
+
+    CGRect frame = CGRectMake(x, y, viewWidth, viewHeight);
+    TTView* view = [[[TTView alloc] initWithFrame:frame] autorelease];
     view.backgroundColor = scrollView.backgroundColor;
-    view.backgroundInset = UIEdgeInsetsMake(padding, padding, padding, padding);
     view.style = style;
     [scrollView addSubview:view];
     
-    x += frame.size.width;
-    if (x >= scrollView.width) {
-      x = 0;
-      y += frame.size.height;
-    }
+    x += frame.size.width + padding;
   }
   
   scrollView.contentSize = CGSizeMake(scrollView.width, y);

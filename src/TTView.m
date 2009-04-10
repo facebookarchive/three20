@@ -1,22 +1,12 @@
-#import "Three20/TTStyledView.h"
+#import "Three20/TTView.h"
 #import "Three20/TTStyle.h"
 #import "Three20/TTShape.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTStyledView
+@implementation TTView
 
-@synthesize style = _style, backgroundInset = _backgroundInset;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (CGRect)backgroundBounds {
-  CGRect frame = self.frame;
-  return CGRectMake(_backgroundInset.left, _backgroundInset.top,
-    frame.size.width - (_backgroundInset.left + _backgroundInset.right),
-    frame.size.height - (_backgroundInset.top + _backgroundInset.bottom));
-}
+@synthesize style = _style;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -24,8 +14,6 @@
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _style = nil;
-    _backgroundInset = UIEdgeInsetsZero;
-
     self.contentMode = UIViewContentModeRedraw;
   }
   return self;
@@ -40,15 +28,13 @@
 // UIView
 
 - (void)drawRect:(CGRect)rect {
-  CGRect bounds = self.backgroundBounds;
-
   TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
   context.delegate = self;
-  context.frame = bounds;
-  context.contentFrame = bounds;
+  context.frame = rect;
+  context.contentFrame = rect;
 
   if (![self.style draw:context]) {
-    [self drawContent:bounds];
+    [self drawContent:rect];
   }
 }
 

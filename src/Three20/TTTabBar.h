@@ -1,16 +1,16 @@
-#import "Three20/TTStyledView.h"
+#import "Three20/TTView.h"
 #import "Three20/TTButton.h"
 
-@class TTTabItem, TTTabView, TTImageView, TTStyledLabel;
+@class TTTabItem, TTTabView, TTImageView, TTLabel;
 
 @protocol TTTabBarDelegate;
 
-@interface TTTabBar : TTStyledView {
+@interface TTTabBar : TTView {
   id<TTTabBarDelegate> _delegate;
   NSString* _tabStyle;
   NSInteger _selectedTabIndex;
-  TTStyledView* _overflowLeft;
-  TTStyledView* _overflowRight;
+  TTView* _overflowLeft;
+  TTView* _overflowRight;
   UIScrollView* _scrollView;
   NSArray* _tabItems;
   NSMutableArray* _tabViews;
@@ -31,9 +31,11 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TTTabView : TTButton {
   TTTabItem* _tabItem;
-  TTStyledLabel* _badge;
+  TTLabel* _badge;
 }
 
 @property(nonatomic,retain) TTTabItem* tabItem;
@@ -41,6 +43,8 @@
 - (id)initWithItem:(TTTabItem*)item tabBar:(TTTabBar*)tabBar;
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTTabItem : NSObject {
   NSString* _title;
@@ -58,6 +62,8 @@
 - (id)initWithTitle:(NSString*)title;
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @protocol TTTabBarDelegate <NSObject>
 

@@ -1,6 +1,6 @@
 #import "Three20/TTTabBar.h"
 #import "Three20/TTImageView.h"
-#import "Three20/TTStyledLabel.h"
+#import "Three20/TTLabel.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ static CGFloat kPadding = 10;
 - (void)updateOverflow {
   if (_scrollView.contentOffset.x < (_scrollView.contentSize.width-self.width)) {
     if (!_overflowRight) {
-      _overflowRight = [[TTStyledView alloc] initWithFrame:CGRectZero];
+      _overflowRight = [[TTView alloc] initWithFrame:CGRectZero];
       _overflowRight.style = TTSTYLE(tabOverflowRight);
       _overflowRight.userInteractionEnabled = NO;
       _overflowRight.backgroundColor = [UIColor clearColor];
@@ -85,7 +85,7 @@ static CGFloat kPadding = 10;
   }
   if (_scrollView.contentOffset.x > 0) {
     if (!_overflowLeft) {
-      _overflowLeft = [[TTStyledView alloc] initWithFrame:CGRectZero];
+      _overflowLeft = [[TTView alloc] initWithFrame:CGRectZero];
       _overflowLeft.style = TTSTYLE(tabOverflowLeft);
       _overflowLeft.userInteractionEnabled = NO;
       _overflowLeft.backgroundColor = [UIColor clearColor];
@@ -353,7 +353,7 @@ static CGFloat kPadding = 10;
 - (void)updateBadgeNumber {
   if (_tabItem.badgeNumber) {
     if (!_badge) {
-      _badge = [[TTStyledLabel alloc] initWithFrame:CGRectZero];
+      _badge = [[TTLabel alloc] initWithFrame:CGRectZero];
       _badge.style = TTSTYLE(badge);
       _badge.backgroundColor = [UIColor clearColor];
       _badge.userInteractionEnabled = NO;

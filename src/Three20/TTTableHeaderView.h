@@ -1,6 +1,6 @@
-#import "Three20/TTStyledView.h"
+#import "Three20/TTView.h"
 
-@interface TTTableHeaderView : TTStyledView {
+@interface TTTableHeaderView : TTView {
   UILabel* _label;
 }
 
