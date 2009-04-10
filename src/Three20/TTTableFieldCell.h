@@ -1,6 +1,6 @@
 #import "Three20/TTTableViewCell.h"
 
-@class TTTableField, TTImageView, TTErrorView, TTActivityLabel, TTStyledLabel;
+@class TTTableField, TTImageView, TTErrorView, TTActivityLabel, TTStyledTextLabel;
 
 @interface TTTableFieldCell : TTTableViewCell {
   TTTableField* _field;
@@ -13,7 +13,7 @@
 @end
 
 @interface TTStyledTextTableFieldCell : TTTableFieldCell {
-  TTStyledLabel* _label;
+  TTStyledTextLabel* _label;
 }
 @end
 

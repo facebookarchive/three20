@@ -337,6 +337,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public fonts
 
+- (UIFont*)defaultFont {
+  return [UIFont systemFontOfSize:14];
+}
+
 - (UIFont*)buttonFont {
   return [UIFont boldSystemFontOfSize:12];
 }

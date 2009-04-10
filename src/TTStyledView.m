@@ -48,7 +48,7 @@
   context.contentFrame = bounds;
 
   if (![self.style draw:context]) {
-    [self drawContent:rect];
+    [self drawContent:bounds];
   }
 }
 

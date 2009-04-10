@@ -1,6 +1,6 @@
 #import "Three20/TTTabBar.h"
 #import "Three20/TTImageView.h"
-#import "Three20/TTBadgeView.h"
+#import "Three20/TTStyledLabel.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -353,10 +353,13 @@ static CGFloat kPadding = 10;
 - (void)updateBadgeNumber {
   if (_tabItem.badgeNumber) {
     if (!_badge) {
-      _badge = [[TTBadgeView alloc] initWithFrame:CGRectZero];
+      _badge = [[TTStyledLabel alloc] initWithFrame:CGRectZero];
+      _badge.style = TTSTYLE(badge);
+      _badge.backgroundColor = [UIColor clearColor];
+      _badge.userInteractionEnabled = NO;
       [self addSubview:_badge];
     }
-    _badge.message = [NSString stringWithFormat:@"%d", _tabItem.badgeNumber];
+    _badge.text = [NSString stringWithFormat:@"%d", _tabItem.badgeNumber];
     [_badge sizeToFit];
     
     _badge.frame = CGRectMake(self.width - _badge.width-1, 1, _badge.width, _badge.height);

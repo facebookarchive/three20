@@ -22,6 +22,7 @@
 @property(nonatomic,readonly) UIColor* tabTintColor;
 @property(nonatomic,readonly) UIColor* tabBarTintColor;
 
+@property(nonatomic,readonly) UIFont* defaultFont;
 @property(nonatomic,readonly) UIFont* buttonFont;
 
 - (TTStyle*)toolbarButtonForState:(UIControlState)state shape:(TTShape*)shape

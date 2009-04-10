@@ -49,8 +49,8 @@
 		BEAF21400F4D32E100D75F3B /* UIToolbarAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEAF21390F4D32E100D75F3B /* UIToolbarAdditions.h */; };
 		BEAF21410F4D32E100D75F3B /* UIViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEAF213A0F4D32E100D75F3B /* UIViewAdditions.h */; };
 		BEAF21420F4D32E100D75F3B /* UIWebViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEAF213B0F4D32E100D75F3B /* UIWebViewAdditions.h */; };
-		BEB460830F8EE14C004B34A0 /* TTBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB460820F8EE14C004B34A0 /* TTBadgeView.h */; };
-		BEB460850F8EE156004B34A0 /* TTBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB460840F8EE156004B34A0 /* TTBadgeView.m */; };
+		BEB460830F8EE14C004B34A0 /* TTStyledLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB460820F8EE14C004B34A0 /* TTStyledLabel.h */; };
+		BEB460850F8EE156004B34A0 /* TTStyledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB460840F8EE156004B34A0 /* TTStyledLabel.m */; };
 		BEB463DD0F8F2DB5004B34A0 /* developer.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB463DC0F8F2DB5004B34A0 /* developer.h */; };
 		BEC270B20F8C9D1900EA638F /* TTLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC270B10F8C9D1900EA638F /* TTLayout.h */; };
 		BEC270B40F8C9D2600EA638F /* TTLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC270B30F8C9D2600EA638F /* TTLayout.m */; };
@@ -121,8 +121,8 @@
 		BEF320350F352E7A000DE5D2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		BEF320360F352E7A000DE5D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		BEF320370F352E7A000DE5D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
-		BEF341950F8042440027E93C /* TTStyledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF341940F8042440027E93C /* TTStyledLabel.m */; };
-		BEF341970F8042520027E93C /* TTStyledLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF341960F8042520027E93C /* TTStyledLabel.h */; };
+		BEF341950F8042440027E93C /* TTStyledTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF341940F8042440027E93C /* TTStyledTextLabel.m */; };
+		BEF341970F8042520027E93C /* TTStyledTextLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF341960F8042520027E93C /* TTStyledTextLabel.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,8 +171,8 @@
 		BEAF21390F4D32E100D75F3B /* UIToolbarAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIToolbarAdditions.h; path = Three20/UIToolbarAdditions.h; sourceTree = "<group>"; };
 		BEAF213A0F4D32E100D75F3B /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewAdditions.h; path = Three20/UIViewAdditions.h; sourceTree = "<group>"; };
 		BEAF213B0F4D32E100D75F3B /* UIWebViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWebViewAdditions.h; path = Three20/UIWebViewAdditions.h; sourceTree = "<group>"; };
-		BEB460820F8EE14C004B34A0 /* TTBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTBadgeView.h; path = Three20/TTBadgeView.h; sourceTree = "<group>"; };
-		BEB460840F8EE156004B34A0 /* TTBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTBadgeView.m; sourceTree = "<group>"; };
+		BEB460820F8EE14C004B34A0 /* TTStyledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledLabel.h; path = Three20/TTStyledLabel.h; sourceTree = "<group>"; };
+		BEB460840F8EE156004B34A0 /* TTStyledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledLabel.m; sourceTree = "<group>"; };
 		BEB463DC0F8F2DB5004B34A0 /* developer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = developer.h; path = Three20/developer.h; sourceTree = "<group>"; };
 		BEC270B10F8C9D1900EA638F /* TTLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLayout.h; path = Three20/TTLayout.h; sourceTree = "<group>"; };
 		BEC270B30F8C9D2600EA638F /* TTLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLayout.m; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 		BEF31F6D0F352E64000DE5D2 /* TTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTViewController.h; path = Three20/TTViewController.h; sourceTree = "<group>"; };
 		BEF31F6E0F352E64000DE5D2 /* TTYouTubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTYouTubeView.h; path = Three20/TTYouTubeView.h; sourceTree = "<group>"; };
 		BEF31F6F0F352E64000DE5D2 /* Three20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20.h; path = Three20/Three20.h; sourceTree = "<group>"; };
-		BEF341940F8042440027E93C /* TTStyledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledLabel.m; sourceTree = "<group>"; };
-		BEF341960F8042520027E93C /* TTStyledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledLabel.h; path = Three20/TTStyledLabel.h; sourceTree = "<group>"; };
+		BEF341940F8042440027E93C /* TTStyledTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledTextLabel.m; sourceTree = "<group>"; };
+		BEF341960F8042520027E93C /* TTStyledTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextLabel.h; path = Three20/TTStyledTextLabel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,8 +367,10 @@
 		BEB460380F8EDE60004B34A0 /* Labels */ = {
 			isa = PBXGroup;
 			children = (
-				BEF341960F8042520027E93C /* TTStyledLabel.h */,
-				BEF341940F8042440027E93C /* TTStyledLabel.m */,
+				BEB460820F8EE14C004B34A0 /* TTStyledLabel.h */,
+				BEB460840F8EE156004B34A0 /* TTStyledLabel.m */,
+				BEF341960F8042520027E93C /* TTStyledTextLabel.h */,
+				BEF341940F8042440027E93C /* TTStyledTextLabel.m */,
 				BEF31F5A0F352E64000DE5D2 /* TTActivityLabel.h */,
 				BEF31F460F352E64000DE5D2 /* TTActivityLabel.m */,
 				BEF31F640F352E64000DE5D2 /* TTSearchlightLabel.h */,
@@ -382,8 +384,6 @@
 			children = (
 				BEF31F690F352E64000DE5D2 /* TTUnclippedView.h */,
 				BEF31F530F352E64000DE5D2 /* TTUnclippedView.m */,
-				BEB460820F8EE14C004B34A0 /* TTBadgeView.h */,
-				BEB460840F8EE156004B34A0 /* TTBadgeView.m */,
 				BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */,
 				BEF31F470F352E64000DE5D2 /* TTErrorView.m */,
 				BEE341BD0F48133F008C826E /* TTPickerViewCell.h */,
@@ -549,7 +549,7 @@
 				BEDCF3290F4EBE2F0060B7D1 /* TTURLResponse.h in Headers */,
 				BE7EB6550F50D339008A4B05 /* TTTableHeaderView.h in Headers */,
 				BED623920F50F34B003EF242 /* NSArrayAdditions.h in Headers */,
-				BEF341970F8042520027E93C /* TTStyledLabel.h in Headers */,
+				BEF341970F8042520027E93C /* TTStyledTextLabel.h in Headers */,
 				BE3EDE410F80C78500A732BE /* TTStyledText.h in Headers */,
 				BEF198E20F818A240010D36E /* TTStyledTextNode.h in Headers */,
 				BEF19D6B0F81B8440010D36E /* TTStyledTextParser.h in Headers */,
@@ -559,7 +559,7 @@
 				BEC5EC410F8C29EA007622CD /* TTButton.h in Headers */,
 				BEC270B20F8C9D1900EA638F /* TTLayout.h in Headers */,
 				BE7604DB0F8DE02100C9F4BB /* TTDefaultStyleSheet.h in Headers */,
-				BEB460830F8EE14C004B34A0 /* TTBadgeView.h in Headers */,
+				BEB460830F8EE14C004B34A0 /* TTStyledLabel.h in Headers */,
 				BEB463DD0F8F2DB5004B34A0 /* developer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,7 +650,7 @@
 				BEDCF3270F4EBE1D0060B7D1 /* TTURLResponse.m in Sources */,
 				BE7EB6410F50D30C008A4B05 /* TTTableHeaderView.m in Sources */,
 				BED623940F50F350003EF242 /* NSArrayAdditions.m in Sources */,
-				BEF341950F8042440027E93C /* TTStyledLabel.m in Sources */,
+				BEF341950F8042440027E93C /* TTStyledTextLabel.m in Sources */,
 				BE3EDE430F80C79600A732BE /* TTStyledText.m in Sources */,
 				BEF198E00F818A1C0010D36E /* TTStyledTextNode.m in Sources */,
 				BEF19D6D0F81B8530010D36E /* TTStyledTextParser.m in Sources */,
@@ -660,7 +660,7 @@
 				BEC5EC3F0F8C29DA007622CD /* TTButton.m in Sources */,
 				BEC270B40F8C9D2600EA638F /* TTLayout.m in Sources */,
 				BE7604D90F8DE01400C9F4BB /* TTDefaultStyleSheet.m in Sources */,
-				BEB460850F8EE156004B34A0 /* TTBadgeView.m in Sources */,
+				BEB460850F8EE156004B34A0 /* TTStyledLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

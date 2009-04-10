@@ -49,14 +49,14 @@
 <img src=\"bundle://smiley.png\"/>, and <a href=\"http://www.google.com\">hyperlinks</a> you can \
 actually touch. URLs are automatically converted into links, like this: http://www.foo.com";
 
-  TTStyledLabel* label1 = [[[TTStyledLabel alloc] initWithFrame:self.view.bounds] autorelease];
+  TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];
   label1.text = [TTStyledText textFromXHTML:kText];
   label1.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
   [label1 sizeToFit];
   [self.view addSubview:label1];
 
-  TTStyledLabel* label2 = [[[TTStyledLabel alloc] initWithFrame:self.view.bounds] autorelease];
+  TTStyledTextLabel* label2 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label2.font = [UIFont systemFontOfSize:12];
   label2.text = [TTStyledText textFromXHTML:kText];
   label2.textColor = [UIColor grayColor];

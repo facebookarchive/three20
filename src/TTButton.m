@@ -213,7 +213,7 @@ static const CGFloat kVPadding = 7;
   } else {
     TTStyle* style = [self styleForCurrentState];
     TTTextStyle* textStyle = (TTTextStyle*)[style firstStyleOfClass:[TTTextStyle class]];
-    if (textStyle) {
+    if (textStyle.font) {
       return textStyle.font;
     } else {
       return self.font;

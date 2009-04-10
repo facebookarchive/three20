@@ -4,7 +4,7 @@
 #import "Three20/TTErrorView.h"
 #import "Three20/TTStyledTextNode.h"
 #import "Three20/TTStyledText.h"
-#import "Three20/TTStyledLabel.h"
+#import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTURLCache.h"
@@ -208,7 +208,7 @@ static CGFloat kDefaultIconSize = 50;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
-    _label = [[TTStyledLabel alloc] initWithFrame:CGRectZero];
+    _label = [[TTStyledTextLabel alloc] initWithFrame:CGRectZero];
     _label.contentInset = UIEdgeInsetsMake(kVPadding, kHPadding, kVPadding, kHPadding);
     [self.contentView addSubview:_label];
   }

@@ -1,7 +1,7 @@
 #import "Three20/TTStyledView.h"
 #import "Three20/TTButton.h"
 
-@class TTTabItem, TTTabView, TTImageView, TTBadgeView;
+@class TTTabItem, TTTabView, TTImageView, TTStyledLabel;
 
 @protocol TTTabBarDelegate;
 
@@ -33,7 +33,7 @@
 
 @interface TTTabView : TTButton {
   TTTabItem* _tabItem;
-  TTBadgeView* _badge;
+  TTStyledLabel* _badge;
 }
 
 @property(nonatomic,retain) TTTabItem* tabItem;

@@ -5,3 +5,5 @@
  *
  *    git update-index --assume-unchanged src/Three20/developer.h
  */
+ 
+#define JOE 1

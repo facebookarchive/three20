@@ -19,7 +19,7 @@
 #import "Three20/TTYouTubeView.h"
 #import "Three20/TTScrollView.h"
 
-#import "Three20/TTStyledLabel.h"
+#import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTSearchlightLabel.h"
 
