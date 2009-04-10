@@ -156,7 +156,7 @@ static const CGFloat kVPadding = 7;
 - (CGRect)rectForTitle:(NSString*)title forSize:(CGSize)size withFont:(UIFont*)font {
   CGRect rect = CGRectZero;
   if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft
-      && self.contentHorizontalAlignment == UIControlContentVerticalAlignmentTop) {
+      && self.contentVerticalAlignment == UIControlContentVerticalAlignmentTop) {
     rect.size = size;
   } else {
     CGSize textSize = [title sizeWithFont:font];
@@ -336,7 +336,7 @@ static const CGFloat kVPadding = 7;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyleDelegate
 
-- (void)drawContent:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
+- (void)drawLayer:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
   NSString* title = [self titleForCurrentState];
   UIEdgeInsets shapeInsets = [shape insetsForSize:rect.size];
   CGRect innerRect = TTRectInset(rect, shapeInsets);

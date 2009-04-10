@@ -1,6 +1,6 @@
-#import "Three20/TTShinyLabel.h"
+#import "Three20/TTSearchlightLabel.h"
 
-@implementation TTShinyLabel
+@implementation TTSearchlightLabel
 
 @synthesize text = _text, font = _font, textColor, spotlightColor = _spotlightColor,
   textAlignment = _textAlignment;

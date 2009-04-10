@@ -1,5 +1,6 @@
 #import "Three20/TTTabBar.h"
 #import "Three20/TTImageView.h"
+#import "Three20/TTBadgeView.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -12,8 +13,6 @@ static CGFloat kPadding2 = 10;
 
 static CGFloat kIconSize = 16;
 static CGFloat kIconSpacing = 3;
-
-static CGFloat kBadgeHPadding = 8;
 
 static CGFloat kGradient1[] = {RGBA(233, 238, 246, 1), RGBA(229, 235, 243, 1), 1};
 
@@ -368,8 +367,7 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
 - (id)initWithItem:(TTTabItem*)tabItem tabBar:(TTTabBar*)tabBar style:(TTTabBarStyle)style {
   if (self = [self initWithFrame:CGRectZero]) {
     _style = style;
-    _badgeImage = nil;
-    _badgeLabel = nil;
+    _badge = nil;
     
     _tabImage = [[UIImageView alloc] initWithFrame:CGRectZero];
     _tabImage.hidden = YES;
@@ -425,41 +423,25 @@ static CGFloat kBottomHighlight[] = {RGBA(250, 250, 252, 1)};
   [_tabImage release];
   [_iconView release];
   [_titleLabel release];
-  [_badgeImage release];
-  [_badgeLabel release];
+  [_badge release];
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)updateBadgeNumber {
-  if (!_badgeImage && _tabItem.badgeNumber) {
-    _badgeImage = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _badgeImage.image = [[UIImage imageNamed:@"Three20.bundle/images/badge.png"]
-      stretchableImageWithLeftCapWidth:12 topCapHeight:15];
-    [self addSubview:_badgeImage];
-    
-    _badgeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _badgeLabel.backgroundColor = [UIColor clearColor];
-    _badgeLabel.font = [UIFont boldSystemFontOfSize:14];
-    _badgeLabel.textColor = [UIColor whiteColor];
-    _badgeLabel.contentMode = UIViewContentModeCenter;
-    _badgeLabel.textAlignment = UITextAlignmentCenter;    
-    [self addSubview:_badgeLabel];
-  }
-  
   if (_tabItem.badgeNumber) {
-    _badgeLabel.text = [NSString stringWithFormat:@"%d", _tabItem.badgeNumber];
-    [_badgeLabel sizeToFit];
+    if (!_badge) {
+      _badge = [[TTBadgeView alloc] initWithFrame:CGRectZero];
+      [self addSubview:_badge];
+    }
+    _badge.message = [NSString stringWithFormat:@"%d", _tabItem.badgeNumber];
+    [_badge sizeToFit];
     
-    _badgeImage.frame = CGRectMake(self.width - (_badgeLabel.width + kBadgeHPadding*2), 0,
-      _badgeLabel.width + 1 + kBadgeHPadding*2, 28);
-    _badgeLabel.frame = CGRectMake(_badgeImage.left, _badgeImage.top, _badgeImage.width, 22);
-    _badgeImage.hidden = NO;
-    _badgeLabel.hidden = NO;
+    _badge.frame = CGRectMake(self.width - _badge.width-1, 1, _badge.width, _badge.height);
+    _badge.hidden = NO;
   } else {
-    _badgeImage.hidden = YES;
-    _badgeLabel.hidden = YES;
+    _badge.hidden = YES;
   }
 }
 

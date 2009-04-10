@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@class TTTabItem, TTTabView, TTImageView;
+@class TTTabItem, TTTabView, TTImageView, TTBadgeView;
 
 typedef enum {
   TTTabBarStyleDark,
@@ -48,8 +48,7 @@ typedef enum {
   UIImageView* _tabImage;
   TTImageView* _iconView;
   UILabel* _titleLabel;
-  UIImageView* _badgeImage;
-  UILabel* _badgeLabel;
+  TTBadgeView* _badge;
 }
 
 @property(nonatomic,retain) TTTabItem* tabItem;

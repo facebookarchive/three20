@@ -392,7 +392,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyleDelegate
 
-- (void)drawContent:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
+- (void)drawLayer:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
   if ([style isKindOfClass:[TTTextStyle class]]) {
     TTTextStyle* textStyle = (TTTextStyle*)style;
     UIFont* font = textStyle.font ? textStyle.font : _font;

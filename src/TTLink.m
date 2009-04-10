@@ -1,4 +1,4 @@
-#include "Three20/TTLinkView.h"
+#include "Three20/TTLink.h"
 #include "Three20/TTNavigationCenter.h"
 #include "Three20/TTShape.h"
 #include "Three20/TTStyledView.h"
@@ -6,13 +6,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTLinkView
+@implementation TTLink
 
-@synthesize delegate = _delegate, url = _url;
+@synthesize url = _url;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _delegate = nil;
     _url = nil;
     _screenView = nil;
     
@@ -31,15 +30,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)tapped {
-  BOOL okToDispatch = YES;
-  if ([_delegate respondsToSelector:@selector(linkVisited:link:animated:)]) {
-    okToDispatch = (BOOL)(int)[_delegate performSelector:@selector(linkVisited:link:animated:)
-      withObject:_url withObject:self withObject:(id)(int)YES];
-  }
-
-  if (okToDispatch) {
-    [[TTNavigationCenter defaultCenter] displayObject:_url];
-  }
+  [[TTNavigationCenter defaultCenter] displayObject:_url];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

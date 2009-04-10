@@ -2,13 +2,10 @@
 
 @class TTStyledView;
 
-@interface TTLinkView : UIControl {
-  id _delegate;
+@interface TTLink : UIControl {
   id _url;
   TTStyledView* _screenView;
 }
-
-@property(nonatomic,assign) id delegate;
 
 /**
  * The object that will be navigated to when the control is touched.

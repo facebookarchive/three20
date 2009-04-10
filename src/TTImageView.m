@@ -136,13 +136,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyleDelegate
 
-- (void)drawContent:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
+- (void)drawLayer:(CGRect)rect withStyle:(TTStyle*)style shape:(TTShape*)shape {
   if ([style isKindOfClass:[TTContentStyle class]]) {
-    [shape addToPath:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
+
+    [shape addToPath:rect];
     CGContextClip(context);
+
     [self drawContent:rect];
+
     CGContextRestoreGState(context);
   }
 }

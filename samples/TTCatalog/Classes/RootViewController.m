@@ -54,10 +54,12 @@
   [nav addView:@"youTubeTest" controller:[YouTubeTestController class]];
   [nav addView:@"imageTest2" controller:[TableImageTestController class]];
   [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
-  
-//  [self validateView];
-//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:3];
-//  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
+
+#ifdef JOE
+  [self validateView];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:3];
+  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +74,7 @@
       url:@"tt://photoTest2"] autorelease],
 
     @"Text Fields",
-    [[[TTTableField alloc] initWithText:@"Composer"
+    [[[TTTableField alloc] initWithText:@"Message Composer"
       url:@"tt://composerTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Search Bar"
       url:@"tt://searchTest"] autorelease],
@@ -104,7 +106,7 @@
       url:@"tt://imageTest1"] autorelease],
     [[[TTTableField alloc] initWithText:@"YouTube Player"
       url:@"tt://youTubeTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Activity Views"
+    [[[TTTableField alloc] initWithText:@"Activity Labels"
       url:@"tt://activityTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Scroll View"
       url:@"tt://scrollViewTest"] autorelease],

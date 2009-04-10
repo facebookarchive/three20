@@ -87,7 +87,7 @@
                        width:1 lightSource:270 next:nil]]]]]],
 
 
-    // New bubble
+    // Badge
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1.5, 1.5, 1.5, 1.5) next:
     [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.8) blur:2 offset:CGSizeMake(0, 5) next:

@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@interface TTShinyLabel : UIView {
+@interface TTSearchlightLabel : UIView {
   NSString* _text;
   UIFont* _font;
   UIColor* textColor;

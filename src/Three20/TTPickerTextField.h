@@ -28,6 +28,8 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @protocol TTPickerTextFieldDelegate <TTSearchTextFieldDelegate>
 
 - (void)textField:(TTPickerTextField*)textField didAddCellAtIndex:(NSInteger)index;

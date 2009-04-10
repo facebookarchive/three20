@@ -177,6 +177,19 @@
     [TTSolidBorderStyle styleWithColor:RGBCOLOR(178, 178, 178) width:1 next:nil]]];
 }
 
+- (TTStyle*)badge {
+  return
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 1, 1, 1) next:
+    [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,1) blur:3 offset:CGSizeMake(0, 4) next:
+    [TTReflectiveFillStyle styleWithColor:RGBCOLOR(221, 17, 27) next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
+    [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:2 next:
+    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(-4, 0, -4, 0) next:
+    [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
+                 color:[UIColor whiteColor] next:nil]]]]]]]];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public colors
 

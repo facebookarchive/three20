@@ -8,8 +8,9 @@
   self.view = [[[UIView alloc] init] autorelease];
   self.view.backgroundColor = [UIColor blackColor];
 
-  TTShinyLabel* label = [[[TTShinyLabel alloc] initWithFrame:CGRectMake(0,150,320,100)] autorelease];
-  label.text = @"One Shiny Label";
+  TTSearchlightLabel* label = [[[TTSearchlightLabel alloc] initWithFrame:CGRectMake(0,150,320,100)]
+                                 autorelease];
+  label.text = @"Searchlight Label";
   label.font = [UIFont systemFontOfSize:25];
   label.textAlignment = UITextAlignmentCenter;
   label.contentMode = UIViewContentModeCenter;
