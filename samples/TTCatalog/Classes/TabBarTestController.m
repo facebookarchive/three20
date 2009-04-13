@@ -29,7 +29,6 @@
   [self.view addSubview:_tabBar1];
 
   _tabBar2 = [[TTTabBar alloc] initWithFrame:CGRectMake(0, _tabBar1.bottom, 320, 40)];
-  _tabBar2.contentMode = UIViewContentModeScaleToFill;
   _tabBar2.tabItems = [NSArray arrayWithObjects:
     [[[TTTabItem alloc] initWithTitle:@"Banana"] autorelease],
     [[[TTTabItem alloc] initWithTitle:@"Cherry"] autorelease],

@@ -51,7 +51,6 @@
   if (state == UIControlStateNormal) {
     return 
       [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
-      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, 0, 0) next:
       [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.7) blur:3 offset:CGSizeMake(2, 2) next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0.25, 0.25, 0.25, 0.25) next:
       [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
@@ -61,7 +60,7 @@
       [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
       [TTTextStyle styleWithFont:nil color:TTSTYLEVAR(linkTextColor)
                    shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
-                   shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]]];
+                   shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];
   } else if (state == UIControlStateHighlighted) {
     return 
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(3, 3, 0, 0) next:

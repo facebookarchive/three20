@@ -86,14 +86,18 @@
     [TTBevelBorderStyle styleWithHighlight:nil shadow:RGBACOLOR(0,0,0,0.15)
                        width:1 lightSource:270 next:nil]]]]]],
 
-
     // Badge
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1.5, 1.5, 1.5, 1.5) next:
-    [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.8) blur:2 offset:CGSizeMake(0, 5) next:
+    [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.8) blur:3 offset:CGSizeMake(0, 5) next:
     [TTReflectiveFillStyle styleWithColor:[UIColor redColor] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1.5, -1.5, -1.5, -1.5) next:
     [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:3 next:nil]]]]]],
+
+    // Mask
+    [TTMaskStyle styleWithMask:[UIImage imageNamed:@"mask.png"] next:
+    [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(0, 180, 231)
+                               color2:RGBCOLOR(0, 0, 255) next:nil]],
     nil];
   
   CGFloat padding = 10;

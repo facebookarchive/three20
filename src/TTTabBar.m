@@ -92,7 +92,6 @@ static CGFloat kPadding = 10;
     _tabViews = [[NSMutableArray alloc] init];
     _tabStyle = nil;
     
-    self.contentMode = UIViewContentModeLeft;
     self.style = TTSTYLE(tabBar);
     self.tabStyle = @"tab:";
   }
@@ -104,6 +103,14 @@ static CGFloat kPadding = 10;
   [_tabItems release];
   [_tabViews release];
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIView
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  [self layoutTabs];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,7 +183,7 @@ static CGFloat kPadding = 10;
     }
   }
   
-  [self layoutTabs];
+  [self setNeedsLayout];
 }
 
 - (void)showTabAtIndex:(NSInteger)tabIndex {
@@ -260,7 +267,6 @@ static CGFloat kPadding = 10;
     _scrollView.showsHorizontalScrollIndicator = NO;
     [self addSubview:_scrollView];
     
-    self.contentMode = UIViewContentModeLeft;
     self.style = TTSTYLE(tabStrip);
     self.tabStyle = @"tabRound:";
   }
@@ -307,8 +313,7 @@ static CGFloat kPadding = 10;
   return ceil((float)self.tabViews.count / [self columnCount]);
 }
 
-
-- (CGSize)layoutTabs {
+- (void)updateTabStyles {
   CGFloat columnCount = [self columnCount];
   int rowCount = [self rowCount];
   int cellCount = rowCount * columnCount;
@@ -328,11 +333,17 @@ static CGFloat kPadding = 10;
     }
     ++column;
   }
+}
 
-  TTGridLayout* layout = [[[TTGridLayout alloc] init] autorelease];
-  layout.padding = 1;
-  layout.columnCount = columnCount;
-  return [layout layoutSubviews:self.tabViews forView:self];
+- (CGSize)layoutTabs {
+  if (self.width && self.height) {
+    TTGridLayout* layout = [[[TTGridLayout alloc] init] autorelease];
+    layout.padding = 1;
+    layout.columnCount = [self columnCount];
+    return [layout layoutSubviews:self.tabViews forView:self];
+  } else {
+    return self.frame.size;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -340,7 +351,6 @@ static CGFloat kPadding = 10;
 
 - (id)initWithFrame:(CGRect)frame  {
   if (self = [super initWithFrame:frame]) {
-    self.contentMode = UIViewContentModeLeft;
     self.style = TTSTYLE(tabGrid);
   }
   return self;
@@ -353,9 +363,16 @@ static CGFloat kPadding = 10;
   CGSize styleSize = [super sizeThatFits:size];
   for (TTTab* tab in self.tabViews) {
     CGSize tabSize = [tab sizeThatFits:CGSizeZero];
-    return CGSizeMake(size.width, tabSize.height * [self rowCount] + styleSize.height);
+    NSInteger rowCount = [self rowCount];
+    return CGSizeMake(size.width,
+                      rowCount ? tabSize.height * [self rowCount] + styleSize.height : 0);
   }
   return size;
+}
+
+- (void)setTabItems:(NSArray*)tabItems {
+  [super setTabItems:tabItems];
+  [self updateTabStyles];
 }
 
 @end

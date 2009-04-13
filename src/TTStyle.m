@@ -386,6 +386,8 @@ static const NSInteger kDefaultLightSource = 125;
   CGRect rect = context.contentFrame;
   CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
   [text drawInRect:CGRectOffset(titleRect, rect.origin.x, rect.origin.y) withFont:font];
+
+  CGContextRestoreGState(ctx);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -536,6 +538,61 @@ static const NSInteger kDefaultLightSource = 125;
 
 @end
 
+
+@implementation TTMaskStyle
+
+@synthesize mask = _mask;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (TTMaskStyle*)styleWithMask:(UIImage*)mask next:(TTStyle*)next {
+  TTMaskStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.mask = mask;
+  return style;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithNext:(TTStyle*)next {  
+  if (self = [super initWithNext:next]) {
+    _mask = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_mask release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyle
+
+- (BOOL)draw:(TTStyleContext*)context {
+  if (_mask) {
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+  
+    // Translate context upside-down to invert the clip-to-mask, which turns the mask upside down
+    CGContextTranslateCTM(ctx, 0, context.frame.size.height);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
+
+    CGRect maskRect = CGRectMake(0, 0, _mask.size.width, _mask.size.height);
+    CGContextClipToMask(ctx, maskRect, _mask.CGImage);
+
+    BOOL ok = [self.next draw:context];
+    CGContextRestoreGState(ctx);
+    return ok;
+  } else {
+    return [self.next draw:context];
+  }
+}
+
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTSolidFillStyle
@@ -574,6 +631,7 @@ static const NSInteger kDefaultLightSource = 125;
 
   CGContextSaveGState(ctx);
   [context.shape addToPath:context.frame];
+  
   [_color setFill];
   CGContextFillPath(ctx);
   CGContextRestoreGState(ctx);
@@ -754,39 +812,44 @@ static const NSInteger kDefaultLightSource = 125;
 // TTStyle
 
 - (BOOL)draw:(TTStyleContext*)context {
-  UIEdgeInsets inset = UIEdgeInsetsZero;
   CGFloat blurSize = round(_blur / 2);
+  UIEdgeInsets inset = UIEdgeInsetsMake(blurSize, blurSize, blurSize, blurSize);
   if (_offset.width < 0) {
-    inset.left += fabs(_offset.width) + blurSize;
+    inset.left += fabs(_offset.width) + blurSize*2;
+    inset.right -= blurSize;
   } else if (_offset.width > 0) {
-    inset.right += fabs(_offset.width) + blurSize;
+    inset.right += fabs(_offset.width) + blurSize*2;
+    inset.left -= blurSize;
   }
   if (_offset.height < 0) {
-    inset.top += fabs(_offset.height) + blurSize;
+    inset.top += fabs(_offset.height) + blurSize*2;
+    inset.bottom -= blurSize;
   } else if (_offset.height > 0) {
-    inset.bottom += fabs(_offset.height) + blurSize;
+    inset.bottom += fabs(_offset.height) + blurSize*2;
+    inset.top -= blurSize;
   }
 
   context.frame = TTRectInset(context.frame, inset);
   context.contentFrame = TTRectInset(context.contentFrame, inset);
 
   CGContextRef ctx = UIGraphicsGetCurrentContext();
-
   CGContextSaveGState(ctx);
+  
   [context.shape addToPath:context.frame];
-  [_color setFill];
   CGContextSetShadowWithColor(ctx, CGSizeMake(_offset.width, -_offset.height), _blur,
                               _color.CGColor);
-  CGContextFillPath(ctx);
+  CGContextBeginTransparencyLayer(ctx, nil);
+  BOOL ok = [self.next draw:context];
+  CGContextEndTransparencyLayer(ctx);
+
   CGContextRestoreGState(ctx);
-  
-  return [self.next draw:context];
+  return ok;
 }
 
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
   CGFloat blurSize = round(_blur / 2);
-  size.width += _offset.width + (_offset.width ? blurSize : 0);
-  size.height += _offset.height + (_offset.height ? blurSize : 0);
+  size.width += _offset.width + (_offset.width ? blurSize : 0) + blurSize*2;
+  size.height += _offset.height + (_offset.height ? blurSize : 0) + blurSize*2;
   
   if (_next) {
     return [self.next addToSize:size context:context];
