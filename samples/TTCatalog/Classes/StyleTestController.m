@@ -77,7 +77,7 @@
 
     // Back button
     [TTShapeStyle styleWithShape:[TTRoundedLeftArrowShape shapeWithRadius:4.5] next:
-    [TTShadowStyle styleWithColor:RGBCOLOR(255,255,255) blur:1 offset:CGSizeMake(0.4, 1) next:
+    [TTShadowStyle styleWithColor:RGBCOLOR(255,255,255) blur:1 offset:CGSizeMake(0, 1) next:
     [TTReflectiveFillStyle styleWithColor:darkBlue next:
     [TTBevelBorderStyle styleWithHighlight:[darkBlue shadow]
                         shadow:[darkBlue multiplyHue:1 saturation:0.5 value:0.5]
