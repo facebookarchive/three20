@@ -10,6 +10,46 @@ static const NSInteger kDefaultLightSource = 125;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@implementation TTStyleContext
+
+@synthesize delegate = _delegate, frame = _frame, contentFrame = _contentFrame, shape = _shape,
+            font = _font, didDrawContent = _didDrawContent;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _delegate = nil;
+    _frame = CGRectZero;
+    _contentFrame = CGRectZero;
+    _shape = nil;
+    _font = nil;
+    _didDrawContent = NO;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_shape release];
+  [_font release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (TTShape*)shape {
+  if (!_shape) {
+    _shape = [[TTRectangleShape shape] retain];
+  }
+  return _shape;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation TTStyle
 
 @synthesize next = _next;
@@ -65,12 +105,8 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (BOOL)draw:(TTStyleContext*)context {
-  if (_next) {
-    return [self.next draw:context];
-  } else {
-    return NO;
-  }
+- (void)draw:(TTStyleContext*)context {
+  [self.next draw:context];
 }
 
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
@@ -121,10 +157,13 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
-  [context.delegate drawLayer:context withStyle:self];
+- (void)draw:(TTStyleContext*)context {
+  if ([context.delegate respondsToSelector:@selector(drawLayer:withStyle:)]) {
+    [context.delegate drawLayer:context withStyle:self];
+    context.didDrawContent = YES;
+  }
+  
   [self.next draw:context];
-  return YES;
 }
 
 @end
@@ -162,11 +201,11 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   UIEdgeInsets shapeInsets = [_shape insetsForSize:context.frame.size];
   context.contentFrame = TTRectInset(context.contentFrame, shapeInsets);
   context.shape = _shape;
-  return [self.next draw:context];
+  [self.next draw:context];
 }
 
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
@@ -222,12 +261,12 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   CGRect rect = context.frame;
   context.frame = CGRectMake(rect.origin.x+_inset.left, rect.origin.y+_inset.top,
     rect.size.width - (_inset.left + _inset.right),
     rect.size.height - (_inset.top + _inset.bottom));
-  return [self.next draw:context];
+  [self.next draw:context];
 }
 
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
@@ -272,9 +311,9 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   context.contentFrame = TTRectInset(context.contentFrame, _padding);
-  return [self.next draw:context];
+  [self.next draw:context];
 }
 
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
@@ -438,24 +477,22 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
-  BOOL handled = NO;
-  
+- (void)draw:(TTStyleContext*)context {
   if ([context.delegate respondsToSelector:@selector(textForLayerWithStyle:)]) {
     NSString* text = [context.delegate textForLayerWithStyle:self];
     if (text) {
-      handled = YES;
+      context.didDrawContent = YES;
       [self drawText:text context:context];
     }
   }
   
-  if (!handled && [context.delegate respondsToSelector:@selector(drawLayer:withStyle:)]) {
+  if (!context.didDrawContent
+      && [context.delegate respondsToSelector:@selector(drawLayer:withStyle:)]) {
     [context.delegate drawLayer:context withStyle:self];
-    handled = YES;
+    context.didDrawContent = YES;
   }
   
   [self.next draw:context];
-  return handled;
 }
 
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
@@ -558,7 +595,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   if (_image) {
     [_image drawInRect:context.frame contentMode:_contentMode];
   } else if (_defaultImage) {
@@ -618,7 +655,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   if (_mask) {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSaveGState(ctx);
@@ -630,9 +667,8 @@ static const NSInteger kDefaultLightSource = 125;
     CGRect maskRect = CGRectMake(0, 0, _mask.size.width, _mask.size.height);
     CGContextClipToMask(ctx, maskRect, _mask.CGImage);
 
-    BOOL ok = [self.next draw:context];
+    [self.next draw:context];
     CGContextRestoreGState(ctx);
-    return ok;
   } else {
     return [self.next draw:context];
   }
@@ -673,7 +709,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   CGContextRef ctx = UIGraphicsGetCurrentContext();
 
   CGContextSaveGState(ctx);
@@ -725,7 +761,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   CGContextRef ctx = UIGraphicsGetCurrentContext();
   CGRect rect = context.frame;
   
@@ -779,7 +815,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   CGContextRef ctx = UIGraphicsGetCurrentContext();
   CGRect rect = context.frame;
   
@@ -858,7 +894,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   CGFloat blurSize = round(_blur / 2);
   UIEdgeInsets inset = UIEdgeInsetsMake(blurSize, blurSize, blurSize, blurSize);
   if (_offset.width < 0) {
@@ -886,11 +922,10 @@ static const NSInteger kDefaultLightSource = 125;
   CGContextSetShadowWithColor(ctx, CGSizeMake(_offset.width, -_offset.height), _blur,
                               _color.CGColor);
   CGContextBeginTransparencyLayer(ctx, nil);
-  BOOL ok = [self.next draw:context];
+  [self.next draw:context];
   CGContextEndTransparencyLayer(ctx);
 
   CGContextRestoreGState(ctx);
-  return ok;
 }
 
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
@@ -914,7 +949,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   CGContextRef ctx = UIGraphicsGetCurrentContext();
   CGContextSaveGState(ctx);
 
@@ -976,7 +1011,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   CGContextRef ctx = UIGraphicsGetCurrentContext();
   CGContextSaveGState(ctx);
 
@@ -1040,7 +1075,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   CGRect rect = context.frame;
   CGRect strokeRect = CGRectInset(rect, _width/2, _width/2);
   [context.shape openPath:strokeRect];
@@ -1137,7 +1172,7 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyle
 
-- (BOOL)draw:(TTStyleContext*)context {
+- (void)draw:(TTStyleContext*)context {
   CGRect strokeRect = CGRectInset(context.frame, _width/2, _width/2);
   [context.shape openPath:strokeRect];
 
@@ -1201,45 +1236,6 @@ static const NSInteger kDefaultLightSource = 125;
 
   context.frame = rect;
   return [self.next draw:context];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTStyleContext
-
-@synthesize delegate = _delegate, frame = _frame, contentFrame = _contentFrame, shape = _shape,
-            font = _font;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)init {
-  if (self = [super init]) {
-    _delegate = nil;
-    _frame = CGRectZero;
-    _contentFrame = CGRectZero;
-    _shape = nil;
-    _font = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_shape release];
-  [_font release];
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
-
-- (TTShape*)shape {
-  if (!_shape) {
-    _shape = [[TTRectangleShape shape] retain];
-  }
-  return _shape;
 }
 
 @end

@@ -26,7 +26,7 @@
 - (TTStyle*)linkHighlighted {
   return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:
-    [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0 alpha:0.4] next:nil]];
+    [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0 alpha:0.25] next:nil]];
 }
 
 - (TTStyle*)thumbView:(UIControlState)state {

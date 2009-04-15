@@ -12,7 +12,7 @@
 - (TTStyle*)blueBox {
   return 
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, -5, 0, -5) next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, -5, -2, -5) next:
     [TTShadowStyle styleWithColor:[UIColor grayColor] blur:2 offset:CGSizeMake(1,1) next:
     [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
     [TTSolidBorderStyle styleWithColor:[UIColor grayColor] width:1 next:nil]]]]];

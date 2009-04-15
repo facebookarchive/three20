@@ -3,6 +3,26 @@
 @protocol TTStyleDelegate;
 @class TTShape, TTStyleContext;
 
+@interface TTStyleContext : NSObject {
+  id<TTStyleDelegate> _delegate;
+  CGRect _frame;
+  CGRect _contentFrame;
+  TTShape* _shape;
+  UIFont* _font;
+  BOOL _didDrawContent;
+}
+
+@property(nonatomic,assign) id<TTStyleDelegate> delegate;
+@property(nonatomic) CGRect frame;
+@property(nonatomic) CGRect contentFrame;
+@property(nonatomic,retain) TTShape* shape;
+@property(nonatomic,retain) UIFont* font;
+@property(nonatomic) BOOL didDrawContent;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TTStyle : NSObject {
   TTStyle* _next;
 }
@@ -11,7 +31,7 @@
 
 - (id)initWithNext:(TTStyle*)next;
 
-- (BOOL)draw:(TTStyleContext*)context;
+- (void)draw:(TTStyleContext*)context;
 
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context;
@@ -258,24 +278,6 @@
 
 + (TTBevelBorderStyle*)styleWithHighlight:(UIColor*)highlight shadow:(UIColor*)shadow
                        width:(CGFloat)width lightSource:(NSInteger)lightSource next:(TTStyle*)next;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTStyleContext : NSObject {
-  id<TTStyleDelegate> _delegate;
-  CGRect _frame;
-  CGRect _contentFrame;
-  TTShape* _shape;
-  UIFont* _font;
-}
-
-@property(nonatomic,assign) id<TTStyleDelegate> delegate;
-@property(nonatomic) CGRect frame;
-@property(nonatomic) CGRect contentFrame;
-@property(nonatomic,retain) TTShape* shape;
-@property(nonatomic,retain) UIFont* font;
 
 @end
 

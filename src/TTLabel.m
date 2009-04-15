@@ -41,7 +41,8 @@
   context.contentFrame = context.frame;
   context.font = _font;
 
-  if (![self.style draw:context]) {
+  [self.style draw:context];
+  if (!context.didDrawContent) {
     [self drawContent:self.bounds];
   }
 }

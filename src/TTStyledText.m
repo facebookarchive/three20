@@ -424,7 +424,8 @@
     [style draw:context];
   } else {
     if (_style) {
-      if ([_style draw:context]) {
+      [_style draw:context];
+      if (context.didDrawContent) {
         return;
       }
     }

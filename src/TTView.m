@@ -37,7 +37,8 @@
     context.frame = self.bounds;
     context.contentFrame = context.frame;
 
-    if (![style draw:context]) {
+    [style draw:context];
+    if (!context.didDrawContent) {
       [self drawContent:self.bounds];
     }
   } else {
