@@ -37,12 +37,12 @@
 - (void)drawRect:(CGRect)rect {
   TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
   context.delegate = self;
-  context.frame = rect;
-  context.contentFrame = rect;
+  context.frame = self.bounds;
+  context.contentFrame = context.frame;
   context.font = _font;
 
   if (![self.style draw:context]) {
-    [self drawContent:rect];
+    [self drawContent:self.bounds];
   }
 }
 
@@ -50,6 +50,8 @@
   TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
   context.delegate = self;
   context.font = _font;
+  context.frame = self.bounds;
+  context.contentFrame = context.frame;
   return [_style addToSize:CGSizeZero context:context];
 }
 

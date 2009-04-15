@@ -137,6 +137,12 @@ static const CGFloat kVPadding = 7;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
 
++ (TTButton*)buttonWithStyle:(NSString*)selector {
+  TTButton* button = [[[TTButton alloc] initWithFrame:CGRectZero] autorelease];
+  [button setStylesWithSelector:selector];
+  return button;
+}
+
 + (TTButton*)buttonWithStyle:(NSString*)selector title:(NSString*)title {
   TTButton* button = [[[TTButton alloc] initWithFrame:CGRectZero] autorelease];
   [button setTitle:title forState:UIControlStateNormal];
@@ -250,8 +256,8 @@ static const CGFloat kVPadding = 7;
 
     TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
     context.delegate = self;
-    context.frame = rect;
-    context.contentFrame = rect;
+    context.frame = self.bounds;
+    context.contentFrame = context.frame;
     context.font = [self fontForCurrentState];
 
     [style draw:context];

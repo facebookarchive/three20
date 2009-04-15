@@ -139,6 +139,7 @@ static const CGFloat kRefreshingViewHeight = 22;
         style:TTActivityLabelStyleBlackBox text:[self titleForActivity]];
       _refreshingView.centeredToScreen = NO;
       _refreshingView.userInteractionEnabled = NO;
+      _refreshingView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
       _refreshingView.font = [UIFont boldSystemFontOfSize:12];
       
       NSInteger tableIndex = [self.view.subviews indexOfObject:_tableView];

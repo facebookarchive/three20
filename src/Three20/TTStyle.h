@@ -16,6 +16,8 @@
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context;
 
+- (void)addStyle:(TTStyle*)style;
+
 - (TTStyle*)firstStyleOfClass:(Class)cls;
 
 @end
@@ -77,6 +79,7 @@
   CGFloat _minimumFontSize;
   UITextAlignment _textAlignment;
   UIControlContentVerticalAlignment _verticalAlignment;
+  UILineBreakMode _lineBreakMode;
 }
 
 @property(nonatomic,retain) UIFont* font;
@@ -86,10 +89,13 @@
 @property(nonatomic) CGSize shadowOffset;
 @property(nonatomic) UITextAlignment textAlignment;
 @property(nonatomic) UIControlContentVerticalAlignment verticalAlignment;
+@property(nonatomic) UILineBreakMode lineBreakMode;
 
 + (TTTextStyle*)styleWithFont:(UIFont*)font next:(TTStyle*)next;
 + (TTTextStyle*)styleWithColor:(UIColor*)color next:(TTStyle*)next;
 + (TTTextStyle*)styleWithFont:(UIFont*)font color:(UIColor*)color next:(TTStyle*)next;
++ (TTTextStyle*)styleWithFont:(UIFont*)font color:(UIColor*)color
+                textAlignment:(UITextAlignment)textAlignment next:(TTStyle*)next;
 + (TTTextStyle*)styleWithFont:(UIFont*)font color:(UIColor*)color
                 shadowColor:(UIColor*)shadowColor shadowOffset:(CGSize)shadowOffset
                 next:(TTStyle*)next;
@@ -106,16 +112,20 @@
   NSString* _imageURL;
   UIImage* _image;
   UIImage* _defaultImage;
+  UIViewContentMode _contentMode;
 }
 
 @property(nonatomic,copy) NSString* imageURL;
 @property(nonatomic,retain) UIImage* image;
 @property(nonatomic,retain) UIImage* defaultImage;
+@property(nonatomic) UIViewContentMode contentMode;
 
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImage:(UIImage*)image next:(TTStyle*)next;
++ (TTImageStyle*)styleWithImage:(UIImage*)image contentMode:(UIViewContentMode)contentMode
+                 next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next;
 

@@ -99,13 +99,12 @@
   return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 0, 1, 0) next:
-    [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.6) blur:0 offset:CGSizeMake(0, 1) next:
+    [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.4) blur:0 offset:CGSizeMake(0, 1) next:
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
     [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.4) blur:3 offset:CGSizeMake(0, 2) next:
     [TTBevelBorderStyle styleWithHighlight:RGBACOLOR(0,0,0,0.25) shadow:RGBACOLOR(0,0,0,0.4)
                         width:1 lightSource:270 next:nil]]]]]];
 }
-
 
 - (TTStyle*)searchBar {
   UIColor* color = TTSTYLEVAR(searchBarTintColor);
@@ -185,7 +184,7 @@
     [TTReflectiveFillStyle styleWithColor:RGBCOLOR(221, 17, 27) next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
     [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:2 next:
-    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(2, 6, 2, 6) next:
+    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(1, 6, 3, 6) next:
     [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
                  color:[UIColor whiteColor] next:nil]]]]]]]];
 }
@@ -304,18 +303,18 @@
   if (state == UIControlStateSelected) {
     return
       [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
-      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(7, 1, 8, 1) next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(9, 1, 8, 1) next:
       [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.8) blur:0 offset:CGSizeMake(0, 1) next:
       [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabBarTintColor) next:
       [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.3) blur:1 offset:CGSizeMake(1, 1) next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(0, 9, 0, 9) next:
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(0, 10, 0, 10) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]  color:[UIColor whiteColor]
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:0 alpha:0.5]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]];
   } else {
     return
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(0, 9, 0, 9) next:
+      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(0, 10, 0, 10) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]  color:self.linkTextColor
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:1 alpha:0.9]
                    shadowOffset:CGSizeMake(0, -1) next:nil]];
@@ -461,12 +460,12 @@
     [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.25) blur:0 offset:CGSizeMake(0, 1) next:
     [TTReflectiveFillStyle styleWithColor:stateTintColor next:
     [TTBevelBorderStyle styleWithHighlight:[stateTintColor multiplyHue:1 saturation:0.9 value:0.7]
-                        shadow:[stateTintColor multiplyHue:1 saturation:0.5 value:0.45]
+                        shadow:[stateTintColor multiplyHue:1 saturation:0.5 value:0.55]
                         width:1 lightSource:270 next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, -1, 0, -1) next:
     [TTBevelBorderStyle styleWithHighlight:nil shadow:RGBACOLOR(0,0,0,0.15)
                         width:1 lightSource:270 next:
-    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(9, 8, 7, 8) next:
+    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(8, 8, 8, 8) next:
     [TTTextStyle styleWithFont:font
                  color:stateTextColor shadowColor:[UIColor colorWithWhite:0 alpha:0.4]
                  shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];

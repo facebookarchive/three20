@@ -34,14 +34,14 @@
   if (style) {
     TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
     context.delegate = self;
-    context.frame = rect;
-    context.contentFrame = rect;
+    context.frame = self.bounds;
+    context.contentFrame = context.frame;
 
     if (![style draw:context]) {
-      [self drawContent:rect];
+      [self drawContent:self.bounds];
     }
   } else {
-    [self drawContent:rect];
+    [self drawContent:self.bounds];
   }
 }
 

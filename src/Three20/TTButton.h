@@ -7,6 +7,7 @@
 
 @property(nonatomic,retain) UIFont* font;
 
++ (TTButton*)buttonWithStyle:(NSString*)selector;
 + (TTButton*)buttonWithStyle:(NSString*)selector title:(NSString*)title;
 
 - (NSString*)titleForState:(UIControlState)state;

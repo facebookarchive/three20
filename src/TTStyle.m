@@ -73,14 +73,6 @@ static const NSInteger kDefaultLightSource = 125;
   }
 }
 
-- (TTStyle*)firstStyleOfClass:(Class)cls {
-  if ([self isKindOfClass:cls]) {
-    return self;
-  } else {
-    return [self.next firstStyleOfClass:cls];
-  }
-}
-
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
   if (self.next) {
     return [self.next addToInsets:insets forSize:size];
@@ -94,6 +86,22 @@ static const NSInteger kDefaultLightSource = 125;
     return [self.next addToSize:size context:context];
   } else {
     return size;
+  }
+}
+
+- (void)addStyle:(TTStyle*)style {
+  if (_next) {
+    [_next addStyle:style];
+  } else {
+    _next = [style retain];
+  }
+}
+
+- (TTStyle*)firstStyleOfClass:(Class)cls {
+  if ([self isKindOfClass:cls]) {
+    return self;
+  } else {
+    return [self.next firstStyleOfClass:cls];
   }
 }
 
@@ -288,7 +296,7 @@ static const NSInteger kDefaultLightSource = 125;
 
 @synthesize font = _font, color = _color, shadowColor = _shadowColor, shadowOffset = _shadowOffset,
             minimumFontSize = _minimumFontSize, textAlignment = _textAlignment,
-            verticalAlignment = _verticalAlignment;
+            verticalAlignment = _verticalAlignment, lineBreakMode = _lineBreakMode;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -309,6 +317,15 @@ static const NSInteger kDefaultLightSource = 125;
   TTTextStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.font = font;
   style.color = color;
+  return style;
+}
+
++ (TTTextStyle*)styleWithFont:(UIFont*)font color:(UIColor*)color
+                textAlignment:(UITextAlignment)textAlignment next:(TTStyle*)next {
+  TTTextStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.font = font;
+  style.color = color;
+  style.textAlignment = textAlignment;
   return style;
 }
 
@@ -385,7 +402,11 @@ static const NSInteger kDefaultLightSource = 125;
 
   CGRect rect = context.contentFrame;
   CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
-  [text drawInRect:CGRectOffset(titleRect, rect.origin.x, rect.origin.y) withFont:font];
+  [text drawAtPoint:CGPointMake(titleRect.origin.x+rect.origin.x, titleRect.origin.y+rect.origin.y)
+        forWidth:rect.size.width withFont:font
+        minFontSize:_minimumFontSize ? _minimumFontSize : font.pointSize
+        actualFontSize:nil lineBreakMode:_lineBreakMode
+        baselineAdjustment:UIBaselineAdjustmentAlignCenters];
 
   CGContextRestoreGState(ctx);
 }
@@ -402,6 +423,7 @@ static const NSInteger kDefaultLightSource = 125;
     _shadowOffset = CGSizeZero;
     _textAlignment = UITextAlignmentCenter;
     _verticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _lineBreakMode = UILineBreakModeTailTruncation;
   }
   return self;
 }
@@ -440,7 +462,19 @@ static const NSInteger kDefaultLightSource = 125;
   if ([context.delegate respondsToSelector:@selector(textForLayerWithStyle:)]) {
     NSString* text = [context.delegate textForLayerWithStyle:self];
     UIFont* font = _font ? _font : context.font;
-    CGSize textSize = [text sizeWithFont:font];
+    
+    CGSize textSize;
+    
+    CGFloat maxWidth = context.contentFrame.size.width;
+    if (maxWidth) {
+      textSize = [text sizeWithFont:font];
+      if (textSize.width > maxWidth) {
+        textSize.width = maxWidth;
+      }
+    } else {
+      textSize = [text sizeWithFont:font];
+    }
+    
     size.width += textSize.width;
     size.height += textSize.height;
   }
@@ -458,7 +492,8 @@ static const NSInteger kDefaultLightSource = 125;
 
 @implementation TTImageStyle
 
-@synthesize imageURL = _imageURL, image = _image, defaultImage = _defaultImage;
+@synthesize imageURL = _imageURL, image = _image, defaultImage = _defaultImage,
+            contentMode = _contentMode;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -477,11 +512,20 @@ static const NSInteger kDefaultLightSource = 125;
   return style;
 }
 
-+ (TTImageStyle*)styleWithImage:(UIImage*)image  next:(TTStyle*)next {
++ (TTImageStyle*)styleWithImage:(UIImage*)image next:(TTStyle*)next {
   TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.image = image;
   return style;
 }
+
++ (TTImageStyle*)styleWithImage:(UIImage*)image contentMode:(UIViewContentMode)contentMode
+                 next:(TTStyle*)next {
+  TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.image = image;
+  style.contentMode = contentMode;
+  return style;
+}
+
 
 + (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next {
@@ -499,6 +543,7 @@ static const NSInteger kDefaultLightSource = 125;
     _imageURL = nil;
     _image = nil;
     _defaultImage = nil;
+    _contentMode = UIViewContentModeScaleToFill;
   }
   return self;
 }
@@ -515,18 +560,20 @@ static const NSInteger kDefaultLightSource = 125;
 
 - (BOOL)draw:(TTStyleContext*)context {
   if (_image) {
-    [_image drawInRect:context.frame];
+    [_image drawInRect:context.frame contentMode:_contentMode];
   } else if (_defaultImage) {
-    [_defaultImage drawInRect:context.frame];
+    [_defaultImage drawInRect:context.frame contentMode:_contentMode];
   }
   return [self.next draw:context];
 }
 
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {  
-  UIImage* image = _image ? _image : _defaultImage;
-  if (image) {
-    size.width += image.size.width;
-    size.height += image.size.height;
+  if (_contentMode == UIViewContentModeScaleToFill) {
+    UIImage* image = _image ? _image : _defaultImage;
+    if (image) {
+      size.width += image.size.width;
+      size.height += image.size.height;
+    }
   }
   
   if (_next) {

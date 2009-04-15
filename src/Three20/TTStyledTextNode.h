@@ -12,6 +12,7 @@
 }
 
 @property(nonatomic, retain) NSString* text;
+@property(nonatomic, readonly) NSString* plainText;
 @property(nonatomic, retain) TTStyledTextNode* nextNode;
 
 - (id)initWithText:(NSString*)text;

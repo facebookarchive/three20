@@ -756,7 +756,11 @@ static CGFloat kDefaultIconSize = 50;
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTStatusTableField* field = item;
   if (field.sizeToFit) {
-    return tableView.height - tableView.tableHeaderView.height;
+    CGFloat headerHeight = 0;
+    if ([tableView.delegate respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
+      headerHeight = [tableView.delegate tableView:tableView heightForHeaderInSection:0];
+    }
+    return tableView.height - (tableView.tableHeaderView.height + headerHeight);
   } else {
   }
 
