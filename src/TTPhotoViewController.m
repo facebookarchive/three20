@@ -33,7 +33,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     _slideshowTimer = nil;
     _loadTimer = nil;
     _delayLoad = NO;
-    self.defaultImage = [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
+    self.defaultImage = TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
     
     self.hidesBottomBarWhenPushed = YES;
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
@@ -325,10 +325,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [_innerView addSubview:_scrollView];
   
   _nextButton = [[UIBarButtonItem alloc] initWithImage:
-    [UIImage imageNamed:@"Three20.bundle/images/nextIcon.png"]
+    TTIMAGE(@"bundle://Three20.bundle/images/nextIcon.png")
      style:UIBarButtonItemStylePlain target:self action:@selector(nextAction)];
   _previousButton = [[UIBarButtonItem alloc] initWithImage:
-    [UIImage imageNamed:@"Three20.bundle/images/previousIcon.png"]
+    TTIMAGE(@"bundle://Three20.bundle/images/previousIcon.png")
      style:UIBarButtonItemStylePlain target:self action:@selector(previousAction)];
 
   UIBarButtonItem* playButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
@@ -493,7 +493,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (UIImage*)imageForNoData {
-  return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
+  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
 }
 
 - (NSString*)titleForNoData {
@@ -505,7 +505,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (UIImage*)imageForError:(NSError*)error {
-  return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
+  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
 }
 
 - (NSString*)titleForError:(NSError*)error {

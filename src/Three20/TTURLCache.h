@@ -63,11 +63,6 @@
 - (NSString *)keyForURL:(NSString*)url;
 
 /**
- * Determines if there is a cache entry for a URL.
- */
-- (BOOL)hasDataForURL:(NSString*)url;
-
-/**
  * Gets the path in the cache where a URL may be stored.
  */
 - (NSString*)cachePathForURL:(NSString*)url;
@@ -76,6 +71,11 @@
  * Gets the path in the cache where a key may be stored.
  */
 - (NSString*)cachePathForKey:(NSString*)key;
+
+/**
+ * Determines if there is a cache entry for a URL.
+ */
+- (BOOL)hasDataForURL:(NSString*)url;
 
 /**
  * Gets the data for a URL from the cache if it exists.
@@ -100,7 +100,7 @@
  * @return nil if the URL is not cached.
  */
 - (id)imageForURL:(NSString*)url;
-- (id)imageForKey:(NSString*)key;
+- (id)imageForURL:(NSString*)url fromDisk:(BOOL)fromDisk;
 
 /**
  * Stores a data on disk.
@@ -112,7 +112,6 @@
  * Stores an image in the memory cache.
  */
 - (void)storeImage:(UIImage*)image forURL:(NSString*)url;
-- (void)storeImage:(UIImage*)image forKey:(NSString*)key;
 
 /**
  * Convenient way to create a temporary URL for some data and cache it in memory.

@@ -102,3 +102,25 @@ NSString* TTLocalizedString(NSString* key, NSString* comment) {
   
   return [bundle localizedStringForKey:key value:key table:nil];
 }
+
+BOOL TTIsBundleURL(NSString* url) {
+  return [url rangeOfString:@"bundle://" options:0 range:NSMakeRange(0,9)].location == 0;
+}
+
+BOOL TTIsDocumentsURL(NSString* url) {
+  return [url rangeOfString:@"documents://" options:0 range:NSMakeRange(0,12)].location == 0;
+}
+
+NSString* TTPathForBundleResource(NSString* relativePath) {
+  NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+  return [resourcePath stringByAppendingPathComponent:relativePath];
+}
+
+NSString* TTPathForDocumentsResource(NSString* relativePath) {
+  static NSString* documentsPath = nil;
+  if (!documentsPath) {
+    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsPath = [[dirs objectAtIndex:0] retain];
+  }
+  return [documentsPath stringByAppendingPathComponent:relativePath];
+}

@@ -1,6 +1,7 @@
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTStyle.h"
 #import "Three20/TTShape.h"
+#import "Three20/TTURLCache.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -322,15 +323,13 @@
 }
 
 - (TTStyle*)tabOverflowLeft {
-  UIImage* image = [UIImage imageNamed:@"Three20.bundle/images/overflowLeft.png"];
-  return
-    [TTImageStyle styleWithImage:image next:nil];
+  UIImage* image = TTIMAGE(@"bundle://Three20.bundle/images/overflowLeft.png");
+  return [TTImageStyle styleWithImage:image next:nil];
 }
 
 - (TTStyle*)tabOverflowRight {
-  UIImage* image = [UIImage imageNamed:@"Three20.bundle/images/overflowRight.png"];
-  return
-    [TTImageStyle styleWithImage:image next:nil];
+  UIImage* image = TTIMAGE(@"bundle://Three20.bundle/images/overflowRight.png");
+  return [TTImageStyle styleWithImage:image next:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -95,7 +95,7 @@
     [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:3 next:nil]]]]]],
 
     // Mask
-    [TTMaskStyle styleWithMask:[UIImage imageNamed:@"mask.png"] next:
+    [TTMaskStyle styleWithMask:TTIMAGE(@"bundle://mask.png") next:
     [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(0, 180, 231)
                                color2:RGBCOLOR(0, 0, 255) next:nil]],
     nil];

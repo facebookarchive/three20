@@ -49,8 +49,8 @@
 #define STATUS_HEIGHT 20
 #define TOOLBAR_HEIGHT 44
 #define KEYBOARD_HEIGHT 216
-#define TABLE_GROUPED_PADDING 10
 #define CHROME_HEIGHT (STATUS_HEIGHT + TOOLBAR_HEIGHT)
+#define TABLE_GROUPED_PADDING 10
 #define TT_ROUNDED -1
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,9 +72,11 @@
 #define TTSTYLESTATE(_SELECTOR, _STATE) [[TTStyleSheet globalStyleSheet] \
                                            styleWithSelector:@#_SELECTOR forState:_STATE]
 
-#define TTSTYLEVAR(_VARNAME) [(id)[TTStyleSheet globalStyleSheet] _VARNAME]
-
 #define TTSTYLESHEET ((id)[TTStyleSheet globalStyleSheet])
+
+#define TTSTYLEVAR(_VARNAME) [TTSTYLESHEET _VARNAME]
+
+#define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Networking
@@ -89,6 +91,9 @@ typedef enum {
    TTURLRequestCachePolicyNoCache = 8,    
    TTURLRequestCachePolicyDefault = TTURLRequestCachePolicyAny,
 } TTURLRequestCachePolicy;
+
+#define TT_DEFAULT_CACHE_INVALIDATION_AGE (60*60*24) // 1 day
+#define TT_DEFAULT_CACHE_EXPIRATION_AGE (60*60*24*7) // 1 week
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Animation
@@ -176,6 +181,14 @@ NSLocale* TTCurrentLocale();
  * Returns a localized string from the Three20 bundle.
  */
 NSString* TTLocalizedString(NSString* key, NSString* comment);
+
+BOOL TTIsBundleURL(NSString* url);
+
+BOOL TTIsDocumentsURL(NSString* url);
+
+NSString* TTPathForBundleResource(NSString* relativePath);
+
+NSString* TTPathForDocumentsResource(NSString* relativePath);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

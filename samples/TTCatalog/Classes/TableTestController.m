@@ -61,7 +61,7 @@
 // TTTableViewController
 
 - (UIImage*)imageForNoData {
-  return [UIImage imageNamed:@"Three20.bundle/images/empty.png"];
+  return TTIMAGE(@"bundle://Three20.bundle/images/empty.png");
 }
 
 - (NSString*)titleForNoData {
@@ -73,7 +73,7 @@
 }
 
 - (UIImage*)imageForError:(NSError*)error {
-  return [UIImage imageNamed:@"Three20.bundle/images/error.png"];
+  return TTIMAGE(@"bundle://Three20.bundle/images/error.png");
 }
 
 - (NSString*)subtitleForError:(NSError*)error {

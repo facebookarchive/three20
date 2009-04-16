@@ -24,8 +24,10 @@
 // TTURLResponse
 
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
-    data:(NSData*)data {
-  _data = [data retain];
+            data:(id)data {
+  if ([data isKindOfClass:[NSData class]]) {
+    _data = [data retain];
+  }
   return nil;
 }
 
@@ -53,18 +55,32 @@
 // TTURLResponse
 
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
-    data:(NSData*)data {
-  UIImage* image = [UIImage imageWithData:data];
-  if (image) {
-    if (!request.respondedFromCache) {
-      [[TTURLCache sharedCache] storeImage:image forKey:request.cacheKey];
+            data:(id)data {
+  if ([data isKindOfClass:[UIImage class]]) {
+    _image = [data retain];
+  } else if ([data isKindOfClass:[NSData class]]) {
+    UIImage* image = [[TTURLCache sharedCache] imageForURL:request.url fromDisk:NO];
+    if (!image) {
+      TTLOG(@"CREATE IMAGE FOR %@", request.url);
+      image = [UIImage imageWithData:data];
     }
-    _image = [image retain];
-    return nil;
-  } else {
-    return [NSError errorWithDomain:TT_ERROR_DOMAIN code:TT_EC_INVALID_IMAGE
-      userInfo:nil];
+    if (image) {
+      if (!request.respondedFromCache) {
+//        if (image.size.width * image.size.height > (300*300)) {
+//          image = [image transformWidth:300 height:(image.size.height/image.size.width)*300.0
+//                         rotate:NO];
+//          NSData* data = UIImagePNGRepresentation(image);
+//          [[TTURLCache sharedCache] storeData:data forURL:request.url];
+//        }
+        [[TTURLCache sharedCache] storeImage:image forURL:request.url];
+      }
+      _image = [image retain];
+    } else {
+      return [NSError errorWithDomain:TT_ERROR_DOMAIN code:TT_EC_INVALID_IMAGE
+                      userInfo:nil];
+    }
   }
+  return nil;
 }
 
 @end

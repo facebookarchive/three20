@@ -274,7 +274,7 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 - (UIImage*)imageForNoData {
-  return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
+  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
 }
 
 - (NSString*)titleForNoData {
@@ -286,7 +286,7 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 - (UIImage*)imageForError:(NSError*)error {
-  return [UIImage imageNamed:@"Three20.bundle/images/photoDefault.png"];
+  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
 }
 
 - (NSString*)titleForError:(NSError*)error {

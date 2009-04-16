@@ -177,7 +177,7 @@
       [self persistView:state];
       _frozenState = state;
 
-      NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+      NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
       UIView* view = self.view;
       [super didReceiveMemoryWarning];
@@ -267,7 +267,6 @@
   if (_appearing) {
     [self validateView];
   }
-  [self refreshContent];
 }
 
 - (void)invalidateViewState:(TTViewState)state {
@@ -315,6 +314,8 @@
     }
 
     _validating = NO;
+
+    [self refreshContent];
   }
 }
 

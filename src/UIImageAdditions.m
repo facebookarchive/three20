@@ -110,8 +110,10 @@
 - (void)drawInRect:(CGRect)rect radius:(CGFloat)radius contentMode:(UIViewContentMode)contentMode {
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextSaveGState(context);
-  [self addRoundedRectToPath:context rect:rect radius:radius];
-  CGContextClip(context);
+  if (radius) {
+    [self addRoundedRectToPath:context rect:rect radius:radius];
+    CGContextClip(context);
+  }
   
   [self drawInRect:rect contentMode:contentMode];
   
