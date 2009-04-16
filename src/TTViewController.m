@@ -1,48 +1,20 @@
 #import "Three20/TTViewController.h"
 #import "Three20/TTErrorView.h"
 #import "Three20/TTURLRequestQueue.h"
+#import "Three20/TTStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTViewController
 
 @synthesize frozenState = _frozenState, viewState = _viewState,
-  contentError = _contentError, appearing = _appearing, appeared = _appeared,
+  contentError = _contentError, navigationBarStyle = _navigationBarStyle,
+  navigationBarTintColor = _navigationBarTintColor, statusBarStyle = _statusBarStyle,
+  appearing = _appearing, appeared = _appeared,
   autoresizesForKeyboard = _autoresizesForKeyboard;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
-
-//- (void)changeStyleFrom:(TTViewControllerStyle)from {
-//  if (from != style) {
-//    UINavigationBar* bar = self.navigationController.navigationBar;
-//    if (style == TTViewControllerStyleTranslucent) {
-//      bar.tintColor = nil;
-//      bar.barStyle = UIBarStyleBlackTranslucent;
-//      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent
-//        animated:YES];
-//    } else {
-//      bar.tintColor = [TTResources facebookDarkBlue];
-//      bar.barStyle = UIBarStyleDefault;
-//      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault
-//        animated:YES];
-//    }
-//  }
-//}
-//
-//- (void)updateStyle {
-//  TTViewController* topController = (TTViewController*)self.navigationController.topViewController;
-//  if (topController != self) {
-//    [self changeStyleFrom:topController.style];
-//  } else {
-//    NSArray* controllers = self.navigationController.viewControllers;
-//    if (controllers.count > 1) {
-//      TTViewController* backController = [controllers objectAtIndex:controllers.count-2];
-//      [self changeStyleFrom:backController.style];
-//    }
-//  }
-//  [topController release];
-//}
 
 - (BOOL)resizeForKeyboard:(NSNotification*)notification {
   NSValue* v1 = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
@@ -87,10 +59,9 @@
     _frozenState = nil;
     _viewState = TTViewEmpty;
     _contentError = nil;
-    _previousBar = nil;
-    _previousBarStyle = 0;
-    _previousBarTintColor = nil;
-    _previousStatusBarStyle = 0;
+    _navigationBarStyle = UIBarStyleDefault;
+    _navigationBarTintColor = nil;
+    _statusBarStyle = UIStatusBarStyleDefault;
     _invalidView = YES;
     _invalidViewLoading = NO;
     _invalidViewData = YES;
@@ -99,6 +70,8 @@
     _appeared = NO;
     _unloaded = NO;
     _autoresizesForKeyboard = NO;
+    
+    self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
   }
   return self;
 }
@@ -114,8 +87,7 @@
   
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
 
-  [_previousBar release];
-  [_previousBarTintColor release];
+  [_navigationBarTintColor release];
   [_frozenState release];
   [_contentError release];
   [self unloadView];
@@ -152,6 +124,12 @@
   [self validateView];
 
   [TTURLRequestQueue mainQueue].suspended = YES;
+
+  UINavigationBar* bar = self.navigationController.navigationBar;
+  bar.tintColor = _navigationBarTintColor;
+  bar.barStyle = _navigationBarStyle;
+
+  [[UIApplication sharedApplication] setStatusBarStyle:_statusBarStyle animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -161,10 +139,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
   _appearing = NO;
 }
-
-//- (void)viewDidDisappear:(BOOL)animated {
-//  _appearing = NO;
-//}
 
 - (void)didReceiveMemoryWarning {
   TTLOG(@"MEMORY WARNING FOR %@", self);
@@ -274,7 +248,7 @@
     _invalidViewLoading = (_viewState & TTViewLoadingStates) != (state & TTViewLoadingStates);
   }
   if (!_invalidViewData) {
-    _invalidViewData = state == TTViewDataLoaded
+    _invalidViewData = state == TTViewDataLoaded || state == TTViewEmpty
                        || (_viewState & TTViewDataStates) != (state & TTViewDataStates);
   }
   
@@ -367,47 +341,6 @@
 
 - (NSString*)subtitleForError:(NSError*)error {
   return TTLocalizedString(@"Sorry, an error has occurred.", @"");
-}
-
-- (void)changeNavigationBarStyle:(UIBarStyle)barStyle barColor:(UIColor*)barColor
-    statusBarStyle:(UIStatusBarStyle)statusBarStyle {
-  if (!_previousBar) {
-    UINavigationBar* bar = self.navigationController.navigationBar;
-    if (!self.nextViewController) {
-      [_previousBar release];
-      [_previousBarTintColor release];
-      _previousBar = [bar retain];
-      _previousBarStyle = bar.barStyle;
-      _previousBarTintColor = [bar.tintColor retain];
-      _previousStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
-    }
-
-    bar.tintColor = barColor;
-    bar.barStyle = barStyle;
-
-    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
-  }
-}
-
-- (void)restoreNavigationBarStyle {
-  // If we're going backwards...
-  if (!self.nextViewController && _previousBar) {
-    _previousBar.tintColor = _previousBarTintColor;
-    _previousBar.barStyle = _previousBarStyle;
-
-    UIApplication* app = [UIApplication sharedApplication];
-    if (app.statusBarHidden) {
-      app.statusBarStyle = _previousStatusBarStyle;
-      [app setStatusBarHidden:NO animated:YES];
-    } else {
-      [app setStatusBarStyle:_previousStatusBarStyle animated:YES];
-    }
-    
-    [_previousBarTintColor release];
-    _previousBarTintColor = nil;
-    [_previousBar release];
-    _previousBar = nil;
-  }
 }
 
 @end

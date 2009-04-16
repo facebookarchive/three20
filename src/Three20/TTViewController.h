@@ -18,10 +18,9 @@ typedef enum {
   TTViewState _viewState;
   NSError* _contentError;
   
-  UINavigationBar* _previousBar;
-  UIBarStyle _previousBarStyle;
-  UIColor* _previousBarTintColor;
-  UIStatusBarStyle _previousStatusBarStyle;
+  UIBarStyle _navigationBarStyle;
+  UIColor* _navigationBarTintColor;
+  UIStatusBarStyle _statusBarStyle;
 
   BOOL _invalidView;
   BOOL _invalidViewLoading;
@@ -57,6 +56,21 @@ typedef enum {
  * An error that occurred while trying to load content.
  */ 
 @property(nonatomic, retain) NSError* contentError;
+
+/**
+ * The style of the navigation bar when this controller is pushed onto a navigation controller.
+ */
+@property(nonatomic) UIBarStyle navigationBarStyle;
+
+/**
+ * The color of the navigation bar when this controller is pushed onto a navigation controller.
+ */
+@property(nonatomic,retain) UIColor* navigationBarTintColor;
+
+/**
+ * The style of the status bar when this controller is appearing.
+ */
+@property(nonatomic) UIStatusBarStyle statusBarStyle;
 
 /**
  * The view has appeared at least once.
@@ -200,16 +214,5 @@ typedef enum {
  *
  */
 - (NSString*)subtitleForError:(NSError*)error;
-
-/**
- *
- */
-- (void)changeNavigationBarStyle:(UIBarStyle)barStyle barColor:(UIColor*)barColor
-  statusBarStyle:(UIStatusBarStyle)statusBarStyle;
-
-/**
- *
- */
-- (void)restoreNavigationBarStyle;
 
 @end

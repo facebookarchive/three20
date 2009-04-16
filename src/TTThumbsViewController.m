@@ -198,6 +198,9 @@ static CGFloat kThumbnailRowHeight = 79;
     _photoSource = nil;
     
     self.hidesBottomBarWhenPushed = YES;
+    self.navigationBarStyle = UIBarStyleBlackTranslucent;
+    self.navigationBarTintColor = nil;
+    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
   }
   
   return self;
@@ -213,34 +216,36 @@ static CGFloat kThumbnailRowHeight = 79;
 // UIViewController
 
 - (void)loadView {
-  self.view = [[[TTUnclippedView alloc] initWithFrame:TTApplicationFrame()] autorelease];
-  self.view.backgroundColor = [UIColor whiteColor];
+  CGRect screenFrame = [UIScreen mainScreen].bounds;
+  self.view = [[[TTUnclippedView alloc] initWithFrame:screenFrame] autorelease];
   self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
+  CGRect innerFrame = CGRectMake(0, -CHROME_HEIGHT,
+                                 screenFrame.size.width, screenFrame.size.height + CHROME_HEIGHT);
+  UIView* innerView = [[UIView alloc] initWithFrame:innerFrame];
+  innerView.backgroundColor = [UIColor whiteColor];
+  [self.view addSubview:innerView];
   
-  self.tableView = [[[UITableView alloc] initWithFrame:TTNavigationFrame()
+  CGRect tableFrame = CGRectMake(0, CHROME_HEIGHT,
+                                 screenFrame.size.width, screenFrame.size.height - CHROME_HEIGHT);
+  self.tableView = [[[UITableView alloc] initWithFrame:tableFrame
                                          style:UITableViewStylePlain] autorelease];
   self.tableView.rowHeight = kThumbnailRowHeight;
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-    | UIViewAutoresizingFlexibleHeight;
+    | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
   self.tableView.backgroundColor = [UIColor whiteColor];
   self.tableView.separatorColor = [UIColor whiteColor];
   self.tableView.contentInset = UIEdgeInsetsMake(4, 0, 0, 0);
   self.tableView.clipsToBounds = NO;
-  [self.view addSubview:self.tableView];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [self changeNavigationBarStyle:UIBarStyleBlackTranslucent barColor:nil
-    statusBarStyle:UIStatusBarStyleBlackTranslucent];
+  [innerView addSubview:self.tableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self suspendLoadingThumbnails:NO];
 
-  if (animated && !self.nextViewController) {
+  if (!self.nextViewController) {
     self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
   }
 }
@@ -248,11 +253,7 @@ static CGFloat kThumbnailRowHeight = 79;
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
-  if (animated) {
-    self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
-  }
-  
-  [self restoreNavigationBarStyle];
+  self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
 }  
 
 - (void)viewDidDisappear:(BOOL)animated {

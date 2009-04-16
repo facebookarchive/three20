@@ -39,6 +39,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
       TTLocalizedString(@"Photo", @"Title for back button that returns to photo browser")
       style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationBarStyle = UIBarStyleBlackTranslucent;
+    self.navigationBarTintColor = nil;
+    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
   }
   return self;
 }
@@ -312,7 +315,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 - (void)loadView {
   CGRect screenFrame = [UIScreen mainScreen].bounds;
   self.view = [[[TTUnclippedView alloc] initWithFrame:screenFrame] autorelease];
-  
+    
   CGRect innerFrame = CGRectMake(0, -CHROME_HEIGHT,
                                  screenFrame.size.width, screenFrame.size.height + CHROME_HEIGHT);
   _innerView = [[UIView alloc] initWithFrame:innerFrame];
@@ -340,16 +343,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
   _toolbar = [[UIToolbar alloc] initWithFrame:
     CGRectMake(0, screenFrame.size.height - TOOLBAR_HEIGHT, screenFrame.size.width, TOOLBAR_HEIGHT)];
-  _toolbar.barStyle = UIBarStyleBlackTranslucent;
+  _toolbar.barStyle = self.navigationBarStyle;
   _toolbar.items = [NSArray arrayWithObjects:
     space, _previousButton, space, _nextButton, space, nil];
   [_innerView addSubview:_toolbar];    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [self changeNavigationBarStyle:UIBarStyleBlackTranslucent barColor:nil
-    statusBarStyle:UIStatusBarStyleBlackTranslucent];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -377,11 +374,14 @@ static const NSTimeInterval kSlideshowInterval = 2;
   if (self.nextViewController) {
     [self showBars:YES animated:NO];
   }
-  [self restoreNavigationBarStyle];
 }
 
 - (void)showBars:(BOOL)show animated:(BOOL)animated {
   [super showBars:show animated:animated];
+
+  CGFloat alpha = show ? 1 : 0;
+  if (alpha == _toolbar.alpha)
+    return;
   
   if (animated) {
     [UIView beginAnimations:nil context:nil];
@@ -402,7 +402,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
   [self showCaptions:show];
   
-  _toolbar.alpha = show ? 1 : 0;
+  _toolbar.alpha = alpha;
   
   if (animated) {
     [UIView commitAnimations];

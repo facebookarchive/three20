@@ -81,11 +81,11 @@
 
   [self pushViewController:controller animated:NO];
   
-  [UIView beginAnimations:nil context:NULL];
+  [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:TT_FLIP_TRANSITION_DURATION];
   [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(pushAnimationDidStop)];
-  [UIView setAnimationTransition:transition forView:self.view.window cache:YES];
+  [UIView setAnimationTransition:transition forView:self.view cache:YES];
   [UIView commitAnimations];
 }
 
@@ -98,7 +98,7 @@
   [UIView setAnimationDuration:TT_FLIP_TRANSITION_DURATION];
   [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(pushAnimationDidStop)];
-  [UIView setAnimationTransition:transition forView:self.view.window cache:YES];
+  [UIView setAnimationTransition:transition forView:self.view cache:YES];
   [UIView commitAnimations];
 }
 
