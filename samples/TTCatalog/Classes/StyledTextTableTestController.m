@@ -11,7 +11,7 @@
   self.autoresizesForKeyboard = YES;
   self.variableHeightRows = YES;
   
-  self.tableView = [[[TTStyledTextTableView alloc] initWithFrame:self.view.bounds
+  self.tableView = [[[TTTableView alloc] initWithFrame:self.view.bounds
     style:UITableViewStylePlain] autorelease];
 	self.tableView.autoresizingMask = 
     UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

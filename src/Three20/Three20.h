@@ -27,12 +27,14 @@
 #import "Three20/TTButton.h"
 #import "Three20/TTLink.h"
 #import "Three20/TTTabBar.h"
+#import "Three20/TTButtonBar.h"
 
 #import "Three20/TTTextEditor.h"
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTSearchBar.h"
 
+#import "Three20/TTTableView.h"
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableViewDelegate.h"
 #import "Three20/TTTableField.h"

@@ -105,11 +105,12 @@
 // UIViewController
 
 - (void)loadView {
-  UIView* contentView = [[[UIView alloc] initWithFrame:TTNavigationFrame()] autorelease];
-	contentView.autoresizesSubviews = YES;
-	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  contentView.backgroundColor = [UIColor whiteColor];
-  self.view = contentView;
+  [super loadView];
+
+  self.view.frame = TTNavigationFrame();
+	self.view.autoresizesSubviews = YES;
+	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

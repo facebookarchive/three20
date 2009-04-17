@@ -59,18 +59,3 @@
 @property(nonatomic,retain) TTStyledLinkNode* highlightedNode;
 
 @end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * You must use TTStyledTextTableView if you want links in your html to be touchable.
- */
-@interface TTStyledTextTableView : UITableView {
-  TTStyledTextLabel* _highlightedLabel;
-  CGPoint _highlightStartPoint;
-  NSTimer* _highlightTimer;
-}
-
-@property(nonatomic,retain) TTStyledTextLabel* highlightedLabel;
-
-@end
