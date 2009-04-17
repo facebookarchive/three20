@@ -37,7 +37,7 @@
 // private
 
 - (UIFont*)defaultFont {
-  return [UIFont systemFontOfSize:14];
+  return TTSTYLEVAR(font);
 }
 
 - (UIFont*)boldVersionOfFont:(UIFont*)font {

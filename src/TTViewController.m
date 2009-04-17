@@ -110,7 +110,7 @@
   self.view.frame = TTNavigationFrame();
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  self.view.backgroundColor = [UIColor whiteColor];
+  self.view.backgroundColor = TTSTYLEVAR(backgroundColor);
 }
 
 - (void)viewWillAppear:(BOOL)animated {

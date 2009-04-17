@@ -101,7 +101,7 @@
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 0, 1, 0) next:
     [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.4) blur:0 offset:CGSizeMake(0, 1) next:
-    [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
+    [TTSolidFillStyle styleWithColor:TTSTYLEVAR(backgroundColor) next:
     [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.4) blur:3 offset:CGSizeMake(0, 2) next:
     [TTBevelBorderStyle styleWithHighlight:RGBACOLOR(0,0,0,0.25) shadow:RGBACOLOR(0,0,0,0.4)
                         width:1 lightSource:270 next:nil]]]]]];
@@ -287,7 +287,7 @@
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, 0, -1) next:
       [TTFourBorderStyle styleWithTop:border right:border bottom:nil left:border width:1 next:
       [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(6, 12, 2, 12) next:
-      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]  color:[UIColor blackColor]
+      [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]  color:TTSTYLEVAR(textColor)
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
   } else {
@@ -335,6 +335,34 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public colors
 
+- (UIColor*)textColor {
+  return [UIColor blackColor];
+}
+
+- (UIColor*)highlightedTextColor {
+  return [UIColor whiteColor];
+}
+
+- (UIColor*)placeholderTextColor {
+  return RGBCOLOR(180, 180, 180);
+}
+
+- (UIColor*)linkTextColor {
+  return RGBCOLOR(87, 107, 149);
+}
+
+- (UIColor*)moreLinkTextColor {
+  return RGBCOLOR(36, 112, 216);
+}
+
+- (UIColor*)photoCaptionTextColor {
+  return [UIColor whiteColor];
+}
+
+- (UIColor*)messageFieldTextColor {
+  return [UIColor colorWithWhite:0.5 alpha:1];
+}
+
 - (UIColor*)navigationBarTintColor {
   return RGBCOLOR(119, 140, 168);
 }
@@ -347,16 +375,8 @@
   return RGBCOLOR(200, 200, 200);
 }
 
-- (UIColor*)tabBarTintColor {
-  return RGBCOLOR(119, 140, 168);
-}
-
-- (UIColor*)linkTextColor {
-  return RGBCOLOR(87, 107, 149);
-}
-
-- (UIColor*)moreLinkTextColor {
-  return RGBCOLOR(36, 112, 216);
+- (UIColor*)backgroundColor {
+  return [UIColor whiteColor];
 }
 
 - (UIColor*)tableActivityTextColor {
@@ -375,18 +395,6 @@
   return RGBCOLOR(99, 109, 125);
 }
 
-- (UIColor*)placeholderTextColor {
-  return RGBCOLOR(180, 180, 180);
-}
-
-- (UIColor*)searchTableBackgroundColor {
-  return RGBCOLOR(235, 235, 235);
-}
-
-- (UIColor*)searchTableSeparatorColor {
-  return [UIColor colorWithWhite:0.85 alpha:1];
-}
-
 - (UIColor*)tableHeaderTextColor {
   return nil;
 }
@@ -399,19 +407,83 @@
   return nil;
 }
 
+- (UIColor*)searchTableBackgroundColor {
+  return RGBCOLOR(235, 235, 235);
+}
+
+- (UIColor*)searchTableSeparatorColor {
+  return [UIColor colorWithWhite:0.85 alpha:1];
+}
+
+- (UIColor*)tabBarTintColor {
+  return RGBCOLOR(119, 140, 168);
+}
+
 - (UIColor*)tabTintColor {
   return RGBCOLOR(228, 230, 235);
+}
+
+- (UIColor*)messageFieldSeparatorColor {
+  return [UIColor colorWithWhite:0.7 alpha:1];
+}
+
+- (UIColor*)thumbnailBackgroundColor {
+  return [UIColor colorWithWhite:0.95 alpha:1];
+}
+
+- (UIColor*)screenBackgroundColor {
+  return [UIColor colorWithWhite:0 alpha:0.8];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public fonts
 
-- (UIFont*)defaultFont {
+- (UIFont*)font {
   return [UIFont systemFontOfSize:14];
 }
 
 - (UIFont*)buttonFont {
   return [UIFont boldSystemFontOfSize:12];
+}
+
+- (UIFont*)tableFont {
+  return [UIFont boldSystemFontOfSize:17];
+}
+
+- (UIFont*)tableSmallFont {
+  return [UIFont boldSystemFontOfSize:15];
+}
+
+- (UIFont*)tableTitleFont {
+  return [UIFont boldSystemFontOfSize:13];
+}
+
+- (UIFont*)tableButtonFont {
+  return [UIFont boldSystemFontOfSize:16];
+}
+
+- (UIFont*)tableSummaryFont {
+  return [UIFont systemFontOfSize:17];
+}
+
+- (UIFont*)photoCaptionFont {
+  return [UIFont boldSystemFontOfSize:13];
+}
+
+- (UIFont*)messageFont {
+  return [UIFont systemFontOfSize:15];
+}
+
+- (UIFont*)errorTitleFont {
+  return [UIFont boldSystemFontOfSize:18];
+}
+
+- (UIFont*)errorSubtitleFont {
+  return [UIFont boldSystemFontOfSize:14];
+}
+
+- (UIFont*)activityLabelFont {
+  return [UIFont systemFontOfSize:17];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

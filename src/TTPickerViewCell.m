@@ -21,8 +21,8 @@ static CGFloat kMaxWidth = 250;
     _labelView = [[UILabel alloc] initWithFrame:CGRectZero];
     _labelView.opaque = NO;
     _labelView.backgroundColor = [UIColor clearColor];
-    _labelView.textColor = [UIColor blackColor];
-    _labelView.highlightedTextColor = [UIColor whiteColor];
+    _labelView.textColor = TTSTYLEVAR(textColor);
+    _labelView.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     _labelView.lineBreakMode = UILineBreakModeTailTruncation;
     [self addSubview:_labelView];
 

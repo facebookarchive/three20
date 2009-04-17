@@ -68,7 +68,7 @@
 
 - (UIFont*)font {
   if (!_font) {
-    _font = [TTSTYLEVAR(defaultFont) retain];
+    _font = [TTSTYLEVAR(font) retain];
   }
   return _font;
 }

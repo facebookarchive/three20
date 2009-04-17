@@ -73,20 +73,20 @@ static CGFloat kThinBezelHeight = 35;
     if (_style == TTActivityLabelStyleWhite) {
       _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleWhite];
-      _textView.font = [UIFont systemFontOfSize:17];
+      _textView.font = TTSTYLEVAR(activityLabelFont);
       _textView.textColor = [UIColor whiteColor];
     } else if (_style == TTActivityLabelStyleGray
                 || _style == TTActivityLabelStyleWhiteBox
                || _style == TTActivityLabelStyleWhiteBezel) {
       _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleGray];
-      _textView.font = [UIFont systemFontOfSize:17];
+      _textView.font = TTSTYLEVAR(activityLabelFont);
       _textView.textColor = TTSTYLEVAR(tableActivityTextColor);
     } else if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleBlackBox) {
       _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleWhiteLarge];
       _spinner.frame = CGRectMake(0, 0, 24, 24);
-      _textView.font = [UIFont boldSystemFontOfSize:17];
+      _textView.font = TTSTYLEVAR(activityLabelFont);
       _textView.textColor = [UIColor whiteColor];
       _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
       _textView.shadowOffset = CGSizeMake(1, 1);

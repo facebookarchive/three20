@@ -226,15 +226,15 @@
     
     if (textField) {
       textField.delegate = self;
-      textField.backgroundColor = [UIColor whiteColor];
-      textField.font = [UIFont systemFontOfSize:15];
+      textField.backgroundColor = TTSTYLEVAR(backgroundColor);
+      textField.font = TTSTYLEVAR(messageFont);
       textField.returnKeyType = UIReturnKeyNext;
       [textField sizeToFit];
       
       UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
       label.text = field.title;
-      label.font = [UIFont systemFontOfSize:15];
-      label.textColor = [UIColor colorWithWhite:0.5 alpha:1];
+      label.font = TTSTYLEVAR(messageFont);
+      label.textColor = TTSTYLEVAR(messageFieldTextColor);
       [label sizeToFit];
       label.frame = CGRectInset(label.frame, -2, 0);
       textField.leftView = label;
@@ -244,7 +244,7 @@
       [_fieldViews addObject:textField];
 
       UIView* separator = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)] autorelease];
-      separator.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+      separator.backgroundColor = TTSTYLEVAR(messageFieldSeparatorColor);
       [_scrollView addSubview:separator];
     }
   }
@@ -316,7 +316,7 @@
 - (void)loadView {  
   CGRect appFrame = [UIScreen mainScreen].applicationFrame;
   self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];
-  self.view.backgroundColor = [UIColor whiteColor];
+  self.view.backgroundColor = TTSTYLEVAR(backgroundColor);
   
   _navigationBar = [[UINavigationBar alloc] initWithFrame:
     CGRectMake(0, 0, appFrame.size.width, TOOLBAR_HEIGHT)];
@@ -327,7 +327,7 @@
   CGRect innerFrame = CGRectMake(0, TOOLBAR_HEIGHT,
     appFrame.size.width, appFrame.size.height - (TOOLBAR_HEIGHT+KEYBOARD_HEIGHT));
   _scrollView = [[TTComposeInnerScrollView alloc] initWithFrame:innerFrame];
-  _scrollView.backgroundColor = [UIColor whiteColor];
+  _scrollView.backgroundColor = TTSTYLEVAR(backgroundColor);
   _scrollView.canCancelContentTouches = NO;
   _scrollView.showsVerticalScrollIndicator = NO;
   _scrollView.showsHorizontalScrollIndicator = NO;
@@ -335,8 +335,8 @@
 
   _textEditor = [[TTTextEditor alloc] initWithFrame:CGRectMake(0, 0, appFrame.size.width, 0)];
   _textEditor.textDelegate = self;
-  _textEditor.backgroundColor = [UIColor whiteColor];
-  _textEditor.textView.font = [UIFont systemFontOfSize:15];
+  _textEditor.backgroundColor = TTSTYLEVAR(backgroundColor);
+  _textEditor.textView.font = TTSTYLEVAR(messageFont);
   _textEditor.autoresizesToText = YES;
   _textEditor.showsExtraLine = YES;
   _textEditor.minNumberOfLines = 5;

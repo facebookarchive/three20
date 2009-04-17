@@ -18,9 +18,9 @@
                        : TTSTYLEVAR(linkTextColor);
     _label.shadowColor = TTSTYLEVAR(tableHeaderShadowColor)
                          ? TTSTYLEVAR(tableHeaderShadowColor)
-                         : [UIColor whiteColor];
+                         : [UIColor clearColor];
     _label.shadowOffset = CGSizeMake(0, 1);
-    _label.font = [UIFont boldSystemFontOfSize:18];
+    _label.font = TTSTYLEVAR(tableFont);
     [self addSubview:_label];
   }
   return self;

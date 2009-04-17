@@ -1,12 +1,11 @@
 #import "Three20/TTThumbView.h"
-#import "Three20/TTImageView.h"
-#import "Three20/TTView.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 @implementation TTThumbView
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-    self.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+    self.backgroundColor = TTSTYLEVAR(thumbnailBackgroundColor);
     self.opaque = YES;
     self.clipsToBounds = YES;
     

@@ -154,7 +154,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
   if (animated) {
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+    [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
   }
 
@@ -174,9 +174,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
   if (_menuView) {
     if (animated) {
       [UIView beginAnimations:nil context:_menuView];
-      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+      [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
       [UIView setAnimationDelegate:self];
-      [UIView setAnimationDidStopSelector:@selector(hideMenuAnimationDidStop)];
+      [UIView setAnimationDidStopSelector:@selector(hideMenuAnimationDidStop:finished:context:)];
     }
 
     for (UIView* view in _menuCell.contentView.subviews) {

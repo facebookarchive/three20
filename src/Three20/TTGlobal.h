@@ -103,6 +103,8 @@ typedef enum {
  */
 #define TT_TRANSITION_DURATION 0.3
 
+#define TT_FAST_TRANSITION_DURATION 0.2
+
 #define TT_FLIP_TRANSITION_DURATION 0.7
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

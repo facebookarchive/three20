@@ -32,7 +32,7 @@ static CGFloat kVPadding = 50;
     _titleView.opaque = NO;
     _titleView.backgroundColor = [UIColor clearColor];
     _titleView.textColor = TTSTYLEVAR(tableErrorTextColor);
-    _titleView.font = [UIFont boldSystemFontOfSize:18];
+    _titleView.font = TTSTYLEVAR(errorTitleFont);
     _titleView.textAlignment = UITextAlignmentCenter;
     [self addSubview:_titleView];
     
@@ -40,7 +40,7 @@ static CGFloat kVPadding = 50;
     _subtitleView.opaque = NO;
     _subtitleView.backgroundColor = [UIColor clearColor];
     _subtitleView.textColor = TTSTYLEVAR(tableErrorTextColor);
-    _subtitleView.font = [UIFont boldSystemFontOfSize:14];
+    _subtitleView.font = TTSTYLEVAR(errorSubtitleFont);
     _subtitleView.textAlignment = UITextAlignmentCenter;
     _subtitleView.numberOfLines = 0;
     [self addSubview:_subtitleView];

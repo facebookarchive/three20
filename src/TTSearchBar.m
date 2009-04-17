@@ -106,7 +106,7 @@ static const CGFloat kIndexViewMargin = 4;
     self.tintColor = TTSTYLEVAR(searchBarTintColor);
     self.style = TTSTYLE(searchBar);
     self.textFieldStyle = TTSTYLE(searchTextField);
-    self.font = [UIFont systemFontOfSize:14];
+    self.font = TTSTYLEVAR(font);
     self.showsSearchIcon = YES;
     self.showsCancelButton = NO;
   }

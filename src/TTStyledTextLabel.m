@@ -41,10 +41,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _highlighted = NO;
     _highlightedNode = nil;
     
-    self.font = TTSTYLEVAR(defaultFont);
-    self.textColor = [UIColor blackColor];
-    self.highlightedTextColor = [UIColor whiteColor];
-    self.backgroundColor = [UIColor whiteColor];
+    self.font = TTSTYLEVAR(font);
+    self.backgroundColor = TTSTYLEVAR(backgroundColor);
     self.contentMode = UIViewContentModeRedraw;
     self.opaque = YES;
   }
@@ -141,12 +139,26 @@ static const CGFloat kCancelHighlightThreshold = 4;
   }
 }
 
+- (UIColor*)textColor {
+  if (!_textColor) {
+    _textColor = TTSTYLEVAR(textColor);
+  }
+  return _textColor;
+}
+
 - (void)setTextColor:(UIColor*)textColor {
   if (textColor != _textColor) {
     [_textColor release];
     _textColor = [textColor retain];
     [self setNeedsDisplay];
   }
+}
+
+- (UIColor*)highlightedTextColor {
+  if (!_highlightedTextColor) {
+    _highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+  }
+  return _highlightedTextColor;
 }
 
 - (void)setHighlightedNode:(TTStyledLinkNode*)highlightedNode {

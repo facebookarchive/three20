@@ -5,6 +5,7 @@
 #import "Three20/TTUnclippedView.h"
 #import "Three20/TTTableField.h"
 #import "Three20/TTURLCache.h"
+#import "Three20/TTStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
@@ -224,7 +225,7 @@ static CGFloat kThumbnailRowHeight = 79;
   CGRect innerFrame = CGRectMake(0, -CHROME_HEIGHT,
                                  screenFrame.size.width, screenFrame.size.height + CHROME_HEIGHT);
   UIView* innerView = [[UIView alloc] initWithFrame:innerFrame];
-  innerView.backgroundColor = [UIColor whiteColor];
+  innerView.backgroundColor = TTSTYLEVAR(backgroundColor);
   [self.view addSubview:innerView];
   
   CGRect tableFrame = CGRectMake(0, CHROME_HEIGHT,
@@ -234,8 +235,8 @@ static CGFloat kThumbnailRowHeight = 79;
   self.tableView.rowHeight = kThumbnailRowHeight;
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth
     | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-  self.tableView.backgroundColor = [UIColor whiteColor];
-  self.tableView.separatorColor = [UIColor whiteColor];
+  self.tableView.backgroundColor = TTSTYLEVAR(backgroundColor);
+  self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   self.tableView.contentInset = UIEdgeInsetsMake(4, 0, 0, 0);
   self.tableView.clipsToBounds = NO;
   [innerView addSubview:self.tableView];

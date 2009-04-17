@@ -1,4 +1,5 @@
 #import "Three20/TTSearchlightLabel.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 @implementation TTSearchlightLabel
 
@@ -10,7 +11,7 @@
     _timer = nil;
     
     self.text = @"";
-    self.font = [UIFont systemFontOfSize:14];
+    self.font = TTSTYLEVAR(font);
     self.textColor = [UIColor colorWithWhite:0.25 alpha:1];
     self.spotlightColor = [UIColor whiteColor];
     self.textAlignment = UITextAlignmentLeft;

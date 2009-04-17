@@ -186,7 +186,7 @@ static const CGFloat kDesiredTableHeight = 150;
 - (void)showDarkScreen:(BOOL)show {
   if (show && !_screenView) {
     _screenView = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-    _screenView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+    _screenView.backgroundColor = TTSTYLEVAR(screenBackgroundColor);
     _screenView.frame = [self rectForSearchResults:NO];
     _screenView.alpha = 0;
     [_screenView addTarget:self action:@selector(doneAction)
