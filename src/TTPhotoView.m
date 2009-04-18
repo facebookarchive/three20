@@ -107,6 +107,7 @@ static const CGFloat kMaxCaptionHeight = 100;
   
   if (!_photo.size.width) {
     _photo.size = image.size;
+    [self.superview setNeedsLayout];
   }
 }
 

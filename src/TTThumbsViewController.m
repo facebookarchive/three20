@@ -1,6 +1,5 @@
 #import "Three20/TTThumbsViewController.h"
 #import "Three20/TTPhotoViewController.h"
-#import "Three20/TTPhotoSource.h"
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTUnclippedView.h"
 #import "Three20/TTTableField.h"
@@ -14,15 +13,6 @@ static NSInteger kColumnCount = 4;
 static CGFloat kThumbnailRowHeight = 79;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTThumbsDataSource : TTDataSource
-          <TTPhotoSourceDelegate, TTThumbsTableViewCellDelegate> {
-  TTThumbsViewController* _controller;
-}
-
-- (id)initWithController:(TTThumbsViewController*)controller;
-
-@end
 
 @implementation TTThumbsDataSource
 
