@@ -38,7 +38,7 @@
 
 - (void)addStyle:(TTStyle*)style;
 
-- (TTStyle*)firstStyleOfClass:(Class)cls;
+- (id)firstStyleOfClass:(Class)cls;
 
 @end
 

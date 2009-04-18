@@ -1,5 +1,6 @@
 #import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTStyledNode.h"
+#import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyledText.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTNavigationCenter.h"
@@ -94,7 +95,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
   point.x -= _contentInset.left;
   point.y -= _contentInset.top;
   
-  TTStyledTextFrame* frame = [_text hitTest:point];
+  TTStyledFrame* frame = [_text hitTest:point];
   if (frame) {
     TTStyledLinkNode* linkNode = [frame.element firstParentOfClass:[TTStyledLinkNode class]];
     if (linkNode) {

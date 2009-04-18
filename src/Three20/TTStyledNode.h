@@ -1,9 +1,5 @@
 #import "Three20/TTGlobal.h"
 
-/**
- * The parser and DOM are still a very immature work-in-progress.  As of this writing,
- * this code is very experimental.
- */
 @interface TTStyledNode : NSObject {
   TTStyledNode* _nextSibling;
   TTStyledNode* _parentNode;
@@ -11,7 +7,7 @@
 
 @property(nonatomic, retain) TTStyledNode* nextSibling;
 @property(nonatomic, assign) TTStyledNode* parentNode;
-@property(nonatomic, readonly) NSString* plainText;
+@property(nonatomic, readonly) NSString* outerText;
 
 - (id)initWithNextSibling:(TTStyledNode*)nextSibling;
 

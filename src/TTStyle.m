@@ -133,7 +133,7 @@ static const NSInteger kDefaultLightSource = 125;
   }
 }
 
-- (TTStyle*)firstStyleOfClass:(Class)cls {
+- (id)firstStyleOfClass:(Class)cls {
   if ([self isKindOfClass:cls]) {
     return self;
   } else {

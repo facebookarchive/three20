@@ -42,9 +42,9 @@
   }
 }
 
-- (NSString*)plainText {
+- (NSString*)outerText {
   if (_nextSibling) {
-    return _nextSibling.plainText;
+    return _nextSibling.outerText;
   } else {
     return @"";
   }
@@ -102,9 +102,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (NSString*)plainText {
+- (NSString*)outerText {
   if (_nextSibling) {
-    return [NSString stringWithFormat:@"%@%@", _text, _nextSibling.plainText];
+    return [NSString stringWithFormat:@"%@%@", _text, _nextSibling.outerText];
   } else {
     return _text;
   }
@@ -199,13 +199,13 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyledNode
 
-- (NSString*)plainText {
+- (NSString*)outerText {
   if (_firstChild && _nextSibling) {
-    return [NSString stringWithFormat:@"%@%@", _firstChild.plainText, _nextSibling.plainText];
+    return [NSString stringWithFormat:@"%@%@", _firstChild.outerText, _nextSibling.outerText];
   } else if (_firstChild) {
-    return _firstChild.plainText;
+    return _firstChild.outerText;
   } else if (_nextSibling) {
-    return _nextSibling.plainText;
+    return _nextSibling.outerText;
   } else {
     return @"";
   }

@@ -1,10 +1,10 @@
-#import "Three20/TTStyle.h"
+#import "Three20/TTGlobal.h"
 
-@class TTStyledNode, TTStyledElement, TTStyledTextFrame;
+@class TTStyledNode, TTStyledFrame;
 
 @interface TTStyledText : NSObject {
   TTStyledNode* _rootNode;
-  TTStyledTextFrame* _rootFrame;
+  TTStyledFrame* _rootFrame;
   UIFont* _font;
   CGFloat _width;
   CGFloat _height;
@@ -18,7 +18,7 @@
 /**
  * The first in the sequence of frames of text calculated by the layout.
  */
-@property(nonatomic, readonly) TTStyledTextFrame* rootFrame;
+@property(nonatomic, readonly) TTStyledFrame* rootFrame;
 
 /**
  * The font that will be used to measure and draw all text.
@@ -76,74 +76,6 @@
 /**
  * Determines which frame is intersected by a point.
  */
-- (TTStyledTextFrame*)hitTest:(CGPoint)point;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTStyledTextFrame : NSObject <TTStyleDelegate> {
-  TTStyledElement* _element;
-  TTStyledNode* _node;
-  TTStyledTextFrame* _nextFrame;
-  TTStyle* _style;
-  NSString* _text;
-  UIFont* _font;
-  CGFloat _width;
-  CGFloat _height;
-  BOOL _lineBreak;
-}
-
-/** 
- * The element that contains the frame.
- */
-@property(nonatomic, readonly) TTStyledElement* element;
-
-/** 
- * The node represented by the frame.
- */
-@property(nonatomic, readonly) TTStyledNode* node;
-
-/**
- * The next in the linked list of frames.
- */
-@property(nonatomic, retain) TTStyledTextFrame* nextFrame;
-
-/**
- * The style used to render the frame;
- */
-@property(nonatomic, retain) TTStyle* style;
-
-/**
- * The text that is displayed by this frame.
- */
-@property(nonatomic, readonly) NSString* text;
-
-/**
- * The font that is used to measure and display the text of this frame.
- */
-@property(nonatomic, retain) UIFont* font;
-
-/**
- * The width of the text that is displayed by this frame.
- */
-@property(nonatomic) CGFloat width;
-
-/**
- * The height of the text that is displayed by this frame.
- */
-@property(nonatomic) CGFloat height;
-
-/**
- * Indicates if the layout will break to a new line after this frame.
- */
-@property(nonatomic) BOOL lineBreak;
-
-- (id)initWithText:(NSString*)text element:(TTStyledElement*)element node:(TTStyledNode*)node;
-
-/**
- * Draws the frame.
- */
-- (void)drawInRect:(CGRect)rect;
+- (TTStyledFrame*)hitTest:(CGPoint)point;
 
 @end
