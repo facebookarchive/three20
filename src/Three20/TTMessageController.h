@@ -19,10 +19,13 @@
 @property(nonatomic,assign) id<TTMessageControllerDelegate> delegate;
 @property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
 @property(nonatomic,retain) NSArray* fields;
+@property(nonatomic,retain) NSString* subject;
+@property(nonatomic,retain) NSString* body;
 
 - (id)initWithRecipients:(NSArray*)recipients;
 
 - (void)addRecipient:(id)recipient forFieldAtIndex:(NSUInteger)fieldIndex;
+- (void)setText:(NSString*)text forFieldAtIndex:(NSUInteger)fieldIndex;
 
 @end
 

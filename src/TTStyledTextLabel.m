@@ -107,6 +107,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
       }
     }
   }
+  
+  [super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
@@ -120,6 +122,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
       tableView.highlightedLabel = nil;
     }
   }
+
+  [super touchesEnded:touches withEvent:event];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

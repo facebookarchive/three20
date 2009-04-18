@@ -464,6 +464,39 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+- (NSString*)subject {
+  self.view;
+  for (int i = 0; i < _fields.count; ++i) {
+    id field = [_fields objectAtIndex:i];
+    if ([field isKindOfClass:[TTMessageSubjectField class]]) {
+      TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
+      return textField.text;
+    }
+  }
+  return nil;
+}
+
+- (void)setSubject:(NSString*)subject {
+  self.view;
+  for (int i = 0; i < _fields.count; ++i) {
+    id field = [_fields objectAtIndex:i];
+    if ([field isKindOfClass:[TTMessageSubjectField class]]) {
+      TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
+      textField.text = subject;
+      break;
+    }
+  }
+}
+
+- (NSString*)body {
+  return _textEditor.text;
+}
+
+- (void)setBody:(NSString*)body {
+  self.view;
+  _textEditor.text = body;
+}
+
 - (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
   if (dataSource != _dataSource) {
     [_dataSource release];
@@ -497,6 +530,14 @@
     if (label) {
       [textField addCellWithObject:recipient];
     }
+  }
+}
+
+- (void)setText:(NSString*)text forFieldAtIndex:(NSUInteger)fieldIndex {
+  self.view;
+  TTPickerTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
+  if ([textField isKindOfClass:[TTPickerTextField class]]) {
+    textField.text = text;
   }
 }
 
