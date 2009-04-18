@@ -359,10 +359,6 @@
   return [UIColor whiteColor];
 }
 
-- (UIColor*)messageFieldTextColor {
-  return [UIColor colorWithWhite:0.5 alpha:1];
-}
-
 - (UIColor*)navigationBarTintColor {
   return RGBCOLOR(119, 140, 168);
 }
@@ -373,6 +369,10 @@
 
 - (UIColor*)searchBarTintColor {
   return RGBCOLOR(200, 200, 200);
+}
+
+- (UIColor*)screenBackgroundColor {
+  return [UIColor colorWithWhite:0 alpha:0.8];
 }
 
 - (UIColor*)backgroundColor {
@@ -423,16 +423,16 @@
   return RGBCOLOR(228, 230, 235);
 }
 
+- (UIColor*)messageFieldTextColor {
+  return [UIColor colorWithWhite:0.5 alpha:1];
+}
+
 - (UIColor*)messageFieldSeparatorColor {
   return [UIColor colorWithWhite:0.7 alpha:1];
 }
 
 - (UIColor*)thumbnailBackgroundColor {
   return [UIColor colorWithWhite:0.95 alpha:1];
-}
-
-- (UIColor*)screenBackgroundColor {
-  return [UIColor colorWithWhite:0 alpha:0.8];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

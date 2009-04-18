@@ -1,9 +1,9 @@
 #import "Three20/TTStyle.h"
 
-@class TTStyledTextNode, TTStyledTextFrame, TTStyledTextNode;
+@class TTStyledNode, TTStyledElement, TTStyledTextFrame;
 
 @interface TTStyledText : NSObject {
-  TTStyledTextNode* _rootNode;
+  TTStyledNode* _rootNode;
   TTStyledTextFrame* _rootFrame;
   UIFont* _font;
   CGFloat _width;
@@ -13,7 +13,7 @@
 /**
  * The first in the sequence of nodes that contain the styled text.
  */
-@property(nonatomic, retain) TTStyledTextNode* rootNode;
+@property(nonatomic, retain) TTStyledNode* rootNode;
 
 /**
  * The first in the sequence of frames of text calculated by the layout.
@@ -45,6 +45,7 @@
  * it can be any string with XHTML tags throughout.
  */
 + (TTStyledText*)textFromXHTML:(NSString*)source;
++ (TTStyledText*)textFromXHTML:(NSString*)source lineBreaks:(BOOL)lineBreaks urls:(BOOL)urls;
 
 /**
  * Constructs styled text with all URLs transformed into links.
@@ -53,7 +54,7 @@
  */ 
 + (TTStyledText*)textWithURLs:(NSString*)source;
 
-- (id)initWithNode:(TTStyledTextNode*)rootNode;
+- (id)initWithNode:(TTStyledNode*)rootNode;
 
 /**
  * Called to indicate that the layout needs to be re-calculated.
@@ -82,7 +83,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTStyledTextFrame : NSObject <TTStyleDelegate> {
-  TTStyledTextNode* _node;
+  TTStyledElement* _element;
+  TTStyledNode* _node;
   TTStyledTextFrame* _nextFrame;
   TTStyle* _style;
   NSString* _text;
@@ -93,9 +95,14 @@
 }
 
 /** 
- * The node represented by the frame
+ * The element that contains the frame.
  */
-@property(nonatomic, readonly) TTStyledTextNode* node;
+@property(nonatomic, readonly) TTStyledElement* element;
+
+/** 
+ * The node represented by the frame.
+ */
+@property(nonatomic, readonly) TTStyledNode* node;
 
 /**
  * The next in the linked list of frames.
@@ -132,7 +139,7 @@
  */
 @property(nonatomic) BOOL lineBreak;
 
-- (id)initWithText:(NSString*)text node:(TTStyledTextNode*)node;
+- (id)initWithText:(NSString*)text element:(TTStyledElement*)element node:(TTStyledNode*)node;
 
 /**
  * Draws the frame.

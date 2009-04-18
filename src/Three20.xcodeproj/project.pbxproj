@@ -80,8 +80,8 @@
 		BEE34EB00F495C4A008C826E /* TTMessageController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE34EAF0F495C4A008C826E /* TTMessageController.h */; };
 		BEE34F250F496615008C826E /* TTTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE34F240F496615008C826E /* TTTextEditor.m */; };
 		BEE34F270F496620008C826E /* TTTextEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE34F260F496620008C826E /* TTTextEditor.h */; };
-		BEF198E00F818A1C0010D36E /* TTStyledTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF198DF0F818A1C0010D36E /* TTStyledTextNode.m */; };
-		BEF198E20F818A240010D36E /* TTStyledTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF198E10F818A240010D36E /* TTStyledTextNode.h */; };
+		BEF198E00F818A1C0010D36E /* TTStyledNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF198DF0F818A1C0010D36E /* TTStyledNode.m */; };
+		BEF198E20F818A240010D36E /* TTStyledNode.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF198E10F818A240010D36E /* TTStyledNode.h */; };
 		BEF19D6B0F81B8440010D36E /* TTStyledTextParser.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF19D6A0F81B8440010D36E /* TTStyledTextParser.h */; };
 		BEF19D6D0F81B8530010D36E /* TTStyledTextParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF19D6C0F81B8530010D36E /* TTStyledTextParser.m */; };
 		BEF31F700F352E64000DE5D2 /* TTActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F460F352E64000DE5D2 /* TTActivityLabel.m */; };
@@ -206,8 +206,8 @@
 		BEE34EAF0F495C4A008C826E /* TTMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMessageController.h; path = Three20/TTMessageController.h; sourceTree = "<group>"; };
 		BEE34F240F496615008C826E /* TTTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTextEditor.m; sourceTree = "<group>"; };
 		BEE34F260F496620008C826E /* TTTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextEditor.h; path = Three20/TTTextEditor.h; sourceTree = "<group>"; };
-		BEF198DF0F818A1C0010D36E /* TTStyledTextNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledTextNode.m; sourceTree = "<group>"; };
-		BEF198E10F818A240010D36E /* TTStyledTextNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextNode.h; path = Three20/TTStyledTextNode.h; sourceTree = "<group>"; };
+		BEF198DF0F818A1C0010D36E /* TTStyledNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledNode.m; sourceTree = "<group>"; };
+		BEF198E10F818A240010D36E /* TTStyledNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledNode.h; path = Three20/TTStyledNode.h; sourceTree = "<group>"; };
 		BEF19D6A0F81B8440010D36E /* TTStyledTextParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextParser.h; path = Three20/TTStyledTextParser.h; sourceTree = "<group>"; };
 		BEF19D6C0F81B8530010D36E /* TTStyledTextParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledTextParser.m; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -410,8 +410,8 @@
 			children = (
 				BE3EDE400F80C78500A732BE /* TTStyledText.h */,
 				BE3EDE420F80C79600A732BE /* TTStyledText.m */,
-				BEF198E10F818A240010D36E /* TTStyledTextNode.h */,
-				BEF198DF0F818A1C0010D36E /* TTStyledTextNode.m */,
+				BEF198E10F818A240010D36E /* TTStyledNode.h */,
+				BEF198DF0F818A1C0010D36E /* TTStyledNode.m */,
 				BEF19D6A0F81B8440010D36E /* TTStyledTextParser.h */,
 				BEF19D6C0F81B8530010D36E /* TTStyledTextParser.m */,
 			);
@@ -579,7 +579,7 @@
 				BED623920F50F34B003EF242 /* NSArrayAdditions.h in Headers */,
 				BEF341970F8042520027E93C /* TTStyledTextLabel.h in Headers */,
 				BE3EDE410F80C78500A732BE /* TTStyledText.h in Headers */,
-				BEF198E20F818A240010D36E /* TTStyledTextNode.h in Headers */,
+				BEF198E20F818A240010D36E /* TTStyledNode.h in Headers */,
 				BEF19D6B0F81B8440010D36E /* TTStyledTextParser.h in Headers */,
 				BED62FD90F882FD1009923D8 /* TTTableViewDelegate.h in Headers */,
 				BE1288060F896A0A00F65EA2 /* TTStyle.h in Headers */,
@@ -682,7 +682,7 @@
 				BED623940F50F350003EF242 /* NSArrayAdditions.m in Sources */,
 				BEF341950F8042440027E93C /* TTStyledTextLabel.m in Sources */,
 				BE3EDE430F80C79600A732BE /* TTStyledText.m in Sources */,
-				BEF198E00F818A1C0010D36E /* TTStyledTextNode.m in Sources */,
+				BEF198E00F818A1C0010D36E /* TTStyledNode.m in Sources */,
 				BEF19D6D0F81B8530010D36E /* TTStyledTextParser.m in Sources */,
 				BED62FDB0F882FE3009923D8 /* TTTableViewDelegate.m in Sources */,
 				BE1288080F896A1900F65EA2 /* TTStyle.m in Sources */,

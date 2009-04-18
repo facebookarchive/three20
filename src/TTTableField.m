@@ -1,5 +1,5 @@
 #include "Three20/TTTableField.h"
-#include "Three20/TTStyledTextNode.h"
+#include "Three20/TTStyledNode.h"
 #include "Three20/TTStyledText.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

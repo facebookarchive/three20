@@ -8,7 +8,7 @@
 #import "Three20/TTShape.h"
 #import "Three20/TTLayout.h"
 #import "Three20/TTStyledText.h"
-#import "Three20/TTStyledTextNode.h"
+#import "Three20/TTStyledNode.h"
 
 #import "Three20/TTViewController.h"
 #import "Three20/TTTableViewController.h"

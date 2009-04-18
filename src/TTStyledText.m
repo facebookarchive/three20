@@ -1,8 +1,191 @@
 #import "Three20/TTStyledText.h"
-#import "Three20/TTStyledTextNode.h"
+#import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledTextParser.h"
 #import "Three20/TTStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTLayoutContext : NSObject {
+  CGFloat _width;
+  CGFloat _height;
+  CGFloat _lineWidth;
+  CGFloat _lineHeight;
+  NSMutableArray* _styleStack;
+  TTStyle* _lastStyle;
+  TTStyledTextFrame* _rootFrame;
+  TTStyledTextFrame* _lastFrame;
+  UIFont* _baseFont;
+  UIFont* _font;
+  UIFont* _boldFont;
+  UIFont* _italicFont;
+  TTStyle* _linkStyle;
+  TTStyledNode* _rootNode;
+  TTStyledNode* _lastNode;
+  BOOL _lineBreak;
+}
+
+@property(nonatomic) CGFloat width;
+@property(nonatomic) CGFloat height;
+@property(nonatomic) CGFloat lineWidth;
+@property(nonatomic) CGFloat lineHeight;
+@property(nonatomic,readonly) CGFloat fontHeight;
+@property(nonatomic,readonly) NSMutableArray* styleStack;
+@property(nonatomic,assign) TTStyle* lastStyle;
+@property(nonatomic,assign) TTStyledTextFrame* rootFrame;
+@property(nonatomic,assign) TTStyledTextFrame* lastFrame;
+@property(nonatomic,retain) UIFont* baseFont;
+@property(nonatomic,retain) UIFont* font;
+@property(nonatomic,retain) UIFont* boldFont;
+@property(nonatomic,retain) UIFont* italicFont;
+@property(nonatomic,retain) TTStyle* linkStyle;
+@property(nonatomic,readonly) TTStyledNode* lastNode;
+@property(nonatomic) BOOL lineBreak;
+
+- (id)initWithRootNode:(TTStyledNode*)rootNode;
+
+@end
+
+@implementation TTLayoutContext
+
+@synthesize width = _width, height = _height, lineWidth = _lineWidth, lineHeight = _lineHeight,
+            lastStyle = _lastStyle, rootFrame = _rootFrame, lastFrame = _lastFrame,
+            baseFont = _baseFont, font = _font, boldFont = _boldFont, italicFont = _italicFont,
+            linkStyle = _linkStyle, lineBreak = _lineBreak; 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (UIFont*)boldVersionOfFont:(UIFont*)font {
+  // XXXjoe Clearly this doesn't work if your font is not the system font
+  return [UIFont boldSystemFontOfSize:font.pointSize];
+}
+
+- (UIFont*)italicVersionOfFont:(UIFont*)font {
+  // XXXjoe Clearly this doesn't work if your font is not the system font
+  return [UIFont italicSystemFontOfSize:font.pointSize];
+}
+
+- (TTStyledNode*)findLastNode:(TTStyledNode*)node {
+  TTStyledNode* lastNode = nil;
+  while (node) {
+    if ([node isKindOfClass:[TTStyledElement class]]) {
+      TTStyledElement* element = (TTStyledElement*)node;
+      lastNode = [self findLastNode:element.firstChild];
+    } else {
+      lastNode = node;
+    }
+    node = node.nextSibling;
+  }
+  return lastNode;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithRootNode:(TTStyledNode*)rootNode {
+  if (self = [self init]) {
+    _rootNode = rootNode;
+  }
+  return self;
+}
+
+- (id)init {
+  if (self = [super init]) {
+    _width = 0;
+    _height = 0;
+    _lineWidth = 0;
+    _lineHeight = 0;
+    _styleStack = nil;
+    _lastStyle = nil;
+    _rootFrame = nil;
+    _lastFrame = nil;
+    _baseFont = nil;
+    _font = nil;
+    _boldFont = nil;
+    _italicFont = nil;
+    _linkStyle = nil;
+    _rootNode = nil;
+    _lastNode = nil;
+    _lineBreak = NO;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_rootFrame release];
+  [_baseFont release];
+  [_font release];
+  [_boldFont release];
+  [_italicFont release];
+  [_linkStyle release];
+  [super dealloc];
+}
+
+- (NSMutableArray*)styleStack {
+  if (!_styleStack) {
+    _styleStack = [[NSMutableArray alloc] init];
+  }
+  return _styleStack;
+}
+
+- (UIFont*)baseFont {
+  if (!_baseFont) {
+    self.baseFont = TTSTYLEVAR(font);
+  }
+  return _baseFont;
+}
+
+- (UIFont*)boldFont {
+  if (!_boldFont) {
+    self.boldFont = [self boldVersionOfFont:self.baseFont];
+  }
+  return _boldFont;
+}
+
+- (UIFont*)italicFont {
+  if (!_italicFont) {
+    self.italicFont = [self italicVersionOfFont:self.baseFont];
+  }
+  return _italicFont;
+}
+
+- (TTStyle*)linkStyle {
+  if (!_linkStyle) {
+    self.linkStyle = TTSTYLE(linkText);
+  }
+  return _linkStyle;
+}
+
+- (TTStyledNode*)lastNode {
+  if (!_lastNode) {
+    _lastNode = [self findLastNode:_rootNode];
+  }
+  return _lastNode;
+}
+
+- (CGFloat)fontHeight {
+  return self.font.ascender - self.font.descender;
+}
+
+- (TTStyledTextFrame*)addFrameForText:(NSString*)text element:(TTStyledElement*)element
+                      node:(TTStyledNode*)node width:(CGFloat)width height:(CGFloat)height {
+  TTStyledTextFrame* frame = [[[TTStyledTextFrame alloc] initWithText:text element:element
+                                                         node:node] autorelease];
+  frame.style = self.lastStyle;
+  frame.font = self.font;
+  frame.width = width;
+  frame.height = height;
+  if (!_rootFrame) {
+    _rootFrame = [frame retain];
+  } else {
+    _lastFrame.nextFrame = frame;
+  }
+  _lastFrame = frame;
+  _lineBreak = NO;
+  return frame;
+}
+@end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -14,7 +197,13 @@
 // class public
 
 + (TTStyledText*)textFromXHTML:(NSString*)source {
+  return [self textFromXHTML:source lineBreaks:NO urls:YES];
+}
+
++ (TTStyledText*)textFromXHTML:(NSString*)source lineBreaks:(BOOL)lineBreaks urls:(BOOL)urls {
   TTStyledTextParser* parser = [[[TTStyledTextParser alloc] init] autorelease];
+  parser.parseLineBreaks = lineBreaks;
+  parser.parseURLs = urls;
   [parser parseXHTML:source];
   if (parser.rootNode) {
     return [[[TTStyledText alloc] initWithNode:parser.rootNode] autorelease];
@@ -36,113 +225,100 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (UIFont*)defaultFont {
-  return TTSTYLEVAR(font);
-}
-
-- (UIFont*)boldVersionOfFont:(UIFont*)font {
-  return [UIFont boldSystemFontOfSize:font.pointSize];
-}
-
-- (UIFont*)italicVersionOfFont:(UIFont*)font {
-  return [UIFont italicSystemFontOfSize:font.pointSize];
-}
-
-- (TTStyledTextFrame*)addFrameForText:(NSString*)text node:(TTStyledTextNode*)node
-                  after:(TTStyledTextFrame*)lastFrame {
-  TTStyledTextFrame* frame = [[[TTStyledTextFrame alloc] initWithText:text node:node] autorelease];
-  if (lastFrame) {
-    lastFrame.nextFrame = frame;
-  } else {
-    _rootFrame = [frame retain];
-  }
-  return frame;
-}
-
-- (void)layoutFrames {
-  //TTLOG(@"LAYOUT! %@", [NSDate date]);
-  UIFont* baseFont = _font ? _font : [self defaultFont];
-  UIFont* boldFont = nil;
-  UIFont* italicFont = nil;
-  TTStyle* linkStyle = nil;
+- (void)layoutElement:(TTStyledNode*)node element:(TTStyledElement*)element
+        context:(TTLayoutContext*)ctx {
   NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-  
-  TTStyledTextFrame* lastFrame = nil;
-  CGFloat lineWidth = 0;
-  CGFloat height = 0;
 
-  TTStyledTextNode* node = _rootNode;
   while (node) {
-    if ([node isKindOfClass:[TTStyledImageNode class]]) {
-      UIImage* image = [(TTStyledImageNode*)node image];
+    if ([node isKindOfClass:[TTStyledElement class]]) {
+      TTStyledElement* elt = (TTStyledElement*)node;
 
-      if (lineWidth + image.size.width > _width) {
-        // The image will be placed on the next line, so create a new frame for
-        // the current line and mark it with a line break
-        lastFrame.lineBreak = YES;
-        lineWidth = 0;
-      }
-
-      lastFrame = [self addFrameForText:nil node:node after:lastFrame];
-      lastFrame.width = image.size.width;
-      lastFrame.height = baseFont.ascender;
-
-      if (!lineWidth) {
-          height += lastFrame.height;
-      }
-      lineWidth += image.size.width;
-    } else {
-      NSString* text = node.text;
-      NSUInteger length = text.length;
-      
       TTStyle* style = nil;
-      if ([node isKindOfClass:[TTStyledSpanNode class]]) {
+      if ([node isKindOfClass:[TTStyledElement class]]) {
         if ([node isKindOfClass:[TTStyledLinkNode class]]) {
-          if (!linkStyle) {
-            linkStyle = TTSTYLE(linkText);
-          }
-          style = linkStyle;
+          style = ctx.linkStyle;
         }
-        TTStyledSpanNode* span = (TTStyledSpanNode*)node;
-        TTStyle* spanStyle = [[TTStyleSheet globalStyleSheet] styleWithSelector:span.className];
-        if (spanStyle) {
-          style = spanStyle;
+        TTStyle* eltStyle = [[TTStyleSheet globalStyleSheet] styleWithSelector:elt.className];
+        if (eltStyle) {
+          style = eltStyle;
         }
       }
 
       // Figure out which font to use for the node
-      UIFont* font = baseFont;
+      // XXXjoe Do this lazily when asked for font
+      UIFont* font = ctx.baseFont;
       if ([node isKindOfClass:[TTStyledLinkNode class]]
           || [node isKindOfClass:[TTStyledBoldNode class]]) {
-        if (!boldFont) {
-          boldFont = [self boldVersionOfFont:baseFont];
-        }
-        font = boldFont;
+        font = ctx.boldFont;
       } else if ([node isKindOfClass:[TTStyledItalicNode class]]) {
-        if (!italicFont) {
-          italicFont = [self italicVersionOfFont:baseFont];
+        font = ctx.italicFont;
+      }
+
+      BOOL isBlock = [node isKindOfClass:[TTStyledBlock class]];
+      if (ctx.lastFrame && isBlock) {
+        ctx.lineBreak = NO;
+        ctx.lastFrame.lineBreak = YES;
+        if (!ctx.lineWidth) {
+          ctx.lastFrame.height = ctx.fontHeight;
+          ctx.height += ctx.lastFrame.height;
         }
-        font = italicFont;
+        ctx.lineWidth = 0;
+        
+        TTStyledBlock* block = (TTStyledBlock*)node;
+        if (!block.firstChild) {
+          [ctx addFrameForText:nil element:element node:node width:0 height:0];
+        }
       }
         
-      if (!node.nextNode && node == _rootNode) {
-        // This is this is the only node, so measure it all at once and move on
-        CGSize textSize = [text sizeWithFont:font
-                                 constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
-                                 lineBreakMode:UILineBreakModeWordWrap];
-        lastFrame = [self addFrameForText:text node:node after:lastFrame];
-        lastFrame.style = style;
-        lastFrame.width = textSize.width;
-        lastFrame.height = textSize.height;
-        lastFrame.font = font;
-        height += textSize.height;
+      UIFont* lastFont = ctx.font;
+      TTStyle* lastStyle = ctx.lastStyle;
+      ctx.font = font;
+      ctx.lastStyle = style;
+      [self layoutElement:elt.firstChild element:elt context:ctx];
+      ctx.font = lastFont;
+      ctx.lastStyle = lastStyle;
+      
+      if (isBlock) {
+        ctx.lineBreak = YES;
+        ctx.lineWidth = 0;
+      }
+    } else if ([node isKindOfClass:[TTStyledImageNode class]]) {
+      UIImage* image = [(TTStyledImageNode*)node image];
+
+      if (ctx.lineWidth + image.size.width > _width) {
+        // The image will be placed on the next line, so create a new frame for
+        // the current line and mark it with a line break
+        ctx.lastFrame.lineBreak = YES;
+        ctx.lineBreak = NO;
+        ctx.lineWidth = 0;
+      }
+
+      [ctx addFrameForText:nil element:element node:node width:image.size.width
+           height:ctx.font.ascender];
+      if (!ctx.lineWidth) {
+          ctx.height += ctx.lastFrame.height;
+      }
+      ctx.lineWidth += image.size.width;
+    } else if ([node isKindOfClass:[TTStyledTextNode class]]) {
+      TTStyledTextNode* textNode = (TTStyledTextNode*)node;
+      NSString* text = textNode.text;
+      NSUInteger length = text.length;
+              
+      if (!node.nextSibling && node == _rootNode) {
+        // This is the only node, so measure it all at once and move on
+        CGSize textSize = [text sizeWithFont:ctx.font
+                                constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
+                                lineBreakMode:UILineBreakModeWordWrap];
+        [ctx addFrameForText:text element:element node:node width:textSize.width
+             height:textSize.height];
+        ctx.height += textSize.height;
         break;
       }
 
       NSInteger index = 0;
       NSInteger lineStartIndex = 0;
       CGFloat frameWidth = 0;
-      
+            
       while (index < length) {
         // Search for the next whitespace character
         NSRange searchRange = NSMakeRange(index, length - index);
@@ -155,33 +331,31 @@
         NSString* word = [text substringWithRange:wordRange];
 
         // Measure the word and check to see if it fits on the current line
-        CGSize wordSize = [word sizeWithFont:font
+        CGSize wordSize = [word sizeWithFont:ctx.font
                                 constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
                                 lineBreakMode:UILineBreakModeWordWrap];
-        if (lineWidth + wordSize.width > _width) {
+        if (ctx.lineWidth + wordSize.width > _width || ctx.lineBreak) {
           // The word will be placed on the next line, so create a new frame for
           // the current line and mark it with a line break
           NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
           if (lineRange.length) {
             NSString* line = [text substringWithRange:lineRange];
-            lastFrame = [self addFrameForText:line node:node after:lastFrame];
-            lastFrame.style = style;
-            lastFrame.width = frameWidth;
-            lastFrame.height = font.ascender - font.descender;
-            lastFrame.font = font;
+            [ctx addFrameForText:line element:element node:node width:frameWidth
+                 height:ctx.fontHeight];
           }
           
-          lastFrame.lineBreak = YES;
+          ctx.lastFrame.lineBreak = YES;
+          ctx.lineBreak = NO;
           lineStartIndex = lineRange.location + lineRange.length;
           frameWidth = 0;
-          lineWidth = 0;
+          ctx.lineWidth = 0;
         }
 
-        if (!lineWidth) {
+        if (!ctx.lineWidth) {
           // We are at the start of a new line
-          if (node.nextNode) {
+          if (node != ctx.lastNode) {
             // Count the height of the new line
-            height += wordSize.height;
+            ctx.height += wordSize.height;
 
             if (wordSize.width > _width) {
               // The word is larger than an entire line, so we need to split it across lines
@@ -191,49 +365,52 @@
             // This is the last node, so we don't need to keep measuring every word.  We
             // can just measure all remaining text and create a new frame for all of it.
             NSString* lines = [text substringWithRange:searchRange];
-            CGSize linesSize = [lines sizeWithFont:font
+            CGSize linesSize = [lines sizeWithFont:ctx.font
                                       constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
                                       lineBreakMode:UILineBreakModeWordWrap];
 
-            lastFrame = [self addFrameForText:lines node:node after:lastFrame];
-            lastFrame.style = style;
-            lastFrame.width = linesSize.width;
-            lastFrame.height = linesSize.height;
-            lastFrame.font = font;
-            height += linesSize.height;
+            [ctx addFrameForText:lines element:element node:node width:linesSize.width
+                 height:linesSize.height];
+            ctx.height += linesSize.height;
             break;
           }
         }
         
         frameWidth += wordSize.width;
-        lineWidth += wordSize.width;
+        ctx.lineWidth += wordSize.width;
         index = wordRange.location + wordRange.length;
 
         if (index >= length) {
           // The current word was at the very end of the string
           NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
                                                           - lineStartIndex);
-          NSString* line = !lineWidth ? word : [text substringWithRange:lineRange];
-          lastFrame = [self addFrameForText:line node:node after:lastFrame];
-          lastFrame.style = style;
-          lastFrame.width = frameWidth;
-          lastFrame.height = wordSize.height;
-          lastFrame.font = font;
+          NSString* line = !ctx.lineWidth ? word : [text substringWithRange:lineRange];
+          [ctx addFrameForText:line element:element node:node width:frameWidth
+               height:wordSize.height];
           frameWidth = 0;
         }
       }
     }
     
-    node = node.nextNode;
+    node = node.nextSibling;
   }
+}
+
+- (void)layoutFrames {
+  //TTLOG(@"LAYOUT! %@", [NSDate date]);
+  TTLayoutContext* ctx = [[TTLayoutContext alloc] initWithRootNode:_rootNode];
+  ctx.baseFont = ctx.font = _font;
   
-  _height = ceil(height);
+  [self layoutElement:_rootNode element:nil context:ctx];
+  _rootFrame = [ctx.rootFrame retain];
+  _height = ceil(ctx.height);
+  [ctx release];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithNode:(TTStyledTextNode*)rootNode {
+- (id)initWithNode:(TTStyledNode*)rootNode {
   if (self = [super init]) {
     _rootNode = [rootNode retain];
     _rootFrame = nil;
@@ -275,7 +452,6 @@
 
 - (void)setWidth:(CGFloat)width {
   if (width != _width) {
-    TTLOG(@"%f TO %f", _width, width);
     _width = width;
     [self setNeedsLayout];
   }
@@ -348,16 +524,17 @@
 
 @implementation TTStyledTextFrame
 
-@synthesize node = _node, nextFrame = _nextFrame, style = _style, text = _text, font = _font,
-            width = _width, height = _height, lineBreak = _lineBreak;
+@synthesize element = _element, node = _node, nextFrame = _nextFrame, style = _style, text = _text,
+            font = _font, width = _width, height = _height, lineBreak = _lineBreak;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithText:(NSString*)text node:(TTStyledTextNode*)node {
+- (id)initWithText:(NSString*)text element:(TTStyledElement*)element node:(TTStyledNode*)node {
   if (self = [super init]) {
     _text = [text retain];
     _nextFrame = nil;
+    _element = [element retain];
     _node = [node retain];
     _style = nil;
     _font = nil;
@@ -369,7 +546,7 @@
 }
 
 - (void)dealloc {
-  [_node release];
+  [_element release];
   [_nextFrame release];
   [_style release];
   [_text release];
@@ -419,7 +596,7 @@
   context.frame = rect;
   context.contentFrame = rect;
 
-  if ([_node isKindOfClass:[TTStyledLinkNode class]] && [(TTStyledLinkNode*)_node highlighted]) {
+  if ([_element isKindOfClass:[TTStyledLinkNode class]] && [(TTStyledLinkNode*)_element highlighted]) {
     TTStyle* style = TTSTYLE(linkTextHighlighted);
     [style draw:context];
   } else {

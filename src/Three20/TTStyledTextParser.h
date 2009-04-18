@@ -1,16 +1,21 @@
 #import "Three20/TTGlobal.h"
 
-@class TTStyledTextNode;
+@class TTStyledNode, TTStyledElement;
 
 @interface TTStyledTextParser : NSObject {
-  TTStyledTextNode* _rootNode;
-  TTStyledTextNode* _lastNode;
-  TTStyledTextNode* _openNode;
+  TTStyledNode* _rootNode;
+  TTStyledElement* _topElement;
+  TTStyledNode* _lastNode;
   NSError* _parserError;
   NSMutableString* _chars;
+  NSMutableArray* _stack;
+  BOOL _parseLineBreaks;
+  BOOL _parseURLs;
 }
 
-@property(nonatomic, retain) TTStyledTextNode* rootNode;
+@property(nonatomic, retain) TTStyledNode* rootNode;
+@property(nonatomic) BOOL parseLineBreaks;
+@property(nonatomic) BOOL parseURLs;
 
 - (void)parseXHTML:(NSString*)html;
 

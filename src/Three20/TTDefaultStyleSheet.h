@@ -10,11 +10,11 @@
 @property(nonatomic,readonly) UIColor* linkTextColor;
 @property(nonatomic,readonly) UIColor* moreLinkTextColor;
 @property(nonatomic,readonly) UIColor* photoCaptionTextColor;
-@property(nonatomic,readonly) UIColor* messageFieldTextColor;
 
 @property(nonatomic,readonly) UIColor* navigationBarTintColor;
 @property(nonatomic,readonly) UIColor* toolbarTintColor;
 @property(nonatomic,readonly) UIColor* searchBarTintColor;
+@property(nonatomic,readonly) UIColor* screenBackgroundColor;
 @property(nonatomic,readonly) UIColor* backgroundColor;
 
 @property(nonatomic,readonly) UIColor* tableActivityTextColor;
@@ -30,9 +30,10 @@
 @property(nonatomic,readonly) UIColor* tabTintColor;
 @property(nonatomic,readonly) UIColor* tabBarTintColor;
 
+@property(nonatomic,readonly) UIColor* messageFieldTextColor;
 @property(nonatomic,readonly) UIColor* messageFieldSeparatorColor;
+
 @property(nonatomic,readonly) UIColor* thumbnailBackgroundColor;
-@property(nonatomic,readonly) UIColor* screenBackgroundColor;
 
 @property(nonatomic,readonly) UIFont* font;
 @property(nonatomic,readonly) UIFont* buttonFont;

@@ -2,7 +2,7 @@
 #import "Three20/TTTableField.h"
 #import "Three20/TTImageView.h"
 #import "Three20/TTErrorView.h"
-#import "Three20/TTStyledTextNode.h"
+#import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledText.h"
 #import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTActivityLabel.h"
@@ -243,7 +243,7 @@ static CGFloat kDefaultIconSize = 50;
   CGFloat maxWidth = tableView.width - (kKeyWidth + kKeySpacing + kHPadding*2 + kMargin*2);
   TTTitledTableField* field = item;
 
-  CGSize size = [field.text sizeWithFont:TTSTYLEVAR(tableFont)
+  CGSize size = [field.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
     constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
     lineBreakMode:UILineBreakModeWordWrap];
   
@@ -260,10 +260,7 @@ static CGFloat kDefaultIconSize = 50;
     _titleLabel.textColor = TTSTYLEVAR(linkTextColor);
     _titleLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     _titleLabel.textAlignment = UITextAlignmentRight;
-    _titleLabel.contentMode = UIViewContentModeTop;
     [self.contentView addSubview:_titleLabel];
-
-    _label.contentMode = UIViewContentModeTop;
 	}
 	return self;
 }
@@ -279,7 +276,7 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  CGSize titleSize = [@"M" sizeWithFont:TTSTYLEVAR(tableSmallFont)];
+  CGSize titleSize = [@"M" sizeWithFont:TTSTYLEVAR(tableTitleFont)];
   _titleLabel.frame = CGRectMake(kHPadding, kVPadding, kKeyWidth, titleSize.height);
 
   CGFloat valueWidth = self.contentView.width - (kHPadding*2 + kKeyWidth + kKeySpacing);

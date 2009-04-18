@@ -1,5 +1,5 @@
 #import "Three20/TTStyledTextLabel.h"
-#import "Three20/TTStyledTextNode.h"
+#import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledText.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTNavigationCenter.h"
@@ -95,12 +95,15 @@ static const CGFloat kCancelHighlightThreshold = 4;
   point.y -= _contentInset.top;
   
   TTStyledTextFrame* frame = [_text hitTest:point];
-  if (frame && [frame.node isKindOfClass:[TTStyledLinkNode class]]) {
-    self.highlightedNode = (TTStyledLinkNode*)frame.node;
-    
-    TTTableView* tableView = (TTTableView*)[self firstParentOfClass:[TTTableView class]];
-    if (tableView) {
-      tableView.highlightedLabel = self;
+  if (frame) {
+    TTStyledLinkNode* linkNode = [frame.element firstParentOfClass:[TTStyledLinkNode class]];
+    if (linkNode) {
+      self.highlightedNode = linkNode;
+      
+      TTTableView* tableView = (TTTableView*)[self firstParentOfClass:[TTTableView class]];
+      if (tableView) {
+        tableView.highlightedLabel = self;
+      }
     }
   }
 }
