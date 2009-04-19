@@ -25,14 +25,14 @@
 - (TTStyle*)inlineBox {
   return 
     [TTSolidFillStyle styleWithColor:[UIColor blueColor] next:
-    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(5,13,2,13) next:
+    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(5,13,5,13) next:
     [TTSolidBorderStyle styleWithColor:[UIColor blackColor] width:1 next:nil]]];
 }
 
 - (TTStyle*)inlineBox2 {
   return 
     [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
-    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(2,13,5,13) next:nil]];
+    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(0,13,0,13) next:nil]];
 }
 
 @end
@@ -60,7 +60,8 @@
 - (void)loadView {
   [super loadView];
   
-  NSString* kText = @"This is a test of styled labels.  Styled labels support \
+  NSString* kText = @"\
+This is a test of styled labels.  Styled labels support \
 <b>bold text</b>, <i>italic text</i>, <span class=\"blueText\">colored text</span>, \
 <span class=\"largeText\">font sizes</span>, \
 <span class=\"blueBox\">spans with backgrounds</span>, inline images \
@@ -72,9 +73,11 @@ Both line break characters\n\nand HTML line breaks<br/>are respected.";
 //  NSString* kText = @"blah blah blah black sheep blah <span class=\"inlineBox\">\
 //<img src=\"bundle://smiley.png\"/>hyperlinks</span> blah fun";
 //  NSString* kText = @"\
-//<div class=\"inlineBox\">You can enclose blocks within an HTML div.</div>";
+//<div class=\"inlineBox\"><div class=\"inlineBox2\">You can enclose blocks within an HTML div.</div></div>";
 //  NSString* kText = @"\
 //<span class=\"inlineBox\"><span class=\"inlineBox2\">You can enclose blocks within an HTML div.</span></span>";
+//  NSString* kText = @"\
+//<div class=\"inlineBox2\">You can enclose blocks within an HTML div.</div>test";
 
   TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];

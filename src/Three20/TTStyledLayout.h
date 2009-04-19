@@ -8,6 +8,7 @@
   CGFloat _height;
   CGFloat _lineWidth;
   CGFloat _lineHeight;
+  CGFloat _minX;
   CGFloat _maxWidth;
   NSMutableArray* _styleStack;
   TTStyle* _lastStyle;

@@ -57,7 +57,7 @@
           [self parseURLs:substr];
           
           // Add a line break node after the text
-          TTStyledBlock* br = [[[TTStyledBlock alloc] init] autorelease];
+          TTStyledLineBreakNode* br = [[[TTStyledLineBreakNode alloc] init] autorelease];
           [self addNode:br];
 
           index = index + substr.length + 1;
@@ -116,8 +116,11 @@
     TTStyledInline* node = [[[TTStyledInline alloc] init] autorelease];
     node.className =  [attributeDict objectForKey:@"class"];
     [self pushNode:node];
-  } else if ([tag isEqualToString:@"div"] || [tag isEqualToString:@"p"]
-             || [tag isEqualToString:@"br"]) {
+  } else if ([tag isEqualToString:@"br"]) {
+    TTStyledLineBreakNode* node = [[[TTStyledLineBreakNode alloc] init] autorelease];
+    node.className =  [attributeDict objectForKey:@"class"];
+    [self pushNode:node];
+  } else if ([tag isEqualToString:@"div"] || [tag isEqualToString:@"p"]) {
     TTStyledBlock* node = [[[TTStyledBlock alloc] init] autorelease];
     node.className =  [attributeDict objectForKey:@"class"];
     [self pushNode:node];

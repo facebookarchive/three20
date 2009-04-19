@@ -165,7 +165,7 @@
   _height += _lineHeight;
   _lineWidth = 0;
   _lineHeight = 0;
-  _x = 0;
+  _x = _minX;
   _lineFirstFrame = nil;
 
   if (_inlineFrame) {
@@ -221,9 +221,10 @@
 
   TTStyledFrame* blockFrame = nil;
   BOOL isBlock = [elt isKindOfClass:[TTStyledBlock class]];
+
   if (isBlock) {
     if (_lastFrame) {
-      if (!_lineHeight) {
+      if (!_lineHeight && [elt isKindOfClass:[TTStyledLineBreakNode class]]) {
         _lineHeight = self.fontHeight;
       }
       [self breakLine];
@@ -237,10 +238,17 @@
     }
   }  
 
+  CGFloat minX = _minX;
+  CGFloat maxWidth = _maxWidth;
+
   TTBoxStyle* padding = nil;
   if (style) {
     padding = [style firstStyleOfClass:[TTBoxStyle class]];
     if (padding) {
+      if (isBlock) {
+        _minX += padding.padding.left;
+      }
+      _maxWidth -= padding.padding.left+padding.padding.right;
       _x += padding.padding.left;
       _lineWidth += padding.padding.left;
       
@@ -268,15 +276,18 @@
     _font = lastFont;
     _lastStyle = lastStyle;
     
-    if (isBlock) {
-      [self breakLine];
-    }
   }
 
-  if (isBlock && style) {
-    _x += padding.padding.right;
-    _lineWidth += padding.padding.right;
-    _height += padding.padding.top+padding.padding.bottom;
+  if (isBlock) {
+    _minX = minX;
+    _maxWidth = maxWidth;
+    [self breakLine];
+
+    if (padding) {
+//      _x += padding.padding.right;
+//      _lineWidth += padding.padding.right;
+      _height += padding.padding.bottom;
+    }
     blockFrame.height = _height - blockFrame.height;
   } else if (!isBlock && style) {
     _inlineFrame.height += self.fontHeight;
@@ -416,6 +427,7 @@
     _height = 0;
     _lineWidth = 0;
     _lineHeight = 0;
+    _minX = 0;
     _maxWidth = 0;
     _styleStack = nil;
     _lastStyle = nil;
