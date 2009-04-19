@@ -216,9 +216,8 @@
     if (context.didDrawContent) {
       return;
     }
-  } else {
-    [_imageNode.image drawInRect:rect];
   }
+  [_imageNode.image drawInRect:rect];
 }
 
 @end

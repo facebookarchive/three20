@@ -8,6 +8,7 @@
 @property(nonatomic, retain) TTStyledNode* nextSibling;
 @property(nonatomic, assign) TTStyledNode* parentNode;
 @property(nonatomic, readonly) NSString* outerText;
+@property(nonatomic, readonly) NSString* outerHTML;
 
 - (id)initWithNextSibling:(TTStyledNode*)nextSibling;
 
@@ -38,6 +39,8 @@
 @property(nonatomic,retain) NSString* url;
 @property(nonatomic,retain) UIImage* image;
 
+- (id)initWithURL:(NSString*)url;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +59,7 @@
 - (id)initWithText:(NSString*)text next:(TTStyledNode*)nextSibling;
 
 - (void)addChild:(TTStyledNode*)child;
+- (void)addText:(NSString*)text;
 
 @end
 

@@ -21,7 +21,14 @@
     [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
     [TTSolidBorderStyle styleWithColor:[UIColor grayColor] width:1 next:nil]]]]];
 }
-\
+
+- (TTStyle*)inlineBox {
+  return 
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:0] next:
+    [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
+    [TTSolidBorderStyle styleWithColor:[UIColor grayColor] width:1 next:nil]]];
+}
+
 @end
 
 @implementation StyledTextTestController
@@ -55,7 +62,7 @@
 actually touch. URLs are automatically converted into links, like this: http://www.foo.com\
 <div class=\"blueBox\">You can enclose blocks within an HTML div.</div>\
 Both line break characters\n\nand HTML line breaks<br/>are respected.";
-//  NSString* kText = @"Both line break characters\nand";
+//  NSString* kText = @"<span class=\"inlineBox\"><img src=\"bundle://smiley.png\"/>hyperlinks</span>";
 
   TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];

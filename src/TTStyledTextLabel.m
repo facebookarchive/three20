@@ -112,7 +112,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-  if (_highlightedNode) {
+  if (_highlightedNode && _highlightedNode.url) {
     [[TTNavigationCenter defaultCenter] displayURL:_highlightedNode.url];
     
     self.highlightedNode = nil;

@@ -50,6 +50,14 @@
   }
 }
 
+- (NSString*)outerHTML {
+  if (_nextSibling) {
+    return _nextSibling.outerHTML;
+  } else {
+    return @"";
+  }
+}
+
 - (id)firstParentOfClass:(Class)cls {
   if ([self isKindOfClass:cls]) {
     return self;
@@ -100,7 +108,7 @@
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// public
+// TTStyledNode
 
 - (NSString*)outerText {
   if (_nextSibling) {
@@ -110,7 +118,17 @@
   }
 }
 
+- (NSString*)outerHTML {
+  if (_nextSibling) {
+    return [NSString stringWithFormat:@"%@%@", _text, _nextSibling.outerHTML];
+  } else {
+    return _text;
+  }
+}
+
 @end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTStyledImageNode
 
@@ -118,6 +136,13 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
+
+- (id)initWithURL:(NSString*)url {
+  if (self = [super init]) {
+    self.url = url;
+  }
+  return self;
+}
 
 - (id)init {
   if (self = [super init]) {
@@ -135,6 +160,18 @@
 
 - (NSString*)description {
   return [NSString stringWithFormat:@"(%@)", _url];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyledNode
+
+- (NSString*)outerHTML {
+  NSString* html = [NSString stringWithFormat:@"<img src=\"%@\"/>", _url];
+  if (_nextSibling) {
+    return [NSString stringWithFormat:@"%@%@", html, _nextSibling.outerHTML];
+  } else {
+    return html;
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -211,6 +248,20 @@
   }
 }
 
+- (NSString*)outerHTML {
+  NSString* html = nil;
+  if (_firstChild) {
+    html = [NSString stringWithFormat:@"<div>%@</div>", _firstChild.outerHTML];
+  } else {
+    html = @"<div/>";
+  }
+  if (_nextSibling) {
+    return [NSString stringWithFormat:@"%@%@", html, _nextSibling.outerHTML];
+  } else {
+    return html;
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
@@ -223,6 +274,10 @@
     _lastChild.nextSibling = child;
     _lastChild = child;
   }
+}
+
+- (void)addText:(NSString*)text {
+  [self addChild:[[[TTStyledTextNode alloc] initWithText:text] autorelease]];
 }
 
 @end

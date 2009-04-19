@@ -134,7 +134,7 @@
   } else if ([tag isEqualToString:@"img"]) {
     TTStyledImageNode* node = [[[TTStyledImageNode alloc] init] autorelease];
     node.url =  [attributeDict objectForKey:@"src"];
-    [self addNode:node];
+    [self pushNode:node];
   }
 }
  

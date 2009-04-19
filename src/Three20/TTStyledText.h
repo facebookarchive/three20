@@ -57,6 +57,16 @@
 - (id)initWithNode:(TTStyledNode*)rootNode;
 
 /**
+ * 
+ */
+- (void)layoutFrames;
+
+/**
+ * 
+ */
+- (void)layoutIfNeeded;
+
+/**
  * Called to indicate that the layout needs to be re-calculated.
  */
 - (void)setNeedsLayout;
