@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@class TTStyle, TTStyledNode, TTStyledElement, TTStyledFrame;
+@class TTStyle, TTStyledNode, TTStyledElement, TTStyledFrame, TTStyledBoxFrame;
 
 @interface TTStyledLayout : NSObject {
   CGFloat _x;
@@ -13,7 +13,7 @@
   TTStyle* _lastStyle;
   TTStyledFrame* _rootFrame;
   TTStyledFrame* _lineFirstFrame;
-  TTStyledFrame* _inlineFrame;
+  TTStyledBoxFrame* _inlineFrame;
   TTStyledFrame* _lastFrame;
   UIFont* _font;
   UIFont* _boldFont;

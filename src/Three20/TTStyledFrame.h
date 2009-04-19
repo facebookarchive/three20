@@ -45,6 +45,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@interface TTStyledBoxFrame : TTStyledFrame {
+  TTStyledBoxFrame* _parentFrame;
+}
+
+@property(nonatomic,assign) TTStyledBoxFrame* parentFrame;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TTStyledTextFrame : TTStyledFrame <TTStyleDelegate> {
   TTStyledTextNode* _node;
   NSString* _text;

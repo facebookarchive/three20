@@ -24,9 +24,15 @@
 
 - (TTStyle*)inlineBox {
   return 
-    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:0] next:
+    [TTSolidFillStyle styleWithColor:[UIColor blueColor] next:
+    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(5,13,2,13) next:
+    [TTSolidBorderStyle styleWithColor:[UIColor blackColor] width:1 next:nil]]];
+}
+
+- (TTStyle*)inlineBox2 {
+  return 
     [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
-    [TTSolidBorderStyle styleWithColor:[UIColor grayColor] width:1 next:nil]]];
+    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(2,13,5,13) next:nil]];
 }
 
 @end
@@ -62,8 +68,13 @@
 actually touch. URLs are automatically converted into links, like this: http://www.foo.com\
 <div class=\"blueBox\">You can enclose blocks within an HTML div.</div>\
 Both line break characters\n\nand HTML line breaks<br/>are respected.";
-//  NSString* kText = @"blah blah blah black sheep blah <span class=\"inlineBox\"><img src=\"bundle://smiley.png\"/>hyperlinks</span>";
 //  NSString* kText = @"<span class=\"largeText\">bah</span><span class=\"inlineBox\">hyper links</span>";
+//  NSString* kText = @"blah blah blah black sheep blah <span class=\"inlineBox\">\
+//<img src=\"bundle://smiley.png\"/>hyperlinks</span> blah fun";
+//  NSString* kText = @"\
+//<div class=\"inlineBox\">You can enclose blocks within an HTML div.</div>";
+//  NSString* kText = @"\
+//<span class=\"inlineBox\"><span class=\"inlineBox2\">You can enclose blocks within an HTML div.</span></span>";
 
   TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];

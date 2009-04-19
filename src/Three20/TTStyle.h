@@ -79,13 +79,18 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTPaddingStyle : TTStyle {
+@interface TTBoxStyle : TTStyle {
+  UIEdgeInsets _margin;
   UIEdgeInsets _padding;
 }
 
+@property(nonatomic) UIEdgeInsets margin;
 @property(nonatomic) UIEdgeInsets padding;
 
-+ (TTPaddingStyle*)styleWithPadding:(UIEdgeInsets)padding next:(TTStyle*)next;
++ (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin next:(TTStyle*)next;
++ (TTBoxStyle*)styleWithPadding:(UIEdgeInsets)padding next:(TTStyle*)next;
++ (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin padding:(UIEdgeInsets)padding
+               next:(TTStyle*)next;
 
 @end
 

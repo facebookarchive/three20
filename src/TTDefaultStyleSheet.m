@@ -185,7 +185,7 @@
     [TTReflectiveFillStyle styleWithColor:RGBCOLOR(221, 17, 27) next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
     [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:2 next:
-    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(1, 6, 3, 6) next:
+    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(1, 6, 3, 6) next:
     [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
                  color:[UIColor whiteColor] next:nil]]]]]]]];
 }
@@ -240,7 +240,7 @@
       [TTShapeStyle styleWithShape:shape next:
       [TTSolidFillStyle styleWithColor:RGBCOLOR(150, 168, 191) next:
       [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.6) blur:3 offset:CGSizeMake(0, 0) next:
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
+      [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:11]  color:RGBCOLOR(255, 255, 255)
                    minimumFontSize:8 shadowColor:RGBACOLOR(0,0,0,0.1) shadowOffset:CGSizeMake(-1,-1)
                    next:nil]]]]];
@@ -248,7 +248,7 @@
     return
       [TTShapeStyle styleWithShape:shape next:
       [TTBevelBorderStyle styleWithHighlight:highlight shadow:shadow width:1 lightSource:125 next:
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
+      [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:11]  color:self.linkTextColor
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:255 alpha:0.9]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]];
@@ -286,14 +286,14 @@
       [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabTintColor) next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, 0, -1) next:
       [TTFourBorderStyle styleWithTop:border right:border bottom:nil left:border width:1 next:
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(6, 12, 2, 12) next:
+      [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(6, 12, 2, 12) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]  color:TTSTYLEVAR(textColor)
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
   } else {
     return
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(5, 1, 1, 1) next:
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(6, 12, 2, 12) next:
+      [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(6, 12, 2, 12) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]  color:[UIColor whiteColor]
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:0 alpha:0.6]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]];
@@ -309,13 +309,13 @@
       [TTReflectiveFillStyle styleWithColor:TTSTYLEVAR(tabBarTintColor) next:
       [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.3) blur:1 offset:CGSizeMake(1, 1) next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(0, 10, 0, 10) next:
+      [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(0, 10, 0, 10) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]  color:[UIColor whiteColor]
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:0 alpha:0.5]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]];
   } else {
     return
-      [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(0, 10, 0, 10) next:
+      [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(0, 10, 0, 10) next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]  color:self.linkTextColor
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:1 alpha:0.9]
                    shadowOffset:CGSizeMake(0, -1) next:nil]];
@@ -536,7 +536,7 @@
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, -1, 0, -1) next:
     [TTBevelBorderStyle styleWithHighlight:nil shadow:RGBACOLOR(0,0,0,0.15)
                         width:1 lightSource:270 next:
-    [TTPaddingStyle styleWithPadding:UIEdgeInsetsMake(8, 8, 8, 8) next:
+    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(8, 8, 8, 8) next:
     [TTTextStyle styleWithFont:font
                  color:stateTextColor shadowColor:[UIColor colorWithWhite:0 alpha:0.4]
                  shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];

@@ -31,20 +31,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTStyledImageNode : TTStyledNode {
-  NSString* _url;
-  UIImage* _image;
-}
-
-@property(nonatomic,retain) NSString* url;
-@property(nonatomic,retain) UIImage* image;
-
-- (id)initWithURL:(NSString*)url;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 @interface TTStyledElement : TTStyledNode {
   TTStyledNode* _firstChild;
   TTStyledNode* _lastChild;
@@ -96,5 +82,19 @@
 - (id)initWithURL:(NSString*)url;
 - (id)initWithURL:(NSString*)url next:(TTStyledNode*)nextSibling;
 - (id)initWithText:(NSString*)text url:(NSString*)url next:(TTStyledNode*)nextSibling;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTStyledImageNode : TTStyledElement {
+  NSString* _url;
+  UIImage* _image;
+}
+
+@property(nonatomic,retain) NSString* url;
+@property(nonatomic,retain) UIImage* image;
+
+- (id)initWithURL:(NSString*)url;
 
 @end

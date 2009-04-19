@@ -285,15 +285,29 @@ static const NSInteger kDefaultLightSource = 125;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTPaddingStyle
+@implementation TTBoxStyle
 
-@synthesize padding = _padding;
+@synthesize margin = _margin, padding = _padding;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-+ (TTPaddingStyle*)styleWithPadding:(UIEdgeInsets)padding next:(TTStyle*)next {
-  TTPaddingStyle* style = [[[self alloc] initWithNext:next] autorelease];
++ (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin next:(TTStyle*)next {
+  TTBoxStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.margin = margin;
+  return style;
+}
+
++ (TTBoxStyle*)styleWithPadding:(UIEdgeInsets)padding next:(TTStyle*)next {
+  TTBoxStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.padding = padding;
+  return style;
+}
+
++ (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin padding:(UIEdgeInsets)padding
+               next:(TTStyle*)next {
+  TTBoxStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.margin = margin;
   style.padding = padding;
   return style;
 }
@@ -303,6 +317,7 @@ static const NSInteger kDefaultLightSource = 125;
 
 - (id)initWithNext:(TTStyle*)next {  
   if (self = [super initWithNext:next]) {
+    _margin = UIEdgeInsetsZero;
     _padding = UIEdgeInsetsZero;
   }
   return self;

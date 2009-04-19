@@ -76,35 +76,54 @@
   return (_font.ascender - _font.descender)+1;
 }
 
-- (void)addInlineFrame:(TTStyledFrame*)frame width:(CGFloat)width height:(CGFloat)height {
-  frame.style = _lastStyle;
-  frame.bounds = CGRectMake(_x, _height, width, height);
+- (void)addFrame:(TTStyledFrame*)frame {
   if (!_rootFrame) {
     _rootFrame = [frame retain];
   } else {
     _lastFrame.nextFrame = frame;
   }
+  _lastFrame = frame;
+}
+
+- (void)addContentFrame:(TTStyledFrame*)frame width:(CGFloat)width height:(CGFloat)height {
+  frame.bounds = CGRectMake(_x, _height, width, height);
+  [self addFrame:frame];
   if (!_lineFirstFrame) {
     _lineFirstFrame = frame;
   }
-  _lastFrame = frame;
   _x += width;
-  if (_inlineFrame) {
-    _inlineFrame.width += width;
+  
+  TTStyledBoxFrame* inlineFrame = _inlineFrame;
+  while (inlineFrame) {
+    inlineFrame.width += width;
+    inlineFrame = inlineFrame.parentFrame;
   }
 }
 
-- (TTStyledFrame*)addBoxFrame:(TTStyle*)style element:(TTStyledElement*)element
+- (TTStyledBoxFrame*)addInlineFrame:(TTStyle*)style element:(TTStyledElement*)element
+                  width:(CGFloat)width height:(CGFloat)height {
+  TTStyledBoxFrame* frame = [[[TTStyledBoxFrame alloc] initWithElement:element] autorelease];
+  frame.style = style;
+  frame.bounds = CGRectMake(_x, _height, width, height);
+  frame.parentFrame = _inlineFrame;
+  [self addFrame:frame];
+  return frame;
+}
+
+- (TTStyledBoxFrame*)cloneInlineFrame:(TTStyledBoxFrame*)frame {
+  TTStyledBoxFrame* parent = frame.parentFrame ? [self cloneInlineFrame:frame.parentFrame] : nil;
+  TTStyledBoxFrame* clone = [self addInlineFrame:frame.style element:frame.element
+                                  width:0 height:0];
+  clone.parentFrame = parent;
+  return clone;
+}
+
+- (TTStyledFrame*)addBlockFrame:(TTStyle*)style element:(TTStyledElement*)element
                   width:(CGFloat)width height:(CGFloat)height {
   TTStyledFrame* frame = [[[TTStyledFrame alloc] initWithElement:element] autorelease];
   frame.style = style;
   frame.bounds = CGRectMake(_x, _height, width, height);
-  if (!_rootFrame) {
-    _rootFrame = [frame retain];
-  } else {
-    _lastFrame.nextFrame = frame;
-  }
-  _lastFrame = frame;
+  [self addFrame:frame];
   return frame;
 }
 
@@ -112,7 +131,22 @@
   if (_inlineFrame) {
     // XXXjoe This is wrong - we need to track the height of nodes inside the inline frame
     // so that the frame height wraps them all, not just the height of the last font
-    _inlineFrame.height = self.fontHeight;
+    TTStyledBoxFrame* inlineFrame = _inlineFrame;
+    while (inlineFrame) {
+      inlineFrame.height += self.fontHeight;
+      if (inlineFrame.style) {
+        TTBoxStyle* padding = [inlineFrame.style firstStyleOfClass:[TTBoxStyle class]];
+        if (padding) {
+          TTStyledBoxFrame* inlineFrame2 = inlineFrame;
+          while (inlineFrame2) {
+            inlineFrame2.y -= padding.padding.top;
+            inlineFrame2.height += padding.padding.top+padding.padding.bottom;
+            inlineFrame2 = inlineFrame2.parentFrame;
+          }
+        }
+      }
+      inlineFrame = inlineFrame.parentFrame;
+    }
   }
 
   // Vertically align all frames on the current line
@@ -135,8 +169,7 @@
   _lineFirstFrame = nil;
 
   if (_inlineFrame) {
-    _inlineFrame = [self addBoxFrame:_inlineFrame.style element:_inlineFrame.element
-                         width:0 height:0];
+    _inlineFrame = [self cloneInlineFrame:_inlineFrame];
   }
 }
 
@@ -145,7 +178,10 @@
   TTStyledTextFrame* frame = [[[TTStyledTextFrame alloc] initWithText:text element:element
                                                          node:node] autorelease];
   frame.font = _font;
-  [self addInlineFrame:frame width:width height:height];
+  [self addContentFrame:frame width:width height:height];
+  if (_lastStyle) {
+    frame.style = [_lastStyle firstStyleOfClass:[TTTextStyle class]];
+  }
   return frame;
 }
 
@@ -165,40 +201,59 @@
   // XXXjoe Do this lazily when asked for font
   UIFont* font = nil;
   TTTextStyle* textStyle = nil;
-  if ([elt isKindOfClass:[TTStyledLinkNode class]]
-      || [elt isKindOfClass:[TTStyledBoldNode class]]) {
-    font = self.boldFont;
-  } else if ([elt isKindOfClass:[TTStyledItalicNode class]]) {
-    font = self.italicFont;
-  } else if (style) {
+  if (style) {
     textStyle = [style firstStyleOfClass:[TTTextStyle class]];
     if (textStyle) {
       font = textStyle.font;
     }        
   }
+  
   if (!font) {
-    font = self.font;
+    if ([elt isKindOfClass:[TTStyledLinkNode class]]
+        || [elt isKindOfClass:[TTStyledBoldNode class]]) {
+      font = self.boldFont;
+    } else if ([elt isKindOfClass:[TTStyledItalicNode class]]) {
+      font = self.italicFont;
+    } else {
+      font = self.font;
+    }
   }
 
+  TTStyledFrame* blockFrame = nil;
   BOOL isBlock = [elt isKindOfClass:[TTStyledBlock class]];
   if (isBlock) {
     if (_lastFrame) {
-      if (!_lineWidth) {
+      if (!_lineHeight) {
         _lineHeight = self.fontHeight;
       }
       [self breakLine];
     }
-  }
-  
-  TTStyledFrame* blockFrame = nil;
-  if (isBlock && style) {
-    blockFrame = [self addBoxFrame:style element:elt width:_maxWidth height:self.height];
-  }
+    if (style) {
+      blockFrame = [self addBlockFrame:style element:elt width:_maxWidth height:_height];
+    }
+  } else {
+    if (style) {
+      _inlineFrame = [self addInlineFrame:style element:elt width:0 height:0];
+    }
+  }  
 
-  TTStyledFrame* lastInlineFrame = nil;
-  if (!isBlock && style) {
-    lastInlineFrame = _inlineFrame;
-    _inlineFrame = [self addBoxFrame:style element:elt width:0 height:0];
+  TTBoxStyle* padding = nil;
+  if (style) {
+    padding = [style firstStyleOfClass:[TTBoxStyle class]];
+    if (padding) {
+      _x += padding.padding.left;
+      _lineWidth += padding.padding.left;
+      
+      TTStyledBoxFrame* inlineFrame = _inlineFrame;
+      while (inlineFrame) {
+        inlineFrame.width += padding.padding.left;
+        inlineFrame = inlineFrame.parentFrame;
+      }
+
+      if (isBlock) {
+        _height += padding.padding.top;
+      }
+    }
   }
     
   if (elt.firstChild) {
@@ -218,13 +273,26 @@
     }
   }
 
-  if (blockFrame) {
-    blockFrame.height = self.height - blockFrame.height;
-  }
+  if (isBlock && style) {
+    _x += padding.padding.right;
+    _lineWidth += padding.padding.right;
+    _height += padding.padding.top+padding.padding.bottom;
+    blockFrame.height = _height - blockFrame.height;
+  } else if (!isBlock && style) {
+    _inlineFrame.height += self.fontHeight;
+    if (padding) {
+      _x += padding.padding.right;
+      _lineWidth += padding.padding.right;
 
-  if (!isBlock && style) {
-    _inlineFrame.height = self.fontHeight;
-    _inlineFrame = lastInlineFrame;
+      TTStyledBoxFrame* inlineFrame = _inlineFrame;
+      while (inlineFrame) {
+        inlineFrame.width += padding.padding.right;
+        inlineFrame.y -= padding.padding.top;
+        inlineFrame.height += padding.padding.top+padding.padding.bottom;
+        inlineFrame = inlineFrame.parentFrame;
+      }
+    }
+    _inlineFrame = _inlineFrame.parentFrame;
   }
 }
 
@@ -239,7 +307,7 @@
 
   TTStyledImageFrame* frame = [[[TTStyledImageFrame alloc] initWithElement:element
                                                            node:imageNode] autorelease];
-  [self addInlineFrame:frame width:image.size.width height:image.size.height];
+  [self addContentFrame:frame width:image.size.width height:image.size.height];
   _lineWidth += image.size.width;
   if (image.size.height > _lineHeight) {
     _lineHeight = image.size.height;
@@ -386,12 +454,12 @@
 
 - (void)layout:(TTStyledNode*)node container:(TTStyledElement*)element {
   while (node) {
-    if ([node isKindOfClass:[TTStyledElement class]]) {
-      TTStyledElement* elt = (TTStyledElement*)node;
-      [self layoutElement:elt];
-    } else if ([node isKindOfClass:[TTStyledImageNode class]]) {
+    if ([node isKindOfClass:[TTStyledImageNode class]]) {
       TTStyledImageNode* imageNode = (TTStyledImageNode*)node;
       [self layoutImage:imageNode container:element];
+    } else if ([node isKindOfClass:[TTStyledElement class]]) {
+      TTStyledElement* elt = (TTStyledElement*)node;
+      [self layoutElement:elt];
     } else if ([node isKindOfClass:[TTStyledTextNode class]]) {
       TTStyledTextNode* textNode = (TTStyledTextNode*)node;
       [self layoutText:textNode container:element];
