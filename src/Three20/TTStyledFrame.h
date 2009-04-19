@@ -28,6 +28,7 @@
  * The bounds of the content that is displayed by this frame.
  */
 @property(nonatomic) CGRect bounds;
+
 @property(nonatomic) CGFloat x;
 @property(nonatomic) CGFloat y;
 @property(nonatomic) CGFloat width;

@@ -94,7 +94,7 @@
 
 - (void)layoutFrames {
   TTStyledLayout* ctx = [[TTStyledLayout alloc] initWithRootNode:_rootNode];
-  ctx.baseFont = ctx.font = _font;
+  ctx.font = _font;
   ctx.maxWidth = _width;
   
   [ctx layout:_rootNode];

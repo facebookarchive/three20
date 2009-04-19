@@ -206,17 +206,17 @@
 // public
 
 - (void)drawInRect:(CGRect)rect {
-  if (_style) {
-    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-    context.delegate = self;
-    context.frame = rect;
-    context.contentFrame = rect;
-
-    [_style draw:context];
-    if (context.didDrawContent) {
-      return;
-    }
-  }
+//  if (_style) {
+//    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+//    context.delegate = self;
+//    context.frame = rect;
+//    context.contentFrame = rect;
+//
+//    [_style draw:context];
+//    if (context.didDrawContent) {
+//      return;
+//    }
+//  }
   [_imageNode.image drawInRect:rect];
 }
 

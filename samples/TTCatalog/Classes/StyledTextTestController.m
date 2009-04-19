@@ -62,7 +62,8 @@
 actually touch. URLs are automatically converted into links, like this: http://www.foo.com\
 <div class=\"blueBox\">You can enclose blocks within an HTML div.</div>\
 Both line break characters\n\nand HTML line breaks<br/>are respected.";
-//  NSString* kText = @"<span class=\"inlineBox\"><img src=\"bundle://smiley.png\"/>hyperlinks</span>";
+//  NSString* kText = @"blah blah blah black sheep blah <span class=\"inlineBox\"><img src=\"bundle://smiley.png\"/>hyperlinks</span>";
+//  NSString* kText = @"<span class=\"largeText\">bah</span><span class=\"inlineBox\">hyper links</span>";
 
   TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];
