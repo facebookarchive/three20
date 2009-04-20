@@ -138,7 +138,12 @@
   TTStyledFrame* frame = self.rootFrame;
   while (frame) {
     if (CGRectContainsPoint(frame.bounds, point)) {
-      return frame;
+      if ([frame isKindOfClass:[TTStyledTextFrame class]]) {
+        TTStyledTextFrame* boxFrame = (TTStyledTextFrame*)frame;
+        if ([boxFrame.element isKindOfClass:[TTStyledLinkNode class]]) {
+          return frame;
+        }
+      }
     }
     frame = frame.nextFrame;
   }

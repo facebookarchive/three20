@@ -32,7 +32,8 @@
 - (TTStyle*)inlineBox2 {
   return 
     [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
-    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(0,13,0,13) next:nil]];
+    [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(5,50,0,50)
+                padding:UIEdgeInsetsMake(0,13,0,13) next:nil]];
 }
 
 @end
@@ -75,9 +76,9 @@ Both line break characters\n\nand HTML line breaks<br/>are respected.";
 //  NSString* kText = @"\
 //<div class=\"inlineBox\"><div class=\"inlineBox2\">You can enclose blocks within an HTML div.</div></div>";
 //  NSString* kText = @"\
-//<span class=\"inlineBox\"><span class=\"inlineBox2\">You can enclose blocks within an HTML div.</span></span>";
+//<span class=\"inlineBox\"><span class=\"inlineBox2\">You can enclose blocks within an HTML div.</span></span>x";
 //  NSString* kText = @"\
-//<div class=\"inlineBox2\">You can enclose blocks within an HTML div.</div>test";
+//<div class=\"inlineBox2\">You can enclose blocks within an HTML div.</div>";
 
   TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];

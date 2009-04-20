@@ -198,7 +198,6 @@
   }
 
   // Figure out which font to use for the node
-  // XXXjoe Do this lazily when asked for font
   UIFont* font = nil;
   TTTextStyle* textStyle = nil;
   if (style) {
@@ -207,7 +206,6 @@
       font = textStyle.font;
     }        
   }
-  
   if (!font) {
     if ([elt isKindOfClass:[TTStyledLinkNode class]]
         || [elt isKindOfClass:[TTStyledBoldNode class]]) {
@@ -219,10 +217,20 @@
     }
   }
 
+  CGFloat minX = _minX;
+  CGFloat maxWidth = _maxWidth;
   TTStyledFrame* blockFrame = nil;
   BOOL isBlock = [elt isKindOfClass:[TTStyledBlock class]];
+  TTBoxStyle* padding = style ? [style firstStyleOfClass:[TTBoxStyle class]] : nil;
 
   if (isBlock) {
+    if (padding) {
+      _x += padding.margin.left;
+      _minX += padding.margin.left;
+      _maxWidth -= padding.margin.left + padding.margin.right;
+      _height += padding.margin.top;
+    }
+
     if (_lastFrame) {
       if (!_lineHeight && [elt isKindOfClass:[TTStyledLineBreakNode class]]) {
         _lineHeight = self.fontHeight;
@@ -233,34 +241,30 @@
       blockFrame = [self addBlockFrame:style element:elt width:_maxWidth height:_height];
     }
   } else {
+    if (padding) {
+      _x += padding.margin.left;
+    }
     if (style) {
       _inlineFrame = [self addInlineFrame:style element:elt width:0 height:0];
     }
   }  
 
-  CGFloat minX = _minX;
-  CGFloat maxWidth = _maxWidth;
+  if (padding) {
+    if (isBlock) {
+      _minX += padding.padding.left;
+    }
+    _maxWidth -= padding.padding.left+padding.padding.right;
+    _x += padding.padding.left;
+    _lineWidth += padding.padding.left;
+    
+    TTStyledBoxFrame* inlineFrame = _inlineFrame;
+    while (inlineFrame) {
+      inlineFrame.width += padding.padding.left;
+      inlineFrame = inlineFrame.parentFrame;
+    }
 
-  TTBoxStyle* padding = nil;
-  if (style) {
-    padding = [style firstStyleOfClass:[TTBoxStyle class]];
-    if (padding) {
-      if (isBlock) {
-        _minX += padding.padding.left;
-      }
-      _maxWidth -= padding.padding.left+padding.padding.right;
-      _x += padding.padding.left;
-      _lineWidth += padding.padding.left;
-      
-      TTStyledBoxFrame* inlineFrame = _inlineFrame;
-      while (inlineFrame) {
-        inlineFrame.width += padding.padding.left;
-        inlineFrame = inlineFrame.parentFrame;
-      }
-
-      if (isBlock) {
-        _height += padding.padding.top;
-      }
+    if (isBlock) {
+      _height += padding.padding.top;
     }
   }
     
@@ -284,19 +288,23 @@
     [self breakLine];
 
     if (padding) {
-//      _x += padding.padding.right;
-//      _lineWidth += padding.padding.right;
       _height += padding.padding.bottom;
     }
     blockFrame.height = _height - blockFrame.height;
+    if (padding) {
+      _height += padding.margin.bottom;
+    }
   } else if (!isBlock && style) {
     _inlineFrame.height += self.fontHeight;
     if (padding) {
-      _x += padding.padding.right;
-      _lineWidth += padding.padding.right;
+      _x += padding.padding.right + padding.margin.right;
+      _lineWidth += padding.padding.right + padding.margin.right;
 
       TTStyledBoxFrame* inlineFrame = _inlineFrame;
       while (inlineFrame) {
+        if (inlineFrame != _inlineFrame) {
+          inlineFrame.width += padding.margin.right;
+        }
         inlineFrame.width += padding.padding.right;
         inlineFrame.y -= padding.padding.top;
         inlineFrame.height += padding.padding.top+padding.padding.bottom;
