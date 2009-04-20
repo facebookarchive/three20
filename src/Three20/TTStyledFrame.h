@@ -47,9 +47,19 @@
 
 @interface TTStyledBoxFrame : TTStyledFrame {
   TTStyledBoxFrame* _parentFrame;
+  TTStyledFrame* _firstChildFrame;
 }
 
 @property(nonatomic,assign) TTStyledBoxFrame* parentFrame;
+@property(nonatomic,retain) TTStyledFrame* firstChildFrame;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTStyledInlineFrame : TTStyledBoxFrame
+
+@property(nonatomic,readonly) TTStyledInlineFrame* inlineParentFrame;
 
 @end
 

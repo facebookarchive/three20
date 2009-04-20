@@ -61,6 +61,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@interface TTStyledInlineBlock : TTStyledElement
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TTStyledBoldNode : TTStyledInline
 @end
 
@@ -72,6 +77,22 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTStyledLinkNode : TTStyledInline {
+  NSString* _url;
+  BOOL _highlighted;
+}
+
+@property(nonatomic) BOOL highlighted;
+@property(nonatomic,retain) NSString* url;
+
+- (id)initWithURL:(NSString*)url;
+- (id)initWithURL:(NSString*)url next:(TTStyledNode*)nextSibling;
+- (id)initWithText:(NSString*)text url:(NSString*)url next:(TTStyledNode*)nextSibling;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTStyledButtonNode : TTStyledInlineBlock {
   NSString* _url;
   BOOL _highlighted;
 }

@@ -294,6 +294,11 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+@implementation TTStyledInlineBlock
+@end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation TTStyledBoldNode
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -321,6 +326,56 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTStyledLinkNode
+
+@synthesize url = _url, highlighted = _highlighted;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithURL:(NSString*)url {
+  if (self = [self init]) {
+    self.url = url;
+  }
+  return self;
+}
+
+- (id)initWithURL:(NSString*)url next:(TTStyledNode*)nextSibling {
+  if (self = [super initWithNextSibling:nextSibling]) {
+    self.url = url;
+  }
+  return self;
+}
+
+- (id)initWithText:(NSString*)text url:(NSString*)url next:(TTStyledNode*)nextSibling {
+  if (self = [super initWithNextSibling:nextSibling]) {
+    self.url = url;
+    [self addChild:[[[TTStyledTextNode alloc] initWithText:text] autorelease]];
+  }
+  return self;
+}
+
+- (id)init {
+  if (self = [super init]) {
+    _url = nil;
+    _highlighted = NO;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_url release];
+  [super dealloc];
+}
+
+- (NSString*)description {
+  return [NSString stringWithFormat:@"<%@>", _firstChild];
+}
+
+@end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTStyledButtonNode
 
 @synthesize url = _url, highlighted = _highlighted;
 

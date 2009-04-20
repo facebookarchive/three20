@@ -134,6 +134,10 @@
     TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] init] autorelease];
     node.url =  [attributeDict objectForKey:@"href"];
     [self pushNode:node];
+  } else if ([tag isEqualToString:@"button"]) {
+    TTStyledButtonNode* node = [[[TTStyledButtonNode alloc] init] autorelease];
+    node.url =  [attributeDict objectForKey:@"href"];
+    [self pushNode:node];
   } else if ([tag isEqualToString:@"img"]) {
     TTStyledImageNode* node = [[[TTStyledImageNode alloc] init] autorelease];
     node.url =  [attributeDict objectForKey:@"src"];

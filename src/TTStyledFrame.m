@@ -73,12 +73,15 @@
 }
 
 - (void)drawInRect:(CGRect)rect {
-  if (_style) {
-    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-    context.frame = rect;
-    context.contentFrame = rect;
+}
 
-    [_style draw:context];
+- (TTStyledFrame*)hitTest:(CGPoint)point {
+  if (CGRectContainsPoint(_bounds, point)) {
+    return self;
+  } else if (_nextFrame) {
+    return [_nextFrame hitTest:point];
+  } else {
+    return nil;
   }
 }
 
@@ -88,7 +91,7 @@
 
 @implementation TTStyledBoxFrame
 
-@synthesize parentFrame = _parentFrame;
+@synthesize parentFrame = _parentFrame, firstChildFrame = _firstChildFrame;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -96,8 +99,58 @@
 - (id)init {
   if (self = [super init]) {
     _parentFrame = nil;
+    _firstChildFrame = nil;
   }
   return self;
+}
+
+- (void)dealloc {
+  [_firstChildFrame release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (void)drawInRect:(CGRect)rect {
+  if (_style) {
+    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+    context.frame = rect;
+    context.contentFrame = rect;
+
+    [_style draw:context];
+  }
+
+  TTStyledFrame* frame = _firstChildFrame;
+  while (frame) {
+    [frame drawInRect:frame.bounds];
+    frame = frame.nextFrame;
+  }
+}
+
+- (TTStyledFrame*)hitTest:(CGPoint)point {
+  if (CGRectContainsPoint(_bounds, point)) {
+    TTStyledFrame* frame = [_firstChildFrame hitTest:point];
+    return frame ? frame : self;
+  } else if (_nextFrame) {
+    return [_nextFrame hitTest:point];
+  } else {
+    return nil;
+  }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTStyledInlineFrame
+
+- (TTStyledInlineFrame*)inlineParentFrame {
+  if ([_parentFrame isKindOfClass:[TTStyledInlineFrame class]]) {
+    return (TTStyledInlineFrame*)_parentFrame;
+  } else {
+    return nil;
+  }  
 }
 
 @end

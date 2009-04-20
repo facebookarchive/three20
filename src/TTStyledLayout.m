@@ -76,13 +76,43 @@
   return (_font.ascender - _font.descender)+1;
 }
 
+- (void)offsetFrame:(TTStyledFrame*)frame by:(CGFloat)y {
+   frame.y += y;
+
+  if ([frame isKindOfClass:[TTStyledInlineFrame class]]) {
+    TTStyledInlineFrame* inlineFrame = (TTStyledInlineFrame*)frame;
+    TTStyledFrame* child = inlineFrame.firstChildFrame;
+    while (child) {
+      [self offsetFrame:child by:y];
+      child = child.nextFrame;
+    }
+  }
+}
+
 - (void)addFrame:(TTStyledFrame*)frame {
   if (!_rootFrame) {
     _rootFrame = [frame retain];
+  } else if (_topFrame) {
+    if (!_topFrame.firstChildFrame) {
+      _topFrame.firstChildFrame = frame;
+    } else {
+      _lastFrame.nextFrame = frame;
+    }
   } else {
     _lastFrame.nextFrame = frame;
   }
   _lastFrame = frame;
+}
+
+- (void)pushFrame:(TTStyledBoxFrame*)frame {
+  [self addFrame:frame];
+  frame.parentFrame = _topFrame;
+  _topFrame = frame;
+}
+
+- (void)popFrame {
+  _lastFrame = _topFrame;
+  _topFrame = _topFrame.parentFrame;
 }
 
 - (void)addContentFrame:(TTStyledFrame*)frame width:(CGFloat)width height:(CGFloat)height {
@@ -93,37 +123,39 @@
   }
   _x += width;
   
-  TTStyledBoxFrame* inlineFrame = _inlineFrame;
+  TTStyledInlineFrame* inlineFrame = _inlineFrame;
   while (inlineFrame) {
     inlineFrame.width += width;
-    inlineFrame = inlineFrame.parentFrame;
+    inlineFrame = inlineFrame.inlineParentFrame;
   }
 }
 
-- (TTStyledBoxFrame*)addInlineFrame:(TTStyle*)style element:(TTStyledElement*)element
-                  width:(CGFloat)width height:(CGFloat)height {
-  TTStyledBoxFrame* frame = [[[TTStyledBoxFrame alloc] initWithElement:element] autorelease];
+- (TTStyledInlineFrame*)addInlineFrame:(TTStyle*)style element:(TTStyledElement*)element
+                        width:(CGFloat)width height:(CGFloat)height {
+  TTStyledInlineFrame* frame = [[[TTStyledInlineFrame alloc] initWithElement:element] autorelease];
   frame.style = style;
   frame.bounds = CGRectMake(_x, _height, width, height);
-  frame.parentFrame = _inlineFrame;
-  [self addFrame:frame];
+  [self pushFrame:frame];
+  if (!_lineFirstFrame) {
+    _lineFirstFrame = frame;
+  }
   return frame;
 }
 
-- (TTStyledBoxFrame*)cloneInlineFrame:(TTStyledBoxFrame*)frame {
-  TTStyledBoxFrame* parent = frame.parentFrame ? [self cloneInlineFrame:frame.parentFrame] : nil;
-  TTStyledBoxFrame* clone = [self addInlineFrame:frame.style element:frame.element
-                                  width:0 height:0];
-  clone.parentFrame = parent;
-  return clone;
+- (TTStyledInlineFrame*)cloneInlineFrame:(TTStyledInlineFrame*)frame {
+  TTStyledInlineFrame* parent = frame.inlineParentFrame;
+  if (parent) {
+    [self cloneInlineFrame:parent];
+  }
+  return [self addInlineFrame:frame.style element:frame.element width:0 height:0];
 }
 
 - (TTStyledFrame*)addBlockFrame:(TTStyle*)style element:(TTStyledElement*)element
                   width:(CGFloat)width height:(CGFloat)height {
-  TTStyledFrame* frame = [[[TTStyledFrame alloc] initWithElement:element] autorelease];
+  TTStyledBoxFrame* frame = [[[TTStyledBoxFrame alloc] initWithElement:element] autorelease];
   frame.style = style;
   frame.bounds = CGRectMake(_x, _height, width, height);
-  [self addFrame:frame];
+  [self pushFrame:frame];
   return frame;
 }
 
@@ -131,21 +163,21 @@
   if (_inlineFrame) {
     // XXXjoe This is wrong - we need to track the height of nodes inside the inline frame
     // so that the frame height wraps them all, not just the height of the last font
-    TTStyledBoxFrame* inlineFrame = _inlineFrame;
+    TTStyledInlineFrame* inlineFrame = _inlineFrame;
     while (inlineFrame) {
       inlineFrame.height += self.fontHeight;
       if (inlineFrame.style) {
         TTBoxStyle* padding = [inlineFrame.style firstStyleOfClass:[TTBoxStyle class]];
         if (padding) {
-          TTStyledBoxFrame* inlineFrame2 = inlineFrame;
+          TTStyledInlineFrame* inlineFrame2 = inlineFrame;
           while (inlineFrame2) {
             inlineFrame2.y -= padding.padding.top;
             inlineFrame2.height += padding.padding.top+padding.padding.bottom;
-            inlineFrame2 = inlineFrame2.parentFrame;
+            inlineFrame2 = inlineFrame2.inlineParentFrame;
           }
         }
       }
-      inlineFrame = inlineFrame.parentFrame;
+      inlineFrame = inlineFrame.inlineParentFrame;
     }
   }
 
@@ -156,7 +188,7 @@
       // Align to the text baseline
       // XXXjoe Support top, bottom, and center alignment also
       if (frame.height < _lineHeight) {
-        frame.y += (_lineHeight - frame.height) + _font.descender;
+        [self offsetFrame:frame by:(_lineHeight - frame.height) + _font.descender];
       }
       frame = frame.nextFrame;
     }
@@ -169,6 +201,9 @@
   _lineFirstFrame = nil;
 
   if (_inlineFrame) {
+    while ([_topFrame isKindOfClass:[TTStyledInlineFrame class]]) {
+      [self popFrame];
+    }
     _inlineFrame = [self cloneInlineFrame:_inlineFrame];
   }
 }
@@ -222,7 +257,7 @@
   TTStyledFrame* blockFrame = nil;
   BOOL isBlock = [elt isKindOfClass:[TTStyledBlock class]];
   TTBoxStyle* padding = style ? [style firstStyleOfClass:[TTBoxStyle class]] : nil;
-
+  
   if (isBlock) {
     if (padding) {
       _x += padding.margin.left;
@@ -257,10 +292,10 @@
     _x += padding.padding.left;
     _lineWidth += padding.padding.left;
     
-    TTStyledBoxFrame* inlineFrame = _inlineFrame;
+    TTStyledInlineFrame* inlineFrame = _inlineFrame;
     while (inlineFrame) {
       inlineFrame.width += padding.padding.left;
-      inlineFrame = inlineFrame.parentFrame;
+      inlineFrame = inlineFrame.inlineParentFrame;
     }
 
     if (isBlock) {
@@ -268,18 +303,13 @@
     }
   }
     
+  UIFont* lastFont = _font;
+  _font = font;
+  TTStyle* lastStyle = _lastStyle;
+  _lastStyle = !isBlock ? style : textStyle;
+
   if (elt.firstChild) {
-    UIFont* lastFont = _font;
-    _font = font;
-
-    TTStyle* lastStyle = _lastStyle;
-    _lastStyle = !isBlock ? style : textStyle;
-    
     [self layout:elt.firstChild container:elt];
-
-    _font = lastFont;
-    _lastStyle = lastStyle;
-    
   }
 
   if (isBlock) {
@@ -300,7 +330,7 @@
       _x += padding.padding.right + padding.margin.right;
       _lineWidth += padding.padding.right + padding.margin.right;
 
-      TTStyledBoxFrame* inlineFrame = _inlineFrame;
+      TTStyledInlineFrame* inlineFrame = _inlineFrame;
       while (inlineFrame) {
         if (inlineFrame != _inlineFrame) {
           inlineFrame.width += padding.margin.right;
@@ -308,10 +338,17 @@
         inlineFrame.width += padding.padding.right;
         inlineFrame.y -= padding.padding.top;
         inlineFrame.height += padding.padding.top+padding.padding.bottom;
-        inlineFrame = inlineFrame.parentFrame;
+        inlineFrame = inlineFrame.inlineParentFrame;
       }
     }
-    _inlineFrame = _inlineFrame.parentFrame;
+    _inlineFrame = _inlineFrame.inlineParentFrame;
+  }
+
+  _font = lastFont;
+  _lastStyle = lastStyle;
+
+  if (style) {
+    [self popFrame];
   }
 }
 
@@ -442,6 +479,7 @@
     _rootFrame = nil;
     _lineFirstFrame = nil;
     _inlineFrame = nil;
+    _topFrame = nil;
     _lastFrame = nil;
     _font = nil;
     _boldFont = nil;
