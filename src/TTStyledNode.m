@@ -1,6 +1,7 @@
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTURLResponse.h"
+#import "Three20/TTNavigationCenter.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,6 +65,9 @@
   } else {
     return [_parentNode firstParentOfClass:cls];
   }
+}
+
+- (void) performDefaultAction {
 }
 
 @end
@@ -371,6 +375,15 @@
   return [NSString stringWithFormat:@"<%@>", _firstChild];
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyledElement
+
+- (void) performDefaultAction {
+  if (_url) {
+    [[TTNavigationCenter defaultCenter] displayURL:_url];
+  }
+}
+
 @end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -419,6 +432,15 @@
 
 - (NSString*)description {
   return [NSString stringWithFormat:@"<%@>", _firstChild];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyledElement
+
+- (void) performDefaultAction {
+  if (_url) {
+    [[TTNavigationCenter defaultCenter] displayURL:_url];
+  }
 }
 
 @end

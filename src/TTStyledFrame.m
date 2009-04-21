@@ -6,7 +6,7 @@
 
 @implementation TTStyledFrame
 
-@synthesize element = _element, nextFrame = _nextFrame, style = _style, bounds = _bounds;
+@synthesize element = _element, nextFrame = _nextFrame, bounds = _bounds;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -15,7 +15,6 @@
   if (self = [super init]) {
     _element = element;
     _nextFrame = nil;
-    _style = nil;
     _bounds = CGRectZero;
   }
   return self;
@@ -23,18 +22,7 @@
 
 - (void)dealloc {
   [_nextFrame release];
-  [_style release];
   [super dealloc];
-}
-
-- (NSString*)description {
-  NSMutableString* string = [NSMutableString string];
-//  TTStyledFrame* frame = self;
-//  while (frame) {
-//    [string appendFormat:@"%@ (%d)\n", frame.text, frame.lineBreak];
-//    frame = frame.nextFrame;
-//  }
-  return string;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,14 +63,8 @@
 - (void)drawInRect:(CGRect)rect {
 }
 
-- (TTStyledFrame*)hitTest:(CGPoint)point {
-  if (CGRectContainsPoint(_bounds, point)) {
-    return self;
-  } else if (_nextFrame) {
-    return [_nextFrame hitTest:point];
-  } else {
-    return nil;
-  }
+- (TTStyledBoxFrame*)hitTest:(CGPoint)point {
+  return [_nextFrame hitTest:point];
 }
 
 @end
@@ -91,7 +73,18 @@
 
 @implementation TTStyledBoxFrame
 
-@synthesize parentFrame = _parentFrame, firstChildFrame = _firstChildFrame;
+@synthesize parentFrame = _parentFrame, firstChildFrame = _firstChildFrame, style = _style;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (void)drawSubframes {
+  TTStyledFrame* frame = _firstChildFrame;
+  while (frame) {
+    [frame drawInRect:frame.bounds];
+    frame = frame.nextFrame;
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -100,13 +93,40 @@
   if (self = [super init]) {
     _parentFrame = nil;
     _firstChildFrame = nil;
+    _style = nil;
   }
   return self;
 }
 
 - (void)dealloc {
   [_firstChildFrame release];
+  [_style release];
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyleDelegate
+
+- (void)drawLayer:(TTStyleContext*)context withStyle:(TTStyle*)style {
+  if ([style isKindOfClass:[TTTextStyle class]]) {
+    TTTextStyle* textStyle = (TTTextStyle*)style;
+    UIFont* font = context.font;
+    context.font = textStyle.font;
+    if (textStyle.color) {
+      CGContextRef context = UIGraphicsGetCurrentContext();
+      CGContextSaveGState(context);
+      [textStyle.color setFill];
+      
+      [self drawSubframes];
+      
+      CGContextRestoreGState(context);
+    } else {
+      [self drawSubframes];
+    }
+    context.font = font;
+  } else {
+    [self drawSubframes];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,22 +135,22 @@
 - (void)drawInRect:(CGRect)rect {
   if (_style) {
     TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+    context.delegate = self;
     context.frame = rect;
     context.contentFrame = rect;
 
     [_style draw:context];
+    if (context.didDrawContent) {
+      return;
+    }
   }
 
-  TTStyledFrame* frame = _firstChildFrame;
-  while (frame) {
-    [frame drawInRect:frame.bounds];
-    frame = frame.nextFrame;
-  }
+  [self drawSubframes];
 }
 
-- (TTStyledFrame*)hitTest:(CGPoint)point {
+- (TTStyledBoxFrame*)hitTest:(CGPoint)point {
   if (CGRectContainsPoint(_bounds, point)) {
-    TTStyledFrame* frame = [_firstChildFrame hitTest:point];
+    TTStyledBoxFrame* frame = [_firstChildFrame hitTest:point];
     return frame ? frame : self;
   } else if (_nextFrame) {
     return [_nextFrame hitTest:point];
@@ -179,59 +199,11 @@
   [super dealloc];
 }
 
-- (NSString*)description {
-  NSMutableString* string = [NSMutableString string];
-//  TTStyledFrame* frame = self;
-//  while (frame) {
-//    [string appendFormat:@"%@ (%d)\n", frame.text, frame.lineBreak];
-//    frame = frame.nextFrame;
-//  }
-  return string;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTStyleDelegate
-
-- (void)drawLayer:(TTStyleContext*)context withStyle:(TTStyle*)style {
-  CGRect rect = context.frame;
-  if ([style isKindOfClass:[TTTextStyle class]]) {
-    TTTextStyle* textStyle = (TTTextStyle*)style;
-    UIFont* font = textStyle.font ? textStyle.font : _font;
-    if (textStyle.color) {
-      CGContextRef context = UIGraphicsGetCurrentContext();
-      CGContextSaveGState(context);
-      [textStyle.color setFill];
-      [_text drawInRect:rect withFont:font];
-      CGContextRestoreGState(context);
-    } else {
-      [_text drawInRect:rect withFont:font];
-    }
-  } else {
-    [_text drawInRect:rect withFont:_font];
-  }
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
 - (void)drawInRect:(CGRect)rect {
-  TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-  context.delegate = self;
-  context.frame = rect;
-  context.contentFrame = rect;
-
-  if ([_element isKindOfClass:[TTStyledLinkNode class]] && [(TTStyledLinkNode*)_element highlighted]) {
-    TTStyle* style = TTSTYLE(linkTextHighlighted);
-    [style draw:context];
-  } else {
-    if (_style) {
-      [_style draw:context];
-      if (context.didDrawContent) {
-        return;
-      }
-    }
-    [_text drawInRect:rect withFont:_font];
-  }
+  [_text drawInRect:rect withFont:_font];
 }
 
 @end
@@ -256,38 +228,10 @@
   [super dealloc];
 }
 
-- (NSString*)description {
-  NSMutableString* string = [NSMutableString string];
-//  TTStyledFrame* frame = self;
-//  while (frame) {
-//    [string appendFormat:@"%@ (%d)\n", frame.text, frame.lineBreak];
-//    frame = frame.nextFrame;
-//  }
-  return string;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTStyleDelegate
-
-- (void)drawLayer:(TTStyleContext*)context withStyle:(TTStyle*)style {
-  [_imageNode.image drawInRect:context.frame];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
 - (void)drawInRect:(CGRect)rect {
-//  if (_style) {
-//    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-//    context.delegate = self;
-//    context.frame = rect;
-//    context.contentFrame = rect;
-//
-//    [_style draw:context];
-//    if (context.didDrawContent) {
-//      return;
-//    }
-//  }
   [_imageNode.image drawInRect:rect];
 }
 

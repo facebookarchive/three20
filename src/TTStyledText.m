@@ -134,7 +134,7 @@
   CGContextRestoreGState(ctx);
 }
 
-- (TTStyledFrame*)hitTest:(CGPoint)point {
+- (TTStyledBoxFrame*)hitTest:(CGPoint)point {
   return [self.rootFrame hitTest:point];
 }
 

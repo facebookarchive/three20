@@ -37,13 +37,6 @@
   return lastNode;
 }
 
-- (NSMutableArray*)styleStack {
-  if (!_styleStack) {
-    _styleStack = [[NSMutableArray alloc] init];
-  }
-  return _styleStack;
-}
-
 - (UIFont*)boldFont {
   if (!_boldFont) {
     _boldFont = [[self boldVersionOfFont:self.font] retain];
@@ -60,7 +53,7 @@
 
 - (TTStyle*)linkStyle {
   if (!_linkStyle) {
-    _linkStyle = [TTSTYLE(linkText) retain];
+    _linkStyle = [TTSTYLE(linkText:) retain];
   }
   return _linkStyle;
 }
@@ -214,9 +207,6 @@
                                                          node:node] autorelease];
   frame.font = _font;
   [self addContentFrame:frame width:width height:height];
-  if (_lastStyle) {
-    frame.style = [_lastStyle firstStyleOfClass:[TTTextStyle class]];
-  }
   return frame;
 }
 
@@ -305,8 +295,6 @@
     
   UIFont* lastFont = _font;
   _font = font;
-  TTStyle* lastStyle = _lastStyle;
-  _lastStyle = !isBlock ? style : textStyle;
 
   if (elt.firstChild) {
     [self layout:elt.firstChild container:elt];
@@ -345,7 +333,6 @@
   }
 
   _font = lastFont;
-  _lastStyle = lastStyle;
 
   if (style) {
     [self popFrame];
@@ -474,8 +461,6 @@
     _lineHeight = 0;
     _minX = 0;
     _maxWidth = 0;
-    _styleStack = nil;
-    _lastStyle = nil;
     _rootFrame = nil;
     _lineFirstFrame = nil;
     _inlineFrame = nil;

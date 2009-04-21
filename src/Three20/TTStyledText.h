@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@class TTStyledNode, TTStyledFrame;
+@class TTStyledNode, TTStyledFrame, TTStyledBoxFrame;
 
 @interface TTStyledText : NSObject {
   TTStyledNode* _rootNode;
@@ -86,6 +86,6 @@
 /**
  * Determines which frame is intersected by a point.
  */
-- (TTStyledFrame*)hitTest:(CGPoint)point;
+- (TTStyledBoxFrame*)hitTest:(CGPoint)point;
 
 @end

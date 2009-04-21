@@ -53,8 +53,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   
   self.highlightedLabel = nil;
   
-  NSString* url = timer.userInfo;
-  [[TTNavigationCenter defaultCenter] displayURL:url];
+  TTStyledElement* element = timer.userInfo;
+  [element performDefaultAction];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,11 +108,11 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
   if (_highlightedLabel) {
-    NSString* url = _highlightedLabel.highlightedNode.url;
+    TTStyledElement* element = _highlightedLabel.highlightedNode;
     _highlightedLabel.highlightedNode = nil;
 
     _highlightTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self
-             selector:@selector(delayedTouchesEnded:) userInfo:url repeats:NO];
+             selector:@selector(delayedTouchesEnded:) userInfo:element repeats:NO];
   } else {
     [super touchesEnded:touches withEvent:event];
 

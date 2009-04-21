@@ -10,18 +10,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // styles
 
-- (TTStyle*)linkText {
-  return
-    [TTTextStyle styleWithColor:self.linkTextColor next:nil];
-}
-
-- (TTStyle*)linkTextHighlighted {
-  return
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-3, -4, -3, -4) next:
-    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:
-    [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0 alpha:0.25] next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(3, 4, 3, 4) next:
-    [TTTextStyle styleWithColor:self.linkTextColor next:nil]]]]];
+- (TTStyle*)linkText:(UIControlState)state {
+  if (state == UIControlStateHighlighted) {
+    return
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-3, -4, -3, -4) next:
+      [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:
+      [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0 alpha:0.25] next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(3, 4, 3, 4) next:
+      [TTTextStyle styleWithColor:self.linkTextColor next:nil]]]]];
+  } else {
+    return
+      [TTTextStyle styleWithColor:self.linkTextColor next:nil];
+  }
 }
 
 - (TTStyle*)linkHighlighted {

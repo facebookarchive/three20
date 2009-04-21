@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@class TTStyledText, TTStyledLinkNode, TTStyle;
+@class TTStyledText, TTStyledElement, TTStyledBoxFrame, TTStyle;
 
 /**
  * A view that can display styled text.
@@ -13,7 +13,8 @@
   UITextAlignment _textAlignment;
   UIEdgeInsets _contentInset;
   BOOL _highlighted;
-  TTStyledLinkNode* _highlightedNode;
+  TTStyledElement* _highlightedNode;
+  TTStyledBoxFrame* _highlightedFrame;
 }
 
 /**
@@ -56,6 +57,6 @@
 /**
  * The link node which is being touched and highlighted by the user.
  */
-@property(nonatomic,retain) TTStyledLinkNode* highlightedNode;
+@property(nonatomic,retain) TTStyledElement* highlightedNode;
 
 @end
