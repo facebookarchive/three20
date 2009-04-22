@@ -294,7 +294,7 @@
   }
     
   UIFont* lastFont = _font;
-  _font = font;
+  self.font = font;
 
   if (elt.firstChild) {
     [self layout:elt.firstChild container:elt];
@@ -313,7 +313,7 @@
       _height += padding.margin.bottom;
     }
   } else if (!isBlock && style) {
-    _inlineFrame.height += self.fontHeight;
+    _inlineFrame.height += _lineHeight;
     if (padding) {
       _x += padding.padding.right + padding.margin.right;
       _lineWidth += padding.padding.right + padding.margin.right;
@@ -332,7 +332,7 @@
     _inlineFrame = _inlineFrame.inlineParentFrame;
   }
 
-  _font = lastFont;
+  self.font = lastFont;
 
   if (style) {
     [self popFrame];
@@ -341,6 +341,18 @@
 
 - (void)layoutImage:(TTStyledImageNode*)imageNode container:(TTStyledElement*)element {
   UIImage* image = [imageNode image];
+  CGFloat imageHeight = image.size.height;
+  
+  TTStyle* style = nil;
+  if (imageNode.className) {
+    style = [[TTStyleSheet globalStyleSheet] styleWithSelector:imageNode.className];
+  }
+
+  TTBoxStyle* padding = style ? [style firstStyleOfClass:[TTBoxStyle class]] : nil;
+  if (padding) {
+    _x += padding.margin.left;
+    imageHeight += padding.margin.top + padding.margin.bottom;
+  }
 
   if (_lineWidth + image.size.width > _maxWidth) {
     // The image will be placed on the next line, so create a new frame for
@@ -352,8 +364,13 @@
                                                            node:imageNode] autorelease];
   [self addContentFrame:frame width:image.size.width height:image.size.height];
   _lineWidth += image.size.width;
-  if (image.size.height > _lineHeight) {
-    _lineHeight = image.size.height;
+  if (imageHeight > _lineHeight) {
+    _lineHeight = imageHeight;
+  }
+
+  if (padding) {
+    frame.y += padding.margin.top;
+    _x += padding.margin.right;
   }
 }
 
@@ -493,6 +510,17 @@
     self.font = TTSTYLEVAR(font);
   }
   return _font;
+}
+
+- (void)setFont:(UIFont*)font {
+  if (font != _font) {
+    [_font release];
+    _font = [font retain];
+    [_boldFont release];
+    _boldFont = nil;
+    [_italicFont release];
+    _italicFont = nil;
+  }
 }
 
 - (void)layout:(TTStyledNode*)node container:(TTStyledElement*)element {

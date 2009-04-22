@@ -53,6 +53,7 @@
  * Only URLs are parsed, not HTML markup. URLs are turned into links.
  */ 
 + (TTStyledText*)textWithURLs:(NSString*)source;
++ (TTStyledText*)textWithURLs:(NSString*)source lineBreaks:(BOOL)lineBreaks;
 
 - (id)initWithNode:(TTStyledNode*)rootNode;
 
@@ -87,5 +88,15 @@
  * Determines which frame is intersected by a point.
  */
 - (TTStyledBoxFrame*)hitTest:(CGPoint)point;
+
+/**
+ *
+ */
+- (void)addChild:(TTStyledNode*)child;
+
+/**
+ *
+ */
+- (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index;
 
 @end

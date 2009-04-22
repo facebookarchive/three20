@@ -18,7 +18,6 @@
 @property(nonatomic) BOOL parseURLs;
 
 - (void)parseXHTML:(NSString*)html;
-
-- (void)parseURLs:(NSString*)string;
+- (void)parseText:(NSString*)string;
 
 @end

@@ -542,4 +542,9 @@
                  shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];
 }
 
+- (TTStyle*)selectionFillStyle:(TTStyle*)next {
+  return [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(5,140,245)
+                                    color2:RGBCOLOR(1,93,230) next:next];
+}
+
 @end

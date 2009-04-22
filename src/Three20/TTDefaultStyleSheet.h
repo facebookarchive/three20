@@ -51,4 +51,6 @@
 - (TTStyle*)toolbarButtonForState:(UIControlState)state shape:(TTShape*)shape
             tintColor:(UIColor*)tintColor font:(UIFont*)font;
 
+- (TTStyle*)selectionFillStyle:(TTStyle*)next;
+
 @end

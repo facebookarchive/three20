@@ -30,8 +30,14 @@
 }
 
 + (TTStyledText*)textWithURLs:(NSString*)source {
+  return [self textWithURLs:source lineBreaks:NO];
+}
+
++ (TTStyledText*)textWithURLs:(NSString*)source lineBreaks:(BOOL)lineBreaks {
   TTStyledTextParser* parser = [[[TTStyledTextParser alloc] init] autorelease];
-  [parser parseURLs:source];
+  parser.parseLineBreaks = lineBreaks;
+  parser.parseURLs = YES;
+  [parser parseText:source];
   if (parser.rootNode) {
     return [[[TTStyledText alloc] initWithNode:parser.rootNode] autorelease];
   } else {
@@ -136,6 +142,40 @@
 
 - (TTStyledBoxFrame*)hitTest:(CGPoint)point {
   return [self.rootFrame hitTest:point];
+}
+
+- (void)addChild:(TTStyledNode*)child {
+  if (!_rootNode) {
+    self.rootNode = child;
+  } else {
+    TTStyledNode* previousNode = _rootNode;
+    TTStyledNode* node = _rootNode.nextSibling;
+    while (node) {
+      previousNode = node;
+      node = node.nextSibling;
+    }
+    previousNode.nextSibling = child;
+  }
+}
+
+- (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index {
+  if (!_rootNode) {
+    self.rootNode = child;
+  } else if (index == 0) {
+    child.nextSibling = _rootNode;
+    self.rootNode = child;
+  } else {
+    NSInteger i = 0;
+    TTStyledNode* previousNode = _rootNode;
+    TTStyledNode* node = _rootNode.nextSibling;
+    while (node && i != index) {
+      ++i;
+      previousNode = node;
+      node = node.nextSibling;
+    }
+    child.nextSibling = node;
+    previousNode.nextSibling = child;
+  }
 }
 
 @end

@@ -77,8 +77,8 @@ Both line break characters\n\nand HTML line breaks<br/>are respected.";
 //<div class=\"inlineBox\"><div class=\"inlineBox2\">You can enclose blocks within an HTML div.</div></div>";
 //  NSString* kText = @"\
 //<span class=\"inlineBox\"><span class=\"inlineBox2\">You can enclose blocks within an HTML div.</span></span>x";
-//  NSString* kText = @"\
-//<div class=\"blueBox\">You can enclose blocks within an HTML div.</div>s";
+//  NSString* kText = @"<b>bold text</b> <span class=\"largeText\">font http://foo.com sizes</span>";
+//  NSString* kText = @"<a href=\"x\"><img src=\"bundle://smiley.png\"/></a> This is some text";
 
   TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];
