@@ -7,8 +7,7 @@
 
 @implementation TTStyledLayout
 
-@synthesize width = _width, height = _height, maxWidth = _maxWidth, rootFrame = _rootFrame,
-            font = _font; 
+@synthesize width = _width, height = _height, rootFrame = _rootFrame, font = _font; 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -188,6 +187,15 @@
   }
 
   _height += _lineHeight;
+
+  if (_floatHeight && _height > _floatHeight) {
+    _minX -= _floatLeftWidth;
+    _width += _floatLeftWidth+_floatRightWidth;
+    _floatRightWidth = 0;
+    _floatLeftWidth = 0;
+    _floatHeight = 0;
+  }
+
   _lineWidth = 0;
   _lineHeight = 0;
   _x = _minX;
@@ -202,7 +210,7 @@
 }
 
 - (TTStyledFrame*)addFrameForText:(NSString*)text element:(TTStyledElement*)element
-                      node:(TTStyledTextNode*)node width:(CGFloat)width height:(CGFloat)height {
+                  node:(TTStyledTextNode*)node width:(CGFloat)width height:(CGFloat)height {
   TTStyledTextFrame* frame = [[[TTStyledTextFrame alloc] initWithText:text element:element
                                                          node:node] autorelease];
   frame.font = _font;
@@ -243,56 +251,60 @@
   }
 
   CGFloat minX = _minX;
-  CGFloat maxWidth = _maxWidth;
+  CGFloat width = _width;
   TTStyledFrame* blockFrame = nil;
   BOOL isBlock = [elt isKindOfClass:[TTStyledBlock class]];
   TTBoxStyle* padding = style ? [style firstStyleOfClass:[TTBoxStyle class]] : nil;
   
-  if (isBlock) {
-    if (padding) {
-      _x += padding.margin.left;
-      _minX += padding.margin.left;
-      _maxWidth -= padding.margin.left + padding.margin.right;
-      _height += padding.margin.top;
-    }
-
-    if (_lastFrame) {
-      if (!_lineHeight && [elt isKindOfClass:[TTStyledLineBreakNode class]]) {
-        _lineHeight = self.fontHeight;
-      }
-      [self breakLine];
-    }
-    if (style) {
-      blockFrame = [self addBlockFrame:style element:elt width:_maxWidth height:_height];
-    }
+  if (padding.floats) {
+    blockFrame = [self addBlockFrame:style element:elt width:_width height:_height];
   } else {
+    if (isBlock) {
+      if (padding) {
+        _x += padding.margin.left;
+        _minX += padding.margin.left;
+        _width -= padding.margin.left + padding.margin.right;
+        _height += padding.margin.top;
+      }
+
+      if (_lastFrame) {
+        if (!_lineHeight && [elt isKindOfClass:[TTStyledLineBreakNode class]]) {
+          _lineHeight = self.fontHeight;
+        }
+        [self breakLine];
+      }
+      if (style) {
+        blockFrame = [self addBlockFrame:style element:elt width:_width height:_height];
+      }
+    } else {
+      if (padding) {
+        _x += padding.margin.left;
+      }
+      if (style) {
+        _inlineFrame = [self addInlineFrame:style element:elt width:0 height:0];
+      }
+    }  
+
     if (padding) {
-      _x += padding.margin.left;
-    }
-    if (style) {
-      _inlineFrame = [self addInlineFrame:style element:elt width:0 height:0];
-    }
-  }  
+      if (isBlock) {
+        _minX += padding.padding.left;
+      }
+      _width -= padding.padding.left+padding.padding.right;
+      _x += padding.padding.left;
+      _lineWidth += padding.padding.left;
+      
+      TTStyledInlineFrame* inlineFrame = _inlineFrame;
+      while (inlineFrame) {
+        inlineFrame.width += padding.padding.left;
+        inlineFrame = inlineFrame.inlineParentFrame;
+      }
 
-  if (padding) {
-    if (isBlock) {
-      _minX += padding.padding.left;
-    }
-    _maxWidth -= padding.padding.left+padding.padding.right;
-    _x += padding.padding.left;
-    _lineWidth += padding.padding.left;
-    
-    TTStyledInlineFrame* inlineFrame = _inlineFrame;
-    while (inlineFrame) {
-      inlineFrame.width += padding.padding.left;
-      inlineFrame = inlineFrame.inlineParentFrame;
-    }
-
-    if (isBlock) {
-      _height += padding.padding.top;
+      if (isBlock) {
+        _height += padding.padding.top;
+      }
     }
   }
-    
+  
   UIFont* lastFont = _font;
   self.font = font;
 
@@ -300,9 +312,11 @@
     [self layout:elt.firstChild container:elt];
   }
 
-  if (isBlock) {
+  if (padding.floats) {
+    
+  } else if (isBlock) {
     _minX = minX;
-    _maxWidth = maxWidth;
+    _width = width;
     [self breakLine];
 
     if (padding) {
@@ -341,20 +355,23 @@
 
 - (void)layoutImage:(TTStyledImageNode*)imageNode container:(TTStyledElement*)element {
   UIImage* image = [imageNode image];
-  CGFloat imageHeight = image.size.height;
-  
-  TTStyle* style = nil;
-  if (imageNode.className) {
-    style = [[TTStyleSheet globalStyleSheet] styleWithSelector:imageNode.className];
-  }
 
+  TTStyle* style = imageNode.className
+    ? [[TTStyleSheet globalStyleSheet] styleWithSelector:imageNode.className] : nil;
   TTBoxStyle* padding = style ? [style firstStyleOfClass:[TTBoxStyle class]] : nil;
+
+  CGFloat imageWidth = imageNode.width ? imageNode.width : image.size.width;
+  CGFloat imageHeight = imageNode.height ? imageNode.height : image.size.height;
+  CGFloat contentWidth = imageWidth;
+  CGFloat contentHeight = imageHeight;
+  
   if (padding) {
     _x += padding.margin.left;
-    imageHeight += padding.margin.top + padding.margin.bottom;
+    contentWidth += padding.margin.left + padding.margin.right;
+    contentHeight += padding.margin.top + padding.margin.bottom;
   }
 
-  if (_lineWidth + image.size.width > _maxWidth) {
+  if (!padding.floats && (_lineWidth + contentWidth > _width)) {
     // The image will be placed on the next line, so create a new frame for
     // the current line and mark it with a line break
     [self breakLine];
@@ -362,10 +379,29 @@
 
   TTStyledImageFrame* frame = [[[TTStyledImageFrame alloc] initWithElement:element
                                                            node:imageNode] autorelease];
-  [self addContentFrame:frame width:image.size.width height:image.size.height];
-  _lineWidth += image.size.width;
-  if (imageHeight > _lineHeight) {
-    _lineHeight = imageHeight;
+  [self addContentFrame:frame width:imageWidth height:imageHeight];
+  
+  if (!padding.floats) {
+    _lineWidth += contentWidth;
+    if (contentHeight > _lineHeight) {
+      _lineHeight = contentHeight;
+    }
+  } else if (padding.floats == TTFloatLeft) {
+    frame.x += _floatLeftWidth;
+    _floatLeftWidth += contentWidth;
+    if (_height+contentHeight > _floatHeight) {
+      _floatHeight = contentHeight+_height;
+    }
+    _minX += contentWidth;
+    _width -= contentWidth;
+  } else if (padding.floats == TTFloatRight) {
+    frame.x += _width - (_floatRightWidth + contentWidth);
+    _floatRightWidth += contentWidth;
+    if (_height+contentHeight > _floatHeight) {
+      _floatHeight = contentHeight+_height;
+    }
+    _x -= contentWidth;
+    _width -= contentWidth;
   }
 
   if (padding) {
@@ -381,7 +417,7 @@
   if (!textNode.nextSibling && textNode == _rootNode) {
     // This is the only node, so measure it all at once and move on
     CGSize textSize = [text sizeWithFont:_font
-                            constrainedToSize:CGSizeMake(_maxWidth, CGFLOAT_MAX)
+                            constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
                             lineBreakMode:UILineBreakModeWordWrap];
     [self addFrameForText:text element:element node:textNode width:textSize.width
          height:textSize.height];
@@ -408,16 +444,16 @@
 
     // Measure the word and check to see if it fits on the current line
     CGSize wordSize = [word sizeWithFont:_font
-                            constrainedToSize:CGSizeMake(_maxWidth, CGFLOAT_MAX)
+                            constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
                             lineBreakMode:UILineBreakModeWordWrap];
-    if (_lineWidth + wordSize.width > _maxWidth) {
+    if (_lineWidth + wordSize.width > _width) {
       // The word will be placed on the next line, so create a new frame for
       // the current line and mark it with a line break
       NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
       if (lineRange.length) {
         NSString* line = [text substringWithRange:lineRange];
         [self addFrameForText:line element:element node:textNode width:frameWidth
-             height:self.fontHeight];
+              height:self.fontHeight];
       }
       
       [self breakLine];
@@ -431,7 +467,7 @@
       // frame for all of it.
       NSString* lines = [text substringWithRange:searchRange];
       CGSize linesSize = [lines sizeWithFont:_font
-                                constrainedToSize:CGSizeMake(_maxWidth, CGFLOAT_MAX)
+                                constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
                                 lineBreakMode:UILineBreakModeWordWrap];
 
       [self addFrameForText:lines element:element node:textNode width:linesSize.width
@@ -477,7 +513,9 @@
     _lineWidth = 0;
     _lineHeight = 0;
     _minX = 0;
-    _maxWidth = 0;
+    _floatLeftWidth = 0;
+    _floatRightWidth = 0;
+    _floatHeight = 0;
     _rootFrame = nil;
     _lineFirstFrame = nil;
     _inlineFrame = nil;

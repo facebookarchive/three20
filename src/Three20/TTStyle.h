@@ -82,15 +82,20 @@
 @interface TTBoxStyle : TTStyle {
   UIEdgeInsets _margin;
   UIEdgeInsets _padding;
+  TTFloatType _floats;
 }
 
 @property(nonatomic) UIEdgeInsets margin;
 @property(nonatomic) UIEdgeInsets padding;
+@property(nonatomic) TTFloatType floats;
 
 + (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin next:(TTStyle*)next;
 + (TTBoxStyle*)styleWithPadding:(UIEdgeInsets)padding next:(TTStyle*)next;
++ (TTBoxStyle*)styleWithFloats:(TTFloatType)floats next:(TTStyle*)next;
 + (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin padding:(UIEdgeInsets)padding
                next:(TTStyle*)next;
++ (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin padding:(UIEdgeInsets)padding
+               floats:(TTFloatType)floats next:(TTStyle*)next;
 
 @end
 

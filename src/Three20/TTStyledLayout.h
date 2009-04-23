@@ -9,7 +9,9 @@
   CGFloat _lineWidth;
   CGFloat _lineHeight;
   CGFloat _minX;
-  CGFloat _maxWidth;
+  CGFloat _floatLeftWidth;
+  CGFloat _floatRightWidth;
+  CGFloat _floatHeight;
   TTStyledFrame* _rootFrame;
   TTStyledFrame* _lineFirstFrame;
   TTStyledInlineFrame* _inlineFrame;
@@ -25,9 +27,8 @@
 
 @property(nonatomic) CGFloat width;
 @property(nonatomic) CGFloat height;
-@property(nonatomic) CGFloat maxWidth;
-@property(nonatomic,readonly) TTStyledFrame* rootFrame;
 @property(nonatomic,retain) UIFont* font;
+@property(nonatomic,readonly) TTStyledFrame* rootFrame;
 
 - (id)initWithRootNode:(TTStyledNode*)rootNode;
 

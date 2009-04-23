@@ -113,10 +113,14 @@
 @interface TTStyledImageNode : TTStyledElement {
   NSString* _url;
   UIImage* _image;
+  CGFloat _width;
+  CGFloat _height;
 }
 
 @property(nonatomic,retain) NSString* url;
 @property(nonatomic,retain) UIImage* image;
+@property(nonatomic) CGFloat width;
+@property(nonatomic) CGFloat height;
 
 - (id)initWithURL:(NSString*)url;
 

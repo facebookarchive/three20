@@ -152,7 +152,16 @@
     [self pushNode:node];
   } else if ([tag isEqualToString:@"img"]) {
     TTStyledImageNode* node = [[[TTStyledImageNode alloc] init] autorelease];
+    node.className =  [attributeDict objectForKey:@"class"];
     node.url =  [attributeDict objectForKey:@"src"];
+    NSString* width = [attributeDict objectForKey:@"width"];
+    if (width) {
+      node.width = width.floatValue;
+    }
+    NSString* height = [attributeDict objectForKey:@"height"];
+    if (height) {
+      node.height = height.floatValue;
+    }
     [self pushNode:node];
   }
 }
@@ -169,6 +178,19 @@
     namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
   [self flushCharacters];
   [self popNode];
+}
+
+- (NSData *)parser:(NSXMLParser *)parser resolveExternalEntityName:(NSString *)entityName systemID:(NSString *)systemID {
+  static NSDictionary* entityTable = nil;
+  if (!entityTable) {
+    entityTable = [[NSDictionary alloc] initWithObjectsAndKeys:
+      [NSData dataWithBytes:" " length:1], @"nbsp",
+      [NSData dataWithBytes:"&" length:1], @"amp",
+      [NSData dataWithBytes:"<" length:1], @"lt",
+      [NSData dataWithBytes:">" length:1], @"gt",
+      nil];
+  }
+  return [entityTable objectForKey:entityName];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

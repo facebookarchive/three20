@@ -134,69 +134,6 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTStyledImageNode
-
-@synthesize url = _url, image = _image;
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithURL:(NSString*)url {
-  if (self = [super init]) {
-    self.url = url;
-  }
-  return self;
-}
-
-- (id)init {
-  if (self = [super init]) {
-    _url = nil;
-    _image = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_url release];
-  [_image release];
-  [super dealloc];
-}
-
-- (NSString*)description {
-  return [NSString stringWithFormat:@"(%@)", _url];
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// TTStyledNode
-
-- (NSString*)outerHTML {
-  NSString* html = [NSString stringWithFormat:@"<img src=\"%@\"/>", _url];
-  if (_nextSibling) {
-    return [NSString stringWithFormat:@"%@%@", html, _nextSibling.outerHTML];
-  } else {
-    return html;
-  }
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// public
-
-- (UIImage*)image {
-  if (!_image && _url) {
-      TTURLRequest* request = [TTURLRequest requestWithURL:_url delegate:nil];
-      TTURLImageResponse* response = [[[TTURLImageResponse alloc] init] autorelease];
-      request.response = response;
-      if ([request send]) {
-        _image = [response.image retain];
-      }
-  }
-  return _image;
-}
-
-@end
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
 @implementation TTStyledElement
 
 @synthesize firstChild = _firstChild, lastChild = _lastChild, className = _className;
@@ -441,6 +378,71 @@
   if (_url) {
     [[TTNavigationCenter defaultCenter] displayURL:_url];
   }
+}
+
+@end
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTStyledImageNode
+
+@synthesize url = _url, image = _image, width = _width, height = _height;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithURL:(NSString*)url {
+  if (self = [super init]) {
+    self.url = url;
+  }
+  return self;
+}
+
+- (id)init {
+  if (self = [super init]) {
+    _url = nil;
+    _image = nil;
+    _width = 0;
+    _height = 0;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_url release];
+  [_image release];
+  [super dealloc];
+}
+
+- (NSString*)description {
+  return [NSString stringWithFormat:@"(%@)", _url];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyledNode
+
+- (NSString*)outerHTML {
+  NSString* html = [NSString stringWithFormat:@"<img src=\"%@\"/>", _url];
+  if (_nextSibling) {
+    return [NSString stringWithFormat:@"%@%@", html, _nextSibling.outerHTML];
+  } else {
+    return html;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (UIImage*)image {
+  if (!_image && _url) {
+      TTURLRequest* request = [TTURLRequest requestWithURL:_url delegate:nil];
+      TTURLImageResponse* response = [[[TTURLImageResponse alloc] init] autorelease];
+      request.response = response;
+      if ([request send]) {
+        _image = [response.image retain];
+      }
+  }
+  return _image;
 }
 
 @end
