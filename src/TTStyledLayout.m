@@ -107,8 +107,7 @@
   _topFrame = _topFrame.parentFrame;
 }
 
-- (void)addContentFrame:(TTStyledFrame*)frame width:(CGFloat)width height:(CGFloat)height {
-  frame.bounds = CGRectMake(_x, _height, width, height);
+- (TTStyledFrame*)addContentFrame:(TTStyledFrame*)frame width:(CGFloat)width {
   [self addFrame:frame];
   if (!_lineFirstFrame) {
     _lineFirstFrame = frame;
@@ -120,6 +119,12 @@
     inlineFrame.width += width;
     inlineFrame = inlineFrame.inlineParentFrame;
   }
+  return frame;
+}
+
+- (void)addContentFrame:(TTStyledFrame*)frame width:(CGFloat)width height:(CGFloat)height {
+  frame.bounds = CGRectMake(_x, _height, width, height);
+  [self addContentFrame:frame width:width];
 }
 
 - (TTStyledInlineFrame*)addInlineFrame:(TTStyle*)style element:(TTStyledElement*)element
@@ -139,7 +144,12 @@
   if (parent) {
     [self cloneInlineFrame:parent];
   }
-  return [self addInlineFrame:frame.style element:frame.element width:0 height:0];
+
+  TTStyledInlineFrame* clone = [self addInlineFrame:frame.style element:frame.element
+                                     width:0 height:0];
+  clone.inlinePreviousFrame = frame;
+  frame.inlineNextFrame = clone;
+  return clone;
 }
 
 - (TTStyledFrame*)addBlockFrame:(TTStyle*)style element:(TTStyledElement*)element
@@ -149,6 +159,16 @@
   frame.bounds = CGRectMake(_x, _height, width, height);
   [self pushFrame:frame];
   return frame;
+}
+
+- (void)checkFloats {
+  if (_floatHeight && _height > _floatHeight) {
+    _minX -= _floatLeftWidth;
+    _width += _floatLeftWidth+_floatRightWidth;
+    _floatRightWidth = 0;
+    _floatLeftWidth = 0;
+    _floatHeight = 0;
+  }
 }
 
 - (void)breakLine {
@@ -187,14 +207,7 @@
   }
 
   _height += _lineHeight;
-
-  if (_floatHeight && _height > _floatHeight) {
-    _minX -= _floatLeftWidth;
-    _width += _floatLeftWidth+_floatRightWidth;
-    _floatRightWidth = 0;
-    _floatLeftWidth = 0;
-    _floatHeight = 0;
-  }
+  [self checkFloats];
 
   _lineWidth = 0;
   _lineHeight = 0;
@@ -207,6 +220,10 @@
     }
     _inlineFrame = [self cloneInlineFrame:_inlineFrame];
   }
+}
+
+- (void)expandWidth:(CGFloat)width {
+  _width = width;
 }
 
 - (TTStyledFrame*)addFrameForText:(NSString*)text element:(TTStyledElement*)element
@@ -250,15 +267,58 @@
     }
   }
 
-  CGFloat minX = _minX;
-  CGFloat width = _width;
-  TTStyledFrame* blockFrame = nil;
-  BOOL isBlock = [elt isKindOfClass:[TTStyledBlock class]];
+  UIFont* lastFont = _font;
+  self.font = font;
+
   TTBoxStyle* padding = style ? [style firstStyleOfClass:[TTBoxStyle class]] : nil;
   
-  if (padding.floats) {
-    blockFrame = [self addBlockFrame:style element:elt width:_width height:_height];
+  if (padding && padding.floats) {
+    TTStyledFrame* blockFrame = [self addBlockFrame:style element:elt width:_width height:_height];
+    
+    CGFloat contentWidth = padding.margin.left + padding.margin.right;
+    CGFloat contentHeight = padding.margin.top + padding.margin.bottom;
+    
+    if (elt.firstChild) {
+      TTStyledNode* child = elt.firstChild;
+      TTStyledLayout* layout = [[[TTStyledLayout alloc] initWithRootNode:child] autorelease];
+      layout.width = 0; // XXXjoe Get width from the box style here once it supports it
+      layout.height = _height;
+      layout.font = _font;
+      [layout layout:child];
+      
+      TTStyledFrame* frame = [self addContentFrame:layout.rootFrame width:layout.width];
+      
+      CGFloat frameHeight = layout.height - _height;
+      contentWidth += layout.width;
+      contentHeight += frameHeight;
+      
+      if (padding.floats == TTFloatLeft) {
+        frame.x += _floatLeftWidth;
+        _floatLeftWidth += contentWidth;
+        if (_height+contentHeight > _floatHeight) {
+          _floatHeight = contentHeight+_height;
+        }
+        _minX += contentWidth;
+        _width -= contentWidth;
+      } else if (padding.floats == TTFloatRight) {
+        frame.x += _width - (_floatRightWidth + contentWidth);
+        _floatRightWidth += contentWidth;
+        if (_height+contentHeight > _floatHeight) {
+          _floatHeight = contentHeight+_height;
+        }
+        _x -= contentWidth;
+        _width -= contentWidth;
+      }
+      
+      blockFrame.width = layout.width + padding.padding.left + padding.padding.right;
+      blockFrame.height = frameHeight + padding.padding.top + padding.padding.bottom;
+    }
   } else {
+    CGFloat minX = _minX, width = _width, floatLeftWidth = _floatLeftWidth,
+            floatRightWidth = _floatRightWidth, floatHeight = _floatHeight;
+    BOOL isBlock = [elt isKindOfClass:[TTStyledBlock class]];
+    TTStyledFrame* blockFrame = nil;
+    
     if (isBlock) {
       if (padding) {
         _x += padding.margin.left;
@@ -303,49 +363,51 @@
         _height += padding.padding.top;
       }
     }
+  
+    if (elt.firstChild) {
+      [self layout:elt.firstChild container:elt];
+    }
+
+    if (isBlock) {
+      _minX = minX, _width = width, _floatLeftWidth = floatLeftWidth,
+      _floatRightWidth = floatRightWidth, _floatHeight = floatHeight;
+      [self breakLine];
+
+      if (padding) {
+        _height += padding.padding.bottom;
+      }
+
+      blockFrame.height = _height - blockFrame.height;
+      
+      if (padding) {
+        if (blockFrame.height < padding.minSize.height) {
+          _height += padding.minSize.height - blockFrame.height;
+          blockFrame.height = padding.minSize.height;
+        }
+
+        _height += padding.margin.bottom;
+      }
+    } else if (!isBlock && style) {
+      _inlineFrame.height += _lineHeight;
+      if (padding) {
+        _x += padding.padding.right + padding.margin.right;
+        _lineWidth += padding.padding.right + padding.margin.right;
+
+        TTStyledInlineFrame* inlineFrame = _inlineFrame;
+        while (inlineFrame) {
+          if (inlineFrame != _inlineFrame) {
+            inlineFrame.width += padding.margin.right;
+          }
+          inlineFrame.width += padding.padding.right;
+          inlineFrame.y -= padding.padding.top;
+          inlineFrame.height += padding.padding.top+padding.padding.bottom;
+          inlineFrame = inlineFrame.inlineParentFrame;
+        }
+      }
+      _inlineFrame = _inlineFrame.inlineParentFrame;
+    }
   }
   
-  UIFont* lastFont = _font;
-  self.font = font;
-
-  if (elt.firstChild) {
-    [self layout:elt.firstChild container:elt];
-  }
-
-  if (padding.floats) {
-    
-  } else if (isBlock) {
-    _minX = minX;
-    _width = width;
-    [self breakLine];
-
-    if (padding) {
-      _height += padding.padding.bottom;
-    }
-    blockFrame.height = _height - blockFrame.height;
-    if (padding) {
-      _height += padding.margin.bottom;
-    }
-  } else if (!isBlock && style) {
-    _inlineFrame.height += _lineHeight;
-    if (padding) {
-      _x += padding.padding.right + padding.margin.right;
-      _lineWidth += padding.padding.right + padding.margin.right;
-
-      TTStyledInlineFrame* inlineFrame = _inlineFrame;
-      while (inlineFrame) {
-        if (inlineFrame != _inlineFrame) {
-          inlineFrame.width += padding.margin.right;
-        }
-        inlineFrame.width += padding.padding.right;
-        inlineFrame.y -= padding.padding.top;
-        inlineFrame.height += padding.padding.top+padding.padding.bottom;
-        inlineFrame = inlineFrame.inlineParentFrame;
-      }
-    }
-    _inlineFrame = _inlineFrame.inlineParentFrame;
-  }
-
   self.font = lastFont;
 
   if (style) {
@@ -372,9 +434,13 @@
   }
 
   if (!padding.floats && (_lineWidth + contentWidth > _width)) {
-    // The image will be placed on the next line, so create a new frame for
-    // the current line and mark it with a line break
-    [self breakLine];
+    if (_lineWidth) {
+      // The image will be placed on the next line, so create a new frame for
+      // the current line and mark it with a line break
+      [self breakLine];
+    } else {
+      [self expandWidth:contentWidth];
+    }
   }
 
   TTStyledImageFrame* frame = [[[TTStyledImageFrame alloc] initWithElement:element
@@ -456,7 +522,11 @@
               height:self.fontHeight];
       }
       
-      [self breakLine];
+      if (_lineWidth) {
+        [self breakLine];
+      } else {
+        [self expandWidth:wordSize.width];
+      }
       lineStartIndex = lineRange.location + lineRange.length;
       frameWidth = 0;
     }

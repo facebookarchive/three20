@@ -16,7 +16,7 @@
 - (TTStyle*)floated {
   return [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(0, 0, 5, 5)
                      padding:UIEdgeInsetsMake(0, 0, 0, 0)
-                     floats:TTFloatLeft next:nil];
+                     minSize:CGSizeZero floats:TTFloatLeft next:nil];
 }
 
 - (TTStyle*)blueBox {

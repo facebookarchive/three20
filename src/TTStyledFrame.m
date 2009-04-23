@@ -165,6 +165,16 @@
 
 @implementation TTStyledInlineFrame
 
+@synthesize inlinePreviousFrame = _inlinePreviousFrame, inlineNextFrame = _inlineNextFrame;
+
+- (id)init {
+  if (self = [super init]) {
+    _inlinePreviousFrame = nil;
+    _inlineNextFrame = nil;
+  }
+  return self;
+}
+
 - (TTStyledInlineFrame*)inlineParentFrame {
   if ([_parentFrame isKindOfClass:[TTStyledInlineFrame class]]) {
     return (TTStyledInlineFrame*)_parentFrame;

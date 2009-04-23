@@ -287,7 +287,7 @@ static const NSInteger kDefaultLightSource = 125;
 
 @implementation TTBoxStyle
 
-@synthesize margin = _margin, padding = _padding, floats = _floats;
+@synthesize margin = _margin, padding = _padding, minSize = _minSize, floats = _floats;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -319,10 +319,11 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 + (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin padding:(UIEdgeInsets)padding
-               floats:(TTFloatType)floats next:(TTStyle*)next {
+               minSize:(CGSize)minSize floats:(TTFloatType)floats next:(TTStyle*)next {
   TTBoxStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.margin = margin;
   style.padding = padding;
+  style.minSize = minSize;
   style.floats = floats;
   return style;
 }
@@ -334,6 +335,8 @@ static const NSInteger kDefaultLightSource = 125;
   if (self = [super initWithNext:next]) {
     _margin = UIEdgeInsetsZero;
     _padding = UIEdgeInsetsZero;
+    _minSize = CGSizeZero;
+    _floats = TTFloatNone;
   }
   return self;
 }

@@ -233,7 +233,8 @@ static const CGFloat kDesiredTableHeight = 150;
 }
 
 - (void)reloadTable {
-  if ([_dataSource numberOfSectionsInTableView:_tableView]
+  if ((![_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]
+      || [_dataSource numberOfSectionsInTableView:_tableView])
       && [_dataSource tableView:_tableView numberOfRowsInSection:0]) {
     [self showSearchResults:YES];
     [self.tableView reloadData];

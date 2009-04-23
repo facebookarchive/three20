@@ -90,18 +90,34 @@ static const CGFloat kCancelHighlightThreshold = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIResponder
 
+- (void)setStyle:(TTStyle*)style forFrame:(TTStyledBoxFrame*)frame {
+  if ([frame isKindOfClass:[TTStyledInlineFrame class]]) {
+    TTStyledInlineFrame* inlineFrame = (TTStyledInlineFrame*)frame;
+    while (inlineFrame.inlinePreviousFrame) {
+      inlineFrame = inlineFrame.inlinePreviousFrame;
+    }
+    while (inlineFrame) {
+      inlineFrame.style = style;
+      inlineFrame = inlineFrame.inlineNextFrame;
+    }
+  } else {
+    frame.style = style;
+  }
+}
+
 - (void)setHighlightedFrame:(TTStyledBoxFrame*)frame {
   TTTableView* tableView = (TTTableView*)[self firstParentOfClass:[TTTableView class]];
+
+  TTStyledBoxFrame* affectFrame = frame ? frame : _highlightedFrame;
+  NSString* className = affectFrame.element.className;
+  if (!className && [affectFrame.element isKindOfClass:[TTStyledLinkNode class]]) {
+    className = @"linkText:";
+  }
   
   if (frame) {
-    if (frame.element.className) {
-      frame.style = [TTSTYLESHEET styleWithSelector:frame.element.className
-                                  forState:UIControlStateHighlighted];
-    } else {
-      frame.style = [TTSTYLESHEET styleWithSelector:@"linkText:"
-                                  forState:UIControlStateHighlighted];
-    }
-
+    TTStyle* style = [TTSTYLESHEET styleWithSelector:className forState:UIControlStateHighlighted];
+    [self setStyle:style forFrame:frame];
+    
     [_highlightedFrame release];
     _highlightedFrame = [frame retain];
     [_highlightedNode release];
@@ -109,15 +125,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
     tableView.highlightedLabel = self;
   } else {
-    if (_highlightedFrame.element.className) {
-      _highlightedFrame.style = [TTSTYLESHEET styleWithSelector:_highlightedFrame.element.className
-                                              forState:UIControlStateNormal];
-    } else {
-      _highlightedFrame.style = [TTSTYLESHEET styleWithSelector:@"linkText:"
-                                              forState:UIControlStateNormal];
-    }
+    TTStyle* style = [TTSTYLESHEET styleWithSelector:className forState:UIControlStateNormal];
+    [self setStyle:style forFrame:_highlightedFrame];
 
-    
     [_highlightedFrame release];
     _highlightedFrame = nil;
     [_highlightedNode release];

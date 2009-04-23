@@ -15,7 +15,7 @@
     return
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-3, -4, -3, -4) next:
       [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:
-      [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0 alpha:0.25] next:
+      [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0.8 alpha:1] next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(3, 4, 3, 4) next:
       [TTTextStyle styleWithColor:self.linkTextColor next:nil]]]]];
   } else {
