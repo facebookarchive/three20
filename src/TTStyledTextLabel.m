@@ -51,6 +51,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 - (void)dealloc {
+  _text.delegate = nil;
   [_text release];
   [_font release];
   [_textColor release];
@@ -163,12 +164,21 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyledTextDelegate
+
+- (void)styledTextNeedsDisplay:(TTStyledText*)text {
+  [self setNeedsDisplay];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
 - (void)setText:(TTStyledText*)text {
   if (text != _text) {
+    _text.delegate = nil;
     [_text release];
     _text = [text retain];
+    _text.delegate = self;
     _text.font = _font;
     [self setNeedsDisplay];
   }

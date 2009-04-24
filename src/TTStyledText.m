@@ -3,12 +3,16 @@
 #import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyledLayout.h"
 #import "Three20/TTStyledTextParser.h"
+#import "Three20/TTURLRequest.h"
+#import "Three20/TTURLResponse.h"
+#import "Three20/TTURLCache.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTStyledText
 
-@synthesize rootNode = _rootNode, font = _font, width = _width, height = _height;
+@synthesize delegate = _delegate, rootNode = _rootNode, font = _font, width = _width,
+            height = _height, invalidImages = _invalidImages;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -46,6 +50,56 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (void)stopLoadingImages {
+  if (_imageRequests) {
+    NSMutableArray* requests = [_imageRequests retain];
+    [_imageRequests release];
+    _imageRequests = nil;
+
+    if (!_invalidImages) {
+      _invalidImages = [[NSMutableArray alloc] init];
+    }
+    
+    for (TTURLRequest* request in requests) {
+      [_invalidImages addObject:request.userInfo];
+      [request cancel];
+    }
+    [requests release];
+  }
+}
+
+- (void)loadImages {
+  [self stopLoadingImages];
+
+  if (_delegate && _invalidImages) {
+    BOOL loadedSome = NO;
+    for (TTStyledImageNode* imageNode in _invalidImages) {
+      if (imageNode.url) {
+        UIImage* image = [[TTURLCache sharedCache] imageForURL:imageNode.url];
+        if (image) {
+          imageNode.image = image;
+          loadedSome = YES;
+        } else {
+          TTURLRequest* request = [TTURLRequest requestWithURL:imageNode.url delegate:self];
+          request.userInfo = imageNode;
+          request.response = [[[TTURLImageResponse alloc] init] autorelease];
+          [request send];
+        }
+      }
+    }
+
+    [_invalidImages release];
+    _invalidImages = nil;
+    
+    if (loadedSome) {
+      [_delegate styledTextNeedsDisplay:self];
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)initWithNode:(TTStyledNode*)rootNode {
@@ -55,14 +109,19 @@
     _font = nil;
     _width = 0;
     _height = 0;
+    _invalidImages = nil;
+    _imageRequests = nil;
   }
   return self;
 }
 
 - (void)dealloc {
+  [self stopLoadingImages];
   [_rootNode release];
   [_rootFrame release];
   [_font release];
+  [_invalidImages release];
+  [_imageRequests release];
   [super dealloc];
 }
 
@@ -70,8 +129,43 @@
   return [self.rootFrame description];
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// TTURLRequestDelegate
+
+- (void)requestDidStartLoad:(TTURLRequest*)request {
+  if (!_imageRequests) {
+    _imageRequests = [[NSMutableArray alloc] init];
+  }
+  [_imageRequests addObject:request];
+}
+
+- (void)requestDidFinishLoad:(TTURLRequest*)request {
+  TTURLImageResponse* response = request.response;
+  TTStyledImageNode* imageNode = request.userInfo;
+  imageNode.image = response.image;
+  
+  [_imageRequests removeObject:request];
+  
+  [_delegate styledTextNeedsDisplay:self];
+}
+
+- (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
+  [_imageRequests removeObject:request];
+}
+
+- (void)requestDidCancelLoad:(TTURLRequest*)request {
+  [_imageRequests removeObject:request];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
+
+- (void)setDelegate:(id<TTStyledTextDelegate>)delegate {
+  if (_delegate != delegate) {
+    _delegate = delegate;
+    [self loadImages];
+  }
+}
 
 - (TTStyledFrame*)rootFrame {
   [self layoutIfNeeded];
@@ -98,16 +192,24 @@
   return _height;
 }
 
+- (BOOL)needsLayout {
+  return !_rootFrame;
+}
+
 - (void)layoutFrames {
-  TTStyledLayout* ctx = [[TTStyledLayout alloc] initWithRootNode:_rootNode];
-  ctx.width = _width;
-  ctx.font = _font;
+  TTStyledLayout* layout = [[TTStyledLayout alloc] initWithRootNode:_rootNode];
+  layout.width = _width;
+  layout.font = _font;
   
-  [ctx layout:_rootNode];
+  [layout layout:_rootNode];
   
-  _rootFrame = [ctx.rootFrame retain];
-  _height = ceil(ctx.height);
-  [ctx release];
+  _rootFrame = [layout.rootFrame retain];
+  _height = ceil(layout.height);
+  [_invalidImages release];
+  _invalidImages = [layout.invalidImages retain];
+  [layout release];
+  
+  [self loadImages];
 }
 
 - (void)layoutIfNeeded {

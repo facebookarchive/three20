@@ -113,13 +113,13 @@
     UIFont* font = context.font;
     context.font = textStyle.font;
     if (textStyle.color) {
-      CGContextRef context = UIGraphicsGetCurrentContext();
-      CGContextSaveGState(context);
+      CGContextRef ctx = UIGraphicsGetCurrentContext();
+      CGContextSaveGState(ctx);
       [textStyle.color setFill];
       
       [self drawSubframes];
       
-      CGContextRestoreGState(context);
+      CGContextRestoreGState(ctx);
     } else {
       [self drawSubframes];
     }
@@ -242,7 +242,12 @@
 // public
 
 - (void)drawInRect:(CGRect)rect {
-  [_imageNode.image drawInRect:rect];
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGContextSaveGState(ctx);
+  CGContextAddRect(ctx, rect);
+  CGContextClip(ctx);
+  [_imageNode.image drawInRect:rect contentMode:UIViewContentModeScaleAspectFill];
+  CGContextRestoreGState(ctx);
 }
 
 @end

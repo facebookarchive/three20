@@ -1,6 +1,5 @@
 #import "Three20/TTStyledNode.h"
-#import "Three20/TTURLRequest.h"
-#import "Three20/TTURLResponse.h"
+#import "Three20/TTURLCache.h"
 #import "Three20/TTNavigationCenter.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -433,16 +432,17 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (UIImage*)image {
-  if (!_image && _url) {
-      TTURLRequest* request = [TTURLRequest requestWithURL:_url delegate:nil];
-      TTURLImageResponse* response = [[[TTURLImageResponse alloc] init] autorelease];
-      request.response = response;
-      if ([request send]) {
-        _image = [response.image retain];
-      }
+- (void)setUrl:(NSString*)url {
+  if (!_url || ![url isEqualToString:_url]) {
+    [_url release];
+    _url = [url retain];
+
+    if (_url) {
+      self.image = [[TTURLCache sharedCache] imageForURL:_url];
+    } else {
+      self.image = nil;
+    }
   }
-  return _image;
 }
 
 @end

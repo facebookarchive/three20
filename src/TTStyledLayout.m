@@ -7,7 +7,8 @@
 
 @implementation TTStyledLayout
 
-@synthesize width = _width, height = _height, rootFrame = _rootFrame, font = _font; 
+@synthesize width = _width, height = _height, rootFrame = _rootFrame, font = _font,
+            invalidImages = _invalidImages; 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -222,10 +223,6 @@
   }
 }
 
-- (void)expandWidth:(CGFloat)width {
-  _width = width;
-}
-
 - (TTStyledFrame*)addFrameForText:(NSString*)text element:(TTStyledElement*)element
                   node:(TTStyledTextNode*)node width:(CGFloat)width height:(CGFloat)height {
   TTStyledTextFrame* frame = [[[TTStyledTextFrame alloc] initWithText:text element:element
@@ -284,7 +281,11 @@
       layout.width = 0; // XXXjoe Get width from the box style here once it supports it
       layout.height = _height;
       layout.font = _font;
+      layout.invalidImages = _invalidImages;
       [layout layout:child];
+      if (!_invalidImages && layout.invalidImages) {
+        _invalidImages = [layout.invalidImages retain];
+      }
       
       TTStyledFrame* frame = [self addContentFrame:layout.rootFrame width:layout.width];
       
@@ -416,7 +417,13 @@
 }
 
 - (void)layoutImage:(TTStyledImageNode*)imageNode container:(TTStyledElement*)element {
-  UIImage* image = [imageNode image];
+  UIImage* image = imageNode.image;
+  if (!image && imageNode.url) {
+    if (!_invalidImages) {
+      _invalidImages = TTCreateNonRetainingArray();
+    }
+    [_invalidImages addObject:imageNode];
+  }
 
   TTStyle* style = imageNode.className
     ? [[TTStyleSheet globalStyleSheet] styleWithSelector:imageNode.className] : nil;
@@ -439,7 +446,7 @@
       // the current line and mark it with a line break
       [self breakLine];
     } else {
-      [self expandWidth:contentWidth];
+      _width = contentWidth;
     }
   }
 
@@ -525,7 +532,7 @@
       if (_lineWidth) {
         [self breakLine];
       } else {
-        [self expandWidth:wordSize.width];
+        _width = wordSize.width;
       }
       lineStartIndex = lineRange.location + lineRange.length;
       frameWidth = 0;
@@ -597,6 +604,7 @@
     _linkStyle = nil;
     _rootNode = nil;
     _lastNode = nil;
+    _invalidImages = nil;
   }
   return self;
 }
@@ -607,6 +615,7 @@
   [_boldFont release];
   [_italicFont release];
   [_linkStyle release];
+  [_invalidImages release];
   [super dealloc];
 }
 

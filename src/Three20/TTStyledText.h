@@ -1,14 +1,20 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTURLRequest.h"
 
+@protocol TTStyledTextDelegate;
 @class TTStyledNode, TTStyledFrame, TTStyledBoxFrame;
 
-@interface TTStyledText : NSObject {
+@interface TTStyledText : NSObject <TTURLRequestDelegate> {
+  id<TTStyledTextDelegate> _delegate;
   TTStyledNode* _rootNode;
   TTStyledFrame* _rootFrame;
   UIFont* _font;
   CGFloat _width;
   CGFloat _height;
+  NSMutableArray* _invalidImages;
+  NSMutableArray* _imageRequests;
 }
+
+@property(nonatomic,assign) id<TTStyledTextDelegate> delegate;
 
 /**
  * The first in the sequence of nodes that contain the styled text.
@@ -36,6 +42,16 @@
  * The height is automatically calculated based on the width and the size of word-wrapped text.
  */
 @property(nonatomic, readonly) CGFloat height;
+
+/**
+ * Indicates if the text needs layout to recalculate its size.
+ */
+@property(nonatomic, readonly) BOOL needsLayout;
+
+/**
+ * Images that require loading 
+ */
+@property(nonatomic, readonly) NSMutableArray* invalidImages;
 
 /**
  * Constructs styled text with XHTML tags turned into style nodes.
@@ -98,5 +114,16 @@
  *
  */
 - (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index;
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@protocol TTStyledTextDelegate <NSObject>
+
+@optional
+
+- (void)styledTextNeedsDisplay:(TTStyledText*)text;
 
 @end

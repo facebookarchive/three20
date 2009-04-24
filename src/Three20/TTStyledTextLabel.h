@@ -1,11 +1,11 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTStyledText.h"
 
-@class TTStyledText, TTStyledElement, TTStyledBoxFrame, TTStyle;
+@class TTStyledElement, TTStyledBoxFrame, TTStyle;
 
 /**
  * A view that can display styled text.
  */
-@interface TTStyledTextLabel : UIView {
+@interface TTStyledTextLabel : UIView <TTStyledTextDelegate> {
   TTStyledText* _text;
   UIFont* _font;
   UIColor* _textColor;
