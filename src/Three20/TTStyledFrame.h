@@ -28,6 +28,8 @@
 @property(nonatomic) CGFloat width;
 @property(nonatomic) CGFloat height;
 
+- (UIFont*)font;
+
 - (id)initWithElement:(TTStyledElement*)element;
 
 /**

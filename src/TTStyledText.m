@@ -260,6 +260,10 @@
   }
 }
 
+- (void)addText:(NSString*)text {
+  [self addChild:[[[TTStyledTextNode alloc] initWithText:text] autorelease]];
+}
+
 - (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index {
   if (!_rootNode) {
     self.rootNode = child;

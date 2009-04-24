@@ -60,6 +60,10 @@
   _bounds.size.height = height;
 }
 
+- (UIFont*)font {
+  return nil;
+}
+
 - (void)drawInRect:(CGRect)rect {
 }
 
@@ -130,7 +134,11 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
+// TTStyledFrame
+
+- (UIFont*)font {
+  return _firstChildFrame.font;
+}
 
 - (void)drawInRect:(CGRect)rect {
   if (_style) {

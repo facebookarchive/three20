@@ -33,7 +33,7 @@
 - (TTStyle*)thumbView:(UIControlState)state {
   if (state & UIControlStateHighlighted) {
     return
-      [TTSolidFillStyle styleWithColor:RGBACOLOR(0,0,0,0.6) next:
+      [TTSolidFillStyle styleWithColor:RGBCOLOR(200,200,200) next:
       [TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.4) width:1 next:nil]];
   } else {
     return

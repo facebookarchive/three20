@@ -174,11 +174,8 @@
 
 - (void)breakLine {
   if (_inlineFrame) {
-    // XXXjoe This is wrong - we need to track the height of nodes inside the inline frame
-    // so that the frame height wraps them all, not just the height of the last font
     TTStyledInlineFrame* inlineFrame = _inlineFrame;
     while (inlineFrame) {
-      inlineFrame.height += self.fontHeight;
       if (inlineFrame.style) {
         TTBoxStyle* padding = [inlineFrame.style firstStyleOfClass:[TTBoxStyle class]];
         if (padding) {
@@ -201,7 +198,8 @@
       // Align to the text baseline
       // XXXjoe Support top, bottom, and center alignment also
       if (frame.height < _lineHeight) {
-        [self offsetFrame:frame by:(_lineHeight - frame.height) + _font.descender];
+        UIFont* font = frame.font ? frame.font : _font;
+        [self offsetFrame:frame by:(_lineHeight - (frame.height - font.descender))];
       }
       frame = frame.nextFrame;
     }
@@ -389,7 +387,7 @@
         _height += padding.margin.bottom;
       }
     } else if (!isBlock && style) {
-      _inlineFrame.height += _lineHeight;
+      //_inlineFrame.height += _lineHeight;
       if (padding) {
         _x += padding.padding.right + padding.margin.right;
         _lineWidth += padding.padding.right + padding.margin.right;
@@ -413,6 +411,21 @@
 
   if (style) {
     [self popFrame];
+  }
+}
+
+- (void)inflateLineHeight:(CGFloat)height {
+  if (height > _lineHeight) {
+    _lineHeight = height;
+  }
+  if (_inlineFrame) {
+    TTStyledInlineFrame* inlineFrame = _inlineFrame;
+    while (inlineFrame) {
+      if (height > inlineFrame.height) {
+        inlineFrame.height = height;
+      }
+      inlineFrame = inlineFrame.inlineParentFrame;
+    }
   }
 }
 
@@ -456,9 +469,7 @@
   
   if (!padding.floats) {
     _lineWidth += contentWidth;
-    if (contentHeight > _lineHeight) {
-      _lineHeight = contentHeight;
-    }
+    [self inflateLineHeight:contentHeight];
   } else if (padding.floats == TTFloatLeft) {
     frame.x += _floatLeftWidth;
     _floatLeftWidth += contentWidth;
@@ -555,9 +566,7 @@
 
     frameWidth += wordSize.width;
     _lineWidth += wordSize.width;
-    if (wordSize.height > _lineHeight) {
-      _lineHeight = wordSize.height;
-    }
+    [self inflateLineHeight:wordSize.height];
 
     index = wordRange.location + wordRange.length;
     if (index >= length) {

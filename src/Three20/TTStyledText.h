@@ -113,6 +113,11 @@
 /**
  *
  */
+- (void)addText:(NSString*)text;
+
+/**
+ *
+ */
 - (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index;
 
 @end
