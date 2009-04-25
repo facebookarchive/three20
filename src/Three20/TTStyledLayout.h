@@ -33,6 +33,7 @@
 @property(nonatomic,retain) NSMutableArray* invalidImages;
 
 - (id)initWithRootNode:(TTStyledNode*)rootNode;
+- (id)initWithX:(CGFloat)x width:(CGFloat)width height:(CGFloat)height;
 
 - (void)layout:(TTStyledNode*)node;
 - (void)layout:(TTStyledNode*)node container:(TTStyledElement*)element;

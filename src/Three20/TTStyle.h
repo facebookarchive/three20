@@ -83,21 +83,21 @@
   UIEdgeInsets _margin;
   UIEdgeInsets _padding;
   CGSize _minSize;
-  TTFloatType _floats;
+  TTPosition _position;
 }
 
 @property(nonatomic) UIEdgeInsets margin;
 @property(nonatomic) UIEdgeInsets padding;
 @property(nonatomic) CGSize minSize;
-@property(nonatomic) TTFloatType floats;
+@property(nonatomic) TTPosition position;
 
 + (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin next:(TTStyle*)next;
 + (TTBoxStyle*)styleWithPadding:(UIEdgeInsets)padding next:(TTStyle*)next;
-+ (TTBoxStyle*)styleWithFloats:(TTFloatType)floats next:(TTStyle*)next;
++ (TTBoxStyle*)styleWithFloats:(TTPosition)position next:(TTStyle*)next;
 + (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin padding:(UIEdgeInsets)padding
                next:(TTStyle*)next;
 + (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin padding:(UIEdgeInsets)padding
-               minSize:(CGSize)minSize floats:(TTFloatType)floats next:(TTStyle*)next;
+               minSize:(CGSize)minSize position:(TTPosition)position next:(TTStyle*)next;
 
 @end
 

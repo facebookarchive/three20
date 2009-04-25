@@ -1,6 +1,7 @@
 #import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTShape.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -230,7 +231,7 @@
 
 @implementation TTStyledImageFrame
 
-@synthesize imageNode = _imageNode;
+@synthesize imageNode = _imageNode, style = _style;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -246,16 +247,49 @@
   [super dealloc];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
-
-- (void)drawInRect:(CGRect)rect {
+- (void)drawImage:(CGRect)rect {
   CGContextRef ctx = UIGraphicsGetCurrentContext();
   CGContextSaveGState(ctx);
   CGContextAddRect(ctx, rect);
   CGContextClip(ctx);
-  [_imageNode.image drawInRect:rect contentMode:UIViewContentModeScaleAspectFill];
+  
+  UIImage* image = _imageNode.image ? _imageNode.image : _imageNode.defaultImage;
+  [image drawInRect:rect contentMode:UIViewContentModeScaleAspectFill];
   CGContextRestoreGState(ctx);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyleDelegate
+
+- (void)drawLayer:(TTStyleContext*)context withStyle:(TTStyle*)style {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGContextSaveGState(ctx);
+  [context.shape addToPath:context.frame];
+  CGContextClip(ctx);
+
+  UIImage* image = _imageNode.image ? _imageNode.image : _imageNode.defaultImage;
+  [image drawInRect:context.contentFrame contentMode:UIViewContentModeScaleAspectFill];
+
+  CGContextRestoreGState(ctx);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (void)drawInRect:(CGRect)rect {
+  if (_style) {
+    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+    context.delegate = self;
+    context.frame = rect;
+    context.contentFrame = rect;
+
+    [_style draw:context];
+    if (!context.didDrawContent) {
+      [self drawImage:rect];
+    }
+  } else {
+    [self drawImage:rect];
+  }
 }
 
 @end

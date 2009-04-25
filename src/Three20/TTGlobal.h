@@ -79,10 +79,11 @@
 #define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
 
 typedef enum {
-  TTFloatNone,
-  TTFloatLeft,
-  TTFloatRight,
-} TTFloatType;
+  TTPositionStatic,
+  TTPositionAbsolute,
+  TTPositionFloatLeft,
+  TTPositionFloatRight,
+} TTPosition;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Networking

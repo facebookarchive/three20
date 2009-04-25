@@ -61,11 +61,11 @@
   } else if ([data isKindOfClass:[NSData class]]) {
     UIImage* image = [[TTURLCache sharedCache] imageForURL:request.url fromDisk:NO];
     if (!image) {
-      TTLOG(@"CREATE IMAGE FOR %@", request.url);
       image = [UIImage imageWithData:data];
     }
     if (image) {
       if (!request.respondedFromCache) {
+// XXXjoe Working on option to scale down really large images to a smaller size to save memory      
 //        if (image.size.width * image.size.height > (300*300)) {
 //          image = [image transformWidth:300 height:(image.size.height/image.size.width)*300.0
 //                         rotate:NO];

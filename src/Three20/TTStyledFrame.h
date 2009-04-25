@@ -101,14 +101,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTStyledImageFrame : TTStyledFrame {
+@interface TTStyledImageFrame : TTStyledFrame <TTStyleDelegate> {
   TTStyledImageNode* _imageNode;
+  TTStyle* _style;
 }
 
 /** 
  * The node represented by the frame.
  */
 @property(nonatomic,readonly) TTStyledImageNode* imageNode;
+
+/**
+ * The style used to render the frame;
+ */
+@property(nonatomic,retain) TTStyle* style;
 
 - (id)initWithElement:(TTStyledElement*)element node:(TTStyledImageNode*)node;
 

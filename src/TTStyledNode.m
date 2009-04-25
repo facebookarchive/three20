@@ -385,7 +385,8 @@
 
 @implementation TTStyledImageNode
 
-@synthesize url = _url, image = _image, width = _width, height = _height;
+@synthesize url = _url, image = _image, defaultImage = _defaultImage, width = _width,
+            height = _height;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -401,6 +402,7 @@
   if (self = [super init]) {
     _url = nil;
     _image = nil;
+    _defaultImage = nil;
     _width = 0;
     _height = 0;
   }

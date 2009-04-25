@@ -8,7 +8,7 @@
 @implementation TTStyledLayout
 
 @synthesize width = _width, height = _height, rootFrame = _rootFrame, font = _font,
-            invalidImages = _invalidImages; 
+            invalidImages = _invalidImages;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -267,7 +267,7 @@
 
   TTBoxStyle* padding = style ? [style firstStyleOfClass:[TTBoxStyle class]] : nil;
   
-  if (padding && padding.floats) {
+  if (padding && padding.position) {
     TTStyledFrame* blockFrame = [self addBlockFrame:style element:elt width:_width height:_height];
     
     CGFloat contentWidth = padding.margin.left + padding.margin.right;
@@ -275,9 +275,8 @@
     
     if (elt.firstChild) {
       TTStyledNode* child = elt.firstChild;
-      TTStyledLayout* layout = [[[TTStyledLayout alloc] initWithRootNode:child] autorelease];
-      layout.width = 0; // XXXjoe Get width from the box style here once it supports it
-      layout.height = _height;
+      TTStyledLayout* layout = [[[TTStyledLayout alloc] initWithX:_minX
+                                                        width:0 height:_height] autorelease];
       layout.font = _font;
       layout.invalidImages = _invalidImages;
       [layout layout:child];
@@ -291,7 +290,7 @@
       contentWidth += layout.width;
       contentHeight += frameHeight;
       
-      if (padding.floats == TTFloatLeft) {
+      if (padding.position == TTPositionFloatLeft) {
         frame.x += _floatLeftWidth;
         _floatLeftWidth += contentWidth;
         if (_height+contentHeight > _floatHeight) {
@@ -299,7 +298,7 @@
         }
         _minX += contentWidth;
         _width -= contentWidth;
-      } else if (padding.floats == TTFloatRight) {
+      } else if (padding.position == TTPositionFloatRight) {
         frame.x += _width - (_floatRightWidth + contentWidth);
         _floatRightWidth += contentWidth;
         if (_height+contentHeight > _floatHeight) {
@@ -453,7 +452,7 @@
     contentHeight += padding.margin.top + padding.margin.bottom;
   }
 
-  if (!padding.floats && (_lineWidth + contentWidth > _width)) {
+  if (!padding.position && (_lineWidth + contentWidth > _width)) {
     if (_lineWidth) {
       // The image will be placed on the next line, so create a new frame for
       // the current line and mark it with a line break
@@ -465,12 +464,13 @@
 
   TTStyledImageFrame* frame = [[[TTStyledImageFrame alloc] initWithElement:element
                                                            node:imageNode] autorelease];
+  frame.style = style;
   [self addContentFrame:frame width:imageWidth height:imageHeight];
   
-  if (!padding.floats) {
+  if (!padding.position) {
     _lineWidth += contentWidth;
     [self inflateLineHeight:contentHeight];
-  } else if (padding.floats == TTFloatLeft) {
+  } else if (padding.position == TTPositionFloatRight) {
     frame.x += _floatLeftWidth;
     _floatLeftWidth += contentWidth;
     if (_height+contentHeight > _floatHeight) {
@@ -478,7 +478,7 @@
     }
     _minX += contentWidth;
     _width -= contentWidth;
-  } else if (padding.floats == TTFloatRight) {
+  } else if (padding.position == TTPositionFloatRight) {
     frame.x += _width - (_floatRightWidth + contentWidth);
     _floatRightWidth += contentWidth;
     if (_height+contentHeight > _floatHeight) {
@@ -587,6 +587,16 @@
 - (id)initWithRootNode:(TTStyledNode*)rootNode {
   if (self = [self init]) {
     _rootNode = rootNode;
+  }
+  return self;
+}
+
+- (id)initWithX:(CGFloat)x width:(CGFloat)width height:(CGFloat)height {
+  if (self = [self init]) {
+    _x = x;
+    _minX = x;
+    _width = width;
+    _height = height;
   }
   return self;
 }

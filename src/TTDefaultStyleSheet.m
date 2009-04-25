@@ -531,7 +531,7 @@
     [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.25) blur:0 offset:CGSizeMake(0, 1) next:
     [TTReflectiveFillStyle styleWithColor:stateTintColor next:
     [TTBevelBorderStyle styleWithHighlight:[stateTintColor multiplyHue:1 saturation:0.9 value:0.7]
-                        shadow:[stateTintColor multiplyHue:1 saturation:0.5 value:0.55]
+                        shadow:[stateTintColor multiplyHue:1 saturation:0.5 value:0.6]
                         width:1 lightSource:270 next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, -1, 0, -1) next:
     [TTBevelBorderStyle styleWithHighlight:nil shadow:RGBACOLOR(0,0,0,0.15)
