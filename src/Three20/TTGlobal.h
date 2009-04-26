@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "Three20/NSObjectAdditions.h"
+#import "Three20/NSStringAdditions.h"
 #import "Three20/NSArrayAdditions.h"
 #import "Three20/UIColorAdditions.h"
 #import "Three20/UIImageAdditions.h"

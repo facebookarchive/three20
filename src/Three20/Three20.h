@@ -11,6 +11,7 @@
 
 #import "Three20/TTStyledText.h"
 #import "Three20/TTStyledNode.h"
+#import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyledTextParser.h"
 
 #import "Three20/TTViewController.h"

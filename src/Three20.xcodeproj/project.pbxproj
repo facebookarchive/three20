@@ -53,6 +53,8 @@
 		BEAF21400F4D32E100D75F3B /* UIToolbarAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEAF21390F4D32E100D75F3B /* UIToolbarAdditions.h */; };
 		BEAF21410F4D32E100D75F3B /* UIViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEAF213A0F4D32E100D75F3B /* UIViewAdditions.h */; };
 		BEAF21420F4D32E100D75F3B /* UIWebViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEAF213B0F4D32E100D75F3B /* UIWebViewAdditions.h */; };
+		BEB210D20FA3E77E007DEE5F /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */; };
+		BEB210D40FA3E784007DEE5F /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */; };
 		BEB460830F8EE14C004B34A0 /* TTLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB460820F8EE14C004B34A0 /* TTLabel.h */; };
 		BEB460850F8EE156004B34A0 /* TTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB460840F8EE156004B34A0 /* TTLabel.m */; };
 		BEB463DD0F8F2DB5004B34A0 /* developer.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB463DC0F8F2DB5004B34A0 /* developer.h */; };
@@ -183,6 +185,8 @@
 		BEAF21390F4D32E100D75F3B /* UIToolbarAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIToolbarAdditions.h; path = Three20/UIToolbarAdditions.h; sourceTree = "<group>"; };
 		BEAF213A0F4D32E100D75F3B /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewAdditions.h; path = Three20/UIViewAdditions.h; sourceTree = "<group>"; };
 		BEAF213B0F4D32E100D75F3B /* UIWebViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWebViewAdditions.h; path = Three20/UIWebViewAdditions.h; sourceTree = "<group>"; };
+		BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
+		BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringAdditions.h; path = Three20/NSStringAdditions.h; sourceTree = "<group>"; };
 		BEB460820F8EE14C004B34A0 /* TTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLabel.h; path = Three20/TTLabel.h; sourceTree = "<group>"; };
 		BEB460840F8EE156004B34A0 /* TTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLabel.m; sourceTree = "<group>"; };
 		BEB463DC0F8F2DB5004B34A0 /* developer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = developer.h; path = Three20/developer.h; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 			children = (
 				BEAF21350F4D32E100D75F3B /* NSObjectAdditions.h */,
 				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
+				BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */,
+				BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */,
 				BED623910F50F34B003EF242 /* NSArrayAdditions.h */,
 				BED623930F50F350003EF242 /* NSArrayAdditions.m */,
 				BEAF21360F4D32E100D75F3B /* UIColorAdditions.h */,
@@ -605,6 +611,7 @@
 				BED429450F97F7E50035B153 /* TTButtonBar.h in Headers */,
 				BE8541010F998FA900DA3E9E /* TTStyledFrame.h in Headers */,
 				BE1942770F9ACE85005F4EFC /* TTStyledLayout.h in Headers */,
+				BEB210D40FA3E784007DEE5F /* NSStringAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +716,7 @@
 				BED429420F97F7DB0035B153 /* TTButtonBar.m in Sources */,
 				BE8541030F998FB800DA3E9E /* TTStyledFrame.m in Sources */,
 				BE1942880F9ACEA7005F4EFC /* TTStyledLayout.m in Sources */,
+				BEB210D20FA3E77E007DEE5F /* NSStringAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

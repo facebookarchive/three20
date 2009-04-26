@@ -220,6 +220,59 @@
   [self addChild:[[[TTStyledTextNode alloc] initWithText:text] autorelease]];
 }
 
+- (void)replaceChild:(TTStyledNode*)oldChild withChild:(TTStyledNode*)newChild {
+  if (oldChild == _firstChild) {
+    newChild.nextSibling = oldChild.nextSibling;
+    oldChild.nextSibling = nil;
+    newChild.parentNode = self;
+    if (oldChild == _lastChild) {
+      _lastChild = newChild;
+    }
+    [_firstChild release];
+    _firstChild = [newChild retain];
+  } else {
+    TTStyledNode* node = _firstChild;
+    while (node) {
+      if (node.nextSibling == oldChild) {
+        [oldChild retain];
+        if (newChild) {
+          newChild.nextSibling = oldChild.nextSibling;
+          node.nextSibling = newChild;
+        } else {
+          node.nextSibling = oldChild.nextSibling;
+        }
+        oldChild.nextSibling = nil;
+        newChild.parentNode = self;
+        if (oldChild == _lastChild) {
+          _lastChild = newChild ? newChild : node;
+        }
+        [oldChild release];
+        break;
+      }
+      node = node.nextSibling;
+    }
+  }
+}
+
+- (TTStyledNode*)getElementByClassName:(NSString*)className {
+  TTStyledNode* node = _firstChild;
+  while (node) {
+    if ([node isKindOfClass:[TTStyledElement class]]) {
+      TTStyledElement* element = (TTStyledElement*)node;
+      if ([element.className isEqualToString:className]) {
+        return element;
+      }
+
+      TTStyledNode* found = [element getElementByClassName:className];
+      if (found) {
+        return found;
+      }
+    }
+    node = node.nextSibling;
+  }
+  return nil;
+}
+
 @end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

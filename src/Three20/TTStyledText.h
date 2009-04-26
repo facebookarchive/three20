@@ -106,6 +106,14 @@
 - (TTStyledBoxFrame*)hitTest:(CGPoint)point;
 
 /**
+ * Finds the frame that represents the node.
+ *
+ * If multiple frames represent a node, such as an inline frame with line breaks, the
+ * first frame in the sequence will be returned.
+ */
+- (TTStyledFrame*)getFrameForNode:(TTStyledNode*)node;
+
+/**
  *
  */
 - (void)addChild:(TTStyledNode*)child;
@@ -119,6 +127,11 @@
  *
  */
 - (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index;
+
+/**
+ *
+ */
+- (TTStyledNode*)getElementByClassName:(NSString*)className;
 
 @end
 

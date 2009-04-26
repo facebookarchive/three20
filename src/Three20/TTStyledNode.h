@@ -48,6 +48,9 @@
 
 - (void)addChild:(TTStyledNode*)child;
 - (void)addText:(NSString*)text;
+- (void)replaceChild:(TTStyledNode*)oldChild withChild:(TTStyledNode*)newChild;
+
+- (TTStyledNode*)getElementByClassName:(NSString*)className;
 
 @end
 

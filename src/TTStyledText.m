@@ -99,6 +99,33 @@
   }
 }
 
+- (TTStyledFrame*)getFrameForNode:(TTStyledNode*)node inFrame:(TTStyledFrame*)frame {
+  while (frame) {
+    if ([frame isKindOfClass:[TTStyledBoxFrame class]]) {
+      TTStyledBoxFrame* boxFrame = (TTStyledBoxFrame*)frame;
+      if (boxFrame.element == node) {
+        return boxFrame;
+      }
+      TTStyledFrame* found = [self getFrameForNode:node inFrame:boxFrame.firstChildFrame];
+      if (found) {
+        return found;
+      }
+    } else if ([frame isKindOfClass:[TTStyledTextFrame class]]) {
+      TTStyledTextFrame* textFrame = (TTStyledTextFrame*)frame;
+      if (textFrame.node == node) {
+        return textFrame;
+      }
+    } else if ([frame isKindOfClass:[TTStyledImageFrame class]]) {
+      TTStyledImageFrame* imageFrame = (TTStyledImageFrame*)frame;
+      if (imageFrame.imageNode == node) {
+        return imageFrame;
+      }
+    }
+    frame = frame.nextFrame;
+  }
+  return nil;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -207,9 +234,9 @@
   TTStyledLayout* layout = [[TTStyledLayout alloc] initWithRootNode:_rootNode];
   layout.width = _width;
   layout.font = _font;
-  
   [layout layout:_rootNode];
   
+  [_rootFrame release];
   _rootFrame = [layout.rootFrame retain];
   _height = ceil(layout.height);
   [_invalidImages release];
@@ -253,6 +280,10 @@
   return [self.rootFrame hitTest:point];
 }
 
+- (TTStyledFrame*)getFrameForNode:(TTStyledNode*)node {
+  return [self getFrameForNode:node inFrame:_rootFrame];
+}
+
 - (void)addChild:(TTStyledNode*)child {
   if (!_rootNode) {
     self.rootNode = child;
@@ -289,6 +320,25 @@
     child.nextSibling = node;
     previousNode.nextSibling = child;
   }
+}
+
+- (TTStyledNode*)getElementByClassName:(NSString*)className {
+  TTStyledNode* node = _rootNode;
+  while (node) {
+    if ([node isKindOfClass:[TTStyledElement class]]) {
+      TTStyledElement* element = (TTStyledElement*)node;
+      if ([element.className isEqualToString:className]) {
+        return element;
+      }
+
+      TTStyledNode* found = [element getElementByClassName:className];
+      if (found) {
+        return found;
+      }
+    }
+    node = node.nextSibling;
+  }
+  return nil;
 }
 
 @end
