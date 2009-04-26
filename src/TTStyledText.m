@@ -103,8 +103,15 @@
 // NSObject
 
 - (id)initWithNode:(TTStyledNode*)rootNode {
-  if (self = [super init]) {
+  if (self = [self init]) {
     _rootNode = [rootNode retain];
+  }
+  return self;
+}
+
+- (id)init {
+  if (self = [super init]) {
+    _rootNode = nil;
     _rootFrame = nil;
     _font = nil;
     _width = 0;

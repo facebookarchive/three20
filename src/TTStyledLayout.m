@@ -82,6 +82,30 @@
   }
 }
 
+- (void)expandLineWidth:(CGFloat)width {
+  _lineWidth += width;
+  TTStyledInlineFrame* inlineFrame = _inlineFrame;
+  while (inlineFrame) {
+    inlineFrame.width += width;
+    inlineFrame = inlineFrame.inlineParentFrame;
+  }
+}
+
+- (void)inflateLineHeight:(CGFloat)height {
+  if (height > _lineHeight) {
+    _lineHeight = height;
+  }
+  if (_inlineFrame) {
+    TTStyledInlineFrame* inlineFrame = _inlineFrame;
+    while (inlineFrame) {
+      if (height > inlineFrame.height) {
+        inlineFrame.height = height;
+      }
+      inlineFrame = inlineFrame.inlineParentFrame;
+    }
+  }
+}
+
 - (void)addFrame:(TTStyledFrame*)frame {
   if (!_rootFrame) {
     _rootFrame = [frame retain];
@@ -114,18 +138,17 @@
     _lineFirstFrame = frame;
   }
   _x += width;
-  
-  TTStyledInlineFrame* inlineFrame = _inlineFrame;
-  while (inlineFrame) {
-    inlineFrame.width += width;
-    inlineFrame = inlineFrame.inlineParentFrame;
-  }
   return frame;
 }
 
 - (void)addContentFrame:(TTStyledFrame*)frame width:(CGFloat)width height:(CGFloat)height {
   frame.bounds = CGRectMake(_x, _height, width, height);
   [self addContentFrame:frame width:width];
+}
+
+- (void)addAbsoluteFrame:(TTStyledFrame*)frame width:(CGFloat)width height:(CGFloat)height {
+  frame.bounds = CGRectMake(_x, _height, width, height);
+  [self addFrame:frame];
 }
 
 - (TTStyledInlineFrame*)addInlineFrame:(TTStyle*)style element:(TTStyledElement*)element
@@ -349,13 +372,7 @@
       }
       _width -= padding.padding.left+padding.padding.right;
       _x += padding.padding.left;
-      _lineWidth += padding.padding.left;
-      
-      TTStyledInlineFrame* inlineFrame = _inlineFrame;
-      while (inlineFrame) {
-        inlineFrame.width += padding.padding.left;
-        inlineFrame = inlineFrame.inlineParentFrame;
-      }
+      [self expandLineWidth:padding.padding.left];
 
       if (isBlock) {
         _height += padding.padding.top;
@@ -386,7 +403,6 @@
         _height += padding.margin.bottom;
       }
     } else if (!isBlock && style) {
-      //_inlineFrame.height += _lineHeight;
       if (padding) {
         _x += padding.padding.right + padding.margin.right;
         _lineWidth += padding.padding.right + padding.margin.right;
@@ -413,21 +429,6 @@
   }
 }
 
-- (void)inflateLineHeight:(CGFloat)height {
-  if (height > _lineHeight) {
-    _lineHeight = height;
-  }
-  if (_inlineFrame) {
-    TTStyledInlineFrame* inlineFrame = _inlineFrame;
-    while (inlineFrame) {
-      if (height > inlineFrame.height) {
-        inlineFrame.height = height;
-      }
-      inlineFrame = inlineFrame.inlineParentFrame;
-    }
-  }
-}
-
 - (void)layoutImage:(TTStyledImageNode*)imageNode container:(TTStyledElement*)element {
   UIImage* image = imageNode.image;
   if (!image && imageNode.url) {
@@ -446,13 +447,13 @@
   CGFloat contentWidth = imageWidth;
   CGFloat contentHeight = imageHeight;
   
-  if (padding) {
+  if (padding && padding.position != TTPositionAbsolute) {
     _x += padding.margin.left;
     contentWidth += padding.margin.left + padding.margin.right;
     contentHeight += padding.margin.top + padding.margin.bottom;
   }
 
-  if (!padding.position && (_lineWidth + contentWidth > _width)) {
+  if ((!padding || !padding.position) && (_lineWidth + contentWidth > _width)) {
     if (_lineWidth) {
       // The image will be placed on the next line, so create a new frame for
       // the current line and mark it with a line break
@@ -465,12 +466,18 @@
   TTStyledImageFrame* frame = [[[TTStyledImageFrame alloc] initWithElement:element
                                                            node:imageNode] autorelease];
   frame.style = style;
-  [self addContentFrame:frame width:imageWidth height:imageHeight];
   
-  if (!padding.position) {
-    _lineWidth += contentWidth;
+  if (!padding || !padding.position) {
+    [self addContentFrame:frame width:imageWidth height:imageHeight];
+    [self expandLineWidth:contentWidth];
     [self inflateLineHeight:contentHeight];
-  } else if (padding.position == TTPositionFloatRight) {
+  } else if (padding.position == TTPositionAbsolute) {
+    [self addAbsoluteFrame:frame width:imageWidth height:imageHeight];
+    frame.x += padding.margin.left;
+    frame.y += padding.margin.top;
+  } else if (padding.position == TTPositionFloatLeft) {
+    [self addContentFrame:frame width:imageWidth height:imageHeight];
+
     frame.x += _floatLeftWidth;
     _floatLeftWidth += contentWidth;
     if (_height+contentHeight > _floatHeight) {
@@ -479,6 +486,8 @@
     _minX += contentWidth;
     _width -= contentWidth;
   } else if (padding.position == TTPositionFloatRight) {
+    [self addContentFrame:frame width:imageWidth height:imageHeight];
+
     frame.x += _width - (_floatRightWidth + contentWidth);
     _floatRightWidth += contentWidth;
     if (_height+contentHeight > _floatHeight) {
@@ -488,7 +497,7 @@
     _width -= contentWidth;
   }
 
-  if (padding) {
+  if (padding && padding.position != TTPositionAbsolute) {
     frame.y += padding.margin.top;
     _x += padding.margin.right;
   }
@@ -565,7 +574,7 @@
     }
 
     frameWidth += wordSize.width;
-    _lineWidth += wordSize.width;
+    [self expandLineWidth:wordSize.width];
     [self inflateLineHeight:wordSize.height];
 
     index = wordRange.location + wordRange.length;
