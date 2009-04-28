@@ -158,7 +158,7 @@
 }
 
 - (TTStyledBoxFrame*)hitTest:(CGPoint)point {
-  if (CGRectContainsPoint(_bounds, point)) {
+  if (CGRectContainsPoint(CGRectInset(_bounds, 0, -5), point)) {
     TTStyledBoxFrame* frame = [_firstChildFrame hitTest:point];
     return frame ? frame : self;
   } else if (_nextFrame) {

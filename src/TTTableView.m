@@ -48,12 +48,10 @@ static const CGFloat kCancelHighlightThreshold = 4;
   [super dealloc];
 }
 
-- (void)delayedTouchesEnded:(NSTimer*)timer {
+- (void)delayedTouchesEnded {
   _highlightTimer = nil;
-  
-  self.highlightedLabel = nil;
-  
-  TTStyledElement* element = timer.userInfo;
+
+  TTStyledElement* element = _highlightedLabel.highlightedNode;
   [element performDefaultAction];
 }
 
@@ -108,11 +106,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
   if (_highlightedLabel) {
-    TTStyledElement* element = _highlightedLabel.highlightedNode;
-    _highlightedLabel.highlightedNode = nil;
-
     _highlightTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self
-             selector:@selector(delayedTouchesEnded:) userInfo:element repeats:NO];
+             selector:@selector(delayedTouchesEnded) userInfo:nil repeats:NO];
   } else {
     [super touchesEnded:touches withEvent:event];
 
@@ -142,6 +137,14 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
+
+- (void)setHighlightedLabel:(TTStyledTextLabel*)label {
+  if (label != _highlightedLabel) {
+    _highlightedLabel.highlightedNode = nil;
+    [_highlightedLabel release];
+    _highlightedLabel = [label retain];
+  }
+}
 
 - (void)showMenu:(UIView*)view forCell:(UITableViewCell*)cell animated:(BOOL)animated {
   [self hideMenu:YES];
