@@ -155,11 +155,13 @@
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next;
++ (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
+                 contentMode:(UIViewContentMode)contentMode next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImage:(UIImage*)image next:(TTStyle*)next;
-+ (TTImageStyle*)styleWithImage:(UIImage*)image contentMode:(UIViewContentMode)contentMode
-                 next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next;
++ (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
+                 contentMode:(UIViewContentMode)contentMode next:(TTStyle*)next;
 
 @end
 

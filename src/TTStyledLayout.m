@@ -546,7 +546,7 @@
       if (lineRange.length) {
         NSString* line = [text substringWithRange:lineRange];
         [self addFrameForText:line element:element node:textNode width:frameWidth
-              height:self.fontHeight];
+              height:_lineHeight ? _lineHeight : self.fontHeight];
       }
       
       if (_lineWidth) {
@@ -584,7 +584,7 @@
                                                       - lineStartIndex);
       NSString* line = !_lineWidth ? word : [text substringWithRange:lineRange];
       [self addFrameForText:line element:element node:textNode width:frameWidth
-            height:self.fontHeight];
+            height:_lineHeight ? _lineHeight : self.fontHeight];
       frameWidth = 0;
     }
   }

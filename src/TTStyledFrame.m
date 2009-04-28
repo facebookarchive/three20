@@ -254,7 +254,7 @@
   CGContextClip(ctx);
   
   UIImage* image = _imageNode.image ? _imageNode.image : _imageNode.defaultImage;
-  [image drawInRect:rect contentMode:UIViewContentModeScaleAspectFill];
+  [image drawInRect:rect contentMode:UIViewContentModeScaleAspectFit];
   CGContextRestoreGState(ctx);
 }
 
@@ -266,9 +266,15 @@
   CGContextSaveGState(ctx);
   [context.shape addToPath:context.frame];
   CGContextClip(ctx);
+  
+  UIViewContentMode contentMode = UIViewContentModeScaleAspectFit;
+  if ([style isMemberOfClass:[TTImageStyle class]]) {
+    TTImageStyle* imageStyle = (TTImageStyle*)style;
+    contentMode = imageStyle.contentMode;
+  }
 
   UIImage* image = _imageNode.image ? _imageNode.image : _imageNode.defaultImage;
-  [image drawInRect:context.contentFrame contentMode:UIViewContentModeScaleAspectFill];
+  [image drawInRect:context.contentFrame contentMode:contentMode];
 
   CGContextRestoreGState(ctx);
 }

@@ -1,5 +1,6 @@
 #import "Three20/TTStyle.h"
 #import "Three20/TTShape.h"
+#import "Three20/TTURLCache.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
@@ -582,26 +583,35 @@ static const NSInteger kDefaultLightSource = 125;
   return style;
 }
 
++ (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
+                 contentMode:(UIViewContentMode)contentMode next:(TTStyle*)next {
+  TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.imageURL = imageURL;
+  style.defaultImage = defaultImage;
+  style.contentMode = contentMode;
+  return style;
+}
+
 + (TTImageStyle*)styleWithImage:(UIImage*)image next:(TTStyle*)next {
   TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.image = image;
   return style;
 }
 
-+ (TTImageStyle*)styleWithImage:(UIImage*)image contentMode:(UIViewContentMode)contentMode
-                 next:(TTStyle*)next {
-  TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
-  style.image = image;
-  style.contentMode = contentMode;
-  return style;
-}
-
-
 + (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next {
   TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.image = image;
   style.defaultImage = defaultImage;
+  return style;
+}
+
++ (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
+                 contentMode:(UIViewContentMode)contentMode next:(TTStyle*)next {
+  TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.image = image;
+  style.defaultImage = defaultImage;
+  style.contentMode = contentMode;
   return style;
 }
 
@@ -629,8 +639,8 @@ static const NSInteger kDefaultLightSource = 125;
 // TTStyle
 
 - (void)draw:(TTStyleContext*)context {
-  if (_image) {
-    [_image drawInRect:context.frame contentMode:_contentMode];
+  if (self.image) {
+    [self.image drawInRect:context.frame contentMode:_contentMode];
   } else if (_defaultImage) {
     [_defaultImage drawInRect:context.frame contentMode:_contentMode];
   }
@@ -639,7 +649,7 @@ static const NSInteger kDefaultLightSource = 125;
 
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {  
   if (_contentMode == UIViewContentModeScaleToFill) {
-    UIImage* image = _image ? _image : _defaultImage;
+    UIImage* image = self.image ? self.image : _defaultImage;
     if (image) {
       size.width += image.size.width;
       size.height += image.size.height;
@@ -651,6 +661,16 @@ static const NSInteger kDefaultLightSource = 125;
   } else {
     return size;
   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (UIImage*)image {
+  if (!_image && _imageURL) {
+    _image = [[[TTURLCache sharedCache] imageForURL:_imageURL] retain];
+  }
+  return _image;
 }
 
 @end
