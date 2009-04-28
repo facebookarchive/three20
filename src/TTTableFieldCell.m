@@ -183,13 +183,14 @@ static CGFloat kDefaultIconSize = 50;
   field.styledText.font = TTSTYLEVAR(font);
   
   CGFloat padding = tableView.style == UITableViewStyleGrouped ? kGroupMargin*2 : 0;
+  padding += field.padding.left + field.padding.right;
   if (field.url) {
     padding += kDisclosureIndicatorWidth;
   }
   
   field.styledText.width = tableView.width - padding;
   
-  return field.styledText.height;
+  return field.styledText.height + field.padding.top + field.padding.bottom;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,7 +215,15 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  _label.frame = self.contentView.bounds;
+  TTStyledTextTableField* field = self.object;
+  _label.frame = CGRectOffset(self.contentView.bounds, field.margin.left, field.margin.top);
+}
+
+-(void)didMoveToSuperview {
+  [super didMoveToSuperview];
+  if (self.superview && [(UITableView*)self.superview style] == UITableViewStylePlain) {
+    _label.backgroundColor = self.superview.backgroundColor;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -226,6 +235,7 @@ static CGFloat kDefaultIconSize = 50;
     
     TTStyledTextTableField* field = object;
     _label.text = field.styledText;
+    _label.contentInset = field.padding;
   }  
 }
 

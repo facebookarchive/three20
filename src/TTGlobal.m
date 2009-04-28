@@ -104,11 +104,19 @@ NSString* TTLocalizedString(NSString* key, NSString* comment) {
 }
 
 BOOL TTIsBundleURL(NSString* url) {
-  return [url rangeOfString:@"bundle://" options:0 range:NSMakeRange(0,9)].location == 0;
+  if (url.length >= 9) {
+    return [url rangeOfString:@"bundle://" options:0 range:NSMakeRange(0,9)].location == 0;
+  } else {
+    return NO;
+  }
 }
 
 BOOL TTIsDocumentsURL(NSString* url) {
-  return [url rangeOfString:@"documents://" options:0 range:NSMakeRange(0,12)].location == 0;
+  if (url.length >= 12) {
+    return [url rangeOfString:@"documents://" options:0 range:NSMakeRange(0,12)].location == 0;
+  } else {
+    return NO;
+  }
 }
 
 NSString* TTPathForBundleResource(NSString* relativePath) {

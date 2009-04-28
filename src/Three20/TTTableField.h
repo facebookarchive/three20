@@ -18,6 +18,21 @@
 @interface TTTextTableField : TTTableField
 @end
 
+@interface TTStyledTextTableField : TTTableField {
+  TTStyledText* _styledText;
+  UIEdgeInsets _margin;
+  UIEdgeInsets _padding;
+}
+
+@property(nonatomic,retain) TTStyledText* styledText;
+@property(nonatomic) UIEdgeInsets margin;
+@property(nonatomic) UIEdgeInsets padding;
+
+- (id)initWithStyledText:(TTStyledText*)text;
+- (id)initWithStyledText:(TTStyledText*)text url:(NSString*)url;
+
+@end
+
 @interface TTGrayTextTableField : TTTextTableField
 @end
 
@@ -152,16 +167,5 @@
 @property(nonatomic) BOOL on;
 
 - (id)initWithText:(NSString*)text on:(BOOL)on;
-
-@end
-
-@interface TTStyledTextTableField : TTTableField {
-  TTStyledText* _styledText;
-}
-
-@property(nonatomic,retain) TTStyledText* styledText;
-
-- (id)initWithStyledText:(TTStyledText*)text;
-- (id)initWithStyledText:(TTStyledText*)text url:(NSString*)url;
 
 @end

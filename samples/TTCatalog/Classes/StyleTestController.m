@@ -36,7 +36,21 @@
       [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:10 bottomLeft:10] next:
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
     [TTSolidBorderStyle styleWithColor:black width:1 next:nil]]],
-        
+
+    // SpeechBubble
+    [TTShapeStyle styleWithShape:[TTSpeechBubbleShape shapeWithRadius:5 pointLocation:60
+                                                      pointAngle:90
+                                                      pointSize:CGSizeMake(20,10)] next:
+    [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
+    [TTSolidBorderStyle styleWithColor:black width:1 next:nil]]],
+
+    // SpeechBubble
+    [TTShapeStyle styleWithShape:[TTSpeechBubbleShape shapeWithRadius:5 pointLocation:290
+                                                      pointAngle:270
+                                                      pointSize:CGSizeMake(20,10)] next:
+    [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
+    [TTSolidBorderStyle styleWithColor:black width:1 next:nil]]],
+       
     // Drop shadow
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:10] next:
     [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.5) blur:5 offset:CGSizeMake(2, 2) next:
@@ -98,6 +112,7 @@
     [TTMaskStyle styleWithMask:TTIMAGE(@"bundle://mask.png") next:
     [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(0, 180, 231)
                                color2:RGBCOLOR(0, 0, 255) next:nil]],
+
     nil];
   
   CGFloat padding = 10;

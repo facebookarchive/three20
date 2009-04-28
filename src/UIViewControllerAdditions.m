@@ -46,17 +46,18 @@
 - (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate {
   if (message) {
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title message:message
-      delegate:delegate cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+      delegate:delegate cancelButtonTitle:TTLocalizedString(@"OK", @"") otherButtonTitles:nil]
+      autorelease];
     [alert show];
   }
 }
 
 - (void)alert:(NSString*)message {
-  [self alert:message title:@"Alert" delegate:nil];
+  [self alert:message title:TTLocalizedString(@"Alert", @"") delegate:nil];
 }
 
 - (void)alertError:(NSString*)message {
-  [self alert:message title:@"Error" delegate:nil];
+  [self alert:message title:TTLocalizedString(@"Error", @"") delegate:nil];
 }
 
 - (void)showBars:(BOOL)show animated:(BOOL)animated {
