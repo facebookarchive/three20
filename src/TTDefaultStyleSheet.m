@@ -218,6 +218,12 @@
     [TTSolidBorderStyle styleWithColor:shadow width:1 next:nil]]]]];
 }
 
+- (TTStyle*)tabGridTabImage:(UIControlState)state {
+  return
+    [TTImageStyle styleWithImageURL:nil defaultImage:nil contentMode:UIViewContentModeLeft
+                  size:CGSizeZero next:nil];
+}
+
 - (TTStyle*)tabGridTab:(UIControlState)state corner:(short)corner {
   TTShape* shape = nil;
   if (corner == 1) {
@@ -241,17 +247,19 @@
       [TTSolidFillStyle styleWithColor:RGBCOLOR(150, 168, 191) next:
       [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.6) blur:3 offset:CGSizeMake(0, 0) next:
       [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
+      [TTPartStyle styleWithName:@"image" style:[self tabGridTabImage:state] next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:11]  color:RGBCOLOR(255, 255, 255)
                    minimumFontSize:8 shadowColor:RGBACOLOR(0,0,0,0.1) shadowOffset:CGSizeMake(-1,-1)
-                   next:nil]]]]];
+                   next:nil]]]]]];
   } else {
     return
       [TTShapeStyle styleWithShape:shape next:
       [TTBevelBorderStyle styleWithHighlight:highlight shadow:shadow width:1 lightSource:125 next:
       [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
+      [TTPartStyle styleWithName:@"image" style:[self tabGridTabImage:state] next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:11]  color:self.linkTextColor
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:255 alpha:0.9]
-                   shadowOffset:CGSizeMake(0, -1) next:nil]]]];
+                   shadowOffset:CGSizeMake(0, -1) next:nil]]]]];
   }
 }
 

@@ -142,6 +142,20 @@ static const NSInteger kDefaultLightSource = 125;
   }
 }
 
+- (id)styleForPart:(NSString*)name {
+  TTStyle* style = self;
+  while (style) {
+    if ([style isKindOfClass:[TTPartStyle class]]) {
+      TTPartStyle* partStyle = (TTPartStyle*)style;
+      if ([partStyle.name isEqualToString:name]) {
+        return partStyle;
+      }
+    }
+    style = style.next;
+  }
+  return nil;
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -165,6 +179,38 @@ static const NSInteger kDefaultLightSource = 125;
   }
   
   [self.next draw:context];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTPartStyle
+
+@synthesize name = _name, style = _style;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (TTPartStyle*)styleWithName:(NSString*)name style:(TTStyle*)stylez next:(TTStyle*)next {
+  TTPartStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.name = name;
+  style.style = stylez;
+  return style;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyle
+
+- (void)draw:(TTStyleContext*)context {
+  [self.next draw:context];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)drawPart:(TTStyleContext*)context {
+  [_style draw:context];
 }
 
 @end
@@ -475,11 +521,14 @@ static const NSInteger kDefaultLightSource = 125;
 
   CGRect rect = context.contentFrame;
   CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
-  [text drawAtPoint:CGPointMake(titleRect.origin.x+rect.origin.x, titleRect.origin.y+rect.origin.y)
+  
+  titleRect.size = [text drawAtPoint:
+        CGPointMake(titleRect.origin.x+rect.origin.x, titleRect.origin.y+rect.origin.y)
         forWidth:rect.size.width withFont:font
         minFontSize:_minimumFontSize ? _minimumFontSize : font.pointSize
         actualFontSize:nil lineBreakMode:_lineBreakMode
         baselineAdjustment:UIBaselineAdjustmentAlignCenters];
+  context.contentFrame = titleRect;
 
   CGContextRestoreGState(ctx);
 }
@@ -564,7 +613,7 @@ static const NSInteger kDefaultLightSource = 125;
 @implementation TTImageStyle
 
 @synthesize imageURL = _imageURL, image = _image, defaultImage = _defaultImage,
-            contentMode = _contentMode;
+            contentMode = _contentMode, size = _size;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -584,11 +633,12 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
-                 contentMode:(UIViewContentMode)contentMode next:(TTStyle*)next {
+                 contentMode:(UIViewContentMode)contentMode size:(CGSize)size next:(TTStyle*)next {
   TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.imageURL = imageURL;
   style.defaultImage = defaultImage;
   style.contentMode = contentMode;
+  style.size = size;
   return style;
 }
 
@@ -607,12 +657,24 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 + (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
-                 contentMode:(UIViewContentMode)contentMode next:(TTStyle*)next {
+                 contentMode:(UIViewContentMode)contentMode size:(CGSize)size next:(TTStyle*)next {
   TTImageStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.image = image;
   style.defaultImage = defaultImage;
   style.contentMode = contentMode;
+  style.size = size;
   return style;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (UIImage*)imageForContext:(TTStyleContext*)context {
+  UIImage* image = self.image;
+  if (!image && [context.delegate respondsToSelector:@selector(imageForLayerWithStyle:)]) {
+    image = [context.delegate imageForLayerWithStyle:self];
+  }
+  return image;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -624,6 +686,7 @@ static const NSInteger kDefaultLightSource = 125;
     _image = nil;
     _defaultImage = nil;
     _contentMode = UIViewContentModeScaleToFill;
+    _size = CGSizeZero;
   }
   return self;
 }
@@ -639,17 +702,19 @@ static const NSInteger kDefaultLightSource = 125;
 // TTStyle
 
 - (void)draw:(TTStyleContext*)context {
-  if (self.image) {
-    [self.image drawInRect:context.frame contentMode:_contentMode];
-  } else if (_defaultImage) {
-    [_defaultImage drawInRect:context.frame contentMode:_contentMode];
+  UIImage* image = [self imageForContext:context];
+  if (image) {
+    [image drawInRect:context.contentFrame contentMode:_contentMode];
   }
   return [self.next draw:context];
 }
 
-- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {  
-  if (_contentMode == UIViewContentModeScaleToFill) {
-    UIImage* image = self.image ? self.image : _defaultImage;
+- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
+  if (_size.width || _size.height) {
+    size.width += _size.width;
+    size.height += _size.height;
+  } else if (_contentMode == UIViewContentModeScaleToFill) {
+    UIImage* image = [self imageForContext:context];
     if (image) {
       size.width += image.size.width;
       size.height += image.size.height;

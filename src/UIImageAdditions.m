@@ -74,24 +74,29 @@
 }
 
 - (void)drawInRect:(CGRect)rect contentMode:(UIViewContentMode)contentMode {
+  BOOL clip = NO;
+  CGRect originalRect = rect;
   if (self.size.width != rect.size.width || self.size.height != rect.size.height) {
-    // XXXjoe Support all of the different content modes
     if (contentMode == UIViewContentModeLeft) {
       rect = CGRectMake(rect.origin.x,
                         rect.origin.y + floor(rect.size.height/2 - self.size.height/2),
                         self.size.width, self.size.height);
+      clip = YES;
     } else if (contentMode == UIViewContentModeRight) {
       rect = CGRectMake(rect.origin.x + (rect.size.width - self.size.width),
                         rect.origin.y + floor(rect.size.height/2 - self.size.height/2),
                         self.size.width, self.size.height);
+      clip = YES;
     } else if (contentMode == UIViewContentModeTop) {
       rect = CGRectMake(rect.origin.x + floor(rect.size.width/2 - self.size.width/2),
                         rect.origin.y,
                         self.size.width, self.size.height);
+      clip = YES;
     } else if (contentMode == UIViewContentModeBottom) {
       rect = CGRectMake(rect.origin.x + floor(rect.size.width/2 - self.size.width/2),
                         rect.origin.y + floor(rect.size.height - self.size.height),
                         self.size.width, self.size.height);
+      clip = YES;
     } else if (contentMode == UIViewContentModeCenter) {
       rect = CGRectMake(rect.origin.x + floor(rect.size.width/2 - self.size.width/2),
                         rect.origin.y + floor(rect.size.height/2 - self.size.height/2),
@@ -100,25 +105,29 @@
       rect = CGRectMake(rect.origin.x,
                         rect.origin.y + floor(rect.size.height - self.size.height),
                         self.size.width, self.size.height);
+      clip = YES;
     } else if (contentMode == UIViewContentModeBottomRight) {
       rect = CGRectMake(rect.origin.x + (rect.size.width - self.size.width),
                         rect.origin.y + (rect.size.height - self.size.height),
                         self.size.width, self.size.height);
+      clip = YES;
     } else if (contentMode == UIViewContentModeTopLeft) {
       rect = CGRectMake(rect.origin.x,
                         rect.origin.y,
                         self.size.width, self.size.height);
+      clip = YES;
     } else if (contentMode == UIViewContentModeTopRight) {
       rect = CGRectMake(rect.origin.x + (rect.size.width - self.size.width),
                         rect.origin.y,
                         self.size.width, self.size.height);
+      clip = YES;
     } else if (contentMode == UIViewContentModeScaleAspectFill) {
       CGSize imageSize = self.size;
       if (imageSize.height < imageSize.width) {
-        imageSize.width = (imageSize.width/imageSize.height) * rect.size.height;
+        imageSize.width = floor((imageSize.width/imageSize.height) * rect.size.height);
         imageSize.height = rect.size.height;
       } else {
-        imageSize.height = (imageSize.height/imageSize.width) * rect.size.width;
+        imageSize.height = floor((imageSize.height/imageSize.width) * rect.size.width);
         imageSize.width = rect.size.width;
       }
       rect = CGRectMake(rect.origin.x + floor(rect.size.width/2 - imageSize.width/2),
@@ -127,10 +136,10 @@
     } else if (contentMode == UIViewContentModeScaleAspectFit) {
       CGSize imageSize = self.size;
       if (imageSize.height < imageSize.width) {
-        imageSize.height = (imageSize.height/imageSize.width) * rect.size.width;
+        imageSize.height = floor((imageSize.height/imageSize.width) * rect.size.width);
         imageSize.width = rect.size.width;
       } else {
-        imageSize.width = (imageSize.width/imageSize.height) * rect.size.height;
+        imageSize.width = floor((imageSize.width/imageSize.height) * rect.size.height);
         imageSize.height = rect.size.height;
       }
       rect = CGRectMake(rect.origin.x + floor(rect.size.width/2 - imageSize.width/2),
@@ -138,8 +147,19 @@
                         imageSize.width, imageSize.height);
     }
   }
+  
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  if (clip) {
+    CGContextSaveGState(context);
+    CGContextAddRect(context, originalRect);
+    CGContextClip(context);
+  }
 
   [self drawInRect:rect];
+
+  if (clip) {
+    CGContextRestoreGState(context);
+  }
 }
 
 - (void)drawInRect:(CGRect)rect radius:(CGFloat)radius {

@@ -9,6 +9,19 @@
 @synthesize nextSibling = _nextSibling, parentNode = _parentNode;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (TTStyledNode*)findLastSibling:(TTStyledNode*)sibling {
+  while (sibling) {
+    if (!sibling.nextSibling) {
+      return sibling;
+    }
+    sibling = sibling.nextSibling;
+  }
+  return nil;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)initWithNextSibling:(TTStyledNode*)nextSibling {
@@ -208,12 +221,12 @@
 - (void)addChild:(TTStyledNode*)child {
   if (!_firstChild) {
     _firstChild = [child retain];
-    _lastChild = child;
-    child.parentNode = self;
+    _lastChild = [self findLastSibling:child];
   } else {
     _lastChild.nextSibling = child;
-    _lastChild = child;
+    _lastChild = [self findLastSibling:child];
   }
+  child.parentNode = self;
 }
 
 - (void)addText:(NSString*)text {

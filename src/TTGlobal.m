@@ -17,10 +17,11 @@ NSMutableArray* TTCreateNonRetainingArray() {
 }
 
 NSMutableDictionary* TTCreateNonRetainingDictionary() {
+  CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
   CFDictionaryValueCallBacks callbacks = kCFTypeDictionaryValueCallBacks;
   callbacks.retain = TTRetainNoOp;
   callbacks.release = TTReleaseNoOp;
-  return (NSMutableDictionary*)CFDictionaryCreateMutable(nil, 0, nil, &callbacks);
+  return (NSMutableDictionary*)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
 }
 
 BOOL TTIsEmptyArray(NSObject* object) {

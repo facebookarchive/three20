@@ -251,16 +251,39 @@ static const CGFloat kVPadding = 7;
 - (void)drawRect:(CGRect)rect {
   TTStyle* style = [self styleForCurrentState];
   if (style) {
-    UIImage* image = [self imageForCurrentState];
-    [image drawInRect:rect radius:0 contentMode:UIViewContentModeScaleAspectFill];
+    CGRect textFrame = self.bounds;
 
     TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
     context.delegate = self;
+    
+    TTPartStyle* imageStyle = [style styleForPart:@"image"];
+    TTBoxStyle* imageBoxStyle = nil;
+    CGSize imageSize = CGSizeZero;
+    if (imageStyle) {
+      imageBoxStyle = [imageStyle.style firstStyleOfClass:[TTBoxStyle class]];
+      imageSize = [imageStyle.style addToSize:CGSizeZero context:context];
+      textFrame.origin.x += imageSize.width;
+      textFrame.size.width -= imageSize.width;
+    }
+    
+    context.delegate = self;
     context.frame = self.bounds;
-    context.contentFrame = context.frame;
+    context.contentFrame = textFrame;
     context.font = [self fontForCurrentState];
 
     [style draw:context];
+
+    if (imageStyle) {
+      CGRect frame = context.contentFrame;
+      frame.size = imageSize;
+      frame.origin.x += imageBoxStyle.margin.left;
+      frame.origin.y += imageBoxStyle.margin.top;
+      
+      context.frame = frame;
+      context.contentFrame = context.frame;
+      
+      [imageStyle drawPart:context];
+    }
   }
 }
 
@@ -300,6 +323,10 @@ static const CGFloat kVPadding = 7;
 
 - (NSString*)textForLayerWithStyle:(TTStyle*)style {
   return [self titleForCurrentState];
+}
+
+- (UIImage*)imageForLayerWithStyle:(TTStyle*)style {
+  return [self imageForCurrentState];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

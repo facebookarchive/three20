@@ -39,6 +39,7 @@
 - (void)addStyle:(TTStyle*)style;
 
 - (id)firstStyleOfClass:(Class)cls;
+- (id)styleForPart:(NSString*)name;
 
 @end
 
@@ -47,6 +48,22 @@
 @interface TTContentStyle : TTStyle
 
 + (TTContentStyle*)styleWithNext:(TTStyle*)next;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTPartStyle : TTStyle {
+  NSString* _name;
+  TTStyle* _style;
+}
+
+@property(nonatomic,copy) NSString* name;
+@property(nonatomic,retain) TTStyle* style;
+
++ (TTPartStyle*)styleWithName:(NSString*)name style:(TTStyle*)style next:(TTStyle*)next;
+
+- (void)drawPart:(TTStyleContext*)context;
 
 @end
 
@@ -145,23 +162,27 @@
   UIImage* _image;
   UIImage* _defaultImage;
   UIViewContentMode _contentMode;
+  CGSize _size;
 }
 
 @property(nonatomic,copy) NSString* imageURL;
 @property(nonatomic,retain) UIImage* image;
 @property(nonatomic,retain) UIImage* defaultImage;
+@property(nonatomic) CGSize size;
 @property(nonatomic) UIViewContentMode contentMode;
 
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
-                 contentMode:(UIViewContentMode)contentMode next:(TTStyle*)next;
+                 contentMode:(UIViewContentMode)contentMode
+                 size:(CGSize)size next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImage:(UIImage*)image next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
                  next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImage:(UIImage*)image defaultImage:(UIImage*)defaultImage
-                 contentMode:(UIViewContentMode)contentMode next:(TTStyle*)next;
+                 contentMode:(UIViewContentMode)contentMode
+                 size:(CGSize)size next:(TTStyle*)next;
 
 @end
 
