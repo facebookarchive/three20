@@ -123,6 +123,11 @@ typedef enum {
 NSMutableArray* TTCreateNonRetainingArray();
 
 /**
+ * Creates a mutable dictionary which does not retain references to the values it contains.
+ */
+NSMutableDictionary* TTCreateNonRetainingDictionary();
+
+/**
  * Tests if an object is an array which is empty.
  */
 BOOL TTIsEmptyArray(NSObject* object);

@@ -121,20 +121,20 @@ static const CGFloat kCancelHighlightThreshold = 4;
                                        forState:UIControlStateHighlighted];
         [self setStyle:style forFrame:frame];
         
-        tableView.highlightedLabel = self;
         [_highlightedFrame release];
         _highlightedFrame = [frame retain];
         [_highlightedNode release];
         _highlightedNode = [frame.element retain];
+        tableView.highlightedLabel = self;
       } else {
         TTStyle* style = [TTSTYLESHEET styleWithSelector:className forState:UIControlStateNormal];
         [self setStyle:style forFrame:_highlightedFrame];
 
-        tableView.highlightedLabel = nil;
         [_highlightedFrame release];
         _highlightedFrame = nil;
         [_highlightedNode release];
         _highlightedNode = nil;
+        tableView.highlightedLabel = nil;
       }
 
       [self setNeedsDisplay];
@@ -219,10 +219,11 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)setHighlightedNode:(TTStyledElement*)node {
   if (node != _highlightedNode) {
-    [_highlightedNode release];
-    _highlightedNode = [node retain];
     if (!node) {
       [self setHighlightedFrame:nil];
+    } else {
+      [_highlightedNode release];
+      _highlightedNode = [node retain];
     }
   }  
 }

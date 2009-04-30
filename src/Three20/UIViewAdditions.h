@@ -13,9 +13,9 @@
 
 @property(nonatomic,readonly) CGFloat screenX;
 @property(nonatomic,readonly) CGFloat screenY;
-
 @property(nonatomic,readonly) CGFloat screenViewX;
 @property(nonatomic,readonly) CGFloat screenViewY;
+@property(nonatomic,readonly) CGRect screenFrame;
 
 @property(nonatomic,readonly) CGFloat orientationWidth;
 @property(nonatomic,readonly) CGFloat orientationHeight;

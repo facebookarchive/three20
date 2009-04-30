@@ -407,6 +407,10 @@
   return nil;
 }
 
+- (UIColor*)tableSeparatorColor {
+  return [UIColor colorWithWhite:0.9 alpha:1];
+}
+
 - (UIColor*)searchTableBackgroundColor {
   return RGBCOLOR(235, 235, 235);
 }
@@ -459,7 +463,7 @@
 }
 
 - (UIFont*)tableButtonFont {
-  return [UIFont boldSystemFontOfSize:16];
+  return [UIFont boldSystemFontOfSize:13];
 }
 
 - (UIFont*)tableSummaryFont {

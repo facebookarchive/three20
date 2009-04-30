@@ -24,6 +24,7 @@
 @property(nonatomic,readonly) UIColor* tableHeaderTextColor;
 @property(nonatomic,readonly) UIColor* tableHeaderShadowColor;
 @property(nonatomic,readonly) UIColor* tableHeaderTintColor;
+@property(nonatomic,readonly) UIColor* tableSeparatorColor;
 @property(nonatomic,readonly) UIColor* searchTableBackgroundColor;
 @property(nonatomic,readonly) UIColor* searchTableSeparatorColor;
 

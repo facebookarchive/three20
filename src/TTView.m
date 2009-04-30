@@ -63,6 +63,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
+- (void)setStyle:(TTStyle*)style {
+  if (style != _style) {
+    [_style release];
+    _style = [style retain];
+    
+    [self setNeedsDisplay];
+  }  
+}
+
 - (void)drawContent:(CGRect)rect {
 }
 
