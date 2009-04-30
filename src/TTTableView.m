@@ -31,7 +31,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
   if (self = [super initWithFrame:frame style:style]) {
     _highlightedLabel = nil;
     _highlightStartPoint = CGPointZero;
-    _highlightTimer = nil;
     _menuView = nil;
     _menuCell = nil;
     
@@ -42,17 +41,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)dealloc {
   [_highlightedLabel release];
-  [_highlightTimer invalidate];
   [_menuView release];
   [_menuCell release];
   [super dealloc];
-}
-
-- (void)delayedTouchesEnded {
-  _highlightTimer = nil;
-
-  TTStyledElement* element = _highlightedLabel.highlightedNode;
-  [element performDefaultAction];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,9 +52,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
 
-  [_highlightTimer invalidate];
-  _highlightTimer = nil;
-  
   if (_highlightedLabel) {
     UITouch* touch = [touches anyObject];
     _highlightStartPoint = [touch locationInView:self];
@@ -105,12 +93,12 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-  if (_highlightedLabel) {
-    _highlightTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self
-             selector:@selector(delayedTouchesEnded) userInfo:nil repeats:NO];
-  } else {
-    [super touchesEnded:touches withEvent:event];
+  [super touchesEnded:touches withEvent:event];
 
+  if (_highlightedLabel) {
+    TTStyledElement* element = _highlightedLabel.highlightedNode;
+    [element performDefaultAction];
+  } else {
     if ([self.delegate isKindOfClass:[TTTableViewDelegate class]]) {
       TTTableViewDelegate* delegate = (TTTableViewDelegate*)self.delegate;
       [delegate.controller touchesEnded:touches withEvent:event];

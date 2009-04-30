@@ -13,7 +13,6 @@
 @interface TTTableView : UITableView {
   TTStyledTextLabel* _highlightedLabel;
   CGPoint _highlightStartPoint;
-  NSTimer* _highlightTimer;
   UIView* _menuView;
   UITableViewCell* _menuCell;
 }

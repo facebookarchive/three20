@@ -33,11 +33,15 @@
 - (TTStyle*)thumbView:(UIControlState)state {
   if (state & UIControlStateHighlighted) {
     return
-      [TTSolidFillStyle styleWithColor:RGBCOLOR(200,200,200) next:
-      [TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.4) width:1 next:nil]];
+      [TTImageStyle styleWithImageURL:nil defaultImage:nil
+                    contentMode:UIViewContentModeScaleAspectFill size:CGSizeZero next:
+      [TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.4) width:1 next:
+      [TTSolidFillStyle styleWithColor:RGBACOLOR(0,0,0,0.5) next:nil]]];
   } else {
     return
-      [TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.4) width:1 next:nil];
+      [TTImageStyle styleWithImageURL:nil defaultImage:nil
+                    contentMode:UIViewContentModeScaleAspectFill size:CGSizeZero next:
+      [TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.4) width:1 next:nil]];
   }
 }
 

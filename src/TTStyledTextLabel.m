@@ -157,12 +157,17 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-  if (_highlightedNode) {
-    [_highlightedNode performDefaultAction];    
-    [self setHighlightedFrame:nil];
+  TTTableView* tableView = (TTTableView*)[self firstParentOfClass:[TTTableView class]];
+  if (!tableView) {
+    if (_highlightedNode) {
+      [_highlightedNode performDefaultAction];    
+      [self setHighlightedFrame:nil];
+    }
+    
+    // We definitely don't want to call this if the label is inside a TTTableView, because
+    // it winds up calling touchesEnded on the table twice, triggering the link twice
+    [super touchesEnded:touches withEvent:event];
   }
-
-  [super touchesEnded:touches withEvent:event];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
