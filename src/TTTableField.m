@@ -260,7 +260,7 @@
 
 @implementation TTTextFieldTableField
 
-@synthesize delegate = _delegate, text = _text, title = _title, placeholder = _placeholder,
+@synthesize delegate = _delegate, title = _title, placeholder = _placeholder,
   returnKeyType = _returnKeyType, keyboardType = _keyboardType,
   autocorrectionType = _autocorrectionType, autocapitalizationType = _autocapitalizationType,
   clearButtonMode = _clearButtonMode, secureTextEntry = _secureTextEntry;
@@ -269,7 +269,6 @@
   if (self = [super init]) {
     _delegate = nil;
     _title = nil;
-    _text = nil;
     _placeholder = nil;
     _returnKeyType = UIReturnKeyDefault;
     _keyboardType = UIKeyboardTypeDefault;
@@ -297,7 +296,6 @@
 
 - (void)dealloc {
   [_title release];
-  [_text release];
   [_placeholder release];
   [super dealloc];
 }
