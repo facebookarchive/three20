@@ -15,7 +15,7 @@
     return
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-3, -4, -3, -4) next:
       [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:
-      [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0.8 alpha:1] next:
+      [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0.75 alpha:1] next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(3, 4, 3, 4) next:
       [TTTextStyle styleWithColor:self.linkTextColor next:nil]]]]];
   } else {
@@ -506,7 +506,7 @@
 // private
 
 - (UIColor*)toolbarButtonColorWithTintColor:(UIColor*)color forState:(UIControlState)state {
-  if (state & UIControlStateHighlighted) {
+  if (state & UIControlStateHighlighted || state & UIControlStateSelected) {
     if (color.value < 0.2) {
       return [color addHue:0 saturation:0 value:0.2];
     } else if (color.saturation > 0.3) {
@@ -543,7 +543,7 @@
 
   return 
     [TTShapeStyle styleWithShape:shape next:
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 0, 1, 0) next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 1, 0) next:
     [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.25) blur:0 offset:CGSizeMake(0, 1) next:
     [TTReflectiveFillStyle styleWithColor:stateTintColor next:
     [TTBevelBorderStyle styleWithHighlight:[stateTintColor multiplyHue:1 saturation:0.9 value:0.7]
@@ -553,9 +553,11 @@
     [TTBevelBorderStyle styleWithHighlight:nil shadow:RGBACOLOR(0,0,0,0.15)
                         width:1 lightSource:270 next:
     [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(8, 8, 8, 8) next:
+    [TTImageStyle styleWithImageURL:nil defaultImage:nil
+                  contentMode:UIViewContentModeScaleToFill size:CGSizeZero next:
     [TTTextStyle styleWithFont:font
                  color:stateTextColor shadowColor:[UIColor colorWithWhite:0 alpha:0.4]
-                 shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];
+                 shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]]];
 }
 
 - (TTStyle*)selectionFillStyle:(TTStyle*)next {

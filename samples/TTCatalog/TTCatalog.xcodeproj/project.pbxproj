@@ -30,6 +30,7 @@
 		BE80E3A70EAF108500743358 /* ImageTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3A60EAF108500743358 /* ImageTest1Controller.m */; };
 		BE80E3B60EAF116700743358 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE80E3B50EAF116700743358 /* Icon.png */; };
 		BE8C0F7D0F2018C600EB0E98 /* YouTubeTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */; };
+		BEA6A0380FAC41AB00DA7DDC /* WebTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA6A0370FAC41AB00DA7DDC /* WebTestController.m */; };
 		BEC5EC680F8C307E007622CD /* ButtonTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC5EC670F8C307E007622CD /* ButtonTestController.m */; };
 		BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BECB1CC10F46AE9600AE5B52 /* person.jpg */; };
 		BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */; };
@@ -99,6 +100,8 @@
 		BE80E3B50EAF116700743358 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BE8C0F7B0F2018C600EB0E98 /* YouTubeTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeTestController.h; sourceTree = "<group>"; };
 		BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeTestController.m; sourceTree = "<group>"; };
+		BEA6A0360FAC41AB00DA7DDC /* WebTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebTestController.h; sourceTree = "<group>"; };
+		BEA6A0370FAC41AB00DA7DDC /* WebTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebTestController.m; sourceTree = "<group>"; };
 		BEC5EC660F8C307E007622CD /* ButtonTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTestController.h; sourceTree = "<group>"; };
 		BEC5EC670F8C307E007622CD /* ButtonTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTestController.m; sourceTree = "<group>"; };
 		BECB1CC10F46AE9600AE5B52 /* person.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = person.jpg; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				BE80E3A60EAF108500743358 /* ImageTest1Controller.m */,
 				BEF6EC350F280CB300CF4096 /* ScrollViewTestController.h */,
 				BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */,
+				BEA6A0360FAC41AB00DA7DDC /* WebTestController.h */,
+				BEA6A0370FAC41AB00DA7DDC /* WebTestController.m */,
 				BE80E2480EAEFF6100743358 /* MockPhotoSource.h */,
 				BE80E2490EAEFF6100743358 /* MockPhotoSource.m */,
 				BEE348AA0F490F43008C826E /* MockDataSource.h */,
@@ -357,6 +362,7 @@
 				BEF199230F818E720010D36E /* StyledTextTestController.m in Sources */,
 				BE1288310F8973CD00F65EA2 /* StyleTestController.m in Sources */,
 				BEC5EC680F8C307E007622CD /* ButtonTestController.m in Sources */,
+				BEA6A0380FAC41AB00DA7DDC /* WebTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

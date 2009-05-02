@@ -123,11 +123,11 @@ static TTURLCache* gSharedCache = nil;
     _maxPixelCount = (TT_SMALL_IMAGE_SIZE*20) + (TT_MEDIUM_IMAGE_SIZE*12);
     _totalPixelCount = 0;
     
-    // Disable the built-in cache to save memory
-    NSURLCache* sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0
-      diskPath:nil];
-    [NSURLCache setSharedURLCache:sharedCache];
-    [sharedCache release];
+    // XXXjoe Disabling the built-in cache may save memory but it also makes UIWebView slow
+    // NSURLCache* sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0
+    // diskPath:nil];
+    // [NSURLCache setSharedURLCache:sharedCache];
+    // [sharedCache release];
   }
   return self;
 }

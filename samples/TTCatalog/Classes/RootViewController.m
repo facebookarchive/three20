@@ -15,6 +15,7 @@
 #import "StyleTestController.h"
 #import "ButtonTestController.h"
 #import "TabBarTestController.h"
+#import "WebTestController.h"
 #import "Three20/developer.h"
 
 @implementation RootViewController
@@ -55,6 +56,7 @@
   [nav addView:@"youTubeTest" controller:[YouTubeTestController class]];
   [nav addView:@"imageTest2" controller:[TableImageTestController class]];
   [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
+  [nav addView:@"webTest" controller:[WebTestController class]];
 
 #ifdef JOE
   [self validateView];
@@ -102,11 +104,13 @@
     [[[TTTableField alloc] initWithText:@"Web Images in Table"
       url:@"tt://imageTest2"] autorelease],
 
-    @"Views",
+    @"General",
     [[[TTTableField alloc] initWithText:@"Web Image"
       url:@"tt://imageTest1"] autorelease],
     [[[TTTableField alloc] initWithText:@"YouTube Player"
       url:@"tt://youTubeTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Web Browser"
+      url:@"tt://webTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Activity Labels"
       url:@"tt://activityTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Scroll View"
