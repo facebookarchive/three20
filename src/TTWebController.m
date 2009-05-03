@@ -6,7 +6,7 @@
 
 @implementation TTWebController
 
-@synthesize delegate = _delegate;
+@synthesize delegate = _delegate, headerView = _headerView;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -42,6 +42,9 @@
     _delegate = nil;
     _webView = nil;
     _toolbar = nil;
+    _headerView = nil;
+    _backButton = nil;
+    _forwardButton = nil;
     _stopButton = nil;
     _refreshButton = nil;
   }
@@ -49,6 +52,7 @@
 }
 
 - (void)dealloc {
+  [_headerView release];
   [super dealloc];
 }
 
@@ -163,6 +167,31 @@
 
 - (NSURL*)url {
   return _webView.request.URL;
+}
+
+- (void)setHeaderView:(UIView*)headerView {
+  if (headerView != _headerView) {
+    BOOL addingHeader = !_headerView && headerView;
+    BOOL removingHeader = _headerView && !headerView;
+
+    [_headerView removeFromSuperview];
+    [_headerView release];
+    _headerView = [headerView retain];
+    _headerView.frame = CGRectMake(0, 0, _webView.width, _headerView.height);
+
+    self.view;
+    UIView* scroller = [_webView firstViewOfClass:NSClassFromString(@"UIScroller")];
+    UIView* docView = [scroller firstViewOfClass:NSClassFromString(@"UIWebDocumentView")];
+    [scroller addSubview:_headerView];
+
+    if (addingHeader) {
+      docView.top += headerView.height;
+      docView.height -= headerView.height; 
+    } else if (removingHeader) {
+      docView.top -= headerView.height;
+      docView.height += headerView.height; 
+    }
+  }
 }
 
 - (void)openURL:(NSURL*)url {
