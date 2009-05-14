@@ -66,9 +66,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)drawRect:(CGRect)rect {
   if (_highlighted) {
-    [_highlightedTextColor setFill];
+    [self.highlightedTextColor setFill];
   } else {
-    [_textColor setFill];
+    [self.textColor setFill];
   }
   
   CGPoint origin = CGPointMake(rect.origin.x + _contentInset.left,

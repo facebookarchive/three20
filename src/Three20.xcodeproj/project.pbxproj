@@ -41,6 +41,8 @@
 		BE8AA1930F428A4900FD8C43 /* UIViewControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8AA1920F428A4900FD8C43 /* UIViewControllerAdditions.h */; };
 		BEA69ECB0FAC0FD600DA7DDC /* TTWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA69ECA0FAC0FD600DA7DDC /* TTWebController.m */; };
 		BEA69ECD0FAC0FEC00DA7DDC /* TTWebController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEA69ECC0FAC0FEC00DA7DDC /* TTWebController.h */; };
+		BEA7624E0FBA1E220091B567 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */; };
+		BEA762500FBA1E290091B567 /* NSDateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */; };
 		BEAF21220F4D329600D75F3B /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */; };
 		BEAF21230F4D329600D75F3B /* UIColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */; };
 		BEAF21240F4D329600D75F3B /* UIImageAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF211D0F4D329600D75F3B /* UIImageAdditions.m */; };
@@ -175,6 +177,8 @@
 		BE8AA1920F428A4900FD8C43 /* UIViewControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewControllerAdditions.h; path = Three20/UIViewControllerAdditions.h; sourceTree = "<group>"; };
 		BEA69ECA0FAC0FD600DA7DDC /* TTWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTWebController.m; sourceTree = "<group>"; };
 		BEA69ECC0FAC0FEC00DA7DDC /* TTWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTWebController.h; path = Three20/TTWebController.h; sourceTree = "<group>"; };
+		BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
+		BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDateAdditions.h; path = Three20/NSDateAdditions.h; sourceTree = "<group>"; };
 		BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectAdditions.m; sourceTree = "<group>"; };
 		BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorAdditions.m; sourceTree = "<group>"; };
 		BEAF211D0F4D329600D75F3B /* UIImageAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageAdditions.m; sourceTree = "<group>"; };
@@ -366,6 +370,8 @@
 				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
 				BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */,
 				BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */,
+				BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */,
+				BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */,
 				BED623910F50F34B003EF242 /* NSArrayAdditions.h */,
 				BED623930F50F350003EF242 /* NSArrayAdditions.m */,
 				BEAF21360F4D32E100D75F3B /* UIColorAdditions.h */,
@@ -619,6 +625,7 @@
 				BE1942770F9ACE85005F4EFC /* TTStyledLayout.h in Headers */,
 				BEB210D40FA3E784007DEE5F /* NSStringAdditions.h in Headers */,
 				BEA69ECD0FAC0FEC00DA7DDC /* TTWebController.h in Headers */,
+				BEA762500FBA1E290091B567 /* NSDateAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,6 +732,7 @@
 				BE1942880F9ACEA7005F4EFC /* TTStyledLayout.m in Sources */,
 				BEB210D20FA3E77E007DEE5F /* NSStringAdditions.m in Sources */,
 				BEA69ECB0FAC0FD600DA7DDC /* TTWebController.m in Sources */,
+				BEA7624E0FBA1E220091B567 /* NSDateAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

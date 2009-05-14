@@ -236,6 +236,7 @@ static const CGFloat kDesiredTableHeight = 150;
   if ((![_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]
       || [_dataSource numberOfSectionsInTableView:_tableView])
       && [_dataSource tableView:_tableView numberOfRowsInSection:0]) {
+    [self layoutIfNeeded];
     [self showSearchResults:YES];
     [self.tableView reloadData];
   } else {
@@ -452,7 +453,7 @@ static const CGFloat kDesiredTableHeight = 150;
     y += view.top;
     view = view.superview;
   }  
-
+  
   CGFloat height = self.height;
   CGFloat keyboardHeight = withKeyboard ? KEYBOARD_HEIGHT : 0;
   CGFloat tableHeight = self.window.height - (self.screenY + height + keyboardHeight);

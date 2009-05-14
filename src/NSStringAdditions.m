@@ -15,29 +15,6 @@
   return YES;
 }
 
-- (BOOL)beginsWithString:(NSString*)substring {
-  if (self.length < substring.length) {
-    return NO;
-  } else {
-    NSRange searchRange = NSMakeRange(0, substring.length);
-    NSRange range = [self rangeOfString:substring options:0 range:searchRange];
-    return range.location == searchRange.location;
-  }
-}
-
-- (BOOL)endsWithString:(NSString*)substring {
-  if (self.length < substring.length) {
-    return NO;
-  } else {
-    NSRange searchRange = NSMakeRange(self.length - substring.length, substring.length);
-    NSRange range = [self rangeOfString:substring options:0 range:searchRange];
-    return range.location == searchRange.location;
-  }
-
-  NSRange range = [self rangeOfString:substring];
-  return range.location == self.length - substring.length;
-}
-
 // Copied and pasted from http://www.mail-archive.com/cocoa-dev@lists.apple.com/msg28175.html
 - (NSDictionary*)queryDictionaryUsingEncoding: (NSStringEncoding)encoding {
   NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];

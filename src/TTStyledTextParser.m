@@ -186,6 +186,7 @@
     entityTable = [[NSDictionary alloc] initWithObjectsAndKeys:
       [NSData dataWithBytes:" " length:1], @"nbsp",
       [NSData dataWithBytes:"&" length:1], @"amp",
+      [NSData dataWithBytes:"\"" length:1], @"quot",
       [NSData dataWithBytes:"<" length:1], @"lt",
       [NSData dataWithBytes:">" length:1], @"gt",
       nil];
