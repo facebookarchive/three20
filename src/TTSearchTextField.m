@@ -420,6 +420,8 @@ static const CGFloat kDesiredTableHeight = 150;
         [superview addSubview:_shadowView];
       }
     }
+    
+    [_tableView deselectRowAtIndexPath:_tableView.indexPathForSelectedRow animated:NO];
   } else {
     UIView* parent = self.superview;
     if (parent) {

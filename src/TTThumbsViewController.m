@@ -29,13 +29,15 @@ static CGFloat kThumbnailRowHeight = 79;
 - (id)initWithController:(TTThumbsViewController*)controller {
   if (self = [super init]) {
     _controller = controller;
-    [_controller.photoSource.delegates addObject:self];
+    _photoSource = [_controller.photoSource retain];
+    [_photoSource.delegates addObject:self];
   }
   return self;
 }
 
 - (void)dealloc {
-  [_controller.photoSource.delegates removeObject:self];
+  [_photoSource.delegates removeObject:self];
+  [_photoSource release];
   [super dealloc];
 }
 

@@ -22,6 +22,7 @@
 @interface TTThumbsDataSource : TTDataSource
           <TTPhotoSourceDelegate, TTThumbsTableViewCellDelegate> {
   TTThumbsViewController* _controller;
+  id<TTPhotoSource> _photoSource;
 }
 
 - (id)initWithController:(TTThumbsViewController*)controller;

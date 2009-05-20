@@ -151,7 +151,6 @@ static CGFloat kDefaultThumbSize = 75;
     
     _thumbView1.thumbURL = [_photo urlForVersion:TTPhotoVersionThumbnail];
     [self assignPhotoAtIndex:_photo.index+1 toView:_thumbView2];
-    [self assignPhotoAtIndex:_photo.index+1 toView:_thumbView2];
     [self assignPhotoAtIndex:_photo.index+2 toView:_thumbView3];
     [self assignPhotoAtIndex:_photo.index+3 toView:_thumbView4];
   }  
