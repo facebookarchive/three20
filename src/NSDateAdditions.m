@@ -5,12 +5,13 @@
 @implementation NSDate (TTCategory)
 
 + (id)dateWithToday {
-  NSString* format = @"%Y-%m-%d";
-  NSDateFormatter* formatter = [[[NSDateFormatter alloc] initWithDateFormat:format
-                                                         allowNaturalLanguage:NO] autorelease];
+  NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+  formatter.dateFormat = @"yyyy-d-M";
   
   NSString* time = [formatter stringFromDate:[NSDate date]];
-  return [formatter dateFromString:time];
+//  NSString* time = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-(60*60*24*7)]];
+  NSDate* date = [formatter dateFromString:time];
+  return date;
 }
 
 @end
