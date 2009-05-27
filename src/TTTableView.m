@@ -152,7 +152,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
   // Move each content subview down, revealing the menu
   for (UIView* view in _menuCell.contentView.subviews) {
     if (view != _menuView) {
-      view.top += _menuCell.contentView.height;
+      view.left -= _menuCell.contentView.width;
     }
   }
   
@@ -172,7 +172,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
     for (UIView* view in _menuCell.contentView.subviews) {
       if (view != _menuView) {
-        view.top -= _menuCell.contentView.height;
+        view.left += _menuCell.contentView.width;
       }
     }
 
