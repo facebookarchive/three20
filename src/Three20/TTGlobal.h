@@ -187,6 +187,11 @@ void TTNetworkRequestStarted();
 void TTNetworkRequestStopped();
 
 /**
+ * Gets the current version of iPhone OS.
+ */
+float TTOSVersion();
+
+/**
  * Gets the current system locale chosen by the user.
  *
  * This is necessary because [NSLocale currentLocale] always returns en_US.

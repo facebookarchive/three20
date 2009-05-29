@@ -89,6 +89,10 @@ void TTNetworkRequestStopped() {
   }
 }
 
+float TTOSVersion() {
+  return [[[UIDevice currentDevice] systemVersion] floatValue];
+}
+
 NSLocale* TTCurrentLocale() {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSArray* languages = [defaults objectForKey:@"AppleLanguages"];

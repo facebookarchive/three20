@@ -326,7 +326,11 @@
 
   CGRect innerFrame = CGRectMake(0, TOOLBAR_HEIGHT,
     appFrame.size.width, appFrame.size.height - (TOOLBAR_HEIGHT+KEYBOARD_HEIGHT));
-  _scrollView = [[TTComposeInnerScrollView alloc] initWithFrame:innerFrame];
+  if (TTOSVersion() >= 3.0) {
+    _scrollView = [[[UIScrollView class] alloc] initWithFrame:innerFrame];
+  } else {
+    _scrollView = [[[TTComposeInnerScrollView class] alloc] initWithFrame:innerFrame];
+  }
   _scrollView.backgroundColor = TTSTYLEVAR(backgroundColor);
   _scrollView.canCancelContentTouches = NO;
   _scrollView.showsVerticalScrollIndicator = NO;
