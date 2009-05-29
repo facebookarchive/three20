@@ -306,7 +306,7 @@
 
 @implementation TTTextViewTableField
 
-@synthesize delegate = _delegate, placeholder = _placeholder, text = _text;
+@synthesize delegate = _delegate, placeholder = _placeholder;
 
 - (id)initWithText:(NSString*)text {
   if (self = [self init]) {
