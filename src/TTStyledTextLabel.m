@@ -164,7 +164,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
       [self setHighlightedFrame:nil];
     }
   }
-  if (!tableView || TTOSVersion() >= 3.0) {
+  if (!tableView || TTOSVersionIsAtLeast(3.0)) {
     // We definitely don't want to call this if the label is inside a TTTableView, because
     // it winds up calling touchesEnded on the table twice, triggering the link twice
     [super touchesEnded:touches withEvent:event];

@@ -474,6 +474,10 @@
   return [UIFont boldSystemFontOfSize:13];
 }
 
+- (UIFont*)tableTitleValueFont {
+  return [UIFont boldSystemFontOfSize:15];
+}
+
 - (UIFont*)tableButtonFont {
   return [UIFont boldSystemFontOfSize:13];
 }

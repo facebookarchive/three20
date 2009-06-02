@@ -267,6 +267,10 @@ static CGFloat kDefaultIconSize = 50;
     _titleLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     _titleLabel.textAlignment = UITextAlignmentRight;
     [self.contentView addSubview:_titleLabel];
+    
+    _label.font = TTSTYLEVAR(tableTitleValueFont);
+    _label.adjustsFontSizeToFitWidth = YES;
+    _label.minimumFontSize = 8;
 	}
 	return self;
 }

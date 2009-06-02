@@ -195,7 +195,7 @@ static CGFloat kThumbnailRowHeight = 79;
     self.navigationBarTintColor = nil;
     self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
 
-    if (TTOSVersion() >= 3.0) {
+    if ([self respondsToSelector:@selector(setWantsFullScreenLayout:)]) {
       [self setWantsFullScreenLayout:YES];
     }
   }
@@ -218,7 +218,7 @@ static CGFloat kThumbnailRowHeight = 79;
   self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
-  CGFloat y = TTOSVersion() < 3.0 ? -CHROME_HEIGHT : 0;
+  CGFloat y = TTOSVersionIsAtLeast(3.0) ? 0 : -CHROME_HEIGHT;
   CGRect innerFrame = CGRectMake(0, y,
                                  screenFrame.size.width, screenFrame.size.height + CHROME_HEIGHT);
   UIView* innerView = [[UIView alloc] initWithFrame:innerFrame];
@@ -243,7 +243,7 @@ static CGFloat kThumbnailRowHeight = 79;
   [super viewDidAppear:animated];
   [self suspendLoadingThumbnails:NO];
 
-  if (TTOSVersion() < 3.0) {
+  if (!TTOSVersionIsAtLeast(3.0)) {
     if (!self.nextViewController) {
       self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
     }
@@ -253,7 +253,7 @@ static CGFloat kThumbnailRowHeight = 79;
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
-  if (TTOSVersion() < 3.0) {
+  if (!TTOSVersionIsAtLeast(3.0)) {
     self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
   }
 }  

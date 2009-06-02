@@ -156,8 +156,6 @@
 @property(nonatomic,assign) id<UITextViewDelegate> delegate;
 @property(nonatomic,copy) NSString* placeholder;
 
-- (id)initWithText:(NSString*)text;
-
 @end
 
 @interface TTSwitchTableField : TTTableField {

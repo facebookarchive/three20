@@ -308,24 +308,15 @@
 
 @synthesize delegate = _delegate, placeholder = _placeholder;
 
-- (id)initWithText:(NSString*)text {
-  if (self = [self init]) {
-    self.text = text;
-  }
-  return self;
-}
-
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;
     _placeholder = nil;
-    _text = nil;
   }
   return self;
 }
 
 - (void)dealloc {
-  [_text release];
   [_placeholder release];
   [super dealloc];
 }

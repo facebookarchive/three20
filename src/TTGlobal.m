@@ -93,6 +93,23 @@ float TTOSVersion() {
   return [[[UIDevice currentDevice] systemVersion] floatValue];
 }
 
+BOOL TTOSVersionIsAtLeast(float version) {
+  #ifdef __IPHONE_3_0
+    return 3.0 >= version;
+  #endif
+  #ifdef __IPHONE_2_2
+    return 2.2 >= version;
+  #endif
+  #ifdef __IPHONE_2_1
+    return 2.1 >= version;
+  #endif
+  #ifdef __IPHONE_2_0
+    return 2.0 >= version;
+  #endif
+  return NO;
+}
+
+
 NSLocale* TTCurrentLocale() {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSArray* languages = [defaults objectForKey:@"AppleLanguages"];
