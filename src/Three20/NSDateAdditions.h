@@ -3,6 +3,8 @@
 
 @interface NSDate (TTCategory)
 
-+ (id)dateWithToday;
++ (NSDate*)dateWithToday;
+
+- (NSDate*)dateAtMidnight;
 
 @end

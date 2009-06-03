@@ -238,6 +238,10 @@
     shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:8 bottomLeft:0];
   } else if (corner == 4) {
     shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:0 bottomLeft:8];
+  } else if (corner == 5) {
+    shape = [TTRoundedRectangleShape shapeWithTopLeft:8 topRight:0 bottomRight:0 bottomLeft:8];
+  } else if (corner == 6) {
+    shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:8 bottomRight:8 bottomLeft:0];
   } else {
     shape = [TTRectangleShape shape];
   }
@@ -281,6 +285,14 @@
 
 - (TTStyle*)tabGridTabBottomLeft:(UIControlState)state {
   return [self tabGridTab:state corner:4];
+}
+
+- (TTStyle*)tabGridTabLeft:(UIControlState)state {
+  return [self tabGridTab:state corner:5];
+}
+
+- (TTStyle*)tabGridTabRight:(UIControlState)state {
+  return [self tabGridTab:state corner:6];
 }
 
 - (TTStyle*)tabGridTabCenter:(UIControlState)state {

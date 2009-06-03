@@ -1,6 +1,6 @@
 #import "Three20/TTTableViewCell.h"
 
-@class TTTableField, TTImageView, TTErrorView, TTActivityLabel, TTStyledTextLabel;
+@class TTTableField, TTImageView, TTErrorView, TTActivityLabel, TTStyledTextLabel, TTSearchBar;
 
 @interface TTTableFieldCell : TTTableViewCell {
   TTTableField* _field;
@@ -77,6 +77,12 @@
 
 @interface TTSwitchTableFieldCell : TTTextTableFieldCell {
   UISwitch* _switch;
+}
+
+@end
+
+@interface TTSearchBarTableFieldCell : TTTableViewCell {
+  TTSearchBar* _searchBar;
 }
 
 @end
