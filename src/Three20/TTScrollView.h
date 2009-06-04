@@ -53,6 +53,11 @@
 /**
  *
  */
+@property(nonatomic,readonly) BOOL zoomed;
+
+/**
+ *
+ */
 @property(nonatomic) BOOL scrollEnabled;
 
 /**
@@ -106,6 +111,11 @@
  *
  */
 - (UIView*)pageAtIndex:(NSInteger)pageIndex;
+
+/**
+ *
+ */
+- (void)zoomToFit;
 
 @end
 

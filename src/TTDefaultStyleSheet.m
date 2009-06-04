@@ -181,7 +181,7 @@
     [TTSolidBorderStyle styleWithColor:RGBCOLOR(178, 178, 178) width:1 next:nil]]];
 }
 
-- (TTStyle*)badge {
+- (TTStyle*)badgeWithFontSize:(CGFloat)fontSize {
   return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 1, 1, 1) next:
@@ -189,9 +189,17 @@
     [TTReflectiveFillStyle styleWithColor:RGBCOLOR(221, 17, 27) next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
     [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:2 next:
-    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(1, 6, 3, 6) next:
-    [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]
+    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(2, 7, 2, 7) next:
+    [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:fontSize]
                  color:[UIColor whiteColor] next:nil]]]]]]]];
+}
+
+- (TTStyle*)miniBadge {
+  return [self badgeWithFontSize:12];
+}
+
+- (TTStyle*)badge {
+  return [self badgeWithFontSize:15];
 }
 
 - (TTStyle*)tabBar {

@@ -102,10 +102,6 @@ static const NSTimeInterval kOvershoot = 2;
   return _pageEdges.left > 0 || _pageEdges.top > 0 || _pageEdges.right < 0 || _pageEdges.bottom < 0;
 }
 
-- (BOOL)zoomed {
-  return _pageEdges.left != _pageEdges.right || _pageEdges.top != _pageEdges.bottom;
-}
-
 - (BOOL)flicked {
   if (!self.flipped) {
     if (_pageEdges.left > kFlickThreshold && ![self isFirstPage]) {
@@ -996,7 +992,7 @@ static const NSTimeInterval kOvershoot = 2;
         } else if (touch.tapCount == 2 && self.canZoom) {
           CGPoint pt = [self touchLocation:touch];
           if (self.zoomed) {
-            [self startAnimationTo:[self reversePageEdges] duration:kFlickDuration];
+            [self zoomToFit];
           } else {
             [self startAnimationTo:[self zoomPageEdgesTo:pt] duration:kFlickDuration];
           }
@@ -1028,6 +1024,10 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (BOOL)zoomed {
+  return _pageEdges.left != _pageEdges.right || _pageEdges.top != _pageEdges.bottom;
+}
 
 - (void)setDataSource:(id<TTScrollViewDataSource>)dataSource {
   _dataSource = dataSource;
@@ -1130,6 +1130,10 @@ static const NSTimeInterval kOvershoot = 2;
 
 - (UIView*)pageAtIndex:(NSInteger)pageIndex {
   return [self pageAtIndex:pageIndex create:NO];
+}
+
+- (void)zoomToFit {
+  [self startAnimationTo:[self reversePageEdges] duration:kFlickDuration];
 }
 
 @end
