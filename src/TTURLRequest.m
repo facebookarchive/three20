@@ -206,6 +206,10 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   [[TTURLRequestQueue mainQueue] cancelRequest:self];
 }
 
+- (NSURLRequest*)createNSURLRequest {
+  return [[TTURLRequestQueue mainQueue] createNSURLRequest:self url:nil];
+}
+
 @end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

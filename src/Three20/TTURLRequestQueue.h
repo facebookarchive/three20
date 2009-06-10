@@ -76,4 +76,9 @@
  */
 - (void)cancelAllRequests;
 
+/**
+ * Creates a Cocoa URL request from a Three20 URL request.
+ */
+- (NSURLRequest*)createNSURLRequest:(TTURLRequest*)request url:(NSURL*)url;
+
 @end

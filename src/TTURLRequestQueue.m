@@ -87,31 +87,9 @@ static TTURLRequestQueue* gMainQueue = nil;
   TTLOG(@"Connecting to %@", _url);
   TTNetworkRequestStarted();
 
-  NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url
-                                    cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                    timeoutInterval:kTimeout];
-  [urlRequest setValue:_queue.userAgent forHTTPHeaderField:@"User-Agent"];
+  TTURLRequest* request = _requests.count == 1 ? [_requests objectAtIndex:0] : nil;
+  NSURLRequest *urlRequest = [_queue createNSURLRequest:request url:url];
 
-  if (_requests.count == 1) {
-    TTURLRequest* request = [_requests objectAtIndex:0];
-    [urlRequest setHTTPShouldHandleCookies:request.shouldHandleCookies];
-    
-    NSString* method = request.httpMethod;
-    if (method) {
-      [urlRequest setHTTPMethod:method];
-    }
-    
-    NSString* contentType = request.contentType;
-    if (contentType) {
-      [urlRequest setValue:contentType forHTTPHeaderField:@"Content-Type"];
-    }
-    
-    NSData* body = request.httpBody;
-    if (body) {
-      [urlRequest setHTTPBody:body];
-    }
-  }
-  
   _connection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 }
 
@@ -609,6 +587,38 @@ static TTURLRequestQueue* gMainQueue = nil;
   for (TTRequestLoader* loader in [[[_loaders copy] autorelease] objectEnumerator]) {
     [loader cancel];
   }
+}
+
+- (NSURLRequest*)createNSURLRequest:(TTURLRequest*)request url:(NSURL*)url {
+  if (!url) {
+    url = [NSURL URLWithString:request.url];
+  }
+  
+  NSMutableURLRequest* urlRequest = [NSMutableURLRequest requestWithURL:url
+                                    cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                    timeoutInterval:kTimeout];
+  [urlRequest setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
+
+  if (request) {
+    [urlRequest setHTTPShouldHandleCookies:request.shouldHandleCookies];
+    
+    NSString* method = request.httpMethod;
+    if (method) {
+      [urlRequest setHTTPMethod:method];
+    }
+    
+    NSString* contentType = request.contentType;
+    if (contentType) {
+      [urlRequest setValue:contentType forHTTPHeaderField:@"Content-Type"];
+    }
+    
+    NSData* body = request.httpBody;
+    if (body) {
+      [urlRequest setHTTPBody:body];
+    }
+  }
+  
+  return urlRequest;
 }
 
 @end

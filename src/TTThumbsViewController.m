@@ -221,7 +221,7 @@ static CGFloat kThumbnailRowHeight = 79;
   CGFloat y = TTOSVersionIsAtLeast(3.0) ? 0 : -CHROME_HEIGHT;
   CGRect innerFrame = CGRectMake(0, y,
                                  screenFrame.size.width, screenFrame.size.height + CHROME_HEIGHT);
-  UIView* innerView = [[UIView alloc] initWithFrame:innerFrame];
+  UIView* innerView = [[[UIView alloc] initWithFrame:innerFrame] autorelease];
   innerView.backgroundColor = TTSTYLEVAR(backgroundColor);
   [self.view addSubview:innerView];
   

@@ -19,6 +19,7 @@
 @property(nonatomic,retain) UIView* headerView;
 
 - (void)openURL:(NSURL*)url;
+- (void)openRequest:(NSURLRequest*)request;
 
 @end
 

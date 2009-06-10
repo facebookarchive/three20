@@ -70,8 +70,9 @@ static const CGFloat kIndexViewMargin = 4;
   UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
   if (scrollView) {
     CGPoint offset = scrollView.contentOffset;
-    if (offset.y != self.top) {
-      [scrollView setContentOffset:CGPointMake(offset.x, self.top) animated:YES];
+    CGPoint myOffset = [self offsetFromView:scrollView];
+    if (offset.y != myOffset.y) {
+      [scrollView setContentOffset:CGPointMake(offset.x, myOffset.y) animated:YES];
     }
   }
 }

@@ -169,6 +169,11 @@
   return _webView.request.URL;
 }
 
+- (void)openRequest:(NSURLRequest*)request {
+  self.view;
+  [_webView loadRequest:request];
+}
+
 - (void)setHeaderView:(UIView*)headerView {
   if (headerView != _headerView) {
     BOOL addingHeader = !_headerView && headerView;
@@ -195,9 +200,8 @@
 }
 
 - (void)openURL:(NSURL*)url {
-  self.view;
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-  [_webView loadRequest:request];
+  [self openRequest:request];
 }
 
 @end

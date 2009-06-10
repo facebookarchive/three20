@@ -109,7 +109,6 @@ BOOL TTOSVersionIsAtLeast(float version) {
   return NO;
 }
 
-
 NSLocale* TTCurrentLocale() {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSArray* languages = [defaults objectForKey:@"AppleLanguages"];
