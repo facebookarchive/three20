@@ -241,6 +241,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     if (_connection) {
       TTNetworkRequestStopped();
       [_connection cancel];
+      [_connection release];
       _connection = nil;
     }
     return NO;

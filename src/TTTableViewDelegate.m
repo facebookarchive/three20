@@ -30,6 +30,10 @@ static const CGFloat kSectionHeaderHeight = 35;
   return self;
 }
 
+- (void)dealloc {
+  [super dealloc];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableViewDelegate
 

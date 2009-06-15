@@ -184,6 +184,10 @@
   return self;
 }
 
+- (void)dealloc {
+  [super dealloc];
+}
+
 - (TTStyledInlineFrame*)inlineParentFrame {
   if ([_parentFrame isKindOfClass:[TTStyledInlineFrame class]]) {
     return (TTStyledInlineFrame*)_parentFrame;
@@ -244,6 +248,7 @@
 }
 
 - (void)dealloc {
+  [_style release];
   [super dealloc];
 }
 

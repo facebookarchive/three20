@@ -34,6 +34,10 @@ static const CGFloat kDesiredTableHeight = 150;
   return self;
 }
 
+- (void)dealloc {
+  [super dealloc];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITextFieldDelegate
 

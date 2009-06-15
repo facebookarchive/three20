@@ -26,6 +26,11 @@
 @end
 
 @implementation UIEventFake
+
+- (void)dealloc {
+  [super dealloc];
+}
+
 @end
 
 @interface UITouch (TTCategory)

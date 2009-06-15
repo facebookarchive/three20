@@ -478,6 +478,7 @@
 - (void)dealloc {
   [_url release];
   [_image release];
+  [_defaultImage release];
   [super dealloc];
 }
 
