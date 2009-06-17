@@ -9,6 +9,7 @@
 
 static CGFloat kTabMargin = 10;
 static CGFloat kPadding = 10;
+static const NSInteger kMaxBadgeNumber = 99;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -422,7 +423,11 @@ static CGFloat kPadding = 10;
       _badge.userInteractionEnabled = NO;
       [self addSubview:_badge];
     }
-    _badge.text = [NSString stringWithFormat:@"%d", _tabItem.badgeNumber];
+    if (_tabItem.badgeNumber <= kMaxBadgeNumber) {
+      _badge.text = [NSString stringWithFormat:@"%d", _tabItem.badgeNumber];
+    } else {
+      _badge.text = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
+    }
     [_badge sizeToFit];
     
     _badge.frame = CGRectMake(self.width - _badge.width-1, 1, _badge.width, _badge.height);

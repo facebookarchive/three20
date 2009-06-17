@@ -403,6 +403,8 @@ static TTURLRequestQueue* gMainQueue = nil;
                expires:loader.cacheExpirationAge
                fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
                data:&data error:&error timestamp:&timestamp]) {
+    [_loaders removeObjectForKey:loader.cacheKey];
+
     if (!error) {
       error = [loader processResponse:nil data:data];
     }
@@ -411,8 +413,6 @@ static TTURLRequestQueue* gMainQueue = nil;
     } else {
       [loader dispatchLoaded:timestamp];
     }
-    
-    [_loaders removeObjectForKey:loader.cacheKey];
   } else {
     ++_totalLoading;
     [loader load:[NSURL URLWithString:loader.url]];
@@ -444,14 +444,15 @@ static TTURLRequestQueue* gMainQueue = nil;
   }
 }
 
-- (void)loadNextInQueueAfterLoader:(TTRequestLoader*)loader {
+- (void)removeLoader:(TTRequestLoader*)loader {
   --_totalLoading;
   [_loaders removeObjectForKey:loader.cacheKey];
-  [self loadNextInQueue];
 }
 
 - (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response
     data:(id)data {
+  [self removeLoader:loader];
+  
   NSError* error = [loader processResponse:response data:data];
   if (error) {
     [loader dispatchError:error];
@@ -462,17 +463,19 @@ static TTURLRequestQueue* gMainQueue = nil;
     [loader dispatchLoaded:[NSDate date]];
   }
 
-  [self loadNextInQueueAfterLoader:loader];
+  [self loadNextInQueue];
 }
 
 - (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error {
+  [self removeLoader:loader];
   [loader dispatchError:error];
-  [self loadNextInQueueAfterLoader:loader];
+  [self loadNextInQueue];
 }
 
 - (void)loaderDidCancel:(TTRequestLoader*)loader wasLoading:(BOOL)wasLoading {
   if (wasLoading) {
-    [self loadNextInQueueAfterLoader:loader];
+    [self removeLoader:loader];
+    [self loadNextInQueue];
   } else {
     [_loaders removeObjectForKey:loader.cacheKey];
   }

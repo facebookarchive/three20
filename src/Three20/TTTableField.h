@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@class TTStyledText;
+@class TTStyledText, TTStyle;
 
 @interface TTTableField : NSObject {
   NSString* _text;
@@ -82,10 +82,12 @@
 @interface TTImageTableField : TTTableField {
   UIImage* _defaultImage;
   NSString* _image;
+  TTStyle* _imageStyle;
 }
 
 @property(nonatomic,retain) UIImage* defaultImage;
 @property(nonatomic,copy) NSString* image;
+@property(nonatomic,retain) TTStyle* imageStyle;
 
 - (id)initWithText:(NSString*)text url:(NSString*)url image:(NSString*)image;
 

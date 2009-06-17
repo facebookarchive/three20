@@ -168,12 +168,13 @@
 
 @implementation TTImageTableField
 
-@synthesize defaultImage = _defaultImage, image = _image;
+@synthesize defaultImage = _defaultImage, image = _image, imageStyle = _imageStyle;
 
 - (id)init {
   if (self = [super init]) {
     _defaultImage = nil;
     _image = nil;
+    _imageStyle = nil;
   }
   return self;
 }
@@ -194,6 +195,7 @@
 - (void)dealloc {
   [_image release];
   [_defaultImage release];
+  [_imageStyle release];
   [super dealloc];
 }
 

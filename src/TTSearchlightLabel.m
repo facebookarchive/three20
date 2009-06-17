@@ -140,6 +140,7 @@
     _timer = nil;
     [self releaseMask];
   }
+  [self setNeedsDisplay];	
 }
 
 @end

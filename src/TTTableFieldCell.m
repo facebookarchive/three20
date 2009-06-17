@@ -605,19 +605,32 @@ static CGFloat kDefaultIconSize = 50;
     image = field.defaultImage;
   }
   if (_iconView.url) {
-    CGFloat iconWidth = image
-      ? image.size.width
-      : (field.image ? kDefaultIconSize : 0);
-    CGFloat iconHeight = image
-      ? image.size.height
-      : (field.image ? kDefaultIconSize : 0);
+      CGFloat iconWidth = image
+        ? image.size.width
+        : (field.image ? kDefaultIconSize : 0);
+      CGFloat iconHeight = image
+        ? image.size.height
+        : (field.image ? kDefaultIconSize : 0);
+
+    TTImageStyle* style = [field.imageStyle firstStyleOfClass:[TTImageStyle class]];
+    if (style) {
+      _iconView.contentMode = style.contentMode;
+      _iconView.clipsToBounds = YES;
+      _iconView.backgroundColor = [UIColor clearColor];
+      if (style.size.width) {
+        iconWidth = style.size.width;
+      }
+      if (style.size.height) {
+        iconWidth = style.size.height;
+      }
+    }
 
     _iconView.frame = CGRectMake(kHPadding, floor(self.height/2 - iconHeight/2),
-      iconWidth, iconHeight);
-
-    CGFloat innerWidth = self.contentView.width - (kHPadding*2 + iconWidth + kKeySpacing);
+                                 iconWidth, iconHeight);
+    
+    CGFloat innerWidth = self.contentView.width - (kHPadding*2 + _iconView.width + kKeySpacing);
     CGFloat innerHeight = self.contentView.height - kVPadding*2;
-    _label.frame = CGRectMake(kHPadding + iconWidth + kKeySpacing, kVPadding,
+    _label.frame = CGRectMake(kHPadding + _iconView.width + kKeySpacing, kVPadding,
       innerWidth, innerHeight);
   } else {
     _label.frame = CGRectInset(self.contentView.bounds, kHPadding, kVPadding);
@@ -635,6 +648,7 @@ static CGFloat kDefaultIconSize = 50;
     TTImageTableField* field = object;
     _iconView.defaultImage = field.defaultImage;
     _iconView.url = field.image;
+    _iconView.style = field.imageStyle;
   }  
 }
 @end

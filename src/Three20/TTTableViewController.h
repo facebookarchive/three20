@@ -20,6 +20,7 @@
 - (id<UITableViewDelegate>)createDelegate;
 
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
+- (BOOL)shouldNavigateToURL:(NSString*)url;
 
 - (void)didBeginDragging;
 - (void)didEndDragging;
