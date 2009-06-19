@@ -277,7 +277,7 @@ static CGFloat kTextViewInset = 19;
 
 - (void)layoutSubviews {
   _textView.frame = CGRectMake(kPaddingX, kOffsetY, self.width-kPaddingX*2, self.height-kOffsetY);
-  if (!_overflowed) {
+  if (_autoresizesToText && !_overflowed) {
     _textView.contentOffset = CGPointMake(0, 0);
   }
   _placeholderLabel.frame = CGRectMake(kPaddingX, 0, self.width-kPaddingX*2, self.height);
@@ -312,7 +312,9 @@ static CGFloat kTextViewInset = 19;
     _textView.text = text;
   }
   [self updatePlaceholder];
-  [self constrainToText];
+  if (_autoresizesToText) {
+    [self constrainToText];
+  }
 }
 
 - (void)setPlaceholder:(NSString*)placeholder {

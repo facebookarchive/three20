@@ -467,6 +467,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 }
 
 - (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error {
+  TTLOG(@"ERROR: %@", error);
   [self removeLoader:loader];
   [loader dispatchError:error];
   [self loadNextInQueue];
