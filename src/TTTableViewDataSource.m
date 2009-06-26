@@ -1,6 +1,6 @@
 #import "Three20/TTTableViewDataSource.h"
-#import "Three20/TTTableField.h"
-#import "Three20/TTTableFieldCell.h"
+#import "Three20/TTTableItem.h"
+#import "Three20/TTTableItemCell.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTSearchBar.h"
 #import <objc/runtime.h>
@@ -111,36 +111,36 @@
 }
 
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
-  if ([object isKindOfClass:[TTTableField class]]) {
-    if ([object isKindOfClass:[TTTextTableField class]]) {
-      return [TTTextTableFieldCell class];
-    } else if ([object isKindOfClass:[TTTitledTableField class]]) {
-      return [TTTitledTableFieldCell class];
-    } else if ([object isKindOfClass:[TTSubtextTableField class]]) {
-      return [TTSubtextTableFieldCell class];
-    } else if ([object isKindOfClass:[TTMoreButtonTableField class]]) {
-      return [TTMoreButtonTableFieldCell class];
-    } else if ([object isKindOfClass:[TTIconTableField class]]) {
-      return [TTIconTableFieldCell class];
-    } else if ([object isKindOfClass:[TTImageTableField class]]) {
-      return [TTImageTableFieldCell class];
-    } else if ([object isKindOfClass:[TTActivityTableField class]]) {
-      return [TTActivityTableFieldCell class];
-    } else if ([object isKindOfClass:[TTErrorTableField class]]) {
-      return [TTErrorTableFieldCell class];
-    } else if ([object isKindOfClass:[TTTextFieldTableField class]]) {
-      return [TTTextFieldTableFieldCell class];
-    } else if ([object isKindOfClass:[TTTextViewTableField class]]) {
-      return [TTTextViewTableFieldCell class];
-    } else if ([object isKindOfClass:[TTSwitchTableField class]]) {
-      return [TTSwitchTableFieldCell class];
-    } else if ([object isKindOfClass:[TTStyledTextTableField class]]) {
-      return [TTStyledTextTableFieldCell class];
+  if ([object isKindOfClass:[TTTableItem class]]) {
+    if ([object isKindOfClass:[TTTextTableItem class]]) {
+      return [TTTextTableItemCell class];
+    } else if ([object isKindOfClass:[TTTitledTableItem class]]) {
+      return [TTTitledTableItemCell class];
+    } else if ([object isKindOfClass:[TTSubtextTableItem class]]) {
+      return [TTSubtextTableItemCell class];
+    } else if ([object isKindOfClass:[TTMoreButtonTableItem class]]) {
+      return [TTMoreButtonTableItemCell class];
+    } else if ([object isKindOfClass:[TTIconTableItem class]]) {
+      return [TTIconTableItemCell class];
+    } else if ([object isKindOfClass:[TTImageTableItem class]]) {
+      return [TTImageTableItemCell class];
+    } else if ([object isKindOfClass:[TTActivityTableItem class]]) {
+      return [TTActivityTableItemCell class];
+    } else if ([object isKindOfClass:[TTErrorTableItem class]]) {
+      return [TTErrorTableItemCell class];
+    } else if ([object isKindOfClass:[TTTextFieldTableItem class]]) {
+      return [TTTextFieldTableItemCell class];
+    } else if ([object isKindOfClass:[TTTextViewTableItem class]]) {
+      return [TTTextViewTableItemCell class];
+    } else if ([object isKindOfClass:[TTSwitchTableItem class]]) {
+      return [TTSwitchTableItemCell class];
+    } else if ([object isKindOfClass:[TTStyledTextTableItem class]]) {
+      return [TTStyledTextTableItemCell class];
     } else {
-      return [TTTextTableFieldCell class];
+      return [TTTextTableItemCell class];
     }
   } else if ([object isKindOfClass:[TTSearchBar class]]) {
-    return [TTSearchBarTableFieldCell class];
+    return [TTSearchBarTableItemCell class];
   }
   
   // This will display an empty white table cell - probably not what you want, but it

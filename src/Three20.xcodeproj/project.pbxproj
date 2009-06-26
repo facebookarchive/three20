@@ -23,12 +23,12 @@
 		BE68F5C60F385ECB00655DBF /* TTNavigationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = BE68F5C50F385ECB00655DBF /* TTNavigationCenter.h */; };
 		BE6E4A520F465237001CE9B4 /* TTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */; };
 		BE6E4A540F465243001CE9B4 /* TTTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */; };
-		BE702ED00F43F32E0028A119 /* TTTableFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702ECF0F43F32E0028A119 /* TTTableFieldCell.m */; };
-		BE702ED20F43F3390028A119 /* TTTableFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702ED10F43F3390028A119 /* TTTableFieldCell.h */; };
+		BE702ED00F43F32E0028A119 /* TTTableItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */; };
+		BE702ED20F43F3390028A119 /* TTTableItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702ED10F43F3390028A119 /* TTTableItemCell.h */; };
 		BE702EF10F43F6720028A119 /* TTTableViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */; };
 		BE702EF30F43F6800028A119 /* TTTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */; };
-		BE702EF90F43F9D20028A119 /* TTTableField.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF80F43F9D20028A119 /* TTTableField.m */; };
-		BE702EFB0F43F9DC0028A119 /* TTTableField.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702EFA0F43F9DC0028A119 /* TTTableField.h */; };
+		BE702EF90F43F9D20028A119 /* TTTableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF80F43F9D20028A119 /* TTTableItem.m */; };
+		BE702EFB0F43F9DC0028A119 /* TTTableItem.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702EFA0F43F9DC0028A119 /* TTTableItem.h */; };
 		BE7604D90F8DE01400C9F4BB /* TTDefaultStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */; };
 		BE7604DB0F8DE02100C9F4BB /* TTDefaultStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */; };
 		BE7EB6410F50D30C008A4B05 /* TTTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */; };
@@ -159,12 +159,12 @@
 		BE68F5C50F385ECB00655DBF /* TTNavigationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigationCenter.h; path = Three20/TTNavigationCenter.h; sourceTree = "<group>"; };
 		BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewCell.m; sourceTree = "<group>"; };
 		BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewCell.h; path = Three20/TTTableViewCell.h; sourceTree = "<group>"; };
-		BE702ECF0F43F32E0028A119 /* TTTableFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableFieldCell.m; sourceTree = "<group>"; };
-		BE702ED10F43F3390028A119 /* TTTableFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableFieldCell.h; path = Three20/TTTableFieldCell.h; sourceTree = "<group>"; };
+		BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableItemCell.m; sourceTree = "<group>"; };
+		BE702ED10F43F3390028A119 /* TTTableItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableItemCell.h; path = Three20/TTTableItemCell.h; sourceTree = "<group>"; };
 		BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewDataSource.h; path = Three20/TTTableViewDataSource.h; sourceTree = "<group>"; };
 		BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewDataSource.m; sourceTree = "<group>"; };
-		BE702EF80F43F9D20028A119 /* TTTableField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableField.m; sourceTree = "<group>"; };
-		BE702EFA0F43F9DC0028A119 /* TTTableField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableField.h; path = Three20/TTTableField.h; sourceTree = "<group>"; };
+		BE702EF80F43F9D20028A119 /* TTTableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableItem.m; sourceTree = "<group>"; };
+		BE702EFA0F43F9DC0028A119 /* TTTableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableItem.h; path = Three20/TTTableItem.h; sourceTree = "<group>"; };
 		BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDefaultStyleSheet.m; sourceTree = "<group>"; };
 		BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDefaultStyleSheet.h; path = Three20/TTDefaultStyleSheet.h; sourceTree = "<group>"; };
 		BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableHeaderView.m; sourceTree = "<group>"; };
@@ -355,10 +355,10 @@
 				BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */,
 				BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */,
 				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
-				BE702EFA0F43F9DC0028A119 /* TTTableField.h */,
-				BE702EF80F43F9D20028A119 /* TTTableField.m */,
-				BE702ED10F43F3390028A119 /* TTTableFieldCell.h */,
-				BE702ECF0F43F32E0028A119 /* TTTableFieldCell.m */,
+				BE702EFA0F43F9DC0028A119 /* TTTableItem.h */,
+				BE702EF80F43F9D20028A119 /* TTTableItem.m */,
+				BE702ED10F43F3390028A119 /* TTTableItemCell.h */,
+				BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -586,9 +586,9 @@
 				BE42FB7C0F3BBF3D00A3B65A /* TTTabBar.h in Headers */,
 				BE8A9C190F4143DA00FD8C43 /* TTURLRequestQueue.h in Headers */,
 				BE8AA1930F428A4900FD8C43 /* UIViewControllerAdditions.h in Headers */,
-				BE702ED20F43F3390028A119 /* TTTableFieldCell.h in Headers */,
+				BE702ED20F43F3390028A119 /* TTTableItemCell.h in Headers */,
 				BE702EF10F43F6720028A119 /* TTTableViewDataSource.h in Headers */,
-				BE702EFB0F43F9DC0028A119 /* TTTableField.h in Headers */,
+				BE702EFB0F43F9DC0028A119 /* TTTableItem.h in Headers */,
 				BE6E4A540F465243001CE9B4 /* TTTableViewCell.h in Headers */,
 				BECB1EC60F46C39F00AE5B52 /* TTStyleSheet.h in Headers */,
 				BEE3419D0F480B87008C826E /* TTPickerTextField.h in Headers */,
@@ -694,9 +694,9 @@
 				BE42FB7A0F3BBF3500A3B65A /* TTTabBar.m in Sources */,
 				BE8A9C170F4143C800FD8C43 /* TTURLRequestQueue.m in Sources */,
 				BE8AA1910F428A3700FD8C43 /* UIViewControllerAdditions.m in Sources */,
-				BE702ED00F43F32E0028A119 /* TTTableFieldCell.m in Sources */,
+				BE702ED00F43F32E0028A119 /* TTTableItemCell.m in Sources */,
 				BE702EF30F43F6800028A119 /* TTTableViewDataSource.m in Sources */,
-				BE702EF90F43F9D20028A119 /* TTTableField.m in Sources */,
+				BE702EF90F43F9D20028A119 /* TTTableItem.m in Sources */,
 				BE6E4A520F465237001CE9B4 /* TTTableViewCell.m in Sources */,
 				BECB1EC80F46C3B000AE5B52 /* TTStyleSheet.m in Sources */,
 				BEE341A60F480BA2008C826E /* TTPickerTextField.m in Sources */,

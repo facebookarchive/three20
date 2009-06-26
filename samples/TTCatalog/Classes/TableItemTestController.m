@@ -1,4 +1,4 @@
-#import "TableFieldTestController.h"
+#import "TableItemTestController.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -11,7 +11,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TableFieldTestController
+@implementation TableItemTestController
 
 - (void)dealloc {
   [super dealloc];
@@ -41,34 +41,34 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   // fields with URLs that will be visited when the row is selected
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Buttons",
-    [[[TTTableField alloc] initWithText:@"TTTableField"
+    [[[TTTableItem alloc] initWithText:@"TTTableItem"
       URL:@"tt://tableFieldTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"TTTableField (external link)"
+    [[[TTTableItem alloc] initWithText:@"TTTableItem (external link)"
       URL:@"http://foo.com"] autorelease],
-    [[[TTLinkTableField alloc] initWithText:@"TTLinkTableField"
+    [[[TTLinkTableItem alloc] initWithText:@"TTLinkTableItem"
       URL:@"tt://tableFieldTest"] autorelease],
-    [[[TTIconTableField alloc] initWithText:@"TTIconTableField" URL:@"tt://tableFieldTest"
+    [[[TTIconTableItem alloc] initWithText:@"TTIconTableItem" URL:@"tt://tableFieldTest"
       image:@"bundle://tableIcon.png" ] autorelease],
-    [[[TTImageTableField alloc] initWithText:@"TTImageTableField" URL:@"tt://tableFieldTest"
+    [[[TTImageTableItem alloc] initWithText:@"TTImageTableItem" URL:@"tt://tableFieldTest"
       image:@"bundle://person.jpg"] autorelease],
-    [[[TTButtonTableField alloc] initWithText:@"TTButtonTableField"] autorelease],
-    [[[TTTitledTableField alloc] initWithTitle:@"title"
-      text:@"TTTitledTableField" URL:@"tt://tableFieldTest"] autorelease],
-    [[[TTMoreButtonTableField alloc] initWithText:@"TTMoreButtonTableField"
+    [[[TTButtonTableItem alloc] initWithText:@"TTButtonTableItem"] autorelease],
+    [[[TTTitledTableItem alloc] initWithTitle:@"title"
+      text:@"TTTitledTableItem" URL:@"tt://tableFieldTest"] autorelease],
+    [[[TTMoreButtonTableItem alloc] initWithText:@"TTMoreButtonTableItem"
       subtitle:@"Showing 1 of 100"] autorelease],
 
     @"Static Text",
-    [[[TTTableField alloc] initWithText:@"TTTableField"] autorelease],
-    [[[TTTitledTableField alloc] initWithTitle:@"title"
-      text:@"TTTitledTableField which wraps to several lines"] autorelease],
-    [[[TTSubtextTableField alloc] initWithText:@"TTSubtextTableField"
+    [[[TTTableItem alloc] initWithText:@"TTTableItem"] autorelease],
+    [[[TTTitledTableItem alloc] initWithTitle:@"title"
+      text:@"TTTitledTableItem which wraps to several lines"] autorelease],
+    [[[TTSubtextTableItem alloc] initWithText:@"TTSubtextTableItem"
       subtext:kLoremIpsum] autorelease],
-    [[[TTTextTableField alloc] initWithText:kLoremIpsum] autorelease],
-    [[[TTGrayTextTableField alloc] initWithText:kLoremIpsum] autorelease],
-    [[[TTSummaryTableField alloc] initWithText:@"TTSummaryTableField"] autorelease],
+    [[[TTTextTableItem alloc] initWithText:kLoremIpsum] autorelease],
+    [[[TTGrayTextTableItem alloc] initWithText:kLoremIpsum] autorelease],
+    [[[TTSummaryTableItem alloc] initWithText:@"TTSummaryTableItem"] autorelease],
 
     @"",
-    [[[TTActivityTableField alloc] initWithText:@"TTActivityTableField"] autorelease],
+    [[[TTActivityTableItem alloc] initWithText:@"TTActivityTableItem"] autorelease],
 
     nil];
 }

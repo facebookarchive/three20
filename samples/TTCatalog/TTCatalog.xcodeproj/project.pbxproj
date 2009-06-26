@@ -23,7 +23,7 @@
 		BE5F25920EBA5F0400FD59A6 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */; };
 		BE69B7590F62874900C02928 /* TableTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE69B7580F62874900C02928 /* TableTestController.m */; };
 		BE6E46EC0F4578BA001CE9B4 /* TabBarTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */; };
-		BE6E4AA50F4655A4001CE9B4 /* TableFieldTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */; };
+		BE6E4AA50F4655A4001CE9B4 /* TableItemTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E4AA40F4655A4001CE9B4 /* TableItemTestController.m */; };
 		BE6E4DC00F46A352001CE9B4 /* tableIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E4DBF0F46A352001CE9B4 /* tableIcon.png */; };
 		BE80E24A0EAEFF6100743358 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E2490EAEFF6100743358 /* MockPhotoSource.m */; };
 		BE80E3710EAF0F3000743358 /* TableImageTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3700EAF0F3000743358 /* TableImageTestController.m */; };
@@ -90,8 +90,8 @@
 		BE69B7580F62874900C02928 /* TableTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableTestController.m; sourceTree = "<group>"; };
 		BE6E46EA0F4578BA001CE9B4 /* TabBarTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarTestController.h; sourceTree = "<group>"; };
 		BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarTestController.m; sourceTree = "<group>"; };
-		BE6E4AA30F4655A4001CE9B4 /* TableFieldTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableFieldTestController.h; sourceTree = "<group>"; };
-		BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableFieldTestController.m; sourceTree = "<group>"; };
+		BE6E4AA30F4655A4001CE9B4 /* TableItemTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableItemTestController.h; sourceTree = "<group>"; };
+		BE6E4AA40F4655A4001CE9B4 /* TableItemTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableItemTestController.m; sourceTree = "<group>"; };
 		BE6E4DBF0F46A352001CE9B4 /* tableIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableIcon.png; sourceTree = "<group>"; };
 		BE80E2480EAEFF6100743358 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPhotoSource.h; sourceTree = "<group>"; };
 		BE80E2490EAEFF6100743358 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
@@ -167,8 +167,8 @@
 				BEF199210F818E720010D36E /* StyledTextTestController.m */,
 				BE69B7570F62874900C02928 /* TableTestController.h */,
 				BE69B7580F62874900C02928 /* TableTestController.m */,
-				BE6E4AA30F4655A4001CE9B4 /* TableFieldTestController.h */,
-				BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */,
+				BE6E4AA30F4655A4001CE9B4 /* TableItemTestController.h */,
+				BE6E4AA40F4655A4001CE9B4 /* TableItemTestController.m */,
 				BE20A49A0FF418B2008791F4 /* TableControlsTestController.h */,
 				BE20A49B0FF418B2008791F4 /* TableControlsTestController.m */,
 				BEF1991E0F818E720010D36E /* StyledTextTableTestController.h */,
@@ -358,7 +358,7 @@
 				BE8C0F7D0F2018C600EB0E98 /* YouTubeTestController.m in Sources */,
 				BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */,
 				BE6E46EC0F4578BA001CE9B4 /* TabBarTestController.m in Sources */,
-				BE6E4AA50F4655A4001CE9B4 /* TableFieldTestController.m in Sources */,
+				BE6E4AA50F4655A4001CE9B4 /* TableItemTestController.m in Sources */,
 				BEE341B40F480C76008C826E /* MessageTestController.m in Sources */,
 				BEE346BC0F48F15C008C826E /* SearchTestController.m in Sources */,
 				BEE348AC0F490F43008C826E /* MockDataSource.m in Sources */,

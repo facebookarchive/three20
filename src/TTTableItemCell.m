@@ -1,5 +1,5 @@
-#import "Three20/TTTableFieldCell.h"
-#import "Three20/TTTableField.h"
+#import "Three20/TTTableItemCell.h"
+#import "Three20/TTTableItem.h"
 #import "Three20/TTImageView.h"
 #import "Three20/TTErrorView.h"
 #import "Three20/TTStyledNode.h"
@@ -31,7 +31,7 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableFieldCell
+@implementation TTTableItemCell
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   return TOOLBAR_HEIGHT;
@@ -81,13 +81,13 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTStyledTextTableFieldCell
+@implementation TTStyledTextTableItemCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTStyledTextTableField* field = item;
+  TTStyledTextTableItem* field = item;
   field.styledText.font = TTSTYLEVAR(font);
   
   CGFloat padding = tableView.style == UITableViewStyleGrouped ? kGroupMargin*2 : 0;
@@ -123,7 +123,7 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  TTStyledTextTableField* field = self.object;
+  TTStyledTextTableItem* field = self.object;
   _label.frame = CGRectOffset(self.contentView.bounds, field.margin.left, field.margin.top);
 }
 
@@ -141,7 +141,7 @@ static CGFloat kDefaultIconSize = 50;
   if (_field != object) {
     [super setObject:object];
     
-    TTStyledTextTableField* field = object;
+    TTStyledTextTableItem* field = object;
     _label.text = field.styledText;
     _label.contentInset = field.padding;
   }  
@@ -151,13 +151,13 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTextTableFieldCell
+@implementation TTTextTableItemCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTextTableField* field = item;
+  TTTextTableItem* field = item;
 
   CGFloat maxWidth = tableView.width - (kHPadding*2 + kMargin*2);
   UIFont* font = TTSTYLEVAR(tableFont);
@@ -204,21 +204,21 @@ static CGFloat kDefaultIconSize = 50;
     self.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     self.textLabel.numberOfLines = 0;
 
-    if ([object isKindOfClass:[TTButtonTableField class]]) {
+    if ([object isKindOfClass:[TTButtonTableItem class]]) {
       self.textLabel.font = TTSTYLEVAR(tableButtonFont);
       self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
       self.textLabel.textAlignment = UITextAlignmentCenter;
       self.accessoryType = UITableViewCellAccessoryNone;
       self.selectionStyle = UITableViewCellSelectionStyleBlue;
-    } else if ([object isKindOfClass:[TTLinkTableField class]]) {
+    } else if ([object isKindOfClass:[TTLinkTableItem class]]) {
       self.textLabel.font = TTSTYLEVAR(tableFont);
       self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
       self.textLabel.textAlignment = UITextAlignmentLeft;
-    } else if ([object isKindOfClass:[TTSummaryTableField class]]) {
+    } else if ([object isKindOfClass:[TTSummaryTableItem class]]) {
       self.textLabel.font = TTSTYLEVAR(tableSummaryFont);
       self.textLabel.textColor = TTSTYLEVAR(tableSubTextColor);
       self.textLabel.textAlignment = UITextAlignmentCenter;
-    } else if ([object isKindOfClass:[TTGrayTextTableField class]]) {
+    } else if ([object isKindOfClass:[TTGrayTextTableItem class]]) {
       self.textLabel.font = TTSTYLEVAR(font);
       self.textLabel.textColor = TTSTYLEVAR(tableSubTextColor);
       self.textLabel.textAlignment = UITextAlignmentCenter;
@@ -234,11 +234,11 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTitledTableFieldCell
+@implementation TTTitledTableItemCell
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   CGFloat maxWidth = tableView.width - (kKeyWidth + kKeySpacing + kHPadding*2 + kMargin*2);
-  TTTitledTableField* field = item;
+  TTTitledTableItem* field = item;
 
   CGSize size = [field.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
     constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
@@ -281,7 +281,7 @@ static CGFloat kDefaultIconSize = 50;
   if (_field != object) {
     [super setObject:object];
   
-    TTTitledTableField* field = object;
+    TTTitledTableItem* field = object;
     self.textLabel.text = field.title;
     self.detailTextLabel.text = field.text;
 
@@ -304,11 +304,11 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTSubtextTableFieldCell
+@implementation TTSubtextTableItemCell
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   CGFloat maxWidth = tableView.width - kHPadding*2;
-  TTSubtextTableField* field = item;
+  TTSubtextTableItem* field = item;
 
   CGSize textSize = [field.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
     constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
@@ -361,7 +361,7 @@ static CGFloat kDefaultIconSize = 50;
   if (_field != object) {
     [super setObject:object];
   
-    TTSubtextTableField* field = object;
+    TTSubtextTableItem* field = object;
     self.textLabel.text = field.text;
     self.textLabel.font = TTSTYLEVAR(tableSmallFont);
     self.textLabel.textColor = TTSTYLEVAR(textColor);
@@ -387,12 +387,12 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTMoreButtonTableFieldCell
+@implementation TTMoreButtonTableItemCell
 
 @synthesize animating = _animating;
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTMoreButtonTableField* field = item;
+  TTMoreButtonTableItem* field = item;
   
   CGFloat maxWidth = tableView.width - kHPadding*2;
 
@@ -468,7 +468,7 @@ static CGFloat kDefaultIconSize = 50;
   if (_field != object) {
     [super setObject:object];
 
-    TTMoreButtonTableField* field = object;
+    TTMoreButtonTableItem* field = object;
 
     self.textLabel.text = field.text;
     self.textLabel.font = TTSTYLEVAR(tableFont);
@@ -507,10 +507,10 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTIconTableFieldCell
+@implementation TTIconTableItemCell
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTImageTableField* field = item;
+  TTImageTableItem* field = item;
 
   UIImage* image = field.image ? [[TTURLCache sharedCache] imageForURL:field.image] : nil;
   
@@ -550,7 +550,7 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  TTImageTableField* field = self.object;
+  TTImageTableItem* field = self.object;
   UIImage* image = field.image
     ? [[TTURLCache sharedCache] imageForURL:field.image]
     : nil;
@@ -598,7 +598,7 @@ static CGFloat kDefaultIconSize = 50;
   if (_field != object) {
     [super setObject:object];
   
-    TTImageTableField* field = object;
+    TTImageTableItem* field = object;
     _iconView.defaultImage = field.defaultImage;
     _iconView.URL = field.image;
     _iconView.style = field.imageStyle;
@@ -608,7 +608,7 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTImageTableFieldCell
+@implementation TTImageTableItemCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
@@ -616,7 +616,7 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  TTImageTableField* field = self.object;
+  TTImageTableItem* field = self.object;
   UIImage* image = field.image ? [[TTURLCache sharedCache] imageForURL:field.image] : nil;
   
   CGFloat iconWidth = image
@@ -656,10 +656,10 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTActivityTableFieldCell
+@implementation TTActivityTableItemCell
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTActivityTableField* field = item;
+  TTActivityTableItem* field = item;
   if (field.sizeToFit) {
     if (tableView.style == UITableViewStyleGrouped) {
       [tableView.tableHeaderView layoutIfNeeded];
@@ -709,7 +709,7 @@ static CGFloat kDefaultIconSize = 50;
   if (_field != object) {
     [super setObject:object];
   
-    TTActivityTableField* field = object;
+    TTActivityTableItem* field = object;
     _activityLabel.text = field.text;
   }  
 }
@@ -718,10 +718,10 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTErrorTableFieldCell
+@implementation TTErrorTableItemCell
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTStatusTableField* field = item;
+  TTStatusTableItem* field = item;
   if (field.sizeToFit) {
     CGFloat headerHeight = 0;
     if ([tableView.delegate respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
@@ -775,7 +775,7 @@ static CGFloat kDefaultIconSize = 50;
     [_field release];
     _field = [object retain];
     
-    TTErrorTableField* emptyItem = object;
+    TTErrorTableItem* emptyItem = object;
     _errorView.image = emptyItem.image;
     _errorView.title = emptyItem.text;
     _errorView.subtitle = emptyItem.subtitle;
@@ -786,7 +786,7 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTextFieldTableFieldCell
+@implementation TTTextFieldTableItemCell
 
 @synthesize textField = _textField;
 
@@ -827,7 +827,7 @@ static CGFloat kDefaultIconSize = 50;
   if (_field != object) {
     [super setObject:object];
 
-    TTTextFieldTableField* field = object;
+    TTTextFieldTableItem* field = object;
     self.textLabel.text = [NSString stringWithFormat:@"  %@", field.title];
 
     _textField.text = field.text;
@@ -850,7 +850,7 @@ static CGFloat kDefaultIconSize = 50;
 // UIControlEvents
 
 - (void)valueChanged {
-  TTTextFieldTableField* field = self.object;
+  TTTextFieldTableItem* field = self.object;
   field.text = _textField.text;
 }
 
@@ -858,7 +858,7 @@ static CGFloat kDefaultIconSize = 50;
 // UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-  TTTextFieldTableField* field = self.object;
+  TTTextFieldTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)]) {
     return [field.delegate textFieldShouldBeginEditing:textField];
   } else {
@@ -872,14 +872,14 @@ static CGFloat kDefaultIconSize = 50;
 //  [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle
 //    animated:YES];
 
-  TTTextFieldTableField* field = self.object;
+  TTTextFieldTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textFieldDidBeginEditing:)]) {
     [field.delegate textFieldDidBeginEditing:textField];
   }
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-  TTTextFieldTableField* field = self.object;
+  TTTextFieldTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
     return [field.delegate textFieldShouldEndEditing:textField];
   } else {
@@ -888,7 +888,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-  TTTextFieldTableField* field = self.object;
+  TTTextFieldTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textFieldDidEndEditing:)]) {
     [field.delegate textFieldDidEndEditing:textField];
   }
@@ -896,7 +896,7 @@ static CGFloat kDefaultIconSize = 50;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
     replacementString:(NSString *)string {
-  TTTextFieldTableField* field = self.object;
+  TTTextFieldTableItem* field = self.object;
   SEL sel = @selector(textField:shouldChangeCharactersInRange:replacementString:);
   if ([field.delegate respondsToSelector:sel]) {
     return [field.delegate textField:textField shouldChangeCharactersInRange:range
@@ -907,7 +907,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
-  TTTextFieldTableField* field = self.object;
+  TTTextFieldTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
     return [field.delegate textFieldShouldClear:textField];
   } else {
@@ -916,7 +916,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-  TTTextFieldTableField* field = self.object;
+  TTTextFieldTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
     return [field.delegate textFieldShouldReturn:textField];
   } else {
@@ -928,7 +928,7 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTextViewTableFieldCell
+@implementation TTTextViewTableItemCell
 
 @synthesize textView = _textView;
 
@@ -981,7 +981,7 @@ static CGFloat kDefaultIconSize = 50;
     [_field release];
     _field = [object retain];
 
-    TTTextFieldTableField* field = self.object;
+    TTTextFieldTableItem* field = self.object;
     _textView.text = field.text;
   }  
 }
@@ -990,7 +990,7 @@ static CGFloat kDefaultIconSize = 50;
 // UITextViewDelegate
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-  TTTextViewTableField* field = self.object;
+  TTTextViewTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textViewShouldBeginEditing:)]) {
     return [field.delegate textViewShouldBeginEditing:textView];
   } else {
@@ -999,7 +999,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-  TTTextViewTableField* field = self.object;
+  TTTextViewTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textViewShouldEndEditing:)]) {
     return [field.delegate textViewShouldEndEditing:textView];
   } else {
@@ -1013,14 +1013,14 @@ static CGFloat kDefaultIconSize = 50;
 //  [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle
 //    animated:YES];
   
-  TTTextViewTableField* field = self.object;
+  TTTextViewTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textViewDidBeginEditing:)]) {
     [field.delegate textViewDidBeginEditing:textView];
   }
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-  TTTextViewTableField* field = self.object;
+  TTTextViewTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
     [field.delegate textViewDidEndEditing:textView];
   }
@@ -1028,7 +1028,7 @@ static CGFloat kDefaultIconSize = 50;
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
     replacementText:(NSString *)text {
-  TTTextViewTableField* field = self.object;
+  TTTextViewTableItem* field = self.object;
   SEL sel = @selector(textView:shouldChangeTextInRange:replacementText:);
   if ([field.delegate respondsToSelector:sel]) {
     return [field.delegate textView:textView shouldChangeTextInRange:range replacementText:text];
@@ -1038,7 +1038,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-  TTTextViewTableField* field = self.object;
+  TTTextViewTableItem* field = self.object;
   field.text = textView.text;
   
   if ([field.delegate respondsToSelector:@selector(textViewDidChange:)]) {
@@ -1047,7 +1047,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)textViewDidChangeSelection:(UITextView *)textView {
-  TTTextViewTableField* field = self.object;
+  TTTextViewTableItem* field = self.object;
   if ([field.delegate respondsToSelector:@selector(textViewDidChangeSelection:)]) {
     [field.delegate textViewDidChangeSelection:textView];
   }
@@ -1057,7 +1057,7 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTSwitchTableFieldCell
+@implementation TTSwitchTableItemCell
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
@@ -1097,7 +1097,7 @@ static CGFloat kDefaultIconSize = 50;
 
     self.textLabel.font = TTSTYLEVAR(tableSmallFont);
 
-    TTSwitchTableField* field = self.object;
+    TTSwitchTableItem* field = self.object;
     _switch.on = field.on;
   }  
 }
@@ -1106,7 +1106,7 @@ static CGFloat kDefaultIconSize = 50;
 // UIControlEvents
 
 - (void)valueChanged {
-  TTSwitchTableField* field = self.object;
+  TTSwitchTableItem* field = self.object;
   field.on = _switch.on;
 }
 
@@ -1114,7 +1114,7 @@ static CGFloat kDefaultIconSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTSearchBarTableFieldCell
+@implementation TTSearchBarTableItemCell
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   return TOOLBAR_HEIGHT;

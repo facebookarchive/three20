@@ -26,10 +26,10 @@
 - (id<TTTableViewDataSource>)createDataSource {
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Controls",
-    [[[TTSwitchTableField alloc] initWithText:@"TTSwitchTableField"] autorelease],
-    [[[TTTextFieldTableField alloc] initWithTitle:@"Title" text:@"TTTextFieldTableField"]
+    [[[TTSwitchTableItem alloc] initWithText:@"TTSwitchTableItem"] autorelease],
+    [[[TTTextFieldTableItem alloc] initWithTitle:@"Title" text:@"TTTextFieldTableItem"]
       autorelease],
-    [[[TTTextViewTableField alloc] initWithText:@"TTTextViewTableField"] autorelease],
+    [[[TTTextViewTableItem alloc] initWithText:@"TTTextViewTableItem"] autorelease],
 
     nil];
 }

@@ -4,7 +4,7 @@
 #import "ImageTest1Controller.h"
 #import "TableImageTestController.h"
 #import "YouTubeTestController.h"
-#import "TableFieldTestController.h"
+#import "TableItemTestController.h"
 #import "TableControlsTestController.h"
 #import "TableTestController.h"
 #import "SearchTestController.h"
@@ -45,7 +45,7 @@
   [nav addView:@"photoTest2" controller:[PhotoTest2Controller class]];
   [nav addView:@"imageTest1" controller:[ImageTest1Controller class]];
   [nav addView:@"tableTest" controller:[TableTestController class]];
-  [nav addView:@"tableFieldTest" controller:[TableFieldTestController class]];
+  [nav addView:@"tableFieldTest" controller:[TableItemTestController class]];
   [nav addView:@"tableControlsTest" controller:[TableControlsTestController class]];
   [nav addView:@"styledTextTableTest" controller:[StyledTextTableTestController class]];
   [nav addView:@"composerTest" controller:[MessageTestController class]];
@@ -73,51 +73,51 @@
 - (id<TTTableViewDataSource>)createDataSource {
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Photos",
-    [[[TTTableField alloc] initWithText:@"Photo Browser"
+    [[[TTTableItem alloc] initWithText:@"Photo Browser"
       URL:@"tt://photoTest1"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Photo Thumbnails"
+    [[[TTTableItem alloc] initWithText:@"Photo Thumbnails"
       URL:@"tt://photoTest2"] autorelease],
 
     @"Text Fields",
-    [[[TTTableField alloc] initWithText:@"Message Composer"
+    [[[TTTableItem alloc] initWithText:@"Message Composer"
       URL:@"tt://composerTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Search Bar"
+    [[[TTTableItem alloc] initWithText:@"Search Bar"
       URL:@"tt://searchTest"] autorelease],
 
     @"Styles",
-    [[[TTTableField alloc] initWithText:@"Styled Views"
+    [[[TTTableItem alloc] initWithText:@"Styled Views"
       URL:@"tt://styleTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Styled Labels"
+    [[[TTTableItem alloc] initWithText:@"Styled Labels"
       URL:@"tt://styledTextTest"] autorelease],
 
     @"Controls",
-    [[[TTTableField alloc] initWithText:@"Buttons"
+    [[[TTTableItem alloc] initWithText:@"Buttons"
       URL:@"tt://buttonTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Tabs"
+    [[[TTTableItem alloc] initWithText:@"Tabs"
       URL:@"tt://tabBarTest"] autorelease],
 
     @"Tables",
-    [[[TTTableField alloc] initWithText:@"Table States"
+    [[[TTTableItem alloc] initWithText:@"Table States"
       URL:@"tt://tableTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Table Items"
+    [[[TTTableItem alloc] initWithText:@"Table Items"
       URL:@"tt://tableFieldTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Table Controls"
+    [[[TTTableItem alloc] initWithText:@"Table Controls"
       URL:@"tt://tableControlsTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Styled Labels in Table"
+    [[[TTTableItem alloc] initWithText:@"Styled Labels in Table"
       URL:@"tt://styledTextTableTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Web Images in Table"
+    [[[TTTableItem alloc] initWithText:@"Web Images in Table"
       URL:@"tt://imageTest2"] autorelease],
 
     @"General",
-    [[[TTTableField alloc] initWithText:@"Web Image"
+    [[[TTTableItem alloc] initWithText:@"Web Image"
       URL:@"tt://imageTest1"] autorelease],
-    [[[TTTableField alloc] initWithText:@"YouTube Player"
+    [[[TTTableItem alloc] initWithText:@"YouTube Player"
       URL:@"tt://youTubeTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Web Browser"
+    [[[TTTableItem alloc] initWithText:@"Web Browser"
       URL:@"tt://webTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Activity Labels"
+    [[[TTTableItem alloc] initWithText:@"Activity Labels"
       URL:@"tt://activityTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Scroll View"
+    [[[TTTableItem alloc] initWithText:@"Scroll View"
       URL:@"tt://scrollViewTest"] autorelease],
     nil];
 }
@@ -128,7 +128,7 @@
 - (void)willNavigateToObject:(id)object inView:(NSString*)viewType
     withController:(UIViewController*)viewController {
   NSIndexPath* indexPath = self.tableView.indexPathForSelectedRow;
-  TTLinkTableField* field = [self.dataSource tableView:self.tableView
+  TTLinkTableItem* field = [self.dataSource tableView:self.tableView
     objectForRowAtIndexPath:indexPath];
   
   viewController.title = field.text;

@@ -1,8 +1,8 @@
 #import "Three20/TTTableViewController.h"
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableView.h"
-#import "Three20/TTTableField.h"
-#import "Three20/TTTableFieldCell.h"
+#import "Three20/TTTableItem.h"
+#import "Three20/TTTableItemCell.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTTableViewDelegate.h"
 
@@ -131,7 +131,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 - (void)updateLoadingView {
   if (self.viewState & TTViewLoading) {
     NSString* title = [self titleForActivity];
-    TTStatusTableField* statusItem = [[[TTActivityTableField alloc] initWithText:title]
+    TTStatusTableItem* statusItem = [[[TTActivityTableItem alloc] initWithText:title]
       autorelease];
     statusItem.sizeToFit = YES;
 
@@ -187,7 +187,7 @@ static const CGFloat kRefreshingViewHeight = 22;
     NSString* subtitle = [self subtitleForError:_contentError];
     UIImage* image = [self imageForError:_contentError];
     
-    TTStatusTableField* statusItem = [[[TTErrorTableField alloc] initWithText:title
+    TTStatusTableItem* statusItem = [[[TTErrorTableItem alloc] initWithText:title
       subtitle:subtitle image:image] autorelease];
     statusItem.sizeToFit = YES;
 
@@ -199,7 +199,7 @@ static const CGFloat kRefreshingViewHeight = 22;
     NSString* subtitle = [self subtitleForNoData];
     UIImage* image = [self imageForNoData];
     
-    TTStatusTableField* statusItem = [[[TTErrorTableField alloc] initWithText:title
+    TTStatusTableItem* statusItem = [[[TTErrorTableItem alloc] initWithText:title
       subtitle:subtitle image:image] autorelease];
     statusItem.sizeToFit = YES;
 

@@ -2,63 +2,52 @@
 
 @class TTStyledText, TTStyle;
 
-typedef enum {
-  TTItemStyleDefault,
-  TTItemStyleLink,
-  TTItemStyleButton,
-  TTItemStyleMoreButton,
-  TTItemStyleCaptionLeft,
-  TTItemStyleCaptionRight,
-  TTItemStyleCaptionBelow,
-  TTItemStyleText,
-  TTItemStyleGrayText,
-  TTItemStyleSummary,
-} TTItemStyle;
-
-@interface TTTableField : NSObject {
+//typedef enum {
+//  TTItemStyleDefault,
+//  TTItemStyleLink,
+//  TTItemStyleButton,
+//  TTItemStyleMoreButton,
+//  TTItemStyleCaptionLeft,
+//  TTItemStyleCaptionRight,
+//  TTItemStyleCaptionBelow,
+//  TTItemStyleText,
+//  TTItemStyleGrayText,
+//  TTItemStyleSummary,
+//} TTItemStyle;
+//
+@interface TTTableItem : NSObject {
   NSString* _text;
+  NSString* _caption;
   NSString* _URL;
+  NSString* _accessoryURL;
 }
   
 @property(nonatomic,copy) NSString* text;
+@property(nonatomic,copy) NSString* caption;
 @property(nonatomic,copy) NSString* URL;
+@property(nonatomic,copy) NSString* accessoryURL;
 
 - (id)initWithText:(NSString*)text;
 - (id)initWithText:(NSString*)text URL:(NSString*)URL;
 
 @end
 
-@interface TTTextTableField : TTTableField
+@interface TTTextTableItem : TTTableItem
 @end
 
-@interface TTStyledTextTableField : TTTableField {
-  TTStyledText* _styledText;
-  UIEdgeInsets _margin;
-  UIEdgeInsets _padding;
-}
-
-@property(nonatomic,retain) TTStyledText* styledText;
-@property(nonatomic) UIEdgeInsets margin;
-@property(nonatomic) UIEdgeInsets padding;
-
-- (id)initWithStyledText:(TTStyledText*)text;
-- (id)initWithStyledText:(TTStyledText*)text URL:(NSString*)URL;
-
+@interface TTGrayTextTableItem : TTTextTableItem
 @end
 
-@interface TTGrayTextTableField : TTTextTableField
+@interface TTSummaryTableItem : TTTableItem
 @end
 
-@interface TTSummaryTableField : TTTableField
+@interface TTLinkTableItem : TTTableItem
 @end
 
-@interface TTLinkTableField : TTTableField
+@interface TTButtonTableItem : TTLinkTableItem
 @end
 
-@interface TTButtonTableField : TTLinkTableField
-@end
-
-@interface TTMoreButtonTableField : TTTableField {
+@interface TTMoreButtonTableItem : TTTableItem {
   BOOL _isLoading;
   NSString* _subtitle;
 }
@@ -70,7 +59,7 @@ typedef enum {
 
 @end
 
-@interface TTTitledTableField : TTLinkTableField {
+@interface TTTitledTableItem : TTLinkTableItem {
   NSString* _title;
 }
 
@@ -81,7 +70,7 @@ typedef enum {
 
 @end
 
-@interface TTSubtextTableField : TTTableField {
+@interface TTSubtextTableItem : TTTableItem {
   NSString* _subtext;
 }
 
@@ -92,7 +81,7 @@ typedef enum {
 
 @end
 
-@interface TTImageTableField : TTTableField {
+@interface TTImageTableItem : TTTableItem {
   UIImage* _defaultImage;
   NSString* _image;
   TTStyle* _imageStyle;
@@ -109,10 +98,25 @@ typedef enum {
 
 @end
 
-@interface TTIconTableField : TTImageTableField
+@interface TTIconTableItem : TTImageTableItem
 @end
 
-@interface TTStatusTableField : TTTableField {
+@interface TTStyledTextTableItem : TTTableItem {
+  TTStyledText* _styledText;
+  UIEdgeInsets _margin;
+  UIEdgeInsets _padding;
+}
+
+@property(nonatomic,retain) TTStyledText* styledText;
+@property(nonatomic) UIEdgeInsets margin;
+@property(nonatomic) UIEdgeInsets padding;
+
+- (id)initWithStyledText:(TTStyledText*)text;
+- (id)initWithStyledText:(TTStyledText*)text URL:(NSString*)URL;
+
+@end
+
+@interface TTStatusTableItem : TTTableItem {
   BOOL _sizeToFit;
 }
 
@@ -120,10 +124,10 @@ typedef enum {
 
 @end
 
-@interface TTActivityTableField : TTStatusTableField
+@interface TTActivityTableItem : TTStatusTableItem
 @end
 
-@interface TTErrorTableField : TTStatusTableField {
+@interface TTErrorTableItem : TTStatusTableItem {
   UIImage* _image;
   NSString* _subtitle;
 }
@@ -135,7 +139,7 @@ typedef enum {
 
 @end
 
-@interface TTTextFieldTableField : TTTableField {
+@interface TTTextFieldTableItem : TTTableItem {
   id<UITextFieldDelegate> _delegate;
   NSString* _title;
   NSString* _placeholder;
@@ -163,7 +167,7 @@ typedef enum {
 
 @end
 
-@interface TTTextViewTableField : TTTableField {
+@interface TTTextViewTableItem : TTTableItem {
   id<UITextViewDelegate> _delegate;
   NSString* _placeholder;
 }
@@ -173,7 +177,7 @@ typedef enum {
 
 @end
 
-@interface TTSwitchTableField : TTTableField {
+@interface TTSwitchTableItem : TTTableItem {
   BOOL _on;
 }
 

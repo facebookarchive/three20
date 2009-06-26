@@ -41,7 +41,7 @@ Move along now. Nothing to see here. Goodbye now."],
     TTStyledText* text = [strings objectAtIndex:i % strings.count];
     
     [dataSource.items addObject:
-      [[[TTStyledTextTableField alloc] initWithStyledText:text URL:URL] autorelease]];
+      [[[TTStyledTextTableItem alloc] initWithStyledText:text URL:URL] autorelease]];
   }
   return dataSource;
 }

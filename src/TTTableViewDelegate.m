@@ -1,8 +1,8 @@
 #import "Three20/TTTableViewDelegate.h"
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableViewController.h"
-#import "Three20/TTTableField.h"
-#import "Three20/TTTableFieldCell.h"
+#import "Three20/TTTableItem.h"
+#import "Three20/TTTableItemCell.h"
 #import "Three20/TTTableHeaderView.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTDefaultStyleSheet.h"
@@ -53,19 +53,19 @@ static const CGFloat kSectionHeaderHeight = 35;
   id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
 
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
-  if ([object isKindOfClass:[TTTableField class]]) {
-    TTTableField* field = object;
+  if ([object isKindOfClass:[TTTableItem class]]) {
+    TTTableItem* field = object;
     if (field.URL && [_controller shouldNavigateToURL:field.URL]) {
       [[TTNavigationCenter defaultCenter] displayURL:field.URL];
     }
 
-    if ([field isKindOfClass:[TTButtonTableField class]]) {
+    if ([field isKindOfClass:[TTButtonTableItem class]]) {
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    } else if ([object isKindOfClass:[TTMoreButtonTableField class]]) {
-      TTMoreButtonTableField* moreLink = (TTMoreButtonTableField*)object;
+    } else if ([object isKindOfClass:[TTMoreButtonTableItem class]]) {
+      TTMoreButtonTableItem* moreLink = (TTMoreButtonTableItem*)object;
       moreLink.isLoading = YES;
-      TTMoreButtonTableFieldCell* cell
-        = (TTMoreButtonTableFieldCell*)[tableView cellForRowAtIndexPath:indexPath];
+      TTMoreButtonTableItemCell* cell
+        = (TTMoreButtonTableItemCell*)[tableView cellForRowAtIndexPath:indexPath];
       cell.animating = YES;
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
       

@@ -2,7 +2,7 @@
 #import "Three20/TTPhotoViewController.h"
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTUnclippedView.h"
-#import "Three20/TTTableField.h"
+#import "Three20/TTTableItem.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTStyleSheet.h"
 
@@ -131,7 +131,7 @@ static CGFloat kThumbnailRowHeight = 79;
       TTLocalizedString(@"Showing %d of %d Photos", @""), _controller.photoSource.maxPhotoIndex+1,
       _controller.photoSource.numberOfPhotos];
 
-    return [[[TTMoreButtonTableField alloc] initWithText:title subtitle:subtitle] autorelease];
+    return [[[TTMoreButtonTableItem alloc] initWithText:title subtitle:subtitle] autorelease];
   } else {
     return [_controller.photoSource photoAtIndex:indexPath.row * kColumnCount];
   }
