@@ -17,7 +17,7 @@
 //      smallURL:@"http://example.com"
 //      size:CGSizeMake(320, 480)] autorelease],
 
-    // 404 on both url and thumbnail
+    // 404 on both URL and thumbnail
 //    [[[MockPhoto alloc]
 //      initWithURL:@"http://farm4.static.flickr.com/3425/3214x620333_daf56d25e5.jpg?v=0"
 //      smallURL:@"http://farm4.static.flickr.com/3425/3214620333_daf56d25e5_t.jpg"

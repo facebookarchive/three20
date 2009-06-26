@@ -3,7 +3,7 @@
 @class TTView;
 
 @interface TTLink : UIControl {
-  id _url;
+  id _URL;
   TTView* _screenView;
 }
 
@@ -12,6 +12,6 @@
  *
  * This can be a string or an object that whose type is registered with TTNavigationCenter.
  */
-@property(nonatomic,retain) id url;
+@property(nonatomic,retain) id URL;
 
 @end

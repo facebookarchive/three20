@@ -74,17 +74,17 @@
       NSRange endRange = [string rangeOfString:@" " options:NSCaseInsensitiveSearch
                                  range:searchRange];
       if (endRange.location == NSNotFound) {
-        NSString* url = [string substringWithRange:searchRange];
-        TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:url] autorelease];
-        node.url = url;
+        NSString* URL = [string substringWithRange:searchRange];
+        TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:URL] autorelease];
+        node.URL = URL;
         [self addNode:node];
         break;
       } else {
-        NSRange urlRange = NSMakeRange(startRange.location,
+        NSRange URLRange = NSMakeRange(startRange.location,
                                              endRange.location - startRange.location);
-        NSString* url = [string substringWithRange:urlRange];
-        TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:url] autorelease];
-        node.url = url;
+        NSString* URL = [string substringWithRange:URLRange];
+        TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:URL] autorelease];
+        node.URL = URL;
         [self addNode:node];
         index = endRange.location;
       }
@@ -144,16 +144,16 @@
     [self pushNode:node];
   } else if ([tag isEqualToString:@"a"]) {
     TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] init] autorelease];
-    node.url =  [attributeDict objectForKey:@"href"];
+    node.URL =  [attributeDict objectForKey:@"href"];
     [self pushNode:node];
   } else if ([tag isEqualToString:@"button"]) {
     TTStyledButtonNode* node = [[[TTStyledButtonNode alloc] init] autorelease];
-    node.url =  [attributeDict objectForKey:@"href"];
+    node.URL =  [attributeDict objectForKey:@"href"];
     [self pushNode:node];
   } else if ([tag isEqualToString:@"img"]) {
     TTStyledImageNode* node = [[[TTStyledImageNode alloc] init] autorelease];
     node.className =  [attributeDict objectForKey:@"class"];
-    node.url =  [attributeDict objectForKey:@"src"];
+    node.URL =  [attributeDict objectForKey:@"src"];
     NSString* width = [attributeDict objectForKey:@"width"];
     if (width) {
       node.width = width.floatValue;

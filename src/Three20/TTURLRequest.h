@@ -3,7 +3,7 @@
 @protocol TTURLRequestDelegate, TTURLResponse;
 
 @interface TTURLRequest : NSObject {
-  NSString* _url;
+  NSString* _URL;
   NSString* _httpMethod;
   NSData* _httpBody;
   NSMutableDictionary* _parameters;
@@ -33,7 +33,7 @@
 /**
  * The URL to be loaded by the request.
  */
-@property(nonatomic,copy) NSString* url;
+@property(nonatomic,copy) NSString* URL;
 
 /**
  * The HTTP method to send with the request.
@@ -79,9 +79,9 @@
 
 + (TTURLRequest*)request;
 
-+ (TTURLRequest*)requestWithURL:(NSString*)url delegate:(id<TTURLRequestDelegate>)delegate;
++ (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate;
 
-- (id)initWithURL:(NSString*)url delegate:(id<TTURLRequestDelegate>)delegate;
+- (id)initWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate;
 
 /**
  * Attempts to send a request.

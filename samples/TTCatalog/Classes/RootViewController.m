@@ -38,7 +38,7 @@
   TTNavigationCenter* nav = [TTNavigationCenter defaultCenter];
   nav.mainViewController = self.navigationController;
   nav.delegate = self;
-  nav.urlSchemes = [NSArray arrayWithObject:@"tt"];
+  nav.URLSchemes = [NSArray arrayWithObject:@"tt"];
   nav.supportsShakeToReload = YES;
   
   [nav addView:@"photoTest1" controller:[PhotoTest1Controller class]];
@@ -74,51 +74,51 @@
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Photos",
     [[[TTTableField alloc] initWithText:@"Photo Browser"
-      url:@"tt://photoTest1"] autorelease],
+      URL:@"tt://photoTest1"] autorelease],
     [[[TTTableField alloc] initWithText:@"Photo Thumbnails"
-      url:@"tt://photoTest2"] autorelease],
+      URL:@"tt://photoTest2"] autorelease],
 
     @"Text Fields",
     [[[TTTableField alloc] initWithText:@"Message Composer"
-      url:@"tt://composerTest"] autorelease],
+      URL:@"tt://composerTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Search Bar"
-      url:@"tt://searchTest"] autorelease],
+      URL:@"tt://searchTest"] autorelease],
 
     @"Styles",
     [[[TTTableField alloc] initWithText:@"Styled Views"
-      url:@"tt://styleTest"] autorelease],
+      URL:@"tt://styleTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Styled Labels"
-      url:@"tt://styledTextTest"] autorelease],
+      URL:@"tt://styledTextTest"] autorelease],
 
     @"Controls",
     [[[TTTableField alloc] initWithText:@"Buttons"
-      url:@"tt://buttonTest"] autorelease],
+      URL:@"tt://buttonTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Tabs"
-      url:@"tt://tabBarTest"] autorelease],
+      URL:@"tt://tabBarTest"] autorelease],
 
     @"Tables",
     [[[TTTableField alloc] initWithText:@"Table States"
-      url:@"tt://tableTest"] autorelease],
+      URL:@"tt://tableTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Table Items"
-      url:@"tt://tableFieldTest"] autorelease],
+      URL:@"tt://tableFieldTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Table Controls"
-      url:@"tt://tableControlsTest"] autorelease],
+      URL:@"tt://tableControlsTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Styled Labels in Table"
-      url:@"tt://styledTextTableTest"] autorelease],
+      URL:@"tt://styledTextTableTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Web Images in Table"
-      url:@"tt://imageTest2"] autorelease],
+      URL:@"tt://imageTest2"] autorelease],
 
     @"General",
     [[[TTTableField alloc] initWithText:@"Web Image"
-      url:@"tt://imageTest1"] autorelease],
+      URL:@"tt://imageTest1"] autorelease],
     [[[TTTableField alloc] initWithText:@"YouTube Player"
-      url:@"tt://youTubeTest"] autorelease],
+      URL:@"tt://youTubeTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Web Browser"
-      url:@"tt://webTest"] autorelease],
+      URL:@"tt://webTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Activity Labels"
-      url:@"tt://activityTest"] autorelease],
+      URL:@"tt://activityTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Scroll View"
-      url:@"tt://scrollViewTest"] autorelease],
+      URL:@"tt://scrollViewTest"] autorelease],
     nil];
 }
 
@@ -134,8 +134,8 @@
   viewController.title = field.text;
 }
 
-- (BOOL)shouldLoadExternalURL:(NSURL*)url {
-  NSString* message = [NSString stringWithFormat:@"You touched a link to %@", url];
+- (BOOL)shouldLoadExternalURL:(NSURL*)URL {
+  NSString* message = [NSString stringWithFormat:@"You touched a link to %@", URL];
   UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Link"
     message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"")
     otherButtonTitles:nil] autorelease];

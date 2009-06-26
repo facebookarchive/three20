@@ -6,14 +6,14 @@
 @interface TTImageView : TTView <TTURLRequestDelegate> {
   id<TTImageViewDelegate> _delegate;
   TTURLRequest* _request;
-  NSString* _url;
+  NSString* _URL;
   UIImage* _image;
   UIImage* _defaultImage;
   BOOL _autoresizesToImage;
 }
 
 @property(nonatomic,assign) id<TTImageViewDelegate> delegate;
-@property(nonatomic,copy) NSString* url;
+@property(nonatomic,copy) NSString* URL;
 @property(nonatomic,retain) UIImage* image;
 @property(nonatomic,retain) UIImage* defaultImage;
 @property(nonatomic) BOOL autoresizesToImage;

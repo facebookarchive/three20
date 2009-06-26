@@ -165,7 +165,7 @@
  
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (NSURL*)url {
+- (NSURL*)URL {
   return _webView.request.URL;
 }
 
@@ -199,8 +199,8 @@
   }
 }
 
-- (void)openURL:(NSURL*)url {
-  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+- (void)openURL:(NSURL*)URL {
+  NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
   [self openRequest:request];
 }
 

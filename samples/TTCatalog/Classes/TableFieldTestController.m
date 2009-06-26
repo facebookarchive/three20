@@ -42,18 +42,18 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Buttons",
     [[[TTTableField alloc] initWithText:@"TTTableField"
-      url:@"tt://tableFieldTest"] autorelease],
+      URL:@"tt://tableFieldTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"TTTableField (external link)"
-      url:@"http://foo.com"] autorelease],
+      URL:@"http://foo.com"] autorelease],
     [[[TTLinkTableField alloc] initWithText:@"TTLinkTableField"
-      url:@"tt://tableFieldTest"] autorelease],
-    [[[TTIconTableField alloc] initWithText:@"TTIconTableField" url:@"tt://tableFieldTest"
+      URL:@"tt://tableFieldTest"] autorelease],
+    [[[TTIconTableField alloc] initWithText:@"TTIconTableField" URL:@"tt://tableFieldTest"
       image:@"bundle://tableIcon.png" ] autorelease],
-    [[[TTImageTableField alloc] initWithText:@"TTImageTableField" url:@"tt://tableFieldTest"
+    [[[TTImageTableField alloc] initWithText:@"TTImageTableField" URL:@"tt://tableFieldTest"
       image:@"bundle://person.jpg"] autorelease],
     [[[TTButtonTableField alloc] initWithText:@"TTButtonTableField"] autorelease],
     [[[TTTitledTableField alloc] initWithTitle:@"title"
-      text:@"TTTitledTableField" url:@"tt://tableFieldTest"] autorelease],
+      text:@"TTTitledTableField" URL:@"tt://tableFieldTest"] autorelease],
     [[[TTMoreButtonTableField alloc] initWithText:@"TTMoreButtonTableField"
       subtitle:@"Showing 1 of 100"] autorelease],
 

@@ -24,8 +24,8 @@
   return [self imageForState:UIControlStateNormal];
 }
 
-- (void)setThumbURL:(NSString*)url {
-  [self setImage:url forState:UIControlStateNormal];
+- (void)setThumbURL:(NSString*)URL {
+  [self setImage:URL forState:UIControlStateNormal];
 }
 
 @end

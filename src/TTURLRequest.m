@@ -11,7 +11,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 @implementation TTURLRequest
 
-@synthesize delegates = _delegates, url = _url, response = _response, httpMethod = _httpMethod,
+@synthesize delegates = _delegates, URL = _URL, response = _response, httpMethod = _httpMethod,
   httpBody = _httpBody, parameters = _parameters, contentType = _contentType,
   cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge, cacheKey = _cacheKey,
   timestamp = _timestamp, userInfo = _userInfo, isLoading = _isLoading,
@@ -21,13 +21,13 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   return [[[TTURLRequest alloc] init] autorelease];
 }
 
-+ (TTURLRequest*)requestWithURL:(NSString*)url delegate:(id<TTURLRequestDelegate>)delegate {
-  return [[[TTURLRequest alloc] initWithURL:url delegate:delegate] autorelease];
++ (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate {
+  return [[[TTURLRequest alloc] initWithURL:URL delegate:delegate] autorelease];
 }
 
-- (id)initWithURL:(NSString*)url delegate:(id<TTURLRequestDelegate>)delegate {
+- (id)initWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate {
   if (self = [self init]) {
-    _url = [url retain];
+    _URL = [URL retain];
     if (delegate) {
       [_delegates addObject:delegate];
     }
@@ -37,7 +37,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 - (id)init {
   if (self = [super init]) {
-    _url = nil;
+    _URL = nil;
     _httpMethod = nil;
     _httpBody = nil;
     _parameters = nil;
@@ -57,7 +57,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 - (void)dealloc {
-  [_url release];
+  [_URL release];
   [_httpMethod release];
   [_httpBody release];
   [_parameters release];
@@ -71,7 +71,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 - (NSString*)description {
-  return [NSString stringWithFormat:@"<TTURLRequest %@>", _url];
+  return [NSString stringWithFormat:@"<TTURLRequest %@>", _URL];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,7 +90,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 - (NSString*)generateCacheKey {
   if ([_httpMethod isEqualToString:@"POST"]) {
-    NSMutableString* joined = [[[NSMutableString alloc] initWithString:self.url] autorelease]; 
+    NSMutableString* joined = [[[NSMutableString alloc] initWithString:self.URL] autorelease]; 
     NSEnumerator* e = [_parameters keyEnumerator];
     for (id key; key = [e nextObject]; ) {
       [joined appendString:key];
@@ -103,7 +103,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
     return [self md5HexDigest:joined];
   } else {
-    return [self md5HexDigest:self.url];
+    return [self md5HexDigest:self.URL];
   }
 }
 
@@ -197,7 +197,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 - (BOOL)send {
   if (_parameters) {
-    TTLOG(@"SEND %@ %@", self.url, self.parameters);
+    TTLOG(@"SEND %@ %@", self.URL, self.parameters);
   }
   return [[TTURLRequestQueue mainQueue] sendRequest:self];
 }
@@ -207,7 +207,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 - (NSURLRequest*)createNSURLRequest {
-  return [[TTURLRequestQueue mainQueue] createNSURLRequest:self url:nil];
+  return [[TTURLRequestQueue mainQueue] createNSURLRequest:self URL:nil];
 }
 
 @end

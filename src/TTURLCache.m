@@ -69,7 +69,7 @@ static TTURLCache* gSharedCache = nil;
   }
 }
 
-- (void)storeImage:(UIImage*)image forURL:(NSString*)url force:(BOOL)force {
+- (void)storeImage:(UIImage*)image forURL:(NSString*)URL force:(BOOL)force {
   if (image && (force || !_disableImageCache)) {
     int pixelCount = image.size.width * image.size.height;
     if (force || pixelCount < TT_LARGE_IMAGE_SIZE) {
@@ -85,20 +85,20 @@ static TTURLCache* gSharedCache = nil;
         _imageSortedList = [[NSMutableArray alloc] init];
       }
 
-      [_imageSortedList addObject:url];
-      [_imageCache setObject:image forKey:url];
+      [_imageSortedList addObject:URL];
+      [_imageCache setObject:image forKey:URL];
     }
   }
 }
 
-- (UIImage*)loadImageFromBundle:(NSString*)url {
-  NSString* path = TTPathForBundleResource([url substringFromIndex:9]);
+- (UIImage*)loadImageFromBundle:(NSString*)URL {
+  NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
   NSData* data = [NSData dataWithContentsOfFile:path];
   return [UIImage imageWithData:data];
 }
 
-- (UIImage*)loadImageFromDocuments:(NSString*)url {
-  NSString* path = TTPathForDocumentsResource([url substringFromIndex:12]);
+- (UIImage*)loadImageFromDocuments:(NSString*)URL {
+  NSString* path = TTPathForDocumentsResource([URL substringFromIndex:12]);
   NSData* data = [NSData dataWithContentsOfFile:path];
   return [UIImage imageWithData:data];
 }
@@ -142,8 +142,8 @@ static TTURLCache* gSharedCache = nil;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (NSString *)keyForURL:(NSString*)url {
-  const char* str = [url UTF8String];
+- (NSString *)keyForURL:(NSString*)URL {
+  const char* str = [URL UTF8String];
   unsigned char result[CC_MD5_DIGEST_LENGTH];
   CC_MD5(str, strlen(str), result);
 
@@ -154,8 +154,8 @@ static TTURLCache* gSharedCache = nil;
   ];
 }
 
-- (NSString*)cachePathForURL:(NSString*)url {
-  NSString* key = [self keyForURL:url];
+- (NSString*)cachePathForURL:(NSString*)URL {
+  NSString* key = [self keyForURL:URL];
   return [self cachePathForKey:key];
 }
 
@@ -163,19 +163,19 @@ static TTURLCache* gSharedCache = nil;
   return [_cachePath stringByAppendingPathComponent:key];
 }
 
-- (BOOL)hasDataForURL:(NSString*)url {
-  NSString* filePath = [self cachePathForURL:url];
+- (BOOL)hasDataForURL:(NSString*)URL {
+  NSString* filePath = [self cachePathForURL:URL];
   NSFileManager* fm = [NSFileManager defaultManager];
   return [fm fileExistsAtPath:filePath];
 }
 
-- (NSData*)dataForURL:(NSString*)url {
-  return [self dataForURL:url expires:0 timestamp:nil];
+- (NSData*)dataForURL:(NSString*)URL {
+  return [self dataForURL:URL expires:0 timestamp:nil];
 }
 
-- (NSData*)dataForURL:(NSString*)url expires:(NSTimeInterval)expirationAge
+- (NSData*)dataForURL:(NSString*)URL expires:(NSTimeInterval)expirationAge
     timestamp:(NSDate**)timestamp {
-  NSString* key = [self keyForURL:url];
+  NSString* key = [self keyForURL:URL];
   return [self dataForKey:key expires:expirationAge timestamp:timestamp];
 }
 
@@ -199,26 +199,26 @@ static TTURLCache* gSharedCache = nil;
   return nil;
 }
 
-- (id)imageForURL:(NSString*)url {
-  return [self imageForURL:url fromDisk:YES];
+- (id)imageForURL:(NSString*)URL {
+  return [self imageForURL:URL fromDisk:YES];
 }
 
-- (id)imageForURL:(NSString*)url fromDisk:(BOOL)fromDisk {
-  UIImage* image = [_imageCache objectForKey:url];
+- (id)imageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
+  UIImage* image = [_imageCache objectForKey:URL];
   if (!image && fromDisk) {
-    if (TTIsBundleURL(url)) {
-      image = [self loadImageFromBundle:url];
-      [self storeImage:image forURL:url];
-    } else if (TTIsDocumentsURL(url)) {
-      image = [self loadImageFromDocuments:url];
-      [self storeImage:image forURL:url];
+    if (TTIsBundleURL(URL)) {
+      image = [self loadImageFromBundle:URL];
+      [self storeImage:image forURL:URL];
+    } else if (TTIsDocumentsURL(URL)) {
+      image = [self loadImageFromDocuments:URL];
+      [self storeImage:image forURL:URL];
     }
   }
   return image;
 }
 
-- (void)storeData:(NSData*)data forURL:(NSString*)url {
-  NSString* key = [self keyForURL:url];
+- (void)storeData:(NSData*)data forURL:(NSString*)URL {
+  NSString* key = [self keyForURL:URL];
   [self storeData:data forKey:key];
 }
 
@@ -230,23 +230,23 @@ static TTURLCache* gSharedCache = nil;
   }
 }
 
-- (void)storeImage:(UIImage*)image forURL:(NSString*)url {
-  [self storeImage:image forURL:url force:NO];
+- (void)storeImage:(UIImage*)image forURL:(NSString*)URL {
+  [self storeImage:image forURL:URL force:NO];
 }
   
 - (NSString*)storeTemporaryData:(NSData*)data {
-  NSString* url = [self createTemporaryURL];
-  [self storeData:data forURL:url];
-  return url;
+  NSString* URL = [self createTemporaryURL];
+  [self storeData:data forURL:URL];
+  return URL;
 }
 
 - (NSString*)storeTemporaryImage:(UIImage*)image toDisk:(BOOL)toDisk {
-  NSString* url = [self createTemporaryURL];
-  [self storeImage:image forURL:url force:YES];
+  NSString* URL = [self createTemporaryURL];
+  [self storeImage:image forURL:URL force:YES];
   
   NSData* data = UIImagePNGRepresentation(image);
-  [self storeData:data forURL:url];
-  return url;
+  [self storeData:data forURL:URL];
+  return URL;
 }
 
 - (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL {
@@ -267,8 +267,8 @@ static TTURLCache* gSharedCache = nil;
   }
 }
 
-- (void)removeURL:(NSString*)url fromDisk:(BOOL)fromDisk {
-  NSString*  key = [self keyForURL:url];
+- (void)removeURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
+  NSString*  key = [self keyForURL:URL];
   [_imageSortedList removeObject:key];
   [_imageCache removeObjectForKey:key];
   
@@ -301,8 +301,8 @@ static TTURLCache* gSharedCache = nil;
   }
 }
 
-- (void)invalidateURL:(NSString*)url {
-  NSString* key = [self keyForURL:url];
+- (void)invalidateURL:(NSString*)URL {
+  NSString* key = [self keyForURL:URL];
   return [self invalidateKey:key];
 }
 

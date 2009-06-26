@@ -24,17 +24,17 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 
 @implementation TTYouTubeView
 
-@synthesize url = _url;
+@synthesize URL = _URL;
 
-- (id)initWithURL:(NSString*)url {
+- (id)initWithURL:(NSString*)URL {
   if (self = [self initWithFrame:CGRectMake(0, 0, kDefaultWidth, kDefaultHeight)]) {
-    self.url = url;
+    self.URL = URL;
   }
   return self;
 }
 
 - (void)dealloc {
-  [_url release];
+  [_URL release];
   [super dealloc];
 }
 
@@ -48,13 +48,13 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setUrl:(NSString*)url {
-  [_url release];
-  _url = [url copy];
+- (void)setURL:(NSString*)URL {
+  [_URL release];
+  _URL = [URL copy];
 
-  if (_url) {
+  if (_URL) {
     NSString* html = [NSString stringWithFormat:kEmbedHTML, self.width, self.width,
-                               self.height, _url, _url, self.width, self.height];
+                               self.height, _URL, _URL, self.width, self.height];
     [self loadHTMLString:html baseURL:nil];
   } else {
     [self loadHTMLString:@"&nbsp;" baseURL:nil];

@@ -102,7 +102,7 @@ Both line break characters\n\nand HTML line breaks<br/>are respected.";
 
   TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];
-  label1.text = [TTStyledText textFromXHTML:kText lineBreaks:YES urls:YES];
+  label1.text = [TTStyledText textFromXHTML:kText lineBreaks:YES URLs:YES];
   label1.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
   //label1.backgroundColor = [UIColor grayColor];
   [label1 sizeToFit];

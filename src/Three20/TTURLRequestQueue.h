@@ -79,6 +79,6 @@
 /**
  * Creates a Cocoa URL request from a Three20 URL request.
  */
-- (NSURLRequest*)createNSURLRequest:(TTURLRequest*)request url:(NSURL*)url;
+- (NSURLRequest*)createNSURLRequest:(TTURLRequest*)request URL:(NSURL*)URL;
 
 @end

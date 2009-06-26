@@ -59,7 +59,7 @@
   if ([data isKindOfClass:[UIImage class]]) {
     _image = [data retain];
   } else if ([data isKindOfClass:[NSData class]]) {
-    UIImage* image = [[TTURLCache sharedCache] imageForURL:request.url fromDisk:NO];
+    UIImage* image = [[TTURLCache sharedCache] imageForURL:request.URL fromDisk:NO];
     if (!image) {
       image = [UIImage imageWithData:data];
     }
@@ -70,9 +70,9 @@
 //          image = [image transformWidth:300 height:(image.size.height/image.size.width)*300.0
 //                         rotate:NO];
 //          NSData* data = UIImagePNGRepresentation(image);
-//          [[TTURLCache sharedCache] storeData:data forURL:request.url];
+//          [[TTURLCache sharedCache] storeData:data forURL:request.URL];
 //        }
-        [[TTURLCache sharedCache] storeImage:image forURL:request.url];
+        [[TTURLCache sharedCache] storeImage:image forURL:request.URL];
       }
       _image = [image retain];
     } else {

@@ -285,7 +285,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
 }
 
-- (BOOL)shouldNavigateToURL:(NSString*)url {
+- (BOOL)shouldNavigateToURL:(NSString*)URL {
   return YES;
 }
 

@@ -61,7 +61,7 @@
  * it can be any string with XHTML tags throughout.
  */
 + (TTStyledText*)textFromXHTML:(NSString*)source;
-+ (TTStyledText*)textFromXHTML:(NSString*)source lineBreaks:(BOOL)lineBreaks urls:(BOOL)urls;
++ (TTStyledText*)textFromXHTML:(NSString*)source lineBreaks:(BOOL)lineBreaks URLs:(BOOL)URLs;
 
 /**
  * Constructs styled text with all URLs transformed into links.

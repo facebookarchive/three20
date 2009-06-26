@@ -1,11 +1,11 @@
 #import "Three20/TTGlobal.h"
 
 @interface TTYouTubeView : UIWebView {
-  NSString* _url;
+  NSString* _URL;
 }
 
-@property(nonatomic,copy) NSString* url;
+@property(nonatomic,copy) NSString* URL;
 
-- (id)initWithURL:(NSString*)url;
+- (id)initWithURL:(NSString*)URL;
 
 @end

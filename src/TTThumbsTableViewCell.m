@@ -20,7 +20,7 @@ static CGFloat kDefaultThumbSize = 75;
 - (void)assignPhotoAtIndex:(int)index toView:(TTThumbView*)thumbView {
   id<TTPhoto> photo = [_photo.photoSource photoAtIndex:index];
   if (photo) {
-    thumbView.thumbURL = [photo urlForVersion:TTPhotoVersionThumbnail];
+    thumbView.thumbURL = [photo URLForVersion:TTPhotoVersionThumbnail];
     thumbView.hidden = NO;
   } else {
     thumbView.thumbURL = nil;
@@ -149,7 +149,7 @@ static CGFloat kDefaultThumbSize = 75;
       return;
     }
     
-    _thumbView1.thumbURL = [_photo urlForVersion:TTPhotoVersionThumbnail];
+    _thumbView1.thumbURL = [_photo URLForVersion:TTPhotoVersionThumbnail];
     [self assignPhotoAtIndex:_photo.index+1 toView:_thumbView2];
     [self assignPhotoAtIndex:_photo.index+2 toView:_thumbView3];
     [self assignPhotoAtIndex:_photo.index+3 toView:_thumbView4];

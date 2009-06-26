@@ -18,13 +18,13 @@
 // class public
 
 + (TTStyledText*)textFromXHTML:(NSString*)source {
-  return [self textFromXHTML:source lineBreaks:NO urls:YES];
+  return [self textFromXHTML:source lineBreaks:NO URLs:YES];
 }
 
-+ (TTStyledText*)textFromXHTML:(NSString*)source lineBreaks:(BOOL)lineBreaks urls:(BOOL)urls {
++ (TTStyledText*)textFromXHTML:(NSString*)source lineBreaks:(BOOL)lineBreaks URLs:(BOOL)URLs {
   TTStyledTextParser* parser = [[[TTStyledTextParser alloc] init] autorelease];
   parser.parseLineBreaks = lineBreaks;
-  parser.parseURLs = urls;
+  parser.parseURLs = URLs;
   [parser parseXHTML:source];
   if (parser.rootNode) {
     return [[[TTStyledText alloc] initWithNode:parser.rootNode] autorelease];
@@ -76,13 +76,13 @@
   if (_delegate && _invalidImages) {
     BOOL loadedSome = NO;
     for (TTStyledImageNode* imageNode in _invalidImages) {
-      if (imageNode.url) {
-        UIImage* image = [[TTURLCache sharedCache] imageForURL:imageNode.url];
+      if (imageNode.URL) {
+        UIImage* image = [[TTURLCache sharedCache] imageForURL:imageNode.URL];
         if (image) {
           imageNode.image = image;
           loadedSome = YES;
         } else {
-          TTURLRequest* request = [TTURLRequest requestWithURL:imageNode.url delegate:self];
+          TTURLRequest* request = [TTURLRequest requestWithURL:imageNode.URL delegate:self];
           request.userInfo = imageNode;
           request.response = [[[TTURLImageResponse alloc] init] autorelease];
           [request send];

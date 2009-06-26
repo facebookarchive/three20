@@ -15,10 +15,10 @@
 }
 
 @property(nonatomic,assign) id<TTWebControllerDelegate> delegate;
-@property(nonatomic,readonly) NSURL* url;
+@property(nonatomic,readonly) NSURL* URL;
 @property(nonatomic,retain) UIView* headerView;
 
-- (void)openURL:(NSURL*)url;
+- (void)openURL:(NSURL*)URL;
 - (void)openRequest:(NSURLRequest*)request;
 
 @end

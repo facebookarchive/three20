@@ -63,8 +63,8 @@ static CGFloat kDefaultIconSize = 50;
     [_field release];
     _field = [object retain];
   
-    if (_field.url) {
-      if ([[TTNavigationCenter defaultCenter] urlIsSupported:_field.url]) {
+    if (_field.URL) {
+      if ([[TTNavigationCenter defaultCenter] URLIsSupported:_field.URL]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       } else {
         self.accessoryType = UITableViewCellAccessoryNone;
@@ -92,7 +92,7 @@ static CGFloat kDefaultIconSize = 50;
   
   CGFloat padding = tableView.style == UITableViewStyleGrouped ? kGroupMargin*2 : 0;
   padding += field.padding.left + field.padding.right;
-  if (field.url) {
+  if (field.URL) {
     padding += kDisclosureIndicatorWidth;
   }
   
@@ -369,8 +369,8 @@ static CGFloat kDefaultIconSize = 50;
 
     self.detailTextLabel.text = field.subtext;
 
-    if (field.url) {
-      if ([[TTNavigationCenter defaultCenter] urlIsSupported:field.url]) {
+    if (field.URL) {
+      if ([[TTNavigationCenter defaultCenter] URLIsSupported:field.URL]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       } else {
         self.accessoryType = UITableViewCellAccessoryNone;
@@ -557,7 +557,7 @@ static CGFloat kDefaultIconSize = 50;
   if (!image) {
     image = field.defaultImage;
   }
-  if (_iconView.url) {
+  if (_iconView.URL) {
       CGFloat iconWidth = image
         ? image.size.width
         : (field.image ? kDefaultIconSize : 0);
@@ -600,7 +600,7 @@ static CGFloat kDefaultIconSize = 50;
   
     TTImageTableField* field = object;
     _iconView.defaultImage = field.defaultImage;
-    _iconView.url = field.image;
+    _iconView.URL = field.image;
     _iconView.style = field.imageStyle;
   }  
 }
@@ -626,7 +626,7 @@ static CGFloat kDefaultIconSize = 50;
     ? image.size.height
     : (field.image ? kDefaultIconSize : 0);
   
-  if (_iconView.url) {
+  if (_iconView.URL) {
     CGFloat innerWidth = self.contentView.width - (kHPadding*2 + iconWidth + kKeySpacing);
     CGFloat innerHeight = self.contentView.height - kVPadding*2;
     self.textLabel.frame = CGRectMake(kHPadding, kVPadding, innerWidth, innerHeight);

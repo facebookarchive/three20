@@ -131,17 +131,17 @@ NSString* TTLocalizedString(NSString* key, NSString* comment) {
   return [bundle localizedStringForKey:key value:key table:nil];
 }
 
-BOOL TTIsBundleURL(NSString* url) {
-  if (url.length >= 9) {
-    return [url rangeOfString:@"bundle://" options:0 range:NSMakeRange(0,9)].location == 0;
+BOOL TTIsBundleURL(NSString* URL) {
+  if (URL.length >= 9) {
+    return [URL rangeOfString:@"bundle://" options:0 range:NSMakeRange(0,9)].location == 0;
   } else {
     return NO;
   }
 }
 
-BOOL TTIsDocumentsURL(NSString* url) {
-  if (url.length >= 12) {
-    return [url rangeOfString:@"documents://" options:0 range:NSMakeRange(0,12)].location == 0;
+BOOL TTIsDocumentsURL(NSString* URL) {
+  if (URL.length >= 12) {
+    return [URL rangeOfString:@"documents://" options:0 range:NSMakeRange(0,12)].location == 0;
   } else {
     return NO;
   }

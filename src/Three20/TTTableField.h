@@ -17,14 +17,14 @@ typedef enum {
 
 @interface TTTableField : NSObject {
   NSString* _text;
-  NSString* _url;
+  NSString* _URL;
 }
   
 @property(nonatomic,copy) NSString* text;
-@property(nonatomic,copy) NSString* url;
+@property(nonatomic,copy) NSString* URL;
 
 - (id)initWithText:(NSString*)text;
-- (id)initWithText:(NSString*)text url:(NSString*)url;
+- (id)initWithText:(NSString*)text URL:(NSString*)URL;
 
 @end
 
@@ -42,7 +42,7 @@ typedef enum {
 @property(nonatomic) UIEdgeInsets padding;
 
 - (id)initWithStyledText:(TTStyledText*)text;
-- (id)initWithStyledText:(TTStyledText*)text url:(NSString*)url;
+- (id)initWithStyledText:(TTStyledText*)text URL:(NSString*)URL;
 
 @end
 
@@ -77,7 +77,7 @@ typedef enum {
 @property(nonatomic,copy) NSString* title;
 
 - (id)initWithTitle:(NSString*)title text:(NSString*)text;
-- (id)initWithTitle:(NSString*)title text:(NSString*)text url:(NSString*)url;
+- (id)initWithTitle:(NSString*)title text:(NSString*)text URL:(NSString*)URL;
 
 @end
 
@@ -88,7 +88,7 @@ typedef enum {
 @property(nonatomic,copy) NSString* subtext;
 
 - (id)initWithText:(NSString*)text subtext:(NSString*)subtext;
-- (id)initWithText:(NSString*)text subtext:(NSString*)subtext url:(NSString*)url;
+- (id)initWithText:(NSString*)text subtext:(NSString*)subtext URL:(NSString*)URL;
 
 @end
 
@@ -102,9 +102,9 @@ typedef enum {
 @property(nonatomic,copy) NSString* image;
 @property(nonatomic,retain) TTStyle* imageStyle;
 
-- (id)initWithText:(NSString*)text url:(NSString*)url image:(NSString*)image;
+- (id)initWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image;
 
-- (id)initWithText:(NSString*)text url:(NSString*)url image:(NSString*)image
+- (id)initWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image
   defaultImage:(UIImage*)image;
 
 @end

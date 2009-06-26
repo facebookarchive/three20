@@ -208,9 +208,9 @@ NSLocale* TTCurrentLocale();
  */
 NSString* TTLocalizedString(NSString* key, NSString* comment);
 
-BOOL TTIsBundleURL(NSString* url);
+BOOL TTIsBundleURL(NSString* URL);
 
-BOOL TTIsDocumentsURL(NSString* url);
+BOOL TTIsDocumentsURL(NSString* URL);
 
 NSString* TTPathForBundleResource(NSString* relativePath);
 
@@ -222,7 +222,7 @@ NSString* TTPathForDocumentsResource(NSString* relativePath);
 
 @property(nonatomic,readonly) NSString* viewURL;
 
-+ (id<TTPersistable>)fromURL:(NSURL*)url;
++ (id<TTPersistable>)fromURL:(NSURL*)URL;
 
 @end
 

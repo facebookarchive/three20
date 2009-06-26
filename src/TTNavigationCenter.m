@@ -66,7 +66,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
 
 @implementation TTNavigationCenter
 
-@synthesize delegate = _delegate, urlSchemes = _urlSchemes,
+@synthesize delegate = _delegate, URLSchemes = _URLSchemes,
   mainViewController = _mainViewController, supportsShakeToReload = _supportsShakeToReload;
 
 + (TTNavigationCenter*)defaultCenter {
@@ -89,7 +89,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
   if (self = [super init]) {
     _mainViewController = nil;
     _delegate = nil;
-    _urlSchemes = nil;
+    _URLSchemes = nil;
     _supportsShakeToReload = NO;
     _linkObservers = [[NSMutableArray alloc] init];
     _objectLoaders = [[NSMutableDictionary alloc] init];
@@ -105,7 +105,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
 }
 
 - (void)dealloc {
-  [_urlSchemes release];
+  [_URLSchemes release];
   [_mainViewController release];
   [_linkObservers release];
   [_viewLoaders release];
@@ -306,11 +306,11 @@ static TTNavigationCenter* gDefaultCenter = nil;
   [_objectLoaders removeObjectForKey:name];
 }
 
-- (id<TTPersistable>)locateObject:(NSURL*)url {
+- (id<TTPersistable>)locateObject:(NSURL*)URL {
   if (_objectLoaders) {
-    Class cls = [_objectLoaders objectForKey:url.host];
+    Class cls = [_objectLoaders objectForKey:URL.host];
     if (cls) {
-      return [cls fromURL:url];
+      return [cls fromURL:URL];
     }
   }
   
@@ -330,9 +330,9 @@ static TTNavigationCenter* gDefaultCenter = nil;
     TTViewController* viewController = (TTViewController*)controller;
     id<TTPersistable> object = viewController.viewObject;
     if (object) {
-      NSString* url = [self urlForObject:object inView:viewController.viewType];
-      if (url) {
-        [states addObject:url];
+      NSString* URL = [self URLForObject:object inView:viewController.viewType];
+      if (URL) {
+        [states addObject:URL];
 
         if (viewController.frozenState) {
           [states addObject:viewController.frozenState];
@@ -362,13 +362,13 @@ static TTNavigationCenter* gDefaultCenter = nil;
   _defaultNavigationController = navController;
   
   for (int i = 0; i < state.count; i += 2) {
-    NSString* url = [state objectAtIndex:i];
+    NSString* URL = [state objectAtIndex:i];
     NSDictionary* viewState = [state objectAtIndex:i+1];
     if ((NSNull*)viewState == [NSNull null]) {
       viewState = nil;
     }
     
-    if (![self displayURL:url withState:viewState animated:NO])
+    if (![self displayURL:URL withState:viewState animated:NO])
       break;
     
     TTViewController* topController = (TTViewController*)navController.topViewController;
@@ -415,7 +415,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
   }
 }
 
-- (NSString*)urlForObject:(id<TTPersistable>)object inView:(NSString*)viewType {
+- (NSString*)URLForObject:(id<TTPersistable>)object inView:(NSString*)viewType {
   if (viewType) {
     return [NSString stringWithFormat:@"%@?%@", object.viewURL, viewType];
   } else {
@@ -423,27 +423,27 @@ static TTNavigationCenter* gDefaultCenter = nil;
   }
 }
 
-- (BOOL)urlIsSupported:(NSString*)u {
-  NSURL* url = [NSURL URLWithString:u];
-  if (_urlSchemes) {
-    return [_urlSchemes indexOfObject:url.scheme] != NSNotFound;
+- (BOOL)URLIsSupported:(NSString*)u {
+  NSURL* URL = [NSURL URLWithString:u];
+  if (_URLSchemes) {
+    return [_URLSchemes indexOfObject:URL.scheme] != NSNotFound;
   } else {
     return NO;
   }
 }
 
-- (TTViewController*)displayURL:(NSString*)url {
-  return [self displayURL:url withState:nil animated:YES];
+- (TTViewController*)displayURL:(NSString*)URL {
+  return [self displayURL:URL withState:nil animated:YES];
 }
 
-- (TTViewController*)displayURL:(NSString*)url animated:(BOOL)animated {
-  return [self displayURL:url withState:nil animated:animated];
+- (TTViewController*)displayURL:(NSString*)URL animated:(BOOL)animated {
+  return [self displayURL:URL withState:nil animated:animated];
 }
 
-- (TTViewController*)displayURL:(NSString*)url withState:(NSDictionary*)state
+- (TTViewController*)displayURL:(NSString*)URL withState:(NSDictionary*)state
     animated:(BOOL)animated {
-  NSURL* u = [NSURL URLWithString:url];
-  if ([_urlSchemes indexOfObject:u.scheme] == NSNotFound) {
+  NSURL* u = [NSURL URLWithString:URL];
+  if ([_URLSchemes indexOfObject:u.scheme] == NSNotFound) {
     if (![_delegate respondsToSelector:@selector(shouldLoadExternalURL:)]
         || [_delegate shouldLoadExternalURL:u]) {
       [[UIApplication sharedApplication] openURL:u];
@@ -554,9 +554,9 @@ static TTNavigationCenter* gDefaultCenter = nil;
   if ([object isKindOfClass:[NSString class]]) {
     return [self displayURL:object withState:state animated:animated];
   } else if ([object conformsToProtocol:@protocol(TTPersistable)]) {
-    NSString* url = [self urlForObject:object inView:viewType];
+    NSString* URL = [self URLForObject:object inView:viewType];
     
-    return url ? [self displayURL:url withState:state animated:animated] : nil;
+    return URL ? [self displayURL:URL withState:state animated:animated] : nil;
   } else {
     return nil;
   }

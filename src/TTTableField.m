@@ -6,12 +6,12 @@
 
 @implementation TTTableField
 
-@synthesize text = _text, url = _url;
+@synthesize text = _text, URL = _URL;
 
 - (id)init {
   if (self = [super init]) {
     _text = nil;
-    _url = nil;
+    _URL = nil;
   }
   return self;
 }
@@ -23,10 +23,10 @@
   return self;
 }
 
-- (id)initWithText:(NSString*)text url:(NSString*)url {
+- (id)initWithText:(NSString*)text URL:(NSString*)URL {
   if (self = [self init]) {
     self.text = text;
-    self.url = url;
+    self.URL = URL;
   }
   return self;
 }
@@ -37,7 +37,7 @@
 
 - (void)dealloc {
   [_text release];
-  [_url release];
+  [_URL release];
   [super dealloc];
 }
 
@@ -116,8 +116,8 @@
   return self;
 }
 
-- (id)initWithTitle:(NSString*)title text:(NSString*)text url:(NSString*)url {
-  if (self = [self initWithText:text url:url]) {
+- (id)initWithTitle:(NSString*)title text:(NSString*)text URL:(NSString*)URL {
+  if (self = [self initWithText:text URL:URL]) {
     self.title = title;
   }
   return self;
@@ -150,8 +150,8 @@
   return self;
 }
 
-- (id)initWithText:(NSString*)text subtext:(NSString*)subtext url:(NSString*)url {
-  if (self = [self initWithText:text url:url]) {
+- (id)initWithText:(NSString*)text subtext:(NSString*)subtext URL:(NSString*)URL {
+  if (self = [self initWithText:text URL:URL]) {
     self.subtext = subtext;
   }
   return self;
@@ -179,17 +179,17 @@
   return self;
 }
 
-- (id)initWithText:(NSString*)text url:(NSString*)url image:(NSString*)icon
+- (id)initWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)icon
     defaultImage:(UIImage*)image {
-  if (self = [super initWithText:text url:url]) {
+  if (self = [super initWithText:text URL:URL]) {
     self.image = icon;
     self.defaultImage = image;
   }
   return self;
 }
 
-- (id)initWithText:(NSString*)text url:(NSString*)url image:(NSString*)image {
-  return [self initWithText:text url:url image:image defaultImage:nil];
+- (id)initWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image {
+  return [self initWithText:text URL:URL image:image defaultImage:nil];
 }
 
 - (void)dealloc {
@@ -364,9 +364,9 @@
   return self;
 }
 
-- (id)initWithStyledText:(TTStyledText*)styledText url:(NSString*)url {
+- (id)initWithStyledText:(TTStyledText*)styledText URL:(NSString*)URL {
   if (self = [self initWithStyledText:styledText]) {
-    self.url = url;
+    self.URL = URL;
   }
   return self;
 }

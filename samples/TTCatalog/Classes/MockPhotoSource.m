@@ -92,7 +92,7 @@
   return nil;
 }
 
-+ (id<TTPersistable>)fromURL:(NSURL*)url {
++ (id<TTPersistable>)fromURL:(NSURL*)URL {
   return nil;
 }
 
@@ -189,15 +189,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithURL:(NSString*)url smallURL:(NSString*)smallURL size:(CGSize)size {
-  return [self initWithURL:url smallURL:smallURL size:size caption:nil];
+- (id)initWithURL:(NSString*)URL smallURL:(NSString*)smallURL size:(CGSize)size {
+  return [self initWithURL:URL smallURL:smallURL size:size caption:nil];
 }
 
-- (id)initWithURL:(NSString*)url smallURL:(NSString*)smallURL size:(CGSize)size
+- (id)initWithURL:(NSString*)URL smallURL:(NSString*)smallURL size:(CGSize)size
     caption:(NSString*)caption {
   if (self = [super init]) {
     _photoSource = nil;
-    _url = [url copy];
+    _URL = [URL copy];
     _smallURL = [smallURL copy];
     _thumbURL = [smallURL copy];
     _size = size;
@@ -208,7 +208,7 @@
 }
 
 - (void)dealloc {
-  [_url release];
+  [_URL release];
   [_smallURL release];
   [_thumbURL release];
   [_caption release];
@@ -222,18 +222,18 @@
   return nil;
 }
 
-+ (id<TTPersistable>)fromURL:(NSURL*)url {
++ (id<TTPersistable>)fromURL:(NSURL*)URL {
   return nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTPhoto
 
-- (NSString*)urlForVersion:(TTPhotoVersion)version {
+- (NSString*)URLForVersion:(TTPhotoVersion)version {
   if (version == TTPhotoVersionLarge) {
-    return _url;
+    return _URL;
   } else if (version == TTPhotoVersionMedium) {
-    return _url;
+    return _URL;
   } else if (version == TTPhotoVersionSmall) {
     return _smallURL;
   } else if (version == TTPhotoVersionThumbnail) {

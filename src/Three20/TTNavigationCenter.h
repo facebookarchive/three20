@@ -15,7 +15,7 @@ typedef enum {
 @interface TTNavigationCenter : NSObject <UIAccelerometerDelegate> {
   id<TTNavigationDelegate> _delegate;
   BOOL _supportsShakeToReload;
-  NSArray* _urlSchemes;
+  NSArray* _URLSchemes;
   UIViewController* _mainViewController;
   UINavigationController* _defaultNavigationController;
   NSMutableDictionary* _viewLoaders;
@@ -42,7 +42,7 @@ typedef enum {
  * When displaying a URL, if the URL scheme is in this array it will be mapped to a controller.
  * Otherwise, it will be passed to the OS for external use.
  */
-@property(nonatomic,retain) NSArray* urlSchemes;
+@property(nonatomic,retain) NSArray* URLSchemes;
 
 /**
  * Causes the current view controller to be reloaded when shaking the phone.
@@ -59,7 +59,7 @@ typedef enum {
 
 - (void)addObjectLoader:(Class)cls name:(NSString*)name;
 - (void)removeObjectLoader:(NSString*)name;
-- (id<TTPersistable>)locateObject:(NSURL*)url;
+- (id<TTPersistable>)locateObject:(NSURL*)URL;
 
 - (void)addLinkObserver:(id)observer;
 - (void)removeLinkObserver:(id)observer;
@@ -70,12 +70,12 @@ typedef enum {
 - (void)persistControllers;
 - (void)unpersistControllers;
 
-- (NSString*)urlForObject:(id<TTPersistable>)object inView:(NSString*)viewType;
-- (BOOL)urlIsSupported:(NSString*)url;
+- (NSString*)URLForObject:(id<TTPersistable>)object inView:(NSString*)viewType;
+- (BOOL)URLIsSupported:(NSString*)URL;
 
-- (TTViewController*)displayURL:(NSString*)url;
-- (TTViewController*)displayURL:(NSString*)url animated:(BOOL)animated;
-- (TTViewController*)displayURL:(NSString*)url withState:(NSDictionary*)state animated:(BOOL)animated;
+- (TTViewController*)displayURL:(NSString*)URL;
+- (TTViewController*)displayURL:(NSString*)URL animated:(BOOL)animated;
+- (TTViewController*)displayURL:(NSString*)URL withState:(NSDictionary*)state animated:(BOOL)animated;
 
 - (TTViewController*)displayObject:(id)object;
 - (TTViewController*)displayObject:(id)object inView:(NSString*)viewType;
@@ -99,6 +99,6 @@ typedef enum {
 - (void)didNavigateToObject:(id)object inView:(NSString*)viewType
         withController:(UIViewController*)viewController;
 
-- (BOOL)shouldLoadExternalURL:(NSURL*)url;
+- (BOOL)shouldLoadExternalURL:(NSURL*)URL;
   
 @end

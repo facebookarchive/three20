@@ -8,13 +8,13 @@
 
 @implementation TTLink
 
-@synthesize url = _url;
+@synthesize URL = _URL;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
 - (void)linkTouched {
-  [[TTNavigationCenter defaultCenter] displayObject:_url];
+  [[TTNavigationCenter defaultCenter] displayObject:_URL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _url = nil;
+    _URL = nil;
     _screenView = nil;
     
     [self addTarget:self action:@selector(linkTouched)
@@ -32,7 +32,7 @@
 }
 
 - (void)dealloc {
-  [_url release];
+  [_URL release];
   [_screenView release];
   [super dealloc];
 }
@@ -69,11 +69,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)setUrl:(id)url {
-  [_url release];
-  _url = [url retain];
+- (void)setURL:(id)URL {
+  [_URL release];
+  _URL = [URL retain];
   
-  self.userInteractionEnabled = !!_url;
+  self.userInteractionEnabled = !!_URL;
 }
 
 @end

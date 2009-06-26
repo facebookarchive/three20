@@ -92,13 +92,13 @@ static const CGFloat kVPadding = 7;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (void)setImageURL:(NSString*)url {
-  if (self.image && _imageURL && [url isEqualToString:_imageURL])
+- (void)setImageURL:(NSString*)URL {
+  if (self.image && _imageURL && [URL isEqualToString:_imageURL])
     return;
   
   [self stopLoading];
   [_imageURL release];
-  _imageURL = [url retain];
+  _imageURL = [URL retain];
   
   if (_imageURL.length) {
     [self reload];
