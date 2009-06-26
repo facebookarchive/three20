@@ -75,6 +75,7 @@ static const CGFloat kMaxCaptionHeight = 100;
 - (void)dealloc {
   [super setDelegate:nil];
   [_photo release];
+  _photo = nil;
   [_statusSpinner release];
   [_statusLabel release];
   [_captionLabel release];

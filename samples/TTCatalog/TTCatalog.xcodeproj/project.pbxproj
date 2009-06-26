@@ -18,6 +18,7 @@
 		BE1288310F8973CD00F65EA2 /* StyleTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288300F8973CD00F65EA2 /* StyleTestController.m */; };
 		BE1289C20F91811E00F65EA2 /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1289C10F91811E00F65EA2 /* mask.png */; };
 		BE1D843A0F8D104B00EC8BB8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1D84390F8D104B00EC8BB8 /* QuartzCore.framework */; };
+		BE20A49C0FF418B2008791F4 /* TableControlsTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE20A49B0FF418B2008791F4 /* TableControlsTestController.m */; };
 		BE3188A10F822E2C00E3067D /* smiley.png in Resources */ = {isa = PBXBuildFile; fileRef = BE3188A00F822E2C00E3067D /* smiley.png */; };
 		BE5F25920EBA5F0400FD59A6 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */; };
 		BE69B7590F62874900C02928 /* TableTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE69B7580F62874900C02928 /* TableTestController.m */; };
@@ -80,6 +81,8 @@
 		BE1288300F8973CD00F65EA2 /* StyleTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleTestController.m; sourceTree = "<group>"; };
 		BE1289C10F91811E00F65EA2 /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
 		BE1D84390F8D104B00EC8BB8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BE20A49A0FF418B2008791F4 /* TableControlsTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableControlsTestController.h; sourceTree = "<group>"; };
+		BE20A49B0FF418B2008791F4 /* TableControlsTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableControlsTestController.m; sourceTree = "<group>"; };
 		BE3188A00F822E2C00E3067D /* smiley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smiley.png; sourceTree = "<group>"; };
 		BE5F25900EBA5F0400FD59A6 /* PhotoTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest2Controller.h; sourceTree = "<group>"; };
 		BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest2Controller.m; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 				BE69B7580F62874900C02928 /* TableTestController.m */,
 				BE6E4AA30F4655A4001CE9B4 /* TableFieldTestController.h */,
 				BE6E4AA40F4655A4001CE9B4 /* TableFieldTestController.m */,
+				BE20A49A0FF418B2008791F4 /* TableControlsTestController.h */,
+				BE20A49B0FF418B2008791F4 /* TableControlsTestController.m */,
 				BEF1991E0F818E720010D36E /* StyledTextTableTestController.h */,
 				BEF1991F0F818E720010D36E /* StyledTextTableTestController.m */,
 				BE80E36F0EAF0F3000743358 /* TableImageTestController.h */,
@@ -363,6 +368,7 @@
 				BE1288310F8973CD00F65EA2 /* StyleTestController.m in Sources */,
 				BEC5EC680F8C307E007622CD /* ButtonTestController.m in Sources */,
 				BEA6A0380FAC41AB00DA7DDC /* WebTestController.m in Sources */,
+				BE20A49C0FF418B2008791F4 /* TableControlsTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

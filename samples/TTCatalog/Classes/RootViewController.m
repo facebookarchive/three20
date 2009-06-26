@@ -5,6 +5,7 @@
 #import "TableImageTestController.h"
 #import "YouTubeTestController.h"
 #import "TableFieldTestController.h"
+#import "TableControlsTestController.h"
 #import "TableTestController.h"
 #import "SearchTestController.h"
 #import "MessageTestController.h"
@@ -45,6 +46,7 @@
   [nav addView:@"imageTest1" controller:[ImageTest1Controller class]];
   [nav addView:@"tableTest" controller:[TableTestController class]];
   [nav addView:@"tableFieldTest" controller:[TableFieldTestController class]];
+  [nav addView:@"tableControlsTest" controller:[TableControlsTestController class]];
   [nav addView:@"styledTextTableTest" controller:[StyledTextTableTestController class]];
   [nav addView:@"composerTest" controller:[MessageTestController class]];
   [nav addView:@"searchTest" controller:[SearchTestController class]];
@@ -97,8 +99,10 @@
     @"Tables",
     [[[TTTableField alloc] initWithText:@"Table States"
       url:@"tt://tableTest"] autorelease],
-    [[[TTTableField alloc] initWithText:@"Table Cells"
+    [[[TTTableField alloc] initWithText:@"Table Items"
       url:@"tt://tableFieldTest"] autorelease],
+    [[[TTTableField alloc] initWithText:@"Table Controls"
+      url:@"tt://tableControlsTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Styled Labels in Table"
       url:@"tt://styledTextTableTest"] autorelease],
     [[[TTTableField alloc] initWithText:@"Web Images in Table"

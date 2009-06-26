@@ -7,29 +7,22 @@
 }
 @end
 
-@interface TTTextTableFieldCell : TTTableFieldCell {
-  UILabel* _label;
-}
-@end
-
 @interface TTStyledTextTableFieldCell : TTTableFieldCell {
   TTStyledTextLabel* _label;
 }
 @end
 
-@interface TTTitledTableFieldCell : TTTextTableFieldCell {
-  UILabel* _titleLabel;
-}
+@interface TTTextTableFieldCell : TTTableFieldCell
 @end
 
-@interface TTSubtextTableFieldCell : TTTextTableFieldCell {
-  UILabel* _subtextLabel;
-}
+@interface TTTitledTableFieldCell : TTTextTableFieldCell
+@end
+
+@interface TTSubtextTableFieldCell : TTTextTableFieldCell
 @end
 
 @interface TTMoreButtonTableFieldCell : TTTextTableFieldCell {
   UIActivityIndicatorView* _spinnerView;
-  UILabel* _subtitleLabel;
   BOOL _animating;
 }
 
@@ -43,7 +36,6 @@
 @end
 
 @interface TTImageTableFieldCell : TTIconTableFieldCell
-
 @end
 
 @interface TTActivityTableFieldCell : TTTableFieldCell {

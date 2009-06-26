@@ -224,6 +224,10 @@ static const CGFloat kRefreshingViewHeight = 22;
   [super unloadView];
 }
 
+- (void)keyboardWillAppear:(BOOL)animated {
+  [self.tableView scrollFirstResponderIntoView];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSourceDelegate
 

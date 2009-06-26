@@ -15,11 +15,16 @@
   return YES;
 }
 
+- (BOOL)isEmptyOrWhitespace {
+  return !self.length || 
+         ![self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length;
+}
+
 // Copied and pasted from http://www.mail-archive.com/cocoa-dev@lists.apple.com/msg28175.html
-- (NSDictionary*)queryDictionaryUsingEncoding: (NSStringEncoding)encoding {
+- (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding {
   NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
   NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
-  NSScanner* scanner = [[NSScanner alloc] initWithString:self];
+  NSScanner* scanner = [[[NSScanner alloc] initWithString:self] autorelease];
   while (![scanner isAtEnd]) {
     NSString* pairString;
     [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];

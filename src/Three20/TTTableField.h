@@ -2,6 +2,19 @@
 
 @class TTStyledText, TTStyle;
 
+typedef enum {
+  TTItemStyleDefault,
+  TTItemStyleLink,
+  TTItemStyleButton,
+  TTItemStyleMoreButton,
+  TTItemStyleCaptionLeft,
+  TTItemStyleCaptionRight,
+  TTItemStyleCaptionBelow,
+  TTItemStyleText,
+  TTItemStyleGrayText,
+  TTItemStyleSummary,
+} TTItemStyle;
+
 @interface TTTableField : NSObject {
   NSString* _text;
   NSString* _url;

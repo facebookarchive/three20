@@ -5,6 +5,8 @@
 
 - (BOOL)isWhitespace;
 
+- (BOOL)isEmptyOrWhitespace;
+
 - (NSDictionary*)queryDictionaryUsingEncoding: (NSStringEncoding)encoding;
 
 @end

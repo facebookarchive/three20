@@ -203,7 +203,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (UIColor*)textColor {
   if (!_textColor) {
-    _textColor = TTSTYLEVAR(textColor);
+    _textColor = [TTSTYLEVAR(textColor) retain];
   }
   return _textColor;
 }
@@ -218,7 +218,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (UIColor*)highlightedTextColor {
   if (!_highlightedTextColor) {
-    _highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+    _highlightedTextColor = [TTSTYLEVAR(highlightedTextColor) retain];
   }
   return _highlightedTextColor;
 }

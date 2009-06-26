@@ -276,7 +276,7 @@
         }
       } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
-        if (!textField.text.length) {
+        if (!textField.text.isEmptyOrWhitespace) {
           compliant = NO;
         }
       }

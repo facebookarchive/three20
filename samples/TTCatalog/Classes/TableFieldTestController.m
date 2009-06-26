@@ -67,14 +67,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
     [[[TTGrayTextTableField alloc] initWithText:kLoremIpsum] autorelease],
     [[[TTSummaryTableField alloc] initWithText:@"TTSummaryTableField"] autorelease],
 
-    @"Activity",
+    @"",
     [[[TTActivityTableField alloc] initWithText:@"TTActivityTableField"] autorelease],
-
-    @"Controls",
-    [[[TTSwitchTableField alloc] initWithText:@"TTSwitchTableField"] autorelease],
-    [[[TTTextFieldTableField alloc] initWithTitle:@"Title" text:@"TTTextFieldTableField"]
-      autorelease],
-    [[[TTTextViewTableField alloc] initWithText:@"TTTextViewTableField"] autorelease],
 
     nil];
 }

@@ -12,5 +12,6 @@
 
 - (void)scrollToTop:(BOOL)animated;
 - (void)scrollToBottom:(BOOL)animated;
+- (void)scrollFirstResponderIntoView;
 
 @end

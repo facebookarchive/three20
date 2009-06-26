@@ -32,7 +32,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)createMask {
+- (void)newMask {
   CGRect rect = self.frame;
   CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
   int bitmapBytesPerRow = (rect.size.width * 4);
@@ -50,7 +50,7 @@
   _maskData = nil;
 }
 
-- (CGImageRef)createSpotlightMask:(CGRect)rect origin:(CGPoint)origin radius:(CGFloat)radius {
+- (CGImageRef)newSpotlightMask:(CGRect)rect origin:(CGPoint)origin radius:(CGFloat)radius {
   CGContextClearRect(_maskContext, rect);
 
   CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
@@ -110,7 +110,7 @@
       y - ceil(self.font.capHeight/2));
     CGFloat spotRadius = self.font.capHeight*2;
 
-    CGImageRef mask = [self createSpotlightMask:rect origin:spotOrigin radius:spotRadius];
+    CGImageRef mask = [self newSpotlightMask:rect origin:spotOrigin radius:spotRadius];
     CGContextClipToMask(context, rect, mask);
     CGImageRelease(mask);
     
@@ -130,7 +130,7 @@
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0/32 target:self
       selector:@selector(updateSpotlight) userInfo:nil repeats:YES];
     _spotlightPoint = -0.5;
-    [self createMask];
+    [self newMask];
   }
 }
 

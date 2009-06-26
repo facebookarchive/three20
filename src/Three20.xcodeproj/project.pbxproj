@@ -351,14 +351,14 @@
 				BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */,
 				BED62FD80F882FD1009923D8 /* TTTableViewDelegate.h */,
 				BED62FDA0F882FE3009923D8 /* TTTableViewDelegate.m */,
+				BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */,
+				BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */,
+				BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */,
+				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
 				BE702EFA0F43F9DC0028A119 /* TTTableField.h */,
 				BE702EF80F43F9D20028A119 /* TTTableField.m */,
 				BE702ED10F43F3390028A119 /* TTTableFieldCell.h */,
 				BE702ECF0F43F32E0028A119 /* TTTableFieldCell.m */,
-				BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */,
-				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
-				BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */,
-				BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";

@@ -304,11 +304,11 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:path]) {
     return [NSData dataWithContentsOfFile:path];
-  } else {
+  } else if (error) {
     *error = [NSError errorWithDomain:NSCocoaErrorDomain
                       code:NSFileReadNoSuchFileError userInfo:nil];
-    return nil;
   }
+  return nil;
 }
 
 - (NSData*)loadFromDocuments:(NSString*)url error:(NSError**)error {
@@ -316,11 +316,11 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:path]) {
     return [NSData dataWithContentsOfFile:path];
-  } else {
+  } else if (error) {
     *error = [NSError errorWithDomain:NSCocoaErrorDomain
                       code:NSFileReadNoSuchFileError userInfo:nil];
-    return nil;
   }
+  return nil;
 }
 
 - (BOOL)loadFromCache:(NSString*)url cacheKey:(NSString*)cacheKey

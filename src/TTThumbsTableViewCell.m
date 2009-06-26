@@ -29,7 +29,7 @@ static CGFloat kDefaultThumbSize = 75;
 }
 
 - (void)thumbTouched:(TTThumbView*)thumbView {
-  NSUInteger index;
+  NSUInteger index = 0;
   if (thumbView == _thumbView1) {
     index = _photo.index;
   } else if (thumbView == _thumbView2) {
