@@ -340,8 +340,8 @@
 // TTTableViewDataSource
 
 - (NSString*)tableView:(UITableView*)tableView labelForObject:(id)object {
-  TTTableTextItem* field = object;
-  return field.text;
+  TTTableTextItem* item = object;
+  return item.text;
 }
 
 - (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
@@ -364,8 +364,8 @@
     text = [text lowercaseString];
     for (NSString* name in _names) {
       if ([[name lowercaseString] rangeOfString:text].location == 0) {
-        TTTableItem* field = [TTTableTextItem itemWithText:name URL:TT_NULL_URL];
-        [_items addObject:field];
+        TTTableItem* item = [TTTableTextItem itemWithText:name URL:TT_NULL_URL];
+        [_items addObject:item];
       }
     }    
   } else {
@@ -387,8 +387,8 @@
       [map setObject:section forKey:letter];
     }
     
-    TTTableItem* field = [TTTableTextItem itemWithText:name URL:TT_NULL_URL];
-    [section addObject:field];
+    TTTableItem* item = [TTTableTextItem itemWithText:name URL:TT_NULL_URL];
+    [section addObject:item];
   }
   
   [_items release];

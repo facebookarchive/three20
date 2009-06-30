@@ -4,8 +4,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static CGFloat kPaddingX = 8;
-static CGFloat kPaddingY = 11;
-static CGFloat kOffsetY = 3;
+static CGFloat kPaddingY = 8;
 
 static CGFloat kTextViewInset = 19;
 
@@ -144,6 +143,7 @@ static CGFloat kTextViewInset = 19;
     _textView.opaque = NO;
     _textView.backgroundColor = [UIColor clearColor];
     _textView.scrollsToTop = NO;
+    _textView.showsHorizontalScrollIndicator = NO;
     [self addSubview:_textView];
 
   }
@@ -189,7 +189,7 @@ static CGFloat kTextViewInset = 19;
   CGSize characterSize = [@"M" sizeWithFont:_textView.font];
   CGFloat minHeight = _minNumberOfLines * characterSize.height;
   CGFloat maxHeight = _maxNumberOfLines * characterSize.height;
-  CGFloat maxWidth = self.width - (kPaddingX*2 + kTextViewInset);
+  CGFloat maxWidth = self.width - kTextViewInset;
   
   NSString* text = _textView.text;
   if (!text.length) {
@@ -197,8 +197,8 @@ static CGFloat kTextViewInset = 19;
   }
 
   CGSize textSize = [text sizeWithFont:_textView.font
-    constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-    lineBreakMode:UILineBreakModeWordWrap];
+                          constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
+                          lineBreakMode:UILineBreakModeWordWrap];
   
   CGFloat newHeight = textSize.height;
   if ([text characterAtIndex:text.length-1] == 10) {
@@ -276,16 +276,18 @@ static CGFloat kTextViewInset = 19;
 // UIView
 
 - (void)layoutSubviews {
-  _textView.frame = CGRectMake(kPaddingX, kOffsetY, self.width-kPaddingX*2, self.height-kOffsetY);
+  _textView.frame = CGRectMake(0, 0, self.width-kPaddingX*2, self.height);
   if (_autoresizesToText && !_overflowed) {
     _textView.contentOffset = CGPointMake(0, 0);
   }
-  _placeholderLabel.frame = CGRectMake(kPaddingX, 0, self.width-kPaddingX*2, self.height);
+  [_placeholderLabel sizeToFit];
+  _placeholderLabel.frame = CGRectMake(kPaddingX, kPaddingY,
+                                       self.width-kPaddingX*2, _placeholderLabel.height);
     
   if (_fixedTextLabel) {
     [_fixedTextLabel sizeToFit];
     _fixedTextLabel.frame = CGRectMake(_textView.left+kPaddingX, _textView.top+kPaddingY,
-      _fixedTextLabel.width+2, _fixedTextLabel.height+4);
+                                       _fixedTextLabel.width+2, _fixedTextLabel.height+4);
   }
 }
 
@@ -315,6 +317,11 @@ static CGFloat kTextViewInset = 19;
   if (_autoresizesToText) {
     [self constrainToText];
   }
+}
+
+- (void)setAutoresizesToText:(BOOL)autoresizesToText {
+  _autoresizesToText = autoresizesToText;
+  _textView.scrollEnabled = !autoresizesToText;
 }
 
 - (void)setPlaceholder:(NSString*)placeholder {

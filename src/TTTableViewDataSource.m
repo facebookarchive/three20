@@ -2,7 +2,7 @@
 #import "Three20/TTTableItem.h"
 #import "Three20/TTTableItemCell.h"
 #import "Three20/TTURLCache.h"
-#import "Three20/TTSearchBar.h"
+#import "Three20/TTTextEditor.h"
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,14 +125,14 @@
       return [TTTableActivityItemCell class];
     } else if ([object isKindOfClass:[TTTableErrorItem class]]) {
       return [TTTableErrorItemCell class];
-    } else if ([object isKindOfClass:[TTTableControlItem class]]
-               || [object isKindOfClass:[UITextView class]]) {
+    } else if ([object isKindOfClass:[TTTableControlItem class]]) {
       return [TTTableControlCell class];
     } else {
       return [TTTableTextItemCell class];
     }
   } else if ([object isKindOfClass:[UIControl class]]
-             || [object isKindOfClass:[UITextView class]]) {
+             || [object isKindOfClass:[UITextView class]]
+             || [object isKindOfClass:[TTTextEditor class]]) {
     return [TTTableControlCell class];
   } else if ([object isKindOfClass:[UIView class]]) {
     return [TTTableFlushViewCell class];

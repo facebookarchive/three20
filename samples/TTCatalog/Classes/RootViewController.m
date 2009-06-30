@@ -45,7 +45,7 @@
   [nav addView:@"photoTest2" controller:[PhotoTest2Controller class]];
   [nav addView:@"imageTest1" controller:[ImageTest1Controller class]];
   [nav addView:@"tableTest" controller:[TableTestController class]];
-  [nav addView:@"tableFieldTest" controller:[TableItemTestController class]];
+  [nav addView:@"tableItemTest" controller:[TableItemTestController class]];
   [nav addView:@"tableControlsTest" controller:[TableControlsTestController class]];
   [nav addView:@"styledTextTableTest" controller:[StyledTextTableTestController class]];
   [nav addView:@"composerTest" controller:[MessageTestController class]];
@@ -90,7 +90,7 @@
 
     @"Tables",
     [TTTableTextItem itemWithText:@"Table States" URL:@"tt://tableTest"],
-    [TTTableTextItem itemWithText:@"Table Items" URL:@"tt://tableFieldTest"],
+    [TTTableTextItem itemWithText:@"Table Items" URL:@"tt://tableItemTest"],
     [TTTableTextItem itemWithText:@"Table Controls" URL:@"tt://tableControlsTest"],
     [TTTableTextItem itemWithText:@"Styled Labels in Table" URL:@"tt://styledTextTableTest"],
     [TTTableTextItem itemWithText:@"Web Images in Table" URL:@"tt://imageTest2"],

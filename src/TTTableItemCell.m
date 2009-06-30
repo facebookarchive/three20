@@ -6,6 +6,7 @@
 #import "Three20/TTStyledText.h"
 #import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTActivityLabel.h"
+#import "Three20/TTTextEditor.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTDefaultStyleSheet.h"
@@ -18,15 +19,12 @@ static CGFloat kMargin = 10;
 static CGFloat kSpacing = 8;
 static CGFloat kControlPadding = 8;
 static CGFloat kGroupMargin = 10;
-static CGFloat kDefaultTextViewLines = 4;
+static CGFloat kDefaultTextViewLines = 5;
 
 static CGFloat kKeySpacing = 12;
 static CGFloat kKeyWidth = 75;
 static CGFloat kMaxLabelHeight = 2000;
 static CGFloat kDisclosureIndicatorWidth = 23;
-
-//static CGFloat kTextFieldTitleWidth = 100;
-//static CGFloat kTableViewFieldCellHeight = 180;
 
 static CGFloat kDefaultIconSize = 50;
 
@@ -643,335 +641,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 @end
-/*
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTextFieldTableItemCell
-
-@synthesize textField = _textField;
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
-    _textField = [[UITextField alloc] initWithFrame:CGRectZero];
-    [_textField addTarget:self action:@selector(valueChanged)
-      forControlEvents:UIControlEventEditingChanged];
-    [self.contentView addSubview:_textField];
-
-    self.accessoryType = UITableViewCellAccessoryNone;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_textField release];
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  
-  [self.textLabel sizeToFit];
-  self.textLabel.width = kTextFieldTitleWidth;
-  
-  _textField.frame = CGRectOffset(CGRectInset(self.contentView.bounds, 3, 0), 0, 1);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewCell
-
-- (void)setObject:(id)object {
-  if (_item != object) {
-    [super setObject:object];
-
-    TTTextFieldTableItem* item = object;
-    self.textLabel.text = [NSString stringWithFormat:@"  %@", item.title];
-
-    _textField.text = item.text;
-    _textField.placeholder = item.placeholder;
-    _textField.font = TTSTYLEVAR(font);
-    _textField.returnKeyType = item.returnKeyType;
-    _textField.keyboardType = item.keyboardType;
-    _textField.autocapitalizationType = item.autocapitalizationType;
-    _textField.autocorrectionType = item.autocorrectionType;
-    _textField.clearButtonMode = item.clearButtonMode;
-    _textField.secureTextEntry = item.secureTextEntry;
-    _textField.leftView = self.textLabel;
-    _textField.leftViewMode = UITextFieldViewModeAlways;
-    _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    _textField.delegate = self;
-  }  
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIControlEvents
-
-- (void)valueChanged {
-  TTTextFieldTableItem* item = self.object;
-  item.text = _textField.text;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITextFieldDelegate
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-  TTTextFieldTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)]) {
-    return [item.delegate textFieldShouldBeginEditing:textField];
-  } else {
-    return YES;
-  }
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-//  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
-//  NSIndexPath* indexPath = [tableView indexPathForCell:self];
-//  [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle
-//    animated:YES];
-
-  TTTextFieldTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textFieldDidBeginEditing:)]) {
-    [item.delegate textFieldDidBeginEditing:textField];
-  }
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-  TTTextFieldTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
-    return [item.delegate textFieldShouldEndEditing:textField];
-  } else {
-    return YES;
-  }
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-  TTTextFieldTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textFieldDidEndEditing:)]) {
-    [item.delegate textFieldDidEndEditing:textField];
-  }
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
-    replacementString:(NSString *)string {
-  TTTextFieldTableItem* item = self.object;
-  SEL sel = @selector(textField:shouldChangeCharactersInRange:replacementString:);
-  if ([item.delegate respondsToSelector:sel]) {
-    return [item.delegate textField:textField shouldChangeCharactersInRange:range
-      replacementString:string];
-  } else {
-    return YES;
-  }
-}
-
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-  TTTextFieldTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
-    return [item.delegate textFieldShouldClear:textField];
-  } else {
-    return YES;
-  }
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-  TTTextFieldTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
-    return [item.delegate textFieldShouldReturn:textField];
-  } else {
-    return YES;
-  }
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTextViewTableItemCell
-
-@synthesize textView = _textView;
-
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  return kTableViewFieldCellHeight;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
-    _item = nil;
-    
-    _textView = [[UITextView alloc] initWithFrame:CGRectZero];
-    _textView.delegate = self;
-    _textView.font = TTSTYLEVAR(font);
-    _textView.scrollsToTop = NO;
-    [self.contentView addSubview:_textView];
-
-    self.accessoryType = UITableViewCellAccessoryNone;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_item release];
-  [_textView release];
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  
-  _textView.frame = CGRectInset(self.contentView.bounds, 5, 5);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewCell
-
-- (id)object {
-  return _item;
-}
-
-- (void)setObject:(id)object {
-  if (_item != object) {
-    [_item release];
-    _item = [object retain];
-
-    TTTextFieldTableItem* item = self.object;
-    _textView.text = item.text;
-  }  
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITextViewDelegate
-
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-  TTTextViewTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textViewShouldBeginEditing:)]) {
-    return [item.delegate textViewShouldBeginEditing:textView];
-  } else {
-    return YES;
-  }
-}
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-  TTTextViewTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textViewShouldEndEditing:)]) {
-    return [item.delegate textViewShouldEndEditing:textView];
-  } else {
-    return YES;
-  }
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-//  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
-//  NSIndexPath* indexPath = [tableView indexPathForCell:self];
-//  [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle
-//    animated:YES];
-  
-  TTTextViewTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textViewDidBeginEditing:)]) {
-    [item.delegate textViewDidBeginEditing:textView];
-  }
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-  TTTextViewTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
-    [item.delegate textViewDidEndEditing:textView];
-  }
-}
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
-    replacementText:(NSString *)text {
-  TTTextViewTableItem* item = self.object;
-  SEL sel = @selector(textView:shouldChangeTextInRange:replacementText:);
-  if ([item.delegate respondsToSelector:sel]) {
-    return [item.delegate textView:textView shouldChangeTextInRange:range replacementText:text];
-  } else {
-    return YES;
-  }
-}
-
-- (void)textViewDidChange:(UITextView *)textView {
-  TTTextViewTableItem* item = self.object;
-  item.text = textView.text;
-  
-  if ([item.delegate respondsToSelector:@selector(textViewDidChange:)]) {
-    [item.delegate textViewDidChange:textView];
-  }
-}
-
-- (void)textViewDidChangeSelection:(UITextView *)textView {
-  TTTextViewTableItem* item = self.object;
-  if ([item.delegate respondsToSelector:@selector(textViewDidChangeSelection:)]) {
-    [item.delegate textViewDidChangeSelection:textView];
-  }
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTSwitchTableItemCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
-    _switch = [[UISwitch alloc] initWithFrame:CGRectZero];
-    [_switch addTarget:self action:@selector(valueChanged)
-      forControlEvents:UIControlEventValueChanged];
-    [self.contentView addSubview:_switch];
-    
-    self.accessoryType = UITableViewCellAccessoryNone;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_switch release];
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  
-  [_switch sizeToFit];
-  _switch.left = self.contentView.width - (kHPadding + _switch.width);
-  _switch.top = kVPadding;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewCell
-
-- (void)setObject:(id)object {
-  if (_item != object) {
-    [super setObject:object];
-
-    self.textLabel.font = TTSTYLEVAR(tableSmallFont);
-
-    TTSwitchTableItem* item = self.object;
-    _switch.on = item.on;
-  }  
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIControlEvents
-
-- (void)valueChanged {
-  TTSwitchTableItem* item = self.object;
-  item.on = _switch.on;
-}
-
-@end
-*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTStyledTextTableItemCell
@@ -1018,6 +688,7 @@ static CGFloat kDefaultIconSize = 50;
   
   TTTableStyledTextItem* item = self.object;
   _label.frame = CGRectOffset(self.contentView.bounds, item.margin.left, item.margin.top);
+  [_label setNeedsLayout];
 }
 
 -(void)didMoveToSuperview {
@@ -1049,6 +720,18 @@ static CGFloat kDefaultIconSize = 50;
 @synthesize item = _item, control = _control;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// class private
+
++ (BOOL)shouldConsiderControlIntrinsicSize:(UIView*)view {
+  return [view isKindOfClass:[UISwitch class]];
+}
+
++ (BOOL)shouldSizeControlToFit:(UIView*)view {
+  return [view isKindOfClass:[UITextView class]]
+         || [view isKindOfClass:[TTTextEditor class]];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
@@ -1067,6 +750,10 @@ static CGFloat kDefaultIconSize = 50;
       UITextView* textView = (UITextView*)view;
       CGFloat lineHeight = (textView.font.ascender - textView.font.descender) + 1;
       height = lineHeight * kDefaultTextViewLines;
+    } else if ([view isKindOfClass:[TTTextEditor class]]) {
+      UITextView* textView = [(TTTextEditor*)view textView];
+      CGFloat lineHeight = (textView.font.ascender - textView.font.descender) + 1;
+      height = lineHeight * kDefaultTextViewLines;
     } else if ([view isKindOfClass:[UITextField class]]) {
       height = TOOLBAR_HEIGHT;
     } else {
@@ -1083,17 +770,11 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (BOOL)shouldSizeControlToFit {
-  return ![_control isKindOfClass:[UISwitch class]];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
+    _item = nil;
     _control = nil;
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -1102,6 +783,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
+  [_item release];
   [_control release];
 	[super dealloc];
 }
@@ -1109,8 +791,8 @@ static CGFloat kDefaultIconSize = 50;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  if ([_control isKindOfClass:[UITextView class]]) {
-    _control.frame = self.contentView.bounds;
+  if ([TTTableControlCell  shouldSizeControlToFit:_control]) {
+    _control.frame = CGRectInset(self.contentView.bounds, 2, 3);
   } else {
     CGFloat minX = kControlPadding;
     CGFloat contentWidth = self.contentView.width - kControlPadding*2;
@@ -1124,10 +806,13 @@ static CGFloat kDefaultIconSize = 50;
       [_control sizeToFit];
     }
     
-    if (![self shouldSizeControlToFit]) {
+    if ([TTTableControlCell shouldConsiderControlIntrinsicSize:_control]) {
       minX += contentWidth - _control.width;
     }
     
+    // XXXjoe For some reason I need to re-add the control as a subview or else
+    // the re-use of the cell will cause the control to fail to paint itself on occasion
+    [self.contentView addSubview:_control];
     _control.frame = CGRectMake(minX, floor(self.contentView.height/2 - _control.height/2),
                                 contentWidth, _control.height);
   }
@@ -1152,13 +837,16 @@ static CGFloat kDefaultIconSize = 50;
     } else if ([object isKindOfClass:[TTTableControlItem class]]) {
       _item = [object retain];
       _control = [_item.control retain];
+    } else {
+      _item = nil;
+      _control = nil;
     }
     
-    if (_item.caption) {
-      self.textLabel.text = _item.caption;
-    }
+    self.textLabel.text = _item.caption;
     
-    [self.contentView addSubview:_control];
+    if (_control) {
+      [self.contentView addSubview:_control];
+    }
   }  
 }
 
@@ -1182,6 +870,7 @@ static CGFloat kDefaultIconSize = 50;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
+    _item = nil;
     _view = nil;
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -1190,6 +879,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
+  [_item release];
   [_view release];
 	[super dealloc];
 }

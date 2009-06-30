@@ -41,15 +41,15 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   // fields with URLs that will be visited when the row is selected
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Links and Buttons",
-    [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableFieldTest"],
+    [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"],
     [TTTableTextItem itemWithText:@"TTTableTextItem (external link)" URL:@"http://foo.com"],
-    [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableFieldTest"],
+    [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableItemTest"],
     [TTTableButton itemWithText:@"TTTableButton"],
     [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem" caption:@"caption"
-                           URL:@"tt://tableFieldTest"],
-    [TTTableImageItem itemWithText:@"TTTableImageItem" URL:@"tt://tableFieldTest"
+                           URL:@"tt://tableItemTest"],
+    [TTTableImageItem itemWithText:@"TTTableImageItem" URL:@"tt://tableItemTest"
                              image:@"bundle://tableIcon.png"],
-    [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" URL:@"tt://tableFieldTest"
+    [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" URL:@"tt://tableItemTest"
                            image:@"bundle://person.jpg"],
     [TTTableMoreButton itemWithText:@"TTTableMoreButton"],
 
