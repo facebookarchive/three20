@@ -33,8 +33,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _highlightStartPoint = CGPointZero;
     _menuView = nil;
     _menuCell = nil;
-    
-    self.delaysContentTouches = NO;
   }
   return self;
 }
@@ -72,22 +70,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
       if (![hit isKindOfClass:[UIControl class]]) {
         [self hideMenu:YES];
       }
-    }
-  }
-}
-
-- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
-  [super touchesMoved:touches withEvent:event];
-
-  if (_highlightedLabel) {
-    UITouch* touch = [touches anyObject];
-    CGPoint newPoint = [touch locationInView:self];
-    CGFloat dx = newPoint.x - _highlightStartPoint.x;
-    CGFloat dy = newPoint.y - _highlightStartPoint.y;
-    CGFloat d = sqrt((dx*dx) + (dy+dy));
-    if (d > kCancelHighlightThreshold) {
-      _highlightedLabel.highlightedNode = nil;
-      self.highlightedLabel = nil;
     }
   }
 }

@@ -75,6 +75,7 @@ static const CGFloat kRefreshingViewHeight = 22;
   [super viewWillAppear:animated];
 
   [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];
+
   if ([_tableView isKindOfClass:[TTTableView class]]) {
     TTTableView* tableView = (TTTableView*)_tableView;
     tableView.highlightedLabel = nil;    

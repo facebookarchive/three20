@@ -4,6 +4,8 @@
 #import "Three20/TTTableItem.h"
 #import "Three20/TTTableItemCell.h"
 #import "Three20/TTTableHeaderView.h"
+#import "Three20/TTTableView.h"
+#import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTURLRequestQueue.h"
@@ -79,7 +81,7 @@ static const CGFloat kSectionHeaderHeight = 35;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIScrollViewDelegate
 
-- (BOOL)scrollViewWillScrollToTop:(UIScrollView *)scrollView {
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
   [TTURLRequestQueue mainQueue].suspended = YES;
   return YES;
 }
@@ -92,6 +94,14 @@ static const CGFloat kSectionHeaderHeight = 35;
   [TTURLRequestQueue mainQueue].suspended = YES;
 
   [_controller didBeginDragging];
+  
+  if ([scrollView isKindOfClass:[TTTableView class]]) {
+    TTTableView* tableView = (TTTableView*)scrollView;
+    [tableView hideMenu:YES];
+    
+    tableView.highlightedLabel.highlightedNode = nil;
+    tableView.highlightedLabel = nil;
+  }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
