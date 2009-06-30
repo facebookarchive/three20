@@ -2,121 +2,94 @@
 
 @class TTStyledText, TTStyle;
 
-//typedef enum {
-//  TTItemStyleDefault,
-//  TTItemStyleLink,
-//  TTItemStyleButton,
-//  TTItemStyleMoreButton,
-//  TTItemStyleCaptionLeft,
-//  TTItemStyleCaptionRight,
-//  TTItemStyleCaptionBelow,
-//  TTItemStyleText,
-//  TTItemStyleGrayText,
-//  TTItemStyleSummary,
-//} TTItemStyle;
-//
-@interface TTTableItem : NSObject {
-  NSString* _text;
-  NSString* _caption;
+@interface TTTableItem : NSObject
+@end
+
+@interface TTTableLinkedItem : TTTableItem {
   NSString* _URL;
   NSString* _accessoryURL;
 }
-  
-@property(nonatomic,copy) NSString* text;
-@property(nonatomic,copy) NSString* caption;
+
 @property(nonatomic,copy) NSString* URL;
 @property(nonatomic,copy) NSString* accessoryURL;
 
-- (id)initWithText:(NSString*)text;
-- (id)initWithText:(NSString*)text URL:(NSString*)URL;
+@end
+
+@interface TTTableTextItem : TTTableLinkedItem {
+  NSString* _text;
+}
+  
+@property(nonatomic,copy) NSString* text;
+
++ (id)itemWithText:(NSString*)text;
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL;
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL;
 
 @end
 
-@interface TTTextTableItem : TTTableItem
+@interface TTTableCaptionedItem : TTTableTextItem {
+  NSString* _caption;
+}
+
+@property(nonatomic,copy) NSString* caption;
+
++ (id)itemWithText:(NSString*)text caption:(NSString*)caption;
++ (id)itemWithText:(NSString*)text caption:(NSString*)caption URL:(NSString*)URL;
++ (id)itemWithText:(NSString*)text caption:(NSString*)caption URL:(NSString*)URL
+      accessoryURL:(NSString*)accessoryURL;
+
 @end
 
-@interface TTGrayTextTableItem : TTTextTableItem
+@interface TTTableRightCaptionedItem : TTTableCaptionedItem
 @end
 
-@interface TTSummaryTableItem : TTTableItem
+@interface TTTableBelowCaptionedItem : TTTableCaptionedItem
 @end
 
-@interface TTLinkTableItem : TTTableItem
+@interface TTTableLongTextItem : TTTableTextItem
 @end
 
-@interface TTButtonTableItem : TTLinkTableItem
+@interface TTTableGrayTextItem : TTTableTextItem
 @end
 
-@interface TTMoreButtonTableItem : TTTableItem {
+@interface TTTableSummaryItem : TTTableTextItem
+@end
+
+@interface TTTableLink : TTTableTextItem
+@end
+
+@interface TTTableButton : TTTableTextItem
+@end
+
+@interface TTTableMoreButton : TTTableBelowCaptionedItem {
   BOOL _isLoading;
-  NSString* _subtitle;
 }
 
 @property(nonatomic) BOOL isLoading;
-@property(nonatomic,copy) NSString* subtitle;
-
-- (id)initWithText:(NSString*)text subtitle:(NSString*)subtitle;
 
 @end
 
-@interface TTTitledTableItem : TTLinkTableItem {
-  NSString* _title;
-}
-
-@property(nonatomic,copy) NSString* title;
-
-- (id)initWithTitle:(NSString*)title text:(NSString*)text;
-- (id)initWithTitle:(NSString*)title text:(NSString*)text URL:(NSString*)URL;
-
-@end
-
-@interface TTSubtextTableItem : TTTableItem {
-  NSString* _subtext;
-}
-
-@property(nonatomic,copy) NSString* subtext;
-
-- (id)initWithText:(NSString*)text subtext:(NSString*)subtext;
-- (id)initWithText:(NSString*)text subtext:(NSString*)subtext URL:(NSString*)URL;
-
-@end
-
-@interface TTImageTableItem : TTTableItem {
-  UIImage* _defaultImage;
+@interface TTTableImageItem : TTTableTextItem {
   NSString* _image;
+  UIImage* _defaultImage;
   TTStyle* _imageStyle;
 }
 
-@property(nonatomic,retain) UIImage* defaultImage;
 @property(nonatomic,copy) NSString* image;
+@property(nonatomic,retain) UIImage* defaultImage;
 @property(nonatomic,retain) TTStyle* imageStyle;
 
-- (id)initWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image;
-
-- (id)initWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image
-  defaultImage:(UIImage*)image;
-
-@end
-
-@interface TTIconTableItem : TTImageTableItem
-@end
-
-@interface TTStyledTextTableItem : TTTableItem {
-  TTStyledText* _styledText;
-  UIEdgeInsets _margin;
-  UIEdgeInsets _padding;
-}
-
-@property(nonatomic,retain) TTStyledText* styledText;
-@property(nonatomic) UIEdgeInsets margin;
-@property(nonatomic) UIEdgeInsets padding;
-
-- (id)initWithStyledText:(TTStyledText*)text;
-- (id)initWithStyledText:(TTStyledText*)text URL:(NSString*)URL;
++ (id)itemWithText:(NSString*)text image:(NSString*)image;
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image;
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image
+      defaultImage:(UIImage*)defaultImage;
 
 @end
 
-@interface TTStatusTableItem : TTTableItem {
+@interface TTTableRightImageItem : TTTableImageItem
+@end
+
+@interface TTTableStatusItem : TTTableItem {
   BOOL _sizeToFit;
 }
 
@@ -124,65 +97,66 @@
 
 @end
 
-@interface TTActivityTableItem : TTStatusTableItem
+@interface TTTableActivityItem : TTTableStatusItem {
+  NSString* _text;
+}
+
+@property(nonatomic,copy) NSString* text;
+
++ (id)itemWithText:(NSString*)text;
+
 @end
 
-@interface TTErrorTableItem : TTStatusTableItem {
+@interface TTTableErrorItem : TTTableStatusItem {
   UIImage* _image;
+  NSString* _title;
   NSString* _subtitle;
 }
 
 @property(nonatomic,retain) UIImage* image;
+@property(nonatomic,copy) NSString* title;
 @property(nonatomic,copy) NSString* subtitle;
 
-- (id)initWithText:(NSString*)text subtitle:(NSString*)subtitle image:(UIImage*)image;
++ (id)itemWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image;
 
 @end
 
-@interface TTTextFieldTableItem : TTTableItem {
-  id<UITextFieldDelegate> _delegate;
-  NSString* _title;
-  NSString* _placeholder;
-  UIReturnKeyType _returnKeyType;
-  UIKeyboardType _keyboardType;
-  UITextAutocapitalizationType _autocapitalizationType;
-  UITextAutocorrectionType _autocorrectionType;
-  UITextFieldViewMode _clearButtonMode;
-  BOOL _secureTextEntry;
-
+@interface TTTableStyledTextItem : TTTableLinkedItem {
+  TTStyledText* _text;
+  UIEdgeInsets _margin;
+  UIEdgeInsets _padding;
 }
 
-@property(nonatomic,assign) id<UITextFieldDelegate> delegate;
-@property(nonatomic,copy) NSString* title;
-@property(nonatomic,copy) NSString* placeholder;
-@property(nonatomic) UIReturnKeyType returnKeyType;
-@property(nonatomic) UIKeyboardType keyboardType;
-@property(nonatomic) UITextAutocapitalizationType autocapitalizationType;
-@property(nonatomic) UITextAutocorrectionType autocorrectionType;
-@property(nonatomic) UITextFieldViewMode clearButtonMode;
-@property(nonatomic) BOOL secureTextEntry;
+@property(nonatomic,retain) TTStyledText* text;
+@property(nonatomic) UIEdgeInsets margin;
+@property(nonatomic) UIEdgeInsets padding;
 
-- (id)initWithTitle:(NSString*)title;
-- (id)initWithTitle:(NSString*)title text:(NSString*)text;
++ (id)itemWithText:(TTStyledText*)text;
++ (id)itemWithText:(TTStyledText*)text URL:(NSString*)URL;
++ (id)itemWithText:(TTStyledText*)text URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL;
 
 @end
 
-@interface TTTextViewTableItem : TTTableItem {
-  id<UITextViewDelegate> _delegate;
-  NSString* _placeholder;
+@interface TTTableControlItem : TTTableItem {
+  NSString* _caption;
+  UIControl* _control;
 }
 
-@property(nonatomic,assign) id<UITextViewDelegate> delegate;
-@property(nonatomic,copy) NSString* placeholder;
+@property(nonatomic,copy) NSString* caption;
+@property(nonatomic,retain) UIControl* control;
+
++ (id)itemWithCaption:(NSString*)caption control:(UIControl*)control;
 
 @end
 
-@interface TTSwitchTableItem : TTTableItem {
-  BOOL _on;
+@interface TTTableViewItem : TTTableItem {
+  NSString* _caption;
+  UIView* _view;
 }
 
-@property(nonatomic) BOOL on;
+@property(nonatomic,copy) NSString* caption;
+@property(nonatomic,retain) UIView* view;
 
-- (id)initWithText:(NSString*)text on:(BOOL)on;
++ (id)itemWithCaption:(NSString*)caption view:(UIView*)view;
 
 @end

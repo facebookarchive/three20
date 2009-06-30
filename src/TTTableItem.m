@@ -5,39 +5,75 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTTableItem
+@end
 
-@synthesize text = _text, caption = _caption, URL = _URL, accessoryURL = _accessoryURL;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableLinkedItem
+
+@synthesize URL = _URL, accessoryURL = _accessoryURL;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _URL = nil;
+    _accessoryURL = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_URL release];
+  [_accessoryURL release];
+  [super dealloc];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableTextItem
+
+@synthesize text = _text;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (id)itemWithText:(NSString*)text {
+  TTTableTextItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  return item;
+}
+
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL {
+  TTTableTextItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.URL = URL;
+  return item;
+}
+
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL {
+  TTTableTextItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.URL = URL;
+  item.accessoryURL = accessoryURL;
+  return item;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
 
 - (id)init {
   if (self = [super init]) {
     _text = nil;
-    _URL = nil;
   }
   return self;
-}
-
-- (id)initWithText:(NSString*)text {
-  if (self = [self init]) {
-    self.text = text;
-  }
-  return self;
-}
-
-- (id)initWithText:(NSString*)text URL:(NSString*)URL {
-  if (self = [self init]) {
-    self.text = text;
-    self.URL = URL;
-  }
-  return self;
-}
-
-- (NSString*)description {
-  return _text;
 }
 
 - (void)dealloc {
   [_text release];
-  [_URL release];
   [super dealloc];
 }
 
@@ -45,52 +81,104 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTextTableItem
+@implementation TTTableCaptionedItem
+
+@synthesize caption = _caption;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (id)itemWithText:(NSString*)text caption:(NSString*)caption {
+  TTTableCaptionedItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.caption = caption;
+  return item;
+}
+
++ (id)itemWithText:(NSString*)text caption:(NSString*)caption URL:(NSString*)URL {
+  TTTableCaptionedItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.caption = caption;
+  item.URL = URL;
+  return item;
+}
+
++ (id)itemWithText:(NSString*)text caption:(NSString*)caption URL:(NSString*)URL
+      accessoryURL:(NSString*)accessoryURL {
+  TTTableCaptionedItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.caption = caption;
+  item.URL = URL;
+  item.accessoryURL = accessoryURL;
+  return item;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _caption = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_caption release];
+  [super dealloc];
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTGrayTextTableItem
+@implementation TTTableRightCaptionedItem
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTSummaryTableItem
+@implementation TTTableBelowCaptionedItem
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTLinkTableItem
+@implementation TTTableLongTextItem
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTButtonTableItem
+@implementation TTTableGrayTextItem
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTMoreButtonTableItem
+@implementation TTTableSummaryItem
+@end
 
-@synthesize isLoading = _isLoading, subtitle = _subtitle;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableLink
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableButton
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableMoreButton
+
+@synthesize isLoading = _isLoading;
 
 - (id)init {
   if (self = [super init]) {
     _isLoading = NO;
-    _subtitle = nil;
-  }
-  return self;
-}
-
-- (id)initWithText:(NSString*)text subtitle:(NSString*)subtitle {
-  if (self = [super initWithText:text]) {
-    self.subtitle = subtitle;
   }
   return self;
 }
 
 - (void)dealloc {
-  [_subtitle release];
   [super dealloc];
 }
 
@@ -98,77 +186,40 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTitledTableItem
+@implementation TTTableImageItem
 
-@synthesize title = _title;
-
-- (id)init {
-  if (self = [super init]) {
-    _title = nil;
-  }
-  return self;
-}
-
-- (id)initWithTitle:(NSString*)title text:(NSString*)text {
-  if (self = [super initWithText:text]) {
-    self.title = title;
-  }
-  return self;
-}
-
-- (id)initWithTitle:(NSString*)title text:(NSString*)text URL:(NSString*)URL {
-  if (self = [self initWithText:text URL:URL]) {
-    self.title = title;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_title release];
-  [super dealloc];
-}
-
-@end
+@synthesize image = _image, defaultImage = _defaultImage, imageStyle = _imageStyle;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
 
-@implementation TTSubtextTableItem
-
-@synthesize subtext = _subtext;
-
-- (id)init {
-  if (self = [super init]) {
-    _subtext = nil;
-  }
-  return self;
++ (id)itemWithText:(NSString*)text image:(NSString*)image {
+  TTTableImageItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.image = image;
+  return item;
 }
 
-- (id)initWithText:(NSString*)text subtext:(NSString*)subtext {
-  if (self = [super initWithText:text]) {
-    self.subtext = subtext;
-  }
-  return self;
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image {
+  TTTableImageItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.image = image;
+  item.URL = URL;
+  return item;
 }
 
-- (id)initWithText:(NSString*)text subtext:(NSString*)subtext URL:(NSString*)URL {
-  if (self = [self initWithText:text URL:URL]) {
-    self.subtext = subtext;
-  }
-  return self;
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image
+      defaultImage:(UIImage*)defaultImage {
+  TTTableImageItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.image = image;
+  item.defaultImage = defaultImage;
+  item.URL = URL;
+  return item;
 }
-
-- (void)dealloc {
-  [_subtext release];
-  [super dealloc];
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTImageTableItem
-
-@synthesize defaultImage = _defaultImage, image = _image, imageStyle = _imageStyle;
+// NSObject
 
 - (id)init {
   if (self = [super init]) {
@@ -177,19 +228,6 @@
     _imageStyle = nil;
   }
   return self;
-}
-
-- (id)initWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)icon
-    defaultImage:(UIImage*)image {
-  if (self = [super initWithText:text URL:URL]) {
-    self.image = icon;
-    self.defaultImage = image;
-  }
-  return self;
-}
-
-- (id)initWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image {
-  return [self initWithText:text URL:URL image:image defaultImage:nil];
 }
 
 - (void)dealloc {
@@ -203,13 +241,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTIconTableItem
-
+@implementation TTTableRightImageItem
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTStatusTableItem
+@implementation TTTableStatusItem
 
 @synthesize sizeToFit = _sizeToFit;
 
@@ -224,33 +261,68 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTActivityTableItem
+@implementation TTTableActivityItem
+
+@synthesize text = _text;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (id)itemWithText:(NSString*)text {
+  TTTableActivityItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  return item;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _text = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_text release];
+  [super dealloc];
+}
 
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTErrorTableItem
+@implementation TTTableErrorItem
 
-@synthesize subtitle = _subtitle, image = _image;
+@synthesize image = _image, title = _title, subtitle = _subtitle;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (id)itemWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image {
+  TTTableErrorItem* item = [[[self alloc] init] autorelease];
+  item.title = title;
+  item.subtitle = subtitle;
+  item.image = image;
+  return item;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
 
 - (id)init {
   if (self = [super init]) {
+    _title = nil;
     _subtitle = nil;
     _image = nil;
   }
   return self;
 }
 
-- (id)initWithText:(NSString*)text subtitle:(NSString*)subtitle image:(UIImage*)image {
-  if (self = [self initWithText:text]) {
-    self.subtitle = subtitle;
-    self.image = image;
-  }
-  return self;
-}
-
 - (void)dealloc {
+  [_title release];
   [_subtitle release];
   [_image release];
   [super dealloc];
@@ -260,120 +332,40 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTextFieldTableItem
+@implementation TTTableStyledTextItem
 
-@synthesize delegate = _delegate, title = _title, placeholder = _placeholder,
-  returnKeyType = _returnKeyType, keyboardType = _keyboardType,
-  autocorrectionType = _autocorrectionType, autocapitalizationType = _autocapitalizationType,
-  clearButtonMode = _clearButtonMode, secureTextEntry = _secureTextEntry;
-
-- (id)init {
-  if (self = [super init]) {
-    _delegate = nil;
-    _title = nil;
-    _placeholder = nil;
-    _returnKeyType = UIReturnKeyDefault;
-    _keyboardType = UIKeyboardTypeDefault;
-    _autocapitalizationType = UITextAutocapitalizationTypeNone;
-    _autocorrectionType = UITextAutocorrectionTypeDefault;
-    _clearButtonMode = UITextFieldViewModeNever;
-    _secureTextEntry = NO;
-  }
-  return self;
-}
-
-- (id)initWithTitle:(NSString*)title {
-  if (self = [self init]) {
-    self.title = title;
-  }
-  return self;
-}
-
-- (id)initWithTitle:(NSString*)title text:(NSString*)text {
-  if (self = [self initWithTitle:title]) {
-    self.text = text;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_title release];
-  [_placeholder release];
-  [super dealloc];
-}
-
-@end
+@synthesize text = _text, margin = _margin, padding = _padding;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
 
-@implementation TTTextViewTableItem
-
-@synthesize delegate = _delegate, placeholder = _placeholder;
-
-- (id)init {
-  if (self = [super init]) {
-    _delegate = nil;
-    _placeholder = nil;
-  }
-  return self;
++ (id)itemWithText:(TTStyledText*)text {
+  TTTableStyledTextItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  return item;
 }
 
-- (void)dealloc {
-  [_placeholder release];
-  [super dealloc];
++ (id)itemWithText:(TTStyledText*)text URL:(NSString*)URL {
+  TTTableStyledTextItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.URL = URL;
+  return item;
 }
 
-@end
++ (id)itemWithText:(TTStyledText*)text URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL {
+  TTTableStyledTextItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.URL = URL;
+  item.accessoryURL = accessoryURL;
+  return item;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTSwitchTableItem
-
-@synthesize on = _on;
-
-- (id)initWithText:(NSString*)text on:(BOOL)on {
-  if (self = [self initWithText:text]) {
-    self.on = on;
-  }
-  return self;
-}
+// NSObject
 
 - (id)init {
   if (self = [super init]) {
-    _on = NO;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [super dealloc];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTStyledTextTableItem
-
-@synthesize styledText = _styledText, margin = _margin, padding = _padding;
-
-- (id)initWithStyledText:(TTStyledText*)styledText {
-  if (self = [self init]) {
-    self.styledText = styledText;
-  }
-  return self;
-}
-
-- (id)initWithStyledText:(TTStyledText*)styledText URL:(NSString*)URL {
-  if (self = [self initWithStyledText:styledText]) {
-    self.URL = URL;
-  }
-  return self;
-}
-
-- (id)init {
-  if (self = [super init]) {
-    _styledText = nil;
+    _text = nil;
     _margin = UIEdgeInsetsZero;
     _padding = UIEdgeInsetsMake(10, 10, 10, 10);    
   }
@@ -381,8 +373,72 @@
 }
 
 - (void)dealloc {
-  [_styledText release];
+  [_text release];
   [super dealloc];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableControlItem
+
+@synthesize caption = _caption, control = _control;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _caption = nil;
+    _control = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_caption release];
+  [_control release];
+  [super dealloc];
+}
+
++ (id)itemWithCaption:(NSString*)caption control:(UIControl*)control {
+  TTTableControlItem* item = [[[self alloc] init] autorelease];
+  item.caption = caption;
+  item.control = control;
+  return item;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableViewItem
+
+@synthesize caption = _caption, view = _view;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _caption = nil;
+    _view = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_caption release];
+  [_view release];
+  [super dealloc];
+}
+
++ (id)itemWithCaption:(NSString*)caption view:(UIControl*)view {
+  TTTableViewItem* item = [[[self alloc] init] autorelease];
+  item.caption = caption;
+  item.view = view;
+  return item;
 }
 
 @end

@@ -126,12 +126,12 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   if (indexPath.row == [tableView numberOfRowsInSection:0]-1 && self.hasMoreToLoad) {
-    NSString* title = TTLocalizedString(@"Load More Photos...", @"");
-    NSString* subtitle = [NSString stringWithFormat:
+    NSString* text = TTLocalizedString(@"Load More Photos...", @"");
+    NSString* caption = [NSString stringWithFormat:
       TTLocalizedString(@"Showing %d of %d Photos", @""), _controller.photoSource.maxPhotoIndex+1,
       _controller.photoSource.numberOfPhotos];
 
-    return [[[TTMoreButtonTableItem alloc] initWithText:title subtitle:subtitle] autorelease];
+    return [TTTableMoreButton itemWithText:text caption:caption];
   } else {
     return [_controller.photoSource photoAtIndex:indexPath.row * kColumnCount];
   }

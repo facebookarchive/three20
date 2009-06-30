@@ -45,7 +45,8 @@
 
   UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
   if (cell == nil) {
-    cell = [[[cellClass alloc] initWithFrame:CGRectZero reuseIdentifier:identifier] autorelease];
+    cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
+                               reuseIdentifier:identifier] autorelease];
   }
   [identifier release];
   
@@ -112,35 +113,29 @@
 
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
   if ([object isKindOfClass:[TTTableItem class]]) {
-    if ([object isKindOfClass:[TTTextTableItem class]]) {
-      return [TTTextTableItemCell class];
-    } else if ([object isKindOfClass:[TTTitledTableItem class]]) {
-      return [TTTitledTableItemCell class];
-    } else if ([object isKindOfClass:[TTSubtextTableItem class]]) {
-      return [TTSubtextTableItemCell class];
-    } else if ([object isKindOfClass:[TTMoreButtonTableItem class]]) {
-      return [TTMoreButtonTableItemCell class];
-    } else if ([object isKindOfClass:[TTIconTableItem class]]) {
-      return [TTIconTableItemCell class];
-    } else if ([object isKindOfClass:[TTImageTableItem class]]) {
-      return [TTImageTableItemCell class];
-    } else if ([object isKindOfClass:[TTActivityTableItem class]]) {
-      return [TTActivityTableItemCell class];
-    } else if ([object isKindOfClass:[TTErrorTableItem class]]) {
-      return [TTErrorTableItemCell class];
-    } else if ([object isKindOfClass:[TTTextFieldTableItem class]]) {
-      return [TTTextFieldTableItemCell class];
-    } else if ([object isKindOfClass:[TTTextViewTableItem class]]) {
-      return [TTTextViewTableItemCell class];
-    } else if ([object isKindOfClass:[TTSwitchTableItem class]]) {
-      return [TTSwitchTableItemCell class];
-    } else if ([object isKindOfClass:[TTStyledTextTableItem class]]) {
+    if ([object isKindOfClass:[TTTableMoreButton class]]) {
+      return [TTTableMoreButtonCell class];
+    } else if ([object isKindOfClass:[TTTableCaptionedItem class]]) {
+      return [TTTableCaptionedItemCell class];
+    } else if ([object isKindOfClass:[TTTableImageItem class]]) {
+      return [TTTableImageItemCell class];
+    } else if ([object isKindOfClass:[TTTableStyledTextItem class]]) {
       return [TTStyledTextTableItemCell class];
+    } else if ([object isKindOfClass:[TTTableActivityItem class]]) {
+      return [TTTableActivityItemCell class];
+    } else if ([object isKindOfClass:[TTTableErrorItem class]]) {
+      return [TTTableErrorItemCell class];
+    } else if ([object isKindOfClass:[TTTableControlItem class]]
+               || [object isKindOfClass:[UITextView class]]) {
+      return [TTTableControlCell class];
     } else {
-      return [TTTextTableItemCell class];
+      return [TTTableTextItemCell class];
     }
-  } else if ([object isKindOfClass:[TTSearchBar class]]) {
-    return [TTSearchBarTableItemCell class];
+  } else if ([object isKindOfClass:[UIControl class]]
+             || [object isKindOfClass:[UITextView class]]) {
+    return [TTTableControlCell class];
+  } else if ([object isKindOfClass:[UIView class]]) {
+    return [TTTableFlushViewCell class];
   }
   
   // This will display an empty white table cell - probably not what you want, but it

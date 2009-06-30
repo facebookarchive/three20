@@ -40,35 +40,31 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   // This demonstrates how to create a table with standard table "fields".  Many of these
   // fields with URLs that will be visited when the row is selected
   return [TTSectionedDataSource dataSourceWithObjects:
-    @"Buttons",
-    [[[TTTableItem alloc] initWithText:@"TTTableItem"
-      URL:@"tt://tableFieldTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"TTTableItem (external link)"
-      URL:@"http://foo.com"] autorelease],
-    [[[TTLinkTableItem alloc] initWithText:@"TTLinkTableItem"
-      URL:@"tt://tableFieldTest"] autorelease],
-    [[[TTIconTableItem alloc] initWithText:@"TTIconTableItem" URL:@"tt://tableFieldTest"
-      image:@"bundle://tableIcon.png" ] autorelease],
-    [[[TTImageTableItem alloc] initWithText:@"TTImageTableItem" URL:@"tt://tableFieldTest"
-      image:@"bundle://person.jpg"] autorelease],
-    [[[TTButtonTableItem alloc] initWithText:@"TTButtonTableItem"] autorelease],
-    [[[TTTitledTableItem alloc] initWithTitle:@"title"
-      text:@"TTTitledTableItem" URL:@"tt://tableFieldTest"] autorelease],
-    [[[TTMoreButtonTableItem alloc] initWithText:@"TTMoreButtonTableItem"
-      subtitle:@"Showing 1 of 100"] autorelease],
+    @"Links and Buttons",
+    [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableFieldTest"],
+    [TTTableTextItem itemWithText:@"TTTableTextItem (external link)" URL:@"http://foo.com"],
+    [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableFieldTest"],
+    [TTTableButton itemWithText:@"TTTableButton"],
+    [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem" caption:@"caption"
+                           URL:@"tt://tableFieldTest"],
+    [TTTableImageItem itemWithText:@"TTTableImageItem" URL:@"tt://tableFieldTest"
+                             image:@"bundle://tableIcon.png"],
+    [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" URL:@"tt://tableFieldTest"
+                           image:@"bundle://person.jpg"],
+    [TTTableMoreButton itemWithText:@"TTTableMoreButton"],
 
     @"Static Text",
-    [[[TTTableItem alloc] initWithText:@"TTTableItem"] autorelease],
-    [[[TTTitledTableItem alloc] initWithTitle:@"title"
-      text:@"TTTitledTableItem which wraps to several lines"] autorelease],
-    [[[TTSubtextTableItem alloc] initWithText:@"TTSubtextTableItem"
-      subtext:kLoremIpsum] autorelease],
-    [[[TTTextTableItem alloc] initWithText:kLoremIpsum] autorelease],
-    [[[TTGrayTextTableItem alloc] initWithText:kLoremIpsum] autorelease],
-    [[[TTSummaryTableItem alloc] initWithText:@"TTSummaryTableItem"] autorelease],
+    [TTTableTextItem itemWithText:@"TTTableItem"],
+    [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem which wraps to several lines"
+                          caption:@"Text"],
+    [TTTableBelowCaptionedItem itemWithText:@"TTTableBelowCaptionedItem"
+                               caption:kLoremIpsum],
+    [TTTableLongTextItem itemWithText:kLoremIpsum],
+    [TTTableGrayTextItem itemWithText:kLoremIpsum],
+    [TTTableSummaryItem itemWithText:@"TTTableSummaryItem"],
 
     @"",
-    [[[TTActivityTableItem alloc] initWithText:@"TTActivityTableItem"] autorelease],
+    [TTTableActivityItem itemWithText:@"TTTableActivityItem"],
 
     nil];
 }

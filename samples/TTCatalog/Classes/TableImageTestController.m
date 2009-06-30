@@ -6,9 +6,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (TTImageTableItem*)fieldForURL:(NSString*)URL {
-  return [[[TTIconTableItem alloc] initWithText:@"Table Row" URL:nil image:URL
-    defaultImage:TTIMAGE(@"bundle://DefaultAlbum.png"]] autorelease);
+- (TTTableImageItem*)fieldForURL:(NSString*)URL {
+  return [TTTableImageItem itemWithText:@"Table Row" URL:nil image:URL
+                           defaultImage:TTIMAGE(@"bundle://DefaultAlbum.png")];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

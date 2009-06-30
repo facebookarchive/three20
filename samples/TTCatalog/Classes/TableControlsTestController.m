@@ -24,13 +24,27 @@
 // TTTableViewController
 
 - (id<TTTableViewDataSource>)createDataSource {
+  UITextField* textField = [[[UITextField alloc] init] autorelease];
+  textField.placeholder = @"UITextField";
+  textField.font = TTSTYLEVAR(font);
+  textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+  
+  UITextView* textView = [[[UITextView alloc] init] autorelease];
+  textView.text = @"UITextView";
+  textView.font = TTSTYLEVAR(font);
+  
+  UISwitch* switchy = [[[UISwitch alloc] init] autorelease];
+  TTTableControlItem* switchItem = [TTTableControlItem itemWithCaption:@"UISwitch" control:switchy];
+
+  UISlider* slider = [[[UISlider alloc] init] autorelease];
+  TTTableControlItem* sliderItem = [TTTableControlItem itemWithCaption:@"UISlider" control:slider];
+  
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Controls",
-    [[[TTSwitchTableItem alloc] initWithText:@"TTSwitchTableItem"] autorelease],
-    [[[TTTextFieldTableItem alloc] initWithTitle:@"Title" text:@"TTTextFieldTableItem"]
-      autorelease],
-    [[[TTTextViewTableItem alloc] initWithText:@"TTTextViewTableItem"] autorelease],
-
+    textField,
+    textView,
+    switchItem,
+    sliderItem,
     nil];
 }
 

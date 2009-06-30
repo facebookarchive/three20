@@ -73,52 +73,34 @@
 - (id<TTTableViewDataSource>)createDataSource {
   return [TTSectionedDataSource dataSourceWithObjects:
     @"Photos",
-    [[[TTTableItem alloc] initWithText:@"Photo Browser"
-      URL:@"tt://photoTest1"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Photo Thumbnails"
-      URL:@"tt://photoTest2"] autorelease],
+    [TTTableTextItem itemWithText:@"Photo Browser" URL:@"tt://photoTest1"],
+    [TTTableTextItem itemWithText:@"Photo Thumbnails" URL:@"tt://photoTest2"],
 
     @"Text Fields",
-    [[[TTTableItem alloc] initWithText:@"Message Composer"
-      URL:@"tt://composerTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Search Bar"
-      URL:@"tt://searchTest"] autorelease],
+    [TTTableTextItem itemWithText:@"Message Composer" URL:@"tt://composerTest"],
+    [TTTableTextItem itemWithText:@"Search Bar" URL:@"tt://searchTest"],
 
     @"Styles",
-    [[[TTTableItem alloc] initWithText:@"Styled Views"
-      URL:@"tt://styleTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Styled Labels"
-      URL:@"tt://styledTextTest"] autorelease],
+    [TTTableTextItem itemWithText:@"Styled Views" URL:@"tt://styleTest"],
+    [TTTableTextItem itemWithText:@"Styled Labels" URL:@"tt://styledTextTest"],
 
     @"Controls",
-    [[[TTTableItem alloc] initWithText:@"Buttons"
-      URL:@"tt://buttonTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Tabs"
-      URL:@"tt://tabBarTest"] autorelease],
+    [TTTableTextItem itemWithText:@"Buttons" URL:@"tt://buttonTest"],
+    [TTTableTextItem itemWithText:@"Tabs" URL:@"tt://tabBarTest"],
 
     @"Tables",
-    [[[TTTableItem alloc] initWithText:@"Table States"
-      URL:@"tt://tableTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Table Items"
-      URL:@"tt://tableFieldTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Table Controls"
-      URL:@"tt://tableControlsTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Styled Labels in Table"
-      URL:@"tt://styledTextTableTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Web Images in Table"
-      URL:@"tt://imageTest2"] autorelease],
+    [TTTableTextItem itemWithText:@"Table States" URL:@"tt://tableTest"],
+    [TTTableTextItem itemWithText:@"Table Items" URL:@"tt://tableFieldTest"],
+    [TTTableTextItem itemWithText:@"Table Controls" URL:@"tt://tableControlsTest"],
+    [TTTableTextItem itemWithText:@"Styled Labels in Table" URL:@"tt://styledTextTableTest"],
+    [TTTableTextItem itemWithText:@"Web Images in Table" URL:@"tt://imageTest2"],
 
     @"General",
-    [[[TTTableItem alloc] initWithText:@"Web Image"
-      URL:@"tt://imageTest1"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"YouTube Player"
-      URL:@"tt://youTubeTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Web Browser"
-      URL:@"tt://webTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Activity Labels"
-      URL:@"tt://activityTest"] autorelease],
-    [[[TTTableItem alloc] initWithText:@"Scroll View"
-      URL:@"tt://scrollViewTest"] autorelease],
+    [TTTableTextItem itemWithText:@"Web Image" URL:@"tt://imageTest1"],
+    [TTTableTextItem itemWithText:@"YouTube Player" URL:@"tt://youTubeTest"],
+    [TTTableTextItem itemWithText:@"Web Browser" URL:@"tt://webTest"],
+    [TTTableTextItem itemWithText:@"Activity Labels" URL:@"tt://activityTest"],
+    [TTTableTextItem itemWithText:@"Scroll View" URL:@"tt://scrollViewTest"],
     nil];
 }
 
@@ -128,10 +110,10 @@
 - (void)willNavigateToObject:(id)object inView:(NSString*)viewType
     withController:(UIViewController*)viewController {
   NSIndexPath* indexPath = self.tableView.indexPathForSelectedRow;
-  TTLinkTableItem* field = [self.dataSource tableView:self.tableView
-    objectForRowAtIndexPath:indexPath];
+  TTTableTextItem* item = [self.dataSource tableView:self.tableView
+                                           objectForRowAtIndexPath:indexPath];
   
-  viewController.title = field.text;
+  viewController.title = item.text;
 }
 
 - (BOOL)shouldLoadExternalURL:(NSURL*)URL {

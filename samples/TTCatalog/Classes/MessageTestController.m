@@ -22,7 +22,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)compose {
-  id recipient = [[[TTTableItem alloc] initWithText:@"Alan Jones" URL:TT_NULL_URL] autorelease];
+  id recipient = [TTTableTextItem itemWithText:@"Alan Jones" URL:TT_NULL_URL];
   TTMessageController* controller = [[[TTMessageController alloc] 
     initWithRecipients:[NSArray arrayWithObject:recipient]] autorelease];
   controller.dataSource = _dataSource;

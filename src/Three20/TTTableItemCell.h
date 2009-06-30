@@ -1,27 +1,20 @@
 #import "Three20/TTTableViewCell.h"
 
-@class TTTableItem, TTImageView, TTErrorView, TTActivityLabel, TTStyledTextLabel, TTSearchBar;
+@class TTTableLinkedItem, TTTableActivityItem, TTTableErrorItem, TTTableControlItem,
+       TTTableViewItem, TTImageView, TTErrorView, TTActivityLabel, TTStyledTextLabel;
 
-@interface TTTableItemCell : TTTableViewCell {
-  TTTableItem* _field;
+@interface TTTableLinkedItemCell : TTTableViewCell {
+  TTTableLinkedItem* _item;
 }
 @end
 
-@interface TTStyledTextTableItemCell : TTTableItemCell {
-  TTStyledTextLabel* _label;
-}
+@interface TTTableTextItemCell : TTTableLinkedItemCell
 @end
 
-@interface TTTextTableItemCell : TTTableItemCell
+@interface TTTableCaptionedItemCell : TTTableLinkedItemCell
 @end
 
-@interface TTTitledTableItemCell : TTTextTableItemCell
-@end
-
-@interface TTSubtextTableItemCell : TTTextTableItemCell
-@end
-
-@interface TTMoreButtonTableItemCell : TTTextTableItemCell {
+@interface TTTableMoreButtonCell : TTTableCaptionedItemCell {
   UIActivityIndicatorView* _spinnerView;
   BOOL _animating;
 }
@@ -30,52 +23,45 @@
 
 @end
 
-@interface TTIconTableItemCell : TTTextTableItemCell {
+@interface TTTableImageItemCell : TTTableTextItemCell {
   TTImageView* _iconView;
 }
 @end
 
-@interface TTImageTableItemCell : TTIconTableItemCell
+@interface TTStyledTextTableItemCell : TTTableLinkedItemCell {
+  TTStyledTextLabel* _label;
+}
 @end
 
-@interface TTActivityTableItemCell : TTTableItemCell {
+@interface TTTableActivityItemCell : TTTableViewCell {
+  TTTableActivityItem* _item;
   TTActivityLabel* _activityLabel;
 }
-
 @end
 
-@interface TTErrorTableItemCell : TTTableViewCell {
-  TTTableItem* _field;
+@interface TTTableErrorItemCell : TTTableViewCell {
+  TTTableErrorItem* _item;
   TTErrorView* _errorView;
 }
 @end
 
-@interface TTTextFieldTableItemCell : TTTextTableItemCell <UITextFieldDelegate>  {
-  UITextField* _textField;
+@interface TTTableControlCell : TTTableViewCell {
+  TTTableControlItem* _item;
+  UIControl* _control;
 }
 
-@property(nonatomic,readonly) UITextField* textField;
+@property(nonatomic,readonly) TTTableControlItem* item;
+@property(nonatomic,readonly) UIControl* control;
 
 @end
-
-@interface TTTextViewTableItemCell : TTTableViewCell <UITextViewDelegate> {
-  TTTableItem* _field;
-  UITextView* _textView;
+    
+@interface TTTableFlushViewCell : TTTableViewCell {
+  TTTableViewItem* _item;
+  UIView* _view;
 }
 
-@property(nonatomic,readonly) UITextView* textView;
-
-@end
-
-@interface TTSwitchTableItemCell : TTTextTableItemCell {
-  UISwitch* _switch;
-}
-
-@end
-
-@interface TTSearchBarTableItemCell : TTTableViewCell {
-  TTSearchBar* _searchBar;
-}
+@property(nonatomic,readonly) TTTableViewItem* item;
+@property(nonatomic,readonly) UIView* view;
 
 @end
     

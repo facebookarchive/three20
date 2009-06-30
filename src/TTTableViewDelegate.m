@@ -53,19 +53,19 @@ static const CGFloat kSectionHeaderHeight = 35;
   id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
 
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
-  if ([object isKindOfClass:[TTTableItem class]]) {
-    TTTableItem* field = object;
-    if (field.URL && [_controller shouldNavigateToURL:field.URL]) {
-      [[TTNavigationCenter defaultCenter] displayURL:field.URL];
+  if ([object isKindOfClass:[TTTableLinkedItem class]]) {
+    TTTableLinkedItem* item = object;
+    if (item.URL && [_controller shouldNavigateToURL:item.URL]) {
+      [[TTNavigationCenter defaultCenter] displayURL:item.URL];
     }
 
-    if ([field isKindOfClass:[TTButtonTableItem class]]) {
+    if ([object isKindOfClass:[TTTableButton class]]) {
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    } else if ([object isKindOfClass:[TTMoreButtonTableItem class]]) {
-      TTMoreButtonTableItem* moreLink = (TTMoreButtonTableItem*)object;
+    } else if ([object isKindOfClass:[TTTableMoreButton class]]) {
+      TTTableMoreButton* moreLink = (TTTableMoreButton*)object;
       moreLink.isLoading = YES;
-      TTMoreButtonTableItemCell* cell
-        = (TTMoreButtonTableItemCell*)[tableView cellForRowAtIndexPath:indexPath];
+      TTTableMoreButtonCell* cell
+        = (TTTableMoreButtonCell*)[tableView cellForRowAtIndexPath:indexPath];
       cell.animating = YES;
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
       

@@ -62,8 +62,8 @@ static CGFloat kDefaultThumbSize = 75;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithFrame:frame reuseIdentifier:identifier]) {
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
     _photo = nil;
     _delegate = nil;
     _thumbSize = kDefaultThumbSize;

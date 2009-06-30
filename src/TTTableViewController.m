@@ -131,8 +131,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 - (void)updateLoadingView {
   if (self.viewState & TTViewLoading) {
     NSString* title = [self titleForActivity];
-    TTStatusTableItem* statusItem = [[[TTActivityTableItem alloc] initWithText:title]
-      autorelease];
+    TTTableStatusItem* statusItem = [TTTableActivityItem itemWithText:title];
     statusItem.sizeToFit = YES;
 
     _statusDataSource = [[TTListDataSource alloc] initWithItems:
@@ -187,8 +186,8 @@ static const CGFloat kRefreshingViewHeight = 22;
     NSString* subtitle = [self subtitleForError:_contentError];
     UIImage* image = [self imageForError:_contentError];
     
-    TTStatusTableItem* statusItem = [[[TTErrorTableItem alloc] initWithText:title
-      subtitle:subtitle image:image] autorelease];
+    TTTableErrorItem* statusItem = [TTTableErrorItem itemWithTitle:title subtitle:subtitle
+                                                     image:image];
     statusItem.sizeToFit = YES;
 
     _statusDataSource = [[TTListDataSource alloc] initWithItems:
@@ -199,8 +198,8 @@ static const CGFloat kRefreshingViewHeight = 22;
     NSString* subtitle = [self subtitleForNoData];
     UIImage* image = [self imageForNoData];
     
-    TTStatusTableItem* statusItem = [[[TTErrorTableItem alloc] initWithText:title
-      subtitle:subtitle image:image] autorelease];
+    TTTableStatusItem* statusItem = [TTTableErrorItem itemWithTitle:title subtitle:subtitle
+                                                      image:image];
     statusItem.sizeToFit = YES;
 
     _statusDataSource = [[TTListDataSource alloc] initWithItems:

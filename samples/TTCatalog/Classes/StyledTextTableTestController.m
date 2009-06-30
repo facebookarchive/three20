@@ -40,8 +40,7 @@ Move along now. Nothing to see here. Goodbye now."],
   for (int i = 0; i < 50; ++i) {
     TTStyledText* text = [strings objectAtIndex:i % strings.count];
     
-    [dataSource.items addObject:
-      [[[TTStyledTextTableItem alloc] initWithStyledText:text URL:URL] autorelease]];
+    [dataSource.items addObject:[TTTableStyledTextItem itemWithText:text URL:URL]];
   }
   return dataSource;
 }
