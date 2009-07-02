@@ -618,7 +618,7 @@ static CGFloat kInsetWidth = 5;
     }
 
     pointX = fw - (((_pointLocation-225)/90) * fw);
-    CGPathAddArcToPoint(path, nil, fw, fh, floor(fw/2), fh, RD(_radius));
+    CGPathAddArcToPoint(path, nil,  fw-RD(_radius), fh, floor(fw/2), fh, RD(_radius));
     CGPathAddLineToPoint(path, nil, pointX+floor(_pointSize.width/2), fh);
     CGPathAddLineToPoint(path, nil, pointX, fh-ph);
     CGPathAddLineToPoint(path, nil, pointX-floor(_pointSize.width/2), fh);

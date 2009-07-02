@@ -100,6 +100,9 @@ Both line break characters\n\nand HTML line breaks<br/>are respected.";
 //  NSString* kText = @"\
 //<a>Bob Bobbers</a> <span class=\"smallText\">at 4:30 pm</span><br>Testing";
 
+  // XXXjoe This illustrates the need to calculate a line's descender height as well @1079
+  // NSString* kText = @"<span class=\"largeText\">bah</span> <span class=\"smallText\">humbug</span>";
+
   TTStyledTextLabel* label1 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
   label1.font = [UIFont systemFontOfSize:17];
   label1.text = [TTStyledText textFromXHTML:kText lineBreaks:YES URLs:YES];

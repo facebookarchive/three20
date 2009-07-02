@@ -252,7 +252,7 @@ static CGFloat kDefaultIconSize = 50;
                                               captionSize.width, captionSize.height);
     }
   } else {
-    CGSize titleSize = [@"M" sizeWithFont:TTSTYLEVAR(tableTitleFont)];
+    CGSize titleSize = [@"M" sizeWithFont:self.textLabel.font];
     self.textLabel.frame = CGRectMake(kHPadding, kVPadding, kKeyWidth, titleSize.height);
 
     CGFloat valueWidth = self.contentView.width - (kHPadding*2 + kKeyWidth + kKeySpacing);
@@ -278,8 +278,9 @@ static CGFloat kDefaultIconSize = 50;
     self.detailTextLabel.text = item.text;
 
     if ([item isKindOfClass:[TTTableRightCaptionedItem class]]) {
+      // XXXjoe TODO
     } else if ([item isKindOfClass:[TTTableBelowCaptionedItem class]]) {
-      self.detailTextLabel.font = TTSTYLEVAR(tableSmallFont);
+      self.detailTextLabel.font = TTSTYLEVAR(tableFont);
       self.detailTextLabel.textColor = TTSTYLEVAR(textColor);
       self.detailTextLabel.adjustsFontSizeToFitWidth = YES;
 

@@ -3,6 +3,7 @@
 #import "Three20/TTImageView.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTURLCache.h"
+#import "Three20/TTURLRequestQueue.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -73,6 +74,7 @@ static const CGFloat kMaxCaptionHeight = 100;
 }
 
 - (void)dealloc {
+  [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
   [super setDelegate:nil];
   [_photo release];
   _photo = nil;
