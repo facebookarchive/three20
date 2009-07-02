@@ -3,7 +3,6 @@
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTUnclippedView.h"
 #import "Three20/TTPhotoView.h"
-#import "Three20/TTURLRequestQueue.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -52,7 +51,6 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)dealloc {
-  [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
   [_thumbsController release];
   [_slideshowTimer invalidate];
   _slideshowTimer = nil;

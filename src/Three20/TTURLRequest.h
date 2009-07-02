@@ -9,6 +9,7 @@
   NSMutableDictionary* _parameters;
   NSString* _contentType;
   NSMutableArray* _delegates;
+  NSMutableArray* _files;
   id<TTURLResponse> _response;
   TTURLRequestCachePolicy _cachePolicy;
   NSTimeInterval _cacheExpirationAge;
@@ -82,6 +83,11 @@
 + (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate;
 
 - (id)initWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate;
+
+/**
+ * Adds a file whose data will be posted.
+ */
+- (void)addFile:(NSData*)data mimeType:(NSString*)mimeType fileName:(NSString*)fileName;
 
 /**
  * Attempts to send a request.

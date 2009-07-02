@@ -43,6 +43,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _parameters = nil;
     _contentType = nil;
     _delegates = TTCreateNonRetainingArray();
+    _files = nil;
     _response = nil;
     _cachePolicy = TTURLRequestCachePolicyAny;
     _cacheExpirationAge = 0;
@@ -63,6 +64,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   [_parameters release];
   [_contentType release];
   [_delegates release];
+  [_files release];
   [_response release];
   [_timestamp release];
   [_cacheKey release];
@@ -115,9 +117,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     dataUsingEncoding:NSUTF8StringEncoding]];
   
   for (id key in [_parameters keyEnumerator]) {
-    if (![[_parameters objectForKey:key] isKindOfClass:[UIImage class]]) {
-      NSString* value = [_parameters valueForKey:key];
-      
+    NSString* value = [_parameters valueForKey:key];
+    if (![value isKindOfClass:[UIImage class]]) {
       [body appendData:[[NSString
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
           dataUsingEncoding:NSUTF8StringEncoding]];
@@ -131,24 +132,39 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     if ([[_parameters objectForKey:key] isKindOfClass:[UIImage class]]) {
       UIImage* image = [_parameters objectForKey:key];
       CGFloat quality = [TTURLRequestQueue mainQueue].imageCompressionQuality;
-      NSData* imageData = UIImageJPEGRepresentation(image, quality);
+      NSData* data = UIImageJPEGRepresentation(image, quality);
       
       [body appendData:[[NSString
-        stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"photo\"\r\n", key]
+        stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image\"\r\n", key]
           dataUsingEncoding:NSUTF8StringEncoding]];
       [body appendData:[[NSString
-        stringWithFormat:@"Content-Length: %d\r\n", imageData.length]
+        stringWithFormat:@"Content-Length: %d\r\n", data.length]
           dataUsingEncoding:NSUTF8StringEncoding]];  
       [body appendData:[[NSString
         stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
           dataUsingEncoding:NSUTF8StringEncoding]];  
-      [body appendData:imageData];
+      [body appendData:data];
       [body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
-//      [imageData release];
       imageKey = key;
     }
   }
   
+  for (NSInteger i = 0; i < _files.count; i += 3) {
+    NSData* data = [_files objectAtIndex:i];
+    NSString* mimeType = [_files objectAtIndex:i+1];
+    NSString* fileName = [_files objectAtIndex:i+2];
+      
+    [body appendData:[[NSString stringWithFormat:
+                                 @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", fileName, fileName]
+          dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Length: %d\r\n", data.length]
+          dataUsingEncoding:NSUTF8StringEncoding]];  
+    [body appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType]
+          dataUsingEncoding:NSUTF8StringEncoding]];  
+    [body appendData:data];
+    [body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
+  }
+
   // If an image was found, remove it from the dictionary to save memory while we
   // perform the upload
   if (imageKey) {
@@ -193,6 +209,16 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _cacheKey = [[self generateCacheKey] retain];
   }
   return _cacheKey;
+}
+
+- (void)addFile:(NSData*)data mimeType:(NSString*)mimeType fileName:(NSString*)fileName {
+  if (!_files) {
+    _files = [[NSMutableArray alloc] init];
+  }
+  
+  [_files addObject:data];
+  [_files addObject:mimeType];
+  [_files addObject:fileName];
 }
 
 - (BOOL)send {
