@@ -292,10 +292,10 @@
   
   if (padding && padding.position) {
     TTStyledFrame* blockFrame = [self addBlockFrame:style element:elt width:_width height:_height];
-    
+
     CGFloat contentWidth = padding.margin.left + padding.margin.right;
     CGFloat contentHeight = padding.margin.top + padding.margin.bottom;
-    
+
     if (elt.firstChild) {
       TTStyledNode* child = elt.firstChild;
       TTStyledLayout* layout = [[[TTStyledLayout alloc] initWithX:_minX
@@ -535,9 +535,13 @@
       : NSMakeRange(searchRange.location, length - searchRange.location);
     NSString* word = [text substringWithRange:wordRange];
 
+    // If there is no width to constrain to, then just use an infinite width,
+    // which will prevent any word wrapping
+    CGFloat availWidth = _width ? _width : CGFLOAT_MAX;
+
     // Measure the word and check to see if it fits on the current line
     CGSize wordSize = [word sizeWithFont:_font
-                            constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
+                            constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
                             lineBreakMode:UILineBreakModeWordWrap];
     if (_lineWidth + wordSize.width > _width) {
       // The word will be placed on the next line, so create a new frame for
@@ -564,7 +568,7 @@
       // frame for all of it.
       NSString* lines = [text substringWithRange:searchRange];
       CGSize linesSize = [lines sizeWithFont:_font
-                                constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
+                                constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
                                 lineBreakMode:UILineBreakModeWordWrap];
 
       [self addFrameForText:lines element:element node:textNode width:linesSize.width

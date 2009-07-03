@@ -671,6 +671,7 @@ static CGFloat kDefaultIconSize = 50;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
     _label = [[TTStyledTextLabel alloc] initWithFrame:CGRectZero];
+    _label.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:_label];
   }
   return self;
