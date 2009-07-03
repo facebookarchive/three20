@@ -536,6 +536,9 @@ static CGFloat kDefaultIconSize = 50;
                                               style:TTActivityLabelStyleGray];
     _activityLabel.centeredToScreen = NO;
     [self.contentView addSubview:_activityLabel];
+
+    self.accessoryType = UITableViewCellAccessoryNone;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
   }
   return self;
 }

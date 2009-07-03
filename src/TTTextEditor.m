@@ -6,7 +6,7 @@
 static CGFloat kPaddingX = 8;
 static CGFloat kPaddingY = 8;
 
-static CGFloat kTextViewInset = 19;
+static CGFloat kTextViewInset = 30;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -226,6 +226,8 @@ static CGFloat kTextViewInset = 19;
   CGFloat oldHeight = self.height;
   CGFloat newHeight = [self heightThatFits:&_overflowed];
   CGFloat diff = newHeight - oldHeight;
+
+  _textView.scrollEnabled = _overflowed;
   
   if (oldHeight && diff) {
     if ([_textDelegate respondsToSelector:@selector(textEditor:shouldResizeBy:)]) {
@@ -317,11 +319,6 @@ static CGFloat kTextViewInset = 19;
   if (_autoresizesToText) {
     [self constrainToText];
   }
-}
-
-- (void)setAutoresizesToText:(BOOL)autoresizesToText {
-  _autoresizesToText = autoresizesToText;
-  _textView.scrollEnabled = !autoresizesToText;
 }
 
 - (void)setPlaceholder:(NSString*)placeholder {
