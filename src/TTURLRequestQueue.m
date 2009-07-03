@@ -160,6 +160,11 @@ static TTURLRequestQueue* gMainQueue = nil;
   return nil;
 }
 
+- (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten
+        totalBytesWritten:(NSInteger)totalBytesWritten
+        totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
+}
+ 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
   TTNetworkRequestStopped();
 

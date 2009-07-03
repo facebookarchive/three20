@@ -14,6 +14,7 @@
   TTTextEditor* _textEditor;
   TTActivityLabel* _statusView;
   NSArray* _initialRecipients;
+  BOOL _isModified;
 }
 
 @property(nonatomic,assign) id<TTMessageControllerDelegate> delegate;
@@ -21,11 +22,23 @@
 @property(nonatomic,retain) NSArray* fields;
 @property(nonatomic,retain) NSString* subject;
 @property(nonatomic,retain) NSString* body;
+@property(nonatomic,readonly) BOOL isModified;
 
 - (id)initWithRecipients:(NSArray*)recipients;
 
 - (void)addRecipient:(id)recipient forFieldAtIndex:(NSUInteger)fieldIndex;
+
+- (NSString*)textForFieldAtIndex:(NSUInteger)fieldIndex;
 - (void)setText:(NSString*)text forFieldAtIndex:(NSUInteger)fieldIndex;
+
+- (NSString*)titleForSending;
+
+- (void)cancel;
+- (void)confirmCancellation;
+
+- (BOOL)messageShouldCancel;
+- (void)messageWillSend;
+- (void)messageDidSend;
 
 @end
 

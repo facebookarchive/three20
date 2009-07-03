@@ -29,8 +29,8 @@
 
 - (void)shareAction {
   UIActionSheet* sheet = [[[UIActionSheet alloc] initWithTitle:@"" delegate:self
-    cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil
-    otherButtonTitles:NSLocalizedString(@"Open in Safari", @""), nil] autorelease];
+    cancelButtonTitle:TTLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil
+    otherButtonTitles:TTLocalizedString(@"Open in Safari", @""), nil] autorelease];
   [sheet showInView:self.view];
 }
 
@@ -135,7 +135,7 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView*)webView {
-  self.title = NSLocalizedString(@"Loading...", @"");
+  self.title = TTLocalizedString(@"Loading...", @"");
   self.navigationItem.rightBarButtonItem = _activityItem;
   [_toolbar replaceItemWithTag:3 withItem:_stopButton];
   _backButton.enabled = [_webView canGoBack];

@@ -104,54 +104,17 @@
 
 @implementation TTMessageController
 
-@synthesize delegate = _delegate, dataSource = _dataSource, fields = _fields;
-
-- (id)initWithRecipients:(NSArray*)recipients {
-  if (self = [self init]) {
-    _initialRecipients = [recipients retain];
-  }
-  return self;
-}
-
-- (id)init {
-  if (self = [super init]) {
-    _delegate = nil;
-    _dataSource = nil;
-    _fields = [[NSArray alloc] initWithObjects:
-      [[[TTMessageRecipientField alloc] initWithTitle:
-        TTLocalizedString(@"To:", @"") required:YES] autorelease],
-      [[[TTMessageSubjectField alloc] initWithTitle:
-        TTLocalizedString(@"Subject:", @"") required:NO] autorelease],
-      nil];
-    _fieldViews = nil;
-    _initialRecipients = nil;
-    _statusView = nil;
-    
-    self.title = TTLocalizedString(@"New Message", @"");
-
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
-      TTLocalizedString(@"Cancel", @"")
-      style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
-      TTLocalizedString(@"Send", @"")
-      style:UIBarButtonItemStyleDone target:self action:@selector(send)] autorelease];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_dataSource release];
-  [_fields release];
-  [_initialRecipients release];
-  [super dealloc];
-}
+@synthesize delegate = _delegate, dataSource = _dataSource, fields = _fields,
+            isModified = _isModified;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
 
 - (void)send {
   self.navigationItem.rightBarButtonItem.enabled = NO;
   
+  [self messageWillSend];
+
   if ([_delegate respondsToSelector:@selector(composeController:didSendFields:)]) {
     NSMutableArray* fields = [[_fields mutableCopy] autorelease];
     for (int i = 0; i < fields.count; ++i) {
@@ -173,25 +136,12 @@
     [self invalidateViewState:TTViewLoading];
     [_delegate composeController:self didSendFields:fields];
   }
+  [self messageDidSend];
 }
 
 - (void)dismiss {
   if ([_delegate respondsToSelector:@selector(composeControllerDidCancel:)]) {
     [_delegate composeControllerDidCancel:self];
-  }
-}
-
-- (void)cancel {
-  if (_textEditor.text.length && self.viewState == TTViewDataLoaded) {
-    UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
-      TTLocalizedString(@"Are you sure?", @"")
-      message:TTLocalizedString(@"Are you sure you want to cancel?", @"")
-      delegate:self
-      cancelButtonTitle:TTLocalizedString(@"Yes", @"")
-      otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
-    [cancelAlertView show];
-  } else {
-    [self dismiss];
   }
 }
 
@@ -311,6 +261,51 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithRecipients:(NSArray*)recipients {
+  if (self = [self init]) {
+    _initialRecipients = [recipients retain];
+  }
+  return self;
+}
+
+- (id)init {
+  if (self = [super init]) {
+    _delegate = nil;
+    _dataSource = nil;
+    _fields = [[NSArray alloc] initWithObjects:
+      [[[TTMessageRecipientField alloc] initWithTitle:
+        TTLocalizedString(@"To:", @"") required:YES] autorelease],
+      [[[TTMessageSubjectField alloc] initWithTitle:
+        TTLocalizedString(@"Subject:", @"") required:NO] autorelease],
+      nil];
+    _fieldViews = nil;
+    _initialRecipients = nil;
+    _statusView = nil;
+    _isModified = NO;
+    
+    self.title = TTLocalizedString(@"New Message", @"");
+
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
+      TTLocalizedString(@"Cancel", @"")
+      style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
+      TTLocalizedString(@"Send", @"")
+      style:UIBarButtonItemStyleDone target:self action:@selector(send)] autorelease];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_dataSource release];
+  [_fields release];
+  [_initialRecipients release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
 - (void)loadView {  
@@ -383,7 +378,7 @@
     CGRect frame = CGRectMake(0, _navigationBar.bottom, self.view.width, _scrollView.height);
     TTActivityLabel* label = [[[TTActivityLabel alloc] initWithFrame:frame
       style:TTActivityLabelStyleWhiteBox] autorelease];
-    label.text = TTLocalizedString(@"Sending...", @"");
+    label.text = [self titleForSending];
     label.centeredToScreen = NO;
     [self.view addSubview:label];
 
@@ -416,6 +411,7 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
   replacementString:(NSString *)string {
   if (textField == self.subjectField) {
+    _isModified = YES;
     [NSTimer scheduledTimerWithTimeInterval:0 target:self
       selector:@selector(setTitleToSubject) userInfo:nil repeats:NO];
   }
@@ -448,6 +444,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
   [self updateSendCommand];
+  _isModified = YES;
 }
 
 - (BOOL)textEditor:(TTTextEditor*)textEditor shouldResizeBy:(CGFloat)height {
@@ -537,12 +534,65 @@
   }
 }
 
+- (NSString*)textForFieldAtIndex:(NSUInteger)fieldIndex {
+  self.view;
+  
+  NSString* text = nil;
+  if (fieldIndex == _fieldViews.count) {
+    text = _textEditor.text;
+  } else {
+    TTPickerTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
+    if ([textField isKindOfClass:[TTPickerTextField class]]) {
+      text = textField.text;
+    }
+  }
+
+  NSCharacterSet* whitespace = [NSCharacterSet whitespaceCharacterSet];
+  return [text stringByTrimmingCharactersInSet:whitespace];
+}
+
 - (void)setText:(NSString*)text forFieldAtIndex:(NSUInteger)fieldIndex {
   self.view;
-  TTPickerTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
-  if ([textField isKindOfClass:[TTPickerTextField class]]) {
-    textField.text = text;
+  if (fieldIndex == _fieldViews.count) {
+    _textEditor.text = text;
+  } else {
+    TTPickerTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
+    if ([textField isKindOfClass:[TTPickerTextField class]]) {
+      textField.text = text;
+    }
   }
+}
+
+- (void)cancel {
+  if (![self messageShouldCancel]) {
+    [self confirmCancellation];
+  } else {
+    [self dismiss];
+  }
+}
+
+- (void)confirmCancellation {
+  UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
+    TTLocalizedString(@"Are you sure?", @"")
+    message:TTLocalizedString(@"Are you sure you want to cancel?", @"")
+    delegate:self
+    cancelButtonTitle:TTLocalizedString(@"Yes", @"")
+    otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
+  [cancelAlertView show];
+}
+
+- (NSString*)titleForSending {
+  return TTLocalizedString(@"Sending...", @"");
+}
+
+- (BOOL)messageShouldCancel {
+  return !_textEditor.text.length || !_isModified;
+}
+
+- (void)messageWillSend {
+}
+
+- (void)messageDidSend {
 }
 
 @end
