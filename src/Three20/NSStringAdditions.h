@@ -9,4 +9,6 @@
 
 - (NSDictionary*)queryDictionaryUsingEncoding: (NSStringEncoding)encoding;
 
+- (NSString*)stringByRemovingHTMLTags;
+
 @end

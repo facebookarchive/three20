@@ -1,5 +1,71 @@
 #import "Three20/TTGlobal.h"
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTMarkupStripper : NSObject {
+  NSMutableArray* _strings;
+}
+
+- (NSString*)parse:(NSString*)string;
+
+@end
+
+@implementation TTMarkupStripper
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _strings = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_strings release];
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSXMLParserDelegate
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+  [_strings addObject:string];
+}
+
+- (NSData *)parser:(NSXMLParser *)parser resolveExternalEntityName:(NSString *)entityName systemID:(NSString *)systemID {
+  static NSDictionary* entityTable = nil;
+  if (!entityTable) {
+    // XXXjoe Gotta get a more complete set of entities
+    entityTable = [[NSDictionary alloc] initWithObjectsAndKeys:
+      [NSData dataWithBytes:" " length:1], @"nbsp",
+      [NSData dataWithBytes:"&" length:1], @"amp",
+      [NSData dataWithBytes:"\"" length:1], @"quot",
+      [NSData dataWithBytes:"<" length:1], @"lt",
+      [NSData dataWithBytes:">" length:1], @"gt",
+      nil];
+  }
+  return [entityTable objectForKey:entityName];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (NSString*)parse:(NSString*)text {
+  _strings = [[NSMutableArray alloc] init];
+
+  NSString* document = [NSString stringWithFormat:@"<x>%@</x>", text];
+  NSData* data = [document dataUsingEncoding:text.fastestEncoding];
+  NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
+  parser.delegate = self;
+  [parser parse];
+  
+  return [_strings componentsJoinedByString:@""];
+}
+
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation NSString (TTCategory)
@@ -38,6 +104,11 @@
   }
 
   return [NSDictionary dictionaryWithDictionary:pairs];
+}
+
+- (NSString*)stringByRemovingHTMLTags {
+  TTMarkupStripper* stripper = [[[TTMarkupStripper alloc] init] autorelease];
+  return [stripper parse:self];
 }
 
 @end
