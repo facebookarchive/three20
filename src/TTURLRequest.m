@@ -15,7 +15,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   httpBody = _httpBody, parameters = _parameters, contentType = _contentType,
   cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge, cacheKey = _cacheKey,
   timestamp = _timestamp, userInfo = _userInfo, isLoading = _isLoading,
-  shouldHandleCookies = _shouldHandleCookies, respondedFromCache = _respondedFromCache;
+  shouldHandleCookies = _shouldHandleCookies, totalBytesLoaded = _totalBytesLoaded,
+  totalBytesExpected = _totalBytesExpected, respondedFromCache = _respondedFromCache;
 
 + (TTURLRequest*)request {
   return [[[TTURLRequest alloc] init] autorelease];
@@ -52,6 +53,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _userInfo = nil;
     _isLoading = NO;
     _shouldHandleCookies = YES;
+    _totalBytesLoaded = 0;
+    _totalBytesExpected = 0;
     _respondedFromCache = NO;
   }
   return self;

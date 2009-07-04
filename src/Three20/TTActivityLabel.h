@@ -19,6 +19,7 @@ typedef enum {
   TTView* _bezelView;
   UIActivityIndicatorView* _spinner;
   UILabel* _textView;
+  UIProgressView* _progressView;
   TTButton* _stopButton;
   BOOL _centered;
   BOOL _centeredToScreen;
@@ -29,6 +30,8 @@ typedef enum {
 @property(nonatomic,readonly) TTActivityLabelStyle style;
 @property(nonatomic,assign) NSString* text;
 @property(nonatomic,assign) UIFont* font;
+@property(nonatomic) float progress;
+@property(nonatomic) BOOL isAnimating;
 @property(nonatomic) BOOL centered;
 @property(nonatomic) BOOL centeredToScreen;
 @property(nonatomic) BOOL showsStopButton;

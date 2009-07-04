@@ -111,6 +111,19 @@ static TTURLRequestQueue* gMainQueue = nil;
   return nil;
 }
 
+- (void)dispatchLoadedBytes:(NSInteger)bytesLoaded expected:(NSInteger)bytesExpected {
+  for (TTURLRequest* request in [[_requests copy] autorelease]) {
+    request.totalBytesLoaded = bytesLoaded;
+    request.totalBytesExpected = bytesExpected;
+
+    for (id<TTURLRequestDelegate> delegate in request.delegates) {
+      if ([delegate respondsToSelector:@selector(requestDidUploadData:)]) {
+        [delegate requestDidUploadData:request];
+      }
+    }
+  }
+}
+
 - (void)dispatchLoaded:(NSDate*)timestamp {
   for (TTURLRequest* request in [[_requests copy] autorelease]) {
     request.timestamp = timestamp;
@@ -163,6 +176,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten
         totalBytesWritten:(NSInteger)totalBytesWritten
         totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
+  [self dispatchLoadedBytes:totalBytesWritten expected:totalBytesExpectedToWrite];
 }
  
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -454,8 +468,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   [_loaders removeObjectForKey:loader.cacheKey];
 }
 
-- (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response
-    data:(id)data {
+- (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response data:(id)data {
   [self removeLoader:loader];
   
   NSError* error = [loader processResponse:response data:data];

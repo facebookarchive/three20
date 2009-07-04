@@ -61,6 +61,10 @@ CGRect TTNavigationFrame() {
   return CGRectMake(0, 0, frame.size.width, frame.size.height - TOOLBAR_HEIGHT);
 }
 
+CGRect TTKeyboardNavigationFrame() {
+  return TTRectContract(TTNavigationFrame(), 0, KEYBOARD_HEIGHT);
+}
+
 CGRect TTToolbarNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
   return CGRectMake(0, 0, frame.size.width, frame.size.height - TOOLBAR_HEIGHT*2);

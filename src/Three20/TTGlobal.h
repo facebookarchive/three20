@@ -158,6 +158,11 @@ CGRect TTApplicationFrame();
 CGRect TTNavigationFrame();
 
 /**
+ * Gets the application frame below the navigation bar and above the keyboard.
+ */
+CGRect TTKeyboardNavigationFrame();
+
+/**
  * Gets the application frame below the navigation bar and above a toolbar.
  */
 CGRect TTToolbarNavigationFrame();

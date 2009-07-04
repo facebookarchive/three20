@@ -157,6 +157,8 @@ static TTNavigationCenter* gDefaultCenter = nil;
         && navController.modalViewController) {
       [self serializeController:navController.modalViewController states:states];
     }
+  } else if (_mainViewController.modalViewController) {
+    [self serializeController:_mainViewController.modalViewController states:states];
   }
   
   return states;

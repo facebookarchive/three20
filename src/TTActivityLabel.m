@@ -10,6 +10,7 @@ static CGFloat kMargin = 9;
 static CGFloat kSpacing = 5;
 static CGFloat kBezelHeight = 50;
 static CGFloat kThinBezelHeight = 35;
+static CGFloat kProgressMargin = 30;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -39,6 +40,7 @@ static CGFloat kThinBezelHeight = 35;
     _style = style;
     _delegate = nil;
     _stopButton = nil;
+    _progressView = nil;
     _centered = YES;
     _centeredToScreen = YES;
     _showsStopButton = NO;
@@ -110,6 +112,7 @@ static CGFloat kThinBezelHeight = 35;
 - (void)dealloc {
   [_bezelView release];
   [_spinner release];
+  [_progressView release];
   [_textView release];
   [_stopButton release];
   [super dealloc];
@@ -123,11 +126,14 @@ static CGFloat kThinBezelHeight = 35;
 
   CGSize textSize = [_textView.text sizeWithFont:_textView.font];
 
-  CGFloat spinnerSize = _spinner.height;
-  if (spinnerSize + kPadding > self.height) {
-    spinnerSize = textSize.height;
+  CGFloat spinnerSize = 0;
+  if (_spinner.isAnimating) {
+    spinnerSize = _spinner.height;
+    if (spinnerSize + kPadding > self.height) {
+      spinnerSize = textSize.height;
+    }
   }
-
+  
   CGFloat contentWidth = spinnerSize + kSpacing + textSize.width;
   if (_stopButton) {
     [_stopButton sizeToFit];
@@ -167,17 +173,31 @@ static CGFloat kThinBezelHeight = 35;
     textWidth = textMaxWidth;
   }
       
+  CGFloat contentHeight = textSize.height > spinnerSize ? textSize.height : spinnerSize;
+  CGFloat progressOffset = 0;
+  if (_progressView) {
+    [_progressView sizeToFit];
+    progressOffset = _progressView.height + 10;
+    contentHeight += progressOffset;
+  }
+  
   _bezelView.frame = CGRectMake(floor(self.width/2 - bezelWidth/2), y,
     bezelWidth, bezelHeight);
   
+  if (_progressView) {
+    _progressView.frame = CGRectMake(kProgressMargin, floor(self.height/2 - contentHeight/2),
+                                     self.width - kProgressMargin*2, _progressView.height);
+  }
+  
   _textView.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + kPadding + spinnerSize/2),
-    floor(bezelHeight/2 - textSize.height/2), textWidth, textSize.height);
+    floor(bezelHeight/2 - textSize.height/2) + progressOffset, textWidth, textSize.height);
 
   _spinner.frame = CGRectMake(_textView.left - (spinnerSize+kSpacing),
-    floor(bezelHeight/2 - spinnerSize/2), spinnerSize, spinnerSize);
+    floor(bezelHeight/2 - spinnerSize/2) + progressOffset, spinnerSize, spinnerSize);
 
   _stopButton.frame = CGRectMake(_textView.right + kSpacing*2,
-    floor(bezelHeight/2 - _stopButton.height/2), _stopButton.width, _stopButton.height);
+    floor(bezelHeight/2 - _stopButton.height/2) + progressOffset,
+    _stopButton.width, _stopButton.height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,6 +219,31 @@ static CGFloat kThinBezelHeight = 35;
 - (void)setFont:(UIFont*)font {
   _textView.font = font;
   [self setNeedsLayout];
+}
+
+- (BOOL)isAnimating {
+  return _spinner.isAnimating;
+}
+
+- (void)setIsAnimating:(BOOL)isAnimating {
+  if (isAnimating) {
+    [_spinner startAnimating];
+  } else {
+    [_spinner stopAnimating];
+  }
+}
+
+- (float)progress {
+  return _progressView.progress;
+}
+
+- (void)setProgress:(float)progress {
+  if (!_progressView) {
+    _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    [self addSubview:_progressView];
+    [self setNeedsLayout];
+  }
+  _progressView.progress = progress;
 }
 
 - (void)setShowsStopButton:(BOOL)showsStopButton {
