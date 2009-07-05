@@ -19,6 +19,7 @@
 		BE42FB160F3BBAB400A3B65A /* TTLink.h in Headers */ = {isa = PBXBuildFile; fileRef = BE42FB150F3BBAB400A3B65A /* TTLink.h */; };
 		BE42FB7A0F3BBF3500A3B65A /* TTTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BE42FB790F3BBF3400A3B65A /* TTTabBar.m */; };
 		BE42FB7C0F3BBF3D00A3B65A /* TTTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */; };
+		BE5477E20FFF61F200792B8A /* TTNavigableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE5477E10FFF61F200792B8A /* TTNavigableViewController.h */; };
 		BE68F5C40F385EBD00655DBF /* TTNavigationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68F5C30F385EBD00655DBF /* TTNavigationCenter.m */; };
 		BE68F5C60F385ECB00655DBF /* TTNavigationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = BE68F5C50F385ECB00655DBF /* TTNavigationCenter.h */; };
 		BE6E4A520F465237001CE9B4 /* TTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */; };
@@ -155,6 +156,7 @@
 		BE42FB150F3BBAB400A3B65A /* TTLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLink.h; path = Three20/TTLink.h; sourceTree = "<group>"; };
 		BE42FB790F3BBF3400A3B65A /* TTTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTabBar.m; sourceTree = "<group>"; };
 		BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTabBar.h; path = Three20/TTTabBar.h; sourceTree = "<group>"; };
+		BE5477E10FFF61F200792B8A /* TTNavigableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigableViewController.h; path = Three20/TTNavigableViewController.h; sourceTree = "<group>"; };
 		BE68F5C30F385EBD00655DBF /* TTNavigationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNavigationCenter.m; sourceTree = "<group>"; };
 		BE68F5C50F385ECB00655DBF /* TTNavigationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigationCenter.h; path = Three20/TTNavigationCenter.h; sourceTree = "<group>"; };
 		BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewCell.m; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 				BEF31F480F352E64000DE5D2 /* TTGlobal.m */,
 				BE68F5C50F385ECB00655DBF /* TTNavigationCenter.h */,
 				BE68F5C30F385EBD00655DBF /* TTNavigationCenter.m */,
+				BE5477E10FFF61F200792B8A /* TTNavigableViewController.h */,
 				BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */,
 				BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */,
 			);
@@ -626,6 +629,7 @@
 				BEB210D40FA3E784007DEE5F /* NSStringAdditions.h in Headers */,
 				BEA69ECD0FAC0FEC00DA7DDC /* TTWebController.h in Headers */,
 				BEA762500FBA1E290091B567 /* NSDateAdditions.h in Headers */,
+				BE5477E20FFF61F200792B8A /* TTNavigableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

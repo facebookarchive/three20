@@ -17,14 +17,14 @@ static CGFloat kProgressMargin = 30;
 @implementation TTActivityLabel
 
 @synthesize delegate = _delegate, style = _style, centered = _centered,
-            centeredToScreen = _centeredToScreen, showsStopButton = _showsStopButton;
+            centeredToScreen = _centeredToScreen, showsCancelButton = _showsCancelButton;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (void)touchedStopButton {
-  if ([_delegate respondsToSelector:@selector(activityLabelDidStop:)]) {
-    [_delegate activityLabelDidStop:self];
+- (void)touchedCancelButton {
+  if ([_delegate respondsToSelector:@selector(activityLabelDidCancel:)]) {
+    [_delegate activityLabelDidCancel:self];
   }
 }
 
@@ -39,11 +39,11 @@ static CGFloat kProgressMargin = 30;
   if (self = [super initWithFrame:frame]) {
     _style = style;
     _delegate = nil;
-    _stopButton = nil;
+    _cancelButton = nil;
     _progressView = nil;
     _centered = YES;
     _centeredToScreen = YES;
-    _showsStopButton = NO;
+    _showsCancelButton = NO;
     
     self.backgroundColor = [UIColor clearColor];
   
@@ -114,7 +114,7 @@ static CGFloat kProgressMargin = 30;
   [_spinner release];
   [_progressView release];
   [_textView release];
-  [_stopButton release];
+  [_cancelButton release];
   [super dealloc];
 }
 
@@ -135,10 +135,10 @@ static CGFloat kProgressMargin = 30;
   }
   
   CGFloat contentWidth = spinnerSize + kSpacing + textSize.width;
-  if (_stopButton) {
-    [_stopButton sizeToFit];
-    _stopButton.height = 30;
-    contentWidth += _stopButton.width + kSpacing;
+  if (_cancelButton) {
+    [_cancelButton sizeToFit];
+    _cancelButton.height = 30;
+    contentWidth += _cancelButton.width + kSpacing;
   }
   
   CGFloat bezelWidth, bezelHeight, y;
@@ -195,9 +195,9 @@ static CGFloat kProgressMargin = 30;
   _spinner.frame = CGRectMake(_textView.left - (spinnerSize+kSpacing),
     floor(bezelHeight/2 - spinnerSize/2) + progressOffset, spinnerSize, spinnerSize);
 
-  _stopButton.frame = CGRectMake(_textView.right + kSpacing*2,
-    floor(bezelHeight/2 - _stopButton.height/2) + progressOffset,
-    _stopButton.width, _stopButton.height);
+  _cancelButton.frame = CGRectMake(_textView.right + kSpacing*2,
+    floor(bezelHeight/2 - _cancelButton.height/2) + progressOffset,
+    _cancelButton.width, _cancelButton.height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -246,20 +246,20 @@ static CGFloat kProgressMargin = 30;
   _progressView.progress = progress;
 }
 
-- (void)setShowsStopButton:(BOOL)showsStopButton {
-  if (showsStopButton != _showsStopButton) {
-    _showsStopButton = showsStopButton;
+- (void)setShowsCancelButton:(BOOL)showsCancelButton {
+  if (showsCancelButton != _showsCancelButton) {
+    _showsCancelButton = showsCancelButton;
     
-    if (_showsStopButton) {
-      _stopButton = [[TTButton buttonWithStyle:@"blackToolbarButton:"
-                               title:TTLocalizedString(@"Stop", @"")] retain];
-      [_stopButton addTarget:self action:@selector(touchedStopButton)
+    if (_showsCancelButton) {
+      _cancelButton = [[TTButton buttonWithStyle:@"blackToolbarButton:"
+                               title:TTLocalizedString(@"Cancel", @"")] retain];
+      [_cancelButton addTarget:self action:@selector(touchedCancelButton)
                    forControlEvents:UIControlEventTouchUpInside];
-      [_bezelView addSubview:_stopButton];
+      [_bezelView addSubview:_cancelButton];
     } else {
-      [_stopButton removeFromSuperview];
-      [_stopButton release];
-      _stopButton = nil;
+      [_cancelButton removeFromSuperview];
+      [_cancelButton release];
+      _cancelButton = nil;
     }
   }
 }

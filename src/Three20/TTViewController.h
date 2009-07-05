@@ -1,4 +1,4 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTNavigableViewController.h"
 
 typedef enum {
   TTViewEmpty = 0,
@@ -13,7 +13,7 @@ typedef enum {
 
 @protocol TTPersistable;
 
-@interface TTViewController : UIViewController {
+@interface TTViewController : UIViewController <TTNavigableViewController> {
   NSDictionary* _frozenState;
   TTViewState _viewState;
   NSError* _contentError;
@@ -31,21 +31,6 @@ typedef enum {
   BOOL _unloaded;
   BOOL _autoresizesForKeyboard;
 }
-
-/**
- * The primary object behind the view.
- */
-@property(nonatomic,readonly) id<TTPersistable> viewObject;
-
-/**
- * A description of the kind of view to be presented for viewObject when the view is populated.
- */
-@property(nonatomic,readonly) NSString* viewType;
-
-/**
- * A temporary holding place for persisted view state waiting to be restored.
- */
-@property(nonatomic,retain) NSDictionary* frozenState;
 
 /**
  * Indicates the state of the view with regards to the content it displays.
@@ -73,38 +58,9 @@ typedef enum {
 @property(nonatomic) UIStatusBarStyle statusBarStyle;
 
 /**
- * The view has appeared at least once.
- */
-@property(nonatomic,readonly) BOOL appeared;
-
-/**
- * The view is currently visible.
- */
-@property(nonatomic,readonly) BOOL appearing;
-
-/**
  * Determines if the view will be resized automatically to fit the keyboard.
  */
 @property(nonatomic) BOOL autoresizesForKeyboard;
-
-/**
- * Update the view with a new primary object.
- *
- * @param object The primary object to display.
- * @param name A description that hints at how to display the object.
- * @param state A dictionary of attributes persisted in a previous life.
- */
-- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state;
-
-/**
- * Persist attributes of the view to a dictionary that can be restored later.
- */
-- (void)persistView:(NSMutableDictionary*)state;
-
-/**
- * Restore attributes of the view from an earlier call to persistView.
- */
-- (void)restoreView:(NSDictionary*)state;
 
 /**
  * Reloads content from external sources.

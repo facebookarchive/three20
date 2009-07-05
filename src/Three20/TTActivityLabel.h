@@ -20,10 +20,10 @@ typedef enum {
   UIActivityIndicatorView* _spinner;
   UILabel* _textView;
   UIProgressView* _progressView;
-  TTButton* _stopButton;
+  TTButton* _cancelButton;
   BOOL _centered;
   BOOL _centeredToScreen;
-  BOOL _showsStopButton;
+  BOOL _showsCancelButton;
 }
 
 @property(nonatomic,assign) id<TTActivityLabelDelegate> delegate;
@@ -34,7 +34,7 @@ typedef enum {
 @property(nonatomic) BOOL isAnimating;
 @property(nonatomic) BOOL centered;
 @property(nonatomic) BOOL centeredToScreen;
-@property(nonatomic) BOOL showsStopButton;
+@property(nonatomic) BOOL showsCancelButton;
 
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style;
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text;
@@ -43,6 +43,6 @@ typedef enum {
 
 @protocol TTActivityLabelDelegate <NSObject>
 
-- (void)activityLabelDidStop:(TTActivityLabel*)label;
+- (void)activityLabelDidCancel:(TTActivityLabel*)label;
 
 @end

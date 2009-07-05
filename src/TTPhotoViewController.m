@@ -51,6 +51,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)dealloc {
+  _thumbsController.delegate = nil;
   [_thumbsController release];
   [_slideshowTimer invalidate];
   _slideshowTimer = nil;

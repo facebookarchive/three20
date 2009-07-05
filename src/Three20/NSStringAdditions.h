@@ -7,7 +7,10 @@
 
 - (BOOL)isEmptyOrWhitespace;
 
-- (NSDictionary*)queryDictionaryUsingEncoding: (NSStringEncoding)encoding;
+/**
+ * Parses a URL query string into a dictionary.
+ */
+- (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding;
 
 - (NSString*)stringByRemovingHTMLTags;
 

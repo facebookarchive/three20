@@ -240,6 +240,26 @@ static TTURLCache* gSharedCache = nil;
   return URL;
 }
 
+- (NSString*)storeTemporaryFile:(NSURL*)fileURL {
+  if ([fileURL isFileURL]) {
+    NSString* filePath = [fileURL path];
+    NSFileManager* fm = [NSFileManager defaultManager];
+    if ([fm fileExistsAtPath:filePath]) {
+      NSString* tempURL = nil;
+      NSString* newPath = nil;
+      do {
+        tempURL = [self createTemporaryURL];
+        newPath = [self cachePathForURL:tempURL];
+      } while ([fm fileExistsAtPath:newPath]);
+
+      if ([fm moveItemAtPath:filePath toPath:newPath error:nil]) {
+        return tempURL;
+      }
+    }
+  }
+  return nil;
+}
+
 - (NSString*)storeTemporaryImage:(UIImage*)image toDisk:(BOOL)toDisk {
   NSString* URL = [self createTemporaryURL];
   [self storeImage:image forURL:URL force:YES];

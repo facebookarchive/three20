@@ -6,24 +6,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTComposeInnerScrollView : UIScrollView {
-}
-@end
-
-@implementation TTComposeInnerScrollView
-
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-  if ([self pointInside:point withEvent:event]) {
-    return self;
-  } else {
-    return nil;
-  }
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 @implementation TTMessageField
 
 @synthesize title = _title, required = _required;
@@ -105,44 +87,13 @@
 @implementation TTMessageController
 
 @synthesize delegate = _delegate, dataSource = _dataSource, fields = _fields,
-            isModified = _isModified;
+            isModified = _isModified, showsRecipientPicker = _showsRecipientPicker;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (void)send {
-  self.navigationItem.rightBarButtonItem.enabled = NO;
-  
-  [self messageWillSend];
-
-  if ([_delegate respondsToSelector:@selector(composeController:didSendFields:)]) {
-    NSMutableArray* fields = [[_fields mutableCopy] autorelease];
-    for (int i = 0; i < fields.count; ++i) {
-      id field = [fields objectAtIndex:i];
-      if ([field isKindOfClass:[TTMessageRecipientField class]]) {
-        TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
-        [(TTMessageRecipientField*)field setRecipients:textField.cells];
-      } else if ([field isKindOfClass:[TTMessageTextField class]]) {
-        UITextField* textField = [_fieldViews objectAtIndex:i];
-        [(TTMessageTextField*)field setText:textField.text];
-      }
-    }
-    
-    TTMessageTextField* bodyField = [[[TTMessageTextField alloc] initWithTitle:nil
-      required:NO] autorelease];
-    bodyField.text = _textEditor.text;
-    [fields addObject:bodyField];
-    
-    [self invalidateViewState:TTViewLoading];
-    [_delegate composeController:self didSendFields:fields];
-  }
-  [self messageDidSend];
-}
-
-- (void)dismiss {
-  if ([_delegate respondsToSelector:@selector(composeControllerDidCancel:)]) {
-    [_delegate composeControllerDidCancel:self];
-  }
+- (void)cancel {
+  [self cancel:YES];
 }
 
 - (void)createFieldViews {
@@ -164,7 +115,7 @@
       textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
       textField.rightViewMode = UITextFieldViewModeAlways;
 
-      if ([_delegate respondsToSelector:@selector(composeControllerShowRecipientPicker:)]) {
+      if (_showsRecipientPicker) {
         UIButton* addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
         [addButton addTarget:self action:@selector(showRecipientPicker)
           forControlEvents:UIControlEventTouchUpInside];
@@ -233,7 +184,7 @@
     }
   }
 
-  _navigationBar.topItem.rightBarButtonItem.enabled = compliant && _textEditor.text.length;
+  self.navigationItem.rightBarButtonItem.enabled = compliant && _textEditor.text.length;
 }
 
 - (UITextField*)subjectField {
@@ -249,12 +200,14 @@
 - (void)setTitleToSubject {
   UITextField* subjectField = self.subjectField;
   if (subjectField) {
-    _navigationBar.topItem.title = subjectField.text;
+    self.navigationItem.title = subjectField.text;
   }
   [self updateSendCommand];
 }
 
 - (void)showRecipientPicker {
+  [self messageWillShowRecipientPicker];
+  
   if ([_delegate respondsToSelector:@selector(composeControllerShowRecipientPicker:)]) {
     [_delegate composeControllerShowRecipientPicker:self];
   }
@@ -283,6 +236,7 @@
     _fieldViews = nil;
     _initialRecipients = nil;
     _statusView = nil;
+    _showsRecipientPicker = NO;
     _isModified = NO;
     
     self.title = TTLocalizedString(@"New Message", @"");
@@ -309,30 +263,18 @@
 // UIViewController
 
 - (void)loadView {  
-  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];
+  [super loadView];
   self.view.backgroundColor = TTSTYLEVAR(backgroundColor);
   
-  _navigationBar = [[UINavigationBar alloc] initWithFrame:
-    CGRectMake(0, 0, appFrame.size.width, TOOLBAR_HEIGHT)];
-  _navigationBar.tintColor = TTSTYLEVAR(navigationBarTintColor);
-  [_navigationBar pushNavigationItem:self.navigationItem animated:NO];
-  [self.view addSubview:_navigationBar];
-
-  CGRect innerFrame = CGRectMake(0, TOOLBAR_HEIGHT,
-    appFrame.size.width, appFrame.size.height - (TOOLBAR_HEIGHT+KEYBOARD_HEIGHT));
-  if (TTOSVersionIsAtLeast(3.0)) {
-    _scrollView = [[[UIScrollView class] alloc] initWithFrame:innerFrame];
-  } else {
-    _scrollView = [[[TTComposeInnerScrollView class] alloc] initWithFrame:innerFrame];
-  }
+  _scrollView = [[[UIScrollView class] alloc] initWithFrame:TTKeyboardNavigationFrame()];
   _scrollView.backgroundColor = TTSTYLEVAR(backgroundColor);
+  _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   _scrollView.canCancelContentTouches = NO;
   _scrollView.showsVerticalScrollIndicator = NO;
   _scrollView.showsHorizontalScrollIndicator = NO;
   [self.view addSubview:_scrollView];
 
-  _textEditor = [[TTTextEditor alloc] initWithFrame:CGRectMake(0, 0, appFrame.size.width, 0)];
+  _textEditor = [[TTTextEditor alloc] initWithFrame:CGRectMake(0, 0, _scrollView.height, 0)];
   _textEditor.textDelegate = self;
   _textEditor.backgroundColor = TTSTYLEVAR(backgroundColor);
   _textEditor.textView.font = TTSTYLEVAR(messageFont);
@@ -375,7 +317,7 @@
 
 - (void)updateLoadingView {
   if (self.viewState & TTViewLoading) {
-    CGRect frame = CGRectMake(0, _navigationBar.bottom, self.view.width, _scrollView.height);
+    CGRect frame = CGRectMake(0, 0, self.view.width, _scrollView.height);
     TTActivityLabel* label = [[[TTActivityLabel alloc] initWithFrame:frame
       style:TTActivityLabelStyleWhiteBox] autorelease];
     label.text = [self titleForSending];
@@ -393,12 +335,10 @@
 
 - (void)unloadView {
   [super unloadView];
-  [_navigationBar release];
   [_scrollView release];
   [_fieldViews release];
   [_textEditor release];
   [_statusView release];
-  _navigationBar = nil;
   _scrollView = nil;
   _fieldViews = nil;
   _textEditor = nil;
@@ -459,7 +399,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == 0) {
-    [self dismiss];
+    [self cancel:NO];
   }
 }
 
@@ -563,11 +503,45 @@
   }
 }
 
-- (void)cancel {
-  if (![self messageShouldCancel]) {
+- (void)send {
+  NSMutableArray* fields = [[_fields mutableCopy] autorelease];
+  for (int i = 0; i < fields.count; ++i) {
+    id field = [fields objectAtIndex:i];
+    if ([field isKindOfClass:[TTMessageRecipientField class]]) {
+      TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
+      [(TTMessageRecipientField*)field setRecipients:textField.cells];
+    } else if ([field isKindOfClass:[TTMessageTextField class]]) {
+      UITextField* textField = [_fieldViews objectAtIndex:i];
+      [(TTMessageTextField*)field setText:textField.text];
+    }
+  }
+  
+  TTMessageTextField* bodyField = [[[TTMessageTextField alloc] initWithTitle:nil
+                                                               required:NO] autorelease];
+  bodyField.text = _textEditor.text;
+  [fields addObject:bodyField];
+  
+  self.navigationItem.rightBarButtonItem.enabled = NO;
+  [self invalidateViewState:TTViewLoading];
+
+  [self messageWillSend:fields];
+
+  if ([_delegate respondsToSelector:@selector(composeController:didSendFields:)]) {
+    [_delegate composeController:self didSendFields:fields];
+  }
+  
+  [self messageDidSend];
+}
+
+- (void)cancel:(BOOL)confirmIfNecessary {
+  if (confirmIfNecessary && ![self messageShouldCancel]) {
     [self confirmCancellation];
   } else {
-    [self dismiss];
+    if ([_delegate respondsToSelector:@selector(composeControllerWillCancel:)]) {
+      [_delegate composeControllerWillCancel:self];
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
   }
 }
 
@@ -589,7 +563,10 @@
   return !_textEditor.text.length || !_isModified;
 }
 
-- (void)messageWillSend {
+- (void)messageWillShowRecipientPicker {
+}
+
+- (void)messageWillSend:(NSArray*)fields {
 }
 
 - (void)messageDidSend {

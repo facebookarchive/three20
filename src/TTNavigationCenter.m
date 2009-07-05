@@ -328,8 +328,8 @@ static TTNavigationCenter* gDefaultCenter = nil;
 }
 
 - (BOOL)serializeController:(UIViewController*)controller states:(NSMutableArray*)states {
-  if ([controller isKindOfClass:[TTViewController class]]) {
-    TTViewController* viewController = (TTViewController*)controller;
+  if ([controller conformsToProtocol:@protocol(TTNavigableViewController)]) {
+    id<TTNavigableViewController> viewController = (id<TTNavigableViewController>)controller;
     id<TTPersistable> object = viewController.viewObject;
     if (object) {
       NSString* URL = [self URLForObject:object inView:viewController.viewType];
@@ -507,7 +507,13 @@ static TTNavigationCenter* gDefaultCenter = nil;
       }
       
       if (entry.rule == TTNavigationModal) {
-        [navController presentModalViewController:viewController animated:animated];
+        if (![viewController isKindOfClass:[UINavigationController class]]) {
+          UINavigationController* modalNav = [[[UINavigationController alloc] init] autorelease];
+          [modalNav pushViewController:viewController animated:NO];
+          [navController presentModalViewController:modalNav animated:animated];
+        } else  {
+          [navController presentModalViewController:viewController animated:animated];
+        }
       } else {
         if (!state && navController.tabBarController) {
           navController.tabBarController.selectedViewController = navController;

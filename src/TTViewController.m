@@ -268,7 +268,7 @@
 
       [self updateView];
 
-      if (_frozenState && self.viewState & TTViewDataLoaded) {
+      if (_frozenState && !(self.viewState & TTViewLoadingStates)) {
         [self restoreView:_frozenState];
         [_frozenState release];
         _frozenState = nil;

@@ -128,6 +128,13 @@
 - (NSString*)storeTemporaryData:(NSData*)data;
 
 /**
+ * Convenient way to create a temporary URL for a file and move it to the disk cache.
+ *
+ * @return The temporary URL
+ */
+- (NSString*)storeTemporaryFile:(NSURL*)fileURL;
+
+/**
  * Moves the data currently stored under one URL to another URL.
  * 
  * This is handy when you are caching data at a temporary URL while the permanent URL is being
