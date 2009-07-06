@@ -27,7 +27,11 @@
     initWithRecipients:[NSArray arrayWithObject:recipient]] autorelease];
   controller.dataSource = _dataSource;
   controller.delegate = self;
-  [self presentModalViewController:controller animated:YES];
+
+  UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
+  [navController pushViewController:controller animated:NO];
+  [controller presentModalViewController:navController animated:YES];
+  [self presentModalViewController:navController animated:YES];
 }
 
 - (void)cancelAddressBook {

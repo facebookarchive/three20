@@ -7,8 +7,6 @@ typedef enum {
   TTNavigationModal,
 } TTNavigationRule;
 
-#define TT_NULL_URL @" "
-
 @protocol TTNavigationDelegate;
 @class TTViewController;
 

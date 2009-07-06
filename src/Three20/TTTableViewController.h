@@ -10,11 +10,15 @@
   id<TTTableViewDataSource> _statusDataSource;
   id<UITableViewDelegate> _tableDelegate;
   BOOL _variableHeightRows;
+  UITableViewStyle _tableViewStyle;
 }
 
 @property(nonatomic,retain) UITableView* tableView;
+@property(nonatomic) UITableViewStyle tableViewStyle;
 @property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
 @property(nonatomic) BOOL variableHeightRows;
+
+- (id)initWithStyle:(UITableViewStyle)style;
 
 - (id<TTTableViewDataSource>)createDataSource;
 - (id<UITableViewDelegate>)createDelegate;

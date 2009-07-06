@@ -6,6 +6,9 @@
 
 @synthesize delegate = _delegate;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;
@@ -21,18 +24,12 @@
 // UIViewController
 //
 - (void)loadView {
-  CGRect appFrame = [UIScreen mainScreen].applicationFrame;
-  self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];
-     
-  self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
-    style:UITableViewStylePlain] autorelease];
-	self.tableView.autoresizingMask = 
-    UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  [super loadView];
+  
   self.tableView.sectionIndexMinimumDisplayRowCount = 2;
-  [self.view addSubview:self.tableView];
 
   TTSearchBar* searchBar = [[[TTSearchBar alloc] initWithFrame:
-    CGRectMake(0, 0, appFrame.size.width, 0)] autorelease];
+    CGRectMake(0, 0, self.tableView.width, 0)] autorelease];
   searchBar.delegate = self;
   searchBar.dataSource = [MockDataSource mockDataSource:YES];
   searchBar.showsDoneButton = YES;

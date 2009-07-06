@@ -3,19 +3,19 @@
 @implementation StyledTextTableTestController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIViewController
+// NSObject
 
-- (void)loadView {
-  [super loadView];
+- (id)init {
+  if (self = [super init]) {
+    self.tableViewStyle = UITableViewStyleGrouped;
+    self.autoresizesForKeyboard = YES;
+    self.variableHeightRows = YES;
+  }
+  return self;
+}
 
-  self.autoresizesForKeyboard = YES;
-  self.variableHeightRows = YES;
-  
-  self.tableView = [[[TTTableView alloc] initWithFrame:self.view.bounds
-    style:UITableViewStylePlain] autorelease];
-	self.tableView.autoresizingMask = 
-    UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  [self.view addSubview:self.tableView];
+- (void)dealloc {
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

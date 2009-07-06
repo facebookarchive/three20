@@ -1,5 +1,6 @@
 
 #import "Three20/TTGlobal.h"
+#import "Three20/TTAppBrowser.h"
 #import "Three20/TTNavigationCenter.h"
 #import "Three20/TTDefaultStyleSheet.h"
 

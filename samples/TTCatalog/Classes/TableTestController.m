@@ -27,34 +27,16 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)init {
-  if (self = [super init]) {
-  }
-  return self;
-}
-
-- (void)dealloc {
-	[super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 //
 - (void)loadView {
+  [super loadView];
+
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
     initWithTitle:@"Loading" style:UIBarButtonItemStyleBordered target:self
     action:@selector(cycle)] autorelease];
   
-  self.view = [[[UIView alloc] initWithFrame:TTApplicationFrame()] autorelease];
-     
-  self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
-    style:UITableViewStylePlain] autorelease];
-	self.tableView.autoresizingMask = 
-    UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.tableView.sectionIndexMinimumDisplayRowCount = 2;
-  [self.view addSubview:self.tableView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

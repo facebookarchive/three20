@@ -17,12 +17,7 @@
 - (void)loadView {
   [super loadView];
 
-  self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
-                                        style:UITableViewStylePlain] autorelease];
   self.tableView.rowHeight = 90;
-	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-    | UIViewAutoresizingFlexibleHeight;
-  [self.view addSubview:self.tableView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -128,15 +128,31 @@ static TTURLCache* gSharedCache = nil;
     // diskPath:nil];
     // [NSURLCache setSharedURLCache:sharedCache];
     // [sharedCache release];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                          selector:@selector(didReceiveMemoryWarning:)
+                                          name:UIApplicationDidReceiveMemoryWarningNotification  
+                                          object:nil];  
   }
   return self;
 }
 
 - (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                        name:UIApplicationDidReceiveMemoryWarningNotification  
+                                        object:nil];  
   [_imageCache release];
   [_imageSortedList release];
   [_cachePath release];
   [super dealloc];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// NSNotifications
+
+- (void)didReceiveMemoryWarning:(void*)object {
+  // Empty the memory cache when memory is low
+  [self removeAll:NO];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

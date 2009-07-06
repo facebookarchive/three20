@@ -22,17 +22,17 @@
 @implementation RootViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIViewController
+// NSObject
 
-- (void)loadView {
-  [super loadView];
-
-  self.tableView = [[[UITableView alloc] initWithFrame:self.view.bounds
-    style:UITableViewStyleGrouped] autorelease];
-	self.tableView.autoresizingMask = 
-    UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  [self.view addSubview:self.tableView];
+- (id)init {
+  if (self = [super init]) {
+    self.tableViewStyle = UITableViewStyleGrouped;
+  }
+  return self;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
 
 - (void)viewDidLoad {
   TTNavigationCenter* nav = [TTNavigationCenter defaultCenter];

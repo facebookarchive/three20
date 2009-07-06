@@ -15,7 +15,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 
 @implementation TTTableViewController
 
-@synthesize tableView = _tableView, dataSource = _dataSource,
+@synthesize tableView = _tableView, dataSource = _dataSource, tableViewStyle = _tableViewStyle,
             variableHeightRows = _variableHeightRows;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,6 +47,13 @@ static const CGFloat kRefreshingViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
+- (id)initWithStyle:(UITableViewStyle)style {
+  if (self = [super init]) {
+    _tableViewStyle = style;
+  }
+  return self;
+}
+
 - (id)init {
   if (self = [super init]) {
     _tableView = nil;
@@ -55,6 +62,7 @@ static const CGFloat kRefreshingViewHeight = 22;
     _statusDataSource = nil;
     _tableDelegate = nil;
     _variableHeightRows = NO;
+    _tableViewStyle = UITableViewStylePlain;
   }  
   return self;
 }
@@ -70,6 +78,16 @@ static const CGFloat kRefreshingViewHeight = 22;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
+
+- (void)loadView {
+  [super loadView];
+  
+  self.tableView = [[[TTTableView alloc] initWithFrame:self.view.bounds
+                                         style:_tableViewStyle] autorelease];
+	self.tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
+                                     | UIViewAutoresizingFlexibleHeight;
+  [self.view addSubview:self.tableView];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];

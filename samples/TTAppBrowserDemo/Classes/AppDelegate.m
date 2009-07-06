@@ -1,7 +1,7 @@
-#import "TTCatalogAppDelegate.h"
+#import "AppDelegate.h"
 #import "RootViewController.h"
 
-@implementation TTCatalogAppDelegate
+@implementation AppDelegate
 
 @synthesize window, navigationController;
 
