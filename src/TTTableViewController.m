@@ -40,8 +40,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 
 - (void)refreshingHideAnimationStopped {
   [_refreshingView removeFromSuperview];
-  [_refreshingView release];
-  _refreshingView = nil;
+  TT_RELEASE_MEMBER(_refreshingView);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,11 +67,9 @@ static const CGFloat kRefreshingViewHeight = 22;
 }
 
 - (void)dealloc {
-  [_tableDelegate release];
-  [_dataSource release];
-  _dataSource = nil;
-  [_tableView release];
-  _tableView = nil;
+  TT_RELEASE_MEMBER(_tableDelegate);
+  TT_RELEASE_MEMBER(_dataSource);
+  TT_RELEASE_MEMBER(_tableView);
   [super dealloc];
 }
 
@@ -87,6 +84,15 @@ static const CGFloat kRefreshingViewHeight = 22;
 	self.tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
                                      | UIViewAutoresizingFlexibleHeight;
   [self.view addSubview:self.tableView];
+}
+
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  [_dataSource.delegates removeObject:self];
+  TT_RELEASE_MEMBER(_dataSource);
+  TT_RELEASE_MEMBER(_statusDataSource);
+  TT_RELEASE_MEMBER(_tableView);
+  TT_RELEASE_MEMBER(_refreshingView);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -128,21 +134,21 @@ static const CGFloat kRefreshingViewHeight = 22;
   
   if (_dataSource.isLoading) {
     if (_dataSource.isLoadingMore) {
-      [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
+      self.viewState = (_viewState & TTViewDataStates) | TTViewLoadingMore;
     } else if (_dataSource.isLoaded) {
-      [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewRefreshing];
+      self.viewState = (_viewState & TTViewDataStates) | TTViewRefreshing;
     } else {
-      [self invalidateViewState:TTViewLoading];
+      self.viewState = TTViewLoading;
     }
   } else if (!_dataSource.isLoaded) {
     [_dataSource load:TTURLRequestCachePolicyDefault nextPage:NO];
   } else {
     if (_contentError) {
-      [self invalidateViewState:TTViewDataLoadedError];
+      self.viewState = TTViewDataLoadedError;
     } else if (_dataSource.isEmpty) {
-      [self invalidateViewState:TTViewEmpty];
+      self.viewState = TTViewEmpty;
     } else {
-      [self invalidateViewState:TTViewDataLoaded];
+      self.viewState = TTViewDataLoaded;
     }
   }
 }
@@ -188,10 +194,9 @@ static const CGFloat kRefreshingViewHeight = 22;
   }
 }
 
-- (void)updateDataView {
+- (void)updateLoadedView {
   if (self.viewState & TTViewDataLoaded) {
-    [_statusDataSource release];
-    _statusDataSource = nil;
+    TT_RELEASE_MEMBER(_statusDataSource);
 
     if (_dataSource) {
       _tableView.dataSource = _dataSource;
@@ -229,19 +234,6 @@ static const CGFloat kRefreshingViewHeight = 22;
   [self reloadTableData];
 }
 
-- (void)unloadView {
-  [_dataSource.delegates removeObject:self];
-  [_dataSource release];
-  _dataSource = nil;
-  [_statusDataSource release];
-  _statusDataSource = nil;
-  [_tableView release];
-  _tableView = nil;
-  [_refreshingView release];
-  _refreshingView = nil;
-  [super unloadView];
-}
-
 - (void)keyboardWillAppear:(BOOL)animated {
   [self.tableView scrollFirstResponderIntoView];
 }
@@ -251,29 +243,29 @@ static const CGFloat kRefreshingViewHeight = 22;
 
 - (void)dataSourceDidStartLoad:(id<TTTableViewDataSource>)dataSource {
   if (dataSource.isLoadingMore) {
-    [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewLoadingMore];
+    self.viewState = (_viewState & TTViewDataStates) | TTViewLoadingMore;
   } else if (_viewState & TTViewDataStates) {
-    [self invalidateViewState:(_viewState & TTViewDataStates) | TTViewRefreshing];
+    self.viewState = (_viewState & TTViewDataStates) | TTViewRefreshing;
   } else {
-    [self invalidateViewState:TTViewLoading];
+    self.viewState = TTViewLoading;
   }
 }
 
 - (void)dataSourceDidFinishLoad:(id<TTTableViewDataSource>)dataSource {
   if (dataSource.isEmpty) {
-    [self invalidateViewState:TTViewEmpty];
+    self.viewState = TTViewEmpty;
   } else {
-    [self invalidateViewState:TTViewDataLoaded];
+    self.viewState = TTViewDataLoaded;
   }
 }
 
 - (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailLoadWithError:(NSError*)error {
   self.contentError = error;
-  [self invalidateViewState:TTViewDataLoadedError];
+  self.viewState = TTViewDataLoadedError;
 }
 
 - (void)dataSourceDidCancelLoad:(id<TTTableViewDataSource>)dataSource {
-  [self invalidateViewState:TTViewDataLoadedError];
+  self.viewState = TTViewDataLoadedError;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -100,9 +100,9 @@ static const NSInteger kMaxBadgeNumber = 99;
 }
 
 - (void)dealloc {
-  [_tabStyle release];
-  [_tabItems release];
-  [_tabViews release];
+  TT_RELEASE_MEMBER(_tabStyle);
+  TT_RELEASE_MEMBER(_tabItems);
+  TT_RELEASE_MEMBER(_tabViews);
   [super dealloc];
 }
 
@@ -275,9 +275,9 @@ static const NSInteger kMaxBadgeNumber = 99;
 }
 
 - (void)dealloc {
-  [_overflowLeft release];
-  [_overflowRight release];
-  [_scrollView release];
+  TT_RELEASE_MEMBER(_overflowLeft);
+  TT_RELEASE_MEMBER(_overflowRight);
+  TT_RELEASE_MEMBER(_scrollView);
   [super dealloc];
 }
 
@@ -407,8 +407,8 @@ static const NSInteger kMaxBadgeNumber = 99;
 }
 
 - (void)dealloc {
-  [_tabItem release];
-  [_badge release];
+  TT_RELEASE_MEMBER(_tabItem);
+  TT_RELEASE_MEMBER(_badge);
   [super dealloc];
 }
 
@@ -489,9 +489,9 @@ static const NSInteger kMaxBadgeNumber = 99;
 }
 
 - (void)dealloc {
-  [_title release];
-  [_icon release];
-  [_object release];
+  TT_RELEASE_MEMBER(_title);
+  TT_RELEASE_MEMBER(_icon);
+  TT_RELEASE_MEMBER(_object);
   [super dealloc];
 }
 

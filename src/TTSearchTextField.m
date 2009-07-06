@@ -151,13 +151,14 @@ static const CGFloat kDesiredTableHeight = 150;
 
 - (void)dealloc {
   [_dataSource.delegates removeObject:self];
-  [_dataSource release];
-  [_internal release];
-  [_tableView release];
-  [_shadowView release];
-  [_screenView release];
-  [_previousNavigationItem release];
-  [_previousRightBarButtonItem release];
+  _tableView.delegate = nil;
+  TT_RELEASE_MEMBER(_dataSource);
+  TT_RELEASE_MEMBER(_internal);
+  TT_RELEASE_MEMBER(_tableView);
+  TT_RELEASE_MEMBER(_shadowView);
+  TT_RELEASE_MEMBER(_screenView);
+  TT_RELEASE_MEMBER(_previousNavigationItem);
+  TT_RELEASE_MEMBER(_previousRightBarButtonItem);
   [super dealloc];
 }
 
@@ -176,10 +177,8 @@ static const CGFloat kDesiredTableHeight = 150;
       [controller.navigationItem setRightBarButtonItem:doneButton animated:YES];
     } else {
       [_previousNavigationItem setRightBarButtonItem:_previousRightBarButtonItem animated:YES];
-      [_previousRightBarButtonItem release];
-      _previousRightBarButtonItem = nil;
-      [_previousNavigationItem release];
-      _previousNavigationItem = nil;
+      TT_RELEASE_MEMBER(_previousRightBarButtonItem);
+      TT_RELEASE_MEMBER(_previousNavigationItem);
     }
   }
 }

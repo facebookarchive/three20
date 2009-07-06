@@ -120,6 +120,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+#define TT_RELEASE_MEMBER(__POINTER) { [__POINTER release]; __POINTER = nil; }
 /**
  * Creates a mutable array which does not retain references to the objects it contains.
  */

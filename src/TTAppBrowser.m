@@ -145,7 +145,7 @@ typedef enum {
 }
 
 - (void)dealloc {
-  [_mainViewController release];
+  TT_RELEASE_MEMBER(_mainViewController);
   [super dealloc];
 }
 
@@ -159,7 +159,7 @@ typedef enum {
     while (controller) {
       if ([controller isKindOfClass:[TTViewController class]]) {
         TTViewController* ttcontroller = (TTViewController*)controller;
-        if (!ttcontroller.appearing) {
+        if (!ttcontroller.isViewAppearing) {
           controller = ttcontroller.previousViewController;
         } else {
           break;

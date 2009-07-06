@@ -22,7 +22,7 @@
 }
 
 - (void)dealloc {
-  [_delegates release];
+  TT_RELEASE_MEMBER(_delegates);
   [super dealloc];
 }
 
@@ -246,7 +246,7 @@
 }
 
 - (void)dealloc {
-  [_items release];
+  TT_RELEASE_MEMBER(_items);
   [super dealloc];
 }
 
@@ -358,8 +358,8 @@
 }
 
 - (void)dealloc {
-  [_items release];
-  [_sections release];
+  TT_RELEASE_MEMBER(_items);
+  TT_RELEASE_MEMBER(_sections);
   [super dealloc];
 }
 

@@ -61,17 +61,17 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 - (void)dealloc {
-  [_URL release];
-  [_httpMethod release];
-  [_httpBody release];
-  [_parameters release];
-  [_contentType release];
-  [_delegates release];
-  [_files release];
-  [_response release];
-  [_timestamp release];
-  [_cacheKey release];
-  [_userInfo release];
+  TT_RELEASE_MEMBER(_URL);
+  TT_RELEASE_MEMBER(_httpMethod);
+  TT_RELEASE_MEMBER(_httpBody);
+  TT_RELEASE_MEMBER(_parameters);
+  TT_RELEASE_MEMBER(_contentType);
+  TT_RELEASE_MEMBER(_delegates);
+  TT_RELEASE_MEMBER(_files);
+  TT_RELEASE_MEMBER(_response);
+  TT_RELEASE_MEMBER(_timestamp);
+  TT_RELEASE_MEMBER(_cacheKey);
+  TT_RELEASE_MEMBER(_userInfo);
   [super dealloc];
 }
 
@@ -275,8 +275,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 - (void)dealloc {
-  [_topic release];
-  [_strong release];
+  TT_RELEASE_MEMBER(_topic);
+  TT_RELEASE_MEMBER(_strong);
   [super dealloc];
 }
 

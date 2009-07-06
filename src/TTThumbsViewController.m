@@ -37,7 +37,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (void)dealloc {
   [_photoSource.delegates removeObject:self];
-  [_photoSource release];
+  TT_RELEASE_MEMBER(_photoSource);
   [super dealloc];
 }
 
@@ -205,7 +205,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (void)dealloc {
   [_photoSource.delegates removeObject:self];
-  [_photoSource release];
+  TT_RELEASE_MEMBER(_photoSource);
   [super dealloc];
 }
 

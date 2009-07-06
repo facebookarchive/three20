@@ -151,12 +151,12 @@ static CGFloat kTextViewInset = 30;
 }
 
 - (void)dealloc {
-  [_internal release];
-  [_textView release];
-  [_placeholderLabel release];
-  [_placeholder release];
-  [_fixedText release];
-  [_fixedTextLabel release];
+  TT_RELEASE_MEMBER(_internal);
+  TT_RELEASE_MEMBER(_textView);
+  TT_RELEASE_MEMBER(_placeholderLabel);
+  TT_RELEASE_MEMBER(_placeholder);
+  TT_RELEASE_MEMBER(_fixedText);
+  TT_RELEASE_MEMBER(_fixedTextLabel);
   [super dealloc];
 }
 

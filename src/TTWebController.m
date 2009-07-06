@@ -52,7 +52,7 @@
 }
 
 - (void)dealloc {
-  [_headerView release];
+  TT_RELEASE_MEMBER(_headerView);
   [super dealloc];
 }
 
@@ -105,25 +105,16 @@
   [self.view addSubview:_toolbar];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTViewController
-
-- (void)unloadView {
-  [super unloadView];
-  [_webView release];
-  _webView = nil;
-  [_toolbar release];
-  _toolbar = nil;
-  [_backButton release];
-  _backButton = nil;
-  [_forwardButton release];
-  _forwardButton = nil;
-  [_refreshButton release];
-  _refreshButton = nil;
-  [_stopButton release];
-  _stopButton = nil;
-  [_activityItem release];
-  _activityItem = nil;
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  _webView.delegate = nil;
+  TT_RELEASE_MEMBER(_webView);
+  TT_RELEASE_MEMBER(_toolbar);
+  TT_RELEASE_MEMBER(_backButton);
+  TT_RELEASE_MEMBER(_forwardButton);
+  TT_RELEASE_MEMBER(_refreshButton);
+  TT_RELEASE_MEMBER(_stopButton);
+  TT_RELEASE_MEMBER(_activityItem);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

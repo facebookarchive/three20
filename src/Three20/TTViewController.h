@@ -26,16 +26,19 @@ typedef enum {
   BOOL _invalidViewLoading;
   BOOL _invalidViewData;
   BOOL _validating;
-  BOOL _appearing;
-  BOOL _appeared;
-  BOOL _unloaded;
+  BOOL _isViewAppearing;
+  BOOL _hasViewAppeared;
   BOOL _autoresizesForKeyboard;
 }
 
 /**
  * Indicates the state of the view with regards to the content it displays.
+ *
+ * Changing viewState will invalidate related portions of the view, which may result in
+ * updateLoadingView or updateLoadedView to be called to update the aspects of the view that
+ * have changed.
  */ 
-@property(nonatomic,readonly) TTViewState viewState;
+@property(nonatomic) TTViewState viewState;
 
 /**
  * An error that occurred while trying to load content.
@@ -53,7 +56,7 @@ typedef enum {
 @property(nonatomic,retain) UIColor* navigationBarTintColor;
 
 /**
- * The style of the status bar when this controller is appearing.
+ * The style of the status bar when this controller is isViewAppearing.
  */
 @property(nonatomic) UIStatusBarStyle statusBarStyle;
 
@@ -89,11 +92,6 @@ typedef enum {
 - (void)invalidateView;
 
 /**
- * Invalidates a particular aspect of the view.
- */
-- (void)invalidateViewState:(TTViewState)state;
-
-/**
  * Updates all invalid aspects of the view.
  */
 - (void)validateView;
@@ -116,15 +114,7 @@ typedef enum {
 /**
  *
  */
-- (void)updateDataView;
-
-/**
- * Destroys all views prior to the controller itself being destroyed or going into hibernation
- * (due to a low memory warning).
- *
- * This is meant to be implemented by subclasses - the default does nothing.
- */
-- (void)unloadView;
+- (void)updateLoadedView;
 
 /**
  * Sent to the controller before the keyboard slides in.

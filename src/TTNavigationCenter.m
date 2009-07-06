@@ -105,10 +105,11 @@ static TTNavigationCenter* gDefaultCenter = nil;
 }
 
 - (void)dealloc {
-  [_URLSchemes release];
-  [_mainViewController release];
-  [_linkObservers release];
-  [_viewLoaders release];
+  self.supportsShakeToReload = NO;
+  TT_RELEASE_MEMBER(_URLSchemes);
+  TT_RELEASE_MEMBER(_mainViewController);
+  TT_RELEASE_MEMBER(_linkObservers);
+  TT_RELEASE_MEMBER(_viewLoaders);
   [super dealloc];
 }
 
@@ -254,7 +255,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
     while (controller) {
       if ([controller isKindOfClass:[TTViewController class]]) {
         TTViewController* ttcontroller = (TTViewController*)controller;
-        if (!ttcontroller.appearing) {
+        if (!ttcontroller.isViewAppearing) {
           controller = ttcontroller.previousViewController;
         } else {
           break;
@@ -340,7 +341,7 @@ static TTNavigationCenter* gDefaultCenter = nil;
           [states addObject:viewController.frozenState];
         } else {
           NSMutableDictionary* viewState = [NSMutableDictionary dictionary];
-          if (viewController.appeared) {
+          if (viewController.hasViewAppeared) {
             [viewController persistView:viewState];
           }
           [states addObject:viewState];

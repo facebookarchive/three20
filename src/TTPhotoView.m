@@ -76,11 +76,10 @@ static const CGFloat kMaxCaptionHeight = 100;
 - (void)dealloc {
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
   [super setDelegate:nil];
-  [_photo release];
-  _photo = nil;
-  [_statusSpinner release];
-  [_statusLabel release];
-  [_captionLabel release];
+  TT_RELEASE_MEMBER(_photo);
+  TT_RELEASE_MEMBER(_statusSpinner);
+  TT_RELEASE_MEMBER(_statusLabel);
+  TT_RELEASE_MEMBER(_captionLabel);
   [super dealloc];
 }
 

@@ -40,7 +40,7 @@
 }
 
 - (void)dealloc {
-  [_nextSibling release];
+  TT_RELEASE_MEMBER(_nextSibling);
   [super dealloc];
 }
 
@@ -115,7 +115,7 @@
 }
 
 - (void)dealloc {
-  [_text release];
+  TT_RELEASE_MEMBER(_text);
   [super dealloc];
 }
 
@@ -177,8 +177,8 @@
 }
 
 - (void)dealloc {
-  [_firstChild release];
-  [_className release];
+  TT_RELEASE_MEMBER(_firstChild);
+  TT_RELEASE_MEMBER(_className);
   [super dealloc];
 }
 
@@ -369,7 +369,7 @@
 }
 
 - (void)dealloc {
-  [_URL release];
+  TT_RELEASE_MEMBER(_URL);
   [super dealloc];
 }
 
@@ -428,7 +428,7 @@
 }
 
 - (void)dealloc {
-  [_URL release];
+  TT_RELEASE_MEMBER(_URL);
   [super dealloc];
 }
 
@@ -476,9 +476,9 @@
 }
 
 - (void)dealloc {
-  [_URL release];
-  [_image release];
-  [_defaultImage release];
+  TT_RELEASE_MEMBER(_URL);
+  TT_RELEASE_MEMBER(_image);
+  TT_RELEASE_MEMBER(_defaultImage);
   [super dealloc];
 }
 

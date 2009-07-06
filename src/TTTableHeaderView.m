@@ -27,7 +27,7 @@
 }
 
 - (void)dealloc {
-  [_label release];
+  TT_RELEASE_MEMBER(_label);
   [super dealloc];
 }
 

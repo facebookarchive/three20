@@ -18,17 +18,17 @@
 /**
  * A temporary holding place for persisted view state waiting to be restored.
  */
-@property(nonatomic,retain) NSDictionary* frozenState;
+@property(nonatomic,readonly) NSDictionary* frozenState;
 
 /**
  * The view has appeared at least once.
  */
-@property(nonatomic,readonly) BOOL appeared;
+@property(nonatomic,readonly) BOOL hasViewAppeared;
 
 /**
  * The view is currently visible.
  */
-@property(nonatomic,readonly) BOOL appearing;
+@property(nonatomic,readonly) BOOL isViewAppearing;
 
 /**
  * Update the view with a new primary object.

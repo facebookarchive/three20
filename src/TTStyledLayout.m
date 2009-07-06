@@ -642,12 +642,12 @@
 }
 
 - (void)dealloc {
-  [_rootFrame release];
-  [_font release];
-  [_boldFont release];
-  [_italicFont release];
-  [_linkStyle release];
-  [_invalidImages release];
+  TT_RELEASE_MEMBER(_rootFrame);
+  TT_RELEASE_MEMBER(_font);
+  TT_RELEASE_MEMBER(_boldFont);
+  TT_RELEASE_MEMBER(_italicFont);
+  TT_RELEASE_MEMBER(_linkStyle);
+  TT_RELEASE_MEMBER(_invalidImages);
   [super dealloc];
 }
 
@@ -665,10 +665,8 @@
   if (font != _font) {
     [_font release];
     _font = [font retain];
-    [_boldFont release];
-    _boldFont = nil;
-    [_italicFont release];
-    _italicFont = nil;
+    TT_RELEASE_MEMBER(_boldFont);
+    TT_RELEASE_MEMBER(_italicFont);
   }
 }
 

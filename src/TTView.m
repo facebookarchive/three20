@@ -21,8 +21,8 @@
 }
 
 - (void)dealloc {
-  [_style release];
-  [_layout release];
+  TT_RELEASE_MEMBER(_style);
+  TT_RELEASE_MEMBER(_layout);
   [super dealloc];
 }
 

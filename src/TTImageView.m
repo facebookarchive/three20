@@ -65,10 +65,10 @@
 - (void)dealloc {
   _delegate = nil;
   [_request cancel];
-  [_request release];
-  [_URL release];
-  [_image release];
-  [_defaultImage release];
+  TT_RELEASE_MEMBER(_request);
+  TT_RELEASE_MEMBER(_URL);
+  TT_RELEASE_MEMBER(_image);
+  TT_RELEASE_MEMBER(_defaultImage);
   [super dealloc];
 }
 
@@ -113,13 +113,11 @@
   TTURLImageResponse* response = request.response;
   self.image = response.image;
   
-  [_request release];
-  _request = nil;
+  TT_RELEASE_MEMBER(_request);
 }
 
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
-  [_request release];
-  _request = nil;
+  TT_RELEASE_MEMBER(_request);
 
   [self imageViewDidFailLoadWithError:error];
   if ([_delegate respondsToSelector:@selector(imageView:didFailLoadWithError:)]) {
@@ -128,8 +126,7 @@
 }
 
 - (void)requestDidCancelLoad:(TTURLRequest*)request {
-  [_request release];
-  _request = nil;
+  TT_RELEASE_MEMBER(_request);
 
   [self imageViewDidFailLoadWithError:nil];
   if ([_delegate respondsToSelector:@selector(imageView:didFailLoadWithError:)]) {

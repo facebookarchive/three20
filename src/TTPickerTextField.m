@@ -39,7 +39,7 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)dealloc {
-  [_cellViews release];
+  TT_RELEASE_MEMBER(_cellViews);
   [super dealloc];
 }
 

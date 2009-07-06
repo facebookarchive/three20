@@ -15,7 +15,7 @@
 
 - (void)dealloc {
   [_sendTimer invalidate];
-  [_dataSource release];
+  TT_RELEASE_MEMBER(_dataSource);
 	[super dealloc];
 }
 

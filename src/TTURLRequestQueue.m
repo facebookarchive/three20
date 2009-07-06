@@ -72,12 +72,12 @@ static TTURLRequestQueue* gMainQueue = nil;
  
 - (void)dealloc {
   [_connection cancel];
-  [_connection release];
-  [_response release];
-  [_responseData release];
-  [_URL release];
-  [_cacheKey release];
-  [_requests release]; 
+  TT_RELEASE_MEMBER(_connection);
+  TT_RELEASE_MEMBER(_response);
+  TT_RELEASE_MEMBER(_responseData);
+  TT_RELEASE_MEMBER(_URL);
+  TT_RELEASE_MEMBER(_cacheKey);
+  TT_RELEASE_MEMBER(_requests); 
   [super dealloc];
 }
 
@@ -193,10 +193,8 @@ static TTURLRequestQueue* gMainQueue = nil;
       withObject:error];
   }
 
-  [_responseData release];
-  _responseData = nil;
-  [_connection release];
-  _connection = nil;
+  TT_RELEASE_MEMBER(_responseData);
+  TT_RELEASE_MEMBER(_connection);
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {  
@@ -204,10 +202,8 @@ static TTURLRequestQueue* gMainQueue = nil;
 
   TTNetworkRequestStopped();
   
-  [_responseData release];
-  _responseData = nil;
-  [_connection release];
-  _connection = nil;
+  TT_RELEASE_MEMBER(_responseData);
+  TT_RELEASE_MEMBER(_connection);
   
   if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCannotFindHost
       && _retriesLeft) {
@@ -260,8 +256,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     if (_connection) {
       TTNetworkRequestStopped();
       [_connection cancel];
-      [_connection release];
-      _connection = nil;
+      TT_RELEASE_MEMBER(_connection);
     }
     return NO;
   } else {
@@ -309,10 +304,10 @@ static TTURLRequestQueue* gMainQueue = nil;
 }
 
 - (void)dealloc {
-  [_loaders release];
-  [_loaderQueue release];
   [_loaderQueueTimer invalidate];
-  [_userAgent release];
+  TT_RELEASE_MEMBER(_loaders);
+  TT_RELEASE_MEMBER(_loaderQueue);
+  TT_RELEASE_MEMBER(_userAgent);
   [super dealloc];
 }
 

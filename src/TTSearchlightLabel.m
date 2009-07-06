@@ -23,10 +23,10 @@
 
 - (void)dealloc {
   [self stopAnimating];
-  [_text release];
-  [_font release];
-  [textColor release];
-  [_spotlightColor release];
+  TT_RELEASE_MEMBER(_text);
+  TT_RELEASE_MEMBER(_font);
+  TT_RELEASE_MEMBER(textColor);
+  TT_RELEASE_MEMBER(_spotlightColor);
 	[super dealloc];
 }
 

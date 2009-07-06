@@ -1,6 +1,6 @@
 #import <Three20/Three20.h>
 
-@interface TTCatalogAppDelegate : NSObject <UIApplicationDelegate> {
+@interface AppDelegate : NSObject <UIApplicationDelegate, TTNavigationDelegate> {
 	IBOutlet UIWindow *window;
 	IBOutlet UINavigationController *navigationController;
 }

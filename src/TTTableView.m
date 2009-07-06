@@ -38,9 +38,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 - (void)dealloc {
-  [_highlightedLabel release];
-  [_menuView release];
-  [_menuCell release];
+  TT_RELEASE_MEMBER(_highlightedLabel);
+  TT_RELEASE_MEMBER(_menuView);
+  TT_RELEASE_MEMBER(_menuCell);
   [super dealloc];
 }
 
@@ -164,10 +164,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
       [_menuView removeFromSuperview];
     }
 
-    [_menuView release];
-    _menuView = nil;
-    [_menuCell release];
-    _menuCell = nil;
+    TT_RELEASE_MEMBER(_menuView);
+    TT_RELEASE_MEMBER(_menuCell);
   }
 }
 

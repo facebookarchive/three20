@@ -115,11 +115,11 @@ static const CGFloat kIndexViewMargin = 4;
 }
 
 - (void)dealloc {
-  [_searchField release];
-  [_boxView release];
-  [_textFieldStyle release];
-  [_tintColor release];
-  [_cancelButton release];
+  TT_RELEASE_MEMBER(_searchField);
+  TT_RELEASE_MEMBER(_boxView);
+  TT_RELEASE_MEMBER(_textFieldStyle);
+  TT_RELEASE_MEMBER(_tintColor);
+  TT_RELEASE_MEMBER(_cancelButton);
   [super dealloc];
 }
 
@@ -221,8 +221,7 @@ static const CGFloat kIndexViewMargin = 4;
       [self addSubview:_cancelButton];
     } else {
       [_cancelButton removeFromSuperview];
-      [_cancelButton release];
-      _cancelButton = nil;
+      TT_RELEASE_MEMBER(_cancelButton);
     }
   }
 }

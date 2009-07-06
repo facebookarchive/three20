@@ -32,8 +32,8 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_shape release];
-  [_font release];
+  TT_RELEASE_MEMBER(_shape);
+  TT_RELEASE_MEMBER(_font);
   [super dealloc];
 }
 
@@ -99,7 +99,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_next release];
+  TT_RELEASE_MEMBER(_next);
   [super dealloc];
 }
 
@@ -203,8 +203,8 @@ static const NSInteger kDefaultLightSource = 125;
 // NSObject
 
 - (void)dealloc {
-  [_name release];
-  [_style release];
+  TT_RELEASE_MEMBER(_name);
+  TT_RELEASE_MEMBER(_style);
   [super dealloc];
 }
 
@@ -250,7 +250,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_shape release];
+  TT_RELEASE_MEMBER(_shape);
   [super dealloc];
 }
 
@@ -560,9 +560,9 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_font release];
-  [_color release];
-  [_shadowColor release];
+  TT_RELEASE_MEMBER(_font);
+  TT_RELEASE_MEMBER(_color);
+  TT_RELEASE_MEMBER(_shadowColor);
   [super dealloc];
 }
 
@@ -701,9 +701,9 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_imageURL release];
-  [_image release];
-  [_defaultImage release];
+  TT_RELEASE_MEMBER(_imageURL);
+  TT_RELEASE_MEMBER(_image);
+  TT_RELEASE_MEMBER(_defaultImage);
   [super dealloc];
 }
 
@@ -776,7 +776,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_mask release];
+  TT_RELEASE_MEMBER(_mask);
   [super dealloc];
 }
 
@@ -830,7 +830,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_color release];
+  TT_RELEASE_MEMBER(_color);
   [super dealloc];
 }
 
@@ -881,8 +881,8 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_color1 release];
-  [_color2 release];
+  TT_RELEASE_MEMBER(_color1);
+  TT_RELEASE_MEMBER(_color2);
   [super dealloc];
 }
 
@@ -936,7 +936,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_color release];
+  TT_RELEASE_MEMBER(_color);
   [super dealloc];
 }
 
@@ -1015,7 +1015,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_color release];
+  TT_RELEASE_MEMBER(_color);
   [super dealloc];
 }
 
@@ -1132,7 +1132,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_color release];
+  TT_RELEASE_MEMBER(_color);
   [super dealloc];
 }
 
@@ -1193,10 +1193,10 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_top release];
-  [_right release];
-  [_bottom release];
-  [_left release];
+  TT_RELEASE_MEMBER(_top);
+  TT_RELEASE_MEMBER(_right);
+  TT_RELEASE_MEMBER(_bottom);
+  TT_RELEASE_MEMBER(_left);
   [super dealloc];
 }
 
@@ -1292,8 +1292,8 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  [_highlight release];
-  [_shadow release];
+  TT_RELEASE_MEMBER(_highlight);
+  TT_RELEASE_MEMBER(_shadow);
   [super dealloc];
 }
 

@@ -10,7 +10,7 @@
 @synthesize frozenState = _frozenState, viewState = _viewState,
   contentError = _contentError, navigationBarStyle = _navigationBarStyle,
   navigationBarTintColor = _navigationBarTintColor, statusBarStyle = _statusBarStyle,
-  appearing = _appearing, appeared = _appeared,
+  isViewAppearing = _isViewAppearing, hasViewAppeared = _hasViewAppeared,
   autoresizesForKeyboard = _autoresizesForKeyboard;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,9 +66,8 @@
     _invalidViewLoading = NO;
     _invalidViewData = YES;
     _validating = NO;
-    _appearing = NO;
-    _appeared = NO;
-    _unloaded = NO;
+    _isViewAppearing = NO;
+    _hasViewAppeared = NO;
     _autoresizesForKeyboard = NO;
     
     self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
@@ -82,22 +81,20 @@
 
 - (void)dealloc {
   TTLOG(@"DEALLOC %@", self);
-  
-  self.autoresizesForKeyboard = NO;
-  
+
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
+  
+  // Removes keyboard notification observers for 
+  self.autoresizesForKeyboard = NO;
 
-  [_navigationBarTintColor release];
-  [_frozenState release];
-  [_contentError release];
-  [self unloadView];
+  TT_RELEASE_MEMBER(_navigationBarTintColor);
+  TT_RELEASE_MEMBER(_frozenState);
+  TT_RELEASE_MEMBER(_contentError);
 
-  if (_appeared) {
-    // The controller is supposed to handle this but sometimes due to leaks it does not, so
-    // we have to force it here
-    [self.view removeSubviews];
-  }
-
+  // You would think UIViewController would call this in dealloc, but it doesn't!
+  // I would prefer not to have to redundantly put all view releases in dealloc and
+  // viewDidUnload, so my solution is just to call viewDidUnload here.
+  [self viewDidUnload];
   [super dealloc];
 }
 
@@ -114,13 +111,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  if (_unloaded) {
-    _unloaded = NO;
-    [self loadView];
-  }
-
-  _appearing = YES;
-  _appeared = YES;
+  _isViewAppearing = YES;
+  _hasViewAppeared = YES;
 
   [self validateView];
 
@@ -137,38 +129,26 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-  _appearing = NO;
+  _isViewAppearing = NO;
+}
+
+- (void)viewDidUnload {
 }
 
 - (void)didReceiveMemoryWarning {
   TTLOG(@"MEMORY WARNING FOR %@", self);
 
-  if (!_appearing) {
-    if (_appeared) {
-      TTLOG(@"UNLOAD VIEW %@", self);      
+  if (_hasViewAppeared && !_isViewAppearing) {
+    NSMutableDictionary* state = [[NSMutableDictionary alloc] init];
+    [self persistView:state];
+    _frozenState = state;
+  
+    // This will come around to calling viewDidUnload
+    [super didReceiveMemoryWarning];
 
-      NSMutableDictionary* state = [[NSMutableDictionary alloc] init];
-      [self persistView:state];
-      _frozenState = state;
-
-      NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
-      UIView* view = self.view;
-      [super didReceiveMemoryWarning];
-
-      // Sometimes, like when the controller is in a tab bar, the view won't
-      // be destroyed here like it should by the superclass - so let's do it ourselves!
-      [view removeSubviews];
-
-      _viewState = TTViewEmpty;
-      _invalidView = YES;
-      _appeared = NO;
-      _unloaded = YES;
-      
-      [pool release];
-
-      [self unloadView];
-    }
+    _viewState = TTViewEmpty;
+    _invalidView = YES;
+    _hasViewAppeared = NO;
   }
 }
 
@@ -176,14 +156,14 @@
 // UIKeyboardNotifications
 
 - (void)keyboardWillShow:(NSNotification*)notification {
-  if (self.appearing) {
+  if (self.isViewAppearing) {
     BOOL animated = [self resizeForKeyboard:notification];
     [self keyboardWillAppear:animated];
   }
 }
 
 - (void)keyboardWillHide:(NSNotification*)notification {
-  if (self.appearing) {
+  if (self.isViewAppearing) {
     BOOL animated = [self resizeForKeyboard:notification];
     [self keyboardWillDisappear:animated];
   }
@@ -238,12 +218,12 @@
 - (void)invalidateView {
   _invalidView = YES;
   _viewState = TTViewEmpty;
-  if (_appearing) {
+  if (_isViewAppearing) {
     [self validateView];
   }
 }
 
-- (void)invalidateViewState:(TTViewState)state {
+- (void)setViewState:(TTViewState)state {
   if (!_invalidViewLoading) {
     _invalidViewLoading = (_viewState & TTViewLoadingStates) != (state & TTViewLoadingStates);
   }
@@ -254,7 +234,7 @@
   
   _viewState = state;
   
-  if (_appearing) {
+  if (_isViewAppearing) {
     [self validateView];
   }
 }
@@ -270,8 +250,7 @@
 
       if (_frozenState && !(self.viewState & TTViewLoadingStates)) {
         [self restoreView:_frozenState];
-        [_frozenState release];
-        _frozenState = nil;
+        TT_RELEASE_MEMBER(_frozenState);
       }
 
       _invalidView = NO;
@@ -283,7 +262,7 @@
     }
 
     if (_invalidViewData) {
-      [self updateDataView];
+      [self updateLoadedView];
       _invalidViewData = NO;
     }
 
@@ -299,10 +278,7 @@
 - (void)updateLoadingView {
 }
 
-- (void)updateDataView {
-}
-
-- (void)unloadView {
+- (void)updateLoadedView {
 }
 
 - (void)keyboardWillAppear:(BOOL)animated {

@@ -26,8 +26,7 @@
     }
 
     [newPhotos addObjectsFromArray:_tempPhotos];
-    [_tempPhotos release];
-    _tempPhotos = nil;
+    TT_RELEASE_MEMBER(_tempPhotos);
 
     [_photos release];
     _photos = [newPhotos retain];
@@ -78,10 +77,10 @@
 
 - (void)dealloc {
   [_fakeLoadTimer invalidate];
-  [_delegates release];
-  [_photos release];
-  [_tempPhotos release];
-  [_title release];
+  TT_RELEASE_MEMBER(_delegates);
+  TT_RELEASE_MEMBER(_photos);
+  TT_RELEASE_MEMBER(_tempPhotos);
+  TT_RELEASE_MEMBER(_title);
   [super dealloc];
 }
 
@@ -208,10 +207,10 @@
 }
 
 - (void)dealloc {
-  [_URL release];
-  [_smallURL release];
-  [_thumbURL release];
-  [_caption release];
+  TT_RELEASE_MEMBER(_URL);
+  TT_RELEASE_MEMBER(_smallURL);
+  TT_RELEASE_MEMBER(_thumbURL);
+  TT_RELEASE_MEMBER(_caption);
   [super dealloc];
 }
 

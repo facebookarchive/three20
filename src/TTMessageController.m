@@ -23,7 +23,7 @@
 }
 
 - (void)dealloc {
-  [_title release];
+  TT_RELEASE_MEMBER(_title);
   [super dealloc];
 }
 
@@ -47,7 +47,7 @@
 }
 
 - (void)dealloc {
-  [_recipients release];
+  TT_RELEASE_MEMBER(_recipients);
   [super dealloc];
 }
 
@@ -71,7 +71,7 @@
 }
 
 - (void)dealloc {
-  [_text release];
+  TT_RELEASE_MEMBER(_text);
   [super dealloc];
 }
 
@@ -253,9 +253,9 @@
 }
 
 - (void)dealloc {
-  [_dataSource release];
-  [_fields release];
-  [_initialRecipients release];
+  TT_RELEASE_MEMBER(_dataSource);
+  TT_RELEASE_MEMBER(_fields);
+  TT_RELEASE_MEMBER(_initialRecipients);
   [super dealloc];
 }
 
@@ -310,8 +310,7 @@
     for (id recipient in _initialRecipients) {
       [self addRecipient:recipient forFieldAtIndex:0];
     }
-    [_initialRecipients release];
-    _initialRecipients = nil;
+    TT_RELEASE_MEMBER(_initialRecipients);
   }
 }
 
@@ -328,21 +327,16 @@
     _statusView = [label retain];
   } else {
     [_statusView removeFromSuperview];
-    [_statusView release];
-    _statusView = nil;
+    TT_RELEASE_MEMBER(_statusView);
   }
 }
 
-- (void)unloadView {
-  [super unloadView];
-  [_scrollView release];
-  [_fieldViews release];
-  [_textEditor release];
-  [_statusView release];
-  _scrollView = nil;
-  _fieldViews = nil;
-  _textEditor = nil;
-  _statusView = nil;
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  TT_RELEASE_MEMBER(_scrollView);
+  TT_RELEASE_MEMBER(_fieldViews);
+  TT_RELEASE_MEMBER(_textEditor);
+  TT_RELEASE_MEMBER(_statusView);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -522,7 +516,7 @@
   [fields addObject:bodyField];
   
   self.navigationItem.rightBarButtonItem.enabled = NO;
-  [self invalidateViewState:TTViewLoading];
+  self.viewState = TTViewLoading;
 
   [self messageWillSend:fields];
 

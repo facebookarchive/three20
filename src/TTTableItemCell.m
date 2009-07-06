@@ -42,7 +42,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_item release];
+  TT_RELEASE_MEMBER(_item);
 	[super dealloc];
 }
 
@@ -334,7 +334,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_spinnerView release];
+  TT_RELEASE_MEMBER(_spinnerView);
   [super dealloc];
 }
 
@@ -417,7 +417,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_iconView release];
+  TT_RELEASE_MEMBER(_iconView);
 	[super dealloc];
 }
 
@@ -544,7 +544,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_activityLabel release];
+  TT_RELEASE_MEMBER(_activityLabel);
   [super dealloc];
 }
 
@@ -610,8 +610,8 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_item release];
-  [_errorView release];
+  TT_RELEASE_MEMBER(_item);
+  TT_RELEASE_MEMBER(_errorView);
   [super dealloc];
 }
 
@@ -681,7 +681,7 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_label release];
+  TT_RELEASE_MEMBER(_label);
   [super dealloc];
 }
 
@@ -788,8 +788,8 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_item release];
-  [_control release];
+  TT_RELEASE_MEMBER(_item);
+  TT_RELEASE_MEMBER(_control);
 	[super dealloc];
 }
 
@@ -833,18 +833,14 @@ static CGFloat kDefaultIconSize = 50;
 - (void)setObject:(id)object {
   if (object != _control && object != _item) {
     [_control removeFromSuperview];
-    [_control release];
-    [_item release];
+    TT_RELEASE_MEMBER(_control);
+    TT_RELEASE_MEMBER(_item);
     
     if ([object isKindOfClass:[UIView class]]) {
-      _item = nil;
       _control = [object retain];
     } else if ([object isKindOfClass:[TTTableControlItem class]]) {
       _item = [object retain];
       _control = [_item.control retain];
-    } else {
-      _item = nil;
-      _control = nil;
     }
     
     self.textLabel.text = _item.caption;
@@ -884,8 +880,8 @@ static CGFloat kDefaultIconSize = 50;
 }
 
 - (void)dealloc {
-  [_item release];
-  [_view release];
+  TT_RELEASE_MEMBER(_item);
+  TT_RELEASE_MEMBER(_view);
 	[super dealloc];
 }
 
@@ -907,11 +903,10 @@ static CGFloat kDefaultIconSize = 50;
 - (void)setObject:(id)object {
   if (object != _view && object != _item) {
     [_view removeFromSuperview];
-    [_view release];
-    [_item release];
+    TT_RELEASE_MEMBER(_view);
+    TT_RELEASE_MEMBER(_item);
     
     if ([object isKindOfClass:[UIView class]]) {
-      _item = nil;
       _view = [object retain];
     } else if ([object isKindOfClass:[TTTableViewItem class]]) {
       _item = [object retain];

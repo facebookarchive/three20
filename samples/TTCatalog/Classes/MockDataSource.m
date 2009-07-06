@@ -325,7 +325,7 @@
 }
 
 - (void)dealloc {
-  [_names release];
+  TT_RELEASE_MEMBER(_names);
   [super dealloc];
 }
 
@@ -350,9 +350,8 @@
 }
 
 - (void)tableView:(UITableView*)tableView search:(NSString*)text {
-  [_sections release];
-  _sections = nil;
-  [_items release];
+  TT_RELEASE_MEMBER(_sections);
+  TT_RELEASE_MEMBER(_items);
 
 //  _items = [[NSMutableArray alloc] initWithObjects:
 //    [[[TTActivityTableItem alloc] initWithText:@"Searching..."] autorelease],

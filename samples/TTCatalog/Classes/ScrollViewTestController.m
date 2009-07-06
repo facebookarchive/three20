@@ -8,8 +8,8 @@
 - (void)dealloc {
   _scrollView.delegate = nil;
   _scrollView.dataSource = nil;
-  [_scrollView release];
-  [_colors release];
+  TT_RELEASE_MEMBER(_scrollView);
+  TT_RELEASE_MEMBER(_colors);
   [super dealloc];
 }
 

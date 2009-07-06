@@ -32,8 +32,8 @@
 }
 
 - (void)dealloc {
-  [_URL release];
-  [_screenView release];
+  TT_RELEASE_MEMBER(_URL);
+  TT_RELEASE_MEMBER(_screenView);
   [super dealloc];
 }
 

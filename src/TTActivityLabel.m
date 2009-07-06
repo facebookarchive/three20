@@ -110,11 +110,11 @@ static CGFloat kProgressMargin = 30;
 }
 
 - (void)dealloc {
-  [_bezelView release];
-  [_spinner release];
-  [_progressView release];
-  [_textView release];
-  [_cancelButton release];
+  TT_RELEASE_MEMBER(_bezelView);
+  TT_RELEASE_MEMBER(_spinner);
+  TT_RELEASE_MEMBER(_progressView);
+  TT_RELEASE_MEMBER(_textView);
+  TT_RELEASE_MEMBER(_cancelButton);
   [super dealloc];
 }
 
@@ -258,8 +258,7 @@ static CGFloat kProgressMargin = 30;
       [_bezelView addSubview:_cancelButton];
     } else {
       [_cancelButton removeFromSuperview];
-      [_cancelButton release];
-      _cancelButton = nil;
+      TT_RELEASE_MEMBER(_cancelButton);
     }
   }
 }

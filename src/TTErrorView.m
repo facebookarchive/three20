@@ -49,9 +49,9 @@ static CGFloat kVPadding = 50;
 }
 
 - (void)dealloc {
-  [_imageView release];
-  [_titleView release];
-  [_subtitleView release];
+  TT_RELEASE_MEMBER(_imageView);
+  TT_RELEASE_MEMBER(_titleView);
+  TT_RELEASE_MEMBER(_subtitleView);
   [super dealloc];
 }
 

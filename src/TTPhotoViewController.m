@@ -52,16 +52,16 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)dealloc {
   _thumbsController.delegate = nil;
-  [_thumbsController release];
+  TT_RELEASE_MEMBER(_thumbsController);
   [_slideshowTimer invalidate];
   _slideshowTimer = nil;
   [_loadTimer invalidate];
   _loadTimer = nil;
-  [_centerPhoto release];
+  TT_RELEASE_MEMBER(_centerPhoto);
   [_photoSource.delegates removeObject:self];
-  [_photoSource release];
-  [_statusText release];
-  [_defaultImage release];
+  TT_RELEASE_MEMBER(_photoSource);
+  TT_RELEASE_MEMBER(_statusText);
+  TT_RELEASE_MEMBER(_defaultImage);
   [super dealloc];
 }
 
@@ -203,7 +203,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)showProgress:(CGFloat)progress {
-  if ((self.appeared || self.appearing) && progress >= 0 && !self.centerPhotoView) {
+  if ((self.hasViewAppeared || self.isViewAppearing) && progress >= 0 && !self.centerPhotoView) {
     [self.statusView showProgress:progress];
     self.statusView.hidden = NO;
   } else {
@@ -215,7 +215,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [_statusText release];
   _statusText = [status retain];
 
-  if ((self.appeared || self.appearing) && status && !self.centerPhotoView) {
+  if ((self.hasViewAppeared || self.isViewAppearing) && status && !self.centerPhotoView) {
     [self.statusView showStatus:status];
     self.statusView.hidden = NO;
   } else {
@@ -357,6 +357,18 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [_innerView addSubview:_toolbar];    
 }
 
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  _scrollView.delegate = nil;
+  _scrollView.dataSource = nil;
+  TT_RELEASE_MEMBER(_innerView);
+  TT_RELEASE_MEMBER(_scrollView);
+  TT_RELEASE_MEMBER(_photoStatusView);
+  TT_RELEASE_MEMBER(_nextButton);
+  TT_RELEASE_MEMBER(_previousButton);
+  TT_RELEASE_MEMBER(_toolbar);
+}
+
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
@@ -443,7 +455,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)updateView {
   if (_photoSource.isLoading) {
-    [self invalidateViewState:TTViewLoading];
+    self.viewState = TTViewLoading;
   } else if (!_centerPhoto) {
     [self loadPhotosFromIndex:!_photoSource.isLoaded ? 0 : _photoSource.maxPhotoIndex+1
       toIndex:TT_INFINITE_PHOTO_INDEX];
@@ -451,11 +463,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
   } else {
     if (_contentError) {
-      [self invalidateViewState:TTViewDataLoadedError];
+      self.viewState = TTViewDataLoadedError;
     } else if (!_photoSource.numberOfPhotos) {
-      [self invalidateViewState:TTViewEmpty];
+      self.viewState = TTViewEmpty;
     } else {
-      [self invalidateViewState:TTViewDataLoaded];
+      self.viewState = TTViewDataLoaded;
     }
   }
 
@@ -470,7 +482,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
 }
 
-- (void)updateDataView {
+- (void)updateLoadedView {
   if (self.viewState & TTViewDataLoaded) {
     [self showStatus:nil];
   } else if (self.viewState & TTViewDataLoadedError) {
@@ -480,23 +492,6 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
   
   [self updatePhotoView];
-}
-
-- (void)unloadView {
-  [_innerView release];
-  _innerView = nil;
-  _scrollView.delegate = nil;
-  _scrollView.dataSource = nil;
-  [_scrollView release];
-  _scrollView = nil;
-  [_photoStatusView release];
-  _photoStatusView = nil;
-  [_nextButton release];
-  _nextButton = nil;
-  [_previousButton release];
-  _previousButton = nil;
-  [_toolbar release];
-  _toolbar = nil;
 }
 
 - (NSString*)titleForActivity {
@@ -531,7 +526,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 // TTPhotoSourceDelegate
 
 - (void)photoSourceDidStartLoad:(id<TTPhotoSource>)photoSource {
-  [self invalidateViewState:TTViewLoading];
+  self.viewState = TTViewLoading;
 }
 
 - (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource {
@@ -544,9 +539,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
   
   if (!_photoSource.numberOfPhotos) {
-    [self invalidateViewState:TTViewEmpty];
+    self.viewState = TTViewEmpty;
   } else {
-    [self invalidateViewState:TTViewDataLoaded];
+    self.viewState = TTViewDataLoaded;
   }
 }
 
@@ -554,14 +549,14 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [self resetVisiblePhotoViews];
 
   self.contentError = error;
-  [self invalidateViewState:TTViewDataLoadedError];
+  self.viewState = TTViewDataLoadedError;
 }
 
 - (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource {
   [self resetVisiblePhotoViews];
 
   self.contentError = nil;
-  [self invalidateViewState:TTViewDataLoadedError];
+  self.viewState = TTViewDataLoadedError;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -34,7 +34,7 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 }
 
 - (void)dealloc {
-  [_URL release];
+  TT_RELEASE_MEMBER(_URL);
   [super dealloc];
 }
 

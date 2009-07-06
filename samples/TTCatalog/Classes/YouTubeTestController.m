@@ -3,7 +3,7 @@
 @implementation YouTubeTestController
 
 - (void)dealloc {
-  [youTubeView release];
+  TT_RELEASE_MEMBER(youTubeView);
   [super dealloc];
 }
 
