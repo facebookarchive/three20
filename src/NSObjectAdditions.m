@@ -128,4 +128,30 @@
   }
 }
 
+
+- (id)performSelector:(SEL)selector withObjects:(NSArray*)arguments {
+  NSMethodSignature *sig = [self methodSignatureForSelector:selector];
+  if (sig) {
+    NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
+    [invo setTarget:self];
+    [invo setSelector:selector];
+    for (NSInteger i = 0; i < arguments.count; ++i) {
+      id arg = [arguments objectAtIndex:i];
+      if (arg != [NSNull null]) {
+        [invo setArgument:&arg atIndex:i+2];
+      }
+    }
+    [invo invoke];
+    if (sig.methodReturnLength) {
+      id anObject;
+      [invo getReturnValue:&anObject];
+      return anObject;
+    } else {
+      return nil;
+    }
+  } else {
+    return nil;
+  }
+}
+
 @end

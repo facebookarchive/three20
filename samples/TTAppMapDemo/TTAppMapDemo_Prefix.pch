@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'TTAppBrowserDemo' target in the 'TTAppBrowserDemo' project
+// Prefix header for all source files of the 'TTAppMapDemo' target in the 'TTAppMapDemo' project
 //
 
 #ifdef __OBJC__

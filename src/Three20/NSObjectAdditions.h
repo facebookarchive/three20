@@ -16,4 +16,9 @@
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
   withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 withObject:(id)p7;
 
+/**
+ * Call a selector with any number of arguments.
+ */
+- (id)performSelector:(SEL)selector withObjects:(NSArray*)arguments;
+
 @end
