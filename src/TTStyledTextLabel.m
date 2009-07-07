@@ -189,6 +189,14 @@ static const CGFloat kCancelHighlightThreshold = 4;
   }
 }
 
+- (NSString*)html {
+  return [_text description];
+}
+
+- (void)setHtml:(NSString*)html {
+  self.text = [TTStyledText textFromXHTML:html];
+}
+
 - (void)setFont:(UIFont*)font {
   if (font != _font) {
     [_font release];

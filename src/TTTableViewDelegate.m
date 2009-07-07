@@ -7,6 +7,7 @@
 #import "Three20/TTTableView.h"
 #import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTNavigationCenter.h"
+#import "Three20/TTAppMap.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTURLRequestQueue.h"
 
@@ -58,7 +59,8 @@ static const CGFloat kSectionHeaderHeight = 35;
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
     if (item.URL && [_controller shouldNavigateToURL:item.URL]) {
-      [[TTNavigationCenter defaultCenter] displayURL:item.URL];
+      TTLoadURL(item.URL);
+      //[[TTNavigationCenter defaultCenter] displayURL:item.URL];
     }
 
     if ([object isKindOfClass:[TTTableButton class]]) {

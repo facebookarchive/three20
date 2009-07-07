@@ -13,9 +13,11 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* TabBarController.m */; };
 		BE1D843A0F8D104B00EC8BB8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1D84390F8D104B00EC8BB8 /* QuartzCore.framework */; };
-		BE7DD3A31001ED5900662212 /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7DD3A21001ED5900662212 /* TestController.m */; };
+		BE7DD3A31001ED5900662212 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7DD3A21001ED5900662212 /* MenuController.m */; };
+		BE7DD6131002182300662212 /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = BE7DD6121002182300662212 /* tab.png */; };
 		BE80E3B60EAF116700743358 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE80E3B50EAF116700743358 /* Icon.png */; };
 		BE8FCAB910017846000767AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8FCAB810017846000767AD /* AppDelegate.m */; };
+		BEBB0E421002B93F00744230 /* ContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB0E411002B93F00744230 /* ContentController.m */; };
 		BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */; };
 		BEE7FD150F3581C1002788A5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE7FD130F358198002788A5 /* libThree20.a */; };
 /* End PBXBuildFile section */
@@ -48,11 +50,14 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE1D84390F8D104B00EC8BB8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		BE7DD3A11001ED5900662212 /* TestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
-		BE7DD3A21001ED5900662212 /* TestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
+		BE7DD3A11001ED5900662212 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		BE7DD3A21001ED5900662212 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		BE7DD6121002182300662212 /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab.png; sourceTree = "<group>"; };
 		BE80E3B50EAF116700743358 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BE8FCAB710017846000767AD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BE8FCAB810017846000767AD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BEBB0E401002B93F00744230 /* ContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentController.h; sourceTree = "<group>"; };
+		BEBB0E411002B93F00744230 /* ContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentController.m; sourceTree = "<group>"; };
 		BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../../src/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		BEE7FD0E0F358198002788A5 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -80,8 +85,10 @@
 				BE8FCAB810017846000767AD /* AppDelegate.m */,
 				28C286DF0D94DF7D0034E888 /* TabBarController.h */,
 				28C286E00D94DF7D0034E888 /* TabBarController.m */,
-				BE7DD3A11001ED5900662212 /* TestController.h */,
-				BE7DD3A21001ED5900662212 /* TestController.m */,
+				BE7DD3A11001ED5900662212 /* MenuController.h */,
+				BE7DD3A21001ED5900662212 /* MenuController.m */,
+				BEBB0E401002B93F00744230 /* ContentController.h */,
+				BEBB0E411002B93F00744230 /* ContentController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -120,6 +127,7 @@
 			children = (
 				BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */,
 				BE80E3B50EAF116700743358 /* Icon.png */,
+				BE7DD6121002182300662212 /* tab.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = Resources;
@@ -213,6 +221,7 @@
 			files = (
 				BE80E3B60EAF116700743358 /* Icon.png in Resources */,
 				BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */,
+				BE7DD6131002182300662212 /* tab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +235,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				28C286E10D94DF7D0034E888 /* TabBarController.m in Sources */,
 				BE8FCAB910017846000767AD /* AppDelegate.m in Sources */,
-				BE7DD3A31001ED5900662212 /* TestController.m in Sources */,
+				BE7DD3A31001ED5900662212 /* MenuController.m in Sources */,
+				BEBB0E421002B93F00744230 /* ContentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

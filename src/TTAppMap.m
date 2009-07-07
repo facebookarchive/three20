@@ -262,10 +262,13 @@ typedef enum {
         if ([pattern isKindOfClass:[TTURLWildcard class]]) {
           TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
           wildcard.argIndex = [argNames indexOfObject:wildcard.name];
-
-          char argType[256];
-          method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
-          wildcard.argType = [self convertArgumentType:argType];
+          if (wildcard.argIndex == NSNotFound) {
+            TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
+          } else {
+            char argType[256];
+            method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
+            wildcard.argType = [self convertArgumentType:argType];
+          }
         }
       }
     }
@@ -389,6 +392,15 @@ typedef enum {
 }
 
 - (UIViewController*)controllerForURL:(NSURL*)URL withPattern:(TTURLPattern*)pattern {
+  if (_singletons) {
+    // XXXjoe Normalize the URL first
+    NSString* URLString = [URL absoluteString];
+    UIViewController* controller = [_singletons objectForKey:URLString];
+    if (controller) {
+      return controller;
+    }
+  }
+
   UIViewController* controller = [[[pattern.controllerClass alloc] init] autorelease];
   if (pattern.selector) {
     NSMethodSignature *sig = [controller methodSignatureForSelector:pattern.selector];
@@ -400,6 +412,11 @@ typedef enum {
       [invocation invoke];
     }
   }
+
+  if (pattern.patternType == TTURLPatternTypeSingleton) {
+    [self setController:controller forURL:[URL absoluteString]];
+  }
+
   return controller;
 }
 
@@ -420,14 +437,22 @@ typedef enum {
   if (pattern.parentURL) {
     parentController = [self controllerForURL:pattern.parentURL pattern:nil];
   }
-  return parentController ? parentController : _mainViewController;
+  return parentController ? parentController : self.visibleViewController;
 }
 
-- (void)displayController:(UIViewController*)controller animated:(BOOL)animated {
+- (void)presentModalController:(UIViewController*)controller
+        parent:(UIViewController*)parentController animated:(BOOL)animated {
+  if ([controller isKindOfClass:[UINavigationController class]]) {
+    [parentController presentModalViewController:controller animated:animated];
+  } else {
+    UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
+    [navController pushViewController:controller animated:NO];
+    [parentController presentModalViewController:navController animated:animated];
+  }
 }
 
-- (void)displayController:(UIViewController*)controller parent:(UIViewController*)parentController
-        animated:(BOOL)animated {
+- (void)presentController:(UIViewController*)controller
+        parent:(UIViewController*)parentController modal:(BOOL)modal animated:(BOOL)animated {
   if (!_mainWindow) {
     _mainWindow = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
     [_mainWindow makeKeyAndVisible];
@@ -435,18 +460,28 @@ typedef enum {
   if (!_mainViewController) {
     _mainViewController = [controller retain];
     [_mainWindow addSubview:controller.view];
-  } else {
-    //[parent displayController:controller animated:animated];
+  } else if (controller.parentViewController) {
+    // The controller already exists, so we just need to make it visible
+    while (controller) {
+      UIViewController* parent = controller.parentViewController;
+      [parent bringControllerToFront:controller animated:NO];
+      controller = parent;
+    }
+  } else if (parentController) {
+    [self presentController:parentController parent:nil modal:NO animated:NO];
+    if (modal) {
+      [self presentModalController:controller parent:parentController animated:animated];
+    } else {
+      [parentController presentController:controller animated:animated];
+    }
   }
 }
 
-- (void)displayController:(UIViewController*)controller forURL:(NSURL*)URL
+- (void)presentController:(UIViewController*)controller forURL:(NSURL*)URL
         withPattern:(TTURLPattern*)pattern {
   UIViewController* parentController = [self parentControllerForPattern:pattern];
-  if (parentController) {
-    [self displayController:parentController animated:NO];
-  }
-  [self displayController:controller parent:parentController animated:YES];
+  [self presentController:controller parent:parentController
+        modal:pattern.patternType == TTURLPatternTypeModal animated:YES];
 }
 
 - (UINavigationController*)frontNavigationController {
@@ -501,6 +536,7 @@ typedef enum {
     _delegate = nil;
     _mainWindow = nil;
     _mainViewController = nil;
+    _singletons = nil;
     _patterns = nil;
     _supportsShakeToReload = NO;
     _invalidPatterns = NO;
@@ -512,6 +548,7 @@ typedef enum {
   _delegate = nil;
   TT_RELEASE_MEMBER(_mainWindow);
   TT_RELEASE_MEMBER(_mainViewController);
+  TT_RELEASE_MEMBER(_singletons);
   TT_RELEASE_MEMBER(_patterns);
   [super dealloc];
 }
@@ -546,7 +583,8 @@ typedef enum {
   TTURLPattern* pattern = nil;
   UIViewController* controller = [self controllerForURL:theURL pattern:&pattern];
   if (controller) {
-    [self displayController:controller forURL:theURL withPattern:pattern];
+    [self presentController:controller forURL:theURL withPattern:pattern];
+
   }
   return controller;
 }
@@ -631,10 +669,16 @@ typedef enum {
   [pattern release];
 }
 
-- (void)setController:(UIViewController*)controller forURL:(NSURL*)URL {
+- (void)setController:(UIViewController*)controller forURL:(NSString*)URL {
+  if (!_singletons) {
+    _singletons = [[NSMutableDictionary alloc] init];
+  }
+  // XXXjoe Normalize the URL first
+  [_singletons setObject:controller forKey:URL];
 }
 
-- (void)removeController:(UIViewController*)controller forURL:(NSURL*)URL {
+- (void)removeControllerForURL:(NSString*)URL {
+  [_singletons removeObjectForKey:URL];
 }
 
 @end

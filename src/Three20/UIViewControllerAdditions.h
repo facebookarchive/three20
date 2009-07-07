@@ -35,4 +35,22 @@
  */
 - (void)showBars:(BOOL)show animated:(BOOL)animated;
 
+/**
+ * Displays a controller inside this controller.
+ *
+ * TTAppMap uses this to display newly created controllers.  The default does nothing --
+ * UIViewController categories and subclasses should implement to display the controller
+ * in a manner specific to them.  
+ */
+- (void)presentController:(UIViewController*)controller animated:(BOOL)animated;
+
+/**
+ * Brings a controller that is a child of this controller to the front.
+ *
+ * TTAppMap uses this to display controllers that exist already, but may not be visible.
+ * The default does nothing -- UIViewController categories and subclasses should implement
+ * to display the controller in a manner specific to them.  
+ */
+- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated;
+
 @end

@@ -4,6 +4,9 @@
 
 @implementation UIViewController (TTCategory)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
 - (void)showNavigationBar:(BOOL)show animated:(BOOL)animated {
   if (animated) {
     [UIView beginAnimations:nil context:NULL];
@@ -18,6 +21,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (UIViewController*)previousViewController {
   NSArray* viewControllers = self.navigationController.viewControllers;
@@ -63,6 +67,15 @@
   [[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];
   
   [self showNavigationBar:show animated:animated];
+}
+
+- (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
+  if (self.navigationController) {
+    [self.navigationController pushViewController:controller animated:animated];
+  }
+}
+
+- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
 }
 
 @end

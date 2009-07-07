@@ -23,6 +23,8 @@
 #define TTLOG    
 #endif
 
+#define TTWARN TTLOG
+
 #define TTLOGRECT(rect) \
   TTLOG(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
     rect.size.width, rect.size.height)

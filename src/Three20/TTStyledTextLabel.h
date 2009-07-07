@@ -23,6 +23,11 @@
 @property(nonatomic, retain) TTStyledText* text;
 
 /**
+ * A shortcut for setting the text property to an HTML string.
+ */
+@property(nonatomic, copy) NSString* html;
+
+/**
  * The font of the text.
  */
 @property(nonatomic, retain) UIFont* font;

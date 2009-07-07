@@ -5,9 +5,26 @@
 
 @implementation UINavigationController (TTCategory)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
 - (void)pushAnimationDidStop {
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController (TTCategory)
+
+- (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
+  [self pushViewController:controller animated:animated];
+}
+
+- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
+  [self popToViewController:controller animated:animated];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (void)pushViewController:(UIViewController*)controller
     animatedWithTransition:(UIViewAnimationTransition)transition {

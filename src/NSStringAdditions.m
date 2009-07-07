@@ -1,4 +1,5 @@
 #import "Three20/TTGlobal.h"
+#import "Three20/TTAppMap.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,6 +71,9 @@
 
 @implementation NSString (TTCategory)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
 - (BOOL)isWhitespace {
   NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
   for (NSInteger i = 0; i < self.length; ++i) {
@@ -109,6 +113,10 @@
 - (NSString*)stringByRemovingHTMLTags {
   TTMarkupStripper* stripper = [[[TTMarkupStripper alloc] init] autorelease];
   return [stripper parse:self];
+}
+
+- (void)loadAsURL {
+  TTLoadURL(self);
 }
 
 @end

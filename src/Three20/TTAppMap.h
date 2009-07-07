@@ -8,8 +8,8 @@
   id<TTAppMapDelegate> _delegate;
   UIWindow* _mainWindow;
   UIViewController* _mainViewController;
+  NSMutableDictionary* _singletons;
   BOOL _supportsShakeToReload;
-  NSTimeInterval _persistStateAge;
   NSMutableArray* _patterns;
   BOOL _invalidPatterns;
 }
@@ -39,7 +39,7 @@
 - (UIViewController*)loadURL:(NSString*)URL;
 
 /**
- * 
+ * Gets the controller with a pattern that matches the URL.
  */
 - (UIViewController*)controllerForURL:(NSString*)URL;
 
@@ -103,12 +103,12 @@
  * All requests to load the URL will display the controller instead of performing the
  * usual pattern match.
  */
-- (void)setController:(UIViewController*)controller forURL:(NSURL*)URL;
+- (void)setController:(UIViewController*)controller forURL:(NSString*)URL;
 
 /**
  * Removes a controller from being assigned to a URL.
  */
-- (void)removeController:(UIViewController*)controller forURL:(NSURL*)URL;
+- (void)removeControllerForURL:(NSString*)URL;
 
 @end
 

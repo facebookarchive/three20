@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 #import "TabBarController.h"
-#import "TestController.h"
+#import "MenuController.h"
+#import "ContentController.h"
 
 @implementation AppDelegate
 
@@ -12,9 +13,19 @@
   appMap.delegate = self;
   appMap.supportsShakeToReload = YES;
   
-  [appMap addURL:@"tt://tabBar" controller:[TabBarController class]];
-  [appMap addURL:@"tt://test/(showCaption)/" controller:[TestController class]
-          selector:@selector(showCaption:)];
+  [appMap addURL:@"tt://tabBar"
+          controller:[TabBarController class]];
+  [appMap addURL:@"tt://menu/(showMenu)"
+          singleton:[MenuController class] selector:@selector(showMenu:)];
+  [appMap addURL:@"tt://food/(showFood)"
+          controller:[ContentController class] selector:@selector(showFood:)];
+  [appMap addURL:@"tt://about/(showAbout)" parent:@"tt://menu/5"
+          controller:[ContentController class] selector:@selector(showAbout:)];
+  [appMap addURL:@"tt://order"
+          modal:[ContentController class] selector:@selector(showOrder)];
+
+//  [appMap addURL:@"tt://menu/(showFruit)/modal"
+//          modal:[DummyController class] selector:@selector(showFruit:)];
   
   TTLoadURL(@"tt://tabBar");
 }
