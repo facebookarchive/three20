@@ -112,7 +112,8 @@
   
   self.navigationItem.rightBarButtonItem =
     [[[UIBarButtonItem alloc] initWithTitle:@"Order" style:UIBarButtonItemStyleBordered
-                              target:@"tt://order" action:@selector(loadAsURL)] autorelease];
+                              target:@"tt://order?waitress=Tammy" action:@selector(loadAsURL)]
+                              autorelease];
 }
 
 @end

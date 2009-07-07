@@ -21,11 +21,8 @@
           controller:[ContentController class] selector:@selector(showFood:)];
   [appMap addURL:@"tt://about/(showAbout)" parent:@"tt://menu/5"
           controller:[ContentController class] selector:@selector(showAbout:)];
-  [appMap addURL:@"tt://order"
-          modal:[ContentController class] selector:@selector(showOrder)];
-
-//  [appMap addURL:@"tt://menu/(showFruit)/modal"
-//          modal:[DummyController class] selector:@selector(showFruit:)];
+  [appMap addURL:@"tt://order?waitress=(orderWithWaitress)"
+          modal:[ContentController class] selector:@selector(orderWithWaitress:)];
   
   TTLoadURL(@"tt://tabBar");
 }

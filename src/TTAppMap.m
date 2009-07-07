@@ -258,7 +258,22 @@ typedef enum {
       // Look up the index and type of each argument in the method
       NSString* selectorName = [NSString stringWithCString:sel_getName(_selector)];
       NSArray* argNames = [selectorName componentsSeparatedByString:@":"];
+
       for (id<TTURLPatternText> pattern in _path) {
+        if ([pattern isKindOfClass:[TTURLWildcard class]]) {
+          TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
+          wildcard.argIndex = [argNames indexOfObject:wildcard.name];
+          if (wildcard.argIndex == NSNotFound) {
+            TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
+          } else {
+            char argType[256];
+            method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
+            wildcard.argType = [self convertArgumentType:argType];
+          }
+        }
+      }
+
+      for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
         if ([pattern isKindOfClass:[TTURLWildcard class]]) {
           TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
           wildcard.argIndex = [argNames indexOfObject:wildcard.name];
@@ -299,47 +314,61 @@ typedef enum {
   return YES;
 }
 
+- (void)setArgument:(NSString*)text pattern:(id<TTURLPatternText>)patternText
+        forInvocation:(NSInvocation*)invocation {
+    if ([patternText isKindOfClass:[TTURLWildcard class]]) {
+      TTURLWildcard* wildcard = (TTURLWildcard*)patternText;
+      NSInteger index = wildcard.argIndex;
+      if (index != NSNotFound) {
+        switch (wildcard.argType) {
+          case TTURLArgumentTypeInteger: {
+            int val = [text intValue];
+            [invocation setArgument:&val atIndex:index+2];
+            break;
+          }
+          case TTURLArgumentTypeLongLong: {
+            long long val = [text longLongValue];
+            [invocation setArgument:&val atIndex:index+2];
+            break;
+          }
+          case TTURLArgumentTypeFloat: {
+            float val = [text floatValue];
+            [invocation setArgument:&val atIndex:index+2];
+            break;
+          }
+          case TTURLArgumentTypeDouble: {
+            double val = [text doubleValue];
+            [invocation setArgument:&val atIndex:index+2];
+            break;
+          }
+          case TTURLArgumentTypeBool: {
+            BOOL val = [text boolValue];
+            [invocation setArgument:&val atIndex:index+2];
+            break;
+          }
+          default: {
+            [invocation setArgument:&text atIndex:index+2];
+            break;
+          }
+        }
+      }
+    }
+}
+
 - (void)setArgumentsFromURL:(NSURL*)URL forInvocation:(NSInvocation*)invocation {
   NSArray* pathComponents = URL.path.pathComponents;
   for (NSInteger i = 0; i < _path.count; ++i) {
     id<TTURLPatternText> patternText = [_path objectAtIndex:i];
     NSString* text = i == 0 ? URL.host : [pathComponents objectAtIndex:i];
-    if ([patternText isKindOfClass:[TTURLWildcard class]]) {
-      TTURLWildcard* wildcard = (TTURLWildcard*)patternText;
-      NSInteger index = wildcard.argIndex+2;
-      if (index != NSNotFound) {
-        switch (wildcard.argType) {
-          case TTURLArgumentTypeInteger: {
-            int val = [text intValue];
-            [invocation setArgument:&val atIndex:index];
-            break;
-          }
-          case TTURLArgumentTypeLongLong: {
-            long long val = [text longLongValue];
-            [invocation setArgument:&val atIndex:index];
-            break;
-          }
-          case TTURLArgumentTypeFloat: {
-            float val = [text floatValue];
-            [invocation setArgument:&val atIndex:index];
-            break;
-          }
-          case TTURLArgumentTypeDouble: {
-            double val = [text doubleValue];
-            [invocation setArgument:&val atIndex:index];
-            break;
-          }
-          case TTURLArgumentTypeBool: {
-            BOOL val = [text boolValue];
-            [invocation setArgument:&val atIndex:index];
-            break;
-          }
-          default: {
-            [invocation setArgument:&text atIndex:index];
-            break;
-          }
-        }
-      }
+    [self setArgument:text pattern:patternText forInvocation:invocation];
+  }
+
+  NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+  for (NSString* name in [query keyEnumerator]) {
+    id<TTURLPatternText> patternText = [_query objectForKey:name];
+    if (patternText) {
+      NSString* text = [query objectForKey:name];
+      [self setArgument:text pattern:patternText forInvocation:invocation];
     }
   }
 }

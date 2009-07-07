@@ -48,13 +48,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // URLs
 
-- (void)showOrder {
+- (void)orderWithWaitress:(NSString*)waitress {
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
       initWithBarButtonSystemItem:UIBarButtonSystemItemDone
       target:self action:@selector(dismiss)] autorelease];
 
   self.title = @"Place Your Order";
-  self.content = @"Well, what do you want?";
+  self.content = [NSString stringWithFormat:@"%@ will take your order now.", waitress];
 }
 
 - (void)showFood:(NSString*)food {
