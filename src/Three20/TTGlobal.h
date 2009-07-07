@@ -228,6 +228,8 @@ NSString* TTPathForBundleResource(NSString* relativePath);
 
 NSString* TTPathForDocumentsResource(NSString* relativePath);
 
+void TTSwizzle(Class cls, SEL originalSel, SEL newSel);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @protocol TTPersistable <NSObject>

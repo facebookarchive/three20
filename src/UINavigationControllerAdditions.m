@@ -1,5 +1,6 @@
 #import "Three20/TTGlobal.h"
 #import "Three20/TTURLRequestQueue.h"
+#import "Three20/TTAppMap.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -21,6 +22,12 @@
 
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
   [self popToViewController:controller animated:animated];
+}
+
+- (void)persistNavigationPath:(NSMutableArray*)path {
+  for (UIViewController* controller in self.viewControllers) {
+    [[TTAppMap sharedMap] persistController:controller path:path];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

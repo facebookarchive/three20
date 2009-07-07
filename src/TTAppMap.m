@@ -19,6 +19,8 @@ typedef enum {
   TTURLArgumentTypeDouble,
 } TTURLArgumentType;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @protocol TTURLPatternText <NSObject>
 
 - (BOOL)match:(NSString*)text;
@@ -408,7 +410,7 @@ typedef enum {
 @implementation TTAppMap
 
 @synthesize delegate = _delegate, mainWindow = _mainWindow,
-            mainViewController = _mainViewController,
+            mainViewController = _mainViewController, persistenceMode = _persistenceMode,
             supportsShakeToReload = _supportsShakeToReload;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -535,10 +537,10 @@ typedef enum {
 }
 
 - (void)presentController:(UIViewController*)controller forURL:(NSURL*)URL
-        withPattern:(TTURLPattern*)pattern {
+        withPattern:(TTURLPattern*)pattern animated:(BOOL)animated {
   UIViewController* parentController = [self parentControllerForPattern:pattern];
   [self presentController:controller parent:parentController
-        modal:pattern.patternType == TTURLPatternTypeModal animated:YES];
+        modal:pattern.patternType == TTURLPatternTypeModal animated:animated];
 }
 
 - (UINavigationController*)frontNavigationController {
@@ -585,6 +587,52 @@ typedef enum {
   }
 }
 
+- (UIViewController*)loadControllerWithURL:(NSString*)URL display:(BOOL)display
+                    animated:(BOOL)animated {
+  NSURL* theURL = [NSURL URLWithString:URL];
+  TTURLPattern* pattern = nil;
+  UIViewController* controller = [self controllerForURL:theURL pattern:&pattern];
+  if (controller) {
+    controller.appMapURL = URL;
+    if (display) {
+      [self presentController:controller forURL:theURL withPattern:pattern animated:animated];
+    }
+  }
+  return controller;
+}
+
+- (void)persistControllers {
+  NSMutableArray* path = [NSMutableArray array];
+  [self persistController:_mainViewController path:path];
+  
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  [defaults setObject:path forKey:@"TTAppMapNavigation"];
+  [defaults synchronize];
+}
+
+- (BOOL)restoreControllersStartingWithURL:(NSString*)startURL {
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  NSArray* path = [defaults objectForKey:@"TTAppMapNavigation"];
+  NSInteger pathIndex = 0;
+  for (NSDictionary* state in path) {
+    NSString* URL = [state objectForKey:@"__appMapURL__"];
+    
+    if (!_mainViewController && ![URL isEqualToString:startURL]) {
+      // If the start URL is not the same as the persisted start URL, then don't restore
+      // because the app wants to start with a different URL.
+      return NO;
+    }
+    
+    UIViewController* controller = [self loadControllerWithURL:URL display:YES animated:NO];
+    controller.frozenState = state;
+    
+    if (_persistenceMode == TTAppMapPersistenceModeTop && pathIndex++ == 1) {
+      break;
+    }
+  }
+  return path.count > 0;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -595,13 +643,26 @@ typedef enum {
     _mainViewController = nil;
     _singletons = nil;
     _patterns = nil;
+    _persistenceMode = TTAppMapPersistenceModeNone;
     _supportsShakeToReload = NO;
     _invalidPatterns = NO;
+    
+    // Swizzle a new dealloc for UIViewController so it notifies us when it's going away.
+    // We may need to remove it from our singleton cache, which keeps week references.
+    TTSwizzle([UIViewController class], @selector(dealloc), @selector(ttdealloc));
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                          selector:@selector(applicationWillTerminateNotification:)
+                                          name:UIApplicationWillTerminateNotification
+                                          object:nil];
   }
   return self;
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                          name:UIApplicationWillTerminateNotification
+                                          object:nil];
   _delegate = nil;
   TT_RELEASE_MEMBER(_mainWindow);
   TT_RELEASE_MEMBER(_mainViewController);
@@ -611,44 +672,36 @@ typedef enum {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSNotifications
+
+- (void)applicationWillTerminateNotification:(void*)info {
+  if (_persistenceMode) {
+    [self persistControllers];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
 - (UIViewController*)visibleViewController {
   UINavigationController* navController = self.frontNavigationController;
   if (navController) {
-    UIViewController* controller = navController.topViewController;
-    while (controller) {
-      if ([controller isKindOfClass:[TTViewController class]]) {
-        TTViewController* ttcontroller = (TTViewController*)controller;
-        if (!ttcontroller.isViewAppearing) {
-          controller = ttcontroller.previousViewController;
-        } else {
-          break;
-        }
-      } else {
-        break;
-      }
-    }
-    return controller;
+    return navController.visibleViewController;
   } else {
     return [self frontViewControllerForController:_mainViewController];
   }
 }
 
 - (UIViewController*)loadURL:(NSString*)URL {
-  NSURL* theURL = [NSURL URLWithString:URL];
-  TTURLPattern* pattern = nil;
-  UIViewController* controller = [self controllerForURL:theURL pattern:&pattern];
-  if (controller) {
-    [self presentController:controller forURL:theURL withPattern:pattern];
-
+  if (!_mainViewController && _persistenceMode && [self restoreControllersStartingWithURL:URL]) {
+    return _mainViewController;
+  } else {
+    return [self loadControllerWithURL:URL display:YES animated:YES];
   }
-  return controller;
 }
 
 - (UIViewController*)controllerForURL:(NSString*)URL {
-  NSURL* theURL = [NSURL URLWithString:URL];
-  return [self controllerForURL:theURL pattern:nil];
+  return [self loadControllerWithURL:URL display:NO animated:NO];
 }
 
 - (void)addURL:(NSString*)URL controller:(Class)controller {
@@ -728,7 +781,7 @@ typedef enum {
 
 - (void)setController:(UIViewController*)controller forURL:(NSString*)URL {
   if (!_singletons) {
-    _singletons = [[NSMutableDictionary alloc] init];
+    _singletons = TTCreateNonRetainingDictionary();
   }
   // XXXjoe Normalize the URL first
   [_singletons setObject:controller forKey:URL];
@@ -736,6 +789,33 @@ typedef enum {
 
 - (void)removeControllerForURL:(NSString*)URL {
   [_singletons removeObjectForKey:URL];
+}
+
+- (void)removePersistedControllers {
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  [defaults removeObjectForKey:@"TTAppMapNavigation"];
+  [defaults synchronize];
+}
+
+- (void)persistController:(UIViewController*)controller path:(NSMutableArray*)path {
+  NSString* URL = controller.appMapURL;
+  if (URL) {
+    // Let the controller persists its own arbitrary state
+    NSMutableDictionary* state = [NSMutableDictionary dictionaryWithObject:URL  
+                                                      forKey:@"__appMapURL__"];
+    [controller persistView:state];
+
+    [path addObject:state];
+    
+    // Prevent controller from being persisted again - necessary because the same
+    // modalViewController is often assigned to multiple controllers
+    controller.appMapURL = nil;
+  }
+  [controller persistNavigationPath:path];
+
+  if (controller.modalViewController) {
+    [self persistController:controller.modalViewController path:path];
+  }
 }
 
 @end

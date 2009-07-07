@@ -68,6 +68,7 @@
     return [TTSectionedDataSource dataSourceWithObjects:
       @"Appetizers",
       [TTTableTextItem itemWithText:@"Potstickers" URL:@"tt://food/potstickers"],
+      [TTTableTextItem itemWithText:@"Egg Rolls" URL:@"tt://food/eggrolls"],
       [TTTableTextItem itemWithText:@"Buffalo Wings" URL:@"tt://food/wings"],
       @"Entrees",
       [TTTableTextItem itemWithText:@"Steak" URL:@"tt://food/steak"],
@@ -78,6 +79,8 @@
       [TTTableTextItem itemWithText:@"Red Wine" URL:@"tt://food/redwine"],
       [TTTableTextItem itemWithText:@"White Wine" URL:@"tt://food/whitewhine"],
       [TTTableTextItem itemWithText:@"Beer" URL:@"tt://food/beer"],
+      [TTTableTextItem itemWithText:@"Coke" URL:@"tt://food/coke"],
+      [TTTableTextItem itemWithText:@"Sparkling Water" URL:@"tt://food/coke"],
       @"Other",
       [TTTableTextItem itemWithText:@"Complaints" URL:@"tt://about/complaints"],
       nil];

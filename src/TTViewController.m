@@ -7,8 +7,8 @@
 
 @implementation TTViewController
 
-@synthesize frozenState = _frozenState, viewState = _viewState,
-  contentError = _contentError, navigationBarStyle = _navigationBarStyle,
+@synthesize viewState = _viewState, contentError = _contentError,
+  navigationBarStyle = _navigationBarStyle,
   navigationBarTintColor = _navigationBarTintColor, statusBarStyle = _statusBarStyle,
   isViewAppearing = _isViewAppearing, hasViewAppeared = _hasViewAppeared,
   autoresizesForKeyboard = _autoresizesForKeyboard;
@@ -141,7 +141,7 @@
   if (_hasViewAppeared && !_isViewAppearing) {
     NSMutableDictionary* state = [[NSMutableDictionary alloc] init];
     [self persistView:state];
-    _frozenState = state;
+    self.frozenState = state;
   
     // This will come around to calling viewDidUnload
     [super didReceiveMemoryWarning];
@@ -150,6 +150,18 @@
     _invalidView = YES;
     _hasViewAppeared = NO;
   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController (TTCategory)
+
+- (NSDictionary*)frozenState {
+  return _frozenState;
+}
+
+- (void)setFrozenState:(NSDictionary*)frozenState {
+  [_frozenState release];
+  _frozenState = [frozenState retain];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,8 +211,7 @@
 }
 
 - (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
-  [_frozenState release];
-  _frozenState = [state retain];
+  self.frozenState = state;
 }
 
 - (void)persistView:(NSMutableDictionary*)state {

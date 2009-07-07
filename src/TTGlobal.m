@@ -1,4 +1,5 @@
 #import "Three20/TTGlobal.h"
+#import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -163,4 +164,10 @@ NSString* TTPathForDocumentsResource(NSString* relativePath) {
     documentsPath = [[dirs objectAtIndex:0] retain];
   }
   return [documentsPath stringByAppendingPathComponent:relativePath];
+}
+
+void TTSwizzle(Class cls, SEL originalSel, SEL newSel) {
+  Method originalMethod = class_getInstanceMethod(cls, originalSel);
+  Method newMethod = class_getInstanceMethod(cls, newSel);
+  method_exchangeImplementations(originalMethod, newMethod);
 }

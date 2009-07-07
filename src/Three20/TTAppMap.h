@@ -4,11 +4,18 @@
 
 @protocol TTAppMapDelegate;
 
+typedef enum {
+  TTAppMapPersistenceModeNone,  // no persistence
+  TTAppMapPersistenceModeTop,   // persists only the top-level controller
+  TTAppMapPersistenceModeAll,   // persists all navigation paths
+} TTAppMapPersistenceMode;
+
 @interface TTAppMap : NSObject {
   id<TTAppMapDelegate> _delegate;
   UIWindow* _mainWindow;
   UIViewController* _mainViewController;
   NSMutableDictionary* _singletons;
+  TTAppMapPersistenceMode _persistenceMode;
   BOOL _supportsShakeToReload;
   NSMutableArray* _patterns;
   BOOL _invalidPatterns;
@@ -21,6 +28,8 @@
 @property(nonatomic,retain) UIViewController* mainViewController;
 
 @property(nonatomic,readonly) UIViewController* visibleViewController;
+
+@property(nonatomic) TTAppMapPersistenceMode persistenceMode;
 
 /**
  * Causes the current view controller to be reloaded when shaking the phone.
@@ -109,6 +118,13 @@
  * Removes a controller from being assigned to a URL.
  */
 - (void)removeControllerForURL:(NSString*)URL;
+
+- (void)removePersistedControllers;
+
+/**
+ * Persists a controller to a navigation path and recursively persists its child controllers.
+ */
+- (void)persistController:(UIViewController*)controller path:(NSMutableArray*)path;
 
 @end
 

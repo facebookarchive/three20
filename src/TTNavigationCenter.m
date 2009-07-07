@@ -337,15 +337,15 @@ static TTNavigationCenter* gDefaultCenter = nil;
       if (URL) {
         [states addObject:URL];
 
-        if (viewController.frozenState) {
-          [states addObject:viewController.frozenState];
-        } else {
+//        if (viewController.frozenState) {
+//          [states addObject:viewController.frozenState];
+//        } else {
           NSMutableDictionary* viewState = [NSMutableDictionary dictionary];
           if (viewController.hasViewAppeared) {
             [viewController persistView:viewState];
           }
           [states addObject:viewState];
-        }
+//        }
         return YES;
       }
     }

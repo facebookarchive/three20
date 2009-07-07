@@ -15,6 +15,10 @@
   self.selectedViewController = controller;
 }
 
+- (void)persistNavigationPath:(NSMutableArray*)path {
+  [[TTAppMap sharedMap] persistController:self.selectedViewController path:path];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 

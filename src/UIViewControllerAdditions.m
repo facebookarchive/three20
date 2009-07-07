@@ -1,4 +1,8 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTAppMap.h"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+static NSMutableDictionary* gAppMapURLs = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -21,7 +25,46 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+// Swizzled with dealloc by TTAppMap (only if you're using TTAppMap)
+- (void)ttdealloc {
+  NSString* URL = self.appMapURL;
+  if (URL) {
+    [[TTAppMap sharedMap] removeControllerForURL:URL];
+    self.appMapURL = nil;
+  }
+  
+  // Calls the original dealloc, swizzled away
+  [self ttdealloc];
+}
+ 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
+
+- (NSString*)appMapURL {
+  NSString* key = [NSString stringWithFormat:@"%d", self];
+  return [gAppMapURLs objectForKey:key];
+}
+
+- (void)setAppMapURL:(NSString*)URL {
+  NSString* key = [NSString stringWithFormat:@"%d", self];
+  if (URL) {
+    if (!gAppMapURLs) {
+      gAppMapURLs = [[NSMutableDictionary alloc] init];
+    }
+    [gAppMapURLs setObject:URL forKey:key];
+  } else {
+    [gAppMapURLs removeObjectForKey:key];
+  }
+}
+
+- (NSDictionary*)frozenState {
+  return nil;
+}
+
+- (void)setFrozenState:(NSDictionary*)frozenState {
+}
 
 - (UIViewController*)previousViewController {
   NSArray* viewControllers = self.navigationController.viewControllers;
@@ -46,6 +89,24 @@
   return nil;
 }
 
+- (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
+  if (self.navigationController) {
+    [self.navigationController pushViewController:controller animated:animated];
+  }
+}
+
+- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
+}
+
+- (void)persistView:(NSMutableDictionary*)state {
+}
+
+- (void)restoreView:(NSDictionary*)state {
+}
+
+- (void)persistNavigationPath:(NSMutableArray*)path {
+}
+
 - (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate {
   if (message) {
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title message:message
@@ -67,15 +128,6 @@
   [[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];
   
   [self showNavigationBar:show animated:animated];
-}
-
-- (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
-  if (self.navigationController) {
-    [self.navigationController pushViewController:controller animated:animated];
-  }
-}
-
-- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
 }
 
 @end

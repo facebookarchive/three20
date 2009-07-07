@@ -16,11 +16,6 @@
 @property(nonatomic,readonly) NSString* viewType;
 
 /**
- * A temporary holding place for persisted view state waiting to be restored.
- */
-@property(nonatomic,readonly) NSDictionary* frozenState;
-
-/**
  * The view has appeared at least once.
  */
 @property(nonatomic,readonly) BOOL hasViewAppeared;
