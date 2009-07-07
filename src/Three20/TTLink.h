@@ -8,9 +8,7 @@
 }
 
 /**
- * The object that will be navigated to when the control is touched.
- *
- * This can be a string or an object that whose type is registered with TTNavigationCenter.
+ * The URL that will be loaded when the control is touched.
  */
 @property(nonatomic,retain) id URL;
 

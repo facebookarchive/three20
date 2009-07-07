@@ -47,6 +47,11 @@
  */
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated;
 
+/**
+ * Determines whether a controller is primarily a container of other controllers.
+ */
+- (BOOL)isContainerController;
+
 - (void)persistView:(NSMutableDictionary*)state;
 
 - (void)restoreView:(NSDictionary*)state;

@@ -50,6 +50,7 @@
       [TTTableTextItem itemWithText:@"Coffee" URL:@"tt://food/coffee"],
       [TTTableTextItem itemWithText:@"Orange Juice" URL:@"tt://food/oj"],
       @"Other",
+      [TTTableTextItem itemWithText:@"Just Desserts" URL:@"tt://menu/4"],
       [TTTableTextItem itemWithText:@"Complaints" URL:@"tt://about/complaints"],
       nil];
   } else if (_page == MenuPageLunch) {
@@ -62,6 +63,7 @@
       [TTTableTextItem itemWithText:@"Coke" URL:@"tt://food/coke"],
       [TTTableTextItem itemWithText:@"Sprite" URL:@"tt://food/sprite"],
       @"Other",
+      [TTTableTextItem itemWithText:@"Just Desserts" URL:@"tt://menu/4"],
       [TTTableTextItem itemWithText:@"Complaints" URL:@"tt://about/complaints"],
       nil];
   } else if (_page == MenuPageDinner) {
@@ -82,6 +84,7 @@
       [TTTableTextItem itemWithText:@"Coke" URL:@"tt://food/coke"],
       [TTTableTextItem itemWithText:@"Sparkling Water" URL:@"tt://food/coke"],
       @"Other",
+      [TTTableTextItem itemWithText:@"Just Desserts" URL:@"tt://menu/4"],
       [TTTableTextItem itemWithText:@"Complaints" URL:@"tt://about/complaints"],
       nil];
   } else if (_page == MenuPageDessert) {
@@ -94,6 +97,7 @@
       nil];
   } else if (_page == MenuPageAbout) {
     return [TTListDataSource dataSourceWithObjects:
+      [TTTableTextItem itemWithText:@"Our Story" URL:@"tt://about/story"],
       [TTTableTextItem itemWithText:@"Complaints Dept." URL:@"tt://about/complaints"],
       nil];
   } else {

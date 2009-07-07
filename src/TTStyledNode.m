@@ -1,6 +1,6 @@
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTURLCache.h"
-#import "Three20/TTNavigationCenter.h"
+#import "Three20/TTAppMap.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -382,7 +382,7 @@
 
 - (void) performDefaultAction {
   if (_URL) {
-    [[TTNavigationCenter defaultCenter] displayURL:_URL];
+    TTLoadURL(_URL);
   }
 }
 
@@ -441,7 +441,7 @@
 
 - (void) performDefaultAction {
   if (_URL) {
-    [[TTNavigationCenter defaultCenter] displayURL:_URL];
+    TTLoadURL(_URL);
   }
 }
 

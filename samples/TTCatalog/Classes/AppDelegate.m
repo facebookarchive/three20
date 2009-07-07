@@ -21,46 +21,42 @@
 
 @implementation AppDelegate
 
-@synthesize window, navigationController;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(UIApplication*)application {
-  TTNavigationCenter* nav = [TTNavigationCenter defaultCenter];
-  nav.mainViewController = self.navigationController;
-  nav.delegate = self;
-  nav.URLSchemes = [NSArray arrayWithObject:@"tt"];
-  nav.supportsShakeToReload = YES;
+  TTAppMap* appMap = [TTAppMap sharedMap];
+  appMap.delegate = self;
+  appMap.supportsShakeToReload = YES;
+  //appMap.persistenceMode = TTAppMapPersistenceModeAll;
+  //appMap.launchExternalURLs = YES;
   
-  [nav addView:@"photoTest1" controller:[PhotoTest1Controller class]];
-  [nav addView:@"photoTest2" controller:[PhotoTest2Controller class]];
-  [nav addView:@"imageTest1" controller:[ImageTest1Controller class]];
-  [nav addView:@"tableTest" controller:[TableTestController class]];
-  [nav addView:@"tableItemTest" controller:[TableItemTestController class]];
-  [nav addView:@"tableControlsTest" controller:[TableControlsTestController class]];
-  [nav addView:@"styledTextTableTest" controller:[StyledTextTableTestController class]];
-  [nav addView:@"composerTest" controller:[MessageTestController class]];
-  [nav addView:@"searchTest" controller:[SearchTestController class]];
-  [nav addView:@"activityTest" controller:[ActivityTestController class]];
-  [nav addView:@"styleTest" controller:[StyleTestController class]];
-  [nav addView:@"styledTextTest" controller:[StyledTextTestController class]];
-  [nav addView:@"buttonTest" controller:[ButtonTestController class]];
-  [nav addView:@"tabBarTest" controller:[TabBarTestController class]];
-  [nav addView:@"youTubeTest" controller:[YouTubeTestController class]];
-  [nav addView:@"imageTest2" controller:[TableImageTestController class]];
-  [nav addView:@"scrollViewTest" controller:[ScrollViewTestController class]];
-  [nav addView:@"webTest" controller:[WebTestController class]];
+  [appMap addURL:@"*" controller:[TTWebController class] selector:@selector(openURL:)];
+  [appMap addURL:@"tt://catalog" controller:[RootViewController class]];
+  [appMap addURL:@"tt://photoTest1" controller:[PhotoTest1Controller class]];
+  [appMap addURL:@"tt://photoTest2" controller:[PhotoTest2Controller class]];
+  [appMap addURL:@"tt://imageTest1" controller:[ImageTest1Controller class]];
+  [appMap addURL:@"tt://tableTest" controller:[TableTestController class]];
+  [appMap addURL:@"tt://tableItemTest" controller:[TableItemTestController class]];
+  [appMap addURL:@"tt://tableControlsTest" controller:[TableControlsTestController class]];
+  [appMap addURL:@"tt://styledTextTableTest" controller:[StyledTextTableTestController class]];
+  [appMap addURL:@"tt://composerTest" controller:[MessageTestController class]];
+  [appMap addURL:@"tt://searchTest" controller:[SearchTestController class]];
+  [appMap addURL:@"tt://activityTest" controller:[ActivityTestController class]];
+  [appMap addURL:@"tt://styleTest" controller:[StyleTestController class]];
+  [appMap addURL:@"tt://styledTextTest" controller:[StyledTextTestController class]];
+  [appMap addURL:@"tt://buttonTest" controller:[ButtonTestController class]];
+  [appMap addURL:@"tt://tabBarTest" controller:[TabBarTestController class]];
+  [appMap addURL:@"tt://youTubeTest" controller:[YouTubeTestController class]];
+  [appMap addURL:@"tt://imageTest2" controller:[TableImageTestController class]];
+  [appMap addURL:@"tt://scrollViewTest" controller:[ScrollViewTestController class]];
+  [appMap addURL:@"tt://webTest" controller:[WebTestController class]];
 
-	[window addSubview:[navigationController view]];
-	[window makeKeyAndVisible];
-}
-
-- (void)dealloc {
-	TT_RELEASE_MEMBER(navigationController);
-	TT_RELEASE_MEMBER(window);
-	[super dealloc];
+  TTLoadURL(@"tt://catalog");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTNavigationDelegate
+// TTAppMapDelegate
 
 - (void)willNavigateToObject:(id)object inView:(NSString*)viewType
     withController:(UIViewController*)viewController {

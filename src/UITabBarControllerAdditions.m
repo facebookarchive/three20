@@ -15,6 +15,10 @@
   self.selectedViewController = controller;
 }
 
+- (BOOL)isContainerController {
+  return YES;
+}
+
 - (void)persistNavigationPath:(NSMutableArray*)path {
   [[TTAppMap sharedMap] persistController:self.selectedViewController path:path];
 }

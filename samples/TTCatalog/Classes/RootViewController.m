@@ -7,10 +7,9 @@
 // private
 
 - (void)selectTestRow {
-#ifdef JOE
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:TEST_ROW inSection:TEST_SECTION];
-  [self.tableView touchRowAtIndexPath:indexPath animated:NO];
-#endif
+//#ifdef JOE
+//  [[TTAppMap sharedMap] loadURL:TEST_URL animated:NO];
+//#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,6 +17,7 @@
 
 - (id)init {
   if (self = [super init]) {
+    self.title = @"Three20 Catalog";
     self.tableViewStyle = UITableViewStyleGrouped;
 
     [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(selectTestRow)

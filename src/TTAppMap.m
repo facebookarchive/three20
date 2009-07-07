@@ -3,12 +3,11 @@
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// global
 
-typedef enum {
-  TTURLPatternTypeDefault,
-  TTURLPatternTypeSingleton,
-  TTURLPatternTypeModal,
-} TTURLPatternType;
+static NSString* kDefaultURLPattern = @"*";
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 typedef enum {
   TTURLArgumentTypePointer,
@@ -100,7 +99,7 @@ typedef enum {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTURLPattern : NSObject {
-  TTURLPatternType _patternType;
+  TTLaunchType _launchType;
   NSURL* _parentURL;
   Class _controllerClass;
   SEL _selector;
@@ -111,22 +110,23 @@ typedef enum {
   NSInteger _argumentCount;
 }
 
-@property(nonatomic,readonly) TTURLPatternType patternType;
+@property(nonatomic,readonly) TTLaunchType launchType;
 @property(nonatomic,copy) NSURL* parentURL;
 @property(nonatomic) Class controllerClass;
 @property(nonatomic) SEL selector;
 @property(nonatomic) NSInteger specificity;
 @property(nonatomic) NSInteger argumentCount;
 
-- (id)initWithURL:(NSString*)URL type:(TTURLPatternType)patternType;
+- (id)initWithType:(TTLaunchType)launchType;
 
 - (BOOL)matchURL:(NSURL*)URL;
+- (void)parseURL:(NSString*)URL;
 
 @end
 
 @implementation TTURLPattern
 
-@synthesize patternType = _patternType, parentURL = _parentURL,
+@synthesize launchType = _launchType, parentURL = _parentURL,
             controllerClass = _controllerClass, selector = _selector,
             specificity = _specificity, argumentCount = _argumentCount;
 
@@ -185,30 +185,6 @@ typedef enum {
   }
 }
 
-- (void)parseURL:(NSString*)URL {
-  NSURL* theURL = [NSURL URLWithString:URL];
-    
-  _scheme = [theURL.scheme copy];
-  if (theURL.host) {
-    [self parsePathComponent:theURL.host];
-    if (theURL.path) {
-      for (NSString* name in theURL.path.pathComponents) {
-        if (![name isEqualToString:@"/"]) {
-          [self parsePathComponent:name];
-        }
-      }
-    }
-  }
-  
-  if (theURL.query) {
-    NSDictionary* query = [theURL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
-    for (NSString* name in [query keyEnumerator]) {
-      NSString* value = [query objectForKey:name];
-      [self parseParameter:name value:value];
-    }
-  }
-}
-
 - (NSComparisonResult)compareSpecificity:(TTURLPattern*)pattern2 {
   if (_specificity > pattern2.specificity) {
     return NSOrderedAscending;
@@ -222,17 +198,16 @@ typedef enum {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithURL:(NSString*)URL type:(TTURLPatternType)patternType {
+- (id)initWithType:(TTLaunchType)launchType {
   if (self = [self init]) {
-    _patternType = patternType;
-    [self parseURL:URL];
+    _launchType = launchType;
   }
   return self;
 }
 
 - (id)init {
   if (self = [super init]) {
-    _patternType = TTURLPatternTypeDefault;
+    _launchType = TTLaunchTypeNone;
     _scheme = nil;
     _path = [[NSMutableArray alloc] init];
     _query = nil;
@@ -297,27 +272,56 @@ typedef enum {
   }
 }
 
-- (BOOL)matchURL:(NSURL*)URL {
-  if ([_scheme isEqualToString:URL.scheme] && URL.host) {
-    NSArray* pathComponents = URL.path.pathComponents;
-    NSInteger componentCount = URL.path.length ? pathComponents.count : 1;
-    if (componentCount != _path.count) {
-      return NO;
-    }
-
-    id<TTURLPatternText>hostPattern = [_path objectAtIndex:0];
-    if (![hostPattern match:URL.host]) {
-      return NO;
+- (void)parseURL:(NSString*)URL {
+  if (![URL isEqualToString:kDefaultURLPattern]) {
+    NSURL* theURL = [NSURL URLWithString:URL];
+      
+    _scheme = [theURL.scheme copy];
+    if (theURL.host) {
+      [self parsePathComponent:theURL.host];
+      if (theURL.path) {
+        for (NSString* name in theURL.path.pathComponents) {
+          if (![name isEqualToString:@"/"]) {
+            [self parsePathComponent:name];
+          }
+        }
+      }
     }
     
-    for (NSInteger i = 1; i < _path.count; ++i) {
-      id<TTURLPatternText>pathPattern = [_path objectAtIndex:i];
-      NSString* pathText = [pathComponents objectAtIndex:i];
-      if (![pathPattern match:pathText]) {
-        return NO;
+    if (theURL.query) {
+      NSDictionary* query = [theURL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+      for (NSString* name in [query keyEnumerator]) {
+        NSString* value = [query objectForKey:name];
+        [self parseParameter:name value:value];
       }
     }
   }
+}
+
+- (BOOL)matchURL:(NSURL*)URL {
+  if (![_scheme isEqualToString:URL.scheme] || !URL.host) {
+    return NO;
+  }
+
+  NSArray* pathComponents = URL.path.pathComponents;
+  NSInteger componentCount = URL.path.length ? pathComponents.count : 1;
+  if (componentCount != _path.count) {
+    return NO;
+  }
+
+  id<TTURLPatternText>hostPattern = [_path objectAtIndex:0];
+  if (![hostPattern match:URL.host]) {
+    return NO;
+  }
+  
+  for (NSInteger i = 1; i < _path.count; ++i) {
+    id<TTURLPatternText>pathPattern = [_path objectAtIndex:i];
+    NSString* pathText = [pathComponents objectAtIndex:i];
+    if (![pathPattern match:pathText]) {
+      return NO;
+    }
+  }
+
   return YES;
 }
 
@@ -427,19 +431,27 @@ typedef enum {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (void)addPattern:(TTURLPattern*)pattern {
-  _invalidPatterns = YES;
-  
-  if (!_patterns) {
-    _patterns = [[NSMutableArray alloc] init];
+- (void)addPattern:(TTURLPattern*)pattern forURL:(NSString*)URL {
+  if ([URL isEqualToString:kDefaultURLPattern]) {
+    [_defaultPattern release];
+    _defaultPattern = [pattern retain];
+  } else {
+    _invalidPatterns = YES;
+    
+    [pattern parseURL:URL];
+    
+    if (!_patterns) {
+      _patterns = [[NSMutableArray alloc] init];
+    }
+    
+    [_patterns addObject:pattern];
   }
-  
-  [_patterns addObject:pattern];
 }
 
 - (TTURLPattern*)matchPattern:(NSURL*)URL {
   if (_invalidPatterns) {
     [_patterns sortUsingSelector:@selector(compareSpecificity:)];
+    _invalidPatterns = NO;
   }
   
   for (TTURLPattern* pattern in _patterns) {
@@ -447,7 +459,7 @@ typedef enum {
       return pattern;
     }
   }
-  return nil;
+  return _defaultPattern;
 }
 
 - (UIViewController*)controllerForURL:(NSURL*)URL withPattern:(TTURLPattern*)pattern {
@@ -467,12 +479,16 @@ typedef enum {
       NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:sig];
       [invocation setTarget:controller];
       [invocation setSelector:pattern.selector];
-      [pattern setArgumentsFromURL:URL forInvocation:invocation];
+      if (pattern == _defaultPattern) {
+        [invocation setArgument:&URL atIndex:2];
+      } else {
+        [pattern setArgumentsFromURL:URL forInvocation:invocation];
+      }
       [invocation invoke];
     }
   }
-
-  if (pattern.patternType == TTURLPatternTypeSingleton) {
+  
+  if (pattern.launchType == TTLaunchTypeSingleton) {
     [self setController:controller forURL:[URL absoluteString]];
   }
 
@@ -491,11 +507,19 @@ typedef enum {
   }
 }
 
-- (UIViewController*)parentControllerForPattern:(TTURLPattern*)pattern {
+- (UIViewController*)parentControllerForController:(UIViewController*)controller
+                     withPattern:(TTURLPattern*)pattern {
   UIViewController* parentController = nil;
   if (pattern.parentURL) {
     parentController = [self controllerForURL:pattern.parentURL pattern:nil];
   }
+
+  // If this is the first controller, and it is not a "container", forcibly put
+  // a navigation controller at the root of the controller hierarchy.
+  if (!_mainViewController && ![controller isContainerController]) {
+    self.mainViewController = [[[UINavigationController alloc] init] autorelease];
+  }
+
   return parentController ? parentController : self.visibleViewController;
 }
 
@@ -512,13 +536,8 @@ typedef enum {
 
 - (void)presentController:(UIViewController*)controller
         parent:(UIViewController*)parentController modal:(BOOL)modal animated:(BOOL)animated {
-  if (!_mainWindow) {
-    _mainWindow = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
-    [_mainWindow makeKeyAndVisible];
-  }
   if (!_mainViewController) {
-    _mainViewController = [controller retain];
-    [_mainWindow addSubview:controller.view];
+    self.mainViewController = controller;
   } else if (controller.parentViewController) {
     // The controller already exists, so we just need to make it visible
     while (controller) {
@@ -538,9 +557,10 @@ typedef enum {
 
 - (void)presentController:(UIViewController*)controller forURL:(NSURL*)URL
         withPattern:(TTURLPattern*)pattern animated:(BOOL)animated {
-  UIViewController* parentController = [self parentControllerForPattern:pattern];
+  UIViewController* parentController = [self parentControllerForController:controller
+                                             withPattern:pattern];
   [self presentController:controller parent:parentController
-        modal:pattern.patternType == TTURLPatternTypeModal animated:animated];
+        modal:pattern.launchType == TTLaunchTypeModal animated:animated];
 }
 
 - (UINavigationController*)frontNavigationController {
@@ -643,12 +663,13 @@ typedef enum {
     _mainViewController = nil;
     _singletons = nil;
     _patterns = nil;
+    _defaultPattern = nil;
     _persistenceMode = TTAppMapPersistenceModeNone;
     _supportsShakeToReload = NO;
     _invalidPatterns = NO;
     
     // Swizzle a new dealloc for UIViewController so it notifies us when it's going away.
-    // We may need to remove it from our singleton cache, which keeps week references.
+    // We need to remove dying controllers from our singleton cache.
     TTSwizzle([UIViewController class], @selector(dealloc), @selector(ttdealloc));
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -668,6 +689,7 @@ typedef enum {
   TT_RELEASE_MEMBER(_mainViewController);
   TT_RELEASE_MEMBER(_singletons);
   TT_RELEASE_MEMBER(_patterns);
+  TT_RELEASE_MEMBER(_defaultPattern);
   [super dealloc];
 }
 
@@ -683,20 +705,46 @@ typedef enum {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
+- (void)setMainViewController:(UIViewController*)controller {
+  if (controller != _mainViewController) {
+    [_mainViewController release];
+    _mainViewController = [controller retain];
+    
+    UIView* mainView = controller.view;
+    if (!mainView.superview) {
+      if (!_mainWindow) {
+        UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
+        if (keyWindow) {
+          _mainWindow = [keyWindow retain];
+        } else {
+          _mainWindow = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
+          [_mainWindow makeKeyAndVisible];
+        }
+      }
+      [_mainWindow addSubview:controller.view];
+    }
+  }
+}
+
 - (UIViewController*)visibleViewController {
   UINavigationController* navController = self.frontNavigationController;
   if (navController) {
-    return navController.visibleViewController;
+    UIViewController* controller = navController.visibleViewController;
+    return controller ? controller : navController;
   } else {
     return [self frontViewControllerForController:_mainViewController];
   }
 }
 
 - (UIViewController*)loadURL:(NSString*)URL {
+  return [self loadURL:URL animated:YES];
+}
+
+- (UIViewController*)loadURL:(NSString*)URL animated:(BOOL)animated {
   if (!_mainViewController && _persistenceMode && [self restoreControllersStartingWithURL:URL]) {
     return _mainViewController;
   } else {
-    return [self loadControllerWithURL:URL display:YES animated:YES];
+    return [self loadControllerWithURL:URL display:YES animated:animated];
   }
 }
 
@@ -704,78 +752,83 @@ typedef enum {
   return [self loadControllerWithURL:URL display:NO animated:NO];
 }
 
+- (TTLaunchType)launchTypeForURL:(NSString*)URL {
+  TTURLPattern* pattern = [self matchPattern:[NSURL URLWithString:URL]];
+  return pattern.launchType;
+}
+
 - (void)addURL:(NSString*)URL controller:(Class)controller {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithURL:URL type:TTURLPatternTypeDefault];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeCreate];
   pattern.controllerClass = controller;
-  [self addPattern:pattern];
+  [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL controller:(Class)controller selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithURL:URL type:TTURLPatternTypeDefault];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeCreate];
   pattern.controllerClass = controller;
   pattern.selector = selector;
-  [self addPattern:pattern];
+  [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL controller:(Class)controller
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithURL:URL type:TTURLPatternTypeDefault];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeCreate];
   pattern.parentURL = [NSURL URLWithString:parentURL];
   pattern.controllerClass = controller;
   pattern.selector = selector;
-  [self addPattern:pattern];
+  [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL singleton:(Class)controller {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithURL:URL type:TTURLPatternTypeSingleton];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeSingleton];
   pattern.controllerClass = controller;
-  [self addPattern:pattern];
+  [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL singleton:(Class)controller selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithURL:URL type:TTURLPatternTypeSingleton];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeSingleton];
   pattern.controllerClass = controller;
   pattern.selector = selector;
-  [self addPattern:pattern];
+  [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL singleton:(Class)controller
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithURL:URL type:TTURLPatternTypeSingleton];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeSingleton];
   pattern.parentURL = [NSURL URLWithString:parentURL];
   pattern.controllerClass = controller;
   pattern.selector = selector;
-  [self addPattern:pattern];
+  [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL modal:(Class)controller {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithURL:URL type:TTURLPatternTypeModal];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeModal];
   pattern.controllerClass = controller;
-  [self addPattern:pattern];
+  [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL modal:(Class)controller selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithURL:URL type:TTURLPatternTypeModal];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeModal];
   pattern.controllerClass = controller;
   pattern.selector = selector;
-  [self addPattern:pattern];
+  [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(Class)controller
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithURL:URL type:TTURLPatternTypeModal];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeModal];
   pattern.parentURL = [NSURL URLWithString:parentURL];
   pattern.controllerClass = controller;
   pattern.selector = selector;
-  [self addPattern:pattern];
+  [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 

@@ -35,7 +35,7 @@
 }
 
 - (void)cancelAddressBook {
-  [[TTNavigationCenter defaultCenter].frontViewController dismissModalViewControllerAnimated:YES];
+  [[TTAppMap sharedMap].visibleViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)sendDelayed:(NSTimer*)timer {

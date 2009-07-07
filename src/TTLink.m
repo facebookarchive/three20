@@ -1,5 +1,5 @@
 #include "Three20/TTLink.h"
-#include "Three20/TTNavigationCenter.h"
+#include "Three20/TTAppMap.h"
 #include "Three20/TTShape.h"
 #include "Three20/TTView.h"
 #include "Three20/TTDefaultStyleSheet.h"
@@ -14,7 +14,7 @@
 // private
 
 - (void)linkTouched {
-  [[TTNavigationCenter defaultCenter] displayObject:_URL];
+  TTLoadURL(_URL);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -24,6 +24,10 @@
   [self popToViewController:controller animated:animated];
 }
 
+- (BOOL)isContainerController {
+  return YES;
+}
+
 - (void)persistNavigationPath:(NSMutableArray*)path {
   for (UIViewController* controller in self.viewControllers) {
     [[TTAppMap sharedMap] persistController:controller path:path];

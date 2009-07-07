@@ -21,6 +21,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewController
 
+- (void)loadView {
+  [super loadView];
+  self.tableView.allowsSelection = NO;
+}
+
 - (id<TTTableViewDataSource>)createDataSource {
   NSArray* strings = [NSArray arrayWithObjects:
     [TTStyledText textFromXHTML:@"This is a whole bunch of text made from \

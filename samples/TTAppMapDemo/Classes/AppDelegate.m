@@ -6,7 +6,7 @@
 @implementation AppDelegate
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIViewController
+// UIApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(UIApplication*)application {
   TTAppMap* appMap = [TTAppMap sharedMap];

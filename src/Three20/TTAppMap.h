@@ -3,12 +3,20 @@
 #define TT_NULL_URL @" "
 
 @protocol TTAppMapDelegate;
+@class TTURLPattern;
 
 typedef enum {
   TTAppMapPersistenceModeNone,  // no persistence
   TTAppMapPersistenceModeTop,   // persists only the top-level controller
   TTAppMapPersistenceModeAll,   // persists all navigation paths
 } TTAppMapPersistenceMode;
+
+typedef enum {
+  TTLaunchTypeNone,
+  TTLaunchTypeCreate,           // new controller is created and pushed
+  TTLaunchTypeSingleton,        // the same controller is re-used
+  TTLaunchTypeModal,            // new controller is created and displayed modally
+} TTLaunchType;
 
 @interface TTAppMap : NSObject {
   id<TTAppMapDelegate> _delegate;
@@ -18,17 +26,30 @@ typedef enum {
   TTAppMapPersistenceMode _persistenceMode;
   BOOL _supportsShakeToReload;
   NSMutableArray* _patterns;
+  TTURLPattern* _defaultPattern;
   BOOL _invalidPatterns;
 }
 
 @property(nonatomic,assign) id<TTAppMapDelegate> delegate;
 
+/**
+ * The window that contains the views of the controller hierarchy.
+ */
 @property(nonatomic,retain) UIWindow* mainWindow;
 
+/**
+ * The controller that is at the root of the controller hierarchy.
+ */
 @property(nonatomic,retain) UIViewController* mainViewController;
 
+/**
+ * The currently visible view controller.
+ */
 @property(nonatomic,readonly) UIViewController* visibleViewController;
 
+/**
+ * How controllers are automatically persisted on termination and restored on launch.
+ */
 @property(nonatomic) TTAppMapPersistenceMode persistenceMode;
 
 /**
@@ -46,11 +67,17 @@ typedef enum {
  * a keyWindow, a UIWindow will be created and displayed.
  */
 - (UIViewController*)loadURL:(NSString*)URL;
+- (UIViewController*)loadURL:(NSString*)URL animated:(BOOL)animated;
 
 /**
  * Gets the controller with a pattern that matches the URL.
  */
 - (UIViewController*)controllerForURL:(NSString*)URL;
+
+/**
+ * Tests if there is a pattern that matches the URL.
+ */
+- (TTLaunchType)launchTypeForURL:(NSString*)URL;
 
 /**
  * Adds a URL pattern which will create and display a controller when loaded.
@@ -109,8 +136,8 @@ typedef enum {
 /**
  * Assigns a controller to a specific URL.
  *
- * All requests to load the URL will display the controller instead of performing the
- * usual pattern match.
+ * All requests to load this URL will display this controller instance rather than
+ * going through the usual pattern matching to find a controller.
  */
 - (void)setController:(UIViewController*)controller forURL:(NSString*)URL;
 
@@ -119,10 +146,13 @@ typedef enum {
  */
 - (void)removeControllerForURL:(NSString*)URL;
 
+/** 
+ * Erases all persisted controller data from preferences.
+ */
 - (void)removePersistedControllers;
 
 /**
- * Persists a controller to a navigation path and recursively persists its child controllers.
+ * Persists a controller's state and recursively persists the next controller after it.
  */
 - (void)persistController:(UIViewController*)controller path:(NSMutableArray*)path;
 
@@ -133,7 +163,9 @@ typedef enum {
 @protocol TTAppMapDelegate <NSObject>
 
 @optional
-  
+
+
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

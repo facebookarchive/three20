@@ -38,7 +38,7 @@ static NSMutableDictionary* gAppMapURLs = nil;
   // Calls the original dealloc, swizzled away
   [self ttdealloc];
 }
- 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
@@ -96,6 +96,10 @@ static NSMutableDictionary* gAppMapURLs = nil;
 }
 
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
+}
+
+- (BOOL)isContainerController {
+  return NO;
 }
 
 - (void)persistView:(NSMutableDictionary*)state {

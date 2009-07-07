@@ -1,4 +1,4 @@
-#import "Three20/TTNavigableViewController.h"
+#import "Three20/TTGlobal.h"
 
 typedef enum {
   TTViewEmpty = 0,
@@ -13,7 +13,7 @@ typedef enum {
 
 @protocol TTPersistable;
 
-@interface TTViewController : UIViewController <TTNavigableViewController> {
+@interface TTViewController : UIViewController {
   NSDictionary* _frozenState;
   TTViewState _viewState;
   NSError* _contentError;
@@ -59,6 +59,16 @@ typedef enum {
  * The style of the status bar when this controller is isViewAppearing.
  */
 @property(nonatomic) UIStatusBarStyle statusBarStyle;
+
+/**
+ * The view has appeared at least once.
+ */
+@property(nonatomic,readonly) BOOL hasViewAppeared;
+
+/**
+ * The view is currently visible.
+ */
+@property(nonatomic,readonly) BOOL isViewAppearing;
 
 /**
  * Determines if the view will be resized automatically to fit the keyboard.

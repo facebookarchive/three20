@@ -1,7 +1,6 @@
 #import "Three20/TTTableView.h"
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledTextLabel.h"
-#import "Three20/TTNavigationCenter.h"
 #import "Three20/TTTableViewDelegate.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
