@@ -22,7 +22,7 @@
   [appMap addURL:@"tt://about/(showAbout)" parent:@"tt://menu/5"
           controller:[ContentController class] selector:@selector(showAbout:)];
   [appMap addURL:@"tt://order?waitress=(orderWithWaitress)"
-          modal:[ContentController class] selector:@selector(orderWithWaitress:)];
+          modal:[ContentController class] selector:@selector(orderWithWaitress:params:)];
   
   TTLoadURL(@"tt://tabBar");
 }

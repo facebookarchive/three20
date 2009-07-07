@@ -48,7 +48,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // URLs
 
-- (void)orderWithWaitress:(NSString*)waitress {
+- (void)orderWithWaitress:(NSString*)waitress params:(NSDictionary*)params {
+  NSString* ref = [params objectForKey:@"ref"];
+  TTLOG(@"ORDER REFERRED FROM %@", ref);
+  
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
       initWithBarButtonSystemItem:UIBarButtonSystemItemDone
       target:self action:@selector(dismiss)] autorelease];
