@@ -233,10 +233,14 @@ static const CGFloat kDesiredTableHeight = 150;
     selector:@selector(dispatchUpdate:) userInfo:nil repeats:NO];
 }
 
+- (BOOL)hasSearchResults {
+  return (![_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]
+          || [_dataSource numberOfSectionsInTableView:_tableView])
+      && [_dataSource tableView:_tableView numberOfRowsInSection:0];
+}
+
 - (void)reloadTable {
-  if ((![_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]
-      || [_dataSource numberOfSectionsInTableView:_tableView])
-      && [_dataSource tableView:_tableView numberOfRowsInSection:0]) {
+  if ([self hasSearchResults]) {
     [self layoutIfNeeded];
     [self showSearchResults:YES];
     [self.tableView reloadData];
@@ -331,7 +335,7 @@ static const CGFloat kDesiredTableHeight = 150;
     if (_showsDarkScreen) {
       [self showDarkScreen:YES];
     }
-    if (self.hasText) {
+    if (self.hasText && self.hasSearchResults) {
       [self showSearchResults:YES];
     }
   }

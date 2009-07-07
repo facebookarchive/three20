@@ -8,7 +8,6 @@
 - (id)init {
   if (self = [super init]) {
     _sendTimer = nil;
-    _dataSource = nil;
     
     [[TTAppMap sharedMap] addURL:@"tt://compose?to=(composeTo)"
                           modal:self selector:@selector(composeTo:)];
@@ -19,7 +18,6 @@
 - (void)dealloc {
   [[TTAppMap sharedMap] removeURL:@"tt://compose?to=(composeTo)"];
   [_sendTimer invalidate];
-  TT_RELEASE_MEMBER(_dataSource);
 	[super dealloc];
 }
 
@@ -30,7 +28,7 @@
 
   TTMessageController* controller =
     [[[TTMessageController alloc] initWithRecipients:[NSArray arrayWithObject:item]] autorelease];
-  controller.dataSource = _dataSource;
+  controller.dataSource = [MockDataSource mockDataSource:YES];
   controller.delegate = self;
 
   return controller;
@@ -68,8 +66,6 @@
   CGRect appFrame = [UIScreen mainScreen].applicationFrame;
   self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];;
   self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-  
-  _dataSource = [[MockDataSource mockDataSource:YES] retain];
   
   UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [button setTitle:@"Compose Message" forState:UIControlStateNormal];

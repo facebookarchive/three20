@@ -107,7 +107,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 }  
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTViewController
+// UTViewController (TTCategory)
 
 - (void)persistView:(NSMutableDictionary*)state {
   CGFloat scrollY = _tableView.contentOffset.y;
@@ -118,6 +118,9 @@ static const CGFloat kRefreshingViewHeight = 22;
   NSNumber* scrollY = [state objectForKey:@"scrollOffsetY"];
   _tableView.contentOffset = CGPointMake(0, scrollY.floatValue);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTViewController
 
 - (void)reloadContent {
   [_dataSource load:TTURLRequestCachePolicyNetwork nextPage:NO];

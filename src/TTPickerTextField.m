@@ -252,7 +252,7 @@ static CGFloat kMinCursorWidth = 50;
   CGFloat y = superview.screenY;
   CGFloat visibleHeight = [self heightWithLines:1];
   CGFloat keyboardHeight = withKeyboard ? KEYBOARD_HEIGHT : 0;
-  CGFloat tableHeight = self.window.height - (y + visibleHeight + keyboardHeight);
+  CGFloat tableHeight = TTScreenBounds().size.height - (y + visibleHeight + keyboardHeight);
 
   return CGRectMake(0, self.bottom-1, superview.frame.size.width, tableHeight+1);
 }

@@ -287,6 +287,14 @@
   [self layoutViews];
 }
 
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  TT_RELEASE_MEMBER(_scrollView);
+  TT_RELEASE_MEMBER(_fieldViews);
+  TT_RELEASE_MEMBER(_textEditor);
+  TT_RELEASE_MEMBER(_statusView);
+}
+
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
@@ -295,15 +303,27 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTViewController
+// UTViewController (TTCategory)
 
-- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
-  [super showObject:object inView:viewType withState:state];
-  
-  if (object) {
-    _initialRecipients = [[NSArray alloc] initWithObjects:object,nil];
+- (void)persistView:(NSMutableDictionary*)state {
+  NSMutableArray* fields = [NSMutableArray array];
+  for (NSInteger i = 0; i < _fields.count+1; ++i) {
+    NSString* text = [self textForFieldAtIndex:i];
+    [fields addObject:text];
+  }
+  [state setObject:fields forKey:@"fields"];
+}
+
+- (void)restoreView:(NSDictionary*)state {
+  NSMutableArray* fields = [state objectForKey:@"fields"];
+  for (NSInteger i = 0; i < fields.count; ++i) {
+    NSString* text = [fields objectAtIndex:i];
+    [self setText:text forFieldAtIndex:i];
   }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTViewController
 
 - (void)updateView {
   if (_initialRecipients) {
@@ -329,14 +349,6 @@
     [_statusView removeFromSuperview];
     TT_RELEASE_MEMBER(_statusView);
   }
-}
-
-- (void)viewDidUnload {
-  [super viewDidUnload];
-  TT_RELEASE_MEMBER(_scrollView);
-  TT_RELEASE_MEMBER(_fieldViews);
-  TT_RELEASE_MEMBER(_textEditor);
-  TT_RELEASE_MEMBER(_statusView);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

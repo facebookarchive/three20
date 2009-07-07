@@ -124,15 +124,15 @@
   [[UIApplication sharedApplication] setStatusBarStyle:_statusBarStyle animated:YES];
 }
 
+- (void)viewDidUnload {
+}
+
 - (void)viewDidAppear:(BOOL)animated {
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
   _isViewAppearing = NO;
-}
-
-- (void)viewDidUnload {
 }
 
 - (void)didReceiveMemoryWarning {
@@ -213,12 +213,6 @@
 - (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
   self.frozenState = state;
 }
-
-- (void)persistView:(NSMutableDictionary*)state {
-}
-
-- (void)restoreView:(NSDictionary*)state {
-} 
 
 - (void)reloadContent {
 }

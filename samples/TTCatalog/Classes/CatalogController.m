@@ -7,9 +7,9 @@
 // private
 
 - (void)selectTestRow {
-//#ifdef JOE
-//  [[TTAppMap sharedMap] loadURL:TEST_URL animated:NO];
-//#endif
+#ifdef JOE
+  [[TTAppMap sharedMap] loadURL:TEST_URL animated:NO];
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,8 +20,8 @@
     self.title = @"Three20 Catalog";
     self.tableViewStyle = UITableViewStyleGrouped;
 
-    [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(selectTestRow)
-             userInfo:nil repeats:NO];
+//    [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(selectTestRow)
+//             userInfo:nil repeats:NO];
   }
   return self;
 }

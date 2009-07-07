@@ -195,7 +195,7 @@
     }
   } else if ([controller isKindOfClass:[UINavigationController class]]) {
     UINavigationController* navController = (UINavigationController*)controller;
-    controller = [navController.viewControllers lastObject];
+    controller = navController.topViewController;
   }
   
   if (controller.modalViewController) {
@@ -231,6 +231,10 @@
 - (void)persistControllers {
   NSMutableArray* path = [NSMutableArray array];
   [self persistController:_mainViewController path:path];
+
+  if (_mainViewController.modalViewController) {
+    [self persistController:_mainViewController.modalViewController path:path];
+  }
   
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   [defaults setObject:path forKey:@"TTAppMapNavigation"];
@@ -257,6 +261,7 @@
       break;
     }
   }
+
   return path.count > 0;
 }
 
@@ -475,16 +480,8 @@
     [controller persistView:state];
 
     [path addObject:state];
-    
-    // Prevent controller from being persisted again - necessary because the same
-    // modalViewController is often assigned to multiple controllers
-    controller.appMapURL = nil;
   }
   [controller persistNavigationPath:path];
-
-  if (controller.modalViewController) {
-    [self persistController:controller.modalViewController path:path];
-  }
 }
 
 @end
