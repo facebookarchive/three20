@@ -9,11 +9,15 @@
   if (self = [super init]) {
     _sendTimer = nil;
     _dataSource = nil;
+    
+    [[TTAppMap sharedMap] addURL:@"tt://compose?to=(composeTo)"
+                          modal:self selector:@selector(composeTo:)];
   }
   return self;
 }
 
 - (void)dealloc {
+  [[TTAppMap sharedMap] removeURL:@"tt://compose?to=(composeTo)"];
   [_sendTimer invalidate];
   TT_RELEASE_MEMBER(_dataSource);
 	[super dealloc];
@@ -21,17 +25,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)compose {
-  id recipient = [TTTableTextItem itemWithText:@"Alan Jones" URL:TT_NULL_URL];
-  TTMessageController* controller = [[[TTMessageController alloc] 
-    initWithRecipients:[NSArray arrayWithObject:recipient]] autorelease];
+- (UIViewController*)composeTo:(NSString*)recipient {
+  TTTableTextItem* item = [TTTableTextItem itemWithText:recipient URL:TT_NULL_URL];
+
+  TTMessageController* controller =
+    [[[TTMessageController alloc] initWithRecipients:[NSArray arrayWithObject:item]] autorelease];
   controller.dataSource = _dataSource;
   controller.delegate = self;
 
-  UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
-  [navController pushViewController:controller animated:NO];
-  [controller presentModalViewController:navController animated:YES];
-  [self presentModalViewController:navController animated:YES];
+  return controller;
 }
 
 - (void)cancelAddressBook {
@@ -71,7 +73,7 @@
   
   UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [button setTitle:@"Compose Message" forState:UIControlStateNormal];
-  [button addTarget:self action:@selector(compose)
+  [button addTarget:@"tt://compose?to=Alan%20Jones" action:@selector(loadAsURL)
     forControlEvents:UIControlEventTouchUpInside];
   button.frame = CGRectMake(20, 20, 280, 50);
   [self.view addSubview:button];

@@ -1,7 +1,7 @@
-#import "RootViewController.h"
+#import "CatalogController.h"
 #import "Three20/developer.h"
 
-@implementation RootViewController
+@implementation CatalogController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -57,7 +57,7 @@
     @"General",
     [TTTableTextItem itemWithText:@"Web Image" URL:@"tt://imageTest1"],
     [TTTableTextItem itemWithText:@"YouTube Player" URL:@"tt://youTubeTest"],
-    [TTTableTextItem itemWithText:@"Web Browser" URL:@"tt://webTest"],
+    [TTTableTextItem itemWithText:@"Web Browser" URL:@"http://github.com/joehewitt/three20"],
     [TTTableTextItem itemWithText:@"Activity Labels" URL:@"tt://activityTest"],
     [TTTableTextItem itemWithText:@"Scroll View" URL:@"tt://scrollViewTest"],
     nil];

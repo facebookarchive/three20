@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-#import "RootViewController.h"
+#import "CatalogController.h"
 #import "PhotoTest1Controller.h"
 #import "PhotoTest2Controller.h"
 #import "ImageTest1Controller.h"
@@ -17,7 +17,6 @@
 #import "StyleTestController.h"
 #import "ButtonTestController.h"
 #import "TabBarTestController.h"
-#import "WebTestController.h"
 
 @implementation AppDelegate
 
@@ -28,29 +27,28 @@
   TTAppMap* appMap = [TTAppMap sharedMap];
   appMap.delegate = self;
   appMap.supportsShakeToReload = YES;
-  //appMap.persistenceMode = TTAppMapPersistenceModeAll;
+  appMap.persistenceMode = TTAppMapPersistenceModeAll;
   //appMap.launchExternalURLs = YES;
   
-  [appMap addURL:@"*" controller:[TTWebController class] selector:@selector(openURL:)];
-  [appMap addURL:@"tt://catalog" controller:[RootViewController class]];
-  [appMap addURL:@"tt://photoTest1" controller:[PhotoTest1Controller class]];
-  [appMap addURL:@"tt://photoTest2" controller:[PhotoTest2Controller class]];
-  [appMap addURL:@"tt://imageTest1" controller:[ImageTest1Controller class]];
-  [appMap addURL:@"tt://tableTest" controller:[TableTestController class]];
-  [appMap addURL:@"tt://tableItemTest" controller:[TableItemTestController class]];
-  [appMap addURL:@"tt://tableControlsTest" controller:[TableControlsTestController class]];
-  [appMap addURL:@"tt://styledTextTableTest" controller:[StyledTextTableTestController class]];
-  [appMap addURL:@"tt://composerTest" controller:[MessageTestController class]];
-  [appMap addURL:@"tt://searchTest" controller:[SearchTestController class]];
-  [appMap addURL:@"tt://activityTest" controller:[ActivityTestController class]];
-  [appMap addURL:@"tt://styleTest" controller:[StyleTestController class]];
-  [appMap addURL:@"tt://styledTextTest" controller:[StyledTextTestController class]];
-  [appMap addURL:@"tt://buttonTest" controller:[ButtonTestController class]];
-  [appMap addURL:@"tt://tabBarTest" controller:[TabBarTestController class]];
-  [appMap addURL:@"tt://youTubeTest" controller:[YouTubeTestController class]];
-  [appMap addURL:@"tt://imageTest2" controller:[TableImageTestController class]];
-  [appMap addURL:@"tt://scrollViewTest" controller:[ScrollViewTestController class]];
-  [appMap addURL:@"tt://webTest" controller:[WebTestController class]];
+  [appMap addURL:@"*" create:[TTWebController class] selector:@selector(openURL:)];
+  [appMap addURL:@"tt://catalog" create:[CatalogController class]];
+  [appMap addURL:@"tt://photoTest1" create:[PhotoTest1Controller class]];
+  [appMap addURL:@"tt://photoTest2" create:[PhotoTest2Controller class]];
+  [appMap addURL:@"tt://imageTest1" create:[ImageTest1Controller class]];
+  [appMap addURL:@"tt://tableTest" create:[TableTestController class]];
+  [appMap addURL:@"tt://tableItemTest" create:[TableItemTestController class]];
+  [appMap addURL:@"tt://tableControlsTest" create:[TableControlsTestController class]];
+  [appMap addURL:@"tt://styledTextTableTest" create:[StyledTextTableTestController class]];
+  [appMap addURL:@"tt://composerTest" create:[MessageTestController class]];
+  [appMap addURL:@"tt://searchTest" create:[SearchTestController class]];
+  [appMap addURL:@"tt://activityTest" create:[ActivityTestController class]];
+  [appMap addURL:@"tt://styleTest" create:[StyleTestController class]];
+  [appMap addURL:@"tt://styledTextTest" create:[StyledTextTestController class]];
+  [appMap addURL:@"tt://buttonTest" create:[ButtonTestController class]];
+  [appMap addURL:@"tt://tabBarTest" create:[TabBarTestController class]];
+  [appMap addURL:@"tt://youTubeTest" create:[YouTubeTestController class]];
+  [appMap addURL:@"tt://imageTest2" create:[TableImageTestController class]];
+  [appMap addURL:@"tt://scrollViewTest" create:[ScrollViewTestController class]];
 
   TTLoadURL(@"tt://catalog");
 }

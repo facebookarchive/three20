@@ -82,21 +82,25 @@ typedef enum {
 /**
  * Adds a URL pattern which will create and display a controller when loaded.
  */
-- (void)addURL:(NSString*)URL controller:(Class)controller;
+- (void)addURL:(NSString*)URL create:(id)create;
 
 /**
  * Adds a URL pattern which will create and display a controller when loaded.
  *
  * The selector will be called on the controller after is created, and arguments from
  * the URL will be extracted using the pattern and passed to the selector.
+ *
+ * target can be either a Class which is a subclass of UIViewController, or an object which
+ * implements a method that returns a UIViewController instance.  If you use an object, the
+ * selector will be called with arguments extracted from the URL, and the view controller that
+ * you return will be the one that is displayed.
  */
-- (void)addURL:(NSString*)URL controller:(Class)controller selector:(SEL)selector;
+- (void)addURL:(NSString*)URL create:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a controller when loaded.
  */
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL controller:(Class)controller
-        selector:(SEL)selector;
+- (void)addURL:(NSString*)URL parent:(NSString*)parentURL create:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a singleton controller when loaded.
@@ -104,34 +108,38 @@ typedef enum {
  * The term 'singleton' means that if the controller exists when a URL tries to load it, it will
  * cause the existing controller to be displayed rather than creating a new one.
  */
-- (void)addURL:(NSString*)URL singleton:(Class)controller;
+- (void)addURL:(NSString*)URL singleton:(id)target;
 
 /**
  * Adds a URL pattern which will create and display a singleton controller when loaded.
  */
-- (void)addURL:(NSString*)URL singleton:(Class)controller selector:(SEL)selector;
+- (void)addURL:(NSString*)URL singleton:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a singleton controller when loaded.
  */
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL singleton:(Class)controller
+- (void)addURL:(NSString*)URL parent:(NSString*)parentURL singleton:(id)target
         selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a modal controller when loaded.
  */
-- (void)addURL:(NSString*)URL modal:(Class)controller;
+- (void)addURL:(NSString*)URL modal:(id)target;
 
 /**
  * Adds a URL pattern which will create and display a modal controller when loaded.
  */
-- (void)addURL:(NSString*)URL modal:(Class)controller selector:(SEL)selector;
+- (void)addURL:(NSString*)URL modal:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a modal controller when loaded.
  */
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(Class)controller
-        selector:(SEL)selector;
+- (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(id)target selector:(SEL)selector;
+
+/**
+ * Removes a URL pattern.
+ */
+- (void)removeURL:(NSString*)URL;
 
 /**
  * Assigns a controller to a specific URL.

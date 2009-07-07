@@ -4,8 +4,6 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
   
-#define TT_SMALL_IMAGE_SIZE (50*50)
-#define TT_MEDIUM_IMAGE_SIZE (130*97)
 #define TT_LARGE_IMAGE_SIZE (600*400)
 
 static NSString* kCacheDirPathName = @"Three20";
@@ -120,7 +118,7 @@ static TTURLCache* gSharedCache = nil;
     _disableDiskCache = NO;
     _disableImageCache = NO;
     _invalidationAge = TT_DEFAULT_CACHE_INVALIDATION_AGE;
-    _maxPixelCount = (TT_SMALL_IMAGE_SIZE*20) + (TT_MEDIUM_IMAGE_SIZE*12);
+    _maxPixelCount = 0;
     _totalPixelCount = 0;
     
     // XXXjoe Disabling the built-in cache may save memory but it also makes UIWebView slow

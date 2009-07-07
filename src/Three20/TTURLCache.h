@@ -33,7 +33,7 @@
  * The maximum number of pixels to keep in memory for cached images.
  *
  * Setting this to zero will allow an unlimited number of images to be cached.  The default
- * is enough to hold roughly 25 small images.
+ * is zero.
  */
 @property(nonatomic) NSUInteger maxPixelCount;
 
