@@ -24,10 +24,11 @@ typedef enum {
   UIViewController* _mainViewController;
   NSMutableDictionary* _singletons;
   TTAppMapPersistenceMode _persistenceMode;
-  BOOL _supportsShakeToReload;
   NSMutableArray* _patterns;
   TTURLPattern* _defaultPattern;
   BOOL _invalidPatterns;
+  BOOL _supportsShakeToReload;
+  BOOL _openExternalURLs;
 }
 
 @property(nonatomic,assign) id<TTAppMapDelegate> delegate;
@@ -56,6 +57,13 @@ typedef enum {
  * Causes the current view controller to be reloaded when shaking the phone.
  */
 @property(nonatomic) BOOL supportsShakeToReload;
+
+/**
+ * Opens URLs externally if they don't match any patterns.
+ *
+ * The default value is NO.
+ */
+@property(nonatomic) BOOL openExternalURLs;
 
 + (TTAppMap*)sharedMap;
 
@@ -172,7 +180,18 @@ typedef enum {
 
 @optional
 
+/**
+ * Asks if the URL should be loaded and allows the delegate to stop it.
+ */
+- (BOOL)appMap:(TTAppMap*)appMap shouldLoadURL:(NSString*)URL;
 
+/**
+ * The URL is about to be opened in a controller.
+ *
+ * If the controller argument is nil, the URL will be opened externally.
+ */
+- (void)appMap:(TTAppMap*)appMap willLoadURL:(NSString*)URL
+        inViewController:(UIViewController*)controller;
 
 @end
 

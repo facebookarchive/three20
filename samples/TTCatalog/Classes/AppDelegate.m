@@ -25,10 +25,8 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication*)application {
   TTAppMap* appMap = [TTAppMap sharedMap];
-  appMap.delegate = self;
   appMap.supportsShakeToReload = YES;
   appMap.persistenceMode = TTAppMapPersistenceModeAll;
-  //appMap.launchExternalURLs = YES;
   
   [appMap addURL:@"*" create:[TTWebController class] selector:@selector(openURL:)];
   [appMap addURL:@"tt://catalog" create:[CatalogController class]];
@@ -51,28 +49,6 @@
   [appMap addURL:@"tt://scrollViewTest" create:[ScrollViewTestController class]];
 
   TTLoadURL(@"tt://catalog");
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTAppMapDelegate
-
-- (void)willNavigateToObject:(id)object inView:(NSString*)viewType
-    withController:(UIViewController*)viewController {
-//  NSIndexPath* indexPath = self.tableView.indexPathForSelectedRow;
-//  TTTableTextItem* item = [self.dataSource tableView:self.tableView
-//                                           objectForRowAtIndexPath:indexPath];
-//  
-//  viewController.title = item.text;
-}
-
-- (BOOL)shouldLoadExternalURL:(NSURL*)URL {
-  NSString* message = [NSString stringWithFormat:@"You touched a link to %@", URL];
-  UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:@"Link"
-    message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"")
-    otherButtonTitles:nil] autorelease];
-  [alertView show];
-
-  return NO;
 }
 
 @end

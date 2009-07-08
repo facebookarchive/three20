@@ -9,7 +9,7 @@
 
 @synthesize delegate = _delegate, mainWindow = _mainWindow,
             mainViewController = _mainViewController, persistenceMode = _persistenceMode,
-            supportsShakeToReload = _supportsShakeToReload;
+            supportsShakeToReload = _supportsShakeToReload, openExternalURLs = _openExternalURLs;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -216,14 +216,30 @@
 
 - (UIViewController*)loadControllerWithURL:(NSString*)URL display:(BOOL)display
                     animated:(BOOL)animated {
+  if ([_delegate respondsToSelector:@selector(appMap:shouldLoadURL:)]) {
+    if ([_delegate appMap:self shouldLoadURL:URL]) {
+      return nil;
+    }
+  }
+
   NSURL* theURL = [NSURL URLWithString:URL];
   TTURLPattern* pattern = nil;
   UIViewController* controller = [self controllerForURL:theURL pattern:&pattern];
   if (controller) {
+    if ([_delegate respondsToSelector:@selector(appMap:wilLoadURL:inViewController:)]) {
+      [_delegate appMap:self willLoadURL:URL inViewController:controller];
+    }
+
     controller.appMapURL = URL;
     if (display) {
       [self presentController:controller forURL:theURL withPattern:pattern animated:animated];
     }
+  } else if (_openExternalURLs) {
+    if ([_delegate respondsToSelector:@selector(appMap:wilLoadURL:inViewController:)]) {
+      [_delegate appMap:self willLoadURL:URL inViewController:nil];
+    }
+
+    [[UIApplication sharedApplication] openURL:theURL];
   }
   return controller;
 }
@@ -277,8 +293,9 @@
     _patterns = nil;
     _defaultPattern = nil;
     _persistenceMode = TTAppMapPersistenceModeNone;
-    _supportsShakeToReload = NO;
     _invalidPatterns = NO;
+    _supportsShakeToReload = NO;
+    _openExternalURLs = NO;
     
     // Swizzle a new dealloc for UIViewController so it notifies us when it's going away.
     // We need to remove dying controllers from our singleton cache.
