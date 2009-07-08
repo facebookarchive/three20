@@ -5,6 +5,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTTableItem
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  return [self init];
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,6 +39,26 @@
   TT_RELEASE_MEMBER(_URL);
   TT_RELEASE_MEMBER(_accessoryURL);
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.URL = [decoder decodeObjectForKey:@"URL"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.URL) {
+    [encoder encodeObject:self.URL forKey:@"URL"];
+  }
+  if (self.accessoryURL) {
+    [encoder encodeObject:self.accessoryURL forKey:@"URL"];
+  }
 }
 
 @end
@@ -75,6 +106,23 @@
 - (void)dealloc {
   TT_RELEASE_MEMBER(_text);
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.text = [decoder decodeObjectForKey:@"text"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.text) {
+    [encoder encodeObject:self.text forKey:@"text"];
+  }
 }
 
 @end
@@ -126,6 +174,23 @@
 - (void)dealloc {
   TT_RELEASE_MEMBER(_caption);
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.caption = [decoder decodeObjectForKey:@"caption"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.caption) {
+    [encoder encodeObject:self.caption forKey:@"caption"];
+  }
 }
 
 @end
@@ -237,6 +302,23 @@
   [super dealloc];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.image = [decoder decodeObjectForKey:@"image"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.image) {
+    [encoder encodeObject:self.image forKey:@"image"];
+  }
+}
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -377,6 +459,23 @@
   [super dealloc];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.text = [decoder decodeObjectForKey:@"text"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.text) {
+    [encoder encodeObject:self.text forKey:@"text"];
+  }
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -409,6 +508,27 @@
   return item;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.caption = [decoder decodeObjectForKey:@"caption"];
+    self.control = [decoder decodeObjectForKey:@"control"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.caption) {
+    [encoder encodeObject:self.caption forKey:@"caption"];
+  }
+  if (self.control) {
+    [encoder encodeObject:self.control forKey:@"control"];
+  }
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -439,6 +559,27 @@
   item.caption = caption;
   item.view = view;
   return item;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.caption = [decoder decodeObjectForKey:@"caption"];
+    self.view = [decoder decodeObjectForKey:@"view"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.caption) {
+    [encoder encodeObject:self.caption forKey:@"caption"];
+  }
+  if (self.view) {
+    [encoder encodeObject:self.view forKey:@"control"];
+  }
 }
 
 @end

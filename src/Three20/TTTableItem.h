@@ -2,7 +2,7 @@
 
 @class TTStyledText, TTStyle;
 
-@interface TTTableItem : NSObject
+@interface TTTableItem : NSObject <NSCoding>
 @end
 
 @interface TTTableLinkedItem : TTTableItem {

@@ -10,6 +10,9 @@
 
 @synthesize title = _title, required = _required;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
 - (id)initWithTitle:(NSString*)title required:(BOOL)required {
   if (self = [self init]) {
     _title = [title copy];
@@ -27,6 +30,20 @@
   [super dealloc];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (TTPickerTextField*)createViewForController:(TTMessageController*)controller {
+  return nil;
+}
+
+- (id)persistField:(TTPickerTextField*)textField {
+  return nil;
+}
+
+- (void)restoreField:(TTPickerTextField*)textField withData:(id)data {
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,13 +59,55 @@
   return self;
 }
 
+- (void)dealloc {
+  TT_RELEASE_MEMBER(_recipients);
+  [super dealloc];
+}
+
 - (NSString*)description {
   return [NSString stringWithFormat:@"%@ %@", _title, _recipients];
 }
 
-- (void)dealloc {
-  TT_RELEASE_MEMBER(_recipients);
-  [super dealloc];
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTMessageField
+
+- (TTPickerTextField*)createViewForController:(TTMessageController*)controller {
+  TTPickerTextField* textField = [[[TTPickerTextField alloc] init] autorelease];
+  textField.dataSource = controller.dataSource;
+  textField.autocorrectionType = UITextAutocorrectionTypeNo;
+  textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+  textField.rightViewMode = UITextFieldViewModeAlways;
+
+  if (controller.showsRecipientPicker) {
+    UIButton* addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [addButton addTarget:self action:@selector(showRecipientPicker)
+      forControlEvents:UIControlEventTouchUpInside];
+    textField.rightView = addButton;
+  }
+  return textField;
+}
+
+- (id)persistField:(TTPickerTextField*)textField {
+  NSMutableArray* cellsData = [NSMutableArray array];
+  for (id cell in textField.cells) {
+    if ([cell conformsToProtocol:@protocol(NSCoding)]) {
+      NSData* data = [NSKeyedArchiver archivedDataWithRootObject:cell];
+      [cellsData addObject:data];
+    }
+  }
+  return [NSDictionary dictionaryWithObjectsAndKeys:cellsData, @"cells", textField.text, @"text"];
+}
+
+- (void)restoreField:(TTPickerTextField*)textField withData:(id)data {
+  NSDictionary* dict = data;
+  NSArray* cellsData = [dict objectForKey:@"cells"];
+  [textField removeAllCells];
+  for (id cellData in cellsData) {
+    id cell = [NSKeyedUnarchiver unarchiveObjectWithData:cellData];
+    [textField addCellWithObject:cell];
+  }
+
+  textField.text = [dict objectForKey:@"text"];
 }
 
 @end
@@ -73,6 +132,21 @@
 - (void)dealloc {
   TT_RELEASE_MEMBER(_text);
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTMessageField
+
+- (TTPickerTextField*)createViewForController:(TTMessageController*)controller {
+  return [[[TTPickerTextField alloc] initWithFrame:CGRectZero] autorelease];
+}
+
+- (id)persistField:(TTPickerTextField*)textField {
+  return textField.text;
+}
+
+- (void)restoreField:(TTPickerTextField*)textField withData:(id)data {
+  textField.text = data;
 }
 
 @end
@@ -107,24 +181,7 @@
   _fieldViews = [[NSMutableArray alloc] init];
 
   for (TTMessageField* field in _fields) {
-    TTPickerTextField* textField = nil;
-    if ([field isKindOfClass:[TTMessageRecipientField class]]) {
-      textField = [[[TTPickerTextField alloc] initWithFrame:CGRectZero] autorelease];
-      textField.dataSource = _dataSource;
-      textField.autocorrectionType = UITextAutocorrectionTypeNo;
-      textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-      textField.rightViewMode = UITextFieldViewModeAlways;
-
-      if (_showsRecipientPicker) {
-        UIButton* addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        [addButton addTarget:self action:@selector(showRecipientPicker)
-          forControlEvents:UIControlEventTouchUpInside];
-        textField.rightView = addButton;
-      }
-    } else if ([field isKindOfClass:[TTMessageTextField class]]) {
-      textField = [[[TTPickerTextField alloc] initWithFrame:CGRectZero] autorelease];
-    }
-    
+    TTPickerTextField* textField = [field createViewForController:self];
     if (textField) {
       textField.delegate = self;
       textField.backgroundColor = TTSTYLEVAR(backgroundColor);
@@ -203,6 +260,29 @@
     self.navigationItem.title = subjectField.text;
   }
   [self updateSendCommand];
+}
+
+- (NSInteger)fieldIndexOfFirstResponder {
+  NSInteger index = 0;
+  for (UIView* view in _fieldViews) {
+    if ([view isFirstResponder]) {
+      return index;
+    }
+    ++index;
+  }
+  if (_textEditor.textView.isFirstResponder) {
+    return _fieldViews.count;
+  }
+  return -1;
+}
+
+- (void)setFieldIndexOfFirstResponder:(NSInteger)index {
+  if (index < _fieldViews.count) {
+    UIView* view = [_fieldViews objectAtIndex:index];
+    [view becomeFirstResponder];
+  } else {
+    [_textEditor.textView becomeFirstResponder];
+  }
 }
 
 - (void)showRecipientPicker {
@@ -296,10 +376,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+  if (!_frozenState) {
+    UIView* firstTextField = [_fieldViews objectAtIndex:0];
+    [firstTextField becomeFirstResponder];
+  }
+
   [super viewWillAppear:animated];
-  
-  UIView* firstTextField = [_fieldViews objectAtIndex:0];
-  [firstTextField becomeFirstResponder];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -307,19 +389,52 @@
 
 - (void)persistView:(NSMutableDictionary*)state {
   NSMutableArray* fields = [NSMutableArray array];
-  for (NSInteger i = 0; i < _fields.count+1; ++i) {
-    NSString* text = [self textForFieldAtIndex:i];
-    [fields addObject:text];
+  for (NSInteger i = 0; i < _fields.count; ++i) {
+    TTMessageField* field = [_fields objectAtIndex:i];
+    TTPickerTextField* view = [_fieldViews objectAtIndex:i];
+    id data = [field persistField:view];
+    if (data) {
+      [fields addObject:data];
+    } else {
+      [fields addObject:@""];
+    }
   }
   [state setObject:fields forKey:@"fields"];
+
+  NSString* body = self.body;
+  if (body) {
+    [state setObject:body forKey:@"body"];
+  }
+
+  CGFloat scrollY = _scrollView.contentOffset.y;
+  [state setObject:[NSNumber numberWithFloat:scrollY] forKey:@"scrollOffsetY"];
+  
+  NSInteger firstResponder = [self fieldIndexOfFirstResponder];
+  [state setObject:[NSNumber numberWithInt:firstResponder] forKey:@"firstResponder"];
 }
 
 - (void)restoreView:(NSDictionary*)state {
   NSMutableArray* fields = [state objectForKey:@"fields"];
   for (NSInteger i = 0; i < fields.count; ++i) {
-    NSString* text = [fields objectAtIndex:i];
-    [self setText:text forFieldAtIndex:i];
+    TTMessageField* field = [_fields objectAtIndex:i];
+    TTPickerTextField* view = [_fieldViews objectAtIndex:i];
+
+    id data = [fields objectAtIndex:i];
+    if (data != [NSNull null]) {
+      [field restoreField:view withData:data];
+    }
   }
+  
+  NSString* body = [state objectForKey:@"body"];
+  if (body) {
+    self.body = body;
+  }
+
+  NSNumber* scrollY = [state objectForKey:@"scrollOffsetY"];
+  _scrollView.contentOffset = CGPointMake(0, scrollY.floatValue);
+
+  NSInteger firstResponder = [[state objectForKey:@"firstResponder"] intValue];
+  [self setFieldIndexOfFirstResponder:firstResponder];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
