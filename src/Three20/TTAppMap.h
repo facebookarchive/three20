@@ -13,9 +13,9 @@ typedef enum {
 
 typedef enum {
   TTDisplayModeNone,
-  TTDisplayModeCreate,            // new controller is created and pushed
-  TTDisplayModeShare,             // the same controller is re-used
-  TTDisplayModeModal,             // new controller is created and displayed modally
+  TTDisplayModeCreate,            // a new controller is created each time
+  TTDisplayModeShare,             // the same controller is cached and re-used
+  TTDisplayModeModal,             // a new controller is created and displayed modally
 } TTDisplayMode;
 
 @protocol TTURLObject
@@ -26,8 +26,8 @@ typedef enum {
 
 @interface TTAppMap : NSObject {
   id<TTAppMapDelegate> _delegate;
-  UIWindow* _mainWindow;
-  UIViewController* _mainViewController;
+  UIWindow* _window;
+  UIViewController* _rootViewController;
   NSMutableDictionary* _bindings;
   TTAppMapPersistenceMode _persistenceMode;
   NSMutableArray* _patterns;
@@ -40,14 +40,14 @@ typedef enum {
 @property(nonatomic,assign) id<TTAppMapDelegate> delegate;
 
 /**
- * The window that contains the views of the controller hierarchy.
+ * The window that contains the views view controller hierarchy.
  */
-@property(nonatomic,retain) UIWindow* mainWindow;
+@property(nonatomic,retain) UIWindow* window;
 
 /**
- * The controller that is at the root of the controller hierarchy.
+ * The controller that is at the root of the view controller hierarchy.
  */
-@property(nonatomic,retain) UIViewController* mainViewController;
+@property(nonatomic,readonly) UIViewController* rootViewController;
 
 /**
  * The currently visible view controller.
@@ -55,7 +55,7 @@ typedef enum {
 @property(nonatomic,readonly) UIViewController* visibleViewController;
 
 /**
- * How controllers are automatically persisted on termination and restored on launch.
+ * How view controllers are automatically persisted on termination and restored on launch.
  */
 @property(nonatomic) TTAppMapPersistenceMode persistenceMode;
 
@@ -74,19 +74,50 @@ typedef enum {
 + (TTAppMap*)sharedMap;
 
 /**
- * Loads and displays a controller with a pattern than matches the URL.
+ * Loads and displays a view controller with a pattern than matches the URL.
  *
- * If there is not yet a mainViewController, the controller loaded with this URL
- * will be assigned as the mainViewController and inserted into the keyWinodw.  If there is not
+ * If there is not yet a rootViewController, the view controller loaded with this URL
+ * will be assigned as the rootViewController and inserted into the keyWinodw.  If there is not
  * a keyWindow, a UIWindow will be created and displayed.
  */
-- (UIViewController*)openURL:(NSString*)URL;
-- (UIViewController*)openURL:(NSString*)URL params:(NSDictionary*)params;
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated;
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated;
 - (UIViewController*)openURL:(NSString*)URL params:(NSDictionary*)params animated:(BOOL)animated;
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL
                      params:(NSDictionary*)params animated:(BOOL)animated;
+
+/** 
+ * Opens a sequence of URLs, with only the last one being animated.
+ */
+- (UIViewController*)openURLs:(NSString*)URL,...;
+
+/** 
+ * Persists all view controllers to user defaults.
+ */
+- (void)persistViewControllers;
+
+/** 
+ * Persists all view controllers to user defaults.
+ */
+- (void)persistViewControllers;
+
+/** 
+ * Restores all view controllers from user defaults and returns the last one.
+ */
+- (UIViewController*)restoreViewControllers;
+
+/**
+ * Persists a view controller's state and recursively persists the next view controller after it.
+ *
+ * Do not call this directly except from within a view controller that is being directed
+ * by the app map to persist itself.
+ */
+- (void)persistController:(UIViewController*)controller path:(NSMutableArray*)path;
+
+/** 
+ * Removes all view controllers from the window and releases them.
+ */
+- (void)removeAllViewControllers;
 
 /**
  * Gets or creates the object with a pattern that matches the URL.
@@ -97,19 +128,19 @@ typedef enum {
 - (id)objectForURL:(NSString*)URL;
 
 /**
- * Tests if there is a pattern that matches the URL.
+ * Tests if there is a pattern that matches the URL and if so returns its display mode.
  */
 - (TTDisplayMode)displayModeForURL:(NSString*)URL;
 
 /**
- * Adds a URL pattern which will create and display a controller when loaded.
+ * Adds a URL pattern which will create and display a view controller when loaded.
  */
 - (void)addURL:(NSString*)URL create:(id)create;
 
 /**
- * Adds a URL pattern which will create and display a controller when loaded.
+ * Adds a URL pattern which will create and display a view controller when loaded.
  *
- * The selector will be called on the controller after is created, and arguments from
+ * The selector will be called on the view controller after is created, and arguments from
  * the URL will be extracted using the pattern and passed to the selector.
  *
  * target can be either a Class which is a subclass of UIViewController, or an object which
@@ -120,12 +151,12 @@ typedef enum {
 - (void)addURL:(NSString*)URL create:(id)target selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a controller when loaded.
+ * Adds a URL pattern which will create and display a view controller when loaded.
  */
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL create:(id)target selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a share controller when loaded.
+ * Adds a URL pattern which will create and display a share view controller when loaded.
  *
  * Controllers created with the "share" mode, meaning that it will be created once and re-used
  * until it is destroyed.
@@ -133,28 +164,28 @@ typedef enum {
 - (void)addURL:(NSString*)URL share:(id)target;
 
 /**
- * Adds a URL pattern which will create and display a controller when loaded.
+ * Adds a URL pattern which will create and display a view controller when loaded.
  */
 - (void)addURL:(NSString*)URL share:(id)target selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a controller when loaded.
+ * Adds a URL pattern which will create and display a view controller when loaded.
  */
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL share:(id)target
         selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a modal controller when loaded.
+ * Adds a URL pattern which will create and display a modal view controller when loaded.
  */
 - (void)addURL:(NSString*)URL modal:(id)target;
 
 /**
- * Adds a URL pattern which will create and display a modal controller when loaded.
+ * Adds a URL pattern which will create and display a modal view controller when loaded.
  */
 - (void)addURL:(NSString*)URL modal:(id)target selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a modal controller when loaded.
+ * Adds a URL pattern which will create and display a modal view controller when loaded.
  */
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(id)target selector:(SEL)selector;
 
@@ -189,11 +220,6 @@ typedef enum {
  */
 - (void)resetDefaults;
 
-/**
- * Persists a controller's state and recursively persists the next controller after it.
- */
-- (void)persistController:(UIViewController*)controller path:(NSMutableArray*)path;
-
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -203,14 +229,14 @@ typedef enum {
 @optional
 
 /**
- * Asks if the URL should be opened and allows the delegate to stop it.
+ * Asks if the URL should be opened and allows the delegate to prevent it.
  */
 - (BOOL)appMap:(TTAppMap*)appMap shouldOpenURL:(NSURL*)URL;
 
 /**
  * The URL is about to be opened in a controller.
  *
- * If the controller argument is nil, the URL will be opened externally.
+ * If the controller argument is nil, the URL is going to be opened externally.
  */
 - (void)appMap:(TTAppMap*)appMap willOpenURL:(NSURL*)URL
         inViewController:(UIViewController*)controller;

@@ -27,9 +27,10 @@
   TTAppMap* appMap = [TTAppMap sharedMap];
   appMap.supportsShakeToReload = YES;
   appMap.persistenceMode = TTAppMapPersistenceModeAll;
-  
+
   [appMap addURL:@"*" create:[TTWebController class] selector:@selector(initWithURL:)];
   [appMap addURL:@"tt://catalog" create:[CatalogController class]];
+  
   [appMap addURL:@"tt://photoTest1" create:[PhotoTest1Controller class]];
   [appMap addURL:@"tt://photoTest2" create:[PhotoTest2Controller class]];
   [appMap addURL:@"tt://imageTest1" create:[ImageTest1Controller class]];
@@ -48,7 +49,14 @@
   [appMap addURL:@"tt://imageTest2" create:[TableImageTestController class]];
   [appMap addURL:@"tt://scrollViewTest" create:[ScrollViewTestController class]];
 
-  TTOpenURL(@"tt://catalog");
+  if (![appMap restoreViewControllers]) {
+    [appMap openURL:@"tt://catalog" animated:NO];
+  }
+}
+
+- (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)URL {
+  [[TTAppMap sharedMap] openURL:URL.absoluteString animated:NO];
+  return YES;
 }
 
 @end

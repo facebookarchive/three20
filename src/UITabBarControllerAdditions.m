@@ -7,6 +7,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 
+- (UIViewController*)childViewController {
+  return self.selectedViewController;
+}
+
 - (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
   self.selectedViewController = controller;
 }

@@ -95,7 +95,8 @@
       [cellsData addObject:data];
     }
   }
-  return [NSDictionary dictionaryWithObjectsAndKeys:cellsData, @"cells", textField.text, @"text"];
+  return [NSDictionary dictionaryWithObjectsAndKeys:cellsData, @"cells",
+                                                    textField.text, @"text", nil];
 }
 
 - (void)restoreField:(TTPickerTextField*)textField withData:(id)data {

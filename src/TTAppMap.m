@@ -7,8 +7,8 @@
 
 @implementation TTAppMap
 
-@synthesize delegate = _delegate, mainWindow = _mainWindow,
-            mainViewController = _mainViewController, persistenceMode = _persistenceMode,
+@synthesize delegate = _delegate, window = _window,
+            rootViewController = _rootViewController, persistenceMode = _persistenceMode,
             supportsShakeToReload = _supportsShakeToReload, openExternalURLs = _openExternalURLs;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,15 +46,15 @@
 }
 
 - (UINavigationController*)frontNavigationController {
-  if ([_mainViewController isKindOfClass:[UITabBarController class]]) {
-    UITabBarController* tabBarController = (UITabBarController*)_mainViewController;
+  if ([_rootViewController isKindOfClass:[UITabBarController class]]) {
+    UITabBarController* tabBarController = (UITabBarController*)_rootViewController;
     if (tabBarController.selectedViewController) {
       return (UINavigationController*)tabBarController.selectedViewController;
     } else {
       return (UINavigationController*)[tabBarController.viewControllers objectAtIndex:0];
     }
-  } else if ([_mainViewController isKindOfClass:[UINavigationController class]]) {
-    return (UINavigationController*)_mainViewController;
+  } else if ([_rootViewController isKindOfClass:[UINavigationController class]]) {
+    return (UINavigationController*)_rootViewController;
   } else {
     return nil;
   }
@@ -65,7 +65,7 @@
   if (navController) {
     return [self frontViewControllerForController:navController];
   } else {
-    return [self frontViewControllerForController:_mainViewController];
+    return [self frontViewControllerForController:_rootViewController];
   }
 }
 
@@ -143,8 +143,29 @@
   }
 }
 
-- (UIViewController*)parentControllerForController:(UIViewController*)controller
-                     parent:(NSURL*)parentURL {
+- (void)setRootViewController:(UIViewController*)controller {
+  if (controller != _rootViewController) {
+    [_rootViewController release];
+    _rootViewController = [controller retain];
+    
+    UIView* mainView = controller.view;
+    if (!mainView.superview) {
+      if (!_window) {
+        UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
+        if (keyWindow) {
+          _window = [keyWindow retain];
+        } else {
+          _window = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
+          //_window.autoresizesSubviews = NO;
+          [_window makeKeyAndVisible];
+        }
+      }
+      [_window addSubview:controller.view];
+    }
+  }
+}
+
+- (UIViewController*)parentForController:(UIViewController*)controller parent:(NSURL*)parentURL {
   UIViewController* parentController = nil;
   if (parentURL) {
     parentController = [self objectForURL:parentURL.absoluteString theURL:parentURL params:nil
@@ -153,8 +174,8 @@
 
   // If this is the first controller, and it is not a "container", forcibly put
   // a navigation controller at the root of the controller hierarchy.
-  if (!_mainViewController && ![controller isContainerController]) {
-    self.mainViewController = [[[UINavigationController alloc] init] autorelease];
+  if (!_rootViewController && ![controller isContainerController]) {
+    [self setRootViewController:[[[UINavigationController alloc] init] autorelease]];
   }
 
   return parentController ? parentController : self.visibleViewController;
@@ -173,8 +194,8 @@
 
 - (void)presentController:(UIViewController*)controller
         parent:(UIViewController*)parentController modal:(BOOL)modal animated:(BOOL)animated {
-  if (!_mainViewController) {
-    self.mainViewController = controller;
+  if (!_rootViewController) {
+    [self setRootViewController:controller];
   } else if (controller.parentViewController) {
     // The controller already exists, so we just need to make it visible
     while (controller) {
@@ -195,8 +216,7 @@
 - (void)presentController:(UIViewController*)controller forURL:(NSURL*)URL
         parent:(NSString*)parentURL withPattern:(TTURLPattern*)pattern animated:(BOOL)animated {
   NSURL* parent = parentURL ? [NSURL URLWithString:parentURL] : pattern.parentURL;
-  UIViewController* parentController = [self parentControllerForController:controller
-                                             parent:parent];
+  UIViewController* parentController = [self parentForController:controller parent:parent];
   [self presentController:controller parent:parentController
         modal:pattern.displayMode == TTDisplayModeModal animated:animated];
 }
@@ -234,52 +254,14 @@
   return controller;
 }
 
-- (void)persistControllers {
-  NSMutableArray* path = [NSMutableArray array];
-  [self persistController:_mainViewController path:path];
-
-  if (_mainViewController.modalViewController) {
-    [self persistController:_mainViewController.modalViewController path:path];
-  }
-  
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setObject:path forKey:@"TTAppMapNavigation"];
-  [defaults synchronize];
-}
-
-- (BOOL)restoreControllersStartingWithURL:(NSString*)startURL {
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  NSArray* path = [defaults objectForKey:@"TTAppMapNavigation"];
-  NSInteger pathIndex = 0;
-  for (NSDictionary* state in path) {
-    NSString* URL = [state objectForKey:@"__appMapURL__"];
-    
-    if (!_mainViewController && ![URL isEqualToString:startURL]) {
-      // If the start URL is not the same as the persisted start URL, then don't restore
-      // because the app wants to start with a different URL.
-      return NO;
-    }
-    
-    UIViewController* controller = [self openControllerWithURL:URL parent:nil params:nil
-                                         display:YES animated:NO];
-    controller.frozenState = state;
-    
-    if (_persistenceMode == TTAppMapPersistenceModeTop && pathIndex++ == 1) {
-      break;
-    }
-  }
-
-  return path.count > 0;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;
-    _mainWindow = nil;
-    _mainViewController = nil;
+    _window = nil;
+    _rootViewController = nil;
     _bindings = nil;
     _patterns = nil;
     _defaultPattern = nil;
@@ -305,8 +287,8 @@
                                           name:UIApplicationWillTerminateNotification
                                           object:nil];
   _delegate = nil;
-  TT_RELEASE_MEMBER(_mainWindow);
-  TT_RELEASE_MEMBER(_mainViewController);
+  TT_RELEASE_MEMBER(_window);
+  TT_RELEASE_MEMBER(_rootViewController);
   TT_RELEASE_MEMBER(_bindings);
   TT_RELEASE_MEMBER(_patterns);
   TT_RELEASE_MEMBER(_defaultPattern);
@@ -318,50 +300,24 @@
 
 - (void)applicationWillTerminateNotification:(void*)info {
   if (_persistenceMode) {
-    [self persistControllers];
+    [self persistViewControllers];
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (void)setMainViewController:(UIViewController*)controller {
-  if (controller != _mainViewController) {
-    [_mainViewController release];
-    _mainViewController = [controller retain];
-    
-    UIView* mainView = controller.view;
-    if (!mainView.superview) {
-      if (!_mainWindow) {
-        UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
-        if (keyWindow) {
-          _mainWindow = [keyWindow retain];
-        } else {
-          _mainWindow = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
-          [_mainWindow makeKeyAndVisible];
-        }
-      }
-      [_mainWindow addSubview:controller.view];
+- (UIViewController*)visibleViewController {
+  UIViewController* controller = _rootViewController;
+  while (controller) {
+    UIViewController* child = controller.childViewController;
+    if (child) {
+      controller = child;
+    } else {
+      return controller;
     }
   }
-}
-
-- (UIViewController*)visibleViewController {
-  UINavigationController* navController = self.frontNavigationController;
-  if (navController) {
-    UIViewController* controller = navController.visibleViewController;
-    return controller ? controller : navController;
-  } else {
-    return [self frontViewControllerForController:_mainViewController];
-  }
-}
-
-- (UIViewController*)openURL:(NSString*)URL {
-  return [self openURL:URL parent:nil params:nil animated:YES];
-}
-
-- (UIViewController*)openURL:(NSString*)URL params:(NSDictionary*)params {
-  return [self openURL:URL parent:nil params:params animated:YES];
+  return nil;
 }
 
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated {
@@ -378,12 +334,25 @@
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL params:(NSDictionary*)params
                      animated:(BOOL)animated {
-  if (!_mainViewController && _persistenceMode && [self restoreControllersStartingWithURL:URL]) {
-    return _mainViewController;
-  } else {
-    return [self openControllerWithURL:URL parent:parentURL params:params display:YES
-                 animated:animated];
+  return [self openControllerWithURL:URL parent:parentURL params:params display:YES
+               animated:animated];
+}
+
+- (UIViewController*)openURLs:(NSString*)URL,... {
+  UIViewController* controller = nil;
+  va_list ap;
+  va_start(ap, URL);
+  while (URL) {
+    controller = [self openURL:URL animated:NO];
+    URL = va_arg(ap, id);
   }
+  va_end(ap); 
+
+  return controller;
+}
+
+- (void)removeAllViewControllers {
+  // XXXjoe Implement me
 }
 
 - (id)objectForURL:(NSString*)URL {
@@ -490,6 +459,39 @@
   [defaults synchronize];
 }
 
+- (void)persistViewControllers {
+  NSMutableArray* path = [NSMutableArray array];
+  [self persistController:_rootViewController path:path];
+
+  if (_rootViewController.modalViewController) {
+    [self persistController:_rootViewController.modalViewController path:path];
+  }
+  
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  [defaults setObject:path forKey:@"TTAppMapNavigation"];
+  [defaults synchronize];
+}
+
+- (UIViewController*)restoreViewControllers { 
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  NSArray* path = [defaults objectForKey:@"TTAppMapNavigation"];
+  
+  UIViewController* controller = nil;
+  BOOL passedContainer = NO;
+  for (NSDictionary* state in path) {
+    NSString* URL = [state objectForKey:@"__appMapURL__"];
+    controller = [self openControllerWithURL:URL parent:nil params:nil display:YES animated:NO];
+    controller.frozenState = state;
+    
+    if (_persistenceMode == TTAppMapPersistenceModeTop && passedContainer) {
+      break;
+    }
+    passedContainer = [controller isContainerController];
+  }
+
+  return controller;
+}
+
 - (void)persistController:(UIViewController*)controller path:(NSMutableArray*)path {
   NSString* URL = controller.appMapURL;
   if (URL) {
@@ -509,5 +511,5 @@
 // global
 
 UIViewController* TTOpenURL(NSString* URL) {
-  return [[TTAppMap sharedMap] openURL:URL];
+  return [[TTAppMap sharedMap] openURL:URL animated:YES];
 }

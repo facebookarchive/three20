@@ -7,6 +7,4 @@
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item;
 
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString*)identifier;
-
 @end

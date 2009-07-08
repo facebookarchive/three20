@@ -20,7 +20,14 @@
   [appMap addURL:@"tt://order?waitress=(initWithWaitress:)"
           modal:[ContentController class] selector:@selector(initWithWaitress:params:)];
   
-  [appMap openURL:@"tt://tabBar"];
+  if (![appMap restoreViewControllers]) {
+    [appMap openURL:@"tt://tabBar" animated:NO];
+  }
+}
+
+- (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)URL {
+  [[TTAppMap sharedMap] openURL:URL.absoluteString animated:NO];
+  return YES;
 }
 
 @end

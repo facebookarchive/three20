@@ -89,6 +89,10 @@ static NSMutableDictionary* gAppMapURLs = nil;
   return nil;
 }
 
+- (UIViewController*)childViewController {
+  return nil;
+}
+
 - (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
   if (self.navigationController) {
     [self.navigationController pushViewController:controller animated:animated];

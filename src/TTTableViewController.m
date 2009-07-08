@@ -171,7 +171,7 @@ static const CGFloat kRefreshingViewHeight = 22;
   if (self.viewState & TTViewRefreshing) {
     if (!_refreshingView) {
       _refreshingView = [[TTActivityLabel alloc] initWithFrame:
-        CGRectMake(0, _tableView.height, self.view.width, kRefreshingViewHeight)
+        CGRectMake(0, _tableView.height + _tableView.top, self.view.width, kRefreshingViewHeight)
         style:TTActivityLabelStyleBlackBox text:[self titleForActivity]];
       _refreshingView.centeredToScreen = NO;
       _refreshingView.userInteractionEnabled = NO;

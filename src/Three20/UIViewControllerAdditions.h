@@ -30,6 +30,11 @@
 - (UIViewController*)nextViewController;
 
 /**
+ * The visible child view controller of this view controller, if it is a container.
+ */
+- (UIViewController*)childViewController;
+
+/**
  * Displays a controller inside this controller.
  *
  * TTAppMap uses this to display newly created controllers.  The default does nothing --

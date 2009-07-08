@@ -202,7 +202,7 @@ typedef enum {
     _argumentCount = method_getNumberOfArguments(method)-2;
 
     // Look up the index and type of each argument in the method
-    NSString* selectorName = [NSString stringWithCString:sel_getName(_selector)];
+    NSString* selectorName = [NSString stringWithUTF8String:sel_getName(_selector)];
     NSArray* argNames = [selectorName componentsSeparatedByString:@":"];
 
     for (id<TTURLPatternText> pattern in _path) {

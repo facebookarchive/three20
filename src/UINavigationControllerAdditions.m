@@ -16,6 +16,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 
+- (UIViewController*)childViewController {
+  return self.topViewController;
+}
+
 - (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
   [self pushViewController:controller animated:animated];
 }
