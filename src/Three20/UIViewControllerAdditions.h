@@ -52,11 +52,11 @@
  */
 - (BOOL)isContainerController;
 
+- (void)persistNavigationPath:(NSMutableArray*)path;
+
 - (void)persistView:(NSMutableDictionary*)state;
 
 - (void)restoreView:(NSDictionary*)state;
-
-- (void)persistNavigationPath:(NSMutableArray*)path;
 
 /**
  * Shows a UIAlertView with a message and title.

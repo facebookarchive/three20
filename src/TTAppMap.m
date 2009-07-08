@@ -101,18 +101,18 @@
   return _defaultPattern;
 }
 
-- (id)objectForURL:(NSURL*)URL outPattern:(TTURLPattern**)outPattern {
-  TTURLPattern* pattern = [self matchPattern:URL];
-  if (pattern) {
-    if (_bindings) {
-      // XXXjoe Normalize the URL first
-      NSString* URLString = [URL absoluteString];
-      UIViewController* controller = [_bindings objectForKey:URLString];
-      if (controller) {
-        return controller;
-      }
+- (id)objectForURL:(NSString*)URL theURL:(NSURL*)theURL params:(NSDictionary*)params
+      outPattern:(TTURLPattern**)outPattern {
+  if (_bindings) {
+    // XXXjoe Normalize the URL first
+    id object = [_bindings objectForKey:URL];
+    if (object) {
+      return object;
     }
+  }
 
+  TTURLPattern* pattern = [self matchPattern:theURL];
+  if (pattern) {
     id target = nil;
     UIViewController* controller = nil;
 
@@ -123,13 +123,13 @@
     }
     
     if (pattern.selector) {
-      controller = [pattern invokeSelectorForTarget:target withURL:URL];
+      controller = [pattern invoke:target withURL:theURL params:params];
     } else if (pattern.targetClass) {
       controller = [target init];
     }
     
     if (pattern.displayMode == TTDisplayModeShare && controller) {
-      [self bindObject:controller toURL:[URL absoluteString]];
+      [self bindObject:controller toURL:URL];
     }
     
     [target autorelease];
@@ -144,10 +144,11 @@
 }
 
 - (UIViewController*)parentControllerForController:(UIViewController*)controller
-                     withPattern:(TTURLPattern*)pattern {
+                     parent:(NSURL*)parentURL {
   UIViewController* parentController = nil;
-  if (pattern.parentURL) {
-    parentController = [self objectForURL:pattern.parentURL outPattern:nil];
+  if (parentURL) {
+    parentController = [self objectForURL:parentURL.absoluteString theURL:parentURL params:nil
+                             outPattern:nil];
   }
 
   // If this is the first controller, and it is not a "container", forcibly put
@@ -192,36 +193,40 @@
 }
 
 - (void)presentController:(UIViewController*)controller forURL:(NSURL*)URL
-        withPattern:(TTURLPattern*)pattern animated:(BOOL)animated {
+        parent:(NSString*)parentURL withPattern:(TTURLPattern*)pattern animated:(BOOL)animated {
+  NSURL* parent = parentURL ? [NSURL URLWithString:parentURL] : pattern.parentURL;
   UIViewController* parentController = [self parentControllerForController:controller
-                                             withPattern:pattern];
+                                             parent:parent];
   [self presentController:controller parent:parentController
         modal:pattern.displayMode == TTDisplayModeModal animated:animated];
 }
 
-- (UIViewController*)openControllerWithURL:(NSString*)URL display:(BOOL)display
-                    animated:(BOOL)animated {
-  if ([_delegate respondsToSelector:@selector(appMap:shouldOpenURL:)]) {
-    if ([_delegate appMap:self shouldOpenURL:URL]) {
+- (UIViewController*)openControllerWithURL:(NSString*)URL parent:(NSString*)parentURL
+                     params:(NSDictionary*)params display:(BOOL)display animated:(BOOL)animated {
+  NSURL* theURL = [NSURL URLWithString:URL];
+
+  if (display && [_delegate respondsToSelector:@selector(appMap:shouldOpenURL:)]) {
+    if (![_delegate appMap:self shouldOpenURL:theURL]) {
       return nil;
     }
   }
 
-  NSURL* theURL = [NSURL URLWithString:URL];
   TTURLPattern* pattern = nil;
-  UIViewController* controller = [self objectForURL:theURL outPattern:&pattern];
+  UIViewController* controller = [self objectForURL:URL theURL:theURL params:params
+                                       outPattern:&pattern];
   if (controller) {
-    if ([_delegate respondsToSelector:@selector(appMap:wilOpenURL:inViewController:)]) {
-      [_delegate appMap:self willOpenURL:URL inViewController:controller];
+    if (display && [_delegate respondsToSelector:@selector(appMap:wilOpenURL:inViewController:)]) {
+      [_delegate appMap:self willOpenURL:theURL inViewController:controller];
     }
 
     controller.appMapURL = URL;
     if (display) {
-      [self presentController:controller forURL:theURL withPattern:pattern animated:animated];
+      [self presentController:controller forURL:theURL parent:parentURL withPattern:pattern
+            animated:animated];
     }
-  } else if (_openExternalURLs) {
+  } else if (display && _openExternalURLs) {
     if ([_delegate respondsToSelector:@selector(appMap:wilOpenURL:inViewController:)]) {
-      [_delegate appMap:self willOpenURL:URL inViewController:nil];
+      [_delegate appMap:self willOpenURL:theURL inViewController:nil];
     }
 
     [[UIApplication sharedApplication] openURL:theURL];
@@ -255,7 +260,8 @@
       return NO;
     }
     
-    UIViewController* controller = [self openControllerWithURL:URL display:YES animated:NO];
+    UIViewController* controller = [self openControllerWithURL:URL parent:nil params:nil
+                                         display:YES animated:NO];
     controller.frozenState = state;
     
     if (_persistenceMode == TTAppMapPersistenceModeTop && pathIndex++ == 1) {
@@ -351,19 +357,37 @@
 }
 
 - (UIViewController*)openURL:(NSString*)URL {
-  return [self openURL:URL animated:YES];
+  return [self openURL:URL parent:nil params:nil animated:YES];
+}
+
+- (UIViewController*)openURL:(NSString*)URL params:(NSDictionary*)params {
+  return [self openURL:URL parent:nil params:params animated:YES];
 }
 
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated {
+  return [self openURL:URL parent:nil params:nil animated:animated];
+}
+
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated {
+  return [self openURL:URL parent:parentURL params:nil animated:animated];
+}
+
+- (UIViewController*)openURL:(NSString*)URL params:(NSDictionary*)params animated:(BOOL)animated {
+  return [self openURL:URL parent:nil params:nil animated:animated];
+}
+
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL params:(NSDictionary*)params
+                     animated:(BOOL)animated {
   if (!_mainViewController && _persistenceMode && [self restoreControllersStartingWithURL:URL]) {
     return _mainViewController;
   } else {
-    return [self openControllerWithURL:URL display:YES animated:animated];
+    return [self openControllerWithURL:URL parent:parentURL params:params display:YES
+                 animated:animated];
   }
 }
 
 - (id)objectForURL:(NSString*)URL {
-  return [self openControllerWithURL:URL display:NO animated:NO];
+  return [self openControllerWithURL:URL parent:nil params:nil display:NO animated:NO];
 }
 
 - (TTDisplayMode)displayModeForURL:(NSString*)URL {
@@ -460,7 +484,7 @@
   // XXXjoe IMPLEMENT ME
 }
 
-- (void)removePersistedControllers {
+- (void)resetDefaults {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   [defaults removeObjectForKey:@"TTAppMapNavigation"];
   [defaults synchronize];
@@ -484,6 +508,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
 
-void TTOpenURL(NSString* URL) {
-  [[TTAppMap sharedMap] openURL:URL];
+UIViewController* TTOpenURL(NSString* URL) {
+  return [[TTAppMap sharedMap] openURL:URL];
 }

@@ -119,4 +119,17 @@
   TTOpenURL(self);
 }
 
+- (id)objectValue {
+  return [[TTAppMap sharedMap] objectForURL:self];
+}
+
+- (NSString*)objectURL:(id)object {
+  if ([object conformsToProtocol:@protocol(TTURLObject)]) {
+    id<TTURLObject> URLObject = object;
+    return [URLObject formatURL:self];
+  } else {
+    return self;
+  }
+}
+
 @end

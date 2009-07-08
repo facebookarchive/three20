@@ -102,13 +102,13 @@ static NSMutableDictionary* gAppMapURLs = nil;
   return NO;
 }
 
+- (void)persistNavigationPath:(NSMutableArray*)path {
+}
+
 - (void)persistView:(NSMutableDictionary*)state {
 }
 
 - (void)restoreView:(NSDictionary*)state {
-}
-
-- (void)persistNavigationPath:(NSMutableArray*)path {
 }
 
 - (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate {

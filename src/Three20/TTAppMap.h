@@ -18,6 +18,12 @@ typedef enum {
   TTDisplayModeModal,             // new controller is created and displayed modally
 } TTDisplayMode;
 
+@protocol TTURLObject
+
+- (NSString*)formatURL:(NSString*)URLFormat;
+
+@end
+
 @interface TTAppMap : NSObject {
   id<TTAppMapDelegate> _delegate;
   UIWindow* _mainWindow;
@@ -75,7 +81,12 @@ typedef enum {
  * a keyWindow, a UIWindow will be created and displayed.
  */
 - (UIViewController*)openURL:(NSString*)URL;
+- (UIViewController*)openURL:(NSString*)URL params:(NSDictionary*)params;
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated;
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated;
+- (UIViewController*)openURL:(NSString*)URL params:(NSDictionary*)params animated:(BOOL)animated;
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL
+                     params:(NSDictionary*)params animated:(BOOL)animated;
 
 /**
  * Gets or creates the object with a pattern that matches the URL.
@@ -174,9 +185,9 @@ typedef enum {
 - (void)removeBindingForObject:(id)object;
 
 /** 
- * Erases all persisted controller data from preferences.
+ * Erases all data stored in user defaults.
  */
-- (void)removePersistedControllers;
+- (void)resetDefaults;
 
 /**
  * Persists a controller's state and recursively persists the next controller after it.
@@ -194,14 +205,14 @@ typedef enum {
 /**
  * Asks if the URL should be opened and allows the delegate to stop it.
  */
-- (BOOL)appMap:(TTAppMap*)appMap shouldOpenURL:(NSString*)URL;
+- (BOOL)appMap:(TTAppMap*)appMap shouldOpenURL:(NSURL*)URL;
 
 /**
  * The URL is about to be opened in a controller.
  *
  * If the controller argument is nil, the URL will be opened externally.
  */
-- (void)appMap:(TTAppMap*)appMap willOpenURL:(NSString*)URL
+- (void)appMap:(TTAppMap*)appMap willOpenURL:(NSURL*)URL
         inViewController:(UIViewController*)controller;
 
 @end
@@ -212,4 +223,4 @@ typedef enum {
 /**
  * Shortcut for calling [[TTAppMap sharedMap] openURL:]
  */
-void TTOpenURL(NSString* URL);
+UIViewController* TTOpenURL(NSString* URL);

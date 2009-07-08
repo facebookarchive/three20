@@ -15,8 +15,18 @@
 - (NSString*)stringByRemovingHTMLTags;
 
 /**
- * Loads a URL with the string using TTAppMap.
+ * Opens a URL with the string using TTAppMap.
  */
 - (void)openURL;
+
+/**
+ * Converts the string to an object using TTAppMap.
+ */
+- (id)objectValue;
+
+/**
+ * Formats a URL using an object that conforms to the TTURLObject protocol.
+ */
+- (NSString*)objectURL:(id)object;
 
 @end

@@ -44,6 +44,18 @@
   return self;
 }
 
+- (id)initWithURL:(NSURL*)URL params:(NSDictionary*)params {
+  if (self = [super init]) {
+    NSURLRequest* request = [params objectForKey:@"request"];
+    if (request) {
+      [self openRequest:request];
+    } else {
+      [self openURL:URL];
+    }
+  }
+  return self;
+}
+
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;

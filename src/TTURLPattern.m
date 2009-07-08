@@ -191,7 +191,6 @@ typedef enum {
   if (parts.count) {
     NSString* selectorName = [[parts componentsJoinedByString:@":"] stringByAppendingString:@":"];
     SEL selector = sel_registerName(selectorName.UTF8String);
-    Class cls = _targetClass ? _targetClass : [_targetObject class];
     _selector = selector;
   }
 }
@@ -279,7 +278,8 @@ typedef enum {
   return NO;
 }
 
-- (void)setArgumentsFromURL:(NSURL*)URL forInvocation:(NSInvocation*)invocation {
+- (void)setArgumentsFromURL:(NSURL*)URL forInvocation:(NSInvocation*)invocation
+        params:(NSDictionary*)params {
   NSInteger remainingArguments = _argumentCount;
   
   NSArray* pathComponents = URL.path.pathComponents;
@@ -293,7 +293,7 @@ typedef enum {
   
   NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
   if (query.count) {
-    NSMutableDictionary* unmatched = nil;
+    NSMutableDictionary* unmatched = params ? [[params mutableCopy] autorelease] : nil;
 
     for (NSString* name in [query keyEnumerator]) {
       id<TTURLPatternText> patternText = [_query objectForKey:name];
@@ -429,7 +429,7 @@ typedef enum {
   return YES;
 }
 
-- (id)invokeSelectorForTarget:(id)target withURL:(NSURL*)URL {
+- (id)invoke:(id)target withURL:(NSURL*)URL params:(NSDictionary*)params {
   id returnValue = nil;
   
   NSMethodSignature *sig = [target methodSignatureForSelector:self.selector];
@@ -439,8 +439,11 @@ typedef enum {
     [invocation setSelector:self.selector];
     if (self.isUniversal) {
       [invocation setArgument:&URL atIndex:2];
+      if (params) {
+        [invocation setArgument:&params atIndex:3];
+      }
     } else {
-      [self setArgumentsFromURL:URL forInvocation:invocation];
+      [self setArgumentsFromURL:URL forInvocation:invocation params:params];
     }
     [invocation invoke];
     
