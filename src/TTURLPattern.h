@@ -24,9 +24,9 @@
 @property(nonatomic) NSInteger argumentCount;
 @property(nonatomic,readonly) BOOL isUniversal;
 
-- (id)initWithType:(TTDisplayMode)displayMode;
+- (id)initWithType:(TTDisplayMode)displayMode target:(id)target;
 
-- (void)setTargetOrClass:(id)target;
+- (void)compile;
 
 - (BOOL)matchURL:(NSURL*)URL;
 

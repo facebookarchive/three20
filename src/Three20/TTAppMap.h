@@ -78,7 +78,10 @@ typedef enum {
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated;
 
 /**
- * Gets the object with a pattern that matches the URL.
+ * Gets or creates the object with a pattern that matches the URL.
+ *
+ * Object bindings are checked first, and if no object is bound to the URL then pattern
+ * matching is used to create a new object.
  */ 
 - (id)objectForURL:(NSString*)URL;
 

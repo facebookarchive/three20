@@ -71,7 +71,8 @@
 
 - (void)addPattern:(TTURLPattern*)pattern forURL:(NSString*)URL {
   pattern.URL = URL;
-
+  [pattern compile];
+  
   if (pattern.isUniversal) {
     [_defaultPattern release];
     _defaultPattern = [pattern retain];
@@ -371,15 +372,13 @@
 }
 
 - (void)addURL:(NSString*)URL create:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeCreate];
-  [pattern setTargetOrClass:target];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeCreate target:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL create:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeCreate];
-  [pattern setTargetOrClass:target];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeCreate target:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
@@ -387,59 +386,50 @@
 
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL create:(id)target
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeCreate];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeCreate target:target];
   pattern.parentURL = [NSURL URLWithString:parentURL];
-  [pattern setTargetOrClass:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL share:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeShare];
-  [pattern setTargetOrClass:target];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeShare target:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL share:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeShare];
-  [pattern setTargetOrClass:target];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeShare target:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL share:(id)target
-        selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeShare];
+- (void)addURL:(NSString*)URL parent:(NSString*)parentURL share:(id)target selector:(SEL)selector {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeShare target:target];
   pattern.parentURL = [NSURL URLWithString:parentURL];
-  [pattern setTargetOrClass:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL modal:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeModal];
-  [pattern setTargetOrClass:target];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeModal target:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL modal:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeModal];
-  [pattern setTargetOrClass:target];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeModal target:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(id)target
-        selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeModal];
+- (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(id)target selector:(SEL)selector {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeModal target:target];
   pattern.parentURL = [NSURL URLWithString:parentURL];
-  [pattern setTargetOrClass:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];

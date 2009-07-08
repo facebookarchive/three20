@@ -171,73 +171,68 @@ typedef enum {
   }
 }
 
-- (void)analyzeMethod {
-  if (_selector) {
-    Class cls = _targetClass ? _targetClass : [_targetObject class];
-    Method method = class_getInstanceMethod(cls, _selector);
-    if (method) {
-      _argumentCount = method_getNumberOfArguments(method)-2;
-
-      // Look up the index and type of each argument in the method
-      NSString* selectorName = [NSString stringWithCString:sel_getName(_selector)];
-      NSArray* argNames = [selectorName componentsSeparatedByString:@":"];
-
-      for (id<TTURLPatternText> pattern in _path) {
-        if ([pattern isKindOfClass:[TTURLWildcard class]]) {
-          TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
-          wildcard.argIndex = [argNames indexOfObject:wildcard.name];
-          if (wildcard.argIndex == NSNotFound) {
-            TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
-          } else {
-            char argType[256];
-            method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
-            wildcard.argType = [self convertArgumentType:argType];
-          }
-        }
-      }
-
-      for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
-        if ([pattern isKindOfClass:[TTURLWildcard class]]) {
-          TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
-          wildcard.argIndex = [argNames indexOfObject:wildcard.name];
-          if (wildcard.argIndex == NSNotFound) {
-            TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
-          } else {
-            char argType[256];
-            method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
-            wildcard.argType = [self convertArgumentType:argType];
-          }
-        }
-      }
+- (void)deduceSelector {
+  NSMutableArray* parts = [NSMutableArray array];
+  
+  for (id<TTURLPatternText> pattern in _path) {
+    if ([pattern isKindOfClass:[TTURLWildcard class]]) {
+      TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
+      [parts addObject:wildcard.name];
     }
+  }
+
+  for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
+    if ([pattern isKindOfClass:[TTURLWildcard class]]) {
+      TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
+      [parts addObject:wildcard.name];
+    }
+  }
+
+  if (parts.count) {
+    NSString* selectorName = [[parts componentsJoinedByString:@":"] stringByAppendingString:@":"];
+    SEL selector = sel_registerName(selectorName.UTF8String);
+    Class cls = _targetClass ? _targetClass : [_targetObject class];
+    _selector = selector;
   }
 }
 
-- (void)parseURL {
-  if (![_URL isEqualToString:kUniversalURLPattern]) {
-    NSURL* theURL = [NSURL URLWithString:_URL];
-      
-    _scheme = [theURL.scheme copy];
-    if (theURL.host) {
-      [self parsePathComponent:theURL.host];
-      if (theURL.path) {
-        for (NSString* name in theURL.path.pathComponents) {
-          if (![name isEqualToString:@"/"]) {
-            [self parsePathComponent:name];
-          }
+- (void)analyzeMethod {
+  Class cls = _targetClass ? _targetClass : [_targetObject class];
+  Method method = class_getInstanceMethod(cls, _selector);
+  if (method) {
+    _argumentCount = method_getNumberOfArguments(method)-2;
+
+    // Look up the index and type of each argument in the method
+    NSString* selectorName = [NSString stringWithCString:sel_getName(_selector)];
+    NSArray* argNames = [selectorName componentsSeparatedByString:@":"];
+
+    for (id<TTURLPatternText> pattern in _path) {
+      if ([pattern isKindOfClass:[TTURLWildcard class]]) {
+        TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
+        wildcard.argIndex = [argNames indexOfObject:wildcard.name];
+        if (wildcard.argIndex == NSNotFound) {
+          TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
+        } else {
+          char argType[256];
+          method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
+          wildcard.argType = [self convertArgumentType:argType];
         }
       }
     }
-    
-    if (theURL.query) {
-      NSDictionary* query = [theURL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
-      for (NSString* name in [query keyEnumerator]) {
-        NSString* value = [query objectForKey:name];
-        [self parseParameter:name value:value];
+
+    for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
+      if ([pattern isKindOfClass:[TTURLWildcard class]]) {
+        TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
+        wildcard.argIndex = [argNames indexOfObject:wildcard.name];
+        if (wildcard.argIndex == NSNotFound) {
+          TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
+        } else {
+          char argType[256];
+          method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
+          wildcard.argType = [self convertArgumentType:argType];
+        }
       }
     }
-    
-    [self analyzeMethod];
   }
 }
 
@@ -326,9 +321,15 @@ typedef enum {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithType:(TTDisplayMode)displayMode {
+- (id)initWithType:(TTDisplayMode)displayMode target:(id)target {
   if (self = [self init]) {
     _displayMode = displayMode;
+
+    if ([target class] == target) {
+      _targetClass = target;
+    } else {
+      _targetObject = target;
+    }
   }
   return self;
 }
@@ -362,18 +363,42 @@ typedef enum {
 - (void)setURL:(NSString*)URL {
   [_URL release];
   _URL = [URL retain];
-  [self parseURL];
 }
 
 - (BOOL)isUniversal {
   return [_URL isEqualToString:kUniversalURLPattern];
 }
 
-- (void)setTargetOrClass:(id)target {
-  if ([target class] == target) {
-    _targetClass = target;
-  } else {
-    _targetObject = target;
+- (void)compile {
+  if (![_URL isEqualToString:kUniversalURLPattern]) {
+    NSURL* theURL = [NSURL URLWithString:_URL];
+      
+    _scheme = [theURL.scheme copy];
+    if (theURL.host) {
+      [self parsePathComponent:theURL.host];
+      if (theURL.path) {
+        for (NSString* name in theURL.path.pathComponents) {
+          if (![name isEqualToString:@"/"]) {
+            [self parsePathComponent:name];
+          }
+        }
+      }
+    }
+    
+    if (theURL.query) {
+      NSDictionary* query = [theURL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+      for (NSString* name in [query keyEnumerator]) {
+        NSString* value = [query objectForKey:name];
+        [self parseParameter:name value:value];
+      }
+    }
+    
+    if (!_selector) {
+      [self deduceSelector];
+    }
+    if (_selector) {
+      [self analyzeMethod];
+    }
   }
 }
 
