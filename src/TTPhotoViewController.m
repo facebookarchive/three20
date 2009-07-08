@@ -439,16 +439,6 @@ static const NSTimeInterval kSlideshowInterval = 2;
   return _centerPhoto;
 }
 
-- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
-  [super showObject:object inView:viewType withState:state];
-  
-  if ([object conformsToProtocol:@protocol(TTPhotoSource)]) {
-    self.photoSource = (id<TTPhotoSource>)object;
-  } else if ([object conformsToProtocol:@protocol(TTPhoto)]) {
-    self.centerPhoto = (id<TTPhoto>)object;
-  }
-}
-
 - (void)reloadContent {
   [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
 }

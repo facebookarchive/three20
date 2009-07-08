@@ -99,7 +99,7 @@ typedef enum {
 
 @implementation TTURLPattern
 
-@synthesize openMode = _openMode, URL = _URL, parentURL = _parentURL,
+@synthesize displayMode = _displayMode, URL = _URL, parentURL = _parentURL,
             targetObject = _targetObject, targetClass = _targetClass, selector = _selector,
             specificity = _specificity, argumentCount = _argumentCount;
 
@@ -108,8 +108,11 @@ typedef enum {
 
 - (id<TTURLPatternText>)parseText:(NSString*)text {
   NSInteger len = text.length;
-  if (len && [text characterAtIndex:0] == '(' && [text characterAtIndex:len-1] == ')') {
-    NSString* name = [text substringWithRange:NSMakeRange(1, len-2)];
+  if (len > 3
+      && [text characterAtIndex:0] == '('
+      && [text characterAtIndex:len-2] == ':'
+      && [text characterAtIndex:len-1] == ')') {
+    NSString* name = [text substringWithRange:NSMakeRange(1, len-3)];
     TTURLWildcard* wildcard = [[[TTURLWildcard alloc] init] autorelease];
     wildcard.name = name;
     ++_specificity;
@@ -281,19 +284,58 @@ typedef enum {
   return NO;
 }
 
+- (void)setArgumentsFromURL:(NSURL*)URL forInvocation:(NSInvocation*)invocation {
+  NSInteger remainingArguments = _argumentCount;
+  
+  NSArray* pathComponents = URL.path.pathComponents;
+  for (NSInteger i = 0; i < _path.count; ++i) {
+    id<TTURLPatternText> patternText = [_path objectAtIndex:i];
+    NSString* text = i == 0 ? URL.host : [pathComponents objectAtIndex:i];
+    if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
+      --remainingArguments;
+    }
+  }
+  
+  NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+  if (query.count) {
+    NSMutableDictionary* unmatched = nil;
+
+    for (NSString* name in [query keyEnumerator]) {
+      id<TTURLPatternText> patternText = [_query objectForKey:name];
+      NSString* text = [query objectForKey:name];
+      if (patternText) {
+        if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
+          --remainingArguments;
+        }
+      } else {
+        if (!unmatched) {
+          unmatched = [NSMutableDictionary dictionary];
+        }
+        [unmatched setObject:text forKey:name];
+      }
+    }
+    
+    if (remainingArguments && unmatched.count) {
+      // If there are unmatched arguments, and the method signature has extra arguments,
+      // then pass the dictionary of unmatched arguments as the last argument
+      [invocation setArgument:&unmatched atIndex:_argumentCount+1];
+    }
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithType:(TTOpenMode)openMode {
+- (id)initWithType:(TTDisplayMode)displayMode {
   if (self = [self init]) {
-    _openMode = openMode;
+    _displayMode = displayMode;
   }
   return self;
 }
 
 - (id)init {
   if (self = [super init]) {
-    _openMode = TTOpenModeNone;
+    _displayMode = TTDisplayModeNone;
     _scheme = nil;
     _path = [[NSMutableArray alloc] init];
     _query = nil;
@@ -362,43 +404,27 @@ typedef enum {
   return YES;
 }
 
-- (void)setArgumentsFromURL:(NSURL*)URL forInvocation:(NSInvocation*)invocation {
-  NSInteger remainingArguments = _argumentCount;
+- (id)invokeSelectorForTarget:(id)target withURL:(NSURL*)URL {
+  id returnValue = nil;
   
-  NSArray* pathComponents = URL.path.pathComponents;
-  for (NSInteger i = 0; i < _path.count; ++i) {
-    id<TTURLPatternText> patternText = [_path objectAtIndex:i];
-    NSString* text = i == 0 ? URL.host : [pathComponents objectAtIndex:i];
-    if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
-      --remainingArguments;
+  NSMethodSignature *sig = [target methodSignatureForSelector:self.selector];
+  if (sig) {
+    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:sig];
+    [invocation setTarget:target];
+    [invocation setSelector:self.selector];
+    if (self.isUniversal) {
+      [invocation setArgument:&URL atIndex:2];
+    } else {
+      [self setArgumentsFromURL:URL forInvocation:invocation];
     }
-  }
-  
-  NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
-  if (query.count) {
-    NSMutableDictionary* unmatched = nil;
-
-    for (NSString* name in [query keyEnumerator]) {
-      id<TTURLPatternText> patternText = [_query objectForKey:name];
-      NSString* text = [query objectForKey:name];
-      if (patternText) {
-        if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
-          --remainingArguments;
-        }
-      } else {
-        if (!unmatched) {
-          unmatched = [NSMutableDictionary dictionary];
-        }
-        [unmatched setObject:text forKey:name];
-      }
-    }
+    [invocation invoke];
     
-    if (remainingArguments && unmatched.count) {
-      // If there are unmatched arguments, and the method signature has extra arguments,
-      // then pass the dictionary of unmatched arguments as the last argument
-      [invocation setArgument:&unmatched atIndex:_argumentCount+1];
+    if (sig.methodReturnLength) {
+      [invocation getReturnValue:&returnValue];
     }
   }
+  
+  return returnValue;
 }
 
 @end

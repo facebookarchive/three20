@@ -270,12 +270,6 @@ static CGFloat kThumbnailRowHeight = 79;
   return _photoSource;
 }
 
-- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
-  [super showObject:object inView:viewType withState:state];
-
-  self.photoSource = (id<TTPhotoSource>)object;
-}
-
 - (UIImage*)imageForNoData {
   return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
 }

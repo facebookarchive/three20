@@ -2,6 +2,8 @@
 
 @implementation MenuController
 
+@synthesize page = _page;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
@@ -24,6 +26,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
+
+- (id)initWithMenu:(MenuPage)page {
+  if (self = [super init]) {
+    self.page = page;
+  }
+  return self;
+}
 
 - (id)init {
   if (self = [super init]) {
@@ -105,12 +114,8 @@
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// URLs
-
-- (void)showMenu:(MenuPage)page {
+- (void)setPage:(MenuPage)page {
   _page = page;
-  [self invalidateView];
   
   self.title = [self nameForMenuPage:page];
 

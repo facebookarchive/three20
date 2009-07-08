@@ -9,14 +9,14 @@
   if (self = [super init]) {
     _sendTimer = nil;
     
-    [[TTAppMap sharedMap] addURL:@"tt://compose?to=(composeTo)"
+    [[TTAppMap sharedMap] addURL:@"tt://compose?to=(composeTo:)"
                           modal:self selector:@selector(composeTo:)];
   }
   return self;
 }
 
 - (void)dealloc {
-  [[TTAppMap sharedMap] removeURL:@"tt://compose?to=(composeTo)"];
+  [[TTAppMap sharedMap] removeURL:@"tt://compose?to=(composeTo:)"];
   [_sendTimer invalidate];
 	[super dealloc];
 }

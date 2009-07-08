@@ -12,17 +12,17 @@ typedef enum {
 } TTAppMapPersistenceMode;
 
 typedef enum {
-  TTOpenModeNone,
-  TTOpenModeCreate,           // new controller is created and pushed
-  TTOpenModeSingleton,        // the same controller is re-used
-  TTOpenModeModal,            // new controller is created and displayed modally
-} TTOpenMode;
+  TTDisplayModeNone,
+  TTDisplayModeCreate,            // new controller is created and pushed
+  TTDisplayModeShare,             // the same controller is re-used
+  TTDisplayModeModal,             // new controller is created and displayed modally
+} TTDisplayMode;
 
 @interface TTAppMap : NSObject {
   id<TTAppMapDelegate> _delegate;
   UIWindow* _mainWindow;
   UIViewController* _mainViewController;
-  NSMutableDictionary* _singletons;
+  NSMutableDictionary* _bindings;
   TTAppMapPersistenceMode _persistenceMode;
   NSMutableArray* _patterns;
   TTURLPattern* _defaultPattern;
@@ -78,14 +78,14 @@ typedef enum {
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated;
 
 /**
- * Gets the controller with a pattern that matches the URL.
+ * Gets the object with a pattern that matches the URL.
  */ 
-- (UIViewController*)controllerForURL:(NSString*)URL;
+- (id)objectForURL:(NSString*)URL;
 
 /**
  * Tests if there is a pattern that matches the URL.
  */
-- (TTOpenMode)openModeForURL:(NSString*)URL;
+- (TTDisplayMode)displayModeForURL:(NSString*)URL;
 
 /**
  * Adds a URL pattern which will create and display a controller when loaded.
@@ -111,22 +111,22 @@ typedef enum {
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL create:(id)target selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a singleton controller when loaded.
+ * Adds a URL pattern which will create and display a share controller when loaded.
  *
- * The term 'singleton' means that if the controller exists when a URL tries to load it, it will
- * cause the existing controller to be displayed rather than creating a new one.
+ * Controllers created with the "share" mode, meaning that it will be created once and re-used
+ * until it is destroyed.
  */
-- (void)addURL:(NSString*)URL singleton:(id)target;
+- (void)addURL:(NSString*)URL share:(id)target;
 
 /**
- * Adds a URL pattern which will create and display a singleton controller when loaded.
+ * Adds a URL pattern which will create and display a controller when loaded.
  */
-- (void)addURL:(NSString*)URL singleton:(id)target selector:(SEL)selector;
+- (void)addURL:(NSString*)URL share:(id)target selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a singleton controller when loaded.
+ * Adds a URL pattern which will create and display a controller when loaded.
  */
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL singleton:(id)target
+- (void)addURL:(NSString*)URL parent:(NSString*)parentURL share:(id)target
         selector:(SEL)selector;
 
 /**
@@ -150,17 +150,25 @@ typedef enum {
 - (void)removeURL:(NSString*)URL;
 
 /**
- * Assigns a controller to a specific URL.
+ * Binds a URL to an object.
  *
- * All requests to load this URL will display this controller instance rather than
- * going through the usual pattern matching to find a controller.
+ * Bindings are weak, meaning that the app map will not retain your object.  You are
+ * responsible for removing the binding when the object is destroyed.
+ *
+ * All requests to open this URL will return the object bound to it, rather than going
+ * through the pattern matching process to create a new object.
  */
-- (void)setController:(UIViewController*)controller forURL:(NSString*)URL;
+- (void)bindObject:(id)object toURL:(NSString*)URL;
 
 /**
- * Removes a controller from being assigned to a URL.
+ * Removes the binding a URL.
  */
-- (void)removeControllerForURL:(NSString*)URL;
+- (void)removeBindingForURL:(NSString*)URL;
+
+/**
+ * Removes the binding a object.
+ */
+- (void)removeBindingForObject:(id)object;
 
 /** 
  * Erases all persisted controller data from preferences.
@@ -181,7 +189,7 @@ typedef enum {
 @optional
 
 /**
- * Asks if the URL should be loaded and allows the delegate to stop it.
+ * Asks if the URL should be opened and allows the delegate to stop it.
  */
 - (BOOL)appMap:(TTAppMap*)appMap shouldOpenURL:(NSString*)URL;
 
@@ -199,6 +207,6 @@ typedef enum {
 // global 
 
 /**
- * Shortcut for calling loading a URL in the shared app map.
+ * Shortcut for calling [[TTAppMap sharedMap] openURL:]
  */
 void TTOpenURL(NSString* URL);

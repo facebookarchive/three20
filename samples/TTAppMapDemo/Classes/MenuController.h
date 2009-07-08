@@ -13,4 +13,6 @@ typedef enum {
   MenuPage _page;
 }
 
+@property(nonatomic) MenuPage page;
+
 @end

@@ -25,6 +25,50 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
+- (UIViewController*)frontViewControllerForController:(UIViewController*)controller {
+  if ([controller isKindOfClass:[UITabBarController class]]) {
+    UITabBarController* tabBarController = (UITabBarController*)controller;
+    if (tabBarController.selectedViewController) {
+      controller = tabBarController.selectedViewController;
+    } else {
+      controller = [tabBarController.viewControllers objectAtIndex:0];
+    }
+  } else if ([controller isKindOfClass:[UINavigationController class]]) {
+    UINavigationController* navController = (UINavigationController*)controller;
+    controller = navController.topViewController;
+  }
+  
+  if (controller.modalViewController) {
+    return [self frontViewControllerForController:controller.modalViewController];
+  } else {
+    return controller;
+  }
+}
+
+- (UINavigationController*)frontNavigationController {
+  if ([_mainViewController isKindOfClass:[UITabBarController class]]) {
+    UITabBarController* tabBarController = (UITabBarController*)_mainViewController;
+    if (tabBarController.selectedViewController) {
+      return (UINavigationController*)tabBarController.selectedViewController;
+    } else {
+      return (UINavigationController*)[tabBarController.viewControllers objectAtIndex:0];
+    }
+  } else if ([_mainViewController isKindOfClass:[UINavigationController class]]) {
+    return (UINavigationController*)_mainViewController;
+  } else {
+    return nil;
+  }
+}
+
+- (UIViewController*)frontViewController {
+  UINavigationController* navController = self.frontNavigationController;
+  if (navController) {
+    return [self frontViewControllerForController:navController];
+  } else {
+    return [self frontViewControllerForController:_mainViewController];
+  }
+}
+
 - (void)addPattern:(TTURLPattern*)pattern forURL:(NSString*)URL {
   pattern.URL = URL;
 
@@ -56,59 +100,43 @@
   return _defaultPattern;
 }
 
-- (UIViewController*)controllerForURL:(NSURL*)URL withPattern:(TTURLPattern*)pattern {
-  if (_singletons) {
-    // XXXjoe Normalize the URL first
-    NSString* URLString = [URL absoluteString];
-    UIViewController* controller = [_singletons objectForKey:URLString];
-    if (controller) {
-      return controller;
-    }
-  }
-
-  id target = nil;
-  UIViewController* controller = nil;
-
-  if (pattern.targetClass) {
-    target = [[[pattern.targetClass alloc] init] autorelease];
-    controller = target;
-  } else {
-    target = pattern.targetObject;
-  }
-  
-  if (pattern.selector) {
-    NSMethodSignature *sig = [target methodSignatureForSelector:pattern.selector];
-    if (sig) {
-      NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:sig];
-      [invocation setTarget:target];
-      [invocation setSelector:pattern.selector];
-      if (pattern == _defaultPattern) {
-        [invocation setArgument:&URL atIndex:2];
-      } else {
-        [pattern setArgumentsFromURL:URL forInvocation:invocation];
-      }
-      [invocation invoke];
-      
-      if (pattern.targetObject && sig.methodReturnLength) {
-        [invocation getReturnValue:&controller];
-      }
-    }
-  }
-  
-  if (pattern.openMode == TTOpenModeSingleton && controller) {
-    [self setController:controller forURL:[URL absoluteString]];
-  }
-
-  return controller;
-}
-
-- (UIViewController*)controllerForURL:(NSURL*)URL pattern:(TTURLPattern**)outPattern {
+- (id)objectForURL:(NSURL*)URL outPattern:(TTURLPattern**)outPattern {
   TTURLPattern* pattern = [self matchPattern:URL];
   if (pattern) {
+    if (_bindings) {
+      // XXXjoe Normalize the URL first
+      NSString* URLString = [URL absoluteString];
+      UIViewController* controller = [_bindings objectForKey:URLString];
+      if (controller) {
+        return controller;
+      }
+    }
+
+    id target = nil;
+    UIViewController* controller = nil;
+
+    if (pattern.targetClass) {
+      target = [pattern.targetClass alloc];
+    } else {
+      target = [pattern.targetObject retain];
+    }
+    
+    if (pattern.selector) {
+      controller = [pattern invokeSelectorForTarget:target withURL:URL];
+    } else if (pattern.targetClass) {
+      controller = [target init];
+    }
+    
+    if (pattern.displayMode == TTDisplayModeShare && controller) {
+      [self bindObject:controller toURL:[URL absoluteString]];
+    }
+    
+    [target autorelease];
+
     if (outPattern) {
       *outPattern = pattern;
     }
-    return [self controllerForURL:URL withPattern:pattern];
+    return controller;
   } else {
     return nil;
   }
@@ -118,7 +146,7 @@
                      withPattern:(TTURLPattern*)pattern {
   UIViewController* parentController = nil;
   if (pattern.parentURL) {
-    parentController = [self controllerForURL:pattern.parentURL pattern:nil];
+    parentController = [self objectForURL:pattern.parentURL outPattern:nil];
   }
 
   // If this is the first controller, and it is not a "container", forcibly put
@@ -167,54 +195,10 @@
   UIViewController* parentController = [self parentControllerForController:controller
                                              withPattern:pattern];
   [self presentController:controller parent:parentController
-        modal:pattern.openMode == TTOpenModeModal animated:animated];
+        modal:pattern.displayMode == TTDisplayModeModal animated:animated];
 }
 
-- (UINavigationController*)frontNavigationController {
-  if ([_mainViewController isKindOfClass:[UITabBarController class]]) {
-    UITabBarController* tabBarController = (UITabBarController*)_mainViewController;
-    if (tabBarController.selectedViewController) {
-      return (UINavigationController*)tabBarController.selectedViewController;
-    } else {
-      return (UINavigationController*)[tabBarController.viewControllers objectAtIndex:0];
-    }
-  } else if ([_mainViewController isKindOfClass:[UINavigationController class]]) {
-    return (UINavigationController*)_mainViewController;
-  } else {
-    return nil;
-  }
-}
-
-- (UIViewController*)frontViewControllerForController:(UIViewController*)controller {
-  if ([controller isKindOfClass:[UITabBarController class]]) {
-    UITabBarController* tabBarController = (UITabBarController*)controller;
-    if (tabBarController.selectedViewController) {
-      controller = tabBarController.selectedViewController;
-    } else {
-      controller = [tabBarController.viewControllers objectAtIndex:0];
-    }
-  } else if ([controller isKindOfClass:[UINavigationController class]]) {
-    UINavigationController* navController = (UINavigationController*)controller;
-    controller = navController.topViewController;
-  }
-  
-  if (controller.modalViewController) {
-    return [self frontViewControllerForController:controller.modalViewController];
-  } else {
-    return controller;
-  }
-}
-
-- (UIViewController*)frontViewController {
-  UINavigationController* navController = self.frontNavigationController;
-  if (navController) {
-    return [self frontViewControllerForController:navController];
-  } else {
-    return [self frontViewControllerForController:_mainViewController];
-  }
-}
-
-- (UIViewController*)loadControllerWithURL:(NSString*)URL display:(BOOL)display
+- (UIViewController*)openControllerWithURL:(NSString*)URL display:(BOOL)display
                     animated:(BOOL)animated {
   if ([_delegate respondsToSelector:@selector(appMap:shouldOpenURL:)]) {
     if ([_delegate appMap:self shouldOpenURL:URL]) {
@@ -224,7 +208,7 @@
 
   NSURL* theURL = [NSURL URLWithString:URL];
   TTURLPattern* pattern = nil;
-  UIViewController* controller = [self controllerForURL:theURL pattern:&pattern];
+  UIViewController* controller = [self objectForURL:theURL outPattern:&pattern];
   if (controller) {
     if ([_delegate respondsToSelector:@selector(appMap:wilOpenURL:inViewController:)]) {
       [_delegate appMap:self willOpenURL:URL inViewController:controller];
@@ -270,7 +254,7 @@
       return NO;
     }
     
-    UIViewController* controller = [self loadControllerWithURL:URL display:YES animated:NO];
+    UIViewController* controller = [self openControllerWithURL:URL display:YES animated:NO];
     controller.frozenState = state;
     
     if (_persistenceMode == TTAppMapPersistenceModeTop && pathIndex++ == 1) {
@@ -289,7 +273,7 @@
     _delegate = nil;
     _mainWindow = nil;
     _mainViewController = nil;
-    _singletons = nil;
+    _bindings = nil;
     _patterns = nil;
     _defaultPattern = nil;
     _persistenceMode = TTAppMapPersistenceModeNone;
@@ -298,7 +282,7 @@
     _openExternalURLs = NO;
     
     // Swizzle a new dealloc for UIViewController so it notifies us when it's going away.
-    // We need to remove dying controllers from our singleton cache.
+    // We need to remove dying controllers from our binding cache.
     TTSwizzle([UIViewController class], @selector(dealloc), @selector(ttdealloc));
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -316,7 +300,7 @@
   _delegate = nil;
   TT_RELEASE_MEMBER(_mainWindow);
   TT_RELEASE_MEMBER(_mainViewController);
-  TT_RELEASE_MEMBER(_singletons);
+  TT_RELEASE_MEMBER(_bindings);
   TT_RELEASE_MEMBER(_patterns);
   TT_RELEASE_MEMBER(_defaultPattern);
   [super dealloc];
@@ -373,28 +357,28 @@
   if (!_mainViewController && _persistenceMode && [self restoreControllersStartingWithURL:URL]) {
     return _mainViewController;
   } else {
-    return [self loadControllerWithURL:URL display:YES animated:animated];
+    return [self openControllerWithURL:URL display:YES animated:animated];
   }
 }
 
-- (UIViewController*)controllerForURL:(NSString*)URL {
-  return [self loadControllerWithURL:URL display:NO animated:NO];
+- (id)objectForURL:(NSString*)URL {
+  return [self openControllerWithURL:URL display:NO animated:NO];
 }
 
-- (TTOpenMode)openModeForURL:(NSString*)URL {
+- (TTDisplayMode)displayModeForURL:(NSString*)URL {
   TTURLPattern* pattern = [self matchPattern:[NSURL URLWithString:URL]];
-  return pattern.openMode;
+  return pattern.displayMode;
 }
 
 - (void)addURL:(NSString*)URL create:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeCreate];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeCreate];
   [pattern setTargetOrClass:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL create:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeCreate];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeCreate];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
@@ -403,7 +387,7 @@
 
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL create:(id)target
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeCreate];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeCreate];
   pattern.parentURL = [NSURL URLWithString:parentURL];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
@@ -411,24 +395,24 @@
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL singleton:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeSingleton];
+- (void)addURL:(NSString*)URL share:(id)target {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeShare];
   [pattern setTargetOrClass:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL singleton:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeSingleton];
+- (void)addURL:(NSString*)URL share:(id)target selector:(SEL)selector {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeShare];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL singleton:(id)target
+- (void)addURL:(NSString*)URL parent:(NSString*)parentURL share:(id)target
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeSingleton];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeShare];
   pattern.parentURL = [NSURL URLWithString:parentURL];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
@@ -437,14 +421,14 @@
 }
 
 - (void)addURL:(NSString*)URL modal:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeModal];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeModal];
   [pattern setTargetOrClass:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL modal:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeModal];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeModal];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
@@ -453,7 +437,7 @@
 
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(id)target
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeModal];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTDisplayModeModal];
   pattern.parentURL = [NSURL URLWithString:parentURL];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
@@ -470,16 +454,20 @@
   }
 }
 
-- (void)setController:(UIViewController*)controller forURL:(NSString*)URL {
-  if (!_singletons) {
-    _singletons = TTCreateNonRetainingDictionary();
+- (void)bindObject:(id)object toURL:(NSString*)URL {
+  if (!_bindings) {
+    _bindings = TTCreateNonRetainingDictionary();
   }
   // XXXjoe Normalize the URL first
-  [_singletons setObject:controller forKey:URL];
+  [_bindings setObject:object forKey:URL];
 }
 
-- (void)removeControllerForURL:(NSString*)URL {
-  [_singletons removeObjectForKey:URL];
+- (void)removeBindingForURL:(NSString*)URL {
+  [_bindings removeObjectForKey:URL];
+}
+
+- (void)removeBindingForObject:(id)object {
+  // XXXjoe IMPLEMENT ME
 }
 
 - (void)removePersistedControllers {

@@ -37,6 +37,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
+- (id)initWithURL:(NSURL*)URL {
+  if (self = [super init]) {
+    [self openURL:URL];
+  }
+  return self;
+}
+
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;
@@ -54,13 +61,6 @@
 - (void)dealloc {
   TT_RELEASE_MEMBER(_headerView);
   [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// URLs
-
-- (void)showURL:(NSString*)URL {
-  [self openURL:[NSURL URLWithString:URL]];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,6 +122,20 @@
   TT_RELEASE_MEMBER(_refreshButton);
   TT_RELEASE_MEMBER(_stopButton);
   TT_RELEASE_MEMBER(_activityItem);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UTViewController (TTCategory)
+
+- (void)persistView:(NSMutableDictionary*)state {
+  [state setObject:self.URL.absoluteString forKey:@"URL"];
+}
+
+- (void)restoreView:(NSDictionary*)state {
+  NSString* URL = [state objectForKey:@"URL"];
+  if (URL) {
+    [self openURL:[NSURL URLWithString:URL]];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

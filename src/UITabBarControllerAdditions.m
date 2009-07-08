@@ -29,7 +29,7 @@
 - (void)setTabURLs:(NSArray*)URLs {
   NSMutableArray* controllers = [NSMutableArray array];
   for (NSString* URL in URLs) {
-    UIViewController* controller = [[TTAppMap sharedMap] controllerForURL:URL];
+    UIViewController* controller = [[TTAppMap sharedMap] objectForURL:URL];
     if (controller) {
       UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
       [navController pushViewController:controller animated:NO];

@@ -8,7 +8,7 @@
 
 - (void)selectTestRow {
 #ifdef JOE
-  [[TTAppMap sharedMap] loadURL:TEST_URL animated:NO];
+  [[TTAppMap sharedMap] openURL:TEST_URL animated:NO];
 #endif
 }
 

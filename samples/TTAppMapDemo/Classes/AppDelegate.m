@@ -13,17 +13,17 @@
   appMap.persistenceMode = TTAppMapPersistenceModeAll;
   
   [appMap addURL:@"tt://tabBar"
-          create:[TabBarController class]];
-  [appMap addURL:@"tt://menu/(showMenu)"
-          singleton:[MenuController class] selector:@selector(showMenu:)];
-  [appMap addURL:@"tt://food/(showFood)"
-          create:[ContentController class] selector:@selector(showFood:)];
-  [appMap addURL:@"tt://about/(showAbout)" parent:@"tt://menu/5"
-          create:[ContentController class] selector:@selector(showAbout:)];
-  [appMap addURL:@"tt://order?waitress=(orderWithWaitress)"
-          modal:[ContentController class] selector:@selector(orderWithWaitress:params:)];
+          share:[TabBarController class]];
+  [appMap addURL:@"tt://menu/(initWithMenu:)"
+          share:[MenuController class] selector:@selector(initWithMenu:)];
+  [appMap addURL:@"tt://food/(initWithFood:)"
+          create:[ContentController class] selector:@selector(initWithFood:)];
+  [appMap addURL:@"tt://about/(initWithAbout:)" parent:@"tt://menu/5"
+          create:[ContentController class] selector:@selector(initWithAbout:)];
+  [appMap addURL:@"tt://order?waitress=(initWithWaitress:)"
+          modal:[ContentController class] selector:@selector(initWithWaitress:params:)];
   
-  TTOpenURL(@"tt://tabBar");
+  [appMap openURL:@"tt://tabBar"];
 }
 
 @end

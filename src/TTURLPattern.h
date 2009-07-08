@@ -1,7 +1,7 @@
 #import "Three20/TTAppMap.h"
 
 @interface TTURLPattern : NSObject {
-  TTOpenMode _openMode;
+  TTDisplayMode _displayMode;
   NSString* _URL;
   NSURL* _parentURL;
   id _targetObject;
@@ -14,7 +14,7 @@
   NSInteger _argumentCount;
 }
 
-@property(nonatomic,readonly) TTOpenMode openMode;
+@property(nonatomic,readonly) TTDisplayMode displayMode;
 @property(nonatomic,copy) NSString* URL;
 @property(nonatomic,copy) NSURL* parentURL;
 @property(nonatomic,assign) id targetObject;
@@ -24,11 +24,12 @@
 @property(nonatomic) NSInteger argumentCount;
 @property(nonatomic,readonly) BOOL isUniversal;
 
-- (id)initWithType:(TTOpenMode)openMode;
+- (id)initWithType:(TTDisplayMode)displayMode;
 
 - (void)setTargetOrClass:(id)target;
 
 - (BOOL)matchURL:(NSURL*)URL;
-- (void)setArgumentsFromURL:(NSURL*)URL forInvocation:(NSInvocation*)invocation;
+
+- (id)invokeSelectorForTarget:(id)target withURL:(NSURL*)URL;
 
 @end

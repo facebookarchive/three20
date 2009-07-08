@@ -210,10 +210,6 @@
   }
 }
 
-- (void)showObject:(id)object inView:(NSString*)viewType withState:(NSDictionary*)state {
-  self.frozenState = state;
-}
-
 - (void)reloadContent {
 }
 

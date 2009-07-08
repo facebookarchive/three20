@@ -28,7 +28,7 @@
   appMap.supportsShakeToReload = YES;
   appMap.persistenceMode = TTAppMapPersistenceModeAll;
   
-  [appMap addURL:@"*" create:[TTWebController class] selector:@selector(openURL:)];
+  [appMap addURL:@"*" create:[TTWebController class] selector:@selector(initWithURL:)];
   [appMap addURL:@"tt://catalog" create:[CatalogController class]];
   [appMap addURL:@"tt://photoTest1" create:[PhotoTest1Controller class]];
   [appMap addURL:@"tt://photoTest2" create:[PhotoTest2Controller class]];

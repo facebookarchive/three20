@@ -31,7 +31,7 @@ static NSMutableDictionary* gAppMapURLs = nil;
 - (void)ttdealloc {
   NSString* URL = self.appMapURL;
   if (URL) {
-    [[TTAppMap sharedMap] removeControllerForURL:URL];
+    [[TTAppMap sharedMap] removeBindingForURL:URL];
     self.appMapURL = nil;
   }
   

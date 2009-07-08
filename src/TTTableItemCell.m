@@ -60,8 +60,8 @@ static CGFloat kDefaultIconSize = 50;
 
     TTTableLinkedItem* linkedItem = object;
     if (linkedItem.URL) {
-      TTOpenMode openMode = [[TTAppMap sharedMap] openModeForURL:linkedItem.URL];
-      if (openMode == TTOpenModeCreate) {
+      TTDisplayMode displayMode = [[TTAppMap sharedMap] displayModeForURL:linkedItem.URL];
+      if (displayMode == TTDisplayModeCreate) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       } else {
         self.accessoryType = UITableViewCellAccessoryNone;
