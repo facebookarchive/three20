@@ -12,11 +12,11 @@ typedef enum {
 } TTAppMapPersistenceMode;
 
 typedef enum {
-  TTLaunchTypeNone,
-  TTLaunchTypeCreate,           // new controller is created and pushed
-  TTLaunchTypeSingleton,        // the same controller is re-used
-  TTLaunchTypeModal,            // new controller is created and displayed modally
-} TTLaunchType;
+  TTOpenModeNone,
+  TTOpenModeCreate,           // new controller is created and pushed
+  TTOpenModeSingleton,        // the same controller is re-used
+  TTOpenModeModal,            // new controller is created and displayed modally
+} TTOpenMode;
 
 @interface TTAppMap : NSObject {
   id<TTAppMapDelegate> _delegate;
@@ -74,18 +74,18 @@ typedef enum {
  * will be assigned as the mainViewController and inserted into the keyWinodw.  If there is not
  * a keyWindow, a UIWindow will be created and displayed.
  */
-- (UIViewController*)loadURL:(NSString*)URL;
-- (UIViewController*)loadURL:(NSString*)URL animated:(BOOL)animated;
+- (UIViewController*)openURL:(NSString*)URL;
+- (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated;
 
 /**
  * Gets the controller with a pattern that matches the URL.
- */
+ */ 
 - (UIViewController*)controllerForURL:(NSString*)URL;
 
 /**
  * Tests if there is a pattern that matches the URL.
  */
-- (TTLaunchType)launchTypeForURL:(NSString*)URL;
+- (TTOpenMode)openModeForURL:(NSString*)URL;
 
 /**
  * Adds a URL pattern which will create and display a controller when loaded.
@@ -183,14 +183,14 @@ typedef enum {
 /**
  * Asks if the URL should be loaded and allows the delegate to stop it.
  */
-- (BOOL)appMap:(TTAppMap*)appMap shouldLoadURL:(NSString*)URL;
+- (BOOL)appMap:(TTAppMap*)appMap shouldOpenURL:(NSString*)URL;
 
 /**
  * The URL is about to be opened in a controller.
  *
  * If the controller argument is nil, the URL will be opened externally.
  */
-- (void)appMap:(TTAppMap*)appMap willLoadURL:(NSString*)URL
+- (void)appMap:(TTAppMap*)appMap willOpenURL:(NSString*)URL
         inViewController:(UIViewController*)controller;
 
 @end
@@ -201,4 +201,4 @@ typedef enum {
 /**
  * Shortcut for calling loading a URL in the shared app map.
  */
-void TTLoadURL(NSString* URL);
+void TTOpenURL(NSString* URL);

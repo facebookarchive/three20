@@ -69,7 +69,7 @@
   
   UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [button setTitle:@"Compose Message" forState:UIControlStateNormal];
-  [button addTarget:@"tt://compose?to=Alan%20Jones" action:@selector(loadAsURL)
+  [button addTarget:@"tt://compose?to=Alan%20Jones" action:@selector(openURL)
     forControlEvents:UIControlEventTouchUpInside];
   button.frame = CGRectMake(20, 20, 280, 50);
   [self.view addSubview:button];

@@ -23,7 +23,7 @@
   [appMap addURL:@"tt://order?waitress=(orderWithWaitress)"
           modal:[ContentController class] selector:@selector(orderWithWaitress:params:)];
   
-  TTLoadURL(@"tt://tabBar");
+  TTOpenURL(@"tt://tabBar");
 }
 
 @end

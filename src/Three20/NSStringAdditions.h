@@ -17,6 +17,6 @@
 /**
  * Loads a URL with the string using TTAppMap.
  */
-- (void)loadAsURL;
+- (void)openURL;
 
 @end

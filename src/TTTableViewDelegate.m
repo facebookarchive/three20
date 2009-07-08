@@ -58,7 +58,7 @@ static const CGFloat kSectionHeaderHeight = 35;
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
     if (item.URL && [_controller shouldNavigateToURL:item.URL]) {
-      TTLoadURL(item.URL);
+      TTOpenURL(item.URL);
     }
 
     if ([object isKindOfClass:[TTTableButton class]]) {

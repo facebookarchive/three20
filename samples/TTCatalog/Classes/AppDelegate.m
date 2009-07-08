@@ -48,7 +48,7 @@
   [appMap addURL:@"tt://imageTest2" create:[TableImageTestController class]];
   [appMap addURL:@"tt://scrollViewTest" create:[ScrollViewTestController class]];
 
-  TTLoadURL(@"tt://catalog");
+  TTOpenURL(@"tt://catalog");
 }
 
 @end

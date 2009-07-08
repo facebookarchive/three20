@@ -382,7 +382,7 @@
 
 - (void) performDefaultAction {
   if (_URL) {
-    TTLoadURL(_URL);
+    TTOpenURL(_URL);
   }
 }
 
@@ -441,7 +441,7 @@
 
 - (void) performDefaultAction {
   if (_URL) {
-    TTLoadURL(_URL);
+    TTOpenURL(_URL);
   }
 }
 

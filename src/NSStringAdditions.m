@@ -115,8 +115,8 @@
   return [stripper parse:self];
 }
 
-- (void)loadAsURL {
-  TTLoadURL(self);
+- (void)openURL {
+  TTOpenURL(self);
 }
 
 @end

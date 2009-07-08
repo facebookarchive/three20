@@ -95,7 +95,7 @@
     }
   }
   
-  if (pattern.launchType == TTLaunchTypeSingleton && controller) {
+  if (pattern.openMode == TTOpenModeSingleton && controller) {
     [self setController:controller forURL:[URL absoluteString]];
   }
 
@@ -167,7 +167,7 @@
   UIViewController* parentController = [self parentControllerForController:controller
                                              withPattern:pattern];
   [self presentController:controller parent:parentController
-        modal:pattern.launchType == TTLaunchTypeModal animated:animated];
+        modal:pattern.openMode == TTOpenModeModal animated:animated];
 }
 
 - (UINavigationController*)frontNavigationController {
@@ -216,8 +216,8 @@
 
 - (UIViewController*)loadControllerWithURL:(NSString*)URL display:(BOOL)display
                     animated:(BOOL)animated {
-  if ([_delegate respondsToSelector:@selector(appMap:shouldLoadURL:)]) {
-    if ([_delegate appMap:self shouldLoadURL:URL]) {
+  if ([_delegate respondsToSelector:@selector(appMap:shouldOpenURL:)]) {
+    if ([_delegate appMap:self shouldOpenURL:URL]) {
       return nil;
     }
   }
@@ -226,8 +226,8 @@
   TTURLPattern* pattern = nil;
   UIViewController* controller = [self controllerForURL:theURL pattern:&pattern];
   if (controller) {
-    if ([_delegate respondsToSelector:@selector(appMap:wilLoadURL:inViewController:)]) {
-      [_delegate appMap:self willLoadURL:URL inViewController:controller];
+    if ([_delegate respondsToSelector:@selector(appMap:wilOpenURL:inViewController:)]) {
+      [_delegate appMap:self willOpenURL:URL inViewController:controller];
     }
 
     controller.appMapURL = URL;
@@ -235,8 +235,8 @@
       [self presentController:controller forURL:theURL withPattern:pattern animated:animated];
     }
   } else if (_openExternalURLs) {
-    if ([_delegate respondsToSelector:@selector(appMap:wilLoadURL:inViewController:)]) {
-      [_delegate appMap:self willLoadURL:URL inViewController:nil];
+    if ([_delegate respondsToSelector:@selector(appMap:wilOpenURL:inViewController:)]) {
+      [_delegate appMap:self willOpenURL:URL inViewController:nil];
     }
 
     [[UIApplication sharedApplication] openURL:theURL];
@@ -365,11 +365,11 @@
   }
 }
 
-- (UIViewController*)loadURL:(NSString*)URL {
-  return [self loadURL:URL animated:YES];
+- (UIViewController*)openURL:(NSString*)URL {
+  return [self openURL:URL animated:YES];
 }
 
-- (UIViewController*)loadURL:(NSString*)URL animated:(BOOL)animated {
+- (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated {
   if (!_mainViewController && _persistenceMode && [self restoreControllersStartingWithURL:URL]) {
     return _mainViewController;
   } else {
@@ -381,20 +381,20 @@
   return [self loadControllerWithURL:URL display:NO animated:NO];
 }
 
-- (TTLaunchType)launchTypeForURL:(NSString*)URL {
+- (TTOpenMode)openModeForURL:(NSString*)URL {
   TTURLPattern* pattern = [self matchPattern:[NSURL URLWithString:URL]];
-  return pattern.launchType;
+  return pattern.openMode;
 }
 
 - (void)addURL:(NSString*)URL create:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeCreate];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeCreate];
   [pattern setTargetOrClass:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL create:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeCreate];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeCreate];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
@@ -403,7 +403,7 @@
 
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL create:(id)target
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeCreate];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeCreate];
   pattern.parentURL = [NSURL URLWithString:parentURL];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
@@ -412,14 +412,14 @@
 }
 
 - (void)addURL:(NSString*)URL singleton:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeSingleton];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeSingleton];
   [pattern setTargetOrClass:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL singleton:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeSingleton];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeSingleton];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
@@ -428,7 +428,7 @@
 
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL singleton:(id)target
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeSingleton];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeSingleton];
   pattern.parentURL = [NSURL URLWithString:parentURL];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
@@ -437,14 +437,14 @@
 }
 
 - (void)addURL:(NSString*)URL modal:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeModal];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeModal];
   [pattern setTargetOrClass:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
 - (void)addURL:(NSString*)URL modal:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeModal];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeModal];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
@@ -453,7 +453,7 @@
 
 - (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(id)target
         selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTLaunchTypeModal];
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithType:TTOpenModeModal];
   pattern.parentURL = [NSURL URLWithString:parentURL];
   [pattern setTargetOrClass:target];
   pattern.selector = selector;
@@ -506,6 +506,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
 
-void TTLoadURL(NSString* URL) {
-  [[TTAppMap sharedMap] loadURL:URL];
+void TTOpenURL(NSString* URL) {
+  [[TTAppMap sharedMap] openURL:URL];
 }

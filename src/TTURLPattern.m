@@ -99,7 +99,7 @@ typedef enum {
 
 @implementation TTURLPattern
 
-@synthesize launchType = _launchType, URL = _URL, parentURL = _parentURL,
+@synthesize openMode = _openMode, URL = _URL, parentURL = _parentURL,
             targetObject = _targetObject, targetClass = _targetClass, selector = _selector,
             specificity = _specificity, argumentCount = _argumentCount;
 
@@ -284,16 +284,16 @@ typedef enum {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithType:(TTLaunchType)launchType {
+- (id)initWithType:(TTOpenMode)openMode {
   if (self = [self init]) {
-    _launchType = launchType;
+    _openMode = openMode;
   }
   return self;
 }
 
 - (id)init {
   if (self = [super init]) {
-    _launchType = TTLaunchTypeNone;
+    _openMode = TTOpenModeNone;
     _scheme = nil;
     _path = [[NSMutableArray alloc] init];
     _query = nil;
