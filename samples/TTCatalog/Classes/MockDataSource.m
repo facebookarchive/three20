@@ -363,7 +363,7 @@
     text = [text lowercaseString];
     for (NSString* name in _names) {
       if ([[name lowercaseString] rangeOfString:text].location == 0) {
-        TTTableItem* item = [TTTableTextItem itemWithText:name URL:TT_NULL_URL];
+        TTTableItem* item = [TTTableTextItem itemWithText:name URL:nil];
         [_items addObject:item];
       }
     }    
@@ -386,7 +386,7 @@
       [map setObject:section forKey:letter];
     }
     
-    TTTableItem* item = [TTTableTextItem itemWithText:name URL:TT_NULL_URL];
+    TTTableItem* item = [TTTableTextItem itemWithText:name URL:nil];
     [section addObject:item];
   }
   

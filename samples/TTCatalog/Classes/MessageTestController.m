@@ -9,14 +9,14 @@
   if (self = [super init]) {
     _sendTimer = nil;
     
-    [[TTAppMap sharedMap] addURL:@"tt://compose?to=(composeTo:)"
-                          modal:self selector:@selector(composeTo:)];
+    [[TTURLMap urlMap] addURL:@"tt://compose?to=(composeTo:)"
+                       modal:self selector:@selector(composeTo:)];
   }
   return self;
 }
 
 - (void)dealloc {
-  [[TTAppMap sharedMap] removeURL:@"tt://compose?to=(composeTo:)"];
+  [[TTURLMap urlMap] removeURL:@"tt://compose?to=(composeTo:)"];
   [_sendTimer invalidate];
 	[super dealloc];
 }
@@ -24,7 +24,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (UIViewController*)composeTo:(NSString*)recipient {
-  TTTableTextItem* item = [TTTableTextItem itemWithText:recipient URL:TT_NULL_URL];
+  TTTableTextItem* item = [TTTableTextItem itemWithText:recipient URL:nil];
 
   TTMessageController* controller =
     [[[TTMessageController alloc] initWithRecipients:[NSArray arrayWithObject:item]] autorelease];
@@ -35,7 +35,7 @@
 }
 
 - (void)cancelAddressBook {
-  [[TTAppMap sharedMap].visibleViewController dismissModalViewControllerAnimated:YES];
+  [[TTNavigator navigator].visibleViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)sendDelayed:(NSTimer*)timer {

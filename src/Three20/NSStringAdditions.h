@@ -3,8 +3,14 @@
 
 @interface NSString (TTCategory)
 
+/**
+ * Determines if the string contains only whitespace.
+ */ 
 - (BOOL)isWhitespace;
 
+/**
+ * Determines if the string is empty or contains only whitespace.
+ */ 
 - (BOOL)isEmptyOrWhitespace;
 
 /**
@@ -12,21 +18,19 @@
  */
 - (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding;
 
+/**
+ * Returns a string with all HTML tags removed.
+ */
 - (NSString*)stringByRemovingHTMLTags;
 
 /**
- * Opens a URL with the string using TTAppMap.
- */
-- (void)openURL;
-
-/**
- * Converts the string to an object using TTAppMap.
+ * Converts the string to an object using TTURLMap.
  */
 - (id)objectValue;
 
 /**
- * Formats a URL using an object that conforms to the TTURLObject protocol.
+ * Opens a URL with the string using TTURLMap.
  */
-- (NSString*)objectURL:(id)object;
+- (void)openURL;
 
 @end

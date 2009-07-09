@@ -4,24 +4,12 @@
 @implementation CatalogController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (void)selectTestRow {
-#ifdef JOE
-  [[TTAppMap sharedMap] openURL:TEST_URL animated:NO];
-#endif
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)init {
   if (self = [super init]) {
     self.title = @"Three20 Catalog";
     self.tableViewStyle = UITableViewStyleGrouped;
-
-//    [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(selectTestRow)
-//             userInfo:nil repeats:NO];
   }
   return self;
 }

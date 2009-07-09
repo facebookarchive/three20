@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 #import "Three20/TTURLRequestQueue.h"
-#import "Three20/TTAppMap.h"
+#import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,7 +34,7 @@
 
 - (void)persistNavigationPath:(NSMutableArray*)path {
   for (UIViewController* controller in self.viewControllers) {
-    [[TTAppMap sharedMap] persistController:controller path:path];
+    [[TTNavigator navigator] persistController:controller path:path];
   }
 }
 

@@ -1,5 +1,6 @@
 #import "Three20/TTGlobal.h"
-#import "Three20/TTAppMap.h"
+#import "Three20/TTURLMap.h"
+#import "Three20/TTNavigator.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -90,6 +91,11 @@
          ![self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length;
 }
 
+- (NSString*)stringByRemovingHTMLTags {
+  TTMarkupStripper* stripper = [[[TTMarkupStripper alloc] init] autorelease];
+  return [stripper parse:self];
+}
+
 // Copied and pasted from http://www.mail-archive.com/cocoa-dev@lists.apple.com/msg28175.html
 - (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding {
   NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
@@ -110,26 +116,12 @@
   return [NSDictionary dictionaryWithDictionary:pairs];
 }
 
-- (NSString*)stringByRemovingHTMLTags {
-  TTMarkupStripper* stripper = [[[TTMarkupStripper alloc] init] autorelease];
-  return [stripper parse:self];
+- (id)objectValue {
+  return [[TTURLMap urlMap] objectForURL:self];
 }
 
 - (void)openURL {
   TTOpenURL(self);
-}
-
-- (id)objectValue {
-  return [[TTAppMap sharedMap] objectForURL:self];
-}
-
-- (NSString*)objectURL:(id)object {
-  if ([object conformsToProtocol:@protocol(TTURLObject)]) {
-    id<TTURLObject> URLObject = object;
-    return [URLObject formatURL:self];
-  } else {
-    return self;
-  }
 }
 
 @end

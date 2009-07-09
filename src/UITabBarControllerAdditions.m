@@ -1,8 +1,21 @@
-#import "Three20/TTAppMap.h"
+#import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation UITabBarController (TTCategory)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (UIViewController*)rootControllerForController:(UIViewController*)controller {
+  if ([controller isContainerController]) {
+    return controller;
+  } else {
+    UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
+    [navController pushViewController:controller animated:NO];
+    return navController;
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
@@ -24,7 +37,8 @@
 }
 
 - (void)persistNavigationPath:(NSMutableArray*)path {
-  [[TTAppMap sharedMap] persistController:self.selectedViewController path:path];
+  UIViewController* controller = self.selectedViewController;
+  [[TTNavigator navigator] persistController:controller path:path];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,11 +47,10 @@
 - (void)setTabURLs:(NSArray*)URLs {
   NSMutableArray* controllers = [NSMutableArray array];
   for (NSString* URL in URLs) {
-    UIViewController* controller = [[TTAppMap sharedMap] objectForURL:URL];
+    UIViewController* controller = [[TTNavigator navigator] viewControllerForURL:URL];
     if (controller) {
-      UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
-      [navController pushViewController:controller animated:NO];
-      [controllers addObject:navController];
+      UIViewController* tabController = [self rootControllerForController:controller];
+      [controllers addObject:tabController];
     }
   }
   self.viewControllers = controllers;

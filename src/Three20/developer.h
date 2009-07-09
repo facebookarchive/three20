@@ -6,7 +6,6 @@
  *    git update-index --assume-unchanged src/Three20/developer.h
  */
  
-//#define JOE 1
-//
-//#define TEST_SECTION 3
-//#define TEST_ROW 1
+#define JOE 1
+
+#define TEST_URL @"tt://styledTextTableTest"

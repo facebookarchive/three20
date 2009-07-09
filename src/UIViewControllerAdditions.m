@@ -1,8 +1,8 @@
-#import "Three20/TTAppMap.h"
+#import "Three20/TTURLMap.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-static NSMutableDictionary* gAppMapURLs = nil;
+static NSMutableDictionary* gNavigatorURLs = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,12 +27,12 @@ static NSMutableDictionary* gAppMapURLs = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-// Swizzled with dealloc by TTAppMap (only if you're using TTAppMap)
+// Swizzled with dealloc by TTURLMap (only if you're using TTURLMap)
 - (void)ttdealloc {
-  NSString* URL = self.appMapURL;
+  NSString* URL = self.navigatorURL;
   if (URL) {
-    [[TTAppMap sharedMap] removeBindingForURL:URL];
-    self.appMapURL = nil;
+    [[TTURLMap urlMap] removeBindingForURL:URL];
+    self.navigatorURL = nil;
   }
   
   // Calls the original dealloc, swizzled away
@@ -42,20 +42,20 @@ static NSMutableDictionary* gAppMapURLs = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (NSString*)appMapURL {
+- (NSString*)navigatorURL {
   NSString* key = [NSString stringWithFormat:@"%d", self];
-  return [gAppMapURLs objectForKey:key];
+  return [gNavigatorURLs objectForKey:key];
 }
 
-- (void)setAppMapURL:(NSString*)URL {
+- (void)setNavigatorURL:(NSString*)URL {
   NSString* key = [NSString stringWithFormat:@"%d", self];
   if (URL) {
-    if (!gAppMapURLs) {
-      gAppMapURLs = [[NSMutableDictionary alloc] init];
+    if (!gNavigatorURLs) {
+      gNavigatorURLs = [[NSMutableDictionary alloc] init];
     }
-    [gAppMapURLs setObject:URL forKey:key];
+    [gNavigatorURLs setObject:URL forKey:key];
   } else {
-    [gAppMapURLs removeObjectForKey:key];
+    [gNavigatorURLs removeObjectForKey:key];
   }
 }
 

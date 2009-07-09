@@ -435,10 +435,6 @@ static const NSTimeInterval kSlideshowInterval = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (id<TTPersistable>)viewObject {
-  return _centerPhoto;
-}
-
 - (void)reloadContent {
   [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
 }
@@ -453,11 +449,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
   } else {
     if (_contentError) {
-      self.viewState = TTViewDataLoadedError;
+      self.viewState = TTViewLoadedError;
     } else if (!_photoSource.numberOfPhotos) {
       self.viewState = TTViewEmpty;
     } else {
-      self.viewState = TTViewDataLoaded;
+      self.viewState = TTViewLoaded;
     }
   }
 
@@ -473,9 +469,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)updateLoadedView {
-  if (self.viewState & TTViewDataLoaded) {
+  if (self.viewState & TTViewLoaded) {
     [self showStatus:nil];
-  } else if (self.viewState & TTViewDataLoadedError) {
+  } else if (self.viewState & TTViewLoadedError) {
     [self showStatus:TTLocalizedString(@"This photo set could not be loaded.", @"")];
   } else {
     [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
@@ -531,7 +527,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   if (!_photoSource.numberOfPhotos) {
     self.viewState = TTViewEmpty;
   } else {
-    self.viewState = TTViewDataLoaded;
+    self.viewState = TTViewLoaded;
   }
 }
 
@@ -539,14 +535,14 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [self resetVisiblePhotoViews];
 
   self.contentError = error;
-  self.viewState = TTViewDataLoadedError;
+  self.viewState = TTViewLoadedError;
 }
 
 - (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource {
   [self resetVisiblePhotoViews];
 
   self.contentError = nil;
-  self.viewState = TTViewDataLoadedError;
+  self.viewState = TTViewLoadedError;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

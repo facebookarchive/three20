@@ -7,7 +7,8 @@
 #import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTTextEditor.h"
-#import "Three20/TTAppMap.h"
+#import "Three20/TTURLMap.h"
+#import "Three20/TTNavigator.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
@@ -60,8 +61,8 @@ static CGFloat kDefaultIconSize = 50;
 
     TTTableLinkedItem* linkedItem = object;
     if (linkedItem.URL) {
-      TTDisplayMode displayMode = [[TTAppMap sharedMap] displayModeForURL:linkedItem.URL];
-      if (displayMode == TTDisplayModeCreate) {
+      TTNavigationMode navigationMode = [[TTURLMap urlMap] navigationModeForURL:linkedItem.URL];
+      if (navigationMode == TTNavigationModeCreate) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       } else {
         self.accessoryType = UITableViewCellAccessoryNone;

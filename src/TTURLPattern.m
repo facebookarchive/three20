@@ -1,4 +1,4 @@
-#import "TTURLPattern.h"
+#import "Three20/TTURLPattern.h"
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ typedef enum {
 
 @implementation TTURLPattern
 
-@synthesize displayMode = _displayMode, URL = _URL, parentURL = _parentURL,
+@synthesize navigationMode = _navigationMode, URL = _URL, parentURL = _parentURL,
             targetObject = _targetObject, targetClass = _targetClass, selector = _selector,
             specificity = _specificity, argumentCount = _argumentCount;
 
@@ -321,9 +321,9 @@ typedef enum {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithType:(TTDisplayMode)displayMode target:(id)target {
+- (id)initWithMode:(TTNavigationMode)navigationMode target:(id)target {
   if (self = [self init]) {
-    _displayMode = displayMode;
+    _navigationMode = navigationMode;
 
     if ([target class] == target) {
       _targetClass = target;
@@ -336,7 +336,7 @@ typedef enum {
 
 - (id)init {
   if (self = [super init]) {
-    _displayMode = TTDisplayModeNone;
+    _navigationMode = TTNavigationModeNone;
     _scheme = nil;
     _path = [[NSMutableArray alloc] init];
     _query = nil;

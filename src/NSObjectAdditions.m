@@ -4,6 +4,14 @@
 
 @implementation NSObject (TTCategory)
 
+- (NSString*)URLValue {
+  return nil;
+}
+
+- (NSString*)URLValueWithName:(NSString*)name {
+  return nil;
+}
+
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
   NSMethodSignature *sig = [self methodSignatureForSelector:selector];
   if (sig) {

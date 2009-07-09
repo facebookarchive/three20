@@ -266,10 +266,6 @@ static CGFloat kThumbnailRowHeight = 79;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (id<TTPersistable>)viewObject {
-  return _photoSource;
-}
-
 - (UIImage*)imageForNoData {
   return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
 }

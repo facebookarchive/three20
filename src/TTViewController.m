@@ -184,12 +184,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (id<TTPersistable>)viewObject {
-  return nil;
-}
-
-- (NSString*)viewType {
-  return nil;
+- (void)setViewState:(TTViewState)state {
+  if (!_invalidViewLoading) {
+    _invalidViewLoading = (_viewState & TTViewLoadingStates) != (state & TTViewLoadingStates);
+  }
+  if (!_invalidViewData) {
+    _invalidViewData = state == TTViewLoaded || state == TTViewEmpty
+                       || (_viewState & TTViewLoadedStates) != (state & TTViewLoadedStates);
+  }
+  
+  _viewState = state;
+  
+  if (_isViewAppearing) {
+    [self validateView];
+  }
 }
 
 - (void)setAutoresizesForKeyboard:(BOOL)autoresizesForKeyboard {
@@ -219,22 +227,6 @@
 - (void)invalidateView {
   _invalidView = YES;
   _viewState = TTViewEmpty;
-  if (_isViewAppearing) {
-    [self validateView];
-  }
-}
-
-- (void)setViewState:(TTViewState)state {
-  if (!_invalidViewLoading) {
-    _invalidViewLoading = (_viewState & TTViewLoadingStates) != (state & TTViewLoadingStates);
-  }
-  if (!_invalidViewData) {
-    _invalidViewData = state == TTViewDataLoaded || state == TTViewEmpty
-                       || (_viewState & TTViewDataStates) != (state & TTViewDataStates);
-  }
-  
-  _viewState = state;
-  
   if (_isViewAppearing) {
     [self validateView];
   }

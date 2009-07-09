@@ -6,7 +6,7 @@
 #import "Three20/TTTableHeaderView.h"
 #import "Three20/TTTableView.h"
 #import "Three20/TTStyledTextLabel.h"
-#import "Three20/TTAppMap.h"
+#import "Three20/TTNavigator.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTURLRequestQueue.h"
 

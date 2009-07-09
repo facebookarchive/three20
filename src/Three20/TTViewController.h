@@ -5,13 +5,11 @@ typedef enum {
   TTViewLoading = 1,
   TTViewLoadingMore = 2,
   TTViewRefreshing = 4,
-  TTViewDataLoaded = 8,
-  TTViewDataLoadedError = 16,
+  TTViewLoaded = 8,
+  TTViewLoadedError = 16,
   TTViewLoadingStates = (TTViewLoading|TTViewLoadingMore|TTViewRefreshing),
-  TTViewDataStates = (TTViewDataLoaded|TTViewDataLoadedError),
+  TTViewLoadedStates = (TTViewLoaded|TTViewLoadedError),
 } TTViewState;
-
-@protocol TTPersistable;
 
 @interface TTViewController : UIViewController {
   NSDictionary* _frozenState;

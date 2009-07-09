@@ -38,14 +38,14 @@
 // NSObject
 
 - (id)initWithURL:(NSURL*)URL {
-  if (self = [super init]) {
+  if (self = [self init]) {
     [self openURL:URL];
   }
   return self;
 }
 
 - (id)initWithURL:(NSURL*)URL params:(NSDictionary*)params {
-  if (self = [super init]) {
+  if (self = [self init]) {
     NSURLRequest* request = [params objectForKey:@"request"];
     if (request) {
       [self openRequest:request];
@@ -140,7 +140,10 @@
 // UTViewController (TTCategory)
 
 - (void)persistView:(NSMutableDictionary*)state {
-  [state setObject:self.URL.absoluteString forKey:@"URL"];
+  NSString* URL = self.URL.absoluteString;
+  if (URL) {
+    [state setObject:URL forKey:@"URL"];
+  }
 }
 
 - (void)restoreView:(NSDictionary*)state {

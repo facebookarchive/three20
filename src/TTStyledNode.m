@@ -1,6 +1,6 @@
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTURLCache.h"
-#import "Three20/TTAppMap.h"
+#import "Three20/TTNavigator.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 

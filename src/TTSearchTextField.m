@@ -1,5 +1,5 @@
 #import "Three20/TTSearchTextField.h"
-#import "Three20/TTAppMap.h"
+#import "Three20/TTNavigator.h"
 #import "Three20/TTView.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTTableView.h"
@@ -165,7 +165,7 @@ static const CGFloat kDesiredTableHeight = 150;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)showDoneButton:(BOOL)show {
-  UIViewController* controller = [TTAppMap sharedMap].visibleViewController;
+  UIViewController* controller = [TTNavigator navigator].visibleViewController;
   if (controller) {
     if (show) {
       _previousNavigationItem = [controller.navigationItem retain];

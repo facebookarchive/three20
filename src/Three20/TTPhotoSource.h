@@ -18,7 +18,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTPhotoSource <TTPersistable, TTLoadable>
+@protocol TTPhotoSource <TTLoadable>
 
 @property(nonatomic,readonly) NSMutableArray* delegates;
 
@@ -55,7 +55,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTPhoto <TTPersistable>
+@protocol TTPhoto <NSObject>
 
 /**
  * The photo source that the photo belongs to.

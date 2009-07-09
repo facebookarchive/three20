@@ -4,14 +4,14 @@
 @interface UIViewController (TTCategory)
 
 /**
- * The URL that was used to load this controller through TTAppMap.
+ * The URL that was used to load this controller through TTNavigator.
  */
-@property(nonatomic,copy) NSString* appMapURL;
+@property(nonatomic,copy) NSString* navigatorURL;
 
 /**
  * A temporary holding place for persisted view state waiting to be restored.
  *
- * While restoring controllers, TTAppMap will assign this the dictionary created by persistView.
+ * While restoring controllers, TTURLMap will assign this the dictionary created by persistView.
  * Ultimately, this state is bound for the restoreView call, but it is up to subclasses to
  * call restoreView at the appropriate time -- usually after the view has been created.
  *
@@ -37,7 +37,7 @@
 /**
  * Displays a controller inside this controller.
  *
- * TTAppMap uses this to display newly created controllers.  The default does nothing --
+ * TTURLMap uses this to display newly created controllers.  The default does nothing --
  * UIViewController categories and subclasses should implement to display the controller
  * in a manner specific to them.  
  */
@@ -46,7 +46,7 @@
 /**
  * Brings a controller that is a child of this controller to the front.
  *
- * TTAppMap uses this to display controllers that exist already, but may not be visible.
+ * TTURLMap uses this to display controllers that exist already, but may not be visible.
  * The default does nothing -- UIViewController categories and subclasses should implement
  * to display the controller in a manner specific to them.  
  */

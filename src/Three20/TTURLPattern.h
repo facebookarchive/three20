@@ -1,9 +1,9 @@
-#import "Three20/TTAppMap.h"
+#import "Three20/TTURLMap.h"
 
 @interface TTURLPattern : NSObject {
-  TTDisplayMode _displayMode;
+  TTNavigationMode _navigationMode;
   NSString* _URL;
-  NSURL* _parentURL;
+  NSString* _parentURL;
   id _targetObject;
   Class _targetClass;
   SEL _selector;
@@ -14,9 +14,9 @@
   NSInteger _argumentCount;
 }
 
-@property(nonatomic,readonly) TTDisplayMode displayMode;
+@property(nonatomic,readonly) TTNavigationMode navigationMode;
 @property(nonatomic,copy) NSString* URL;
-@property(nonatomic,copy) NSURL* parentURL;
+@property(nonatomic,copy) NSString* parentURL;
 @property(nonatomic,assign) id targetObject;
 @property(nonatomic) Class targetClass;
 @property(nonatomic) SEL selector;
@@ -24,7 +24,7 @@
 @property(nonatomic) NSInteger argumentCount;
 @property(nonatomic,readonly) BOOL isUniversal;
 
-- (id)initWithType:(TTDisplayMode)displayMode target:(id)target;
+- (id)initWithMode:(TTNavigationMode)navigationMode target:(id)target;
 
 - (void)compile;
 
