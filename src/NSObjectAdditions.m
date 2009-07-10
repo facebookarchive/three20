@@ -1,15 +1,16 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTNavigator.h"
+#import "Three20/TTURLMap.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation NSObject (TTCategory)
 
 - (NSString*)URLValue {
-  return nil;
+  return [[TTNavigator navigator].URLMap URLForObject:self];
 }
 
 - (NSString*)URLValueWithName:(NSString*)name {
-  return nil;
+  return [[TTNavigator navigator].URLMap URLForObject:self withName:name];
 }
 
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {

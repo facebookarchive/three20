@@ -9,36 +9,53 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (void)addPattern:(TTURLPattern*)pattern forURL:(NSString*)URL {
+- (NSString*)keyForClass:(Class)cls withName:(NSString*)name {
+  const char* className = class_getName(cls);
+  return [NSString stringWithFormat:@"%s_%@", className, name ? name : @""];  
+}
+
+- (void)addObjectPattern:(TTURLPattern*)pattern forURL:(NSString*)URL {
   pattern.URL = URL;
-  [pattern compile];
+  [pattern compileForObject];
   
   if (pattern.isUniversal) {
-    [_defaultPattern release];
-    _defaultPattern = [pattern retain];
+    [_defaultObjectPattern release];
+    _defaultObjectPattern = [pattern retain];
   } else {
     _invalidPatterns = YES;
         
-    if (!_patterns) {
-      _patterns = [[NSMutableArray alloc] init];
+    if (!_objectPatterns) {
+      _objectPatterns = [[NSMutableArray alloc] init];
     }
     
-    [_patterns addObject:pattern];
+    [_objectPatterns addObject:pattern];
   }
+}
+
+- (void)addStringPattern:(TTURLPattern*)pattern forURL:(NSString*)URL withName:(NSString*)name {
+  pattern.URL = URL;
+  [pattern compileForString];
+  
+  if (!_stringPatterns) {
+    _stringPatterns = [[NSMutableDictionary alloc] init];
+  }
+    
+  NSString* key = [self keyForClass:pattern.targetClass withName:name];
+  [_stringPatterns setObject:pattern forKey:key];
 }
 
 - (TTURLPattern*)matchPattern:(NSURL*)URL {
   if (_invalidPatterns) {
-    [_patterns sortUsingSelector:@selector(compareSpecificity:)];
+    [_objectPatterns sortUsingSelector:@selector(compareSpecificity:)];
     _invalidPatterns = NO;
   }
   
-  for (TTURLPattern* pattern in _patterns) {
+  for (TTURLPattern* pattern in _objectPatterns) {
     if ([pattern matchURL:URL]) {
       return pattern;
     }
   }
-  return _defaultPattern;
+  return _defaultObjectPattern;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,23 +63,126 @@
 
 - (id)init {
   if (self = [super init]) {
-    _bindings = nil;
-    _patterns = nil;
-    _defaultPattern = nil;
+    _objectMappings = nil;
+    _objectPatterns = nil;
+    _stringPatterns = nil;
+    _defaultObjectPattern = nil;
     _invalidPatterns = NO;
   }
   return self;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_bindings);
-  TT_RELEASE_MEMBER(_patterns);
-  TT_RELEASE_MEMBER(_defaultPattern);
+  TT_RELEASE_MEMBER(_objectMappings);
+  TT_RELEASE_MEMBER(_objectPatterns);
+  TT_RELEASE_MEMBER(_stringPatterns);
+  TT_RELEASE_MEMBER(_defaultObjectPattern);
   [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
+
+- (void)from:(NSString*)URL toObject:(id)object {
+  if (!_objectMappings) {
+    _objectMappings = TTCreateNonRetainingDictionary();
+  }
+  // XXXjoe Normalize the URL first
+  [_objectMappings setObject:object forKey:URL];
+}
+
+- (void)from:(NSString*)URL toViewController:(id)target {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
+  pattern.selector = selector;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector
+        parent:(NSString*)parentURL {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
+  pattern.parentURL = parentURL;
+  pattern.selector = selector;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL toSharedViewController:(id)target {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
+  pattern.selector = selector;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector
+        parent:(NSString*)parentURL {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
+  pattern.parentURL = parentURL;
+  pattern.selector = selector;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL toModalViewController:(id)target {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
+  pattern.selector = selector;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector
+        parent:(NSString*)parentURL {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
+  pattern.parentURL = parentURL;
+  pattern.selector = selector;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(Class)cls toURL:(NSString*)URL {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeNone target:cls];
+  [self addStringPattern:pattern forURL:URL withName:nil];
+  [pattern release];
+}
+
+- (void)from:(Class)cls name:(NSString*)name toURL:(NSString*)URL {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeNone target:cls];
+  [self addStringPattern:pattern forURL:URL withName:name];
+  [pattern release];
+}
+
+- (void)removeURL:(NSString*)URL {
+  [_objectMappings removeObjectForKey:URL];
+
+  for (TTURLPattern* pattern in _objectPatterns) {
+    if ([URL isEqualToString:pattern.URL]) {
+      [_objectPatterns removeObject:pattern];
+      break;
+    }
+  }
+}
+
+- (void)removeObject:(id)object {
+  // XXXjoe IMPLEMENT ME
+}
 
 - (id)objectForURL:(NSString*)URL {
   return [self objectForURL:URL query:nil pattern:nil];
@@ -73,9 +193,9 @@
 }
 
 - (id)objectForURL:(NSString*)URL query:(NSDictionary*)query pattern:(TTURLPattern**)pattern {
-  if (_bindings) {
+  if (_objectMappings) {
     // XXXjoe Normalize the URL first
-    id object = [_bindings objectForKey:URL];
+    id object = [_objectMappings objectForKey:URL];
     if (object) {
       return object;
     }
@@ -100,7 +220,7 @@
     }
     
     if (match.navigationMode == TTNavigationModeShare && controller) {
-      [self bindObject:controller toURL:URL];
+      [self from:URL toObject:controller];
     }
     
     [target autorelease];
@@ -119,101 +239,19 @@
   return pattern.navigationMode;
 }
 
-- (void)from:(NSString*)URL toViewController:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
-  [self addPattern:pattern forURL:URL];
-  [pattern release];
+- (NSString*)URLForObject:(id)object {
+  return [self URLForObject:object withName:nil];
 }
 
-- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
-  pattern.selector = selector;
-  [self addPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector
-        parent:(NSString*)parentURL {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
-  pattern.parentURL = parentURL;
-  pattern.selector = selector;
-  [self addPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(NSString*)URL toSharedViewController:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
-  [self addPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
-  pattern.selector = selector;
-  [self addPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector
-        parent:(NSString*)parentURL {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
-  pattern.parentURL = parentURL;
-  pattern.selector = selector;
-  [self addPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(NSString*)URL toModalViewController:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
-  [self addPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
-  pattern.selector = selector;
-  [self addPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector
-        parent:(NSString*)parentURL {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
-  pattern.parentURL = parentURL;
-  pattern.selector = selector;
-  [self addPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(id)object toURL:(NSString*)URL {
-}
-
-- (void)from:(id)object name:(NSString*)name toURL:(NSString*)URL {
-}
-
-- (void)removeURL:(NSString*)URL {
-  for (TTURLPattern* pattern in _patterns) {
-    if ([URL isEqualToString:pattern.URL]) {
-      [_patterns removeObject:pattern];
-      break;
-    }
+- (NSString*)URLForObject:(id)object withName:(NSString*)name {
+  Class cls = [object class] == object ? object : [object class];
+  NSString* key = [self keyForClass:cls withName:name];
+  TTURLPattern* pattern = [_stringPatterns objectForKey:key];
+  if (pattern) {
+    return [pattern generateURLFromObject:object];
+  } else {
+    return nil;
   }
-}
-
-- (void)bindObject:(id)object toURL:(NSString*)URL {
-  if (!_bindings) {
-    _bindings = TTCreateNonRetainingDictionary();
-  }
-  // XXXjoe Normalize the URL first
-  [_bindings setObject:object forKey:URL];
-}
-
-- (void)removeBindingForURL:(NSString*)URL {
-  [_bindings removeObjectForKey:URL];
-}
-
-- (void)removeBindingForObject:(id)object {
-  // XXXjoe IMPLEMENT ME
 }
 
 @end

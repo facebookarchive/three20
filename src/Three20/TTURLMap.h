@@ -10,26 +10,24 @@ typedef enum {
 } TTNavigationMode;
 
 @interface TTURLMap : NSObject {
-  NSMutableDictionary* _bindings;
-  NSMutableArray* _patterns;
-  TTURLPattern* _defaultPattern;
+  NSMutableDictionary* _objectMappings;
+  NSMutableArray* _objectPatterns;
+  NSMutableDictionary* _stringPatterns;
+  TTURLPattern* _defaultObjectPattern;
   BOOL _invalidPatterns;
 }
 
 /**
- * Gets or creates the object with a pattern that matches the URL.
+ * Adds a direct mapping from a literal URL to an object.
  *
- * Object bindings are checked first, and if no object is bound to the URL then pattern
- * matching is used to create a new object.
- */ 
-- (id)objectForURL:(NSString*)URL;
-- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query;
-- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query pattern:(TTURLPattern**)pattern;
-
-/**
- * Tests if there is a pattern that matches the URL and if so returns its navigation mode.
+ * The URL must not be a pattern - it must be the a URL. All requests to open this URL will
+ * return the object bound to it, rather than going through the pattern matching process to create
+ * a new object.
+ * 
+ * Mapped objects are not retained.  You are responsible for removing the mapping when the object
+ * is destroyed, or risk crashes.
  */
-- (TTNavigationMode)navigationModeForURL:(NSString*)URL;
+- (void)from:(NSString*)URL toObject:(id)object;
 
 /**
  * Adds a URL pattern which will create and present a view controller when loaded.
@@ -91,39 +89,44 @@ typedef enum {
         parent:(NSString*)parentURL ;
 
 /**
- * 
+ * Adds a mapping from a class to a generated URL.
  */
-- (void)from:(id)object toURL:(NSString*)URL;
+- (void)from:(Class)object toURL:(NSString*)URL;
 
 /**
- * 
+ * Adds a mapping from a class and a special name to a generated URL.
  */
-- (void)from:(id)object name:(NSString*)name toURL:(NSString*)URL;
+- (void)from:(Class)cls name:(NSString*)name toURL:(NSString*)URL;
 
 /**
- * Removes a URL pattern.
+ * Removes all objects and patterns mapped to a URL.
  */
 - (void)removeURL:(NSString*)URL;
 
 /**
- * Binds a URL to an object.
- *
- * Bindings are weak, meaning that the app map will not retain your object.  You are
- * responsible for removing the binding when the object is destroyed.
- *
- * All requests to open this URL will return the object bound to it, rather than going
- * through the pattern matching process to create a new object.
+ * Removes all URLs bound to an object.
  */
-- (void)bindObject:(id)object toURL:(NSString*)URL;
+- (void)removeObject:(id)object;
 
 /**
- * Removes the binding a URL.
- */
-- (void)removeBindingForURL:(NSString*)URL;
+ * Gets or creates the object with a pattern that matches the URL.
+ *
+ * Object mappings are checked first, and if no object is bound to the URL then pattern
+ * matching is used to create a new object.
+ */ 
+- (id)objectForURL:(NSString*)URL;
+- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query;
+- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query pattern:(TTURLPattern**)pattern;
 
 /**
- * Removes the binding a object.
+ * Tests if there is a pattern that matches the URL and if so returns its navigation mode.
  */
-- (void)removeBindingForObject:(id)object;
+- (TTNavigationMode)navigationModeForURL:(NSString*)URL;
+
+/**
+ * Gets a URL that has been mapped to the object.
+ */
+- (NSString*)URLForObject:(id)object;
+- (NSString*)URLForObject:(id)object withName:(NSString*)name;
 
 @end

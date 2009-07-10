@@ -26,10 +26,13 @@
 
 - (id)initWithMode:(TTNavigationMode)navigationMode target:(id)target;
 
-- (void)compile;
+- (void)compileForObject;
+- (void)compileForString;
 
 - (BOOL)matchURL:(NSURL*)URL;
 
 - (id)invoke:(id)target withURL:(NSURL*)URL query:(NSDictionary*)query;
+
+- (NSString*)generateURLFromObject:(id)object;
 
 @end

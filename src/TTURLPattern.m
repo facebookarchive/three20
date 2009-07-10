@@ -9,6 +9,7 @@ static NSString* kUniversalURLPattern = @"*";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 typedef enum {
+  TTURLArgumentTypeNone,
   TTURLArgumentTypePointer,
   TTURLArgumentTypeBool,
   TTURLArgumentTypeInteger,
@@ -17,11 +18,138 @@ typedef enum {
   TTURLArgumentTypeDouble,
 } TTURLArgumentType;
 
+static TTURLArgumentType TTConvertArgumentType(char argType) {
+  if (argType == 'c'
+      || argType == 'i'
+      || argType == 's'
+      || argType == 'l'
+      || argType == 'C'
+      || argType == 'I'
+      || argType == 'S'
+      || argType == 'L') {
+    return TTURLArgumentTypeInteger;
+  } else if (argType == 'q' || argType == 'Q') {
+    return TTURLArgumentTypeLongLong;
+  } else if (argType == 'f') {
+    return TTURLArgumentTypeFloat;
+  } else if (argType == 'd') {
+    return TTURLArgumentTypeDouble;
+  } else if (argType == 'B') {
+    return TTURLArgumentTypeBool;
+  } else {
+    return TTURLArgumentTypePointer;
+  }
+}
+
+static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* propertyName) {
+  objc_property_t prop = class_getProperty(cls, propertyName.UTF8String);
+  if (prop) {
+    const char* type = property_getAttributes(prop);
+    return TTConvertArgumentType(type[1]);
+  } else {
+    return TTURLArgumentTypeNone;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTURLSelector : NSObject {
+  NSString* _name;
+  SEL _selector;
+  TTURLSelector* _next;
+}
+
+@property(nonatomic,readonly) NSString* name;
+@property(nonatomic,retain) TTURLSelector* next;
+
+- (id)initWithName:(NSString*)name;
+
+- (NSString*)perform:(id)object returnType:(TTURLArgumentType)returnType;
+
+@end
+
+@implementation TTURLSelector
+
+@synthesize name = _name, next = _next;
+
+- (id)initWithName:(NSString*)name {
+  if (self = [super init]) {
+    _name = [name copy];
+    _selector = NSSelectorFromString(_name);
+    _next = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  TT_RELEASE_MEMBER(_name);
+  TT_RELEASE_MEMBER(_next);
+  [super dealloc];
+}
+
+- (NSString*)perform:(id)object returnType:(TTURLArgumentType)returnType {
+  if (_next) {
+    id value = [object performSelector:_selector];
+    return [_next perform:value returnType:returnType];
+  } else {
+    NSMethodSignature *sig = [object methodSignatureForSelector:_selector];
+    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:sig];
+    [invocation setTarget:object];
+    [invocation setSelector:_selector];
+    [invocation invoke];
+    
+    if (!returnType) {
+      returnType = TTURLArgumentTypeForProperty([object class], _name);
+    }
+
+    switch (returnType) {
+      case TTURLArgumentTypeNone: {
+        return @"";
+      }
+      case TTURLArgumentTypeInteger: {
+        int val;
+        [invocation getReturnValue:&val];
+        return [NSString stringWithFormat:@"%d", val];
+      }
+      case TTURLArgumentTypeLongLong: {
+        long long val;
+        [invocation getReturnValue:&val];
+        return [NSString stringWithFormat:@"%lld", val];
+      }
+      case TTURLArgumentTypeFloat: {
+        float val;
+        [invocation getReturnValue:&val];
+        return [NSString stringWithFormat:@"%f", val];
+      }
+      case TTURLArgumentTypeDouble: {
+        double val;
+        [invocation getReturnValue:&val];
+        return [NSString stringWithFormat:@"%f", val];
+      }
+      case TTURLArgumentTypeBool: {
+        BOOL val;
+        [invocation getReturnValue:&val];
+        return [NSString stringWithFormat:@"%d", val];
+      }
+      default: {
+        id val;
+        [invocation getReturnValue:&val];
+        return [NSString stringWithFormat:@"%@", val];
+      }
+    }
+    return @"";
+  }
+}
+
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @protocol TTURLPatternText <NSObject>
 
 - (BOOL)match:(NSString*)text;
+
+- (NSString*)convertPropertyOfObject:(id)object;
 
 @end
 
@@ -55,6 +183,10 @@ typedef enum {
   return [text isEqualToString:_name];
 }
 
+- (NSString*)convertPropertyOfObject:(id)object {
+  return _name;
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,34 +195,46 @@ typedef enum {
   NSString* _name;
   NSInteger _argIndex;
   TTURLArgumentType _argType;
+  TTURLSelector* _selector;
 }
 
 @property(nonatomic,copy) NSString* name;
 @property(nonatomic) NSInteger argIndex;
 @property(nonatomic) TTURLArgumentType argType;
+@property(nonatomic,retain) TTURLSelector* selector;
 
 @end
 
 @implementation TTURLWildcard
 
-@synthesize name = _name, argIndex = _argIndex, argType = _argType;
+@synthesize name = _name, argIndex = _argIndex, argType = _argType, selector = _selector;
 
 - (id)init {
   if (self = [super init]) {
     _name = nil;
     _argIndex = NSNotFound;
-    _argType = TTURLArgumentTypePointer;
+    _argType = TTURLArgumentTypeNone;
+    _selector = nil;
   }
   return self;
 }
 
 - (void)dealloc {
   TT_RELEASE_MEMBER(_name);
+  TT_RELEASE_MEMBER(_selector);
   [super dealloc];
 }
 
 - (BOOL)match:(NSString*)text {
   return YES;
+}
+
+- (NSString*)convertPropertyOfObject:(id)object {
+  if (_selector) {
+    return [_selector perform:object returnType:_argType];
+  } else {
+    return @"";
+  }
 }
 
 @end
@@ -108,11 +252,13 @@ typedef enum {
 
 - (id<TTURLPatternText>)parseText:(NSString*)text {
   NSInteger len = text.length;
-  if (len > 3
+  if (len > 2
       && [text characterAtIndex:0] == '('
-      && [text characterAtIndex:len-2] == ':'
       && [text characterAtIndex:len-1] == ')') {
-    NSString* name = [text substringWithRange:NSMakeRange(1, len-3)];
+    NSInteger endRange = len > 3 && [text characterAtIndex:len-2] == ':'
+      ? len - 3
+      : len - 2;
+    NSString* name = [text substringWithRange:NSMakeRange(1, endRange)];
     TTURLWildcard* wildcard = [[[TTURLWildcard alloc] init] autorelease];
     wildcard.name = name;
     ++_specificity;
@@ -138,26 +284,27 @@ typedef enum {
   [_query setObject:component forKey:name];
 }
 
-- (TTURLArgumentType)convertArgumentType:(char*)argType {
-  if (strcmp(argType, "c") == 0
-      || strcmp(argType, "i") == 0
-      || strcmp(argType, "s") == 0
-      || strcmp(argType, "l") == 0
-      || strcmp(argType, "C") == 0
-      || strcmp(argType, "I") == 0
-      || strcmp(argType, "S") == 0
-      || strcmp(argType, "L") == 0) {
-    return TTURLArgumentTypeInteger;
-  } else if (strcmp(argType, "q") == 0 || strcmp(argType, "Q") == 0) {
-    return TTURLArgumentTypeLongLong;
-  } else if (strcmp(argType, "f") == 0) {
-    return TTURLArgumentTypeFloat;
-  } else if (strcmp(argType, "d") == 0) {
-    return TTURLArgumentTypeDouble;
-  } else if (strcmp(argType, "B") == 0) {
-    return TTURLArgumentTypeBool;
-  } else {
-    return TTURLArgumentTypePointer;
+- (void)compileURL {
+  NSURL* URL = [NSURL URLWithString:_URL];
+    
+  _scheme = [URL.scheme copy];
+  if (URL.host) {
+    [self parsePathComponent:URL.host];
+    if (URL.path) {
+      for (NSString* name in URL.path.pathComponents) {
+        if (![name isEqualToString:@"/"]) {
+          [self parsePathComponent:name];
+        }
+      }
+    }
+  }
+  
+  if (URL.query) {
+    NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+    for (NSString* name in [query keyEnumerator]) {
+      NSString* value = [query objectForKey:name];
+      [self parseParameter:name value:value];
+    }
   }
 }
 
@@ -190,7 +337,7 @@ typedef enum {
 
   if (parts.count) {
     NSString* selectorName = [[parts componentsJoinedByString:@":"] stringByAppendingString:@":"];
-    SEL selector = sel_registerName(selectorName.UTF8String);
+    SEL selector = NSSelectorFromString(selectorName);
     _selector = selector;
   }
 }
@@ -202,7 +349,11 @@ typedef enum {
     _argumentCount = method_getNumberOfArguments(method)-2;
 
     // Look up the index and type of each argument in the method
-    NSString* selectorName = [NSString stringWithUTF8String:sel_getName(_selector)];
+    const char* selName = sel_getName(_selector);
+    NSString* selectorName = [[NSString alloc] initWithBytesNoCopy:(char*)selName
+                                             length:strlen(selName)
+                                             encoding:NSASCIIStringEncoding freeWhenDone:NO];
+
     NSArray* argNames = [selectorName componentsSeparatedByString:@":"];
 
     for (id<TTURLPatternText> pattern in _path) {
@@ -214,7 +365,7 @@ typedef enum {
         } else {
           char argType[256];
           method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
-          wildcard.argType = [self convertArgumentType:argType];
+          wildcard.argType = TTConvertArgumentType(argType[0]);
         }
       }
     }
@@ -228,9 +379,44 @@ typedef enum {
         } else {
           char argType[256];
           method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
-          wildcard.argType = [self convertArgumentType:argType];
+          wildcard.argType = TTConvertArgumentType(argType[0]);
         }
       }
+    }
+    
+    [selectorName release];
+  }
+}
+
+- (void)analyzeProperties {
+  Class cls = _targetClass ? _targetClass : [_targetObject class];
+  
+  for (id<TTURLPatternText> pattern in _path) {
+    if ([pattern isKindOfClass:[TTURLWildcard class]]) {
+      TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
+      NSArray* names = [wildcard.name componentsSeparatedByString:@"."];
+      if (names.count > 1) {
+        TTURLSelector* selector = nil;
+        for (NSString* name in names) {
+          TTURLSelector* newSelector = [[[TTURLSelector alloc] initWithName:name] autorelease];
+          if (selector) {
+            selector.next = newSelector;
+          } else {
+            wildcard.selector = newSelector;
+          }
+          selector = newSelector;
+        }
+      } else {
+        wildcard.argType = TTURLArgumentTypeForProperty(cls, wildcard.name);
+        wildcard.selector = [[[TTURLSelector alloc] initWithName:wildcard.name] autorelease];
+      }
+    }
+  }
+
+  for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
+    if ([pattern isKindOfClass:[TTURLWildcard class]]) {
+      TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
+      wildcard.argType = TTURLArgumentTypeForProperty(cls, wildcard.name);
     }
   }
 }
@@ -242,6 +428,9 @@ typedef enum {
     NSInteger index = wildcard.argIndex;
     if (index != NSNotFound) {
       switch (wildcard.argType) {
+        case TTURLArgumentTypeNone: {
+          break;
+        }
         case TTURLArgumentTypeInteger: {
           int val = [text intValue];
           [invocation setArgument:&val atIndex:index+2];
@@ -369,30 +558,11 @@ typedef enum {
   return [_URL isEqualToString:kUniversalURLPattern];
 }
 
-- (void)compile {
+- (void)compileForObject {
   if (![_URL isEqualToString:kUniversalURLPattern]) {
-    NSURL* theURL = [NSURL URLWithString:_URL];
-      
-    _scheme = [theURL.scheme copy];
-    if (theURL.host) {
-      [self parsePathComponent:theURL.host];
-      if (theURL.path) {
-        for (NSString* name in theURL.path.pathComponents) {
-          if (![name isEqualToString:@"/"]) {
-            [self parsePathComponent:name];
-          }
-        }
-      }
-    }
+    [self compileURL];
     
-    if (theURL.query) {
-      NSDictionary* query = [theURL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
-      for (NSString* name in [query keyEnumerator]) {
-        NSString* value = [query objectForKey:name];
-        [self parseParameter:name value:value];
-      }
-    }
-    
+    // XXXjoe Don't do this if the pattern is a URL generator
     if (!_selector) {
       [self deduceSelector];
     }
@@ -400,6 +570,11 @@ typedef enum {
       [self analyzeMethod];
     }
   }
+}
+
+- (void)compileForString {
+  [self compileURL];
+  [self analyzeProperties];
 }
 
 - (BOOL)matchURL:(NSURL*)URL {
@@ -453,6 +628,32 @@ typedef enum {
   }
   
   return returnValue;
+}
+
+- (NSString*)generateURLFromObject:(id)object {
+  NSMutableArray* paths = [NSMutableArray array];
+  NSMutableArray* queries = nil;
+  [paths addObject:[NSString stringWithFormat:@"%@:/", _scheme]];
+
+  for (id<TTURLPatternText> patternText in _path) {
+    NSString* value = [patternText convertPropertyOfObject:object];
+    [paths addObject:value];
+  }
+
+  for (NSString* name in [_query keyEnumerator]) {
+    id<TTURLPatternText> patternText = [_query objectForKey:name];
+    NSString* value = [patternText convertPropertyOfObject:object];
+    NSString* pair = [NSString stringWithFormat:@"%@=%@", name, value];
+    [queries addObject:pair];
+  }
+  
+  NSString* path = [paths componentsJoinedByString:@"/"];
+  if (queries) {
+    NSString* query = [queries componentsJoinedByString:@"&"];
+    return [path stringByAppendingFormat:@"?%@", query];
+  } else {
+    return path;
+  }
 }
 
 @end
