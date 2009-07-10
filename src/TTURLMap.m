@@ -184,6 +184,10 @@
   // XXXjoe IMPLEMENT ME
 }
 
+- (void)removeObjectWithURL:(NSString*)URL {
+  [_objectMappings removeObjectForKey:URL];
+}
+
 - (id)objectForURL:(NSString*)URL {
   return [self objectForURL:URL query:nil pattern:nil];
 }

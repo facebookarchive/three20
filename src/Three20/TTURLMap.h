@@ -109,6 +109,11 @@ typedef enum {
 - (void)removeObject:(id)object;
 
 /**
+ * Removes objects bound literally to the URL.
+ */
+- (void)removeObjectWithURL:(NSString*)URL;
+
+/**
  * Gets or creates the object with a pattern that matches the URL.
  *
  * Object mappings are checked first, and if no object is bound to the URL then pattern

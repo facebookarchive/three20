@@ -32,7 +32,7 @@ static NSMutableDictionary* gNavigatorURLs = nil;
 - (void)ttdealloc {
   NSString* URL = self.navigatorURL;
   if (URL) {
-    [[TTNavigator navigator].URLMap removeURL:URL];
+    [[TTNavigator navigator].URLMap removeObjectWithURL:URL];
     self.navigatorURL = nil;
   }
   

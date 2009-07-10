@@ -25,7 +25,7 @@
 }
 
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
-  [self popToViewController:controller animated:animated];
+//  [self popToViewController:controller animated:animated];
 }
 
 - (BOOL)isContainerController {

@@ -69,24 +69,24 @@
   }
 }
 
+- (void)ensureWindow {
+  if (!_window) {
+    UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
+    if (keyWindow) {
+      _window = [keyWindow retain];
+    } else {
+      _window = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
+      [_window makeKeyAndVisible];
+    }
+  }
+  [_window addSubview:_rootViewController.view];
+}
+
 - (void)setRootViewController:(UIViewController*)controller {
   if (controller != _rootViewController) {
     [_rootViewController release];
     _rootViewController = [controller retain];
-    
-    UIView* mainView = controller.view;
-    if (!mainView.superview) {
-      if (!_window) {
-        UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
-        if (keyWindow) {
-          _window = [keyWindow retain];
-        } else {
-          _window = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
-          [_window makeKeyAndVisible];
-        }
-      }
-      [_window addSubview:controller.view];
-    }
+    [self ensureWindow];
   }
 }
 
@@ -196,7 +196,10 @@
 - (UIViewController*)visibleViewController {
   UIViewController* controller = _rootViewController;
   while (controller) {
-    UIViewController* child = controller.childViewController;
+    UIViewController* child = controller.modalViewController;
+    if (!child) {
+      child = controller.childViewController;
+    }
     if (child) {
       controller = child;
     } else {
@@ -290,10 +293,7 @@
 - (void)persistViewControllers {
   NSMutableArray* path = [NSMutableArray array];
   [self persistController:_rootViewController path:path];
-
-  if (_rootViewController.modalViewController) {
-    [self persistController:_rootViewController.modalViewController path:path];
-  }
+  TTLOG(@"DEBUG PERSIST %@", path);
   
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   [defaults setObject:path forKey:@"TTNavigatorHistory"];
@@ -303,6 +303,7 @@
 - (UIViewController*)restoreViewControllers { 
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSArray* path = [defaults objectForKey:@"TTNavigatorHistory"];
+  TTLOG(@"DEBUG RESTORE %@", path);
   
   UIViewController* controller = nil;
   BOOL passedContainer = NO;
@@ -329,9 +330,13 @@
     [controller persistView:state];
 
     [path addObject:state];
-    controller.navigatorURL = nil;
   }
   [controller persistNavigationPath:path];
+
+  if (controller.modalViewController
+      && controller.modalViewController.parentViewController == controller) {
+    [self persistController:controller.modalViewController path:path];
+  }
 }
 
 - (void)removeAllViewControllers {

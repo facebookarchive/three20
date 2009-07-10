@@ -42,10 +42,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     self.navigationBarStyle = UIBarStyleBlackTranslucent;
     self.navigationBarTintColor = nil;
     self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
-    
-    if ([self respondsToSelector:@selector(setWantsFullScreenLayout:)]) {
-      [self setWantsFullScreenLayout:YES];
-    }
+    self.wantsFullScreenLayout = YES;
   }
   return self;
 }
@@ -299,20 +296,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)showBarsAnimationDidStop {
-  if (![self respondsToSelector:@selector(setWantsFullScreenLayout:)]) {
-    _innerView.top = -CHROME_HEIGHT;
-    self.view.top = TOOLBAR_HEIGHT;
-    self.view.height -= TOOLBAR_HEIGHT;
-  }
   self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)hideBarsAnimationDidStop {
-  if (![self respondsToSelector:@selector(setWantsFullScreenLayout:)]) {
-    _innerView.top = -STATUS_HEIGHT;
-    self.view.top = 0;
-    self.view.height += TOOLBAR_HEIGHT;
-  }
   self.navigationController.navigationBarHidden = YES;
 }
 
@@ -323,9 +310,8 @@ static const NSTimeInterval kSlideshowInterval = 2;
   CGRect screenFrame = [UIScreen mainScreen].bounds;
   self.view = [[[TTUnclippedView alloc] initWithFrame:screenFrame] autorelease];
     
-  CGFloat y = [self respondsToSelector:@selector(setWantsFullScreenLayout:)] ? 0 : -CHROME_HEIGHT;
-  CGRect innerFrame = CGRectMake(0, y,
-                                 screenFrame.size.width, screenFrame.size.height + CHROME_HEIGHT);
+  CGRect innerFrame = CGRectMake(0, 0,
+                                 screenFrame.size.width, screenFrame.size.height);
   _innerView = [[UIView alloc] initWithFrame:innerFrame];
   [self.view addSubview:_innerView];
   
@@ -352,6 +338,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   _toolbar = [[UIToolbar alloc] initWithFrame:
     CGRectMake(0, screenFrame.size.height - TOOLBAR_HEIGHT, screenFrame.size.width, TOOLBAR_HEIGHT)];
   _toolbar.barStyle = self.navigationBarStyle;
+  _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
   _toolbar.items = [NSArray arrayWithObjects:
     space, _previousButton, space, _nextButton, space, nil];
   [_innerView addSubview:_toolbar];    
@@ -369,31 +356,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
   TT_RELEASE_MEMBER(_toolbar);
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-
-  if (![self respondsToSelector:@selector(setWantsFullScreenLayout:)]) {
-    if (!self.nextViewController) {
-      self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
-    }
-  
-    [self hideBarsAnimationDidStop];
-    [self showBarsAnimationDidStop];
-    if (!_toolbar.alpha) {
-      [self hideBarsAnimationDidStop];
-    }
-  }
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
   [self pauseAction];
-
-  if (![self respondsToSelector:@selector(setWantsFullScreenLayout:)]) {
-    self.view.superview.frame = CGRectOffset(self.view.superview.frame, 0, TOOLBAR_HEIGHT);
-    self.view.frame = CGRectOffset(self.view.frame, 0, -TOOLBAR_HEIGHT);
-  }
   if (self.nextViewController) {
     [self showBars:YES animated:NO];
   }
