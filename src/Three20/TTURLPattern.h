@@ -30,6 +30,6 @@
 
 - (BOOL)matchURL:(NSURL*)URL;
 
-- (id)invoke:(id)target withURL:(NSURL*)URL params:(NSDictionary*)params;
+- (id)invoke:(id)target withURL:(NSURL*)URL query:(NSDictionary*)query;
 
 @end

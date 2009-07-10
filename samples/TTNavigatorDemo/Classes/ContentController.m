@@ -14,9 +14,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithWaitress:(NSString*)waitress params:(NSDictionary*)params {
+- (id)initWithWaitress:(NSString*)waitress query:(NSDictionary*)query {
   if (self = [super init]) {
-    NSString* ref = [params objectForKey:@"ref"];
+    NSString* ref = [query objectForKey:@"ref"];
     TTLOG(@"ORDER REFERRED FROM %@", ref);
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]

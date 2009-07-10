@@ -215,18 +215,18 @@
 }
 
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated {
-  return [self openURL:URL parent:nil params:nil animated:animated];
+  return [self openURL:URL parent:nil query:nil animated:animated];
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated {
-  return [self openURL:URL parent:parentURL params:nil animated:animated];
+  return [self openURL:URL parent:parentURL query:nil animated:animated];
 }
 
-- (UIViewController*)openURL:(NSString*)URL params:(NSDictionary*)params animated:(BOOL)animated {
-  return [self openURL:URL parent:nil params:params animated:animated];
+- (UIViewController*)openURL:(NSString*)URL query:(NSDictionary*)query animated:(BOOL)animated {
+  return [self openURL:URL parent:nil query:query animated:animated];
 }
 
-- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL params:(NSDictionary*)params
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated {
   NSURL* theURL = [NSURL URLWithString:URL];
 
@@ -237,7 +237,7 @@
   }
 
   TTURLPattern* pattern = nil;
-  UIViewController* controller = [self viewControllerForURL:URL params:params pattern:&pattern];
+  UIViewController* controller = [self viewControllerForURL:URL query:query pattern:&pattern];
   if (controller) {
     if ([_delegate respondsToSelector:@selector(navigator:wilOpenURL:inViewController:)]) {
       [_delegate navigator:self willOpenURL:theURL inViewController:controller];
@@ -268,16 +268,16 @@
 }
 
 - (UIViewController*)viewControllerForURL:(NSString*)URL {
-  return [self viewControllerForURL:URL params:nil pattern:nil];
+  return [self viewControllerForURL:URL query:nil pattern:nil];
 }
 
-- (UIViewController*)viewControllerForURL:(NSString*)URL params:(NSDictionary*)params {
-  return [self viewControllerForURL:URL params:params pattern:nil];
+- (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query {
+  return [self viewControllerForURL:URL query:query pattern:nil];
 }
 
-- (UIViewController*)viewControllerForURL:(NSString*)URL params:(NSDictionary*)params
+- (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
                      pattern:(TTURLPattern**)pattern {
-  id object = [[TTNavigator navigator].URLMap objectForURL:URL params:params pattern:pattern];
+  id object = [[TTNavigator navigator].URLMap objectForURL:URL query:query pattern:pattern];
   if (object) {
     UIViewController* controller = object;
     controller.navigatorURL = URL;
@@ -308,7 +308,7 @@
   BOOL passedContainer = NO;
   for (NSDictionary* state in path) {
     NSString* URL = [state objectForKey:@"__navigatorURL__"];
-    controller = [self openURL:URL parent:nil params:nil animated:NO];
+    controller = [self openURL:URL parent:nil query:nil animated:NO];
     controller.frozenState = state;
     
     if (_persistenceMode == TTNavigatorPersistenceModeTop && passedContainer) {

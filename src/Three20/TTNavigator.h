@@ -77,9 +77,9 @@ typedef enum {
  */
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated;
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated;
-- (UIViewController*)openURL:(NSString*)URL params:(NSDictionary*)params animated:(BOOL)animated;
+- (UIViewController*)openURL:(NSString*)URL query:(NSDictionary*)query animated:(BOOL)animated;
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL
-                     params:(NSDictionary*)params animated:(BOOL)animated;
+                     query:(NSDictionary*)query animated:(BOOL)animated;
 
 /** 
  * Opens a sequence of URLs, with only the last one being animated.
@@ -90,8 +90,8 @@ typedef enum {
  * Gets a view controller for the URL without opening it.
  */
 - (UIViewController*)viewControllerForURL:(NSString*)URL;
-- (UIViewController*)viewControllerForURL:(NSString*)URL params:(NSDictionary*)params;
-- (UIViewController*)viewControllerForURL:(NSString*)URL params:(NSDictionary*)params
+- (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query;
+- (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
                      pattern:(TTURLPattern**)pattern;
 
 /** 

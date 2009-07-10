@@ -13,13 +13,13 @@
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
 
   TTURLMap* map = navigator.URLMap;
-  [map share:@"tt://tabBar" target:[TabBarController class]];
-  [map share:@"tt://menu/(initWithMenu:)" target:[MenuController class]];
-  [map share:@"tt://food/(initWithFood:)" target:[ContentController class]];
-  [map create:@"tt://about/(initWithAbout:)" parent:@"tt://menu/5"
-       target:[ContentController class] selector:nil];
-  [map modal:@"tt://order?waitress=(initWithWaitress:)"
-       target:[ContentController class] selector:@selector(initWithWaitress:params:)];
+  [map from:@"tt://tabBar" toSharedViewController:[TabBarController class]];
+  [map from:@"tt://menu/(initWithMenu:)" toSharedViewController:[MenuController class]];
+  [map from:@"tt://food/(initWithFood:)" toSharedViewController:[ContentController class]];
+  [map from:@"tt://about/(initWithAbout:)" toViewController:[ContentController class] selector:nil
+       parent:@"tt://menu/5"];
+  [map from:@"tt://order?waitress=(initWithWaitress:)"
+       toModalViewController:[ContentController class] selector:@selector(initWithWaitress:query:)];
 
   if (![navigator restoreViewControllers]) {
     [navigator openURL:@"tt://tabBar" animated:NO];

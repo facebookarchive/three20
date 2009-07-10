@@ -279,7 +279,7 @@ typedef enum {
 }
 
 - (void)setArgumentsFromURL:(NSURL*)URL forInvocation:(NSInvocation*)invocation
-        params:(NSDictionary*)params {
+        query:(NSDictionary*)query {
   NSInteger remainingArguments = _argumentCount;
   
   NSArray* pathComponents = URL.path.pathComponents;
@@ -291,13 +291,13 @@ typedef enum {
     }
   }
   
-  NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
-  if (query.count) {
-    NSMutableDictionary* unmatched = params ? [[params mutableCopy] autorelease] : nil;
+  NSDictionary* URLQuery = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+  if (URLQuery.count) {
+    NSMutableDictionary* unmatched = query ? [[query mutableCopy] autorelease] : nil;
 
-    for (NSString* name in [query keyEnumerator]) {
+    for (NSString* name in [URLQuery keyEnumerator]) {
       id<TTURLPatternText> patternText = [_query objectForKey:name];
-      NSString* text = [query objectForKey:name];
+      NSString* text = [URLQuery objectForKey:name];
       if (patternText) {
         if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
           --remainingArguments;
@@ -429,7 +429,7 @@ typedef enum {
   return YES;
 }
 
-- (id)invoke:(id)target withURL:(NSURL*)URL params:(NSDictionary*)params {
+- (id)invoke:(id)target withURL:(NSURL*)URL query:(NSDictionary*)query {
   id returnValue = nil;
   
   NSMethodSignature *sig = [target methodSignatureForSelector:self.selector];
@@ -439,11 +439,11 @@ typedef enum {
     [invocation setSelector:self.selector];
     if (self.isUniversal) {
       [invocation setArgument:&URL atIndex:2];
-      if (params) {
-        [invocation setArgument:&params atIndex:3];
+      if (query) {
+        [invocation setArgument:&query atIndex:3];
       }
     } else {
-      [self setArgumentsFromURL:URL forInvocation:invocation params:params];
+      [self setArgumentsFromURL:URL forInvocation:invocation query:query];
     }
     [invocation invoke];
     

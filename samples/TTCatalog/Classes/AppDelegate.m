@@ -29,25 +29,25 @@
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
 
   TTURLMap* map = navigator.URLMap;
-  [map create:@"*" target:[TTWebController class] selector:@selector(initWithURL:)];
-  [map create:@"tt://catalog" target:[CatalogController class]];
-  [map create:@"tt://photoTest1" target:[PhotoTest1Controller class]];
-  [map create:@"tt://photoTest2" target:[PhotoTest2Controller class]];
-  [map create:@"tt://imageTest1" target:[ImageTest1Controller class]];
-  [map create:@"tt://tableTest" target:[TableTestController class]];
-  [map create:@"tt://tableItemTest" target:[TableItemTestController class]];
-  [map create:@"tt://tableControlsTest" target:[TableControlsTestController class]];
-  [map create:@"tt://styledTextTableTest" target:[StyledTextTableTestController class]];
-  [map create:@"tt://composerTest" target:[MessageTestController class]];
-  [map create:@"tt://searchTest" target:[SearchTestController class]];
-  [map create:@"tt://activityTest" target:[ActivityTestController class]];
-  [map create:@"tt://styleTest" target:[StyleTestController class]];
-  [map create:@"tt://styledTextTest" target:[StyledTextTestController class]];
-  [map create:@"tt://buttonTest" target:[ButtonTestController class]];
-  [map create:@"tt://tabBarTest" target:[TabBarTestController class]];
-  [map create:@"tt://youTubeTest" target:[YouTubeTestController class]];
-  [map create:@"tt://imageTest2" target:[TableImageTestController class]];
-  [map create:@"tt://scrollViewTest" target:[ScrollViewTestController class]];
+  [map from:@"*" toViewController:[TTWebController class] selector:@selector(initWithURL:)];
+  [map from:@"tt://catalog" toViewController:[CatalogController class]];
+  [map from:@"tt://photoTest1" toViewController:[PhotoTest1Controller class]];
+  [map from:@"tt://photoTest2" toViewController:[PhotoTest2Controller class]];
+  [map from:@"tt://imageTest1" toViewController:[ImageTest1Controller class]];
+  [map from:@"tt://tableTest" toViewController:[TableTestController class]];
+  [map from:@"tt://tableItemTest" toViewController:[TableItemTestController class]];
+  [map from:@"tt://tableControlsTest" toViewController:[TableControlsTestController class]];
+  [map from:@"tt://styledTextTableTest" toViewController:[StyledTextTableTestController class]];
+  [map from:@"tt://composerTest" toViewController:[MessageTestController class]];
+  [map from:@"tt://searchTest" toViewController:[SearchTestController class]];
+  [map from:@"tt://activityTest" toViewController:[ActivityTestController class]];
+  [map from:@"tt://styleTest" toViewController:[StyleTestController class]];
+  [map from:@"tt://styledTextTest" toViewController:[StyledTextTestController class]];
+  [map from:@"tt://buttonTest" toViewController:[ButtonTestController class]];
+  [map from:@"tt://tabBarTest" toViewController:[TabBarTestController class]];
+  [map from:@"tt://youTubeTest" toViewController:[YouTubeTestController class]];
+  [map from:@"tt://imageTest2" toViewController:[TableImageTestController class]];
+  [map from:@"tt://scrollViewTest" toViewController:[ScrollViewTestController class]];
 
   if (![navigator restoreViewControllers]) {
     [navigator openURL:@"tt://catalog" animated:NO];

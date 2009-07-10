@@ -4,24 +4,10 @@
 
 typedef enum {
   TTNavigationModeNone,
-  TTNavigationModeCreate,            // a new controller is created each time
-  TTNavigationModeShare,             // the same controller is cached and re-used
-  TTNavigationModeModal,             // a new controller is created and displayed modally
+  TTNavigationModeCreate,            // a new view controller is created each time
+  TTNavigationModeShare,             // a new view controller is created, cached and re-used
+  TTNavigationModeModal,             // a new view controller is created and presented modally
 } TTNavigationMode;
-
-@protocol TTURLObject
-
-/**
- * Converts the object to a URL using TTURLMap.
- */
-@property(nonatomic,readonly) NSString* URLValue;
-
-/**
- * Converts the object to a specially-named URL using TTURLMap.
- */
-- (NSString*)URLValueWithName:(NSString*)name;
-
-@end
 
 @interface TTURLMap : NSObject {
   NSMutableDictionary* _bindings;
@@ -37,21 +23,21 @@ typedef enum {
  * matching is used to create a new object.
  */ 
 - (id)objectForURL:(NSString*)URL;
-- (id)objectForURL:(NSString*)URL params:(NSDictionary*)params;
-- (id)objectForURL:(NSString*)URL params:(NSDictionary*)params pattern:(TTURLPattern**)pattern;
+- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query;
+- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query pattern:(TTURLPattern**)pattern;
 
 /**
- * Tests if there is a pattern that matches the URL and if so returns its display mode.
+ * Tests if there is a pattern that matches the URL and if so returns its navigation mode.
  */
 - (TTNavigationMode)navigationModeForURL:(NSString*)URL;
 
 /**
- * Adds a URL pattern which will create and display a view controller when loaded.
+ * Adds a URL pattern which will create and present a view controller when loaded.
  */
-- (void)create:(NSString*)URL target:(id)target;
+- (void)from:(NSString*)URL toViewController:(id)target;
 
 /**
- * Adds a URL pattern which will create and display a view controller when loaded.
+ * Adds a URL pattern which will create and present a view controller when loaded.
  *
  * The selector will be called on the view controller after is created, and arguments from
  * the URL will be extracted using the pattern and passed to the selector.
@@ -59,48 +45,60 @@ typedef enum {
  * target can be either a Class which is a subclass of UIViewController, or an object which
  * implements a method that returns a UIViewController instance.  If you use an object, the
  * selector will be called with arguments extracted from the URL, and the view controller that
- * you return will be the one that is displayed.
+ * you return will be the one that is presented.
  */
-- (void)create:(NSString*)URL target:(id)target selector:(SEL)selector;
+- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a view controller when loaded.
+ * Adds a URL pattern which will create and present a view controller when loaded.
  */
-- (void)create:(NSString*)URL parent:(NSString*)parentURL target:(id)target selector:(SEL)selector;
+- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector
+        parent:(NSString*)parentURL;
 
 /**
- * Adds a URL pattern which will create and display a share view controller when loaded.
+ * Adds a URL pattern which will create and present a share view controller when loaded.
  *
  * Controllers created with the "share" mode, meaning that it will be created once and re-used
  * until it is destroyed.
  */
-- (void)share:(NSString*)URL target:(id)target;
+- (void)from:(NSString*)URL toSharedViewController:(id)target;
 
 /**
- * Adds a URL pattern which will create and display a view controller when loaded.
+ * Adds a URL pattern which will create and present a view controller when loaded.
  */
-- (void)share:(NSString*)URL target:(id)target selector:(SEL)selector;
+- (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a view controller when loaded.
+ * Adds a URL pattern which will create and present a view controller when loaded.
  */
-- (void)share:(NSString*)URL parent:(NSString*)parentURL target:(id)target
-        selector:(SEL)selector;
+- (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector
+        parent:(NSString*)parentURL;
 
 /**
- * Adds a URL pattern which will create and display a modal view controller when loaded.
+ * Adds a URL pattern which will create and present a modal view controller when loaded.
  */
-- (void)modal:(NSString*)URL target:(id)target;
+- (void)from:(NSString*)URL toModalViewController:(id)target;
 
 /**
- * Adds a URL pattern which will create and display a modal view controller when loaded.
+ * Adds a URL pattern which will create and present a modal view controller when loaded.
  */
-- (void)modal:(NSString*)URL target:(id)target selector:(SEL)selector;
+- (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector;
 
 /**
- * Adds a URL pattern which will create and display a modal view controller when loaded.
+ * Adds a URL pattern which will create and present a modal view controller when loaded.
  */
-- (void)modal:(NSString*)URL parent:(NSString*)parentURL target:(id)target selector:(SEL)selector;
+- (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector
+        parent:(NSString*)parentURL ;
+
+/**
+ * 
+ */
+- (void)from:(id)object toURL:(NSString*)URL;
+
+/**
+ * 
+ */
+- (void)from:(id)object name:(NSString*)name toURL:(NSString*)URL;
 
 /**
  * Removes a URL pattern.

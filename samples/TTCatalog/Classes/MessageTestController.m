@@ -9,14 +9,14 @@
   if (self = [super init]) {
     _sendTimer = nil;
     
-    [[TTURLMap urlMap] addURL:@"tt://compose?to=(composeTo:)"
-                       modal:self selector:@selector(composeTo:)];
+    [[TTNavigator navigator].URLMap from:@"tt://compose?to=(composeTo:)"
+                                    toModalViewController:self selector:@selector(composeTo:)];
   }
   return self;
 }
 
 - (void)dealloc {
-  [[TTURLMap urlMap] removeURL:@"tt://compose?to=(composeTo:)"];
+  [[TTNavigator navigator].URLMap removeURL:@"tt://compose?to=(composeTo:)"];
   [_sendTimer invalidate];
 	[super dealloc];
 }

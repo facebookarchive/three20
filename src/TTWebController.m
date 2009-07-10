@@ -44,9 +44,9 @@
   return self;
 }
 
-- (id)initWithURL:(NSURL*)URL params:(NSDictionary*)params {
+- (id)initWithURL:(NSURL*)URL query:(NSDictionary*)query {
   if (self = [self init]) {
-    NSURLRequest* request = [params objectForKey:@"request"];
+    NSURLRequest* request = [query objectForKey:@"request"];
     if (request) {
       [self openRequest:request];
     } else {
