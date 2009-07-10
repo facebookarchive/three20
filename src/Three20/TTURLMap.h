@@ -30,8 +30,6 @@ typedef enum {
   BOOL _invalidPatterns;
 }
 
-+ (TTURLMap*)urlMap;
-
 /**
  * Gets or creates the object with a pattern that matches the URL.
  *
@@ -50,7 +48,7 @@ typedef enum {
 /**
  * Adds a URL pattern which will create and display a view controller when loaded.
  */
-- (void)addURL:(NSString*)URL create:(id)create;
+- (void)create:(NSString*)URL target:(id)target;
 
 /**
  * Adds a URL pattern which will create and display a view controller when loaded.
@@ -63,12 +61,12 @@ typedef enum {
  * selector will be called with arguments extracted from the URL, and the view controller that
  * you return will be the one that is displayed.
  */
-- (void)addURL:(NSString*)URL create:(id)target selector:(SEL)selector;
+- (void)create:(NSString*)URL target:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a view controller when loaded.
  */
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL create:(id)target selector:(SEL)selector;
+- (void)create:(NSString*)URL parent:(NSString*)parentURL target:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a share view controller when loaded.
@@ -76,33 +74,33 @@ typedef enum {
  * Controllers created with the "share" mode, meaning that it will be created once and re-used
  * until it is destroyed.
  */
-- (void)addURL:(NSString*)URL share:(id)target;
+- (void)share:(NSString*)URL target:(id)target;
 
 /**
  * Adds a URL pattern which will create and display a view controller when loaded.
  */
-- (void)addURL:(NSString*)URL share:(id)target selector:(SEL)selector;
+- (void)share:(NSString*)URL target:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a view controller when loaded.
  */
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL share:(id)target
+- (void)share:(NSString*)URL parent:(NSString*)parentURL target:(id)target
         selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a modal view controller when loaded.
  */
-- (void)addURL:(NSString*)URL modal:(id)target;
+- (void)modal:(NSString*)URL target:(id)target;
 
 /**
  * Adds a URL pattern which will create and display a modal view controller when loaded.
  */
-- (void)addURL:(NSString*)URL modal:(id)target selector:(SEL)selector;
+- (void)modal:(NSString*)URL target:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and display a modal view controller when loaded.
  */
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(id)target selector:(SEL)selector;
+- (void)modal:(NSString*)URL parent:(NSString*)parentURL target:(id)target selector:(SEL)selector;
 
 /**
  * Removes a URL pattern.

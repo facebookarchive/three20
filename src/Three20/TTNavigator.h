@@ -1,6 +1,7 @@
 #import "Three20/TTGlobal.h"
 
 @protocol TTNavigatorDelegate;
+@class TTURLMap;
 @class TTURLPattern;
 
 typedef enum {
@@ -11,6 +12,7 @@ typedef enum {
 
 @interface TTNavigator : NSObject {
   id<TTNavigatorDelegate> _delegate;
+  TTURLMap* _URLMap;
   UIWindow* _window;
   UIViewController* _rootViewController;
   TTNavigatorPersistenceMode _persistenceMode;
@@ -19,6 +21,11 @@ typedef enum {
 }
 
 @property(nonatomic,assign) id<TTNavigatorDelegate> delegate;
+
+/**
+ * The URL map used to translate between URLs and view controllers.
+ */
+@property(nonatomic,readonly) TTURLMap* URLMap;
 
 /**
  * The window that contains the views view controller hierarchy.
@@ -34,6 +41,13 @@ typedef enum {
  * The currently visible view controller.
  */
 @property(nonatomic,readonly) UIViewController* visibleViewController;
+
+/**
+ * The URL of the currently visible view controller;
+ *
+ * Setting this property will open a new URL.
+ */
+@property(nonatomic,copy) NSString* URL;
 
 /**
  * How view controllers are automatically persisted on termination and restored on launch.
@@ -112,6 +126,11 @@ typedef enum {
  * Erases all data stored in user defaults.
  */
 - (void)resetDefaults;
+
+/**
+ * Reloads the content in the visible view controller.
+ */
+- (void)reloadContent;
 
 @end
 

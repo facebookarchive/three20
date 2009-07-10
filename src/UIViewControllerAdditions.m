@@ -1,4 +1,5 @@
 #import "Three20/TTURLMap.h"
+#import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -31,7 +32,7 @@ static NSMutableDictionary* gNavigatorURLs = nil;
 - (void)ttdealloc {
   NSString* URL = self.navigatorURL;
   if (URL) {
-    [[TTURLMap urlMap] removeBindingForURL:URL];
+    [[TTNavigator navigator].URLMap removeBindingForURL:URL];
     self.navigatorURL = nil;
   }
   

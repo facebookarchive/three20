@@ -24,30 +24,31 @@
 // UIApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(UIApplication*)application {
-  TTURLMap* urls = [TTURLMap urlMap];
-  [urls addURL:@"*" create:[TTWebController class] selector:@selector(initWithURL:)];
-  [urls addURL:@"tt://catalog" create:[CatalogController class]];
-  [urls addURL:@"tt://photoTest1" create:[PhotoTest1Controller class]];
-  [urls addURL:@"tt://photoTest2" create:[PhotoTest2Controller class]];
-  [urls addURL:@"tt://imageTest1" create:[ImageTest1Controller class]];
-  [urls addURL:@"tt://tableTest" create:[TableTestController class]];
-  [urls addURL:@"tt://tableItemTest" create:[TableItemTestController class]];
-  [urls addURL:@"tt://tableControlsTest" create:[TableControlsTestController class]];
-  [urls addURL:@"tt://styledTextTableTest" create:[StyledTextTableTestController class]];
-  [urls addURL:@"tt://composerTest" create:[MessageTestController class]];
-  [urls addURL:@"tt://searchTest" create:[SearchTestController class]];
-  [urls addURL:@"tt://activityTest" create:[ActivityTestController class]];
-  [urls addURL:@"tt://styleTest" create:[StyleTestController class]];
-  [urls addURL:@"tt://styledTextTest" create:[StyledTextTestController class]];
-  [urls addURL:@"tt://buttonTest" create:[ButtonTestController class]];
-  [urls addURL:@"tt://tabBarTest" create:[TabBarTestController class]];
-  [urls addURL:@"tt://youTubeTest" create:[YouTubeTestController class]];
-  [urls addURL:@"tt://imageTest2" create:[TableImageTestController class]];
-  [urls addURL:@"tt://scrollViewTest" create:[ScrollViewTestController class]];
-
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.supportsShakeToReload = YES;
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
+
+  TTURLMap* map = navigator.URLMap;
+  [map create:@"*" target:[TTWebController class] selector:@selector(initWithURL:)];
+  [map create:@"tt://catalog" target:[CatalogController class]];
+  [map create:@"tt://photoTest1" target:[PhotoTest1Controller class]];
+  [map create:@"tt://photoTest2" target:[PhotoTest2Controller class]];
+  [map create:@"tt://imageTest1" target:[ImageTest1Controller class]];
+  [map create:@"tt://tableTest" target:[TableTestController class]];
+  [map create:@"tt://tableItemTest" target:[TableItemTestController class]];
+  [map create:@"tt://tableControlsTest" target:[TableControlsTestController class]];
+  [map create:@"tt://styledTextTableTest" target:[StyledTextTableTestController class]];
+  [map create:@"tt://composerTest" target:[MessageTestController class]];
+  [map create:@"tt://searchTest" target:[SearchTestController class]];
+  [map create:@"tt://activityTest" target:[ActivityTestController class]];
+  [map create:@"tt://styleTest" target:[StyleTestController class]];
+  [map create:@"tt://styledTextTest" target:[StyledTextTestController class]];
+  [map create:@"tt://buttonTest" target:[ButtonTestController class]];
+  [map create:@"tt://tabBarTest" target:[TabBarTestController class]];
+  [map create:@"tt://youTubeTest" target:[YouTubeTestController class]];
+  [map create:@"tt://imageTest2" target:[TableImageTestController class]];
+  [map create:@"tt://scrollViewTest" target:[ScrollViewTestController class]];
+
   if (![navigator restoreViewControllers]) {
     [navigator openURL:@"tt://catalog" animated:NO];
   }

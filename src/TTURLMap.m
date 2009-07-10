@@ -7,17 +7,6 @@
 @implementation TTURLMap
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// class public
-
-+ (TTURLMap*)urlMap {
-  static TTURLMap* urlMap = nil;
-  if (!urlMap) {
-    urlMap = [[TTURLMap alloc] init];
-  }
-  return urlMap;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
 - (void)addPattern:(TTURLPattern*)pattern forURL:(NSString*)URL {
@@ -131,65 +120,65 @@
   return pattern.navigationMode;
 }
 
-- (void)addURL:(NSString*)URL create:(id)target {
+- (void)create:(NSString*)URL target:(id)target {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL create:(id)target selector:(SEL)selector {
+- (void)create:(NSString*)URL target:(id)target selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL create:(id)target
+- (void)create:(NSString*)URL parent:(NSString*)parentURL target:(id)target
         selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
-  pattern.parentURL = [NSURL URLWithString:parentURL];
+  pattern.parentURL = parentURL;
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL share:(id)target {
+- (void)share:(NSString*)URL target:(id)target {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL share:(id)target selector:(SEL)selector {
+- (void)share:(NSString*)URL target:(id)target selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL share:(id)target selector:(SEL)selector {
+- (void)share:(NSString*)URL parent:(NSString*)parentURL target:(id)target selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
-  pattern.parentURL = [NSURL URLWithString:parentURL];
+  pattern.parentURL = parentURL;
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL modal:(id)target {
+- (void)modal:(NSString*)URL target:(id)target {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL modal:(id)target selector:(SEL)selector {
+- (void)modal:(NSString*)URL target:(id)target selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];
 }
 
-- (void)addURL:(NSString*)URL parent:(NSString*)parentURL modal:(id)target selector:(SEL)selector {
+- (void)modal:(NSString*)URL parent:(NSString*)parentURL target:(id)target selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
-  pattern.parentURL = [NSURL URLWithString:parentURL];
+  pattern.parentURL = parentURL;
   pattern.selector = selector;
   [self addPattern:pattern forURL:URL];
   [pattern release];

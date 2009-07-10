@@ -2,15 +2,14 @@
 #import "Three20/TTURLMap.h"
 #import "Three20/TTURLPattern.h"
 #import "Three20/TTViewController.h"
-#import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTNavigator
 
-@synthesize delegate = _delegate, window = _window, rootViewController = _rootViewController,
-            persistenceMode = _persistenceMode, supportsShakeToReload = _supportsShakeToReload,
-            opensExternalURLs = _opensExternalURLs;
+@synthesize delegate = _delegate, URLMap = _URLMap, window = _window,
+            rootViewController = _rootViewController, persistenceMode = _persistenceMode,
+            supportsShakeToReload = _supportsShakeToReload, opensExternalURLs = _opensExternalURLs;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -94,7 +93,7 @@
 - (UIViewController*)parentForController:(UIViewController*)controller parent:(NSString*)parentURL {
   UIViewController* parentController = nil;
   if (parentURL) {
-    parentController = [[TTURLMap urlMap] objectForURL:parentURL params:nil pattern:nil];
+    parentController = [[TTNavigator navigator].URLMap objectForURL:parentURL];
   }
 
   // If this is the first controller, and it is not a "container", forcibly put
@@ -152,6 +151,7 @@
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;
+    _URLMap = [[TTURLMap alloc] init];
     _window = nil;
     _rootViewController = nil;
     _persistenceMode = TTNavigatorPersistenceModeNone;
@@ -175,6 +175,7 @@
                                         name:UIApplicationWillTerminateNotification
                                         object:nil];
   _delegate = nil;
+  TT_RELEASE_MEMBER(_URLMap);
   TT_RELEASE_MEMBER(_window);
   TT_RELEASE_MEMBER(_rootViewController);
   [super dealloc];
@@ -203,6 +204,14 @@
     }
   }
   return nil;
+}
+
+- (NSString*)URL {
+  return self.visibleViewController.navigatorURL;
+}
+
+- (void)setURL:(NSString*)URL {
+  [self openURL:URL animated:YES];
 }
 
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated {
@@ -268,7 +277,7 @@
 
 - (UIViewController*)viewControllerForURL:(NSString*)URL params:(NSDictionary*)params
                      pattern:(TTURLPattern**)pattern {
-  id object = [[TTURLMap urlMap] objectForURL:URL params:params pattern:pattern];
+  id object = [[TTNavigator navigator].URLMap objectForURL:URL params:params pattern:pattern];
   if (object) {
     UIViewController* controller = object;
     controller.navigatorURL = URL;
@@ -333,6 +342,14 @@
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   [defaults removeObjectForKey:@"TTNavigatorHistory"];
   [defaults synchronize];
+}
+
+- (void)reloadContent {
+  UIViewController* controller = self.visibleViewController;
+  if ([controller isKindOfClass:[TTViewController class]]) {
+    TTViewController* ttcontroller = (TTViewController*)controller;
+    [ttcontroller reloadContent];
+  }
 }
 
 @end

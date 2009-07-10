@@ -117,11 +117,11 @@
 }
 
 - (id)objectValue {
-  return [[TTURLMap urlMap] objectForURL:self];
+  return [[TTNavigator navigator].URLMap objectForURL:self];
 }
 
 - (void)openURL {
-  TTOpenURL(self);
+  [[TTNavigator navigator] openURL:self animated:YES];
 }
 
 @end
