@@ -50,8 +50,8 @@ typedef enum {
 /**
  * Adds a URL pattern which will create and present a view controller when loaded.
  */
-- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector
-        parent:(NSString*)parentURL;
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toViewController:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and present a share view controller when loaded.
@@ -69,8 +69,8 @@ typedef enum {
 /**
  * Adds a URL pattern which will create and present a view controller when loaded.
  */
-- (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector
-        parent:(NSString*)parentURL;
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toSharedViewController:(id)target selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and present a modal view controller when loaded.
@@ -85,8 +85,8 @@ typedef enum {
 /**
  * Adds a URL pattern which will create and present a modal view controller when loaded.
  */
-- (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector
-        parent:(NSString*)parentURL ;
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toModalViewController:(id)target selector:(SEL)selector;
 
 /**
  * Adds a mapping from a class to a generated URL.

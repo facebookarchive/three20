@@ -25,7 +25,10 @@
 }
 
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
-//  [self popToViewController:controller animated:animated];
+  if ([self.viewControllers indexOfObject:controller] != NSNotFound
+      && controller != self.topViewController) {
+    [self popToViewController:controller animated:animated];
+  }
 }
 
 - (BOOL)isContainerController {

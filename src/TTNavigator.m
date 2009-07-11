@@ -91,18 +91,21 @@
 }
 
 - (UIViewController*)parentForController:(UIViewController*)controller parent:(NSString*)parentURL {
-  UIViewController* parentController = nil;
-  if (parentURL) {
-    parentController = [[TTNavigator navigator].URLMap objectForURL:parentURL];
-  }
+  if (controller == _rootViewController) {
+    return nil;
+  } else {
+    // If this is the first controller, and it is not a "container", forcibly put
+    // a navigation controller at the root of the controller hierarchy.
+    if (!_rootViewController && ![controller isContainerController]) {
+      [self setRootViewController:[[[UINavigationController alloc] init] autorelease]];
+    }
 
-  // If this is the first controller, and it is not a "container", forcibly put
-  // a navigation controller at the root of the controller hierarchy.
-  if (!_rootViewController && ![controller isContainerController]) {
-    [self setRootViewController:[[[UINavigationController alloc] init] autorelease]];
+    if (parentURL) {
+      return [self openURL:parentURL parent:nil animated:NO];
+    } else {
+      return self.visibleViewController;
+    }
   }
-
-  return parentController ? parentController : self.visibleViewController;
 }
 
 - (void)presentModalController:(UIViewController*)controller
@@ -120,29 +123,37 @@
         parent:(UIViewController*)parentController modal:(BOOL)modal animated:(BOOL)animated {
   if (!_rootViewController) {
     [self setRootViewController:controller];
-  } else if (controller.parentViewController) {
-    // The controller already exists, so we just need to make it visible
-    while (controller) {
-      UIViewController* parent = controller.parentViewController;
-      [parent bringControllerToFront:controller animated:NO];
-      controller = parent;
-    }
-  } else if (parentController) {
-    [self presentController:parentController parent:nil modal:NO animated:NO];
-    if (modal) {
-      [self presentModalController:controller parent:parentController animated:animated];
-    } else {
-      [parentController presentController:controller animated:animated];
+  } else {
+    UIViewController* container = controller.containingViewController;
+    if (container) {
+      // The controller already exists, so we just need to make it visible
+      while (controller) {
+        UIViewController* nextContainer = container.containingViewController;
+        [container bringControllerToFront:controller animated:!nextContainer];
+        controller = container;
+        container = nextContainer;
+      }
+    } else if (parentController) {
+      if (modal) {
+        [self presentModalController:controller parent:parentController animated:animated];
+      } else {
+        [parentController presentController:controller animated:animated];
+      }
     }
   }
 }
 
 - (void)presentController:(UIViewController*)controller parent:(NSString*)parentURL
         withPattern:(TTURLPattern*)pattern animated:(BOOL)animated {
-  NSString* parent = parentURL ? parentURL : pattern.parentURL;
-  UIViewController* parentController = [self parentForController:controller parent:parent];
-  [self presentController:controller parent:parentController
-        modal:pattern.navigationMode == TTNavigationModeModal animated:animated];
+  if (controller) {
+    UIViewController* parentController = [self parentForController:controller
+                                               parent:parentURL ? parentURL : pattern.parentURL];
+    if (parentController && parentController != self.visibleViewController) {
+      [self presentController:parentController parent:nil modal:NO animated:NO];
+    }
+    [self presentController:controller parent:parentController
+          modal:pattern.navigationMode == TTNavigationModeModal animated:animated];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -104,8 +104,8 @@
   [pattern release];
 }
 
-- (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector
-        parent:(NSString*)parentURL {
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toViewController:(id)target selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeCreate target:target];
   pattern.parentURL = parentURL;
   pattern.selector = selector;
@@ -126,8 +126,8 @@
   [pattern release];
 }
 
-- (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector
-        parent:(NSString*)parentURL {
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toSharedViewController:(id)target selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
   pattern.parentURL = parentURL;
   pattern.selector = selector;
@@ -148,8 +148,8 @@
   [pattern release];
 }
 
-- (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector
-        parent:(NSString*)parentURL {
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toModalViewController:(id)target selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeModal target:target];
   pattern.parentURL = parentURL;
   pattern.selector = selector;

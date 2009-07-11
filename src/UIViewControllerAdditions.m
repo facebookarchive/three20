@@ -4,6 +4,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static NSMutableDictionary* gNavigatorURLs = nil;
+static NSMutableDictionary* gContainerControllers = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +66,28 @@ static NSMutableDictionary* gNavigatorURLs = nil;
 }
 
 - (void)setFrozenState:(NSDictionary*)frozenState {
+}
+
+- (UIViewController*)containingViewController {
+  UIViewController* container = self.parentViewController;
+  if (container) {
+    return container;
+  } else {
+    NSString* key = [NSString stringWithFormat:@"%d", self];
+    return [gContainerControllers objectForKey:key];
+  }
+}
+
+- (void)setContainingViewController:(UIViewController*)viewController {
+  NSString* key = [NSString stringWithFormat:@"%d", self];
+  if (viewController) {
+    if (!gContainerControllers) {
+      gContainerControllers = TTCreateNonRetainingDictionary();
+    }
+    [gContainerControllers setObject:viewController forKey:key];
+  } else {
+    [gContainerControllers removeObjectForKey:key];
+  }
 }
 
 - (UIViewController*)previousViewController {

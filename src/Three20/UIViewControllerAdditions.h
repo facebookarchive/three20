@@ -20,6 +20,15 @@
 @property(nonatomic,retain) NSDictionary* frozenState;
 
 /**
+ * The container that contains this view controller.
+ *
+ * This is just like parentViewController, except that it is not readonly.  This offers
+ * other UIViewControllers to assign themselves as the container of this URL.  TTNavigator
+ * makes use of this property to manage the hierarchy of controllers.
+ */
+@property(nonatomic,retain) UIViewController* containingViewController;
+
+/**
  * The view controller that comes before this one in a navigation controller's history.
  */
 - (UIViewController*)previousViewController;
