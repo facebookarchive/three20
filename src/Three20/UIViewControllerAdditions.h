@@ -20,13 +20,23 @@
 @property(nonatomic,retain) NSDictionary* frozenState;
 
 /**
- * The container that contains this view controller.
+ * The view controller that contains this view controller.
  *
- * This is just like parentViewController, except that it is not readonly.  This offers
- * other UIViewControllers to assign themselves as the container of this URL.  TTNavigator
- * makes use of this property to manage the hierarchy of controllers.
+ * This is just like parentViewController, except that it is not readonly.  This property offers
+ * custom UIViewController subclasses the chance to tell TTNavigator how to follow the hierarchy
+ * of view controllers.
  */
-@property(nonatomic,retain) UIViewController* containingViewController;
+@property(nonatomic,retain) UIViewController* superviewController;
+
+/**
+ * The child of this view controller which is most visible.
+ *
+ * This would be the selected view controller of a tab bar controller, or the top 
+ * view controller of a navigation controller.  This property offers custom UIViewController
+ * subclasses the chance to tell TTNavigator how to follow the hierarchy of view controllers.
+ 
+ */
+- (UIViewController*)subviewController;
 
 /**
  * The view controller that comes before this one in a navigation controller's history.
@@ -39,9 +49,9 @@
 - (UIViewController*)nextViewController;
 
 /**
- * The visible child view controller of this view controller, if it is a container.
+ * A popup view controller that is presented on top of this view controller. 
  */
-- (UIViewController*)childViewController;
+@property(nonatomic,retain) UIViewController* popupViewController;
 
 /**
  * Displays a controller inside this controller.

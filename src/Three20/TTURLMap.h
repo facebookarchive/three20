@@ -7,7 +7,6 @@ typedef enum {
   TTNavigationModeCreate,            // a new view controller is created each time
   TTNavigationModeShare,             // a new view controller is created, cached and re-used
   TTNavigationModeModal,             // a new view controller is created and presented modally
-  TTNavigationModePopup,             // a new view controller is created and presented as a popup
 } TTNavigationMode;
 
 @interface TTURLMap : NSObject {
@@ -90,27 +89,6 @@ typedef enum {
  */
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
         toModalViewController:(id)target selector:(SEL)selector;
-
-/**
- * Adds a URL pattern which will create and present a popup view controller when loaded.
- *
- * A popup is basically just a controller whose view is inserted on top of the previous view
- * controller.  This is different from a modal view controller, because they completely
- * obscure the previous view controller.  UIAlertView and UIActionSheet are examples of
- * views which can be used as a popup.
- */
-- (void)from:(NSString*)URL toPopupViewController:(id)target;
-
-/**
- * Adds a URL pattern which will create and present a popup view controller when loaded.
- */
-- (void)from:(NSString*)URL toPopupViewController:(id)target selector:(SEL)selector;
-
-/**
- * Adds a URL pattern which will create and present a popup view controller when loaded.
- */
-- (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toPopupViewController:(id)target selector:(SEL)selector;
 
 /**
  * Adds a mapping from a class to a generated URL.

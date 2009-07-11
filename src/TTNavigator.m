@@ -1,7 +1,7 @@
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLMap.h"
 #import "Three20/TTURLPattern.h"
-#import "Three20/TTViewController.h"
+#import "Three20/TTPopupViewController.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -113,9 +113,21 @@
   }
 }
 
+- (void)presentPopupController:(TTPopupViewController*)controller
+        parent:(UIViewController*)parentController animated:(BOOL)animated {
+  parentController.popupViewController = controller;
+  controller.superviewController = parentController;
+  [controller viewWillAppear:animated];
+  [controller showInViewController:parentController animated:animated];
+  [controller viewDidAppear:animated];
+}
+
 - (void)presentModalController:(UIViewController*)controller
         parent:(UIViewController*)parentController animated:(BOOL)animated {
-  if ([controller isKindOfClass:[UINavigationController class]]) {
+  if ([controller isKindOfClass:[TTPopupViewController class]]) {
+    TTPopupViewController* popupViewController  = (TTPopupViewController*)controller;
+    [self presentPopupController:popupViewController parent:parentController animated:animated];
+  } else if ([controller isKindOfClass:[UINavigationController class]]) {
     [parentController presentModalViewController:controller animated:animated];
   } else {
     UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
@@ -124,24 +136,24 @@
   }
 }
 
-- (void)presentController:(UIViewController*)controller
-        parent:(UIViewController*)parentController modal:(BOOL)modal animated:(BOOL)animated {
+- (void)presentController:(UIViewController*)controller parent:(UIViewController*)parentController
+        mode:(TTNavigationMode)mode animated:(BOOL)animated {
   if (!_rootViewController) {
     [self setRootViewController:controller];
   } else {
-    UIViewController* existingParentController = controller.containingViewController;
-    if (existingParentController) {
-      if (existingParentController != parentController) {
+    UIViewController* previousSuper = controller.superviewController;
+    if (previousSuper) {
+      if (previousSuper != parentController) {
         // The controller already exists, so we just need to make it visible
-        for (UIViewController* container = existingParentController; controller; ) {
-          UIViewController* nextContainer = container.containingViewController;
-          [container bringControllerToFront:controller animated:!nextContainer];
-          controller = container;
-          container = nextContainer;
+        for (UIViewController* superController = previousSuper; controller; ) {
+          UIViewController* nextSuper = superController.superviewController;
+          [superController bringControllerToFront:controller animated:!nextSuper];
+          controller = superController;
+          superController = nextSuper;
         }
       }
     } else if (parentController) {
-      if (modal) {
+      if (mode == TTNavigationModeModal) {
         [self presentModalController:controller parent:parentController animated:animated];
       } else {
         [parentController presentController:controller animated:animated];
@@ -158,10 +170,10 @@
       UIViewController* parentController = [self parentForController:controller
                                                  parent:parentURL ? parentURL : pattern.parentURL];
       if (parentController && parentController != visibleViewController) {
-        [self presentController:parentController parent:nil modal:NO animated:NO];
+        [self presentController:parentController parent:nil mode:TTNavigationModeNone animated:NO];
       }
-      [self presentController:controller parent:parentController
-            modal:pattern.navigationMode == TTNavigationModeModal animated:animated];
+      [self presentController:controller parent:parentController mode:pattern.navigationMode
+            animated:animated];
     }
   }
 }
@@ -219,7 +231,7 @@
   while (controller) {
     UIViewController* child = controller.modalViewController;
     if (!child) {
-      child = controller.childViewController;
+      child = controller.subviewController;
     }
     if (child) {
       controller = child;
@@ -375,6 +387,9 @@
   if (controller.modalViewController
       && controller.modalViewController.parentViewController == controller) {
     [self persistController:controller.modalViewController path:path];
+  } else if (controller.popupViewController
+      && controller.popupViewController.superviewController == controller) {
+    [self persistController:controller.popupViewController path:path];
   }
 }
 

@@ -76,6 +76,12 @@
 		BEC5EC410F8C29EA007622CD /* TTButton.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC5EC400F8C29EA007622CD /* TTButton.h */; };
 		BECB1EC60F46C39F00AE5B52 /* TTStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = BECB1EC50F46C39F00AE5B52 /* TTStyleSheet.h */; };
 		BECB1EC80F46C3B000AE5B52 /* TTStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = BECB1EC70F46C3B000AE5B52 /* TTStyleSheet.m */; };
+		BED036EB10090FAA0083AC18 /* TTAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED036EA10090FAA0083AC18 /* TTAlertViewController.m */; };
+		BED036ED10090FB90083AC18 /* TTAlertViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BED036EC10090FB90083AC18 /* TTAlertViewController.h */; };
+		BED03764100915700083AC18 /* TTActionSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = BED03763100915700083AC18 /* TTActionSheetController.h */; };
+		BED03766100915820083AC18 /* TTActionSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED03765100915820083AC18 /* TTActionSheetController.m */; };
+		BED037A1100920C60083AC18 /* TTPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED037A0100920C60083AC18 /* TTPopupViewController.m */; };
+		BED037A3100920CC0083AC18 /* TTPopupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BED037A2100920CC0083AC18 /* TTPopupViewController.h */; };
 		BED4290F0F97F5C70035B153 /* TTTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = BED4290E0F97F5C70035B153 /* TTTableView.h */; };
 		BED429110F97F5DD0035B153 /* TTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BED429100F97F5DD0035B153 /* TTTableView.m */; };
 		BED429420F97F7DB0035B153 /* TTButtonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BED429410F97F7DB0035B153 /* TTButtonBar.m */; };
@@ -220,6 +226,12 @@
 		BEC5EC400F8C29EA007622CD /* TTButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTButton.h; path = Three20/TTButton.h; sourceTree = "<group>"; };
 		BECB1EC50F46C39F00AE5B52 /* TTStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyleSheet.h; path = Three20/TTStyleSheet.h; sourceTree = "<group>"; };
 		BECB1EC70F46C3B000AE5B52 /* TTStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyleSheet.m; sourceTree = "<group>"; };
+		BED036EA10090FAA0083AC18 /* TTAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTAlertViewController.m; sourceTree = "<group>"; };
+		BED036EC10090FB90083AC18 /* TTAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTAlertViewController.h; path = Three20/TTAlertViewController.h; sourceTree = "<group>"; };
+		BED03763100915700083AC18 /* TTActionSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTActionSheetController.h; path = Three20/TTActionSheetController.h; sourceTree = "<group>"; };
+		BED03765100915820083AC18 /* TTActionSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTActionSheetController.m; sourceTree = "<group>"; };
+		BED037A0100920C60083AC18 /* TTPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPopupViewController.m; sourceTree = "<group>"; };
+		BED037A2100920CC0083AC18 /* TTPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPopupViewController.h; path = Three20/TTPopupViewController.h; sourceTree = "<group>"; };
 		BED4290E0F97F5C70035B153 /* TTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableView.h; path = Three20/TTTableView.h; sourceTree = "<group>"; };
 		BED429100F97F5DD0035B153 /* TTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableView.m; sourceTree = "<group>"; };
 		BED429410F97F7DB0035B153 /* TTButtonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTButtonBar.m; sourceTree = "<group>"; };
@@ -582,6 +594,12 @@
 				BEE34EAD0F495C42008C826E /* TTMessageController.m */,
 				BEA69ECC0FAC0FEC00DA7DDC /* TTWebController.h */,
 				BEA69ECA0FAC0FD600DA7DDC /* TTWebController.m */,
+				BED037A2100920CC0083AC18 /* TTPopupViewController.h */,
+				BED037A0100920C60083AC18 /* TTPopupViewController.m */,
+				BED036EC10090FB90083AC18 /* TTAlertViewController.h */,
+				BED036EA10090FAA0083AC18 /* TTAlertViewController.m */,
+				BED03763100915700083AC18 /* TTActionSheetController.h */,
+				BED03765100915820083AC18 /* TTActionSheetController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -662,6 +680,9 @@
 				BE7DD3AC1001EDFF00662212 /* UITabBarControllerAdditions.h in Headers */,
 				BEBB198E10068D5800744230 /* TTNavigator.h in Headers */,
 				BEBB199C100690FE00744230 /* TTURLPattern.h in Headers */,
+				BED036ED10090FB90083AC18 /* TTAlertViewController.h in Headers */,
+				BED03764100915700083AC18 /* TTActionSheetController.h in Headers */,
+				BED037A3100920CC0083AC18 /* TTPopupViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -773,6 +794,9 @@
 				BE7DD3A81001EDE000662212 /* UITabBarControllerAdditions.m in Sources */,
 				BEBB12741003EB5400744230 /* TTURLPattern.m in Sources */,
 				BEBB198310068D0F00744230 /* TTNavigator.m in Sources */,
+				BED036EB10090FAA0083AC18 /* TTAlertViewController.m in Sources */,
+				BED03766100915820083AC18 /* TTActionSheetController.m in Sources */,
+				BED037A1100920C60083AC18 /* TTPopupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

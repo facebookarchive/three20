@@ -20,7 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 
-- (UIViewController*)childViewController {
+- (UIViewController*)subviewController {
   return self.selectedViewController;
 }
 

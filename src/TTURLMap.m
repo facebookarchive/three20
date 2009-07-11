@@ -164,28 +164,6 @@
   [pattern release];
 }
 
-- (void)from:(NSString*)URL toPopupViewController:(id)target {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModePopup target:target];
-  [self addObjectPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(NSString*)URL toPopupViewController:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModePopup target:target];
-  pattern.selector = selector;
-  [self addObjectPattern:pattern forURL:URL];
-  [pattern release];
-}
-
-- (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toPopupViewController:(id)target selector:(SEL)selector {
-  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModePopup target:target];
-  pattern.parentURL = parentURL;
-  pattern.selector = selector;
-  [self addObjectPattern:pattern forURL:URL];
-  [pattern release];
-}
-
 - (void)from:(Class)cls toURL:(NSString*)URL {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeNone target:cls];
   [self addStringPattern:pattern forURL:URL withName:nil];

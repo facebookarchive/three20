@@ -28,7 +28,8 @@
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
         initWithTitle:@"Order" style:UIBarButtonItemStyleDone
-        target:@"#send" action:@selector(openURL)] autorelease];
+        target:@"tt://order/send" // target:@"#send"
+        action:@selector(openURL)] autorelease];
     
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
         initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered

@@ -15,13 +15,13 @@
   TTURLMap* map = navigator.URLMap;
   [map from:@"tt://tabBar" toSharedViewController:[TabBarController class]];
   [map from:@"tt://menu/(initWithMenu:)" toSharedViewController:[MenuController class]];
-  [map from:@"tt://food/(initWithFood:)" toSharedViewController:[ContentController class]];
+  [map from:@"tt://food/(initWithFood:)" toViewController:[ContentController class]];
   [map from:@"tt://about/(initWithAbout:)" parent:@"tt://menu/5"
        toViewController:[ContentController class] selector:nil];
   [map from:@"tt://order?waitress=(initWithWaitress:)"
        toModalViewController:[ContentController class] selector:@selector(initWithWaitress:query:)];
   [map from:@"tt://order?waitress=()#(orderAction:)" toViewController:[ContentController class]];
-  [map from:@"tt://order/send" toPopupViewController:self selector:@selector(sendOrder)];
+  [map from:@"tt://order/send" toModalViewController:self selector:@selector(sendOrder)];
 
   if (![navigator restoreViewControllers]) {
     [navigator openURL:@"tt://tabBar" animated:NO];
@@ -36,12 +36,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (UIViewController*)sendOrder {
-  UIAlertView* alertView =
-    [[[UIAlertView alloc] initWithTitle:@"Order"
+  return
+    [[[TTAlertViewController alloc] initWithTitle:@"Order"
                           message:@"Sure you want to order?"
-                          delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil]
+                          delegate:nil cancelButtonTitle:@"No"
+                          otherButtonTitles:@"Yes", nil]
                           autorelease];
-  return nil;//[[[TTAlertViewController alloc] initWithView:alertView] autorelease];
+//  return
+//    [[[TTActionSheetController alloc] initWithTitle:@"Order" delegate:nil
+//                                      cancelButtonTitle:@"Eh"
+//                                      destructiveButtonTitle:@"No"
+//                                      otherButtonTitles:@"Yes", @"Maybe", nil]
+//                                      autorelease];
 }
 
 @end

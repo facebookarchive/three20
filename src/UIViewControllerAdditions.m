@@ -4,7 +4,46 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static NSMutableDictionary* gNavigatorURLs = nil;
-static NSMutableDictionary* gContainerControllers = nil;
+static NSMutableDictionary* gSuperviewControllers = nil;
+static NSMutableDictionary* gPopupViewControllers = nil;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTPopupView : UIView {
+  UIViewController* _popupViewController;
+}
+
+@property(nonatomic,retain) UIViewController* popupViewController;
+
+@end
+
+@implementation TTPopupView
+
+@synthesize popupViewController = _popupViewController;
+
+- (id)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _popupViewController = nil;
+    self.backgroundColor = [UIColor blueColor];
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [_popupViewController release];
+  [super dealloc];
+}
+
+- (void)didAddSubview:(UIView*)subview {
+  TTLOG(@"ADD %@", subview);
+}
+
+- (void)willRemoveSubview:(UIView*)subview {
+  TTLOG(@"REMOVE %@", subview);
+  [self removeFromSuperview];
+}
+
+@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -36,6 +75,9 @@ static NSMutableDictionary* gContainerControllers = nil;
     [[TTNavigator navigator].URLMap removeObjectWithURL:URL];
     self.navigatorURL = nil;
   }
+
+  self.superviewController = nil;
+  self.popupViewController = nil;
   
   // Calls the original dealloc, swizzled away
   [self ttdealloc];
@@ -68,26 +110,30 @@ static NSMutableDictionary* gContainerControllers = nil;
 - (void)setFrozenState:(NSDictionary*)frozenState {
 }
 
-- (UIViewController*)containingViewController {
-  UIViewController* container = self.parentViewController;
-  if (container) {
-    return container;
+- (UIViewController*)superviewController {
+  UIViewController* parent = self.parentViewController;
+  if (parent) {
+    return parent;
   } else {
     NSString* key = [NSString stringWithFormat:@"%d", self];
-    return [gContainerControllers objectForKey:key];
+    return [gSuperviewControllers objectForKey:key];
   }
 }
 
-- (void)setContainingViewController:(UIViewController*)viewController {
+- (void)setSuperviewController:(UIViewController*)viewController {
   NSString* key = [NSString stringWithFormat:@"%d", self];
   if (viewController) {
-    if (!gContainerControllers) {
-      gContainerControllers = TTCreateNonRetainingDictionary();
+    if (!gSuperviewControllers) {
+      gSuperviewControllers = TTCreateNonRetainingDictionary();
     }
-    [gContainerControllers setObject:viewController forKey:key];
+    [gSuperviewControllers setObject:viewController forKey:key];
   } else {
-    [gContainerControllers removeObjectForKey:key];
+    [gSuperviewControllers removeObjectForKey:key];
   }
+}
+
+- (UIViewController*)subviewController {
+  return nil;
 }
 
 - (UIViewController*)previousViewController {
@@ -113,8 +159,21 @@ static NSMutableDictionary* gContainerControllers = nil;
   return nil;
 }
 
-- (UIViewController*)childViewController {
-  return nil;
+- (UIViewController*)popupViewController {
+  NSString* key = [NSString stringWithFormat:@"%d", self];
+  return [gPopupViewControllers objectForKey:key];
+}
+
+- (void)setPopupViewController:(UIViewController*)viewController {
+  NSString* key = [NSString stringWithFormat:@"%d", self];
+  if (viewController) {
+    if (!gPopupViewControllers) {
+      gPopupViewControllers = TTCreateNonRetainingDictionary();
+    }
+    [gPopupViewControllers setObject:viewController forKey:key];
+  } else {
+    [gPopupViewControllers removeObjectForKey:key];
+  }
 }
 
 - (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
