@@ -7,13 +7,16 @@ typedef enum {
   TTNavigationModeCreate,            // a new view controller is created each time
   TTNavigationModeShare,             // a new view controller is created, cached and re-used
   TTNavigationModeModal,             // a new view controller is created and presented modally
+  TTNavigationModePopup,             // a new view controller is created and presented as a popup
 } TTNavigationMode;
 
 @interface TTURLMap : NSObject {
   NSMutableDictionary* _objectMappings;
   NSMutableArray* _objectPatterns;
+  NSMutableArray* _fragmentPatterns;
   NSMutableDictionary* _stringPatterns;
   TTURLPattern* _defaultObjectPattern;
+  TTURLPattern* _hashPattern;
   BOOL _invalidPatterns;
 }
 
@@ -89,9 +92,30 @@ typedef enum {
         toModalViewController:(id)target selector:(SEL)selector;
 
 /**
+ * Adds a URL pattern which will create and present a popup view controller when loaded.
+ *
+ * A popup is basically just a controller whose view is inserted on top of the previous view
+ * controller.  This is different from a modal view controller, because they completely
+ * obscure the previous view controller.  UIAlertView and UIActionSheet are examples of
+ * views which can be used as a popup.
+ */
+- (void)from:(NSString*)URL toPopupViewController:(id)target;
+
+/**
+ * Adds a URL pattern which will create and present a popup view controller when loaded.
+ */
+- (void)from:(NSString*)URL toPopupViewController:(id)target selector:(SEL)selector;
+
+/**
+ * Adds a URL pattern which will create and present a popup view controller when loaded.
+ */
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toPopupViewController:(id)target selector:(SEL)selector;
+
+/**
  * Adds a mapping from a class to a generated URL.
  */
-- (void)from:(Class)object toURL:(NSString*)URL;
+- (void)from:(Class)cls toURL:(NSString*)URL;
 
 /**
  * Adds a mapping from a class and a special name to a generated URL.
@@ -122,6 +146,11 @@ typedef enum {
 - (id)objectForURL:(NSString*)URL;
 - (id)objectForURL:(NSString*)URL query:(NSDictionary*)query;
 - (id)objectForURL:(NSString*)URL query:(NSDictionary*)query pattern:(TTURLPattern**)pattern;
+
+/**
+ * 
+ */
+- (void)dispatchURL:(NSString*)URL toTarget:(id)target query:(NSDictionary*)query;
 
 /**
  * Tests if there is a pattern that matches the URL and if so returns its navigation mode.

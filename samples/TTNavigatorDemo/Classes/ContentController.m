@@ -11,6 +11,10 @@
   [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)orderAction:(NSString*)action {
+  TTLOG(@"ACTION: %@", action);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -18,13 +22,17 @@
   if (self = [super init]) {
     NSString* ref = [query objectForKey:@"ref"];
     TTLOG(@"ORDER REFERRED FROM %@", ref);
-    
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-        initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-        target:self action:@selector(dismiss)] autorelease];
 
     self.title = @"Place Your Order";
     self.content = [NSString stringWithFormat:@"%@ will take your order now.", waitress];
+
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+        initWithTitle:@"Order" style:UIBarButtonItemStyleDone
+        target:@"#send" action:@selector(openURL)] autorelease];
+    
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+        initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered
+        target:self action:@selector(dismiss)] autorelease];
   }
   return self;
 }

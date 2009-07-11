@@ -1,5 +1,7 @@
 #import "Three20/TTURLMap.h"
 
+@protocol TTURLPatternText;
+
 @interface TTURLPattern : NSObject {
   TTNavigationMode _navigationMode;
   NSString* _URL;
@@ -10,6 +12,7 @@
   NSString* _scheme;
   NSMutableArray* _path;
   NSMutableDictionary* _query;
+  id<TTURLPatternText> _fragment;
   NSInteger _specificity;
   NSInteger _argumentCount;
 }
@@ -23,6 +26,7 @@
 @property(nonatomic) NSInteger specificity;
 @property(nonatomic) NSInteger argumentCount;
 @property(nonatomic,readonly) BOOL isUniversal;
+@property(nonatomic,readonly) BOOL isFragment;
 
 - (id)initWithMode:(TTNavigationMode)navigationMode target:(id)target;
 
@@ -33,6 +37,7 @@
 
 - (id)invoke:(id)target withURL:(NSURL*)URL query:(NSDictionary*)query;
 
+- (id)createObjectFromURL:(NSURL*)URL query:(NSDictionary*)query;
 - (NSString*)generateURLFromObject:(id)object;
 
 @end

@@ -252,20 +252,20 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 
 - (id<TTURLPatternText>)parseText:(NSString*)text {
   NSInteger len = text.length;
-  if (len > 2
+  if (len >= 2
       && [text characterAtIndex:0] == '('
       && [text characterAtIndex:len-1] == ')') {
     NSInteger endRange = len > 3 && [text characterAtIndex:len-2] == ':'
       ? len - 3
       : len - 2;
-    NSString* name = [text substringWithRange:NSMakeRange(1, endRange)];
+    NSString* name = len > 2 ? [text substringWithRange:NSMakeRange(1, endRange)] : nil;
     TTURLWildcard* wildcard = [[[TTURLWildcard alloc] init] autorelease];
     wildcard.name = name;
-    ++_specificity;
     return wildcard;
   } else {
     TTURLLiteral* literal = [[[TTURLLiteral alloc] init] autorelease];
     literal.name = text;
+    ++_specificity;
     return literal;
   }
 }
@@ -284,9 +284,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   [_query setObject:component forKey:name];
 }
 
-- (void)compileURL {
-  NSURL* URL = [NSURL URLWithString:_URL];
-    
+- (void)compileURL:(NSURL*)URL {
   _scheme = [URL.scheme copy];
   if (URL.host) {
     [self parsePathComponent:URL.host];
@@ -306,6 +304,10 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
       [self parseParameter:name value:value];
     }
   }
+
+  if (URL.fragment) {
+    _fragment = [[self parseText:URL.fragment] retain];
+  }
 }
 
 - (NSComparisonResult)compareSpecificity:(TTURLPattern*)pattern2 {
@@ -324,13 +326,24 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   for (id<TTURLPatternText> pattern in _path) {
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
       TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
-      [parts addObject:wildcard.name];
+      if (wildcard.name) {
+        [parts addObject:wildcard.name];
+      }
     }
   }
 
   for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
       TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
+      if (wildcard.name) {
+        [parts addObject:wildcard.name];
+      }
+    }
+  }
+  
+  if ([_fragment isKindOfClass:[TTURLWildcard class]]) {
+    TTURLWildcard* wildcard = (TTURLWildcard*)_fragment;
+    if (wildcard.name) {
       [parts addObject:wildcard.name];
     }
   }
@@ -339,6 +352,21 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     NSString* selectorName = [[parts componentsJoinedByString:@":"] stringByAppendingString:@":"];
     SEL selector = NSSelectorFromString(selectorName);
     _selector = selector;
+  }
+}
+
+- (void)analyzeArgument:(id<TTURLPatternText>)pattern method:(Method)method
+        argNames:(NSArray*)argNames {
+  if ([pattern isKindOfClass:[TTURLWildcard class]]) {
+    TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
+    wildcard.argIndex = [argNames indexOfObject:wildcard.name];
+    if (wildcard.argIndex == NSNotFound) {
+      TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
+    } else {
+      char argType[256];
+      method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
+      wildcard.argType = TTConvertArgumentType(argType[0]);
+    }
   }
 }
 
@@ -357,31 +385,15 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     NSArray* argNames = [selectorName componentsSeparatedByString:@":"];
 
     for (id<TTURLPatternText> pattern in _path) {
-      if ([pattern isKindOfClass:[TTURLWildcard class]]) {
-        TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
-        wildcard.argIndex = [argNames indexOfObject:wildcard.name];
-        if (wildcard.argIndex == NSNotFound) {
-          TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
-        } else {
-          char argType[256];
-          method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
-          wildcard.argType = TTConvertArgumentType(argType[0]);
-        }
-      }
+      [self analyzeArgument:pattern method:method argNames:argNames];
     }
 
     for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
-      if ([pattern isKindOfClass:[TTURLWildcard class]]) {
-        TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
-        wildcard.argIndex = [argNames indexOfObject:wildcard.name];
-        if (wildcard.argIndex == NSNotFound) {
-          TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
-        } else {
-          char argType[256];
-          method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
-          wildcard.argType = TTConvertArgumentType(argType[0]);
-        }
-      }
+      [self analyzeArgument:pattern method:method argNames:argNames];
+    }
+    
+    if (_fragment) {
+      [self analyzeArgument:_fragment method:method argNames:argNames];
     }
     
     [selectorName release];
@@ -505,6 +517,10 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
       [invocation setArgument:&unmatched atIndex:_argumentCount+1];
     }
   }
+  
+  if (URL.fragment && _fragment) {
+    [self setArgument:URL.fragment pattern:_fragment forInvocation:invocation];
+  }  
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -529,6 +545,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     _scheme = nil;
     _path = [[NSMutableArray alloc] init];
     _query = nil;
+    _fragment = nil;
     _selector = nil;
     _targetObject = nil;
     _targetClass = nil;
@@ -543,6 +560,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   TT_RELEASE_MEMBER(_scheme);
   TT_RELEASE_MEMBER(_path);
   TT_RELEASE_MEMBER(_query);
+  TT_RELEASE_MEMBER(_fragment);
   [super dealloc];
 }
 
@@ -558,9 +576,13 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   return [_URL isEqualToString:kUniversalURLPattern];
 }
 
+- (BOOL)isFragment {
+  return [_URL rangeOfString:@"#" options:NSBackwardsSearch].location != NSNotFound;
+}
+
 - (void)compileForObject {
   if (![_URL isEqualToString:kUniversalURLPattern]) {
-    [self compileURL];
+    [self compileURL:[NSURL URLWithString:_URL]];
     
     // XXXjoe Don't do this if the pattern is a URL generator
     if (!_selector) {
@@ -573,24 +595,26 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (void)compileForString {
-  [self compileURL];
+  [self compileURL:[NSURL URLWithString:_URL]];
   [self analyzeProperties];
 }
 
 - (BOOL)matchURL:(NSURL*)URL {
-  if (![_scheme isEqualToString:URL.scheme] || !URL.host) {
+  if (URL.scheme && (![_scheme isEqualToString:URL.scheme] || !URL.host)) {
     return NO;
   }
 
   NSArray* pathComponents = URL.path.pathComponents;
-  NSInteger componentCount = URL.path.length ? pathComponents.count : 1;
+  NSInteger componentCount = URL.path.length ? pathComponents.count : (URL.host ? 1 : 0);
   if (componentCount != _path.count) {
     return NO;
   }
 
-  id<TTURLPatternText>hostPattern = [_path objectAtIndex:0];
-  if (![hostPattern match:URL.host]) {
-    return NO;
+  if (_path.count && URL.host) {
+    id<TTURLPatternText>hostPattern = [_path objectAtIndex:0];
+    if (![hostPattern match:URL.host]) {
+      return NO;
+    }
   }
   
   for (NSInteger i = 1; i < _path.count; ++i) {
@@ -600,7 +624,13 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
       return NO;
     }
   }
-
+  
+  if ((URL.fragment && !_fragment) || (_fragment && !URL.fragment)) {
+    return NO;
+  } else if (URL.fragment && _fragment && ![_fragment match:URL.fragment]) {
+    return NO;
+  }
+  
   return YES;
 }
 
@@ -627,6 +657,25 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     }
   }
   
+  return returnValue;
+}
+
+- (id)createObjectFromURL:(NSURL*)URL query:(NSDictionary*)query {
+  id target = nil;
+  if (_targetClass) {
+    target = [_targetClass alloc];
+  } else {
+    target = [_targetObject retain];
+  }
+
+  id returnValue = nil;
+  if (_selector) {
+    returnValue = [self invoke:target withURL:URL query:query];
+  } else if (_targetClass) {
+    returnValue = [target init];
+  }
+
+  [target autorelease];
   return returnValue;
 }
 

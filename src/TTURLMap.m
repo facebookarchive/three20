@@ -17,10 +17,15 @@
 - (void)addObjectPattern:(TTURLPattern*)pattern forURL:(NSString*)URL {
   pattern.URL = URL;
   [pattern compileForObject];
-  
+
   if (pattern.isUniversal) {
     [_defaultObjectPattern release];
     _defaultObjectPattern = [pattern retain];
+  } else if (pattern.isFragment) {
+    if (!_fragmentPatterns) {
+      _fragmentPatterns = [[NSMutableArray alloc] init];
+    }
+    [_fragmentPatterns addObject:pattern];
   } else {
     _invalidPatterns = YES;
         
@@ -44,7 +49,7 @@
   [_stringPatterns setObject:pattern forKey:key];
 }
 
-- (TTURLPattern*)matchPattern:(NSURL*)URL {
+- (TTURLPattern*)matchObjectPattern:(NSURL*)URL {
   if (_invalidPatterns) {
     [_objectPatterns sortUsingSelector:@selector(compareSpecificity:)];
     _invalidPatterns = NO;
@@ -65,6 +70,7 @@
   if (self = [super init]) {
     _objectMappings = nil;
     _objectPatterns = nil;
+    _fragmentPatterns = nil;
     _stringPatterns = nil;
     _defaultObjectPattern = nil;
     _invalidPatterns = NO;
@@ -75,6 +81,7 @@
 - (void)dealloc {
   TT_RELEASE_MEMBER(_objectMappings);
   TT_RELEASE_MEMBER(_objectPatterns);
+  TT_RELEASE_MEMBER(_fragmentPatterns);
   TT_RELEASE_MEMBER(_stringPatterns);
   TT_RELEASE_MEMBER(_defaultObjectPattern);
   [super dealloc];
@@ -157,6 +164,28 @@
   [pattern release];
 }
 
+- (void)from:(NSString*)URL toPopupViewController:(id)target {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModePopup target:target];
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL toPopupViewController:(id)target selector:(SEL)selector {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModePopup target:target];
+  pattern.selector = selector;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toPopupViewController:(id)target selector:(SEL)selector {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModePopup target:target];
+  pattern.parentURL = parentURL;
+  pattern.selector = selector;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
 - (void)from:(Class)cls toURL:(NSString*)URL {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeNone target:cls];
   [self addStringPattern:pattern forURL:URL withName:nil];
@@ -196,7 +225,7 @@
   return [self objectForURL:URL query:query pattern:nil];
 }
 
-- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query pattern:(TTURLPattern**)pattern {
+- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query pattern:(TTURLPattern**)outPattern {
   if (_objectMappings) {
     // XXXjoe Normalize the URL first
     id object = [_objectMappings objectForKey:URL];
@@ -206,40 +235,32 @@
   }
 
   NSURL* theURL = [NSURL URLWithString:URL];
-  TTURLPattern* match = [self matchPattern:theURL];
-  if (match) {
-    id target = nil;
-    UIViewController* controller = nil;
-
-    if (match.targetClass) {
-      target = [match.targetClass alloc];
-    } else {
-      target = [match.targetObject retain];
+  TTURLPattern* pattern  = [self matchObjectPattern:theURL];
+  if (pattern) {
+    id object = [pattern createObjectFromURL:theURL query:query];
+    if (pattern.navigationMode == TTNavigationModeShare && object) {
+      [self from:URL toObject:object];
     }
-    
-    if (match.selector) {
-      controller = [match invoke:target withURL:theURL query:query];
-    } else if (match.targetClass) {
-      controller = [target init];
+    if (outPattern) {
+      *outPattern = pattern;
     }
-    
-    if (match.navigationMode == TTNavigationModeShare && controller) {
-      [self from:URL toObject:controller];
-    }
-    
-    [target autorelease];
-
-    if (pattern) {
-      *pattern = match;
-    }
-    return controller;
+    return object;
   } else {
     return nil;
   }
 }
 
+- (void)dispatchURL:(NSString*)URL toTarget:(id)target query:(NSDictionary*)query {
+  NSURL* theURL = [NSURL URLWithString:URL];
+  for (TTURLPattern* pattern in _fragmentPatterns) {
+    if ([pattern matchURL:theURL]) {
+      [pattern invoke:target withURL:theURL query:query];
+    }
+  }
+}
+
 - (TTNavigationMode)navigationModeForURL:(NSString*)URL {
-  TTURLPattern* pattern = [self matchPattern:[NSURL URLWithString:URL]];
+  TTURLPattern* pattern = [self matchObjectPattern:[NSURL URLWithString:URL]];
   return pattern.navigationMode;
 }
 

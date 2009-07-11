@@ -103,7 +103,12 @@
     if (parentURL) {
       return [self openURL:parentURL parent:nil animated:NO];
     } else {
-      return self.visibleViewController;
+      UIViewController* parent = self.visibleViewController;
+      if (parent != controller) {
+        return parent;
+      } else {
+        return nil;
+      }
     }
   }
 }
@@ -124,14 +129,16 @@
   if (!_rootViewController) {
     [self setRootViewController:controller];
   } else {
-    UIViewController* container = controller.containingViewController;
-    if (container) {
-      // The controller already exists, so we just need to make it visible
-      while (controller) {
-        UIViewController* nextContainer = container.containingViewController;
-        [container bringControllerToFront:controller animated:!nextContainer];
-        controller = container;
-        container = nextContainer;
+    UIViewController* existingParentController = controller.containingViewController;
+    if (existingParentController) {
+      if (existingParentController != parentController) {
+        // The controller already exists, so we just need to make it visible
+        for (UIViewController* container = existingParentController; controller; ) {
+          UIViewController* nextContainer = container.containingViewController;
+          [container bringControllerToFront:controller animated:!nextContainer];
+          controller = container;
+          container = nextContainer;
+        }
       }
     } else if (parentController) {
       if (modal) {
@@ -146,13 +153,16 @@
 - (void)presentController:(UIViewController*)controller parent:(NSString*)parentURL
         withPattern:(TTURLPattern*)pattern animated:(BOOL)animated {
   if (controller) {
-    UIViewController* parentController = [self parentForController:controller
-                                               parent:parentURL ? parentURL : pattern.parentURL];
-    if (parentController && parentController != self.visibleViewController) {
-      [self presentController:parentController parent:nil modal:NO animated:NO];
+    UIViewController* visibleViewController = self.visibleViewController;
+    if (controller && controller != visibleViewController) {
+      UIViewController* parentController = [self parentForController:controller
+                                                 parent:parentURL ? parentURL : pattern.parentURL];
+      if (parentController && parentController != visibleViewController) {
+        [self presentController:parentController parent:nil modal:NO animated:NO];
+      }
+      [self presentController:controller parent:parentController
+            modal:pattern.navigationMode == TTNavigationModeModal animated:animated];
     }
-    [self presentController:controller parent:parentController
-          modal:pattern.navigationMode == TTNavigationModeModal animated:animated];
   }
 }
 
@@ -243,7 +253,11 @@
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated {
   NSURL* theURL = [NSURL URLWithString:URL];
-
+  if (theURL.fragment && !theURL.scheme) {
+    URL = [self.URL stringByAppendingString:URL];
+    theURL = [NSURL URLWithString:URL];
+  }
+  
   if ([_delegate respondsToSelector:@selector(navigator:shouldOpenURL:)]) {
     if (![_delegate navigator:self shouldOpenURL:theURL]) {
       return nil;
@@ -291,7 +305,21 @@
 
 - (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
                      pattern:(TTURLPattern**)pattern {
-  id object = [[TTNavigator navigator].URLMap objectForURL:URL query:query pattern:pattern];
+  NSRange fragmentRange = [URL rangeOfString:@"#" options:NSBackwardsSearch];
+  if (fragmentRange.location != NSNotFound) {
+    NSString* baseURL = [URL substringToIndex:fragmentRange.location];
+    if ([self.URL isEqualToString:baseURL]) {
+      UIViewController* controller = self.visibleViewController;
+      [_URLMap dispatchURL:URL toTarget:controller query:query];
+      return controller;
+    } else {
+      id object = [_URLMap objectForURL:baseURL query:nil pattern:pattern];
+      [_URLMap dispatchURL:URL toTarget:object query:query];
+      return object;
+    }
+  }
+
+  id object = [_URLMap objectForURL:URL query:query pattern:pattern];
   if (object) {
     UIViewController* controller = object;
     controller.navigatorURL = URL;
