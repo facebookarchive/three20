@@ -245,10 +245,18 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 
 @synthesize navigationMode = _navigationMode, URL = _URL, parentURL = _parentURL,
             targetObject = _targetObject, targetClass = _targetClass, selector = _selector,
-            specificity = _specificity, argumentCount = _argumentCount;
+            transition = _transition, specificity = _specificity, argumentCount = _argumentCount;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
+
+- (Class)realTargetClass {
+  return _targetClass ? _targetClass : [_targetObject class];
+}
+
+- (BOOL)instantiatesClass {
+  return _targetClass && _navigationMode != TTNavigationModeNone;
+}
 
 - (id<TTURLPatternText>)parseText:(NSString*)text {
   NSInteger len = text.length;
@@ -282,6 +290,16 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   
   id<TTURLPatternText> component = [self parseText:value];
   [_query setObject:component forKey:name];
+}
+
+- (void)makeSelectorWithNames:(NSArray*)names {
+  NSString* selectorName = [[names componentsJoinedByString:@":"] stringByAppendingString:@":"];
+  SEL selector = NSSelectorFromString(selectorName);
+  if (!(_targetClass || _targetObject)
+      || (_targetClass && class_respondsToSelector(_targetClass, selector))
+      || (_targetObject && [_targetObject respondsToSelector:selector])) {
+    _selector = selector;
+  }
 }
 
 - (void)compileURL:(NSURL*)URL {
@@ -349,9 +367,11 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   }
 
   if (parts.count) {
-    NSString* selectorName = [[parts componentsJoinedByString:@":"] stringByAppendingString:@":"];
-    SEL selector = NSSelectorFromString(selectorName);
-    _selector = selector;
+    [self makeSelectorWithNames:parts];
+    if (!_selector) {
+      [parts addObject:@"query"];
+      [self makeSelectorWithNames:parts];
+    }
   }
 }
 
@@ -371,7 +391,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (void)analyzeMethod {
-  Class cls = _targetClass ? _targetClass : [_targetObject class];
+  Class cls = [self realTargetClass];
   Method method = class_getInstanceMethod(cls, _selector);
   if (method) {
     _argumentCount = method_getNumberOfArguments(method)-2;
@@ -401,7 +421,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (void)analyzeProperties {
-  Class cls = _targetClass ? _targetClass : [_targetObject class];
+  Class cls = [self realTargetClass];
   
   for (id<TTURLPatternText> pattern in _path) {
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
@@ -481,41 +501,40 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 
 - (void)setArgumentsFromURL:(NSURL*)URL forInvocation:(NSInvocation*)invocation
         query:(NSDictionary*)query {
-  NSInteger remainingArguments = _argumentCount;
+  NSInteger remainingArgs = _argumentCount;
+  NSMutableDictionary* unmatchedArgs = query ? [[query mutableCopy] autorelease] : nil;
   
   NSArray* pathComponents = URL.path.pathComponents;
   for (NSInteger i = 0; i < _path.count; ++i) {
     id<TTURLPatternText> patternText = [_path objectAtIndex:i];
     NSString* text = i == 0 ? URL.host : [pathComponents objectAtIndex:i];
     if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
-      --remainingArguments;
+      --remainingArgs;
     }
   }
   
   NSDictionary* URLQuery = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
   if (URLQuery.count) {
-    NSMutableDictionary* unmatched = query ? [[query mutableCopy] autorelease] : nil;
-
     for (NSString* name in [URLQuery keyEnumerator]) {
       id<TTURLPatternText> patternText = [_query objectForKey:name];
       NSString* text = [URLQuery objectForKey:name];
       if (patternText) {
         if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
-          --remainingArguments;
+          --remainingArgs;
         }
       } else {
-        if (!unmatched) {
-          unmatched = [NSMutableDictionary dictionary];
+        if (!unmatchedArgs) {
+          unmatchedArgs = [NSMutableDictionary dictionary];
         }
-        [unmatched setObject:text forKey:name];
+        [unmatchedArgs setObject:text forKey:name];
       }
     }
-    
-    if (remainingArguments && unmatched.count) {
-      // If there are unmatched arguments, and the method signature has extra arguments,
-      // then pass the dictionary of unmatched arguments as the last argument
-      [invocation setArgument:&unmatched atIndex:_argumentCount+1];
-    }
+  }
+
+  if (remainingArgs && unmatchedArgs.count) {
+    // If there are unmatched arguments, and the method signature has extra arguments,
+    // then pass the dictionary of unmatched arguments as the last argument
+    [invocation setArgument:&unmatchedArgs atIndex:_argumentCount+1];
   }
   
   if (URL.fragment && _fragment) {
@@ -549,6 +568,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     _selector = nil;
     _targetObject = nil;
     _targetClass = nil;
+    _transition = 0;
     _argumentCount = 0;
     _specificity = 0;
   }
@@ -662,7 +682,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 
 - (id)createObjectFromURL:(NSURL*)URL query:(NSDictionary*)query {
   id target = nil;
-  if (_targetClass) {
+  if (self.instantiatesClass) {
     target = [_targetClass alloc];
   } else {
     target = [_targetObject retain];
@@ -671,7 +691,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   id returnValue = nil;
   if (_selector) {
     returnValue = [self invoke:target withURL:URL query:query];
-  } else if (_targetClass) {
+  } else if (self.instantiatesClass) {
     returnValue = [target init];
   }
 

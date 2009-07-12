@@ -24,7 +24,8 @@
   return self.selectedViewController;
 }
 
-- (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
+- (void)presentController:(UIViewController*)controller animated:(BOOL)animated
+        transition:(UIViewAnimationTransition)transition {
   self.selectedViewController = controller;
 }
 

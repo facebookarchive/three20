@@ -65,6 +65,21 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   }
 }
 
+- (UIViewAnimationTransition)invertTransition:(UIViewAnimationTransition)transition {
+  switch (transition) {
+    case UIViewAnimationTransitionCurlUp:
+      return UIViewAnimationTransitionCurlDown;
+    case UIViewAnimationTransitionCurlDown:
+      return UIViewAnimationTransitionCurlUp;
+    case UIViewAnimationTransitionFlipFromLeft:
+      return UIViewAnimationTransitionFlipFromRight;
+    case UIViewAnimationTransitionFlipFromRight:
+      return UIViewAnimationTransitionFlipFromLeft;
+    default:
+      return UIViewAnimationTransitionNone;
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -72,7 +87,7 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 - (void)ttdealloc {
   NSString* URL = self.navigatorURL;
   if (URL) {
-    [[TTNavigator navigator].URLMap removeObjectWithURL:URL];
+    [[TTNavigator navigator].URLMap removeObjectForURL:URL];
     self.navigatorURL = nil;
   }
 
@@ -176,13 +191,40 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   }
 }
 
-- (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
+- (void)presentController:(UIViewController*)controller animated:(BOOL)animated
+        transition:(UIViewAnimationTransition)transition {
   if (self.navigationController) {
-    [self.navigationController pushViewController:controller animated:animated];
+    [self.navigationController presentController:controller animated:animated
+                               transition:transition];
   }
 }
 
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
+}
+
+- (void)dismissViewController {
+  [self dismissViewControllerAnimated:YES];
+}
+
+- (void)dismissViewControllerAnimated:(BOOL)animated {
+  if (self.navigationController) {
+    if (animated) {
+      UIViewAnimationTransition transition =
+        [[TTNavigator navigator].URLMap transitionForURL:self.navigatorURL];
+      if (!transition) {
+        [self.navigationController popViewControllerAnimated:YES];
+      } else  {
+        UIViewAnimationTransition inverseTransition = [self invertTransition:transition];
+        [self.navigationController popViewControllerAnimatedWithTransition:inverseTransition];
+      }
+    } else {
+      [self.navigationController popViewControllerAnimated:NO];
+    }
+  }
+}
+
+- (void)dismissModalViewController {
+  [self dismissModalViewControllerAnimated:YES];
 }
 
 - (BOOL)isContainerController {

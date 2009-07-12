@@ -13,6 +13,9 @@
 @property(nonatomic,assign) id<TTThumbsViewControllerDelegate> delegate;
 @property(nonatomic,retain) id<TTPhotoSource> photoSource;
 
+- (id)initWithDelegate:(id<TTThumbsViewControllerDelegate>)delegate;
+- (id)initWithQuery:(NSDictionary*)query;
+
 - (TTPhotoViewController*)createPhotoViewController;
 
 @end

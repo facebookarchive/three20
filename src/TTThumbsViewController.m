@@ -1,7 +1,7 @@
 #import "Three20/TTThumbsViewController.h"
 #import "Three20/TTPhotoViewController.h"
 #import "Three20/TTURLRequest.h"
-#import "Three20/TTUnclippedView.h"
+#import "Three20/TTNavigator.h"
 #import "Three20/TTTableItem.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTStyleSheet.h"
@@ -21,6 +21,15 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (BOOL)hasMoreToLoad {
   return _controller.photoSource.maxPhotoIndex+1 < _controller.photoSource.numberOfPhotos;
+}
+
+- (NSString*)URLForPhoto:(id<TTPhoto>)photo {
+  if ([photo respondsToSelector:@selector(URLValueWithName:)]) {
+    return [photo performSelector:@selector(URLValueWithName:)
+                  withObject:@"TTPhotoViewController"];
+  } else {
+    return nil;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,9 +83,14 @@ static CGFloat kThumbnailRowHeight = 79;
   }
 
   if (shouldNavigate) {
-    TTPhotoViewController* controller = [_controller createPhotoViewController];
-    controller.centerPhoto = photo;
-    [_controller.navigationController pushViewController:controller animated:YES];  
+    NSString* URL = [self URLForPhoto:photo];
+    if (URL) {
+      TTOpenURL(URL);
+    } else {
+      TTPhotoViewController* controller = [_controller createPhotoViewController];
+      controller.centerPhoto = photo;
+      [_controller.navigationController pushViewController:controller animated:YES];  
+    }
   }
 }
 
@@ -185,6 +199,31 @@ static CGFloat kThumbnailRowHeight = 79;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
+- (id)initWithDelegate:(id<TTThumbsViewControllerDelegate>)delegate {
+  if (self = [self init]) {
+    self.delegate = delegate;
+
+    self.navigationItem.leftBarButtonItem =
+      [[[UIBarButtonItem alloc] initWithCustomView:[[[UIView alloc] initWithFrame:CGRectZero]
+                                                   autorelease]] autorelease];
+    self.navigationItem.rightBarButtonItem =
+      [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
+                                style:UIBarButtonItemStyleBordered
+                                target:self
+                                action:@selector(dismissViewController)] autorelease];
+  }
+  return self;
+}
+
+- (id)initWithQuery:(NSDictionary*)query {
+  id<TTThumbsViewControllerDelegate> delegate = [query objectForKey:@"delegate"];
+  if (delegate) {
+    return [self initWithDelegate:delegate];
+  } else {
+    return [self init];
+  }
+}
+
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;
@@ -211,7 +250,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (void)loadView {
   CGRect screenFrame = [UIScreen mainScreen].bounds;
-  self.view = [[[TTUnclippedView alloc] initWithFrame:screenFrame] autorelease];
+  self.view = [[[UIView alloc] initWithFrame:screenFrame] autorelease];
   self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 

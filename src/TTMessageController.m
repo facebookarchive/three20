@@ -80,7 +80,7 @@
 
   if (controller.showsRecipientPicker) {
     UIButton* addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    [addButton addTarget:self action:@selector(showRecipientPicker)
+    [addButton addTarget:controller action:@selector(showRecipientPicker)
       forControlEvents:UIControlEventTouchUpInside];
     textField.rightView = addButton;
   }
@@ -663,7 +663,7 @@
       [_delegate composeControllerWillCancel:self];
     }
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewController];
   }
 }
 

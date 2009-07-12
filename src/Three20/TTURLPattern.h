@@ -9,6 +9,7 @@
   id _targetObject;
   Class _targetClass;
   SEL _selector;
+  NSInteger _transition;
   NSString* _scheme;
   NSMutableArray* _path;
   NSMutableDictionary* _query;
@@ -23,6 +24,7 @@
 @property(nonatomic,assign) id targetObject;
 @property(nonatomic) Class targetClass;
 @property(nonatomic) SEL selector;
+@property(nonatomic) NSInteger transition;
 @property(nonatomic) NSInteger specificity;
 @property(nonatomic) NSInteger argumentCount;
 @property(nonatomic,readonly) BOOL isUniversal;

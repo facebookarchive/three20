@@ -63,24 +63,32 @@
   return self;
 }
 
-- (id)init {
-  if (self = [super init]) {
-    TTAlertView* alertView = [[[TTAlertView alloc] init] autorelease];
-    alertView.popupViewController = self;
-    self.view = alertView;
-  }
-  return self;
-}
-
 - (void)dealloc {
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
+
+- (void)loadView {
+  TTAlertView* alertView = [[[TTAlertView alloc] init] autorelease];
+  alertView.popupViewController = self;
+  self.view = alertView;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTPopupViewController
 
 - (void)showInViewController:(UIViewController*)parentViewController animated:(BOOL)animated {
+  [self viewWillAppear:animated];
   [self.alertView show];
+  [self viewDidAppear:animated];
+}
+
+- (void)dismissPopupViewControllerAnimated:(BOOL)animated {
+  [self viewWillDisappear:animated];
+  [self.alertView dismissWithClickedButtonIndex:self.alertView.cancelButtonIndex animated:animated];
+  [self viewDidDisappear:animated];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

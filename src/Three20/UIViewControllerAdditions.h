@@ -60,7 +60,8 @@
  * UIViewController categories and subclasses should implement to display the controller
  * in a manner specific to them.  
  */
-- (void)presentController:(UIViewController*)controller animated:(BOOL)animated;
+- (void)presentController:(UIViewController*)controller animated:(BOOL)animated
+        transition:(UIViewAnimationTransition)transition;
 
 /**
  * Brings a controller that is a child of this controller to the front.
@@ -70,6 +71,14 @@
  * to display the controller in a manner specific to them.  
  */
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated;
+
+/**
+ * Dismisses a view controller using the opposite transition it was presented with.
+ */
+- (void)dismissViewController;
+- (void)dismissViewControllerAnimated:(BOOL)animated;
+
+- (void)dismissModalViewController;
 
 /**
  * Determines whether a controller is primarily a container of other controllers.

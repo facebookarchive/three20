@@ -1,8 +1,8 @@
 #import "Three20/TTPhotoViewController.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequest.h"
-#import "Three20/TTUnclippedView.h"
 #import "Three20/TTPhotoView.h"
+#import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -226,25 +226,36 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
 }
 
-- (void)showThumbnails {
-  if (!_thumbsController) {
-    _thumbsController = [[self createThumbsViewController] retain];
-    _thumbsController.delegate = self;
-    _thumbsController.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-    initWithCustomView:[[[UIView alloc] initWithFrame:CGRectZero] autorelease]] autorelease];
-    _thumbsController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-    initWithTitle:TTLocalizedString(@"Done", @"") style:UIBarButtonItemStyleBordered
-    target:self action:@selector(hideThumbnails)] autorelease];
+- (NSString*)URLForThumbnails {
+  if ([self.photoSource respondsToSelector:@selector(URLValueWithName:)]) {
+    return [self.photoSource performSelector:@selector(URLValueWithName:)
+                             withObject:@"TTThumbsViewController"];
+  } else {
+    return nil;
   }
-  
-  _thumbsController.photoSource = _photoSource;
-  [self.navigationController pushViewController:_thumbsController
-    animatedWithTransition:UIViewAnimationTransitionCurlDown];
 }
 
-- (void)hideThumbnails {
-  [self.navigationController popViewControllerAnimatedWithTransition:
-                             UIViewAnimationTransitionCurlUp];
+- (void)showThumbnails {
+  NSString* URL = [self URLForThumbnails];
+  if (!_thumbsController) {
+    if (URL) {
+      // The photo source has a URL mapping in TTURLMap, so we use that to show the thumbs
+      NSDictionary* query = [NSDictionary dictionaryWithObject:self forKey:@"delegate"];
+      _thumbsController = [[[TTNavigator navigator] viewControllerForURL:URL query:query] retain];
+      [[TTNavigator navigator].URLMap setObject:_thumbsController forURL:URL];
+    } else {
+      // The photo source had no URL mapping in TTURLMap, so we let the subclass show the thumbs
+      _thumbsController = [[self createThumbsViewController] retain];
+      _thumbsController.photoSource = _photoSource;
+    }
+  }
+    
+  if (URL) {
+    TTOpenURL(URL);
+  } else {
+    [self.navigationController pushViewController:_thumbsController
+                               animatedWithTransition:UIViewAnimationTransitionCurlDown];
+  }
 }
 
 - (void)slideshowTimer {
@@ -308,7 +319,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)loadView {
   CGRect screenFrame = [UIScreen mainScreen].bounds;
-  self.view = [[[TTUnclippedView alloc] initWithFrame:screenFrame] autorelease];
+  self.view = [[[UIView alloc] initWithFrame:screenFrame] autorelease];
     
   CGRect innerFrame = CGRectMake(0, 0,
                                  screenFrame.size.width, screenFrame.size.height);
@@ -590,7 +601,12 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)thumbsViewController:(TTThumbsViewController*)controller didSelectPhoto:(id<TTPhoto>)photo {
   self.centerPhoto = photo;
-  [self hideThumbnails];
+  [controller dismissViewController];
+}
+
+- (BOOL)thumbsViewController:(TTThumbsViewController*)controller
+        shouldNavigateToPhoto:(id<TTPhoto>)photo {
+  return NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -626,7 +642,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (TTThumbsViewController*)createThumbsViewController {
-  return [[[TTThumbsViewController alloc] init] autorelease];
+  return [[[TTThumbsViewController alloc] initWithDelegate:self] autorelease];
 }
 
 @end

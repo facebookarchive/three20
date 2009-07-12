@@ -64,24 +64,33 @@
   return self;
 }
 
-- (id)init {
-  if (self = [super init]) {
-    TTActionSheet* actionSheet = [[[TTActionSheet alloc] init] autorelease];
-    actionSheet.popupViewController = self;
-    self.view = actionSheet;
-  }
-  return self;
-}
-
 - (void)dealloc {
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
+
+- (void)loadView {
+  TTActionSheet* actionSheet = [[[TTActionSheet alloc] init] autorelease];
+  actionSheet.popupViewController = self;
+  self.view = actionSheet;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTPopupViewController
 
 - (void)showInViewController:(UIViewController*)parentViewController animated:(BOOL)animated {
+  [self viewWillAppear:animated];
   [self.actionSheet showInView:parentViewController.view];
+  [self viewDidAppear:animated];
+}
+
+- (void)dismissPopupViewControllerAnimated:(BOOL)animated {
+  [self viewWillDisappear:animated];
+  [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex
+                    animated:animated];
+  [self viewDidDisappear:animated];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

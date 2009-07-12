@@ -117,13 +117,13 @@
         parent:(UIViewController*)parentController animated:(BOOL)animated {
   parentController.popupViewController = controller;
   controller.superviewController = parentController;
-  [controller viewWillAppear:animated];
   [controller showInViewController:parentController animated:animated];
-  [controller viewDidAppear:animated];
 }
 
 - (void)presentModalController:(UIViewController*)controller
-        parent:(UIViewController*)parentController animated:(BOOL)animated {
+        parent:(UIViewController*)parentController animated:(BOOL)animated
+        transition:(NSInteger)transition {
+  controller.modalTransitionStyle = transition;
   if ([controller isKindOfClass:[TTPopupViewController class]]) {
     TTPopupViewController* popupViewController  = (TTPopupViewController*)controller;
     [self presentPopupController:popupViewController parent:parentController animated:animated];
@@ -137,7 +137,7 @@
 }
 
 - (void)presentController:(UIViewController*)controller parent:(UIViewController*)parentController
-        mode:(TTNavigationMode)mode animated:(BOOL)animated {
+        mode:(TTNavigationMode)mode animated:(BOOL)animated transition:(NSInteger)transition {
   if (!_rootViewController) {
     [self setRootViewController:controller];
   } else {
@@ -154,26 +154,29 @@
       }
     } else if (parentController) {
       if (mode == TTNavigationModeModal) {
-        [self presentModalController:controller parent:parentController animated:animated];
+        [self presentModalController:controller parent:parentController animated:animated
+              transition:transition];
       } else {
-        [parentController presentController:controller animated:animated];
+        [parentController presentController:controller animated:animated transition:transition];
       }
     }
   }
 }
 
 - (void)presentController:(UIViewController*)controller parent:(NSString*)parentURL
-        withPattern:(TTURLPattern*)pattern animated:(BOOL)animated {
+        withPattern:(TTURLPattern*)pattern animated:(BOOL)animated
+        transition:(NSInteger)transition {
   if (controller) {
     UIViewController* visibleViewController = self.visibleViewController;
     if (controller && controller != visibleViewController) {
       UIViewController* parentController = [self parentForController:controller
                                                  parent:parentURL ? parentURL : pattern.parentURL];
       if (parentController && parentController != visibleViewController) {
-        [self presentController:parentController parent:nil mode:TTNavigationModeNone animated:NO];
+        [self presentController:parentController parent:nil mode:TTNavigationModeNone
+              animated:NO transition:0];
       }
       [self presentController:controller parent:parentController mode:pattern.navigationMode
-            animated:animated];
+            animated:animated transition:transition];
     }
   }
 }
@@ -251,19 +254,37 @@
 }
 
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated {
-  return [self openURL:URL parent:nil query:nil animated:animated];
+  return [self openURL:URL parent:nil query:nil animated:animated
+               transition:UIViewAnimationTransitionNone];
+}
+
+- (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated
+                     transition:(UIViewAnimationTransition)transition {
+  return [self openURL:URL parent:nil query:nil animated:YES transition:transition];
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated {
-  return [self openURL:URL parent:parentURL query:nil animated:animated];
+  return [self openURL:URL parent:parentURL query:nil animated:animated
+               transition:UIViewAnimationTransitionNone];
 }
 
 - (UIViewController*)openURL:(NSString*)URL query:(NSDictionary*)query animated:(BOOL)animated {
-  return [self openURL:URL parent:nil query:query animated:animated];
+  return [self openURL:URL parent:nil query:query animated:animated
+               transition:UIViewAnimationTransitionNone];
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated {
+  return [self openURL:URL parent:parentURL query:query animated:animated
+               transition:UIViewAnimationTransitionNone];
+}
+
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
+                     animated:(BOOL)animated transition:(UIViewAnimationTransition)transition {
+  if (!URL) {
+    return nil;
+  }
+  
   NSURL* theURL = [NSURL URLWithString:URL];
   if (theURL.fragment && !theURL.scheme) {
     URL = [self.URL stringByAppendingString:URL];
@@ -283,7 +304,8 @@
       [_delegate navigator:self willOpenURL:theURL inViewController:controller];
     }
 
-    [self presentController:controller parent:parentURL withPattern:pattern animated:animated];
+    [self presentController:controller parent:parentURL withPattern:pattern
+          animated:animated transition:transition ? transition : pattern.transition];
   } else if (_opensExternalURLs) {
     if ([_delegate respondsToSelector:@selector(navigator:wilOpenURL:inViewController:)]) {
       [_delegate navigator:self willOpenURL:theURL inViewController:nil];
@@ -293,6 +315,7 @@
   }
   return controller;
 }
+
 
 - (UIViewController*)openURLs:(NSString*)URL,... {
   UIViewController* controller = nil;

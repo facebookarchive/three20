@@ -20,8 +20,13 @@
   return self.topViewController;
 }
 
-- (void)presentController:(UIViewController*)controller animated:(BOOL)animated {
-  [self pushViewController:controller animated:animated];
+- (void)presentController:(UIViewController*)controller animated:(BOOL)animated
+        transition:(UIViewAnimationTransition)transition {
+  if (animated && transition) {
+    [self pushViewController:controller animatedWithTransition:transition];
+  } else {
+    [self pushViewController:controller animated:animated];
+  }
 }
 
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {

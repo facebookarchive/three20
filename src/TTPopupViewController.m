@@ -24,4 +24,7 @@
 - (void)showInViewController:(UIViewController*)parentViewController animated:(BOOL)animated {
 }
 
+- (void)dismissPopupViewControllerAnimated:(BOOL)animated {
+}
+
 @end

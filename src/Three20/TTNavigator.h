@@ -60,7 +60,7 @@ typedef enum {
 @property(nonatomic) BOOL supportsShakeToReload;
 
 /**
- * Opens URLs externally if they don't match any patterns.
+ * Allows URLs to be opened externally if they don't match any patterns.
  *
  * The default value is NO.
  */
@@ -76,10 +76,15 @@ typedef enum {
  * a keyWindow, a UIWindow will be created and displayed.
  */
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated;
+- (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated
+                     transition:(UIViewAnimationTransition)transition;
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated;
 - (UIViewController*)openURL:(NSString*)URL query:(NSDictionary*)query animated:(BOOL)animated;
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL
                      query:(NSDictionary*)query animated:(BOOL)animated;
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL
+                     query:(NSDictionary*)query animated:(BOOL)animated
+                     transition:(UIViewAnimationTransition)transition;
 
 /** 
  * Opens a sequence of URLs, with only the last one being animated.

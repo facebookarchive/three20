@@ -20,21 +20,10 @@ typedef enum {
 }
 
 /**
- * Adds a direct mapping from a literal URL to an object.
- *
- * The URL must not be a pattern - it must be the a URL. All requests to open this URL will
- * return the object bound to it, rather than going through the pattern matching process to create
- * a new object.
- * 
- * Mapped objects are not retained.  You are responsible for removing the mapping when the object
- * is destroyed, or risk crashes.
+ * Adds a URL pattern which will perform a selector on an object when loaded.
  */
 - (void)from:(NSString*)URL toObject:(id)object;
-
-/**
- * Adds a URL pattern which will create and present a view controller when loaded.
- */
-- (void)from:(NSString*)URL toViewController:(id)target;
+- (void)from:(NSString*)URL toObject:(id)object selector:(SEL)selector;
 
 /**
  * Adds a URL pattern which will create and present a view controller when loaded.
@@ -47,13 +36,11 @@ typedef enum {
  * selector will be called with arguments extracted from the URL, and the view controller that
  * you return will be the one that is presented.
  */
+- (void)from:(NSString*)URL toViewController:(id)target;
 - (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector;
-
-/**
- * Adds a URL pattern which will create and present a view controller when loaded.
- */
+- (void)from:(NSString*)URL toViewController:(id)target transition:(NSInteger)transition;
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toViewController:(id)target selector:(SEL)selector;
+        toViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition;
 
 /**
  * Adds a URL pattern which will create and present a share view controller when loaded.
@@ -62,15 +49,7 @@ typedef enum {
  * until it is destroyed.
  */
 - (void)from:(NSString*)URL toSharedViewController:(id)target;
-
-/**
- * Adds a URL pattern which will create and present a view controller when loaded.
- */
 - (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector;
-
-/**
- * Adds a URL pattern which will create and present a view controller when loaded.
- */
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
         toSharedViewController:(id)target selector:(SEL)selector;
 
@@ -78,17 +57,10 @@ typedef enum {
  * Adds a URL pattern which will create and present a modal view controller when loaded.
  */
 - (void)from:(NSString*)URL toModalViewController:(id)target;
-
-/**
- * Adds a URL pattern which will create and present a modal view controller when loaded.
- */
 - (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector;
-
-/**
- * Adds a URL pattern which will create and present a modal view controller when loaded.
- */
+- (void)from:(NSString*)URL toModalViewController:(id)target transition:(NSInteger)transition;
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toModalViewController:(id)target selector:(SEL)selector;
+        toModalViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition;
 
 /**
  * Adds a mapping from a class to a generated URL.
@@ -99,6 +71,18 @@ typedef enum {
  * Adds a mapping from a class and a special name to a generated URL.
  */
 - (void)from:(Class)cls name:(NSString*)name toURL:(NSString*)URL;
+
+/**
+ * Adds a direct mapping from a literal URL to an object.
+ *
+ * The URL must not be a pattern - it must be the a literal URL. All requests to open this URL will
+ * return the object bound to it, rather than going through the pattern matching process to create
+ * a new object.
+ * 
+ * Mapped objects are not retained.  You are responsible for removing the mapping when the object
+ * is destroyed, or risk crashes.
+ */
+- (void)setObject:(id)object forURL:(NSString*)URL;
 
 /**
  * Removes all objects and patterns mapped to a URL.
@@ -113,7 +97,7 @@ typedef enum {
 /**
  * Removes objects bound literally to the URL.
  */
-- (void)removeObjectWithURL:(NSString*)URL;
+- (void)removeObjectForURL:(NSString*)URL;
 
 /**
  * Gets or creates the object with a pattern that matches the URL.
@@ -136,9 +120,33 @@ typedef enum {
 - (TTNavigationMode)navigationModeForURL:(NSString*)URL;
 
 /**
+ * Tests if there is a pattern that matches the URL and if so returns its transition.
+ */
+- (NSInteger)transitionForURL:(NSString*)URL;
+
+/**
  * Gets a URL that has been mapped to the object.
  */
 - (NSString*)URLForObject:(id)object;
 - (NSString*)URLForObject:(id)object withName:(NSString*)name;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@protocol TTURLObject <NSObject>
+
+@optional
+
+/**
+ * Converts the object to a URL using TTURLMap.
+ */
+@property(nonatomic,readonly) NSString* URLValue;
+
+/**
+ * Converts the object to a specially-named URL using TTURLMap.
+ */
+- (NSString*)URLValueWithName:(NSString*)name;
+
 
 @end
