@@ -284,13 +284,16 @@
 
 - (NSString*)URLForObject:(id)object withName:(NSString*)name {
   Class cls = [object class] == object ? object : [object class];
-  NSString* key = [self keyForClass:cls withName:name];
-  TTURLPattern* pattern = [_stringPatterns objectForKey:key];
-  if (pattern) {
-    return [pattern generateURLFromObject:object];
-  } else {
-    return nil;
+  while (cls) {
+    NSString* key = [self keyForClass:cls withName:name];
+    TTURLPattern* pattern = [_stringPatterns objectForKey:key];
+    if (pattern) {
+      return [pattern generateURLFromObject:object];
+    } else {
+      cls = class_getSuperclass(cls);
+    }
   }
+  return nil;
 }
 
 @end

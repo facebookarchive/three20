@@ -17,7 +17,7 @@
   [map from:@"tt://menu/(initWithMenu:)" toSharedViewController:[MenuController class]];
   [map from:@"tt://food/(initWithFood:)" toViewController:[ContentController class]];
   [map from:@"tt://about/(initWithAbout:)" parent:@"tt://menu/5"
-       toViewController:[ContentController class] selector:nil];
+       toViewController:[ContentController class] selector:nil transition:0];
   [map from:@"tt://order?waitress=(initWithWaitress:)"
        toModalViewController:[ContentController class] selector:@selector(initWithWaitress:query:)];
   [map from:@"tt://order?waitress=()#(orderAction:)" toViewController:[ContentController class]];

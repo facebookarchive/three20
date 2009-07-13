@@ -210,8 +210,9 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 - (void)removeFromSupercontrollerAnimated:(BOOL)animated {
   if (self.navigationController) {
     if (animated) {
-      UIViewAnimationTransition transition =
-        [[TTNavigator navigator].URLMap transitionForURL:self.navigatorURL];
+      NSString* URL = self.navigatorURL;
+      UIViewAnimationTransition transition = URL
+        ? [[TTNavigator navigator].URLMap transitionForURL:URL] : UIViewAnimationTransitionNone;
       if (!transition) {
         [self.navigationController popViewControllerAnimated:YES];
       } else  {

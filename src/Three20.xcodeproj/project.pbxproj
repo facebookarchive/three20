@@ -15,6 +15,9 @@
 		BE1942880F9ACEA7005F4EFC /* TTStyledLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1942870F9ACEA7005F4EFC /* TTStyledLayout.m */; };
 		BE2178F4100093FA009329F2 /* TTURLMap.h in Headers */ = {isa = PBXBuildFile; fileRef = BE2178F3100093FA009329F2 /* TTURLMap.h */; };
 		BE2178F61000940D009329F2 /* TTURLMap.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2178F51000940D009329F2 /* TTURLMap.m */; };
+		BE23E72B100B0A7200F40C3B /* TTTableViewDataSources.h in Headers */ = {isa = PBXBuildFile; fileRef = BE23E72A100B0A7200F40C3B /* TTTableViewDataSources.h */; };
+		BE23E72D100B0ACD00F40C3B /* TTTableViewDataSources.m in Sources */ = {isa = PBXBuildFile; fileRef = BE23E72C100B0ACD00F40C3B /* TTTableViewDataSources.m */; };
+		BE23E798100B13E200F40C3B /* TTLoadable.h in Headers */ = {isa = PBXBuildFile; fileRef = BE23E797100B13E200F40C3B /* TTLoadable.h */; };
 		BE3EDE410F80C78500A732BE /* TTStyledText.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3EDE400F80C78500A732BE /* TTStyledText.h */; };
 		BE3EDE430F80C79600A732BE /* TTStyledText.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3EDE420F80C79600A732BE /* TTStyledText.m */; };
 		BE42FB130F3BBAA900A3B65A /* TTLink.m in Sources */ = {isa = PBXBuildFile; fileRef = BE42FB120F3BBAA900A3B65A /* TTLink.m */; };
@@ -165,6 +168,9 @@
 		BE1942870F9ACEA7005F4EFC /* TTStyledLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledLayout.m; sourceTree = "<group>"; };
 		BE2178F3100093FA009329F2 /* TTURLMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLMap.h; path = Three20/TTURLMap.h; sourceTree = "<group>"; };
 		BE2178F51000940D009329F2 /* TTURLMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLMap.m; sourceTree = "<group>"; };
+		BE23E72A100B0A7200F40C3B /* TTTableViewDataSources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewDataSources.h; path = Three20/TTTableViewDataSources.h; sourceTree = "<group>"; };
+		BE23E72C100B0ACD00F40C3B /* TTTableViewDataSources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewDataSources.m; sourceTree = "<group>"; };
+		BE23E797100B13E200F40C3B /* TTLoadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLoadable.h; path = Three20/TTLoadable.h; sourceTree = "<group>"; };
 		BE3EDE400F80C78500A732BE /* TTStyledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledText.h; path = Three20/TTStyledText.h; sourceTree = "<group>"; };
 		BE3EDE420F80C79600A732BE /* TTStyledText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledText.m; sourceTree = "<group>"; };
 		BE42FB120F3BBAA900A3B65A /* TTLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLink.m; sourceTree = "<group>"; };
@@ -378,6 +384,8 @@
 				BED429100F97F5DD0035B153 /* TTTableView.m */,
 				BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */,
 				BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */,
+				BE23E72A100B0A7200F40C3B /* TTTableViewDataSources.h */,
+				BE23E72C100B0ACD00F40C3B /* TTTableViewDataSources.m */,
 				BED62FD80F882FD1009923D8 /* TTTableViewDelegate.h */,
 				BED62FDA0F882FE3009923D8 /* TTTableViewDelegate.m */,
 				BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */,
@@ -559,6 +567,7 @@
 				BEF31F6F0F352E64000DE5D2 /* Three20.h */,
 				BEF31F5C0F352E64000DE5D2 /* TTGlobal.h */,
 				BEF31F480F352E64000DE5D2 /* TTGlobal.m */,
+				BE23E797100B13E200F40C3B /* TTLoadable.h */,
 				BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */,
 				BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */,
 			);
@@ -683,6 +692,8 @@
 				BED036ED10090FB90083AC18 /* TTAlertViewController.h in Headers */,
 				BED03764100915700083AC18 /* TTActionSheetController.h in Headers */,
 				BED037A3100920CC0083AC18 /* TTPopupViewController.h in Headers */,
+				BE23E72B100B0A7200F40C3B /* TTTableViewDataSources.h in Headers */,
+				BE23E798100B13E200F40C3B /* TTLoadable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +808,7 @@
 				BED036EB10090FAA0083AC18 /* TTAlertViewController.m in Sources */,
 				BED03766100915820083AC18 /* TTActionSheetController.m in Sources */,
 				BED037A1100920C60083AC18 /* TTPopupViewController.m in Sources */,
+				BE23E72D100B0ACD00F40C3B /* TTTableViewDataSources.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

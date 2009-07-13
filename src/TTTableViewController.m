@@ -1,5 +1,5 @@
 #import "Three20/TTTableViewController.h"
-#import "Three20/TTTableViewDataSource.h"
+#import "Three20/TTTableViewDataSources.h"
 #import "Three20/TTTableView.h"
 #import "Three20/TTTableItem.h"
 #import "Three20/TTTableItemCell.h"

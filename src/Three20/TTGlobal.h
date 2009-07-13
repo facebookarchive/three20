@@ -228,21 +228,3 @@ NSString* TTPathForBundleResource(NSString* relativePath);
 NSString* TTPathForDocumentsResource(NSString* relativePath);
 
 void TTSwizzle(Class cls, SEL originalSel, SEL newSel);
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@protocol TTLoadable <NSObject>
-
-@property(nonatomic,readonly) NSMutableArray* delegates;
-@property(nonatomic,readonly) NSDate* loadedTime;
-@property(nonatomic,readonly) BOOL isLoaded;
-@property(nonatomic,readonly) BOOL isLoading;
-@property(nonatomic,readonly) BOOL isLoadingMore;
-@property(nonatomic,readonly) BOOL isOutdated;
-@property(nonatomic,readonly) BOOL isEmpty;
-
-- (void)invalidate:(BOOL)erase;
-- (void)cancel;
-
-@end
-

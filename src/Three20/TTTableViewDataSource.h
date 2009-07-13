@@ -1,8 +1,6 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTLoadable.h"
 
-@class TTTableViewCell;
-
-@protocol TTTableViewDataSource <TTLoadable, UITableViewDataSource>
+@protocol TTTableViewDataSource <TTLoadable, TTLoadableDelegate, UITableViewDataSource>
 
 /**
  *
@@ -39,6 +37,14 @@
  *
  */
 - (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage;
+
+/**
+ * Rebuilds your data source from its source object.
+ *
+ * If your data source is loaded using TTLoadable, this is called automatically after your data
+ * has loaded.  That would be a good time to prepare the data for use in the data source.
+ */
+- (void)rebuild;
 
 /**
  *
@@ -95,62 +101,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTDataSource : NSObject <TTTableViewDataSource> {
+@interface TTTableViewDataSource : NSObject <TTTableViewDataSource> {
   NSMutableArray* _delegates;
 }
 
-- (void)dataSourceDidStartLoad;
-
-- (void)dataSourceDidFinishLoad;
-
-- (void)dataSourceDidFailLoadWithError:(NSError*)error;
-
-- (void)dataSourceDidCancelLoad;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTListDataSource : TTDataSource {
-  NSMutableArray* _items;
-}
-
-@property(nonatomic,readonly) NSMutableArray* items;
-
-+ (TTListDataSource*)dataSourceWithObjects:(id)object,...;
-+ (TTListDataSource*)dataSourceWithItems:(NSMutableArray*)items;
-
-- (id)initWithItems:(NSArray*)items;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTSectionedDataSource : TTDataSource {
-  NSMutableArray* _sections;
-  NSMutableArray* _items;
-}
-
 /**
- * Objects should be in this format:
- *
- *   @"section title", item, item, @"section title", item, item, ...
- *
+ * Optional method to return a loadable object to delegate the TTLoadable protocol to.
  */
-+ (TTSectionedDataSource*)dataSourceWithObjects:(id)object,...;
+@property(nonatomic,readonly) id<TTLoadable> loadable;
 
-/**
- * Objects should be in this format:
- *
- *   @"section title", arrayOfItems, @"section title", arrayOfItems, ...
- *
- */
-+ (TTSectionedDataSource*)dataSourceWithArrays:(id)object,...;
+- (void)didStartLoad;
 
-+ (TTSectionedDataSource*)dataSourceWithItems:(NSArray*)items sections:(NSArray*)sections;
+- (void)didFinishLoad;
 
-- (id)initWithItems:(NSArray*)items sections:(NSArray*)sections;
+- (void)didFailLoadWithError:(NSError*)error;
 
-- (NSArray*)lettersForSectionsWithSearch:(BOOL)withSearch withCount:(BOOL)withCount;
+- (void)didCancelLoad;
 
 @end

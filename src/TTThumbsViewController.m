@@ -157,19 +157,19 @@ static CGFloat kThumbnailRowHeight = 79;
 // TTURLRequestDelegate
 
 - (void)photoSourceDidStartLoad:(id<TTPhotoSource>)photoSource {
-  [self dataSourceDidStartLoad];
+  [self didStartLoad];
 }
 
 - (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource {
-  [self dataSourceDidFinishLoad];
+  [self didFinishLoad];
 }
 
 - (void)photoSource:(id<TTPhotoSource>)photoSource didFailLoadWithError:(NSError*)error {
-  [self dataSourceDidFailLoadWithError:error];
+  [self didFailLoadWithError:error];
 }
 
 - (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource {
-  [self dataSourceDidCancelLoad];
+  [self didCancelLoad];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

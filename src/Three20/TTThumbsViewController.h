@@ -22,7 +22,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTThumbsDataSource : TTDataSource
+@interface TTThumbsDataSource : TTTableViewDataSource
           <TTPhotoSourceDelegate, TTThumbsTableViewCellDelegate> {
   TTThumbsViewController* _controller;
   id<TTPhotoSource> _photoSource;
