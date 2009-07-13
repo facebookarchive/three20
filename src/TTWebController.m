@@ -117,7 +117,7 @@
 
   _toolbar = [[UIToolbar alloc] initWithFrame:
     CGRectMake(0, self.view.height - TOOLBAR_HEIGHT, self.view.width, TOOLBAR_HEIGHT)];
-  _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+  _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
   _toolbar.tintColor = TTSTYLEVAR(navigationBarTintColor);
   _toolbar.items = [NSArray arrayWithObjects:
     _backButton, space, _forwardButton, space, _refreshButton, space, actionButton, nil];
