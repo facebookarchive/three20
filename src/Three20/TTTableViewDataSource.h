@@ -4,20 +4,76 @@
 
 @protocol TTTableViewDataSource <TTLoadable, UITableViewDataSource>
 
+/**
+ *
+ */
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;
 
+/**
+ *
+ */
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object;
 
+/**
+ *
+ */
 - (NSString*)tableView:(UITableView*)tableView labelForObject:(id)object;
 
+/**
+ *
+ */
 - (NSIndexPath*)tableView:(UITableView*)tableView indexPathForObject:(id)object;
 
+/**
+ *
+ */
 - (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
         forRowAtIndexPath:(NSIndexPath*)indexPath;
 
+/**
+ *
+ */
 - (void)tableView:(UITableView*)tableView search:(NSString*)text;
 
+/**
+ *
+ */
 - (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage;
+
+/**
+ *
+ */
+- (NSString*)titleForLoading:(BOOL)refreshing;
+
+/**
+ *
+ */
+- (UIImage*)imageForNoData;
+
+/**
+ *
+ */
+- (NSString*)titleForNoData;
+
+/**
+ *
+ */
+- (NSString*)subtitleForNoData;
+
+/**
+ *
+ */
+- (UIImage*)imageForError:(NSError*)error;
+
+/**
+ *
+ */
+- (NSString*)titleForError:(NSError*)error;
+
+/**
+ *
+ */
+- (NSString*)subtitleForError:(NSError*)error;
 
 @end
 

@@ -134,39 +134,4 @@ typedef enum {
  */
 - (void)keyboardWillDisappear:(BOOL)animated;
 
-/**
- *
- */
-- (NSString*)titleForActivity;
-
-/**
- *
- */
-- (UIImage*)imageForNoData;
-
-/**
- *
- */
-- (NSString*)titleForNoData;
-
-/**
- *
- */
-- (NSString*)subtitleForNoData;
-
-/**
- *
- */
-- (UIImage*)imageForError:(NSError*)error;
-
-/**
- *
- */
-- (NSString*)titleForError:(NSError*)error;
-
-/**
- *
- */
-- (NSString*)subtitleForError:(NSError*)error;
-
 @end

@@ -50,50 +50,6 @@ static CGFloat kThumbnailRowHeight = 79;
   [super dealloc];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTURLRequestDelegate
-
-- (void)photoSourceDidStartLoad:(id<TTPhotoSource>)photoSource {
-  [self dataSourceDidStartLoad];
-}
-
-- (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource {
-  [self dataSourceDidFinishLoad];
-}
-
-- (void)photoSource:(id<TTPhotoSource>)photoSource didFailLoadWithError:(NSError*)error {
-  [self dataSourceDidFailLoadWithError:error];
-}
-
-- (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource {
-  [self dataSourceDidCancelLoad];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTThumbsTableViewCellDelegate
-
-- (void)thumbsTableViewCell:(TTThumbsTableViewCell*)cell didSelectPhoto:(id<TTPhoto>)photo {
-  [_controller.delegate thumbsViewController:_controller didSelectPhoto:photo];
-    
-  BOOL shouldNavigate = YES;
-  if ([_controller.delegate
-       respondsToSelector:@selector(thumbsViewController:shouldNavigateToPhoto:)]) {
-    shouldNavigate = [_controller.delegate thumbsViewController:_controller
-                                           shouldNavigateToPhoto:photo];
-  }
-
-  if (shouldNavigate) {
-    NSString* URL = [self URLForPhoto:photo];
-    if (URL) {
-      TTOpenURL(URL);
-    } else {
-      TTPhotoViewController* controller = [_controller createPhotoViewController];
-      controller.centerPhoto = photo;
-      [_controller.navigationController pushViewController:controller animated:YES];  
-    }
-  }
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableViewDataSource
 
@@ -171,6 +127,74 @@ static CGFloat kThumbnailRowHeight = 79;
   NSInteger index = nextPage ? _controller.photoSource.maxPhotoIndex : 0;
   [_controller.photoSource loadPhotosFromIndex:index toIndex:TT_INFINITE_PHOTO_INDEX
                            cachePolicy:cachePolicy];
+}
+
+- (UIImage*)imageForNoData {
+  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
+}
+
+- (NSString*)titleForNoData {
+  return TTLocalizedString(@"No Photos", @"");
+}
+
+- (NSString*)subtitleForNoData {
+  return TTLocalizedString(@"This photo set contains no photos.", @"");
+}
+
+- (UIImage*)imageForError:(NSError*)error {
+  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
+}
+
+- (NSString*)titleForError:(NSError*)error {
+  return TTLocalizedString(@"Error", @"");
+}
+
+- (NSString*)subtitleForError:(NSError*)error {
+  return TTLocalizedString(@"This photo set could not be loaded.", @"");
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTURLRequestDelegate
+
+- (void)photoSourceDidStartLoad:(id<TTPhotoSource>)photoSource {
+  [self dataSourceDidStartLoad];
+}
+
+- (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource {
+  [self dataSourceDidFinishLoad];
+}
+
+- (void)photoSource:(id<TTPhotoSource>)photoSource didFailLoadWithError:(NSError*)error {
+  [self dataSourceDidFailLoadWithError:error];
+}
+
+- (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource {
+  [self dataSourceDidCancelLoad];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTThumbsTableViewCellDelegate
+
+- (void)thumbsTableViewCell:(TTThumbsTableViewCell*)cell didSelectPhoto:(id<TTPhoto>)photo {
+  [_controller.delegate thumbsViewController:_controller didSelectPhoto:photo];
+    
+  BOOL shouldNavigate = YES;
+  if ([_controller.delegate
+       respondsToSelector:@selector(thumbsViewController:shouldNavigateToPhoto:)]) {
+    shouldNavigate = [_controller.delegate thumbsViewController:_controller
+                                           shouldNavigateToPhoto:photo];
+  }
+
+  if (shouldNavigate) {
+    NSString* URL = [self URLForPhoto:photo];
+    if (URL) {
+      TTOpenURL(URL);
+    } else {
+      TTPhotoViewController* controller = [_controller createPhotoViewController];
+      controller.centerPhoto = photo;
+      [_controller.navigationController pushViewController:controller animated:YES];  
+    }
+  }
 }
 
 @end
@@ -307,33 +331,6 @@ static CGFloat kThumbnailRowHeight = 79;
                                 target:self
                                 action:@selector(removeFromSupercontroller)] autorelease];
   }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTViewController
-
-- (UIImage*)imageForNoData {
-  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
-}
-
-- (NSString*)titleForNoData {
-  return TTLocalizedString(@"No Photos", @"");
-}
-
-- (NSString*)subtitleForNoData {
-  return TTLocalizedString(@"This photo set contains no photos.", @"");
-}
-
-- (UIImage*)imageForError:(NSError*)error {
-  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
-}
-
-- (NSString*)titleForError:(NSError*)error {
-  return TTLocalizedString(@"Error", @"");
-}
-
-- (NSString*)subtitleForError:(NSError*)error {
-  return TTLocalizedString(@"This photo set could not be loaded.", @"");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

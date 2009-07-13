@@ -36,11 +36,11 @@
     [TTTableTextItem itemWithText:@"Tabs" URL:@"tt://tabBarTest"],
 
     @"Tables",
-    [TTTableTextItem itemWithText:@"Table States" URL:@"tt://tableTest"],
     [TTTableTextItem itemWithText:@"Table Items" URL:@"tt://tableItemTest"],
     [TTTableTextItem itemWithText:@"Table Controls" URL:@"tt://tableControlsTest"],
     [TTTableTextItem itemWithText:@"Styled Labels in Table" URL:@"tt://styledTextTableTest"],
     [TTTableTextItem itemWithText:@"Web Images in Table" URL:@"tt://imageTest2"],
+    [TTTableTextItem itemWithText:@"Table States" URL:@"tt://tableTest"],
 
     @"General",
     [TTTableTextItem itemWithText:@"Web Image" URL:@"tt://imageTest1"],

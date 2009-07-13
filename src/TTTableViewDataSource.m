@@ -63,6 +63,38 @@
   return nil;
 }
 
+- (NSString*)titleForLoading:(BOOL)refreshing {
+  if (refreshing) {
+    return TTLocalizedString(@"Updating...", @"");
+  } else {
+    return TTLocalizedString(@"Loading...", @"");
+  }
+}
+
+- (UIImage*)imageForNoData {
+  return nil;
+}
+
+- (NSString*)titleForNoData {
+  return nil;
+}
+
+- (NSString*)subtitleForNoData {
+  return nil;
+}
+
+- (UIImage*)imageForError:(NSError*)error {
+  return nil;
+}
+
+- (NSString*)titleForError:(NSError*)error {
+  return TTLocalizedString(@"Error", @"");
+}
+
+- (NSString*)subtitleForError:(NSError*)error {
+  return TTLocalizedString(@"Sorry, an error has occurred.", @"");
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTLoadable
 

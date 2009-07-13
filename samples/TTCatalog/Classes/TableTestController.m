@@ -2,6 +2,36 @@
 #import "TableTestController.h"
 #import "MockDataSource.h"
 
+@interface TableTestDataSource : TTListDataSource
+@end
+
+@implementation TableTestDataSource
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewDataSource
+
+- (UIImage*)imageForNoData {
+  return TTIMAGE(@"bundle://Three20.bundle/images/empty.png");
+}
+
+- (NSString*)titleForNoData {
+  return NSLocalizedString(@"No Friends", @"");
+}
+
+- (NSString*)subtitleForNoData {
+  return NSLocalizedString(@"Try getting some friends.", @"");
+}
+
+- (UIImage*)imageForError:(NSError*)error {
+  return TTIMAGE(@"bundle://Three20.bundle/images/error.png");
+}
+
+- (NSString*)subtitleForError:(NSError*)error {
+  return NSLocalizedString(@"There was an error loading your friends.", @"");
+}
+
+@end
+
 @implementation TableTestController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,35 +62,18 @@
 - (void)loadView {
   [super loadView];
 
+  self.tableView.sectionIndexMinimumDisplayRowCount = 2;
+
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
     initWithTitle:@"Loading" style:UIBarButtonItemStyleBordered target:self
     action:@selector(cycle)] autorelease];
-  
-  self.tableView.sectionIndexMinimumDisplayRowCount = 2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewController
+// TTViewController
 
-- (UIImage*)imageForNoData {
-  return TTIMAGE(@"bundle://Three20.bundle/images/empty.png");
+- (id<TTTableViewDataSource>)createDataSource {
+  return [[[TableTestDataSource alloc] init] autorelease];
 }
-
-- (NSString*)titleForNoData {
-  return NSLocalizedString(@"No Friends", @"");
-}
-
-- (NSString*)subtitleForNoData {
-  return NSLocalizedString(@"Try getting some friends.", @"");
-}
-
-- (UIImage*)imageForError:(NSError*)error {
-  return TTIMAGE(@"bundle://Three20.bundle/images/error.png");
-}
-
-- (NSString*)subtitleForError:(NSError*)error {
-  return NSLocalizedString(@"There was an error loading your friends.", @"");
-}
-
 
 @end

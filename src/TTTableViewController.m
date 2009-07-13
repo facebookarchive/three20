@@ -158,7 +158,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 
 - (void)updateLoadingView {
   if (self.viewState & TTViewLoading) {
-    NSString* title = [self titleForActivity];
+    NSString* title = [_dataSource titleForLoading:NO];
     TTTableStatusItem* statusItem = [TTTableActivityItem itemWithText:title];
     statusItem.sizeToFit = YES;
 
@@ -172,7 +172,7 @@ static const CGFloat kRefreshingViewHeight = 22;
     if (!_refreshingView) {
       _refreshingView = [[TTActivityLabel alloc] initWithFrame:
         CGRectMake(0, _tableView.height + _tableView.top, self.view.width, kRefreshingViewHeight)
-        style:TTActivityLabelStyleBlackBox text:[self titleForActivity]];
+        style:TTActivityLabelStyleBlackBox text:[_dataSource titleForLoading:YES]];
       _refreshingView.centeredToScreen = NO;
       _refreshingView.userInteractionEnabled = NO;
       _refreshingView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
@@ -209,9 +209,9 @@ static const CGFloat kRefreshingViewHeight = 22;
       _tableView.dataSource = nil;
     }
   } else if (self.viewState & TTViewLoadedError) {
-    NSString* title = [self titleForError:_contentError];
-    NSString* subtitle = [self subtitleForError:_contentError];
-    UIImage* image = [self imageForError:_contentError];
+    NSString* title = [_dataSource titleForError:_contentError];
+    NSString* subtitle = [_dataSource subtitleForError:_contentError];
+    UIImage* image = [_dataSource imageForError:_contentError];
     
     TTTableErrorItem* statusItem = [TTTableErrorItem itemWithTitle:title subtitle:subtitle
                                                      image:image];
@@ -221,9 +221,9 @@ static const CGFloat kRefreshingViewHeight = 22;
       [NSArray arrayWithObject:statusItem]];
     _tableView.dataSource = _statusDataSource;
   } else if (!(self.viewState & TTViewLoadingStates)) {
-    NSString* title = [self titleForNoData];
-    NSString* subtitle = [self subtitleForNoData];
-    UIImage* image = [self imageForNoData];
+    NSString* title = [_dataSource titleForNoData];
+    NSString* subtitle = [_dataSource subtitleForNoData];
+    UIImage* image = [_dataSource imageForNoData];
     
     TTTableStatusItem* statusItem = [TTTableErrorItem itemWithTitle:title subtitle:subtitle
                                                       image:image];

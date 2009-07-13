@@ -457,34 +457,6 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [self updatePhotoView];
 }
 
-- (NSString*)titleForActivity {
-  return TTLocalizedString(@"Loading...", @"");
-}
-
-- (UIImage*)imageForNoData {
-  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
-}
-
-- (NSString*)titleForNoData {
-  return  TTLocalizedString(@"No Photos", @"");
-}
-
-- (NSString*)subtitleForNoData {
-  return TTLocalizedString(@"This photo set contains no photos.", @"");
-}
-
-- (UIImage*)imageForError:(NSError*)error {
-  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
-}
-
-- (NSString*)titleForError:(NSError*)error {
-  return TTLocalizedString(@"Error", @"");
-}
-
-- (NSString*)subtitleForError:(NSError*)error {
-  return TTLocalizedString(@"This photo set could not be loaded.", @"");
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTPhotoSourceDelegate
 
