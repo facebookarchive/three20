@@ -601,7 +601,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)thumbsViewController:(TTThumbsViewController*)controller didSelectPhoto:(id<TTPhoto>)photo {
   self.centerPhoto = photo;
-  [controller dismissViewController];
+  [controller removeFromSupercontroller];
 }
 
 - (BOOL)thumbsViewController:(TTThumbsViewController*)controller

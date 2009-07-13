@@ -14,7 +14,7 @@
 }
 
 - (void)dealloc {
-  self.superviewController.popupViewController = nil;
+  self.superController.popupViewController = nil;
   [super dealloc];
 }
 

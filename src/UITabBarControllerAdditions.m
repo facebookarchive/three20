@@ -8,7 +8,7 @@
 // private
 
 - (UIViewController*)rootControllerForController:(UIViewController*)controller {
-  if ([controller isContainerController]) {
+  if ([controller canContainControllers]) {
     return controller;
   } else {
     UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
@@ -20,11 +20,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 
-- (UIViewController*)subviewController {
+- (BOOL)canContainControllers {
+  return YES;
+}
+
+- (UIViewController*)topSubcontroller {
   return self.selectedViewController;
 }
 
-- (void)presentController:(UIViewController*)controller animated:(BOOL)animated
+- (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
         transition:(UIViewAnimationTransition)transition {
   self.selectedViewController = controller;
 }
@@ -33,8 +37,12 @@
   self.selectedViewController = controller;
 }
 
-- (BOOL)isContainerController {
-  return YES;
+- (NSString*)keyForSubcontroller:(UIViewController*)controller {
+  return nil;
+}
+
+- (UIViewController*)subcontrollerForKey:(NSString*)key {
+  return nil;
 }
 
 - (void)persistNavigationPath:(NSMutableArray*)path {

@@ -202,15 +202,6 @@ static CGFloat kThumbnailRowHeight = 79;
 - (id)initWithDelegate:(id<TTThumbsViewControllerDelegate>)delegate {
   if (self = [self init]) {
     self.delegate = delegate;
-
-    self.navigationItem.leftBarButtonItem =
-      [[[UIBarButtonItem alloc] initWithCustomView:[[[UIView alloc] initWithFrame:CGRectZero]
-                                                   autorelease]] autorelease];
-    self.navigationItem.rightBarButtonItem =
-      [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
-                                style:UIBarButtonItemStyleBordered
-                                target:self
-                                action:@selector(dismissViewController)] autorelease];
   }
   return self;
 }
@@ -282,6 +273,40 @@ static CGFloat kThumbnailRowHeight = 79;
 - (void)viewDidDisappear:(BOOL)animated {
   [self suspendLoadingThumbnails:YES];
   [super viewDidDisappear:animated];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController (TTCategory)
+
+- (void)persistView:(NSMutableDictionary*)state {
+  [super persistView:state];
+  NSString* delegate = [[TTNavigator navigator] pathForObject:_delegate];
+  if (delegate) {
+    [state setObject:delegate forKey:@"delegate"];
+  }
+}
+
+- (void)restoreView:(NSDictionary*)state {
+  [super restoreView:state];
+  NSString* delegate = [state objectForKey:@"delegate"];
+  if (delegate) {
+    self.delegate = [[TTNavigator navigator] objectForPath:delegate];
+  }
+}
+
+- (void)setDelegate:(id<TTThumbsViewControllerDelegate>)delegate {
+  _delegate = delegate;
+
+  if (_delegate) {
+    self.navigationItem.leftBarButtonItem =
+      [[[UIBarButtonItem alloc] initWithCustomView:[[[UIView alloc] initWithFrame:CGRectZero]
+                                                   autorelease]] autorelease];
+    self.navigationItem.rightBarButtonItem =
+      [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
+                                style:UIBarButtonItemStyleBordered
+                                target:self
+                                action:@selector(removeFromSupercontroller)] autorelease];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -127,6 +127,10 @@ typedef enum {
  */
 - (void)removeAllViewControllers;
 
+- (NSString*)pathForObject:(id)object;
+
+- (id)objectForPath:(NSString*)path;
+
 /** 
  * Erases all data stored in user defaults.
  */

@@ -16,11 +16,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 
-- (UIViewController*)subviewController {
+- (BOOL)canContainControllers {
+  return YES;
+}
+
+- (UIViewController*)topSubcontroller {
   return self.topViewController;
 }
 
-- (void)presentController:(UIViewController*)controller animated:(BOOL)animated
+- (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
         transition:(UIViewAnimationTransition)transition {
   if (animated && transition) {
     [self pushViewController:controller animatedWithTransition:transition];
@@ -36,8 +40,22 @@
   }
 }
 
-- (BOOL)isContainerController {
-  return YES;
+- (NSString*)keyForSubcontroller:(UIViewController*)controller {
+  NSInteger index = [self.viewControllers indexOfObject:controller];
+  if (index != NSNotFound) {
+    return [NSNumber numberWithInt:index].stringValue;
+  } else {
+    return nil;
+  }
+}
+
+- (UIViewController*)subcontrollerForKey:(NSString*)key {
+  NSInteger index = key.intValue;
+  if (index < self.viewControllers.count) {
+    return [self.viewControllers objectAtIndex:index];
+  } else {
+    return nil;
+  }
 }
 
 - (void)persistNavigationPath:(NSMutableArray*)path {

@@ -96,7 +96,7 @@
   } else {
     // If this is the first controller, and it is not a "container", forcibly put
     // a navigation controller at the root of the controller hierarchy.
-    if (!_rootViewController && ![controller isContainerController]) {
+    if (!_rootViewController && ![controller canContainControllers]) {
       [self setRootViewController:[[[UINavigationController alloc] init] autorelease]];
     }
 
@@ -116,7 +116,7 @@
 - (void)presentPopupController:(TTPopupViewController*)controller
         parent:(UIViewController*)parentController animated:(BOOL)animated {
   parentController.popupViewController = controller;
-  controller.superviewController = parentController;
+  controller.superController = parentController;
   [controller showInViewController:parentController animated:animated];
 }
 
@@ -141,12 +141,12 @@
   if (!_rootViewController) {
     [self setRootViewController:controller];
   } else {
-    UIViewController* previousSuper = controller.superviewController;
+    UIViewController* previousSuper = controller.superController;
     if (previousSuper) {
       if (previousSuper != parentController) {
         // The controller already exists, so we just need to make it visible
         for (UIViewController* superController = previousSuper; controller; ) {
-          UIViewController* nextSuper = superController.superviewController;
+          UIViewController* nextSuper = superController.superController;
           [superController bringControllerToFront:controller animated:!nextSuper];
           controller = superController;
           superController = nextSuper;
@@ -157,7 +157,7 @@
         [self presentModalController:controller parent:parentController animated:animated
               transition:transition];
       } else {
-        [parentController presentController:controller animated:animated transition:transition];
+        [parentController addSubcontroller:controller animated:animated transition:transition];
       }
     }
   }
@@ -179,6 +179,47 @@
             animated:animated transition:transition];
     }
   }
+}
+
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
+                     state:(NSDictionary*)state animated:(BOOL)animated
+                     transition:(UIViewAnimationTransition)transition {
+  if (!URL) {
+    return nil;
+  }
+  
+  NSURL* theURL = [NSURL URLWithString:URL];
+  if (theURL.fragment && !theURL.scheme) {
+    URL = [self.URL stringByAppendingString:URL];
+    theURL = [NSURL URLWithString:URL];
+  }
+  
+  if ([_delegate respondsToSelector:@selector(navigator:shouldOpenURL:)]) {
+    if (![_delegate navigator:self shouldOpenURL:theURL]) {
+      return nil;
+    }
+  }
+
+  TTURLPattern* pattern = nil;
+  UIViewController* controller = [self viewControllerForURL:URL query:query pattern:&pattern];
+  if (controller) {
+    if (state) {
+      controller.frozenState = state;
+    }
+    if ([_delegate respondsToSelector:@selector(navigator:wilOpenURL:inViewController:)]) {
+      [_delegate navigator:self willOpenURL:theURL inViewController:controller];
+    }
+
+    [self presentController:controller parent:parentURL withPattern:pattern
+          animated:animated transition:transition ? transition : pattern.transition];
+  } else if (_opensExternalURLs) {
+    if ([_delegate respondsToSelector:@selector(navigator:wilOpenURL:inViewController:)]) {
+      [_delegate navigator:self willOpenURL:theURL inViewController:nil];
+    }
+
+    [[UIApplication sharedApplication] openURL:theURL];
+  }
+  return controller;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,7 +275,7 @@
   while (controller) {
     UIViewController* child = controller.modalViewController;
     if (!child) {
-      child = controller.subviewController;
+      child = controller.topSubcontroller;
     }
     if (child) {
       controller = child;
@@ -254,68 +295,36 @@
 }
 
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated {
-  return [self openURL:URL parent:nil query:nil animated:animated
+  return [self openURL:URL parent:nil query:nil state:nil animated:animated
                transition:UIViewAnimationTransitionNone];
 }
 
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated
                      transition:(UIViewAnimationTransition)transition {
-  return [self openURL:URL parent:nil query:nil animated:YES transition:transition];
+  return [self openURL:URL parent:nil query:nil state:nil animated:YES transition:transition];
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated {
-  return [self openURL:URL parent:parentURL query:nil animated:animated
+  return [self openURL:URL parent:parentURL query:nil state:nil animated:animated
                transition:UIViewAnimationTransitionNone];
 }
 
 - (UIViewController*)openURL:(NSString*)URL query:(NSDictionary*)query animated:(BOOL)animated {
-  return [self openURL:URL parent:nil query:query animated:animated
+  return [self openURL:URL parent:nil query:query state:nil animated:animated
                transition:UIViewAnimationTransitionNone];
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated {
-  return [self openURL:URL parent:parentURL query:query animated:animated
+  return [self openURL:URL parent:parentURL query:query state:nil animated:animated
                transition:UIViewAnimationTransitionNone];
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated transition:(UIViewAnimationTransition)transition {
-  if (!URL) {
-    return nil;
-  }
-  
-  NSURL* theURL = [NSURL URLWithString:URL];
-  if (theURL.fragment && !theURL.scheme) {
-    URL = [self.URL stringByAppendingString:URL];
-    theURL = [NSURL URLWithString:URL];
-  }
-  
-  if ([_delegate respondsToSelector:@selector(navigator:shouldOpenURL:)]) {
-    if (![_delegate navigator:self shouldOpenURL:theURL]) {
-      return nil;
-    }
-  }
-
-  TTURLPattern* pattern = nil;
-  UIViewController* controller = [self viewControllerForURL:URL query:query pattern:&pattern];
-  if (controller) {
-    if ([_delegate respondsToSelector:@selector(navigator:wilOpenURL:inViewController:)]) {
-      [_delegate navigator:self willOpenURL:theURL inViewController:controller];
-    }
-
-    [self presentController:controller parent:parentURL withPattern:pattern
-          animated:animated transition:transition ? transition : pattern.transition];
-  } else if (_opensExternalURLs) {
-    if ([_delegate respondsToSelector:@selector(navigator:wilOpenURL:inViewController:)]) {
-      [_delegate navigator:self willOpenURL:theURL inViewController:nil];
-    }
-
-    [[UIApplication sharedApplication] openURL:theURL];
-  }
-  return controller;
+  return [self openURL:URL parent:parentURL query:query state:nil animated:animated
+               transition:UIViewAnimationTransitionNone];
 }
-
 
 - (UIViewController*)openURLs:(NSString*)URL,... {
   UIViewController* controller = nil;
@@ -383,13 +392,11 @@
   BOOL passedContainer = NO;
   for (NSDictionary* state in path) {
     NSString* URL = [state objectForKey:@"__navigatorURL__"];
-    controller = [self openURL:URL parent:nil query:nil animated:NO];
-    controller.frozenState = state;
-    
+    controller = [self openURL:URL parent:nil query:nil state:state animated:NO transition:0];
     if (_persistenceMode == TTNavigatorPersistenceModeTop && passedContainer) {
       break;
     }
-    passedContainer = [controller isContainerController];
+    passedContainer = [controller canContainControllers];
   }
 
   return controller;
@@ -411,13 +418,40 @@
       && controller.modalViewController.parentViewController == controller) {
     [self persistController:controller.modalViewController path:path];
   } else if (controller.popupViewController
-      && controller.popupViewController.superviewController == controller) {
+      && controller.popupViewController.superController == controller) {
     [self persistController:controller.popupViewController path:path];
   }
 }
 
 - (void)removeAllViewControllers {
   // XXXjoe Implement me
+}
+
+- (NSString*)pathForObject:(id)object {
+  if ([object isKindOfClass:[UIViewController class]]) {
+    NSMutableArray* paths = [NSMutableArray array];
+    for (UIViewController* controller = object; controller; ) {
+      UIViewController* superController = controller.superController;
+      NSString* key = [superController keyForSubcontroller:controller];
+      if (key) {
+        [paths addObject:key];
+      }
+      controller = superController;
+    }
+    
+    return [paths componentsJoinedByString:@"/"];
+  } else {
+    return nil;
+  }
+}
+
+- (id)objectForPath:(NSString*)path {
+  NSArray* keys = [path componentsSeparatedByString:@"/"];
+  UIViewController* controller = _rootViewController;
+  for (NSString* key in [keys reverseObjectEnumerator]) {
+    controller = [controller subcontrollerForKey:key];
+  }
+  return controller;
 }
 
 - (void)resetDefaults {

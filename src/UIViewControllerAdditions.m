@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static NSMutableDictionary* gNavigatorURLs = nil;
-static NSMutableDictionary* gSuperviewControllers = nil;
+static NSMutableDictionary* gSuperControllers = nil;
 static NSMutableDictionary* gPopupViewControllers = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ static NSMutableDictionary* gPopupViewControllers = nil;
     self.navigatorURL = nil;
   }
 
-  self.superviewController = nil;
+  self.superController = nil;
   self.popupViewController = nil;
   
   // Calls the original dealloc, swizzled away
@@ -125,29 +125,33 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 - (void)setFrozenState:(NSDictionary*)frozenState {
 }
 
-- (UIViewController*)superviewController {
+- (BOOL)canContainControllers {
+  return NO;
+}
+
+- (UIViewController*)superController {
   UIViewController* parent = self.parentViewController;
   if (parent) {
     return parent;
   } else {
     NSString* key = [NSString stringWithFormat:@"%d", self];
-    return [gSuperviewControllers objectForKey:key];
+    return [gSuperControllers objectForKey:key];
   }
 }
 
-- (void)setSuperviewController:(UIViewController*)viewController {
+- (void)setSuperController:(UIViewController*)viewController {
   NSString* key = [NSString stringWithFormat:@"%d", self];
   if (viewController) {
-    if (!gSuperviewControllers) {
-      gSuperviewControllers = TTCreateNonRetainingDictionary();
+    if (!gSuperControllers) {
+      gSuperControllers = TTCreateNonRetainingDictionary();
     }
-    [gSuperviewControllers setObject:viewController forKey:key];
+    [gSuperControllers setObject:viewController forKey:key];
   } else {
-    [gSuperviewControllers removeObjectForKey:key];
+    [gSuperControllers removeObjectForKey:key];
   }
 }
 
-- (UIViewController*)subviewController {
+- (UIViewController*)topSubcontroller {
   return nil;
 }
 
@@ -191,22 +195,19 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   }
 }
 
-- (void)presentController:(UIViewController*)controller animated:(BOOL)animated
+- (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
         transition:(UIViewAnimationTransition)transition {
   if (self.navigationController) {
-    [self.navigationController presentController:controller animated:animated
+    [self.navigationController addSubcontroller:controller animated:animated
                                transition:transition];
   }
 }
 
-- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
+- (void)removeFromSupercontroller {
+  [self removeFromSupercontrollerAnimated:YES];
 }
 
-- (void)dismissViewController {
-  [self dismissViewControllerAnimated:YES];
-}
-
-- (void)dismissViewControllerAnimated:(BOOL)animated {
+- (void)removeFromSupercontrollerAnimated:(BOOL)animated {
   if (self.navigationController) {
     if (animated) {
       UIViewAnimationTransition transition =
@@ -223,12 +224,7 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   }
 }
 
-- (void)dismissModalViewController {
-  [self dismissModalViewControllerAnimated:YES];
-}
-
-- (BOOL)isContainerController {
-  return NO;
+- (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
 }
 
 - (void)persistNavigationPath:(NSMutableArray*)path {
@@ -238,6 +234,14 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 }
 
 - (void)restoreView:(NSDictionary*)state {
+}
+
+- (NSString*)keyForSubcontroller:(UIViewController*)controller {
+  return nil;
+}
+
+- (UIViewController*)subcontrollerForKey:(NSString*)key {
+  return nil;
 }
 
 - (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate {
@@ -261,6 +265,10 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   [[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];
   
   [self showNavigationBar:show animated:animated];
+}
+
+- (void)dismissModalViewController {
+  [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
