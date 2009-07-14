@@ -1,47 +1,35 @@
-#import "Three20/TTGlobal.h"
+#import "Three20/TTLoadable.h"
 
 typedef enum {
-  TTViewEmpty = 0,
-  TTViewLoading = 1,
-  TTViewLoadingMore = 2,
-  TTViewRefreshing = 4,
-  TTViewLoaded = 8,
-  TTViewLoadedError = 16,
-  TTViewLoadingStates = (TTViewLoading|TTViewLoadingMore|TTViewRefreshing),
-  TTViewLoadedStates = (TTViewLoaded|TTViewLoadedError),
-} TTViewState;
+  TTModelStateEmpty = 0,
+  TTModelStateLoading = 1,
+  TTModelStateLoadingMore = 2,
+  TTModelStateRefreshing = 4,
+  TTModelStateLoaded = 8,
+  TTModelStateLoadedError = 16,
+  TTModelLoadingStates = (TTModelStateLoading|TTModelStateLoadingMore|TTModelStateRefreshing),
+  TTModelLoadedStates = (TTModelStateLoaded|TTModelStateLoadedError),
+} TTModelState;
 
-@interface TTViewController : UIViewController {
+@interface TTViewController : UIViewController <TTLoadableDelegate> {
   NSDictionary* _frozenState;
-  TTViewState _viewState;
-  NSError* _contentError;
+  TTModelState _modelState;
+  NSError* _modelError;
   
   UIBarStyle _navigationBarStyle;
   UIColor* _navigationBarTintColor;
   UIStatusBarStyle _statusBarStyle;
 
-  BOOL _invalidView;
-  BOOL _invalidViewLoading;
-  BOOL _invalidViewData;
-  BOOL _validating;
+  BOOL _isModelInvalid;
+  BOOL _isValidatingModel;
+  BOOL _isViewInvalid;
+  BOOL _isLoadingViewInvalid;
+  BOOL _isLoadedViewInvalid;
+  BOOL _isValidatingView;
   BOOL _isViewAppearing;
   BOOL _hasViewAppeared;
   BOOL _autoresizesForKeyboard;
 }
-
-/**
- * Indicates the state of the view with regards to the content it displays.
- *
- * Changing viewState will invalidate related portions of the view, which may result in
- * updateLoadingView or updateLoadedView to be called to update the aspects of the view that
- * have changed.
- */ 
-@property(nonatomic) TTViewState viewState;
-
-/**
- * An error that occurred while trying to load content.
- */ 
-@property(nonatomic, retain) NSError* contentError;
 
 /**
  * The style of the navigation bar when this controller is pushed onto a navigation controller.
@@ -59,6 +47,20 @@ typedef enum {
 @property(nonatomic) UIStatusBarStyle statusBarStyle;
 
 /**
+ * Indicates the state of the view with regards to the content it displays.
+ *
+ * Changing modelState will invalidate relevant portions of the view, which may result in
+ * modelDidChangeLoadingState or modelDidChangeLoadedState to be called to update the aspects of the view that
+ * have changed.
+ */ 
+@property(nonatomic) TTModelState modelState;
+
+/**
+ * An error that occurred while trying to load content.
+ */ 
+@property(nonatomic, retain) NSError* modelError;
+
+/**
  * The view has appeared at least once.
  */
 @property(nonatomic,readonly) BOOL hasViewAppeared;
@@ -74,24 +76,35 @@ typedef enum {
 @property(nonatomic) BOOL autoresizesForKeyboard;
 
 /**
- * Reloads content from external sources.
+ * Reloads the model.
  *
  * This is meant to be implemented by subclasses - the default does nothing.
  */
-- (void)reloadContent;
+- (void)reload;
 
 /**
- * Reloads content if it has become out-of-date.
- *
- * When content that has already loaded becomes out of date for any reason, here is the
- * place to refresh it just before it becomes visible.
- *
- * This is meant to be implemented by subclasses - the default does nothing.
+ * Reloads the model if it has become out-of-date.
  */
-- (void)refreshContent;
+- (void)reloadIfNeeded;
 
 /**
- * Invalidates the view and schedules it to be updated as soon as possible.
+ * Invalidates the model and schedules it for an update at the next appropriate time.
+ *
+ * When something related to your model has significantly changed, invalidateModel is a good way
+ * to efficiently update the model to reflect those changes.  If your view is not visible,
+ * you probably don't want to waste cycles updating it to reflect the data changes.  By 
+ * invalidating the model instead of updating it immediately, you can delay the updating
+ * until it is necessary.
+ */
+- (void)invalidateModel;
+
+/**
+ * Updates the model if it is invalid.
+ */
+- (void)validateModel;
+
+/**
+ * Indicates that the model has changed and schedules the view to be updated to reflect it.
  *
  * Invalidation allow you to change the state of the view without actually changing
  * the view.  This is necessary because low memory conditions can cause views to be destroyed
@@ -99,30 +112,39 @@ typedef enum {
  */
 - (void)invalidateView;
 
-/**
- * Updates all invalid aspects of the view.
+/** 
+ * Updates the view to the latest model.
+ *
+ * If the model is invalid, the model will be updated before update the view.
  */
 - (void)validateView;
 
-/**
- * Called to update the view after it has been invalidated.
+/** 
+ * Updates the model to the latest data.
  *
- * Override this function and check viewState to decide how to update the view.
- *
- * This is meant to be implemented by subclasses - the default will update the view to indicate
- * activity, errors, and lack of content.
+ * Updating the model will usually have the side-effect of calling invalidateView so that the
+ * view can reflect the changes to the model.
  */
-- (void)updateView;
+- (void)updateModel;
 
 /**
+ * Updates the view after the model has changed.
  *
+ * You should not call this directly.  Call validate instead so that you don't waste
+ * time updating if the model is not invalid. Subclasses should implement this method
+ * and check modelState to decide how to update the view.
  */
-- (void)updateLoadingView;
+- (void)modelDidChange;
 
 /**
- *
+ * Updates aspects of the view which reflect loading activity.
  */
-- (void)updateLoadedView;
+- (void)modelDidChangeLoadingState;
+
+/**
+ * Updates aspects of the view which reflect data that has been loaded.
+ */
+- (void)modelDidChangeLoadedState;
 
 /**
  * Sent to the controller before the keyboard slides in.

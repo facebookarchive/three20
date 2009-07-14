@@ -229,7 +229,7 @@
 - (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage {
 }
 
-- (void)rebuild {
+- (void)update {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,7 +240,7 @@
 }
 
 - (void)loadableDidFinishLoad:(id<TTLoadable>)loadable {
-  [self rebuild];
+  [self update];
   [self didFinishLoad];
 }
 

@@ -84,7 +84,10 @@
   [self.view addSubview:label];
 }
 
-- (void)updateView {
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTViewController
+
+- (void)modelDidChange {
   TTStyledTextLabel* label = (TTStyledTextLabel*)[self.view viewWithTag:42];
   label.html = _content;
 }
@@ -96,6 +99,7 @@
   if (content != _content) {
     [_content release];
     _content = [content copy];
+    [self invalidateModel];
   }
 }
 

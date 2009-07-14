@@ -441,7 +441,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (void)updateView {
+- (void)modelDidChange {
   if (_initialRecipients) {
     for (id recipient in _initialRecipients) {
       [self addRecipient:recipient forFieldAtIndex:0];
@@ -450,8 +450,8 @@
   }
 }
 
-- (void)updateLoadingView {
-  if (self.viewState & TTViewLoading) {
+- (void)modelDidChangeLoadingState {
+  if (self.modelState & TTModelStateLoading) {
     CGRect frame = CGRectMake(0, 0, self.view.width, _scrollView.height);
     TTActivityLabel* label = [[[TTActivityLabel alloc] initWithFrame:frame
       style:TTActivityLabelStyleWhiteBox] autorelease];
@@ -644,7 +644,7 @@
   [fields addObject:bodyField];
   
   self.navigationItem.rightBarButtonItem.enabled = NO;
-  self.viewState = TTViewLoading;
+  self.modelState = TTModelStateLoading;
 
   [self messageWillSend:fields];
 

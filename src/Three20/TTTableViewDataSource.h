@@ -39,12 +39,12 @@
 - (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage;
 
 /**
- * Rebuilds your data source from its source object.
+ * Updates the data source in the event that external data it relies on have changed.
  *
  * If your data source is loaded using TTLoadable, this is called automatically after your data
  * has loaded.  That would be a good time to prepare the data for use in the data source.
  */
-- (void)rebuild;
+- (void)update;
 
 /**
  *

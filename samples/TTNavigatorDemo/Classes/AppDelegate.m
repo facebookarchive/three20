@@ -19,7 +19,7 @@
   [map from:@"tt://about/(initWithAbout:)" parent:@"tt://menu/5"
        toViewController:[ContentController class] selector:nil transition:0];
   [map from:@"tt://order?waitress=(initWithWaitress:)"
-       toModalViewController:[ContentController class] selector:@selector(initWithWaitress:query:)];
+       toModalViewController:[ContentController class]];
   [map from:@"tt://order?waitress=()#(orderAction:)" toViewController:[ContentController class]];
   [map from:@"tt://order/send" toModalViewController:self selector:@selector(sendOrder)];
 

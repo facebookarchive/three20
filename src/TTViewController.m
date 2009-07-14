@@ -7,7 +7,7 @@
 
 @implementation TTViewController
 
-@synthesize viewState = _viewState, contentError = _contentError,
+@synthesize modelState = _modelState, modelError = _modelError,
   navigationBarStyle = _navigationBarStyle,
   navigationBarTintColor = _navigationBarTintColor, statusBarStyle = _statusBarStyle,
   isViewAppearing = _isViewAppearing, hasViewAppeared = _hasViewAppeared,
@@ -57,18 +57,20 @@
 - (id)init {
   if (self = [super init]) {  
     _frozenState = nil;
-    _viewState = TTViewEmpty;
-    _contentError = nil;
     _navigationBarStyle = UIBarStyleDefault;
     _navigationBarTintColor = nil;
     _statusBarStyle = UIStatusBarStyleDefault;
-    _invalidView = YES;
-    _invalidViewLoading = NO;
-    _invalidViewData = YES;
-    _validating = NO;
-    _isViewAppearing = NO;
+    _modelState = TTModelStateEmpty;
+    _modelError = nil;
     _hasViewAppeared = NO;
+    _isViewAppearing = NO;
     _autoresizesForKeyboard = NO;
+    _isModelInvalid = YES;
+    _isViewInvalid = YES;
+    _isLoadingViewInvalid = NO;
+    _isLoadedViewInvalid = YES;
+    _isValidatingModel = NO;
+    _isValidatingView = NO;
     
     self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
   }
@@ -89,7 +91,7 @@
 
   TT_RELEASE_MEMBER(_navigationBarTintColor);
   TT_RELEASE_MEMBER(_frozenState);
-  TT_RELEASE_MEMBER(_contentError);
+  TT_RELEASE_MEMBER(_modelError);
 
   // You would think UIViewController would call this in dealloc, but it doesn't!
   // I would prefer not to have to redundantly put all view releases in dealloc and
@@ -113,7 +115,6 @@
 - (void)viewWillAppear:(BOOL)animated {
   _isViewAppearing = YES;
   _hasViewAppeared = YES;
-
   [self validateView];
 
   [TTURLRequestQueue mainQueue].suspended = YES;
@@ -124,9 +125,6 @@
     bar.barStyle = _navigationBarStyle;
     [[UIApplication sharedApplication] setStatusBarStyle:_statusBarStyle animated:YES];
   }
-}
-
-- (void)viewDidUnload {
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -148,8 +146,7 @@
     // This will come around to calling viewDidUnload
     [super didReceiveMemoryWarning];
 
-    _viewState = TTViewEmpty;
-    _invalidView = YES;
+    [self invalidateView];
     _hasViewAppeared = NO;
   }
 }
@@ -164,6 +161,37 @@
 - (void)setFrozenState:(NSDictionary*)frozenState {
   [_frozenState release];
   _frozenState = [frozenState retain];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTLoadableDelegate
+
+- (void)loadableDidStartLoad:(id<TTLoadable>)loadable {
+  if (loadable.isLoadingMore) {
+    self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateLoadingMore;
+  } else if (_modelState & TTModelLoadedStates) {
+    self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateRefreshing;
+  } else {
+    self.modelState = TTModelStateLoading;
+  }
+}
+
+- (void)loadableDidFinishLoad:(id<TTLoadable>)loadable {
+  if (loadable.isEmpty) {
+    self.modelState = TTModelStateEmpty;
+  } else {
+    self.modelState = TTModelStateLoaded;
+  }
+}
+
+- (void)loadable:(id<TTLoadable>)loadable didFailLoadWithError:(NSError*)error {
+  self.modelError = error;
+  self.modelState = TTModelStateLoadedError;
+}
+
+- (void)loadableDidCancelLoad:(id<TTLoadable>)loadable {
+  self.modelError = nil;
+  self.modelState = TTModelStateLoadedError;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,16 +214,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (void)setViewState:(TTViewState)state {
-  if (!_invalidViewLoading) {
-    _invalidViewLoading = (_viewState & TTViewLoadingStates) != (state & TTViewLoadingStates);
+- (void)setModelState:(TTModelState)state {
+  if (!_isLoadingViewInvalid) {
+    _isLoadingViewInvalid = (_modelState & TTModelLoadingStates) != (state & TTModelLoadingStates);
   }
-  if (!_invalidViewData) {
-    _invalidViewData = state == TTViewLoaded || state == TTViewEmpty
-                       || (_viewState & TTViewLoadedStates) != (state & TTViewLoadedStates);
+  if (!_isLoadedViewInvalid) {
+    _isLoadedViewInvalid = state == TTModelStateLoaded || state == TTModelStateEmpty
+                       || (_modelState & TTModelLoadedStates) != (state & TTModelLoadedStates);
   }
   
-  _viewState = state;
+  _modelState = state;
   
   if (_isViewAppearing) {
     [self validateView];
@@ -220,60 +248,85 @@
   }
 }
 
-- (void)reloadContent {
+- (void)reload {
 }
 
-- (void)refreshContent {
+- (void)reloadIfNeeded {
 }
 
-- (void)invalidateView {
-  _invalidView = YES;
-  _viewState = TTViewEmpty;
-  if (_isViewAppearing) {
-    [self validateView];
+- (void)invalidateModel {
+  _isModelInvalid = YES;
+  if (self.isViewLoaded) {
+    [self validateModel];
   }
 }
 
+- (void)validateModel {
+  if (!_isValidatingModel && _isModelInvalid) {
+    _isValidatingModel = YES;
+    [self updateModel];
+    _isModelInvalid = NO;
+    _isValidatingModel = NO;
+
+    if (_isViewAppearing) {
+      [self validateView];
+    }
+  }
+}
+
+- (void)invalidateView {
+  _isViewInvalid = YES;
+  _modelState = TTModelStateEmpty;
+  _isLoadingViewInvalid = NO;
+  _isLoadedViewInvalid = YES;
+}
+
 - (void)validateView {
-  if (!_validating) {
-    _validating = YES;
-    if (_invalidView) {
+  if (_isModelInvalid) {
+    [self validateModel];
+  } else if (!_isValidatingView) {
+    _isValidatingView = YES;
+    
+    if (_isViewInvalid) {
       // Ensure the view is loaded
       self.view;
 
-      [self updateView];
+      [self modelDidChange];
 
-      if (_frozenState && !(self.viewState & TTViewLoadingStates)) {
+      if (_frozenState && !(self.modelState & TTModelLoadingStates)) {
         [self restoreView:_frozenState];
         TT_RELEASE_MEMBER(_frozenState);
       }
 
-      _invalidView = NO;
+      _isViewInvalid = NO;
     }
     
-    if (_invalidViewLoading) {
-      [self updateLoadingView];
-      _invalidViewLoading = NO;
+    if (_isLoadingViewInvalid) {
+      [self modelDidChangeLoadingState];
+      _isLoadingViewInvalid = NO;
     }
 
-    if (_invalidViewData) {
-      [self updateLoadedView];
-      _invalidViewData = NO;
+    if (_isLoadedViewInvalid) {
+      [self modelDidChangeLoadedState];
+      _isLoadedViewInvalid = NO;
     }
 
-    _validating = NO;
+    _isValidatingView = NO;
 
-    [self refreshContent];
+    [self reloadIfNeeded];
   }
 }
 
-- (void)updateView {
+- (void)updateModel {
 }
 
-- (void)updateLoadingView {
+- (void)modelDidChange {
 }
 
-- (void)updateLoadedView {
+- (void)modelDidChangeLoadingState {
+}
+
+- (void)modelDidChangeLoadedState {
 }
 
 - (void)keyboardWillAppear:(BOOL)animated {

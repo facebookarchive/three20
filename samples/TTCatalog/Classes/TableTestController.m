@@ -38,18 +38,18 @@
 // private
 
 - (void)cycle {
-  if (!self.viewState) {
-    self.viewState = TTViewLoading;
+  if (!self.modelState) {
+    self.modelState = TTModelStateLoading;
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
       initWithTitle:@"Error" style:UIBarButtonItemStyleBordered target:self
       action:@selector(cycle)] autorelease];
-  } else if (self.viewState & TTViewLoading) {
-    self.viewState = TTViewLoadedError;
+  } else if (self.modelState & TTModelStateLoading) {
+    self.modelState = TTModelStateLoadedError;
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
       initWithTitle:@"Empty" style:UIBarButtonItemStyleBordered target:self
       action:@selector(cycle)] autorelease];
-  } else if (self.viewState & TTViewLoadedError) {
-    self.viewState = TTViewEmpty;
+  } else if (self.modelState & TTModelStateLoadedError) {
+    self.modelState = TTModelStateEmpty;
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
       initWithTitle:@"Loading" style:UIBarButtonItemStyleBordered target:self
       action:@selector(cycle)] autorelease];

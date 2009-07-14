@@ -412,43 +412,43 @@ static const NSTimeInterval kSlideshowInterval = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (void)reloadContent {
+- (void)reload {
   [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
 }
 
-- (void)updateView {
+- (void)updateModel {
   if (_photoSource.isLoading) {
-    self.viewState = TTViewLoading;
+    self.modelState = TTModelStateLoading;
   } else if (!_centerPhoto) {
     [self loadPhotosFromIndex:!_photoSource.isLoaded ? 0 : _photoSource.maxPhotoIndex+1
       toIndex:TT_INFINITE_PHOTO_INDEX];
   } else if (_photoSource.numberOfPhotos == TT_INFINITE_PHOTO_INDEX) {
     [self loadPhotosFromIndex:0 toIndex:TT_INFINITE_PHOTO_INDEX];
   } else {
-    if (_contentError) {
-      self.viewState = TTViewLoadedError;
+    if (_modelError) {
+      self.modelState = TTModelStateLoadedError;
     } else if (!_photoSource.numberOfPhotos) {
-      self.viewState = TTViewEmpty;
+      self.modelState = TTModelStateEmpty;
     } else {
-      self.viewState = TTViewLoaded;
+      self.modelState = TTModelStateLoaded;
     }
   }
 
   [self updateChrome];
 }
 
-- (void)updateLoadingView {
-  if (self.viewState & TTViewLoading) {
+- (void)modelDidChangeLoadingState {
+  if (self.modelState & TTModelStateLoading) {
     [self showProgress:0];
   } else {
     [self showProgress:-1];
   }
 }
 
-- (void)updateLoadedView {
-  if (self.viewState & TTViewLoaded) {
+- (void)modelDidChangeLoadedState {
+  if (self.modelState & TTModelStateLoaded) {
     [self showStatus:nil];
-  } else if (self.viewState & TTViewLoadedError) {
+  } else if (self.modelState & TTModelStateLoadedError) {
     [self showStatus:TTLocalizedString(@"This photo set could not be loaded.", @"")];
   } else {
     [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
@@ -461,7 +461,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 // TTPhotoSourceDelegate
 
 - (void)photoSourceDidStartLoad:(id<TTPhotoSource>)photoSource {
-  self.viewState = TTViewLoading;
+  self.modelState = TTModelStateLoading;
 }
 
 - (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource {
@@ -474,24 +474,24 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
   
   if (!_photoSource.numberOfPhotos) {
-    self.viewState = TTViewEmpty;
+    self.modelState = TTModelStateEmpty;
   } else {
-    self.viewState = TTViewLoaded;
+    self.modelState = TTModelStateLoaded;
   }
 }
 
 - (void)photoSource:(id<TTPhotoSource>)photoSource didFailLoadWithError:(NSError*)error {
   [self resetVisiblePhotoViews];
 
-  self.contentError = error;
-  self.viewState = TTViewLoadedError;
+  self.modelError = error;
+  self.modelState = TTModelStateLoadedError;
 }
 
 - (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource {
   [self resetVisiblePhotoViews];
 
-  self.contentError = nil;
-  self.viewState = TTViewLoadedError;
+  self.modelError = nil;
+  self.modelState = TTModelStateLoadedError;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -500,7 +500,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 - (void)scrollView:(TTScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex {
   if (pageIndex != _centerPhotoIndex) {
     [self moveToPhotoAtIndex:pageIndex withDelay:YES];
-    [self invalidateView];
+    [self invalidateModel];
   }
 }
 
@@ -582,6 +582,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
 - (void)setPhotoSource:(id<TTPhotoSource>)photoSource {
   if (_photoSource != photoSource) {
@@ -591,7 +592,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     [_photoSource.delegates addObject:self];
   
     [self moveToPhotoAtIndex:0 withDelay:NO];
-    [self invalidateView];
+    [self invalidateModel];
   }
 }
 
@@ -605,7 +606,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
     }
 
     [self moveToPhotoAtIndex:photo.index withDelay:NO];
-    [self invalidateView];
+    [self invalidateModel];
   }
 }
 

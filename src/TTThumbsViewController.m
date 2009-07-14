@@ -349,7 +349,7 @@ static CGFloat kThumbnailRowHeight = 79;
     _photoSource = [photoSource retain];
 
     self.title = _photoSource.title;
-    [self invalidateView];
+    [self invalidateModel];
   }
 }
 

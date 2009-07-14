@@ -54,11 +54,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _highlightStartPoint = [touch locationInView:self];
   }
   
-  if ([self.delegate isKindOfClass:[TTTableViewDelegate class]]) {
-    TTTableViewDelegate* delegate = (TTTableViewDelegate*)self.delegate;
-    [delegate.controller touchesBegan:touches withEvent:event];
-  }
-  
   if (_menuView) {
     UITouch* touch = [touches anyObject];
     CGPoint point = [touch locationInView:_menuView];
@@ -79,11 +74,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
   if (_highlightedLabel) {
     TTStyledElement* element = _highlightedLabel.highlightedNode;
     [element performDefaultAction];
-  } else {
-    if ([self.delegate isKindOfClass:[TTTableViewDelegate class]]) {
-      TTTableViewDelegate* delegate = (TTTableViewDelegate*)self.delegate;
-      [delegate.controller touchesEnded:touches withEvent:event];
-    }
   }
 }
 

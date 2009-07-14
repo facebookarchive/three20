@@ -298,7 +298,7 @@ static const CGFloat kDesiredTableHeight = 150;
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     if (cell.selectionStyle != UITableViewCellSeparatorStyleNone) {
       [_internal.delegate performSelector:@selector(textField:didSelectObject:) withObject:self
-        withObject:object];      
+                          withObject:object];      
     }
   }
 }

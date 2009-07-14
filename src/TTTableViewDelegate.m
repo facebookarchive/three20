@@ -57,7 +57,7 @@ static const CGFloat kSectionHeaderHeight = 35;
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
-    if (item.URL && [_controller shouldNavigateToURL:item.URL]) {
+    if (item.URL && [_controller shouldOpenURL:item.URL]) {
       TTOpenURL(item.URL);
     }
 

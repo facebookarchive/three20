@@ -139,7 +139,7 @@ typedef enum {
 /**
  * Reloads the content in the visible view controller.
  */
-- (void)reloadContent;
+- (void)reload;
 
 @end
 

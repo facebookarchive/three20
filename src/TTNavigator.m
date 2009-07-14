@@ -204,7 +204,13 @@
   UIViewController* controller = [self viewControllerForURL:URL query:query pattern:&pattern];
   if (controller) {
     if (state) {
-      controller.frozenState = state;
+      [controller restoreView:state];
+//      controller.frozenState = state;
+
+      if ([controller isKindOfClass:[TTViewController class]]) {
+        TTViewController* ttcontroller = (TTViewController*)controller;
+        [ttcontroller validateModel];
+      }
     }
     if ([_delegate respondsToSelector:@selector(navigator:wilOpenURL:inViewController:)]) {
       [_delegate navigator:self willOpenURL:theURL inViewController:controller];
@@ -460,11 +466,11 @@
   [defaults synchronize];
 }
 
-- (void)reloadContent {
+- (void)reload {
   UIViewController* controller = self.visibleViewController;
   if ([controller isKindOfClass:[TTViewController class]]) {
     TTViewController* ttcontroller = (TTViewController*)controller;
-    [ttcontroller reloadContent];
+    [ttcontroller reload];
   }
 }
 

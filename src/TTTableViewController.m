@@ -122,42 +122,22 @@ static const CGFloat kRefreshingViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (void)reloadContent {
+- (void)reload {
   [_dataSource load:TTURLRequestCachePolicyNetwork nextPage:NO];
 }
 
-- (void)refreshContent {
+- (void)reloadIfNeeded {
   if (!_dataSource.isLoading && _dataSource.isOutdated) {
-    [self reloadContent];
+    [self reload];
   }
 }
 
-- (void)updateView {
+- (void)updateModel {
   self.dataSource = [self createDataSource];
-  
-  if (_dataSource.isLoading) {
-    if (_dataSource.isLoadingMore) {
-      self.viewState = (_viewState & TTViewLoadedStates) | TTViewLoadingMore;
-    } else if (_dataSource.isLoaded) {
-      self.viewState = (_viewState & TTViewLoadedStates) | TTViewRefreshing;
-    } else {
-      self.viewState = TTViewLoading;
-    }
-  } else if (!_dataSource.isLoaded) {
-    [_dataSource load:TTURLRequestCachePolicyDefault nextPage:NO];
-  } else {
-    if (_contentError) {
-      self.viewState = TTViewLoadedError;
-    } else if (_dataSource.isEmpty) {
-      self.viewState = TTViewEmpty;
-    } else {
-      self.viewState = TTViewLoaded;
-    }
-  }
 }
 
-- (void)updateLoadingView {
-  if (self.viewState & TTViewLoading) {
+- (void)modelDidChangeLoadingState {
+  if (self.modelState & TTModelStateLoading) {
     NSString* title = [_dataSource titleForLoading:NO];
     TTTableStatusItem* statusItem = [TTTableActivityItem itemWithText:title];
     statusItem.sizeToFit = YES;
@@ -166,9 +146,7 @@ static const CGFloat kRefreshingViewHeight = 22;
       [NSArray arrayWithObject:statusItem]];
     _tableView.dataSource = _statusDataSource;
     [self reloadTableData];
-  }
-  
-  if (self.viewState & TTViewRefreshing) {
+  } else if (self.modelState & TTModelStateRefreshing) {
     if (!_refreshingView) {
       _refreshingView = [[TTActivityLabel alloc] initWithFrame:
         CGRectMake(0, _tableView.height + _tableView.top, self.view.width, kRefreshingViewHeight)
@@ -197,8 +175,8 @@ static const CGFloat kRefreshingViewHeight = 22;
   }
 }
 
-- (void)updateLoadedView {
-  if (self.viewState & TTViewLoaded) {
+- (void)modelDidChangeLoadedState {
+  if (self.modelState & TTModelStateLoaded) {
     TT_RELEASE_MEMBER(_statusDataSource);
 
     if (_dataSource) {
@@ -208,10 +186,10 @@ static const CGFloat kRefreshingViewHeight = 22;
     } else {
       _tableView.dataSource = nil;
     }
-  } else if (self.viewState & TTViewLoadedError) {
-    NSString* title = [_dataSource titleForError:_contentError];
-    NSString* subtitle = [_dataSource subtitleForError:_contentError];
-    UIImage* image = [_dataSource imageForError:_contentError];
+  } else if (self.modelState & TTModelStateLoadedError) {
+    NSString* title = [_dataSource titleForError:_modelError];
+    NSString* subtitle = [_dataSource subtitleForError:_modelError];
+    UIImage* image = [_dataSource imageForError:_modelError];
     
     TTTableErrorItem* statusItem = [TTTableErrorItem itemWithTitle:title subtitle:subtitle
                                                      image:image];
@@ -220,7 +198,7 @@ static const CGFloat kRefreshingViewHeight = 22;
     _statusDataSource = [[TTListDataSource alloc] initWithItems:
       [NSArray arrayWithObject:statusItem]];
     _tableView.dataSource = _statusDataSource;
-  } else if (!(self.viewState & TTViewLoadingStates)) {
+  } else if (!(self.modelState & TTModelLoadingStates)) {
     NSString* title = [_dataSource titleForNoData];
     NSString* subtitle = [_dataSource subtitleForNoData];
     UIImage* image = [_dataSource imageForNoData];
@@ -246,29 +224,30 @@ static const CGFloat kRefreshingViewHeight = 22;
 
 - (void)dataSourceDidStartLoad:(id<TTTableViewDataSource>)dataSource {
   if (dataSource.isLoadingMore) {
-    self.viewState = (_viewState & TTViewLoadedStates) | TTViewLoadingMore;
-  } else if (_viewState & TTViewLoadedStates) {
-    self.viewState = (_viewState & TTViewLoadedStates) | TTViewRefreshing;
+    self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateLoadingMore;
+  } else if (_modelState & TTModelLoadedStates) {
+    self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateRefreshing;
   } else {
-    self.viewState = TTViewLoading;
+    self.modelState = TTModelStateLoading;
   }
 }
 
 - (void)dataSourceDidFinishLoad:(id<TTTableViewDataSource>)dataSource {
   if (dataSource.isEmpty) {
-    self.viewState = TTViewEmpty;
+    self.modelState = TTModelStateEmpty;
   } else {
-    self.viewState = TTViewLoaded;
+    self.modelState = TTModelStateLoaded;
   }
 }
 
 - (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailLoadWithError:(NSError*)error {
-  self.contentError = error;
-  self.viewState = TTViewLoadedError;
+  self.modelError = error;
+  self.modelState = TTModelStateLoadedError;
 }
 
 - (void)dataSourceDidCancelLoad:(id<TTTableViewDataSource>)dataSource {
-  self.viewState = TTViewLoadedError;
+  self.modelError = nil;
+  self.modelState = TTModelStateLoadedError;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -280,6 +259,32 @@ static const CGFloat kRefreshingViewHeight = 22;
     [_dataSource release];
     _dataSource = [dataSource retain];
     [_dataSource.delegates addObject:self];
+    
+    [self invalidateView];
+    
+    if (!_dataSource.isLoaded) {
+      [_dataSource load:TTURLRequestCachePolicyDefault nextPage:NO];
+    } else {
+      [_dataSource update];
+      
+      if (_dataSource.isLoading) {
+        if (_dataSource.isLoadingMore) {
+          self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateLoadingMore;
+        } else if (_dataSource.isLoaded) {
+          self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateRefreshing;
+        } else {
+          self.modelState = TTModelStateLoading;
+        }
+      } else {
+        if (_modelError) {
+          self.modelState = TTModelStateLoadedError;
+        } else if (_dataSource.isEmpty) {
+          self.modelState = TTModelStateEmpty;
+        } else {
+          self.modelState = TTModelStateLoaded;
+        }
+      }
+    }
   }
 }
 
@@ -298,7 +303,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
 }
 
-- (BOOL)shouldNavigateToURL:(NSString*)URL {
+- (BOOL)shouldOpenURL:(NSString*)URL {
   return YES;
 }
 
@@ -306,12 +311,6 @@ static const CGFloat kRefreshingViewHeight = 22;
 }
 
 - (void)didEndDragging {
-}
-
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
-}
-
-- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
 }
 
 @end
