@@ -5,7 +5,7 @@
 @protocol TTThumbsViewControllerDelegate, TTPhotoSource;
 @class TTPhotoViewController;
 
-@interface TTThumbsViewController : TTTableViewController {
+@interface TTThumbsViewController : TTTableViewController <TTThumbsTableViewCellDelegate> {
   id<TTThumbsViewControllerDelegate> _delegate;
   id<TTPhotoSource> _photoSource;
 }
@@ -17,18 +17,22 @@
 - (id)initWithQuery:(NSDictionary*)query;
 
 - (TTPhotoViewController*)createPhotoViewController;
+- (id<TTTableViewDataSource>)createDataSource;
 
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTThumbsDataSource : TTTableViewDataSource
-          <TTPhotoSourceDelegate, TTThumbsTableViewCellDelegate> {
-  TTThumbsViewController* _controller;
+@interface TTThumbsDataSource : TTTableViewDataSource {
+  id<TTThumbsTableViewCellDelegate> _delegate;
   id<TTPhotoSource> _photoSource;
 }
 
-- (id)initWithController:(TTThumbsViewController*)controller;
+@property(nonatomic,assign) id<TTThumbsTableViewCellDelegate> delegate;
+@property(nonatomic,retain) id<TTPhotoSource> photoSource;
+
+- (id)initWithPhotoSource:(id<TTPhotoSource>)photoSource
+      delegate:(id<TTThumbsTableViewCellDelegate>)delegate;
 
 @end
 

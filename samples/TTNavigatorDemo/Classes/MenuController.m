@@ -48,9 +48,21 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (id<TTTableViewDataSource>)createDataSource {
+- (void)setPage:(MenuPage)page {
+  _page = page;
+  
+  self.title = [self nameForMenuPage:page];
+
+  UIImage* image = [UIImage imageNamed:@"tab.png"];
+  self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:self.title image:image tag:0] autorelease];
+  
+  self.navigationItem.rightBarButtonItem =
+    [[[UIBarButtonItem alloc] initWithTitle:@"Order" style:UIBarButtonItemStyleBordered
+                              target:@"tt://order?waitress=Tammy&ref=toolbar"
+                              action:@selector(openURL)] autorelease];
+
   if (_page == MenuPageBreakfast) {
-    return [TTSectionedDataSource dataSourceWithObjects:
+    self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
       @"Food",
       [TTTableTextItem itemWithText:@"Porridge" URL:@"tt://food/porridge"],
       [TTTableTextItem itemWithText:@"Bacon & Eggs" URL:@"tt://food/baconeggs"],
@@ -63,7 +75,7 @@
       [TTTableTextItem itemWithText:@"Complaints" URL:@"tt://about/complaints"],
       nil];
   } else if (_page == MenuPageLunch) {
-    return [TTSectionedDataSource dataSourceWithObjects:
+    self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
       @"Menu",
       [TTTableTextItem itemWithText:@"Mac & Cheese" URL:@"tt://food/macncheese"],
       [TTTableTextItem itemWithText:@"Ham Sandwich" URL:@"tt://food/hamsam"],
@@ -76,7 +88,7 @@
       [TTTableTextItem itemWithText:@"Complaints" URL:@"tt://about/complaints"],
       nil];
   } else if (_page == MenuPageDinner) {
-    return [TTSectionedDataSource dataSourceWithObjects:
+    self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
       @"Appetizers",
       [TTTableTextItem itemWithText:@"Potstickers" URL:@"tt://food/potstickers"],
       [TTTableTextItem itemWithText:@"Egg Rolls" URL:@"tt://food/eggrolls"],
@@ -97,7 +109,7 @@
       [TTTableTextItem itemWithText:@"Complaints" URL:@"tt://about/complaints"],
       nil];
   } else if (_page == MenuPageDessert) {
-    return [TTSectionedDataSource dataSourceWithObjects:
+    self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
       @"Yum",
       [TTTableTextItem itemWithText:@"Chocolate Cake" URL:@"tt://food/cake"],
       [TTTableTextItem itemWithText:@"Apple Pie" URL:@"tt://food/pie"],
@@ -105,27 +117,11 @@
       [TTTableTextItem itemWithText:@"Complaints" URL:@"tt://about/complaints"],
       nil];
   } else if (_page == MenuPageAbout) {
-    return [TTListDataSource dataSourceWithObjects:
+    self.dataSource = [TTListDataSource dataSourceWithObjects:
       [TTTableTextItem itemWithText:@"Our Story" URL:@"tt://about/story"],
       [TTTableTextItem itemWithText:@"Complaints Dept." URL:@"tt://about/complaints"],
       nil];
-  } else {
-    return [TTListDataSource dataSourceWithObjects:nil];
   }
-}
-
-- (void)setPage:(MenuPage)page {
-  _page = page;
-  
-  self.title = [self nameForMenuPage:page];
-
-  UIImage* image = [UIImage imageNamed:@"tab.png"];
-  self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:self.title image:image tag:0] autorelease];
-  
-  self.navigationItem.rightBarButtonItem =
-    [[[UIBarButtonItem alloc] initWithTitle:@"Order" style:UIBarButtonItemStyleBordered
-                              target:@"tt://order?waitress=Tammy&ref=toolbar"
-                              action:@selector(openURL)] autorelease];
 }
 
 @end

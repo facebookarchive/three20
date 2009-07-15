@@ -1,13 +1,12 @@
-#import "Three20/TTViewController.h"
+#import "Three20/TTModelViewController.h"
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTScrollView.h"
 #import "Three20/TTThumbsViewController.h"
 
 @class TTScrollView, TTPhotoView;
 
-@interface TTPhotoViewController : TTViewController
-    <TTScrollViewDelegate, TTScrollViewDataSource, TTPhotoSourceDelegate,
-      TTThumbsViewControllerDelegate> {
+@interface TTPhotoViewController : TTModelViewController
+          <TTScrollViewDelegate, TTScrollViewDataSource, TTThumbsViewControllerDelegate> {
   id<TTPhotoSource> _photoSource;
   id<TTPhoto> _centerPhoto;
   NSUInteger _centerPhotoIndex;

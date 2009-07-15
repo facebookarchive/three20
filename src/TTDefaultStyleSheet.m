@@ -443,6 +443,14 @@
   return [UIColor colorWithWhite:0.9 alpha:1];
 }
 
+- (UIColor*)tablePlainBackgroundColor {
+  return nil;
+}
+
+- (UIColor*)tableGroupedBackgroundColor {
+  return nil;
+}
+
 - (UIColor*)searchTableBackgroundColor {
   return RGBCOLOR(235, 235, 235);
 }

@@ -1,4 +1,4 @@
-#import "Three20/TTViewController.h"
+#import "Three20/TTModelViewController.h"
 
 /**
  * A view controller which, when displayed modally, inserts its view over the parent controller.
@@ -12,7 +12,7 @@
  *
  * This class does is meant to be subclassed, not used directly.
  */
-@interface TTPopupViewController : TTViewController {
+@interface TTPopupViewController : TTModelViewController {
 }
 
 - (void)showInViewController:(UIViewController*)parentViewController animated:(BOOL)animated;

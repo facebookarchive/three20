@@ -69,22 +69,22 @@ static CGFloat kDefaultThumbSize = 75;
     _thumbSize = kDefaultThumbSize;
     _thumbOrigin = CGPointMake(kSpacing, 0);
 
-    _thumbView1 = [[TTThumbView alloc] initWithFrame:CGRectZero];
+    _thumbView1 = [[TTThumbView alloc] init];
     [_thumbView1 addTarget:self action:@selector(thumbTouched:)
       forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_thumbView1];
 
-    _thumbView2 = [[TTThumbView alloc] initWithFrame:CGRectZero];
+    _thumbView2 = [[TTThumbView alloc] init];
     [_thumbView2 addTarget:self action:@selector(thumbTouched:)
       forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_thumbView2];
 
-    _thumbView3 = [[TTThumbView alloc] initWithFrame:CGRectZero];
+    _thumbView3 = [[TTThumbView alloc] init];
     [_thumbView3 addTarget:self action:@selector(thumbTouched:)
       forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_thumbView3];
 
-    _thumbView4 = [[TTThumbView alloc] initWithFrame:CGRectZero];
+    _thumbView4 = [[TTThumbView alloc] init];
     [_thumbView4 addTarget:self action:@selector(thumbTouched:)
       forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_thumbView4];

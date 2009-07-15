@@ -2,6 +2,8 @@
 #import "TableTestController.h"
 #import "MockDataSource.h"
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TableTestDataSource : TTListDataSource
 @end
 
@@ -32,48 +34,53 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation TableTestController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (void)cycle {
-  if (!self.modelState) {
-    self.modelState = TTModelStateLoading;
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-      initWithTitle:@"Error" style:UIBarButtonItemStyleBordered target:self
-      action:@selector(cycle)] autorelease];
-  } else if (self.modelState & TTModelStateLoading) {
+- (void)cycleModelState {
+  if (self.modelState == TTModelStateLoading) {
     self.modelState = TTModelStateLoadedError;
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-      initWithTitle:@"Empty" style:UIBarButtonItemStyleBordered target:self
-      action:@selector(cycle)] autorelease];
-  } else if (self.modelState & TTModelStateLoadedError) {
+  } else if (self.modelState == TTModelStateEmpty) {
+    self.modelState = TTModelStateLoading;
+  } else if (self.modelState == TTModelStateLoadedError) {
+    self.modelState = TTModelStateLoaded;
+  } else if (self.modelState == TTModelStateLoaded) {
     self.modelState = TTModelStateEmpty;
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-      initWithTitle:@"Loading" style:UIBarButtonItemStyleBordered target:self
-      action:@selector(cycle)] autorelease];
   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
-//
+
 - (void)loadView {
   [super loadView];
-
-  self.tableView.sectionIndexMinimumDisplayRowCount = 2;
-
+  
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-    initWithTitle:@"Loading" style:UIBarButtonItemStyleBordered target:self
-    action:@selector(cycle)] autorelease];
+    initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self
+    action:@selector(cycleModelState)] autorelease];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTViewController
+// TTModelViewController
 
-- (id<TTTableViewDataSource>)createDataSource {
-  return [[[TableTestDataSource alloc] init] autorelease];
+- (void)loadModel {
+  self.dataSource = [[[TableTestDataSource alloc] init] autorelease];
+}
+
+- (void)modelDidChangeState {
+  if (self.modelState == TTModelStateLoading) {
+    self.title = @"StateLoading";
+  } else if (self.modelState == TTModelStateEmpty) {
+    self.title = @"StateEmpty";
+  } else if (self.modelState == TTModelStateLoadedError) {
+    self.title = @"StateLoadedError";
+  } else if (self.modelState == TTModelStateLoaded) {
+    self.title = @"StateLoaded";
+  }
 }
 
 @end

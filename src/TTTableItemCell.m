@@ -413,7 +413,7 @@ static CGFloat kDefaultIconSize = 50;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
-    _iconView = [[TTImageView alloc] initWithFrame:CGRectZero];
+    _iconView = [[TTImageView alloc] init];
     [self.contentView addSubview:_iconView];
 	}
 	return self;
@@ -603,7 +603,7 @@ static CGFloat kDefaultIconSize = 50;
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
     _item = nil;
     
-    _errorView = [[TTErrorView alloc] initWithFrame:CGRectZero];
+    _errorView = [[TTErrorView alloc] init];
     [self addSubview:_errorView];
 
     self.accessoryType = UITableViewCellAccessoryNone;
@@ -676,7 +676,7 @@ static CGFloat kDefaultIconSize = 50;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
-    _label = [[TTStyledTextLabel alloc] initWithFrame:CGRectZero];
+    _label = [[TTStyledTextLabel alloc] init];
     _label.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:_label];
   }
@@ -699,7 +699,7 @@ static CGFloat kDefaultIconSize = 50;
   [_label setNeedsLayout];
 }
 
--(void)didMoveToSuperview {
+- (void)didMoveToSuperview {
   [super didMoveToSuperview];
   if (self.superview && [(UITableView*)self.superview style] == UITableViewStylePlain) {
     _label.backgroundColor = self.superview.backgroundColor;

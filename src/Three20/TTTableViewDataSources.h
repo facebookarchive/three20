@@ -6,7 +6,7 @@
   NSMutableArray* _items;
 }
 
-@property(nonatomic,readonly) NSMutableArray* items;
+@property(nonatomic,retain) NSMutableArray* items;
 
 + (TTListDataSource*)dataSourceWithObjects:(id)object,...;
 + (TTListDataSource*)dataSourceWithItems:(NSMutableArray*)items;
@@ -21,6 +21,9 @@
   NSMutableArray* _sections;
   NSMutableArray* _items;
 }
+
+@property(nonatomic,retain) NSMutableArray* items;
+@property(nonatomic,retain) NSMutableArray* sections;
 
 /**
  * Objects should be in this format:

@@ -87,20 +87,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (void)modelDidChange {
+- (void)modelWillAppear {
   TTStyledTextLabel* label = (TTStyledTextLabel*)[self.view viewWithTag:42];
   label.html = _content;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
-
-- (void)setContent:(NSString*)content {
-  if (content != _content) {
-    [_content release];
-    _content = [content copy];
-    [self invalidateModel];
-  }
 }
 
 @end

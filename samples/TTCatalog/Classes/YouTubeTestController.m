@@ -2,13 +2,26 @@
 
 @implementation YouTubeTestController
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    youTubeView = nil;
+  }
+  return self;
+}
+
 - (void)dealloc {
   TT_RELEASE_MEMBER(youTubeView);
   [super dealloc];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
+
 - (void)loadView {
-  self.view = [[[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+  [super loadView];
   self.view.backgroundColor = [UIColor redColor];
     
   youTubeView = [[TTYouTubeView alloc] initWithURL:@"http://www.youtube.com/watch?v=g8thp78oXsg"];
@@ -24,7 +37,5 @@
   label.textAlignment = UITextAlignmentCenter;
   [self.view addSubview:label];
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @end

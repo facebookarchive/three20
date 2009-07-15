@@ -12,6 +12,8 @@
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;
+    
+    self.dataSource = [MockDataSource mockDataSource:NO];
   }
   return self;
 }
@@ -40,10 +42,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewController
-
-- (id<TTTableViewDataSource>)createDataSource {
-  return [MockDataSource mockDataSource:NO];
-}
 
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   [_delegate searchTestController:self didSelectObject:object];

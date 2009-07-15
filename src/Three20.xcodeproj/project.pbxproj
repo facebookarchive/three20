@@ -17,13 +17,16 @@
 		BE2178F61000940D009329F2 /* TTURLMap.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2178F51000940D009329F2 /* TTURLMap.m */; };
 		BE23E72B100B0A7200F40C3B /* TTTableViewDataSources.h in Headers */ = {isa = PBXBuildFile; fileRef = BE23E72A100B0A7200F40C3B /* TTTableViewDataSources.h */; };
 		BE23E72D100B0ACD00F40C3B /* TTTableViewDataSources.m in Sources */ = {isa = PBXBuildFile; fileRef = BE23E72C100B0ACD00F40C3B /* TTTableViewDataSources.m */; };
-		BE23E798100B13E200F40C3B /* TTLoadable.h in Headers */ = {isa = PBXBuildFile; fileRef = BE23E797100B13E200F40C3B /* TTLoadable.h */; };
+		BE23E798100B13E200F40C3B /* TTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BE23E797100B13E200F40C3B /* TTModel.h */; };
 		BE3EDE410F80C78500A732BE /* TTStyledText.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3EDE400F80C78500A732BE /* TTStyledText.h */; };
 		BE3EDE430F80C79600A732BE /* TTStyledText.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3EDE420F80C79600A732BE /* TTStyledText.m */; };
 		BE42FB130F3BBAA900A3B65A /* TTLink.m in Sources */ = {isa = PBXBuildFile; fileRef = BE42FB120F3BBAA900A3B65A /* TTLink.m */; };
 		BE42FB160F3BBAB400A3B65A /* TTLink.h in Headers */ = {isa = PBXBuildFile; fileRef = BE42FB150F3BBAB400A3B65A /* TTLink.h */; };
 		BE42FB7A0F3BBF3500A3B65A /* TTTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BE42FB790F3BBF3400A3B65A /* TTTabBar.m */; };
 		BE42FB7C0F3BBF3D00A3B65A /* TTTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */; };
+		BE52E93F100D7DEE00E03DB7 /* TTModelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */; };
+		BE52E941100D7DFD00E03DB7 /* TTModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */; };
+		BE52E994100D8EF800E03DB7 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE52E993100D8EF800E03DB7 /* TTModel.m */; };
 		BE6E4A520F465237001CE9B4 /* TTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */; };
 		BE6E4A540F465243001CE9B4 /* TTTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */; };
 		BE702ED00F43F32E0028A119 /* TTTableItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */; };
@@ -124,7 +127,6 @@
 		BEF31F7A0F352E64000DE5D2 /* TTThumbsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F500F352E64000DE5D2 /* TTThumbsTableViewCell.m */; };
 		BEF31F7B0F352E64000DE5D2 /* TTThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F510F352E64000DE5D2 /* TTThumbsViewController.m */; };
 		BEF31F7C0F352E64000DE5D2 /* TTThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F520F352E64000DE5D2 /* TTThumbView.m */; };
-		BEF31F7D0F352E64000DE5D2 /* TTUnclippedView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F530F352E64000DE5D2 /* TTUnclippedView.m */; };
 		BEF31F7E0F352E64000DE5D2 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F540F352E64000DE5D2 /* TTURLCache.m */; };
 		BEF31F800F352E64000DE5D2 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F560F352E64000DE5D2 /* TTURLRequest.m */; };
 		BEF31F810F352E64000DE5D2 /* TTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F570F352E64000DE5D2 /* TTViewController.m */; };
@@ -143,7 +145,6 @@
 		BEF31F8F0F352E64000DE5D2 /* TTThumbsTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F660F352E64000DE5D2 /* TTThumbsTableViewCell.h */; };
 		BEF31F900F352E64000DE5D2 /* TTThumbsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F670F352E64000DE5D2 /* TTThumbsViewController.h */; };
 		BEF31F910F352E64000DE5D2 /* TTThumbView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F680F352E64000DE5D2 /* TTThumbView.h */; };
-		BEF31F920F352E64000DE5D2 /* TTUnclippedView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F690F352E64000DE5D2 /* TTUnclippedView.h */; };
 		BEF31F930F352E64000DE5D2 /* TTURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F6A0F352E64000DE5D2 /* TTURLCache.h */; };
 		BEF31F950F352E64000DE5D2 /* TTURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F6C0F352E64000DE5D2 /* TTURLRequest.h */; };
 		BEF31F960F352E64000DE5D2 /* TTViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F6D0F352E64000DE5D2 /* TTViewController.h */; };
@@ -170,13 +171,16 @@
 		BE2178F51000940D009329F2 /* TTURLMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLMap.m; sourceTree = "<group>"; };
 		BE23E72A100B0A7200F40C3B /* TTTableViewDataSources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewDataSources.h; path = Three20/TTTableViewDataSources.h; sourceTree = "<group>"; };
 		BE23E72C100B0ACD00F40C3B /* TTTableViewDataSources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewDataSources.m; sourceTree = "<group>"; };
-		BE23E797100B13E200F40C3B /* TTLoadable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLoadable.h; path = Three20/TTLoadable.h; sourceTree = "<group>"; };
+		BE23E797100B13E200F40C3B /* TTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModel.h; path = Three20/TTModel.h; sourceTree = "<group>"; };
 		BE3EDE400F80C78500A732BE /* TTStyledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledText.h; path = Three20/TTStyledText.h; sourceTree = "<group>"; };
 		BE3EDE420F80C79600A732BE /* TTStyledText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledText.m; sourceTree = "<group>"; };
 		BE42FB120F3BBAA900A3B65A /* TTLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLink.m; sourceTree = "<group>"; };
 		BE42FB150F3BBAB400A3B65A /* TTLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLink.h; path = Three20/TTLink.h; sourceTree = "<group>"; };
 		BE42FB790F3BBF3400A3B65A /* TTTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTabBar.m; sourceTree = "<group>"; };
 		BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTabBar.h; path = Three20/TTTabBar.h; sourceTree = "<group>"; };
+		BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModelViewController.h; path = Three20/TTModelViewController.h; sourceTree = "<group>"; };
+		BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModelViewController.m; sourceTree = "<group>"; };
+		BE52E993100D8EF800E03DB7 /* TTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModel.m; sourceTree = "<group>"; };
 		BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewCell.m; sourceTree = "<group>"; };
 		BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewCell.h; path = Three20/TTTableViewCell.h; sourceTree = "<group>"; };
 		BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableItemCell.m; sourceTree = "<group>"; };
@@ -278,7 +282,6 @@
 		BEF31F500F352E64000DE5D2 /* TTThumbsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTThumbsTableViewCell.m; sourceTree = "<group>"; };
 		BEF31F510F352E64000DE5D2 /* TTThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTThumbsViewController.m; sourceTree = "<group>"; };
 		BEF31F520F352E64000DE5D2 /* TTThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTThumbView.m; sourceTree = "<group>"; };
-		BEF31F530F352E64000DE5D2 /* TTUnclippedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUnclippedView.m; sourceTree = "<group>"; };
 		BEF31F540F352E64000DE5D2 /* TTURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLCache.m; sourceTree = "<group>"; };
 		BEF31F560F352E64000DE5D2 /* TTURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequest.m; sourceTree = "<group>"; };
 		BEF31F570F352E64000DE5D2 /* TTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTViewController.m; sourceTree = "<group>"; };
@@ -297,7 +300,6 @@
 		BEF31F660F352E64000DE5D2 /* TTThumbsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsTableViewCell.h; path = Three20/TTThumbsTableViewCell.h; sourceTree = "<group>"; };
 		BEF31F670F352E64000DE5D2 /* TTThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsViewController.h; path = Three20/TTThumbsViewController.h; sourceTree = "<group>"; };
 		BEF31F680F352E64000DE5D2 /* TTThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbView.h; path = Three20/TTThumbView.h; sourceTree = "<group>"; };
-		BEF31F690F352E64000DE5D2 /* TTUnclippedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUnclippedView.h; path = Three20/TTUnclippedView.h; sourceTree = "<group>"; };
 		BEF31F6A0F352E64000DE5D2 /* TTURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLCache.h; path = Three20/TTURLCache.h; sourceTree = "<group>"; };
 		BEF31F6C0F352E64000DE5D2 /* TTURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequest.h; path = Three20/TTURLRequest.h; sourceTree = "<group>"; };
 		BEF31F6D0F352E64000DE5D2 /* TTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTViewController.h; path = Three20/TTViewController.h; sourceTree = "<group>"; };
@@ -451,8 +453,6 @@
 		BEB4603C0F8EDEFD004B34A0 /* Helper Views */ = {
 			isa = PBXGroup;
 			children = (
-				BEF31F690F352E64000DE5D2 /* TTUnclippedView.h */,
-				BEF31F530F352E64000DE5D2 /* TTUnclippedView.m */,
 				BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */,
 				BEF31F470F352E64000DE5D2 /* TTErrorView.m */,
 				BEE341BD0F48133F008C826E /* TTPickerViewCell.h */,
@@ -567,7 +567,8 @@
 				BEF31F6F0F352E64000DE5D2 /* Three20.h */,
 				BEF31F5C0F352E64000DE5D2 /* TTGlobal.h */,
 				BEF31F480F352E64000DE5D2 /* TTGlobal.m */,
-				BE23E797100B13E200F40C3B /* TTLoadable.h */,
+				BE23E797100B13E200F40C3B /* TTModel.h */,
+				BE52E993100D8EF800E03DB7 /* TTModel.m */,
 				BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */,
 				BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */,
 			);
@@ -597,6 +598,8 @@
 			children = (
 				BEF31F6D0F352E64000DE5D2 /* TTViewController.h */,
 				BEF31F570F352E64000DE5D2 /* TTViewController.m */,
+				BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */,
+				BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */,
 				BEF31F650F352E64000DE5D2 /* TTTableViewController.h */,
 				BEF31F4F0F352E64000DE5D2 /* TTTableViewController.m */,
 				BEE34EAF0F495C4A008C826E /* TTMessageController.h */,
@@ -634,7 +637,6 @@
 				BEF31F8F0F352E64000DE5D2 /* TTThumbsTableViewCell.h in Headers */,
 				BEF31F900F352E64000DE5D2 /* TTThumbsViewController.h in Headers */,
 				BEF31F910F352E64000DE5D2 /* TTThumbView.h in Headers */,
-				BEF31F920F352E64000DE5D2 /* TTUnclippedView.h in Headers */,
 				BEF31F930F352E64000DE5D2 /* TTURLCache.h in Headers */,
 				BEF31F950F352E64000DE5D2 /* TTURLRequest.h in Headers */,
 				BEF31F960F352E64000DE5D2 /* TTViewController.h in Headers */,
@@ -693,7 +695,8 @@
 				BED03764100915700083AC18 /* TTActionSheetController.h in Headers */,
 				BED037A3100920CC0083AC18 /* TTPopupViewController.h in Headers */,
 				BE23E72B100B0A7200F40C3B /* TTTableViewDataSources.h in Headers */,
-				BE23E798100B13E200F40C3B /* TTLoadable.h in Headers */,
+				BE23E798100B13E200F40C3B /* TTModel.h in Headers */,
+				BE52E93F100D7DEE00E03DB7 /* TTModelViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,7 +755,6 @@
 				BEF31F7A0F352E64000DE5D2 /* TTThumbsTableViewCell.m in Sources */,
 				BEF31F7B0F352E64000DE5D2 /* TTThumbsViewController.m in Sources */,
 				BEF31F7C0F352E64000DE5D2 /* TTThumbView.m in Sources */,
-				BEF31F7D0F352E64000DE5D2 /* TTUnclippedView.m in Sources */,
 				BEF31F7E0F352E64000DE5D2 /* TTURLCache.m in Sources */,
 				BEF31F800F352E64000DE5D2 /* TTURLRequest.m in Sources */,
 				BEF31F810F352E64000DE5D2 /* TTViewController.m in Sources */,
@@ -809,6 +811,8 @@
 				BED03766100915820083AC18 /* TTActionSheetController.m in Sources */,
 				BED037A1100920C60083AC18 /* TTPopupViewController.m in Sources */,
 				BE23E72D100B0ACD00F40C3B /* TTTableViewDataSources.m in Sources */,
+				BE52E941100D7DFD00E03DB7 /* TTModelViewController.m in Sources */,
+				BE52E994100D8EF800E03DB7 /* TTModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

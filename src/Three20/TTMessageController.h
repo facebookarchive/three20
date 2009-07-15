@@ -1,10 +1,10 @@
-#import "Three20/TTViewController.h"
+#import "Three20/TTModelViewController.h"
 #import "Three20/TTTextEditor.h"
 
 @protocol TTTableViewDataSource, TTMessageControllerDelegate;
 @class TTPickerTextField, TTActivityLabel;
 
-@interface TTMessageController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
+@interface TTMessageController : TTModelViewController <UITextFieldDelegate, TTTextEditorDelegate> {
   id<TTMessageControllerDelegate> _delegate;
   id<TTTableViewDataSource> _dataSource;
   NSArray* _fields;

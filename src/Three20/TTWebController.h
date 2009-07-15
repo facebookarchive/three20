@@ -1,8 +1,8 @@
-#import "Three20/TTViewController.h"
+#import "Three20/TTModelViewController.h"
 
 @protocol TTWebControllerDelegate;
 
-@interface TTWebController : TTViewController <UIWebViewDelegate, UIActionSheetDelegate> {
+@interface TTWebController : TTModelViewController <UIWebViewDelegate, UIActionSheetDelegate> {
   id<TTWebControllerDelegate> _delegate;
   UIWebView* _webView;
   UIToolbar* _toolbar;

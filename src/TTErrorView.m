@@ -14,7 +14,7 @@ static CGFloat kVPadding = 50;
 // NSObject
 
 - (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image {
-  if (self = [self initWithFrame:CGRectZero]) {
+  if (self = [self init]) {
     self.title = title;
     self.subtitle = subtitle;
     self.image = image;
@@ -24,11 +24,11 @@ static CGFloat kVPadding = 50;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _imageView = [[UIImageView alloc] init];
     _imageView.contentMode = UIViewContentModeCenter;
     [self addSubview:_imageView];
 
-    _titleView = [[UILabel alloc] initWithFrame:CGRectZero];
+    _titleView = [[UILabel alloc] init];
     _titleView.opaque = NO;
     _titleView.backgroundColor = [UIColor clearColor];
     _titleView.textColor = TTSTYLEVAR(tableErrorTextColor);
@@ -36,7 +36,7 @@ static CGFloat kVPadding = 50;
     _titleView.textAlignment = UITextAlignmentCenter;
     [self addSubview:_titleView];
     
-    _subtitleView = [[UILabel alloc] initWithFrame:CGRectZero];
+    _subtitleView = [[UILabel alloc] init];
     _subtitleView.opaque = NO;
     _subtitleView.backgroundColor = [UIColor clearColor];
     _subtitleView.textColor = TTSTYLEVAR(tableErrorTextColor);

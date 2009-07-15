@@ -38,7 +38,7 @@ static const CGFloat kMaxCaptionHeight = 100;
 - (void)showCaption:(NSString*)caption {
   if (caption) {
     if (!_captionLabel) {
-      _captionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+      _captionLabel = [[UILabel alloc] init];
       _captionLabel.opaque = NO;
       _captionLabel.textColor = TTSTYLEVAR(photoCaptionTextColor);
       _captionLabel.font = TTSTYLEVAR(photoCaptionFont);
@@ -236,7 +236,7 @@ static const CGFloat kMaxCaptionHeight = 100;
 - (void)showStatus:(NSString*)text {
   if (text) {
     if (!_statusLabel) {
-      _statusLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+      _statusLabel = [[UILabel alloc] init];
       _statusLabel.font = TTSTYLEVAR(tableFont);
       _statusLabel.textColor = TTSTYLEVAR(tableErrorTextColor);
       _statusLabel.backgroundColor = [UIColor clearColor];

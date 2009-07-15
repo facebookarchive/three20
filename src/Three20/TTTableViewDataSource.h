@@ -1,6 +1,11 @@
-#import "Three20/TTLoadable.h"
+#import "Three20/TTModel.h"
 
-@protocol TTTableViewDataSource <TTLoadable, TTLoadableDelegate, UITableViewDataSource>
+@protocol TTTableViewDataSource <UITableViewDataSource>
+
+/**
+ * Optional method to return a model object to delegate the TTModel protocol to.
+ */
+@property(nonatomic,retain) id<TTModel> model;
 
 /**
  *
@@ -25,26 +30,21 @@
 /**
  *
  */
-- (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
-        forRowAtIndexPath:(NSIndexPath*)indexPath;
+- (void)tableView:(UITableView*)tableView cell:(UITableViewCell*)cell
+        willAppearAtIndexPath:(NSIndexPath*)indexPath;
 
 /**
+ * Informs the data source that it is about to be used by a table view.
  *
- */
-- (void)tableView:(UITableView*)tableView search:(NSString*)text;
-
-/**
- *
- */
-- (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage;
-
-/**
- * Updates the data source in the event that external data it relies on have changed.
- *
- * If your data source is loaded using TTLoadable, this is called automatically after your data
+ * If your data source has a model, this is called automatically after your model
  * has loaded.  That would be a good time to prepare the data for use in the data source.
  */
-- (void)update;
+- (void)willAppearInTableView:(UITableView*)tableView;
+
+/**
+ *
+ */
+- (void)search:(NSString*)text;
 
 /**
  *
@@ -85,37 +85,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTTableViewDataSourceDelegate <NSObject>
-
-@optional
-
-- (void)dataSourceDidStartLoad:(id<TTTableViewDataSource>)dataSource;
-
-- (void)dataSourceDidFinishLoad:(id<TTTableViewDataSource>)dataSource;
-
-- (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailLoadWithError:(NSError*)error;
-
-- (void)dataSourceDidCancelLoad:(id<TTTableViewDataSource>)dataSource;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 @interface TTTableViewDataSource : NSObject <TTTableViewDataSource> {
-  NSMutableArray* _delegates;
+  id<TTModel> _model;
 }
-
-/**
- * Optional method to return a loadable object to delegate the TTLoadable protocol to.
- */
-@property(nonatomic,readonly) id<TTLoadable> loadable;
-
-- (void)didStartLoad;
-
-- (void)didFinishLoad;
-
-- (void)didFailLoadWithError:(NSError*)error;
-
-- (void)didCancelLoad;
 
 @end

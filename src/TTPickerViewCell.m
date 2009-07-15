@@ -18,7 +18,7 @@ static CGFloat kMaxWidth = 250;
     _object = nil;
     _selected = NO;
     
-    _labelView = [[UILabel alloc] initWithFrame:CGRectZero];
+    _labelView = [[UILabel alloc] init];
     _labelView.opaque = NO;
     _labelView.backgroundColor = [UIColor clearColor];
     _labelView.textColor = TTSTYLEVAR(textColor);

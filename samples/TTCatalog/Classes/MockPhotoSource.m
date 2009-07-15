@@ -12,9 +12,7 @@
   _loadedTime = [[NSDate date] retain];
 
   if (_type & MockPhotoSourceLoadError) {
-    for (id<TTPhotoSourceDelegate> delegate in _delegates) {
-      [delegate photoSource:self didFailLoadWithError:nil];
-    }
+    [_delegates perform:@selector(model:didFailLoadWithError:) withObject:self withObject:nil];
   } else {
     NSMutableArray* newPhotos = [NSMutableArray array];
 
@@ -39,9 +37,7 @@
       }
     }
 
-    for (id<TTPhotoSourceDelegate> delegate in _delegates) {
-      [delegate photoSourceDidFinishLoad:self];
-    }
+    [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
   }
 }
 
@@ -49,15 +45,13 @@
 // NSObject
 
 - (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title photos:(NSArray*)photos
-    photos2:(NSArray*)photos2 {
+      photos2:(NSArray*)photos2 {
   if (self = [super init]) {
     _type = type;
-    _delegates = nil;
-    _loadedTime = nil;
-    
-    self.title = title;
+    _title = [title copy];
     _photos = photos2 ? [photos mutableCopy] : [[NSMutableArray alloc] init];
     _tempPhotos = photos2 ? [photos2 retain] : [photos retain];
+    _fakeLoadTimer = nil;
 
     for (int i = 0; i < _photos.count; ++i) {
       id<TTPhoto> photo = [_photos objectAtIndex:i];
@@ -67,17 +61,19 @@
       }
     }
 
-    if (_type & MockPhotoSourceDelayed || photos2) {
-    } else {
+    if (!(_type & MockPhotoSourceDelayed || photos2)) {
       [self performSelector:@selector(fakeLoadReady)];
     }
   }
   return self;
 }
 
+- (id)init {
+  return [self initWithType:MockPhotoSourceNormal title:nil photos:nil photos2:nil];
+}
+
 - (void)dealloc {
   [_fakeLoadTimer invalidate];
-  TT_RELEASE_MEMBER(_delegates);
   TT_RELEASE_MEMBER(_photos);
   TT_RELEASE_MEMBER(_tempPhotos);
   TT_RELEASE_MEMBER(_title);
@@ -85,33 +81,23 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTLoadable
-
-- (NSDate*)loadedTime {
-  return _loadedTime;
-}
+// TTModel
 
 - (BOOL)isLoading {
   return !!_fakeLoadTimer;
 }
 
-- (BOOL)isLoadingMore {
-  return NO;
-}
-
-- (BOOL)isLoaded {
-  return !!_loadedTime;
-}
-
-- (BOOL)isOutdated {
-  return NO;
-}
-
 - (BOOL)isEmpty {
-  return NO;
+  return !_photos.count;
 }
 
-- (void)invalidate:(BOOL)erase {
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
+  if (cachePolicy & TTURLRequestCachePolicyNetwork) {
+    [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
+    
+    _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
+      selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];
+  }
 }
 
 - (void)cancel {
@@ -121,13 +107,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTPhotoSource
-
-- (NSMutableArray*)delegates {
-  if (!_delegates) {
-    _delegates = TTCreateNonRetainingArray();
-  }
-  return _delegates;
-}
 
 - (NSInteger)numberOfPhotos {
   if (_tempPhotos) {
@@ -151,18 +130,6 @@
     }
   } else {
     return nil;
-  }
-}
-
-- (void)loadPhotosFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
-    cachePolicy:(TTURLRequestCachePolicy)cachePolicy {
-  if (cachePolicy & TTURLRequestCachePolicyNetwork) {
-    for (id<TTPhotoSourceDelegate> delegate in _delegates) {
-      [delegate photoSourceDidStartLoad:self];
-    }
-    
-    _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
-      selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];
   }
 }
 

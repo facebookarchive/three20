@@ -1,6 +1,6 @@
 #import <Three20/Three20.h>
 
-@interface ContentController : TTViewController {
+@interface ContentController : TTModelViewController {
   NSString* _content;
 }
 

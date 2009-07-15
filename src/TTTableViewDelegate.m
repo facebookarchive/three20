@@ -71,7 +71,7 @@ static const CGFloat kSectionHeaderHeight = 35;
       cell.animating = YES;
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
       
-      [dataSource load:TTURLRequestCachePolicyDefault nextPage:YES];
+      [_controller.model load:TTURLRequestCachePolicyDefault more:YES];
     }
   }
 

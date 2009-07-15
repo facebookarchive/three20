@@ -9,20 +9,20 @@
 
 @implementation TTTableViewDataSource
 
-@synthesize delegates = _delegates;
+@synthesize model = _model;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)init {
   if (self = [super init]) {
-    _delegates = nil;
+    _model = nil;
   }
   return self;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_delegates);
+  TT_RELEASE_MEMBER(_model);
   [super dealloc];
 }
 
@@ -54,7 +54,7 @@
     [(TTTableViewCell*)cell setObject:object];
   }
   
-  [self tableView:tableView prepareCell:cell forRowAtIndexPath:indexPath];
+  [self tableView:tableView cell:cell willAppearAtIndexPath:indexPath];
       
   return cell;
 }
@@ -63,117 +63,12 @@
   return nil;
 }
 
-- (NSString*)titleForLoading:(BOOL)refreshing {
-  if (refreshing) {
-    return TTLocalizedString(@"Updating...", @"");
-  } else {
-    return TTLocalizedString(@"Loading...", @"");
-  }
-}
-
-- (UIImage*)imageForNoData {
-  return nil;
-}
-
-- (NSString*)titleForNoData {
-  return nil;
-}
-
-- (NSString*)subtitleForNoData {
-  return nil;
-}
-
-- (UIImage*)imageForError:(NSError*)error {
-  return nil;
-}
-
-- (NSString*)titleForError:(NSError*)error {
-  return TTLocalizedString(@"Error", @"");
-}
-
-- (NSString*)subtitleForError:(NSError*)error {
-  return TTLocalizedString(@"Sorry, an error has occurred.", @"");
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTLoadable
+// TTTableViewDataSource
 
-- (NSMutableArray*)delegates {
-  if (!_delegates) {
-    _delegates = TTCreateNonRetainingArray();
-  }
-  return _delegates;
+- (id<TTModel>)model {
+  return _model;
 }
-
-- (NSDate*)loadedTime {
-  id<TTLoadable> loadable = self.loadable;
-  if (loadable) {
-    return loadable.loadedTime;
-  } else {
-    return nil;
-  }
-}
-
-- (BOOL)isLoading {
-  id<TTLoadable> loadable = self.loadable;
-  if (loadable) {
-    return loadable.isLoading;
-  } else {
-    return NO;
-  }
-}
-
-- (BOOL)isLoadingMore {
-  id<TTLoadable> loadable = self.loadable;
-  if (loadable) {
-    return loadable.isLoadingMore;
-  } else {
-    return NO;
-  }
-}
-
-- (BOOL)isLoaded {
-  id<TTLoadable> loadable = self.loadable;
-  if (loadable) {
-    return loadable.isLoaded;
-  } else {
-    return YES;
-  }
-}
-
-- (BOOL)isOutdated {
-  id<TTLoadable> loadable = self.loadable;
-  if (loadable) {
-    return loadable.isOutdated;
-  } else {
-    NSDate* loadedTime = self.loadedTime;
-    if (loadedTime) {
-      return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
-    } else {
-      return NO;
-    }
-  }
-}
-
-- (BOOL)isEmpty {
-  id<TTLoadable> loadable = self.loadable;
-  if (loadable) {
-    return loadable.isEmpty;
-  } else {
-    return YES;
-  }
-}
-
-- (void)invalidate:(BOOL)erase {
-  [self.loadable invalidate:erase];
-}
-
-- (void)cancel {
-  [self.loadable cancel];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTLoadable
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   return nil;
@@ -219,76 +114,46 @@
   return nil;
 }
 
-- (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
-        forRowAtIndexPath:(NSIndexPath*)indexPath {
+- (void)tableView:(UITableView*)tableView cell:(UITableViewCell*)cell
+        willAppearAtIndexPath:(NSIndexPath*)indexPath {
 }
 
-- (void)tableView:(UITableView*)tableView search:(NSString*)text {
+- (void)willAppearInTableView:(UITableView*)tableView {
 }
 
-- (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage {
+- (void)search:(NSString*)text {
 }
 
-- (void)update {
+- (NSString*)titleForLoading:(BOOL)refreshing {
+  if (refreshing) {
+    return TTLocalizedString(@"Updating...", @"");
+  } else {
+    return TTLocalizedString(@"Loading...", @"");
+  }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTLoadableDelegate
-
-- (void)loadableDidStartLoad:(id<TTLoadable>)loadable {
-  [self didStartLoad];
-}
-
-- (void)loadableDidFinishLoad:(id<TTLoadable>)loadable {
-  [self update];
-  [self didFinishLoad];
-}
-
-- (void)loadable:(id<TTLoadable>)loadable didFailLoadWithError:(NSError*)error {
-  [self didFailLoadWithError:error];
-}
-
-- (void)loadableDidCancelLoad:(id<TTLoadable>)loadable {
-  [self didCancelLoad];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
-
-- (id<TTLoadable>)loadable {
+- (UIImage*)imageForNoData {
   return nil;
 }
 
-- (void)didStartLoad {
-  for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
-    if ([delegate respondsToSelector:@selector(dataSourceDidStartLoad:)]) {
-      [delegate dataSourceDidStartLoad:self];
-    }
-  }
+- (NSString*)titleForNoData {
+  return nil;
 }
 
-- (void)didFinishLoad {
-  for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
-    if ([delegate respondsToSelector:@selector(dataSourceDidFinishLoad:)]) {
-      [delegate dataSourceDidFinishLoad:self];
-    }
-  }
+- (NSString*)subtitleForNoData {
+  return nil;
 }
 
-- (void)didFailLoadWithError:(NSError*)error {
-  for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
-    if ([delegate respondsToSelector:@selector(dataSource:didFailLoadWithError:)]) {
-      [delegate dataSource:self didFailLoadWithError:error];
-    }
-  }
+- (UIImage*)imageForError:(NSError*)error {
+  return nil;
 }
 
-- (void)didCancelLoad {
-  for (id<TTTableViewDataSourceDelegate> delegate in self.delegates) {
-    if ([delegate respondsToSelector:@selector(dataSourceDidCancelLoad:)]) {
-      [delegate dataSourceDidCancelLoad:self];
-    }
-  }
+- (NSString*)titleForError:(NSError*)error {
+  return TTLocalizedString(@"Error", @"");
+}
+
+- (NSString*)subtitleForError:(NSError*)error {
+  return TTLocalizedString(@"Sorry, an error has occurred.", @"");
 }
 
 @end

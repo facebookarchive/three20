@@ -25,6 +25,7 @@
     _URL = nil;
     _screenView = nil;
     
+    self.userInteractionEnabled = NO;
     [self addTarget:self action:@selector(linkTouched)
           forControlEvents:UIControlEventTouchUpInside];
   }

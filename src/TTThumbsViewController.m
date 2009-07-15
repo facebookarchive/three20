@@ -16,36 +16,28 @@ static CGFloat kThumbnailRowHeight = 79;
 
 @implementation TTThumbsDataSource
 
+@synthesize photoSource = _photoSource, delegate = _delegate;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
 - (BOOL)hasMoreToLoad {
-  return _controller.photoSource.maxPhotoIndex+1 < _controller.photoSource.numberOfPhotos;
-}
-
-- (NSString*)URLForPhoto:(id<TTPhoto>)photo {
-  if ([photo respondsToSelector:@selector(URLValueWithName:)]) {
-    return [photo performSelector:@selector(URLValueWithName:)
-                  withObject:@"TTPhotoViewController"];
-  } else {
-    return nil;
-  }
+  return _photoSource.maxPhotoIndex+1 < _photoSource.numberOfPhotos;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithController:(TTThumbsViewController*)controller {
+- (id)initWithPhotoSource:(id<TTPhotoSource>)photoSource
+      delegate:(id<TTThumbsTableViewCellDelegate>)delegate {
   if (self = [super init]) {
-    _controller = controller;
-    _photoSource = [_controller.photoSource retain];
-    [_photoSource.delegates addObject:self];
+    _photoSource = [photoSource retain];
+    _delegate = delegate;
   }
   return self;
 }
 
 - (void)dealloc {
-  [_photoSource.delegates removeObject:self];
   TT_RELEASE_MEMBER(_photoSource);
   [super dealloc];
 }
@@ -54,8 +46,8 @@ static CGFloat kThumbnailRowHeight = 79;
 // UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-  NSInteger maxIndex = _controller.photoSource.maxPhotoIndex+1;
-  if (!_controller.photoSource.isLoading && maxIndex > 0) {
+  NSInteger maxIndex = _photoSource.maxPhotoIndex+1;
+  if (!_photoSource.isLoading && maxIndex > 0) {
     NSInteger count =  ceil((maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0));
     if (self.hasMoreToLoad) {
       return count + 1;
@@ -70,40 +62,20 @@ static CGFloat kThumbnailRowHeight = 79;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (NSDate*)loadedTime {
-  return _controller.photoSource.loadedTime;
-}
-
-- (BOOL)isLoading {
-  return _controller.photoSource.isLoading;
-}
-
-- (BOOL)isLoadingMore {
-  return _controller.photoSource.isLoadingMore;
-}
-
-- (BOOL)isLoaded {
-  return _controller.photoSource.isLoaded;
-}
-
-- (BOOL)isOutdated {
-  return _controller.photoSource.isOutdated;
-}
-
-- (BOOL)isEmpty {
-  return _controller.photoSource.isEmpty;
+- (id<TTModel>)model {
+  return _photoSource;
 }
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   if (indexPath.row == [tableView numberOfRowsInSection:0]-1 && self.hasMoreToLoad) {
     NSString* text = TTLocalizedString(@"Load More Photos...", @"");
     NSString* caption = [NSString stringWithFormat:
-      TTLocalizedString(@"Showing %d of %d Photos", @""), _controller.photoSource.maxPhotoIndex+1,
-      _controller.photoSource.numberOfPhotos];
+      TTLocalizedString(@"Showing %d of %d Photos", @""), _photoSource.maxPhotoIndex+1,
+      _photoSource.numberOfPhotos];
 
     return [TTTableMoreButton itemWithText:text caption:caption];
   } else {
-    return [_controller.photoSource photoAtIndex:indexPath.row * kColumnCount];
+    return [_photoSource photoAtIndex:indexPath.row * kColumnCount];
   }
 }
 
@@ -115,18 +87,12 @@ static CGFloat kThumbnailRowHeight = 79;
   }
 }
 
-- (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
-        forRowAtIndexPath:(NSIndexPath*)indexPath {
+- (void)tableView:(UITableView*)tableView cell:(UITableViewCell*)cell
+        willAppearAtIndexPath:(NSIndexPath*)indexPath {
   if ([cell isKindOfClass:[TTThumbsTableViewCell class]]) {
     TTThumbsTableViewCell* thumbsCell = (TTThumbsTableViewCell*)cell;
-    thumbsCell.delegate = self;
+    thumbsCell.delegate = _delegate;
   }
-}
-
-- (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage {
-  NSInteger index = nextPage ? _controller.photoSource.maxPhotoIndex : 0;
-  [_controller.photoSource loadPhotosFromIndex:index toIndex:TT_INFINITE_PHOTO_INDEX
-                           cachePolicy:cachePolicy];
 }
 
 - (UIImage*)imageForNoData {
@@ -153,50 +119,6 @@ static CGFloat kThumbnailRowHeight = 79;
   return TTLocalizedString(@"This photo set could not be loaded.", @"");
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTURLRequestDelegate
-
-- (void)photoSourceDidStartLoad:(id<TTPhotoSource>)photoSource {
-  [self didStartLoad];
-}
-
-- (void)photoSourceDidFinishLoad:(id<TTPhotoSource>)photoSource {
-  [self didFinishLoad];
-}
-
-- (void)photoSource:(id<TTPhotoSource>)photoSource didFailLoadWithError:(NSError*)error {
-  [self didFailLoadWithError:error];
-}
-
-- (void)photoSourceDidCancelLoad:(id<TTPhotoSource>)photoSource {
-  [self didCancelLoad];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTThumbsTableViewCellDelegate
-
-- (void)thumbsTableViewCell:(TTThumbsTableViewCell*)cell didSelectPhoto:(id<TTPhoto>)photo {
-  [_controller.delegate thumbsViewController:_controller didSelectPhoto:photo];
-    
-  BOOL shouldNavigate = YES;
-  if ([_controller.delegate
-       respondsToSelector:@selector(thumbsViewController:shouldNavigateToPhoto:)]) {
-    shouldNavigate = [_controller.delegate thumbsViewController:_controller
-                                           shouldNavigateToPhoto:photo];
-  }
-
-  if (shouldNavigate) {
-    NSString* URL = [self URLForPhoto:photo];
-    if (URL) {
-      TTOpenURL(URL);
-    } else {
-      TTPhotoViewController* controller = [_controller createPhotoViewController];
-      controller.centerPhoto = photo;
-      [_controller.navigationController pushViewController:controller animated:YES];  
-    }
-  }
-}
-
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -217,6 +139,14 @@ static CGFloat kThumbnailRowHeight = 79;
         [cell suspendLoading:suspended];
       }
     }
+  }
+}
+
+- (NSString*)URLForPhoto:(id<TTPhoto>)photo {
+  if ([photo respondsToSelector:@selector(URLValueWithName:)]) {
+    return [photo URLValueWithName:@"TTPhotoViewController"];
+  } else {
+    return nil;
   }
 }
 
@@ -323,8 +253,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
   if (_delegate) {
     self.navigationItem.leftBarButtonItem =
-      [[[UIBarButtonItem alloc] initWithCustomView:[[[UIView alloc] initWithFrame:CGRectZero]
-                                                   autorelease]] autorelease];
+      [[[UIBarButtonItem alloc] initWithCustomView:[[[UIView alloc] init] autorelease]] autorelease];
     self.navigationItem.rightBarButtonItem =
       [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
                                 style:UIBarButtonItemStyleBordered
@@ -334,10 +263,26 @@ static CGFloat kThumbnailRowHeight = 79;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewController
+// TTThumbsTableViewCellDelegate
 
-- (id<TTTableViewDataSource>)createDataSource {
-  return [[[TTThumbsDataSource alloc] initWithController:self] autorelease];
+- (void)thumbsTableViewCell:(TTThumbsTableViewCell*)cell didSelectPhoto:(id<TTPhoto>)photo {
+  [_delegate thumbsViewController:self didSelectPhoto:photo];
+    
+  BOOL shouldNavigate = YES;
+  if ([_delegate respondsToSelector:@selector(thumbsViewController:shouldNavigateToPhoto:)]) {
+    shouldNavigate = [_delegate thumbsViewController:self shouldNavigateToPhoto:photo];
+  }
+
+  if (shouldNavigate) {
+    NSString* URL = [self URLForPhoto:photo];
+    if (URL) {
+      TTOpenURL(URL);
+    } else {
+      TTPhotoViewController* controller = [self createPhotoViewController];
+      controller.centerPhoto = photo;
+      [self.navigationController pushViewController:controller animated:YES];  
+    }
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -349,12 +294,16 @@ static CGFloat kThumbnailRowHeight = 79;
     _photoSource = [photoSource retain];
 
     self.title = _photoSource.title;
-    [self invalidateModel];
+    self.dataSource = [self createDataSource];
   }
 }
 
 - (TTPhotoViewController*)createPhotoViewController {
   return [[[TTPhotoViewController alloc] init] autorelease];
+}
+
+- (id<TTTableViewDataSource>)createDataSource {
+  return [[[TTThumbsDataSource alloc] initWithPhotoSource:_photoSource delegate:self] autorelease];
 }
 
 @end

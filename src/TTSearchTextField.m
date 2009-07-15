@@ -150,7 +150,7 @@ static const CGFloat kDesiredTableHeight = 150;
 }
 
 - (void)dealloc {
-  [_dataSource.delegates removeObject:self];
+  [_dataSource.model.delegates removeObject:self];
   _tableView.delegate = nil;
   TT_RELEASE_MEMBER(_dataSource);
   TT_RELEASE_MEMBER(_internal);
@@ -304,19 +304,19 @@ static const CGFloat kDesiredTableHeight = 150;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewDataSourceDelegate
+// TTModelDelegate
 
-- (void)dataSourceDidStartLoad:(id<TTTableViewDataSource>)dataSource {
+- (void)modelDidStartLoad:(id<TTModel>)model {
   if (!_searchesAutomatically) {
     [self reloadTable];
   }
 }
 
-- (void)dataSourceDidFinishLoad:(id<TTTableViewDataSource>)dataSource {
+- (void)modelDidFinishLoad:(id<TTModel>)model {
   [self reloadTable];
 }
 
-- (void)dataSource:(id<TTTableViewDataSource>)dataSource didFailLoadWithError:(NSError*)error {
+- (void)model:(id<TTModel>)model didFailLoadWithError:(NSError*)error {
   [self reloadTable];
 }
 
@@ -363,10 +363,10 @@ static const CGFloat kDesiredTableHeight = 150;
 
 - (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
   if (dataSource != _dataSource) {
-    [_dataSource.delegates removeObject:self];
+    [_dataSource.model.delegates removeObject:self];
     [_dataSource release];
     _dataSource = [dataSource retain];
-    [_dataSource.delegates addObject:self];
+    [_dataSource.model.delegates addObject:self];
   }
 }
 
@@ -402,7 +402,7 @@ static const CGFloat kDesiredTableHeight = 150;
 - (void)search {
   if (_dataSource) {
     NSString* text = self.searchText;
-    [_dataSource tableView:self.tableView search:text];
+    [_dataSource search:text];
   }
 }
 

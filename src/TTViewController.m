@@ -1,5 +1,4 @@
 #import "Three20/TTViewController.h"
-#import "Three20/TTErrorView.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTStyleSheet.h"
 
@@ -7,8 +6,7 @@
 
 @implementation TTViewController
 
-@synthesize modelState = _modelState, modelError = _modelError,
-  navigationBarStyle = _navigationBarStyle,
+@synthesize navigationBarStyle = _navigationBarStyle,
   navigationBarTintColor = _navigationBarTintColor, statusBarStyle = _statusBarStyle,
   isViewAppearing = _isViewAppearing, hasViewAppeared = _hasViewAppeared,
   autoresizesForKeyboard = _autoresizesForKeyboard;
@@ -60,17 +58,9 @@
     _navigationBarStyle = UIBarStyleDefault;
     _navigationBarTintColor = nil;
     _statusBarStyle = UIStatusBarStyleDefault;
-    _modelState = TTModelStateEmpty;
-    _modelError = nil;
     _hasViewAppeared = NO;
     _isViewAppearing = NO;
     _autoresizesForKeyboard = NO;
-    _isModelInvalid = YES;
-    _isViewInvalid = YES;
-    _isLoadingViewInvalid = NO;
-    _isLoadedViewInvalid = YES;
-    _isValidatingModel = NO;
-    _isValidatingView = NO;
     
     self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
   }
@@ -91,7 +81,6 @@
 
   TT_RELEASE_MEMBER(_navigationBarTintColor);
   TT_RELEASE_MEMBER(_frozenState);
-  TT_RELEASE_MEMBER(_modelError);
 
   // You would think UIViewController would call this in dealloc, but it doesn't!
   // I would prefer not to have to redundantly put all view releases in dealloc and
@@ -105,8 +94,8 @@
 
 - (void)loadView {
   [super loadView];
-
-  self.view.frame = TTNavigationFrame();
+  
+  self.view = [[[UIView alloc] initWithFrame:TTNavigationFrame()] autorelease];
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.view.backgroundColor = TTSTYLEVAR(backgroundColor);
@@ -115,7 +104,6 @@
 - (void)viewWillAppear:(BOOL)animated {
   _isViewAppearing = YES;
   _hasViewAppeared = YES;
-  [self validateView];
 
   [TTURLRequestQueue mainQueue].suspended = YES;
 
@@ -146,7 +134,6 @@
     // This will come around to calling viewDidUnload
     [super didReceiveMemoryWarning];
 
-    [self invalidateView];
     _hasViewAppeared = NO;
   }
 }
@@ -161,37 +148,6 @@
 - (void)setFrozenState:(NSDictionary*)frozenState {
   [_frozenState release];
   _frozenState = [frozenState retain];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTLoadableDelegate
-
-- (void)loadableDidStartLoad:(id<TTLoadable>)loadable {
-  if (loadable.isLoadingMore) {
-    self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateLoadingMore;
-  } else if (_modelState & TTModelLoadedStates) {
-    self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateRefreshing;
-  } else {
-    self.modelState = TTModelStateLoading;
-  }
-}
-
-- (void)loadableDidFinishLoad:(id<TTLoadable>)loadable {
-  if (loadable.isEmpty) {
-    self.modelState = TTModelStateEmpty;
-  } else {
-    self.modelState = TTModelStateLoaded;
-  }
-}
-
-- (void)loadable:(id<TTLoadable>)loadable didFailLoadWithError:(NSError*)error {
-  self.modelError = error;
-  self.modelState = TTModelStateLoadedError;
-}
-
-- (void)loadableDidCancelLoad:(id<TTLoadable>)loadable {
-  self.modelError = nil;
-  self.modelState = TTModelStateLoadedError;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,22 +170,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (void)setModelState:(TTModelState)state {
-  if (!_isLoadingViewInvalid) {
-    _isLoadingViewInvalid = (_modelState & TTModelLoadingStates) != (state & TTModelLoadingStates);
-  }
-  if (!_isLoadedViewInvalid) {
-    _isLoadedViewInvalid = state == TTModelStateLoaded || state == TTModelStateEmpty
-                       || (_modelState & TTModelLoadedStates) != (state & TTModelLoadedStates);
-  }
-  
-  _modelState = state;
-  
-  if (_isViewAppearing) {
-    [self validateView];
-  }
-}
-
 - (void)setAutoresizesForKeyboard:(BOOL)autoresizesForKeyboard {
   if (autoresizesForKeyboard != _autoresizesForKeyboard) {
     _autoresizesForKeyboard = autoresizesForKeyboard;
@@ -246,87 +186,6 @@
         name:@"UIKeyboardWillHideNotification" object:nil];
     }
   }
-}
-
-- (void)reload {
-}
-
-- (void)reloadIfNeeded {
-}
-
-- (void)invalidateModel {
-  _isModelInvalid = YES;
-  if (self.isViewLoaded) {
-    [self validateModel];
-  }
-}
-
-- (void)validateModel {
-  if (!_isValidatingModel && _isModelInvalid) {
-    _isValidatingModel = YES;
-    [self updateModel];
-    _isModelInvalid = NO;
-    _isValidatingModel = NO;
-
-    if (_isViewAppearing) {
-      [self validateView];
-    }
-  }
-}
-
-- (void)invalidateView {
-  _isViewInvalid = YES;
-  _modelState = TTModelStateEmpty;
-  _isLoadingViewInvalid = NO;
-  _isLoadedViewInvalid = YES;
-}
-
-- (void)validateView {
-  if (_isModelInvalid) {
-    [self validateModel];
-  } else if (!_isValidatingView) {
-    _isValidatingView = YES;
-    
-    if (_isViewInvalid) {
-      // Ensure the view is loaded
-      self.view;
-
-      [self modelDidChange];
-
-      if (_frozenState && !(self.modelState & TTModelLoadingStates)) {
-        [self restoreView:_frozenState];
-        TT_RELEASE_MEMBER(_frozenState);
-      }
-
-      _isViewInvalid = NO;
-    }
-    
-    if (_isLoadingViewInvalid) {
-      [self modelDidChangeLoadingState];
-      _isLoadingViewInvalid = NO;
-    }
-
-    if (_isLoadedViewInvalid) {
-      [self modelDidChangeLoadedState];
-      _isLoadedViewInvalid = NO;
-    }
-
-    _isValidatingView = NO;
-
-    [self reloadIfNeeded];
-  }
-}
-
-- (void)updateModel {
-}
-
-- (void)modelDidChange {
-}
-
-- (void)modelDidChangeLoadingState {
-}
-
-- (void)modelDidChangeLoadedState {
 }
 
 - (void)keyboardWillAppear:(BOOL)animated {

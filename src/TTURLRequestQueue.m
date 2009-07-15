@@ -164,7 +164,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
 }
 
--(void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
+- (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
   [_responseData appendData:data];
 }
 
@@ -179,7 +179,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   [self dispatchLoadedBytes:totalBytesWritten expected:totalBytesExpectedToWrite];
 }
  
--(void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   TTNetworkRequestStopped();
 
   if (_response.statusCode == 200) {

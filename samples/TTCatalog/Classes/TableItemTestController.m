@@ -21,48 +21,43 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
     self.tableViewStyle = UITableViewStyleGrouped;
     self.autoresizesForKeyboard = YES;
     self.variableHeightRows = YES;
+
+    // This demonstrates how to create a table with standard table "fields".  Many of these
+    // fields with URLs that will be visited when the row is selected
+    self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
+      @"Links and Buttons",
+      [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"],
+      [TTTableTextItem itemWithText:@"TTTableTextItem (external link)" URL:@"http://foo.com"],
+      [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableItemTest"],
+      [TTTableButton itemWithText:@"TTTableButton"],
+      [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem" caption:@"caption"
+                             URL:@"tt://tableItemTest"],
+      [TTTableImageItem itemWithText:@"TTTableImageItem" URL:@"tt://tableItemTest"
+                               image:@"bundle://tableIcon.png"],
+      [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" URL:@"tt://tableItemTest"
+                             image:@"bundle://person.jpg"],
+      [TTTableMoreButton itemWithText:@"TTTableMoreButton"],
+
+      @"Static Text",
+      [TTTableTextItem itemWithText:@"TTTableItem"],
+      [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem which wraps to several lines"
+                            caption:@"Text"],
+      [TTTableBelowCaptionedItem itemWithText:@"TTTableBelowCaptionedItem"
+                                 caption:kLoremIpsum],
+      [TTTableLongTextItem itemWithText:kLoremIpsum],
+      [TTTableGrayTextItem itemWithText:kLoremIpsum],
+      [TTTableSummaryItem itemWithText:@"TTTableSummaryItem"],
+
+      @"",
+      [TTTableActivityItem itemWithText:@"TTTableActivityItem"],
+
+      nil];
   }
   return self;
 }
 
 - (void)dealloc {
   [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewController
-
-- (id<TTTableViewDataSource>)createDataSource {
-  // This demonstrates how to create a table with standard table "fields".  Many of these
-  // fields with URLs that will be visited when the row is selected
-  return [TTSectionedDataSource dataSourceWithObjects:
-    @"Links and Buttons",
-    [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"],
-    [TTTableTextItem itemWithText:@"TTTableTextItem (external link)" URL:@"http://foo.com"],
-    [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableItemTest"],
-    [TTTableButton itemWithText:@"TTTableButton"],
-    [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem" caption:@"caption"
-                           URL:@"tt://tableItemTest"],
-    [TTTableImageItem itemWithText:@"TTTableImageItem" URL:@"tt://tableItemTest"
-                             image:@"bundle://tableIcon.png"],
-    [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" URL:@"tt://tableItemTest"
-                           image:@"bundle://person.jpg"],
-    [TTTableMoreButton itemWithText:@"TTTableMoreButton"],
-
-    @"Static Text",
-    [TTTableTextItem itemWithText:@"TTTableItem"],
-    [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem which wraps to several lines"
-                          caption:@"Text"],
-    [TTTableBelowCaptionedItem itemWithText:@"TTTableBelowCaptionedItem"
-                               caption:kLoremIpsum],
-    [TTTableLongTextItem itemWithText:kLoremIpsum],
-    [TTTableGrayTextItem itemWithText:kLoremIpsum],
-    [TTTableSummaryItem itemWithText:@"TTTableSummaryItem"],
-
-    @"",
-    [TTTableActivityItem itemWithText:@"TTTableActivityItem"],
-
-    nil];
 }
 
 @end

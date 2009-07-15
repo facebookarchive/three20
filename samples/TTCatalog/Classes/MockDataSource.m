@@ -344,12 +344,12 @@
   return item.text;
 }
 
-- (void)tableView:(UITableView*)tableView prepareCell:(UITableViewCell*)cell
+- (void)tableView:(UITableView*)tableView willAppearAtIndexPath:(UITableViewCell*)cell
         forRowAtIndexPath:(NSIndexPath*)indexPath {
   cell.accessoryType = UITableViewCellAccessoryNone;
 }
 
-- (void)tableView:(UITableView*)tableView search:(NSString*)text {
+- (void)search:(NSString*)text {
   TT_RELEASE_MEMBER(_sections);
   TT_RELEASE_MEMBER(_items);
 
@@ -371,7 +371,7 @@
     _items = nil;
   }
   
-  [self didFinishLoad];
+  //[_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -439,9 +439,9 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTViewController
+// TTModelViewController
 
-- (void)modelDidChange {
+- (void)modelWillAppear {
   if (_initialRecipients) {
     for (id recipient in _initialRecipients) {
       [self addRecipient:recipient forFieldAtIndex:0];
