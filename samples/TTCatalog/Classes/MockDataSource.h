@@ -1,13 +1,15 @@
 #import <Three20/Three20.h>
 
+@class TestAddressBook;
+
 @interface MockDataSource : TTSectionedDataSource {
-  NSArray* _names;
+  TestAddressBook* _addressBook;
 }
 
-+ (MockDataSource*)mockDataSource:(BOOL)forSearch;
+@end
 
-- (id)initWithNames:(NSArray*)names;
-
-- (void)rebuildItems;
+@interface MockSearchDataSource : TTSectionedDataSource {
+  TestAddressBook* _addressBook;
+}
 
 @end

@@ -14,11 +14,6 @@
 - (NSMutableArray*)delegates;
 
 /**
- * The time that the data was loaded.
- */
-- (NSDate*)loadedTime;
-
-/**
  * Indicates that the data has been loaded.
  */
 
@@ -41,6 +36,9 @@
 
 /**
  * Indicates that the data set contains no objects.
+ *
+ * This returns YES by default for remote models, so you should override this method
+ * to indicate whether your model has data or not.
  */
 - (BOOL)isEmpty;
 
@@ -79,6 +77,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * The default implementation of TTModel which is built to work with TTURLRequests.
+ *
+ * If you subclass TTModel and use it as the delegate of your TTURLRequests, it will automatically
+ * manage many of the TTModel properties based on the results of the requests.
+ */
 @interface TTModel : NSObject <TTModel, TTURLRequestDelegate> {
   NSMutableArray* _delegates;
   TTURLRequest* _loadingRequest;
@@ -87,8 +91,17 @@
   NSString* _cacheKey;
 }
 
+@property(nonatomic,assign) NSDate* loadedTime;
 @property(nonatomic,copy) NSString* cacheKey;
 
-- (void)setLoadedTime:(NSDate*)timestamp;
+/**
+ * Initializes a model with data that is not loaded remotely.
+ */ 
+- (id)initLocalModel;
+
+/**
+ * Initializes a model with data that is loaded remotely.
+ */ 
+- (id)initRemoteModel;
 
 @end

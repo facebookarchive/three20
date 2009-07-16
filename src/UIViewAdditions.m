@@ -300,4 +300,31 @@
   [touch.view touchesEnded:[NSSet setWithObject:touch] withEvent:eventUp];
 }
 
+- (CGRect)frameWithKeyboardSubtracted {
+  CGRect frame = self.frame;
+  if ([self.window performSelector:@selector(firstResponder)]) {
+    CGRect screenFrame = TTScreenBounds();
+    CGFloat keyboardTop = (screenFrame.size.height - KEYBOARD_HEIGHT);
+    CGFloat screenBottom = self.screenY + frame.size.height;
+    CGFloat diff = screenBottom - keyboardTop;
+    if (diff > 0) {
+      frame.size.height -= diff;
+    }
+  }
+  return frame;
+}
+
+- (CGRect)frameOffsetFromKeyboard {
+  CGRect frame = self.frame;
+  if ([self.window performSelector:@selector(firstResponder)]) {
+    CGRect screenFrame = TTScreenBounds();
+    CGFloat keyboardTop = (screenFrame.size.height - KEYBOARD_HEIGHT) - self.superview.screenY;
+    CGFloat diff = (frame.origin.y + frame.size.height) - keyboardTop;
+    if (diff > 0) {
+      frame.origin.y -= diff;
+    }
+  }
+  return frame;
+}
+
 @end

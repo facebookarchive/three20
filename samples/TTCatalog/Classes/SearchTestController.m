@@ -13,7 +13,9 @@
   if (self = [super init]) {
     _delegate = nil;
     
-    self.dataSource = [MockDataSource mockDataSource:NO];
+    self.title = @"Search Test";
+    self.dataSource = [[[MockDataSource alloc] init] autorelease];
+    self.searchDataSource = [[[MockSearchDataSource alloc] init] autorelease];
   }
   return self;
 }
@@ -24,20 +26,14 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
-//
+
 - (void)loadView {
   [super loadView];
-  
-  self.tableView.sectionIndexMinimumDisplayRowCount = 2;
 
-  TTSearchBar* searchBar = [[[TTSearchBar alloc] initWithFrame:
-    CGRectMake(0, 0, self.tableView.width, 0)] autorelease];
-  searchBar.delegate = self;
-  searchBar.dataSource = [MockDataSource mockDataSource:YES];
-  searchBar.showsDoneButton = YES;
-  searchBar.showsDarkScreen = YES;
-  [searchBar sizeToFit];
-  self.tableView.tableHeaderView = searchBar;
+//  _searchController.searchBar.showsScopeBar = YES;
+//  _searchController.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
+//    @"First", @"Last", @"City", nil];
+  self.tableView.tableHeaderView = _searchController.searchBar;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

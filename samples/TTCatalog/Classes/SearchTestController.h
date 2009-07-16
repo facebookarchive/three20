@@ -1,6 +1,7 @@
 #import <Three20/Three20.h>
 
 @protocol SearchTestControllerDelegate;
+@class MockDataSource;
 
 @interface SearchTestController : TTTableViewController <TTSearchTextFieldDelegate> {
   id<SearchTestControllerDelegate> _delegate;

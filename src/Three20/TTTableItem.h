@@ -90,10 +90,10 @@
 @end
 
 @interface TTTableStatusItem : TTTableItem {
-  BOOL _sizeToFit;
+  BOOL _expandToFit;
 }
 
-@property(nonatomic) BOOL sizeToFit;
+@property(nonatomic) BOOL expandToFit;
 
 @end
 
@@ -104,6 +104,7 @@
 @property(nonatomic,copy) NSString* text;
 
 + (id)itemWithText:(NSString*)text;
++ (id)itemWithText:(NSString*)text expandToFit:(BOOL)expandToFit;
 
 @end
 

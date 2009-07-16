@@ -330,11 +330,11 @@
 
 @implementation TTTableStatusItem
 
-@synthesize sizeToFit = _sizeToFit;
+@synthesize expandToFit = _expandToFit;
 
 - (id)init {
   if (self = [super init]) {
-    _sizeToFit = NO;
+    _expandToFit = NO;
   }
   return self;
 }
@@ -353,6 +353,13 @@
 + (id)itemWithText:(NSString*)text {
   TTTableActivityItem* item = [[[self alloc] init] autorelease];
   item.text = text;
+  return item;
+}
+
++ (id)itemWithText:(NSString*)text expandToFit:(BOOL)expandToFit {
+  TTTableActivityItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.expandToFit = expandToFit;
   return item;
 }
 

@@ -43,4 +43,8 @@
 
 - (CGPoint)offsetFromView:(UIView*)otherView;
 
+- (CGRect)frameWithKeyboardSubtracted;
+
+- (CGRect)frameOffsetFromKeyboard;
+
 @end

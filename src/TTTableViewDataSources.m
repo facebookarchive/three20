@@ -229,7 +229,7 @@
   if (_sections) {
     NSMutableArray* titles = [NSMutableArray array];
     if (withSearch) {
-      [titles addObject:@"{search}"];
+      [titles addObject:UITableViewIndexSearch];
     }
     
     for (NSString* label in _sections) {

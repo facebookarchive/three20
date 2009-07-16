@@ -1,5 +1,8 @@
 #import "Three20/TTGlobal.h"
 
+@protocol TTTableViewDataSource;
+@class TTSearchDisplayController;
+
 /** 
  * A view controller with some useful additions.
  */
@@ -8,25 +11,36 @@
   UIBarStyle _navigationBarStyle;
   UIColor* _navigationBarTintColor;
   UIStatusBarStyle _statusBarStyle;
+  TTSearchDisplayController* _searchController;
   BOOL _isViewAppearing;
   BOOL _hasViewAppeared;
   BOOL _autoresizesForKeyboard;
 }
 
 /**
- * The style of the navigation bar when this controller is pushed onto a navigation controller.
+ * The style of the navigation bar when this view controller is pushed onto a navigation controller.
  */
 @property(nonatomic) UIBarStyle navigationBarStyle;
 
 /**
- * The color of the navigation bar when this controller is pushed onto a navigation controller.
+ * The color of the navigation bar when this view controller is pushed onto a navigation controller.
  */
 @property(nonatomic,retain) UIColor* navigationBarTintColor;
 
 /**
- * The style of the status bar when this controller is isViewAppearing.
+ * The style of the status bar when this view controller is isViewAppearing.
  */
 @property(nonatomic) UIStatusBarStyle statusBarStyle;
+
+/**
+ * A data source used to search the contents of the view controller.
+ *
+ * If you assign a data source to this property, it will automatically create a search
+ * display controller which you can access through this view controller's searchDisplaController
+ * property.  You can then take the searchBar from that controller and add it to your views. The
+ * search bar will then search the contents of the data source that you assigned to this property.
+ */
+@property(nonatomic,retain) id<TTTableViewDataSource> searchDataSource;
 
 /**
  * The view has appeared at least once.

@@ -82,6 +82,9 @@
 
 #define TTSTYLEVAR(_VARNAME) [TTSTYLESHEET _VARNAME]
 
+#define TTLOGVIEWS(_VIEW) \
+  { for (UIView* view = _VIEW; view; view = view.superview) { TTLOG(@"%@", view); } }
+
 #define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
 
 typedef enum {
@@ -124,6 +127,9 @@ typedef enum {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #define TT_RELEASE_MEMBER(__POINTER) { [__POINTER release]; __POINTER = nil; }
+
+#define TT_RELEASE_TIMER(__TIMER) { [__TIMER release]; __TIMER = nil; }
+
 /**
  * Creates a mutable array which does not retain references to the objects it contains.
  */

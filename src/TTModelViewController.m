@@ -100,8 +100,7 @@
 
 - (void)modelDidCancelLoad:(id<TTModel>)model {
   if (model == _model) {
-    self.modelError = nil;
-    self.modelState = TTModelStateLoadedError;
+    self.modelState = _modelState & ~TTModelLoadingStates;
   }
 }
 

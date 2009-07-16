@@ -5,6 +5,7 @@
 #import "Three20/TTTableItemCell.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTTableViewDelegate.h"
+#import "Three20/TTSearchDisplayController.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,20 +78,7 @@ static const CGFloat kReloadingViewHeight = 22;
 
 - (void)loadView {
   [super loadView];
-  
-  self.tableView = [[[TTTableView alloc] initWithFrame:self.view.bounds
-                                         style:_tableViewStyle] autorelease];
-	self.tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
-                                     | UIViewAutoresizingFlexibleHeight;
-
-  UIColor* backgroundColor = _tableViewStyle == UITableViewStyleGrouped
-    ? TTSTYLEVAR(tableGroupedBackgroundColor)
-    : TTSTYLEVAR(tablePlainBackgroundColor);
-  if (backgroundColor) {
-    self.tableView.backgroundColor = backgroundColor;
-  }
-  
-  [self.view addSubview:self.tableView];
+  self.tableView;
 }
 
 - (void)viewDidUnload {
@@ -128,6 +116,13 @@ static const CGFloat kReloadingViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
+- (void)setSearchDataSource:(id<TTTableViewDataSource>)searchDataSource {
+  [super setSearchDataSource:searchDataSource];
+  if (!_searchController.searchResultsDelegate) {
+    _searchController.searchResultsDelegate = [self createDelegate];
+  }
+}
+
 - (void)keyboardWillAppear:(BOOL)animated {
   [self.tableView scrollFirstResponderIntoView];
 }
@@ -138,31 +133,37 @@ static const CGFloat kReloadingViewHeight = 22;
 - (void)modelDidChangeLoadingState {
   if (self.modelState & TTModelStateLoading) {
     NSString* title = [_dataSource titleForLoading:NO];
-    TTTableStatusItem* statusItem = [TTTableActivityItem itemWithText:title];
-    statusItem.sizeToFit = YES;
+    TTTableActivityItem* activityItem = [TTTableActivityItem itemWithText:title expandToFit:YES];
 
     _statusDataSource = [[TTListDataSource alloc] initWithItems:
-      [NSArray arrayWithObject:statusItem]];
+      [NSArray arrayWithObject:activityItem]];
     _tableView.dataSource = _statusDataSource;
     [self reloadTableData];
   } else if (self.modelState & TTModelStateReloading) {
     if (!_reloadingView) {
-      _reloadingView = [[TTActivityLabel alloc] initWithFrame:
-        CGRectMake(0, _tableView.height + _tableView.top, self.view.width, kReloadingViewHeight)
-        style:TTActivityLabelStyleBlackBox text:[_dataSource titleForLoading:YES]];
+      CGRect tableFrame = [_tableView frameWithKeyboardSubtracted];
+      CGRect frame = CGRectMake(tableFrame.origin.x,
+                                tableFrame.origin.y + tableFrame.size.height,
+                                tableFrame.size.width, kReloadingViewHeight);
+      _reloadingView = [[TTActivityLabel alloc] initWithFrame:frame
+                                                style:TTActivityLabelStyleBlackBox
+                                                text:[_dataSource titleForLoading:YES]];
       _reloadingView.centeredToScreen = NO;
       _reloadingView.userInteractionEnabled = NO;
-      _reloadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-                                         | UIViewAutoresizingFlexibleTopMargin;
+      _reloadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
       _reloadingView.font = [UIFont boldSystemFontOfSize:12];
       
-      NSInteger tableIndex = [self.view.subviews indexOfObject:_tableView];
-      [self.view insertSubview:_reloadingView atIndex:tableIndex+1];
+      NSInteger tableIndex = [_tableView.superview.subviews indexOfObject:_tableView];
+      if (tableIndex != NSNotFound) {
+        [_tableView.superview insertSubview:_reloadingView atIndex:tableIndex+1];
+      } else {
+        [_tableView.superview addSubview:_reloadingView];
+      }
       
       [UIView beginAnimations:nil context:nil];
       [UIView setAnimationDuration:TT_TRANSITION_DURATION];
       [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-      _reloadingView.frame = CGRectOffset(_reloadingView.frame, 0, -kReloadingViewHeight);
+      _reloadingView.top -= kReloadingViewHeight;
       [UIView commitAnimations];
     }
   } else if (_reloadingView) {
@@ -192,12 +193,12 @@ static const CGFloat kReloadingViewHeight = 22;
     NSString* subtitle = [_dataSource subtitleForError:_modelError];
     UIImage* image = [_dataSource imageForError:_modelError];
     
-    TTTableErrorItem* statusItem = [TTTableErrorItem itemWithTitle:title subtitle:subtitle
+    TTTableErrorItem* errorItem = [TTTableErrorItem itemWithTitle:title subtitle:subtitle
                                                      image:image];
-    statusItem.sizeToFit = YES;
+    errorItem.expandToFit = YES;
 
     _statusDataSource = [[TTListDataSource alloc] initWithItems:
-                        [NSArray arrayWithObject:statusItem]];
+                        [NSArray arrayWithObject:errorItem]];
     [_statusDataSource willAppearInTableView:_tableView];
     _tableView.dataSource = _statusDataSource;
   } else if (!(self.modelState & TTModelLoadingStates)) {
@@ -205,12 +206,12 @@ static const CGFloat kReloadingViewHeight = 22;
     NSString* subtitle = [_dataSource subtitleForNoData];
     UIImage* image = [_dataSource imageForNoData];
     
-    TTTableStatusItem* statusItem = [TTTableErrorItem itemWithTitle:title subtitle:subtitle
+    TTTableErrorItem* errorItem = [TTTableErrorItem itemWithTitle:title subtitle:subtitle
                                                       image:image];
-    statusItem.sizeToFit = YES;
+    errorItem.expandToFit = YES;
 
     _statusDataSource = [[TTListDataSource alloc] initWithItems:
-      [NSArray arrayWithObject:statusItem]];
+      [NSArray arrayWithObject:errorItem]];
     _tableView.dataSource = _statusDataSource;
   }
 
@@ -219,6 +220,35 @@ static const CGFloat kReloadingViewHeight = 22;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
+
+- (UITableView*)tableView {
+  if (!_tableView) {
+    _tableView = [[TTTableView alloc] initWithFrame:self.view.bounds style:_tableViewStyle];
+    _tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
+                                   | UIViewAutoresizingFlexibleHeight;
+
+    UIColor* backgroundColor = _tableViewStyle == UITableViewStyleGrouped
+      ? TTSTYLEVAR(tableGroupedBackgroundColor)
+      : TTSTYLEVAR(tablePlainBackgroundColor);
+    if (backgroundColor) {
+      _tableView.backgroundColor = backgroundColor;
+    }
+    [self.view addSubview:_tableView];
+  }
+  return _tableView;
+}
+
+//- (void)setTableView:(UITableView*)tableView {
+//  if (tableView != _tableView) {
+//    [_tableView release];
+//    _tableView = [tableView retain];
+//    
+//    if (!_tableView) {
+//      [_reloadingView removeFromSuperview];
+//      TT_RELEASE_MEMBER(_reloadingView);
+//    }
+//  }
+//}
 
 - (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
   if (dataSource != _dataSource) {

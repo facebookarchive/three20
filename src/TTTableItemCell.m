@@ -521,7 +521,7 @@ static CGFloat kDefaultIconSize = 50;
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTTableActivityItem* activityItem = item;
-  if (activityItem.sizeToFit) {
+  if (activityItem.expandToFit) {
     if (tableView.style == UITableViewStyleGrouped) {
       [tableView.tableHeaderView layoutIfNeeded];
       return (tableView.height - TABLE_GROUPED_PADDING*2) - tableView.tableHeaderView.height;
@@ -587,7 +587,7 @@ static CGFloat kDefaultIconSize = 50;
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTTableErrorItem* errorItem = item;
-  if (errorItem.sizeToFit) {
+  if (errorItem.expandToFit) {
     CGFloat headerHeight = 0;
     if ([tableView.delegate respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
       headerHeight = [tableView.delegate tableView:tableView heightForHeaderInSection:0];

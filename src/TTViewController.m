@@ -1,6 +1,7 @@
 #import "Three20/TTViewController.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTStyleSheet.h"
+#import "Three20/TTSearchDisplayController.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -75,17 +76,18 @@
   TTLOG(@"DEALLOC %@", self);
 
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
-  
-  // Removes keyboard notification observers for 
-  self.autoresizesForKeyboard = NO;
 
   TT_RELEASE_MEMBER(_navigationBarTintColor);
   TT_RELEASE_MEMBER(_frozenState);
+  
+  // Removes keyboard notification observers for 
+  self.autoresizesForKeyboard = NO;
 
   // You would think UIViewController would call this in dealloc, but it doesn't!
   // I would prefer not to have to redundantly put all view releases in dealloc and
   // viewDidUnload, so my solution is just to call viewDidUnload here.
   [self viewDidUnload];
+  
   [super dealloc];
 }
 
@@ -112,6 +114,13 @@
     bar.tintColor = _navigationBarTintColor;
     bar.barStyle = _navigationBarStyle;
     [[UIApplication sharedApplication] setStatusBarStyle:_statusBarStyle animated:YES];
+  }
+  
+  // Ugly hack to work around UISearchBar's inability to resize its text field
+  // to avoid being overlapped by the table section index
+  if (_searchController && !_searchController.active) {
+    [_searchController setActive:YES];
+    [_searchController setActive:NO];
   }
 }
 
@@ -169,6 +178,27 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
+
+- (id<TTTableViewDataSource>)searchDataSource {
+  return _searchController.dataSource;
+}
+
+- (void)setSearchDataSource:(id<TTTableViewDataSource>)searchDataSource {
+  if (searchDataSource) {
+    if (!_searchController) {
+      UISearchBar* searchBar = [[[UISearchBar alloc] init] autorelease];
+      [searchBar sizeToFit];
+
+      _searchController = [[TTSearchDisplayController alloc] initWithSearchBar:searchBar
+                                                             contentsController:self];
+    }
+    
+    _searchController.dataSource = searchDataSource;
+  } else {
+    _searchController.dataSource = nil;
+    TT_RELEASE_MEMBER(_searchController);
+  }
+}
 
 - (void)setAutoresizesForKeyboard:(BOOL)autoresizesForKeyboard {
   if (autoresizesForKeyboard != _autoresizesForKeyboard) {

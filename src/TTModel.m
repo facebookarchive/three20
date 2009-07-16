@@ -8,12 +8,23 @@
 
 @implementation TTModel
 
-@synthesize cacheKey = _cacheKey;
+@synthesize loadedTime = _loadedTime, cacheKey = _cacheKey;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
+- (id)initLocalModel {
+  if (self = [super init]) {
+    _delegates = nil;
+    _loadingRequest = nil;
+    _isLoadingMore = NO;
+    _loadedTime = [[NSDate date] retain];
+    _cacheKey = nil;
+  }
+  return self;
+}
+
+- (id)initRemoteModel {
   if (self = [super init]) {
     _delegates = nil;
     _loadingRequest = nil;
@@ -22,6 +33,10 @@
     _cacheKey = nil;
   }
   return self;
+}
+
+- (id)init {
+  return [self initRemoteModel];
 }
 
 - (void)dealloc {
@@ -61,16 +76,19 @@
 }
 
 - (BOOL)isOutdated {
-  NSDate* loadedTime = self.loadedTime;
-  if (loadedTime) {
-    return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
-  } else {
+  if (!_cacheKey) {
     return NO;
+  } else {
+    NSDate* loadedTime = self.loadedTime;
+    if (loadedTime) {
+      return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
+    } else {
+      return NO;
+    }
   }
 }
 
 - (BOOL)isEmpty {
-  // Subclasses must implement this, since this class has no idea what content they will have
   return YES;
 }
 
