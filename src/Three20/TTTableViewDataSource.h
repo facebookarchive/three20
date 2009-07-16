@@ -54,17 +54,17 @@
 /**
  *
  */
-- (UIImage*)imageForNoData;
+- (UIImage*)imageForEmpty;
 
 /**
  *
  */
-- (NSString*)titleForNoData;
+- (NSString*)titleForEmpty;
 
 /**
  *
  */
-- (NSString*)subtitleForNoData;
+- (NSString*)subtitleForEmpty;
 
 /**
  *

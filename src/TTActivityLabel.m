@@ -51,7 +51,7 @@ static CGFloat kProgressMargin = 30;
       _bezelView.opaque = NO;
       _bezelView.style = TTSTYLE(whiteBezel);
     } else if (_style == TTActivityLabelStyleWhiteBox) {
-      _bezelView.backgroundColor = [UIColor whiteColor];
+      _bezelView.backgroundColor = [UIColor clearColor];
       self.backgroundColor = [UIColor whiteColor];
     } else if (_style == TTActivityLabelStyleBlackBox) {
       _bezelView.backgroundColor = [UIColor clearColor];

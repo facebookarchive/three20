@@ -432,10 +432,10 @@ static const NSTimeInterval kSlideshowInterval = 2;
 - (void)modelDidChangeLoadedState {
   if (self.modelState & TTModelStateLoaded) {
     [self showStatus:nil];
+  } else if (self.modelState == TTModelStateLoadedEmpty) {
+    [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
   } else if (self.modelState & TTModelStateLoadedError) {
     [self showStatus:TTLocalizedString(@"This photo set could not be loaded.", @"")];
-  } else if (self.modelState == TTModelStateEmpty) {
-    [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
   }
 
   [self updateChrome];

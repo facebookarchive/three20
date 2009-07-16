@@ -510,14 +510,14 @@ static TTURLRequestQueue* gMainQueue = nil;
 }
 
 - (BOOL)sendRequest:(TTURLRequest*)request {
+  if ([self loadRequestFromCache:request]) {
+    return YES;
+  }
+
   for (id<TTURLRequestDelegate> delegate in request.delegates) {
     if ([delegate respondsToSelector:@selector(requestDidStartLoad:)]) {
       [delegate requestDidStartLoad:request];
     }
-  }
-  
-  if ([self loadRequestFromCache:request]) {
-    return YES;
   }
   
   if (!request.URL.length) {

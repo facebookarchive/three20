@@ -319,7 +319,11 @@
   CGRect windowFrame = CGRectMake(0, screenFrame.size.height, screenFrame.size.width, self.height);
   UIWindow* window = [[UIWindow alloc] initWithFrame:windowFrame];
   [window addSubview:self];
+
+  // Don't steal key window from the previous window when we make this window visible
+  UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
   [window makeKeyAndVisible];
+  [keyWindow makeKeyWindow];
   
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:TT_TRANSITION_DURATION];

@@ -29,7 +29,7 @@
 - (id)init {
   if (self = [super init]) {
     _model = nil;
-    _modelState = TTModelStateEmpty;
+    _modelState = TTModelStateNone;
     _modelError = nil;
     _isViewInvalid = YES;
     _isLoadingViewInvalid = NO;
@@ -73,7 +73,7 @@
   if (model == self.model) {
     if (model.isLoadingMore) {
       self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateLoadingMore;
-    } else if (_modelState & TTModelLoadedStates) {
+    } else if (_modelState & TTModelStateLoaded) {
       self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateReloading;
     } else {
       self.modelState = TTModelStateLoading;
@@ -84,7 +84,7 @@
 - (void)modelDidFinishLoad:(id<TTModel>)model {
   if (model == _model) {
     if (model.isEmpty) {
-      self.modelState = TTModelStateEmpty;
+      self.modelState = TTModelStateLoadedEmpty;
     } else {
       self.modelState = TTModelStateLoaded;
     }
@@ -143,8 +143,8 @@
     _isLoadingViewInvalid = (_modelState & TTModelLoadingStates) != (state & TTModelLoadingStates);
   }
   if (!_isLoadedViewInvalid) {
-    _isLoadedViewInvalid = state == TTModelStateLoaded || state == TTModelStateEmpty
-                       || (_modelState & TTModelLoadedStates) != (state & TTModelLoadedStates);
+    _isLoadedViewInvalid = state == TTModelStateLoaded || state == TTModelStateNone
+                           || (_modelState & TTModelLoadedStates) != (state & TTModelLoadedStates);
   }
   
   _modelState = state;
@@ -210,8 +210,8 @@
     if (_modelError) {
       self.modelState = TTModelStateLoadedError;
     } else if (self.model.isEmpty) {
-      self.modelState = TTModelStateEmpty;
-    } else {
+      self.modelState = TTModelStateLoadedEmpty;
+    } else if (self.model.isLoaded) {
       self.modelState = TTModelStateLoaded;
     }
   }
@@ -219,7 +219,7 @@
 
 - (void)invalidateView {
   _isViewInvalid = YES;
-  _modelState = TTModelStateEmpty;
+  _modelState = TTModelStateNone;
   _isLoadingViewInvalid = NO;
   _isLoadedViewInvalid = YES;
 }

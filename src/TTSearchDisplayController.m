@@ -3,10 +3,29 @@
 #import "Three20/TTTableViewDataSource.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// global
+
+static const NSTimeInterval kPauseInterval = 0.4;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTSearchDisplayController
 
-@synthesize dataSource = _dataSource;
+@synthesize dataSource = _dataSource, pausesBeforeSearching = _pausesBeforeSearching;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (void)restartPauseTimer {
+  TT_RELEASE_TIMER(_pauseTimer);
+  _pauseTimer = [NSTimer scheduledTimerWithTimeInterval:kPauseInterval target:self
+                         selector:@selector(searchAfterPause) userInfo:nil repeats:NO];
+}
+
+- (void)searchAfterPause {
+  TT_RELEASE_TIMER(_pauseTimer);
+  [_dataSource search:self.searchBar.text];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -16,6 +35,8 @@
     _dataSource = nil;
     _searchResultsDelegate2 = nil;
     _tableViewController = nil;
+    _pauseTimer = nil;
+    _pausesBeforeSearching = YES;
     
     self.delegate = self;
   }
@@ -23,6 +44,7 @@
 }
 
 - (void)dealloc {
+  TT_RELEASE_TIMER(_pauseTimer);
   TT_RELEASE_MEMBER(_dataSource);
   TT_RELEASE_MEMBER(_searchResultsDelegate2);
   TT_RELEASE_MEMBER(_tableViewController);
@@ -68,15 +90,24 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController*)controller
         shouldReloadTableForSearchString:(NSString*)searchString {
-  [_dataSource search:searchString];
-  return YES;
+  if (_pausesBeforeSearching) {
+    [self restartPauseTimer];
+    if (_tableViewController.modelState & TTModelStateLoaded) {
+      _tableViewController.modelState = TTModelStateLoaded | TTModelStateReloading;
+    } else {
+      _tableViewController.modelState = TTModelStateLoading;
+    }
+  } else {
+    [_dataSource search:searchString];
+  }
+  return NO;
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController*)controller
         shouldReloadTableForSearchScope:(NSInteger)searchOption {
   // XXXjoe Need a way to communicate scope change to the data source
   [_dataSource search:self.searchBar.text];
-  return YES;
+  return NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

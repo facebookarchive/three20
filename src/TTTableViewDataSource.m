@@ -148,15 +148,15 @@
   }
 }
 
-- (UIImage*)imageForNoData {
+- (UIImage*)imageForEmpty {
   return nil;
 }
 
-- (NSString*)titleForNoData {
+- (NSString*)titleForEmpty {
   return nil;
 }
 
-- (NSString*)subtitleForNoData {
+- (NSString*)subtitleForEmpty {
   return nil;
 }
 

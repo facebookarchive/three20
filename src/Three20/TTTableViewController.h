@@ -86,4 +86,6 @@
  */
 - (void)didEndDragging;
 
+- (CGRect)rectForOverlayView;
+
 @end

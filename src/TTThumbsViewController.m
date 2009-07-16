@@ -95,15 +95,15 @@ static CGFloat kThumbnailRowHeight = 79;
   }
 }
 
-- (UIImage*)imageForNoData {
+- (UIImage*)imageForEmpty {
   return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
 }
 
-- (NSString*)titleForNoData {
+- (NSString*)titleForEmpty {
   return TTLocalizedString(@"No Photos", @"");
 }
 
-- (NSString*)subtitleForNoData {
+- (NSString*)subtitleForEmpty {
   return TTLocalizedString(@"This photo set contains no photos.", @"");
 }
 

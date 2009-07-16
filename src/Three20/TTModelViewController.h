@@ -2,14 +2,15 @@
 #import "Three20/TTModel.h"
 
 typedef enum {
-  TTModelStateEmpty = 0,
+  TTModelStateNone = 0,
   TTModelStateLoading = 1,
   TTModelStateLoadingMore = 2,
   TTModelStateReloading = 4,
   TTModelStateLoaded = 8,
-  TTModelStateLoadedError = 16,
+  TTModelStateLoadedEmpty = 16,
+  TTModelStateLoadedError = 32,
   TTModelLoadingStates = (TTModelStateLoading|TTModelStateLoadingMore|TTModelStateReloading),
-  TTModelLoadedStates = (TTModelStateLoaded|TTModelStateLoadedError),
+  TTModelLoadedStates = (TTModelStateLoaded|TTModelStateLoadedEmpty|TTModelStateLoadedError),
 } TTModelState;
 
 /**

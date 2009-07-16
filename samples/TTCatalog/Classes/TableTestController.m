@@ -41,14 +41,16 @@
 // private
 
 - (void)cycleModelState {
-  if (self.modelState == TTModelStateLoading) {
-    self.modelState = TTModelStateLoadedError;
-  } else if (self.modelState == TTModelStateEmpty) {
-    self.modelState = TTModelStateLoading;
-  } else if (self.modelState == TTModelStateLoadedError) {
+  if (self.modelState == TTModelStateNone) {
     self.modelState = TTModelStateLoaded;
   } else if (self.modelState == TTModelStateLoaded) {
-    self.modelState = TTModelStateEmpty;
+    self.modelState = TTModelStateLoading;
+  } else if (self.modelState == TTModelStateLoading) {
+    self.modelState = TTModelStateLoadedEmpty;
+  } else if (self.modelState == TTModelStateLoadedEmpty) {
+    self.modelState = TTModelStateLoadedError;
+  } else if (self.modelState == TTModelStateLoadedError) {
+    self.modelState = TTModelStateLoaded;
   }
 }
 
@@ -71,14 +73,16 @@
 }
 
 - (void)modelDidChangeState {
-  if (self.modelState == TTModelStateLoading) {
-    self.title = @"StateLoading";
-  } else if (self.modelState == TTModelStateEmpty) {
-    self.title = @"StateEmpty";
-  } else if (self.modelState == TTModelStateLoadedError) {
-    self.title = @"StateLoadedError";
+  if (self.modelState == TTModelStateNone) {
+    self.title = @"Empty";
+  } else if (self.modelState == TTModelStateLoading) {
+    self.title = @"Loading";
   } else if (self.modelState == TTModelStateLoaded) {
-    self.title = @"StateLoaded";
+    self.title = @"Loaded";
+  } else if (self.modelState == TTModelStateLoadedEmpty) {
+    self.title = @"LoadedEmpty";
+  } else if (self.modelState == TTModelStateLoadedError) {
+    self.title = @"LoadedError";
   }
 }
 

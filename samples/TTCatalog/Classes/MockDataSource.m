@@ -412,9 +412,10 @@
 }
 
 - (void)cancel {
-  [_fakeLoadTimer invalidate];
-  _fakeLoadTimer = nil;
-  [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];
+  if (_fakeLoadTimer) {
+    TT_RELEASE_TIMER(_fakeLoadTimer);
+    [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -427,7 +428,7 @@
 
 - (void)search:(NSString*)text {
   [self cancel];
-
+  
   if (text.length) {
     _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self
                               selector:@selector(fakeSearchReady:) userInfo:text repeats:NO];
@@ -523,22 +524,14 @@
 
 - (void)willAppearInTableView:(UITableView*)tableView {
   self.items = [NSMutableArray array];
-  self.sections = [NSMutableArray array];
     
-  NSMutableArray* section = [NSMutableArray array];
   for (NSString* name in _addressBook.names) {
     TTTableItem* item = [TTTableTextItem itemWithText:name URL:@"http://google.com"];
-    [section addObject:item];
+    [_items addObject:item];
   }
-
-  [_sections addObject:@""];
-  [_items addObject:section];
 }
 
 - (void)search:(NSString*)text {
-  self.items = [NSMutableArray array];
-  self.sections = [NSMutableArray array];
-
   [_addressBook search:text];
 }
 

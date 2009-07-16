@@ -60,15 +60,6 @@ static const CGFloat kBannerViewHeight = 22;
     }
   }
   
-  NSArray* indexPaths = [_tableView indexPathsForVisibleRows];
-  for (NSIndexPath* indexPath in indexPaths) {
-    CGRect headerRect = [_tableView rectForHeaderInSection:indexPath.section];
-    if (headerRect.origin.y == 0) {
-      frame.origin.y += headerRect.size.height;
-      frame.size.height -= headerRect.size.height;
-    }
-    break;
-  }
   return frame;
 }
 
@@ -271,9 +262,9 @@ static const CGFloat kBannerViewHeight = 22;
                                                   image:image] autorelease];
     self.tableOverlayView.backgroundColor = _tableView.backgroundColor;
   } else if (!(self.modelState & TTModelLoadingStates)) {
-    NSString* title = [_dataSource titleForNoData];
-    NSString* subtitle = [_dataSource subtitleForNoData];
-    UIImage* image = [_dataSource imageForNoData];
+    NSString* title = [_dataSource titleForEmpty];
+    NSString* subtitle = [_dataSource subtitleForEmpty];
+    UIImage* image = [_dataSource imageForEmpty];
     self.tableOverlayView = [[[TTErrorView alloc] initWithTitle:title
                                                   subtitle:subtitle
                                                   image:image] autorelease];
