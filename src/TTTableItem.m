@@ -328,21 +328,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableStatusItem
-
-@synthesize expandToFit = _expandToFit;
-
-- (id)init {
-  if (self = [super init]) {
-    _expandToFit = NO;
-  }
-  return self;
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 @implementation TTTableActivityItem
 
 @synthesize text = _text;
@@ -353,13 +338,6 @@
 + (id)itemWithText:(NSString*)text {
   TTTableActivityItem* item = [[[self alloc] init] autorelease];
   item.text = text;
-  return item;
-}
-
-+ (id)itemWithText:(NSString*)text expandToFit:(BOOL)expandToFit {
-  TTTableActivityItem* item = [[[self alloc] init] autorelease];
-  item.text = text;
-  item.expandToFit = expandToFit;
   return item;
 }
 
@@ -375,45 +353,6 @@
 
 - (void)dealloc {
   TT_RELEASE_MEMBER(_text);
-  [super dealloc];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTableErrorItem
-
-@synthesize image = _image, title = _title, subtitle = _subtitle;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// class public
-
-+ (id)itemWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image {
-  TTTableErrorItem* item = [[[self alloc] init] autorelease];
-  item.title = title;
-  item.subtitle = subtitle;
-  item.image = image;
-  return item;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)init {
-  if (self = [super init]) {
-    _title = nil;
-    _subtitle = nil;
-    _image = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_MEMBER(_title);
-  TT_RELEASE_MEMBER(_subtitle);
-  TT_RELEASE_MEMBER(_image);
   [super dealloc];
 }
 

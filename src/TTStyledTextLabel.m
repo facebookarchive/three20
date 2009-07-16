@@ -107,7 +107,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)setHighlightedFrame:(TTStyledBoxFrame*)frame{
   if (frame != _highlightedFrame) {
-    TTTableView* tableView = (TTTableView*)[self firstParentOfClass:[TTTableView class]];
+    TTTableView* tableView = (TTTableView*)[self ancestorOrSelfWithClass:[TTTableView class]];
     
     TTStyledBoxFrame* affectFrame = frame ? frame : _highlightedFrame;
     NSString* className = affectFrame.element.className;
@@ -155,7 +155,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-  TTTableView* tableView = (TTTableView*)[self firstParentOfClass:[TTTableView class]];
+  TTTableView* tableView = (TTTableView*)[self ancestorOrSelfWithClass:[TTTableView class]];
   if (!tableView) {
     if (_highlightedNode) {
       [_highlightedNode performDefaultAction];    

@@ -99,8 +99,6 @@
       return [TTStyledTextTableItemCell class];
     } else if ([object isKindOfClass:[TTTableActivityItem class]]) {
       return [TTTableActivityItemCell class];
-    } else if ([object isKindOfClass:[TTTableErrorItem class]]) {
-      return [TTTableErrorItemCell class];
     } else if ([object isKindOfClass:[TTTableControlItem class]]) {
       return [TTTableControlCell class];
     } else {

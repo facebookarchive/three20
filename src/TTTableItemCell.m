@@ -519,20 +519,6 @@ static CGFloat kDefaultIconSize = 50;
 
 @implementation TTTableActivityItemCell
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableActivityItem* activityItem = item;
-  if (activityItem.expandToFit) {
-    if (tableView.style == UITableViewStyleGrouped) {
-      [tableView.tableHeaderView layoutIfNeeded];
-      return (tableView.height - TABLE_GROUPED_PADDING*2) - tableView.tableHeaderView.height;
-    } else {
-      return tableView.height - tableView.tableHeaderView.height;
-    }
-  } else {
-    return [super tableView:tableView rowHeightForItem:item];
-  }
-}
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
     _activityLabel = [[TTActivityLabel alloc] initWithFrame:CGRectZero
@@ -576,74 +562,6 @@ static CGFloat kDefaultIconSize = 50;
   
     TTTableActivityItem* item = object;
     _activityLabel.text = item.text;
-  }  
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTableErrorItemCell
-
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableErrorItem* errorItem = item;
-  if (errorItem.expandToFit) {
-    CGFloat headerHeight = 0;
-    if ([tableView.delegate respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
-      headerHeight = [tableView.delegate tableView:tableView heightForHeaderInSection:0];
-    }
-    return tableView.height - (tableView.tableHeaderView.height + headerHeight);
-  } else {
-  }
-
-  return [super tableView:tableView rowHeightForItem:item];
-}
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
-    _item = nil;
-    
-    _errorView = [[TTErrorView alloc] init];
-    [self addSubview:_errorView];
-
-    self.accessoryType = UITableViewCellAccessoryNone;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_MEMBER(_item);
-  TT_RELEASE_MEMBER(_errorView);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  
-  _errorView.frame = self.bounds;
-  [_errorView setNeedsLayout];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewCell
-
-- (id)object {
-  return _item;
-}
-
-- (void)setObject:(id)object {
-  if (_item != object) {
-    [_item release];
-    _item = [object retain];
-    
-    TTTableErrorItem* item = object;
-    _errorView.image = item.image;
-    _errorView.title = item.title;
-    _errorView.subtitle = item.subtitle;
   }  
 }
 

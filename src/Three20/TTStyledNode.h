@@ -12,7 +12,7 @@
 
 - (id)initWithNextSibling:(TTStyledNode*)nextSibling;
 
-- (id)firstParentOfClass:(Class)cls;
+- (id)ancestorOrSelfWithClass:(Class)cls;
 
 - (void) performDefaultAction;
 

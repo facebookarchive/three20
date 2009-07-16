@@ -128,7 +128,7 @@ typedef enum {
 
 #define TT_RELEASE_MEMBER(__POINTER) { [__POINTER release]; __POINTER = nil; }
 
-#define TT_RELEASE_TIMER(__TIMER) { [__TIMER release]; __TIMER = nil; }
+#define TT_RELEASE_TIMER(__TIMER) { [__TIMER invalidate]; __TIMER = nil; }
 
 /**
  * Creates a mutable array which does not retain references to the objects it contains.

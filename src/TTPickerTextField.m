@@ -382,7 +382,7 @@ static CGFloat kMinCursorWidth = 50;
 
 - (void)scrollToVisibleLine:(BOOL)animated {
   if (self.editing) {
-    UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+    UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
     if (scrollView) {
       [scrollView setContentOffset:CGPointMake(0, self.top) animated:animated];
     }
@@ -390,7 +390,7 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)scrollToEditingLine:(BOOL)animated {
-  UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+  UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
   if (scrollView) {
     CGFloat offset = _lineCount == 1 ? 0 : [self topOfLine:_lineCount-1];
     [scrollView setContentOffset:CGPointMake(0, self.top+offset) animated:animated];

@@ -28,6 +28,10 @@
   CGPoint keyboardEnd;
   [v3 getValue:&keyboardEnd];
   
+  TTLOGRECT(keyboardBounds);
+  TTLOGPOINT(keyboardStart);
+  TTLOGPOINT(keyboardEnd);
+
   CGFloat keyboardTop = keyboardEnd.y - floor(keyboardBounds.size.height/2);
   CGFloat screenBottom = self.view.screenY + self.view.height;
   if (screenBottom != keyboardTop) {

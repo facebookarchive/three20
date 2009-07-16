@@ -39,12 +39,6 @@
 }
 @end
 
-@interface TTTableErrorItemCell : TTTableViewCell {
-  TTTableErrorItem* _item;
-  TTErrorView* _errorView;
-}
-@end
-
 @interface TTTableControlCell : TTTableViewCell {
   TTTableControlItem* _item;
   UIControl* _control;

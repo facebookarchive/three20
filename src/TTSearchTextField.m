@@ -325,7 +325,7 @@ static const CGFloat kDesiredTableHeight = 150;
 
 - (void)didBeginEditing {
   if (_dataSource) {
-    UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+    UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
     scrollView.scrollEnabled = NO;
     scrollView.scrollsToTop = NO;
 
@@ -343,7 +343,7 @@ static const CGFloat kDesiredTableHeight = 150;
 
 - (void)didEndEditing {
   if (_dataSource) {
-    UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+    UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
     scrollView.scrollEnabled = YES;
     scrollView.scrollsToTop = YES;
     
@@ -438,7 +438,7 @@ static const CGFloat kDesiredTableHeight = 150;
 }
 
 - (UIView*)superviewForSearchResults {
-  UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+  UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
   if (scrollView) {
     return scrollView;
   } else {

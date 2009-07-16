@@ -429,7 +429,7 @@
   [self cancel];
 
   if (text.length) {
-    _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:0 target:self
+    _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self
                               selector:@selector(fakeSearchReady:) userInfo:text repeats:NO];
     [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
   } else {

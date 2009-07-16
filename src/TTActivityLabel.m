@@ -31,10 +31,6 @@ static CGFloat kProgressMargin = 30;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style {
-  return [self initWithFrame:frame style:style text:nil];
-}
-
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text {
   if (self = [super initWithFrame:frame]) {
     _style = style;
@@ -107,6 +103,18 @@ static CGFloat kProgressMargin = 30;
     [_spinner startAnimating];
   }
   return self;
+}
+
+- (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style {
+  return [self initWithFrame:frame style:style text:nil];
+}
+
+- (id)initWithStyle:(TTActivityLabelStyle)style {
+  return [self initWithFrame:CGRectZero style:style text:nil];
+}
+
+- (id)initWithFrame:(CGRect)frame {
+  return [self initWithFrame:frame style:TTActivityLabelStyleWhiteBox text:nil];
 }
 
 - (void)dealloc {

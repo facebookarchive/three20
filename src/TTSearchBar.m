@@ -26,7 +26,7 @@ static const CGFloat kIndexViewMargin = 4;
 // private
 
 - (CGFloat)indexViewWidth {
-  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
+  UITableView* tableView = (UITableView*)[self ancestorOrSelfWithClass:[UITableView class]];
   if (tableView) {
     UIView* indexView = tableView.indexView;
     if (indexView) {
@@ -37,7 +37,7 @@ static const CGFloat kIndexViewMargin = 4;
 }
 
 - (void)showIndexView:(BOOL)show {
-  UITableView* tableView = (UITableView*)[self firstParentOfClass:[UITableView class]];
+  UITableView* tableView = (UITableView*)[self ancestorOrSelfWithClass:[UITableView class]];
   if (tableView) {
     UIView* indexView = tableView.indexView;
     if (indexView) {
@@ -67,7 +67,7 @@ static const CGFloat kIndexViewMargin = 4;
 }
 
 - (void)scrollToTop {
-  UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+  UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
   if (scrollView) {
     CGPoint offset = scrollView.contentOffset;
     CGPoint myOffset = [self offsetFromView:scrollView];

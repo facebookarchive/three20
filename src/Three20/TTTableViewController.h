@@ -5,15 +5,26 @@
 
 @interface TTTableViewController : TTModelViewController {
   UITableView* _tableView;
-  TTActivityLabel* _reloadingView;
+  UIView* _tableBannerView;
+  UIView* _tableOverlayView;
   id<TTTableViewDataSource> _dataSource;
-  id<TTTableViewDataSource> _statusDataSource;
   id<UITableViewDelegate> _tableDelegate;
+  NSTimer* _bannerTimer;
   UITableViewStyle _tableViewStyle;
   BOOL _variableHeightRows;
 }
 
 @property(nonatomic,retain) UITableView* tableView;
+
+/**
+ * A view that is displayed as a banner at the bottom of the table view.
+ */
+@property(nonatomic,retain) UIView* tableBannerView;
+
+/**
+ * A view that is displayed over the table view.
+ */
+@property(nonatomic,retain) UIView* tableOverlayView;
 
 /** 
  * The data source used to populate the table view.
@@ -44,6 +55,16 @@
  * Subclasses can override this to provide their own table delegate implementation.
  */
 - (id<UITableViewDelegate>)createDelegate;
+
+/**
+ * Sets the view that is displayed at the bottom of the table view with an optional animation.
+ */
+- (void)setTableBannerView:(UIView*)tableBannerView animated:(BOOL)animated;
+
+/**
+ * Sets the view that is displayed over the table view with an optional animation.
+ */
+- (void)setTableOverlayView:(UIView*)tableOverlayView animated:(BOOL)animated;
 
 /**
  * Tells the controller that the user selected an object in the table.

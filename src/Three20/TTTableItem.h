@@ -89,36 +89,13 @@
 @interface TTTableRightImageItem : TTTableImageItem
 @end
 
-@interface TTTableStatusItem : TTTableItem {
-  BOOL _expandToFit;
-}
-
-@property(nonatomic) BOOL expandToFit;
-
-@end
-
-@interface TTTableActivityItem : TTTableStatusItem {
+@interface TTTableActivityItem : TTTableItem {
   NSString* _text;
 }
 
 @property(nonatomic,copy) NSString* text;
 
 + (id)itemWithText:(NSString*)text;
-+ (id)itemWithText:(NSString*)text expandToFit:(BOOL)expandToFit;
-
-@end
-
-@interface TTTableErrorItem : TTTableStatusItem {
-  UIImage* _image;
-  NSString* _title;
-  NSString* _subtitle;
-}
-
-@property(nonatomic,retain) UIImage* image;
-@property(nonatomic,copy) NSString* title;
-@property(nonatomic,copy) NSString* subtitle;
-
-+ (id)itemWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image;
 
 @end
 

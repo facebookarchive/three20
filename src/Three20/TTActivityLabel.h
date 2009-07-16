@@ -38,6 +38,7 @@ typedef enum {
 
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style;
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text;
+- (id)initWithStyle:(TTActivityLabelStyle)style;
 
 @end
 

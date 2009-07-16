@@ -137,8 +137,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       CGFloat quality = [TTURLRequestQueue mainQueue].imageCompressionQuality;
       NSData* data = UIImageJPEGRepresentation(image, quality);
       
-      [body appendData:[[NSString
-        stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image\"\r\n", key]
+      [body appendData:[[NSString stringWithFormat:
+                       @"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n",
+                       key]
           dataUsingEncoding:NSUTF8StringEncoding]];
       [body appendData:[[NSString
         stringWithFormat:@"Content-Length: %d\r\n", data.length]
@@ -158,7 +159,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     NSString* fileName = [_files objectAtIndex:i+2];
       
     [body appendData:[[NSString stringWithFormat:
-                                 @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", fileName, fileName]
+                       @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",
+                       fileName, fileName]
           dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"Content-Length: %d\r\n", data.length]
           dataUsingEncoding:NSUTF8StringEncoding]];  

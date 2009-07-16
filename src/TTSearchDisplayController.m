@@ -36,6 +36,9 @@
   if (_dataSource.model.isLoading) {
     [_dataSource.model cancel];
   }
+  [_tableViewController viewWillDisappear:NO];
+  [_tableViewController viewDidDisappear:NO];
+  _tableViewController.tableView = nil;
 }
  
 - (void)searchDisplayController:(UISearchDisplayController *)controller
@@ -44,7 +47,6 @@
   _tableViewController = [[TTTableViewController alloc] init];
   _tableViewController.autoresizesForKeyboard = YES;
   _tableViewController.dataSource = _dataSource;
-  _tableViewController.tableView = tableView;
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller
@@ -54,21 +56,14 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller
         didShowSearchResultsTableView:(UITableView *)tableView {
+  _tableViewController.tableView = tableView;
   [_tableViewController viewWillAppear:NO];
   [_tableViewController viewDidAppear:NO];
 }
 
 - (void)searchDisplayController:(UISearchDisplayController*)controller
         willHideSearchResultsTableView:(UITableView*)tableView {
-  if (_dataSource.model.isLoading) {
-    [_dataSource.model cancel];
-  }
-}
-
-- (void)searchDisplayController:(UISearchDisplayController*)controller
-        didHideSearchResultsTableView:(UITableView*)tableView {
-  [_tableViewController viewWillDisappear:NO];
-  [_tableViewController viewDidDisappear:NO];
+  [self searchDisplayControllerWillEndSearch:controller];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController*)controller

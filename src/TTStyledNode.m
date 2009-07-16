@@ -71,11 +71,11 @@
   }
 }
 
-- (id)firstParentOfClass:(Class)cls {
+- (id)ancestorOrSelfWithClass:(Class)cls {
   if ([self isKindOfClass:cls]) {
     return self;
   } else {
-    return [_parentNode firstParentOfClass:cls];
+    return [_parentNode ancestorOrSelfWithClass:cls];
   }
 }
 
