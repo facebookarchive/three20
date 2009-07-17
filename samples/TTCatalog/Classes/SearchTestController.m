@@ -15,7 +15,7 @@
     
     self.title = @"Search Test";
     self.dataSource = [[[MockDataSource alloc] init] autorelease];
-    self.searchDataSource = [[[MockSearchDataSource alloc] init] autorelease];
+    self.searchDataSource = [[[MockSearchDataSource alloc] initWithSearchDuration:3] autorelease];
   }
   return self;
 }

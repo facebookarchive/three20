@@ -28,7 +28,7 @@
 
   TTMessageController* controller =
     [[[TTMessageController alloc] initWithRecipients:[NSArray arrayWithObject:item]] autorelease];
-  controller.dataSource = [[[MockDataSource alloc] init] autorelease];
+  controller.dataSource = [[[MockSearchDataSource alloc] init] autorelease];
   controller.delegate = self;
 
   return controller;

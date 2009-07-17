@@ -3,27 +3,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TestAddressBook : NSObject <TTModel> {
-  NSMutableArray* _delegates;
-  NSMutableArray* _names;
-  NSArray* _allNames;
-  NSTimer* _fakeLoadTimer;
-}
+@implementation MockAddressBook
 
-@property(nonatomic,retain) NSArray* names;
-
-+ (NSMutableArray*)fakeNames;
-
-- (id)initWithNames:(NSArray*)names;
-
-- (void)loadNames;
-- (void)search:(NSString*)text;
-
-@end
-
-@implementation TestAddressBook
-
-@synthesize names = _names;
+@synthesize names = _names, fakeSearchDuration = _fakeSearchDuration;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -336,9 +318,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (void)fakeSearchReady:(NSTimer*)timer {
-  NSString* text = timer.userInfo;
-  
+- (void)fakeSearch:(NSString*)text {
   self.names = [NSMutableArray array];
   
   if (text.length) {
@@ -349,9 +329,15 @@
       }
     }    
   }
-  
-  _fakeLoadTimer = nil;
+
   [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
+}
+
+- (void)fakeSearchReady:(NSTimer*)timer {
+  _fakeSearchTimer = nil;
+
+  NSString* text = timer.userInfo;
+  [self fakeSearch:text];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -362,13 +348,14 @@
     _delegates = nil;
     _allNames = [names copy];
     _names = nil;
-    _fakeLoadTimer = nil;
+    _fakeSearchTimer = nil;
+    _fakeSearchDuration = 0;
   }
   return self;
 }
 
 - (void)dealloc {
-  TT_RELEASE_TIMER(_fakeLoadTimer);
+  TT_RELEASE_TIMER(_fakeSearchTimer);
   TT_RELEASE_MEMBER(_delegates);
   TT_RELEASE_MEMBER(_allNames);
   TT_RELEASE_MEMBER(_names);
@@ -398,7 +385,7 @@
 }
 
 - (BOOL)isLoading {
-  return !!_fakeLoadTimer;
+  return !!_fakeSearchTimer;
 }
 
 - (BOOL)isEmpty {
@@ -412,8 +399,8 @@
 }
 
 - (void)cancel {
-  if (_fakeLoadTimer) {
-    TT_RELEASE_TIMER(_fakeLoadTimer);
+  if (_fakeSearchTimer) {
+    TT_RELEASE_TIMER(_fakeSearchTimer);
     [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];
   }
 }
@@ -430,9 +417,15 @@
   [self cancel];
   
   if (text.length) {
-    _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self
-                              selector:@selector(fakeSearchReady:) userInfo:text repeats:NO];
-    [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
+    if (_fakeSearchDuration) {
+      TT_RELEASE_TIMER(_fakeSearchTimer);
+      _fakeSearchTimer = [NSTimer scheduledTimerWithTimeInterval:_fakeSearchDuration target:self
+                                selector:@selector(fakeSearchReady:) userInfo:text repeats:NO];
+      [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
+    } else {
+      [self fakeSearch:text];
+      [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
+    }
   } else {
     TT_RELEASE_MEMBER(_names);
     [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
@@ -445,12 +438,14 @@
 
 @implementation MockDataSource
 
+@synthesize addressBook = _addressBook;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)init {
   if (self = [super init]) {
-    _addressBook = [[TestAddressBook alloc] initWithNames:[TestAddressBook fakeNames]];
+    _addressBook = [[MockAddressBook alloc] initWithNames:[MockAddressBook fakeNames]];
     [_addressBook loadNames];
     self.model = _addressBook;
   }
@@ -503,15 +498,22 @@
 
 @implementation MockSearchDataSource
 
+@synthesize addressBook = _addressBook;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
+- (id)initWithSearchDuration:(NSTimeInterval)duration {
   if (self = [super init]) {
-    _addressBook = [[TestAddressBook alloc] initWithNames:[TestAddressBook fakeNames]];
+    _addressBook = [[MockAddressBook alloc] initWithNames:[MockAddressBook fakeNames]];
+    _addressBook.fakeSearchDuration = duration;
     self.model = _addressBook;
   }
   return self;
+}
+
+- (id)init {
+  return [self initWithSearchDuration:0];
 }
 
 - (void)dealloc {

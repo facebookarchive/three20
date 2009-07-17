@@ -240,6 +240,8 @@ static const CGFloat kDesiredTableHeight = 150;
 }
 
 - (void)reloadTable {
+  [_dataSource willAppearInTableView:self.tableView];
+
   if ([self hasSearchResults]) {
     [self layoutIfNeeded];
     [self showSearchResults:YES];

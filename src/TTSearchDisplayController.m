@@ -23,7 +23,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 }
 
 - (void)searchAfterPause {
-  TT_RELEASE_TIMER(_pauseTimer);
+  _pauseTimer = nil;
   [_dataSource search:self.searchBar.text];
 }
 
