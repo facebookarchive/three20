@@ -55,12 +55,12 @@ static const CGFloat kBannerViewHeight = 22;
   
   if (_tableView.tableHeaderView) {
     CGRect headerRect = _tableView.tableHeaderView.frame;
-    if (headerRect.origin.y == 0) {
-      frame.origin.y += headerRect.size.height;
-      frame.size.height -= headerRect.size.height;
+    CGFloat diff = (headerRect.origin.y + headerRect.size.height) - _tableView.contentOffset.y;
+    if (diff >= 0) {
+      frame.origin.y += diff;
+      frame.size.height -= diff;
     }
   }
-  
   return frame;
 }
 
@@ -136,13 +136,6 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if (self = [super init]) {
-    _tableViewStyle = style;
-  }
-  return self;
-}
-
-- (id)init {
-  if (self = [super init]) {
     _tableView = nil;
     _tableBannerView = nil;
     _tableOverlayView = nil;
@@ -150,9 +143,13 @@ static const CGFloat kBannerViewHeight = 22;
     _tableDelegate = nil;
     _bannerTimer = nil;
     _variableHeightRows = NO;
-    _tableViewStyle = UITableViewStylePlain;
-  }  
+    _tableViewStyle = style;
+  }
   return self;
+}
+
+- (id)init {
+  return [self initWithStyle:UITableViewStylePlain];
 }
 
 - (void)dealloc {
@@ -206,13 +203,6 @@ static const CGFloat kBannerViewHeight = 22;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
-
-- (void)setSearchDataSource:(id<TTTableViewDataSource>)searchDataSource {
-  [super setSearchDataSource:searchDataSource];
-  if (!_searchController.searchResultsDelegate) {
-    _searchController.searchResultsDelegate = [self createDelegate];
-  }
-}
 
 - (void)keyboardWillAppear:(BOOL)animated {
   [self.tableView scrollFirstResponderIntoView];

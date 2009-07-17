@@ -165,11 +165,11 @@
 }
 
 - (NSString*)titleForError:(NSError*)error {
-  return TTLocalizedString(@"Sorry, there was an error.", @"");
+  return TTLocalizedString(@"Error", @"");
 }
 
 - (NSString*)subtitleForError:(NSError*)error {
-  return nil;
+  return TTLocalizedString(@"Sorry, there was an error.", @"");
 }
 
 @end

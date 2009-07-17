@@ -107,6 +107,11 @@
   self.view.backgroundColor = TTSTYLEVAR(backgroundColor);
 }
 
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  TT_RELEASE_MEMBER(_searchController);
+}
+
 - (void)viewWillAppear:(BOOL)animated {
   _isViewAppearing = YES;
   _hasViewAppeared = YES;
@@ -183,12 +188,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (id<TTTableViewDataSource>)searchDataSource {
-  return _searchController.dataSource;
+- (TTTableViewController*)searchViewController {
+  return _searchController.searchResultsViewController;
 }
 
-- (void)setSearchDataSource:(id<TTTableViewDataSource>)searchDataSource {
-  if (searchDataSource) {
+- (void)setSearchViewController:(TTTableViewController*)searchViewController {
+  if (searchViewController) {
     if (!_searchController) {
       UISearchBar* searchBar = [[[UISearchBar alloc] init] autorelease];
       [searchBar sizeToFit];
@@ -197,9 +202,9 @@
                                                              contentsController:self];
     }
     
-    _searchController.dataSource = searchDataSource;
+    _searchController.searchResultsViewController = searchViewController;
   } else {
-    _searchController.dataSource = nil;
+    _searchController.searchResultsViewController = nil;
     TT_RELEASE_MEMBER(_searchController);
   }
 }

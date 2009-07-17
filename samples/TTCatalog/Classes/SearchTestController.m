@@ -15,7 +15,6 @@
     
     self.title = @"Search Test";
     self.dataSource = [[[MockDataSource alloc] init] autorelease];
-    self.searchDataSource = [[[MockSearchDataSource alloc] initWithSearchDuration:3] autorelease];
   }
   return self;
 }
@@ -30,9 +29,9 @@
 - (void)loadView {
   [super loadView];
 
-//  _searchController.searchBar.showsScopeBar = YES;
-//  _searchController.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:
-//    @"First", @"Last", @"City", nil];
+  TTTableViewController* searchController = [[[TTTableViewController alloc] init] autorelease];
+  searchController.dataSource = [[[MockSearchDataSource alloc] initWithDuration:3] autorelease];
+  self.searchViewController = searchController;
   self.tableView.tableHeaderView = _searchController.searchBar;
 }
 

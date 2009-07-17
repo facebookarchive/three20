@@ -4,14 +4,13 @@
 @class TTTableViewController;
 
 @interface TTSearchDisplayController : UISearchDisplayController <UISearchDisplayDelegate> {
-  id<TTTableViewDataSource> _dataSource;
   id<UITableViewDelegate> _searchResultsDelegate2;
-  TTTableViewController* _tableViewController;
+  TTTableViewController* _searchResultsViewController;
   NSTimer* _pauseTimer;
   BOOL _pausesBeforeSearching;
 }
 
-@property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
+@property(nonatomic,retain) TTTableViewController* searchResultsViewController;
 @property(nonatomic) BOOL pausesBeforeSearching;
 
 @end

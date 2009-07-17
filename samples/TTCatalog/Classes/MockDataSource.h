@@ -34,6 +34,6 @@
 
 @property(nonatomic,readonly) MockAddressBook* addressBook;
 
-- (id)initWithSearchDuration:(NSTimeInterval)duration;
+- (id)initWithDuration:(NSTimeInterval)duration;
 
 @end

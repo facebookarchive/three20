@@ -83,6 +83,8 @@
 
 - (void)modelDidFinishLoad:(id<TTModel>)model {
   if (model == _model) {
+    self.modelError = nil;
+
     if (model.isEmpty) {
       self.modelState = TTModelStateLoadedEmpty;
     } else {
@@ -172,7 +174,7 @@
 }
 
 - (BOOL)shouldReload {
-  return self.model.isOutdated;
+  return !_modelError && self.model.isOutdated;
 }
 
 - (BOOL)shouldLoadMore {

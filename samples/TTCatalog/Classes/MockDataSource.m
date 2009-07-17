@@ -503,7 +503,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithSearchDuration:(NSTimeInterval)duration {
+- (id)initWithDuration:(NSTimeInterval)duration {
   if (self = [super init]) {
     _addressBook = [[MockAddressBook alloc] initWithNames:[MockAddressBook fakeNames]];
     _addressBook.fakeSearchDuration = duration;
@@ -513,7 +513,7 @@
 }
 
 - (id)init {
-  return [self initWithSearchDuration:0];
+  return [self initWithDuration:0];
 }
 
 - (void)dealloc {

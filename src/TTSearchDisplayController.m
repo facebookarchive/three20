@@ -11,7 +11,8 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 @implementation TTSearchDisplayController
 
-@synthesize dataSource = _dataSource, pausesBeforeSearching = _pausesBeforeSearching;
+@synthesize searchResultsViewController = _searchResultsViewController,
+            pausesBeforeSearching = _pausesBeforeSearching;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -24,7 +25,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 - (void)searchAfterPause {
   _pauseTimer = nil;
-  [_dataSource search:self.searchBar.text];
+  [_searchResultsViewController.dataSource search:self.searchBar.text];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,9 +33,8 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 - (id)initWithSearchBar:(UISearchBar*)searchBar contentsController:(UIViewController*)controller {
   if (self = [super initWithSearchBar:searchBar contentsController:controller]) {
-    _dataSource = nil;
     _searchResultsDelegate2 = nil;
-    _tableViewController = nil;
+    _searchResultsViewController = nil;
     _pauseTimer = nil;
     _pausesBeforeSearching = NO;
     
@@ -45,9 +45,8 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 - (void)dealloc {
   TT_RELEASE_TIMER(_pauseTimer);
-  TT_RELEASE_MEMBER(_dataSource);
   TT_RELEASE_MEMBER(_searchResultsDelegate2);
-  TT_RELEASE_MEMBER(_tableViewController);
+  TT_RELEASE_MEMBER(_searchResultsViewController);
   [super dealloc];
 }
 
@@ -55,32 +54,27 @@ static const NSTimeInterval kPauseInterval = 0.4;
 // UISearchDisplayDelegate
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController*)controller {
-  if (_dataSource.model.isLoading) {
-    [_dataSource.model cancel];
+  if (_searchResultsViewController.model.isLoading) {
+    [_searchResultsViewController.model cancel];
   }
-  [_tableViewController viewWillDisappear:NO];
-  [_tableViewController viewDidDisappear:NO];
-  _tableViewController.tableView = nil;
+  [_searchResultsViewController viewWillDisappear:NO];
+  [_searchResultsViewController viewDidDisappear:NO];
+  _searchResultsViewController.tableView = nil;
 }
  
 - (void)searchDisplayController:(UISearchDisplayController *)controller
         didLoadSearchResultsTableView:(UITableView *)tableView {
-  TT_RELEASE_MEMBER(_tableViewController);
-  _tableViewController = [[TTTableViewController alloc] init];
-  _tableViewController.autoresizesForKeyboard = YES;
-  _tableViewController.dataSource = _dataSource;
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller
         willUnloadSearchResultsTableView:(UITableView *)tableView {
-  TT_RELEASE_MEMBER(_tableViewController);
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller
         didShowSearchResultsTableView:(UITableView *)tableView {
-  _tableViewController.tableView = tableView;
-  [_tableViewController viewWillAppear:NO];
-  [_tableViewController viewDidAppear:NO];
+  _searchResultsViewController.tableView = tableView;
+  [_searchResultsViewController viewWillAppear:NO];
+  [_searchResultsViewController viewDidAppear:NO];
 }
 
 - (void)searchDisplayController:(UISearchDisplayController*)controller
@@ -92,13 +86,13 @@ static const NSTimeInterval kPauseInterval = 0.4;
         shouldReloadTableForSearchString:(NSString*)searchString {
   if (_pausesBeforeSearching) {
     [self restartPauseTimer];
-    if (_tableViewController.modelState & TTModelStateLoaded) {
-      _tableViewController.modelState = TTModelStateLoaded | TTModelStateReloading;
+    if (_searchResultsViewController.modelState & TTModelStateLoaded) {
+      _searchResultsViewController.modelState = TTModelStateLoaded | TTModelStateReloading;
     } else {
-      _tableViewController.modelState = TTModelStateLoading;
+      _searchResultsViewController.modelState = TTModelStateLoading;
     }
   } else {
-    [_dataSource search:searchString];
+    [_searchResultsViewController.dataSource search:searchString];
   }
   return NO;
 }
@@ -106,20 +100,12 @@ static const NSTimeInterval kPauseInterval = 0.4;
 - (BOOL)searchDisplayController:(UISearchDisplayController*)controller
         shouldReloadTableForSearchScope:(NSInteger)searchOption {
   // XXXjoe Need a way to communicate scope change to the data source
-  [_dataSource search:self.searchBar.text];
+  [_searchResultsViewController.dataSource search:self.searchBar.text];
   return NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
-
-- (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
-  self.searchResultsDataSource = dataSource;
-  if (_dataSource != dataSource) {
-    [_dataSource release];
-    _dataSource = [dataSource retain];
-  }
-}
 
 - (void)setSearchResultsDelegate:(id<UITableViewDelegate>)searchResultsDelegate {
   [super setSearchResultsDelegate:searchResultsDelegate];
