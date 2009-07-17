@@ -26,10 +26,11 @@ static const CGFloat kBannerViewHeight = 22;
 // private
 
 - (void)updateTableDelegate {
-  if (!_tableView.delegate || [_tableView.delegate isKindOfClass:[TTTableViewDelegate class]]) {
+  if (!_tableView.delegate) {
     [_tableDelegate release];
     _tableDelegate = [[self createDelegate] retain];
     
+    // You need to set it to nil before changing it or it won't have any effect
     _tableView.delegate = nil;
     _tableView.delegate = _tableDelegate;
   }
@@ -370,6 +371,15 @@ static const CGFloat kBannerViewHeight = 22;
     _tableView.dataSource = nil;
 
     self.model = dataSource.model;
+  }
+}
+
+- (void)setVariableHeightRows:(BOOL)variableHeightRows {
+  if (variableHeightRows != _variableHeightRows) {
+    _variableHeightRows = variableHeightRows;
+    
+    // Force the delegate to be re-created so that it supports the right kind of row measurement
+    _tableView.delegate = nil;
   }
 }
 

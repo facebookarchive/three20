@@ -190,10 +190,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (BOOL)isEmpty {
-  return !_items.count;
-}
-
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   if (_sections) {
     NSArray* section = [_items objectAtIndex:indexPath.section];

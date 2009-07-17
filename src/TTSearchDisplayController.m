@@ -36,7 +36,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
     _searchResultsDelegate2 = nil;
     _tableViewController = nil;
     _pauseTimer = nil;
-    _pausesBeforeSearching = YES;
+    _pausesBeforeSearching = NO;
     
     self.delegate = self;
   }

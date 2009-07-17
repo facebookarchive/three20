@@ -63,8 +63,11 @@ static CGFloat kVPadding = 50;
   [_titleView sizeToFit];
   [_imageView sizeToFit];
   
+  CGFloat totalHeight = _imageView.height + _titleView.height + _subtitleView.height + kVPadding*2;
+  BOOL canShowImage = self.height > totalHeight && _imageView.image;
+  
   if (_titleView.text.length) {
-    if (_subtitleView.text.length || _imageView.image) {
+    if (_subtitleView.text.length || canShowImage) {
       _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
         self.width-kHPadding*2, _subtitleView.height);
       _titleView.frame = CGRectMake(0, _subtitleView.top-kVPadding, self.width, _titleView.height);
@@ -75,7 +78,7 @@ static CGFloat kVPadding = 50;
     }
   } else {
     _titleView.frame = CGRectZero;
-    if (_imageView.image) {
+    if (canShowImage) {
       _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
         self.width-kHPadding*2, _subtitleView.height);
     } else {
@@ -84,13 +87,14 @@ static CGFloat kVPadding = 50;
     }
   }
 
-  if (_imageView.image) {
+  if (canShowImage) {
     CGFloat textTop = _titleView.height ? _titleView.top : _subtitleView.top;
     
     _imageView.frame = CGRectMake(self.width/2 - _imageView.width/2,
       textTop/2 - (_imageView.height/2), _imageView.width, _imageView.height);
+    _imageView.hidden = NO;
   } else {
-    _imageView.frame = CGRectZero;
+    _imageView.hidden = YES;
   }
 }
 

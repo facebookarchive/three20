@@ -119,13 +119,13 @@
     bar.barStyle = _navigationBarStyle;
     [[UIApplication sharedApplication] setStatusBarStyle:_statusBarStyle animated:YES];
   }
-  
+
   // Ugly hack to work around UISearchBar's inability to resize its text field
   // to avoid being overlapped by the table section index
-  if (_searchController && !_searchController.active) {
-    [_searchController setActive:YES];
-    [_searchController setActive:NO];
-  }
+//  if (_searchController && !_searchController.active) {
+//    [_searchController setActive:YES animated:NO];
+//    [_searchController setActive:NO animated:NO];
+//  }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
