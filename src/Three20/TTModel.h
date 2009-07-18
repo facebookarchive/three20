@@ -83,7 +83,7 @@
   NSString* _cacheKey;
 }
 
-@property(nonatomic,assign) NSDate* loadedTime;
+@property(nonatomic,retain) NSDate* loadedTime;
 @property(nonatomic,copy) NSString* cacheKey;
 
 /**

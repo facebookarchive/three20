@@ -309,7 +309,7 @@
                                         object:self userInfo:userInfo];
 }
 
-- (void)feedPickerDidHide {
+- (void)dismissAsKeyboardAnimationDidStop {
   [self release];
   [self.window release];
 }
@@ -317,6 +317,8 @@
 - (void)presentAsKeyboard {
   CGRect screenFrame = TTScreenBounds();
   CGRect windowFrame = CGRectMake(0, screenFrame.size.height, screenFrame.size.width, self.height);
+  
+  // Intentionally "leak" the window - you have to call dismissAsKeyboard to release it
   UIWindow* window = [[UIWindow alloc] initWithFrame:windowFrame];
   [window addSubview:self];
 

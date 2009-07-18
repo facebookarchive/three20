@@ -23,6 +23,7 @@
 }
 
 - (void)dealloc {
+  TT_RELEASE_MEMBER(_popupViewController);
   [super dealloc];
 }
 

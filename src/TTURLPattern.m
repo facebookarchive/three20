@@ -583,6 +583,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (void)dealloc {
+  TT_RELEASE_MEMBER(_URL);
   TT_RELEASE_MEMBER(_parentURL);
   TT_RELEASE_MEMBER(_scheme);
   TT_RELEASE_MEMBER(_path);
