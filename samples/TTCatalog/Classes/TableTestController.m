@@ -11,15 +11,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (UIImage*)imageForNoData {
+- (UIImage*)imageForEmpty {
   return TTIMAGE(@"bundle://Three20.bundle/images/empty.png");
 }
 
-- (NSString*)titleForNoData {
+- (NSString*)titleForEmpty {
   return NSLocalizedString(@"No Friends", @"");
 }
 
-- (NSString*)subtitleForNoData {
+- (NSString*)subtitleForEmpty {
   return NSLocalizedString(@"Try getting some friends.", @"");
 }
 

@@ -259,13 +259,14 @@
   }
 }
 
-- (void)dispatchURL:(NSString*)URL toTarget:(id)target query:(NSDictionary*)query {
+- (id)dispatchURL:(NSString*)URL toTarget:(id)target query:(NSDictionary*)query {
   NSURL* theURL = [NSURL URLWithString:URL];
   for (TTURLPattern* pattern in _fragmentPatterns) {
     if ([pattern matchURL:theURL]) {
-      [pattern invoke:target withURL:theURL query:query];
+      return [pattern invoke:target withURL:theURL query:query];
     }
   }
+  return nil;
 }
 
 - (TTNavigationMode)navigationModeForURL:(NSString*)URL {

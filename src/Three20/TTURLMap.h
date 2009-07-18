@@ -112,7 +112,7 @@ typedef enum {
 /**
  * 
  */
-- (void)dispatchURL:(NSString*)URL toTarget:(id)target query:(NSDictionary*)query;
+- (id)dispatchURL:(NSString*)URL toTarget:(id)target query:(NSDictionary*)query;
 
 /**
  * Tests if there is a pattern that matches the URL and if so returns its navigation mode.

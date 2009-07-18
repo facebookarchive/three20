@@ -1,4 +1,5 @@
 #import "Three20/TTActionSheetController.h"
+#import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,7 +28,7 @@
 
 - (void)didMoveToSuperview {
   if (!self.superview) {
-    [_popupViewController release];
+    [_popupViewController autorelease];
   }
 }
 
@@ -37,34 +38,31 @@
 
 @implementation TTActionSheetController
 
+@synthesize delegate = _delegate;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithTitle:(NSString*)title delegate:(id)delegate
-      cancelButtonTitle:(NSString*)cancelButtonTitle
-      destructiveButtonTitle:(NSString*)destructiveButtonTitle
-      otherButtonTitles:(NSString*)otherButtonTitles, ... {
+- (id)initWithTitle:(NSString*)title delegate:(id)delegate {
   if (self = [super init]) {
-    TTActionSheet* actionSheet = [[[TTActionSheet alloc] initWithTitle:title delegate:delegate
-                                                         cancelButtonTitle:cancelButtonTitle
-                                                         destructiveButtonTitle:destructiveButtonTitle
-                                                         otherButtonTitles:nil] autorelease];
-    actionSheet.popupViewController = self;
-
-    va_list ap;
-    va_start(ap, otherButtonTitles);
-    while (otherButtonTitles) {
-      [actionSheet addButtonWithTitle:otherButtonTitles];
-      otherButtonTitles = va_arg(ap, id);
-    }
-    va_end(ap);
+    _delegate = delegate;
+    _URLs = [[NSMutableArray alloc] init];
     
-    self.view = actionSheet;
+    self.actionSheet.title = title;
   }
   return self;
 }
 
+- (id)initWithTitle:(NSString*)title {
+  return [self initWithTitle:title delegate:nil];
+}
+
+- (id)init {
+  return [self initWithTitle:nil delegate:nil];
+}
+
 - (void)dealloc {
+  TT_RELEASE_MEMBER(_URLs);
   [super dealloc];
 }
 
@@ -72,7 +70,10 @@
 // UIViewController
 
 - (void)loadView {
-  TTActionSheet* actionSheet = [[[TTActionSheet alloc] init] autorelease];
+  TTActionSheet* actionSheet = [[[TTActionSheet alloc] initWithTitle:nil delegate:self
+                                                       cancelButtonTitle:nil
+                                                       destructiveButtonTitle:nil
+                                                       otherButtonTitles:nil] autorelease];
   actionSheet.popupViewController = self;
   self.view = actionSheet;
 }
@@ -94,10 +95,65 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  [_delegate actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+}
+
+- (void)actionSheetCancel:(UIActionSheet*)actionSheet {
+  [_delegate actionSheetCancel:actionSheet];
+}
+
+- (void)willPresentActionSheet:(UIActionSheet*)actionSheet {
+  [_delegate willPresentActionSheet:actionSheet];
+}
+
+- (void)didPresentActionSheet:(UIActionSheet*)actionSheet {
+  [_delegate didPresentActionSheet:actionSheet];
+}
+
+- (void)actionSheet:(UIActionSheet*)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+  [_delegate actionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
+}
+
+- (void)actionSheet:(UIActionSheet*)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  NSString* URL = [self buttonURLAtIndex:buttonIndex];
+  if (URL) {
+    TTOpenURL(URL);
+  }
+  [_delegate actionSheet:actionSheet didDismissWithButtonIndex:buttonIndex];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
 - (UIActionSheet*)actionSheet {
   return (UIActionSheet*)self.view;
+}
+
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+  if (URL) {
+    [_URLs addObject:URL];
+  } else {
+    [_URLs addObject:[NSNull null]];
+  }
+  return [self.actionSheet addButtonWithTitle:title];
+}
+
+- (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+  self.actionSheet.cancelButtonIndex = [self addButtonWithTitle:title URL:URL];
+  return self.actionSheet.cancelButtonIndex;
+}
+
+- (NSInteger)addDestructiveButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+  self.actionSheet.destructiveButtonIndex = [self addButtonWithTitle:title URL:URL];
+  return self.actionSheet.destructiveButtonIndex;
+}
+
+- (NSString*)buttonURLAtIndex:(NSInteger)index {
+  id URL = [_URLs objectAtIndex:index];
+  return URL != [NSNull null] ? URL : nil;
 }
 
 @end

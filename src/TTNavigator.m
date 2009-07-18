@@ -124,10 +124,7 @@
         parent:(UIViewController*)parentController animated:(BOOL)animated
         transition:(NSInteger)transition {
   controller.modalTransitionStyle = transition;
-  if ([controller isKindOfClass:[TTPopupViewController class]]) {
-    TTPopupViewController* popupViewController  = (TTPopupViewController*)controller;
-    [self presentPopupController:popupViewController parent:parentController animated:animated];
-  } else if ([controller isKindOfClass:[UINavigationController class]]) {
+  if ([controller isKindOfClass:[UINavigationController class]]) {
     [parentController presentModalViewController:controller animated:animated];
   } else {
     UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
@@ -153,7 +150,10 @@
         }
       }
     } else if (parentController) {
-      if (mode == TTNavigationModeModal) {
+      if ([controller isKindOfClass:[TTPopupViewController class]]) {
+        TTPopupViewController* popupViewController  = (TTPopupViewController*)controller;
+        [self presentPopupController:popupViewController parent:parentController animated:animated];
+      } else if (mode == TTNavigationModeModal) {
         [self presentModalController:controller parent:parentController animated:animated
               transition:transition];
       } else {
@@ -187,6 +187,8 @@
   if (!URL) {
     return nil;
   }
+  
+  TTLOG(@"OPENING URL %@", URL);
   
   NSURL* theURL = [NSURL URLWithString:URL];
   if (theURL.fragment && !theURL.scheme) {
@@ -361,12 +363,20 @@
     NSString* baseURL = [URL substringToIndex:fragmentRange.location];
     if ([self.URL isEqualToString:baseURL]) {
       UIViewController* controller = self.visibleViewController;
-      [_URLMap dispatchURL:URL toTarget:controller query:query];
-      return controller;
+      id result = [_URLMap dispatchURL:URL toTarget:controller query:query];
+      if ([result isKindOfClass:[UIViewController class]]) {
+        return result;
+      } else {
+        return controller;
+      }
     } else {
       id object = [_URLMap objectForURL:baseURL query:nil pattern:pattern];
-      [_URLMap dispatchURL:URL toTarget:object query:query];
-      return object;
+      id result = [_URLMap dispatchURL:URL toTarget:object query:query];
+      if ([result isKindOfClass:[UIViewController class]]) {
+        return result;
+      } else {
+        return object;
+      }
     }
   }
 

@@ -84,7 +84,6 @@
 - (void)modelDidFinishLoad:(id<TTModel>)model {
   if (model == _model) {
     self.modelError = nil;
-
     if (model.isEmpty) {
       self.modelState = TTModelStateLoadedEmpty;
     } else {

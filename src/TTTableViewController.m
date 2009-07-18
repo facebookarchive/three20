@@ -241,7 +241,6 @@ static const CGFloat kBannerViewHeight = 22;
     } else {
       _tableView.dataSource = nil;
     }
-    [self reloadTableData];
     
     self.tableOverlayView = nil;
   } else if (self.modelState & TTModelStateLoadedError) {
@@ -261,6 +260,8 @@ static const CGFloat kBannerViewHeight = 22;
                                                   image:image] autorelease];
     self.tableOverlayView.backgroundColor = _tableView.backgroundColor;
   }
+  
+  [self reloadTableData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,5 @@
 #import "Three20/TTAlertViewController.h"
+#import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,7 +28,7 @@
 
 - (void)didMoveToSuperview {
   if (!self.superview) {
-    [_popupViewController release];
+    [_popupViewController autorelease];
   }
 }
 
@@ -37,33 +38,32 @@
 
 @implementation TTAlertViewController
 
+@synthesize delegate = _delegate;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithTitle:(NSString*)title message:(NSString*)message delegate:(id)delegate
-      cancelButtonTitle:(NSString*)cancelButtonTitle
-      otherButtonTitles:(NSString*)otherButtonTitles, ... {
+- (id)initWithTitle:(NSString*)title message:(NSString*)message delegate:(id)delegate {
   if (self = [super init]) {
-    TTAlertView* alertView = [[[TTAlertView alloc] initWithTitle:title message:message
-                                                   delegate:delegate
-                                                   cancelButtonTitle:cancelButtonTitle
-                                                   otherButtonTitles:nil] autorelease];
-    alertView.popupViewController = self;
-
-    va_list ap;
-    va_start(ap, otherButtonTitles);
-    while (otherButtonTitles) {
-      [alertView addButtonWithTitle:otherButtonTitles];
-      otherButtonTitles = va_arg(ap, id);
-    }
-    va_end(ap);
+    _delegate = delegate;
+    _URLs = [[NSMutableArray alloc] init];
     
-    self.view = alertView;
+    self.alertView.title = title;
+    self.alertView.message = message;
   }
   return self;
 }
 
+
+- (id)initWithTitle:(NSString*)title message:(NSString*)message {
+  return [self initWithTitle:title message:message delegate:nil];
+}
+
+- (id)init {
+  return [self initWithTitle:nil message:nil delegate:nil];
+}
 - (void)dealloc {
+  TT_RELEASE_MEMBER(_URLs);
   [super dealloc];
 }
 
@@ -71,7 +71,9 @@
 // UIViewController
 
 - (void)loadView {
-  TTAlertView* alertView = [[[TTAlertView alloc] init] autorelease];
+  TTAlertView* alertView = [[[TTAlertView alloc] initWithTitle:nil message:nil delegate:self
+                                                 cancelButtonTitle:nil
+                                                 otherButtonTitles:nil] autorelease];
   alertView.popupViewController = self;
   self.view = alertView;
 }
@@ -92,10 +94,60 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIAlertviewDelegate
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  [_delegate alertView:alertView clickedButtonAtIndex:buttonIndex];
+}
+
+- (void)alertViewCancel:(UIAlertView*)alertView {
+  [_delegate alertViewCancel:alertView];
+}
+
+- (void)willPresentAlertView:(UIAlertView*)alertView {
+  [_delegate willPresentAlertView:alertView];
+}
+
+- (void)didPresentAlertView:(UIAlertView*)alertView {
+  [_delegate didPresentAlertView:alertView];
+}
+
+- (void)alertView:(UIAlertView*)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+  [_delegate alertView:alertView willDismissWithButtonIndex:buttonIndex];
+}
+
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  NSString* URL = [self buttonURLAtIndex:buttonIndex];
+  if (URL) {
+    TTOpenURL(URL);
+  }
+  [_delegate alertView:alertView didDismissWithButtonIndex:buttonIndex];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
 - (UIAlertView*)alertView {
   return (UIAlertView*)self.view;
+}
+
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+  if (URL) {
+    [_URLs addObject:URL];
+  } else {
+    [_URLs addObject:[NSNull null]];
+  }
+  return [self.alertView addButtonWithTitle:title];
+}
+
+- (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+  self.alertView.cancelButtonIndex = [self addButtonWithTitle:title URL:URL];
+  return self.alertView.cancelButtonIndex;
+}
+
+- (NSString*)buttonURLAtIndex:(NSInteger)index {
+  id URL = [_URLs objectAtIndex:index];
+  return URL != [NSNull null] ? URL : nil;
 }
 
 @end

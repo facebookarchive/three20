@@ -21,7 +21,8 @@
   [map from:@"tt://order?waitress=(initWithWaitress:)"
        toModalViewController:[ContentController class]];
   [map from:@"tt://order?waitress=()#(orderAction:)" toViewController:[ContentController class]];
-  [map from:@"tt://order/send" toModalViewController:self selector:@selector(sendOrder)];
+  [map from:@"tt://order/confirm" toViewController:self selector:@selector(confirmOrder)];
+  [map from:@"tt://order/send" toObject:self selector:@selector(sendOrder)];
 
   if (![navigator restoreViewControllers]) {
     [navigator openURL:@"tt://tabBar" animated:NO];
@@ -35,19 +36,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (UIViewController*)sendOrder {
-  return
-    [[[TTAlertViewController alloc] initWithTitle:@"Order"
-                          message:@"Sure you want to order?"
-                          delegate:nil cancelButtonTitle:@"No"
-                          otherButtonTitles:@"Yes", nil]
-                          autorelease];
-//  return
-//    [[[TTActionSheetController alloc] initWithTitle:@"Order" delegate:nil
-//                                      cancelButtonTitle:@"Eh"
-//                                      destructiveButtonTitle:@"No"
-//                                      otherButtonTitles:@"Yes", @"Maybe", nil]
-//                                      autorelease];
+- (UIViewController*)confirmOrder {
+  TTAlertViewController* alert = [[[TTAlertViewController alloc]
+                                 initWithTitle:@"Are you sure?"
+                                 message:@"Sure you want to order?"] autorelease];
+  [alert addButtonWithTitle:@"Yes" URL:@"tt://order/send"];
+  [alert addCancelButtonWithTitle:@"NO" URL:nil];
+  return alert;
+}
+
+- (void)sendOrder {
+  TTLOG(@"SENDING THE ORDER...");
 }
 
 @end

@@ -30,7 +30,7 @@
   [super loadView];
 
   TTTableViewController* searchController = [[[TTTableViewController alloc] init] autorelease];
-  searchController.dataSource = [[[MockSearchDataSource alloc] initWithDuration:3] autorelease];
+  searchController.dataSource = [[[MockSearchDataSource alloc] initWithDuration:1.5] autorelease];
   self.searchViewController = searchController;
   self.tableView.tableHeaderView = _searchController.searchBar;
 }

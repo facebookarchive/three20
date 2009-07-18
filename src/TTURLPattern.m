@@ -203,6 +203,8 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 @property(nonatomic) TTURLArgumentType argType;
 @property(nonatomic,retain) TTURLSelector* selector;
 
+- (void)deduceSelectorForClass:(Class)cls;
+
 @end
 
 @implementation TTURLWildcard
@@ -234,6 +236,25 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     return [_selector perform:object returnType:_argType];
   } else {
     return @"";
+  }
+}
+
+- (void)deduceSelectorForClass:(Class)cls {
+  NSArray* names = [_name componentsSeparatedByString:@"."];
+  if (names.count > 1) {
+    TTURLSelector* selector = nil;
+    for (NSString* name in names) {
+      TTURLSelector* newSelector = [[[TTURLSelector alloc] initWithName:name] autorelease];
+      if (selector) {
+        selector.next = newSelector;
+      } else {
+        self.selector = newSelector;
+      }
+      selector = newSelector;
+    }
+  } else {
+    self.argType = TTURLArgumentTypeForProperty(cls, _name);
+    self.selector = [[[TTURLSelector alloc] initWithName:_name] autorelease];
   }
 }
 
@@ -269,11 +290,12 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     NSString* name = len > 2 ? [text substringWithRange:NSMakeRange(1, endRange)] : nil;
     TTURLWildcard* wildcard = [[[TTURLWildcard alloc] init] autorelease];
     wildcard.name = name;
+    ++_specificity;
     return wildcard;
   } else {
     TTURLLiteral* literal = [[[TTURLLiteral alloc] init] autorelease];
     literal.name = text;
-    ++_specificity;
+    _specificity += 2;
     return literal;
   }
 }
@@ -426,29 +448,14 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   for (id<TTURLPatternText> pattern in _path) {
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
       TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
-      NSArray* names = [wildcard.name componentsSeparatedByString:@"."];
-      if (names.count > 1) {
-        TTURLSelector* selector = nil;
-        for (NSString* name in names) {
-          TTURLSelector* newSelector = [[[TTURLSelector alloc] initWithName:name] autorelease];
-          if (selector) {
-            selector.next = newSelector;
-          } else {
-            wildcard.selector = newSelector;
-          }
-          selector = newSelector;
-        }
-      } else {
-        wildcard.argType = TTURLArgumentTypeForProperty(cls, wildcard.name);
-        wildcard.selector = [[[TTURLSelector alloc] initWithName:wildcard.name] autorelease];
-      }
+      [wildcard deduceSelectorForClass:cls];
     }
   }
 
   for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
       TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
-      wildcard.argType = TTURLArgumentTypeForProperty(cls, wildcard.name);
+      [wildcard deduceSelectorForClass:cls];
     }
   }
 }
@@ -458,7 +465,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   if ([patternText isKindOfClass:[TTURLWildcard class]]) {
     TTURLWildcard* wildcard = (TTURLWildcard*)patternText;
     NSInteger index = wildcard.argIndex;
-    if (index != NSNotFound) {
+    if (index != NSNotFound && index < _argumentCount) {
       switch (wildcard.argType) {
         case TTURLArgumentTypeNone: {
           break;
@@ -713,6 +720,9 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     id<TTURLPatternText> patternText = [_query objectForKey:name];
     NSString* value = [patternText convertPropertyOfObject:object];
     NSString* pair = [NSString stringWithFormat:@"%@=%@", name, value];
+    if (!queries) {
+      queries = [NSMutableArray array];
+    }
     [queries addObject:pair];
   }
   

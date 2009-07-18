@@ -32,6 +32,9 @@
 - (NSString*)textForFieldAtIndex:(NSUInteger)fieldIndex;
 - (void)setText:(NSString*)text forFieldAtIndex:(NSUInteger)fieldIndex;
 
+- (BOOL)fieldHasValueAtIndex:(NSUInteger)fieldIndex;
+- (UIView*)viewForFieldAtIndex:(NSUInteger)fieldIndex;
+
 - (NSString*)titleForSending;
 
 /**

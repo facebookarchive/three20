@@ -37,11 +37,11 @@
   return nil;
 }
 
-- (id)persistField:(TTPickerTextField*)textField {
+- (id)persistField:(UITextField*)textField {
   return nil;
 }
 
-- (void)restoreField:(TTPickerTextField*)textField withData:(id)data {
+- (void)restoreField:(UITextField*)textField withData:(id)data {
 }
 
 @end
@@ -71,7 +71,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTMessageField
 
-- (TTPickerTextField*)createViewForController:(TTMessageController*)controller {
+- (UITextField*)createViewForController:(TTMessageController*)controller {
   TTPickerTextField* textField = [[[TTPickerTextField alloc] init] autorelease];
   textField.dataSource = controller.dataSource;
   textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -87,27 +87,36 @@
   return textField;
 }
 
-- (id)persistField:(TTPickerTextField*)textField {
-  NSMutableArray* cellsData = [NSMutableArray array];
-  for (id cell in textField.cells) {
-    if ([cell conformsToProtocol:@protocol(NSCoding)]) {
-      NSData* data = [NSKeyedArchiver archivedDataWithRootObject:cell];
-      [cellsData addObject:data];
+- (id)persistField:(UITextField*)textField {
+  if ([textField isKindOfClass:[TTPickerTextField class]]) {
+    TTPickerTextField* picker = (TTPickerTextField*)textField;
+    NSMutableArray* cellsData = [NSMutableArray array];
+    for (id cell in picker.cells) {
+      if ([cell conformsToProtocol:@protocol(NSCoding)]) {
+        NSData* data = [NSKeyedArchiver archivedDataWithRootObject:cell];
+        [cellsData addObject:data];
+      }
     }
+    return [NSDictionary dictionaryWithObjectsAndKeys:cellsData, @"cells",
+                                                      textField.text, @"text", nil];
+  } else {
+    return [NSDictionary dictionaryWithObjectsAndKeys:textField.text, @"text", nil];
   }
-  return [NSDictionary dictionaryWithObjectsAndKeys:cellsData, @"cells",
-                                                    textField.text, @"text", nil];
 }
 
-- (void)restoreField:(TTPickerTextField*)textField withData:(id)data {
+- (void)restoreField:(UITextField*)textField withData:(id)data {
   NSDictionary* dict = data;
-  NSArray* cellsData = [dict objectForKey:@"cells"];
-  [textField removeAllCells];
-  for (id cellData in cellsData) {
-    id cell = [NSKeyedUnarchiver unarchiveObjectWithData:cellData];
-    [textField addCellWithObject:cell];
-  }
 
+  if ([textField isKindOfClass:[TTPickerTextField class]]) {
+    TTPickerTextField* picker = (TTPickerTextField*)textField;
+    NSArray* cellsData = [dict objectForKey:@"cells"];
+    [picker removeAllCells];
+    for (id cellData in cellsData) {
+      id cell = [NSKeyedUnarchiver unarchiveObjectWithData:cellData];
+      [picker addCellWithObject:cell];
+    }
+  }
+  
   textField.text = [dict objectForKey:@"text"];
 }
 
@@ -138,15 +147,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTMessageField
 
-- (TTPickerTextField*)createViewForController:(TTMessageController*)controller {
-  return [[[TTPickerTextField alloc] initWithFrame:CGRectZero] autorelease];
+- (UITextField*)createViewForController:(TTMessageController*)controller {
+  return [[[TTPickerTextField alloc] init] autorelease];
 }
 
-- (id)persistField:(TTPickerTextField*)textField {
+- (id)persistField:(UITextField*)textField {
   return textField.text;
 }
 
-- (void)restoreField:(TTPickerTextField*)textField withData:(id)data {
+- (void)restoreField:(UITextField*)textField withData:(id)data {
   textField.text = data;
 }
 
@@ -377,12 +386,17 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  if (!_frozenState) {
-    UIView* firstTextField = [_fieldViews objectAtIndex:0];
-    [firstTextField becomeFirstResponder];
-  }
-
   [super viewWillAppear:animated];
+
+  if (!_frozenState) {
+    for (NSInteger i = 0; i < _fields.count+1; ++i) {
+      if (![self fieldHasValueAtIndex:i]) {
+        UIView* view = [self viewForFieldAtIndex:i];
+        [view becomeFirstResponder];
+        break;
+      }
+    }
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -392,7 +406,7 @@
   NSMutableArray* fields = [NSMutableArray array];
   for (NSInteger i = 0; i < _fields.count; ++i) {
     TTMessageField* field = [_fields objectAtIndex:i];
-    TTPickerTextField* view = [_fieldViews objectAtIndex:i];
+    UITextField* view = [_fieldViews objectAtIndex:i];
     id data = [field persistField:view];
     if (data) {
       [fields addObject:data];
@@ -418,7 +432,7 @@
   NSMutableArray* fields = [state objectForKey:@"fields"];
   for (NSInteger i = 0; i < fields.count; ++i) {
     TTMessageField* field = [_fields objectAtIndex:i];
-    TTPickerTextField* view = [_fieldViews objectAtIndex:i];
+    UITextField* view = [_fieldViews objectAtIndex:i];
 
     id data = [fields objectAtIndex:i];
     if (data != [NSNull null]) {
@@ -532,7 +546,7 @@
   for (int i = 0; i < _fields.count; ++i) {
     id field = [_fields objectAtIndex:i];
     if ([field isKindOfClass:[TTMessageSubjectField class]]) {
-      TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
+      UITextField* textField = [_fieldViews objectAtIndex:i];
       return textField.text;
     }
   }
@@ -544,7 +558,7 @@
   for (int i = 0; i < _fields.count; ++i) {
     id field = [_fields objectAtIndex:i];
     if ([field isKindOfClass:[TTMessageSubjectField class]]) {
-      TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
+      UITextField* textField = [_fieldViews objectAtIndex:i];
       textField.text = subject;
       break;
     }
@@ -622,6 +636,33 @@
     if ([textField isKindOfClass:[TTPickerTextField class]]) {
       textField.text = text;
     }
+  }
+}
+
+- (BOOL)fieldHasValueAtIndex:(NSUInteger)fieldIndex {
+  self.view;
+  
+  if (fieldIndex == _fieldViews.count) {
+    return _textEditor.text.length > 0;
+  } else {
+    TTMessageField* field = [_fields objectAtIndex:fieldIndex];
+    if ([field isKindOfClass:[TTMessageRecipientField class]]) {
+      TTPickerTextField* pickerTextField = [_fieldViews objectAtIndex:fieldIndex];
+      BOOL R = !pickerTextField.text.isEmptyOrWhitespace || pickerTextField.cellViews.count > 0;
+    } else {
+      UITextField* textField = [_fieldViews objectAtIndex:fieldIndex];
+      return !textField.text.isEmptyOrWhitespace;
+    }
+  }
+}
+
+- (UIView*)viewForFieldAtIndex:(NSUInteger)fieldIndex {
+  self.view;
+  
+  if (fieldIndex == _fieldViews.count) {
+    return _textEditor;
+  } else {
+    return [_fieldViews objectAtIndex:fieldIndex];
   }
 }
 
