@@ -35,14 +35,6 @@
 -(BOOL)isOutdated;
 
 /**
- * Indicates that the data set contains no objects.
- *
- * This returns YES by default for remote models, so you should override this method
- * to indicate whether your model has data or not.
- */
-- (BOOL)isEmpty;
-
-/**
  * Loads the model.
  */
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more;

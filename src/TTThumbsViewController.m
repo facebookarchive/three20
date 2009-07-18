@@ -46,8 +46,9 @@ static CGFloat kThumbnailRowHeight = 79;
 // UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-  NSInteger maxIndex = _photoSource.maxPhotoIndex+1;
+  NSInteger maxIndex = _photoSource.maxPhotoIndex;
   if (!_photoSource.isLoading && maxIndex > 0) {
+    maxIndex += 1;
     NSInteger count =  ceil((maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0));
     if (self.hasMoreToLoad) {
       return count + 1;

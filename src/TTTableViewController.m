@@ -218,6 +218,23 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTModelViewController
 
+- (BOOL)modelShouldAppear {
+  [_dataSource willAppearInTableView:_tableView];
+
+  if ([_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+    NSInteger numberOfSections = [_dataSource numberOfSectionsInTableView:_tableView];
+    if (!numberOfSections) {
+      return NO;
+    } else if (numberOfSections == 1) {
+      return [_dataSource tableView:_tableView numberOfRowsInSection:0] > 0;
+    } else {
+      return YES;
+    }
+  } else {
+    return [_dataSource tableView:_tableView numberOfRowsInSection:0] > 0;
+  }
+}
+
 - (void)modelDidChangeLoadingState {
   if (self.modelState & TTModelStateLoading) {
     [self showLoadingView];
@@ -233,15 +250,7 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (void)modelDidChangeLoadedState {
   if (self.modelState & TTModelStateLoaded) {
-    if (_dataSource) {
-      [_dataSource willAppearInTableView:_tableView];
-      _tableView.dataSource = _dataSource;
-    } else if ([self conformsToProtocol:@protocol(UITableViewDataSource)]) {
-      _tableView.dataSource = (id<UITableViewDataSource>)self;
-    } else {
-      _tableView.dataSource = nil;
-    }
-    
+    _tableView.dataSource = _dataSource;
     self.tableOverlayView = nil;
   } else if (self.modelState & TTModelStateLoadedError) {
     NSString* title = [_dataSource titleForError:_modelError];

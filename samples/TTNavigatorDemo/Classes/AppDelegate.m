@@ -41,7 +41,7 @@
                                  initWithTitle:@"Are you sure?"
                                  message:@"Sure you want to order?"] autorelease];
   [alert addButtonWithTitle:@"Yes" URL:@"tt://order/send"];
-  [alert addCancelButtonWithTitle:@"NO" URL:nil];
+  [alert addCancelButtonWithTitle:@"No" URL:nil];
   return alert;
 }
 

@@ -58,10 +58,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (BOOL)isEmpty {
-  return !_items.count;
-}
-
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   return [_items objectAtIndex:indexPath.row];
 }

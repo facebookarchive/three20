@@ -464,6 +464,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 }
 
 - (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response data:(id)data {
+  [loader retain];
   [self removeLoader:loader];
   
   NSError* error = [loader processResponse:response data:data];
@@ -475,6 +476,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     }
     [loader dispatchLoaded:[NSDate date]];
   }
+  [loader release];
 
   [self loadNextInQueue];
 }

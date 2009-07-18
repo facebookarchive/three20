@@ -7,10 +7,9 @@ typedef enum {
   TTModelStateLoadingMore = 2,
   TTModelStateReloading = 4,
   TTModelStateLoaded = 8,
-  TTModelStateLoadedEmpty = 16,
-  TTModelStateLoadedError = 32,
+  TTModelStateLoadedError = 16,
   TTModelLoadingStates = (TTModelStateLoading|TTModelStateLoadingMore|TTModelStateReloading),
-  TTModelLoadedStates = (TTModelStateLoaded|TTModelStateLoadedEmpty|TTModelStateLoadedError),
+  TTModelLoadedStates = (TTModelStateLoaded|TTModelStateLoadedError),
 } TTModelState;
 
 /**
@@ -114,6 +113,11 @@ typedef enum {
  * If the model is invalid, the model will be updated before update the view.
  */
 - (void)validateView;
+
+/**
+ *
+ */
+- (BOOL)modelShouldAppear;
 
 /**
  * Informs the controller that its model is about to appear for the first time.

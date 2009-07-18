@@ -46,11 +46,9 @@
   } else if (self.modelState == TTModelStateLoaded) {
     self.modelState = TTModelStateLoading;
   } else if (self.modelState == TTModelStateLoading) {
-    self.modelState = TTModelStateLoadedEmpty;
-  } else if (self.modelState == TTModelStateLoadedEmpty) {
     self.modelState = TTModelStateLoadedError;
   } else if (self.modelState == TTModelStateLoadedError) {
-    self.modelState = TTModelStateLoaded;
+    self.modelState = TTModelStateNone;
   }
 }
 
@@ -74,13 +72,11 @@
 
 - (void)modelDidChangeState {
   if (self.modelState == TTModelStateNone) {
-    self.title = @"Empty";
+    self.title = @"None";
   } else if (self.modelState == TTModelStateLoading) {
     self.title = @"Loading";
   } else if (self.modelState == TTModelStateLoaded) {
     self.title = @"Loaded";
-  } else if (self.modelState == TTModelStateLoadedEmpty) {
-    self.title = @"LoadedEmpty";
   } else if (self.modelState == TTModelStateLoadedError) {
     self.title = @"LoadedError";
   }

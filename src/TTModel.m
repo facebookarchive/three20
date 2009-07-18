@@ -88,10 +88,6 @@
   }
 }
 
-- (BOOL)isEmpty {
-  return YES;
-}
-
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
 }
 

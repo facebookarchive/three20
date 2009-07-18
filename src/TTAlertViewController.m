@@ -97,23 +97,33 @@
 // UIAlertviewDelegate
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  [_delegate alertView:alertView clickedButtonAtIndex:buttonIndex];
+  if ([_delegate respondsToSelector:@selector(alertView:clickedButtonAtIndex:)]) {
+    [_delegate alertView:alertView clickedButtonAtIndex:buttonIndex];
+  }
 }
 
 - (void)alertViewCancel:(UIAlertView*)alertView {
-  [_delegate alertViewCancel:alertView];
+  if ([_delegate respondsToSelector:@selector(alertViewCancel:)]) {
+    [_delegate alertViewCancel:alertView];
+  }
 }
 
 - (void)willPresentAlertView:(UIAlertView*)alertView {
-  [_delegate willPresentAlertView:alertView];
+  if ([_delegate respondsToSelector:@selector(willPresentAlertView:)]) {
+    [_delegate willPresentAlertView:alertView];
+  }
 }
 
 - (void)didPresentAlertView:(UIAlertView*)alertView {
-  [_delegate didPresentAlertView:alertView];
+  if ([_delegate respondsToSelector:@selector(didPresentAlertView:)]) {
+    [_delegate didPresentAlertView:alertView];
+  }
 }
 
 - (void)alertView:(UIAlertView*)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
-  [_delegate alertView:alertView willDismissWithButtonIndex:buttonIndex];
+  if ([_delegate respondsToSelector:@selector(alertView:willDismissWithButtonIndex:)]) {
+    [_delegate alertView:alertView willDismissWithButtonIndex:buttonIndex];
+  }
 }
 
 - (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -121,7 +131,9 @@
   if (URL) {
     TTOpenURL(URL);
   }
-  [_delegate alertView:alertView didDismissWithButtonIndex:buttonIndex];
+  if ([_delegate respondsToSelector:@selector(alertView:didDismissWithButtonIndex:)]) {
+    [_delegate alertView:alertView didDismissWithButtonIndex:buttonIndex];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -11,10 +11,6 @@
   return YES;
 }
 
-- (BOOL)isEmpty {
-  return NO;
-}
-
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,10 +80,10 @@
 - (void)modelDidFinishLoad:(id<TTModel>)model {
   if (model == _model) {
     self.modelError = nil;
-    if (model.isEmpty) {
-      self.modelState = TTModelStateLoadedEmpty;
-    } else {
+    if ([self modelShouldAppear]) {
       self.modelState = TTModelStateLoaded;
+    } else {
+      self.modelState = TTModelStateNone;
     }
   }
 }
@@ -210,10 +206,10 @@
   } else {
     if (_modelError) {
       self.modelState = TTModelStateLoadedError;
-    } else if (self.model.isEmpty) {
-      self.modelState = TTModelStateLoadedEmpty;
-    } else if (self.model.isLoaded) {
+    } else if (self.model.isLoaded && [self modelShouldAppear]) {
       self.modelState = TTModelStateLoaded;
+    } else {
+      self.modelState = TTModelStateNone;
     }
   }
 }
@@ -264,6 +260,10 @@
 
     [self reloadIfNeeded];
   }
+}
+
+- (BOOL)modelShouldAppear {
+  return YES;
 }
 
 - (void)modelWillAppear {

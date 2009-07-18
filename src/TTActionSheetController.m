@@ -98,23 +98,33 @@
 // UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-  [_delegate actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+  if ([_delegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)]) {
+    [_delegate actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+  }
 }
 
 - (void)actionSheetCancel:(UIActionSheet*)actionSheet {
-  [_delegate actionSheetCancel:actionSheet];
+  if ([_delegate respondsToSelector:@selector(actionSheetCancel:)]) {
+    [_delegate actionSheetCancel:actionSheet];
+  }
 }
 
 - (void)willPresentActionSheet:(UIActionSheet*)actionSheet {
-  [_delegate willPresentActionSheet:actionSheet];
+  if ([_delegate respondsToSelector:@selector(willPresentActionSheet:)]) {
+    [_delegate willPresentActionSheet:actionSheet];
+  }
 }
 
 - (void)didPresentActionSheet:(UIActionSheet*)actionSheet {
-  [_delegate didPresentActionSheet:actionSheet];
+  if ([_delegate respondsToSelector:@selector(didPresentActionSheet:)]) {
+    [_delegate didPresentActionSheet:actionSheet];
+  }
 }
 
 - (void)actionSheet:(UIActionSheet*)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
-  [_delegate actionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
+  if ([_delegate respondsToSelector:@selector(actionSheet:willDismissWithButtonIndex:)]) {
+    [_delegate actionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
+  }
 }
 
 - (void)actionSheet:(UIActionSheet*)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -122,7 +132,10 @@
   if (URL) {
     TTOpenURL(URL);
   }
-  [_delegate actionSheet:actionSheet didDismissWithButtonIndex:buttonIndex];
+
+  if ([_delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {
+    [_delegate actionSheet:actionSheet didDismissWithButtonIndex:buttonIndex];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

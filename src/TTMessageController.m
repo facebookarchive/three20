@@ -648,7 +648,7 @@
     TTMessageField* field = [_fields objectAtIndex:fieldIndex];
     if ([field isKindOfClass:[TTMessageRecipientField class]]) {
       TTPickerTextField* pickerTextField = [_fieldViews objectAtIndex:fieldIndex];
-      BOOL R = !pickerTextField.text.isEmptyOrWhitespace || pickerTextField.cellViews.count > 0;
+      return !pickerTextField.text.isEmptyOrWhitespace || pickerTextField.cellViews.count > 0;
     } else {
       UITextField* textField = [_fieldViews objectAtIndex:fieldIndex];
       return !textField.text.isEmptyOrWhitespace;
