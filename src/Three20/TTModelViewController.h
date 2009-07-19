@@ -45,17 +45,17 @@ typedef enum {
 /**
  * Creates the model that the controller manages.
  */
-- (void)loadModel;
+- (void)createModel;
 
 /**
  * 
  */
-- (void)modelDidLoad;
+- (void)willChangeModel;
 
 /**
  * 
  */
-- (void)modelDidUnload;
+- (void)didChangeModel;
 
 /**
  * 

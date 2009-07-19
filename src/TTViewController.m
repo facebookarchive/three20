@@ -15,7 +15,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (BOOL)resizeForKeyboard:(NSNotification*)notification {
+- (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
   NSValue* v1 = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
   CGRect keyboardBounds;
   [v1 getValue:&keyboardBounds];
@@ -27,31 +27,50 @@
   NSValue* v3 = [notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey];
   CGPoint keyboardEnd;
   [v3 getValue:&keyboardEnd];
-  
-  TTLOGRECT(keyboardBounds);
-  TTLOGPOINT(keyboardStart);
-  TTLOGPOINT(keyboardEnd);
 
-  CGFloat keyboardTop = keyboardEnd.y - floor(keyboardBounds.size.height/2);
-  CGFloat screenBottom = self.view.screenY + self.view.height;
-  if (screenBottom != keyboardTop) {
-    BOOL animated = keyboardStart.y != keyboardEnd.y;
-    if (animated) {
-      [UIView beginAnimations:nil context:nil];
-      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-    }
-    
-    CGFloat dy = screenBottom - keyboardTop;
-    self.view.frame = TTRectContract(self.view.frame, 0, dy);
-
-    if (animated) {
-      [UIView commitAnimations];
-    }
-    
-    return animated;
+  BOOL animated = keyboardStart.y != keyboardEnd.y;
+  if (animated) {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   }
   
-  return NO;
+  if (appearing) {
+    [self keyboardWillAppear:animated withBounds:keyboardBounds];
+    
+    [self retain];
+    [NSTimer scheduledTimerWithTimeInterval:TT_TRANSITION_DURATION
+             target:self selector:@selector(keyboardDidAppearDelayed:)
+             userInfo:[NSValue valueWithCGRect:keyboardBounds] repeats:NO];
+  } else {
+    [self keyboardWillDisappear:animated withBounds:keyboardBounds];
+
+    [self retain];
+    [NSTimer scheduledTimerWithTimeInterval:TT_TRANSITION_DURATION
+             target:self selector:@selector(keyboardDidDisappearDelayed:)
+             userInfo:[NSValue valueWithCGRect:keyboardBounds] repeats:NO];
+  }
+  
+  if (animated) {
+    [UIView commitAnimations];
+  }
+}
+
+- (void)keyboardDidAppearDelayed:(NSTimer*)timer {
+  NSValue* value = timer.userInfo;
+  CGRect keyboardBounds;
+  [value getValue:&keyboardBounds];
+
+  [self keyboardDidAppear:YES withBounds:keyboardBounds];
+  [self autorelease];
+}
+
+- (void)keyboardDidDisappearDelayed:(NSTimer*)timer {
+  NSValue* value = timer.userInfo;
+  CGRect keyboardBounds;
+  [value getValue:&keyboardBounds];
+
+  [self keyboardDidDisappear:YES withBounds:keyboardBounds];
+  [self autorelease];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +122,8 @@
   
   self.view = [[[UIView alloc] initWithFrame:TTNavigationFrame()] autorelease];
 	self.view.autoresizesSubviews = YES;
-	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth
+                              | UIViewAutoresizingFlexibleHeight;
   self.view.backgroundColor = TTSTYLEVAR(backgroundColor);
 }
 
@@ -173,15 +193,13 @@
 
 - (void)keyboardWillShow:(NSNotification*)notification {
   if (self.isViewAppearing) {
-    BOOL animated = [self resizeForKeyboard:notification];
-    [self keyboardWillAppear:animated];
+    [self resizeForKeyboard:notification appearing:YES];
   }
 }
 
 - (void)keyboardWillHide:(NSNotification*)notification {
   if (self.isViewAppearing) {
-    BOOL animated = [self resizeForKeyboard:notification];
-    [self keyboardWillDisappear:animated];
+    [self resizeForKeyboard:notification appearing:NO];
   }
 }
 
@@ -227,10 +245,16 @@
   }
 }
 
-- (void)keyboardWillAppear:(BOOL)animated {
+- (void)keyboardWillAppear:(BOOL)animated withBounds:(CGRect)bounds {
 }
 
-- (void)keyboardWillDisappear:(BOOL)animated {
+- (void)keyboardWillDisappear:(BOOL)animated withBounds:(CGRect)bounds {
+}
+
+- (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds {
+}
+
+- (void)keyboardDidDisappear:(BOOL)animated withBounds:(CGRect)bounds {
 }
 
 @end

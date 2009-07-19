@@ -10,6 +10,34 @@ static CGFloat kTextViewInset = 30;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@interface TTTextView : UITextView {
+  BOOL _autoresizesToText;
+  BOOL _overflowed;
+}
+
+@property(nonatomic) BOOL autoresizesToText;
+@property(nonatomic) BOOL overflowed;
+
+@end
+
+@implementation TTTextView
+
+@synthesize autoresizesToText = _autoresizesToText, overflowed = _overflowed;
+
+- (void)setContentOffset:(CGPoint)offset animated:(BOOL)animated {
+  if (_autoresizesToText && !_overflowed) {
+    // In autosizing mode, we don't ever allow the text view to scroll past zero
+    // unless it has past its maximum number of lines
+    [super setContentOffset:CGPointZero animated:animated];
+  } else {
+    [super setContentOffset:offset animated:animated];
+  }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TTTextEditorInternal : NSObject <UITextViewDelegate> {
   TTTextEditor* _textEditor;
   id<TTTextEditorDelegate> _delegate;
@@ -137,7 +165,7 @@ static CGFloat kTextViewInset = 30;
     _placeholderLabel = nil;
     _fixedTextLabel = nil;
 
-    _textView = [[UITextView alloc] initWithFrame:CGRectZero];
+    _textView = [[TTTextView alloc] init];
     _textView.delegate = _internal;
     _textView.editable = YES;
     _textView.opaque = NO;
@@ -165,7 +193,7 @@ static CGFloat kTextViewInset = 30;
 - (void)updatePlaceholder {
   if (_placeholder && !_editing && !_textView.text.length) {
     if (!_placeholderLabel) {
-      _placeholderLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+      _placeholderLabel = [[UILabel alloc] init];
       _placeholderLabel.backgroundColor = [UIColor clearColor];
       [self addSubview:_placeholderLabel];
     }
@@ -227,6 +255,7 @@ static CGFloat kTextViewInset = 30;
   CGFloat newHeight = [self heightThatFits:&_overflowed];
   CGFloat diff = newHeight - oldHeight;
 
+  _textView.overflowed = _overflowed;
   _textView.scrollEnabled = _overflowed;
   
   if (oldHeight && diff) {
@@ -290,9 +319,7 @@ static CGFloat kTextViewInset = 30;
 
 - (void)layoutSubviews {
   _textView.frame = CGRectMake(0, 0, self.width-kPaddingX*2, self.height);
-  if (_autoresizesToText && !_overflowed) {
-    _textView.contentOffset = CGPointMake(0, 0);
-  }
+
   [_placeholderLabel sizeToFit];
   _placeholderLabel.frame = CGRectMake(kPaddingX, kPaddingY,
                                        self.width-kPaddingX*2, _placeholderLabel.height);
@@ -343,7 +370,7 @@ static CGFloat kTextViewInset = 30;
   _fixedText = [text copy];
   
   if (_fixedText && !_fixedTextLabel) {
-    _fixedTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _fixedTextLabel = [[UILabel alloc] init];
     _fixedTextLabel.textColor = TTSTYLEVAR(placeholderTextColor);
     _fixedTextLabel.font = _textView.font;
     _fixedTextLabel.contentMode = UIViewContentModeBottom;
@@ -352,6 +379,11 @@ static CGFloat kTextViewInset = 30;
 
   _fixedTextLabel.hidden = !_fixedText;
   _fixedTextLabel.text = _fixedText;
+}
+
+- (void)setAutoresizesToText:(BOOL)autoresizesToText {
+  _autoresizesToText = autoresizesToText;
+  _textView.autoresizesToText = _autoresizesToText;
 }
 
 - (void)scrollContainerToCursor:(UIScrollView*)scrollView {

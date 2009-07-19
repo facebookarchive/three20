@@ -65,6 +65,23 @@
 
 - (void)modelDidCancelLoad:(id<TTModel>)model;
 
+/**
+ * Informs the delegate that the model is about to begin a multi-stage update.
+ *
+ * Models should use this method to condense multiple updates into a single visible update.
+ * This avoids having the view update multiple times for each change.  Instead, the user will
+ * only see the end result of all of your changes when you call modelDidEndUpdate.
+ */
+- (void)modelDidBeginUpdate:(id<TTModel>)model;
+
+/**
+ * Informs the delegate that the model has completed a multi-stage update.
+ *
+ * The exact nature of the change is not specified, so the receiver should investigate the
+ * new state of the model by examining its properties.
+ */
+- (void)modelDidEndUpdate:(id<TTModel>)model;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,5 +112,20 @@
  * Initializes a model with data that is loaded remotely.
  */ 
 - (id)initRemoteModel;
+
+/**
+ * Notifies delegates that the model has begun an update.
+ */
+- (void)beginUpdate;
+
+/**
+ * Notifies delegates that the model has completeld an update.
+ */
+- (void)endUpdate;
+
+/**
+ * Resets the model to its original state before any data was loaded.
+ */
+- (void)reset;
 
 @end

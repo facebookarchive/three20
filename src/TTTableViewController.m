@@ -45,7 +45,6 @@ static const CGFloat kBannerViewHeight = 22;
   NSInteger tableIndex = [_tableView.superview.subviews indexOfObject:_tableView];
   if (tableIndex != NSNotFound) {
     view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    view.userInteractionEnabled = NO;
     [_tableView.superview insertSubview:view atIndex:tableIndex+1];
   }
 }
@@ -71,28 +70,15 @@ static const CGFloat kBannerViewHeight = 22;
                     tableFrame.size.width, kBannerViewHeight);
 }
 
-- (void)showLoadingView {
-  TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox]
-                              autorelease];
-  label.text = [_dataSource titleForLoading:NO];
-  label.backgroundColor = _tableView.backgroundColor;
-  label.centeredToScreen = NO;
-  self.tableOverlayView = label;
-}
-
-- (void)showReloadingView {
-  TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleBlackBox]
-                              autorelease];
-  label.text = [_dataSource titleForLoading:YES];
-  label.font = [UIFont boldSystemFontOfSize:12];
-  label.centeredToScreen = NO;
-  self.tableBannerView = label;
-}
-
 - (void)showReloadingViewWithDelay {
   [_bannerTimer invalidate];
   _bannerTimer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self
-                          selector:@selector(showReloadingView) userInfo:nil repeats:NO];
+                          selector:@selector(showBanner) userInfo:nil repeats:NO];
+}
+
+- (void)showBanner {
+  _bannerTimer = nil;
+  [self showReloadingView];
 }
 
 - (void)layoutOverlayView {
@@ -101,16 +87,9 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
-- (void)animateBannerViewToBottom {
+- (void)layoutBannerView {
   if (_tableBannerView) {
-    CGRect frame = [self rectForBannerView];
-    if (_tableBannerView.top != frame.origin.y) {
-      [UIView beginAnimations:nil context:nil];
-      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-      [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-      _tableBannerView.frame = frame;
-      [UIView commitAnimations];
-    }
+    _tableBannerView.frame = [self rectForBannerView];
   }
 }
 
@@ -204,15 +183,19 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTViewController
 
-- (void)keyboardWillAppear:(BOOL)animated {
+- (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds {
+  [super keyboardDidAppear:animated withBounds:bounds];
+  self.tableView.frame = TTRectContract(self.tableView.frame, 0, bounds.size.height);
   [self.tableView scrollFirstResponderIntoView];
   [self layoutOverlayView];
-  [self animateBannerViewToBottom];
+  [self layoutBannerView];
 }
 
-- (void)keyboardWillDisappear:(BOOL)animated {
+- (void)keyboardWillDisappear:(BOOL)animated withBounds:(CGRect)bounds {
+  [super keyboardWillDisappear:animated withBounds:bounds];
+  self.tableView.frame = TTRectContract(self.tableView.frame, 0, -bounds.size.height);
   [self layoutOverlayView];
-  [self animateBannerViewToBottom];
+  [self layoutBannerView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -253,21 +236,9 @@ static const CGFloat kBannerViewHeight = 22;
     _tableView.dataSource = _dataSource;
     self.tableOverlayView = nil;
   } else if (self.modelState & TTModelStateLoadedError) {
-    NSString* title = [_dataSource titleForError:_modelError];
-    NSString* subtitle = [_dataSource subtitleForError:_modelError];
-    UIImage* image = [_dataSource imageForError:_modelError];
-    self.tableOverlayView = [[[TTErrorView alloc] initWithTitle:title
-                                                  subtitle:subtitle
-                                                  image:image] autorelease];
-    self.tableOverlayView.backgroundColor = _tableView.backgroundColor;
+    [self showErrorView];
   } else if (!(self.modelState & TTModelLoadingStates)) {
-    NSString* title = [_dataSource titleForEmpty];
-    NSString* subtitle = [_dataSource subtitleForEmpty];
-    UIImage* image = [_dataSource imageForEmpty];
-    self.tableOverlayView = [[[TTErrorView alloc] initWithTitle:title
-                                                  subtitle:subtitle
-                                                  image:image] autorelease];
-    self.tableOverlayView.backgroundColor = _tableView.backgroundColor;
+    [self showEmptyView];
   }
   
   [self reloadTableData];
@@ -324,6 +295,7 @@ static const CGFloat kBannerViewHeight = 22;
     
     if (_tableBannerView) {
       _tableBannerView.frame = [self rectForBannerView];
+      _tableBannerView.userInteractionEnabled = NO;
       [self addSubviewOverTableView:_tableBannerView];
 
       if (animated) {
@@ -381,6 +353,50 @@ static const CGFloat kBannerViewHeight = 22;
     // Force the delegate to be re-created so that it supports the right kind of row measurement
     _tableView.delegate = nil;
   }
+}
+
+- (void)showLoadingView {
+  NSString* title = [_dataSource titleForLoading:NO];
+  if (title.length) {
+    TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox]
+                                autorelease];
+    label.text = title;
+    label.backgroundColor = _tableView.backgroundColor;
+    label.centeredToScreen = NO;
+    self.tableOverlayView = label;
+  }
+}
+
+- (void)showReloadingView {
+  NSString* title = [_dataSource titleForLoading:YES];
+  if (title.length) {
+    TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleBlackBox]
+                                autorelease];
+    label.text = title;
+    label.font = [UIFont boldSystemFontOfSize:12];
+    label.centeredToScreen = NO;
+    self.tableBannerView = label;
+  }
+}
+
+- (void)showEmptyView {
+  NSString* title = [_dataSource titleForEmpty];
+  NSString* subtitle = [_dataSource subtitleForEmpty];
+  UIImage* image = [_dataSource imageForEmpty];
+  self.tableOverlayView = [[[TTErrorView alloc] initWithTitle:title
+                                                subtitle:subtitle
+                                                image:image] autorelease];
+  self.tableOverlayView.backgroundColor = _tableView.backgroundColor;
+}
+
+- (void)showErrorView {
+  NSString* title = [_dataSource titleForError:_modelError];
+  NSString* subtitle = [_dataSource subtitleForError:_modelError];
+  UIImage* image = [_dataSource imageForError:_modelError];
+  self.tableOverlayView = [[[TTErrorView alloc] initWithTitle:title
+                                                subtitle:subtitle
+                                                image:image] autorelease];
+  self.tableOverlayView.backgroundColor = _tableView.backgroundColor;
 }
 
 - (id<UITableViewDelegate>)createDelegate {

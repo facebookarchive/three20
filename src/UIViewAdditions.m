@@ -310,6 +310,7 @@
 }
 
 - (void)dismissAsKeyboardAnimationDidStop {
+  [self removeFromSuperview];
   [self release];
   [self.window release];
 }
@@ -335,7 +336,7 @@
   [UIView commitAnimations];
 }
 
-- (void)dismissAsKeyboard {
+- (void)dismissAsKeyboard:(BOOL)animated {
   [self retain];
   CGRect screenFrame = TTScreenBounds();
   CGRect bounds = CGRectMake(0, 0, screenFrame.size.width, self.height);
@@ -353,12 +354,20 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"UIKeyboardWillHideNotification"
                                         object:self userInfo:userInfo];
 
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(dismissAsKeyboardAnimationDidStop)];
+  if (animated) {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(dismissAsKeyboardAnimationDidStop)];
+  }
+  
   self.window.top = screenFrame.size.height;
-  [UIView commitAnimations];
+
+  if (animated) {
+    [UIView commitAnimations];
+  } else {
+    [self dismissAsKeyboardAnimationDidStop];
+  }
 }
 
 @end

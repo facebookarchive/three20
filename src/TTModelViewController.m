@@ -20,6 +20,35 @@
 @synthesize model = _model, modelState = _modelState, modelError = _modelError;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (void)updateModelState:(BOOL)loadIfNecessary {
+  if (self.model.isLoading) {
+    if (self.model.isLoadingMore) {
+      self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateLoadingMore;
+    } else if (self.model.isLoaded) {
+      self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateReloading;
+    } else {
+      self.modelState = TTModelStateLoading;
+    }
+  } else if (loadIfNecessary && [self shouldLoad]) {
+    [self.model load:TTURLRequestCachePolicyDefault more:NO];
+  } else if (loadIfNecessary && [self shouldReload]) {
+    [self.model load:TTURLRequestCachePolicyNetwork more:NO];
+  } else if (loadIfNecessary && [self shouldLoadMore]) {
+    [self.model load:TTURLRequestCachePolicyDefault more:YES];
+  } else {
+    if (_modelError) {
+      self.modelState = TTModelStateLoadedError;
+    } else if (self.model.isLoaded && [self modelShouldAppear]) {
+      self.modelState = TTModelStateLoaded;
+    } else {
+      self.modelState = TTModelStateNone;
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)init {
@@ -101,12 +130,23 @@
   }
 }
 
+- (void)modelDidBeginUpdate:(id<TTModel>)model {
+  if (model == _model) {
+  }
+}
+
+- (void)modelDidEndUpdate:(id<TTModel>)model {
+  if (model == _model) {
+    [self updateModelState:NO];
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
 - (id<TTModel>)model {
   if (!_model) {
-    [self loadModel];
+    [self createModel];
     if (!_model) {
       self.model = [[[TTDefaultModel alloc] init] autorelease];
     }
@@ -116,20 +156,13 @@
 
 - (void)setModel:(id<TTModel>)model {
   if (_model != model) {
-    BOOL unloaded = !!_model;
+    [self willChangeModel];
     [_model.delegates removeObject:self];
     TT_RELEASE_MEMBER(_model);
 
-    if (unloaded) {
-      [self modelDidUnload];
-    }
-
     _model = [model retain];
     [_model.delegates addObject:self];
-
-    if (_model) {
-      [self modelDidLoad];
-    }
+    [self didChangeModel];
 
     [self refresh];
   }
@@ -151,13 +184,13 @@
   }
 }
 
-- (void)loadModel {
+- (void)createModel {
 }
 
-- (void)modelDidLoad {
+- (void)willChangeModel {
 }
 
-- (void)modelDidUnload {
+- (void)didChangeModel {
 }
 
 - (BOOL)isModelLoaded {
@@ -188,30 +221,7 @@
 
 - (void)refresh {
   [self invalidateView];
-
-  if (self.model.isLoading) {
-    if (self.model.isLoadingMore) {
-      self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateLoadingMore;
-    } else if (self.model.isLoaded) {
-      self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateReloading;
-    } else {
-      self.modelState = TTModelStateLoading;
-    }
-  } else if ([self shouldLoad]) {
-    [self.model load:TTURLRequestCachePolicyDefault more:NO];
-  } else if ([self shouldReload]) {
-    [self.model load:TTURLRequestCachePolicyNetwork more:NO];
-  } else if ([self shouldLoadMore]) {
-    [self.model load:TTURLRequestCachePolicyDefault more:YES];
-  } else {
-    if (_modelError) {
-      self.modelState = TTModelStateLoadedError;
-    } else if (self.model.isLoaded && [self modelShouldAppear]) {
-      self.modelState = TTModelStateLoaded;
-    } else {
-      self.modelState = TTModelStateNone;
-    }
-  }
+  [self updateModelState:YES];
 }
 
 - (void)invalidateView {

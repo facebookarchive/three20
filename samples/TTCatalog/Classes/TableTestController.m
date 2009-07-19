@@ -66,7 +66,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTModelViewController
 
-- (void)loadModel {
+- (void)createModel {
   self.dataSource = [[[TableTestDataSource alloc] init] autorelease];
 }
 

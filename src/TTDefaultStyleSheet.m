@@ -546,8 +546,6 @@
     } else {
       return [color multiplyHue:1 saturation:2.3 value:0.64];
     }
-  } else if (state & UIControlStateDisabled) {
-    return [color multiplyHue:1 saturation:0.5 value:1];
   } else {
     if (color.saturation < 0.5) {
       return [color multiplyHue:1 saturation:1.6 value:0.97];

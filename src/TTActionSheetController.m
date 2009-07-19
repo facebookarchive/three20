@@ -30,6 +30,7 @@
 - (void)didMoveToSuperview {
   if (!self.superview) {
     [_popupViewController autorelease];
+    _popupViewController = nil;
   }
 }
 

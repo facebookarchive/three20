@@ -140,9 +140,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (void)setLoadedTime:(NSDate*)loadedTime {
-  [_loadedTime release];
-  _loadedTime = [loadedTime retain];
+- (void)beginUpdate {
+  [_delegates perform:@selector(modelDidBeginUpdate:) withObject:self];
+}
+
+- (void)endUpdate {
+  [_delegates perform:@selector(modelDidEndUpdate:) withObject:self];
+}
+
+- (void)reset {
+  TT_RELEASE_MEMBER(_cacheKey);
+  TT_RELEASE_MEMBER(_loadedTime);
 }
 
 @end

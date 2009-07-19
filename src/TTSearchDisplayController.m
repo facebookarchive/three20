@@ -57,6 +57,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
   if (_searchResultsViewController.model.isLoading) {
     [_searchResultsViewController.model cancel];
   }
+  [_searchResultsViewController.dataSource search:nil];
   [_searchResultsViewController viewWillDisappear:NO];
   [_searchResultsViewController viewDidDisappear:NO];
   _searchResultsViewController.tableView = nil;

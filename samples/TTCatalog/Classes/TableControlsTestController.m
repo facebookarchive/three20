@@ -21,7 +21,8 @@
     UITextField* textField2 = [[[UITextField alloc] init] autorelease];
     textField2.font = TTSTYLEVAR(font);
     textField2.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    TTTableControlItem* textFieldItem = [TTTableControlItem itemWithCaption:@"TTTableControlItem" control:textField2];
+    TTTableControlItem* textFieldItem = [TTTableControlItem itemWithCaption:@"TTTableControlItem"
+                                                            control:textField2];
     
     UITextView* textView = [[[UITextView alloc] init] autorelease];
     textView.text = @"UITextView";

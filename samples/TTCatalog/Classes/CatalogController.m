@@ -21,7 +21,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTModelViewController
 
-- (void)loadModel {
+- (void)createModel {
   self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
     @"Photos",
     [TTTableTextItem itemWithText:@"Photo Browser" URL:@"tt://photoTest1"],

@@ -1,14 +1,14 @@
 #import "Three20/TTView.h"
 
 @protocol TTTextEditorDelegate;
-@class TTTextEditorInternal;
+@class TTTextView, TTTextEditorInternal;
 
 @interface TTTextEditor : TTView {
   id<TTTextEditorDelegate> _textDelegate;
   TTTextEditorInternal* _internal;
   NSString* _placeholder;
   NSString* _fixedText;
-  UITextView* _textView;
+  TTTextView* _textView;
   UILabel* _placeholderLabel;
   UILabel* _fixedTextLabel;
   NSInteger _minNumberOfLines;

@@ -57,6 +57,26 @@
 - (id<UITableViewDelegate>)createDelegate;
 
 /**
+ * Shows a view to represent the status of the model loading.
+ */
+- (void)showLoadingView;
+
+/**
+ * Shows a view to represent the status of the model reloading.
+ */
+- (void)showReloadingView;
+
+/**
+ * Creates and displays an view to represent a lack of content.
+ */
+- (void)showEmptyView;
+
+/**
+ * Creates and displays an view to represent a model error.
+ */
+- (void)showErrorView;
+
+/**
  * Sets the view that is displayed at the bottom of the table view with an optional animation.
  */
 - (void)setTableBannerView:(UIView*)tableBannerView animated:(BOOL)animated;

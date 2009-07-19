@@ -69,6 +69,6 @@
  * This will send a notification pretending that a keyboard is about to disappear so that
  * observers who adjust their layout for the keyboard will also adjust for this view.
  */
-- (void)dismissAsKeyboard;
+- (void)dismissAsKeyboard:(BOOL)animated;
 
 @end

@@ -59,11 +59,21 @@
 /**
  * Sent to the controller before the keyboard slides in.
  */
-- (void)keyboardWillAppear:(BOOL)animated;
+- (void)keyboardWillAppear:(BOOL)animated withBounds:(CGRect)bounds;
 
 /**
  * Sent to the controller before the keyboard slides out.
  */
-- (void)keyboardWillDisappear:(BOOL)animated;
+- (void)keyboardWillDisappear:(BOOL)animated withBounds:(CGRect)bounds;
+
+/**
+ * Sent to the controller after the keyboard has slid in.
+ */
+- (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds;
+
+/**
+ * Sent to the controller after the keyboard has slid out.
+ */
+- (void)keyboardDidDisappear:(BOOL)animated withBounds:(CGRect)bounds;
 
 @end
