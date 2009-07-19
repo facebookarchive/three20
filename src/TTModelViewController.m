@@ -132,6 +132,8 @@
 
 - (void)modelDidBeginUpdate:(id<TTModel>)model {
   if (model == _model) {
+    // XXXjoe Do something here which prevents the view from being updated
+    // until modelDidEndUpdate is called
   }
 }
 

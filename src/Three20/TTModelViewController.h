@@ -115,7 +115,11 @@ typedef enum {
 - (void)validateView;
 
 /**
+ * Tests if it is ok to show the contents of the model.
  *
+ * After a model has loaded, this method is called to test whether or not to set the model
+ * state to "loaded".  If you return NO, the model state will be changed to "none" and the
+ * empty view will be shown instead.
  */
 - (BOOL)modelShouldAppear;
 

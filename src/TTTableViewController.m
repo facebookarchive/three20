@@ -37,6 +37,7 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (void)reloadTableData {
+  [self hideMenu:YES];
   [self updateTableDelegate];
   [_tableView reloadData];
 }
@@ -110,6 +111,12 @@ static const CGFloat kBannerViewHeight = 22;
   [view release];
 }
 
+- (void)hideMenuAnimationDidStop:(NSString*)animationID finished:(NSNumber*)finished
+        context:(void*)context {
+  UIView* menuView = (UIView*)context;
+  [menuView removeFromSuperview];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -118,6 +125,8 @@ static const CGFloat kBannerViewHeight = 22;
     _tableView = nil;
     _tableBannerView = nil;
     _tableOverlayView = nil;
+    _menuView = nil;
+    _menuCell = nil;
     _dataSource = nil;
     _tableDelegate = nil;
     _bannerTimer = nil;
@@ -154,6 +163,10 @@ static const CGFloat kBannerViewHeight = 22;
   TT_RELEASE_MEMBER(_tableBannerView);
   [_tableOverlayView removeFromSuperview];
   TT_RELEASE_MEMBER(_tableOverlayView);
+  [_menuView removeFromSuperview];
+  TT_RELEASE_MEMBER(_menuView);
+  [_menuCell removeFromSuperview];
+  TT_RELEASE_MEMBER(_menuCell);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -355,6 +368,14 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+- (id<UITableViewDelegate>)createDelegate {
+  if (_variableHeightRows) {
+    return [[[TTTableViewVarHeightDelegate alloc] initWithController:self] autorelease];
+  } else {
+    return [[[TTTableViewDelegate alloc] initWithController:self] autorelease];
+  }
+}
+
 - (void)showLoadingView {
   NSString* title = [_dataSource titleForLoading:NO];
   if (title.length) {
@@ -399,11 +420,56 @@ static const CGFloat kBannerViewHeight = 22;
   self.tableOverlayView.backgroundColor = _tableView.backgroundColor;
 }
 
-- (id<UITableViewDelegate>)createDelegate {
-  if (_variableHeightRows) {
-    return [[[TTTableViewVarHeightDelegate alloc] initWithController:self] autorelease];
-  } else {
-    return [[[TTTableViewDelegate alloc] initWithController:self] autorelease];
+- (void)showMenu:(UIView*)view forCell:(UITableViewCell*)cell animated:(BOOL)animated {
+  [self hideMenu:YES];
+
+  _menuView = [view retain];
+  _menuCell = [cell retain];
+  
+  // Insert the cell below all content subviews
+  [_menuCell.contentView insertSubview:_menuView atIndex:0];
+
+  if (animated) {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+  }
+
+  // Move each content subview down, revealing the menu
+  for (UIView* view in _menuCell.contentView.subviews) {
+    if (view != _menuView) {
+      view.left -= _menuCell.contentView.width;
+    }
+  }
+  
+  if (animated) {
+    [UIView commitAnimations];
+  }
+}
+
+- (void)hideMenu:(BOOL)animated {
+  if (_menuView) {
+    if (animated) {
+      [UIView beginAnimations:nil context:_menuView];
+      [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
+      [UIView setAnimationDelegate:self];
+      [UIView setAnimationDidStopSelector:@selector(hideMenuAnimationDidStop:finished:context:)];
+    }
+
+    for (UIView* view in _menuCell.contentView.subviews) {
+      if (view != _menuView) {
+        view.left += _menuCell.contentView.width;
+      }
+    }
+
+    if (animated) {
+      [UIView commitAnimations];
+    } else {
+      [_menuView removeFromSuperview];
+    }
+
+    TT_RELEASE_MEMBER(_menuView);
+    TT_RELEASE_MEMBER(_menuCell);
   }
 }
 
@@ -415,6 +481,7 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (void)didBeginDragging {
+  [self hideMenu:YES];
 }
 
 - (void)didEndDragging {

@@ -15,31 +15,18 @@ static const CGFloat kCancelHighlightThreshold = 4;
 @synthesize highlightedLabel = _highlightedLabel;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (void)hideMenuAnimationDidStop:(NSString*)animationID finished:(NSNumber*)finished
-        context:(void*)context {
-  UIView* menuView = (UIView*)context;
-  [menuView removeFromSuperview];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
   if (self = [super initWithFrame:frame style:style]) {
     _highlightedLabel = nil;
     _highlightStartPoint = CGPointZero;
-    _menuView = nil;
-    _menuCell = nil;
   }
   return self;
 }
 
 - (void)dealloc {
   TT_RELEASE_MEMBER(_highlightedLabel);
-  TT_RELEASE_MEMBER(_menuView);
-  TT_RELEASE_MEMBER(_menuCell);
   [super dealloc];
 }
 
@@ -54,18 +41,18 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _highlightStartPoint = [touch locationInView:self];
   }
   
-  if (_menuView) {
-    UITouch* touch = [touches anyObject];
-    CGPoint point = [touch locationInView:_menuView];
-    if (point.y < 0 || point.y > _menuView.height) {
-      [self hideMenu:YES];
-    } else {
-      UIView* hit = [_menuView hitTest:point withEvent:event];
-      if (![hit isKindOfClass:[UIControl class]]) {
-        [self hideMenu:YES];
-      }
-    }
-  }
+//  if (_menuView) {
+//    UITouch* touch = [touches anyObject];
+//    CGPoint point = [touch locationInView:_menuView];
+//    if (point.y < 0 || point.y > _menuView.height) {
+//      [self hideMenu:YES];
+//    } else {
+//      UIView* hit = [_menuView hitTest:point withEvent:event];
+//      if (![hit isKindOfClass:[UIControl class]]) {
+//        [self hideMenu:YES];
+//      }
+//    }
+//  }
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
@@ -81,9 +68,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
 // UITableView
 
 - (void)reloadData {
-  if (_menuView) {
-    [self hideMenu:NO];
-  }
+//  if (_menuView) {
+//    [self hideMenu:NO];
+//  }
   [super reloadData];
 }
 
@@ -102,59 +89,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _highlightedLabel.highlightedNode = nil;
     [_highlightedLabel release];
     _highlightedLabel = [label retain];
-  }
-}
-
-- (void)showMenu:(UIView*)view forCell:(UITableViewCell*)cell animated:(BOOL)animated {
-  [self hideMenu:YES];
-
-  _menuView = [view retain];
-  _menuCell = [cell retain];
-  
-  // Insert the cell below all content subviews
-  [_menuCell.contentView insertSubview:_menuView atIndex:0];
-
-  if (animated) {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-  }
-
-  // Move each content subview down, revealing the menu
-  for (UIView* view in _menuCell.contentView.subviews) {
-    if (view != _menuView) {
-      view.left -= _menuCell.contentView.width;
-    }
-  }
-  
-  if (animated) {
-    [UIView commitAnimations];
-  }
-}
-
-- (void)hideMenu:(BOOL)animated {
-  if (_menuView) {
-    if (animated) {
-      [UIView beginAnimations:nil context:_menuView];
-      [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
-      [UIView setAnimationDelegate:self];
-      [UIView setAnimationDidStopSelector:@selector(hideMenuAnimationDidStop:finished:context:)];
-    }
-
-    for (UIView* view in _menuCell.contentView.subviews) {
-      if (view != _menuView) {
-        view.left += _menuCell.contentView.width;
-      }
-    }
-
-    if (animated) {
-      [UIView commitAnimations];
-    } else {
-      [_menuView removeFromSuperview];
-    }
-
-    TT_RELEASE_MEMBER(_menuView);
-    TT_RELEASE_MEMBER(_menuCell);
   }
 }
 

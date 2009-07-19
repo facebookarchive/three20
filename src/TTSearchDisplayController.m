@@ -53,7 +53,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UISearchDisplayDelegate
 
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController*)controller {
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController*)controller {
   if (_searchResultsViewController.model.isLoading) {
     [_searchResultsViewController.model cancel];
   }

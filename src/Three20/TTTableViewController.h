@@ -7,6 +7,8 @@
   UITableView* _tableView;
   UIView* _tableBannerView;
   UIView* _tableOverlayView;
+  UIView* _menuView;
+  UITableViewCell* _menuCell;
   id<TTTableViewDataSource> _dataSource;
   id<UITableViewDelegate> _tableDelegate;
   NSTimer* _bannerTimer;
@@ -85,6 +87,16 @@
  * Sets the view that is displayed over the table view with an optional animation.
  */
 - (void)setTableOverlayView:(UIView*)tableOverlayView animated:(BOOL)animated;
+
+/**
+ * Shows a menu over a table cell.
+ */
+- (void)showMenu:(UIView*)view forCell:(UITableViewCell*)cell animated:(BOOL)animated;
+
+/**
+ * Hides the currently visible table cell menu.
+ */
+- (void)hideMenu:(BOOL)animated;
 
 /**
  * Tells the controller that the user selected an object in the table.

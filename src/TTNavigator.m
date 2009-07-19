@@ -1,7 +1,9 @@
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLMap.h"
 #import "Three20/TTURLPattern.h"
+#import "Three20/TTTableViewController.h"
 #import "Three20/TTPopupViewController.h"
+#import "Three20/TTSearchDisplayController.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -284,7 +286,13 @@
   while (controller) {
     UIViewController* child = controller.modalViewController;
     if (!child) {
-      child = controller.topSubcontroller;
+      UISearchDisplayController* search = controller.searchDisplayController;
+      if (search && search.active && [search isKindOfClass:[TTSearchDisplayController class]]) {
+        TTSearchDisplayController* ttsearch = (TTSearchDisplayController*)search;
+        child = ttsearch.searchResultsViewController;
+      } else {
+        child = controller.topSubcontroller;
+      }
     }
     if (child) {
       controller = child;

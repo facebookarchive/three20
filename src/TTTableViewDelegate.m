@@ -97,8 +97,6 @@ static const CGFloat kSectionHeaderHeight = 35;
   
   if ([scrollView isKindOfClass:[TTTableView class]]) {
     TTTableView* tableView = (TTTableView*)scrollView;
-    [tableView hideMenu:YES];
-    
     tableView.highlightedLabel.highlightedNode = nil;
     tableView.highlightedLabel = nil;
   }
