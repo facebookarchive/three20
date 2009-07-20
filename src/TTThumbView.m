@@ -6,7 +6,6 @@
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
     self.backgroundColor = TTSTYLEVAR(thumbnailBackgroundColor);
-    self.opaque = YES;
     self.clipsToBounds = YES;
     
     [self setStylesWithSelector:@"thumbView:"];

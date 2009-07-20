@@ -168,7 +168,6 @@ static CGFloat kTextViewInset = 30;
     _textView = [[TTTextView alloc] init];
     _textView.delegate = _internal;
     _textView.editable = YES;
-    _textView.opaque = NO;
     _textView.backgroundColor = [UIColor clearColor];
     _textView.scrollsToTop = NO;
     _textView.showsHorizontalScrollIndicator = NO;
@@ -214,9 +213,9 @@ static CGFloat kTextViewInset = 30;
 }
 
 - (CGFloat)heightThatFits:(BOOL*)overflowed {
-  CGSize characterSize = [@"M" sizeWithFont:_textView.font];
-  CGFloat minHeight = _minNumberOfLines * characterSize.height;
-  CGFloat maxHeight = _maxNumberOfLines * characterSize.height;
+  CGFloat lineHeight = _textView.font.lineHeight;
+  CGFloat minHeight = _minNumberOfLines * lineHeight;
+  CGFloat maxHeight = _maxNumberOfLines * lineHeight;
   CGFloat maxWidth = self.width - kTextViewInset;
   
   NSString* text = _textView.text;
@@ -230,10 +229,10 @@ static CGFloat kTextViewInset = 30;
   
   CGFloat newHeight = textSize.height;
   if ([text characterAtIndex:text.length-1] == 10) {
-    newHeight += characterSize.height;
+    newHeight += lineHeight;
   }
   if (_showsExtraLine) {
-    newHeight += characterSize.height;
+    newHeight += lineHeight;
   }
 
   if (overflowed) {

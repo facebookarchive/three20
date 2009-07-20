@@ -479,7 +479,7 @@
   if (self = [super init]) {
     _text = nil;
     _margin = UIEdgeInsetsZero;
-    _padding = UIEdgeInsetsMake(10, 10, 10, 10);    
+    _padding = UIEdgeInsetsMake(6, 6, 6, 6);
   }
   return self;
 }

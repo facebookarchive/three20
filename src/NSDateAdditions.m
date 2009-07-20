@@ -125,30 +125,10 @@ static NSDateFormatter* dayFormatter = nil;
     return [NSString stringWithFormat:TTLocalizedString(@"%d hours ago", @""), hours];
   } else {
     return [self formatDateTime];
-//  } else if (elapsed < ONE_DAY*5) {
-//    if (!weekdayFormatter) {
-//      weekdayFormatter = [[NSDateFormatter alloc] init];
-//      weekdayFormatter.dateFormat = @"EEEE";
-//      weekdayFormatter.locale = TTCurrentLocale();
-//    }
-//    NSString* weekday = [weekdayFormatter stringFromDate:self];
-//    return [NSString stringWithFormat:TTLocalizedString(@"on %@", @""), weekday];
-//  } else if (elapsed < ONE_WEEK*1.5) {
-//    return TTLocalizedString(@"about a week ago", @"");
-//  } else if (elapsed < ONE_WEEK*3.5) {
-//    int weeks = (int)((elapsed+ONE_WEEK/2)/ONE_WEEK);
-//    return [NSString stringWithFormat:TTLocalizedString(@"%d weeks ago", @""), weeks];
-//  } else if (elapsed < ONE_MONTH*1.5) {
-//    return TTLocalizedString(@"about a month ago", @"");
-//  } else if (elapsed < ONE_YEAR) {
-//    int months = (int)((elapsed+ONE_MONTH/2)/ONE_MONTH);
-//    return [NSString stringWithFormat:TTLocalizedString(@"%d months ago", @""), months];
-//  } else {
-//    return TTLocalizedString(@"over a year ago", @"");
   }
 }
 
-- (NSString*)formatDay:(NSDateComponents*)today yesterday:(NSDateComponents*)yest {
+- (NSString*)formatDay:(NSDateComponents*)today yesterday:(NSDateComponents*)yesterday {
   if (!dayFormatter) {
     dayFormatter = [[NSDateFormatter alloc] init];
     dayFormatter.dateFormat = TTLocalizedString(@"MMMM d", @"");
@@ -161,7 +141,8 @@ static NSDateFormatter* dayFormatter = nil;
 
   if (day.day == today.day && day.month == today.month && day.year == today.year) {
     return TTLocalizedString(@"Today", @"");
-  } else if (day.day == yest.day && day.month == yest.month && day.year == yest.year) {
+  } else if (day.day == yesterday.day && day.month == yesterday.month
+             && day.year == yesterday.year) {
     return TTLocalizedString(@"Yesterday", @"");
   } else {
     return [dayFormatter stringFromDate:self];

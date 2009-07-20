@@ -209,7 +209,7 @@
   if (controller) {
     if (state) {
       [controller restoreView:state];
-      //controller.frozenState = state;
+      controller.frozenState = state;
 
       if ([controller isKindOfClass:[TTModelViewController class]]) {
         TTModelViewController* modelViewController = (TTModelViewController*)controller;

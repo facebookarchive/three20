@@ -29,7 +29,6 @@ static CGFloat kVPadding = 50;
     [self addSubview:_imageView];
 
     _titleView = [[UILabel alloc] init];
-    _titleView.opaque = NO;
     _titleView.backgroundColor = [UIColor clearColor];
     _titleView.textColor = TTSTYLEVAR(tableErrorTextColor);
     _titleView.font = TTSTYLEVAR(errorTitleFont);
@@ -37,7 +36,6 @@ static CGFloat kVPadding = 50;
     [self addSubview:_titleView];
     
     _subtitleView = [[UILabel alloc] init];
-    _subtitleView.opaque = NO;
     _subtitleView.backgroundColor = [UIColor clearColor];
     _subtitleView.textColor = TTSTYLEVAR(tableErrorTextColor);
     _subtitleView.font = TTSTYLEVAR(errorSubtitleFont);

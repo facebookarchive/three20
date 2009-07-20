@@ -5,6 +5,7 @@
 #import "Three20/NSDateAdditions.h"
 #import "Three20/NSArrayAdditions.h"
 #import "Three20/UIColorAdditions.h"
+#import "Three20/UIFontAdditions.h"
 #import "Three20/UIImageAdditions.h"
 #import "Three20/UIViewControllerAdditions.h"
 #import "Three20/UINavigationControllerAdditions.h"

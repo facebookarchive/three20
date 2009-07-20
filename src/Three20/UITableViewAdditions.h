@@ -14,4 +14,12 @@
 - (void)scrollToBottom:(BOOL)animated;
 - (void)scrollFirstResponderIntoView;
 
+/**
+ * Returns the margin used to inset table cells.
+ *
+ * Grouped tables have a margin but plain tables don't.  This is useful in table cell
+ * layout calculations where you don't want to hard-code the table style.
+ */
+- (CGFloat)tableCellMargin;
+
 @end

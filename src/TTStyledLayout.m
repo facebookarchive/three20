@@ -65,10 +65,6 @@
   return _lastNode;
 }
 
-- (CGFloat)fontHeight {
-  return (_font.ascender - _font.descender)+1;
-}
-
 - (void)offsetFrame:(TTStyledFrame*)frame by:(CGFloat)y {
    frame.y += y;
 
@@ -350,7 +346,7 @@
 
       if (_lastFrame) {
         if (!_lineHeight && [elt isKindOfClass:[TTStyledLineBreakNode class]]) {
-          _lineHeight = self.fontHeight;
+          _lineHeight = [_font lineHeight];
         }
         [self breakLine];
       }
@@ -550,7 +546,7 @@
       if (lineRange.length) {
         NSString* line = [text substringWithRange:lineRange];
         [self addFrameForText:line element:element node:textNode width:frameWidth
-              height:_lineHeight ? _lineHeight : self.fontHeight];
+              height:_lineHeight ? _lineHeight : [_font lineHeight]];
       }
       
       if (_lineWidth) {
@@ -588,7 +584,7 @@
                                                       - lineStartIndex);
       NSString* line = !_lineWidth ? word : [text substringWithRange:lineRange];
       [self addFrameForText:line element:element node:textNode width:frameWidth
-            height:_lineHeight ? _lineHeight : self.fontHeight];
+            height:_lineHeight ? _lineHeight : [_font lineHeight]];
       frameWidth = 0;
     }
   }

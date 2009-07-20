@@ -20,7 +20,6 @@ static const CGFloat kMargin = 10;
 static const CGFloat kSmallMargin = 6;
 static const CGFloat kSpacing = 8;
 static const CGFloat kControlPadding = 8;
-static const CGFloat kGroupMargin = 10;
 static const CGFloat kDefaultTextViewLines = 5;
 
 static const CGFloat kKeySpacing = 12;
@@ -107,10 +106,10 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTTableTextItem* textItem = item;
 
-  CGFloat maxWidth = tableView.width - (kHPadding*2 + kMargin*2);
+  CGFloat width = tableView.width - (kHPadding*2 + [tableView tableCellMargin]*2);
   UIFont* font = [self textFontForItem:textItem];
   CGSize size = [textItem.text sizeWithFont:font
-                               constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
+                               constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
                                lineBreakMode:UILineBreakModeTailTruncation];
   if (size.height > kMaxLabelHeight) {
     size.height = kMaxLabelHeight;
@@ -196,7 +195,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   TTTableCaptionedItem* captionedItem = item;
 
-  CGFloat width = tableView.width - (kKeyWidth + kKeySpacing + kHPadding*2 + kMargin*2);
+  CGFloat margin = [tableView tableCellMargin];
+  CGFloat width = tableView.width - (kKeyWidth + kKeySpacing + kHPadding*2 + margin*2);
 
   CGSize detailTextSize = [captionedItem.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
                                               constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
@@ -239,8 +239,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (void)layoutSubviews {
   [super layoutSubviews];
     
-  CGSize titleSize = [@"M" sizeWithFont:self.textLabel.font];
-  self.textLabel.frame = CGRectMake(kHPadding, kVPadding, kKeyWidth, titleSize.height);
+  self.textLabel.frame = CGRectMake(kHPadding, kVPadding,
+                                    kKeyWidth, self.textLabel.font.lineHeight);
 
   CGFloat valueWidth = self.contentView.width - (kHPadding*2 + kKeyWidth + kKeySpacing);
   CGFloat innerHeight = self.contentView.height - kVPadding*2;
@@ -441,18 +441,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 // TTTableViewCell class public
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
+  // XXXjoe Compute height based on font sizes
   return 90;
-//  TTTableCaptionedItem* captionedItem = item;
-//
-//  CGFloat maxWidth = tableView.width - kHPadding*2;
-//
-//  CGSize textSize = [captionedItem.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
-//    constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-//    lineBreakMode:UILineBreakModeWordWrap];
-//  CGSize captionSize = [captionedItem.caption sizeWithFont:TTSTYLEVAR(font)
-//    constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-//  
-//  return kVPadding*2 + textSize.height + captionSize.height;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -495,12 +485,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (void)layoutSubviews {
   [super layoutSubviews];
     
-  CGSize titleSize = [@"Mg" sizeWithFont:_titleLabel.font];
-  CGSize captionSize = [@"Mg" sizeWithFont:self.captionLabel.font];
-  CGSize textSize = [@"Mg" sizeWithFont:self.detailTextLabel.font];
   CGFloat left = 0;
-  CGFloat top = kSmallMargin;
-  
   if (_imageView2) {
     _imageView2.frame = CGRectMake(kSmallMargin, kSmallMargin,
                                   kDefaultMessageImageWidth, kDefaultMessageImageHeight);
@@ -509,25 +494,26 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     left = kMargin;
   }
 
-  CGFloat contentWidth = self.contentView.width - left;
+  CGFloat width = self.contentView.width - left;
+  CGFloat top = kSmallMargin;
   
   if (_titleLabel.text.length) {
-    _titleLabel.frame = CGRectMake(left, top, contentWidth, titleSize.height);
-    top += titleSize.height;
+    _titleLabel.frame = CGRectMake(left, top, width, _titleLabel.font.lineHeight);
+    top += _titleLabel.height;
   } else {
     _titleLabel.frame = CGRectZero;
   }
   
   if (self.captionLabel.text.length) {
-    self.captionLabel.frame = CGRectMake(left, top, contentWidth, captionSize.height);
-    top += captionSize.height;
+    self.captionLabel.frame = CGRectMake(left, top, width, self.captionLabel.font.lineHeight);
+    top += self.captionLabel.height;
   } else {
     self.captionLabel.frame = CGRectZero;
   }
   
   if (self.detailTextLabel.text.length) {
-    CGFloat textHeight = textSize.height * kMessageTextLineCount;
-    self.detailTextLabel.frame = CGRectMake(left, top, contentWidth, textHeight);
+    CGFloat textHeight = self.detailTextLabel.font.lineHeight * kMessageTextLineCount;
+    self.detailTextLabel.frame = CGRectMake(left, top, width, textHeight);
   } else {
     self.detailTextLabel.frame = CGRectZero;
   }
@@ -539,6 +525,14 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     _titleLabel.width -= _timestampLabel.width + kSmallMargin*2;
   } else {
     _titleLabel.frame = CGRectZero;
+  }
+}
+
+- (void)didMoveToSuperview {
+  [super didMoveToSuperview];
+  if (self.superview) {
+    _titleLabel.backgroundColor = self.backgroundColor;
+    _timestampLabel.backgroundColor = self.backgroundColor;
   }
 }
 
@@ -574,8 +568,6 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (UILabel*)titleLabel {
   if (!_titleLabel) {
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.opaque = YES;
-    _titleLabel.backgroundColor = [UIColor whiteColor];
     _titleLabel.textColor = [UIColor blackColor];
     _titleLabel.highlightedTextColor = [UIColor whiteColor];
     _titleLabel.font = TTSTYLEVAR(tableFont);
@@ -591,8 +583,6 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (UILabel*)timestampLabel {
   if (!_timestampLabel) {
     _timestampLabel = [[UILabel alloc] init];
-    _timestampLabel.opaque = YES;
-    _timestampLabel.backgroundColor = [UIColor whiteColor];
     _timestampLabel.textColor = TTSTYLEVAR(timestampTextColor);
     _timestampLabel.highlightedTextColor = [UIColor whiteColor];
     _timestampLabel.font = TTSTYLEVAR(tableSmallFont);
@@ -604,8 +594,6 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (TTImageView*)imageView2 {
   if (!_imageView2) {
     _imageView2 = [[TTImageView alloc] init];
-    _imageView2.opaque = YES;
-    _imageView2.backgroundColor = [UIColor whiteColor];
 //    _imageView2.defaultImage = TTSTYLEVAR(personImageSmall);
 //    _imageView2.style = TTSTYLE(threadActorIcon);
     [self.contentView addSubview:_imageView2];
@@ -619,7 +607,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 @implementation TTTableMoreButtonCell
 
-@synthesize activityIndicatorView = _activityIndicatorView, animating = _animating;
+@synthesize animating = _animating;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
@@ -639,6 +627,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier]) {
+    _animating = NO;
     _activityIndicatorView = nil;
   }
   return self;
@@ -674,21 +663,29 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   }  
 }
 
-- (void)setAnimating:(BOOL)isAnimating {
-  _animating = isAnimating;
-  
-  if (_animating) {
-    if (!_activityIndicatorView) {
-      _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-        UIActivityIndicatorViewStyleGray];
-      [self.contentView addSubview:_activityIndicatorView];
-    }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 
-    [_activityIndicatorView startAnimating];
-  } else {
-    [_activityIndicatorView stopAnimating];
+- (UIActivityIndicatorView*)activityIndicatorView {
+  if (!_activityIndicatorView) {
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+      UIActivityIndicatorViewStyleGray];
+    [self.contentView addSubview:_activityIndicatorView];
   }
-  [self setNeedsLayout];
+  return _activityIndicatorView;
+}
+
+- (void)setAnimating:(BOOL)animating {
+  if (_animating != animating) {
+    _animating = animating;
+    
+    if (_animating) {
+      [self.activityIndicatorView startAnimating];
+    } else {
+      [_activityIndicatorView stopAnimating];
+    }
+    [self setNeedsLayout];
+  }
 }
 
 @end
@@ -870,7 +867,6 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     _activityLabel.frame = self.contentView.bounds;
   } else {
     _activityLabel.frame = CGRectInset(self.contentView.bounds, -1, -1);
-    _activityLabel.backgroundColor = self.superview.backgroundColor;
   }
 }
 
@@ -900,8 +896,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   TTTableStyledTextItem* textItem = item;
   textItem.text.font = TTSTYLEVAR(font);
   
-  CGFloat padding = tableView.style == UITableViewStyleGrouped ? kGroupMargin*2 : 0;
-  padding += textItem.padding.left + textItem.padding.right;
+  CGFloat padding = [tableView tableCellMargin] + textItem.padding.left + textItem.padding.right;
   if (textItem.URL) {
     padding += kDisclosureIndicatorWidth;
   }
@@ -936,13 +931,12 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   
   TTTableStyledTextItem* item = self.object;
   _label.frame = CGRectOffset(self.contentView.bounds, item.margin.left, item.margin.top);
-  [_label setNeedsLayout];
 }
 
 - (void)didMoveToSuperview {
   [super didMoveToSuperview];
-  if (self.superview && [(UITableView*)self.superview style] == UITableViewStylePlain) {
-    _label.backgroundColor = self.superview.backgroundColor;
+  if (self.superview) {
+    _label.backgroundColor = self.backgroundColor;
   }
 }
 
@@ -996,11 +990,11 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   if (!height) {
     if ([view isKindOfClass:[UITextView class]]) {
       UITextView* textView = (UITextView*)view;
-      CGFloat lineHeight = (textView.font.ascender - textView.font.descender) + 1;
+      CGFloat lineHeight = textView.font.lineHeight;
       height = lineHeight * kDefaultTextViewLines;
     } else if ([view isKindOfClass:[TTTextEditor class]]) {
       UITextView* textView = [(TTTextEditor*)view textView];
-      CGFloat lineHeight = (textView.font.ascender - textView.font.descender) + 1;
+      CGFloat lineHeight = textView.font.lineHeight;
       height = lineHeight * kDefaultTextViewLines;
     } else if ([view isKindOfClass:[UITextField class]]) {
       height = TOOLBAR_HEIGHT;

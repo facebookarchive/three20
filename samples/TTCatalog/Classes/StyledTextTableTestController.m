@@ -10,6 +10,9 @@
     self.autoresizesForKeyboard = YES;
     self.variableHeightRows = YES;
 
+    // Uncomment this to see how the table cells look against a custom background color 
+    //self.tableView.backgroundColor = [UIColor yellowColor];
+
     NSArray* strings = [NSArray arrayWithObjects:
       [TTStyledText textFromXHTML:@"This is a whole bunch of text made from \
   characters and followed by this URL http://bit.ly/1234"],

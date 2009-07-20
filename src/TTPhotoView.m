@@ -39,7 +39,7 @@ static const CGFloat kMaxCaptionHeight = 100;
   if (caption) {
     if (!_captionLabel) {
       _captionLabel = [[UILabel alloc] init];
-      _captionLabel.opaque = NO;
+      _captionLabel.backgroundColor = [UIColor clearColor];
       _captionLabel.textColor = TTSTYLEVAR(photoCaptionTextColor);
       _captionLabel.font = TTSTYLEVAR(photoCaptionFont);
       _captionLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.9];

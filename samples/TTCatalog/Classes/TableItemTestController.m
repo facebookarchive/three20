@@ -18,10 +18,11 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
 
 - (id)init {
   if (self = [super init]) {
-    self.tableViewStyle = UITableViewStyleGrouped;
-    self.autoresizesForKeyboard = YES;
     self.variableHeightRows = YES;
 
+    // Uncomment this to see how the table cells look against a custom background color 
+    self.tableView.backgroundColor = [UIColor yellowColor];
+    
     // This demonstrates how to create a table with standard table "fields".  Many of these
     // fields with URLs that will be visited when the row is selected
     self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
@@ -39,7 +40,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
       [TTTableImageItem itemWithText:@"TTTableImageItem" URL:@"tt://tableItemTest"
                         imageURL:@"bundle://tableIcon.png"],
       [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" URL:@"tt://tableItemTest"
-                             imageURL:@"bundle://person.jpg"],
+                             imageURL:@"bundle://tableIcon.png"],
       [TTTableMessageItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
                           text:kLoremIpsum timestamp:[NSDate date]
                           imageURL:@"bundle://person.jpg" URL:@"tt://tableItemTest"],

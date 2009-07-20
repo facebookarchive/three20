@@ -46,9 +46,9 @@ static CGFloat kMinCursorWidth = 50;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (CGFloat)layoutCells {
-  CGSize fontSize = [@"M" sizeWithFont:self.font];
-  CGFloat lineIncrement = fontSize.height + kCellPaddingY*2 + kSpacingY;
-  CGFloat marginY = floor(fontSize.height/kPaddingRatio);
+  CGFloat fontHeight = self.font.lineHeight;
+  CGFloat lineIncrement = fontHeight + kCellPaddingY*2 + kSpacingY;
+  CGFloat marginY = floor(fontHeight/kPaddingRatio);
   CGFloat marginLeft = self.leftView
     ? kPaddingX + self.leftView.width + kPaddingX/2
     : kPaddingX;
@@ -82,7 +82,7 @@ static CGFloat kMinCursorWidth = 50;
     }
   }
   
-  return _cursorOrigin.y + fontSize.height + marginY;
+  return _cursorOrigin.y + fontHeight + marginY;
 }
 
 - (void)updateHeight {
@@ -102,15 +102,14 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (CGFloat)marginY {
-  CGSize fontSize = [@"M" sizeWithFont:self.font];
-  return floor(fontSize.height/kPaddingRatio);
+  return floor(self.font.lineHeight/kPaddingRatio);
 }
 
 - (CGFloat)topOfLine:(int)lineNumber {
   if (lineNumber == 0) {
     return 0;
   } else {
-    CGFloat lineHeight = [@"M" sizeWithFont:self.font].height;
+    CGFloat lineHeight = self.font.lineHeight;
     CGFloat lineSpacing = kCellPaddingY*2 + kSpacingY;
     CGFloat marginY = floor(lineHeight/kPaddingRatio);
     CGFloat lineTop = marginY + lineHeight*lineNumber + lineSpacing*lineNumber;
@@ -120,12 +119,12 @@ static CGFloat kMinCursorWidth = 50;
 
 - (CGFloat)centerOfLine:(int)lineNumber {
   CGFloat lineTop = [self topOfLine:lineNumber];
-  CGFloat lineHeight = [@"M" sizeWithFont:self.font].height + kCellPaddingY*2 + kSpacingY;
+  CGFloat lineHeight = self.font.lineHeight + kCellPaddingY*2 + kSpacingY;
   return lineTop + floor(lineHeight/2);
 }
 
 - (CGFloat)heightWithLines:(int)lines {
-  CGFloat lineHeight = [@"M" sizeWithFont:self.font].height;
+  CGFloat lineHeight = self.font.lineHeight;
   CGFloat lineSpacing = kCellPaddingY*2 + kSpacingY;
   CGFloat marginY = floor(lineHeight/kPaddingRatio);
   return marginY + lineHeight*lines + lineSpacing*(lines ? lines-1 : 0) + marginY;

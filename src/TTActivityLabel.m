@@ -45,10 +45,10 @@ static CGFloat kProgressMargin = 30;
   
     _bezelView = [[TTView alloc] initWithFrame:CGRectZero];
     if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleBlackThinBezel) {
-      _bezelView.opaque = NO;
+      _bezelView.backgroundColor = [UIColor clearColor];
       _bezelView.style = TTSTYLE(blackBezel);
     } else if (_style == TTActivityLabelStyleWhiteBezel) {
-      _bezelView.opaque = NO;
+      _bezelView.backgroundColor = [UIColor clearColor];
       _bezelView.style = TTSTYLE(whiteBezel);
     } else if (_style == TTActivityLabelStyleWhiteBox) {
       _bezelView.backgroundColor = [UIColor clearColor];
@@ -64,7 +64,6 @@ static CGFloat kProgressMargin = 30;
     _textView = [[UILabel alloc] initWithFrame:
       CGRectMake(frame.size.height+5,0,frame.size.width,frame.size.height)];
     _textView.backgroundColor = [UIColor clearColor];
-    _textView.opaque = NO;
     _textView.lineBreakMode = UILineBreakModeTailTruncation;
     _textView.text = text;
     

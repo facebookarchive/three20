@@ -40,17 +40,17 @@
 - (NSString*)formatDateTime;
 
 /**
- * Formats the date with a relative description such as '5 minutes ago'.
+ * Formats dates within 24 hours like '5 minutes ago', or calls formatDateTime if older.
  */
 - (NSString*)formatRelativeTime;
 
 /**
  * Formats the date with 'MMMM d", "Today", or "Yesterday".
  *
- * You must supply date components for today and today because they are relatively expensive
+ * You must supply date components for today and yesterday because they are relatively expensive
  * to create, so it is best to avoid creating them every time you call this method if you
  * are going to be calling it multiple times in a loop.
  */
-- (NSString*)formatDay:(NSDateComponents*)today yesterday:(NSDateComponents*)yest;
+- (NSString*)formatDay:(NSDateComponents*)today yesterday:(NSDateComponents*)yesterday;
 
 @end

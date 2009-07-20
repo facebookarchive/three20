@@ -57,7 +57,6 @@
     _image = nil;
     _defaultImage = nil;
     _autoresizesToImage = NO;
-    self.opaque = YES;
   }
   return self;
 }

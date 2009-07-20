@@ -61,4 +61,12 @@
   }
 }
 
+- (CGFloat)tableCellMargin {
+  if (self.style == UITableViewStyleGrouped) {
+    return 10;
+  } else {
+    return 0;
+  }
+}
+
 @end

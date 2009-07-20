@@ -27,69 +27,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
   return _highlighted;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    _text = nil;
-    _font = nil;
-    _textColor = nil;
-    _highlightedTextColor = nil;
-    _textAlignment = UITextAlignmentLeft;
-    _contentInset = UIEdgeInsetsZero;
-    _highlighted = NO;
-    _highlightedNode = nil;
-    _highlightedFrame = nil;
-    
-    self.font = TTSTYLEVAR(font);
-    self.backgroundColor = TTSTYLEVAR(backgroundColor);
-    self.contentMode = UIViewContentModeRedraw;
-    self.opaque = YES;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  _text.delegate = nil;
-  TT_RELEASE_MEMBER(_text);
-  TT_RELEASE_MEMBER(_font);
-  TT_RELEASE_MEMBER(_textColor);
-  TT_RELEASE_MEMBER(_highlightedTextColor);
-  TT_RELEASE_MEMBER(_highlightedNode);
-  TT_RELEASE_MEMBER(_highlightedFrame);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)drawRect:(CGRect)rect {
-  if (_highlighted) {
-    [self.highlightedTextColor setFill];
-  } else {
-    [self.textColor setFill];
-  }
-  
-  CGPoint origin = CGPointMake(rect.origin.x + _contentInset.left,
-                               rect.origin.y + _contentInset.top);
-  [_text drawAtPoint:origin highlighted:_highlighted];
-}
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  _text.width = self.width - (_contentInset.left + _contentInset.right);
-}
-
-- (CGSize)sizeThatFits:(CGSize)size {
-  [self layoutIfNeeded];
-  return CGSizeMake(_text.width + (_contentInset.left + _contentInset.right),
-                    _text.height+ (_contentInset.top + _contentInset.bottom));
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIResponder
-
 - (void)setStyle:(TTStyle*)style forFrame:(TTStyledBoxFrame*)frame {
   if ([frame isKindOfClass:[TTStyledInlineFrame class]]) {
     TTStyledInlineFrame* inlineFrame = (TTStyledInlineFrame*)frame;
@@ -139,6 +76,68 @@ static const CGFloat kCancelHighlightThreshold = 4;
     }
   }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _text = nil;
+    _font = nil;
+    _textColor = nil;
+    _highlightedTextColor = nil;
+    _textAlignment = UITextAlignmentLeft;
+    _contentInset = UIEdgeInsetsZero;
+    _highlighted = NO;
+    _highlightedNode = nil;
+    _highlightedFrame = nil;
+    
+    self.font = TTSTYLEVAR(font);
+    self.backgroundColor = TTSTYLEVAR(backgroundColor);
+    self.contentMode = UIViewContentModeRedraw;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  _text.delegate = nil;
+  TT_RELEASE_MEMBER(_text);
+  TT_RELEASE_MEMBER(_font);
+  TT_RELEASE_MEMBER(_textColor);
+  TT_RELEASE_MEMBER(_highlightedTextColor);
+  TT_RELEASE_MEMBER(_highlightedNode);
+  TT_RELEASE_MEMBER(_highlightedFrame);
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIView
+
+- (void)drawRect:(CGRect)rect {
+  if (_highlighted) {
+    [self.highlightedTextColor setFill];
+  } else {
+    [self.textColor setFill];
+  }
+  
+  CGPoint origin = CGPointMake(rect.origin.x + _contentInset.left,
+                               rect.origin.y + _contentInset.top);
+  [_text drawAtPoint:origin highlighted:_highlighted];
+}
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  _text.width = self.width - (_contentInset.left + _contentInset.right);
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+  [self layoutIfNeeded];
+  return CGSizeMake(_text.width + (_contentInset.left + _contentInset.right),
+                    _text.height+ (_contentInset.top + _contentInset.bottom));
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIResponder
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   UITouch* touch = [touches anyObject];
