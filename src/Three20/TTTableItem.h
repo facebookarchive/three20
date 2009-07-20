@@ -127,6 +127,8 @@
 + (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL URL:(NSString*)URL;
 + (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL
       defaultImage:(UIImage*)defaultImage URL:(NSString*)URL;
++ (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL
+      defaultImage:(UIImage*)defaultImage imageStyle:(TTStyle*)imageStyle URL:(NSString*)URL;
 
 @end
 

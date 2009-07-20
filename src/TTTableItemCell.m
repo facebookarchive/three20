@@ -829,13 +829,20 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     image = imageItem.defaultImage;
   }
   
-  CGFloat imageWidth = image
-    ? image.size.width + kKeySpacing
-    : (imageItem.imageURL ? kDefaultImageSize + kKeySpacing : 0);
-  CGFloat imageHeight = image
-    ? image.size.height
-    : (imageItem.imageURL ? kDefaultImageSize : 0);
-    
+  CGFloat imageHeight, imageWidth;
+  TTImageStyle* style = [imageItem.imageStyle firstStyleOfClass:[TTImageStyle class]];
+  if (style) {
+    imageWidth = style.size.width + kKeySpacing;
+    imageHeight = style.size.height;
+  } else {
+    imageWidth = image
+      ? image.size.width + kKeySpacing
+      : (imageItem.imageURL ? kDefaultImageSize + kKeySpacing : 0);
+    imageHeight = image
+      ? image.size.height
+      : (imageItem.imageURL ? kDefaultImageSize : 0);
+  }
+  
   CGFloat maxWidth = tableView.width - (imageWidth + kHPadding*2 + kMargin*2);
 
   CGSize textSize = [imageItem.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
@@ -929,6 +936,13 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   }
 }
 
+- (void)didMoveToSuperview {
+  [super didMoveToSuperview];
+  if (self.superview) {
+    _imageView2.backgroundColor = self.backgroundColor;
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell
 
@@ -937,9 +951,9 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     [super setObject:object];
   
     TTTableImageItem* item = object;
+    _imageView2.style = item.imageStyle;
     _imageView2.defaultImage = item.defaultImage;
     _imageView2.URL = item.imageURL;
-    _imageView2.style = item.imageStyle;
 
     if ([_item isKindOfClass:[TTTableRightImageItem class]]) {
       self.textLabel.font = TTSTYLEVAR(tableSmallFont);

@@ -364,6 +364,12 @@
   return [TTImageStyle styleWithImage:image next:nil];
 }
 
+- (TTStyle*)rounded {
+  return
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
+    [TTContentStyle styleWithNext:nil]];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public colors
 

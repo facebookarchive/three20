@@ -47,6 +47,21 @@
   autoresizesToImage = _autoresizesToImage;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (void)updateLayer {
+  TTImageLayer* layer = (TTImageLayer*)self.layer;
+  if (self.style) {
+    layer.override = nil;
+  } else {
+    // This is dramatically faster than calling drawRect.  Since we don't have any styles
+    // to draw in this case, we can take this shortcut.
+    layer.override = self;
+  }
+  [layer setNeedsDisplay];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)initWithFrame:(CGRect)frame {
@@ -92,6 +107,13 @@
     [_image drawInRect:rect contentMode:self.contentMode];
   } else {
     [_defaultImage drawInRect:rect contentMode:self.contentMode];
+  }
+}
+
+- (void)setStyle:(TTStyle*)style {
+  if (style != _style) {
+    [super setStyle:style];
+    [self updateLayer];
   }
 }
 
@@ -176,17 +198,7 @@
     [_image release];
     _image = [image retain];
 
-    TTImageLayer* layer = (TTImageLayer*)self.layer;
-    if (self.style) {
-      layer.override = nil;
-      [self setNeedsDisplay];
-    } else {
-      // This is dramatically faster than calling drawRect.  Since we don't have any styles
-      // to draw in this case, we can take this shortcut.
-      layer.override = self;
-      [layer setNeedsDisplay];
-    }
-    
+    [self updateLayer];
     CGRect frame = self.frame;
     if (_autoresizesToImage) {
       self.frame = CGRectMake(frame.origin.x, frame.origin.y, image.size.width, image.size.height);

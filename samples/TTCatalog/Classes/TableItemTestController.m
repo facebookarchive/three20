@@ -51,7 +51,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
       [TTTableImageItem itemWithText:@"TTTableImageItem" imageURL:localImage
                         URL:@"tt://tableItemTest"],
       [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" imageURL:localImage
-                             URL:@"tt://tableItemTest"],
+                        defaultImage:nil imageStyle:TTSTYLE(rounded)
+                        URL:@"tt://tableItemTest"],
       [TTTableSubtitleItem itemWithText:@"TTTableSubtitleItem" subtitle:kLoremIpsum
                             imageURL:remoteImage defaultImage:defaultPerson
                             URL:@"tt://tableItemTest" accessoryURL:nil],

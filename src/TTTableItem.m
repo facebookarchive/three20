@@ -475,6 +475,17 @@
   return item;
 }
 
++ (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
+      imageStyle:(TTStyle*)imageStyle URL:(NSString*)URL {
+  TTTableImageItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.imageURL = imageURL;
+  item.defaultImage = defaultImage;
+  item.imageStyle = imageStyle;
+  item.URL = URL;
+  return item;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 

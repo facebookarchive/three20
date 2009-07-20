@@ -71,6 +71,18 @@
   }
 }
 
+- (BOOL)isWebURL:(NSURL*)URL {
+  return [URL.scheme isEqualToString:@"http"]
+         || [URL.scheme isEqualToString:@"https"]
+         || [URL.scheme isEqualToString:@"ftp"]
+         || [URL.scheme isEqualToString:@"ftps"]
+         || [URL.scheme isEqualToString:@"data"];
+}
+
+- (BOOL)isSpecialURL:(NSURL*)URL {
+  return [[UIApplication sharedApplication] canOpenURL:URL] && ![self isWebURL:URL];
+}
+
 - (void)ensureWindow {
   if (!_window) {
     UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -193,6 +205,11 @@
   TTLOG(@"OPENING URL %@", URL);
   
   NSURL* theURL = [NSURL URLWithString:URL];
+  if ([self isSpecialURL:theURL]) {
+    [[UIApplication sharedApplication] openURL:theURL];
+    return nil;
+  }
+  
   if (theURL.fragment && !theURL.scheme) {
     URL = [self.URL stringByAppendingString:URL];
     theURL = [NSURL URLWithString:URL];
