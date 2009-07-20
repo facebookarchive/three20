@@ -13,6 +13,7 @@
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
 
   TTURLMap* map = navigator.URLMap;
+  [map from:@"*" toViewController:[TTWebController class] selector:@selector(initWithURL:)];
   [map from:@"tt://tabBar" toSharedViewController:[TabBarController class]];
   [map from:@"tt://menu/(initWithMenu:)" toSharedViewController:[MenuController class]];
   [map from:@"tt://food/(initWithFood:)" toViewController:[ContentController class]];

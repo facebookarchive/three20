@@ -19,6 +19,7 @@
 }
 
 @property(nonatomic,readonly) TTNavigationMode navigationMode;
+@property(nonatomic,readonly) NSString* scheme;
 @property(nonatomic,copy) NSString* URL;
 @property(nonatomic,copy) NSString* parentURL;
 @property(nonatomic,assign) id targetObject;

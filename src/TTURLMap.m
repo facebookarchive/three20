@@ -14,10 +14,20 @@
   return [NSString stringWithFormat:@"%s_%@", className, name ? name : @""];  
 }
 
+- (void)registerScheme:(NSString*)scheme {
+  if (scheme) {
+    if (!_schemes) {
+      _schemes = [[NSMutableDictionary alloc] init];
+    }
+    [_schemes setObject:[NSNull null] forKey:scheme];
+  }
+}
+
 - (void)addObjectPattern:(TTURLPattern*)pattern forURL:(NSString*)URL {
   pattern.URL = URL;
   [pattern compileForObject];
-
+  [self registerScheme:pattern.scheme];
+  
   if (pattern.isUniversal) {
     [_defaultObjectPattern release];
     _defaultObjectPattern = [pattern retain];
@@ -40,6 +50,7 @@
 - (void)addStringPattern:(TTURLPattern*)pattern forURL:(NSString*)URL withName:(NSString*)name {
   pattern.URL = URL;
   [pattern compileForString];
+  [self registerScheme:pattern.scheme];
   
   if (!_stringPatterns) {
     _stringPatterns = [[NSMutableDictionary alloc] init];
@@ -60,7 +71,17 @@
       return pattern;
     }
   }
+  
+  
   return _defaultObjectPattern;
+}
+
+- (BOOL)isWebURL:(NSURL*)URL {
+  return [URL.scheme isEqualToString:@"http"]
+         || [URL.scheme isEqualToString:@"https"]
+         || [URL.scheme isEqualToString:@"ftp"]
+         || [URL.scheme isEqualToString:@"ftps"]
+         || [URL.scheme isEqualToString:@"data"];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,6 +93,7 @@
     _objectPatterns = nil;
     _fragmentPatterns = nil;
     _stringPatterns = nil;
+    _schemes = nil;
     _defaultObjectPattern = nil;
     _invalidPatterns = NO;
   }
@@ -83,6 +105,7 @@
   TT_RELEASE_MEMBER(_objectPatterns);
   TT_RELEASE_MEMBER(_fragmentPatterns);
   TT_RELEASE_MEMBER(_stringPatterns);
+  TT_RELEASE_MEMBER(_schemes);
   TT_RELEASE_MEMBER(_defaultObjectPattern);
   [super dealloc];
 }
@@ -270,13 +293,29 @@
 }
 
 - (TTNavigationMode)navigationModeForURL:(NSString*)URL {
-  TTURLPattern* pattern = [self matchObjectPattern:[NSURL URLWithString:URL]];
-  return pattern.navigationMode;
+  NSURL* theURL = [NSURL URLWithString:URL];
+  if (![self isAppURL:theURL]) {
+    TTURLPattern* pattern = [self matchObjectPattern:theURL];
+    if (pattern) {
+      return pattern.navigationMode;
+    }
+  }
+  return TTNavigationModeExternal;
 }
 
 - (NSInteger)transitionForURL:(NSString*)URL {
   TTURLPattern* pattern = [self matchObjectPattern:[NSURL URLWithString:URL]];
   return pattern.transition;
+}
+
+- (BOOL)isSchemeSupported:(NSString*)scheme {
+  return scheme && !![_schemes objectForKey:scheme];
+}
+
+- (BOOL)isAppURL:(NSURL*)URL {
+  return [[UIApplication sharedApplication] canOpenURL:URL]
+          && ![self isSchemeSupported:URL.scheme]
+          && ![self isWebURL:URL];
 }
 
 - (NSString*)URLForObject:(id)object {

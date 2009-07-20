@@ -59,6 +59,7 @@
 - (id)init {
   if (self = [super init]) {
     _delegate = nil;
+    _loadingURL = nil;
     _webView = nil;
     _toolbar = nil;
     _headerView = nil;
@@ -66,11 +67,14 @@
     _forwardButton = nil;
     _stopButton = nil;
     _refreshButton = nil;
+    
+    self.hidesBottomBarWhenPushed = YES;
   }
   return self;
 }
 
 - (void)dealloc {
+  TT_RELEASE_MEMBER(_loadingURL);
   TT_RELEASE_MEMBER(_headerView);
   [super dealloc];
 }
@@ -158,6 +162,8 @@
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
         navigationType:(UIWebViewNavigationType)navigationType {
+  [_loadingURL release];
+  _loadingURL = [request.URL retain];
   return YES;
 }
 
@@ -173,6 +179,7 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
+  TT_RELEASE_MEMBER(_loadingURL);
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
     self.navigationItem.rightBarButtonItem = nil;
@@ -182,6 +189,7 @@
 }
 
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
+  TT_RELEASE_MEMBER(_loadingURL);
   [self webViewDidFinishLoad:webView];
 }
 
@@ -190,14 +198,14 @@
 
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == 0) {
-    [[UIApplication sharedApplication] openURL:_webView.request.URL];
+    [[UIApplication sharedApplication] openURL:self.URL];
   }
 }
  
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSURL*)URL {
-  return _webView.request.URL;
+  return _loadingURL ? _loadingURL : _webView.request.URL;
 }
 
 - (void)openRequest:(NSURLRequest*)request {

@@ -12,6 +12,7 @@
   UIBarButtonItem* _refreshButton;
   UIBarButtonItem* _stopButton;
   UIBarButtonItem* _activityItem;
+  NSURL* _loadingURL;
 }
 
 @property(nonatomic,assign) id<TTWebControllerDelegate> delegate;

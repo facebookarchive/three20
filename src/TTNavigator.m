@@ -71,23 +71,6 @@
   }
 }
 
-- (BOOL)isWebURL:(NSURL*)URL {
-  return [URL.scheme isEqualToString:@"http"]
-         || [URL.scheme isEqualToString:@"https"]
-         || [URL.scheme isEqualToString:@"ftp"]
-         || [URL.scheme isEqualToString:@"ftps"]
-         || [URL.scheme isEqualToString:@"data"];
-}
-
-- (BOOL)isSpecialURL:(NSURL*)URL {
-  // XXXjoe This needs to be a little smarter than just checking canOpenURL, because it needs
-  //        to make sure that the URL scheme is not one of this app's own
-  //return [[UIApplication sharedApplication] canOpenURL:URL] && ![self isWebURL:URL];
-
-  return [URL.scheme isEqualToString:@"tel"]
-         || [URL.scheme isEqualToString:@"sms"];
-}
-
 - (void)ensureWindow {
   if (!_window) {
     UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -210,7 +193,7 @@
   TTLOG(@"OPENING URL %@", URL);
   
   NSURL* theURL = [NSURL URLWithString:URL];
-  if ([self isSpecialURL:theURL]) {
+  if ([_URLMap isAppURL:theURL]) {
     [[UIApplication sharedApplication] openURL:theURL];
     return nil;
   }

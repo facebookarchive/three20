@@ -119,6 +119,9 @@
   } else if (_page == MenuPageAbout) {
     self.dataSource = [TTListDataSource dataSourceWithObjects:
       [TTTableTextItem itemWithText:@"Our Story" URL:@"tt://about/story"],
+      [TTTableTextItem itemWithText:@"Call Us" URL:@"tel:5555555"],
+      [TTTableTextItem itemWithText:@"Text Us" URL:@"sms:5555555"],
+      [TTTableTextItem itemWithText:@"Website" URL:@"http://www.melsdrive-in.com"],
       [TTTableTextItem itemWithText:@"Complaints Dept." URL:@"tt://about/complaints"],
       nil];
   }

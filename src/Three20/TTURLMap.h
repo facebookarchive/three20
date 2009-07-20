@@ -7,6 +7,7 @@ typedef enum {
   TTNavigationModeCreate,            // a new view controller is created each time
   TTNavigationModeShare,             // a new view controller is created, cached and re-used
   TTNavigationModeModal,             // a new view controller is created and presented modally
+  TTNavigationModeExternal,          // an external app will be opened
 } TTNavigationMode;
 
 @interface TTURLMap : NSObject {
@@ -14,6 +15,7 @@ typedef enum {
   NSMutableArray* _objectPatterns;
   NSMutableArray* _fragmentPatterns;
   NSMutableDictionary* _stringPatterns;
+  NSMutableDictionary* _schemes;
   TTURLPattern* _defaultObjectPattern;
   TTURLPattern* _hashPattern;
   BOOL _invalidPatterns;
@@ -123,6 +125,16 @@ typedef enum {
  * Tests if there is a pattern that matches the URL and if so returns its transition.
  */
 - (NSInteger)transitionForURL:(NSString*)URL;
+
+/**
+ * Returns YES if there is a registered pattern with the URL scheme.
+ */
+- (BOOL)isSchemeSupported:(NSString*)scheme;
+
+/**
+ * Returns YES if the URL is destined for an external app.
+ */
+- (BOOL)isAppURL:(NSURL*)URL;
 
 /**
  * Gets a URL that has been mapped to the object.

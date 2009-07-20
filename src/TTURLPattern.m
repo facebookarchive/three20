@@ -264,7 +264,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 
 @implementation TTURLPattern
 
-@synthesize navigationMode = _navigationMode, URL = _URL, parentURL = _parentURL,
+@synthesize navigationMode = _navigationMode, scheme = _scheme, URL = _URL, parentURL = _parentURL,
             targetObject = _targetObject, targetClass = _targetClass, selector = _selector,
             transition = _transition, specificity = _specificity, argumentCount = _argumentCount;
 
