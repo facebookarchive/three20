@@ -53,11 +53,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Dimensions of common iPhone OS Views
 
-#define STATUS_HEIGHT 20
-#define TOOLBAR_HEIGHT 44
-#define KEYBOARD_HEIGHT 216
-#define CHROME_HEIGHT (STATUS_HEIGHT + TOOLBAR_HEIGHT)
-#define TABLE_GROUPED_PADDING 10
+#define TT_STATUS_HEIGHT 20
+#define TT_ROW_HEIGHT 44
+#define TT_KEYBOARD_HEIGHT 216
+#define TT_CHROME_HEIGHT (TT_STATUS_HEIGHT + TT_ROW_HEIGHT)
 #define TT_ROUNDED -1
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -144,12 +143,17 @@ NSMutableDictionary* TTCreateNonRetainingDictionary();
 /**
  * Tests if an object is an array which is empty.
  */
-BOOL TTIsEmptyArray(NSObject* object);
+BOOL TTIsEmptyArray(id object);
+
+/**
+ * Tests if an object is a set which is empty.
+ */
+BOOL TTIsEmptyArray(id object);
 
 /**
  * Tests if an object is a string which is empty.
  */
-BOOL TTIsEmptyString(NSObject* object);
+BOOL TTIsEmptyString(id object);
 /**
  * Gets the current device orientation.
  */

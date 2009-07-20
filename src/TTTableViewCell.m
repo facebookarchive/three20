@@ -5,7 +5,7 @@
 @implementation TTTableViewCell
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  return TOOLBAR_HEIGHT;
+  return TT_ROW_HEIGHT;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

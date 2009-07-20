@@ -73,7 +73,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       } else {
         self.accessoryType = UITableViewCellAccessoryNone;
       }
-      self.selectionStyle = UITableViewCellSelectionStyleBlue;
+      self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
     } else {
       self.accessoryType = UITableViewCellAccessoryNone;
       self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -158,7 +158,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
       self.textLabel.textAlignment = UITextAlignmentCenter;
       self.accessoryType = UITableViewCellAccessoryNone;
-      self.selectionStyle = UITableViewCellSelectionStyleBlue;
+      self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
     } else if ([object isKindOfClass:[TTTableLink class]]) {
       self.textLabel.font = TTSTYLEVAR(tableFont);
       self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
@@ -376,7 +376,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   // XXXjoe TODO
-  return TOOLBAR_HEIGHT;
+  return TT_ROW_HEIGHT;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -733,7 +733,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
   CGFloat height = [super tableView:tableView rowHeightForItem:item];
-  CGFloat minHeight = TOOLBAR_HEIGHT*1.5;
+  CGFloat minHeight = TT_ROW_HEIGHT*1.5;
   if (height < minHeight) {
     return minHeight;
   } else {
@@ -778,7 +778,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     self.animating = item.isLoading;
 
     self.detailTextLabel.textColor = TTSTYLEVAR(moreLinkTextColor);
-    self.selectionStyle = UITableViewCellSelectionStyleBlue;
+    self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
   }  
 }
 
@@ -823,6 +823,9 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
   UIImage* image = imageItem.imageURL
     ? [[TTURLCache sharedCache] imageForURL:imageItem.imageURL] : nil;
+  if (!image) {
+    image = imageItem.defaultImage;
+  }
   
   CGFloat imageWidth = image
     ? image.size.width + kKeySpacing
@@ -906,17 +909,17 @@ static const CGFloat kDefaultMessageImageHeight = 34;
           iconWidth = style.size.width;
         }
         if (style.size.height) {
-          iconWidth = style.size.height;
+          iconHeight = style.size.height;
         }
       }
 
       _imageView2.frame = CGRectMake(kHPadding, floor(self.height/2 - iconHeight/2),
                                    iconWidth, iconHeight);
       
-      CGFloat innerWidth = self.contentView.width - (kHPadding*2 + _imageView2.width + kKeySpacing);
+      CGFloat innerWidth = self.contentView.width - (kHPadding*2 + iconWidth + kKeySpacing);
       CGFloat innerHeight = self.contentView.height - kVPadding*2;
-      self.textLabel.frame = CGRectMake(kHPadding + _imageView2.width + kKeySpacing, kVPadding,
-        innerWidth, innerHeight);
+      self.textLabel.frame = CGRectMake(kHPadding + iconWidth + kKeySpacing, kVPadding,
+                                        innerWidth, innerHeight);
     } else {
       self.textLabel.frame = CGRectInset(self.contentView.bounds, kHPadding, kVPadding);
       _imageView2.frame = CGRectZero;
@@ -1116,15 +1119,15 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       CGFloat lineHeight = textView.font.lineHeight;
       height = lineHeight * kDefaultTextViewLines;
     } else if ([view isKindOfClass:[UITextField class]]) {
-      height = TOOLBAR_HEIGHT;
+      height = TT_ROW_HEIGHT;
     } else {
       [view sizeToFit];
       height = view.height;
     }
   }
   
-  if (height < TOOLBAR_HEIGHT) {
-    return TOOLBAR_HEIGHT;
+  if (height < TT_ROW_HEIGHT) {
+    return TT_ROW_HEIGHT;
   } else {
     return height;
   }
@@ -1219,7 +1222,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 // TTTableViewCell class public
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  return TOOLBAR_HEIGHT;
+  return TT_ROW_HEIGHT;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -465,7 +465,7 @@ static const CGFloat kDesiredTableHeight = 150;
   }  
   
   CGFloat height = self.height;
-  CGFloat keyboardHeight = withKeyboard ? KEYBOARD_HEIGHT : 0;
+  CGFloat keyboardHeight = withKeyboard ? TT_KEYBOARD_HEIGHT : 0;
   CGFloat tableHeight = self.window.height - (self.screenY + height + keyboardHeight);
     
   return CGRectMake(0, y + self.height-1, superview.frame.size.width, tableHeight+1);

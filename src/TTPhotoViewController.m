@@ -343,8 +343,8 @@ static const NSTimeInterval kSlideshowInterval = 2;
    UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
 
   _toolbar = [[UIToolbar alloc] initWithFrame:
-    CGRectMake(0, screenFrame.size.height - TOOLBAR_HEIGHT,
-               screenFrame.size.width, TOOLBAR_HEIGHT)];
+    CGRectMake(0, screenFrame.size.height - TT_ROW_HEIGHT,
+               screenFrame.size.width, TT_ROW_HEIGHT)];
   _toolbar.barStyle = self.navigationBarStyle;
   _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth
                               | UIViewAutoresizingFlexibleTopMargin;

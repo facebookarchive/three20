@@ -250,7 +250,7 @@ static CGFloat kMinCursorWidth = 50;
   UIView* superview = self.superviewForSearchResults;
   CGFloat y = superview.screenY;
   CGFloat visibleHeight = [self heightWithLines:1];
-  CGFloat keyboardHeight = withKeyboard ? KEYBOARD_HEIGHT : 0;
+  CGFloat keyboardHeight = withKeyboard ? TT_KEYBOARD_HEIGHT : 0;
   CGFloat tableHeight = TTScreenBounds().size.height - (y + visibleHeight + keyboardHeight);
 
   return CGRectMake(0, self.bottom-1, superview.frame.size.width, tableHeight+1);

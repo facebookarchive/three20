@@ -542,6 +542,10 @@
   return [UIFont systemFontOfSize:17];
 }
 
+- (UITableViewCellSelectionStyle)tableSelectionStyle {
+  return UITableViewCellSelectionStyleBlue;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 

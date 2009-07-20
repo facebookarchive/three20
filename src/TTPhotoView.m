@@ -131,7 +131,7 @@ static const CGFloat kMaxCaptionHeight = 100;
   CGFloat cy = self.bounds.origin.y + self.orientationHeight/2;
 
   BOOL landscape = self.width == self.orientationWidth;
-  CGFloat marginBottom = landscape ? TOOLBAR_HEIGHT : 0;
+  CGFloat marginBottom = landscape ? TT_ROW_HEIGHT : 0;
   
   // Since the photo view is constrained to the size of the image, but we want to position
   // the status views relative to the screen, offset by the difference

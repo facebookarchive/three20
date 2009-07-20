@@ -25,11 +25,15 @@ NSMutableDictionary* TTCreateNonRetainingDictionary() {
   return (NSMutableDictionary*)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
 }
 
-BOOL TTIsEmptyArray(NSObject* object) {
+BOOL TTIsEmptyArray(id object) {
   return [object isKindOfClass:[NSArray class]] && ![(NSArray*)object count];
 }
 
-BOOL TTIsEmptyString(NSObject* object) {
+BOOL TTIsEmptySet(id object) {
+  return [object isKindOfClass:[NSSet class]] && ![(NSSet*)object count];
+}
+
+BOOL TTIsEmptyString(id object) {
   return [object isKindOfClass:[NSString class]] && ![(NSString*)object length];
 }
 
@@ -59,16 +63,16 @@ CGRect TTApplicationFrame() {
 
 CGRect TTNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
-  return CGRectMake(0, 0, frame.size.width, frame.size.height - TOOLBAR_HEIGHT);
+  return CGRectMake(0, 0, frame.size.width, frame.size.height - TT_ROW_HEIGHT);
 }
 
 CGRect TTKeyboardNavigationFrame() {
-  return TTRectContract(TTNavigationFrame(), 0, KEYBOARD_HEIGHT);
+  return TTRectContract(TTNavigationFrame(), 0, TT_KEYBOARD_HEIGHT);
 }
 
 CGRect TTToolbarNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
-  return CGRectMake(0, 0, frame.size.width, frame.size.height - TOOLBAR_HEIGHT*2);
+  return CGRectMake(0, 0, frame.size.width, frame.size.height - TT_ROW_HEIGHT*2);
 }
 
 CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {

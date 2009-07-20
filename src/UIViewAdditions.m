@@ -281,7 +281,7 @@
   CGRect frame = self.frame;
   if ([self.window performSelector:@selector(firstResponder)]) {
     CGRect screenFrame = TTScreenBounds();
-    CGFloat keyboardTop = (screenFrame.size.height - KEYBOARD_HEIGHT);
+    CGFloat keyboardTop = (screenFrame.size.height - TT_KEYBOARD_HEIGHT);
     CGFloat screenBottom = self.screenY + frame.size.height;
     CGFloat diff = screenBottom - keyboardTop;
     if (diff > 0) {

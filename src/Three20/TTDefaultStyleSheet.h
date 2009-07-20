@@ -54,6 +54,8 @@
 @property(nonatomic,readonly) UIFont* errorSubtitleFont;
 @property(nonatomic,readonly) UIFont* activityLabelFont;
 
+@property(nonatomic,readonly) UITableViewCellSelectionStyle tableSelectionStyle;
+
 - (TTStyle*)toolbarButtonForState:(UIControlState)state shape:(TTShape*)shape
             tintColor:(UIColor*)tintColor font:(UIFont*)font;
 
