@@ -4,7 +4,7 @@
 
 @implementation TTTableViewCell
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   return TT_ROW_HEIGHT;
 }
 

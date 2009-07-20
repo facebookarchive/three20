@@ -18,6 +18,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
 
 - (id)init {
   if (self = [super init]) {
+    self.title = @"Table Items";
     self.variableHeightRows = YES;
 
     // Uncomment this to see how the table looks with the grouped style
@@ -34,7 +35,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
     // fields with URLs that will be visited when the row is selected
     self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
       @"Links and Buttons",
-      [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"],
+      [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"
+                       accessoryURL:@"http://www.google.com"],
       [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableItemTest"],
       [TTTableButton itemWithText:@"TTTableButton"],
       [TTTableCaptionItem itemWithText:@"TTTableCaptionItem" caption:@"caption"

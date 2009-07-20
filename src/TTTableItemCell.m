@@ -64,11 +64,13 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     [_item release];
     _item = [object retain];
 
-    TTTableLinkedItem* linkedItem = object;
-    if (linkedItem.URL) {
+    TTTableLinkedItem* item = object;
+    if (item.URL) {
       TTNavigationMode navigationMode = [[TTNavigator navigator].URLMap
-                                         navigationModeForURL:linkedItem.URL];
-      if (navigationMode == TTNavigationModeCreate) {
+                                         navigationModeForURL:item.URL];
+      if (item.accessoryURL) {
+        self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+      } else if (navigationMode == TTNavigationModeCreate) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
       } else {
         self.accessoryType = UITableViewCellAccessoryNone;
@@ -103,14 +105,14 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableTextItem* textItem = item;
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
+  TTTableTextItem* item = object;
 
   CGFloat width = tableView.width - (kHPadding*2 + [tableView tableCellMargin]*2);
-  UIFont* font = [self textFontForItem:textItem];
-  CGSize size = [textItem.text sizeWithFont:font
-                               constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                               lineBreakMode:UILineBreakModeTailTruncation];
+  UIFont* font = [self textFontForItem:item];
+  CGSize size = [item.text sizeWithFont:font
+                           constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
+                           lineBreakMode:UILineBreakModeTailTruncation];
   if (size.height > kMaxLabelHeight) {
     size.height = kMaxLabelHeight;
   }
@@ -192,15 +194,15 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableCaptionItem* captionedItem = item;
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
+  TTTableCaptionItem* item = object;
 
   CGFloat margin = [tableView tableCellMargin];
   CGFloat width = tableView.width - (kKeyWidth + kKeySpacing + kHPadding*2 + margin*2);
 
-  CGSize detailTextSize = [captionedItem.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
-                                              constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                                              lineBreakMode:UILineBreakModeWordWrap];
+  CGSize detailTextSize = [item.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
+                                     constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
+                                     lineBreakMode:UILineBreakModeWordWrap];
   
   return detailTextSize.height + kVPadding*2;
 }
@@ -277,18 +279,18 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableCaptionItem* captionedItem = item;
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
+  TTTableCaptionItem* item = object;
 
   CGFloat width = tableView.width - kHPadding*2;
 
-  CGSize detailTextSize = [captionedItem.text sizeWithFont:TTSTYLEVAR(tableFont)
-                                              constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                                              lineBreakMode:UILineBreakModeTailTruncation];
+  CGSize detailTextSize = [item.text sizeWithFont:TTSTYLEVAR(tableFont)
+                                     constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
+                                     lineBreakMode:UILineBreakModeTailTruncation];
 
-  CGSize textSize = [captionedItem.caption sizeWithFont:TTSTYLEVAR(font)
-                                           constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                                           lineBreakMode:UILineBreakModeWordWrap];
+  CGSize textSize = [item.caption sizeWithFont:TTSTYLEVAR(font)
+                                  constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
+                                  lineBreakMode:UILineBreakModeWordWrap];
   
   return kVPadding*2 + detailTextSize.height + textSize.height;
 }
@@ -374,7 +376,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   // XXXjoe TODO
   return TT_ROW_HEIGHT;
 }
@@ -438,11 +440,11 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableSubtitleItem* textItem = item;
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
+  TTTableSubtitleItem* item = object;
   
   CGFloat height = TTSTYLEVAR(tableFont).lineHeight + kVPadding*2;
-  if (textItem.subtitle) {
+  if (item.subtitle) {
     height += TTSTYLEVAR(font).lineHeight;
   }
   
@@ -558,7 +560,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   // XXXjoe Compute height based on font sizes
   return 90;
 }
@@ -731,8 +733,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  CGFloat height = [super tableView:tableView rowHeightForItem:item];
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
+  CGFloat height = [super tableView:tableView rowHeightForObject:object];
   CGFloat minHeight = TT_ROW_HEIGHT*1.5;
   if (height < minHeight) {
     return minHeight;
@@ -818,8 +820,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableImageItem* imageItem = item;
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
+  TTTableImageItem* imageItem = object;
 
   UIImage* image = imageItem.imageURL
     ? [[TTURLCache sharedCache] imageForURL:imageItem.imageURL] : nil;
@@ -1014,18 +1016,18 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableStyledTextItem* textItem = item;
-  textItem.text.font = TTSTYLEVAR(font);
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
+  TTTableStyledTextItem* item = object;
+  item.text.font = TTSTYLEVAR(font);
   
-  CGFloat padding = [tableView tableCellMargin] + textItem.padding.left + textItem.padding.right;
-  if (textItem.URL) {
+  CGFloat padding = [tableView tableCellMargin] + item.padding.left + item.padding.right;
+  if (item.URL) {
     padding += kDisclosureIndicatorWidth;
   }
   
-  textItem.text.width = tableView.width - padding;
+  item.text.width = tableView.width - padding;
   
-  return textItem.text.height + textItem.padding.top + textItem.padding.bottom;
+  return item.text.height + item.padding.top + item.padding.bottom;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1098,13 +1100,13 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   UIView* view = nil;
 
-  if ([item isKindOfClass:[UIView class]]) {
-    view = item;
+  if ([object isKindOfClass:[UIView class]]) {
+    view = object;
   } else {
-    TTTableControlItem* controlItem = item;
+    TTTableControlItem* controlItem = object;
     view = controlItem.control;
   }
   
@@ -1221,7 +1223,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   return TT_ROW_HEIGHT;
 }
 

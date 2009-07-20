@@ -19,6 +19,6 @@
 /**
  * Measure the height of the row with the object that will be assigned to the cell.
  */
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item;
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object;
 
 @end

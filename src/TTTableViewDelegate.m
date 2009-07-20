@@ -53,7 +53,6 @@ static const CGFloat kSectionHeaderHeight = 35;
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
   id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
-
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
@@ -76,6 +75,18 @@ static const CGFloat kSectionHeaderHeight = 35;
   }
 
   [_controller didSelectObject:object atIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView*)tableView
+        accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*)indexPath {
+  id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
+  id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+  if ([object isKindOfClass:[TTTableLinkedItem class]]) {
+    TTTableLinkedItem* item = object;
+    if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
+      TTOpenURL(item.accessoryURL);
+    }
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,7 +139,7 @@ static const CGFloat kSectionHeaderHeight = 35;
 
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   Class cls = [dataSource tableView:tableView cellClassForObject:object];
-  return [cls tableView:tableView rowHeightForItem:object];
+  return [cls tableView:tableView rowHeightForObject:object];
 }
 
 @end

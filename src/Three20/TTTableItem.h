@@ -2,7 +2,12 @@
 
 @class TTStyledText, TTStyle;
 
-@interface TTTableItem : NSObject <NSCoding>
+@interface TTTableItem : NSObject <NSCoding> {
+  id _userInfo;
+}
+
+@property(nonatomic,retain) id userInfo;
+
 @end
 
 @interface TTTableLinkedItem : TTTableItem {
