@@ -80,7 +80,12 @@
 }
 
 - (BOOL)isSpecialURL:(NSURL*)URL {
-  return [[UIApplication sharedApplication] canOpenURL:URL] && ![self isWebURL:URL];
+  // XXXjoe This needs to be a little smarter than just checking canOpenURL, because it needs
+  //        to make sure that the URL scheme is not one of this app's own
+  //return [[UIApplication sharedApplication] canOpenURL:URL] && ![self isWebURL:URL];
+
+  return [URL.scheme isEqualToString:@"tel"]
+         || [URL.scheme isEqualToString:@"sms"];
 }
 
 - (void)ensureWindow {
