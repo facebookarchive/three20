@@ -7,8 +7,8 @@
 // private
 
 - (TTTableImageItem*)itemForURL:(NSString*)URL {
-  return [TTTableImageItem itemWithText:@"Table Row" URL:nil imageURL:URL
-                           defaultImage:TTIMAGE(@"bundle://DefaultAlbum.png")];
+  return [TTTableImageItem itemWithText:@"Table Row" imageURL:URL
+                           defaultImage:TTIMAGE(@"bundle://defaultMusic.png") URL:nil];
 }
 
 - (id)init {

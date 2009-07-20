@@ -91,12 +91,14 @@
   if ([object isKindOfClass:[TTTableItem class]]) {
     if ([object isKindOfClass:[TTTableMoreButton class]]) {
       return [TTTableMoreButtonCell class];
-    } else if ([object isKindOfClass:[TTTableBelowCaptionedItem class]]) {
-      return [TTTableBelowCaptionedItemCell class];
-    } else if ([object isKindOfClass:[TTTableRightCaptionedItem class]]) {
-      return [TTTableRightCaptionedItemCell class];
-    } else if ([object isKindOfClass:[TTTableCaptionedItem class]]) {
-      return [TTTableCaptionedItemCell class];
+    } else if ([object isKindOfClass:[TTTableSubtextItem class]]) {
+      return [TTTableSubtextItemCell class];
+    } else if ([object isKindOfClass:[TTTableRightCaptionItem class]]) {
+      return [TTTableRightCaptionItemCell class];
+    } else if ([object isKindOfClass:[TTTableCaptionItem class]]) {
+      return [TTTableCaptionItemCell class];
+    } else if ([object isKindOfClass:[TTTableSubtitleItem class]]) {
+      return [TTTableSubtitleItemCell class];
     } else if ([object isKindOfClass:[TTTableMessageItem class]]) {
       return [TTTableMessageItemCell class];
     } else if ([object isKindOfClass:[TTTableImageItem class]]) {

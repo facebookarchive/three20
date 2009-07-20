@@ -11,21 +11,30 @@
 @interface TTTableTextItemCell : TTTableLinkedItemCell
 @end
 
-@interface TTTableCaptionedItemCell : TTTableLinkedItemCell
+@interface TTTableCaptionItemCell : TTTableLinkedItemCell
 
 @property(nonatomic,readonly) UILabel* captionLabel;
 
 @end
 
-@interface TTTableBelowCaptionedItemCell : TTTableLinkedItemCell
+@interface TTTableSubtextItemCell : TTTableLinkedItemCell
 
 @property(nonatomic,readonly) UILabel* captionLabel;
 
 @end
 
-@interface TTTableRightCaptionedItemCell : TTTableLinkedItemCell
+@interface TTTableRightCaptionItemCell : TTTableLinkedItemCell
 
 @property(nonatomic,readonly) UILabel* captionLabel;
+
+@end
+
+@interface TTTableSubtitleItemCell : TTTableLinkedItemCell {
+  TTImageView* _imageView2;
+}
+
+@property(nonatomic,readonly,retain) UILabel* subtitleLabel;
+@property(nonatomic,readonly,retain) TTImageView* imageView2;
 
 @end
 
@@ -42,7 +51,7 @@
 
 @end
 
-@interface TTTableMoreButtonCell : TTTableBelowCaptionedItemCell {
+@interface TTTableMoreButtonCell : TTTableSubtextItemCell {
   UIActivityIndicatorView* _activityIndicatorView;
   BOOL _animating;
 }

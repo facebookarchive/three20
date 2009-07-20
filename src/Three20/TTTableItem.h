@@ -27,7 +27,7 @@
 
 @end
 
-@interface TTTableCaptionedItem : TTTableTextItem {
+@interface TTTableCaptionItem : TTTableTextItem {
   NSString* _caption;
 }
 
@@ -40,10 +40,30 @@
 
 @end
 
-@interface TTTableRightCaptionedItem : TTTableCaptionedItem
+@interface TTTableRightCaptionItem : TTTableCaptionItem
 @end
 
-@interface TTTableBelowCaptionedItem : TTTableCaptionedItem
+@interface TTTableSubtextItem : TTTableCaptionItem
+@end
+
+@interface TTTableSubtitleItem : TTTableTextItem {
+  NSString* _subtitle;
+  NSString* _imageURL;
+  UIImage* _defaultImage;
+}
+
+@property(nonatomic,copy) NSString* subtitle;
+@property(nonatomic,copy) NSString* imageURL;
+@property(nonatomic,retain) UIImage* defaultImage;
+
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle URL:(NSString*)URL;
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle URL:(NSString*)URL
+      accessoryURL:(NSString*)accessoryURL;
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle imageURL:(NSString*)imageURL
+      URL:(NSString*)URL;
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle imageURL:(NSString*)imageURL
+      defaultImage:(UIImage*)defaultImage URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL;
+
 @end
 
 @interface TTTableMessageItem : TTTableTextItem {
@@ -55,7 +75,7 @@
 
 @property(nonatomic,copy) NSString* title;
 @property(nonatomic,copy) NSString* caption;
-@property(nonatomic,copy) NSDate* timestamp;
+@property(nonatomic,retain) NSDate* timestamp;
 @property(nonatomic,copy) NSString* imageURL;
 
 + (id)itemWithTitle:(NSString*)title caption:(NSString*)caption text:(NSString*)text
@@ -80,7 +100,7 @@
 @interface TTTableButton : TTTableTextItem
 @end
 
-@interface TTTableMoreButton : TTTableBelowCaptionedItem {
+@interface TTTableMoreButton : TTTableSubtextItem {
   BOOL _isLoading;
 }
 
@@ -99,9 +119,9 @@
 @property(nonatomic,retain) TTStyle* imageStyle;
 
 + (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL;
-+ (id)itemWithText:(NSString*)text URL:(NSString*)URL imageURL:(NSString*)imageURL;
-+ (id)itemWithText:(NSString*)text URL:(NSString*)URL imageURL:(NSString*)imageURL
-      defaultImage:(UIImage*)defaultImage;
++ (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL URL:(NSString*)URL;
++ (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL
+      defaultImage:(UIImage*)defaultImage URL:(NSString*)URL;
 
 @end
 

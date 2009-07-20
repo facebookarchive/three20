@@ -129,7 +129,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableCaptionedItem
+@implementation TTTableCaptionItem
 
 @synthesize caption = _caption;
 
@@ -137,14 +137,14 @@
 // class public
 
 + (id)itemWithText:(NSString*)text caption:(NSString*)caption {
-  TTTableCaptionedItem* item = [[[self alloc] init] autorelease];
+  TTTableCaptionItem* item = [[[self alloc] init] autorelease];
   item.text = text;
   item.caption = caption;
   return item;
 }
 
 + (id)itemWithText:(NSString*)text caption:(NSString*)caption URL:(NSString*)URL {
-  TTTableCaptionedItem* item = [[[self alloc] init] autorelease];
+  TTTableCaptionItem* item = [[[self alloc] init] autorelease];
   item.text = text;
   item.caption = caption;
   item.URL = URL;
@@ -153,7 +153,7 @@
 
 + (id)itemWithText:(NSString*)text caption:(NSString*)caption URL:(NSString*)URL
       accessoryURL:(NSString*)accessoryURL {
-  TTTableCaptionedItem* item = [[[self alloc] init] autorelease];
+  TTTableCaptionItem* item = [[[self alloc] init] autorelease];
   item.text = text;
   item.caption = caption;
   item.URL = URL;
@@ -197,12 +197,103 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableRightCaptionedItem
+@implementation TTTableRightCaptionItem
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableBelowCaptionedItem
+@implementation TTTableSubtextItem
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableSubtitleItem
+
+@synthesize subtitle = _subtitle, imageURL = _imageURL, defaultImage = _defaultImage;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle URL:(NSString*)URL {
+  TTTableSubtitleItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.subtitle = subtitle;
+  item.URL = URL;
+  return item;
+}
+
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle
+      URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL {
+  TTTableSubtitleItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.subtitle = subtitle;
+  item.URL = URL;
+  item.accessoryURL = accessoryURL;
+  return item;
+}
+
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle imageURL:(NSString*)imageURL
+      URL:(NSString*)URL {
+  TTTableSubtitleItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.subtitle = subtitle;
+  item.imageURL = imageURL;
+  item.URL = URL;
+  return item;
+}
+
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle imageURL:(NSString*)imageURL
+      defaultImage:(UIImage*)defaultImage URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL {
+  TTTableSubtitleItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.subtitle = subtitle;
+  item.imageURL = imageURL;
+  item.defaultImage = defaultImage;
+  item.URL = URL;
+  item.accessoryURL = accessoryURL;
+  return item;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _subtitle = nil;
+    _imageURL = nil;
+    _defaultImage = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  TT_RELEASE_MEMBER(_subtitle);
+  TT_RELEASE_MEMBER(_imageURL);
+  TT_RELEASE_MEMBER(_defaultImage);
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.subtitle = [decoder decodeObjectForKey:@"subtitle"];
+    self.imageURL = [decoder decodeObjectForKey:@"imageURL"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.subtitle) {
+    [encoder encodeObject:self.subtitle forKey:@"subtitle"];
+  }
+  if (self.imageURL) {
+    [encoder encodeObject:self.imageURL forKey:@"imageURL"];
+  }
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -349,7 +440,7 @@
   return item;
 }
 
-+ (id)itemWithText:(NSString*)text URL:(NSString*)URL imageURL:(NSString*)imageURL {
++ (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL URL:(NSString*)URL {
   TTTableImageItem* item = [[[self alloc] init] autorelease];
   item.text = text;
   item.imageURL = imageURL;
@@ -357,8 +448,8 @@
   return item;
 }
 
-+ (id)itemWithText:(NSString*)text URL:(NSString*)URL imageURL:(NSString*)imageURL
-      defaultImage:(UIImage*)defaultImage {
++ (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
+      URL:(NSString*)URL {
   TTTableImageItem* item = [[[self alloc] init] autorelease];
   item.text = text;
   item.imageURL = imageURL;

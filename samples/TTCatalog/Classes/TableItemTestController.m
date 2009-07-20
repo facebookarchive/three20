@@ -21,7 +21,11 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
     self.variableHeightRows = YES;
 
     // Uncomment this to see how the table cells look against a custom background color 
-    self.tableView.backgroundColor = [UIColor yellowColor];
+    //self.tableView.backgroundColor = [UIColor yellowColor];
+      
+    NSString* localImage = @"bundle://tableIcon.png";
+    NSString* remoteImage = @"http://profile.ak.fbcdn.net/v223/35/117/q223792_6978.jpg";
+    UIImage* defaultPerson = TTIMAGE(@"bundle://defaultPerson.png");
     
     // This demonstrates how to create a table with standard table "fields".  Many of these
     // fields with URLs that will be visited when the row is selected
@@ -29,27 +33,32 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
       @"Links and Buttons",
       [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"],
       [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableItemTest"],
+      [TTTableSubtitleItem itemWithText:@"TTTableSubtitleItem" subtitle:kLoremIpsum
+                            URL:@"tt://tableItemTest"],
       [TTTableButton itemWithText:@"TTTableButton"],
-      [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem" caption:@"caption"
+      [TTTableCaptionItem itemWithText:@"TTTableCaptionItem" caption:@"caption"
                              URL:@"tt://tableItemTest"],
       [TTTableMessageItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
                           text:kLoremIpsum timestamp:[NSDate date] URL:@"tt://tableItemTest"],
       [TTTableMoreButton itemWithText:@"TTTableMoreButton"],
 
       @"Images",
-      [TTTableImageItem itemWithText:@"TTTableImageItem" URL:@"tt://tableItemTest"
-                        imageURL:@"bundle://tableIcon.png"],
-      [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" URL:@"tt://tableItemTest"
-                             imageURL:@"bundle://tableIcon.png"],
+      [TTTableImageItem itemWithText:@"TTTableImageItem" imageURL:localImage
+                        URL:@"tt://tableItemTest"],
+      [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" imageURL:localImage
+                             URL:@"tt://tableItemTest"],
+      [TTTableSubtitleItem itemWithText:@"TTTableSubtitleItem" subtitle:kLoremIpsum
+                            imageURL:remoteImage defaultImage:defaultPerson
+                            URL:@"tt://tableItemTest" accessoryURL:nil],
       [TTTableMessageItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
                           text:kLoremIpsum timestamp:[NSDate date]
-                          imageURL:@"bundle://person.jpg" URL:@"tt://tableItemTest"],
+                          imageURL:remoteImage URL:@"tt://tableItemTest"],
 
       @"Static Text",
       [TTTableTextItem itemWithText:@"TTTableItem"],
-      [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem which wraps to several lines"
+      [TTTableCaptionItem itemWithText:@"TTTableCaptionItem which wraps to several lines"
                             caption:@"Text"],
-      [TTTableBelowCaptionedItem itemWithText:@"TTTableBelowCaptionedItem"
+      [TTTableSubtextItem itemWithText:@"TTTableSubtextItem"
                                  caption:kLoremIpsum],
       [TTTableLongTextItem itemWithText:[@"TTTableLongTextItem "
                                          stringByAppendingString:kLoremIpsum]],

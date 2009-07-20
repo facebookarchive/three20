@@ -47,7 +47,7 @@
 #import "Three20/TTSearchBar.h"
 
 #import "Three20/TTTableView.h"
-#import "Three20/TTTableViewDataSources.h"
+#import "Three20/TTListDataSource.h"
 #import "Three20/TTTableViewDelegate.h"
 #import "Three20/TTTableHeaderView.h"
 #import "Three20/TTTableViewCell.h"

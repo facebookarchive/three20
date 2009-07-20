@@ -25,10 +25,11 @@
 		BE6E4DC00F46A352001CE9B4 /* tableIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E4DBF0F46A352001CE9B4 /* tableIcon.png */; };
 		BE80E24A0EAEFF6100743358 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E2490EAEFF6100743358 /* MockPhotoSource.m */; };
 		BE80E3710EAF0F3000743358 /* TableImageTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3700EAF0F3000743358 /* TableImageTestController.m */; };
-		BE80E39D0EAF103200743358 /* DefaultAlbum.png in Resources */ = {isa = PBXBuildFile; fileRef = BE80E39C0EAF103200743358 /* DefaultAlbum.png */; };
 		BE80E3A70EAF108500743358 /* ImageTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3A60EAF108500743358 /* ImageTest1Controller.m */; };
 		BE80E3B60EAF116700743358 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE80E3B50EAF116700743358 /* Icon.png */; };
 		BE8C0F7D0F2018C600EB0E98 /* YouTubeTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */; };
+		BEA6BA7F101431DA00B83B3A /* defaultPerson.png in Resources */ = {isa = PBXBuildFile; fileRef = BEA6BA7E101431DA00B83B3A /* defaultPerson.png */; };
+		BEA6BAAD101436AC00B83B3A /* defaultMusic.png in Resources */ = {isa = PBXBuildFile; fileRef = BEA6BAAC101436AC00B83B3A /* defaultMusic.png */; };
 		BEC5EC680F8C307E007622CD /* ButtonTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC5EC670F8C307E007622CD /* ButtonTestController.m */; };
 		BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BECB1CC10F46AE9600AE5B52 /* person.jpg */; };
 		BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */; };
@@ -92,12 +93,13 @@
 		BE80E2490EAEFF6100743358 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
 		BE80E36F0EAF0F3000743358 /* TableImageTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableImageTestController.h; sourceTree = "<group>"; };
 		BE80E3700EAF0F3000743358 /* TableImageTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableImageTestController.m; sourceTree = "<group>"; };
-		BE80E39C0EAF103200743358 /* DefaultAlbum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAlbum.png; sourceTree = "<group>"; };
 		BE80E3A50EAF108500743358 /* ImageTest1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTest1Controller.h; sourceTree = "<group>"; };
 		BE80E3A60EAF108500743358 /* ImageTest1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTest1Controller.m; sourceTree = "<group>"; };
 		BE80E3B50EAF116700743358 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BE8C0F7B0F2018C600EB0E98 /* YouTubeTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeTestController.h; sourceTree = "<group>"; };
 		BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeTestController.m; sourceTree = "<group>"; };
+		BEA6BA7E101431DA00B83B3A /* defaultPerson.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultPerson.png; sourceTree = "<group>"; };
+		BEA6BAAC101436AC00B83B3A /* defaultMusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultMusic.png; sourceTree = "<group>"; };
 		BEC5EC660F8C307E007622CD /* ButtonTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTestController.h; sourceTree = "<group>"; };
 		BEC5EC670F8C307E007622CD /* ButtonTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTestController.m; sourceTree = "<group>"; };
 		BECB1CC10F46AE9600AE5B52 /* person.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = person.jpg; sourceTree = "<group>"; };
@@ -220,7 +222,8 @@
 			children = (
 				BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */,
 				BE80E3B50EAF116700743358 /* Icon.png */,
-				BE80E39C0EAF103200743358 /* DefaultAlbum.png */,
+				BEA6BAAC101436AC00B83B3A /* defaultMusic.png */,
+				BEA6BA7E101431DA00B83B3A /* defaultPerson.png */,
 				BE6E4DBF0F46A352001CE9B4 /* tableIcon.png */,
 				BECB1CC10F46AE9600AE5B52 /* person.jpg */,
 				BE3188A00F822E2C00E3067D /* smiley.png */,
@@ -316,13 +319,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE80E39D0EAF103200743358 /* DefaultAlbum.png in Resources */,
 				BE80E3B60EAF116700743358 /* Icon.png in Resources */,
 				BE6E4DC00F46A352001CE9B4 /* tableIcon.png in Resources */,
 				BECB1CC20F46AE9600AE5B52 /* person.jpg in Resources */,
 				BEDCFBB40F4FFF820060B7D1 /* Three20.bundle in Resources */,
 				BE3188A10F822E2C00E3067D /* smiley.png in Resources */,
 				BE1289C20F91811E00F65EA2 /* mask.png in Resources */,
+				BEA6BA7F101431DA00B83B3A /* defaultPerson.png in Resources */,
+				BEA6BAAD101436AC00B83B3A /* defaultMusic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

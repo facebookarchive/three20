@@ -187,13 +187,13 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableCaptionedItemCell
+@implementation TTTableCaptionItemCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableCaptionedItem* captionedItem = item;
+  TTTableCaptionItem* captionedItem = item;
 
   CGFloat margin = [tableView tableCellMargin];
   CGFloat width = tableView.width - (kKeyWidth + kKeySpacing + kHPadding*2 + margin*2);
@@ -255,7 +255,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   if (_item != object) {
     [super setObject:object];
 
-    TTTableCaptionedItem* item = object;
+    TTTableCaptionItem* item = object;
     self.textLabel.text = item.caption;
     self.detailTextLabel.text = item.text;
   }  
@@ -272,13 +272,13 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableBelowCaptionedItemCell
+@implementation TTTableSubtextItemCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
-  TTTableCaptionedItem* captionedItem = item;
+  TTTableCaptionItem* captionedItem = item;
 
   CGFloat width = tableView.width - kHPadding*2;
 
@@ -341,7 +341,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
                                  constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
                                  lineBreakMode:self.textLabel.lineBreakMode];
     self.textLabel.frame = CGRectMake(kHPadding, self.detailTextLabel.bottom,
-                                            captionSize.width, captionSize.height);
+                                      captionSize.width, captionSize.height);
   }
 }
 
@@ -352,7 +352,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   if (_item != object) {
     [super setObject:object];
 
-    TTTableCaptionedItem* item = object;
+    TTTableCaptionItem* item = object;
     self.textLabel.text = item.caption;
     self.detailTextLabel.text = item.text;
   }  
@@ -369,7 +369,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableRightCaptionedItemCell
+@implementation TTTableRightCaptionItemCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
@@ -415,7 +415,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   if (_item != object) {
     [super setObject:object];
 
-    TTTableCaptionedItem* item = object;
+    TTTableCaptionItem* item = object;
     self.textLabel.text = item.caption;
     self.detailTextLabel.text = item.text;
     // XXXjoe TODO
@@ -433,9 +433,127 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTTableMessageItemCell
+@implementation TTTableSubtitleItemCell
 
-@synthesize titleLabel = _titleLabel, timestampLabel = _timestampLabel, imageView2 = _imageView2;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewCell class public
+
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForItem:(id)item {
+  TTTableSubtitleItem* textItem = item;
+  
+  CGFloat height = TTSTYLEVAR(tableFont).lineHeight + kVPadding*2;
+  if (textItem.subtitle) {
+    height += TTSTYLEVAR(font).lineHeight;
+  }
+  
+  return height;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier]) {
+    _imageView2 = nil;
+
+    self.textLabel.font = TTSTYLEVAR(tableFont);
+    self.textLabel.textColor = TTSTYLEVAR(textColor);
+    self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+    self.textLabel.textAlignment = UITextAlignmentLeft;
+    self.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    self.textLabel.adjustsFontSizeToFitWidth = YES;
+    
+    self.detailTextLabel.font = TTSTYLEVAR(font);
+    self.detailTextLabel.textColor = TTSTYLEVAR(tableSubTextColor);
+    self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+    self.detailTextLabel.textAlignment = UITextAlignmentLeft;
+    self.detailTextLabel.contentMode = UIViewContentModeTop;
+    self.detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
+    self.detailTextLabel.numberOfLines = kMessageTextLineCount;
+	}
+	return self;
+}
+
+- (void)dealloc {
+  TT_RELEASE_MEMBER(_imageView2);
+	[super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIView
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+    
+  CGFloat height = self.contentView.height;
+  CGFloat width = self.contentView.width - (height + kSmallMargin);
+  CGFloat left = 0;
+  
+  if (_imageView2) {
+    _imageView2.frame = CGRectMake(0, 0, height, height);
+    left = _imageView2.right + kSmallMargin;
+  } else {
+    left = kHPadding;
+  }
+
+  if (self.detailTextLabel.text.length) {
+    CGFloat textHeight = self.textLabel.font.lineHeight;
+    CGFloat subtitleHeight = self.detailTextLabel.font.lineHeight;
+    CGFloat paddingY = floor((height - (textHeight + subtitleHeight))/2);
+    
+    self.textLabel.frame = CGRectMake(left, paddingY, width, textHeight);
+    self.detailTextLabel.frame = CGRectMake(left, self.textLabel.bottom, width, subtitleHeight);
+  } else {
+    self.textLabel.frame = CGRectMake(_imageView2.right + kSmallMargin, 0, width, height);
+    self.detailTextLabel.frame = CGRectZero;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewCell
+
+- (void)setObject:(id)object {
+  if (_item != object) {
+    [super setObject:object];
+
+    TTTableSubtitleItem* item = object;
+    if (item.text.length) {
+      self.textLabel.text = item.text;
+    }
+    if (item.subtitle.length) {
+      self.detailTextLabel.text = item.subtitle;
+    }
+    if (item.defaultImage) {
+      self.imageView2.defaultImage = item.defaultImage;
+    }
+    if (item.imageURL) {
+      self.imageView2.URL = item.imageURL;
+    }
+  }  
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (UILabel*)subtitleLabel {
+  return self.detailTextLabel;
+}
+
+- (TTImageView*)imageView2 {
+  if (!_imageView2) {
+    _imageView2 = [[TTImageView alloc] init];
+//    _imageView2.defaultImage = TTSTYLEVAR(personImageSmall);
+//    _imageView2.style = TTSTYLE(threadActorIcon);
+    [self.contentView addSubview:_imageView2];
+  }
+  return _imageView2;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableMessageItemCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
@@ -531,6 +649,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (void)didMoveToSuperview {
   [super didMoveToSuperview];
   if (self.superview) {
+    _imageView2.backgroundColor = self.backgroundColor;
     _titleLabel.backgroundColor = self.backgroundColor;
     _timestampLabel.backgroundColor = self.backgroundColor;
   }
@@ -583,9 +702,9 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (UILabel*)timestampLabel {
   if (!_timestampLabel) {
     _timestampLabel = [[UILabel alloc] init];
+    _timestampLabel.font = TTSTYLEVAR(tableTimestampFont);
     _timestampLabel.textColor = TTSTYLEVAR(timestampTextColor);
     _timestampLabel.highlightedTextColor = [UIColor whiteColor];
-    _timestampLabel.font = TTSTYLEVAR(tableSmallFont);
     [self.contentView addSubview:_timestampLabel];
   }
   return _timestampLabel;

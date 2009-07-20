@@ -506,8 +506,8 @@
   return [UIFont boldSystemFontOfSize:13];
 }
 
-- (UIFont*)tableTitleValueFont {
-  return [UIFont boldSystemFontOfSize:15];
+- (UIFont*)tableTimestampFont {
+  return [UIFont systemFontOfSize:13];
 }
 
 - (UIFont*)tableButtonFont {
