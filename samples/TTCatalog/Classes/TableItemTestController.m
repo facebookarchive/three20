@@ -20,6 +20,9 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   if (self = [super init]) {
     self.variableHeightRows = YES;
 
+    // Uncomment this to see how the table looks with the grouped style
+    //self.tableViewStyle = UITableViewStyleGrouped;
+
     // Uncomment this to see how the table cells look against a custom background color 
     //self.tableView.backgroundColor = [UIColor yellowColor];
       
@@ -33,11 +36,11 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
       @"Links and Buttons",
       [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"],
       [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableItemTest"],
-      [TTTableSubtitleItem itemWithText:@"TTTableSubtitleItem" subtitle:kLoremIpsum
-                            URL:@"tt://tableItemTest"],
       [TTTableButton itemWithText:@"TTTableButton"],
       [TTTableCaptionItem itemWithText:@"TTTableCaptionItem" caption:@"caption"
                              URL:@"tt://tableItemTest"],
+      [TTTableSubtitleItem itemWithText:@"TTTableSubtitleItem" subtitle:kLoremIpsum
+                            URL:@"tt://tableItemTest"],
       [TTTableMessageItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
                           text:kLoremIpsum timestamp:[NSDate date] URL:@"tt://tableItemTest"],
       [TTTableMoreButton itemWithText:@"TTTableMoreButton"],

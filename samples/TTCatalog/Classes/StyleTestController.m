@@ -117,7 +117,7 @@
   
   CGFloat padding = 10;
   CGFloat viewWidth = scrollView.width/2 - padding*2;
-  CGFloat viewHeight = TOOLBAR_HEIGHT;
+  CGFloat viewHeight = TT_ROW_HEIGHT;
   
   CGFloat x = padding;
   CGFloat y = padding;

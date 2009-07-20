@@ -42,10 +42,12 @@
 
 - (void)cycleModelState {
   if (self.modelState == TTModelStateNone) {
-    self.modelState = TTModelStateLoaded;
-  } else if (self.modelState == TTModelStateLoaded) {
     self.modelState = TTModelStateLoading;
   } else if (self.modelState == TTModelStateLoading) {
+    self.modelState = TTModelStateLoaded;
+  } else if (self.modelState == TTModelStateLoaded) {
+    self.modelState = TTModelStateLoaded|TTModelStateReloading;
+  } else if (self.modelState == TTModelStateLoaded|TTModelStateReloading) {
     self.modelState = TTModelStateLoadedError;
   } else if (self.modelState == TTModelStateLoadedError) {
     self.modelState = TTModelStateNone;
@@ -77,6 +79,8 @@
     self.title = @"Loading";
   } else if (self.modelState == TTModelStateLoaded) {
     self.title = @"Loaded";
+  } else if (self.modelState == TTModelStateLoaded|TTModelStateReloading) {
+    self.title = @"Reloading";
   } else if (self.modelState == TTModelStateLoadedError) {
     self.title = @"LoadedError";
   }
