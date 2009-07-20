@@ -167,8 +167,12 @@
 }
 
 - (NSString*)buttonURLAtIndex:(NSInteger)index {
-  id URL = [_URLs objectAtIndex:index];
-  return URL != [NSNull null] ? URL : nil;
+  if (index < _URLs.count) {
+    id URL = [_URLs objectAtIndex:index];
+    return URL != [NSNull null] ? URL : nil;
+  } else {
+    return nil;
+  }
 }
 
 @end

@@ -7,7 +7,7 @@
 // private
 
 - (TTTableImageItem*)itemForURL:(NSString*)URL {
-  return [TTTableImageItem itemWithText:@"Table Row" URL:nil image:URL
+  return [TTTableImageItem itemWithText:@"Table Row" URL:nil imageURL:URL
                            defaultImage:TTIMAGE(@"bundle://DefaultAlbum.png")];
 }
 

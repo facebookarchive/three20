@@ -394,7 +394,7 @@ static const CGFloat kBannerViewHeight = 22;
     TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleBlackBox]
                                 autorelease];
     label.text = title;
-    label.font = [UIFont boldSystemFontOfSize:12];
+    label.font = TTSTYLEVAR(tableBannerFont);
     label.centeredToScreen = NO;
     self.tableBannerView = label;
   }

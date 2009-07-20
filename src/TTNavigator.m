@@ -105,7 +105,7 @@
     if (parentURL) {
       return [self openURL:parentURL parent:nil animated:NO];
     } else {
-      UIViewController* parent = self.visibleViewController;
+      UIViewController* parent = self.topViewController;
       if (parent != controller) {
         return parent;
       } else {
@@ -169,11 +169,11 @@
         withPattern:(TTURLPattern*)pattern animated:(BOOL)animated
         transition:(NSInteger)transition {
   if (controller) {
-    UIViewController* visibleViewController = self.visibleViewController;
-    if (controller && controller != visibleViewController) {
+    UIViewController* topViewController = self.topViewController;
+    if (controller && controller != topViewController) {
       UIViewController* parentController = [self parentForController:controller
                                                  parent:parentURL ? parentURL : pattern.parentURL];
-      if (parentController && parentController != visibleViewController) {
+      if (parentController && parentController != topViewController) {
         [self presentController:parentController parent:nil mode:TTNavigationModeNone
               animated:NO transition:0];
       }
@@ -303,8 +303,24 @@
   return nil;
 }
 
+- (UIViewController*)topViewController {
+  UIViewController* controller = _rootViewController;
+  while (controller) {
+    UIViewController* child = controller.modalViewController;
+    if (!child) {
+      child = controller.topSubcontroller;
+    }
+    if (child) {
+      controller = child;
+    } else {
+      return controller;
+    }
+  }
+  return nil;
+}
+
 - (NSString*)URL {
-  return self.visibleViewController.navigatorURL;
+  return self.topViewController.navigatorURL;
 }
 
 - (void)setURL:(NSString*)URL {

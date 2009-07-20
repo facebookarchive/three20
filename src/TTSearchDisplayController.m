@@ -17,6 +17,16 @@ static const NSTimeInterval kPauseInterval = 0.4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
+- (void)resetResults {
+  if (_searchResultsViewController.model.isLoading) {
+    [_searchResultsViewController.model cancel];
+  }
+  [_searchResultsViewController.dataSource search:nil];
+  [_searchResultsViewController viewWillDisappear:NO];
+  [_searchResultsViewController viewDidDisappear:NO];
+  _searchResultsViewController.tableView = nil;
+}
+
 - (void)restartPauseTimer {
   TT_RELEASE_TIMER(_pauseTimer);
   _pauseTimer = [NSTimer scheduledTimerWithTimeInterval:kPauseInterval target:self
@@ -54,13 +64,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 // UISearchDisplayDelegate
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController*)controller {
-  if (_searchResultsViewController.model.isLoading) {
-    [_searchResultsViewController.model cancel];
-  }
-  [_searchResultsViewController.dataSource search:nil];
-  [_searchResultsViewController viewWillDisappear:NO];
-  [_searchResultsViewController viewDidDisappear:NO];
-  _searchResultsViewController.tableView = nil;
+  [self resetResults];
 }
  
 - (void)searchDisplayController:(UISearchDisplayController *)controller
@@ -80,7 +84,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 - (void)searchDisplayController:(UISearchDisplayController*)controller
         willHideSearchResultsTableView:(UITableView*)tableView {
-  [self searchDisplayControllerWillEndSearch:controller];
+  [self resetResults];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController*)controller

@@ -46,6 +46,25 @@
 @interface TTTableBelowCaptionedItem : TTTableCaptionedItem
 @end
 
+@interface TTTableMessageItem : TTTableTextItem {
+  NSString* _title;
+  NSString* _caption;
+  NSDate* _timestamp;
+  NSString* _imageURL;
+}
+
+@property(nonatomic,copy) NSString* title;
+@property(nonatomic,copy) NSString* caption;
+@property(nonatomic,copy) NSDate* timestamp;
+@property(nonatomic,copy) NSString* imageURL;
+
++ (id)itemWithTitle:(NSString*)title caption:(NSString*)caption text:(NSString*)text
+      timestamp:(NSDate*)timestamp URL:(NSString*)URL;
++ (id)itemWithTitle:(NSString*)title caption:(NSString*)caption text:(NSString*)text
+      timestamp:(NSDate*)timestamp imageURL:(NSString*)imageURL URL:(NSString*)URL;
+
+@end
+
 @interface TTTableLongTextItem : TTTableTextItem
 @end
 
@@ -70,18 +89,18 @@
 @end
 
 @interface TTTableImageItem : TTTableTextItem {
-  NSString* _image;
+  NSString* _imageURL;
   UIImage* _defaultImage;
   TTStyle* _imageStyle;
 }
 
-@property(nonatomic,copy) NSString* image;
+@property(nonatomic,copy) NSString* imageURL;
 @property(nonatomic,retain) UIImage* defaultImage;
 @property(nonatomic,retain) TTStyle* imageStyle;
 
-+ (id)itemWithText:(NSString*)text image:(NSString*)image;
-+ (id)itemWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image;
-+ (id)itemWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image
++ (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL;
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL imageURL:(NSString*)imageURL;
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL imageURL:(NSString*)imageURL
       defaultImage:(UIImage*)defaultImage;
 
 @end

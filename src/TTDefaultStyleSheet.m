@@ -379,6 +379,10 @@
   return RGBCOLOR(180, 180, 180);
 }
 
+- (UIColor*)timestampTextColor {
+  return RGBCOLOR(36, 112, 216);
+}
+
 - (UIColor*)linkTextColor {
   return RGBCOLOR(87, 107, 149);
 }
@@ -512,6 +516,10 @@
 
 - (UIFont*)tableSummaryFont {
   return [UIFont systemFontOfSize:17];
+}
+
+- (UIFont*)tableBannerFont {
+  return [UIFont boldSystemFontOfSize:12];
 }
 
 - (UIFont*)photoCaptionFont {

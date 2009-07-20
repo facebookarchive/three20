@@ -27,16 +27,22 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
     self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
       @"Links and Buttons",
       [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"],
-      [TTTableTextItem itemWithText:@"TTTableTextItem (external link)" URL:@"http://foo.com"],
       [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableItemTest"],
       [TTTableButton itemWithText:@"TTTableButton"],
       [TTTableCaptionedItem itemWithText:@"TTTableCaptionedItem" caption:@"caption"
                              URL:@"tt://tableItemTest"],
-      [TTTableImageItem itemWithText:@"TTTableImageItem" URL:@"tt://tableItemTest"
-                               image:@"bundle://tableIcon.png"],
-      [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" URL:@"tt://tableItemTest"
-                             image:@"bundle://person.jpg"],
+      [TTTableMessageItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
+                          text:kLoremIpsum timestamp:[NSDate date] URL:@"tt://tableItemTest"],
       [TTTableMoreButton itemWithText:@"TTTableMoreButton"],
+
+      @"Images",
+      [TTTableImageItem itemWithText:@"TTTableImageItem" URL:@"tt://tableItemTest"
+                        imageURL:@"bundle://tableIcon.png"],
+      [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" URL:@"tt://tableItemTest"
+                             imageURL:@"bundle://person.jpg"],
+      [TTTableMessageItem itemWithTitle:@"Bob Jones" caption:@"TTTableMessageItem"
+                          text:kLoremIpsum timestamp:[NSDate date]
+                          imageURL:@"bundle://person.jpg" URL:@"tt://tableItemTest"],
 
       @"Static Text",
       [TTTableTextItem itemWithText:@"TTTableItem"],
@@ -44,8 +50,10 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                             caption:@"Text"],
       [TTTableBelowCaptionedItem itemWithText:@"TTTableBelowCaptionedItem"
                                  caption:kLoremIpsum],
-      [TTTableLongTextItem itemWithText:kLoremIpsum],
-      [TTTableGrayTextItem itemWithText:kLoremIpsum],
+      [TTTableLongTextItem itemWithText:[@"TTTableLongTextItem "
+                                         stringByAppendingString:kLoremIpsum]],
+      [TTTableGrayTextItem itemWithText:[@"TTTableGrayTextItem "
+                                         stringByAppendingString:kLoremIpsum]],
       [TTTableSummaryItem itemWithText:@"TTTableSummaryItem"],
 
       @"",

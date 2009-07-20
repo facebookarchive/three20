@@ -207,6 +207,90 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@implementation TTTableMessageItem
+
+@synthesize title = _title, caption = _caption, timestamp = _timestamp, imageURL = _imageURL;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (id)itemWithTitle:(NSString*)title caption:(NSString*)caption text:(NSString*)text
+      timestamp:(NSDate*)timestamp URL:(NSString*)URL {
+  TTTableMessageItem* item = [[[self alloc] init] autorelease];
+  item.title = title;
+  item.caption = caption;
+  item.text = text;
+  item.timestamp = timestamp;
+  item.URL = URL;
+  return item;
+}
+
++ (id)itemWithTitle:(NSString*)title caption:(NSString*)caption text:(NSString*)text
+      timestamp:(NSDate*)timestamp imageURL:(NSString*)imageURL URL:(NSString*)URL {
+  TTTableMessageItem* item = [[[self alloc] init] autorelease];
+  item.title = title;
+  item.caption = caption;
+  item.text = text;
+  item.timestamp = timestamp;
+  item.imageURL = imageURL;
+  item.URL = URL;
+  return item;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)init {
+  if (self = [super init]) {
+    _title = nil;
+    _caption = nil;
+    _timestamp = nil;
+    _imageURL = nil;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  TT_RELEASE_MEMBER(_title);
+  TT_RELEASE_MEMBER(_caption);
+  TT_RELEASE_MEMBER(_timestamp);
+  TT_RELEASE_MEMBER(_imageURL);
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSCoding
+
+- (id)initWithCoder:(NSCoder*)decoder {
+  if (self = [super initWithCoder:decoder]) {
+    self.title = [decoder decodeObjectForKey:@"title"];
+    self.caption = [decoder decodeObjectForKey:@"caption"];
+    self.timestamp = [decoder decodeObjectForKey:@"timestamp"];
+    self.imageURL = [decoder decodeObjectForKey:@"imageURL"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.title) {
+    [encoder encodeObject:self.title forKey:@"title"];
+  }
+  if (self.caption) {
+    [encoder encodeObject:self.caption forKey:@"caption"];
+  }
+  if (self.timestamp) {
+    [encoder encodeObject:self.timestamp forKey:@"timestamp"];
+  }
+  if (self.imageURL) {
+    [encoder encodeObject:self.imageURL forKey:@"imageURL"];
+  }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation TTTableLongTextItem
 @end
 
@@ -253,31 +337,31 @@
 
 @implementation TTTableImageItem
 
-@synthesize image = _image, defaultImage = _defaultImage, imageStyle = _imageStyle;
+@synthesize imageURL = _imageURL, defaultImage = _defaultImage, imageStyle = _imageStyle;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
 
-+ (id)itemWithText:(NSString*)text image:(NSString*)image {
++ (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL {
   TTTableImageItem* item = [[[self alloc] init] autorelease];
   item.text = text;
-  item.image = image;
+  item.imageURL = imageURL;
   return item;
 }
 
-+ (id)itemWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image {
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL imageURL:(NSString*)imageURL {
   TTTableImageItem* item = [[[self alloc] init] autorelease];
   item.text = text;
-  item.image = image;
+  item.imageURL = imageURL;
   item.URL = URL;
   return item;
 }
 
-+ (id)itemWithText:(NSString*)text URL:(NSString*)URL image:(NSString*)image
++ (id)itemWithText:(NSString*)text URL:(NSString*)URL imageURL:(NSString*)imageURL
       defaultImage:(UIImage*)defaultImage {
   TTTableImageItem* item = [[[self alloc] init] autorelease];
   item.text = text;
-  item.image = image;
+  item.imageURL = imageURL;
   item.defaultImage = defaultImage;
   item.URL = URL;
   return item;
@@ -289,14 +373,14 @@
 - (id)init {
   if (self = [super init]) {
     _defaultImage = nil;
-    _image = nil;
+    _imageURL = nil;
     _imageStyle = nil;
   }
   return self;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_image);
+  TT_RELEASE_MEMBER(_imageURL);
   TT_RELEASE_MEMBER(_defaultImage);
   TT_RELEASE_MEMBER(_imageStyle);
   [super dealloc];
@@ -308,15 +392,15 @@
 
 - (id)initWithCoder:(NSCoder*)decoder {
   if (self = [super initWithCoder:decoder]) {
-    self.image = [decoder decodeObjectForKey:@"image"];
+    self.imageURL = [decoder decodeObjectForKey:@"imageURL"];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder*)encoder {
   [super encodeWithCoder:encoder];
-  if (self.image) {
-    [encoder encodeObject:self.image forKey:@"image"];
+  if (self.imageURL) {
+    [encoder encodeObject:self.imageURL forKey:@"imageURL"];
   }
 }
 @end
@@ -431,6 +515,16 @@
 @synthesize caption = _caption, control = _control;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (id)itemWithCaption:(NSString*)caption control:(UIControl*)control {
+  TTTableControlItem* item = [[[self alloc] init] autorelease];
+  item.caption = caption;
+  item.control = control;
+  return item;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)init {
@@ -445,13 +539,6 @@
   TT_RELEASE_MEMBER(_caption);
   TT_RELEASE_MEMBER(_control);
   [super dealloc];
-}
-
-+ (id)itemWithCaption:(NSString*)caption control:(UIControl*)control {
-  TTTableControlItem* item = [[[self alloc] init] autorelease];
-  item.caption = caption;
-  item.control = control;
-  return item;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -484,6 +571,16 @@
 @synthesize caption = _caption, view = _view;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (id)itemWithCaption:(NSString*)caption view:(UIControl*)view {
+  TTTableViewItem* item = [[[self alloc] init] autorelease];
+  item.caption = caption;
+  item.view = view;
+  return item;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)init {
@@ -498,13 +595,6 @@
   TT_RELEASE_MEMBER(_caption);
   TT_RELEASE_MEMBER(_view);
   [super dealloc];
-}
-
-+ (id)itemWithCaption:(NSString*)caption view:(UIControl*)view {
-  TTTableViewItem* item = [[[self alloc] init] autorelease];
-  item.caption = caption;
-  item.view = view;
-  return item;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

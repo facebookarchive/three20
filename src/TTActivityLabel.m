@@ -92,7 +92,7 @@ static CGFloat kProgressMargin = 30;
       _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
         UIActivityIndicatorViewStyleWhite];
       _spinner.frame = CGRectMake(0, 0, 20, 20);
-      _textView.font = [UIFont boldSystemFontOfSize:15];
+      _textView.font = TTSTYLEVAR(tableBannerFont);
       _textView.textColor = [UIColor whiteColor];
       _textView.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
       _textView.shadowOffset = CGSizeMake(1, 1);

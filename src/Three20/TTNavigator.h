@@ -43,6 +43,15 @@ typedef enum {
 @property(nonatomic,readonly) UIViewController* visibleViewController;
 
 /**
+ * The view controller that is currently on top of the navigation stack.
+ *
+ * This differs from visibleViewController in that it ignores things like search
+ * display controllers which are visible, but not part of navigation.
+ */
+@property(nonatomic,readonly) UIViewController* topViewController;
+
+
+/**
  * The URL of the currently visible view controller;
  *
  * Setting this property will open a new URL.

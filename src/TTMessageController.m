@@ -393,9 +393,10 @@
       if (![self fieldHasValueAtIndex:i]) {
         UIView* view = [self viewForFieldAtIndex:i];
         [view becomeFirstResponder];
-        break;
+        return;
       }
     }
+    [[self viewForFieldAtIndex:0] becomeFirstResponder];
   }
 }
 

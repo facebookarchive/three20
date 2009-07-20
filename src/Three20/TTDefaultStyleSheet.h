@@ -7,6 +7,7 @@
 @property(nonatomic,readonly) UIColor* textColor;
 @property(nonatomic,readonly) UIColor* highlightedTextColor;
 @property(nonatomic,readonly) UIColor* placeholderTextColor;
+@property(nonatomic,readonly) UIColor* timestampTextColor;
 @property(nonatomic,readonly) UIColor* linkTextColor;
 @property(nonatomic,readonly) UIColor* moreLinkTextColor;
 @property(nonatomic,readonly) UIColor* photoCaptionTextColor;
@@ -46,6 +47,7 @@
 @property(nonatomic,readonly) UIFont* tableTitleValueFont;
 @property(nonatomic,readonly) UIFont* tableButtonFont;
 @property(nonatomic,readonly) UIFont* tableSummaryFont;
+@property(nonatomic,readonly) UIFont* tableBannerFont;
 @property(nonatomic,readonly) UIFont* photoCaptionFont;
 @property(nonatomic,readonly) UIFont* messageFont;
 @property(nonatomic,readonly) UIFont* errorTitleFont;

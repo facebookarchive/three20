@@ -163,7 +163,9 @@
 
 - (void)webViewDidStartLoad:(UIWebView*)webView {
   self.title = TTLocalizedString(@"Loading...", @"");
-  self.navigationItem.rightBarButtonItem = _activityItem;
+  if (!self.navigationItem.rightBarButtonItem) {
+    self.navigationItem.rightBarButtonItem = _activityItem;
+  }
   [_toolbar replaceItemWithTag:3 withItem:_stopButton];
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
@@ -172,7 +174,9 @@
 
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-  self.navigationItem.rightBarButtonItem = nil;
+  if (self.navigationItem.rightBarButtonItem == _activityItem) {
+    self.navigationItem.rightBarButtonItem = nil;
+  }
   [_toolbar replaceItemWithTag:3 withItem:_refreshButton];
   [_webView canGoBack];
 }
