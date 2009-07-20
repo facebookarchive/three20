@@ -139,9 +139,9 @@ static TTURLCache* gSharedCache = nil;
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                         name:UIApplicationDidReceiveMemoryWarningNotification  
                                         object:nil];  
-  TT_RELEASE_MEMBER(_imageCache);
-  TT_RELEASE_MEMBER(_imageSortedList);
-  TT_RELEASE_MEMBER(_cachePath);
+  TT_RELEASE_SAFELY(_imageCache);
+  TT_RELEASE_SAFELY(_imageSortedList);
+  TT_RELEASE_SAFELY(_cachePath);
   [super dealloc];
 }
 

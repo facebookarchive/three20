@@ -48,7 +48,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_item);
+  TT_RELEASE_SAFELY(_item);
 	[super dealloc];
 }
 
@@ -477,7 +477,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_imageView2);
+  TT_RELEASE_SAFELY(_imageView2);
 	[super dealloc];
 }
 
@@ -593,9 +593,9 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_titleLabel);
-  TT_RELEASE_MEMBER(_timestampLabel);
-  TT_RELEASE_MEMBER(_imageView2);
+  TT_RELEASE_SAFELY(_titleLabel);
+  TT_RELEASE_SAFELY(_timestampLabel);
+  TT_RELEASE_SAFELY(_imageView2);
 	[super dealloc];
 }
 
@@ -755,7 +755,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_activityIndicatorView);
+  TT_RELEASE_SAFELY(_activityIndicatorView);
   [super dealloc];
 }
 
@@ -831,7 +831,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   
   CGFloat imageHeight, imageWidth;
   TTImageStyle* style = [imageItem.imageStyle firstStyleOfClass:[TTImageStyle class]];
-  if (style) {
+  if (style && !CGSizeEqualToSize(style.size, CGSizeZero)) {
     imageWidth = style.size.width + kKeySpacing;
     imageHeight = style.size.height;
   } else {
@@ -865,7 +865,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_imageView2);
+  TT_RELEASE_SAFELY(_imageView2);
 	[super dealloc];
 }
 
@@ -978,8 +978,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
-    _activityLabel = [[TTActivityLabel alloc] initWithFrame:CGRectZero
-                                              style:TTActivityLabelStyleGray];
+    _activityLabel = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleGray];
     _activityLabel.centeredToScreen = NO;
     [self.contentView addSubview:_activityLabel];
 
@@ -990,7 +989,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_activityLabel);
+  TT_RELEASE_SAFELY(_activityLabel);
   [super dealloc];
 }
 
@@ -1057,7 +1056,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_label);
+  TT_RELEASE_SAFELY(_label);
   [super dealloc];
 }
 
@@ -1163,8 +1162,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_item);
-  TT_RELEASE_MEMBER(_control);
+  TT_RELEASE_SAFELY(_item);
+  TT_RELEASE_SAFELY(_control);
 	[super dealloc];
 }
 
@@ -1208,8 +1207,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (void)setObject:(id)object {
   if (object != _control && object != _item) {
     [_control removeFromSuperview];
-    TT_RELEASE_MEMBER(_control);
-    TT_RELEASE_MEMBER(_item);
+    TT_RELEASE_SAFELY(_control);
+    TT_RELEASE_SAFELY(_item);
     
     if ([object isKindOfClass:[UIView class]]) {
       _control = [object retain];
@@ -1255,8 +1254,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_item);
-  TT_RELEASE_MEMBER(_view);
+  TT_RELEASE_SAFELY(_item);
+  TT_RELEASE_SAFELY(_view);
 	[super dealloc];
 }
 
@@ -1278,8 +1277,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (void)setObject:(id)object {
   if (object != _view && object != _item) {
     [_view removeFromSuperview];
-    TT_RELEASE_MEMBER(_view);
-    TT_RELEASE_MEMBER(_item);
+    TT_RELEASE_SAFELY(_view);
+    TT_RELEASE_SAFELY(_item);
     
     if ([object isKindOfClass:[UIView class]]) {
       _view = [object retain];

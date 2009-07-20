@@ -638,12 +638,12 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_rootFrame);
-  TT_RELEASE_MEMBER(_font);
-  TT_RELEASE_MEMBER(_boldFont);
-  TT_RELEASE_MEMBER(_italicFont);
-  TT_RELEASE_MEMBER(_linkStyle);
-  TT_RELEASE_MEMBER(_invalidImages);
+  TT_RELEASE_SAFELY(_rootFrame);
+  TT_RELEASE_SAFELY(_font);
+  TT_RELEASE_SAFELY(_boldFont);
+  TT_RELEASE_SAFELY(_italicFont);
+  TT_RELEASE_SAFELY(_linkStyle);
+  TT_RELEASE_SAFELY(_invalidImages);
   [super dealloc];
 }
 
@@ -661,8 +661,8 @@
   if (font != _font) {
     [_font release];
     _font = [font retain];
-    TT_RELEASE_MEMBER(_boldFont);
-    TT_RELEASE_MEMBER(_italicFont);
+    TT_RELEASE_SAFELY(_boldFont);
+    TT_RELEASE_SAFELY(_italicFont);
   }
 }
 

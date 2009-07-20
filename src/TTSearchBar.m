@@ -91,11 +91,11 @@ static const CGFloat kIndexViewMargin = 4;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _boxView = [[TTView alloc] initWithFrame:CGRectZero];
+    _boxView = [[TTView alloc] init];
     _boxView.backgroundColor = [UIColor clearColor];
     [self addSubview:_boxView];
         
-    _searchField = [[TTSearchTextField alloc] initWithFrame:CGRectZero];
+    _searchField = [[TTSearchTextField alloc] init];
     _searchField.placeholder = TTLocalizedString(@"Search", @"");
     _searchField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     [_searchField addTarget:self action:@selector(textFieldDidBeginEditing)
@@ -115,11 +115,11 @@ static const CGFloat kIndexViewMargin = 4;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_searchField);
-  TT_RELEASE_MEMBER(_boxView);
-  TT_RELEASE_MEMBER(_textFieldStyle);
-  TT_RELEASE_MEMBER(_tintColor);
-  TT_RELEASE_MEMBER(_cancelButton);
+  TT_RELEASE_SAFELY(_searchField);
+  TT_RELEASE_SAFELY(_boxView);
+  TT_RELEASE_SAFELY(_textFieldStyle);
+  TT_RELEASE_SAFELY(_tintColor);
+  TT_RELEASE_SAFELY(_cancelButton);
   [super dealloc];
 }
 
@@ -220,7 +220,7 @@ static const CGFloat kIndexViewMargin = 4;
       [self addSubview:_cancelButton];
     } else {
       [_cancelButton removeFromSuperview];
-      TT_RELEASE_MEMBER(_cancelButton);
+      TT_RELEASE_SAFELY(_cancelButton);
     }
   }
 }

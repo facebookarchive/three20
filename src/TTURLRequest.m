@@ -61,17 +61,17 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_URL);
-  TT_RELEASE_MEMBER(_httpMethod);
-  TT_RELEASE_MEMBER(_httpBody);
-  TT_RELEASE_MEMBER(_parameters);
-  TT_RELEASE_MEMBER(_contentType);
-  TT_RELEASE_MEMBER(_delegates);
-  TT_RELEASE_MEMBER(_files);
-  TT_RELEASE_MEMBER(_response);
-  TT_RELEASE_MEMBER(_timestamp);
-  TT_RELEASE_MEMBER(_cacheKey);
-  TT_RELEASE_MEMBER(_userInfo);
+  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_httpMethod);
+  TT_RELEASE_SAFELY(_httpBody);
+  TT_RELEASE_SAFELY(_parameters);
+  TT_RELEASE_SAFELY(_contentType);
+  TT_RELEASE_SAFELY(_delegates);
+  TT_RELEASE_SAFELY(_files);
+  TT_RELEASE_SAFELY(_response);
+  TT_RELEASE_SAFELY(_timestamp);
+  TT_RELEASE_SAFELY(_cacheKey);
+  TT_RELEASE_SAFELY(_userInfo);
   [super dealloc];
 }
 
@@ -114,7 +114,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 - (NSData*)generatePostBody {
   NSMutableData *body = [NSMutableData data];
-  NSString *endLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
+  NSString *beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
 
   [body appendData:[[NSString stringWithFormat:@"--%@\r\n", kStringBoundary]
     dataUsingEncoding:NSUTF8StringEncoding]];
@@ -122,11 +122,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   for (id key in [_parameters keyEnumerator]) {
     NSString* value = [_parameters valueForKey:key];
     if (![value isKindOfClass:[UIImage class]]) {
+      [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];        
       [body appendData:[[NSString
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
           dataUsingEncoding:NSUTF8StringEncoding]];
       [body appendData:[value dataUsingEncoding:NSUTF8StringEncoding]];
-      [body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];        
     }
   }
 
@@ -137,6 +137,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       CGFloat quality = [TTURLRequestQueue mainQueue].imageCompressionQuality;
       NSData* data = UIImageJPEGRepresentation(image, quality);
       
+      [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
       [body appendData:[[NSString stringWithFormat:
                        @"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n",
                        key]
@@ -148,7 +149,6 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
         stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
           dataUsingEncoding:NSUTF8StringEncoding]];  
       [body appendData:data];
-      [body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
       imageKey = key;
     }
   }
@@ -158,6 +158,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     NSString* mimeType = [_files objectAtIndex:i+1];
     NSString* fileName = [_files objectAtIndex:i+2];
       
+    [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:
                        @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",
                        fileName, fileName]
@@ -167,8 +168,10 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     [body appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType]
           dataUsingEncoding:NSUTF8StringEncoding]];  
     [body appendData:data];
-    [body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
   }
+
+  [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", kStringBoundary]
+                   dataUsingEncoding:NSUTF8StringEncoding]];
 
   // If an image was found, remove it from the dictionary to save memory while we
   // perform the upload
@@ -277,8 +280,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_topic);
-  TT_RELEASE_MEMBER(_strong);
+  TT_RELEASE_SAFELY(_topic);
+  TT_RELEASE_SAFELY(_strong);
   [super dealloc];
 }
 

@@ -43,7 +43,7 @@ static CGFloat kProgressMargin = 30;
     
     self.backgroundColor = [UIColor clearColor];
   
-    _bezelView = [[TTView alloc] initWithFrame:CGRectZero];
+    _bezelView = [[TTView alloc] init];
     if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleBlackThinBezel) {
       _bezelView.backgroundColor = [UIColor clearColor];
       _bezelView.style = TTSTYLE(blackBezel);
@@ -117,11 +117,11 @@ static CGFloat kProgressMargin = 30;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_bezelView);
-  TT_RELEASE_MEMBER(_spinner);
-  TT_RELEASE_MEMBER(_progressView);
-  TT_RELEASE_MEMBER(_textView);
-  TT_RELEASE_MEMBER(_cancelButton);
+  TT_RELEASE_SAFELY(_bezelView);
+  TT_RELEASE_SAFELY(_spinner);
+  TT_RELEASE_SAFELY(_progressView);
+  TT_RELEASE_SAFELY(_textView);
+  TT_RELEASE_SAFELY(_cancelButton);
   [super dealloc];
 }
 
@@ -265,7 +265,7 @@ static CGFloat kProgressMargin = 30;
       [_bezelView addSubview:_cancelButton];
     } else {
       [_cancelButton removeFromSuperview];
-      TT_RELEASE_MEMBER(_cancelButton);
+      TT_RELEASE_SAFELY(_cancelButton);
     }
   }
 }

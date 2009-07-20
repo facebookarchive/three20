@@ -24,7 +24,7 @@
     }
 
     [newPhotos addObjectsFromArray:_tempPhotos];
-    TT_RELEASE_MEMBER(_tempPhotos);
+    TT_RELEASE_SAFELY(_tempPhotos);
 
     [_photos release];
     _photos = [newPhotos retain];
@@ -74,9 +74,9 @@
 
 - (void)dealloc {
   [_fakeLoadTimer invalidate];
-  TT_RELEASE_MEMBER(_photos);
-  TT_RELEASE_MEMBER(_tempPhotos);
-  TT_RELEASE_MEMBER(_title);
+  TT_RELEASE_SAFELY(_photos);
+  TT_RELEASE_SAFELY(_tempPhotos);
+  TT_RELEASE_SAFELY(_title);
   [super dealloc];
 }
 
@@ -163,10 +163,10 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_URL);
-  TT_RELEASE_MEMBER(_smallURL);
-  TT_RELEASE_MEMBER(_thumbURL);
-  TT_RELEASE_MEMBER(_caption);
+  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_smallURL);
+  TT_RELEASE_SAFELY(_thumbURL);
+  TT_RELEASE_SAFELY(_caption);
   [super dealloc];
 }
 

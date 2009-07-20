@@ -23,7 +23,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_popupViewController);
+  TT_RELEASE_SAFELY(_popupViewController);
   [super dealloc];
 }
 
@@ -50,7 +50,9 @@
     _delegate = delegate;
     _URLs = [[NSMutableArray alloc] init];
     
-    self.actionSheet.title = title;
+    if (title) {
+      self.actionSheet.title = title;
+    }
   }
   return self;
 }
@@ -64,7 +66,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_URLs);
+  TT_RELEASE_SAFELY(_URLs);
   [super dealloc];
 }
 

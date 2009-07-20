@@ -16,7 +16,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_data);
+  TT_RELEASE_SAFELY(_data);
   [super dealloc];
 }
 
@@ -47,7 +47,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_image);
+  TT_RELEASE_SAFELY(_image);
   [super dealloc];
 }
 

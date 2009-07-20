@@ -67,8 +67,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
         TTStyle* style = [TTSTYLESHEET styleWithSelector:className forState:UIControlStateNormal];
         [self setStyle:style forFrame:_highlightedFrame];
 
-        TT_RELEASE_MEMBER(_highlightedFrame);
-        TT_RELEASE_MEMBER(_highlightedNode);
+        TT_RELEASE_SAFELY(_highlightedFrame);
+        TT_RELEASE_SAFELY(_highlightedNode);
         tableView.highlightedLabel = nil;
       }
 
@@ -101,12 +101,12 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)dealloc {
   _text.delegate = nil;
-  TT_RELEASE_MEMBER(_text);
-  TT_RELEASE_MEMBER(_font);
-  TT_RELEASE_MEMBER(_textColor);
-  TT_RELEASE_MEMBER(_highlightedTextColor);
-  TT_RELEASE_MEMBER(_highlightedNode);
-  TT_RELEASE_MEMBER(_highlightedFrame);
+  TT_RELEASE_SAFELY(_text);
+  TT_RELEASE_SAFELY(_font);
+  TT_RELEASE_SAFELY(_textColor);
+  TT_RELEASE_SAFELY(_highlightedTextColor);
+  TT_RELEASE_SAFELY(_highlightedNode);
+  TT_RELEASE_SAFELY(_highlightedFrame);
   [super dealloc];
 }
 

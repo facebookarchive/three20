@@ -69,9 +69,9 @@ static const NSTimeInterval kOvershoot = 2;
   _delegate = nil;
   [_animationTimer invalidate];
   [_tapTimer invalidate];
-  TT_RELEASE_MEMBER(_animationStartTime);
-  TT_RELEASE_MEMBER(_pages);
-  TT_RELEASE_MEMBER(_pageQueue);
+  TT_RELEASE_SAFELY(_animationStartTime);
+  TT_RELEASE_SAFELY(_pages);
+  TT_RELEASE_SAFELY(_pageQueue);
   [super dealloc];
 }
 
@@ -789,7 +789,7 @@ static const NSTimeInterval kOvershoot = 2;
   if (_animationTimer) {
     [_animationTimer invalidate];
     _animationTimer = nil;
-    TT_RELEASE_MEMBER(_animationStartTime);
+    TT_RELEASE_SAFELY(_animationStartTime);
     _overshoot = 0;
     [self updateZooming:UIEdgeInsetsZero];
     
@@ -819,7 +819,7 @@ static const NSTimeInterval kOvershoot = 2;
 
   if (pct == 1.0) {
     if (_overshoot) {
-      TT_RELEASE_MEMBER(_animationStartTime);
+      TT_RELEASE_SAFELY(_animationStartTime);
       [_animationTimer invalidate];
       _animationTimer = nil;
       [self startAnimationTo:UIEdgeInsetsMake(0, self.overshoot, 0, self.overshoot) duration:0.1];

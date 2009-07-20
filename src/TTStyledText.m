@@ -55,7 +55,7 @@
 - (void)stopLoadingImages {
   if (_imageRequests) {
     NSMutableArray* requests = [_imageRequests retain];
-    TT_RELEASE_MEMBER(_imageRequests);
+    TT_RELEASE_SAFELY(_imageRequests);
 
     if (!_invalidImages) {
       _invalidImages = [[NSMutableArray alloc] init];
@@ -89,7 +89,7 @@
       }
     }
 
-    TT_RELEASE_MEMBER(_invalidImages);
+    TT_RELEASE_SAFELY(_invalidImages);
     
     if (loadedSome) {
       [_delegate styledTextNeedsDisplay:self];
@@ -149,11 +149,11 @@
 
 - (void)dealloc {
   [self stopLoadingImages];
-  TT_RELEASE_MEMBER(_rootNode);
-  TT_RELEASE_MEMBER(_rootFrame);
-  TT_RELEASE_MEMBER(_font);
-  TT_RELEASE_MEMBER(_invalidImages);
-  TT_RELEASE_MEMBER(_imageRequests);
+  TT_RELEASE_SAFELY(_rootNode);
+  TT_RELEASE_SAFELY(_rootFrame);
+  TT_RELEASE_SAFELY(_font);
+  TT_RELEASE_SAFELY(_invalidImages);
+  TT_RELEASE_SAFELY(_imageRequests);
   [super dealloc];
 }
 
@@ -251,7 +251,7 @@
 }
 
 - (void)setNeedsLayout {
-  TT_RELEASE_MEMBER(_rootFrame);
+  TT_RELEASE_SAFELY(_rootFrame);
   _height = 0;
 }
 

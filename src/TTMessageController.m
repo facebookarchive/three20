@@ -26,7 +26,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_title);
+  TT_RELEASE_SAFELY(_title);
   [super dealloc];
 }
 
@@ -60,7 +60,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_recipients);
+  TT_RELEASE_SAFELY(_recipients);
   [super dealloc];
 }
 
@@ -140,7 +140,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_text);
+  TT_RELEASE_SAFELY(_text);
   [super dealloc];
 }
 
@@ -199,7 +199,7 @@
       textField.returnKeyType = UIReturnKeyNext;
       [textField sizeToFit];
       
-      UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+      UILabel* label = [[[UILabel alloc] init] autorelease];
       label.text = field.title;
       label.font = TTSTYLEVAR(messageFont);
       label.textColor = TTSTYLEVAR(messageFieldTextColor);
@@ -343,9 +343,9 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_dataSource);
-  TT_RELEASE_MEMBER(_fields);
-  TT_RELEASE_MEMBER(_initialRecipients);
+  TT_RELEASE_SAFELY(_dataSource);
+  TT_RELEASE_SAFELY(_fields);
+  TT_RELEASE_SAFELY(_initialRecipients);
   [super dealloc];
 }
 
@@ -379,10 +379,10 @@
 
 - (void)viewDidUnload {
   [super viewDidUnload];
-  TT_RELEASE_MEMBER(_scrollView);
-  TT_RELEASE_MEMBER(_fieldViews);
-  TT_RELEASE_MEMBER(_textEditor);
-  TT_RELEASE_MEMBER(_statusView);
+  TT_RELEASE_SAFELY(_scrollView);
+  TT_RELEASE_SAFELY(_fieldViews);
+  TT_RELEASE_SAFELY(_textEditor);
+  TT_RELEASE_SAFELY(_statusView);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -461,7 +461,7 @@
     for (id recipient in _initialRecipients) {
       [self addRecipient:recipient forFieldAtIndex:0];
     }
-    TT_RELEASE_MEMBER(_initialRecipients);
+    TT_RELEASE_SAFELY(_initialRecipients);
   }
 }
 
@@ -478,7 +478,7 @@
     _statusView = [label retain];
   } else {
     [_statusView removeFromSuperview];
-    TT_RELEASE_MEMBER(_statusView);
+    TT_RELEASE_SAFELY(_statusView);
   }
 }
 

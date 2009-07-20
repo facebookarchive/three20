@@ -141,9 +141,9 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_tableDelegate);
-  TT_RELEASE_MEMBER(_dataSource);
-  TT_RELEASE_MEMBER(_tableView);
+  TT_RELEASE_SAFELY(_tableDelegate);
+  TT_RELEASE_SAFELY(_dataSource);
+  TT_RELEASE_SAFELY(_tableView);
   [super dealloc];
 }
 
@@ -157,16 +157,16 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (void)viewDidUnload {
   [super viewDidUnload];
-  TT_RELEASE_MEMBER(_dataSource);
-  TT_RELEASE_MEMBER(_tableView);
+  TT_RELEASE_SAFELY(_dataSource);
+  TT_RELEASE_SAFELY(_tableView);
   [_tableBannerView removeFromSuperview];
-  TT_RELEASE_MEMBER(_tableBannerView);
+  TT_RELEASE_SAFELY(_tableBannerView);
   [_tableOverlayView removeFromSuperview];
-  TT_RELEASE_MEMBER(_tableOverlayView);
+  TT_RELEASE_SAFELY(_tableOverlayView);
   [_menuView removeFromSuperview];
-  TT_RELEASE_MEMBER(_menuView);
+  TT_RELEASE_SAFELY(_menuView);
   [_menuCell removeFromSuperview];
-  TT_RELEASE_MEMBER(_menuCell);
+  TT_RELEASE_SAFELY(_menuCell);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -468,8 +468,8 @@ static const CGFloat kBannerViewHeight = 22;
       [_menuView removeFromSuperview];
     }
 
-    TT_RELEASE_MEMBER(_menuView);
-    TT_RELEASE_MEMBER(_menuCell);
+    TT_RELEASE_SAFELY(_menuView);
+    TT_RELEASE_SAFELY(_menuCell);
   }
 }
 

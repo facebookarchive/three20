@@ -356,9 +356,9 @@
 
 - (void)dealloc {
   TT_RELEASE_TIMER(_fakeSearchTimer);
-  TT_RELEASE_MEMBER(_delegates);
-  TT_RELEASE_MEMBER(_allNames);
-  TT_RELEASE_MEMBER(_names);
+  TT_RELEASE_SAFELY(_delegates);
+  TT_RELEASE_SAFELY(_allNames);
+  TT_RELEASE_SAFELY(_names);
   [super dealloc];
 }
 
@@ -409,7 +409,7 @@
 // public
 
 - (void)loadNames {
-  TT_RELEASE_MEMBER(_names);
+  TT_RELEASE_SAFELY(_names);
   _names = [_allNames mutableCopy];
 }
 
@@ -427,7 +427,7 @@
       [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
     }
   } else {
-    TT_RELEASE_MEMBER(_names);
+    TT_RELEASE_SAFELY(_names);
     [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
   }
 }
@@ -453,7 +453,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_addressBook);
+  TT_RELEASE_SAFELY(_addressBook);
   [super dealloc];
 }
 
@@ -517,7 +517,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_addressBook);
+  TT_RELEASE_SAFELY(_addressBook);
   [super dealloc];
 }
 

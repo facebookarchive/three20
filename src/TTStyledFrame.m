@@ -22,7 +22,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_nextFrame);
+  TT_RELEASE_SAFELY(_nextFrame);
   [super dealloc];
 }
 
@@ -104,8 +104,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_firstChildFrame);
-  TT_RELEASE_MEMBER(_style);
+  TT_RELEASE_SAFELY(_firstChildFrame);
+  TT_RELEASE_SAFELY(_style);
   [super dealloc];
 }
 
@@ -217,8 +217,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_text);
-  TT_RELEASE_MEMBER(_font);
+  TT_RELEASE_SAFELY(_text);
+  TT_RELEASE_SAFELY(_font);
   [super dealloc];
 }
 
@@ -248,7 +248,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_style);
+  TT_RELEASE_SAFELY(_style);
   [super dealloc];
 }
 

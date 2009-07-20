@@ -47,7 +47,7 @@
   
   TTMessageRecipientField* toField = [fields objectAtIndex:0];
   for (id recipient in toField.recipients) {
-    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    UILabel* label = [[[UILabel alloc] init] autorelease];
     label.backgroundColor = self.view.backgroundColor;
     label.text = [NSString stringWithFormat:@"Sent to: %@", recipient];
     [label sizeToFit];

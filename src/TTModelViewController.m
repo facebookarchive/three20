@@ -66,8 +66,8 @@
 
 - (void)dealloc {
   [_model.delegates removeObject:self];
-  TT_RELEASE_MEMBER(_model);
-  TT_RELEASE_MEMBER(_modelError);
+  TT_RELEASE_SAFELY(_model);
+  TT_RELEASE_SAFELY(_modelError);
   [super dealloc];
 }
 
@@ -160,7 +160,7 @@
   if (_model != model) {
     [self willChangeModel];
     [_model.delegates removeObject:self];
-    TT_RELEASE_MEMBER(_model);
+    TT_RELEASE_SAFELY(_model);
 
     _model = [model retain];
     [_model.delegates addObject:self];
@@ -248,7 +248,7 @@
 
       if (_frozenState && !(self.modelState & TTModelLoadingStates)) {
         [self restoreView:_frozenState];
-        TT_RELEASE_MEMBER(_frozenState);
+        TT_RELEASE_SAFELY(_frozenState);
       }
 
       _isViewInvalid = NO;

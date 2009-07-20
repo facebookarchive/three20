@@ -152,13 +152,13 @@ static const CGFloat kDesiredTableHeight = 150;
 - (void)dealloc {
   [_dataSource.model.delegates removeObject:self];
   _tableView.delegate = nil;
-  TT_RELEASE_MEMBER(_dataSource);
-  TT_RELEASE_MEMBER(_internal);
-  TT_RELEASE_MEMBER(_tableView);
-  TT_RELEASE_MEMBER(_shadowView);
-  TT_RELEASE_MEMBER(_screenView);
-  TT_RELEASE_MEMBER(_previousNavigationItem);
-  TT_RELEASE_MEMBER(_previousRightBarButtonItem);
+  TT_RELEASE_SAFELY(_dataSource);
+  TT_RELEASE_SAFELY(_internal);
+  TT_RELEASE_SAFELY(_tableView);
+  TT_RELEASE_SAFELY(_shadowView);
+  TT_RELEASE_SAFELY(_screenView);
+  TT_RELEASE_SAFELY(_previousNavigationItem);
+  TT_RELEASE_SAFELY(_previousRightBarButtonItem);
   [super dealloc];
 }
 
@@ -177,8 +177,8 @@ static const CGFloat kDesiredTableHeight = 150;
       [controller.navigationItem setRightBarButtonItem:doneButton animated:YES];
     } else {
       [_previousNavigationItem setRightBarButtonItem:_previousRightBarButtonItem animated:YES];
-      TT_RELEASE_MEMBER(_previousRightBarButtonItem);
-      TT_RELEASE_MEMBER(_previousNavigationItem);
+      TT_RELEASE_SAFELY(_previousRightBarButtonItem);
+      TT_RELEASE_SAFELY(_previousNavigationItem);
     }
   }
 }
@@ -413,7 +413,7 @@ static const CGFloat kDesiredTableHeight = 150;
     self.tableView;
     
     if (!_shadowView) {
-      _shadowView = [[TTView alloc] initWithFrame:CGRectZero];
+      _shadowView = [[TTView alloc] init];
       _shadowView.style = TTSTYLE(searchTableShadow);
       _shadowView.backgroundColor = [UIColor clearColor];
       _shadowView.userInteractionEnabled = NO;

@@ -22,7 +22,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_model);
+  TT_RELEASE_SAFELY(_model);
   [super dealloc];
 }
 

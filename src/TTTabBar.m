@@ -100,9 +100,9 @@ static const NSInteger kMaxBadgeNumber = 99;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_tabStyle);
-  TT_RELEASE_MEMBER(_tabItems);
-  TT_RELEASE_MEMBER(_tabViews);
+  TT_RELEASE_SAFELY(_tabStyle);
+  TT_RELEASE_SAFELY(_tabItems);
+  TT_RELEASE_SAFELY(_tabViews);
   [super dealloc];
 }
 
@@ -213,7 +213,7 @@ static const NSInteger kMaxBadgeNumber = 99;
 - (void)updateOverflow {
   if (_scrollView.contentOffset.x < (_scrollView.contentSize.width-self.width)) {
     if (!_overflowRight) {
-      _overflowRight = [[TTView alloc] initWithFrame:CGRectZero];
+      _overflowRight = [[TTView alloc] init];
       _overflowRight.style = TTSTYLE(tabOverflowRight);
       _overflowRight.userInteractionEnabled = NO;
       _overflowRight.backgroundColor = [UIColor clearColor];
@@ -228,7 +228,7 @@ static const NSInteger kMaxBadgeNumber = 99;
   }
   if (_scrollView.contentOffset.x > 0) {
     if (!_overflowLeft) {
-      _overflowLeft = [[TTView alloc] initWithFrame:CGRectZero];
+      _overflowLeft = [[TTView alloc] init];
       _overflowLeft.style = TTSTYLE(tabOverflowLeft);
       _overflowLeft.userInteractionEnabled = NO;
       _overflowLeft.backgroundColor = [UIColor clearColor];
@@ -261,7 +261,7 @@ static const NSInteger kMaxBadgeNumber = 99;
     _overflowLeft = nil;
     _overflowRight = nil;
 
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    _scrollView = [[UIScrollView alloc] init];
     _scrollView.scrollEnabled = YES;
     _scrollView.scrollsToTop = NO;
     _scrollView.showsVerticalScrollIndicator = NO;
@@ -275,9 +275,9 @@ static const NSInteger kMaxBadgeNumber = 99;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_overflowLeft);
-  TT_RELEASE_MEMBER(_overflowRight);
-  TT_RELEASE_MEMBER(_scrollView);
+  TT_RELEASE_SAFELY(_overflowLeft);
+  TT_RELEASE_SAFELY(_overflowRight);
+  TT_RELEASE_SAFELY(_scrollView);
   [super dealloc];
 }
 
@@ -398,7 +398,7 @@ static const NSInteger kMaxBadgeNumber = 99;
 @synthesize tabItem = _tabItem;
 
 - (id)initWithItem:(TTTabItem*)tabItem tabBar:(TTTabBar*)tabBar {
-  if (self = [self initWithFrame:CGRectZero]) {
+  if (self = [self init]) {
     _badge = nil;
     
     self.tabItem = tabItem;
@@ -407,8 +407,8 @@ static const NSInteger kMaxBadgeNumber = 99;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_tabItem);
-  TT_RELEASE_MEMBER(_badge);
+  TT_RELEASE_SAFELY(_tabItem);
+  TT_RELEASE_SAFELY(_badge);
   [super dealloc];
 }
 
@@ -417,7 +417,7 @@ static const NSInteger kMaxBadgeNumber = 99;
 - (void)updateBadgeNumber {
   if (_tabItem.badgeNumber) {
     if (!_badge) {
-      _badge = [[TTLabel alloc] initWithFrame:CGRectZero];
+      _badge = [[TTLabel alloc] init];
       _badge.style = TTSTYLE(badge);
       _badge.backgroundColor = [UIColor clearColor];
       _badge.userInteractionEnabled = NO;
@@ -489,9 +489,9 @@ static const NSInteger kMaxBadgeNumber = 99;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_title);
-  TT_RELEASE_MEMBER(_icon);
-  TT_RELEASE_MEMBER(_object);
+  TT_RELEASE_SAFELY(_title);
+  TT_RELEASE_SAFELY(_icon);
+  TT_RELEASE_SAFELY(_object);
   [super dealloc];
 }
 

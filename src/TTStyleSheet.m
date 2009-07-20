@@ -43,7 +43,7 @@ static TTStyleSheet* gStyleSheet = nil;
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                         name:UIApplicationDidReceiveMemoryWarningNotification  
                                         object:nil];  
-  TT_RELEASE_MEMBER(_styles);
+  TT_RELEASE_SAFELY(_styles);
   [super dealloc];
 }
 
@@ -82,7 +82,7 @@ static TTStyleSheet* gStyleSheet = nil;
 }
 
 - (void)freeMemory {
-  TT_RELEASE_MEMBER(_styles);
+  TT_RELEASE_SAFELY(_styles);
 }
 
 @end

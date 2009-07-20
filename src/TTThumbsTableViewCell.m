@@ -96,11 +96,11 @@ static CGFloat kDefaultThumbSize = 75;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_photo);
-  TT_RELEASE_MEMBER(_thumbView1);
-  TT_RELEASE_MEMBER(_thumbView2);
-  TT_RELEASE_MEMBER(_thumbView3);
-  TT_RELEASE_MEMBER(_thumbView4);
+  TT_RELEASE_SAFELY(_photo);
+  TT_RELEASE_SAFELY(_thumbView1);
+  TT_RELEASE_SAFELY(_thumbView2);
+  TT_RELEASE_SAFELY(_thumbView3);
+  TT_RELEASE_SAFELY(_thumbView4);
   [super dealloc];
 }
 

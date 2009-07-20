@@ -44,7 +44,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_items);
+  TT_RELEASE_SAFELY(_items);
   [super dealloc];
 }
 
@@ -154,8 +154,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_items);
-  TT_RELEASE_MEMBER(_sections);
+  TT_RELEASE_SAFELY(_items);
+  TT_RELEASE_SAFELY(_sections);
   [super dealloc];
 }
 

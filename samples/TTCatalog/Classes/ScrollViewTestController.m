@@ -8,8 +8,8 @@
 - (void)dealloc {
   _scrollView.delegate = nil;
   _scrollView.dataSource = nil;
-  TT_RELEASE_MEMBER(_scrollView);
-  TT_RELEASE_MEMBER(_colors);
+  TT_RELEASE_SAFELY(_scrollView);
+  TT_RELEASE_SAFELY(_colors);
   [super dealloc];
 }
 
@@ -48,7 +48,7 @@
 - (UIView*)scrollView:(TTScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex {
   TTView* pageView = nil;
   if (!pageView) {
-    pageView = [[[TTView alloc] initWithFrame:CGRectZero] autorelease];
+    pageView = [[[TTView alloc] init] autorelease];
     pageView.backgroundColor = [UIColor clearColor];
     pageView.userInteractionEnabled = NO;
     //pageView.contentMode = UIViewContentModeLeft;

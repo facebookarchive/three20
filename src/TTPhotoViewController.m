@@ -298,15 +298,15 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)dealloc {
   _thumbsController.delegate = nil;
-  TT_RELEASE_MEMBER(_thumbsController);
+  TT_RELEASE_SAFELY(_thumbsController);
   [_slideshowTimer invalidate];
   _slideshowTimer = nil;
   [_loadTimer invalidate];
   _loadTimer = nil;
-  TT_RELEASE_MEMBER(_centerPhoto);
-  TT_RELEASE_MEMBER(_photoSource);
-  TT_RELEASE_MEMBER(_statusText);
-  TT_RELEASE_MEMBER(_defaultImage);
+  TT_RELEASE_SAFELY(_centerPhoto);
+  TT_RELEASE_SAFELY(_photoSource);
+  TT_RELEASE_SAFELY(_statusText);
+  TT_RELEASE_SAFELY(_defaultImage);
   [super dealloc];
 }
 
@@ -357,12 +357,12 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [super viewDidUnload];
   _scrollView.delegate = nil;
   _scrollView.dataSource = nil;
-  TT_RELEASE_MEMBER(_innerView);
-  TT_RELEASE_MEMBER(_scrollView);
-  TT_RELEASE_MEMBER(_photoStatusView);
-  TT_RELEASE_MEMBER(_nextButton);
-  TT_RELEASE_MEMBER(_previousButton);
-  TT_RELEASE_MEMBER(_toolbar);
+  TT_RELEASE_SAFELY(_innerView);
+  TT_RELEASE_SAFELY(_scrollView);
+  TT_RELEASE_SAFELY(_photoStatusView);
+  TT_RELEASE_SAFELY(_nextButton);
+  TT_RELEASE_SAFELY(_previousButton);
+  TT_RELEASE_SAFELY(_toolbar);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

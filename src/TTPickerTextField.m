@@ -39,7 +39,7 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_cellViews);
+  TT_RELEASE_SAFELY(_cellViews);
   [super dealloc];
 }
 
@@ -303,7 +303,7 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)addCellWithObject:(id)object {
-  TTPickerViewCell* cell = [[[TTPickerViewCell alloc] initWithFrame:CGRectZero] autorelease];
+  TTPickerViewCell* cell = [[[TTPickerViewCell alloc] init] autorelease];
 
   NSString* label = [self labelForObject:object];
   

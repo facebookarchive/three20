@@ -32,8 +32,8 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_shape);
-  TT_RELEASE_MEMBER(_font);
+  TT_RELEASE_SAFELY(_shape);
+  TT_RELEASE_SAFELY(_font);
   [super dealloc];
 }
 
@@ -99,7 +99,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_next);
+  TT_RELEASE_SAFELY(_next);
   [super dealloc];
 }
 
@@ -203,8 +203,8 @@ static const NSInteger kDefaultLightSource = 125;
 // NSObject
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_name);
-  TT_RELEASE_MEMBER(_style);
+  TT_RELEASE_SAFELY(_name);
+  TT_RELEASE_SAFELY(_style);
   [super dealloc];
 }
 
@@ -250,7 +250,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_shape);
+  TT_RELEASE_SAFELY(_shape);
   [super dealloc];
 }
 
@@ -560,9 +560,9 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_font);
-  TT_RELEASE_MEMBER(_color);
-  TT_RELEASE_MEMBER(_shadowColor);
+  TT_RELEASE_SAFELY(_font);
+  TT_RELEASE_SAFELY(_color);
+  TT_RELEASE_SAFELY(_shadowColor);
   [super dealloc];
 }
 
@@ -701,9 +701,9 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_imageURL);
-  TT_RELEASE_MEMBER(_image);
-  TT_RELEASE_MEMBER(_defaultImage);
+  TT_RELEASE_SAFELY(_imageURL);
+  TT_RELEASE_SAFELY(_image);
+  TT_RELEASE_SAFELY(_defaultImage);
   [super dealloc];
 }
 
@@ -776,7 +776,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_mask);
+  TT_RELEASE_SAFELY(_mask);
   [super dealloc];
 }
 
@@ -830,7 +830,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_color);
+  TT_RELEASE_SAFELY(_color);
   [super dealloc];
 }
 
@@ -881,8 +881,8 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_color1);
-  TT_RELEASE_MEMBER(_color2);
+  TT_RELEASE_SAFELY(_color1);
+  TT_RELEASE_SAFELY(_color2);
   [super dealloc];
 }
 
@@ -936,7 +936,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_color);
+  TT_RELEASE_SAFELY(_color);
   [super dealloc];
 }
 
@@ -1015,7 +1015,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_color);
+  TT_RELEASE_SAFELY(_color);
   [super dealloc];
 }
 
@@ -1132,7 +1132,7 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_color);
+  TT_RELEASE_SAFELY(_color);
   [super dealloc];
 }
 
@@ -1193,10 +1193,10 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_top);
-  TT_RELEASE_MEMBER(_right);
-  TT_RELEASE_MEMBER(_bottom);
-  TT_RELEASE_MEMBER(_left);
+  TT_RELEASE_SAFELY(_top);
+  TT_RELEASE_SAFELY(_right);
+  TT_RELEASE_SAFELY(_bottom);
+  TT_RELEASE_SAFELY(_left);
   [super dealloc];
 }
 
@@ -1292,8 +1292,8 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_highlight);
-  TT_RELEASE_MEMBER(_shadow);
+  TT_RELEASE_SAFELY(_highlight);
+  TT_RELEASE_SAFELY(_shadow);
   [super dealloc];
 }
 

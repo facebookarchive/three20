@@ -6,11 +6,11 @@
 @implementation TTTableHeaderView
 
 - (id)initWithTitle:(NSString*)title {
-  if (self = [super initWithFrame:CGRectZero]) {
+  if (self = [super init]) {
     self.backgroundColor = [UIColor clearColor];
     self.style = TTSTYLE(tableHeader);
     
-    _label = [[UILabel alloc] initWithFrame:CGRectZero];
+    _label = [[UILabel alloc] init];
     _label.text = title;
     _label.backgroundColor = [UIColor clearColor];
     _label.textColor = TTSTYLEVAR(tableHeaderTextColor)
@@ -27,7 +27,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_label);
+  TT_RELEASE_SAFELY(_label);
   [super dealloc];
 }
 

@@ -100,8 +100,8 @@
 
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
 
-  TT_RELEASE_MEMBER(_navigationBarTintColor);
-  TT_RELEASE_MEMBER(_frozenState);
+  TT_RELEASE_SAFELY(_navigationBarTintColor);
+  TT_RELEASE_SAFELY(_frozenState);
   
   // Removes keyboard notification observers for 
   self.autoresizesForKeyboard = NO;
@@ -129,7 +129,7 @@
 
 - (void)viewDidUnload {
   [super viewDidUnload];
-  TT_RELEASE_MEMBER(_searchController);
+  TT_RELEASE_SAFELY(_searchController);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -223,7 +223,7 @@
     _searchController.searchResultsViewController = searchViewController;
   } else {
     _searchController.searchResultsViewController = nil;
-    TT_RELEASE_MEMBER(_searchController);
+    TT_RELEASE_SAFELY(_searchController);
   }
 }
 

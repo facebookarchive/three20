@@ -13,7 +13,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(youTubeView);
+  TT_RELEASE_SAFELY(youTubeView);
   [super dealloc];
 }
 
@@ -28,7 +28,7 @@
   youTubeView.center = CGPointMake(self.view.width/2, 150);
   [self.view addSubview:youTubeView];
   
-  UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+  UILabel* label = [[[UILabel alloc] init] autorelease];
   label.text = @"TTYouTubeView does not work in the iPhone Simulator";
   label.frame = CGRectMake(10, 10, 300, 30);
   label.backgroundColor = [UIColor redColor];

@@ -82,8 +82,8 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_name);
-  TT_RELEASE_MEMBER(_next);
+  TT_RELEASE_SAFELY(_name);
+  TT_RELEASE_SAFELY(_next);
   [super dealloc];
 }
 
@@ -175,7 +175,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_name);
+  TT_RELEASE_SAFELY(_name);
   [super dealloc];
 }
 
@@ -222,8 +222,8 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_name);
-  TT_RELEASE_MEMBER(_selector);
+  TT_RELEASE_SAFELY(_name);
+  TT_RELEASE_SAFELY(_selector);
   [super dealloc];
 }
 
@@ -583,12 +583,12 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_URL);
-  TT_RELEASE_MEMBER(_parentURL);
-  TT_RELEASE_MEMBER(_scheme);
-  TT_RELEASE_MEMBER(_path);
-  TT_RELEASE_MEMBER(_query);
-  TT_RELEASE_MEMBER(_fragment);
+  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_parentURL);
+  TT_RELEASE_SAFELY(_scheme);
+  TT_RELEASE_SAFELY(_path);
+  TT_RELEASE_SAFELY(_query);
+  TT_RELEASE_SAFELY(_fragment);
   [super dealloc];
 }
 

@@ -126,7 +126,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define TT_RELEASE_MEMBER(__POINTER) { [__POINTER release]; __POINTER = nil; }
+#define TT_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
 
 #define TT_RELEASE_TIMER(__TIMER) { [__TIMER invalidate]; __TIMER = nil; }
 

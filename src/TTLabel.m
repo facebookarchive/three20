@@ -11,7 +11,7 @@
 // NSObject
 
 - (id)initWithText:(NSString*)text {
-  if (self = [self initWithFrame:CGRectZero]) {
+  if (self = [self init]) {
     self.text = text;
   }
   return self;
@@ -26,8 +26,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_text);
-  TT_RELEASE_MEMBER(_font);
+  TT_RELEASE_SAFELY(_text);
+  TT_RELEASE_SAFELY(_font);
   [super dealloc];
 }
 

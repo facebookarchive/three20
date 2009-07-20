@@ -40,7 +40,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_nextSibling);
+  TT_RELEASE_SAFELY(_nextSibling);
   [super dealloc];
 }
 
@@ -115,7 +115,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_text);
+  TT_RELEASE_SAFELY(_text);
   [super dealloc];
 }
 
@@ -177,8 +177,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_firstChild);
-  TT_RELEASE_MEMBER(_className);
+  TT_RELEASE_SAFELY(_firstChild);
+  TT_RELEASE_SAFELY(_className);
   [super dealloc];
 }
 
@@ -369,7 +369,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_URL);
+  TT_RELEASE_SAFELY(_URL);
   [super dealloc];
 }
 
@@ -428,7 +428,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_URL);
+  TT_RELEASE_SAFELY(_URL);
   [super dealloc];
 }
 
@@ -476,9 +476,9 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_URL);
-  TT_RELEASE_MEMBER(_image);
-  TT_RELEASE_MEMBER(_defaultImage);
+  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_image);
+  TT_RELEASE_SAFELY(_defaultImage);
   [super dealloc];
 }
 

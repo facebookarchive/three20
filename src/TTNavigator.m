@@ -268,9 +268,9 @@
                                         name:UIApplicationWillTerminateNotification
                                         object:nil];
   _delegate = nil;
-  TT_RELEASE_MEMBER(_URLMap);
-  TT_RELEASE_MEMBER(_window);
-  TT_RELEASE_MEMBER(_rootViewController);
+  TT_RELEASE_SAFELY(_URLMap);
+  TT_RELEASE_SAFELY(_window);
+  TT_RELEASE_SAFELY(_rootViewController);
   [super dealloc];
 }
 

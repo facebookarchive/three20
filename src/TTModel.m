@@ -42,10 +42,10 @@
 - (void)dealloc {
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
   [_loadingRequest cancel];
-  TT_RELEASE_MEMBER(_loadingRequest);
-  TT_RELEASE_MEMBER(_delegates);
-  TT_RELEASE_MEMBER(_loadedTime);
-  TT_RELEASE_MEMBER(_cacheKey);
+  TT_RELEASE_SAFELY(_loadingRequest);
+  TT_RELEASE_SAFELY(_delegates);
+  TT_RELEASE_SAFELY(_loadedTime);
+  TT_RELEASE_SAFELY(_cacheKey);
   [super dealloc];
 }
 
@@ -98,7 +98,7 @@
     } else {
       [[TTURLCache sharedCache] invalidateKey:_cacheKey];
     }
-    TT_RELEASE_MEMBER(_cacheKey);
+    TT_RELEASE_SAFELY(_cacheKey);
   }
 }
 
@@ -122,18 +122,18 @@
     self.cacheKey = request.cacheKey;
   }
   
-  TT_RELEASE_MEMBER(_loadingRequest);
+  TT_RELEASE_SAFELY(_loadingRequest);
   [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
 }
 
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
-  TT_RELEASE_MEMBER(_loadingRequest);
+  TT_RELEASE_SAFELY(_loadingRequest);
   [_delegates perform:@selector(model:didFailLoadWithError:) withObject:self
     withObject:error];
 }
 
 - (void)requestDidCancelLoad:(TTURLRequest*)request {
-  TT_RELEASE_MEMBER(_loadingRequest);
+  TT_RELEASE_SAFELY(_loadingRequest);
   [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];
 }
 
@@ -149,8 +149,8 @@
 }
 
 - (void)reset {
-  TT_RELEASE_MEMBER(_cacheKey);
-  TT_RELEASE_MEMBER(_loadedTime);
+  TT_RELEASE_SAFELY(_cacheKey);
+  TT_RELEASE_SAFELY(_loadedTime);
 }
 
 @end

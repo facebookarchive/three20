@@ -101,12 +101,12 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_objectMappings);
-  TT_RELEASE_MEMBER(_objectPatterns);
-  TT_RELEASE_MEMBER(_fragmentPatterns);
-  TT_RELEASE_MEMBER(_stringPatterns);
-  TT_RELEASE_MEMBER(_schemes);
-  TT_RELEASE_MEMBER(_defaultObjectPattern);
+  TT_RELEASE_SAFELY(_objectMappings);
+  TT_RELEASE_SAFELY(_objectPatterns);
+  TT_RELEASE_SAFELY(_fragmentPatterns);
+  TT_RELEASE_SAFELY(_stringPatterns);
+  TT_RELEASE_SAFELY(_schemes);
+  TT_RELEASE_SAFELY(_defaultObjectPattern);
   [super dealloc];
 }
 

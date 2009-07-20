@@ -30,8 +30,8 @@ static CGFloat kButtonMaxWidth = 120;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_buttons);
-  TT_RELEASE_MEMBER(_buttonStyle);
+  TT_RELEASE_SAFELY(_buttons);
+  TT_RELEASE_SAFELY(_buttonStyle);
   [super dealloc];
 }
 

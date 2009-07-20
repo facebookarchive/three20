@@ -19,7 +19,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_userInfo);
+  TT_RELEASE_SAFELY(_userInfo);
   [super dealloc];
 }
 
@@ -53,8 +53,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_URL);
-  TT_RELEASE_MEMBER(_accessoryURL);
+  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_accessoryURL);
   [super dealloc];
 }
 
@@ -121,7 +121,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_text);
+  TT_RELEASE_SAFELY(_text);
   [super dealloc];
 }
 
@@ -189,7 +189,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_caption);
+  TT_RELEASE_SAFELY(_caption);
   [super dealloc];
 }
 
@@ -284,9 +284,9 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_subtitle);
-  TT_RELEASE_MEMBER(_imageURL);
-  TT_RELEASE_MEMBER(_defaultImage);
+  TT_RELEASE_SAFELY(_subtitle);
+  TT_RELEASE_SAFELY(_imageURL);
+  TT_RELEASE_SAFELY(_defaultImage);
   [super dealloc];
 }
 
@@ -359,10 +359,10 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_title);
-  TT_RELEASE_MEMBER(_caption);
-  TT_RELEASE_MEMBER(_timestamp);
-  TT_RELEASE_MEMBER(_imageURL);
+  TT_RELEASE_SAFELY(_title);
+  TT_RELEASE_SAFELY(_caption);
+  TT_RELEASE_SAFELY(_timestamp);
+  TT_RELEASE_SAFELY(_imageURL);
   [super dealloc];
 }
 
@@ -499,9 +499,9 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_imageURL);
-  TT_RELEASE_MEMBER(_defaultImage);
-  TT_RELEASE_MEMBER(_imageStyle);
+  TT_RELEASE_SAFELY(_imageURL);
+  TT_RELEASE_SAFELY(_defaultImage);
+  TT_RELEASE_SAFELY(_imageStyle);
   [super dealloc];
 }
 
@@ -555,7 +555,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_text);
+  TT_RELEASE_SAFELY(_text);
   [super dealloc];
 }
 
@@ -604,7 +604,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_text);
+  TT_RELEASE_SAFELY(_text);
   [super dealloc];
 }
 
@@ -655,8 +655,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_caption);
-  TT_RELEASE_MEMBER(_control);
+  TT_RELEASE_SAFELY(_caption);
+  TT_RELEASE_SAFELY(_control);
   [super dealloc];
 }
 
@@ -711,8 +711,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_caption);
-  TT_RELEASE_MEMBER(_view);
+  TT_RELEASE_SAFELY(_caption);
+  TT_RELEASE_SAFELY(_view);
   [super dealloc];
 }
 

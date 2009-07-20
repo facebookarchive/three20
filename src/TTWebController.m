@@ -74,8 +74,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_loadingURL);
-  TT_RELEASE_MEMBER(_headerView);
+  TT_RELEASE_SAFELY(_loadingURL);
+  TT_RELEASE_SAFELY(_headerView);
   [super dealloc];
 }
 
@@ -131,13 +131,13 @@
 - (void)viewDidUnload {
   [super viewDidUnload];
   _webView.delegate = nil;
-  TT_RELEASE_MEMBER(_webView);
-  TT_RELEASE_MEMBER(_toolbar);
-  TT_RELEASE_MEMBER(_backButton);
-  TT_RELEASE_MEMBER(_forwardButton);
-  TT_RELEASE_MEMBER(_refreshButton);
-  TT_RELEASE_MEMBER(_stopButton);
-  TT_RELEASE_MEMBER(_activityItem);
+  TT_RELEASE_SAFELY(_webView);
+  TT_RELEASE_SAFELY(_toolbar);
+  TT_RELEASE_SAFELY(_backButton);
+  TT_RELEASE_SAFELY(_forwardButton);
+  TT_RELEASE_SAFELY(_refreshButton);
+  TT_RELEASE_SAFELY(_stopButton);
+  TT_RELEASE_SAFELY(_activityItem);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,7 +179,7 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
-  TT_RELEASE_MEMBER(_loadingURL);
+  TT_RELEASE_SAFELY(_loadingURL);
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
     self.navigationItem.rightBarButtonItem = nil;
@@ -189,7 +189,7 @@
 }
 
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
-  TT_RELEASE_MEMBER(_loadingURL);
+  TT_RELEASE_SAFELY(_loadingURL);
   [self webViewDidFinishLoad:webView];
 }
 

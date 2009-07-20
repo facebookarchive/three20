@@ -178,12 +178,12 @@ static CGFloat kTextViewInset = 30;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_internal);
-  TT_RELEASE_MEMBER(_textView);
-  TT_RELEASE_MEMBER(_placeholderLabel);
-  TT_RELEASE_MEMBER(_placeholder);
-  TT_RELEASE_MEMBER(_fixedText);
-  TT_RELEASE_MEMBER(_fixedTextLabel);
+  TT_RELEASE_SAFELY(_internal);
+  TT_RELEASE_SAFELY(_textView);
+  TT_RELEASE_SAFELY(_placeholderLabel);
+  TT_RELEASE_SAFELY(_placeholder);
+  TT_RELEASE_SAFELY(_fixedText);
+  TT_RELEASE_SAFELY(_fixedTextLabel);
   [super dealloc];
 }
 

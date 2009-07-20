@@ -46,7 +46,7 @@
     [self parseText:_chars];
   }
   
-  TT_RELEASE_MEMBER(_chars);
+  TT_RELEASE_SAFELY(_chars);
 }
 
 - (void)parseURLs:(NSString*)string {
@@ -108,9 +108,9 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_rootNode);
-  TT_RELEASE_MEMBER(_chars);
-  TT_RELEASE_MEMBER(_stack);
+  TT_RELEASE_SAFELY(_rootNode);
+  TT_RELEASE_SAFELY(_chars);
+  TT_RELEASE_SAFELY(_stack);
   [super dealloc];
 }
 

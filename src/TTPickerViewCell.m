@@ -31,8 +31,8 @@ static CGFloat kMaxWidth = 250;
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_object);
-  TT_RELEASE_MEMBER(_labelView);
+  TT_RELEASE_SAFELY(_object);
+  TT_RELEASE_SAFELY(_labelView);
 	[super dealloc];
 }
 

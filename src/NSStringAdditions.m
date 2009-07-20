@@ -25,7 +25,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_strings);
+  TT_RELEASE_SAFELY(_strings);
   [super dealloc];
 }
 

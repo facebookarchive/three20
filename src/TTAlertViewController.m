@@ -23,7 +23,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_popupViewController);
+  TT_RELEASE_SAFELY(_popupViewController);
   [super dealloc];
 }
 
@@ -50,8 +50,12 @@
     _delegate = delegate;
     _URLs = [[NSMutableArray alloc] init];
     
-    self.alertView.title = title;
-    self.alertView.message = message;
+    if (title) {
+      self.alertView.title = title;
+    }
+    if (message) {
+      self.alertView.message = message;
+    }
   }
   return self;
 }
@@ -65,7 +69,7 @@
   return [self initWithTitle:nil message:nil delegate:nil];
 }
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_URLs);
+  TT_RELEASE_SAFELY(_URLs);
   [super dealloc];
 }
 

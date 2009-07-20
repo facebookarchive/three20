@@ -21,8 +21,8 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_style);
-  TT_RELEASE_MEMBER(_layout);
+  TT_RELEASE_SAFELY(_style);
+  TT_RELEASE_SAFELY(_layout);
   [super dealloc];
 }
 
