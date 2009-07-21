@@ -7,6 +7,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@interface TTNavigatorWindow : UIWindow
+@end
+
+@implementation TTNavigatorWindow
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+  if (event.type == UIEventSubtypeMotionShake && [TTNavigator navigator].supportsShakeToReload) {
+    [[TTNavigator navigator] reload];
+  }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation TTNavigator
 
 @synthesize delegate = _delegate, URLMap = _URLMap, window = _window,
@@ -77,7 +92,7 @@
     if (keyWindow) {
       _window = [keyWindow retain];
     } else {
-      _window = [[UIWindow alloc] initWithFrame:TTScreenBounds()];
+      _window = [[TTNavigatorWindow alloc] initWithFrame:TTScreenBounds()];
       [_window makeKeyAndVisible];
     }
   }

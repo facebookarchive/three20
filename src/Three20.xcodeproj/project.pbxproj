@@ -408,6 +408,8 @@
 				BE702EF80F43F9D20028A119 /* TTTableItem.m */,
 				BE702ED10F43F3390028A119 /* TTTableItemCell.h */,
 				BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */,
+				BE781808100ECF21001FACA5 /* TTSearchDisplayController.h */,
+				BE781806100ECF0F001FACA5 /* TTSearchDisplayController.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -612,18 +614,16 @@
 				BEF31F570F352E64000DE5D2 /* TTViewController.m */,
 				BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */,
 				BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */,
-				BEE34EAF0F495C4A008C826E /* TTMessageController.h */,
-				BEE34EAD0F495C42008C826E /* TTMessageController.m */,
 				BEA69ECC0FAC0FEC00DA7DDC /* TTWebController.h */,
 				BEA69ECA0FAC0FD600DA7DDC /* TTWebController.m */,
+				BEE34EAF0F495C4A008C826E /* TTMessageController.h */,
+				BEE34EAD0F495C42008C826E /* TTMessageController.m */,
 				BED037A2100920CC0083AC18 /* TTPopupViewController.h */,
 				BED037A0100920C60083AC18 /* TTPopupViewController.m */,
 				BED036EC10090FB90083AC18 /* TTAlertViewController.h */,
 				BED036EA10090FAA0083AC18 /* TTAlertViewController.m */,
 				BED03763100915700083AC18 /* TTActionSheetController.h */,
 				BED03765100915820083AC18 /* TTActionSheetController.m */,
-				BE781808100ECF21001FACA5 /* TTSearchDisplayController.h */,
-				BE781806100ECF0F001FACA5 /* TTSearchDisplayController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

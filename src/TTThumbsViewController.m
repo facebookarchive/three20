@@ -230,6 +230,13 @@ static CGFloat kThumbnailRowHeight = 79;
   [super viewDidDisappear:animated];
 }
 
+- (void)modelDidChangeLoadedState {
+  [super modelDidChangeLoadedState];
+  if (self.modelState & TTModelStateLoaded) {
+    self.title = _photoSource.title;
+  }
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 
