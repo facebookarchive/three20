@@ -221,16 +221,21 @@
   }
 }
 
-- (void)modelDidBeginUpdate:(id<TTModel>)model {
+- (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+}
+
+- (void)model:(id<TTModel>)model didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+}
+
+- (void)modelDidBeginUpdates:(id<TTModel>)model {
   if (model == _model) {
-    _flags.isViewSuspended = YES;
+    [self beginUpdates];
   }
 }
 
-- (void)modelDidEndUpdate:(id<TTModel>)model {
+- (void)modelDidEndUpdates:(id<TTModel>)model {
   if (model == _model) {
-    _flags.isViewSuspended = NO;
-    [self updateView];
+    [self endUpdates];
   }
 }
 
@@ -322,6 +327,15 @@
       [self updateView];
     }
   }
+}
+
+- (void)beginUpdates {
+  _flags.isViewSuspended = YES;
+}
+
+- (void)endUpdates {
+  _flags.isViewSuspended = NO;
+  [self updateView];
 }
 
 - (void)invalidateView {

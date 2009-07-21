@@ -87,6 +87,23 @@
 - (void)refresh;
 
 /**
+ * Begins a multi-stage update.
+ *
+ * You can call this method to make complicated updates more efficient, and to condense
+ * multiple changes to your model into a single visual change.  Call endUpdate when you are done
+ * to update the view with all of your changes.
+ */
+- (void)beginUpdates;
+
+/**
+ * Ends a multi-stage model update and updates the view to reflect the model.
+ *
+ * You can call this method to make complicated updates more efficient, and to condense
+ * multiple changes to your model into a single visual change.
+ */
+- (void)endUpdates;
+
+/**
  * Indicates that the model has changed and schedules the view to be updated to reflect it.
  */
 - (void)invalidateView;

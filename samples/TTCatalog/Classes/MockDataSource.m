@@ -467,7 +467,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (void)tableView:(UITableView*)tableView didLoadModel:(id<TTModel>)model {
+- (void)tableViewDidLoadModel:(UITableView*)tableView {
   self.items = [NSMutableArray array];
   self.sections = [NSMutableArray array];
   
@@ -524,7 +524,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (void)tableView:(UITableView*)tableView didLoadModel:(id<TTModel>)model {
+- (void)tableViewDidLoadModel:(UITableView*)tableView {
   self.items = [NSMutableArray array];
     
   for (NSString* name in _addressBook.names) {

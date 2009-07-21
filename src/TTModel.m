@@ -112,7 +112,7 @@
 - (void)requestDidStartLoad:(TTURLRequest*)request {
   [_loadingRequest release];
   _loadingRequest = [request retain];
-  [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
+  [self didStartLoad];
 }
 
 - (void)requestDidFinishLoad:(TTURLRequest*)request {
@@ -123,29 +123,59 @@
   }
   
   TT_RELEASE_SAFELY(_loadingRequest);
-  [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
+  [self didFinishLoad];
 }
 
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
   TT_RELEASE_SAFELY(_loadingRequest);
-  [_delegates perform:@selector(model:didFailLoadWithError:) withObject:self
-    withObject:error];
+  [self didFailLoadWithError:error];
 }
 
 - (void)requestDidCancelLoad:(TTURLRequest*)request {
   TT_RELEASE_SAFELY(_loadingRequest);
-  [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];
+  [self didCancelLoad];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (void)beginUpdate {
-  [_delegates perform:@selector(modelDidBeginUpdate:) withObject:self];
+- (void)didStartLoad {
+  [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
 }
 
-- (void)endUpdate {
-  [_delegates perform:@selector(modelDidEndUpdate:) withObject:self];
+- (void)didFinishLoad {
+  [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
+}
+
+- (void)didFailLoadWithError:(NSError*)error {
+  [_delegates perform:@selector(model:didFailLoadWithError:) withObject:self
+    withObject:error];
+}
+
+- (void)didCancelLoad {
+  [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];
+}
+
+- (void)beginUpdates {
+  [_delegates perform:@selector(modelDidBeginUpdates:) withObject:self];
+}
+
+- (void)endUpdates {
+  [_delegates perform:@selector(modelDidEndUpdates:) withObject:self];
+}
+
+- (void)didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+  [_delegates perform:@selector(model:didInsertObject:atIndexPath:) withObject:self
+              withObject:object withObject:indexPath];
+}
+
+- (void)didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+  [_delegates perform:@selector(model:didDeleteObject:atIndexPath:) withObject:self
+              withObject:object withObject:indexPath];
+}
+
+- (void)didChange {
+  [_delegates perform:@selector(modelDidChange:) withObject:self];
 }
 
 - (void)reset {

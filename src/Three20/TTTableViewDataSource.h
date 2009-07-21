@@ -43,11 +43,6 @@
 /**
  *
  */
-- (void)search:(NSString*)text;
-
-/**
- *
- */
 - (NSString*)titleForLoading:(BOOL)reloading;
 
 /**
@@ -79,6 +74,25 @@
  *
  */
 - (NSString*)subtitleForError:(NSError*)error;
+
+@optional
+
+/**
+ *
+ */
+- (NSIndexPath*)tableView:(UITableView*)tableView willInsertObject:(id)object
+                atIndexPath:(NSIndexPath*)indexPath;
+
+/**
+ *
+ */
+- (NSIndexPath*)tableView:(UITableView*)tableView willRemoveObject:(id)object
+                atIndexPath:(NSIndexPath*)indexPath;
+
+/**
+ *
+ */
+- (void)search:(NSString*)text;
 
 @end
 

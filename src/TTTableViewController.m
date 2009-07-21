@@ -206,6 +206,16 @@ static const CGFloat kBannerViewHeight = 22;
   [_dataSource tableViewDidLoadModel:_tableView];
 }
 
+- (void)beginUpdates {
+  [super beginUpdates];
+  [_tableView beginUpdates];
+}
+
+- (void)endUpdates {
+  [super endUpdates];
+  [_tableView beginUpdates];
+}
+
 - (void)showLoading:(BOOL)show {
   if (show) {
     if (!self.model.isLoaded) {
@@ -245,6 +255,44 @@ static const CGFloat kBannerViewHeight = 22;
     [self showEmptyView];
   } else {
     self.tableOverlayView = nil;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTModelDelegate
+
+- (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+  if (model == _model) {
+    if (_isViewAppearing) {
+      if ([_dataSource respondsToSelector:@selector(tableView:willInsertObject:atIndexPath:)]) {
+        NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willInsertObject:object
+                                                 atIndexPath:indexPath];
+        TTLOG(@"FROM %@ TO %@", indexPath, newIndexPath);
+        if (newIndexPath) {
+          [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                      withRowAnimation:UITableViewRowAnimationTop];
+        }
+      }
+    } else {
+      [self invalidateView];
+    }
+  }
+}
+
+- (void)model:(id<TTModel>)model didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+  if (model == _model) {
+    if (_isViewAppearing) {
+      if ([_dataSource respondsToSelector:@selector(tableView:willRemoveObject:atIndexPath:)]) {
+        NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willRemoveObject:object
+                                                 atIndexPath:indexPath];
+        if (newIndexPath) {
+          [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                      withRowAnimation:UITableViewRowAnimationTop];
+        }
+      }
+    } else {
+      [self invalidateView];
+    }
   }
 }
 
