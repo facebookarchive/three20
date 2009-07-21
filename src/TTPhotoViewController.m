@@ -421,27 +421,36 @@ static const NSTimeInterval kSlideshowInterval = 2;
   return !_centerPhoto;
 }
 
-- (void)modelDidChangeLoadingState {
-  if (self.modelState & TTModelStateLoading) {
-    [self showProgress:0];
+- (BOOL)canShowModel {
+  return _photoSource.numberOfPhotos > 0;
+}
+
+- (void)willLoadModel {
+  [self updateChrome];
+}
+
+- (void)didLoadModel {
+  [self updatePhotoView];
+}
+
+- (void)showLoading:(BOOL)show {
+  [self showProgress:show ? 0 : -1];
+}
+
+- (void)showError:(BOOL)show {
+  if (show) {
+    [self showStatus:TTLocalizedString(@"This photo set could not be loaded.", @"")];
   } else {
-    [self showProgress:-1];
+    [self showStatus:nil];
   }
 }
 
-- (void)modelDidChangeLoadedState {
-  if (self.modelState & TTModelStateLoaded) {
-    if (_photoSource.numberOfPhotos > 0) {
-      [self showStatus:nil];
-    } else {
-      [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
-    }
-  } else if (self.modelState & TTModelStateLoadedError) {
-    [self showStatus:TTLocalizedString(@"This photo set could not be loaded.", @"")];
+- (void)showEmpty:(BOOL)show {
+  if (show) {
+    [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
+  } else {
+    [self showStatus:nil];
   }
-
-  [self updateChrome];
-  [self updatePhotoView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

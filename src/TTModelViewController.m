@@ -17,34 +17,123 @@
 
 @implementation TTModelViewController
 
-@synthesize model = _model, modelState = _modelState, modelError = _modelError;
+@synthesize model = _model, modelError = _modelError;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (void)updateModelState:(BOOL)loadIfNecessary {
-  if (self.model.isLoading) {
-    if (self.model.isLoadingMore) {
-      self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateLoadingMore;
-    } else if (self.model.isLoaded) {
-      self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateReloading;
+- (void)resetViewStates {
+  if (_flags.isShowingLoading) {
+    [self showLoading:NO];
+    _flags.isShowingLoading = NO;
+  }
+  if (_flags.isShowingModel) {
+    [self showModel:NO];
+    _flags.isShowingModel = NO;
+  }
+  if (_flags.isShowingError) {
+    [self showError:NO];
+    _flags.isShowingError = NO;
+  }
+  if (_flags.isShowingEmpty) {
+    [self showEmpty:NO];
+    _flags.isShowingEmpty = NO;
+  }
+}
+
+- (void)updateViewStates {
+  if (_flags.isModelWillLoadInvalid) {
+    [self willLoadModel];
+    _flags.isModelWillLoadInvalid = NO;
+  }
+  if (_flags.isModelDidLoadInvalid) {
+    [self didLoadModel];
+    _flags.isModelDidLoadInvalid = NO;
+    _flags.isShowingModel = NO;
+  }
+  
+  BOOL showModel = NO, showLoading = NO, showError = NO, showEmpty = NO;
+  
+  if (_model.isLoaded || ![self shouldLoad]) {
+    if ([self canShowModel]) {
+      showModel = !_flags.isShowingModel;
+      _flags.isShowingModel = YES;
     } else {
-      self.modelState = TTModelStateLoading;
+      if (_flags.isShowingModel) {
+        [self showModel:NO];
+        _flags.isShowingModel = NO;
+      }
     }
-  } else if (loadIfNecessary && [self shouldLoad]) {
-    [self.model load:TTURLRequestCachePolicyDefault more:NO];
-  } else if (loadIfNecessary && [self shouldReload]) {
-    [self.model load:TTURLRequestCachePolicyNetwork more:NO];
-  } else if (loadIfNecessary && [self shouldLoadMore]) {
-    [self.model load:TTURLRequestCachePolicyDefault more:YES];
   } else {
-    if (_modelError) {
-      self.modelState = TTModelStateLoadedError;
-    } else if (self.model.isLoaded && [self modelShouldAppear]) {
-      self.modelState = TTModelStateLoaded;
-    } else {
-      self.modelState = TTModelStateNone;
+    if (_flags.isShowingModel) {
+      [self showModel:NO];
+      _flags.isShowingModel = NO;
     }
+  }
+
+  if (_model.isLoading) {
+    showLoading = !_flags.isShowingLoading;
+    _flags.isShowingLoading = YES;
+  } else {
+    if (_flags.isShowingLoading) {
+      [self showLoading:NO];
+      _flags.isShowingLoading = NO;
+    }
+  }
+
+  if (_modelError) {
+    showError = !_flags.isShowingError;
+    _flags.isShowingError = YES;
+  } else {
+    if (_flags.isShowingError) {
+      [self showError:NO];
+      _flags.isShowingError = NO;
+    }
+  }
+
+  if (!_flags.isShowingLoading && !_flags.isShowingModel && !_flags.isShowingError) {
+    showEmpty = !_flags.isShowingEmpty;
+    _flags.isShowingEmpty = YES;
+  } else {
+    if (_flags.isShowingEmpty) {
+      [self showEmpty:NO];
+      _flags.isShowingEmpty = NO;
+    }
+  }
+  
+  if (showModel) {
+    [self showModel:YES];
+    [self didShowModel];
+  }
+  if (showEmpty) {
+    [self showEmpty:YES];
+  }
+  if (showError) {
+    [self showError:YES];
+  }
+  if (showLoading) {
+    [self showLoading:YES];
+  }
+}
+
+- (void)updateView {
+  if (_flags.isViewInvalid && !_flags.isViewSuspended && !_flags.isUpdatingView) {
+    _flags.isUpdatingView = YES;
+
+    // Ensure the model is created
+    self.model;
+    // Ensure the view is created
+    self.view;
+
+    [self updateViewStates];
+
+    if (_frozenState && _flags.isShowingModel) {
+      [self restoreView:_frozenState];
+      TT_RELEASE_SAFELY(_frozenState);
+    }
+
+    _flags.isViewInvalid = NO;
+    _flags.isUpdatingView = NO;
   }
 }
 
@@ -54,12 +143,16 @@
 - (id)init {
   if (self = [super init]) {
     _model = nil;
-    _modelState = TTModelStateNone;
     _modelError = nil;
-    _isViewInvalid = YES;
-    _isLoadingViewInvalid = NO;
-    _isLoadedViewInvalid = YES;
-    _isValidatingView = NO;
+    _flags.isModelDidLoadInvalid = NO;
+    _flags.isModelWillLoadInvalid = NO;
+    _flags.isViewInvalid = YES;
+    _flags.isViewSuspended = NO;
+    _flags.isUpdatingView = NO;
+    _flags.isShowingEmpty = NO;
+    _flags.isShowingLoading = NO;
+    _flags.isShowingModel = NO;
+    _flags.isShowingError = NO;
   }
   return self;
 }
@@ -77,8 +170,10 @@
 - (void)viewWillAppear:(BOOL)animated {
   _isViewAppearing = YES;
   _hasViewAppeared = YES;
-  [self validateView];
-
+  
+  [self updateView];
+  [self reloadIfNeeded];
+  
   [super viewWillAppear:animated];
 }
 
@@ -96,50 +191,46 @@
 
 - (void)modelDidStartLoad:(id<TTModel>)model {
   if (model == self.model) {
-    if (model.isLoadingMore) {
-      self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateLoadingMore;
-    } else if (_modelState & TTModelStateLoaded) {
-      self.modelState = (_modelState & TTModelLoadedStates) | TTModelStateReloading;
-    } else {
-      self.modelState = TTModelStateLoading;
-    }
+    [self invalidateView];
   }
 }
 
 - (void)modelDidFinishLoad:(id<TTModel>)model {
   if (model == _model) {
-    self.modelError = nil;
-    if ([self modelShouldAppear]) {
-      self.modelState = TTModelStateLoaded;
-    } else {
-      self.modelState = TTModelStateNone;
-    }
+    TT_RELEASE_SAFELY(_modelError);
+    _flags.isModelDidLoadInvalid = YES;
+    [self invalidateView];
   }
 }
 
 - (void)model:(id<TTModel>)model didFailLoadWithError:(NSError*)error {
   if (model == _model) {
     self.modelError = error;
-    self.modelState = TTModelStateLoadedError;
   }
 }
 
 - (void)modelDidCancelLoad:(id<TTModel>)model {
   if (model == _model) {
-    self.modelState = _modelState & ~TTModelLoadingStates;
+    [self invalidateView];
+  }
+}
+
+- (void)modelDidChange:(id<TTModel>)model {
+  if (model == _model) {
+    [self refresh];
   }
 }
 
 - (void)modelDidBeginUpdate:(id<TTModel>)model {
   if (model == _model) {
-    // XXXjoe Do something here which prevents the view from being updated
-    // until modelDidEndUpdate is called
+    _flags.isViewSuspended = YES;
   }
 }
 
 - (void)modelDidEndUpdate:(id<TTModel>)model {
   if (model == _model) {
-    [self updateModelState:NO];
+    _flags.isViewSuspended = NO;
+    [self updateView];
   }
 }
 
@@ -158,44 +249,32 @@
 
 - (void)setModel:(id<TTModel>)model {
   if (_model != model) {
-    [self willChangeModel];
     [_model.delegates removeObject:self];
-    TT_RELEASE_SAFELY(_model);
-
+    [_model release];
     _model = [model retain];
     [_model.delegates addObject:self];
-    [self didChangeModel];
-
+    
+    if (_model) {
+      _flags.isModelWillLoadInvalid = YES;
+    }
+    
     [self refresh];
   }
 }
 
-- (void)setModelState:(TTModelState)state {
-  if (!_isLoadingViewInvalid) {
-    _isLoadingViewInvalid = (_modelState & TTModelLoadingStates) != (state & TTModelLoadingStates);
-  }
-  if (!_isLoadedViewInvalid) {
-    _isLoadedViewInvalid = state == TTModelStateLoaded || state == TTModelStateNone
-                           || (_modelState & TTModelLoadedStates) != (state & TTModelLoadedStates);
-  }
-  
-  _modelState = state;
-  
-  if (_isViewAppearing) {
-    [self validateView];
+- (void)setModelError:(NSError*)error {
+  if (error != _modelError) {
+    [_modelError release];
+    _modelError = [error retain];
+
+    [self invalidateView];
   }
 }
 
 - (void)createModel {
 }
 
-- (void)willChangeModel {
-}
-
-- (void)didChangeModel {
-}
-
-- (BOOL)isModelLoaded {
+- (BOOL)isModelCreated {
   return !!_model;
 }
 
@@ -211,7 +290,12 @@
   return NO;
 }
 
+- (BOOL)canShowModel {
+  return YES;
+}
+
 - (void)reload {
+  _flags.isViewInvalid = YES;
   [self.model load:TTURLRequestCachePolicyNetwork more:NO];
 }
 
@@ -222,72 +306,55 @@
 }
 
 - (void)refresh {
-  [self invalidateView];
-  [self updateModelState:YES];
-}
+  _flags.isViewInvalid = YES;
+  _flags.isModelWillLoadInvalid = YES;
 
-- (void)invalidateView {
-  _isViewInvalid = YES;
-  _modelState = TTModelStateNone;
-  _isLoadingViewInvalid = NO;
-  _isLoadedViewInvalid = YES;
-}
-
-- (void)validateView {
-  if (!_isValidatingView) {
-    _isValidatingView = YES;
-
-    // Ensure the model is loaded
-    self.model;
-    
-    if (_isViewInvalid) {
-      // Ensure the view is loaded
-      self.view;
-      
-      [self modelWillAppear];
-
-      if (_frozenState && !(self.modelState & TTModelLoadingStates)) {
-        [self restoreView:_frozenState];
-        TT_RELEASE_SAFELY(_frozenState);
-      }
-
-      _isViewInvalid = NO;
+  BOOL tryToLoad = !self.model.isLoading && !self.model.isLoaded;
+  if (tryToLoad && [self shouldLoad]) {
+    [self.model load:TTURLRequestCachePolicyDefault more:NO];
+  } else if (tryToLoad && [self shouldReload]) {
+    [self.model load:TTURLRequestCachePolicyNetwork more:NO];
+  } else if (tryToLoad && [self shouldLoadMore]) {
+    [self.model load:TTURLRequestCachePolicyDefault more:YES];
+  } else {
+    _flags.isModelDidLoadInvalid = YES;
+    if (_isViewAppearing) {
+      [self updateView];
     }
-    
-    if (_isLoadingViewInvalid || _isLoadedViewInvalid) {
-      [self modelDidChangeState];
-    }
-    
-    if (_isLoadingViewInvalid) {
-      [self modelDidChangeLoadingState];
-      _isLoadingViewInvalid = NO;
-    }
-
-    if (_isLoadedViewInvalid) {
-      [self modelDidChangeLoadedState];
-      _isLoadedViewInvalid = NO;
-    }
-
-    _isValidatingView = NO;
-
-    [self reloadIfNeeded];
   }
 }
 
-- (BOOL)modelShouldAppear {
-  return YES;
+- (void)invalidateView {
+  _flags.isViewInvalid = YES;
+  if (_isViewAppearing) {
+    [self updateView];
+  }
 }
 
-- (void)modelWillAppear {
+- (void)validateView {
+  _flags.isViewInvalid = YES;
+  [self updateView];
 }
 
-- (void)modelDidChangeState {
+- (void)willLoadModel {
 }
 
-- (void)modelDidChangeLoadingState {
+- (void)didLoadModel {
 }
 
-- (void)modelDidChangeLoadedState {
+- (void)didShowModel {
+}
+
+- (void)showLoading:(BOOL)show {
+}
+
+- (void)showModel:(BOOL)show {
+}
+
+- (void)showEmpty:(BOOL)show {
+}
+
+- (void)showError:(BOOL)show {
 }
 
 @end

@@ -388,6 +388,13 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
+  if (_initialRecipients) {
+    for (id recipient in _initialRecipients) {
+      [self addRecipient:recipient forFieldAtIndex:0];
+    }
+    TT_RELEASE_SAFELY(_initialRecipients);
+  }
+
   if (!_frozenState) {
     for (NSInteger i = 0; i < _fields.count+1; ++i) {
       if (![self fieldHasValueAtIndex:i]) {
@@ -451,18 +458,6 @@
 
   NSInteger firstResponder = [[state objectForKey:@"firstResponder"] intValue];
   [self setFieldIndexOfFirstResponder:firstResponder];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTModelViewController
-
-- (void)modelWillAppear {
-  if (_initialRecipients) {
-    for (id recipient in _initialRecipients) {
-      [self addRecipient:recipient forFieldAtIndex:0];
-    }
-    TT_RELEASE_SAFELY(_initialRecipients);
-  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

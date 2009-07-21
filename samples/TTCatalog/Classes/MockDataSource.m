@@ -428,7 +428,7 @@
     }
   } else {
     TT_RELEASE_SAFELY(_names);
-    [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
+    [_delegates perform:@selector(modelDidChange:) withObject:self];
   }
 }
 
@@ -467,7 +467,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (void)willAppearInTableView:(UITableView*)tableView {
+- (void)tableView:(UITableView*)tableView didLoadModel:(id<TTModel>)model {
   self.items = [NSMutableArray array];
   self.sections = [NSMutableArray array];
   
@@ -524,7 +524,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
-- (void)willAppearInTableView:(UITableView*)tableView {
+- (void)tableView:(UITableView*)tableView didLoadModel:(id<TTModel>)model {
   self.items = [NSMutableArray array];
     
   for (NSString* name in _addressBook.names) {

@@ -34,12 +34,11 @@
         willAppearAtIndexPath:(NSIndexPath*)indexPath;
 
 /**
- * Informs the data source that it is about to be used by a table view.
+ * Informs the data source that its model loaded.
  *
- * If your data source has a model, this is called automatically after your model
- * has loaded.  That would be a good time to prepare the data for use in the data source.
+ * That would be a good time to prepare the freshly loaded data for use in the table view.
  */
-- (void)willAppearInTableView:(UITableView*)tableView;
+- (void)tableViewDidLoadModel:(UITableView*)tableView;
 
 /**
  *

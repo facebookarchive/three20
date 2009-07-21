@@ -66,6 +66,14 @@
 - (void)modelDidCancelLoad:(id<TTModel>)model;
 
 /**
+ * Informs the delegate that the model has changed in some fundamental way.
+ *
+ * The change is not described specifically, so the delegate must assume that the entire
+ * contents of the model may have changed, and react almost as if it was given a new model.
+ */
+- (void)modelDidChange:(id<TTModel>)model;
+
+/**
  * Informs the delegate that the model is about to begin a multi-stage update.
  *
  * Models should use this method to condense multiple updates into a single visible update.

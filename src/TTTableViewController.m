@@ -36,39 +36,12 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
-- (void)reloadTableData {
-  [self hideMenu:YES];
-  [self updateTableDelegate];
-  [_tableView reloadData];
-}
-
 - (void)addSubviewOverTableView:(UIView*)view {
   NSInteger tableIndex = [_tableView.superview.subviews indexOfObject:_tableView];
   if (tableIndex != NSNotFound) {
     view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [_tableView.superview insertSubview:view atIndex:tableIndex+1];
   }
-}
-
-- (CGRect)rectForOverlayView {
-  CGRect frame = [_tableView frameWithKeyboardSubtracted];
-  
-  if (_tableView.tableHeaderView) {
-    CGRect headerRect = _tableView.tableHeaderView.frame;
-    CGFloat diff = (headerRect.origin.y + headerRect.size.height) - _tableView.contentOffset.y;
-    if (diff >= 0) {
-      frame.origin.y += diff;
-      frame.size.height -= diff;
-    }
-  }
-  return frame;
-}
-
-- (CGRect)rectForBannerView {
-  CGRect tableFrame = [_tableView frameWithKeyboardSubtracted];
-  return CGRectMake(tableFrame.origin.x,
-                    (tableFrame.origin.y + tableFrame.size.height) - kBannerViewHeight,
-                    tableFrame.size.width, kBannerViewHeight);
 }
 
 - (void)showReloadingViewWithDelay {
@@ -214,9 +187,7 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTModelViewController
 
-- (BOOL)modelShouldAppear {
-  [_dataSource willAppearInTableView:_tableView];
-
+- (BOOL)canShowModel {
   if ([_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
     NSInteger numberOfSections = [_dataSource numberOfSectionsInTableView:_tableView];
     if (!numberOfSections) {
@@ -231,28 +202,49 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
-- (void)modelDidChangeLoadingState {
-  if (self.modelState & TTModelStateLoading) {
-    [self showLoadingView];
+- (void)didLoadModel {
+  [_dataSource tableViewDidLoadModel:_tableView];
+}
+
+- (void)showLoading:(BOOL)show {
+  if (show) {
+    if (!self.model.isLoaded) {
+      [self showLoadingView];
+    }
   } else {
     self.tableOverlayView = nil;
   }
-  if (self.modelState & TTModelStateReloading) {
-    [self showReloadingViewWithDelay];
+//  if (self.modelState & TTModelStateReloading) {
+//    [self showReloadingViewWithDelay];
+//  } else {
+//    self.tableBannerView = nil;
+//  }
+}
+
+- (void)showModel:(BOOL)show {
+  [self hideMenu:YES];
+  if (show) {
+    [self updateTableDelegate];
+    _tableView.dataSource = _dataSource;
   } else {
-    self.tableBannerView = nil;
+    _tableView.dataSource = nil;
+  }
+  [_tableView reloadData];
+}
+
+- (void)showError:(BOOL)show {
+  if (show) {
+    [self showErrorView];
+  } else {
+    self.tableOverlayView = nil;
   }
 }
 
-- (void)modelDidChangeLoadedState {
-  if (self.modelState & TTModelStateLoaded) {
-    _tableView.dataSource = _dataSource;
-    [self reloadTableData];
-    self.tableOverlayView = nil;
-  } else if (self.modelState & TTModelStateLoadedError) {
-    [self showErrorView];
-  } else if (!(self.modelState & TTModelLoadingStates)) {
+- (void)showEmpty:(BOOL)show {
+  if (show) {
     [self showEmptyView];
+  } else {
+    self.tableOverlayView = nil;
   }
 }
 
@@ -484,6 +476,27 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (void)didEndDragging {
+}
+
+- (CGRect)rectForOverlayView {
+  CGRect frame = [_tableView frameWithKeyboardSubtracted];
+  
+  if (_tableView.tableHeaderView) {
+    CGRect headerRect = _tableView.tableHeaderView.frame;
+    CGFloat diff = (headerRect.origin.y + headerRect.size.height) - _tableView.contentOffset.y;
+    if (diff >= 0) {
+      frame.origin.y += diff;
+      frame.size.height -= diff;
+    }
+  }
+  return frame;
+}
+
+- (CGRect)rectForBannerView {
+  CGRect tableFrame = [_tableView frameWithKeyboardSubtracted];
+  return CGRectMake(tableFrame.origin.x,
+                    (tableFrame.origin.y + tableFrame.size.height) - kBannerViewHeight,
+                    tableFrame.size.width, kBannerViewHeight);
 }
 
 @end

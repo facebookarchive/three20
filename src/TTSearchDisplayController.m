@@ -91,11 +91,11 @@ static const NSTimeInterval kPauseInterval = 0.4;
         shouldReloadTableForSearchString:(NSString*)searchString {
   if (_pausesBeforeSearching) {
     [self restartPauseTimer];
-    if (_searchResultsViewController.modelState & TTModelStateLoaded) {
-      _searchResultsViewController.modelState = TTModelStateLoaded | TTModelStateReloading;
-    } else {
-      _searchResultsViewController.modelState = TTModelStateLoading;
-    }
+//    if (_searchResultsViewController.modelState & TTModelStateLoaded) {
+//      _searchResultsViewController.modelState = TTModelStateLoaded | TTModelStateReloading;
+//    } else {
+//      _searchResultsViewController.modelState = TTModelStateLoading;
+//    }
   } else {
     [_searchResultsViewController.dataSource search:searchString];
   }

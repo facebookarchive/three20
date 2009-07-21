@@ -142,7 +142,7 @@
         willAppearAtIndexPath:(NSIndexPath*)indexPath {
 }
 
-- (void)willAppearInTableView:(UITableView*)tableView {
+- (void)tableViewDidLoadModel:(UITableView*)tableView {
 }
 
 - (void)search:(NSString*)text {

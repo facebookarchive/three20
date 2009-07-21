@@ -118,6 +118,14 @@
  */
 - (void)didEndDragging;
 
+/**
+ *
+ */
 - (CGRect)rectForOverlayView;
+
+/**
+ *
+ */
+- (CGRect)rectForBannerView;
 
 @end

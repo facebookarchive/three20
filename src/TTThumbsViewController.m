@@ -230,13 +230,6 @@ static CGFloat kThumbnailRowHeight = 79;
   [super viewDidDisappear:animated];
 }
 
-- (void)modelDidChangeLoadedState {
-  [super modelDidChangeLoadedState];
-  if (self.modelState & TTModelStateLoaded) {
-    self.title = _photoSource.title;
-  }
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 
@@ -268,6 +261,13 @@ static CGFloat kThumbnailRowHeight = 79;
                                 target:self
                                 action:@selector(removeFromSupercontroller)] autorelease];
   }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTModelViewController
+
+- (void)didLoadModel {
+  self.title = _photoSource.title;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

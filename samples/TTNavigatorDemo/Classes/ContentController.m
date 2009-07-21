@@ -66,7 +66,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_MEMBER(_content);
+  TT_RELEASE_SAFELY(_content);
   [super dealloc];
 }
 
@@ -83,10 +83,7 @@
   [self.view addSubview:label];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTViewController
-
-- (void)modelWillAppear {
+- (void)viewWillAppear:(BOOL)animated {
   TTStyledTextLabel* label = (TTStyledTextLabel*)[self.view viewWithTag:42];
   label.html = _content;
 }

@@ -1,41 +1,30 @@
 #import "Three20/TTViewController.h"
 #import "Three20/TTModel.h"
 
-typedef enum {
-  TTModelStateNone = 0,
-  TTModelStateLoading = 1,
-  TTModelStateLoadingMore = 2,
-  TTModelStateReloading = 4,
-  TTModelStateLoaded = 8,
-  TTModelStateLoadedError = 16,
-  TTModelLoadingStates = (TTModelStateLoading|TTModelStateLoadingMore|TTModelStateReloading),
-  TTModelLoadedStates = (TTModelStateLoaded|TTModelStateLoadedError),
-} TTModelState;
-
 /**
  * A view controller that manages a model in addition to a view.
  */
 @interface TTModelViewController : TTViewController <TTModelDelegate> {
   id<TTModel> _model;
-  TTModelState _modelState;
   NSError* _modelError;
-  
-  BOOL _isViewInvalid;
-  BOOL _isLoadingViewInvalid;
-  BOOL _isLoadedViewInvalid;
-  BOOL _isValidatingView;
+
+  struct {
+    unsigned int isModelWillLoadInvalid:1;
+    unsigned int isModelDidLoadInvalid:1;
+    unsigned int isViewInvalid:1;
+    unsigned int isViewSuspended:1;
+    unsigned int isUpdatingView:1;
+    unsigned int isShowingEmpty:1;
+    unsigned int isShowingLoading:1;
+    unsigned int isShowingModel:1;
+    unsigned int isShowingError:1;
+  } _flags;
 }
 
-@property(nonatomic,retain) id<TTModel> model;
-
 /**
- * Indicates the state of the view with regards to the content it displays.
  *
- * Changing modelState will invalidate relevant portions of the view, which may result in
- * modelDidChangeLoadingState or modelDidChangeLoadedState to be called to update the aspects
- * of the view that have changed.
- */ 
-@property(nonatomic) TTModelState modelState;
+ */
+@property(nonatomic,retain) id<TTModel> model;
 
 /**
  * An error that occurred while trying to load content.
@@ -48,19 +37,9 @@ typedef enum {
 - (void)createModel;
 
 /**
- * 
+ * Indicates whether the model has been created.
  */
-- (void)willChangeModel;
-
-/**
- * 
- */
-- (void)didChangeModel;
-
-/**
- * 
- */
-- (BOOL)isModelLoaded;
+- (BOOL)isModelCreated;
 
 /**
  * Indicates that data should be loaded from the model.
@@ -84,6 +63,15 @@ typedef enum {
 - (BOOL)shouldLoadMore;
 
 /**
+ * Tests if it is possible to show the model.
+ *
+ * After a model has loaded, this method is called to test whether or not to set the model
+ * has content that can be shown.  If you return NO, showEmpty: will be called, and if you
+ * return YES, showModel: will be called.
+ */
+- (BOOL)canShowModel;
+
+/**
  * Reloads data from the model.
  */
 - (void)reload;
@@ -100,55 +88,71 @@ typedef enum {
 
 /**
  * Indicates that the model has changed and schedules the view to be updated to reflect it.
- *
- * Invalidation allow you to change the state of the view without actually changing
- * the view.  This is necessary because low memory conditions can cause views to be destroyed
- * and re-created behind your back, so you need to maintain important state without them.
  */
 - (void)invalidateView;
 
 /** 
- * Updates the view to the latest model.
- *
- * If the model is invalid, the model will be updated before update the view.
+ * Forces the model and view to be created, loaded, and displayed, if they weren't already.
  */
 - (void)validateView;
 
 /**
- * Tests if it is ok to show the contents of the model.
+ * Called before the model is asked to load itself.
  *
- * After a model has loaded, this method is called to test whether or not to set the model
- * state to "loaded".  If you return NO, the model state will be changed to "none" and the
- * empty view will be shown instead.
+ * This is not called until after the view has loaded.  If your model starts loading before
+ * the view is loaded, this will still be called, but not until after the view is loaded.
+ *
+ * The default implementation of this method does nothing. Subclasses may override this method
+ * to take an appropriate action.
  */
-- (BOOL)modelShouldAppear;
+- (void)willLoadModel;
 
 /**
- * Informs the controller that its model is about to appear for the first time.
+ * Called after the model has loaded, just before it is to be displayed.
  *
- * Do not call this directly.  Subclasses should implement this method.
+ * This is not called until after the view has loaded.  If your model finishes loading before
+ * the view is loaded, this will still be called, but not until after the view is loaded.
+ *
+ * The default implementation of this method does nothing. Subclasses may override this method
+ * to take an appropriate action.
  */
-- (void)modelWillAppear;
+- (void)didLoadModel;
 
 /**
- * Informs the controller that its model's state has changed.
+ * Called just after a model has been loaded and displayed.
  *
- * Do not call this directly.  Subclasses should implement this method.
+ * The default implementation of this method does nothing. Subclasses may override this method
+ * to take an appropriate action.
  */
-- (void)modelDidChangeState;
+- (void)didShowModel;
 
 /**
- * Informs the controller that its model's loading state has changed.
+ * Shows views to represent the model loading.
  *
- * Do not call this directly.  Subclasses should implement this method.
+ * The default implementation of this method does nothing. Subclasses may override this method
+ * to take an appropriate action.
  */
-- (void)modelDidChangeLoadingState;
+- (void)showLoading:(BOOL)show;
 
 /**
- * Informs the controller that its model's loaded state has changed.
+ * Shows views to represent the loaded model's content.
  *
- * Do not call this directly.  Subclasses should implement this method.
+ * The default implementation of this method does nothing. Subclasses may override this method
+ * to take an appropriate action.
  */
-- (void)modelDidChangeLoadedState;
+- (void)showModel:(BOOL)show;
+
+/**
+ * Shows views to represent an empty model. 
+ *
+ * The default implementation of this method does nothing. Subclasses may override this method
+ * to take an appropriate action.
+ */
+- (void)showEmpty:(BOOL)show;
+
+/**
+ * Shows views to represent an error that occurred while loading the model.
+ */
+- (void)showError:(BOOL)show;
 
 @end
