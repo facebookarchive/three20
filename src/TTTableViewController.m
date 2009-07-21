@@ -247,14 +247,13 @@ static const CGFloat kBannerViewHeight = 22;
 - (void)modelDidChangeLoadedState {
   if (self.modelState & TTModelStateLoaded) {
     _tableView.dataSource = _dataSource;
+    [self reloadTableData];
     self.tableOverlayView = nil;
   } else if (self.modelState & TTModelStateLoadedError) {
     [self showErrorView];
   } else if (!(self.modelState & TTModelLoadingStates)) {
     [self showEmptyView];
   }
-  
-  [self reloadTableData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

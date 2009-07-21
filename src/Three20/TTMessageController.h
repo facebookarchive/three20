@@ -4,14 +4,14 @@
 @protocol TTTableViewDataSource, TTMessageControllerDelegate;
 @class TTPickerTextField, TTActivityLabel;
 
-@interface TTMessageController : TTModelViewController <UITextFieldDelegate, TTTextEditorDelegate> {
+@interface TTMessageController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
   id<TTMessageControllerDelegate> _delegate;
   id<TTTableViewDataSource> _dataSource;
   NSArray* _fields;
   NSMutableArray* _fieldViews;
   UIScrollView* _scrollView;
   TTTextEditor* _textEditor;
-  TTActivityLabel* _statusView;
+  TTActivityLabel* _activityView;
   NSArray* _initialRecipients;
   BOOL _showsRecipientPicker;
   BOOL _isModified;
@@ -34,6 +34,8 @@
 
 - (BOOL)fieldHasValueAtIndex:(NSUInteger)fieldIndex;
 - (UIView*)viewForFieldAtIndex:(NSUInteger)fieldIndex;
+
+- (void)showActivityView:(BOOL)show;
 
 - (NSString*)titleForSending;
 

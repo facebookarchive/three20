@@ -67,13 +67,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableView
 
-- (void)reloadData {
-//  if (_menuView) {
-//    [self hideMenu:NO];
-//  }
-  [super reloadData];
-}
-
 - (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
         scrollPosition:(UITableViewScrollPosition)scrollPosition {
   if (!_highlightedLabel) {

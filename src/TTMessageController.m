@@ -325,7 +325,7 @@
       nil];
     _fieldViews = nil;
     _initialRecipients = nil;
-    _statusView = nil;
+    _activityView = nil;
     _showsRecipientPicker = NO;
     _isModified = NO;
     
@@ -382,7 +382,7 @@
   TT_RELEASE_SAFELY(_scrollView);
   TT_RELEASE_SAFELY(_fieldViews);
   TT_RELEASE_SAFELY(_textEditor);
-  TT_RELEASE_SAFELY(_statusView);
+  TT_RELEASE_SAFELY(_activityView);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -462,23 +462,6 @@
       [self addRecipient:recipient forFieldAtIndex:0];
     }
     TT_RELEASE_SAFELY(_initialRecipients);
-  }
-}
-
-- (void)modelDidChangeLoadingState {
-  if (self.modelState & TTModelStateLoading) {
-    CGRect frame = CGRectMake(0, 0, self.view.width, _scrollView.height);
-    TTActivityLabel* label = [[[TTActivityLabel alloc] initWithFrame:frame
-      style:TTActivityLabelStyleWhiteBox] autorelease];
-    label.text = [self titleForSending];
-    label.centeredToScreen = NO;
-    [self.view addSubview:label];
-
-    [_statusView release];
-    _statusView = [label retain];
-  } else {
-    [_statusView removeFromSuperview];
-    TT_RELEASE_SAFELY(_statusView);
   }
 }
 
@@ -686,7 +669,7 @@
   [fields addObject:bodyField];
   
   self.navigationItem.rightBarButtonItem.enabled = NO;
-  self.modelState = TTModelStateLoading;
+  [self showActivityView:YES];
 
   [self messageWillSend:fields];
 
@@ -717,6 +700,22 @@
     cancelButtonTitle:TTLocalizedString(@"Yes", @"")
     otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
   [cancelAlertView show];
+}
+
+- (void)showActivityView:(BOOL)show {
+  if (show) {
+    if (!_activityView) {
+      CGRect frame = CGRectMake(0, 0, self.view.width, _scrollView.height);
+      _activityView = [[TTActivityLabel alloc] initWithFrame:frame
+                                               style:TTActivityLabelStyleWhiteBox];
+      _activityView.text = [self titleForSending];
+      _activityView.centeredToScreen = NO;
+      [self.view addSubview:_activityView];
+    }
+  } else {
+    [_activityView removeFromSuperview];
+    TT_RELEASE_SAFELY(_activityView);
+  }
 }
 
 - (NSString*)titleForSending {
