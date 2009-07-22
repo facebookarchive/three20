@@ -18,9 +18,11 @@ static const CGFloat kBannerViewHeight = 22;
 
 @implementation TTTableViewController
 
-@synthesize tableView = _tableView, tableBannerView = _tableBannerView,
-            tableOverlayView = _tableOverlayView, dataSource = _dataSource,
-            tableViewStyle = _tableViewStyle, variableHeightRows = _variableHeightRows;
+@synthesize tableView = ntableView, tableBannerView = _tableBannerView,
+            tableOverlayView = _tableOverlayView,
+            loadingView = _loadingView, errorView= _errorView, emptyView = _emptyView,
+            dataSource = _dataSource, tableViewStyle = _tableViewStyle,
+            variableHeightRows = _variableHeightRows;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -36,23 +38,28 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
-- (void)addSubviewOverTableView:(UIView*)view {
-  NSInteger tableIndex = [_tableView.superview.subviews indexOfObject:_tableView];
-  if (tableIndex != NSNotFound) {
-    view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [_tableView.superview insertSubview:view atIndex:tableIndex+1];
+- (void)addToOverlayView:(UIView*)view {
+  if (!_tableOverlayView) {
+    CGRect frame = [self rectForOverlayView];
+    _tableOverlayView = [[UIView alloc] initWithFrame:frame];
+    _tableOverlayView.autoresizesSubviews = YES;
+    _tableOverlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    NSInteger tableIndex = [_tableView.superview.subviews indexOfObject:_tableView];
+    if (tableIndex != NSNotFound) {
+      [_tableView.superview addSubview:_tableOverlayView];
+    }
   }
+
+  view.frame = _tableOverlayView.bounds;
+  view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  [_tableOverlayView addSubview:view];
 }
 
-- (void)showReloadingViewWithDelay {
-  [_bannerTimer invalidate];
-  _bannerTimer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self
-                          selector:@selector(showBanner) userInfo:nil repeats:NO];
-}
-
-- (void)showBanner {
-  _bannerTimer = nil;
-  [self showReloadingView];
+- (void)resetOverlayView {
+  if (_tableOverlayView && !_tableOverlayView.subviews.count) {
+    [_tableOverlayView removeFromSuperview];
+    TT_RELEASE_SAFELY(_tableOverlayView);
+  }
 }
 
 - (void)layoutOverlayView {
@@ -98,6 +105,9 @@ static const CGFloat kBannerViewHeight = 22;
     _tableView = nil;
     _tableBannerView = nil;
     _tableOverlayView = nil;
+    _loadingView = nil;
+    _errorView = nil;
+    _emptyView = nil;
     _menuView = nil;
     _menuCell = nil;
     _dataSource = nil;
@@ -136,6 +146,12 @@ static const CGFloat kBannerViewHeight = 22;
   TT_RELEASE_SAFELY(_tableBannerView);
   [_tableOverlayView removeFromSuperview];
   TT_RELEASE_SAFELY(_tableOverlayView);
+  [_loadingView removeFromSuperview];
+  TT_RELEASE_SAFELY(_loadingView);
+  [_errorView removeFromSuperview];
+  TT_RELEASE_SAFELY(_errorView);
+  [_emptyView removeFromSuperview];
+  TT_RELEASE_SAFELY(_emptyView);
   [_menuView removeFromSuperview];
   TT_RELEASE_SAFELY(_menuView);
   [_menuCell removeFromSuperview];
@@ -223,16 +239,6 @@ static const CGFloat kBannerViewHeight = 22;
   [_tableView beginUpdates];
 }
 
-- (void)showLoading:(BOOL)show {
-  if (show) {
-    if (!self.model.isLoaded) {
-      [self showLoadingView];
-    }
-  } else {
-    self.tableOverlayView = nil;
-  }
-}
-
 - (void)showModel:(BOOL)show {
   [self hideMenu:YES];
   if (show) {
@@ -244,21 +250,60 @@ static const CGFloat kBannerViewHeight = 22;
   [_tableView reloadData];
 }
 
+- (void)showLoading:(BOOL)show {
+  if (show) {
+    if (!self.model.isLoaded || ![self canShowModel]) {
+      NSString* title = [_dataSource titleForLoading:NO];
+      if (title.length) {
+        TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox]
+                                    autorelease];
+        label.text = title;
+        label.backgroundColor = _tableView.backgroundColor;
+        label.centeredToScreen = NO;
+        self.loadingView = label;
+      }
+    }
+  } else {
+    self.loadingView = nil;
+  }
+}
+
 - (void)showError:(BOOL)show {
   if (show) {
     if (!self.model.isLoaded) {
-      [self showErrorView];
+      NSString* title = [_dataSource titleForError:_modelError];
+      NSString* subtitle = [_dataSource subtitleForError:_modelError];
+      UIImage* image = [_dataSource imageForError:_modelError];
+      TTErrorView* errorView = [[[TTErrorView alloc] initWithTitle:title
+                                                     subtitle:subtitle
+                                                     image:image] autorelease];
+      errorView.backgroundColor = _tableView.backgroundColor;
+      self.errorView = errorView;
+
+      [_tableView reloadData];
     }
   } else {
-    self.tableOverlayView = nil;
+    self.errorView = nil;
   }
 }
 
 - (void)showEmpty:(BOOL)show {
   if (show) {
-    [self showEmptyView];
+    NSString* title = [_dataSource titleForEmpty];
+    NSString* subtitle = [_dataSource subtitleForEmpty];
+    UIImage* image = [_dataSource imageForEmpty];
+    if (title.length || subtitle.length || image) {
+      TTErrorView* errorView = [[[TTErrorView alloc] initWithTitle:title
+                                                     subtitle:subtitle
+                                                     image:image] autorelease];
+      errorView.backgroundColor = _tableView.backgroundColor;
+      self.emptyView = errorView;
+    } else {
+      self.emptyView = nil;
+    }
+    [_tableView reloadData];
   } else {
-    self.tableOverlayView = nil;
+    self.emptyView = nil;
   }
 }
 
@@ -401,7 +446,7 @@ static const CGFloat kBannerViewHeight = 22;
     if (_tableBannerView) {
       _tableBannerView.frame = [self rectForBannerView];
       _tableBannerView.userInteractionEnabled = NO;
-      [self addSubviewOverTableView:_tableBannerView];
+      [self addToOverlayView:_tableBannerView];
 
       if (animated) {
         _tableBannerView.top += kBannerViewHeight;
@@ -413,10 +458,6 @@ static const CGFloat kBannerViewHeight = 22;
       }
     }
   }
-}
-
-- (void)setTableOverlayView:(UIView*)tableOverlayView {
-  [self setTableOverlayView:tableOverlayView animated:YES];
 }
 
 - (void)setTableOverlayView:(UIView*)tableOverlayView animated:(BOOL)animated {
@@ -434,7 +475,7 @@ static const CGFloat kBannerViewHeight = 22;
 
     if (_tableOverlayView) {
       _tableOverlayView.frame = [self rectForOverlayView];
-      [self addSubviewOverTableView:_tableOverlayView];
+      [self addToOverlayView:_tableOverlayView];
     }
 
     // XXXjoe There seem to be cases where this gets left disable - must investigate
@@ -461,56 +502,58 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+- (void)setLoadingView:(UIView*)view {
+  if (view != _loadingView) {
+    if (_loadingView) {
+      [_loadingView removeFromSuperview];
+      TT_RELEASE_SAFELY(_loadingView);
+    }
+    _loadingView = [view retain];
+    if (_loadingView) {
+      [self addToOverlayView:_loadingView];
+    } else {
+      [self resetOverlayView];
+    }
+  }
+}
+
+- (void)setErrorView:(UIView*)view {
+  if (view != _errorView) {
+    if (_errorView) {
+      [_errorView removeFromSuperview];
+      TT_RELEASE_SAFELY(_errorView);
+    }
+    _errorView = [view retain];
+    
+    if (_errorView) {
+      [self addToOverlayView:_errorView];
+    } else {
+      [self resetOverlayView];
+    }
+  }
+}
+
+- (void)setEmptyView:(UIView*)view {
+  if (view != _emptyView) {
+    if (_emptyView) {
+      [_emptyView removeFromSuperview];
+      TT_RELEASE_SAFELY(_emptyView);
+    }
+    _emptyView = [view retain];
+    if (_emptyView) {
+      [self addToOverlayView:_emptyView];
+    } else {
+      [self resetOverlayView];
+    }
+  }
+}
+
 - (id<UITableViewDelegate>)createDelegate {
   if (_variableHeightRows) {
     return [[[TTTableViewVarHeightDelegate alloc] initWithController:self] autorelease];
   } else {
     return [[[TTTableViewDelegate alloc] initWithController:self] autorelease];
   }
-}
-
-- (void)showLoadingView {
-  NSString* title = [_dataSource titleForLoading:NO];
-  if (title.length) {
-    TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox]
-                                autorelease];
-    label.text = title;
-    label.backgroundColor = _tableView.backgroundColor;
-    label.centeredToScreen = NO;
-    self.tableOverlayView = label;
-  }
-}
-
-- (void)showReloadingView {
-  NSString* title = [_dataSource titleForLoading:YES];
-  if (title.length) {
-    TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleBlackBox]
-                                autorelease];
-    label.text = title;
-    label.font = TTSTYLEVAR(tableBannerFont);
-    label.centeredToScreen = NO;
-    self.tableBannerView = label;
-  }
-}
-
-- (void)showEmptyView {
-  NSString* title = [_dataSource titleForEmpty];
-  NSString* subtitle = [_dataSource subtitleForEmpty];
-  UIImage* image = [_dataSource imageForEmpty];
-  self.tableOverlayView = [[[TTErrorView alloc] initWithTitle:title
-                                                subtitle:subtitle
-                                                image:image] autorelease];
-  self.tableOverlayView.backgroundColor = _tableView.backgroundColor;
-}
-
-- (void)showErrorView {
-  NSString* title = [_dataSource titleForError:_modelError];
-  NSString* subtitle = [_dataSource subtitleForError:_modelError];
-  UIImage* image = [_dataSource imageForError:_modelError];
-  self.tableOverlayView = [[[TTErrorView alloc] initWithTitle:title
-                                                subtitle:subtitle
-                                                image:image] autorelease];
-  self.tableOverlayView.backgroundColor = _tableView.backgroundColor;
 }
 
 - (void)showMenu:(UIView*)view forCell:(UITableViewCell*)cell animated:(BOOL)animated {

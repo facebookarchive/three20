@@ -145,20 +145,20 @@
 - (void)didShowModel:(BOOL)firstTime;
 
 /**
- * Shows views to represent the model loading.
- *
- * The default implementation of this method does nothing. Subclasses may override this method
- * to take an appropriate action.
- */
-- (void)showLoading:(BOOL)show;
-
-/**
  * Shows views to represent the loaded model's content.
  *
  * The default implementation of this method does nothing. Subclasses may override this method
  * to take an appropriate action.
  */
 - (void)showModel:(BOOL)show;
+
+/**
+ * Shows views to represent the model loading.
+ *
+ * The default implementation of this method does nothing. Subclasses may override this method
+ * to take an appropriate action.
+ */
+- (void)showLoading:(BOOL)show;
 
 /**
  * Shows views to represent an empty model. 
