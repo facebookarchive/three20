@@ -8,7 +8,7 @@
 
 @implementation TTModel
 
-@synthesize loadedTime = _loadedTime, cacheKey = _cacheKey;
+@synthesize loadedTime = _loadedTime, cacheKey = _cacheKey, hasNoMore = _hasNoMore;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -18,6 +18,7 @@
     _delegates = nil;
     _loadingRequest = nil;
     _isLoadingMore = NO;
+    _hasNoMore = NO;
     _loadedTime = [[NSDate date] retain];
     _cacheKey = nil;
   }
@@ -72,7 +73,7 @@
 }
 
 - (BOOL)isLoadingMore {
-  return _loadingRequest && _isLoadingMore;
+  return _isLoadingMore;
 }
 
 - (BOOL)isOutdated {

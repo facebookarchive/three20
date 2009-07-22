@@ -6,7 +6,11 @@
 static CGFloat kPaddingX = 8;
 static CGFloat kPaddingY = 8;
 
-static CGFloat kTextViewInset = 30;
+// XXXjoe This number is very sensitive - it is specifically calculated for precise word wrapping
+// with 15pt normal helvetica.  If you change this number at all, UITextView may wrap the text
+// before or after the TTTextEditor expands or contracts its height to match.  Obviously,
+// hard-coding this value here sucks, and I need to implement a solution that works for any font.
+static CGFloat kTextViewInset = 31;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

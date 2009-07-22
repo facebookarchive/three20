@@ -427,7 +427,7 @@
   id object = [_URLMap objectForURL:URL query:query pattern:pattern];
   if (object) {
     UIViewController* controller = object;
-    controller.navigatorURL = URL;
+    controller.originalNavigatorURL = URL;
     return controller;
   } else {
     return nil;
@@ -454,9 +454,22 @@
   for (NSDictionary* state in path) {
     NSString* URL = [state objectForKey:@"__navigatorURL__"];
     controller = [self openURL:URL parent:nil query:nil state:state animated:NO transition:0];
+    
+    // Stop if we reach a model view controller whose model could not be synchronously loaded.
+    // That is because the controller after it may depend on the data it could not load, so
+    // we'd better not risk opening more controllers that may not be able to function.
+    if ([controller isKindOfClass:[TTModelViewController class]]) {
+      TTModelViewController* modelViewController = (TTModelViewController*)controller;
+      if (!modelViewController.model.isLoaded) {
+        break;
+      }
+    }
+
+    // Stop after one controller if we are in "persist top" mode
     if (_persistenceMode == TTNavigatorPersistenceModeTop && passedContainer) {
       break;
     }
+    
     passedContainer = [controller canContainControllers];
   }
 

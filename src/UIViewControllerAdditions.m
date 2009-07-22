@@ -85,10 +85,10 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 
 // Swizzled with dealloc by TTURLMap (only if you're using TTURLMap)
 - (void)ttdealloc {
-  NSString* URL = self.navigatorURL;
+  NSString* URL = self.originalNavigatorURL;
   if (URL) {
     [[TTNavigator navigator].URLMap removeObjectForURL:URL];
-    self.navigatorURL = nil;
+    self.originalNavigatorURL = nil;
   }
 
   self.superController = nil;
@@ -102,11 +102,15 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 // public
 
 - (NSString*)navigatorURL {
+  return self.originalNavigatorURL;
+}
+
+- (NSString*)originalNavigatorURL {
   NSString* key = [NSString stringWithFormat:@"%d", self];
   return [gNavigatorURLs objectForKey:key];
 }
 
-- (void)setNavigatorURL:(NSString*)URL {
+- (void)setOriginalNavigatorURL:(NSString*)URL {
   NSString* key = [NSString stringWithFormat:@"%d", self];
   if (URL) {
     if (!gNavigatorURLs) {
@@ -210,7 +214,7 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 - (void)removeFromSupercontrollerAnimated:(BOOL)animated {
   if (self.navigationController) {
     if (animated) {
-      NSString* URL = self.navigatorURL;
+      NSString* URL = self.originalNavigatorURL;
       UIViewAnimationTransition transition = URL
         ? [[TTNavigator navigator].URLMap transitionForURL:URL] : UIViewAnimationTransitionNone;
       if (!transition) {

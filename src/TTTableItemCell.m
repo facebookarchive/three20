@@ -694,6 +694,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     _titleLabel.textColor = [UIColor blackColor];
     _titleLabel.highlightedTextColor = [UIColor whiteColor];
     _titleLabel.font = TTSTYLEVAR(tableFont);
+    _titleLabel.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:_titleLabel];
   }
   return _titleLabel;
@@ -709,6 +710,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     _timestampLabel.font = TTSTYLEVAR(tableTimestampFont);
     _timestampLabel.textColor = TTSTYLEVAR(timestampTextColor);
     _timestampLabel.highlightedTextColor = [UIColor whiteColor];
+    _timestampLabel.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:_timestampLabel];
   }
   return _timestampLabel;

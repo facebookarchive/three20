@@ -77,7 +77,7 @@
 // NSObject
 
 - (id)init {
-  if (self = [super init]) {  
+  if (self = [super init]) {
     _frozenState = nil;
     _navigationBarStyle = UIBarStyleDefault;
     _navigationBarTintColor = nil;

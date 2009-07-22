@@ -4,20 +4,19 @@
 @interface UIViewController (TTCategory)
 
 /**
- * The URL that was used to load this controller through TTNavigator.
+ * The current URL that this view controller represents.
  */
-@property(nonatomic,copy) NSString* navigatorURL;
+@property(nonatomic,readonly) NSString* navigatorURL;
 
 /**
- * A temporary holding place for persisted view state waiting to be restored.
+ * The URL that was used to load this controller through TTNavigator.
  *
- * While restoring controllers, TTURLMap will assign this the dictionary created by persistView.
- * Ultimately, this state is bound for the restoreView call, but it is up to subclasses to
- * call restoreView at the appropriate time -- usually after the view has been created.
- *
- * After you've restored the state, you should set frozenState to nil.
+ * Do not ever change the value of this property.  TTNavigator will assign this
+ * when creating your view controller, and it expects it to remain constant throughout
+ * the view controller's life.  You can override navigatorURL if you want to specify
+ * a different URL for your view controller to use when persisting and restoring it.
  */
-@property(nonatomic,retain) NSDictionary* frozenState;
+@property(nonatomic,copy) NSString* originalNavigatorURL;
 
 /**
  * Determines whether a controller is primarily a container of other controllers.
@@ -141,5 +140,16 @@
  * Shortcut for its animated-optional cousin.
  */
 - (void)dismissModalViewController;
+
+/**
+ * A temporary holding place for persisted view state waiting to be restored.
+ *
+ * While restoring controllers, TTURLMap will assign this the dictionary created by persistView.
+ * Ultimately, this state is bound for the restoreView call, but it is up to subclasses to
+ * call restoreView at the appropriate time -- usually after the view has been created.
+ *
+ * After you've restored the state, you should set frozenState to nil.
+ */
+@property(nonatomic,retain) NSDictionary* frozenState;
 
 @end

@@ -130,13 +130,15 @@
 @interface TTModel : NSObject <TTModel, TTURLRequestDelegate> {
   NSMutableArray* _delegates;
   TTURLRequest* _loadingRequest;
-  BOOL _isLoadingMore;
   NSDate* _loadedTime;
   NSString* _cacheKey;
+  BOOL _isLoadingMore;
+  BOOL _hasNoMore;
 }
 
 @property(nonatomic,retain) NSDate* loadedTime;
 @property(nonatomic,copy) NSString* cacheKey;
+@property(nonatomic) BOOL hasNoMore;
 
 /**
  * Initializes a model with data that is not loaded remotely.

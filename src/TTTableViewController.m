@@ -162,9 +162,14 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (void)restoreView:(NSDictionary*)state {
-  NSNumber* scrollY = [state objectForKey:@"scrollOffsetY"];
+  CGFloat scrollY = [[state objectForKey:@"scrollOffsetY"] floatValue];
   if (scrollY) {
-    _tableView.contentOffset = CGPointMake(0, scrollY.floatValue);
+    CGFloat maxY = _tableView.contentSize.height - _tableView.height;
+    if (scrollY <= maxY) {
+      _tableView.contentOffset = CGPointMake(0, scrollY);
+    } else {
+      _tableView.contentOffset = CGPointMake(0, maxY);
+    }
   }
 }
 
@@ -432,7 +437,8 @@ static const CGFloat kBannerViewHeight = 22;
       [self addSubviewOverTableView:_tableOverlayView];
     }
 
-    _tableView.scrollEnabled = !_tableOverlayView;
+    // XXXjoe There seem to be cases where this gets left disable - must investigate
+    //_tableView.scrollEnabled = !_tableOverlayView;
   }
 }
 

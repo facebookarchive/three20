@@ -377,6 +377,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -389,6 +390,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = TTCatalog;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
