@@ -88,6 +88,11 @@
 /**
  *
  */
+- (void)model:(id<TTModel>)model didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
+
+/**
+ *
+ */
 - (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
 
 /**
@@ -158,6 +163,7 @@
  */
 - (void)endUpdates;
 
+- (void)didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
 - (void)didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
 - (void)didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
 - (void)didChange;

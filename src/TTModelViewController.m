@@ -103,7 +103,8 @@
   
   if (showModel) {
     [self showModel:YES];
-    [self didShowModel];
+    [self didShowModel:_flags.isModelFirstTimeInvalid];
+    _flags.isModelFirstTimeInvalid = NO;
   }
   if (showEmpty) {
     [self showEmpty:YES];
@@ -144,8 +145,9 @@
   if (self = [super init]) {
     _model = nil;
     _modelError = nil;
-    _flags.isModelDidLoadInvalid = NO;
     _flags.isModelWillLoadInvalid = NO;
+    _flags.isModelDidLoadInvalid = NO;
+    _flags.isModelFirstTimeInvalid = NO;
     _flags.isViewInvalid = YES;
     _flags.isViewSuspended = NO;
     _flags.isUpdatingView = NO;
@@ -221,6 +223,9 @@
   }
 }
 
+- (void)model:(id<TTModel>)model didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+}
+
 - (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
 }
 
@@ -258,9 +263,11 @@
     [_model release];
     _model = [model retain];
     [_model.delegates addObject:self];
+    TT_RELEASE_SAFELY(_modelError);
     
     if (_model) {
       _flags.isModelWillLoadInvalid = YES;
+      _flags.isModelFirstTimeInvalid = YES;
     }
     
     [self refresh];
@@ -325,6 +332,7 @@
     _flags.isModelDidLoadInvalid = YES;
     if (_isViewAppearing) {
       [self updateView];
+      [self reloadIfNeeded];
     }
   }
 }
@@ -356,7 +364,7 @@
 - (void)didLoadModel {
 }
 
-- (void)didShowModel {
+- (void)didShowModel:(BOOL)firstTime {
 }
 
 - (void)showLoading:(BOOL)show {

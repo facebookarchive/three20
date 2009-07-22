@@ -163,7 +163,9 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (void)restoreView:(NSDictionary*)state {
   NSNumber* scrollY = [state objectForKey:@"scrollOffsetY"];
-  _tableView.contentOffset = CGPointMake(0, scrollY.floatValue);
+  if (scrollY) {
+    _tableView.contentOffset = CGPointMake(0, scrollY.floatValue);
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -224,11 +226,6 @@ static const CGFloat kBannerViewHeight = 22;
   } else {
     self.tableOverlayView = nil;
   }
-//  if (self.modelState & TTModelStateReloading) {
-//    [self showReloadingViewWithDelay];
-//  } else {
-//    self.tableBannerView = nil;
-//  }
 }
 
 - (void)showModel:(BOOL)show {
@@ -244,7 +241,9 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (void)showError:(BOOL)show {
   if (show) {
-    [self showErrorView];
+    if (!self.model.isLoaded) {
+      [self showErrorView];
+    }
   } else {
     self.tableOverlayView = nil;
   }
@@ -261,37 +260,86 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTModelDelegate
 
-- (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+- (void)model:(id<TTModel>)model didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
-    if (_isViewAppearing) {
-      if ([_dataSource respondsToSelector:@selector(tableView:willInsertObject:atIndexPath:)]) {
-        NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willInsertObject:object
+    if (_isViewAppearing && _flags.isShowingModel) {
+      if ([_dataSource respondsToSelector:@selector(tableView:willUpdateObject:atIndexPath:)]) {
+        NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willUpdateObject:object
                                                  atIndexPath:indexPath];
-        TTLOG(@"FROM %@ TO %@", indexPath, newIndexPath);
         if (newIndexPath) {
-          [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                      withRowAnimation:UITableViewRowAnimationTop];
+          if (newIndexPath.length == 1) {
+            TTLOG(@"UPDATING SECTION AT %@", newIndexPath);
+            NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
+            [_tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                        withRowAnimation:UITableViewRowAnimationTop];
+          } else if (newIndexPath.length == 2) {
+            TTLOG(@"UPDATING ROW AT %@", newIndexPath);
+            [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                        withRowAnimation:UITableViewRowAnimationTop];
+          }
+          [self invalidateView];
+        } else {
+          [_tableView reloadData];
         }
       }
     } else {
-      [self invalidateView];
+      [self refresh];
+    }
+  }
+}
+
+- (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+  if (model == _model) {
+    if (_isViewAppearing && _flags.isShowingModel) {
+      if ([_dataSource respondsToSelector:@selector(tableView:willInsertObject:atIndexPath:)]) {
+        NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willInsertObject:object
+                                                 atIndexPath:indexPath];
+        if (newIndexPath) {
+          if (newIndexPath.length == 1) {
+            TTLOG(@"INSERTING SECTION AT %@", newIndexPath);
+            NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
+            [_tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                        withRowAnimation:UITableViewRowAnimationTop];
+          } else if (newIndexPath.length == 2) {
+            TTLOG(@"INSERTING ROW AT %@", newIndexPath);
+            [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                        withRowAnimation:UITableViewRowAnimationTop];
+          }
+          [self invalidateView];
+        } else {
+          [_tableView reloadData];
+        }
+      }
+    } else {
+      [self refresh];
     }
   }
 }
 
 - (void)model:(id<TTModel>)model didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
-    if (_isViewAppearing) {
+    if (_isViewAppearing && _flags.isShowingModel) {
       if ([_dataSource respondsToSelector:@selector(tableView:willRemoveObject:atIndexPath:)]) {
         NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willRemoveObject:object
                                                  atIndexPath:indexPath];
         if (newIndexPath) {
-          [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                      withRowAnimation:UITableViewRowAnimationTop];
+          if (newIndexPath.length == 1) {
+            TTLOG(@"DELETING SECTION AT %@", newIndexPath);
+            NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
+            [_tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                        withRowAnimation:UITableViewRowAnimationTop];
+          } else if (newIndexPath.length == 2) {
+            TTLOG(@"DELETING ROW AT %@", newIndexPath);
+            [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                        withRowAnimation:UITableViewRowAnimationTop];
+          }
+          [self invalidateView];
+        } else {
+          [_tableView reloadData];
         }
       }
     } else {
-      [self invalidateView];
+      [self refresh];
     }
   }
 }
@@ -527,17 +575,7 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (CGRect)rectForOverlayView {
-  CGRect frame = [_tableView frameWithKeyboardSubtracted];
-  
-  if (_tableView.tableHeaderView) {
-    CGRect headerRect = _tableView.tableHeaderView.frame;
-    CGFloat diff = (headerRect.origin.y + headerRect.size.height) - _tableView.contentOffset.y;
-    if (diff >= 0) {
-      frame.origin.y += diff;
-      frame.size.height -= diff;
-    }
-  }
-  return frame;
+  return [_tableView frameWithKeyboardSubtracted];
 }
 
 - (CGRect)rectForBannerView {

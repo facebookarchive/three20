@@ -173,7 +173,7 @@
 }
 
 - (NSString*)titleForError:(NSError*)error {
-  return TTLocalizedString(@"Error", @"");
+  return TTDescriptionForError(error);
 }
 
 - (NSString*)subtitleForError:(NSError*)error {

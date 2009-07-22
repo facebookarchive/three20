@@ -11,6 +11,7 @@
   struct {
     unsigned int isModelWillLoadInvalid:1;
     unsigned int isModelDidLoadInvalid:1;
+    unsigned int isModelFirstTimeInvalid:1;
     unsigned int isViewInvalid:1;
     unsigned int isViewSuspended:1;
     unsigned int isUpdatingView:1;
@@ -141,7 +142,7 @@
  * The default implementation of this method does nothing. Subclasses may override this method
  * to take an appropriate action.
  */
-- (void)didShowModel;
+- (void)didShowModel:(BOOL)firstTime;
 
 /**
  * Shows views to represent the model loading.

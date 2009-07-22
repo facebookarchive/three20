@@ -351,6 +351,7 @@ static const CGFloat kVPadding = 7;
 - (void)setTitle:(NSString*)title forState:(UIControlState)state {
   TTButtonContent* content = [self contentForState:state];
   content.title = title;
+  [self setNeedsDisplay];
 }
 
 - (NSString*)imageForState:(UIControlState)state {
@@ -360,6 +361,7 @@ static const CGFloat kVPadding = 7;
 - (void)setImage:(NSString*)imageURL forState:(UIControlState)state {
   TTButtonContent* content = [self contentForState:state];
   content.imageURL = imageURL;
+  [self setNeedsDisplay];
 }
 
 - (TTStyle*)styleForState:(UIControlState)state {
@@ -369,6 +371,7 @@ static const CGFloat kVPadding = 7;
 - (void)setStyle:(TTStyle*)style forState:(UIControlState)state {
   TTButtonContent* content = [self contentForState:state];
   content.style = style;
+  [self setNeedsDisplay];
 }
 
 - (void)setStylesWithSelector:(NSString*)selector {

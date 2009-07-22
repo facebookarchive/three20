@@ -580,6 +580,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     self.textLabel.textAlignment = UITextAlignmentLeft;
     self.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
     self.textLabel.adjustsFontSizeToFitWidth = YES;
+    self.textLabel.contentMode = UIViewContentModeLeft;
     
     self.detailTextLabel.font = TTSTYLEVAR(font);
     self.detailTextLabel.textColor = TTSTYLEVAR(tableSubTextColor);
@@ -588,6 +589,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     self.detailTextLabel.contentMode = UIViewContentModeTop;
     self.detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
     self.detailTextLabel.numberOfLines = kMessageTextLineCount;
+    self.detailTextLabel.contentMode = UIViewContentModeLeft;
 	}
 	return self;
 }

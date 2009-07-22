@@ -164,6 +164,11 @@
   [_delegates perform:@selector(modelDidEndUpdates:) withObject:self];
 }
 
+- (void)didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+  [_delegates perform:@selector(model:didUpdateObject:atIndexPath:) withObject:self
+              withObject:object withObject:indexPath];
+}
+
 - (void)didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   [_delegates perform:@selector(model:didInsertObject:atIndexPath:) withObject:self
               withObject:object withObject:indexPath];

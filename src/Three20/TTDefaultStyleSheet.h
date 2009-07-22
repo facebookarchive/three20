@@ -10,6 +10,7 @@
 @property(nonatomic,readonly) UIColor* timestampTextColor;
 @property(nonatomic,readonly) UIColor* linkTextColor;
 @property(nonatomic,readonly) UIColor* moreLinkTextColor;
+@property(nonatomic,readonly) UIColor* selectedTextColor;
 @property(nonatomic,readonly) UIColor* photoCaptionTextColor;
 
 @property(nonatomic,readonly) UIColor* navigationBarTintColor;

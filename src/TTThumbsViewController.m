@@ -96,6 +96,16 @@ static CGFloat kThumbnailRowHeight = 79;
   }
 }
 
+- (NSIndexPath*)tableView:(UITableView*)tableView willInsertObject:(id)object
+                atIndexPath:(NSIndexPath*)indexPath {
+  return nil;
+}
+
+- (NSIndexPath*)tableView:(UITableView*)tableView willRemoveObject:(id)object
+                atIndexPath:(NSIndexPath*)indexPath {
+  return nil;
+}
+
 - (UIImage*)imageForEmpty {
   return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
 }
@@ -112,12 +122,8 @@ static CGFloat kThumbnailRowHeight = 79;
   return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
 }
 
-- (NSString*)titleForError:(NSError*)error {
-  return TTLocalizedString(@"Error", @"");
-}
-
 - (NSString*)subtitleForError:(NSError*)error {
-  return TTLocalizedString(@"This photo set could not be loaded.", @"");
+  return TTLocalizedString(@"Unable to load this photo set.", @"");
 }
 
 @end

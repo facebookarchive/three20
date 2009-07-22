@@ -437,17 +437,17 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [self showProgress:show ? 0 : -1];
 }
 
-- (void)showError:(BOOL)show {
+- (void)showEmpty:(BOOL)show {
   if (show) {
-    [self showStatus:TTLocalizedString(@"This photo set could not be loaded.", @"")];
+    [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
   } else {
     [self showStatus:nil];
   }
 }
 
-- (void)showEmpty:(BOOL)show {
+- (void)showError:(BOOL)show {
   if (show) {
-    [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
+    [self showStatus:TTDescriptionForError(_modelError)];
   } else {
     [self showStatus:nil];
   }

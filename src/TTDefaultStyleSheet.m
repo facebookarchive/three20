@@ -397,6 +397,10 @@
   return RGBCOLOR(36, 112, 216);
 }
 
+- (UIColor*)selectedTextColor {
+  return [UIColor whiteColor];
+}
+
 - (UIColor*)photoCaptionTextColor {
   return [UIColor whiteColor];
 }

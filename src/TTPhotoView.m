@@ -114,11 +114,8 @@ static const CGFloat kMaxCaptionHeight = 100;
 }
 
 - (void)imageViewDidFailLoadWithError:(NSError*)error {
-  if (self.URL == [_photo URLForVersion:TTPhotoVersionLarge]) {
-    [self showStatus:TTLocalizedString(@"This photo could not be loaded.", @"")];
-  } else {
-    [self showProgress:0];
-  }
+  [self showProgress:0];
+  [self showStatus:TTDescriptionForError(error)];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -140,6 +140,20 @@ NSString* TTLocalizedString(NSString* key, NSString* comment) {
   return [bundle localizedStringForKey:key value:key table:nil];
 }
 
+NSString* TTDescriptionForError(NSError* error) {
+  TTLOG(@"ERROR %@", error);
+  if ([error.domain isEqualToString:NSURLErrorDomain]) {
+    if (error.code == NSURLErrorTimedOut) {
+      return TTLocalizedString(@"Connection Timed Out", @"");
+    } else if (error.code == NSURLErrorNotConnectedToInternet) {
+      return TTLocalizedString(@"No Internet Connection", @"");
+    } else {
+      return TTLocalizedString(@"Connection Error", @"");
+    }
+  }
+  return TTLocalizedString(@"Error", @"");
+}
+
 BOOL TTIsBundleURL(NSString* URL) {
   if (URL.length >= 9) {
     return [URL rangeOfString:@"bundle://" options:0 range:NSMakeRange(0,9)].location == 0;

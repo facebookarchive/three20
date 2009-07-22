@@ -230,6 +230,8 @@ NSLocale* TTCurrentLocale();
  */
 NSString* TTLocalizedString(NSString* key, NSString* comment);
 
+NSString* TTDescriptionForError(NSError* error);
+
 BOOL TTIsBundleURL(NSString* URL);
 
 BOOL TTIsDocumentsURL(NSString* URL);

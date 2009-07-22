@@ -13,6 +13,8 @@
 
 - (id)initWithItems:(NSArray*)items;
 
+- (NSIndexPath*)indexPathOfItemWithUserInfo:(id)userInfo;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,5 +48,10 @@
 - (id)initWithItems:(NSArray*)items sections:(NSArray*)sections;
 
 - (NSArray*)lettersForSectionsWithSearch:(BOOL)withSearch withCount:(BOOL)withCount;
+
+- (NSIndexPath*)indexPathOfItemWithUserInfo:(id)userInfo;
+
+- (void)removeItemAtIndexPath:(NSIndexPath*)indexPath;
+- (BOOL)removeItemAtIndexPath:(NSIndexPath*)indexPath andSectionIfEmpty:(BOOL)andSection;
 
 @end
