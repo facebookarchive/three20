@@ -47,7 +47,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
   NSInteger maxIndex = _photoSource.maxPhotoIndex;
-  if (!_photoSource.isLoading && maxIndex > 0) {
+  if (!_photoSource.isLoading && maxIndex >= 0) {
     maxIndex += 1;
     NSInteger count =  ceil((maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0));
     if (self.hasMoreToLoad) {
@@ -273,6 +273,7 @@ static CGFloat kThumbnailRowHeight = 79;
 // TTModelViewController
 
 - (void)didLoadModel {
+  [super didLoadModel];
   self.title = _photoSource.title;
 }
 

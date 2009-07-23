@@ -430,6 +430,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)didLoadModel {
+  [super didLoadModel];
   [self updatePhotoView];
 }
 
