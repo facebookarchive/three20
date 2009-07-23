@@ -20,6 +20,10 @@
 
 - (void)scrollToBottom:(BOOL)animated;
 
+- (void)scrollToFirstRow:(BOOL)animated;
+
+- (void)scrollToLastRow:(BOOL)animated;
+
 - (void)scrollFirstResponderIntoView;
 
 - (void)touchRowAtIndexPath:(NSIndexPath*)indexPath animated:(BOOL)animated;

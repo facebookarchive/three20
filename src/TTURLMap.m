@@ -170,6 +170,13 @@
 }
 
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toSharedViewController:(id)target {
+  TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
         toSharedViewController:(id)target selector:(SEL)selector {
   TTURLPattern* pattern = [[TTURLPattern alloc] initWithMode:TTNavigationModeShare target:target];
   pattern.parentURL = parentURL;

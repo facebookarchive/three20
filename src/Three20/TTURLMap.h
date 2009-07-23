@@ -53,6 +53,8 @@ typedef enum {
 - (void)from:(NSString*)URL toSharedViewController:(id)target;
 - (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector;
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
+        toSharedViewController:(id)target;
+- (void)from:(NSString*)URL parent:(NSString*)parentURL
         toSharedViewController:(id)target selector:(SEL)selector;
 
 /**
