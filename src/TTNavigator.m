@@ -25,8 +25,10 @@
 @implementation TTNavigator
 
 @synthesize delegate = _delegate, URLMap = _URLMap, window = _window,
-            rootViewController = _rootViewController, persistenceMode = _persistenceMode,
-            supportsShakeToReload = _supportsShakeToReload, opensExternalURLs = _opensExternalURLs;
+            rootViewController = _rootViewController,
+            persistenceExpirationAge = _persistenceExpirationAge,
+            persistenceMode = _persistenceMode, supportsShakeToReload = _supportsShakeToReload,
+            opensExternalURLs = _opensExternalURLs;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -262,7 +264,10 @@
     _URLMap = [[TTURLMap alloc] init];
     _window = nil;
     _rootViewController = nil;
+    _delayedControllers = nil;
     _persistenceMode = TTNavigatorPersistenceModeNone;
+    _persistenceExpirationAge = 0;
+    _delayCount = 0;
     _supportsShakeToReload = NO;
     _opensExternalURLs = NO;
     
@@ -283,9 +288,10 @@
                                         name:UIApplicationWillTerminateNotification
                                         object:nil];
   _delegate = nil;
-  TT_RELEASE_SAFELY(_URLMap);
   TT_RELEASE_SAFELY(_window);
   TT_RELEASE_SAFELY(_rootViewController);
+  TT_RELEASE_SAFELY(_delayedControllers);
+  TT_RELEASE_SAFELY(_URLMap);
   [super dealloc];
 }
 
@@ -415,11 +421,15 @@
       }
     } else {
       id object = [_URLMap objectForURL:baseURL query:nil pattern:pattern];
-      id result = [_URLMap dispatchURL:URL toTarget:object query:query];
-      if ([result isKindOfClass:[UIViewController class]]) {
-        return result;
+      if (object) {
+        id result = [_URLMap dispatchURL:URL toTarget:object query:query];
+        if ([result isKindOfClass:[UIViewController class]]) {
+          return result;
+        } else {
+          return object;
+        }
       } else {
-        return object;
+        return nil;
       }
     }
   }
@@ -428,9 +438,36 @@
   if (object) {
     UIViewController* controller = object;
     controller.originalNavigatorURL = URL;
+    
+    if (_delayCount) {
+      if (!_delayedControllers) {
+        _delayedControllers = [[NSMutableArray alloc] initWithObjects:controller,nil];
+      } else {
+        [_delayedControllers addObject:controller];
+      }
+    }
+    
     return controller;
   } else {
     return nil;
+  }
+}
+
+- (BOOL)isDelayed {
+  return _delayCount > 0;
+}
+
+- (void)beginDelay {
+  ++_delayCount;
+}
+
+- (void)endDelay {
+  if (!--_delayCount) {
+    for (UIViewController* controller in _delayedControllers) {
+      [controller delayDidEnd];
+    }
+    
+    TT_RELEASE_SAFELY(_delayedControllers);
   }
 }
 
@@ -441,14 +478,23 @@
   
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   [defaults setObject:path forKey:@"TTNavigatorHistory"];
+  [defaults setObject:[NSDate date] forKey:@"TTNavigatorHistoryTime"];
   [defaults synchronize];
 }
 
 - (UIViewController*)restoreViewControllers { 
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  NSDate* timestamp = [defaults objectForKey:@"TTNavigatorHistoryTime"];
   NSArray* path = [defaults objectForKey:@"TTNavigatorHistory"];
-  TTLOG(@"DEBUG RESTORE %@", path);
+  [defaults removeObjectForKey:@"TTNavigatorHistory"];
+  [defaults removeObjectForKey:@"TTNavigatorHistoryTime"];
   
+  if (_persistenceExpirationAge && -timestamp.timeIntervalSinceNow > _persistenceExpirationAge) {
+    return nil;
+  }
+
+  TTLOG(@"DEBUG RESTORE %@ FROM %@", path, [timestamp formatRelativeTime]);
+
   UIViewController* controller = nil;
   BOOL passedContainer = NO;
   for (NSDictionary* state in path) {

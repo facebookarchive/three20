@@ -27,7 +27,7 @@
 @property(nonatomic,retain) UIColor* navigationBarTintColor;
 
 /**
- * The style of the status bar when this view controller is isViewAppearing.
+ * The style of the status bar when this view controller is appearing.
  */
 @property(nonatomic) UIStatusBarStyle statusBarStyle;
 

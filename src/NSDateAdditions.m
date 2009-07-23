@@ -3,13 +3,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global 
 
-#define ONE_MINUTE 60
-#define ONE_HOUR (60*ONE_MINUTE)
-#define ONE_DAY (24*ONE_HOUR)
-#define ONE_WEEK (7*ONE_DAY)
-#define ONE_MONTH (30.5*ONE_DAY)
-#define ONE_YEAR (365*ONE_DAY)
-
 static NSDateFormatter* dayFormatter = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,9 +55,9 @@ static NSDateFormatter* dayFormatter = nil;
 
 - (NSString*)formatShortTime {
   NSTimeInterval diff = abs([self timeIntervalSinceNow]);
-  if (diff < ONE_DAY) {
+  if (diff < TT_DAY) {
     return [self formatTime];
-  } else if (diff < ONE_WEEK) {
+  } else if (diff < TT_WEEK) {
     static NSDateFormatter* shortTimeFormatterWeek = nil;
     if (!shortTimeFormatterWeek) {
       shortTimeFormatterWeek = [[NSDateFormatter alloc] init];
@@ -85,9 +78,9 @@ static NSDateFormatter* dayFormatter = nil;
 
 - (NSString*)formatDateTime {
   NSTimeInterval diff = abs([self timeIntervalSinceNow]);
-  if (diff < ONE_DAY) {
+  if (diff < TT_DAY) {
     return [self formatTime];
-  } else if (diff < ONE_WEEK) {
+  } else if (diff < TT_WEEK) {
     static NSDateFormatter* shortTimeFormatterWeek = nil;
     if (!shortTimeFormatterWeek) {
       shortTimeFormatterWeek = [[NSDateFormatter alloc] init];
@@ -110,18 +103,18 @@ static NSDateFormatter* dayFormatter = nil;
   NSTimeInterval elapsed = abs([self timeIntervalSinceNow]);
   if (elapsed <= 1) {
     return TTLocalizedString(@"just a moment ago", @"");
-  } else if (elapsed < ONE_MINUTE) {
+  } else if (elapsed < TT_MINUTE) {
     int seconds = (int)(elapsed);
     return [NSString stringWithFormat:TTLocalizedString(@"%d seconds ago", @""), seconds];
-  } else if (elapsed < 2*ONE_MINUTE) {
+  } else if (elapsed < 2*TT_MINUTE) {
     return TTLocalizedString(@"about a minute ago", @"");
-  } else if (elapsed < ONE_HOUR) {
-    int mins = (int)(elapsed/ONE_MINUTE);
+  } else if (elapsed < TT_HOUR) {
+    int mins = (int)(elapsed/TT_MINUTE);
     return [NSString stringWithFormat:TTLocalizedString(@"%d minutes ago", @""), mins];
-  } else if (elapsed < ONE_HOUR*1.5) {
+  } else if (elapsed < TT_HOUR*1.5) {
     return TTLocalizedString(@"about an hour ago", @"");
-  } else if (elapsed < ONE_DAY) {
-    int hours = (int)((elapsed+ONE_HOUR/2)/ONE_HOUR);
+  } else if (elapsed < TT_DAY) {
+    int hours = (int)((elapsed+TT_HOUR/2)/TT_HOUR);
     return [NSString stringWithFormat:TTLocalizedString(@"%d hours ago", @""), hours];
   } else {
     return [self formatDateTime];

@@ -343,8 +343,8 @@
 			isa = PBXGroup;
 			children = (
 				BEF321B10F353B25000DE5D2 /* Global */,
-				BE8AA1870F428A0F00FD8C43 /* Additions */,
 				BEBB198A10068D1400744230 /* Navigator */,
+				BEF44D4F10182FD800E9EC07 /* Models */,
 				BE1287F40F8969C100F65EA2 /* Style */,
 				BEB46A860F8F8170004B34A0 /* Layout */,
 				BEB46A870F8F818F004B34A0 /* Styled Text */,
@@ -356,7 +356,7 @@
 				BE702EEF0F43F46E0028A119 /* Tables */,
 				BEF321B20F353B50000DE5D2 /* Photos */,
 				BEF321B00F353B15000DE5D2 /* Network */,
-				BEB4603C0F8EDEFD004B34A0 /* Helper Views */,
+				BE8AA1870F428A0F00FD8C43 /* Additions */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				BEB463DC0F8F2DB5004B34A0 /* developer.h */,
@@ -392,6 +392,8 @@
 			children = (
 				BEF31F650F352E64000DE5D2 /* TTTableViewController.h */,
 				BEF31F4F0F352E64000DE5D2 /* TTTableViewController.m */,
+				BE781808100ECF21001FACA5 /* TTSearchDisplayController.h */,
+				BE781806100ECF0F001FACA5 /* TTSearchDisplayController.m */,
 				BED62FD80F882FD1009923D8 /* TTTableViewDelegate.h */,
 				BED62FDA0F882FE3009923D8 /* TTTableViewDelegate.m */,
 				BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */,
@@ -408,8 +410,8 @@
 				BE702EF80F43F9D20028A119 /* TTTableItem.m */,
 				BE702ED10F43F3390028A119 /* TTTableItemCell.h */,
 				BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */,
-				BE781808100ECF21001FACA5 /* TTSearchDisplayController.h */,
-				BE781806100ECF0F001FACA5 /* TTSearchDisplayController.m */,
+				BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */,
+				BEF31F470F352E64000DE5D2 /* TTErrorView.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -462,17 +464,6 @@
 				BEF31F4E0F352E64000DE5D2 /* TTSearchlightLabel.m */,
 			);
 			name = Labels;
-			sourceTree = "<group>";
-		};
-		BEB4603C0F8EDEFD004B34A0 /* Helper Views */ = {
-			isa = PBXGroup;
-			children = (
-				BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */,
-				BEF31F470F352E64000DE5D2 /* TTErrorView.m */,
-				BEE341BD0F48133F008C826E /* TTPickerViewCell.h */,
-				BEE341BF0F481345008C826E /* TTPickerViewCell.m */,
-			);
-			name = "Helper Views";
 			sourceTree = "<group>";
 		};
 		BEB46A860F8F8170004B34A0 /* Layout */ = {
@@ -538,6 +529,8 @@
 				BEE341CE0F4815B0008C826E /* TTSearchTextField.m */,
 				BEE3419C0F480B87008C826E /* TTPickerTextField.h */,
 				BEE341A50F480BA2008C826E /* TTPickerTextField.m */,
+				BEE341BD0F48133F008C826E /* TTPickerViewCell.h */,
+				BEE341BF0F481345008C826E /* TTPickerViewCell.m */,
 				BEE3476D0F48F5F6008C826E /* TTSearchBar.h */,
 				BEE3476F0F48F604008C826E /* TTSearchBar.m */,
 			);
@@ -581,8 +574,6 @@
 				BEF31F6F0F352E64000DE5D2 /* Three20.h */,
 				BEF31F5C0F352E64000DE5D2 /* TTGlobal.h */,
 				BEF31F480F352E64000DE5D2 /* TTGlobal.m */,
-				BE23E797100B13E200F40C3B /* TTModel.h */,
-				BE52E993100D8EF800E03DB7 /* TTModel.m */,
 				BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */,
 				BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */,
 			);
@@ -612,8 +603,6 @@
 			children = (
 				BEF31F6D0F352E64000DE5D2 /* TTViewController.h */,
 				BEF31F570F352E64000DE5D2 /* TTViewController.m */,
-				BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */,
-				BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */,
 				BEA69ECC0FAC0FEC00DA7DDC /* TTWebController.h */,
 				BEA69ECA0FAC0FD600DA7DDC /* TTWebController.m */,
 				BEE34EAF0F495C4A008C826E /* TTMessageController.h */,
@@ -626,6 +615,17 @@
 				BED03765100915820083AC18 /* TTActionSheetController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BEF44D4F10182FD800E9EC07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BE23E797100B13E200F40C3B /* TTModel.h */,
+				BE52E993100D8EF800E03DB7 /* TTModel.m */,
+				BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */,
+				BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -38,6 +38,11 @@
 - (void)createModel;
 
 /**
+ * Releases the current model and forces the creation of a new model.
+ */
+- (void)invalidateModel;
+
+/**
  * Indicates whether the model has been created.
  */
 - (BOOL)isModelCreated;
@@ -110,9 +115,9 @@
 - (void)invalidateView;
 
 /** 
- * Forces the model and view to be created, loaded, and displayed, if they weren't already.
+ * Immediately creates, loads, and displays the model (if it was not already).
  */
-- (void)validateView;
+- (void)updateView;
 
 /**
  * Called before the model is asked to load itself.

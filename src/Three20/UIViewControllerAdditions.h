@@ -83,6 +83,16 @@
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated;
 
 /**
+ * Gets a key that can be used to identify a subcontroller in subcontrollerForKey.
+ */
+- (NSString*)keyForSubcontroller:(UIViewController*)controller;
+
+/**
+ * Gets a subcontroller with the key that was returned from keyForSubcontroller.
+ */
+- (UIViewController*)subcontrollerForKey:(NSString*)key;
+
+/**
  * Persists aspects of the view state to a dictionary that can later be used to restore it.
  *
  * This will be called when TTNavigator is persisting the navigation history so that it
@@ -100,36 +110,17 @@
 - (void)restoreView:(NSDictionary*)state;
 
 /**
- * Gets a key that can be used to identify a subcontroller in subcontrollerForKey.
- */
-- (NSString*)keyForSubcontroller:(UIViewController*)controller;
-
-/**
- * Gets a subcontroller with the key that was returned from keyForSubcontroller.
- */
-- (UIViewController*)subcontrollerForKey:(NSString*)key;
-
-/**
  * XXXjoe Not documenting this in the hopes that I can eliminate it ;)
  */
 - (void)persistNavigationPath:(NSMutableArray*)path;
 
 /**
- * Shows a UIAlertView with a message and title.
+ * Finishes initializing the controller after a TTNavigator-coordinated delay.
  *
- * @delegate A UIAlertView delegate
- */ 
-- (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate;
-
-/**
- * Shows a UIAlertView with a message.
- */ 
-- (void)alert:(NSString*)message;
-
-/**
- * Shows a UIAlertView with an error message.
- */ 
-- (void)alertError:(NSString*)message;
+ * If the controller was created in between calls to TTNavigator beginDelay and endDelay, then
+ * this will be called after endDelay.
+ */
+- (void)delayDidEnd;
 
 /**
  * Shows or hides the navigation and status bars.

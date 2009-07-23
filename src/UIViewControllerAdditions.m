@@ -52,19 +52,6 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (void)showNavigationBar:(BOOL)show animated:(BOOL)animated {
-  if (animated) {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-  }
-
-  self.navigationController.navigationBar.alpha = show ? 1 : 0;
-  
-  if (animated) {
-    [UIView commitAnimations];
-  }
-}
-
 - (UIViewAnimationTransition)invertTransition:(UIViewAnimationTransition)transition {
   switch (transition) {
     case UIViewAnimationTransitionCurlUp:
@@ -232,15 +219,6 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
 }
 
-- (void)persistNavigationPath:(NSMutableArray*)path {
-}
-
-- (void)persistView:(NSMutableDictionary*)state {
-}
-
-- (void)restoreView:(NSDictionary*)state {
-}
-
 - (NSString*)keyForSubcontroller:(UIViewController*)controller {
   return nil;
 }
@@ -249,27 +227,29 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   return nil;
 }
 
-- (void)alert:(NSString*)message title:(NSString*)title delegate:(id)delegate {
-  if (message) {
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:title message:message
-      delegate:delegate cancelButtonTitle:TTLocalizedString(@"OK", @"") otherButtonTitles:nil]
-      autorelease];
-    [alert show];
-  }
+- (void)persistView:(NSMutableDictionary*)state {
 }
 
-- (void)alert:(NSString*)message {
-  [self alert:message title:TTLocalizedString(@"Alert", @"") delegate:nil];
+- (void)restoreView:(NSDictionary*)state {
 }
 
-- (void)alertError:(NSString*)message {
-  [self alert:message title:TTLocalizedString(@"Error", @"") delegate:nil];
+- (void)persistNavigationPath:(NSMutableArray*)path {
+}
+
+- (void)delayDidEnd {
 }
 
 - (void)showBars:(BOOL)show animated:(BOOL)animated {
   [[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];
-  
-  [self showNavigationBar:show animated:animated];
+
+  if (animated) {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+  }
+  self.navigationController.navigationBar.alpha = show ? 1 : 0;
+  if (animated) {
+    [UIView commitAnimations];
+  }
 }
 
 - (void)dismissModalViewController {

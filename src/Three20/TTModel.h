@@ -30,7 +30,7 @@
 - (BOOL)isLoadingMore;
 
 /**
- * Indicates that the data is of date and should be refreshed as soon as possible.
+ * Indicates that the model is of date and should be reloaded as soon as possible.
  */
 -(BOOL)isOutdated;
 
@@ -40,14 +40,14 @@
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more;
 
 /**
- * Invalidates data stored in the cache or optionally erases it.
- */
-- (void)invalidate:(BOOL)erase;
-
-/**
  * Cancels a load that is in progress.
  */
 - (void)cancel;
+
+/**
+ * Invalidates data stored in the cache or optionally erases it.
+ */
+- (void)invalidate:(BOOL)erase;
 
 @end
 
@@ -122,37 +122,30 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * The default implementation of TTModel which is built to work with TTURLRequests.
- *
- * If you subclass TTModel and use it as the delegate of your TTURLRequests, it will automatically
- * manage many of the TTModel properties based on the results of the requests.
+ * A default implementation of TTModel does nothing other than appear to be loaded.
  */
-@interface TTModel : NSObject <TTModel, TTURLRequestDelegate> {
+@interface TTModel : NSObject <TTModel> {
   NSMutableArray* _delegates;
-  TTURLRequest* _loadingRequest;
-  NSDate* _loadedTime;
-  NSString* _cacheKey;
-  BOOL _isLoadingMore;
-  BOOL _hasNoMore;
 }
 
-@property(nonatomic,retain) NSDate* loadedTime;
-@property(nonatomic,copy) NSString* cacheKey;
-@property(nonatomic) BOOL hasNoMore;
-
 /**
- * Initializes a model with data that is not loaded remotely.
- */ 
-- (id)initLocalModel;
-
-/**
- * Initializes a model with data that is loaded remotely.
- */ 
-- (id)initRemoteModel;
-
+ * Notifies delegates that the model started to load.
+ */
 - (void)didStartLoad;
+
+/**
+ * Notifies delegates that the model finished loading
+ */
 - (void)didFinishLoad;
+
+/**
+ * Notifies delegates that the model failed to load.
+ */
 - (void)didFailLoadWithError:(NSError*)error;
+
+/**
+ * Notifies delegates that the model canceled its load.
+ */
 - (void)didCancelLoad;
 
 /**
@@ -165,10 +158,47 @@
  */
 - (void)endUpdates;
 
+/**
+ * Notifies delegates that an object was updated.
+ */
 - (void)didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
+
+/**
+ * Notifies delegates that an object was inserted.
+ */
 - (void)didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
+
+/**
+ * Notifies delegates that an object was deleted.
+ */
 - (void)didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
+
+/**
+ * Notifies delegates that the model changed in some fundamental way.
+ */
 - (void)didChange;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Ab implementation of TTModel which is built to work with TTURLRequests.
+ *
+ * If you use a TTURLRequestModel as the delegate of your TTURLRequests, it will automatically
+ * manage many of the TTModel properties based on the state of your requests.
+ */
+@interface TTURLRequestModel : TTModel <TTURLRequestDelegate> {
+  TTURLRequest* _loadingRequest;
+  NSDate* _loadedTime;
+  NSString* _cacheKey;
+  BOOL _isLoadingMore;
+  BOOL _hasNoMore;
+}
+
+@property(nonatomic,retain) NSDate* loadedTime;
+@property(nonatomic,copy) NSString* cacheKey;
+@property(nonatomic) BOOL hasNoMore;
 
 /**
  * Resets the model to its original state before any data was loaded.
@@ -176,3 +206,4 @@
 - (void)reset;
 
 @end
+

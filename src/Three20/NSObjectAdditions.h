@@ -4,16 +4,6 @@
 @interface NSObject (TTCategory)
 
 /**
- * Converts the object to a URL using TTURLMap.
- */
-@property(nonatomic,readonly) NSString* URLValue;
-
-/**
- * Converts the object to a specially-named URL using TTURLMap.
- */
-- (NSString*)URLValueWithName:(NSString*)name;
-
-/**
  * Additional performSelector signatures that support up to 7 arguments.
  */
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3;
@@ -27,8 +17,13 @@
   withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 withObject:(id)p7;
 
 /**
- * Call a selector with any number of arguments.
+ * Converts the object to a URL using TTURLMap.
  */
-- (id)performSelector:(SEL)selector withObjects:(NSArray*)arguments;
+@property(nonatomic,readonly) NSString* URLValue;
+
+/**
+ * Converts the object to a specially-named URL using TTURLMap.
+ */
+- (NSString*)URLValueWithName:(NSString*)name;
 
 @end

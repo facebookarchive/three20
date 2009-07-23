@@ -113,6 +113,16 @@ typedef enum {
 #define TT_DEFAULT_CACHE_EXPIRATION_AGE (60*60*24*7) // 1 week
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Time
+
+#define TT_MINUTE 60
+#define TT_HOUR (60*TT_MINUTE)
+#define TT_DAY (24*TT_HOUR)
+#define TT_WEEK (7*TT_DAY)
+#define TT_MONTH (30.5*TT_DAY)
+#define TT_YEAR (365*TT_DAY)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Animation
 
 /**
@@ -207,6 +217,12 @@ void TTNetworkRequestStarted();
  * The status bar activity indicator will be spinning while there are active requests.
  */
 void TTNetworkRequestStopped();
+
+/**
+ * A convenient way to show a UIAlertView with a message;
+ */
+void TTAlert(NSString* message);
+void TTAlertError(NSString* message);
 
 /**
  * Gets the current runtime version of iPhone OS.

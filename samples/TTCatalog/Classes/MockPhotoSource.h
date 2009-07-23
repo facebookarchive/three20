@@ -11,7 +11,7 @@ typedef enum {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface MockPhotoSource : TTModel <TTPhotoSource> {
+@interface MockPhotoSource : TTURLRequestModel <TTPhotoSource> {
   MockPhotoSourceType _type;
   NSString* _title;
   NSMutableArray* _photos;

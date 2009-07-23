@@ -15,7 +15,10 @@ typedef enum {
   TTURLMap* _URLMap;
   UIWindow* _window;
   UIViewController* _rootViewController;
+  NSMutableArray* _delayedControllers;
   TTNavigatorPersistenceMode _persistenceMode;
+  NSTimeInterval _persistenceExpirationAge;
+  BOOL _delayCount;
   BOOL _supportsShakeToReload;
   BOOL _opensExternalURLs;
 }
@@ -50,7 +53,6 @@ typedef enum {
  */
 @property(nonatomic,readonly) UIViewController* topViewController;
 
-
 /**
  * The URL of the currently visible view controller;
  *
@@ -64,6 +66,17 @@ typedef enum {
 @property(nonatomic) TTNavigatorPersistenceMode persistenceMode;
 
 /**
+ * The age at which persisted view controllers are too old to be restored.
+ *
+ * In some cases, it is a good practice not to restore really old navigation paths, because
+ * the user probably won't remember how they got there, and would prefer to start from the
+ * beginning.
+ *
+ * Set this to 0 to restore from any age. The default value is 0.
+ */
+@property(nonatomic) NSTimeInterval persistenceExpirationAge;
+
+/**
  * Causes the current view controller to be reloaded when shaking the phone.
  */
 @property(nonatomic) BOOL supportsShakeToReload;
@@ -74,6 +87,13 @@ typedef enum {
  * The default value is NO.
  */
 @property(nonatomic) BOOL opensExternalURLs;
+
+/**
+ * Indicates that we asking controllers to delay heavy operations until a later time.
+ *
+ * The default value is NO.
+ */
+@property(nonatomic,readonly) BOOL isDelayed;
 
 + (TTNavigator*)navigator;
 
@@ -108,6 +128,20 @@ typedef enum {
 - (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
                      pattern:(TTURLPattern**)pattern;
 
+/**
+ * Tells the navigator to delay heavy operations.
+ *
+ * Initializing controllers can be very expensive, so if you are going to do some animation
+ * while this might be happening, this will tell controllers created through the navigator
+ * that they should hold off so as not to slow down the operations.
+ */
+- (void)beginDelay;
+
+/**
+ * Tells controllers that were created during the delay to finish what they were planning to do.
+ */
+- (void)endDelay;
+
 /** 
  * Persists all view controllers to user defaults.
  */
@@ -136,8 +170,14 @@ typedef enum {
  */
 - (void)removeAllViewControllers;
 
+/**
+ * Gets a navigation path which can be used to locate an object.
+ */
 - (NSString*)pathForObject:(id)object;
 
+/**
+ * Finds an object using its navigation path.
+ */
 - (id)objectForPath:(NSString*)path;
 
 /** 

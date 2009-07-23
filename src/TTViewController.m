@@ -133,6 +133,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
   _isViewAppearing = YES;
   _hasViewAppeared = YES;
 
@@ -154,10 +155,12 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
   _isViewAppearing = NO;
 }
 
@@ -173,6 +176,8 @@
     [super didReceiveMemoryWarning];
 
     _hasViewAppeared = NO;
+  } else {
+    [super didReceiveMemoryWarning];
   }
 }
 
