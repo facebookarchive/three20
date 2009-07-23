@@ -19,8 +19,6 @@
 @property(nonatomic,readonly) NSURL* URL;
 @property(nonatomic,retain) UIView* headerView;
 
-- (id)initWithURL:(NSURL*)URL;
-
 - (void)openURL:(NSURL*)URL;
 - (void)openRequest:(NSURLRequest*)request;
 

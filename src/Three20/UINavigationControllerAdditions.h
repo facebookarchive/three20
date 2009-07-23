@@ -12,6 +12,6 @@
 /**
  * Pops a view controller with a transition other than the standard sliding animation.
  */
-- (void)popViewControllerAnimatedWithTransition:(UIViewAnimationTransition)transition;
+- (UIViewController*)popViewControllerAnimatedWithTransition:(UIViewAnimationTransition)transition;
 
 @end

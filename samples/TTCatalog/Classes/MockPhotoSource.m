@@ -9,7 +9,6 @@
 
 - (void)fakeLoadReady {
   _fakeLoadTimer = nil;
-  _loadedTime = [[NSDate date] retain];
 
   if (_type & MockPhotoSourceLoadError) {
     [_delegates perform:@selector(model:didFailLoadWithError:) withObject:self withObject:nil];

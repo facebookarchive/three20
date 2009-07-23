@@ -50,27 +50,9 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 @implementation UIViewController (TTCategory)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (UIViewAnimationTransition)invertTransition:(UIViewAnimationTransition)transition {
-  switch (transition) {
-    case UIViewAnimationTransitionCurlUp:
-      return UIViewAnimationTransitionCurlDown;
-    case UIViewAnimationTransitionCurlDown:
-      return UIViewAnimationTransitionCurlUp;
-    case UIViewAnimationTransitionFlipFromLeft:
-      return UIViewAnimationTransitionFlipFromRight;
-    case UIViewAnimationTransitionFlipFromRight:
-      return UIViewAnimationTransitionFlipFromLeft;
-    default:
-      return UIViewAnimationTransitionNone;
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-// Swizzled with dealloc by TTURLMap (only if you're using TTURLMap)
+// Swapped with dealloc by TTURLMap (only if you're using TTURLMap)
 - (void)ttdealloc {
   NSString* URL = self.originalNavigatorURL;
   if (URL) {
@@ -200,19 +182,7 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 
 - (void)removeFromSupercontrollerAnimated:(BOOL)animated {
   if (self.navigationController) {
-    if (animated) {
-      NSString* URL = self.originalNavigatorURL;
-      UIViewAnimationTransition transition = URL
-        ? [[TTNavigator navigator].URLMap transitionForURL:URL] : UIViewAnimationTransitionNone;
-      if (!transition) {
-        [self.navigationController popViewControllerAnimated:YES];
-      } else  {
-        UIViewAnimationTransition inverseTransition = [self invertTransition:transition];
-        [self.navigationController popViewControllerAnimatedWithTransition:inverseTransition];
-      }
-    } else {
-      [self.navigationController popViewControllerAnimated:NO];
-    }
+    [self.navigationController popViewControllerAnimated:animated];
   }
 }
 
@@ -227,7 +197,8 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   return nil;
 }
 
-- (void)persistView:(NSMutableDictionary*)state {
+- (BOOL)persistView:(NSMutableDictionary*)state {
+  return YES;
 }
 
 - (void)restoreView:(NSDictionary*)state {

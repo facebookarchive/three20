@@ -271,9 +271,12 @@
     _supportsShakeToReload = NO;
     _opensExternalURLs = NO;
     
-    // Swizzle a new dealloc for UIViewController so it notifies us when it's going away.
+    // SwapMethods a new dealloc for UIViewController so it notifies us when it's going away.
     // We need to remove dying controllers from our binding cache.
-    TTSwizzle([UIViewController class], @selector(dealloc), @selector(ttdealloc));
+    TTSwapMethods([UIViewController class], @selector(dealloc), @selector(ttdealloc));
+
+    TTSwapMethods([UINavigationController class], @selector(popViewControllerAnimated:),
+              @selector(popViewControllerAnimated2:));
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                           selector:@selector(applicationWillTerminateNotification:)
@@ -504,12 +507,12 @@
     // Stop if we reach a model view controller whose model could not be synchronously loaded.
     // That is because the controller after it may depend on the data it could not load, so
     // we'd better not risk opening more controllers that may not be able to function.
-    if ([controller isKindOfClass:[TTModelViewController class]]) {
-      TTModelViewController* modelViewController = (TTModelViewController*)controller;
-      if (!modelViewController.model.isLoaded) {
-        break;
-      }
-    }
+//    if ([controller isKindOfClass:[TTModelViewController class]]) {
+//      TTModelViewController* modelViewController = (TTModelViewController*)controller;
+//      if (!modelViewController.model.isLoaded) {
+//        break;
+//      }
+//    }
 
     // Stop after one controller if we are in "persist top" mode
     if (_persistenceMode == TTNavigatorPersistenceModeTop && passedContainer) {
@@ -528,9 +531,9 @@
     // Let the controller persists its own arbitrary state
     NSMutableDictionary* state = [NSMutableDictionary dictionaryWithObject:URL  
                                                       forKey:@"__navigatorURL__"];
-    [controller persistView:state];
-
-    [path addObject:state];
+    if ([controller persistView:state]) {
+      [path addObject:state];
+    }
   }
   [controller persistNavigationPath:path];
 
@@ -538,7 +541,7 @@
       && controller.modalViewController.parentViewController == controller) {
     [self persistController:controller.modalViewController path:path];
   } else if (controller.popupViewController
-      && controller.popupViewController.superController == controller) {
+             && controller.popupViewController.superController == controller) {
     [self persistController:controller.popupViewController path:path];
   }
 }

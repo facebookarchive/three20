@@ -318,6 +318,10 @@ static const CGFloat kDesiredTableHeight = 150;
   [self reloadTable];
 }
 
+- (void)modelDidChange:(id<TTModel>)model {
+  [self reloadTable];
+}
+
 - (void)model:(id<TTModel>)model didFailLoadWithError:(NSError*)error {
   [self reloadTable];
 }

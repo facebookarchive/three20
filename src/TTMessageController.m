@@ -412,7 +412,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UTViewController (TTCategory)
 
-- (void)persistView:(NSMutableDictionary*)state {
+- (BOOL)persistView:(NSMutableDictionary*)state {
   NSMutableArray* fields = [NSMutableArray array];
   for (NSInteger i = 0; i < _fields.count; ++i) {
     TTMessageField* field = [_fields objectAtIndex:i];
@@ -436,9 +436,12 @@
   
   NSInteger firstResponder = [self fieldIndexOfFirstResponder];
   [state setObject:[NSNumber numberWithInt:firstResponder] forKey:@"firstResponder"];
+  return [super persistView:state];
 }
 
 - (void)restoreView:(NSDictionary*)state {
+  self.view;
+  TT_RELEASE_SAFELY(_initialRecipients);
   NSMutableArray* fields = [state objectForKey:@"fields"];
   for (NSInteger i = 0; i < fields.count; ++i) {
     TTMessageField* field = [_fields objectAtIndex:i];

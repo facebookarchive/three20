@@ -314,14 +314,18 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   [_query setObject:component forKey:name];
 }
 
-- (void)makeSelectorWithNames:(NSArray*)names {
-  NSString* selectorName = [[names componentsJoinedByString:@":"] stringByAppendingString:@":"];
-  SEL selector = NSSelectorFromString(selectorName);
+- (void)setSelectorIfPossible:(SEL)selector {
   if (!(_targetClass || _targetObject)
       || (_targetClass && class_respondsToSelector(_targetClass, selector))
       || (_targetObject && [_targetObject respondsToSelector:selector])) {
     _selector = selector;
   }
+}
+
+- (void)setSelectorWithNames:(NSArray*)names {
+  NSString* selectorName = [[names componentsJoinedByString:@":"] stringByAppendingString:@":"];
+  SEL selector = NSSelectorFromString(selectorName);
+  [self setSelectorIfPossible:selector];
 }
 
 - (void)compileURL:(NSURL*)URL {
@@ -389,11 +393,13 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
   }
 
   if (parts.count) {
-    [self makeSelectorWithNames:parts];
+    [self setSelectorWithNames:parts];
     if (!_selector) {
       [parts addObject:@"query"];
-      [self makeSelectorWithNames:parts];
+      [self setSelectorWithNames:parts];
     }
+  } else {
+    [self setSelectorIfPossible:@selector(initWithNavigatorURL:query:)];
   }
 }
 
@@ -609,7 +615,11 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (void)compileForObject {
-  if (![_URL isEqualToString:kUniversalURLPattern]) {
+  if ([_URL isEqualToString:kUniversalURLPattern]) {
+    if (!_selector) {
+      [self deduceSelector];
+    }
+  } else {
     [self compileURL:[NSURL URLWithString:_URL]];
     
     // XXXjoe Don't do this if the pattern is a URL generator

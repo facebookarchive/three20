@@ -256,4 +256,4 @@ NSString* TTPathForBundleResource(NSString* relativePath);
 
 NSString* TTPathForDocumentsResource(NSString* relativePath);
 
-void TTSwizzle(Class cls, SEL originalSel, SEL newSel);
+void TTSwapMethods(Class cls, SEL originalSel, SEL newSel);

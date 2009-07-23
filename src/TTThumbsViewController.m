@@ -239,12 +239,12 @@ static CGFloat kThumbnailRowHeight = 79;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 
-- (void)persistView:(NSMutableDictionary*)state {
-  [super persistView:state];
+- (BOOL)persistView:(NSMutableDictionary*)state {
   NSString* delegate = [[TTNavigator navigator] pathForObject:_delegate];
   if (delegate) {
     [state setObject:delegate forKey:@"delegate"];
   }
+  return [super persistView:state];
 }
 
 - (void)restoreView:(NSDictionary*)state {

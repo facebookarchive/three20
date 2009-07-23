@@ -150,7 +150,9 @@
 }
 
 - (BOOL)isOutdated {
-  if (!_cacheKey) {
+  if (!_cacheKey && _loadedTime) {
+    return YES;
+  } else if (!_cacheKey) {
     return NO;
   } else {
     NSDate* loadedTime = self.loadedTime;

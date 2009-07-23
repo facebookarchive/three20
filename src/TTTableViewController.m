@@ -172,9 +172,10 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UTViewController (TTCategory)
 
-- (void)persistView:(NSMutableDictionary*)state {
+- (BOOL)persistView:(NSMutableDictionary*)state {
   CGFloat scrollY = _tableView.contentOffset.y;
   [state setObject:[NSNumber numberWithFloat:scrollY] forKey:@"scrollOffsetY"];
+  return [super persistView:state];
 }
 
 - (void)restoreView:(NSDictionary*)state {

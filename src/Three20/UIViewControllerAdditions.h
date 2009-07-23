@@ -99,7 +99,7 @@
  * can later be restored.  This usually happens when the app quits, or when there is a low
  * memory warning.
  */
-- (void)persistView:(NSMutableDictionary*)state;
+- (BOOL)persistView:(NSMutableDictionary*)state;
 
 /**
  * Restores aspects of the view state from a dictionary populated by persistView.

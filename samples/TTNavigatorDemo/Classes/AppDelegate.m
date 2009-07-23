@@ -13,12 +13,14 @@
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
 
   TTURLMap* map = navigator.URLMap;
-  [map from:@"*" toViewController:[TTWebController class] selector:@selector(initWithURL:)];
+  [map from:@"*" toViewController:[TTWebController class]];
   [map from:@"tt://tabBar" toSharedViewController:[TabBarController class]];
   [map from:@"tt://menu/(initWithMenu:)" toSharedViewController:[MenuController class]];
   [map from:@"tt://food/(initWithFood:)" toViewController:[ContentController class]];
   [map from:@"tt://about/(initWithAbout:)" parent:@"tt://menu/5"
        toViewController:[ContentController class] selector:nil transition:0];
+  [map from:@"tt://food/(initWithNutrition:)/nutrition" toViewController:[ContentController class]
+       transition:UIViewAnimationTransitionFlipFromLeft];
   [map from:@"tt://order?waitress=(initWithWaitress:)"
        toModalViewController:[ContentController class]];
   [map from:@"tt://order?waitress=()#(orderAction:)" toViewController:[ContentController class]];

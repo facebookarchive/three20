@@ -183,7 +183,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Ab implementation of TTModel which is built to work with TTURLRequests.
+ * An implementation of TTModel which is built to work with TTURLRequests.
  *
  * If you use a TTURLRequestModel as the delegate of your TTURLRequests, it will automatically
  * manage many of the TTModel properties based on the state of your requests.

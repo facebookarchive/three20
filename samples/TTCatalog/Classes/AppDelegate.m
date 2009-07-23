@@ -29,7 +29,7 @@
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
 
   TTURLMap* map = navigator.URLMap;
-  [map from:@"*" toViewController:[TTWebController class] selector:@selector(initWithURL:)];
+  [map from:@"*" toViewController:[TTWebController class]];
   [map from:@"tt://catalog" toViewController:[CatalogController class]];
   [map from:@"tt://photoTest1" toViewController:[PhotoTest1Controller class]];
   [map from:@"tt://photoTest2" toViewController:[PhotoTest2Controller class]];
