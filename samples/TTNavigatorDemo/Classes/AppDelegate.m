@@ -11,7 +11,8 @@
 - (void)applicationDidFinishLaunching:(UIApplication*)application {
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
-
+  navigator.window = [[[UIWindow alloc] initWithFrame:TTScreenBounds()] autorelease];
+  
   TTURLMap* map = navigator.URLMap;
   [map from:@"*" toViewController:[TTWebController class]];
   [map from:@"tt://tabBar" toSharedViewController:[TabBarController class]];

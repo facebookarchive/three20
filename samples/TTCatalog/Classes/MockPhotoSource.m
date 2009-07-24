@@ -86,14 +86,15 @@
   return !!_fakeLoadTimer;
 }
 
-- (BOOL)isEmpty {
-  return !_photos.count;
+- (BOOL)isLoaded {
+  return !!_photos;
 }
 
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
   if (cachePolicy & TTURLRequestCachePolicyNetwork) {
     [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
     
+    TT_RELEASE_SAFELY(_photos);
     _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
       selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];
   }

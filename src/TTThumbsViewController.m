@@ -181,11 +181,11 @@ static CGFloat kThumbnailRowHeight = 79;
     _delegate = nil;
     _photoSource = nil;
     
-    self.hidesBottomBarWhenPushed = YES;
+    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
     self.navigationBarStyle = UIBarStyleBlackTranslucent;
     self.navigationBarTintColor = nil;
-    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
     self.wantsFullScreenLayout = YES;
+    self.hidesBottomBarWhenPushed = YES;
   }
   
   return self;
@@ -201,29 +201,15 @@ static CGFloat kThumbnailRowHeight = 79;
 // UIViewController
 
 - (void)loadView {
-  CGRect screenFrame = [UIScreen mainScreen].bounds;
-  self.view = [[[UIView alloc] initWithFrame:screenFrame] autorelease];
-  self.view.autoresizesSubviews = YES;
-	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-  CGRect innerFrame = CGRectMake(0, 0,
-                                 screenFrame.size.width, screenFrame.size.height + TT_CHROME_HEIGHT);
-  UIView* innerView = [[[UIView alloc] initWithFrame:innerFrame] autorelease];
-  innerView.backgroundColor = TTSTYLEVAR(backgroundColor);
-  [self.view addSubview:innerView];
+  [super loadView];
   
-  CGRect tableFrame = CGRectMake(0, TT_CHROME_HEIGHT,
-                                 screenFrame.size.width, screenFrame.size.height - TT_CHROME_HEIGHT);
-  self.tableView = [[[UITableView alloc] initWithFrame:tableFrame
-                                         style:UITableViewStylePlain] autorelease];
   self.tableView.rowHeight = kThumbnailRowHeight;
 	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth
     | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
   self.tableView.backgroundColor = TTSTYLEVAR(backgroundColor);
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  self.tableView.contentInset = UIEdgeInsetsMake(4, 0, 0, 0);
-  self.tableView.clipsToBounds = NO;
-  [innerView addSubview:self.tableView];
+  self.tableView.contentInset = UIEdgeInsetsMake(TT_CHROME_HEIGHT+4, 0, 0, 0);
+  self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(TT_CHROME_HEIGHT, 0, 0, 0);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -275,6 +261,14 @@ static CGFloat kThumbnailRowHeight = 79;
 - (void)didLoadModel {
   [super didLoadModel];
   self.title = _photoSource.title;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewController
+
+- (CGRect)rectForOverlayView {
+  return TTRectContract(CGRectOffset([super rectForOverlayView], 0, TT_CHROME_HEIGHT),
+                        0, TT_CHROME_HEIGHT);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -522,6 +522,8 @@
     passedContainer = [controller canContainControllers];
   }
 
+  [self.window makeKeyAndVisible];
+  
   return controller;
 }
 

@@ -120,7 +120,8 @@
 - (void)loadView {
   [super loadView];
   
-  self.view = [[[UIView alloc] initWithFrame:TTNavigationFrame()] autorelease];
+  CGRect frame = self.wantsFullScreenLayout ? TTScreenBounds() : TTNavigationFrame(); 
+  self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth
                               | UIViewAutoresizingFlexibleHeight;
