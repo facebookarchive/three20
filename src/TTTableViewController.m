@@ -124,6 +124,8 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (void)dealloc {
+  _tableView.delegate = nil;
+  _tableView.dataSource = nil;
   TT_RELEASE_SAFELY(_tableDelegate);
   TT_RELEASE_SAFELY(_dataSource);
   TT_RELEASE_SAFELY(_tableView);
@@ -140,6 +142,9 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (void)viewDidUnload {
   [super viewDidUnload];
+  _tableView.delegate = nil;
+  _tableView.dataSource = nil;
+  TT_RELEASE_SAFELY(_tableDelegate);
   TT_RELEASE_SAFELY(_dataSource);
   TT_RELEASE_SAFELY(_tableView);
   [_tableBannerView removeFromSuperview];

@@ -152,7 +152,7 @@
   }
 }
 
-- (void)presentController:(UIViewController*)controller parent:(UIViewController*)parentController
+- (BOOL)presentController:(UIViewController*)controller parent:(UIViewController*)parentController
         mode:(TTNavigationMode)mode animated:(BOOL)animated transition:(NSInteger)transition {
   if (!_rootViewController) {
     [self setRootViewController:controller];
@@ -168,6 +168,7 @@
           superController = nextSuper;
         }
       }
+      return NO;
     } else if (parentController) {
       if ([controller isKindOfClass:[TTPopupViewController class]]) {
         TTPopupViewController* popupViewController  = (TTPopupViewController*)controller;
@@ -180,10 +181,11 @@
       }
     }
   }
+  return YES;
 }
 
-- (void)presentController:(UIViewController*)controller parent:(NSString*)parentURL
-        withPattern:(TTURLPattern*)pattern animated:(BOOL)animated
+- (BOOL)presentController:(UIViewController*)controller parent:(NSString*)parentURL
+        withPattern:(TTURLNavigatorPattern*)pattern animated:(BOOL)animated
         transition:(NSInteger)transition {
   if (controller) {
     UIViewController* topViewController = self.topViewController;
@@ -191,18 +193,19 @@
       UIViewController* parentController = [self parentForController:controller
                                                  parent:parentURL ? parentURL : pattern.parentURL];
       if (parentController && parentController != topViewController) {
-        [self presentController:parentController parent:nil mode:TTNavigationModeNone
-              animated:NO transition:0];
+        return [self presentController:parentController parent:nil mode:TTNavigationModeNone
+                     animated:NO transition:0];
       }
-      [self presentController:controller parent:parentController mode:pattern.navigationMode
-            animated:animated transition:transition];
+      return [self presentController:controller parent:parentController mode:pattern.navigationMode
+                   animated:animated transition:transition];
     }
   }
+  return NO;
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      state:(NSDictionary*)state animated:(BOOL)animated
-                     transition:(UIViewAnimationTransition)transition {
+                     transition:(UIViewAnimationTransition)transition withDelay:(BOOL)withDelay {
   if (!URL) {
     return nil;
   }
@@ -225,8 +228,11 @@
       return nil;
     }
   }
-
-  TTURLPattern* pattern = nil;
+  
+  if (withDelay) {
+    [self beginDelay];
+  }
+  TTURLNavigatorPattern* pattern = nil;
   UIViewController* controller = [self viewControllerForURL:URL query:query pattern:&pattern];
   if (controller) {
     if (state) {
@@ -243,8 +249,12 @@
       [_delegate navigator:self willOpenURL:theURL inViewController:controller];
     }
 
-    [self presentController:controller parent:parentURL withPattern:pattern
-          animated:animated transition:transition ? transition : pattern.transition];
+    BOOL wasNew = [self presentController:controller parent:parentURL withPattern:pattern
+                        animated:animated transition:transition ? transition : pattern.transition];
+  
+    if (withDelay && !wasNew) {
+      [self cancelDelay];
+    }
   } else if (_opensExternalURLs) {
     if ([_delegate respondsToSelector:@selector(navigator:willOpenURL:inViewController:)]) {
       [_delegate navigator:self willOpenURL:theURL inViewController:nil];
@@ -252,6 +262,7 @@
 
     [[UIApplication sharedApplication] openURL:theURL];
   }
+
   return controller;
 }
 
@@ -358,34 +369,42 @@
 
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated {
   return [self openURL:URL parent:nil query:nil state:nil animated:animated
-               transition:UIViewAnimationTransitionNone];
+               transition:UIViewAnimationTransitionNone withDelay:NO];
 }
 
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated
                      transition:(UIViewAnimationTransition)transition {
-  return [self openURL:URL parent:nil query:nil state:nil animated:YES transition:transition];
+  return [self openURL:URL parent:nil query:nil state:nil animated:animated
+               transition:transition withDelay:NO];
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated {
   return [self openURL:URL parent:parentURL query:nil state:nil animated:animated
-               transition:UIViewAnimationTransitionNone];
+               transition:UIViewAnimationTransitionNone withDelay:NO];
 }
 
 - (UIViewController*)openURL:(NSString*)URL query:(NSDictionary*)query animated:(BOOL)animated {
   return [self openURL:URL parent:nil query:query state:nil animated:animated
-               transition:UIViewAnimationTransitionNone];
+               transition:UIViewAnimationTransitionNone withDelay:NO];
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated {
   return [self openURL:URL parent:parentURL query:query state:nil animated:animated
-               transition:UIViewAnimationTransitionNone];
+               transition:UIViewAnimationTransitionNone withDelay:NO];
 }
 
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated transition:(UIViewAnimationTransition)transition {
   return [self openURL:URL parent:parentURL query:query state:nil animated:animated
-               transition:UIViewAnimationTransitionNone];
+               transition:UIViewAnimationTransitionNone withDelay:NO];
+}
+
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
+                     animated:(BOOL)animated transition:(UIViewAnimationTransition)transition
+                     withDelay:(BOOL)withDelay {
+  return [self openURL:URL parent:parentURL query:query state:nil animated:animated
+               transition:UIViewAnimationTransitionNone withDelay:withDelay];
 }
 
 - (UIViewController*)openURLs:(NSString*)URL,... {
@@ -410,7 +429,7 @@
 }
 
 - (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
-                     pattern:(TTURLPattern**)pattern {
+                     pattern:(TTURLNavigatorPattern**)pattern {
   NSRange fragmentRange = [URL rangeOfString:@"#" options:NSBackwardsSearch];
   if (fragmentRange.location != NSNotFound) {
     NSString* baseURL = [URL substringToIndex:fragmentRange.location];
@@ -465,11 +484,17 @@
 }
 
 - (void)endDelay {
-  if (!--_delayCount) {
+  if (_delayCount && !--_delayCount) {
     for (UIViewController* controller in _delayedControllers) {
       [controller delayDidEnd];
     }
     
+    TT_RELEASE_SAFELY(_delayedControllers);
+  }
+}
+
+- (void)cancelDelay {
+  if (_delayCount && !--_delayCount) {
     TT_RELEASE_SAFELY(_delayedControllers);
   }
 }
@@ -500,7 +525,8 @@
   BOOL passedContainer = NO;
   for (NSDictionary* state in path) {
     NSString* URL = [state objectForKey:@"__navigatorURL__"];
-    controller = [self openURL:URL parent:nil query:nil state:state animated:NO transition:0];
+    controller = [self openURL:URL parent:nil query:nil state:state animated:NO transition:0
+                      withDelay:NO];
     
     // Stop if we reach a model view controller whose model could not be synchronously loaded.
     // That is because the controller after it may depend on the data it could not load, so

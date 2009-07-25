@@ -109,11 +109,13 @@ typedef enum {
                      transition:(UIViewAnimationTransition)transition;
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated;
 - (UIViewController*)openURL:(NSString*)URL query:(NSDictionary*)query animated:(BOOL)animated;
-- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL
-                     query:(NSDictionary*)query animated:(BOOL)animated;
-- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL
-                     query:(NSDictionary*)query animated:(BOOL)animated
-                     transition:(UIViewAnimationTransition)transition;
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
+                     animated:(BOOL)animated;
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
+                     animated:(BOOL)animated transition:(UIViewAnimationTransition)transition;
+- (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
+                     animated:(BOOL)animated transition:(UIViewAnimationTransition)transition
+                     withDelay:(BOOL)withDelay;
 
 /** 
  * Opens a sequence of URLs, with only the last one being animated.
@@ -141,6 +143,11 @@ typedef enum {
  * Tells controllers that were created during the delay to finish what they were planning to do.
  */
 - (void)endDelay;
+
+/**
+ * Cancels the delay without notifying delayed controllers.
+ */
+- (void)cancelDelay;
 
 /** 
  * Persists all view controllers to user defaults.

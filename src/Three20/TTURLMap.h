@@ -1,6 +1,6 @@
 #import "Three20/TTGlobal.h"
 
-@class TTURLPattern;
+@class TTURLNavigatorPattern;
 
 typedef enum {
   TTNavigationModeNone,
@@ -16,8 +16,8 @@ typedef enum {
   NSMutableArray* _fragmentPatterns;
   NSMutableDictionary* _stringPatterns;
   NSMutableDictionary* _schemes;
-  TTURLPattern* _defaultObjectPattern;
-  TTURLPattern* _hashPattern;
+  TTURLNavigatorPattern* _defaultObjectPattern;
+  TTURLNavigatorPattern* _hashPattern;
   BOOL _invalidPatterns;
 }
 
@@ -111,7 +111,8 @@ typedef enum {
  */ 
 - (id)objectForURL:(NSString*)URL;
 - (id)objectForURL:(NSString*)URL query:(NSDictionary*)query;
-- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query pattern:(TTURLPattern**)pattern;
+- (id)objectForURL:(NSString*)URL query:(NSDictionary*)query
+      pattern:(TTURLNavigatorPattern**)pattern;
 
 /**
  * 

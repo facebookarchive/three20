@@ -262,6 +262,8 @@
 }
 
 - (void)invalidateModel {
+  [self resetViewStates];
+  [_model.delegates removeObject:self];
   TT_RELEASE_SAFELY(_model);
   self.model;
 }
