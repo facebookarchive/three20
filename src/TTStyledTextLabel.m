@@ -110,6 +110,71 @@ static const CGFloat kCancelHighlightThreshold = 4;
   [super dealloc];
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// UIResponder
+
+/*
+- (BOOL)canBecomeFirstResponder {
+  return YES;
+}
+
+- (BOOL)becomeFirstResponder {
+  BOOL became = [super becomeFirstResponder];
+
+  UIMenuController* menu = [UIMenuController sharedMenuController];
+  [menu setTargetRect:self.frame inView:self.superview];
+  [menu setMenuVisible:YES animated:YES];
+
+  self.highlighted = YES;
+  return became;
+}
+
+- (BOOL)resignFirstResponder {
+  self.highlighted = NO;
+  BOOL resigned = [super resignFirstResponder];
+  [[UIMenuController sharedMenuController] setMenuVisible:NO];
+  return resigned;
+}
+*/
+
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+  UITouch* touch = [touches anyObject];
+  CGPoint point = [touch locationInView:self];
+  point.x -= _contentInset.left;
+  point.y -= _contentInset.top;
+  
+  TTStyledBoxFrame* frame = [_text hitTest:point];
+  if (frame) {
+    [self setHighlightedFrame:frame];
+  }
+  
+  //[self performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.5];
+  
+  [super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
+  [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
+  TTTableView* tableView = (TTTableView*)[self ancestorOrSelfWithClass:[TTTableView class]];
+  if (!tableView) {
+    if (_highlightedNode) {
+      [_highlightedNode performDefaultAction];    
+      [self setHighlightedFrame:nil];
+    }
+  }
+
+  // We definitely don't want to call this if the label is inside a TTTableView, because
+  // it winds up calling touchesEnded on the table twice, triggering the link twice
+  [super touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event {
+  [super touchesCancelled:touches withEvent:event];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
@@ -136,35 +201,13 @@ static const CGFloat kCancelHighlightThreshold = 4;
                     _text.height+ (_contentInset.top + _contentInset.bottom));
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIResponder
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// UIResponderStandardEditActions
 
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
-  UITouch* touch = [touches anyObject];
-  CGPoint point = [touch locationInView:self];
-  point.x -= _contentInset.left;
-  point.y -= _contentInset.top;
-  
-  TTStyledBoxFrame* frame = [_text hitTest:point];
-  if (frame) {
-    [self setHighlightedFrame:frame];
-  }
-  
-  [super touchesBegan:touches withEvent:event];
-}
-
-- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-  TTTableView* tableView = (TTTableView*)[self ancestorOrSelfWithClass:[TTTableView class]];
-  if (!tableView) {
-    if (_highlightedNode) {
-      [_highlightedNode performDefaultAction];    
-      [self setHighlightedFrame:nil];
-    }
-  }
-
-  // We definitely don't want to call this if the label is inside a TTTableView, because
-  // it winds up calling touchesEnded on the table twice, triggering the link twice
-  [super touchesEnded:touches withEvent:event];
+- (void)copy:(id)sender {
+  NSString* text = _text.rootNode.outerText;
+  UIPasteboard* pasteboard = [UIPasteboard generalPasteboard];
+  [pasteboard setValue:text forPasteboardType:@"public.utf8-plain-text"];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

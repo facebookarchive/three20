@@ -34,7 +34,7 @@
     @"Controls",
     [TTTableTextItem itemWithText:@"Buttons" URL:@"tt://buttonTest"],
     [TTTableTextItem itemWithText:@"Tabs" URL:@"tt://tabBarTest"],
-    [TTTableTextItem itemWithText:@"Message Composer" URL:@"tt://composerTest"],
+    [TTTableTextItem itemWithText:@"Composers" URL:@"tt://composerTest"],
 
     @"Tables",
     [TTTableTextItem itemWithText:@"Table Items" URL:@"tt://tableItemTest"],

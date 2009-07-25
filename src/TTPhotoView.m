@@ -17,7 +17,7 @@ static const CGFloat kMaxCaptionHeight = 100;
 
 @implementation TTPhotoView
 
-@synthesize photo = _photo, extrasHidden = _extrasHidden, captionHidden = _captionHidden;
+@synthesize photo = _photo, hidesExtras = _hidesExtras, hidesCaption = _hidesCaption;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -48,6 +48,7 @@ static const CGFloat kMaxCaptionHeight = 100;
       _captionLabel.lineBreakMode = UILineBreakModeWordWrap;
       _captionLabel.textAlignment = UITextAlignmentCenter;
       _captionLabel.numberOfLines = 6;
+      _captionLabel.alpha = _hidesCaption ? 0 : 1;
       [self addSubview:_captionLabel];
     }
   }
@@ -65,8 +66,8 @@ static const CGFloat kMaxCaptionHeight = 100;
     _statusLabel = nil;
     _captionLabel = nil;
     _photoVersion = TTPhotoVersionNone;
-    _extrasHidden = NO;
-    _captionHidden = NO;
+    _hidesExtras = NO;
+    _hidesCaption = NO;
     
     self.clipsToBounds = NO;
   }
@@ -179,16 +180,16 @@ static const CGFloat kMaxCaptionHeight = 100;
   }
 }
 
-- (void)setExtrasHidden:(BOOL)extrasHidden {
-  _extrasHidden = extrasHidden;
-   _statusSpinner.alpha = _extrasHidden ? 0 : 1;
-   _statusLabel.alpha = _extrasHidden ? 0 : 1;
-   _captionLabel.alpha = _extrasHidden || _captionHidden ? 0 : 1;
+- (void)setHidesExtras:(BOOL)hidesExtras {
+  _hidesExtras = hidesExtras;
+   _statusSpinner.alpha = _hidesExtras ? 0 : 1;
+   _statusLabel.alpha = _hidesExtras ? 0 : 1;
+   _captionLabel.alpha = _hidesExtras || _hidesCaption ? 0 : 1;
 }
 
-- (void)setCaptionHidden:(BOOL)captionHidden {
-  _captionHidden = captionHidden;
-  _captionLabel.alpha = captionHidden ? 0 : 1;
+- (void)setHidesCaption:(BOOL)hidesCaption {
+  _hidesCaption = hidesCaption;
+  _captionLabel.alpha = hidesCaption ? 0 : 1;
 }
 
 - (BOOL)loadPreview:(BOOL)fromNetwork {

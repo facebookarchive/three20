@@ -141,7 +141,7 @@ static CGFloat kProgressMargin = 6;
   if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleWhiteBezel) {
     margin = kMargin;
     padding = kPadding;
-    bezelWidth = kPadding + contentWidth + padding;
+    bezelWidth = contentWidth + padding*2;
     bezelHeight = contentHeight + padding*2;
   } else {
     margin = 0;
@@ -174,7 +174,7 @@ static CGFloat kProgressMargin = 6;
     y += _progressView.height + kSpacing-1;
   }
   
-  _label.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + padding + indicatorSize/2), y,
+  _label.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + indicatorSize + kSpacing), y,
                             textWidth, textSize.height);
 
   _activityIndicator.frame = CGRectMake(_label.left - (indicatorSize+kSpacing), y,

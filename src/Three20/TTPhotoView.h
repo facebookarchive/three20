@@ -10,13 +10,13 @@
   UILabel* _statusLabel;
   UILabel* _captionLabel;
   TTPhotoVersion _photoVersion;
-  BOOL _extrasHidden;
-  BOOL _captionHidden;
+  BOOL _hidesExtras;
+  BOOL _hidesCaption;
 }
 
 @property(nonatomic,retain) id<TTPhoto> photo;
-@property(nonatomic) BOOL extrasHidden;
-@property(nonatomic) BOOL captionHidden;
+@property(nonatomic) BOOL hidesExtras;
+@property(nonatomic) BOOL hidesCaption;
 
 - (BOOL)loadPreview:(BOOL)fromNetwork;
 - (void)loadImage;

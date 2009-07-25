@@ -1,7 +1,8 @@
 #import "Three20/TTViewController.h"
 #import "Three20/TTURLRequestQueue.h"
-#import "Three20/TTStyleSheet.h"
 #import "Three20/TTSearchDisplayController.h"
+#import "Three20/TTStyleSheet.h"
+#import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -112,6 +113,15 @@
   [self viewDidUnload];
   
   [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIResponder
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+  if (event.type == UIEventSubtypeMotionShake && [TTNavigator navigator].supportsShakeToReload) {
+    [[TTNavigator navigator] reload];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

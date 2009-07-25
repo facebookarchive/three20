@@ -351,10 +351,8 @@ static const CGFloat kMarginY = 5;
     [self cancel];
   } else {
     BOOL shouldDismiss = [self willPostText:_textEditor.text];
-    if (!shouldDismiss) {
-      if ([_delegate respondsToSelector:@selector(postController:willPostText:)]) {
-        shouldDismiss = [_delegate postController:self willPostText:_textEditor.text];
-      }
+    if ([_delegate respondsToSelector:@selector(postController:willPostText:)]) {
+      shouldDismiss = [_delegate postController:self willPostText:_textEditor.text];
     }
     
     if (shouldDismiss) {

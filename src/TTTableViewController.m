@@ -201,9 +201,13 @@ static const CGFloat kBannerViewHeight = 22;
   [self layoutBannerView];
 }
 
+- (void)keyboardWillDisappear:(BOOL)animated withBounds:(CGRect)bounds {
+  [super keyboardWillDisappear:animated withBounds:bounds];
+  self.tableView.frame = TTRectContract(self.tableView.frame, 0, -bounds.size.height);
+}
+
 - (void)keyboardDidDisappear:(BOOL)animated withBounds:(CGRect)bounds {
   [super keyboardDidDisappear:animated withBounds:bounds];
-  self.tableView.frame = TTRectContract(self.tableView.frame, 0, -bounds.size.height);
   [self layoutOverlayView];
   [self layoutBannerView];
 }

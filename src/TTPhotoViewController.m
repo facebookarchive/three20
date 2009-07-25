@@ -176,7 +176,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)showCaptions:(BOOL)show {
   for (TTPhotoView* photoView in [_scrollView.visiblePages objectEnumerator]) {
-    photoView.captionHidden = !show;
+    photoView.hidesCaption = !show;
   }
 }
 
@@ -513,11 +513,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)scrollViewWillRotate:(TTScrollView*)scrollView
         toOrientation:(UIInterfaceOrientation)orientation {
-  self.centerPhotoView.extrasHidden = YES;
+  self.centerPhotoView.hidesExtras = YES;
 }
 
 - (void)scrollViewDidRotate:(TTScrollView*)scrollView {
-  self.centerPhotoView.extrasHidden = NO;
+  self.centerPhotoView.hidesExtras = NO;
 }
 
 - (BOOL)scrollViewShouldZoom:(TTScrollView*)scrollView {
@@ -525,11 +525,11 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)scrollViewDidBeginZooming:(TTScrollView*)scrollView {
-  self.centerPhotoView.extrasHidden = YES;
+  self.centerPhotoView.hidesExtras = YES;
 }
 
 - (void)scrollViewDidEndZooming:(TTScrollView*)scrollView {
-  self.centerPhotoView.extrasHidden = NO;
+  self.centerPhotoView.hidesExtras = NO;
 }
 
 - (void)scrollView:(TTScrollView*)scrollView tapped:(UITouch*)touch {
@@ -552,7 +552,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   if (!photoView) {
     photoView = [self createPhotoView];
     photoView.defaultImage = _defaultImage;
-    photoView.captionHidden = _toolbar.alpha == 0;
+    photoView.hidesCaption = _toolbar.alpha == 0;
   }
 
   id<TTPhoto> photo = [_photoSource photoAtIndex:pageIndex];
