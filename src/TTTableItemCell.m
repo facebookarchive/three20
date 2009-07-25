@@ -983,7 +983,6 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
     _activityLabel = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleGray];
-    _activityLabel.centeredToScreen = NO;
     [self.contentView addSubview:_activityLabel];
 
     self.accessoryType = UITableViewCellAccessoryNone;

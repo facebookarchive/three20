@@ -94,7 +94,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTPopupViewController
 
-- (void)showInViewController:(UIViewController*)parentViewController animated:(BOOL)animated {
+- (void)showInView:(UIView*)view animated:(BOOL)animated {
   [self viewWillAppear:animated];
   [self.alertView show];
   [self viewDidAppear:animated];

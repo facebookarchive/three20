@@ -709,7 +709,6 @@
       _activityView = [[TTActivityLabel alloc] initWithFrame:frame
                                                style:TTActivityLabelStyleWhiteBox];
       _activityView.text = [self titleForSending];
-      _activityView.centeredToScreen = NO;
       [self.view addSubview:_activityView];
     }
   } else {

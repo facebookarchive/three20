@@ -27,7 +27,7 @@
   if (self = [super init]) {
     _contentType = ContentTypeOrder;
     self.content = waitress;
-    self.text = [NSString stringWithFormat:@"%@ will take your order now.", waitress];
+    self.text = [NSString stringWithFormat:@"Hi, I'm %@, your imaginary waitress.", waitress];
 
     self.title = @"Place Your Order";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
@@ -104,7 +104,7 @@
 - (void)loadView {
   [super loadView];
   
-  CGRect frame = CGRectInset(self.view.bounds, 20, 20);
+  CGRect frame = CGRectMake(10, 10, self.view.width-20, 100);
   TTStyledTextLabel* label = [[[TTStyledTextLabel alloc] initWithFrame:frame] autorelease];
   label.tag = 42;
   label.font = [UIFont systemFontOfSize:22];
@@ -114,6 +114,15 @@
     self.view.backgroundColor = [UIColor grayColor];
     label.backgroundColor = self.view.backgroundColor;
     self.hidesBottomBarWhenPushed = YES;
+  } else if (_contentType == ContentTypeOrder) {
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"What do you want to eat?" forState:UIControlStateNormal];
+    [button addTarget:@"tt://order/food" action:@selector(openURLFromButton:)
+            forControlEvents:UIControlEventTouchUpInside];
+    [button sizeToFit];
+    button.top = label.bottom + 20;
+    button.left = floor(self.view.width/2 - button.width/2);
+    [self.view addSubview:button];
   }
 }
 

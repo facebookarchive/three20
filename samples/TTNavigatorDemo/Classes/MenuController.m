@@ -58,8 +58,8 @@
   
   self.navigationItem.rightBarButtonItem =
     [[[UIBarButtonItem alloc] initWithTitle:@"Order" style:UIBarButtonItemStyleBordered
-                              target:@"tt://order?waitress=Tammy&ref=toolbar"
-                              action:@selector(openURL)] autorelease];
+                              target:@"tt://order?waitress=Betty&ref=toolbar"
+                              action:@selector(openURLFromButton:)] autorelease];
 
   if (_page == MenuPageBreakfast) {
     self.dataSource = [TTSectionedDataSource dataSourceWithObjects:

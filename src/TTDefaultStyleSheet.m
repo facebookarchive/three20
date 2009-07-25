@@ -181,6 +181,14 @@
     [TTSolidBorderStyle styleWithColor:RGBCOLOR(178, 178, 178) width:1 next:nil]]];
 }
 
+- (TTStyle*)blackBanner {
+  return
+    [TTSolidFillStyle styleWithColor:RGBACOLOR(0, 0, 0, 0.5) next:
+    [TTFourBorderStyle styleWithTop:RGBCOLOR(0, 0, 0) right:nil bottom:nil left: nil width:1 next:
+    [TTFourBorderStyle styleWithTop:[UIColor colorWithWhite:1 alpha:0.2] right:nil bottom:nil
+                       left: nil width:1 next:nil]]];
+}
+
 - (TTStyle*)badgeWithFontSize:(CGFloat)fontSize {
   return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
@@ -370,6 +378,12 @@
     [TTContentStyle styleWithNext:nil]];
 }
 
+- (TTStyle*)postBox {
+  return
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:10] next:
+    [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:nil]];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public colors
 
@@ -462,7 +476,7 @@
 }
 
 - (UIColor*)tableGroupedBackgroundColor {
-  return nil;
+  return [UIColor groupTableViewBackgroundColor];
 }
 
 - (UIColor*)searchTableBackgroundColor {
@@ -528,10 +542,6 @@
   return [UIFont systemFontOfSize:17];
 }
 
-- (UIFont*)tableBannerFont {
-  return [UIFont boldSystemFontOfSize:12];
-}
-
 - (UIFont*)photoCaptionFont {
   return [UIFont boldSystemFontOfSize:13];
 }
@@ -550,6 +560,10 @@
 
 - (UIFont*)activityLabelFont {
   return [UIFont systemFontOfSize:17];
+}
+
+- (UIFont*)activityBannerFont {
+  return [UIFont boldSystemFontOfSize:11];
 }
 
 - (UITableViewCellSelectionStyle)tableSelectionStyle {

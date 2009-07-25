@@ -858,23 +858,7 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)layoutSubviews {
-  [self layoutPage];
-  [self layoutAdjacentPages];
-
-  if (_visiblePageIndex != _centerPageIndex && self.centerPage) {
-    _visiblePageIndex = _centerPageIndex;
-    [_delegate scrollView:self didMoveToPageAtIndex:_centerPageIndex];
-  }
-}
-
-- (void)didMoveToSuperview {
-  if (!self.superview) {
-    [self stopAnimation:YES];
-  }
-}
+// UIResponder
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesBegan:touches withEvent:event];
@@ -1007,6 +991,25 @@ static const NSTimeInterval kOvershoot = 2;
         [self startAnimationTo:edges duration:dur];
       }
     }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIView
+
+- (void)layoutSubviews {
+  [self layoutPage];
+  [self layoutAdjacentPages];
+
+  if (_visiblePageIndex != _centerPageIndex && self.centerPage) {
+    _visiblePageIndex = _centerPageIndex;
+    [_delegate scrollView:self didMoveToPageAtIndex:_centerPageIndex];
+  }
+}
+
+- (void)didMoveToSuperview {
+  if (!self.superview) {
+    [self stopAnimation:YES];
   }
 }
 

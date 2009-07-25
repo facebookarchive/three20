@@ -25,6 +25,7 @@
   [map from:@"tt://order?waitress=(initWithWaitress:)"
        toModalViewController:[ContentController class]];
   [map from:@"tt://order?waitress=()#(orderAction:)" toViewController:[ContentController class]];
+  [map from:@"tt://order/food" toViewController:[TTPostController class]];
   [map from:@"tt://order/confirm" toViewController:self selector:@selector(confirmOrder)];
   [map from:@"tt://order/send" toObject:self selector:@selector(sendOrder)];
 

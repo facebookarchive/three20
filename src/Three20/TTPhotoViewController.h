@@ -63,4 +63,9 @@
  */
 - (TTThumbsViewController*)createThumbsViewController;
 
+/**
+ * Sent to the controller after it moves from one photo to another.
+ */
+- (void)didMoveToPhoto:(id<TTPhoto>)photo fromPhoto:(id<TTPhoto>)fromPhoto;
+
 @end

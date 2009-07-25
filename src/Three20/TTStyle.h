@@ -31,6 +31,8 @@
 
 - (id)initWithNext:(TTStyle*)next;
 
+- (TTStyle*)next:(TTStyle*)next;
+
 - (void)draw:(TTStyleContext*)context;
 
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;

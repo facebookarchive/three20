@@ -4,6 +4,11 @@
 @interface UIViewController (TTCategory)
 
 /**
+ * The default initializer sent to view controllers opened through TTNavigator.
+ */
+- (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query;
+
+/**
  * The current URL that this view controller represents.
  */
 @property(nonatomic,readonly) NSString* navigatorURL;

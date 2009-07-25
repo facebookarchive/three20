@@ -15,7 +15,7 @@
 @interface TTPopupViewController : TTModelViewController {
 }
 
-- (void)showInViewController:(UIViewController*)parentViewController animated:(BOOL)animated;
+- (void)showInView:(UIView*)view animated:(BOOL)animated;
 - (void)dismissPopupViewControllerAnimated:(BOOL)animated;
 
 @end

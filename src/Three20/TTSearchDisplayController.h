@@ -3,6 +3,14 @@
 @protocol TTTableViewDataSource;
 @class TTTableViewController;
 
+/**
+ * Shows search results using a TTTableViewController.
+ *
+ * This extends the standard search display controller so that you can search a Three20 model.
+ * Searches that hit the internet and return asynchronously can provide feedback to the
+ * about the status of the remote search using TTModel's loading interface, and
+ * TTTableViewController's status views.
+ */
 @interface TTSearchDisplayController : UISearchDisplayController <UISearchDisplayDelegate> {
   id<UITableViewDelegate> _searchResultsDelegate2;
   TTTableViewController* _searchResultsViewController;

@@ -106,6 +106,11 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
+- (TTStyle*)next:(TTStyle*)next {
+  self.next = next;
+  return self;
+}
+
 - (void)draw:(TTStyleContext*)context {
   [self.next draw:context];
 }

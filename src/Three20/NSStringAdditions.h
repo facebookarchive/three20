@@ -32,5 +32,6 @@
  * Opens a URL with the string using TTURLMap.
  */
 - (void)openURL;
+- (void)openURLFromButton:(UIView*)button;
 
 @end

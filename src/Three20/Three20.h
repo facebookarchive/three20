@@ -19,12 +19,11 @@
 #import "Three20/TTStyledTextParser.h"
 
 #import "Three20/TTViewController.h"
-#import "Three20/TTTableViewController.h"
-#import "Three20/TTMessageController.h"
 #import "Three20/TTWebController.h"
+#import "Three20/TTMessageController.h"
 #import "Three20/TTAlertViewController.h"
 #import "Three20/TTActionSheetController.h"
-#import "Three20/TTSearchDisplayController.h"
+#import "Three20/TTPostController.h"
 
 #import "Three20/TTView.h"
 #import "Three20/TTImageView.h"
@@ -46,6 +45,8 @@
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTSearchBar.h"
 
+#import "Three20/TTTableViewController.h"
+#import "Three20/TTSearchDisplayController.h"
 #import "Three20/TTTableView.h"
 #import "Three20/TTListDataSource.h"
 #import "Three20/TTTableViewDelegate.h"

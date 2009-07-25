@@ -136,7 +136,7 @@
         parent:(UIViewController*)parentController animated:(BOOL)animated {
   parentController.popupViewController = controller;
   controller.superController = parentController;
-  [controller showInViewController:parentController animated:animated];
+  [controller showInView:parentController.view animated:animated];
 }
 
 - (void)presentModalController:(UIViewController*)controller
@@ -239,14 +239,14 @@
       }
     }
     
-    if ([_delegate respondsToSelector:@selector(navigator:wilOpenURL:inViewController:)]) {
+    if ([_delegate respondsToSelector:@selector(navigator:willOpenURL:inViewController:)]) {
       [_delegate navigator:self willOpenURL:theURL inViewController:controller];
     }
 
     [self presentController:controller parent:parentURL withPattern:pattern
           animated:animated transition:transition ? transition : pattern.transition];
   } else if (_opensExternalURLs) {
-    if ([_delegate respondsToSelector:@selector(navigator:wilOpenURL:inViewController:)]) {
+    if ([_delegate respondsToSelector:@selector(navigator:willOpenURL:inViewController:)]) {
       [_delegate navigator:self willOpenURL:theURL inViewController:nil];
     }
 
@@ -489,8 +489,6 @@
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSDate* timestamp = [defaults objectForKey:@"TTNavigatorHistoryTime"];
   NSArray* path = [defaults objectForKey:@"TTNavigatorHistory"];
-  [defaults removeObjectForKey:@"TTNavigatorHistory"];
-  [defaults removeObjectForKey:@"TTNavigatorHistoryTime"];
   
   if (_persistenceExpirationAge && -timestamp.timeIntervalSinceNow > _persistenceExpirationAge) {
     return nil;
@@ -582,6 +580,7 @@
 - (void)resetDefaults {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   [defaults removeObjectForKey:@"TTNavigatorHistory"];
+  [defaults removeObjectForKey:@"TTNavigatorHistoryTime"];
   [defaults synchronize];
 }
 

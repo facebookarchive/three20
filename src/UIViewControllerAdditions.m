@@ -70,6 +70,10 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
+- (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
+  return [self init];
+}
+
 - (NSString*)navigatorURL {
   return self.originalNavigatorURL;
 }

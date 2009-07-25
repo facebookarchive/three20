@@ -159,6 +159,8 @@
 		BEF320370F352E7A000DE5D2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		BEF341950F8042440027E93C /* TTStyledTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF341940F8042440027E93C /* TTStyledTextLabel.m */; };
 		BEF341970F8042520027E93C /* TTStyledTextLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF341960F8042520027E93C /* TTStyledTextLabel.h */; };
+		BEF45BC61019CA4400E9EC07 /* TTPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF45BC41019CA4400E9EC07 /* TTPostController.m */; };
+		BEF45BC81019CA8500E9EC07 /* TTPostController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF45BC71019CA8500E9EC07 /* TTPostController.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -315,6 +317,8 @@
 		BEF31F6F0F352E64000DE5D2 /* Three20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20.h; path = Three20/Three20.h; sourceTree = "<group>"; };
 		BEF341940F8042440027E93C /* TTStyledTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledTextLabel.m; sourceTree = "<group>"; };
 		BEF341960F8042520027E93C /* TTStyledTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextLabel.h; path = Three20/TTStyledTextLabel.h; sourceTree = "<group>"; };
+		BEF45BC41019CA4400E9EC07 /* TTPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPostController.m; sourceTree = "<group>"; };
+		BEF45BC71019CA8500E9EC07 /* TTPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPostController.h; path = Three20/TTPostController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -613,6 +617,8 @@
 				BED036EA10090FAA0083AC18 /* TTAlertViewController.m */,
 				BED03763100915700083AC18 /* TTActionSheetController.h */,
 				BED03765100915820083AC18 /* TTActionSheetController.m */,
+				BEF45BC71019CA8500E9EC07 /* TTPostController.h */,
+				BEF45BC41019CA4400E9EC07 /* TTPostController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -711,6 +717,7 @@
 				BE52E93F100D7DEE00E03DB7 /* TTModelViewController.h in Headers */,
 				BE781809100ECF21001FACA5 /* TTSearchDisplayController.h in Headers */,
 				BEA6B8E41013FC3400B83B3A /* UIFontAdditions.h in Headers */,
+				BEF45BC81019CA8500E9EC07 /* TTPostController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,6 +836,7 @@
 				BE52E994100D8EF800E03DB7 /* TTModel.m in Sources */,
 				BE781807100ECF0F001FACA5 /* TTSearchDisplayController.m in Sources */,
 				BEA6B8E61013FC4900B83B3A /* UIFontAdditions.m in Sources */,
+				BEF45BC61019CA4400E9EC07 /* TTPostController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

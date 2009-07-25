@@ -48,12 +48,12 @@
 @property(nonatomic,readonly) UIFont* tableTimestampFont;
 @property(nonatomic,readonly) UIFont* tableButtonFont;
 @property(nonatomic,readonly) UIFont* tableSummaryFont;
-@property(nonatomic,readonly) UIFont* tableBannerFont;
 @property(nonatomic,readonly) UIFont* photoCaptionFont;
 @property(nonatomic,readonly) UIFont* messageFont;
 @property(nonatomic,readonly) UIFont* errorTitleFont;
 @property(nonatomic,readonly) UIFont* errorSubtitleFont;
 @property(nonatomic,readonly) UIFont* activityLabelFont;
+@property(nonatomic,readonly) UIFont* activityBannerFont;
 
 @property(nonatomic,readonly) UITableViewCellSelectionStyle tableSelectionStyle;
 

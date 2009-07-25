@@ -201,8 +201,8 @@ static const CGFloat kBannerViewHeight = 22;
   [self layoutBannerView];
 }
 
-- (void)keyboardWillDisappear:(BOOL)animated withBounds:(CGRect)bounds {
-  [super keyboardWillDisappear:animated withBounds:bounds];
+- (void)keyboardDidDisappear:(BOOL)animated withBounds:(CGRect)bounds {
+  [super keyboardDidDisappear:animated withBounds:bounds];
   self.tableView.frame = TTRectContract(self.tableView.frame, 0, -bounds.size.height);
   [self layoutOverlayView];
   [self layoutBannerView];
@@ -261,7 +261,6 @@ static const CGFloat kBannerViewHeight = 22;
                                     autorelease];
         label.text = title;
         label.backgroundColor = _tableView.backgroundColor;
-        label.centeredToScreen = NO;
         self.loadingView = label;
       }
     }
@@ -411,6 +410,7 @@ static const CGFloat kBannerViewHeight = 22;
       : TTSTYLEVAR(tablePlainBackgroundColor);
     if (backgroundColor) {
       _tableView.backgroundColor = backgroundColor;
+      self.view.backgroundColor = backgroundColor;
     }
     [self.view addSubview:_tableView];
   }

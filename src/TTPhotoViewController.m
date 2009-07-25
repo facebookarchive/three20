@@ -95,10 +95,15 @@ static const NSTimeInterval kSlideshowInterval = 2;
   [self loadImages];
 }
 
+- (void)moveToPhoto:(id<TTPhoto>)photo {
+  id<TTPhoto> previousPhoto = [_centerPhoto autorelease];
+  _centerPhoto = [photo retain];
+  [self didMoveToPhoto:_centerPhoto fromPhoto:previousPhoto];
+}
+
 - (void)moveToPhotoAtIndex:(NSInteger)photoIndex withDelay:(BOOL)withDelay {
   _centerPhotoIndex = photoIndex == TT_NULL_PHOTO_INDEX ? 0 : photoIndex;
-  [_centerPhoto release];
-  _centerPhoto = [[_photoSource photoAtIndex:_centerPhotoIndex] retain];
+  [self moveToPhoto:[_photoSource photoAtIndex:_centerPhotoIndex]];
   _delayLoad = withDelay;
 }
 
@@ -110,8 +115,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)updateVisiblePhotoViews {
-  [_centerPhoto release];
-  _centerPhoto = [[_photoSource photoAtIndex:_centerPhotoIndex] retain];
+  [self moveToPhoto:[_photoSource photoAtIndex:_centerPhotoIndex]];
 
   NSDictionary* photoViews = _scrollView.visiblePages;
   for (NSNumber* key in photoViews.keyEnumerator) {
@@ -282,16 +286,18 @@ static const NSTimeInterval kSlideshowInterval = 2;
     _slideshowTimer = nil;
     _loadTimer = nil;
     _delayLoad = NO;
-    self.defaultImage = TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
     
-    self.hidesBottomBarWhenPushed = YES;
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
       TTLocalizedString(@"Photo", @"Title for back button that returns to photo browser")
       style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+
+    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
     self.navigationBarStyle = UIBarStyleBlackTranslucent;
     self.navigationBarTintColor = nil;
-    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
     self.wantsFullScreenLayout = YES;
+    self.hidesBottomBarWhenPushed = YES;
+
+    self.defaultImage = TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
   }
   return self;
 }
@@ -608,6 +614,9 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (TTThumbsViewController*)createThumbsViewController {
   return [[[TTThumbsViewController alloc] initWithDelegate:self] autorelease];
+}
+
+- (void)didMoveToPhoto:(id<TTPhoto>)photo fromPhoto:(id<TTPhoto>)fromPhoto {
 }
 
 @end

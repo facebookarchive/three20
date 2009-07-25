@@ -90,9 +90,9 @@
  * @return nil if hthe URL is not cached or if the cache entry is older than the minimum.
  */
 - (NSData*)dataForURL:(NSString*)URL expires:(NSTimeInterval)expirationAge
-  timestamp:(NSDate**)timestamp;
+           timestamp:(NSDate**)timestamp;
 - (NSData*)dataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge
-  timestamp:(NSDate**)timestamp;
+           timestamp:(NSDate**)timestamp;
 
 /**
  * Gets an image from the in-memory image cache.
