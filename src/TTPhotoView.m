@@ -8,9 +8,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 static const CGFloat kPadding = 20;
-static const CGFloat kMarginBottom = 15;
+static const CGFloat kCaptionMargin = 20;
   
-static const CGFloat kCaptionWidth = 230;
 static const CGFloat kMaxCaptionHeight = 100;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,13 +38,12 @@ static const CGFloat kMaxCaptionHeight = 100;
   if (caption) {
     if (!_captionLabel) {
       _captionLabel = [[UILabel alloc] init];
-      _captionLabel.backgroundColor = [UIColor clearColor];
       _captionLabel.textColor = TTSTYLEVAR(photoCaptionTextColor);
       _captionLabel.font = TTSTYLEVAR(photoCaptionFont);
       _captionLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.9];
       _captionLabel.shadowOffset = CGSizeMake(1, 1);
-      _captionLabel.backgroundColor = [UIColor clearColor];
-      _captionLabel.lineBreakMode = UILineBreakModeWordWrap;
+      _captionLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+      _captionLabel.lineBreakMode = UILineBreakModeTailTruncation;
       _captionLabel.textAlignment = UITextAlignmentCenter;
       _captionLabel.numberOfLines = 6;
       _captionLabel.alpha = _hidesCaption ? 0 : 1;
@@ -54,6 +52,7 @@ static const CGFloat kMaxCaptionHeight = 100;
   }
 
   _captionLabel.text = caption;
+  [self setNeedsLayout];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,12 +123,15 @@ static const CGFloat kMaxCaptionHeight = 100;
 
 - (void)layoutSubviews {
   CGRect screenBounds = TTScreenBounds();
+  CGFloat width = self.orientationWidth;
   CGFloat height = self.orientationHeight;
-  CGFloat cx = self.bounds.origin.x + self.orientationWidth/2;
-  CGFloat cy = self.bounds.origin.y + self.orientationHeight/2;
+  CGFloat cx = self.bounds.origin.x + width/2;
+  CGFloat cy = self.bounds.origin.y + height/2;
 
-  BOOL landscape = self.width == self.orientationWidth;
-  CGFloat marginBottom = landscape ? TT_ROW_HEIGHT : 0;
+  BOOL portrait = self.width == width;
+  CGFloat marginRight = portrait ? 0 : TT_CHROME_HEIGHT;
+  CGFloat marginLeft = portrait ? 0 : TT_ROW_HEIGHT;
+  CGFloat marginBottom = portrait ? TT_ROW_HEIGHT : 0;
   
   // Since the photo view is constrained to the size of the image, but we want to position
   // the status views relative to the screen, offset by the difference
@@ -148,15 +150,18 @@ static const CGFloat kMaxCaptionHeight = 100;
   _statusSpinner.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width/2,
     screenOffset + self.bounds.origin.y + offsetBottom);
 
+  CGFloat captionWidth = screenBounds.size.width - (marginLeft+marginRight);
   CGSize captionSize = [_captionLabel.text sizeWithFont:_captionLabel.font
-    constrainedToSize:CGSizeMake(kCaptionWidth, CGFLOAT_MAX)];
-  CGFloat captionHeight = captionSize.height > kMaxCaptionHeight
-    ? kMaxCaptionHeight : captionSize.height;
-
-  _captionLabel.frame = CGRectMake(
-    floor(cx - captionSize.width/2),
-    floor(cy + screenBounds.size.height/2 - (captionHeight+kMarginBottom+marginBottom)),
-    captionSize.width, captionHeight);
+                                           constrainedToSize:CGSizeMake(captionWidth, CGFLOAT_MAX)];
+  if (captionSize.height) {
+    CGFloat captionHeight = (captionSize.height > kMaxCaptionHeight
+                            ? kMaxCaptionHeight : captionSize.height) + kCaptionMargin;
+    _captionLabel.frame = CGRectMake(marginLeft + (cx - screenBounds.size.width/2), 
+      cy + floor(screenBounds.size.height/2 - (captionHeight+marginBottom)),
+      captionWidth, captionHeight);
+  } else {
+    _captionLabel.frame = CGRectZero;
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -223,11 +228,10 @@ static const CGFloat kMaxCaptionHeight = 100;
     _statusSpinner.hidden = NO;
     [self showStatus:nil];
     [self setNeedsLayout];
-    _captionLabel.hidden = YES;
   } else {
     [_statusSpinner stopAnimating];
     _statusSpinner.hidden = YES;
-    _captionLabel.hidden = !!_statusLabel.text;
+    _captionLabel.hidden = !!_statusLabel.text.length;
   }
 }
 
@@ -250,7 +254,7 @@ static const CGFloat kMaxCaptionHeight = 100;
     _captionLabel.hidden = YES;
   } else {
     _statusLabel.hidden = YES;
-    _captionLabel.hidden = _statusSpinner.isAnimating;
+    _captionLabel.hidden = NO;
   }
 
   _statusLabel.text = text;

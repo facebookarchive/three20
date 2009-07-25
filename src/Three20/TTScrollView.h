@@ -33,6 +33,7 @@
   UITouch* _touch2;
   BOOL _dragging;
   BOOL _zooming;
+  BOOL _stayPulled;
 }
 
 /**
@@ -69,6 +70,11 @@
  *
  */
 @property(nonatomic) BOOL rotateEnabled;
+
+/**
+ *
+ */
+@property(nonatomic) BOOL stayPulled;
 
 /**
  *

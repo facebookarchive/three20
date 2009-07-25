@@ -145,9 +145,9 @@ static CGFloat kProgressMargin = 6;
     bezelHeight = contentHeight + padding*2;
   } else {
     margin = 0;
-    padding = 4;
+    padding = kBannerPadding;
     bezelWidth = self.width;
-    bezelHeight = self.height + padding*2;
+    bezelHeight = self.height;
   }
 
   CGFloat maxBevelWidth = TTScreenBounds().size.width - margin*2;
@@ -169,6 +169,9 @@ static CGFloat kProgressMargin = 6;
   CGFloat y = padding + floor((bezelHeight - padding*2)/2 - contentHeight/2);
   
   if (_progressView) {
+    if (_style == TTActivityLabelStyleBlackBanner) {
+      y += kBannerPadding/2;
+    }
     _progressView.frame = CGRectMake(kProgressMargin, y,
                                      bezelWidth - kProgressMargin*2, _progressView.height);
     y += _progressView.height + kSpacing-1;

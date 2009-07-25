@@ -146,44 +146,12 @@
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				28C286DF0D94DF7D0034E888 /* CatalogController.h */,
 				28C286E00D94DF7D0034E888 /* CatalogController.m */,
-				BEE0FDD90EB2A6850052C05F /* PhotoTest1Controller.h */,
-				BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */,
-				BE5F25900EBA5F0400FD59A6 /* PhotoTest2Controller.h */,
-				BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */,
-				BEC5EC660F8C307E007622CD /* ButtonTestController.h */,
-				BEC5EC670F8C307E007622CD /* ButtonTestController.m */,
-				BE6E46EA0F4578BA001CE9B4 /* TabBarTestController.h */,
-				BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */,
-				BEE341B20F480C76008C826E /* MessageTestController.h */,
-				BEE341B30F480C76008C826E /* MessageTestController.m */,
-				BE12882F0F8973CD00F65EA2 /* StyleTestController.h */,
-				BE1288300F8973CD00F65EA2 /* StyleTestController.m */,
-				BEF199200F818E720010D36E /* StyledTextTestController.h */,
-				BEF199210F818E720010D36E /* StyledTextTestController.m */,
-				BE6E4AA30F4655A4001CE9B4 /* TableItemTestController.h */,
-				BE6E4AA40F4655A4001CE9B4 /* TableItemTestController.m */,
-				BE20A49A0FF418B2008791F4 /* TableControlsTestController.h */,
-				BE20A49B0FF418B2008791F4 /* TableControlsTestController.m */,
-				BEF1991E0F818E720010D36E /* StyledTextTableTestController.h */,
-				BEF1991F0F818E720010D36E /* StyledTextTableTestController.m */,
-				BE80E36F0EAF0F3000743358 /* TableImageTestController.h */,
-				BE80E3700EAF0F3000743358 /* TableImageTestController.m */,
-				BEE346BA0F48F15C008C826E /* SearchTestController.h */,
-				BEE346BB0F48F15C008C826E /* SearchTestController.m */,
-				BE69B7570F62874900C02928 /* TableTestController.h */,
-				BE69B7580F62874900C02928 /* TableTestController.m */,
-				BE80E3A50EAF108500743358 /* ImageTest1Controller.h */,
-				BE80E3A60EAF108500743358 /* ImageTest1Controller.m */,
-				BE8C0F7B0F2018C600EB0E98 /* YouTubeTestController.h */,
-				BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */,
-				BEE38E7F0EB288BA00189902 /* ActivityTestController.h */,
-				BEE38E800EB288BA00189902 /* ActivityTestController.m */,
-				BEF6EC350F280CB300CF4096 /* ScrollViewTestController.h */,
-				BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */,
-				BE80E2480EAEFF6100743358 /* MockPhotoSource.h */,
-				BE80E2490EAEFF6100743358 /* MockPhotoSource.m */,
-				BEE348AA0F490F43008C826E /* MockDataSource.h */,
-				BEE348AB0F490F43008C826E /* MockDataSource.m */,
+				EA1080F1101B37E90098AAC2 /* Photos */,
+				EA108105101B38240098AAC2 /* Styles */,
+				EA108119101B386D0098AAC2 /* Controls */,
+				EA108135101B39140098AAC2 /* Models */,
+				EA108168101B3A350098AAC2 /* Tables */,
+				EA108141101B39510098AAC2 /* General */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -251,6 +219,222 @@
 				BEE7FD130F358198002788A5 /* libThree20.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EA1080F1101B37E90098AAC2 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				BE80E2480EAEFF6100743358 /* MockPhotoSource.h */,
+				BE80E2490EAEFF6100743358 /* MockPhotoSource.m */,
+				EA108103101B37FE0098AAC2 /* Photo Browser */,
+				EA108104101B380B0098AAC2 /* Photo Thumbnails */,
+			);
+			name = Photos;
+			sourceTree = "<group>";
+		};
+		EA108103101B37FE0098AAC2 /* Photo Browser */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0FDD90EB2A6850052C05F /* PhotoTest1Controller.h */,
+				BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */,
+			);
+			name = "Photo Browser";
+			sourceTree = "<group>";
+		};
+		EA108104101B380B0098AAC2 /* Photo Thumbnails */ = {
+			isa = PBXGroup;
+			children = (
+				BE5F25900EBA5F0400FD59A6 /* PhotoTest2Controller.h */,
+				BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */,
+			);
+			name = "Photo Thumbnails";
+			sourceTree = "<group>";
+		};
+		EA108105101B38240098AAC2 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				EA10810E101B38400098AAC2 /* Styled Views */,
+				EA108110101B384D0098AAC2 /* Styled Labels */,
+			);
+			name = Styles;
+			sourceTree = "<group>";
+		};
+		EA10810E101B38400098AAC2 /* Styled Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE12882F0F8973CD00F65EA2 /* StyleTestController.h */,
+				BE1288300F8973CD00F65EA2 /* StyleTestController.m */,
+			);
+			name = "Styled Views";
+			sourceTree = "<group>";
+		};
+		EA108110101B384D0098AAC2 /* Styled Labels */ = {
+			isa = PBXGroup;
+			children = (
+				BEF199200F818E720010D36E /* StyledTextTestController.h */,
+				BEF199210F818E720010D36E /* StyledTextTestController.m */,
+			);
+			name = "Styled Labels";
+			sourceTree = "<group>";
+		};
+		EA108119101B386D0098AAC2 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				EA10811D101B38830098AAC2 /* Buttons */,
+				EA10811C101B387D0098AAC2 /* Tabs */,
+				EA10811B101B38780098AAC2 /* Composers */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		EA10811B101B38780098AAC2 /* Composers */ = {
+			isa = PBXGroup;
+			children = (
+				BEE341B20F480C76008C826E /* MessageTestController.h */,
+				BEE341B30F480C76008C826E /* MessageTestController.m */,
+			);
+			name = Composers;
+			sourceTree = "<group>";
+		};
+		EA10811C101B387D0098AAC2 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				BE6E46EA0F4578BA001CE9B4 /* TabBarTestController.h */,
+				BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */,
+			);
+			name = Tabs;
+			sourceTree = "<group>";
+		};
+		EA10811D101B38830098AAC2 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				BEC5EC660F8C307E007622CD /* ButtonTestController.h */,
+				BEC5EC670F8C307E007622CD /* ButtonTestController.m */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		EA108135101B39140098AAC2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BEE348AA0F490F43008C826E /* MockDataSource.h */,
+				BEE348AB0F490F43008C826E /* MockDataSource.m */,
+				EA108138101B39260098AAC2 /* Model Search */,
+				EA108137101B39210098AAC2 /* Model States */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		EA108137101B39210098AAC2 /* Model States */ = {
+			isa = PBXGroup;
+			children = (
+				BE69B7570F62874900C02928 /* TableTestController.h */,
+				BE69B7580F62874900C02928 /* TableTestController.m */,
+			);
+			name = "Model States";
+			sourceTree = "<group>";
+		};
+		EA108138101B39260098AAC2 /* Model Search */ = {
+			isa = PBXGroup;
+			children = (
+				BEE346BA0F48F15C008C826E /* SearchTestController.h */,
+				BEE346BB0F48F15C008C826E /* SearchTestController.m */,
+			);
+			name = "Model Search";
+			sourceTree = "<group>";
+		};
+		EA108141101B39510098AAC2 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				EA108148101B39660098AAC2 /* Web Image */,
+				EA108149101B396A0098AAC2 /* YouTube Player */,
+				EA10814F101B398C0098AAC2 /* Activity Labels */,
+				EA108154101B39980098AAC2 /* Scroll View */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		EA108148101B39660098AAC2 /* Web Image */ = {
+			isa = PBXGroup;
+			children = (
+				BE80E3A50EAF108500743358 /* ImageTest1Controller.h */,
+				BE80E3A60EAF108500743358 /* ImageTest1Controller.m */,
+			);
+			name = "Web Image";
+			sourceTree = "<group>";
+		};
+		EA108149101B396A0098AAC2 /* YouTube Player */ = {
+			isa = PBXGroup;
+			children = (
+				BE8C0F7B0F2018C600EB0E98 /* YouTubeTestController.h */,
+				BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */,
+			);
+			name = "YouTube Player";
+			sourceTree = "<group>";
+		};
+		EA10814F101B398C0098AAC2 /* Activity Labels */ = {
+			isa = PBXGroup;
+			children = (
+				BEE38E7F0EB288BA00189902 /* ActivityTestController.h */,
+				BEE38E800EB288BA00189902 /* ActivityTestController.m */,
+			);
+			name = "Activity Labels";
+			sourceTree = "<group>";
+		};
+		EA108154101B39980098AAC2 /* Scroll View */ = {
+			isa = PBXGroup;
+			children = (
+				BEF6EC350F280CB300CF4096 /* ScrollViewTestController.h */,
+				BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */,
+			);
+			name = "Scroll View";
+			sourceTree = "<group>";
+		};
+		EA108168101B3A350098AAC2 /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				EA108177101B3A630098AAC2 /* Table Items */,
+				EA108175101B3A5C0098AAC2 /* Table Controls */,
+				EA108172101B3A4A0098AAC2 /* Styled Labels in Table */,
+				EA108169101B3A3A0098AAC2 /* Web Images in Table */,
+			);
+			name = Tables;
+			sourceTree = "<group>";
+		};
+		EA108169101B3A3A0098AAC2 /* Web Images in Table */ = {
+			isa = PBXGroup;
+			children = (
+				BE80E36F0EAF0F3000743358 /* TableImageTestController.h */,
+				BE80E3700EAF0F3000743358 /* TableImageTestController.m */,
+			);
+			name = "Web Images in Table";
+			sourceTree = "<group>";
+		};
+		EA108172101B3A4A0098AAC2 /* Styled Labels in Table */ = {
+			isa = PBXGroup;
+			children = (
+				BEF1991E0F818E720010D36E /* StyledTextTableTestController.h */,
+				BEF1991F0F818E720010D36E /* StyledTextTableTestController.m */,
+			);
+			name = "Styled Labels in Table";
+			sourceTree = "<group>";
+		};
+		EA108175101B3A5C0098AAC2 /* Table Controls */ = {
+			isa = PBXGroup;
+			children = (
+				BE20A49A0FF418B2008791F4 /* TableControlsTestController.h */,
+				BE20A49B0FF418B2008791F4 /* TableControlsTestController.m */,
+			);
+			name = "Table Controls";
+			sourceTree = "<group>";
+		};
+		EA108177101B3A630098AAC2 /* Table Items */ = {
+			isa = PBXGroup;
+			children = (
+				BE6E4AA30F4655A4001CE9B4 /* TableItemTestController.h */,
+				BE6E4AA40F4655A4001CE9B4 /* TableItemTestController.m */,
+			);
+			name = "Table Items";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
