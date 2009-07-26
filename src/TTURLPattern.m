@@ -321,6 +321,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     _query = nil;
     _fragment = nil;
     _specificity = 0;
+    _selector = nil;
   }
   return self;
 }
@@ -343,7 +344,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 
 - (void)setSelectorIfPossible:(SEL)selector {
   Class cls = [self classForInvocation];
-  if (!cls || class_respondsToSelector(cls, selector)) {
+  if (!cls || class_respondsToSelector(cls, selector) || class_getClassMethod(cls, selector)) {
     _selector = selector;
   }
 }
@@ -459,7 +460,9 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 
 - (void)analyzeMethod {
   Class cls = [self classForInvocation];
-  Method method = class_getInstanceMethod(cls, _selector);
+  Method method = [self instantiatesClass] 
+    ? class_getInstanceMethod(cls, _selector)
+    : class_getClassMethod(cls, _selector);
   if (method) {
     _argumentCount = method_getNumberOfArguments(method)-2;
 
