@@ -193,7 +193,7 @@
       UIViewController* parentController = [self parentForController:controller
                                                  parent:parentURL ? parentURL : pattern.parentURL];
       if (parentController && parentController != topViewController) {
-        return [self presentController:parentController parent:nil mode:TTNavigationModeNone
+        [self presentController:parentController parent:nil mode:TTNavigationModeNone
                      animated:NO transition:0];
       }
       return [self presentController:controller parent:parentController mode:pattern.navigationMode
