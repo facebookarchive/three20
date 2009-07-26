@@ -13,12 +13,14 @@
   BOOL _rotateEnabled;
   CGFloat _pageSpacing;
   UIInterfaceOrientation _orientation;
-
+  NSTimeInterval _holdsAfterTouchingForInterval;
+  
   NSMutableArray* _pages;
   NSMutableArray* _pageQueue;
   NSInteger _maxPages;
   NSInteger _pageArrayIndex;
   NSTimer* _tapTimer;
+  NSTimer* _holdingTimer;
   NSTimer* _animationTimer;
   NSDate* _animationStartTime;
   NSTimeInterval _animationDuration;
@@ -33,6 +35,7 @@
   UITouch* _touch2;
   BOOL _dragging;
   BOOL _zooming;
+  BOOL _holding;
   BOOL _stayPulled;
 }
 
@@ -55,6 +58,11 @@
  *
  */
 @property(nonatomic,readonly) BOOL zoomed;
+
+/**
+ *
+ */
+@property(nonatomic,readonly) BOOL holding;
 
 /**
  *
@@ -85,6 +93,11 @@
  *
  */
 @property(nonatomic) UIInterfaceOrientation orientation;
+
+/**
+ *
+ */
+@property(nonatomic) NSTimeInterval holdsAfterTouchingForInterval;
 
 /**
  *
@@ -191,6 +204,16 @@
  *
  */
 - (void)scrollView:(TTScrollView*)scrollView tapped:(UITouch*)touch;
+
+/**
+ *
+ */
+- (void)scrollViewDidBeginHolding:(TTScrollView*)scrollView;
+
+/**
+ *
+ */
+- (void)scrollViewDidEndHolding:(TTScrollView*)scrollView;
 
 @optional
 
