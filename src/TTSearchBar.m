@@ -147,16 +147,16 @@ static const CGFloat kIndexViewMargin = 4;
     buttonWidth = _cancelButton.width + kSpacingX;
   }
 
-  CGFloat boxHeight = self.height - kMarginY*2;
-  _boxView.frame = CGRectMake(kMarginX, floor(self.height/2 - boxHeight/2)+1,
+  CGFloat boxHeight = self.font.lineHeight + 8;
+  _boxView.frame = CGRectMake(kMarginX, floor(self.height/2 - boxHeight/2),
                               self.width - (kMarginX*2 + indexViewWidth + buttonWidth), boxHeight);
     
-  _searchField.frame = CGRectMake(kMarginX+kPaddingX+leftPadding, 1,
+  _searchField.frame = CGRectMake(kMarginX+kPaddingX+leftPadding, 0,
     self.width - (kMarginX*2+kPaddingX+leftPadding+buttonWidth+indexViewWidth), self.height);
   
   if (_showsCancelButton) {
     _cancelButton.frame = CGRectMake(_boxView.right + kSpacingX,
-                                     floor(self.height/2 - kButtonHeight/2)+1,
+                                     floor(self.height/2 - kButtonHeight/2),
                                      _cancelButton.width, kButtonHeight);
   }
 }
@@ -213,7 +213,7 @@ static const CGFloat kIndexViewMargin = 4;
     _showsCancelButton = showsCancelButton;
     
     if (_showsCancelButton) {
-      _cancelButton = [[TTButton buttonWithStyle:@"blackToolbarRoundButton:"
+      _cancelButton = [[TTButton buttonWithStyle:@"blackToolbarButton:"
                                  title:TTLocalizedString(@"Cancel", @"")] retain];
       [_cancelButton addTarget:_searchField action:@selector(resignFirstResponder)
                      forControlEvents:UIControlEventTouchUpInside];

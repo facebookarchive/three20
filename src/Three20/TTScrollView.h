@@ -36,7 +36,6 @@
   BOOL _dragging;
   BOOL _zooming;
   BOOL _holding;
-  BOOL _stayPulled;
 }
 
 /**
@@ -78,11 +77,6 @@
  *
  */
 @property(nonatomic) BOOL rotateEnabled;
-
-/**
- *
- */
-@property(nonatomic) BOOL stayPulled;
 
 /**
  *
@@ -135,6 +129,8 @@
  *
  */
 - (void)zoomToFit;
+
+- (void)zoomToDistance:(CGFloat)distance;
 
 @end
 

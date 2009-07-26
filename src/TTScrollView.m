@@ -17,7 +17,7 @@ static const NSTimeInterval kOvershoot = 2;
 
 @synthesize delegate = _delegate, dataSource = _dataSource, centerPageIndex = _centerPageIndex,
   pageSpacing = _pageSpacing, scrollEnabled = _scrollEnabled, zoomEnabled = _zoomEnabled,
-  rotateEnabled = _rotateEnabled, orientation = _orientation, stayPulled = _stayPulled,
+  rotateEnabled = _rotateEnabled, orientation = _orientation,
   holding = _holding, holdsAfterTouchingForInterval = _holdsAfterTouchingForInterval;
 
 - (id)initWithFrame:(CGRect)frame {
@@ -54,7 +54,6 @@ static const NSTimeInterval kOvershoot = 2;
     _zooming = NO;
     _holding = NO;
     _overshoot = 0;
-    _stayPulled = NO;
     
     for (NSInteger i = 0; i < _maxPages; ++i) {
       [_pages addObject:[NSNull null]];
@@ -1018,7 +1017,7 @@ static const NSTimeInterval kOvershoot = 2;
         [self stopDragging:YES];
       }
       
-      if (!_stayPulled && (self.pinched || (_touchCount == 0 && self.pulled))) {
+      if ((self.pinched || (_touchCount == 0 && self.pulled)) && _zoomEnabled) {
         UIEdgeInsets edges = [self pageEdgesForAnimation];
         NSTimeInterval dur = self.flicked ? kFlickDuration : kBounceDuration;
         //_overshoot = kOvershoot;
@@ -1169,7 +1168,12 @@ static const NSTimeInterval kOvershoot = 2;
 }
 
 - (void)zoomToFit {
-  [self startAnimationTo:[self reversePageEdges] duration:kFlickDuration];
+  [self startAnimationTo:[self reversePageEdges] duration:kBounceDuration];
+}
+
+- (void)zoomToDistance:(CGFloat)distance {
+  UIEdgeInsets insets = UIEdgeInsetsMake(distance, distance, -1 * distance, -1 * distance);
+  [self startAnimationTo:insets duration:kBounceDuration];
 }
 
 @end

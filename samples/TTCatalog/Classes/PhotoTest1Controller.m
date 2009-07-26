@@ -30,6 +30,11 @@
 //      size:CGSizeMake(320, 480)] autorelease],    
 
     [[[MockPhoto alloc]
+      initWithURL:@"http://farm4.static.flickr.com/3099/3164979221_6c0e583f7d.jpg?v=0"
+      smallURL:@"http://farm4.static.flickr.com/3099/3164979221_6c0e583f7d_t.jpg"
+      size:CGSizeMake(320, 480)] autorelease],
+
+    [[[MockPhoto alloc]
       initWithURL:@"http://farm4.static.flickr.com/3444/3223645618_13fe36887a_o.jpg"
       smallURL:@"http://farm4.static.flickr.com/3444/3223645618_f5e2fa7fea_t.jpg"
       size:CGSizeMake(320, 480)
@@ -37,6 +42,11 @@
 
     // Causes album to be loaded
     // [NSNull null],
+
+    [[[MockPhoto alloc]
+      initWithURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e.jpg?v=0"
+      smallURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e_t.jpg"
+      size:CGSizeMake(320, 480)] autorelease],
 
     [[[MockPhoto alloc]
       initWithURL:@"http://farm2.static.flickr.com/1124/3164979509_bcfdd72123.jpg?v=0"
@@ -49,20 +59,12 @@
       smallURL:@"http://farm4.static.flickr.com/3106/3203111597_d849ef615b_t.jpg"
       size:CGSizeMake(320, 480)] autorelease],
 
-    [[[MockPhoto alloc]
-      initWithURL:@"http://farm4.static.flickr.com/3099/3164979221_6c0e583f7d.jpg?v=0"
-      smallURL:@"http://farm4.static.flickr.com/3099/3164979221_6c0e583f7d_t.jpg"
-      size:CGSizeMake(320, 480)] autorelease],
 
     [[[MockPhoto alloc]
       initWithURL:@"http://farm4.static.flickr.com/3081/3164978791_3c292029f2.jpg?v=0"
       smallURL:@"http://farm4.static.flickr.com/3081/3164978791_3c292029f2_t.jpg"
       size:CGSizeMake(320, 480)] autorelease],
 
-    [[[MockPhoto alloc]
-      initWithURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e.jpg?v=0"
-      smallURL:@"http://farm2.static.flickr.com/1134/3172884000_84bc6a841e_t.jpg"
-      size:CGSizeMake(320, 480)] autorelease],
     [[[MockPhoto alloc]
       initWithURL:@"http://farm4.static.flickr.com/3246/2957580101_33c799fc09_o.jpg"
       smallURL:@"http://farm4.static.flickr.com/3246/2957580101_d63ef56b15_t.jpg"

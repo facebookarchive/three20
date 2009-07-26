@@ -84,6 +84,14 @@
           font:nil];
 }
 
+- (TTStyle*)grayToolbarButton:(UIControlState)state {
+  return
+    [self toolbarButtonForState:state
+          shape:[TTRoundedRectangleShape shapeWithRadius:4.5]
+          tintColor:RGBCOLOR(40, 40, 40)
+          font:nil];
+}
+
 - (TTStyle*)blackToolbarForwardButton:(UIControlState)state {
   return
     [self toolbarButtonForState:state
@@ -118,6 +126,16 @@
   return
     [TTLinearGradientFillStyle styleWithColor1:highlight color2:color next:
     [TTFourBorderStyle styleWithTop:nil right:nil bottom:shadow left:nil width:1 next:nil]];
+}
+
+- (TTStyle*)blackSearchBar {
+  UIColor* highlight = [UIColor colorWithWhite:0.8 alpha:0.15];
+  UIColor* mid = [UIColor colorWithWhite:0.4 alpha:0.6];
+  UIColor* shadow = [UIColor colorWithWhite:0 alpha:0.8];
+  return
+    [TTLinearGradientFillStyle styleWithColor1:mid color2:shadow next:
+    [TTFourBorderStyle styleWithTop:nil right:nil bottom:shadow left:nil width:1 next:
+    [TTFourBorderStyle styleWithTop:nil right:nil bottom:highlight left:nil width:1 next:nil]]];
 }
 
 - (TTStyle*)searchBarBottom {
