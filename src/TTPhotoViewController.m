@@ -43,7 +43,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)loadImages {
   TTPhotoView* centerPhotoView = self.centerPhotoView;
-  for (TTPhotoView* photoView in [_scrollView.visiblePages objectEnumerator]) {
+  for (TTPhotoView* photoView in _scrollView.visiblePages.objectEnumerator) {
     if (photoView == centerPhotoView) {
       [photoView loadPreview:NO];
     } else {
@@ -87,7 +87,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   UIBarButtonItem* playButton = [_toolbar itemWithTag:1];
   playButton.enabled = _photoSource.numberOfPhotos > 1;
   _previousButton.enabled = _centerPhotoIndex > 0;
-  _nextButton.enabled = _centerPhotoIndex < _photoSource.numberOfPhotos-1;
+  _nextButton.enabled = _centerPhotoIndex >= 0 && _centerPhotoIndex < _photoSource.numberOfPhotos-1;
 }
 
 - (void)updatePhotoView {
@@ -129,8 +129,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)resetVisiblePhotoViews {
   NSDictionary* photoViews = _scrollView.visiblePages;
-  for (NSNumber* key in photoViews.keyEnumerator) {
-    TTPhotoView* photoView = [photoViews objectForKey:key];
+  for (TTPhotoView* photoView in photoViews.objectEnumerator) {
     if (!photoView.isLoading) {
       [photoView showProgress:-1];
     }
@@ -175,7 +174,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)showCaptions:(BOOL)show {
-  for (TTPhotoView* photoView in [_scrollView.visiblePages objectEnumerator]) {
+  for (TTPhotoView* photoView in _scrollView.visiblePages.objectEnumerator) {
     photoView.hidesCaption = !show;
   }
 }
@@ -446,6 +445,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)showEmpty:(BOOL)show {
   if (show) {
+    [_scrollView reloadData];
     [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
   } else {
     [self showStatus:nil];
@@ -460,14 +460,22 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
 }
 
+- (void)moveToNextValidPhoto {
+  if (_centerPhotoIndex >= _photoSource.numberOfPhotos) {
+    // We were positioned at an index that is past the end, so move to the last photo
+    [self moveToPhotoAtIndex:_photoSource.numberOfPhotos - 1 withDelay:NO];
+  } else {
+    [self moveToPhotoAtIndex:_centerPhotoIndex withDelay:NO];
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTPhotoSourceDelegate
+// TTModelDelegate
 
 - (void)modelDidFinishLoad:(id<TTModel>)model {
   if (model == _model) {
     if (_centerPhotoIndex >= _photoSource.numberOfPhotos) {
-      // We were positioned at an index that is past the end, so move to the last photo
-      [self moveToPhotoAtIndex:_photoSource.numberOfPhotos - 1 withDelay:NO];
+      [self moveToNextValidPhoto];
       [_scrollView reloadData];
       [self resetVisiblePhotoViews];
     } else {
@@ -489,6 +497,20 @@ static const NSTimeInterval kSlideshowInterval = 2;
     [self resetVisiblePhotoViews];
   }
   [super modelDidCancelLoad:model];
+}
+
+- (void)model:(id<TTModel>)model didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+}
+
+- (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+}
+
+- (void)model:(id<TTModel>)model didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+  if (object == self.centerPhoto) {
+    [self moveToNextValidPhoto];
+    [_scrollView reloadData];
+    [self refresh];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,7 @@
 #import "Three20/TTPopupViewController.h"
 
+@protocol TTActionSheetControllerDelegate;
+
 /**
  * A view controller that displays an action sheet.
  *
@@ -7,12 +9,14 @@
  * all the benefits of persistence and URL dispatch.
  */
 @interface TTActionSheetController : TTPopupViewController <UIActionSheetDelegate> {
-  id<UIActionSheetDelegate> _delegate;
+  id<TTActionSheetControllerDelegate> _delegate;
+  id _userInfo;
   NSMutableArray* _URLs;
 }
 
-@property(nonatomic,assign) id<UIActionSheetDelegate> delegate;
+@property(nonatomic,assign) id<TTActionSheetControllerDelegate> delegate;
 @property(nonatomic,readonly) UIActionSheet* actionSheet;
+@property(nonatomic,retain) id userInfo;
 
 - (id)initWithTitle:(NSString*)title;
 - (id)initWithTitle:(NSString*)title delegate:(id)delegate;
@@ -22,5 +26,12 @@
 - (NSInteger)addDestructiveButtonWithTitle:(NSString*)title URL:(NSString*)URL;
 
 - (NSString*)buttonURLAtIndex:(NSInteger)index;
+
+@end
+
+@protocol TTActionSheetControllerDelegate <UIActionSheetDelegate>
+
+- (BOOL)actionSheetController:(TTActionSheetController*)controller
+        didDismissWithButtonIndex:(NSInteger)buttonIndex URL:(NSString*)URL;
 
 @end

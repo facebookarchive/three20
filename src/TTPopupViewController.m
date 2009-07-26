@@ -9,6 +9,7 @@
 
 - (id)init {
   if (self = [super init]) {
+    _statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
   }
   return self;
 }

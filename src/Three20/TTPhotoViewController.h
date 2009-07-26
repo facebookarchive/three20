@@ -9,7 +9,7 @@
           <TTScrollViewDelegate, TTScrollViewDataSource, TTThumbsViewControllerDelegate> {
   id<TTPhotoSource> _photoSource;
   id<TTPhoto> _centerPhoto;
-  NSUInteger _centerPhotoIndex;
+  NSInteger _centerPhotoIndex;
   UIView* _innerView;
   TTScrollView* _scrollView;
   TTPhotoView* _photoStatusView;
@@ -42,7 +42,7 @@
  * Because centerPhoto can be nil while waiting for the source to load the photo, this property
  * must be maintained even though centerPhoto has its own index property.
  */
-@property(nonatomic,readonly) NSUInteger centerPhotoIndex;
+@property(nonatomic,readonly) NSInteger centerPhotoIndex;
 
 /**
  * The default image to show before a photo has been loaded.

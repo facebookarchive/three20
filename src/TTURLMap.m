@@ -308,6 +308,15 @@
       return [pattern invoke:target withURL:theURL query:query];
     }
   }
+  
+  // If there is no match, check if the fragment points to a method on the target
+  if (theURL.fragment) {
+    SEL selector = NSSelectorFromString(theURL.fragment);
+    if (selector && [target respondsToSelector:selector]) {
+      [target performSelector:selector];
+    }
+  }
+  
   return nil;
 }
 

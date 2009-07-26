@@ -40,7 +40,7 @@
 
 @implementation TTActionSheetController
 
-@synthesize delegate = _delegate;
+@synthesize delegate = _delegate, userInfo = _userInfo;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -48,6 +48,7 @@
 - (id)initWithTitle:(NSString*)title delegate:(id)delegate {
   if (self = [super init]) {
     _delegate = delegate;
+    _userInfo = nil;
     _URLs = [[NSMutableArray alloc] init];
     
     if (title) {
@@ -67,6 +68,7 @@
 
 - (void)dealloc {
   TT_RELEASE_SAFELY(_URLs);
+  TT_RELEASE_SAFELY(_userInfo);
   [super dealloc];
 }
 
@@ -140,7 +142,11 @@
 
 - (void)actionSheet:(UIActionSheet*)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
   NSString* URL = [self buttonURLAtIndex:buttonIndex];
-  if (URL) {
+  BOOL canOpenURL = YES;
+  if ([_delegate respondsToSelector:@selector(actionSheetController:didDismissWithButtonIndex:URL:)]) {
+    canOpenURL = [_delegate actionSheetController:self didDismissWithButtonIndex:buttonIndex URL:URL];
+  }
+  if (URL && canOpenURL) {
     TTOpenURL(URL);
   }
 

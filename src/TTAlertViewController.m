@@ -40,7 +40,7 @@
 
 @implementation TTAlertViewController
 
-@synthesize delegate = _delegate;
+@synthesize delegate = _delegate, userInfo = _userInfo;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -48,6 +48,7 @@
 - (id)initWithTitle:(NSString*)title message:(NSString*)message delegate:(id)delegate {
   if (self = [super init]) {
     _delegate = delegate;
+    _userInfo = nil;
     _URLs = [[NSMutableArray alloc] init];
     
     if (title) {
@@ -70,6 +71,7 @@
 }
 - (void)dealloc {
   TT_RELEASE_SAFELY(_URLs);
+  TT_RELEASE_SAFELY(_userInfo);
   [super dealloc];
 }
 
@@ -141,7 +143,11 @@
 
 - (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
   NSString* URL = [self buttonURLAtIndex:buttonIndex];
-  if (URL) {
+  BOOL canOpenURL = YES;
+  if ([_delegate respondsToSelector:@selector(alertViewController:didDismissWithButtonIndex:URL:)]) {
+    canOpenURL = [_delegate alertViewController:self didDismissWithButtonIndex:buttonIndex URL:URL];
+  }
+  if (URL && canOpenURL) {
     TTOpenURL(URL);
   }
   if ([_delegate respondsToSelector:@selector(alertView:didDismissWithButtonIndex:)]) {
