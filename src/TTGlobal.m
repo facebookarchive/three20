@@ -156,6 +156,16 @@ NSString* TTLocalizedString(NSString* key, NSString* comment) {
   return [bundle localizedStringForKey:key value:key table:nil];
 }
 
+NSString* TTFormatInteger(NSInteger num) {
+  NSNumber* number = [NSNumber numberWithInt:num];
+  NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+  [formatter setNumberStyle:kCFNumberFormatterDecimalStyle];
+  [formatter setGroupingSeparator:@","];
+  NSString* formatted = [formatter stringForObjectValue:number];
+  [formatter release];
+  return formatted;
+}
+
 NSString* TTDescriptionForError(NSError* error) {
   TTLOG(@"ERROR %@", error);
   if ([error.domain isEqualToString:NSURLErrorDomain]) {

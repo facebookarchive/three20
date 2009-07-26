@@ -248,6 +248,8 @@ NSString* TTLocalizedString(NSString* key, NSString* comment);
 
 NSString* TTDescriptionForError(NSError* error);
 
+NSString* TTFormatInteger(NSInteger num);
+
 BOOL TTIsBundleURL(NSString* URL);
 
 BOOL TTIsDocumentsURL(NSString* URL);

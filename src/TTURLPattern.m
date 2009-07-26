@@ -668,7 +668,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 }
 
 - (BOOL)matchURL:(NSURL*)URL {
-  if (URL.scheme && (![_scheme isEqualToString:URL.scheme] || !URL.host)) {
+  if (!URL.scheme || !URL.host || ![_scheme isEqualToString:URL.scheme]) {
     return NO;
   }
 

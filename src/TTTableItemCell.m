@@ -769,8 +769,12 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
+  CGFloat width1 = self.detailTextLabel.width;
+  CGFloat width2 = self.textLabel.width;
+  CGFloat width = width1 > width2 ? width1 : width2;
+  
   _activityIndicatorView.top = floor(self.contentView.height/2 - _activityIndicatorView.height/2);
-  _activityIndicatorView.left = self.detailTextLabel.left + self.detailTextLabel.width + kSpacing;
+  _activityIndicatorView.left = self.detailTextLabel.left + width + kSpacing;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1090,6 +1094,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     TTTableStyledTextItem* item = object;
     _label.text = item.text;
     _label.contentInset = item.padding;
+    [self setNeedsLayout];
   }  
 }
 

@@ -47,7 +47,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
   NSInteger maxIndex = _photoSource.maxPhotoIndex;
-  if (!_photoSource.isLoading && maxIndex >= 0) {
+  if (maxIndex >= 0) {
     maxIndex += 1;
     NSInteger count =  ceil((maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0));
     if (self.hasMoreToLoad) {
@@ -70,10 +70,16 @@ static CGFloat kThumbnailRowHeight = 79;
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   if (indexPath.row == [tableView numberOfRowsInSection:0]-1 && self.hasMoreToLoad) {
     NSString* text = TTLocalizedString(@"Load More Photos...", @"");
-    NSString* caption = [NSString stringWithFormat:
-      TTLocalizedString(@"Showing %d of %d Photos", @""), _photoSource.maxPhotoIndex+1,
-      _photoSource.numberOfPhotos];
-
+    NSString* caption = nil;
+    if (_photoSource.numberOfPhotos == -1) {
+      caption = [NSString stringWithFormat:TTLocalizedString(@"Showing %@ Photos", @""),
+                                           TTFormatInteger(_photoSource.maxPhotoIndex+1)];
+    } else {
+      caption = [NSString stringWithFormat:TTLocalizedString(@"Showing %@ of %@ Photos", @""),
+                                           TTFormatInteger(_photoSource.maxPhotoIndex+1),
+                                           TTFormatInteger(_photoSource.numberOfPhotos)];
+    }
+    
     return [TTTableMoreButton itemWithText:text caption:caption];
   } else {
     return [_photoSource photoAtIndex:indexPath.row * kColumnCount];

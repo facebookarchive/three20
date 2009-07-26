@@ -210,16 +210,18 @@
     return nil;
   }
   
-  TTLOG(@"OPENING URL %@", URL);
-  
   NSURL* theURL = [NSURL URLWithString:URL];
   if ([_URLMap isAppURL:theURL]) {
     [[UIApplication sharedApplication] openURL:theURL];
     return nil;
   }
   
-  if (theURL.fragment && !theURL.scheme) {
-    URL = [self.URL stringByAppendingString:URL];
+  if (!theURL.scheme) {
+    if (theURL.fragment) {
+      URL = [self.URL stringByAppendingString:URL];
+    } else {
+      URL = [@"http://" stringByAppendingString:URL];
+    }
     theURL = [NSURL URLWithString:URL];
   }
   
@@ -232,6 +234,9 @@
   if (withDelay) {
     [self beginDelay];
   }
+
+  TTLOG(@"OPENING URL %@", URL);
+  
   TTURLNavigatorPattern* pattern = nil;
   UIViewController* controller = [self viewControllerForURL:URL query:query pattern:&pattern];
   if (controller) {

@@ -226,12 +226,14 @@ static const CGFloat kBannerViewHeight = 22;
     if (!numberOfSections) {
       return NO;
     } else if (numberOfSections == 1) {
-      return [_dataSource tableView:_tableView numberOfRowsInSection:0] > 0;
+      NSInteger numberOfRows = [_dataSource tableView:_tableView numberOfRowsInSection:0];
+      return numberOfRows > 0;
     } else {
       return YES;
     }
   } else {
-    return [_dataSource tableView:_tableView numberOfRowsInSection:0] > 0;
+    NSInteger numberOfRows = [_dataSource tableView:_tableView numberOfRowsInSection:0];
+    return numberOfRows > 0;
   }
 }
 
