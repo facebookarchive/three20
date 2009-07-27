@@ -249,7 +249,7 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (void)endUpdates {
   [super endUpdates];
-  [_tableView beginUpdates];
+  [_tableView endUpdates];
 }
 
 - (void)showModel:(BOOL)show {

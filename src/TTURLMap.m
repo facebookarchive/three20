@@ -84,6 +84,16 @@
          || [URL.scheme isEqualToString:@"data"];
 }
 
+- (BOOL)isExternalURL:(NSURL*)URL {
+  if ([URL.host isEqualToString:@"maps.google.com"]
+      || [URL.host isEqualToString:@"itunes.apple.com"]
+      || [URL.host isEqualToString:@"phobos.apple.com"]) {
+    return YES;
+  } else {
+    return NO;
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -341,9 +351,10 @@
 }
 
 - (BOOL)isAppURL:(NSURL*)URL {
-  return [[UIApplication sharedApplication] canOpenURL:URL]
-          && ![self isSchemeSupported:URL.scheme]
-          && ![self isWebURL:URL];
+  return [self isExternalURL:URL]
+          || ([[UIApplication sharedApplication] canOpenURL:URL]
+              && ![self isSchemeSupported:URL.scheme]
+              && ![self isWebURL:URL]);
 }
 
 - (NSString*)URLForObject:(id)object {

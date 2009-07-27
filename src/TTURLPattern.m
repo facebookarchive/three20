@@ -460,7 +460,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 
 - (void)analyzeMethod {
   Class cls = [self classForInvocation];
-  Method method = [self instantiatesClass] 
+  Method method = (_targetObject || [self instantiatesClass])
     ? class_getInstanceMethod(cls, _selector)
     : class_getClassMethod(cls, _selector);
   if (method) {

@@ -1,4 +1,5 @@
 #import "Three20/TTViewController.h"
+#import "Three20/TTTableViewController.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTSearchDisplayController.h"
 #import "Three20/TTStyleSheet.h"
@@ -236,6 +237,7 @@
                                                              contentsController:self];
     }
     
+    searchViewController.superController = self;
     _searchController.searchResultsViewController = searchViewController;
   } else {
     _searchController.searchResultsViewController = nil;
