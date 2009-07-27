@@ -391,7 +391,11 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 // private
 
 - (BOOL)instantiatesClass {
-  return _targetClass && _navigationMode != TTNavigationModeNone;
+  return _targetClass && _navigationMode;
+}
+
+- (BOOL)callsInstanceMethod {
+  return (_targetObject && [_targetObject class] != _targetObject) || _targetClass;
 }
 
 - (NSComparisonResult)compareSpecificity:(TTURLPattern*)pattern2 {
@@ -460,7 +464,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
 
 - (void)analyzeMethod {
   Class cls = [self classForInvocation];
-  Method method = (_targetObject || [self instantiatesClass])
+  Method method = [self callsInstanceMethod]
     ? class_getInstanceMethod(cls, _selector)
     : class_getClassMethod(cls, _selector);
   if (method) {
