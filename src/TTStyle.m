@@ -543,9 +543,7 @@ static const NSInteger kDefaultLightSource = 125;
   if (_numberOfLines == 1) {
     return [text sizeWithFont:font];
   } else {
-    CGFloat maxHeight = _numberOfLines * font.lineHeight;
-    CGSize maxSize = CGSizeMake(size.width, maxHeight);
-    return [text sizeWithFont:font constrainedToSize:maxSize lineBreakMode:_lineBreakMode];
+    return [text sizeWithFont:font constrainedToSize:size lineBreakMode:_lineBreakMode];
   }
 }
 
@@ -635,13 +633,13 @@ static const NSInteger kDefaultLightSource = 125;
     NSString* text = [context.delegate textForLayerWithStyle:self];
     UIFont* font = _font ? _font : context.font;
     
-    CGSize textSize = [self sizeOfText:text withFont:font size:size];
     CGFloat maxWidth = context.contentFrame.size.width;
-    if (maxWidth) {
-      if (textSize.width > maxWidth) {
-        textSize.width = maxWidth;
-      }
+    if (!maxWidth) {
+      maxWidth = CGFLOAT_MAX;
     }
+    CGFloat maxHeight = _numberOfLines ? _numberOfLines * font.lineHeight : CGFLOAT_MAX;
+    CGSize maxSize = CGSizeMake(maxWidth, maxHeight);
+    CGSize textSize = [self sizeOfText:text withFont:font size:maxSize];
     
     size.width += textSize.width;
     size.height += textSize.height;

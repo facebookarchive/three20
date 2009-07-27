@@ -668,9 +668,8 @@
   bodyField.text = _textEditor.text;
   [fields addObject:bodyField];
   
-  self.navigationItem.rightBarButtonItem.enabled = NO;
   [self showActivityView:YES];
-
+  
   [self messageWillSend:fields];
 
   if ([_delegate respondsToSelector:@selector(composeController:didSendFields:)]) {
@@ -703,6 +702,7 @@
 }
 
 - (void)showActivityView:(BOOL)show {
+  self.navigationItem.rightBarButtonItem.enabled = !show;
   if (show) {
     if (!_activityView) {
       CGRect frame = CGRectMake(0, 0, self.view.width, _scrollView.height);

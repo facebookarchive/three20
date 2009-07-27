@@ -2,9 +2,9 @@
 #import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// global
 
-static CGFloat kHPadding = 20;
-static CGFloat kVPadding = 50;
+static CGFloat kVPadding = 20;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,39 +60,37 @@ static CGFloat kVPadding = 50;
   [_subtitleView sizeToFit];
   [_titleView sizeToFit];
   [_imageView sizeToFit];
+
+  CGFloat maxHeight = _imageView.height + _titleView.height + _subtitleView.height + kVPadding*2;
+  BOOL canShowImage = _imageView.image && self.height > maxHeight;
   
-  CGFloat totalHeight = _imageView.height + _titleView.height + _subtitleView.height + kVPadding*2;
-  BOOL canShowImage = self.height > totalHeight && _imageView.image;
-  
-  if (_titleView.text.length) {
-    if (_subtitleView.text.length || canShowImage) {
-      _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
-        self.width-kHPadding*2, _subtitleView.height);
-      _titleView.frame = CGRectMake(0, _subtitleView.top-kVPadding, self.width, _titleView.height);
-    } else {
-      _subtitleView.frame = CGRectZero;
-      _titleView.frame = CGRectMake(kHPadding, floor(self.height/2 - _titleView.height/2),
-        self.width - kHPadding*2, _titleView.height);
-    }
-  } else {
-    _titleView.frame = CGRectZero;
-    if (canShowImage) {
-      _subtitleView.frame = CGRectMake(kHPadding, self.height - kVPadding,
-        self.width-kHPadding*2, _subtitleView.height);
-    } else {
-      _subtitleView.frame = CGRectMake(kHPadding, floor(self.height/2 - _subtitleView.height/2),
-        self.width-kHPadding*2, _subtitleView.height);
-    }
-  }
+  CGFloat totalHeight = 0;
 
   if (canShowImage) {
-    CGFloat textTop = _titleView.height ? _titleView.top : _subtitleView.top;
-    
-    _imageView.frame = CGRectMake(self.width/2 - _imageView.width/2,
-      textTop/2 - (_imageView.height/2), _imageView.width, _imageView.height);
+    totalHeight += _imageView.height;
+  }
+  if (_titleView.text.length) {
+    totalHeight += (totalHeight ? kVPadding : 0) + _titleView.height;
+  }
+  if (_subtitleView.text.length) {
+    totalHeight += (totalHeight ? kVPadding : 0) + _subtitleView.height;
+  }
+  
+  CGFloat top = floor(self.height/2 - totalHeight/2);
+  
+  if (canShowImage) {
+    _imageView.origin = CGPointMake(floor(self.width/2 - _imageView.width/2), top);
     _imageView.hidden = NO;
+    top += _imageView.height + kVPadding;
   } else {
     _imageView.hidden = YES;
+  }
+  if (_titleView.text.length) {
+    _titleView.origin = CGPointMake(floor(self.width/2 - _titleView.width/2), top);
+    top += _titleView.height + kVPadding;
+  }
+  if (_subtitleView.text.length) {
+    _subtitleView.origin = CGPointMake(floor(self.width/2 - _subtitleView.width/2), top);
   }
 }
 

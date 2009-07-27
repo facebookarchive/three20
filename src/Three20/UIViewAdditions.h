@@ -20,6 +20,9 @@
 @property(nonatomic,readonly) CGFloat screenViewY;
 @property(nonatomic,readonly) CGRect screenFrame;
 
+@property(nonatomic) CGPoint origin;
+@property(nonatomic) CGSize size;
+
 @property(nonatomic,readonly) CGFloat orientationWidth;
 @property(nonatomic,readonly) CGFloat orientationHeight;
 

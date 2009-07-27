@@ -484,11 +484,11 @@
 }
 
 - (UIColor*)tableErrorTextColor {
-  return RGBCOLOR(99, 109, 125);
+  return RGBCOLOR(79, 89, 105);
 }
 
 - (UIColor*)tableSubTextColor {
-  return RGBCOLOR(99, 109, 125);
+  return RGBCOLOR(79, 89, 105);
 }
 
 - (UIColor*)tableTitleTextColor {
@@ -591,11 +591,11 @@
 }
 
 - (UIFont*)errorTitleFont {
-  return [UIFont boldSystemFontOfSize:18];
+  return [UIFont boldSystemFontOfSize:16];
 }
 
 - (UIFont*)errorSubtitleFont {
-  return [UIFont boldSystemFontOfSize:14];
+  return [UIFont boldSystemFontOfSize:12];
 }
 
 - (UIFont*)activityLabelFont {

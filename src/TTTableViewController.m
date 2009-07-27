@@ -282,19 +282,21 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (void)showError:(BOOL)show {
   if (show) {
-    NSString* title = [_dataSource titleForError:_modelError];
-    NSString* subtitle = [_dataSource subtitleForError:_modelError];
-    UIImage* image = [_dataSource imageForError:_modelError];
-    if (title.length || subtitle.length || image) {
-      TTErrorView* errorView = [[[TTErrorView alloc] initWithTitle:title
-                                                     subtitle:subtitle
-                                                     image:image] autorelease];
-      errorView.backgroundColor = _tableView.backgroundColor;
-      self.errorView = errorView;
-    } else {
-      self.errorView = nil;
+    if (!self.model.isLoaded || ![self canShowModel]) {
+      NSString* title = [_dataSource titleForError:_modelError];
+      NSString* subtitle = [_dataSource subtitleForError:_modelError];
+      UIImage* image = [_dataSource imageForError:_modelError];
+      if (title.length || subtitle.length || image) {
+        TTErrorView* errorView = [[[TTErrorView alloc] initWithTitle:title
+                                                       subtitle:subtitle
+                                                       image:image] autorelease];
+        errorView.backgroundColor = _tableView.backgroundColor;
+        self.errorView = errorView;
+      } else {
+        self.errorView = nil;
+      }
+      [_tableView reloadData];
     }
-    [_tableView reloadData];
   } else {
     self.errorView = nil;
   }

@@ -309,7 +309,7 @@
     [self.model load:TTURLRequestCachePolicyDefault more:NO];
   } else if (!loading && loaded && [self shouldReload]) {
     [self.model load:TTURLRequestCachePolicyNetwork more:NO];
-  } else if (!loading && loaded && [self shouldLoadMore]) {
+  } else if (!loading && [self shouldLoadMore]) {
     [self.model load:TTURLRequestCachePolicyDefault more:YES];
   } else {
     _flags.isModelDidLoadInvalid = YES;

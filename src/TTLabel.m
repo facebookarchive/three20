@@ -53,7 +53,7 @@
   context.font = _font;
   context.frame = self.bounds;
   context.contentFrame = context.frame;
-  return [_style addToSize:size context:context];
+  return [_style addToSize:CGSizeZero context:context];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
