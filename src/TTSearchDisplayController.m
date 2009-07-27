@@ -71,6 +71,22 @@ static const NSTimeInterval kPauseInterval = 0.4;
         didLoadSearchResultsTableView:(UITableView *)tableView {
 }
 
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+  if (!self.searchContentsController.navigationController) {
+    [UIView beginAnimations:nil context:nil];
+    self.searchBar.superview.top -= self.searchBar.screenY - TT_STATUS_HEIGHT;
+    [UIView commitAnimations];
+  }
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
+  if (!self.searchContentsController.navigationController) {
+    [UIView beginAnimations:nil context:nil];
+    self.searchBar.superview.top += self.searchBar.top - TT_STATUS_HEIGHT;
+    [UIView commitAnimations];
+  }
+}
+ 
 - (void)searchDisplayController:(UISearchDisplayController *)controller
         willUnloadSearchResultsTableView:(UITableView *)tableView {
 }

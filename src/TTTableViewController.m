@@ -220,6 +220,16 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTModelViewController
 
+- (void)beginUpdates {
+  [super beginUpdates];
+  [_tableView beginUpdates];
+}
+
+- (void)endUpdates {
+  [super endUpdates];
+  [_tableView endUpdates];
+}
+
 - (BOOL)canShowModel {
   if ([_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
     NSInteger numberOfSections = [_dataSource numberOfSectionsInTableView:_tableView];
@@ -242,14 +252,11 @@ static const CGFloat kBannerViewHeight = 22;
   [_dataSource tableViewDidLoadModel:_tableView];
 }
 
-- (void)beginUpdates {
-  [super beginUpdates];
-  [_tableView beginUpdates];
-}
-
-- (void)endUpdates {
-  [super endUpdates];
-  [_tableView endUpdates];
+- (void)didShowModel:(BOOL)firstTime {
+  [super didShowModel:firstTime];
+  if (firstTime) {
+    [_tableView flashScrollIndicators];
+  }
 }
 
 - (void)showModel:(BOOL)show {

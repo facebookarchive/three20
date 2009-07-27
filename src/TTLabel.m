@@ -51,7 +51,7 @@
   TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
   context.delegate = self;
   context.font = _font;
-  context.frame = self.bounds;
+  context.frame = CGRectMake(0, 0, size.width, size.height);
   context.contentFrame = context.frame;
   return [_style addToSize:CGSizeZero context:context];
 }
