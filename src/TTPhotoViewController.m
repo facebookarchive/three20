@@ -16,7 +16,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 @implementation TTPhotoViewController
 
 @synthesize photoSource = _photoSource, centerPhoto = _centerPhoto,
-  centerPhotoIndex = _centerPhotoIndex, defaultImage = _defaultImage;
+  centerPhotoIndex = _centerPhotoIndex, defaultImage = _defaultImage, captionStyle = _captionStyle;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -278,6 +278,8 @@ static const NSTimeInterval kSlideshowInterval = 2;
     _scrollView = nil;
     _photoStatusView = nil;
     _toolbar = nil;
+    _defaultImage = nil;
+    _captionStyle = nil;
     _nextButton = nil;
     _previousButton = nil;
     _statusText = nil;
@@ -303,14 +305,13 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)dealloc {
   _thumbsController.delegate = nil;
+  TT_RELEASE_TIMER(_slideshowTimer);
+  TT_RELEASE_TIMER(_loadTimer);
   TT_RELEASE_SAFELY(_thumbsController);
-  [_slideshowTimer invalidate];
-  _slideshowTimer = nil;
-  [_loadTimer invalidate];
-  _loadTimer = nil;
   TT_RELEASE_SAFELY(_centerPhoto);
   TT_RELEASE_SAFELY(_photoSource);
   TT_RELEASE_SAFELY(_statusText);
+  TT_RELEASE_SAFELY(_captionStyle);
   TT_RELEASE_SAFELY(_defaultImage);
   [super dealloc];
 }
@@ -573,6 +574,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
   TTPhotoView* photoView = (TTPhotoView*)[_scrollView dequeueReusablePage];
   if (!photoView) {
     photoView = [self createPhotoView];
+    photoView.captionStyle = _captionStyle;
     photoView.defaultImage = _defaultImage;
     photoView.hidesCaption = _toolbar.alpha == 0;
   }

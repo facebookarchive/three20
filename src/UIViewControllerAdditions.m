@@ -24,7 +24,6 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _popupViewController = nil;
-    self.backgroundColor = [UIColor blueColor];
   }
   return self;
 }

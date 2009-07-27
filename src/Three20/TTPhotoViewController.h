@@ -3,7 +3,7 @@
 #import "Three20/TTScrollView.h"
 #import "Three20/TTThumbsViewController.h"
 
-@class TTScrollView, TTPhotoView;
+@class TTScrollView, TTPhotoView, TTStyle;
 
 @interface TTPhotoViewController : TTModelViewController
           <TTScrollViewDelegate, TTScrollViewDataSource, TTThumbsViewControllerDelegate> {
@@ -16,6 +16,7 @@
   UIToolbar* _toolbar;
   UIBarButtonItem* _nextButton;
   UIBarButtonItem* _previousButton;
+  TTStyle* _captionStyle;
   UIImage* _defaultImage;
   NSString* _statusText;
   TTThumbsViewController* _thumbsController;
@@ -48,6 +49,11 @@
  * The default image to show before a photo has been loaded.
  */
 @property(nonatomic,retain) UIImage* defaultImage;
+
+/**
+ * The style to use for the caption label.
+ */
+@property(nonatomic,retain) TTStyle* captionStyle;
 
 /**
  * Creates a photo view for a new page.

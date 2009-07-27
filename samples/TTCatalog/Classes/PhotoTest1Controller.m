@@ -38,9 +38,9 @@
       initWithURL:@"http://farm4.static.flickr.com/3444/3223645618_13fe36887a_o.jpg"
       smallURL:@"http://farm4.static.flickr.com/3444/3223645618_f5e2fa7fea_t.jpg"
       size:CGSizeMake(320, 480)
-      caption:@"These are the wood tiles that we had installed after the accident."] autorelease],
+      caption:@"This is a caption."] autorelease],
 
-    // Causes album to be loaded
+    // Uncomment to cause photo viewer to ask photo source to load itself
     // [NSNull null],
 
     [[[MockPhoto alloc]
@@ -57,7 +57,11 @@
     [[[MockPhoto alloc]
       initWithURL:@"http://farm4.static.flickr.com/3106/3203111597_d849ef615b.jpg?v=0"
       smallURL:@"http://farm4.static.flickr.com/3106/3203111597_d849ef615b_t.jpg"
-      size:CGSizeMake(320, 480)] autorelease],
+      size:CGSizeMake(320, 480)
+      caption:@"This is a really long caption to show how long captions are wrapped and \
+truncated. This maximum number of lines is six, so captions have to be pretty \
+darned verbose to get clipped.  I am probably going to suffer from a repetitive stress injury \
+just from typing this! Are we truncated yet? Just a few more characters I guess."] autorelease],
 
 
     [[[MockPhoto alloc]

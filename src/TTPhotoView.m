@@ -1,22 +1,17 @@
 #import "Three20/TTPhotoView.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTImageView.h"
+#import "Three20/TTLabel.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequestQueue.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-static const CGFloat kPadding = 20;
-static const CGFloat kCaptionMargin = 20;
-  
-static const CGFloat kMaxCaptionHeight = 100;
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
 @implementation TTPhotoView
 
-@synthesize photo = _photo, hidesExtras = _hidesExtras, hidesCaption = _hidesCaption;
+@synthesize photo = _photo, captionStyle = _captionStyle, hidesExtras = _hidesExtras,
+            hidesCaption = _hidesCaption;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -37,15 +32,9 @@ static const CGFloat kMaxCaptionHeight = 100;
 - (void)showCaption:(NSString*)caption {
   if (caption) {
     if (!_captionLabel) {
-      _captionLabel = [[UILabel alloc] init];
-      _captionLabel.textColor = TTSTYLEVAR(photoCaptionTextColor);
-      _captionLabel.font = TTSTYLEVAR(photoCaptionFont);
-      _captionLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.9];
-      _captionLabel.shadowOffset = CGSizeMake(1, 1);
-      _captionLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-      _captionLabel.lineBreakMode = UILineBreakModeTailTruncation;
-      _captionLabel.textAlignment = UITextAlignmentCenter;
-      _captionLabel.numberOfLines = 6;
+      _captionLabel = [[TTLabel alloc] init];
+      _captionLabel.opaque = NO;
+      _captionLabel.style = _captionStyle ? _captionStyle : TTSTYLE(photoCaption);
       _captionLabel.alpha = _hidesCaption ? 0 : 1;
       [self addSubview:_captionLabel];
     }
@@ -63,6 +52,7 @@ static const CGFloat kMaxCaptionHeight = 100;
     _photo = nil;
     _statusSpinner = nil;
     _statusLabel = nil;
+    _captionStyle = nil;
     _captionLabel = nil;
     _photoVersion = TTPhotoVersionNone;
     _hidesExtras = NO;
@@ -77,9 +67,10 @@ static const CGFloat kMaxCaptionHeight = 100;
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
   [super setDelegate:nil];
   TT_RELEASE_SAFELY(_photo);
+  TT_RELEASE_SAFELY(_captionLabel);
+  TT_RELEASE_SAFELY(_captionStyle);
   TT_RELEASE_SAFELY(_statusSpinner);
   TT_RELEASE_SAFELY(_statusLabel);
-  TT_RELEASE_SAFELY(_captionLabel);
   [super dealloc];
 }
 
@@ -139,29 +130,36 @@ static const CGFloat kMaxCaptionHeight = 100;
   
   // Vertically center in the space between the bottom of the image and the bottom of the screen
   CGFloat imageBottom = screenBounds.size.height/2 + self.defaultImage.size.height/2;
-  CGFloat offsetBottom = imageBottom + (screenBounds.size.height - (imageBottom + marginBottom))/2;
+  CGFloat textWidth = screenBounds.size.width - (marginLeft+marginRight);
   
-  _statusLabel.frame = CGRectMake(0, 0, self.width - kPadding, 0);
-  [_statusLabel sizeToFit];
-  _statusLabel.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width/2,
-    screenOffset + self.bounds.origin.y + offsetBottom);
-
-  [_statusSpinner sizeToFit];
-  _statusSpinner.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width/2,
-    screenOffset + self.bounds.origin.y + offsetBottom);
-
-  CGFloat captionWidth = screenBounds.size.width - (marginLeft+marginRight);
-  CGSize captionSize = [_captionLabel.text sizeWithFont:_captionLabel.font
-                                           constrainedToSize:CGSizeMake(captionWidth, CGFLOAT_MAX)];
-  if (captionSize.height) {
-    CGFloat captionHeight = (captionSize.height > kMaxCaptionHeight
-                            ? kMaxCaptionHeight : captionSize.height) + kCaptionMargin;
+  if (_statusLabel.text.length) {
+    CGSize statusSize = [_statusLabel sizeThatFits:CGSizeMake(textWidth, 0)];
+    _statusLabel.frame = 
+        CGRectMake(marginLeft + (cx - screenBounds.size.width/2), 
+                   cy + floor(screenBounds.size.height/2 - (statusSize.height+marginBottom)),
+                   textWidth, statusSize.height);
+  } else {
+    _statusLabel.frame = CGRectZero;
+  }
+  
+  if (_captionLabel.text.length) {
+    CGSize captionSize = [_captionLabel sizeThatFits:CGSizeMake(textWidth, 0)];
     _captionLabel.frame = CGRectMake(marginLeft + (cx - screenBounds.size.width/2), 
-      cy + floor(screenBounds.size.height/2 - (captionHeight+marginBottom)),
-      captionWidth, captionHeight);
+                                     cy + floor(screenBounds.size.height/2
+                                                - (captionSize.height+marginBottom)),
+                                     textWidth, captionSize.height);
   } else {
     _captionLabel.frame = CGRectZero;
   }
+  
+  CGFloat spinnerTop = _captionLabel.height
+    ? _captionLabel.top - floor(_statusSpinner.height + _statusSpinner.height/2)
+    : screenOffset + imageBottom + floor(_statusSpinner.height/2);
+
+  _statusSpinner.frame =
+    CGRectMake(self.bounds.origin.x + floor(self.bounds.size.width/2 - _statusSpinner.width/2),
+               spinnerTop, _statusSpinner.width, _statusSpinner.height);
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -238,14 +236,9 @@ static const CGFloat kMaxCaptionHeight = 100;
 - (void)showStatus:(NSString*)text {
   if (text) {
     if (!_statusLabel) {
-      _statusLabel = [[UILabel alloc] init];
-      _statusLabel.font = TTSTYLEVAR(tableFont);
-      _statusLabel.textColor = TTSTYLEVAR(tableErrorTextColor);
-      _statusLabel.backgroundColor = [UIColor clearColor];
-      _statusLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.7];
-      _statusLabel.shadowOffset = CGSizeMake(1, 1);
-      _statusLabel.textAlignment = UITextAlignmentCenter;
-      _statusLabel.numberOfLines = 0;
+      _statusLabel = [[TTLabel alloc] init];
+      _statusLabel.style = TTSTYLE(photoStatusLabel);
+      _statusLabel.opaque = NO;
       [self addSubview:_statusLabel];
     }
     _statusLabel.hidden = NO;

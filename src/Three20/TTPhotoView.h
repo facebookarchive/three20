@@ -2,19 +2,21 @@
 #import "Three20/TTPhotoSource.h"
 
 @protocol TTPhoto;
-@class TTActivityLabel;
+@class TTActivityLabel, TTLabel;
 
 @interface TTPhotoView : TTImageView <TTImageViewDelegate> {
   id <TTPhoto> _photo;
   UIActivityIndicatorView* _statusSpinner;
-  UILabel* _statusLabel;
-  UILabel* _captionLabel;
+  TTLabel* _statusLabel;
+  TTLabel* _captionLabel;
+  TTStyle* _captionStyle;
   TTPhotoVersion _photoVersion;
   BOOL _hidesExtras;
   BOOL _hidesCaption;
 }
 
 @property(nonatomic,retain) id<TTPhoto> photo;
+@property(nonatomic,retain) TTStyle* captionStyle;
 @property(nonatomic) BOOL hidesExtras;
 @property(nonatomic) BOOL hidesCaption;
 

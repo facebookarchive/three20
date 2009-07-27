@@ -65,12 +65,16 @@
 
 - (NSInteger)tableView:(UITableView*)tableView sectionForSectionIndexTitle:(NSString*)title 
             atIndex:(NSInteger)index {
-  if (index == 0 && tableView.tableHeaderView)  {
-    // This is a hack to get the table header to appear when the user touches the
-    // first row in the section index.  By default, it shows the first row, which is
-    // not usually what you want.
-    [tableView scrollRectToVisible:tableView.tableHeaderView.bounds animated:NO];
-    return -1;
+  if (tableView.tableHeaderView) {
+    if (index == 0)  {
+      // This is a hack to get the table header to appear when the user touches the
+      // first row in the section index.  By default, it shows the first row, which is
+      // not usually what you want.
+      [tableView scrollRectToVisible:tableView.tableHeaderView.bounds animated:NO];
+      return -1;
+    } else {
+      return index-1;
+    }
   } else {
     return index;
   }

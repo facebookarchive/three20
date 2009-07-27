@@ -303,12 +303,13 @@
   _flags.isViewInvalid = YES;
   _flags.isModelWillLoadInvalid = YES;
 
-  BOOL tryToLoad = !self.model.isLoading && !self.model.isLoaded;
-  if (tryToLoad && [self shouldLoad]) {
+  BOOL loading = self.model.isLoading;
+  BOOL loaded = self.model.isLoaded;
+  if (!loading && !loaded && [self shouldLoad]) {
     [self.model load:TTURLRequestCachePolicyDefault more:NO];
-  } else if (tryToLoad && [self shouldReload]) {
+  } else if (!loading && loaded && [self shouldReload]) {
     [self.model load:TTURLRequestCachePolicyNetwork more:NO];
-  } else if (tryToLoad && [self shouldLoadMore]) {
+  } else if (!loading && loaded && [self shouldLoadMore]) {
     [self.model load:TTURLRequestCachePolicyDefault more:YES];
   } else {
     _flags.isModelDidLoadInvalid = YES;

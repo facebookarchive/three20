@@ -18,7 +18,7 @@ static const CGFloat kBannerViewHeight = 22;
 
 @implementation TTTableViewController
 
-@synthesize tableView = ntableView, tableBannerView = _tableBannerView,
+@synthesize tableView = _tableView, tableBannerView = _tableBannerView,
             tableOverlayView = _tableOverlayView,
             loadingView = _loadingView, errorView= _errorView, emptyView = _emptyView,
             dataSource = _dataSource, tableViewStyle = _tableViewStyle,
