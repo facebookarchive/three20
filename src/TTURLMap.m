@@ -276,6 +276,10 @@
   [_objectMappings removeObjectForKey:URL];
 }
 
+- (void)removeAllObjects {
+  TT_RELEASE_SAFELY(_objectMappings);
+}
+
 - (id)objectForURL:(NSString*)URL {
   return [self objectForURL:URL query:nil pattern:nil];
 }

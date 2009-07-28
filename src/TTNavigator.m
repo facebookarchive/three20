@@ -88,24 +88,11 @@
   }
 }
 
-- (void)ensureWindow {
-  if (!_window) {
-    UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
-    if (keyWindow) {
-      _window = [keyWindow retain];
-    } else {
-      _window = [[TTNavigatorWindow alloc] initWithFrame:TTScreenBounds()];
-      [_window makeKeyAndVisible];
-    }
-  }
-  [_window addSubview:_rootViewController.view];
-}
-
 - (void)setRootViewController:(UIViewController*)controller {
   if (controller != _rootViewController) {
     [_rootViewController release];
     _rootViewController = [controller retain];
-    [self ensureWindow];
+    [self.window addSubview:_rootViewController.view];
   }
 }
 
@@ -326,6 +313,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
+- (UIWindow*)window {
+  if (!_window) {
+    UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
+    if (keyWindow) {
+      _window = [keyWindow retain];
+    } else {
+      _window = [[TTNavigatorWindow alloc] initWithFrame:TTScreenBounds()];
+      [_window makeKeyAndVisible];
+    }
+  }
+  return _window;
+}
+
 - (UIViewController*)visibleViewController {
   UIViewController* controller = _rootViewController;
   while (controller) {
@@ -510,8 +510,13 @@
   TTLOG(@"DEBUG PERSIST %@", path);
   
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setObject:path forKey:@"TTNavigatorHistory"];
-  [defaults setObject:[NSDate date] forKey:@"TTNavigatorHistoryTime"];
+  if (path.count) {
+    [defaults setObject:path forKey:@"TTNavigatorHistory"];
+    [defaults setObject:[NSDate date] forKey:@"TTNavigatorHistoryTime"];
+  } else {
+    [defaults removeObjectForKey:@"TTNavigatorHistory"];
+    [defaults removeObjectForKey:@"TTNavigatorHistoryTime"];
+  }
   [defaults synchronize];
 }
 
@@ -519,12 +524,11 @@
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSDate* timestamp = [defaults objectForKey:@"TTNavigatorHistoryTime"];
   NSArray* path = [defaults objectForKey:@"TTNavigatorHistory"];
+  TTLOG(@"DEBUG RESTORE %@ FROM %@", path, [timestamp formatRelativeTime]);
   
   if (_persistenceExpirationAge && -timestamp.timeIntervalSinceNow > _persistenceExpirationAge) {
     return nil;
   }
-
-  TTLOG(@"DEBUG RESTORE %@ FROM %@", path, [timestamp formatRelativeTime]);
 
   UIViewController* controller = nil;
   BOOL passedContainer = NO;
@@ -578,7 +582,9 @@
 }
 
 - (void)removeAllViewControllers {
-  // XXXjoe Implement me
+  [_rootViewController.view removeFromSuperview];
+  TT_RELEASE_SAFELY(_rootViewController);
+  [_URLMap removeAllObjects];
 }
 
 - (NSString*)pathForObject:(id)object {

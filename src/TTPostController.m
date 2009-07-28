@@ -244,7 +244,7 @@ static const CGFloat kMarginY = 5;
 
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
   [self retain];
-  [[TTNavigator navigator].window addSubview:self.view];
+  [view.window addSubview:self.view];
 
   if (_defaultText) {
     _textEditor.text = _defaultText;
@@ -368,10 +368,10 @@ static const CGFloat kMarginY = 5;
   if (!_textEditor.text.isEmptyOrWhitespace
       && !(_defaultText && [_defaultText isEqualToString:_textEditor.text])) {
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
-      NSLocalizedString(@"Are you sure?", @"")
-      message:NSLocalizedString(@"Are you sure you want to cancel?", @"")
-      delegate:self cancelButtonTitle:NSLocalizedString(@"Yes", @"")
-      otherButtonTitles:NSLocalizedString(@"No", @""), nil] autorelease];
+      TTLocalizedString(@"Are you sure?", @"")
+      message:TTLocalizedString(@"Are you sure you want to cancel?", @"")
+      delegate:self cancelButtonTitle:TTLocalizedString(@"Yes", @"")
+      otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
     [cancelAlertView show];
   } else {
     [self dismissPopupViewControllerAnimated:YES];
@@ -424,8 +424,8 @@ static const CGFloat kMarginY = 5;
   
   NSString* title = [self titleForError:error];
   if (title.length) {
-    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
-      message:title delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"")
+    UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:TTLocalizedString(@"Error", @"")
+      message:title delegate:nil cancelButtonTitle:TTLocalizedString(@"Ok", @"")
       otherButtonTitles:nil] autorelease];
     [alertView show];
   }

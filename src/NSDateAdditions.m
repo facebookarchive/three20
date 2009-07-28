@@ -37,7 +37,7 @@ static NSDateFormatter* dayFormatter = nil;
   static NSDateFormatter* timeFormatter = nil;
   if (!timeFormatter) {
     timeFormatter = [[NSDateFormatter alloc] init];
-    timeFormatter.dateFormat = TTLocalizedString(@"h:mm a", @"");
+    timeFormatter.dateFormat = TTLocalizedString(@"h:mm a", @"Date format: 1:05 pm");
     timeFormatter.locale = TTCurrentLocale();
   }
   return [timeFormatter stringFromDate:self];
@@ -47,7 +47,8 @@ static NSDateFormatter* dayFormatter = nil;
   static NSDateFormatter* fullDateFormatter = nil;
   if (!fullDateFormatter) {
     fullDateFormatter = [[NSDateFormatter alloc] init];
-    fullDateFormatter.dateFormat = TTLocalizedString(@"EEEE, LLLL d, YYYY", @"");
+    fullDateFormatter.dateFormat =
+      TTLocalizedString(@"EEEE, LLLL d, YYYY", @"Date format: Monday, July 27, 2009");
     fullDateFormatter.locale = TTCurrentLocale();
   }
   return [fullDateFormatter stringFromDate:self];
@@ -61,7 +62,7 @@ static NSDateFormatter* dayFormatter = nil;
     static NSDateFormatter* shortTimeFormatterWeek = nil;
     if (!shortTimeFormatterWeek) {
       shortTimeFormatterWeek = [[NSDateFormatter alloc] init];
-      shortTimeFormatterWeek.dateFormat = TTLocalizedString(@"EEEE", @"");
+      shortTimeFormatterWeek.dateFormat = TTLocalizedString(@"EEEE", @"Date format: Monday");
       shortTimeFormatterWeek.locale = TTCurrentLocale();
     }
     return [shortTimeFormatterWeek stringFromDate:self];
@@ -69,7 +70,8 @@ static NSDateFormatter* dayFormatter = nil;
     static NSDateFormatter* shortTimeFormatterYear = nil;
     if (!shortTimeFormatterYear) {
       shortTimeFormatterYear = [[NSDateFormatter alloc] init];
-      shortTimeFormatterYear.dateFormat = TTLocalizedString(@"M/d/yy", @"");
+      shortTimeFormatterYear.dateFormat =
+        TTLocalizedString(@"M/d/yy", @"Date format: 7/27/09");
       shortTimeFormatterYear.locale = TTCurrentLocale();
     }
     return [shortTimeFormatterYear stringFromDate:self];
@@ -84,7 +86,8 @@ static NSDateFormatter* dayFormatter = nil;
     static NSDateFormatter* shortTimeFormatterWeek = nil;
     if (!shortTimeFormatterWeek) {
       shortTimeFormatterWeek = [[NSDateFormatter alloc] init];
-      shortTimeFormatterWeek.dateFormat = TTLocalizedString(@"EEE h:mm a", @"");
+      shortTimeFormatterWeek.dateFormat = 
+        TTLocalizedString(@"EEE h:mm a", @"Date format: Mon 1:05 pm");
       shortTimeFormatterWeek.locale = TTCurrentLocale();
     }
     return [shortTimeFormatterWeek stringFromDate:self];
@@ -92,7 +95,8 @@ static NSDateFormatter* dayFormatter = nil;
     static NSDateFormatter* shortTimeFormatterYear = nil;
     if (!shortTimeFormatterYear) {
       shortTimeFormatterYear = [[NSDateFormatter alloc] init];
-      shortTimeFormatterYear.dateFormat = TTLocalizedString(@"MMM d h:mm a", @"");
+      shortTimeFormatterYear.dateFormat =
+        TTLocalizedString(@"MMM d h:mm a", @"Date format: Jul 27 1:05 pm");
       shortTimeFormatterYear.locale = TTCurrentLocale();
     }
     return [shortTimeFormatterYear stringFromDate:self];
@@ -124,7 +128,7 @@ static NSDateFormatter* dayFormatter = nil;
 - (NSString*)formatDay:(NSDateComponents*)today yesterday:(NSDateComponents*)yesterday {
   if (!dayFormatter) {
     dayFormatter = [[NSDateFormatter alloc] init];
-    dayFormatter.dateFormat = TTLocalizedString(@"MMMM d", @"");
+    dayFormatter.dateFormat = TTLocalizedString(@"MMMM d", @"Date format: July 27");
     dayFormatter.locale = TTCurrentLocale();
   }
 

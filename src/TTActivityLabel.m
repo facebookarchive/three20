@@ -121,6 +121,7 @@ static CGFloat kProgressMargin = 6;
   CGSize textSize = [_label.text sizeWithFont:_label.font];
 
   CGFloat indicatorSize = 0;
+  [_activityIndicator sizeToFit];
   if (_activityIndicator.isAnimating) {
     if (_activityIndicator.height > textSize.height) {
       indicatorSize = textSize.height;
