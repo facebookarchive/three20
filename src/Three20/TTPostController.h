@@ -95,4 +95,9 @@
 - (void)postController:(TTPostController*)postController didPostText:(NSString*)text
         withResult:(id)result;
 
+/**
+ * The controller was cancelled before posting.
+ */
+- (void)postControllerDidCancel:(TTPostController*)postController;
+
 @end

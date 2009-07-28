@@ -129,7 +129,7 @@
 }
 
 - (TTStyle*)blackSearchBar {
-  UIColor* highlight = [UIColor colorWithWhite:0.8 alpha:0.15];
+  UIColor* highlight = [UIColor colorWithWhite:1 alpha:0.05];
   UIColor* mid = [UIColor colorWithWhite:0.4 alpha:0.6];
   UIColor* shadow = [UIColor colorWithWhite:0 alpha:0.8];
   return
@@ -649,7 +649,7 @@
   return 
     [TTShapeStyle styleWithShape:shape next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 1, 0) next:
-    [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.25) blur:0 offset:CGSizeMake(0, 1) next:
+    [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.18) blur:0 offset:CGSizeMake(0, 1) next:
     [TTReflectiveFillStyle styleWithColor:stateTintColor next:
     [TTBevelBorderStyle styleWithHighlight:[stateTintColor multiplyHue:1 saturation:0.9 value:0.7]
                         shadow:[stateTintColor multiplyHue:1 saturation:0.5 value:0.6]

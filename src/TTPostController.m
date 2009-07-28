@@ -145,6 +145,14 @@ static const CGFloat kMarginY = 5;
   }
 }
 
+- (void)dismissWithCancel {
+  if ([_delegate respondsToSelector:@selector(postControllerDidCancel:)]) {
+    [_delegate postControllerDidCancel:self];
+  }
+  
+  [self dismissPopupViewControllerAnimated:YES];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -314,8 +322,8 @@ static const CGFloat kMarginY = 5;
 // UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (buttonIndex == 0) {
-    [self dismissPopupViewControllerAnimated:YES];
+  if (buttonIndex == 1) {
+    [self dismissWithCancel];
   }
 }
 
@@ -370,11 +378,11 @@ static const CGFloat kMarginY = 5;
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
       TTLocalizedString(@"Are you sure?", @"")
       message:TTLocalizedString(@"Are you sure you want to cancel?", @"")
-      delegate:self cancelButtonTitle:TTLocalizedString(@"Yes", @"")
-      otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
+      delegate:self cancelButtonTitle:TTLocalizedString(@"No", @"")
+      otherButtonTitles:TTLocalizedString(@"Yes", @""), nil] autorelease];
     [cancelAlertView show];
   } else {
-    [self dismissPopupViewControllerAnimated:YES];
+    [self dismissWithCancel];
   }
 }
 

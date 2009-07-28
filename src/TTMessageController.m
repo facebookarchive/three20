@@ -231,9 +231,30 @@
   _scrollView.contentSize = CGSizeMake(_scrollView.width, y);
 }
 
-- (void)updateSendCommand {
-  BOOL compliant = YES;
+- (BOOL)hasEnteredText {
+  for (int i = 0; i < _fields.count; ++i) {
+    TTMessageField* field = [_fields objectAtIndex:i];
+    if (field.required) {
+      if ([field isKindOfClass:[TTMessageRecipientField class]]) {
+        TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
+        if (textField.cells.count) {
+          return YES;
+        }
+      } else if ([field isKindOfClass:[TTMessageTextField class]]) {
+        UITextField* textField = [_fieldViews objectAtIndex:i];
+        if (!textField.text.isEmptyOrWhitespace) {
+          return YES;
+        }
+      }
+    }
+  }
   
+  return _textEditor.text.length;
+}
+
+- (BOOL)hasRequiredText {
+  BOOL compliant = YES;
+
   for (int i = 0; i < _fields.count; ++i) {
     TTMessageField* field = [_fields objectAtIndex:i];
     if (field.required) {
@@ -244,14 +265,18 @@
         }
       } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
-        if (!textField.text.isEmptyOrWhitespace) {
+        if (textField.text.isEmptyOrWhitespace) {
           compliant = NO;
         }
       }
     }
   }
+  
+  return compliant && _textEditor.text.length;
+}
 
-  self.navigationItem.rightBarButtonItem.enabled = compliant && _textEditor.text.length;
+- (void)updateSendCommand {
+  self.navigationItem.rightBarButtonItem.enabled = [self hasRequiredText];
 }
 
 - (UITextField*)subjectField {
@@ -518,7 +543,7 @@
 // UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (buttonIndex == 0) {
+  if (buttonIndex == 1) {
     [self cancel:NO];
   }
 }
@@ -696,8 +721,8 @@
     TTLocalizedString(@"Are you sure?", @"")
     message:TTLocalizedString(@"Are you sure you want to cancel?", @"")
     delegate:self
-    cancelButtonTitle:TTLocalizedString(@"Yes", @"")
-    otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
+    cancelButtonTitle:TTLocalizedString(@"No", @"")
+    otherButtonTitles:TTLocalizedString(@"Yes", @""), nil] autorelease];
   [cancelAlertView show];
 }
 
@@ -722,7 +747,7 @@
 }
 
 - (BOOL)messageShouldCancel {
-  return !_textEditor.text.length || !_isModified;
+  return ![self hasEnteredText] || !_isModified;
 }
 
 - (void)messageWillShowRecipientPicker {

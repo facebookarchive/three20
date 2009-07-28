@@ -11,6 +11,7 @@ static const CGFloat kMarginY = 7;
 static const CGFloat kPaddingX = 10;
 static const CGFloat kPaddingY = 10;
 static const CGFloat kSpacingX = 4;
+static const CGFloat kButtonSpacing = 12;
 static const CGFloat kButtonHeight = 30;
 
 static const CGFloat kIndexViewMargin = 4;
@@ -144,7 +145,7 @@ static const CGFloat kIndexViewMargin = 4;
   CGFloat buttonWidth = 0;
   if (_showsCancelButton) {
     [_cancelButton sizeToFit];
-    buttonWidth = _cancelButton.width + kSpacingX;
+    buttonWidth = _cancelButton.width + kButtonSpacing;
   }
 
   CGFloat boxHeight = self.font.lineHeight + 8;
@@ -155,7 +156,7 @@ static const CGFloat kIndexViewMargin = 4;
     self.width - (kMarginX*2+kPaddingX+leftPadding+buttonWidth+indexViewWidth), self.height);
   
   if (_showsCancelButton) {
-    _cancelButton.frame = CGRectMake(_boxView.right + kSpacingX,
+    _cancelButton.frame = CGRectMake(_boxView.right + kButtonSpacing,
                                      floor(self.height/2 - kButtonHeight/2),
                                      _cancelButton.width, kButtonHeight);
   }

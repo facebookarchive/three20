@@ -106,7 +106,9 @@
 
 - (void)imageViewDidFailLoadWithError:(NSError*)error {
   [self showProgress:0];
-  [self showStatus:TTDescriptionForError(error)];
+  if (error) {
+    [self showStatus:TTDescriptionForError(error)];
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
