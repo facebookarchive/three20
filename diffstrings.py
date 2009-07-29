@@ -7,9 +7,13 @@ diffstrings compares your primary locale with all your other locales to help you
 The path arguments supplied to this script should be the path containing your source files.  The file system will be searched to find the .lproj directories containing the Localizable.strings files that the script will read and write.
 """
 
-import os.path, codecs, optparse, re
-
+import os.path, codecs, optparse, re, datetime
+from xml.sax.saxutils import escape
+ 
 ###################################################################################################
+
+global xmlFormat
+xmlFormat = {}
 
 reLprojFileName = re.compile(r'(.+?)\.lproj')
 reComment = re.compile(r'/\*(.*?)\*/')
@@ -46,7 +50,10 @@ def compareLocales(locale1, locale2, compareStrings=False):
     return newStrings, existingStrings
 
 def writeLocaleDiff(localeName, locale, projectLocaleName, projectLocale):
-    """ Writes a <locale>.txt file for a locale."""
+    """ Writes a <locale>.xml file for a locale."""
+
+    global xmlFormat
+    prefix = xmlFormat['prefix']
     
     newStrings, existingStrings = compareLocales(projectLocale, locale, True)
     deletedStrings, ignore = compareLocales(locale, projectLocale)
@@ -58,9 +65,19 @@ def writeLocaleDiff(localeName, locale, projectLocaleName, projectLocale):
         else:
             print "    * %s is fully translated." % localeName
     else:                                                                      
-        fileName = "%s.txt" % localeName
+        fileName = "%s.xml" % localeName
         stringsPath = os.path.abspath(os.path.join(".", fileName))
         f = codecs.open(stringsPath, 'w', 'utf-16')
+        
+        f.write('<?xml version="1.0" encoding="utf-16"?>\n')
+        f.write('<%sexternal>\n' % prefix)
+
+        f.write('  <meta>\n')
+        if xmlFormat['appName']:
+            f.write('    <appName>%s</appName>\n' % xmlFormat['appName'])
+        f.write('    <date>%s</date>\n' % datetime.datetime.now().strftime('%Y%m%d'))
+        f.write('    <locale>%s</locale>\n' % localeName)
+        f.write('  </meta>\n')
         
         allStrings = dict(newStrings)
         allStrings.update(existingStrings)
@@ -69,20 +86,28 @@ def writeLocaleDiff(localeName, locale, projectLocaleName, projectLocale):
         
         for originalString in sortedKeys:
             translatedString, comment = allStrings[originalString]
-            if translatedString == originalString:
-                translatedString = ""
-
-            f.write("%s: \"%s\"\n" % (projectLocaleName, originalString))
+            
+            f.write("  <entry>\n")
+            f.write("    <%ssource>%s</%ssource>\n" % (prefix, escape(originalString), prefix))
+            if translatedString == originalString or not translatedString:
+                f.write("    <%starget>%s</%starget>\n"
+                        % (prefix, escape(originalString), prefix))
+            else:
+                f.write("    <%sxtarget>%s</%sxtarget>\n"
+                        % (prefix, escape(translatedString), prefix))
             if comment:
-                f.write("    (%s)\n" % comment)
-            f.write("%s: \"%s\"\n\n" % (localeName, translatedString))
+                f.write("    <%sdescription>%s</%sdescription>\n"
+                        % (prefix, escape(comment), prefix))
+            f.write("  </entry>\n")
+
+        f.write('</%sexternal>\n' % prefix)
         f.close()
 
         if len(deletedStrings):
-            print "    * Writing %s.txt: %s new strings, %s already translated, and %s obsolete."\
+            print "    * Writing %s.xml: %s new strings, %s already translated, and %s obsolete."\
                   % (localeName, len(newStrings), len(existingStrings), len(deletedStrings))
         else:
-            print "    * Writing %s.txt: %s new strings, with %s already translated."\
+            print "    * Writing %s.xml: %s new strings, with %s already translated."\
                   % (localeName, len(newStrings), len(existingStrings))
             
 ###################################################################################################
@@ -101,7 +126,7 @@ def mergeTranslations(primaryLocale, otherLocales, translations):
         if localeName not in translations:
             print "WARNING: No translation exist for %s" % localeName
         else:
-            print "    * Merging %s.txt" % localeName
+            print "    * Merging %s.xml" % localeName
             
             translation = translations[localeName]
             for originalString in primaryLocale:
@@ -205,7 +230,7 @@ def parseLocaleFile(stringsPath):
 ## Opening translations
 
 def openTranslation(localeName):
-    translationFileName = "%s.txt" % localeName
+    translationFileName = "%s.xml" % localeName
     translationFilePath = os.path.abspath(os.path.join(".", translationFileName))
     return parseTranslationsFile(translationFilePath)
 
@@ -291,7 +316,8 @@ def runGenstrings(projectDirPaths, primaryLocaleName):
 
 def parseOptions():
     parser = optparse.OptionParser(usage)
-    parser.set_defaults(locale="en", genstrings=False, merge=False, diff=False)
+    parser.set_defaults(locale="en", genstrings=False, merge=False, diff=False, appName="",
+                        prefix="")
 
     parser.add_option("-l", "--locale", dest="locale", type="str",
         help = "The name of your primary locale.  The default is 'en'.")
@@ -300,10 +326,16 @@ def parseOptions():
         help = "Runs 'genstrings *.m' on each project before diffing or merging. WARNING: This will overwrite the Localized.strings file in your primary locale.")
 
     parser.add_option("-d", "--diff", dest="diff", action="store_true",
-        help="Generates a diff of each locale against the primary locale. Each locale's diff will be stored in a file in the working directory named <locale>.txt.")
+        help="Generates a diff of each locale against the primary locale. Each locale's diff will be stored in a file in the working directory named <locale>.xml.")
 
     parser.add_option("-m", "--merge", dest="merge", action="store_true",
-        help="Merges strings from the <locale>.txt file in the working directory back into the Localized.strings files in each locale.")
+        help="Merges strings from the <locale>.xml file in the working directory back into the Localized.strings files in each locale.")
+
+    parser.add_option("-p", "--prefix", dest="prefix", type="str",
+        help="The prefix to use on the xml tags.")
+
+    parser.add_option("-a", "--appname", dest="appName", type="str",
+        help="The name of the application to include in the xml metadata.")
 
     options, arguments = parser.parse_args()
     paths = ["."] if not len(arguments) else arguments
@@ -315,6 +347,10 @@ def parseOptions():
 def main():
     options, projectPaths = parseOptions()
     projectPaths = [os.path.abspath(os.path.expanduser(path)) for path in projectPaths]
+
+    global xmlFormat
+    xmlFormat['prefix'] = options.prefix
+    xmlFormat['appName'] = options.appName
     
     if options.genstrings:
         print "*** Generating strings"

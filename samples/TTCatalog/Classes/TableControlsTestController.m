@@ -16,7 +16,6 @@
     UITextField* textField = [[[UITextField alloc] init] autorelease];
     textField.placeholder = @"UITextField";
     textField.font = TTSTYLEVAR(font);
-    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 
     UITextField* textField2 = [[[UITextField alloc] init] autorelease];
     textField2.font = TTSTYLEVAR(font);

@@ -10,7 +10,7 @@
 // global
 
 static const CGFloat kMarginX = 5;
-static const CGFloat kMarginY = 5;
+static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -31,7 +31,7 @@ static const CGFloat kMarginY = 5;
   }
 }
 
-- (void)showStatusBar {
+- (void)showKeyboard {
   UIApplication* app = [UIApplication sharedApplication];
   _originalStatusBarStyle = app.statusBarStyle;
   _originalStatusBarHidden = app.statusBarHidden;
@@ -39,17 +39,6 @@ static const CGFloat kMarginY = 5;
     [app setStatusBarHidden:NO animated:YES];
     [app setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
   }
-}
-
-- (void)showKeyboard {
-  _toolbar.frame = CGRectMake(0, self.view.height - (_toolbar.height-1), 320, _toolbar.height);
-  _toolbar.hidden = NO;
-
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:0.3];
-  _toolbar.top -= TT_KEYBOARD_HEIGHT;
-  [UIView commitAnimations];
-
   [_textEditor.textView becomeFirstResponder];
 }
 
@@ -85,22 +74,12 @@ static const CGFloat kMarginY = 5;
 }
 
 - (void)layoutTextEditor {
-  _textEditor.frame = CGRectMake(kMarginX, kMarginY, self.view.width - kMarginX*2,
+  _textEditor.frame = CGRectMake(kMarginX, kMarginY+_toolbar.height, self.view.width - kMarginX*2,
                                 self.view.height - (TT_KEYBOARD_HEIGHT+_toolbar.height+kMarginY*2));
   _textEditor.textView.hidden = NO;
 }
 
-- (void)springInAnimationStep2 {
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:0.15];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(springInAnimationStep3)];
-  [UIView setAnimationBeginsFromCurrentState:YES];
-  [self layoutTextEditor];
-  [UIView commitAnimations];
-}
-
-- (void)springInAnimationStep3 {
+- (void)showAnimationDidStop {
   _textEditor.textView.hidden = NO;
 }
 
@@ -120,7 +99,7 @@ static const CGFloat kMarginY = 5;
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(fadeAnimationDidStop)];
-  [UIView setAnimationDuration:0.3];
+  [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   self.view.alpha = 0;
   [UIView commitAnimations];
   
@@ -212,7 +191,7 @@ static const CGFloat kMarginY = 5;
   _textEditor = [[TTTextEditor alloc] init];
   _textEditor.textDelegate = self;
   _textEditor.autoresizesToText = NO;
-  _textEditor.textView.font = [UIFont systemFontOfSize:15];
+  _textEditor.textView.font = TTSTYLEVAR(font);
   _textEditor.textView.textColor = [UIColor blackColor];
   _textEditor.textView.contentInset = UIEdgeInsetsMake(0, 4, 0, 4);
   _textEditor.textView.keyboardAppearance = UIKeyboardAppearanceAlert;
@@ -221,7 +200,7 @@ static const CGFloat kMarginY = 5;
   [self.view addSubview:_textEditor];
 
   _toolbar = [[UIToolbar alloc] init];
-  _toolbar.barStyle = UIBarStyleBlackTranslucent;
+  _toolbar.barStyle = UIBarStyleBlackOpaque;
   [self.view addSubview:_toolbar];    
 }
 
@@ -265,11 +244,10 @@ static const CGFloat kMarginY = 5;
   [_toolbar sizeToFit];
   _screenView.frame = self.view.bounds;
   _originView.hidden = YES;
-  _textEditor.alpha = 1;
       
   if (animated) {
     _screenView.alpha = 0;
-    _toolbar.hidden = YES;
+    _toolbar.alpha = 0;
     _textEditor.textView.hidden = YES;
 
     if (_originRect.size.width) {
@@ -282,14 +260,13 @@ static const CGFloat kMarginY = 5;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_TRANSITION_DURATION];
     [UIView setAnimationDelegate:self];
-
-   _screenView.alpha = 0.6;
+    [UIView setAnimationDidStopSelector:@selector(showAnimationDidStop)];
+    
+    _toolbar.alpha = 1;
+    _screenView.alpha = 0.6;
     
     if (_originRect.size.width) {
-      [UIView setAnimationDidStopSelector:@selector(springInAnimationStep2)];
-      
-      _textEditor.frame = CGRectMake(self.view.width - (_textEditor.width + kMarginX),
-                                    kMarginY, _textEditor.width, _textEditor.height*2);
+      [self layoutTextEditor];
     } else {
       _textEditor.transform = CGAffineTransformIdentity;
     }
@@ -301,7 +278,6 @@ static const CGFloat kMarginY = 5;
     [self layoutTextEditor];
   }
   
-  [self showStatusBar];
   [self showKeyboard];
 }
 
@@ -416,7 +392,7 @@ static const CGFloat kMarginY = 5;
 
     _textEditor.alpha = 0.5;
     _screenView.alpha = 0;
-    _toolbar.frame = CGRectMake(0, self.view.height, self.view.width, _toolbar.height);
+    _toolbar.alpha = 0;
     
     [UIView commitAnimations];
   } else {

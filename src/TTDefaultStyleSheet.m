@@ -398,7 +398,7 @@
 
 - (TTStyle*)postBox {
   return
-    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:10] next:
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:15] next:
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:nil]];
 }
 
@@ -483,7 +483,7 @@
 }
 
 - (UIColor*)tableErrorTextColor {
-  return RGBCOLOR(79, 89, 105);
+  return RGBCOLOR(96, 103, 111);
 }
 
 - (UIColor*)tableSubTextColor {
@@ -590,7 +590,7 @@
 }
 
 - (UIFont*)errorTitleFont {
-  return [UIFont boldSystemFontOfSize:16];
+  return [UIFont boldSystemFontOfSize:18];
 }
 
 - (UIFont*)errorSubtitleFont {

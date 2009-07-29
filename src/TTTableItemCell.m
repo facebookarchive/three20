@@ -1118,6 +1118,10 @@ static const CGFloat kDefaultMessageImageHeight = 34;
          || [view isKindOfClass:[TTTextEditor class]];
 }
 
++ (BOOL)shouldRespectControlPadding:(UIView*)view {
+  return [view isKindOfClass:[UITextField class]];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
@@ -1142,7 +1146,9 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       CGFloat lineHeight = textView.font.lineHeight;
       height = lineHeight * kDefaultTextViewLines;
     } else if ([view isKindOfClass:[UITextField class]]) {
-      height = TT_ROW_HEIGHT;
+      UITextField* textField = (UITextField*)view;
+      CGFloat lineHeight = textField.font.lineHeight;
+      height = lineHeight + kSmallMargin*2;
     } else {
       [view sizeToFit];
       height = view.height;
@@ -1178,11 +1184,14 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  if ([TTTableControlCell  shouldSizeControlToFit:_control]) {
-    _control.frame = CGRectInset(self.contentView.bounds, 2, 3);
+  if ([TTTableControlCell shouldSizeControlToFit:_control]) {
+    _control.frame = CGRectInset(self.contentView.bounds, 0, 3);
   } else {
     CGFloat minX = kControlPadding;
-    CGFloat contentWidth = self.contentView.width - kControlPadding*2;
+    CGFloat contentWidth = self.contentView.width - kControlPadding;
+    if (![TTTableControlCell shouldRespectControlPadding:_control]) {
+      contentWidth -= kControlPadding;
+    }
     if (self.textLabel.text.length) {
       CGSize textSize = [self.textLabel sizeThatFits:self.contentView.bounds.size];
       contentWidth -= textSize.width + kSpacing;
