@@ -247,8 +247,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
-- (void)didLoadModel {
-  [super didLoadModel];
+- (void)didLoadModel:(BOOL)firstTime {
+  [super didLoadModel:firstTime];
   [_dataSource tableViewDidLoadModel:_tableView];
 }
 

@@ -264,8 +264,8 @@ static CGFloat kThumbnailRowHeight = 79;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTModelViewController
 
-- (void)didLoadModel {
-  [super didLoadModel];
+- (void)didRefreshModel {
+  [super didRefreshModel];
   self.title = _photoSource.title;
 }
 
@@ -273,7 +273,7 @@ static CGFloat kThumbnailRowHeight = 79;
 // TTTableViewController
 
 - (CGRect)rectForOverlayView {
-  return TTRectContract(CGRectOffset([super rectForOverlayView], 0, TT_CHROME_HEIGHT),
+  return TTRectContract(CGRectOffset([super rectForOverlayView], 0, TT_CHROME_HEIGHT+TT_ROW_HEIGHT),
                         0, TT_CHROME_HEIGHT);
 }
 

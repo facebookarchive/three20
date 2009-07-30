@@ -30,13 +30,18 @@
 }
 
 - (void)updateViewStates {
+  if (_flags.isModelDidRefreshInvalid) {
+    [self didRefreshModel];
+    _flags.isModelDidRefreshInvalid = NO;
+  }
   if (_flags.isModelWillLoadInvalid) {
     [self willLoadModel];
     _flags.isModelWillLoadInvalid = NO;
   }
   if (_flags.isModelDidLoadInvalid) {
-    [self didLoadModel];
+    [self didLoadModel:_flags.isModelDidLoadFirstTimeInvalid];
     _flags.isModelDidLoadInvalid = NO;
+    _flags.isModelDidLoadFirstTimeInvalid = NO;
     _flags.isShowingModel = NO;
   }
   
@@ -91,8 +96,8 @@
   
   if (showModel) {
     [self showModel:YES];
-    [self didShowModel:_flags.isModelFirstTimeInvalid];
-    _flags.isModelFirstTimeInvalid = NO;
+    [self didShowModel:_flags.isModelDidShowFirstTimeInvalid];
+    _flags.isModelDidShowFirstTimeInvalid = NO;
   }
   if (showEmpty) {
     [self showEmpty:YES];
@@ -112,9 +117,11 @@
   if (self = [super init]) {
     _model = nil;
     _modelError = nil;
+    _flags.isModelDidRefreshInvalid = NO;
     _flags.isModelWillLoadInvalid = NO;
     _flags.isModelDidLoadInvalid = NO;
-    _flags.isModelFirstTimeInvalid = NO;
+    _flags.isModelDidLoadFirstTimeInvalid = NO;
+    _flags.isModelDidShowFirstTimeInvalid = NO;
     _flags.isViewInvalid = YES;
     _flags.isViewSuspended = NO;
     _flags.isUpdatingView = NO;
@@ -166,6 +173,8 @@
 
 - (void)modelDidStartLoad:(id<TTModel>)model {
   if (model == self.model) {
+    _flags.isModelWillLoadInvalid = YES;
+    _flags.isModelDidLoadFirstTimeInvalid = YES;
     [self invalidateView];
   }
 }
@@ -241,8 +250,10 @@
     TT_RELEASE_SAFELY(_modelError);
     
     if (_model) {
-      _flags.isModelWillLoadInvalid = YES;
-      _flags.isModelFirstTimeInvalid = YES;
+      _flags.isModelWillLoadInvalid = NO;
+      _flags.isModelDidLoadInvalid = NO;
+      _flags.isModelDidLoadFirstTimeInvalid = NO;
+      _flags.isModelDidShowFirstTimeInvalid = YES;
     }
     
     [self refresh];
@@ -301,8 +312,8 @@
 
 - (void)refresh {
   _flags.isViewInvalid = YES;
-  _flags.isModelWillLoadInvalid = YES;
-
+  _flags.isModelDidRefreshInvalid = YES;
+  
   BOOL loading = self.model.isLoading;
   BOOL loaded = self.model.isLoaded;
   if (!loading && !loaded && [self shouldLoad]) {
@@ -358,10 +369,13 @@
   }
 }
 
+- (void)didRefreshModel {
+}
+
 - (void)willLoadModel {
 }
 
-- (void)didLoadModel {
+- (void)didLoadModel:(BOOL)firstTime {
 }
 
 - (void)didShowModel:(BOOL)firstTime {

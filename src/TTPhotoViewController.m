@@ -59,18 +59,14 @@ static const NSTimeInterval kSlideshowInterval = 2;
   }
 }
 
-- (void)updateTitle {
-  if (!_photoSource.numberOfPhotos || _photoSource.numberOfPhotos == NSIntegerMax) {
+- (void)updateChrome {
+  if (_photoSource.numberOfPhotos < 2) {
     self.title = _photoSource.title;
   } else {
     self.title = [NSString stringWithFormat:
       TTLocalizedString(@"%d of %d", @"Current page in photo browser (1 of 10)"),
       _centerPhotoIndex+1, _photoSource.numberOfPhotos];
   }
-}
-
-- (void)updateChrome {
-  [self updateTitle];
 
   if (![self.previousViewController isKindOfClass:[TTThumbsViewController class]]) {
     if (_photoSource.numberOfPhotos > 1) {
@@ -93,6 +89,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 - (void)updatePhotoView {
   _scrollView.centerPageIndex = _centerPhotoIndex;
   [self loadImages];
+  [self updateChrome];
 }
 
 - (void)moveToPhoto:(id<TTPhoto>)photo {
@@ -431,13 +428,16 @@ static const NSTimeInterval kSlideshowInterval = 2;
   return _photoSource.numberOfPhotos > 0;
 }
 
-- (void)willLoadModel {
-  [self updateChrome];
+- (void)didRefreshModel {
+  [super didRefreshModel];
+  [self updatePhotoView];
 }
 
-- (void)didLoadModel {
-  [super didLoadModel];
-  [self updatePhotoView];
+- (void)didLoadModel:(BOOL)firstTime {
+  [super didLoadModel:firstTime];
+  if (firstTime) {
+    [self updatePhotoView];
+  }
 }
 
 - (void)showLoading:(BOOL)show {

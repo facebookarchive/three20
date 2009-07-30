@@ -54,6 +54,7 @@
 #import "Three20/TTTableViewCell.h"
 #import "Three20/TTTableItem.h"
 #import "Three20/TTTableItemCell.h"
+#import "Three20/TTErrorView.h"
 
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTPhotoViewController.h"
