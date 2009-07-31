@@ -78,12 +78,12 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 }
 
 - (NSString*)originalNavigatorURL {
-  NSString* key = [NSString stringWithFormat:@"%d", self];
+  NSString* key = [NSString stringWithFormat:@"%d", self.hash];
   return [gNavigatorURLs objectForKey:key];
 }
 
 - (void)setOriginalNavigatorURL:(NSString*)URL {
-  NSString* key = [NSString stringWithFormat:@"%d", self];
+  NSString* key = [NSString stringWithFormat:@"%d", self.hash];
   if (URL) {
     if (!gNavigatorURLs) {
       gNavigatorURLs = [[NSMutableDictionary alloc] init];
@@ -110,13 +110,13 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   if (parent) {
     return parent;
   } else {
-    NSString* key = [NSString stringWithFormat:@"%d", self];
+    NSString* key = [NSString stringWithFormat:@"%d", self.hash];
     return [gSuperControllers objectForKey:key];
   }
 }
 
 - (void)setSuperController:(UIViewController*)viewController {
-  NSString* key = [NSString stringWithFormat:@"%d", self];
+  NSString* key = [NSString stringWithFormat:@"%d", self.hash];
   if (viewController) {
     if (!gSuperControllers) {
       gSuperControllers = TTCreateNonRetainingDictionary();
@@ -155,12 +155,12 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 }
 
 - (UIViewController*)popupViewController {
-  NSString* key = [NSString stringWithFormat:@"%d", self];
+  NSString* key = [NSString stringWithFormat:@"%d", self.hash];
   return [gPopupViewControllers objectForKey:key];
 }
 
 - (void)setPopupViewController:(UIViewController*)viewController {
-  NSString* key = [NSString stringWithFormat:@"%d", self];
+  NSString* key = [NSString stringWithFormat:@"%d", self.hash];
   if (viewController) {
     if (!gPopupViewControllers) {
       gPopupViewControllers = TTCreateNonRetainingDictionary();

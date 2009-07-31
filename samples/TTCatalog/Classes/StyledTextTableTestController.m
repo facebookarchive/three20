@@ -25,13 +25,12 @@
   //    @"Let's test out some line breaks.\n\nOh yeah.",
   //    @"This is a message with a long URL in it http://www.foo.com/abra/cadabra/abrabra/dabarababa",
       nil];
-    NSString* URL = @"tt://styledTextTableTest";
 
     TTListDataSource* dataSource = [[[TTListDataSource alloc] init] autorelease];
     for (int i = 0; i < 50; ++i) {
       TTStyledText* text = [strings objectAtIndex:i % strings.count];
       
-      [dataSource.items addObject:[TTTableStyledTextItem itemWithText:text URL:URL]];
+      [dataSource.items addObject:[TTTableStyledTextItem itemWithText:text URL:nil]];
     }
     self.dataSource = dataSource;
   }

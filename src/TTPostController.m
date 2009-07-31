@@ -322,11 +322,7 @@ static const CGFloat kMarginY = 6;
   if (view != _originView) {
     [_originView release];
     _originView = [view retain];
-    if (_originView) {
-      _originRect = _originView.screenFrame;
-    } else {
-      _originRect = CGRectZero;
-    }
+    _originRect = CGRectZero;
   }
 }
 
@@ -374,6 +370,11 @@ static const CGFloat kMarginY = 6;
       }
     }
 
+    CGRect originRect = _originRect;
+    if (CGRectIsEmpty(originRect) && _originView) {
+      originRect = _originView.screenFrame;
+    }
+
     _originView.hidden = NO;
     _activityView.hidden = YES;
     _textEditor.textView.hidden = YES;
@@ -384,8 +385,8 @@ static const CGFloat kMarginY = 6;
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(dismissAnimationDidStop)];
     
-    if (_originRect.size.width) {
-      _textEditor.frame = CGRectOffset(_originRect, 0, -TT_STATUS_HEIGHT);
+    if (!CGRectIsEmpty(originRect)) {
+      _textEditor.frame = CGRectOffset(originRect, 0, -TT_STATUS_HEIGHT);
     } else {
       _textEditor.transform = CGAffineTransformMakeScale(0.00001, 0.00001);
     }

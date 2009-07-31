@@ -3,6 +3,7 @@
 #import "Three20/TTTableItemCell.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTTextEditor.h"
+#import "Three20/TTStyledText.h"
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,6 +117,8 @@
     } else {
       return [TTTableTextItemCell class];
     }
+  } else if ([object isKindOfClass:[TTStyledText class]]) {
+    return [TTStyledTextTableCell class];
   } else if ([object isKindOfClass:[UIControl class]]
              || [object isKindOfClass:[UITextView class]]
              || [object isKindOfClass:[TTTextEditor class]]) {

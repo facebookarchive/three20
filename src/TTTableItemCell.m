@@ -1033,14 +1033,18 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 @implementation TTStyledTextTableItemCell
 
+@synthesize label = _label;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewCell class public
 
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   TTTableStyledTextItem* item = object;
-  item.text.font = TTSTYLEVAR(font);
+  if (!item.text.font) {
+    item.text.font = TTSTYLEVAR(font);
+  }
   
-  CGFloat padding = [tableView tableCellMargin] + item.padding.left + item.padding.right;
+  CGFloat padding = [tableView tableCellMargin]*2 + item.padding.left + item.padding.right;
   if (item.URL) {
     padding += kDisclosureIndicatorWidth;
   }
@@ -1095,6 +1099,73 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     _label.text = item.text;
     _label.contentInset = item.padding;
     [self setNeedsLayout];
+  }  
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTStyledTextTableCell
+
+@synthesize label = _label;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewCell class public
+
++ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
+  TTStyledText* text = object;
+  if (!text.font) {
+    text.font = TTSTYLEVAR(font);
+  }
+  text.width = tableView.width - [tableView tableCellMargin]*2;
+  return text.height;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
+    _label = [[TTStyledTextLabel alloc] init];
+    _label.contentMode = UIViewContentModeLeft;
+    [self.contentView addSubview:_label];
+
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_label);
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIView
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  _label.frame = self.contentView.bounds;
+}
+
+- (void)didMoveToSuperview {
+  [super didMoveToSuperview];
+  if (self.superview) {
+    _label.backgroundColor = self.backgroundColor;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewCell
+
+- (id)object {
+  return _label.text;
+}
+
+- (void)setObject:(id)object {
+  if (self.object != object) {
+    _label.text = object;
   }  
 }
 

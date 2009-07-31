@@ -376,6 +376,8 @@ static const CGFloat kBannerViewHeight = 22;
             TTLOG(@"INSERTING ROW AT %@", newIndexPath);
             [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                         withRowAnimation:UITableViewRowAnimationTop];
+            [_tableView scrollToRowAtIndexPath:newIndexPath
+                        atScrollPosition:UITableViewScrollPositionBottom animated:NO];
           }
           [self invalidateView];
         } else {
