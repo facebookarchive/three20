@@ -196,7 +196,7 @@ static const CGFloat kMarginY = 6;
   _textEditor.textView.contentInset = UIEdgeInsetsMake(0, 4, 0, 4);
   _textEditor.textView.keyboardAppearance = UIKeyboardAppearanceAlert;
   _textEditor.backgroundColor = [UIColor clearColor];
-  _textEditor.style = TTSTYLE(postBox);
+  _textEditor.style = TTSTYLE(postTextEditor);
   [self.view addSubview:_textEditor];
 
   _toolbar = [[UIToolbar alloc] init];
@@ -250,8 +250,13 @@ static const CGFloat kMarginY = 6;
     _toolbar.alpha = 0;
     _textEditor.textView.hidden = YES;
 
-    if (_originRect.size.width) {
-      _textEditor.frame = CGRectOffset(_originRect, 0, -TT_STATUS_HEIGHT);
+    CGRect originRect = _originRect;
+    if (CGRectIsEmpty(originRect) && _originView) {
+      originRect = _originView.screenFrame;
+    }
+
+    if (!CGRectIsEmpty(originRect)) {
+      _textEditor.frame = CGRectOffset(originRect, 0, -TT_STATUS_HEIGHT);
     } else {
       [self layoutTextEditor];
       _textEditor.transform = CGAffineTransformMakeScale(0.00001, 0.00001);
@@ -265,7 +270,7 @@ static const CGFloat kMarginY = 6;
     _toolbar.alpha = 1;
     _screenView.alpha = 0.6;
     
-    if (_originRect.size.width) {
+    if (originRect.size.width) {
       [self layoutTextEditor];
     } else {
       _textEditor.transform = CGAffineTransformIdentity;

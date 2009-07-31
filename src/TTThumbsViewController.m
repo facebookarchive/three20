@@ -273,7 +273,7 @@ static CGFloat kThumbnailRowHeight = 79;
 // TTTableViewController
 
 - (CGRect)rectForOverlayView {
-  return TTRectContract(CGRectOffset([super rectForOverlayView], 0, TT_CHROME_HEIGHT+TT_ROW_HEIGHT),
+  return TTRectContract(CGRectOffset([super rectForOverlayView], 0, TT_CHROME_HEIGHT),
                         0, TT_CHROME_HEIGHT);
 }
 

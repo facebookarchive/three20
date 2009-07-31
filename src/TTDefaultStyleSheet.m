@@ -396,7 +396,7 @@
     [TTContentStyle styleWithNext:nil]];
 }
 
-- (TTStyle*)postBox {
+- (TTStyle*)postTextEditor {
   return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:15] next:
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:nil]];
