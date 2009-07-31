@@ -145,7 +145,6 @@ static const CGFloat kBannerViewHeight = 22;
   _tableView.delegate = nil;
   _tableView.dataSource = nil;
   TT_RELEASE_SAFELY(_tableDelegate);
-  TT_RELEASE_SAFELY(_dataSource);
   TT_RELEASE_SAFELY(_tableView);
   [_tableBannerView removeFromSuperview];
   TT_RELEASE_SAFELY(_tableBannerView);

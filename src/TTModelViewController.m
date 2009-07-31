@@ -155,7 +155,7 @@
 - (void)didReceiveMemoryWarning {
   if (_hasViewAppeared && !_isViewAppearing) {
     [super didReceiveMemoryWarning];
-    [self invalidateView];
+    [self refresh];
   } else {
     [super didReceiveMemoryWarning];
   }
