@@ -47,8 +47,6 @@
 
 - (id)initWithItems:(NSArray*)items sections:(NSArray*)sections;
 
-- (NSArray*)lettersForSectionsWithSearch:(BOOL)withSearch withCount:(BOOL)withCount;
-
 - (NSIndexPath*)indexPathOfItemWithUserInfo:(id)userInfo;
 
 - (void)removeItemAtIndexPath:(NSIndexPath*)indexPath;

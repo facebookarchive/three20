@@ -10,6 +10,11 @@
 /**
  *
  */
++ (NSArray*)lettersForSectionsWithSearch:(BOOL)search summary:(BOOL)summary;
+
+/**
+ *
+ */
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;
 
 /**

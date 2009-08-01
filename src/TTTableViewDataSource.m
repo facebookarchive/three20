@@ -12,6 +12,24 @@
 
 @synthesize model = _model;
 
++ (NSArray*)lettersForSectionsWithSearch:(BOOL)search summary:(BOOL)summary {
+  NSMutableArray* titles = [NSMutableArray array];
+  if (search) {
+    [titles addObject:UITableViewIndexSearch];
+  }
+  
+  for (unichar c = 'A'; c <= 'Z'; ++c) {
+    NSString* letter = [NSString stringWithFormat:@"%c", c];
+    [titles addObject:letter];
+  }
+  
+  if (summary) {
+    [titles addObject:@"#"];
+  }
+  
+  return titles;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -62,23 +80,6 @@
 
 - (NSArray*)sectionIndexTitlesForTableView:(UITableView*)tableView {
   return nil;
-}
-
-- (NSInteger)tableView:(UITableView*)tableView sectionForSectionIndexTitle:(NSString*)title 
-            atIndex:(NSInteger)index {
-  if (tableView.tableHeaderView) {
-    if (index == 0)  {
-      // This is a hack to get the table header to appear when the user touches the
-      // first row in the section index.  By default, it shows the first row, which is
-      // not usually what you want.
-      [tableView scrollRectToVisible:tableView.tableHeaderView.bounds animated:NO];
-      return -1;
-    } else {
-      return index-1;
-    }
-  } else {
-    return index;
-  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
