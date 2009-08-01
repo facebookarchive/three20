@@ -7,6 +7,7 @@
   NSString* _httpMethod;
   NSData* _httpBody;
   NSMutableDictionary* _parameters;
+  NSMutableDictionary* _headers;
   NSString* _contentType;
   NSMutableArray* _delegates;
   NSMutableArray* _files;
@@ -59,6 +60,11 @@
 @property(nonatomic,readonly) NSMutableDictionary* parameters;
 
 /**
+ * Custom HTTP headers.
+ */
+@property(nonatomic,readonly) NSMutableDictionary* headers;
+
+/**
  * Defaults to "any".
  */
 @property(nonatomic) TTURLRequestCachePolicy cachePolicy;
@@ -89,6 +95,8 @@
 + (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate;
 
 - (id)initWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate;
+
+- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
 
 /**
  * Adds a file whose data will be posted.

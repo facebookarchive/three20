@@ -16,7 +16,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   cachePolicy = _cachePolicy, cacheExpirationAge = _cacheExpirationAge, cacheKey = _cacheKey,
   timestamp = _timestamp, userInfo = _userInfo, isLoading = _isLoading,
   shouldHandleCookies = _shouldHandleCookies, totalBytesLoaded = _totalBytesLoaded,
-  totalBytesExpected = _totalBytesExpected, respondedFromCache = _respondedFromCache;
+  totalBytesExpected = _totalBytesExpected, respondedFromCache = _respondedFromCache,
+  headers = _headers;
 
 + (TTURLRequest*)request {
   return [[[TTURLRequest alloc] init] autorelease];
@@ -41,6 +42,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _URL = nil;
     _httpMethod = nil;
     _httpBody = nil;
+    _headers = nil;
     _parameters = nil;
     _contentType = nil;
     _delegates = TTCreateNonRetainingArray();
@@ -64,6 +66,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   TT_RELEASE_SAFELY(_URL);
   TT_RELEASE_SAFELY(_httpMethod);
   TT_RELEASE_SAFELY(_httpBody);
+  TT_RELEASE_SAFELY(_headers);
   TT_RELEASE_SAFELY(_parameters);
   TT_RELEASE_SAFELY(_contentType);
   TT_RELEASE_SAFELY(_delegates);
@@ -217,6 +220,13 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _cacheKey = [[self generateCacheKey] retain];
   }
   return _cacheKey;
+}
+
+- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
+  if (!_headers) {
+    _headers = [[NSMutableDictionary alloc] init];
+  }
+  [_headers setObject:value forKey:field];
 }
 
 - (void)addFile:(NSData*)data mimeType:(NSString*)mimeType fileName:(NSString*)fileName {

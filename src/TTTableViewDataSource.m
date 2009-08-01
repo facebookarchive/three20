@@ -82,6 +82,33 @@
   return nil;
 }
 
+- (NSInteger)tableView:(UITableView*)tableView sectionForSectionIndexTitle:(NSString*)title 
+            atIndex:(NSInteger)index {
+  if (tableView.tableHeaderView) {
+    if (index == 0)  {
+      // This is a hack to get the table header to appear when the user touches the
+      // first row in the section index.  By default, it shows the first row, which is
+      // not usually what you want.
+      [tableView scrollRectToVisible:tableView.tableHeaderView.bounds animated:NO];
+      return -1;
+    }
+  }
+
+  NSString* letter = [title substringToIndex:1];
+  NSInteger sectionCount = [tableView numberOfSections];
+  for (NSInteger i = 0; i < sectionCount; ++i) {
+    NSString* section  = [tableView.dataSource tableView:tableView titleForHeaderInSection:i];
+    if ([section hasPrefix:letter]) {
+      return i;
+    }
+  }
+  if (index >= sectionCount) {
+    return sectionCount-1;
+  } else {
+    return index;
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
