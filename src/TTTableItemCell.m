@@ -21,6 +21,7 @@ static const CGFloat kSmallMargin = 6;
 static const CGFloat kSpacing = 8;
 static const CGFloat kControlPadding = 8;
 static const CGFloat kDefaultTextViewLines = 5;
+static const CGFloat kMoreButtonMargin = 40;
 
 static const CGFloat kKeySpacing = 12;
 static const CGFloat kKeyWidth = 75;
@@ -752,6 +753,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier]) {
+    self.textLabel.font = TTSTYLEVAR(tableSmallFont);
+    
     _animating = NO;
     _activityIndicatorView = nil;
   }
@@ -769,12 +772,12 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (void)layoutSubviews {
   [super layoutSubviews];
   
-  CGFloat width1 = self.detailTextLabel.width;
-  CGFloat width2 = self.textLabel.width;
-  CGFloat width = width1 > width2 ? width1 : width2;
-  
+  _activityIndicatorView.left = kMoreButtonMargin - (_activityIndicatorView.width + kSmallMargin);
   _activityIndicatorView.top = floor(self.contentView.height/2 - _activityIndicatorView.height/2);
-  _activityIndicatorView.left = self.detailTextLabel.left + width + kSpacing;
+
+  self.textLabel.frame = TTRectShift(self.textLabel.frame, kMoreButtonMargin, 0);
+  self.detailTextLabel.frame = TTRectShift(self.detailTextLabel.frame, kMoreButtonMargin, 0);
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -787,7 +790,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     TTTableMoreButton* item = object;
     self.animating = item.isLoading;
 
-    self.detailTextLabel.textColor = TTSTYLEVAR(moreLinkTextColor);
+    self.textLabel.textColor = TTSTYLEVAR(moreLinkTextColor);
     self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
   }  
 }

@@ -200,6 +200,11 @@ CGRect TTToolbarNavigationFrame();
 CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy);
 
 /**
+ * Returns a rectangle whose edges have been moved a distance and shortened by that distance.
+ */
+CGRect TTRectShift(CGRect rect, CGFloat dx, CGFloat dy);
+
+/**
  * Returns a rectangle whose edges have been added to the insets.
  */
 CGRect TTRectInset(CGRect rect, UIEdgeInsets insets);

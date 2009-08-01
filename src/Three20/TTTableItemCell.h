@@ -51,7 +51,7 @@
 
 @end
 
-@interface TTTableMoreButtonCell : TTTableSubtextItemCell {
+@interface TTTableMoreButtonCell : TTTableSubtitleItemCell {
   UIActivityIndicatorView* _activityIndicatorView;
   BOOL _animating;
 }

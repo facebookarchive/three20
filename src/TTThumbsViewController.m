@@ -80,7 +80,7 @@ static CGFloat kThumbnailRowHeight = 79;
                                            TTFormatInteger(_photoSource.numberOfPhotos)];
     }
     
-    return [TTTableMoreButton itemWithText:text caption:caption];
+    return [TTTableMoreButton itemWithText:text subtitle:caption];
   } else {
     return [_photoSource photoAtIndex:indexPath.row * kColumnCount];
   }
@@ -273,7 +273,7 @@ static CGFloat kThumbnailRowHeight = 79;
 // TTTableViewController
 
 - (CGRect)rectForOverlayView {
-  return TTRectContract(CGRectOffset([super rectForOverlayView], 0, TT_CHROME_HEIGHT),
+  return TTRectContract(CGRectOffset([super rectForOverlayView], 0, TT_CHROME_HEIGHT-_tableView.top),
                         0, TT_CHROME_HEIGHT);
 }
 

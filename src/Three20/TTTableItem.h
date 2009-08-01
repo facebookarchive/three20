@@ -61,6 +61,7 @@
 @property(nonatomic,copy) NSString* imageURL;
 @property(nonatomic,retain) UIImage* defaultImage;
 
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle;
 + (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle URL:(NSString*)URL;
 + (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle URL:(NSString*)URL
       accessoryURL:(NSString*)accessoryURL;
@@ -105,7 +106,7 @@
 @interface TTTableButton : TTTableTextItem
 @end
 
-@interface TTTableMoreButton : TTTableSubtextItem {
+@interface TTTableMoreButton : TTTableSubtitleItem {
   BOOL _isLoading;
 }
 

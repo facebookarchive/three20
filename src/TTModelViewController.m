@@ -273,10 +273,13 @@
 }
 
 - (void)invalidateModel {
+  BOOL wasModelCreated = self.isModelCreated;
   [self resetViewStates];
   [_model.delegates removeObject:self];
   TT_RELEASE_SAFELY(_model);
-  self.model;
+  if (wasModelCreated) {
+    self.model;
+  }
 }
 
 - (BOOL)isModelCreated {

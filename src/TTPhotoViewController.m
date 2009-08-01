@@ -267,6 +267,20 @@ static const NSTimeInterval kSlideshowInterval = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
+- (id)initWithPhoto:(id<TTPhoto>)photo {
+  if (self = [self init]) {
+    self.centerPhoto = photo;
+  }
+  return self;
+}
+
+- (id)initWithPhotoSource:(id<TTPhotoSource>)photoSource {
+  if (self = [self init]) {
+    self.photoSource = photoSource;
+  }
+  return self;
+}
+
 - (id)init {
   if (self = [super init]) {
     _photoSource = nil;

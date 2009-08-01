@@ -19,6 +19,7 @@ reLprojFileName = re.compile(r'(.+?)\.lproj')
 reComment = re.compile(r'/\*(.*?)\*/')
 reString = re.compile(r'\s*"((\\.|.)+?)"\s*=\s*"(.+?)";')
 reTranslatedString = re.compile(r'\w{2}:\s*"(.*?)"')
+reVariable = re.compile(r'%(@|d|f|lld|\d+\.?f|\d+\.\d+f|\d+d)')
 
 defaultComment = "No comment provided by engineer."
 stringsFileName = "Localizable.strings"
@@ -90,6 +91,8 @@ def writeLocaleDiff(localeName, locale, projectLocaleName, projectLocale):
             f.write("  <entry>\n")
             f.write("    <%ssource>%s</%ssource>\n" % (prefix, escape(originalString), prefix))
             if translatedString == originalString or not translatedString:
+                x = originalString
+                originalString = enumerateStringVariables(originalString)
                 f.write("    <%starget>%s</%starget>\n"
                         % (prefix, escape(originalString), prefix))
             else:
@@ -258,6 +261,13 @@ def parseTranslationsFile(stringsPath):
 
     return strings
 
+def enumerateStringVariables(s):
+    i = 1
+    for var in reVariable.findall(s):
+        s = s.replace("%%%s" % var, "%%%d$%s" % (i, var))
+        i += 1
+    return s
+    
 ###################################################################################################
 ##  File System Helpers
 

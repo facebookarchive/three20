@@ -173,6 +173,16 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }  
 
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [self hideMenu:YES];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+  [super setEditing:editing animated:animated];
+  [self.tableView setEditing:editing animated:animated];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UTViewController (TTCategory)
 

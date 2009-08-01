@@ -119,7 +119,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 - (BOOL)searchDisplayController:(UISearchDisplayController*)controller
         shouldReloadTableForSearchScope:(NSInteger)searchOption {
-  // XXXjoe Need a way to communicate scope change to the data source
+  [_searchResultsViewController invalidateModel];
   [_searchResultsViewController.dataSource search:self.searchBar.text];
   return NO;
 }

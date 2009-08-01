@@ -55,6 +55,9 @@
  */
 @property(nonatomic,retain) TTStyle* captionStyle;
 
+- (id)initWithPhoto:(id<TTPhoto>)photo;
+- (id)initWithPhotoSource:(id<TTPhotoSource>)photoSource;
+
 /**
  * Creates a photo view for a new page.
  *

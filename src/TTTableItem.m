@@ -231,6 +231,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
 
++ (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle {
+  TTTableSubtitleItem* item = [[[self alloc] init] autorelease];
+  item.text = text;
+  item.subtitle = subtitle;
+  return item;
+}
+
 + (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle URL:(NSString*)URL {
   TTTableSubtitleItem* item = [[[self alloc] init] autorelease];
   item.text = text;

@@ -4,7 +4,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
 
-static CGFloat kVPadding = 20;
+static CGFloat kVPadding1 = 30;
+static CGFloat kVPadding2 = 20;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -61,7 +62,8 @@ static CGFloat kVPadding = 20;
   [_titleView sizeToFit];
   [_imageView sizeToFit];
 
-  CGFloat maxHeight = _imageView.height + _titleView.height + _subtitleView.height + kVPadding*2;
+  CGFloat maxHeight = _imageView.height + _titleView.height + _subtitleView.height
+                      + kVPadding1 + kVPadding2;
   BOOL canShowImage = _imageView.image && self.height > maxHeight;
   
   CGFloat totalHeight = 0;
@@ -70,10 +72,10 @@ static CGFloat kVPadding = 20;
     totalHeight += _imageView.height;
   }
   if (_titleView.text.length) {
-    totalHeight += (totalHeight ? kVPadding : 0) + _titleView.height;
+    totalHeight += (totalHeight ? kVPadding1 : 0) + _titleView.height;
   }
   if (_subtitleView.text.length) {
-    totalHeight += (totalHeight ? kVPadding : 0) + _subtitleView.height;
+    totalHeight += (totalHeight ? kVPadding2 : 0) + _subtitleView.height;
   }
   
   CGFloat top = floor(self.height/2 - totalHeight/2);
@@ -81,13 +83,13 @@ static CGFloat kVPadding = 20;
   if (canShowImage) {
     _imageView.origin = CGPointMake(floor(self.width/2 - _imageView.width/2), top);
     _imageView.hidden = NO;
-    top += _imageView.height + kVPadding;
+    top += _imageView.height + kVPadding1;
   } else {
     _imageView.hidden = YES;
   }
   if (_titleView.text.length) {
     _titleView.origin = CGPointMake(floor(self.width/2 - _titleView.width/2), top);
-    top += _titleView.height + kVPadding;
+    top += _titleView.height + kVPadding2;
   }
   if (_subtitleView.text.length) {
     _subtitleView.origin = CGPointMake(floor(self.width/2 - _subtitleView.width/2), top);
