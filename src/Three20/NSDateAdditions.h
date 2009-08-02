@@ -53,4 +53,14 @@
  */
 - (NSString*)formatDay:(NSDateComponents*)today yesterday:(NSDateComponents*)yesterday;
 
+/**
+ * Formats the date with 'MMMM".
+ */
+- (NSString*)formatMonth;
+
+/**
+ * Formats the date with 'yyyy".
+ */
+- (NSString*)formatYear;
+
 @end

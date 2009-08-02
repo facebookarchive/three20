@@ -82,6 +82,9 @@
 
 /**
  * Tells the controller that the user selected an object in the table.
+ *
+ * By default, the object's URLValue will be opened in TTNavigator, if it has one. If you don't
+ * want this to be happen, be sure to override this method and be sure not to call super.
  */
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath;
 

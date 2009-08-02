@@ -8,6 +8,7 @@
 #import "Three20/TTTableViewDelegate.h"
 #import "Three20/TTSearchDisplayController.h"
 #import "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
@@ -644,6 +645,12 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+  if ([object respondsToSelector:@selector(URLValue)]) {
+    NSString* URL = [object URLValue];
+    if (URL) {
+      TTOpenURL(URL);
+    }
+  }
 }
 
 - (BOOL)shouldOpenURL:(NSString*)URL {
