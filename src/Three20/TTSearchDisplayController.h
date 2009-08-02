@@ -3,6 +3,8 @@
 @protocol TTTableViewDataSource;
 @class TTTableViewController;
 
+#define TT_SEARCH_BAR_BACKGROUND_TAG 18942
+
 /**
  * Shows search results using a TTTableViewController.
  *

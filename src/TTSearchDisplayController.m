@@ -63,19 +63,14 @@ static const NSTimeInterval kPauseInterval = 0.4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UISearchDisplayDelegate
 
-- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController*)controller {
-  [_searchResultsViewController updateView];
-}
-
-- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController*)controller {
-  [self resetResults];
-}
- 
-- (void)searchDisplayController:(UISearchDisplayController *)controller
-        didLoadSearchResultsTableView:(UITableView *)tableView {
-}
-
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController*)controller {
+  UIView* backgroundView = [self.searchBar viewWithTag:TT_SEARCH_BAR_BACKGROUND_TAG];
+  if (backgroundView) {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
+    backgroundView.alpha = 0;
+    [UIView commitAnimations];
+  }
   if (!self.searchContentsController.navigationController) {
     [UIView beginAnimations:nil context:nil];
     self.searchBar.superview.top -= self.searchBar.screenY - TT_STATUS_HEIGHT;
@@ -83,12 +78,32 @@ static const NSTimeInterval kPauseInterval = 0.4;
   }
 }
 
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
+- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController*)controller {
+  [_searchResultsViewController updateView];
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController*)controller {
+  UIView* backgroundView = [self.searchBar viewWithTag:TT_SEARCH_BAR_BACKGROUND_TAG];
+  if (backgroundView) {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
+    backgroundView.alpha = 1;
+    [UIView commitAnimations];
+  }
+
   if (!self.searchContentsController.navigationController) {
     [UIView beginAnimations:nil context:nil];
     self.searchBar.superview.top += self.searchBar.top - TT_STATUS_HEIGHT;
     [UIView commitAnimations];
   }
+}
+ 
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController*)controller {
+  [self resetResults];
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller
+        didLoadSearchResultsTableView:(UITableView *)tableView {
 }
  
 - (void)searchDisplayController:(UISearchDisplayController *)controller
