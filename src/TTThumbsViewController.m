@@ -112,10 +112,6 @@ static CGFloat kThumbnailRowHeight = 79;
   return nil;
 }
 
-- (UIImage*)imageForEmpty {
-  return TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
-}
-
 - (NSString*)titleForEmpty {
   return TTLocalizedString(@"No Photos", @"");
 }

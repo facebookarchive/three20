@@ -10,4 +10,7 @@
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2;
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3;
 
+- (id)objectWithValue:(id)value forKey:(id)key;
+- (id)objectWithClass:(Class)cls;
+
 @end

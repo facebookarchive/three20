@@ -57,4 +57,23 @@
   }
 }
 
+- (id)objectWithValue:(id)value forKey:(id)key {
+  for (id object in self) {
+    id propertyValue = [object valueForKey:key];
+    if ([propertyValue isEqual:value]) {
+      return object;
+    }
+  }
+  return nil;
+}
+
+- (id)objectWithClass:(Class)cls {
+  for (id object in self) {
+    if ([object isKindOfClass:cls]) {
+      return object;
+    }
+  }
+  return nil;
+}
+
 @end

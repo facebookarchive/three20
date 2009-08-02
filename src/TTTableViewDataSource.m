@@ -192,7 +192,7 @@
 }
 
 - (UIImage*)imageForEmpty {
-  return nil;
+  return [self imageForError:nil];
 }
 
 - (NSString*)titleForEmpty {
