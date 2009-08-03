@@ -15,7 +15,7 @@ static CGFloat kProgressMargin = 6;
 
 @implementation TTActivityLabel
 
-@synthesize style = _style;
+@synthesize style = _style, progress = _progress, smoothesProgress = _smoothesProgress;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -23,10 +23,12 @@ static CGFloat kProgressMargin = 6;
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text {
   if (self = [super initWithFrame:frame]) {
     _style = style;
+    _progress = 0;
+    _smoothesProgress = NO;
+    _smoothTimer =nil;
     _progressView = nil;
     
     _bezelView = [[TTView alloc] init];
-
     if (_style == TTActivityLabelStyleBlackBezel) {
       _bezelView.backgroundColor = [UIColor clearColor];
       _bezelView.style = TTSTYLE(blackBezel);
@@ -105,6 +107,7 @@ static CGFloat kProgressMargin = 6;
 }
 
 - (void)dealloc {
+  TT_RELEASE_TIMER(_smoothTimer);
   TT_RELEASE_SAFELY(_bezelView);
   TT_RELEASE_SAFELY(_progressView);
   TT_RELEASE_SAFELY(_activityIndicator);
@@ -201,6 +204,14 @@ static CGFloat kProgressMargin = 6;
   return CGSizeMake(size.width, height);
 }
 
+- (void)smoothTimer {
+  if (_progressView.progress < _progress) {
+    _progressView.progress += 0.01;
+  } else {
+    TT_RELEASE_TIMER(_smoothTimer);
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
@@ -234,17 +245,24 @@ static CGFloat kProgressMargin = 6;
   }
 }
 
-- (float)progress {
-  return _progressView.progress;
-}
-
 - (void)setProgress:(float)progress {
+  _progress = progress;
+  
   if (!_progressView) {
     _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    _progressView.progress = 0;
     [_bezelView addSubview:_progressView];
     [self setNeedsLayout];
   }
-  _progressView.progress = progress;
+
+  if (_smoothesProgress) {
+    if (!_smoothTimer) {
+      _smoothTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self
+                              selector:@selector(smoothTimer) userInfo:nil repeats:YES];
+    }
+  } else {
+    _progressView.progress = progress;
+  }
 }
 
 @end

@@ -18,6 +18,9 @@ typedef enum {
   UIProgressView* _progressView;
   UIActivityIndicatorView* _activityIndicator;
   UILabel* _label;
+  float _progress;
+  BOOL _smoothesProgress;
+  NSTimer* _smoothTimer;
 }
 
 @property(nonatomic,readonly) TTActivityLabelStyle style;
@@ -25,6 +28,7 @@ typedef enum {
 @property(nonatomic,assign) UIFont* font;
 @property(nonatomic) float progress;
 @property(nonatomic) BOOL isAnimating;
+@property(nonatomic) BOOL smoothesProgress;
 
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style;
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text;
