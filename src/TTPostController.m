@@ -256,7 +256,7 @@ static const CGFloat kMarginY = 6;
     }
 
     if (!CGRectIsEmpty(originRect)) {
-      _textEditor.frame = CGRectOffset(originRect, 0, -TT_STATUS_HEIGHT);
+      _textEditor.frame = CGRectOffset(originRect, 0, -TTStatusHeight());
     } else {
       [self layoutTextEditor];
       _textEditor.transform = CGAffineTransformMakeScale(0.00001, 0.00001);
@@ -391,7 +391,7 @@ static const CGFloat kMarginY = 6;
     [UIView setAnimationDidStopSelector:@selector(dismissAnimationDidStop)];
     
     if (!CGRectIsEmpty(originRect)) {
-      _textEditor.frame = CGRectOffset(originRect, 0, -TT_STATUS_HEIGHT);
+      _textEditor.frame = CGRectOffset(originRect, 0, -TTStatusHeight());
     } else {
       _textEditor.transform = CGAffineTransformMakeScale(0.00001, 0.00001);
     }

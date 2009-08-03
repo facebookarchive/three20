@@ -73,7 +73,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
   }
   if (!self.searchContentsController.navigationController) {
     [UIView beginAnimations:nil context:nil];
-    self.searchBar.superview.top -= self.searchBar.screenY - TT_STATUS_HEIGHT;
+    self.searchBar.superview.top -= self.searchBar.screenY - TTStatusHeight();
     [UIView commitAnimations];
   }
 }
@@ -93,7 +93,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
   if (!self.searchContentsController.navigationController) {
     [UIView beginAnimations:nil context:nil];
-    self.searchBar.superview.top += self.searchBar.top - TT_STATUS_HEIGHT;
+    self.searchBar.superview.top += self.searchBar.top - TTStatusHeight();
     [UIView commitAnimations];
   }
 }

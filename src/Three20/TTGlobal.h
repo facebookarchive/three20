@@ -53,10 +53,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Dimensions of common iPhone OS Views
 
-#define TT_STATUS_HEIGHT 20
 #define TT_ROW_HEIGHT 44
 #define TT_KEYBOARD_HEIGHT 216
-#define TT_CHROME_HEIGHT (TT_STATUS_HEIGHT + TT_ROW_HEIGHT)
 #define TT_ROUNDED -1
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,6 +191,16 @@ CGRect TTKeyboardNavigationFrame();
  * Gets the application frame below the navigation bar and above a toolbar.
  */
 CGRect TTToolbarNavigationFrame();
+
+/**
+ * The height of the area containing the status bar and possibly the in-call status bar.
+ */
+CGFloat TTStatusHeight();
+
+/**
+ * The height of the area containing the status bar and navigation bar.
+ */
+CGFloat TTBarsHeight();
 
 /**
  * Returns a rectangle that is smaller or larger than the source rectangle.

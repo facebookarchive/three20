@@ -75,6 +75,14 @@ CGRect TTToolbarNavigationFrame() {
   return CGRectMake(0, 0, frame.size.width, frame.size.height - TT_ROW_HEIGHT*2);
 }
 
+CGFloat TTStatusHeight() {
+  return [UIScreen mainScreen].applicationFrame.origin.y;
+}
+
+CGFloat TTBarsHeight() {
+  return [UIScreen mainScreen].applicationFrame.origin.y + TT_ROW_HEIGHT;
+}
+
 CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
   return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
 }
@@ -87,7 +95,6 @@ CGRect TTRectInset(CGRect rect, UIEdgeInsets insets) {
   return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
                     rect.size.width - (insets.left + insets.right),
                     rect.size.height - (insets.top + insets.bottom));
-                    
 }
 
 void TTNetworkRequestStarted() {

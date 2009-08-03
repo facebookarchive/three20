@@ -122,7 +122,7 @@
   CGFloat cy = self.bounds.origin.y + height/2;
 
   BOOL portrait = self.width == width;
-  CGFloat marginRight = portrait ? 0 : TT_CHROME_HEIGHT;
+  CGFloat marginRight = portrait ? 0 : TTBarsHeight();
   CGFloat marginLeft = portrait ? 0 : TT_ROW_HEIGHT;
   CGFloat marginBottom = portrait ? TT_ROW_HEIGHT : 0;
   

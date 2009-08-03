@@ -210,8 +210,8 @@ static CGFloat kThumbnailRowHeight = 79;
     | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
   self.tableView.backgroundColor = TTSTYLEVAR(backgroundColor);
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  self.tableView.contentInset = UIEdgeInsetsMake(TT_CHROME_HEIGHT+4, 0, 0, 0);
-  self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(TT_CHROME_HEIGHT, 0, 0, 0);
+  self.tableView.contentInset = UIEdgeInsetsMake(TTBarsHeight()+4, 0, 0, 0);
+  self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(TTBarsHeight(), 0, 0, 0);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -269,8 +269,8 @@ static CGFloat kThumbnailRowHeight = 79;
 // TTTableViewController
 
 - (CGRect)rectForOverlayView {
-  return TTRectContract(CGRectOffset([super rectForOverlayView], 0, TT_CHROME_HEIGHT-_tableView.top),
-                        0, TT_CHROME_HEIGHT);
+  return TTRectContract(CGRectOffset([super rectForOverlayView], 0, TTBarsHeight()-_tableView.top),
+                        0, TTBarsHeight());
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
