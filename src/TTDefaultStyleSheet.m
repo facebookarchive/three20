@@ -211,7 +211,7 @@
   return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 1, 1, 1) next:
-    [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,1) blur:3 offset:CGSizeMake(0, 4) next:
+    [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.8) blur:3 offset:CGSizeMake(0, 4) next:
     [TTReflectiveFillStyle styleWithColor:RGBCOLOR(221, 17, 27) next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
     [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:2 next:
@@ -579,6 +579,14 @@
 
 - (UIFont*)tableSummaryFont {
   return [UIFont systemFontOfSize:17];
+}
+
+- (UIFont*)tableHeaderPlainFont {
+  return [UIFont boldSystemFontOfSize:15];
+}
+
+- (UIFont*)tableHeaderGroupedFont {
+  return [UIFont boldSystemFontOfSize:18];
 }
 
 - (UIFont*)photoCaptionFont {

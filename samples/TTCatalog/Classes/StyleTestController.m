@@ -26,6 +26,12 @@
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
     [TTSolidBorderStyle styleWithColor:black width:1 next:nil]]],
 
+    // Gradient border
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:10] next:
+    [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
+    [TTLinearGradientBorderStyle styleWithColor1:RGBCOLOR(0, 0, 0)
+                                 color2:RGBCOLOR(216, 221, 231) width:2 next:nil]]],
+
     // Rounded left arrow
     [TTShapeStyle styleWithShape:[TTRoundedLeftArrowShape shapeWithRadius:5] next:
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:

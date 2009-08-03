@@ -48,6 +48,8 @@
 @property(nonatomic,readonly) UIFont* tableTimestampFont;
 @property(nonatomic,readonly) UIFont* tableButtonFont;
 @property(nonatomic,readonly) UIFont* tableSummaryFont;
+@property(nonatomic,readonly) UIFont* tableHeaderPlainFont;
+@property(nonatomic,readonly) UIFont* tableHeaderGroupedFont;
 @property(nonatomic,readonly) UIFont* photoCaptionFont;
 @property(nonatomic,readonly) UIFont* messageFont;
 @property(nonatomic,readonly) UIFont* errorTitleFont;

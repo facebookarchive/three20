@@ -332,6 +332,24 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@interface TTLinearGradientBorderStyle : TTStyle {
+  UIColor* _color1;
+  UIColor* _color2;
+  CGFloat _width;
+}
+
+@property(nonatomic,retain) UIColor* color1;
+@property(nonatomic,retain) UIColor* color2;
+@property(nonatomic) CGFloat width;
+
++ (TTLinearGradientBorderStyle*)styleWithColor1:(UIColor*)color1 color2:(UIColor*)color2
+                                width:(CGFloat)width next:(TTStyle*)next;
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @protocol TTStyleDelegate <NSObject>
 
 @optional

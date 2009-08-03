@@ -1433,3 +1433,69 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTLinearGradientBorderStyle
+
+@synthesize color1 = _color1, color2 = _color2, width = _width;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
++ (TTLinearGradientBorderStyle*)styleWithColor1:(UIColor*)color1 color2:(UIColor*)color2
+                                width:(CGFloat)width next:(TTStyle*)next {
+  TTLinearGradientBorderStyle* style = [[[TTLinearGradientBorderStyle alloc] initWithNext:next]
+                                       autorelease];
+  style.color1 = color1;
+  style.color2 = color2;
+  style.width = width;
+  return style;  
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithNext:(TTStyle*)next {  
+  if (self = [super initWithNext:next]) {
+    _color1 = nil;
+    _color2 = nil;
+    _width = 1;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_color1);
+  TT_RELEASE_SAFELY(_color2);
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyle
+
+- (void)draw:(TTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGRect rect = context.frame;
+  
+  CGContextSaveGState(ctx);
+
+  CGRect strokeRect = CGRectInset(context.frame, _width/2, _width/2);
+  [context.shape addToPath:strokeRect];
+  CGContextSetLineWidth(ctx, _width);
+  CGContextReplacePathWithStrokedPath(ctx);
+  CGContextClip(ctx);
+  
+  UIColor* colors[] = {_color1, _color2};
+  CGGradientRef gradient = [self newGradientWithColors:colors count:2];
+  CGContextDrawLinearGradient(ctx, gradient, CGPointMake(rect.origin.x, rect.origin.y),
+    CGPointMake(rect.origin.x, rect.origin.y+rect.size.height), kCGGradientDrawsAfterEndLocation);
+  CGGradientRelease(gradient);
+
+  CGContextRestoreGState(ctx);
+
+  context.frame = CGRectInset(context.frame, _width, _width);
+  return [self.next draw:context];
+}
+
+@end
