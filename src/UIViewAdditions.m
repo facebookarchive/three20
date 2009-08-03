@@ -331,33 +331,21 @@
 
 - (void)dismissAsKeyboardAnimationDidStop {
   [self removeFromSuperview];
-  [self release];
-  [self.window release];
 }
 
-- (void)presentAsKeyboard {
-  CGRect screenFrame = TTScreenBounds();
-  CGRect windowFrame = CGRectMake(0, screenFrame.size.height, screenFrame.size.width, self.height);
-  
-  // Intentionally "leak" the window - you have to call dismissAsKeyboard to release it
-  UIWindow* window = [[UIWindow alloc] initWithFrame:windowFrame];
-  [window addSubview:self];
+- (void)presentAsKeyboardInView:(UIView*)containingView {
+  self.top = containingView.height;
+  [containingView addSubview:self];
 
-  // Don't steal key window from the previous window when we make this window visible
-  UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
-  [window makeKeyAndVisible];
-  [keyWindow makeKeyWindow];
-  
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(presentAsKeyboardAnimationDidStop)];
-  window.top -= window.height;
+  self.top -= self.height;
   [UIView commitAnimations];
 }
 
 - (void)dismissAsKeyboard:(BOOL)animated {
-  [self retain];
   CGRect screenFrame = TTScreenBounds();
   CGRect bounds = CGRectMake(0, 0, screenFrame.size.width, self.height);
   CGPoint centerBegin = CGPointMake(floor(screenFrame.size.width/2 - self.width/2),
@@ -381,7 +369,7 @@
     [UIView setAnimationDidStopSelector:@selector(dismissAsKeyboardAnimationDidStop)];
   }
   
-  self.window.top = screenFrame.size.height;
+  self.top += self.height;
 
   if (animated) {
     [UIView commitAnimations];
