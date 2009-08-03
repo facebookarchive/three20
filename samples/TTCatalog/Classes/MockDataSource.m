@@ -461,7 +461,7 @@
 // UITableViewDataSource
 
 - (NSArray*)sectionIndexTitlesForTableView:(UITableView*)tableView {
-  return [self lettersForSectionsWithSearch:YES withCount:NO];
+  return [TTTableViewDataSource lettersForSectionsWithSearch:YES summary:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
