@@ -390,7 +390,7 @@ static TTURLRequestQueue* gMainQueue = nil;
           }
         }
       } else {
-        request.timestamp = timestamp;
+        request.timestamp = timestamp ? timestamp : [NSDate date];
         request.respondedFromCache = YES;
 
         for (id<TTURLRequestDelegate> delegate in request.delegates) {

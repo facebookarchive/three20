@@ -60,7 +60,11 @@
 // TTTableViewDataSource
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
-  return [_items objectAtIndex:indexPath.row];
+  if (indexPath.row < _items.count) {
+    return [_items objectAtIndex:indexPath.row];
+  } else {
+    return nil;
+  }
 }
 
 - (NSIndexPath*)tableView:(UITableView*)tableView indexPathForObject:(id)object {

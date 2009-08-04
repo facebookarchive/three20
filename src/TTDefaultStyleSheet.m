@@ -215,7 +215,7 @@
     [TTReflectiveFillStyle styleWithColor:RGBCOLOR(221, 17, 27) next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
     [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:2 next:
-    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(2, 7, 2, 7) next:
+    [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(1, 7, 2, 7) next:
     [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:fontSize]
                  color:[UIColor whiteColor] next:nil]]]]]]]];
 }
@@ -226,6 +226,10 @@
 
 - (TTStyle*)badge {
   return [self badgeWithFontSize:15];
+}
+
+- (TTStyle*)largeBadge {
+  return [self badgeWithFontSize:17];
 }
 
 - (TTStyle*)tabBar {

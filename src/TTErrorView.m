@@ -6,6 +6,7 @@
 
 static CGFloat kVPadding1 = 30;
 static CGFloat kVPadding2 = 20;
+static CGFloat kHPadding = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -58,7 +59,7 @@ static CGFloat kVPadding2 = 20;
 // UIView
 
 - (void)layoutSubviews {
-  [_subtitleView sizeToFit];
+  _subtitleView.size = [_subtitleView sizeThatFits:CGSizeMake(self.width - kHPadding*2, 0)];
   [_titleView sizeToFit];
   [_imageView sizeToFit];
 

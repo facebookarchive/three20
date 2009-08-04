@@ -13,7 +13,7 @@
   CGRect _originRect;
   UIView* _originView;
   TTTextEditor* _textEditor;
-  UIToolbar* _toolbar;
+  UINavigationBar* _navigationBar;
   UIView* _screenView;
   TTActivityLabel* _activityView;
   BOOL _originalStatusBarHidden;
@@ -23,7 +23,7 @@
 @property(nonatomic,assign) id<TTPostControllerDelegate> delegate;
 @property(nonatomic,retain) id result;
 @property(nonatomic,readonly) TTTextEditor* textEditor;
-@property(nonatomic,readonly) UIToolbar* toolbar;
+@property(nonatomic,readonly) UINavigationBar* navigatorBar;
 @property(nonatomic,retain) UIView* originView;
 
 /**

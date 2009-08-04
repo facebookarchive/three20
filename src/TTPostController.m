@@ -67,15 +67,15 @@ static const CGFloat kMarginY = 6;
 }
 
 - (void)enableButtons:(BOOL)enabled {
-  for (int i = 1; i < _toolbar.items.count; ++i) {
-    UIBarButtonItem* item = [_toolbar.items objectAtIndex:i];
+  for (int i = 1; i < _navigationBar.items.count; ++i) {
+    UIBarButtonItem* item = [_navigationBar.items objectAtIndex:i];
     item.enabled = enabled;
   }
 }
 
 - (void)layoutTextEditor {
-  _textEditor.frame = CGRectMake(kMarginX, kMarginY+_toolbar.height, self.view.width - kMarginX*2,
-                                self.view.height - (TT_KEYBOARD_HEIGHT+_toolbar.height+kMarginY*2));
+  _textEditor.frame = CGRectMake(kMarginX, kMarginY+_navigationBar.height, self.view.width - kMarginX*2,
+                                self.view.height - (TT_KEYBOARD_HEIGHT+_navigationBar.height+kMarginY*2));
   _textEditor.textView.hidden = NO;
 }
 
@@ -110,20 +110,6 @@ static const CGFloat kMarginY = 6;
   [self dismissPopupViewControllerAnimated:NO];
 }
 
-- (void)ensureToolbarItems {
-  if (!self.toolbar.items.count) {
-    self.toolbar.items = [NSArray arrayWithObjects:
-      [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                target:self action:@selector(cancel)] autorelease],
-      [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                target:nil action:nil] autorelease],
-      [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
-                                style:UIBarButtonItemStyleDone
-                                target:self action:@selector(post)] autorelease],
-    nil];
-  }
-}
-
 - (void)dismissWithCancel {
   if ([_delegate respondsToSelector:@selector(postControllerDidCancel:)]) {
     [_delegate postControllerDidCancel:self];
@@ -144,19 +130,29 @@ static const CGFloat kMarginY = 6;
     _originView = nil;
     _textEditor = nil;
     _screenView = nil;
-    _toolbar = nil;
+    _navigationBar = nil;
     _activityView = nil;
 
     if (query) {
       _delegate = [query objectForKey:@"delegate"];
       _defaultText = [[query objectForKey:@"text"] copy];
-
+      
+      self.navigationItem.title = [query objectForKey:@"title"];
+      
       self.originView = [query objectForKey:@"__target__"];
       NSValue* originRect = [query objectForKey:@"originRect"];
       if (originRect) {
         _originRect = [originRect CGRectValue];
       }
     }
+
+    self.navigationItem.leftBarButtonItem = 
+      [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                target:self action:@selector(cancel)] autorelease];
+    self.navigationItem.rightBarButtonItem = 
+      [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
+                                style:UIBarButtonItemStyleDone
+                                target:self action:@selector(post)] autorelease];
   }
   return self;
 }
@@ -170,7 +166,7 @@ static const CGFloat kMarginY = 6;
   TT_RELEASE_SAFELY(_defaultText);
   TT_RELEASE_SAFELY(_originView);
   TT_RELEASE_SAFELY(_textEditor);
-  TT_RELEASE_SAFELY(_toolbar);
+  TT_RELEASE_SAFELY(_navigationBar);
   TT_RELEASE_SAFELY(_screenView);
   TT_RELEASE_SAFELY(_activityView);
   [super dealloc];
@@ -199,9 +195,10 @@ static const CGFloat kMarginY = 6;
   _textEditor.style = TTSTYLE(postTextEditor);
   [self.view addSubview:_textEditor];
 
-  _toolbar = [[UIToolbar alloc] init];
-  _toolbar.barStyle = UIBarStyleBlackOpaque;
-  [self.view addSubview:_toolbar];    
+  _navigationBar = [[UINavigationBar alloc] init];
+  _navigationBar.barStyle = UIBarStyleBlackOpaque;
+  [_navigationBar pushNavigationItem:self.navigationItem animated:NO];
+  [self.view addSubview:_navigationBar];    
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,14 +237,13 @@ static const CGFloat kMarginY = 6;
     _defaultText = [_textEditor.text retain];
   }
   
-  [self ensureToolbarItems];
-  [_toolbar sizeToFit];
+  [_navigationBar sizeToFit];
   _screenView.frame = self.view.bounds;
   _originView.hidden = YES;
       
   if (animated) {
     _screenView.alpha = 0;
-    _toolbar.alpha = 0;
+    _navigationBar.alpha = 0;
     _textEditor.textView.hidden = YES;
 
     CGRect originRect = _originRect;
@@ -267,8 +263,8 @@ static const CGFloat kMarginY = 6;
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(showAnimationDidStop)];
     
-    _toolbar.alpha = 1;
-    _screenView.alpha = 0.6;
+    _navigationBar.alpha = 1;
+    _screenView.alpha = 1;
     
     if (originRect.size.width) {
       [self layoutTextEditor];
@@ -316,11 +312,11 @@ static const CGFloat kMarginY = 6;
   return _textEditor;
 }
 
-- (UIToolbar*)toolbar {
-  if (!_toolbar) {
+- (UINavigationBar*)navigatorBar {
+  if (!_navigationBar) {
     self.view;
   }
-  return _toolbar;
+  return _navigationBar;
 }
 
 - (void)setOriginView:(UIView*)view {
@@ -398,7 +394,7 @@ static const CGFloat kMarginY = 6;
 
     _textEditor.alpha = 0.5;
     _screenView.alpha = 0;
-    _toolbar.alpha = 0;
+    _navigationBar.alpha = 0;
     
     [UIView commitAnimations];
   } else {
