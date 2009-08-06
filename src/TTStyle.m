@@ -584,6 +584,7 @@ static const NSInteger kDefaultLightSource = 125;
     context.contentFrame = titleRect;
   } else {
     CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
+    titleRect = CGRectOffset(titleRect, rect.origin.x, rect.origin.y);
     rect.size = [text drawInRect:titleRect withFont:font lineBreakMode:_lineBreakMode
                       alignment:_textAlignment];
     context.contentFrame = rect;

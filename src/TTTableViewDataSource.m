@@ -113,10 +113,42 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTModel
+
+- (NSMutableArray*)delegates {
+  return nil;
+}
+
+- (BOOL)isLoaded {
+  return YES;
+}
+
+- (BOOL)isLoading {
+  return NO;
+}
+
+- (BOOL)isLoadingMore {
+  return NO;
+}
+
+- (BOOL)isOutdated {
+  return NO;
+}
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
+}
+
+- (void)cancel {
+}
+
+- (void)invalidate:(BOOL)erase {
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTTableViewDataSource
 
 - (id<TTModel>)model {
-  return _model;
+  return _model ? _model : self;
 }
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {

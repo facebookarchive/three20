@@ -1,6 +1,6 @@
 #import "Three20/TTModel.h"
 
-@protocol TTTableViewDataSource <UITableViewDataSource, UISearchDisplayDelegate>
+@protocol TTTableViewDataSource <UITableViewDataSource, TTModel, UISearchDisplayDelegate>
 
 /**
  * Optional method to return a model object to delegate the TTModel protocol to.
