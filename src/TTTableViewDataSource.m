@@ -12,6 +12,9 @@
 
 @synthesize model = _model;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
 + (NSArray*)lettersForSectionsWithSearch:(BOOL)search summary:(BOOL)summary {
   NSMutableArray* titles = [NSMutableArray array];
   if (search) {
@@ -213,6 +216,51 @@
 
 - (NSString*)subtitleForError:(NSError*)error {
   return TTLocalizedString(@"Sorry, there was an error.", @"");
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTTableViewInterstialDataSource
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewDataSource
+
+- (id<TTModel>)model {
+  return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTModel
+
+- (NSMutableArray*)delegates {
+  return nil;
+}
+
+- (BOOL)isLoaded {
+  return NO;
+}
+
+- (BOOL)isLoading {
+  return YES;
+}
+
+- (BOOL)isLoadingMore {
+  return NO;
+}
+
+- (BOOL)isOutdated {
+  return NO;
+}
+
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
+}
+
+- (void)cancel {
+}
+
+- (void)invalidate:(BOOL)erase {
 }
 
 @end

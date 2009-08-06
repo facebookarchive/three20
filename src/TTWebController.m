@@ -158,6 +158,8 @@
         navigationType:(UIWebViewNavigationType)navigationType {
   [_loadingURL release];
   _loadingURL = [request.URL retain];
+  _backButton.enabled = [_webView canGoBack];
+  _forwardButton.enabled = [_webView canGoForward];
   return YES;
 }
 
@@ -180,7 +182,9 @@
     self.navigationItem.rightBarButtonItem = nil;
   }
   [_toolbar replaceItemWithTag:3 withItem:_refreshButton];
-  [_webView canGoBack];
+
+  _backButton.enabled = [_webView canGoBack];
+  _forwardButton.enabled = [_webView canGoForward];    
 }
 
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {

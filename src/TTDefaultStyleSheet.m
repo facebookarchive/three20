@@ -427,6 +427,14 @@
                  shadowOffset:CGSizeMake(0, -1) next:nil]]];
 }
 
+- (TTStyle*)pageDot:(UIControlState)state {
+  if (state == UIControlStateSelected) {
+    return [self pageDotWithColor:[UIColor whiteColor]];
+  } else {
+    return [self pageDotWithColor:RGBCOLOR(77, 77, 77)];
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public colors
 
@@ -653,6 +661,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
+- (TTStyle*)selectionFillStyle:(TTStyle*)next {
+  return [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(5,140,245)
+                                    color2:RGBCOLOR(1,93,230) next:next];
+}
+
 - (TTStyle*)toolbarButtonForState:(UIControlState)state shape:(TTShape*)shape
             tintColor:(UIColor*)tintColor font:(UIFont*)font {
   UIColor* stateTintColor = [self toolbarButtonColorWithTintColor:tintColor forState:state];
@@ -677,9 +690,12 @@
                  shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]]];
 }
 
-- (TTStyle*)selectionFillStyle:(TTStyle*)next {
-  return [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(5,140,245)
-                                    color2:RGBCOLOR(1,93,230) next:next];
+- (TTStyle*)pageDotWithColor:(UIColor*)color {
+  return
+    [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(0,0,0,10) padding:UIEdgeInsetsMake(6,6,0,0) next:
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:2.5] next:
+    [TTSolidFillStyle styleWithColor:color next:nil]]];
 }
+
 
 @end

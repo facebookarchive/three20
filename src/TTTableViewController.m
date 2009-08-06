@@ -28,6 +28,10 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
+- (void)createInterstitialModel {
+  self.dataSource = [[[TTTableViewInterstialDataSource alloc] init] autorelease];
+}
+
 - (void)updateTableDelegate {
   if (!_tableView.delegate) {
     [_tableDelegate release];
@@ -44,7 +48,8 @@ static const CGFloat kBannerViewHeight = 22;
     CGRect frame = [self rectForOverlayView];
     _tableOverlayView = [[UIView alloc] initWithFrame:frame];
     _tableOverlayView.autoresizesSubviews = YES;
-    _tableOverlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _tableOverlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth
+                                        | UIViewAutoresizingFlexibleBottomMargin;
     NSInteger tableIndex = [_tableView.superview.subviews indexOfObject:_tableView];
     if (tableIndex != NSNotFound) {
       [_tableView.superview addSubview:_tableOverlayView];

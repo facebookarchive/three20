@@ -114,3 +114,12 @@
 }
 
 @end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * A datasource that is eternally loading.  Useful when you are in between data sources and
+ * want to show the impression of loading until your actual data source is available.
+ */
+@interface TTTableViewInterstialDataSource : TTTableViewDataSource <TTModel>
+@end

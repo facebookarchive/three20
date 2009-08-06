@@ -510,13 +510,30 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
+- (CGSize)sizeOfText:(NSString*)text withFont:(UIFont*)font size:(CGSize)size {
+  if (_numberOfLines == 1) {
+    return [text sizeWithFont:font];
+  } else {
+    CGSize maxSize = CGSizeMake(size.width, CGFLOAT_MAX);
+    CGSize textSize = [text sizeWithFont:font constrainedToSize:maxSize
+                            lineBreakMode:_lineBreakMode];
+    if (_numberOfLines) {
+      CGFloat maxHeight = font.lineHeight * _numberOfLines;
+      if (textSize.height > maxHeight) {
+        textSize.height = maxHeight;
+      }
+    }
+    return textSize;
+  }
+}
+
 - (CGRect)rectForText:(NSString*)text forSize:(CGSize)size withFont:(UIFont*)font {
   CGRect rect = CGRectZero;
   if (_textAlignment == UITextAlignmentLeft
       && _verticalAlignment == UIControlContentVerticalAlignmentTop) {
     rect.size = size;
   } else {
-    CGSize textSize = [text sizeWithFont:font];
+    CGSize textSize = [self sizeOfText:text withFont:font size:size];
 
     if (size.width < textSize.width) {
       size.width = textSize.width;
@@ -537,14 +554,6 @@ static const NSInteger kDefaultLightSource = 125;
     }
   }
   return rect;
-}
-
-- (CGSize)sizeOfText:(NSString*)text withFont:(UIFont*)font size:(CGSize)size {
-  if (_numberOfLines == 1) {
-    return [text sizeWithFont:font];
-  } else {
-    return [text sizeWithFont:font constrainedToSize:size lineBreakMode:_lineBreakMode];
-  }
 }
 
 - (void)drawText:(NSString*)text context:(TTStyleContext*)context {
@@ -574,7 +583,8 @@ static const NSInteger kDefaultLightSource = 125;
           baselineAdjustment:UIBaselineAdjustmentAlignCenters];
     context.contentFrame = titleRect;
   } else {
-    rect.size = [text drawInRect:rect withFont:font lineBreakMode:_lineBreakMode
+    CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
+    rect.size = [text drawInRect:titleRect withFont:font lineBreakMode:_lineBreakMode
                       alignment:_textAlignment];
     context.contentFrame = rect;
   }

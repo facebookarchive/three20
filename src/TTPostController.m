@@ -328,20 +328,16 @@ static const CGFloat kMarginY = 6;
 }
 
 - (void)post {
-  if (_textEditor.text.isEmptyOrWhitespace) {
-    [self cancel];
+  BOOL shouldDismiss = [self willPostText:_textEditor.text];
+  if ([_delegate respondsToSelector:@selector(postController:willPostText:)]) {
+    shouldDismiss = [_delegate postController:self willPostText:_textEditor.text];
+  }
+  
+  if (shouldDismiss) {
+    [self dismissWithResult:nil animated:YES];
   } else {
-    BOOL shouldDismiss = [self willPostText:_textEditor.text];
-    if ([_delegate respondsToSelector:@selector(postController:willPostText:)]) {
-      shouldDismiss = [_delegate postController:self willPostText:_textEditor.text];
-    }
-    
-    if (shouldDismiss) {
-      [self dismissWithResult:nil animated:YES];
-    } else {
-      [self enableButtons:NO];
-      [self showActivity:[self titleForActivity]];
-    }
+    [self enableButtons:NO];
+    [self showActivity:[self titleForActivity]];
   }
 }
 

@@ -80,6 +80,8 @@
 		BEBB198310068D0F00744230 /* TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB198210068D0F00744230 /* TTNavigator.m */; };
 		BEBB198E10068D5800744230 /* TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = BEBB198D10068D5800744230 /* TTNavigator.h */; };
 		BEBB199C100690FE00744230 /* TTURLPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = BEBB199B100690FE00744230 /* TTURLPattern.h */; };
+		BEC171D2102A71CC006B431A /* TTPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC171D1102A71CC006B431A /* TTPageControl.m */; };
+		BEC171D4102A71EE006B431A /* TTPageControl.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC171D3102A71EE006B431A /* TTPageControl.h */; };
 		BEC270B20F8C9D1900EA638F /* TTLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC270B10F8C9D1900EA638F /* TTLayout.h */; };
 		BEC270B40F8C9D2600EA638F /* TTLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC270B30F8C9D2600EA638F /* TTLayout.m */; };
 		BEC5EC3F0F8C29DA007622CD /* TTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC5EC3E0F8C29DA007622CD /* TTButton.m */; };
@@ -240,6 +242,8 @@
 		BEBB198210068D0F00744230 /* TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNavigator.m; sourceTree = "<group>"; };
 		BEBB198D10068D5800744230 /* TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigator.h; path = Three20/TTNavigator.h; sourceTree = "<group>"; };
 		BEBB199B100690FE00744230 /* TTURLPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLPattern.h; path = Three20/TTURLPattern.h; sourceTree = "<group>"; };
+		BEC171D1102A71CC006B431A /* TTPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPageControl.m; sourceTree = "<group>"; };
+		BEC171D3102A71EE006B431A /* TTPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPageControl.h; path = Three20/TTPageControl.h; sourceTree = "<group>"; };
 		BEC270B10F8C9D1900EA638F /* TTLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLayout.h; path = Three20/TTLayout.h; sourceTree = "<group>"; };
 		BEC270B30F8C9D2600EA638F /* TTLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLayout.m; sourceTree = "<group>"; };
 		BEC5EC3E0F8C29DA007622CD /* TTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTButton.m; sourceTree = "<group>"; };
@@ -520,6 +524,8 @@
 				BE42FB790F3BBF3400A3B65A /* TTTabBar.m */,
 				BED429440F97F7E50035B153 /* TTButtonBar.h */,
 				BED429410F97F7DB0035B153 /* TTButtonBar.m */,
+				BEC171D3102A71EE006B431A /* TTPageControl.h */,
+				BEC171D1102A71CC006B431A /* TTPageControl.m */,
 			);
 			name = "Buttons and Tabs";
 			sourceTree = "<group>";
@@ -718,6 +724,7 @@
 				BE781809100ECF21001FACA5 /* TTSearchDisplayController.h in Headers */,
 				BEA6B8E41013FC3400B83B3A /* UIFontAdditions.h in Headers */,
 				BEF45BC81019CA8500E9EC07 /* TTPostController.h in Headers */,
+				BEC171D4102A71EE006B431A /* TTPageControl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,6 +844,7 @@
 				BE781807100ECF0F001FACA5 /* TTSearchDisplayController.m in Sources */,
 				BEA6B8E61013FC4900B83B3A /* UIFontAdditions.m in Sources */,
 				BEF45BC61019CA4400E9EC07 /* TTPostController.m in Sources */,
+				BEC171D2102A71CC006B431A /* TTPageControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

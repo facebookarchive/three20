@@ -39,6 +39,7 @@
 #import "Three20/TTLink.h"
 #import "Three20/TTTabBar.h"
 #import "Three20/TTButtonBar.h"
+#import "Three20/TTPageControl.h"
 
 #import "Three20/TTTextEditor.h"
 #import "Three20/TTSearchTextField.h"

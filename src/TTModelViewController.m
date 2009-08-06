@@ -110,6 +110,10 @@
   }
 }
 
+- (void)createInterstitialModel {
+  self.model = [[[TTModel alloc] init] autorelease];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -235,7 +239,7 @@
       [self createModel];
     }
     if (!_model) {
-      self.model = [[[TTModel alloc] init] autorelease];
+      [self createInterstitialModel];
     }
   }
   return _model;
@@ -308,7 +312,7 @@
 }
 
 - (void)reloadIfNeeded {
-  if ([self shouldReload]) {
+  if ([self shouldReload] && !self.model.isLoading) {
     [self reload];
   }
 }

@@ -262,7 +262,7 @@ class LocalizableStrings(object):
             if source in localizedStrings.strings:
                 target = localizedStrings.strings[source]
                 translation.translated[sourceEnum] = True
-            
+
             targetEnum = enumerateStringVariables(target)
             translation.strings[sourceEnum] = targetEnum
             
@@ -322,7 +322,7 @@ class LocalizableStrings(object):
             if sourceEnum in translation.strings:
                 targetEnum = translation.strings[sourceEnum]
                 target = denumerateStringVariables(targetEnum)
-                if target != self.strings[source]:
+                if source not in self.strings or target != self.strings[source]:
                     updatedStrings.append(source)
             else:
                 ignoredStrings.append(source)
@@ -491,13 +491,14 @@ class Translation(object):
     def __invertSourceMap(self, sourceMap):
         sourceFileMap = {}
         
-        for source in self.strings:
+        for sourceEnum in self.strings:
+            source = denumerateStringVariables(sourceEnum)
             if source in sourceMap:
                 sourcePaths = sourceMap[source]
                 for sourcePath in sourcePaths:
                     if sourcePath not in sourceFileMap:
                         sourceFileMap[sourcePath] = []
-                    sourceFileMap[sourcePath].append(source)
+                    sourceFileMap[sourcePath].append(sourceEnum)
                     break
         
         for sourceName, sourceFileStrings in sourceFileMap.iteritems():
