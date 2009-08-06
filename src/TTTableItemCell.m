@@ -607,7 +607,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-    
+
   CGFloat left = 0;
   if (_imageView2) {
     _imageView2.frame = CGRectMake(kSmallMargin, kSmallMargin,
@@ -642,6 +642,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   }
   
   if (_timestampLabel.text.length) {
+    _timestampLabel.alpha = !self.showingDeleteConfirmation;
     [_timestampLabel sizeToFit];
     _timestampLabel.left = self.contentView.width - (_timestampLabel.width + kSmallMargin);
     _timestampLabel.top = _titleLabel.top;

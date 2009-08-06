@@ -133,6 +133,14 @@
   TT_RELEASE_SAFELY(_activityItem);
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+  // If the browser launched the media player, it steals the key window and never gives it
+  // back, so this is a way to try and fix that
+  [self.view.window makeKeyWindow];
+
+  [super viewWillDisappear:animated];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UTViewController (TTCategory)
 
@@ -166,7 +174,7 @@
 - (void)webViewDidStartLoad:(UIWebView*)webView {
   self.title = TTLocalizedString(@"Loading...", @"");
   if (!self.navigationItem.rightBarButtonItem) {
-    self.navigationItem.rightBarButtonItem = _activityItem;
+    [self.navigationItem setRightBarButtonItem:_activityItem animated:YES];
   }
   [_toolbar replaceItemWithTag:3 withItem:_stopButton];
   _backButton.enabled = [_webView canGoBack];
@@ -179,7 +187,7 @@
   
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
-    self.navigationItem.rightBarButtonItem = nil;
+    [self.navigationItem setRightBarButtonItem:nil animated:YES];
   }
   [_toolbar replaceItemWithTag:3 withItem:_refreshButton];
 

@@ -32,6 +32,10 @@ static const CGFloat kBannerViewHeight = 22;
   self.dataSource = [[[TTTableViewInterstialDataSource alloc] init] autorelease];
 }
 
+- (NSString*)defaultTitleForLoading {
+  return TTLocalizedString(@"Loading...", @"");
+}
+
 - (void)updateTableDelegate {
   if (!_tableView.delegate) {
     [_tableDelegate release];
@@ -288,7 +292,9 @@ static const CGFloat kBannerViewHeight = 22;
 - (void)showLoading:(BOOL)show {
   if (show) {
     if (!self.model.isLoaded || ![self canShowModel]) {
-      NSString* title = [_dataSource titleForLoading:NO];
+      NSString* title = _dataSource
+                        ? [_dataSource titleForLoading:NO]
+                        : [self defaultTitleForLoading];
       if (title.length) {
         TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox]
                                     autorelease];
@@ -317,6 +323,7 @@ static const CGFloat kBannerViewHeight = 22;
       } else {
         self.errorView = nil;
       }
+      _tableView.dataSource = nil;
       [_tableView reloadData];
     }
   } else {
@@ -338,6 +345,7 @@ static const CGFloat kBannerViewHeight = 22;
     } else {
       self.emptyView = nil;
     }
+    _tableView.dataSource = nil;
     [_tableView reloadData];
   } else {
     self.emptyView = nil;
