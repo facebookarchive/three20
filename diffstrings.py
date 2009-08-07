@@ -17,6 +17,7 @@ global xmlFormat
 xmlFormat = {}
 
 reLprojFileName = re.compile(r'(.+?)\.lproj')
+reStringsFileName = re.compile(r'(.+?)\.strings')
 reComment = re.compile(r'/\*(.*?)\*/')
 reString = re.compile(r'\s*"((\\.|.)+?)"\s*=\s*"(.+?)";')
 reVariable = re.compile(r'%(@|d|f|lld|\d+\.?f|\d+\.\d+f|\d+d)')
@@ -177,15 +178,29 @@ class XcodeProject(object):
     
     def __iterateSourceStrings(self):
         buildPath = self.__makeBuildPath()
-        for fileName in os.listdir(buildPath):
-            name,ext = os.path.splitext(fileName)
-            if ext == ".strings":
+        if not os.path.exists(buildPath):
+            for path in self.__findSourceStrings():
+                yield path
+        else:
+            for fileName in os.listdir(buildPath):
+                name,ext = os.path.splitext(fileName)
+                if ext == ".strings":
+                    strings = LocalizableStrings(self.sourceLocaleName)
+
+                    filePath = os.path.join(buildPath, fileName)
+                    strings.open(filePath)
+                    yield strings
+    
+    def __findSourceStrings(self):
+        for name in os.listdir(self.sourceLocalePath):
+            m = reStringsFileName.match(name)
+            if m:
                 strings = LocalizableStrings(self.sourceLocaleName)
 
-                filePath = os.path.join(buildPath, fileName)
+                filePath = os.path.join(self.sourceLocalePath, name)
                 strings.open(filePath)
                 yield strings
-        
+       
     def __iterateLocalizableStrings(self):
         dirPath = os.path.dirname(self.sourceLocalePath)
         for dirName in os.listdir(dirPath):
@@ -196,8 +211,12 @@ class XcodeProject(object):
                     strings = LocalizableStrings(localeName)
 
                     localeDirPath = os.path.join(dirPath, dirName)
-                    filePath = os.path.abspath(os.path.join(localeDirPath, "Localizable.strings"))
-                    strings.open(filePath)
+                    for name in os.listdir(localeDirPath):
+                        m = reStringsFileName.match(name)
+                        if m:
+                            filePath = os.path.abspath(os.path.join(localeDirPath, name))
+                            strings.open(filePath)
+                            break
 
                     yield localeName, strings
 
