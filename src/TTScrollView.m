@@ -6,6 +6,7 @@ static const NSInteger kOffscreenPages = 1;
 static const CGFloat kDefaultPageSpacing = 40.0;
 static const CGFloat kFlickThreshold = 60.0;
 static const CGFloat kTapZoom = 0.75;
+static const CGFloat kResistance = 0.15;
 static const NSInteger kInvalidIndex = -1;
 static const NSTimeInterval kFlickDuration = 0.4;
 static const NSTimeInterval kBounceDuration = 0.5;
@@ -562,7 +563,7 @@ static const NSTimeInterval kOvershoot = 2;
 
 - (CGFloat)resist:(CGFloat)x1 to:(CGFloat)x2 max:(CGFloat)max {
   // The closer we get to the maximum, the less we are allowed to increment
-  CGFloat rl = (1 - (fabs(x2) / max)) * 0.1;
+  CGFloat rl = (1 - (fabs(x2) / max)) * kResistance;
   if (rl < 0) rl = 0;
   if (rl > 1) rl = 1;
   return x1 + ((x2 - x1) * rl);
@@ -609,9 +610,8 @@ static const NSTimeInterval kOvershoot = 2;
       }
     }
 
-    BOOL flipped = self.flipped;
-    BOOL flickPrevious = (left > 0 && !flipped) || (left < 0 && flipped);
-    BOOL flickNext = (right < 0 && !flipped) || (right > 0 && flipped);
+    BOOL flickPrevious = left > 0;
+    BOOL flickNext = right < 0;
     if (flickPrevious && ([self isFirstPage] || self.zoomed)) {
       left = [self resist:_pageEdges.left to:left max:width];
       if (_touchCount == 2) {
@@ -949,7 +949,10 @@ static const NSTimeInterval kOvershoot = 2;
     CGFloat top = _pageEdges.top;
     CGFloat bottom = _pageEdges.bottom;
     if ((_touchCount == 2 || self.zoomed) && _zoomEnabled && !_holding) {
-      CGFloat r = self.pageHeight / self.pageWidth;
+      // XXXjoe I am sure this "r" had a purpose at one point, but months after writing it I'll
+      // be damned if I remember.  It's causing the image to get out of sync with your finger
+      // while dragging, so disabling it for now.
+      CGFloat r = 1;//self.pageHeight / self.pageWidth;
       top = _pageStartEdges.top + (edges.top - _touchStartEdges.top) * r;
       bottom = _pageStartEdges.bottom + (edges.bottom - _touchStartEdges.bottom) * r;
     }
@@ -1017,7 +1020,7 @@ static const NSTimeInterval kOvershoot = 2;
         [self stopDragging:YES];
       }
       
-      if ((self.pinched || (_touchCount == 0 && self.pulled)) && _zoomEnabled) {
+      if (self.pinched || (_touchCount == 0 && self.pulled)) {
         UIEdgeInsets edges = [self pageEdgesForAnimation];
         NSTimeInterval dur = self.flicked ? kFlickDuration : kBounceDuration;
         //_overshoot = kOvershoot;

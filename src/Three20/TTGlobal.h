@@ -9,7 +9,7 @@
 #import "Three20/UIImageAdditions.h"
 #import "Three20/UIViewControllerAdditions.h"
 #import "Three20/UINavigationControllerAdditions.h"
-#import "Three20/UITabBArControllerAdditions.h"
+#import "Three20/UITabBarControllerAdditions.h"
 #import "Three20/UIViewAdditions.h"
 #import "Three20/UITableViewAdditions.h"
 #import "Three20/UIWebViewAdditions.h"
