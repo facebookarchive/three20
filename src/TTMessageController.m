@@ -461,6 +461,7 @@
   
   NSInteger firstResponder = [self fieldIndexOfFirstResponder];
   [state setObject:[NSNumber numberWithInt:firstResponder] forKey:@"firstResponder"];
+  [state setObject:[NSNumber numberWithBool:YES] forKey:@"__important__"];
   return [super persistView:state];
 }
 

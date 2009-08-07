@@ -509,13 +509,24 @@
   [self persistController:_rootViewController path:path];
   TTLOG(@"DEBUG PERSIST %@", path);
   
+  // Check if any of the paths were "important", and therefore unable to expire
+  BOOL important = NO;
+  for (NSDictionary* state in path) {
+    if ([state objectForKey:@"__important__"]) {
+      important = YES;
+      break;
+    }
+  }
+  
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   if (path.count) {
     [defaults setObject:path forKey:@"TTNavigatorHistory"];
     [defaults setObject:[NSDate date] forKey:@"TTNavigatorHistoryTime"];
+    [defaults setObject:[NSNumber numberWithInt:important] forKey:@"TTNavigatorHistoryImportant"];
   } else {
     [defaults removeObjectForKey:@"TTNavigatorHistory"];
     [defaults removeObjectForKey:@"TTNavigatorHistoryTime"];
+    [defaults removeObjectForKey:@"TTNavigatorHistoryImportant"];
   }
   [defaults synchronize];
 }
@@ -524,9 +535,12 @@
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSDate* timestamp = [defaults objectForKey:@"TTNavigatorHistoryTime"];
   NSArray* path = [defaults objectForKey:@"TTNavigatorHistory"];
+  BOOL important = [[defaults objectForKey:@"TTNavigatorHistoryImportant"] boolValue];
   TTLOG(@"DEBUG RESTORE %@ FROM %@", path, [timestamp formatRelativeTime]);
   
-  if (_persistenceExpirationAge && -timestamp.timeIntervalSinceNow > _persistenceExpirationAge) {
+  BOOL expired = _persistenceExpirationAge
+                 && -timestamp.timeIntervalSinceNow > _persistenceExpirationAge;
+  if (expired && !important) {
     return nil;
   }
 
@@ -618,6 +632,7 @@
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   [defaults removeObjectForKey:@"TTNavigatorHistory"];
   [defaults removeObjectForKey:@"TTNavigatorHistoryTime"];
+  [defaults removeObjectForKey:@"TTNavigatorHistoryImportant"];
   [defaults synchronize];
 }
 

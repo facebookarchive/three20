@@ -205,6 +205,8 @@ static const CGFloat kMarginY = 6;
 // UIViewController (TTCategory)
 
 - (BOOL)persistView:(NSMutableDictionary*)state {
+  [state setObject:[NSNumber numberWithBool:YES] forKey:@"__important__"];
+
   NSString* delegate = [[TTNavigator navigator] pathForObject:_delegate];
   if (delegate) {
     [state setObject:delegate forKey:@"delegate"];
