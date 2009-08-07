@@ -148,8 +148,10 @@
 }
 
 - (TTStyle*)tableHeader {
+  UIColor* color = TTSTYLEVAR(tableHeaderTintColor);
+  UIColor* highlight = [color multiplyHue:0 saturation:0 value:1.1];
   return
-    [TTReflectiveFillStyle styleWithColor:self.tableHeaderTintColor next:
+    [TTLinearGradientFillStyle styleWithColor1:highlight color2:color next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, 0, 0, 0) next:
     [TTFourBorderStyle styleWithTop:nil right:nil bottom:RGBACOLOR(0,0,0,0.15)
                        left:nil width:1 next:nil]]];
@@ -594,7 +596,7 @@
 }
 
 - (UIFont*)tableHeaderPlainFont {
-  return [UIFont boldSystemFontOfSize:15];
+  return [UIFont boldSystemFontOfSize:16];
 }
 
 - (UIFont*)tableHeaderGroupedFont {

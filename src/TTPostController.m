@@ -210,7 +210,13 @@ static const CGFloat kMarginY = 6;
     [state setObject:delegate forKey:@"delegate"];
   }
   [state setObject:self.textEditor.text forKey:@"text"];
-
+  
+  NSString* title = self.navigationItem.title;
+  
+  if (title) {
+    [state setObject:title forKey:@"title"];
+  }
+  
   return [super persistView:state];
 }
 
@@ -220,6 +226,10 @@ static const CGFloat kMarginY = 6;
   if (delegate) {
     _delegate = [[TTNavigator navigator] objectForPath:delegate];
   }
+  NSString* title = [state objectForKey:@"title"];
+  if (title) {
+    self.navigationItem.title = title;
+  }
   _defaultText = [[state objectForKey:@"text"] retain];
 }
 
@@ -228,8 +238,9 @@ static const CGFloat kMarginY = 6;
 
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
   [self retain];
-  [view.window addSubview:self.view];
-
+  UIWindow* window = view.window ? view.window : [UIApplication sharedApplication].keyWindow;
+  [window addSubview:self.view];
+  
   if (_defaultText) {
     _textEditor.text = _defaultText;
     TT_RELEASE_SAFELY(_defaultText);
@@ -274,7 +285,7 @@ static const CGFloat kMarginY = 6;
 
     [UIView commitAnimations];
   } else {
-    _screenView.alpha = 0.6;
+    _screenView.alpha = 1;
     _textEditor.transform = CGAffineTransformIdentity;
     [self layoutTextEditor];
   }

@@ -19,7 +19,7 @@
     _label.shadowColor = TTSTYLEVAR(tableHeaderShadowColor)
                          ? TTSTYLEVAR(tableHeaderShadowColor)
                          : [UIColor clearColor];
-    _label.shadowOffset = CGSizeMake(0, 1);
+    _label.shadowOffset = CGSizeMake(0, -1);
     _label.font = TTSTYLEVAR(tableHeaderPlainFont);
     [self addSubview:_label];
   }

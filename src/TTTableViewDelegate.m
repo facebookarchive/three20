@@ -28,11 +28,13 @@ static const CGFloat kSectionHeaderHeight = 35;
 - (id)initWithController:(TTTableViewController*)controller {
   if (self = [super init]) {
     _controller = controller;
+    _headers = nil;
   }
   return self;
 }
 
 - (void)dealloc {
+  TT_RELEASE_SAFELY(_headers);
   [super dealloc];
 }
 
@@ -44,7 +46,15 @@ static const CGFloat kSectionHeaderHeight = 35;
     if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
       NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
       if (title.length) {
-        return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
+        TTTableHeaderView* header = [_headers objectForKey:title];
+        if (!header) {
+          if (!_headers) {
+            _headers = [[NSMutableDictionary alloc] init];
+          }
+          header = [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
+          [_headers setObject:header forKey:title];
+        }
+        return header;
       }
     }
   }
@@ -147,35 +157,11 @@ static const CGFloat kSectionHeaderHeight = 35;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTTableViewPlainDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-  if (!title.length)
-    return nil;
-
-  return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
-}
-
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTTableViewPlainVarHeightDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-  if (!title.length)
-    return nil;
-
-  return [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
-}
-
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

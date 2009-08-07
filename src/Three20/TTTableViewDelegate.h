@@ -13,6 +13,7 @@
  */
 @interface TTTableViewDelegate : NSObject <UITableViewDelegate> {
   TTTableViewController* _controller;
+  NSMutableDictionary* _headers;
 }
 
 - (id)initWithController:(TTTableViewController*)controller;
