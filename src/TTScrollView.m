@@ -1155,13 +1155,7 @@ static const NSTimeInterval kOvershoot = 2;
     _visiblePageIndex = kInvalidIndex;
     _pageEdges = _pageStartEdges = UIEdgeInsetsZero;
     
-    [self stopAnimation:YES];
-    [self stopDragging:NO];
-    [self updateZooming:UIEdgeInsetsZero];
-    _touch1 = nil;
-    _touch2 = nil;
-    _touchCount = 0;
-
+    [self cancelTouches];
     [self setNeedsLayout];
   }
 }
@@ -1177,6 +1171,15 @@ static const NSTimeInterval kOvershoot = 2;
 - (void)zoomToDistance:(CGFloat)distance {
   UIEdgeInsets insets = UIEdgeInsetsMake(distance, distance, -1 * distance, -1 * distance);
   [self startAnimationTo:insets duration:kBounceDuration];
+}
+
+- (void)cancelTouches {
+  [self stopAnimation:YES];
+  [self stopDragging:NO];
+  [self updateZooming:UIEdgeInsetsZero];
+  _touch1 = nil;
+  _touch2 = nil;
+  _touchCount = 0;
 }
 
 @end

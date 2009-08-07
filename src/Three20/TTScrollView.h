@@ -130,7 +130,15 @@
  */
 - (void)zoomToFit;
 
+/**
+ *
+ */
 - (void)zoomToDistance:(CGFloat)distance;
+
+/**
+ * Cancels any active touches and resets everything to an untouched state.
+ */
+- (void)cancelTouches;
 
 @end
 

@@ -385,6 +385,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
+  [_scrollView cancelTouches];
   [self pauseAction];
   if (self.nextViewController) {
     [self showBars:YES animated:NO];
