@@ -12,7 +12,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 @implementation TTTableView
 
-@synthesize highlightedLabel = _highlightedLabel;
+@synthesize highlightedLabel = _highlightedLabel, contentOrigin = _contentOrigin;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -21,6 +21,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
   if (self = [super initWithFrame:frame style:style]) {
     _highlightedLabel = nil;
     _highlightStartPoint = CGPointZero;
+    _contentOrigin = 0;
   }
   return self;
 }
@@ -65,7 +66,35 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIScrollView
+
+- (void)setContentSize:(CGSize)size {
+  if (_contentOrigin) {
+    CGFloat minHeight = self.height + _contentOrigin;
+    if (size.height < minHeight) {
+      size.height = self.height + _contentOrigin;
+    }
+  }
+
+  CGFloat y = self.contentOffset.y;
+  [super setContentSize:size];
+
+  if (_contentOrigin) {
+    self.contentOffset = CGPointMake(0, y);
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableView
+
+- (void)reloadData {
+  CGFloat y = self.contentOffset.y;
+  [super reloadData];
+
+  if (_contentOrigin) {
+    self.contentOffset = CGPointMake(0, y);
+  }
+}
 
 - (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
         scrollPosition:(UITableViewScrollPosition)scrollPosition {

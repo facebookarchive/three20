@@ -13,8 +13,10 @@
 @interface TTTableView : UITableView {
   TTStyledTextLabel* _highlightedLabel;
   CGPoint _highlightStartPoint;
+  CGFloat _contentOrigin;
 }
 
 @property(nonatomic,retain) TTStyledTextLabel* highlightedLabel;
+@property(nonatomic) CGFloat contentOrigin;
 
 @end
