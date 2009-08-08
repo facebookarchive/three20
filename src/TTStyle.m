@@ -58,7 +58,8 @@ static const NSInteger kDefaultLightSource = 125;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (CGGradientRef)newGradientWithColors:(UIColor**)colors count:(int)count {
+- (CGGradientRef)newGradientWithColors:(UIColor**)colors locations:(CGFloat*)locations
+                 count:(int)count {
   CGFloat* components = malloc(sizeof(CGFloat)*4*count);
   for (int i = 0; i < count; ++i) {
     UIColor* color = colors[i];
@@ -79,9 +80,14 @@ static const NSInteger kDefaultLightSource = 125;
 
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGColorSpaceRef space = CGBitmapContextGetColorSpace(context);
-  CGGradientRef gradient = CGGradientCreateWithColorComponents(space, components, nil, count);
+  CGGradientRef gradient = CGGradientCreateWithColorComponents(space, components, locations, count);
   free(components);
+  free(locations);
   return gradient;
+}
+
+- (CGGradientRef)newGradientWithColors:(UIColor**)colors count:(int)count {
+  return [self newGradientWithColors:colors locations:nil count:count];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1449,7 +1455,8 @@ static const NSInteger kDefaultLightSource = 125;
 
 @implementation TTLinearGradientBorderStyle
 
-@synthesize color1 = _color1, color2 = _color2, width = _width;
+@synthesize color1 = _color1, color2 = _color2, location1 = _location1, location2 = _location2,
+            width = _width;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -1464,6 +1471,19 @@ static const NSInteger kDefaultLightSource = 125;
   return style;  
 }
 
++ (TTLinearGradientBorderStyle*)styleWithColor1:(UIColor*)color1 location1:(CGFloat)location1
+                                color2:(UIColor*)color2 location2:(CGFloat)location2
+                                width:(CGFloat)width next:(TTStyle*)next {
+  TTLinearGradientBorderStyle* style = [[[TTLinearGradientBorderStyle alloc] initWithNext:next]
+                                       autorelease];
+  style.color1 = color1;
+  style.color2 = color2;
+  style.width = width;
+  style.location1 = location1;
+  style.location2 = location2;
+  return style;  
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -1471,6 +1491,8 @@ static const NSInteger kDefaultLightSource = 125;
   if (self = [super initWithNext:next]) {
     _color1 = nil;
     _color2 = nil;
+    _location1 = 0;
+    _location2 = 1;
     _width = 1;
   }
   return self;
@@ -1498,7 +1520,8 @@ static const NSInteger kDefaultLightSource = 125;
   CGContextClip(ctx);
   
   UIColor* colors[] = {_color1, _color2};
-  CGGradientRef gradient = [self newGradientWithColors:colors count:2];
+  CGFloat locations[] = {_location1, _location2};
+  CGGradientRef gradient = [self newGradientWithColors:colors locations:locations count:2];
   CGContextDrawLinearGradient(ctx, gradient, CGPointMake(rect.origin.x, rect.origin.y),
     CGPointMake(rect.origin.x, rect.origin.y+rect.size.height), kCGGradientDrawsAfterEndLocation);
   CGGradientRelease(gradient);

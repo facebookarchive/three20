@@ -777,10 +777,10 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   _activityIndicatorView.top = floor(self.contentView.height/2 - _activityIndicatorView.height/2);
 
   self.textLabel.frame = CGRectMake(kMoreButtonMargin, self.textLabel.top,
-                                    self.contentView.width - kMoreButtonMargin,
+                                    self.contentView.width - (kMoreButtonMargin + kSmallMargin),
                                     self.textLabel.height);
   self.detailTextLabel.frame = CGRectMake(kMoreButtonMargin, self.detailTextLabel.top,
-                                          self.contentView.width - kMoreButtonMargin,
+                                          self.contentView.width - (kMoreButtonMargin + kSmallMargin),
                                           self.detailTextLabel.height);
 
 }
