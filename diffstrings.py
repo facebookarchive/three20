@@ -136,9 +136,7 @@ class XcodeProject(object):
                 sourceMap[source].append(name)
         
     def generateStrings(self):
-        buildPath = self.__makeBuildPath()
-        if not os.path.isdir(buildPath):
-            os.makedirs(buildPath)
+        buildPath = None
 
         cwd = os.getcwd()
         os.chdir(self.path)
@@ -150,6 +148,11 @@ class XcodeProject(object):
         for fileName in os.listdir(self.path):
             name,ext = os.path.splitext(fileName)
             if ext == ".m":
+                if not buildPath:
+                    buildPath = self.__makeBuildPath()
+                    if not os.path.isdir(buildPath):
+                        os.makedirs(buildPath)
+
                 command = "genstrings %s -o %s%s" % (fileName, buildPath, extras)
                 print "   %s" % command
                 os.system(command)

@@ -139,6 +139,11 @@ static const CGFloat kBannerViewHeight = 22;
   TT_RELEASE_SAFELY(_tableDelegate);
   TT_RELEASE_SAFELY(_dataSource);
   TT_RELEASE_SAFELY(_tableView);
+  TT_RELEASE_SAFELY(_loadingView);
+  TT_RELEASE_SAFELY(_errorView);
+  TT_RELEASE_SAFELY(_emptyView);
+  TT_RELEASE_SAFELY(_tableOverlayView);
+  TT_RELEASE_SAFELY(_tableBannerView);
   [super dealloc];
 }
 

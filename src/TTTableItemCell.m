@@ -776,8 +776,12 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   _activityIndicatorView.left = kMoreButtonMargin - (_activityIndicatorView.width + kSmallMargin);
   _activityIndicatorView.top = floor(self.contentView.height/2 - _activityIndicatorView.height/2);
 
-  self.textLabel.frame = TTRectShift(self.textLabel.frame, kMoreButtonMargin, 0);
-  self.detailTextLabel.frame = TTRectShift(self.detailTextLabel.frame, kMoreButtonMargin, 0);
+  self.textLabel.frame = CGRectMake(kMoreButtonMargin, self.textLabel.top,
+                                    self.contentView.width - kMoreButtonMargin,
+                                    self.textLabel.height);
+  self.detailTextLabel.frame = CGRectMake(kMoreButtonMargin, self.detailTextLabel.top,
+                                          self.contentView.width - kMoreButtonMargin,
+                                          self.detailTextLabel.height);
 
 }
 
@@ -1260,7 +1264,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   [super layoutSubviews];
   
   if ([TTTableControlCell shouldSizeControlToFit:_control]) {
-    _control.frame = CGRectInset(self.contentView.bounds, 0, 3);
+    _control.frame = CGRectInset(self.contentView.bounds, 2, kSpacing/2);
   } else {
     CGFloat minX = kControlPadding;
     CGFloat contentWidth = self.contentView.width - kControlPadding;
@@ -1309,6 +1313,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       _control = [_item.control retain];
     }
     
+    _control.backgroundColor = [UIColor clearColor];
     self.textLabel.text = _item.caption;
     
     if (_control) {

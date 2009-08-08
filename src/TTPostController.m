@@ -312,7 +312,7 @@ static const CGFloat kMarginY = 6;
 // UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (buttonIndex == 1) {
+  if (buttonIndex == 0) {
     [self dismissWithCancel];
   }
 }
@@ -358,10 +358,10 @@ static const CGFloat kMarginY = 6;
   if (!_textEditor.text.isEmptyOrWhitespace
       && !(_defaultText && [_defaultText isEqualToString:_textEditor.text])) {
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
-      TTLocalizedString(@"Are you sure?", @"")
+      TTLocalizedString(@"Cancel", @"")
       message:TTLocalizedString(@"Are you sure you want to cancel?", @"")
-      delegate:self cancelButtonTitle:TTLocalizedString(@"No", @"")
-      otherButtonTitles:TTLocalizedString(@"Yes", @""), nil] autorelease];
+      delegate:self cancelButtonTitle:TTLocalizedString(@"Yes", @"")
+      otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
     [cancelAlertView show];
   } else {
     [self dismissWithCancel];

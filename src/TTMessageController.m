@@ -544,7 +544,7 @@
 // UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (buttonIndex == 1) {
+  if (buttonIndex == 0) {
     [self cancel:NO];
   }
 }
@@ -719,11 +719,11 @@
 
 - (void)confirmCancellation {
   UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
-    TTLocalizedString(@"Are you sure?", @"")
+    TTLocalizedString(@"Cancel", @"")
     message:TTLocalizedString(@"Are you sure you want to cancel?", @"")
     delegate:self
-    cancelButtonTitle:TTLocalizedString(@"No", @"")
-    otherButtonTitles:TTLocalizedString(@"Yes", @""), nil] autorelease];
+    cancelButtonTitle:TTLocalizedString(@"Yes", @"")
+    otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
   [cancelAlertView show];
 }
 
