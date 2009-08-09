@@ -28,7 +28,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 }
 
 - (void)restartPauseTimer {
-  TT_RELEASE_TIMER(_pauseTimer);
+  TT_INVALIDATE_TIMER(_pauseTimer);
   _pauseTimer = [NSTimer scheduledTimerWithTimeInterval:kPauseInterval target:self
                          selector:@selector(searchAfterPause) userInfo:nil repeats:NO];
 }
@@ -54,7 +54,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 }
 
 - (void)dealloc {
-  TT_RELEASE_TIMER(_pauseTimer);
+  TT_INVALIDATE_TIMER(_pauseTimer);
   TT_RELEASE_SAFELY(_searchResultsDelegate2);
   TT_RELEASE_SAFELY(_searchResultsViewController);
   [super dealloc];

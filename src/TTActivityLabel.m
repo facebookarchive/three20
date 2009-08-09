@@ -107,7 +107,7 @@ static CGFloat kProgressMargin = 6;
 }
 
 - (void)dealloc {
-  TT_RELEASE_TIMER(_smoothTimer);
+  TT_INVALIDATE_TIMER(_smoothTimer);
   TT_RELEASE_SAFELY(_bezelView);
   TT_RELEASE_SAFELY(_progressView);
   TT_RELEASE_SAFELY(_activityIndicator);
@@ -208,7 +208,7 @@ static CGFloat kProgressMargin = 6;
   if (_progressView.progress < _progress) {
     _progressView.progress += 0.01;
   } else {
-    TT_RELEASE_TIMER(_smoothTimer);
+    TT_INVALIDATE_TIMER(_smoothTimer);
   }
 }
 

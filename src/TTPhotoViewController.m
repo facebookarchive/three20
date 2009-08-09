@@ -316,8 +316,8 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)dealloc {
   _thumbsController.delegate = nil;
-  TT_RELEASE_TIMER(_slideshowTimer);
-  TT_RELEASE_TIMER(_loadTimer);
+  TT_INVALIDATE_TIMER(_slideshowTimer);
+  TT_INVALIDATE_TIMER(_loadTimer);
   TT_RELEASE_SAFELY(_thumbsController);
   TT_RELEASE_SAFELY(_centerPhoto);
   TT_RELEASE_SAFELY(_photoSource);

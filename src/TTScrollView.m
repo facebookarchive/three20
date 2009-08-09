@@ -9,7 +9,7 @@ static const CGFloat kTapZoom = 0.75;
 static const CGFloat kResistance = 0.15;
 static const NSInteger kInvalidIndex = -1;
 static const NSTimeInterval kFlickDuration = 0.4;
-static const NSTimeInterval kBounceDuration = 0.5;
+static const NSTimeInterval kBounceDuration = 0.3;
 static const NSTimeInterval kOvershoot = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -610,9 +610,10 @@ static const NSTimeInterval kOvershoot = 2;
       }
     }
 
-    BOOL flickPrevious = left > 0;
-    BOOL flickNext = right < 0;
-    if (flickPrevious && ([self isFirstPage] || self.zoomed)) {
+    BOOL flipped = self.flipped;
+    BOOL flickPrevious = (!flipped && left > 0) || (flipped && left < 0);
+    BOOL flickNext = (!flipped && right < 0) || (flipped && right > 0);
+    if (flickPrevious && [self isFirstPage] && !self.zoomed) {
       left = [self resist:_pageEdges.left to:left max:width];
       if (_touchCount == 2) {
         right = right + (left - _pageEdges.left);
@@ -625,7 +626,7 @@ static const NSTimeInterval kOvershoot = 2;
       CGFloat yd = newHeight - (-top + height + bottom);
       top -= yd/2;
       bottom += yd/2;
-    } else if (flickNext && ([self isLastPage] || self.zoomed)) {
+    } else if (flickNext && [self isLastPage] && !self.zoomed) {
       right = [self resist:_pageEdges.right to:right max:width];
       if (_touchCount == 2) {
         left = left + (right - _pageEdges.right);
@@ -796,7 +797,7 @@ static const NSTimeInterval kOvershoot = 2;
   if (!_animationTimer) {
     _pageStartEdges = _pageEdges;
     [self updateZooming:edges];
-    TT_RELEASE_TIMER(_tapTimer);
+    TT_INVALIDATE_TIMER(_tapTimer);
 
     _animateEdges = edges;
     _animationDuration = duration;
@@ -837,8 +838,10 @@ static const NSTimeInterval kOvershoot = 2;
   _pageEdges.top = _pageStartEdges.top + _animateEdges.top * pct;
   _pageEdges.bottom = _pageStartEdges.bottom + _animateEdges.bottom * pct;
   [self setNeedsLayout];
-
+  
   if (pct == 1.0) {
+    [self layoutIfNeeded];
+
     if (_overshoot) {
       TT_RELEASE_SAFELY(_animationStartTime);
       [_animationTimer invalidate];
@@ -870,6 +873,7 @@ static const NSTimeInterval kOvershoot = 2;
   [self setNeedsLayout];
 
   if (pct == 1.0) {
+    [self layoutIfNeeded];
     [self stopAnimation:YES];
     
     if ([_delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
@@ -916,7 +920,7 @@ static const NSTimeInterval kOvershoot = 2;
       }
       
       if (touch.tapCount == 2) {
-        TT_RELEASE_TIMER(_tapTimer);
+        TT_INVALIDATE_TIMER(_tapTimer);
       }
     }
   }
@@ -924,12 +928,12 @@ static const NSTimeInterval kOvershoot = 2;
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent *)event {
   [super touchesMoved:touches withEvent:event];
-  TT_RELEASE_TIMER(_holdingTimer);
+  TT_INVALIDATE_TIMER(_holdingTimer);
   
   if (_scrollEnabled && !_holding && _touchCount && !_animationTimer) {
     if (!_dragging) {
       _dragging = YES;
-      TT_RELEASE_TIMER(_tapTimer);
+      TT_INVALIDATE_TIMER(_tapTimer);
       
       if ([_delegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
         [_delegate scrollViewWillBeginDragging:self];
@@ -970,7 +974,7 @@ static const NSTimeInterval kOvershoot = 2;
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesCancelled:touches withEvent:event];
-  TT_RELEASE_TIMER(_holdingTimer);
+  TT_INVALIDATE_TIMER(_holdingTimer);
 
   for (UITouch* touch in touches) {
     [self removeTouch:touch];
@@ -988,7 +992,7 @@ static const NSTimeInterval kOvershoot = 2;
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesEnded:touches withEvent:event];
-  TT_RELEASE_TIMER(_holdingTimer);
+  TT_INVALIDATE_TIMER(_holdingTimer);
   if (_holding) {
     [self endHolding];
   }

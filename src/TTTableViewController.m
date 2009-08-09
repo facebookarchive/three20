@@ -483,7 +483,7 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (void)setTableBannerView:(UIView*)tableBannerView animated:(BOOL)animated {
-  TT_RELEASE_TIMER(_bannerTimer);
+  TT_INVALIDATE_TIMER(_bannerTimer);
   if (tableBannerView != _tableBannerView) {
     if (_tableBannerView) {
       if (animated) {

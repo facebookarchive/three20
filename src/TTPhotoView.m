@@ -121,11 +121,18 @@
   CGFloat cx = self.bounds.origin.x + width/2;
   CGFloat cy = self.bounds.origin.y + height/2;
 
-  BOOL portrait = self.width == width;
-  CGFloat marginRight = portrait ? 0 : TTBarsHeight();
-  CGFloat marginLeft = portrait ? 0 : TT_ROW_HEIGHT;
-  CGFloat marginBottom = portrait ? TT_ROW_HEIGHT : 0;
-  
+  UIDeviceOrientation orientation = TTDeviceOrientation();
+  CGFloat marginRight = 0, marginLeft = 0, marginBottom = 0;
+  if (UIInterfaceOrientationIsPortrait(orientation)) {
+    marginBottom = TT_ROW_HEIGHT;
+  } else if (orientation == UIDeviceOrientationLandscapeLeft) {
+    marginLeft = TTBarsHeight();
+    marginRight = TT_ROW_HEIGHT;
+  } else {
+    marginLeft = TT_ROW_HEIGHT;
+    marginRight = TTBarsHeight();
+  }
+
   // Since the photo view is constrained to the size of the image, but we want to position
   // the status views relative to the screen, offset by the difference
   CGFloat screenOffset = -floor(screenBounds.size.height/2 - height/2);
@@ -186,10 +193,17 @@
 }
 
 - (void)setHidesExtras:(BOOL)hidesExtras {
+  if (!hidesExtras) {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
+  }
   _hidesExtras = hidesExtras;
-   _statusSpinner.alpha = _hidesExtras ? 0 : 1;
-   _statusLabel.alpha = _hidesExtras ? 0 : 1;
-   _captionLabel.alpha = _hidesExtras || _hidesCaption ? 0 : 1;
+  _statusSpinner.alpha = _hidesExtras ? 0 : 1;
+  _statusLabel.alpha = _hidesExtras ? 0 : 1;
+  _captionLabel.alpha = _hidesExtras || _hidesCaption ? 0 : 1;
+  if (!hidesExtras) {
+    [UIView commitAnimations];
+  }
 }
 
 - (void)setHidesCaption:(BOOL)hidesCaption {
