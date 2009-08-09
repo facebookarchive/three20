@@ -142,7 +142,7 @@
 }
 
 - (void)drawInRect:(CGRect)rect {
-  if (_style) {
+  if (_style && !CGRectIsEmpty(_bounds)) {
     TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
     context.delegate = self;
     context.frame = rect;

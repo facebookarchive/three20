@@ -80,6 +80,8 @@ This is a test of styled labels.  Styled labels support \
 actually touch. URLs are automatically converted into links, like this: http://www.foo.com\
 <div>You can enclose blocks within an HTML div.</div>\
 Both line break characters\n\nand HTML line breaks<br/>are respected.";
+//  NSString* kText = @"\
+//<span class=\"largeText\">font sizes</span>a";
 //  NSString* kText = @"<span class=\"largeText\">bah</span><span class=\"inlineBox\">hyper links</span>";
 //  NSString* kText = @"blah blah blah black sheep blah <span class=\"inlineBox\">\
 //<img src=\"bundle://smiley.png\"/>hyperlinks</span> blah fun";

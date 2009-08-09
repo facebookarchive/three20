@@ -174,9 +174,8 @@
      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 1, 1, 1) next:
      [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(221, 231, 248)
                                 color2:RGBACOLOR(188, 206, 241, 1) next:
-     [TTFourBorderStyle styleWithTop:RGBCOLOR(161, 187, 283)
-                        right:RGBCOLOR(118, 130, 214) bottom:RGBCOLOR(118, 130, 214)
-                        left:RGBCOLOR(161, 187, 283) width:1 next:nil]]]];
+     [TTLinearGradientBorderStyle styleWithColor1:RGBCOLOR(161, 187, 283)
+                        color2:RGBCOLOR(118, 130, 214) width:1 next:nil]]]];
   }
 }
 
