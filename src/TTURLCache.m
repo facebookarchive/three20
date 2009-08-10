@@ -293,10 +293,10 @@ static TTURLCache* gSharedCache = nil;
     [_imageSortedList addObject:newKey];
     [_imageCache setObject:image forKey:newKey];
   }
-  NSString* oldPath = [self cachePathForURL:oldKey];
+  NSString* oldPath = [self cachePathForKey:oldKey];
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:oldPath]) {
-    NSString* newPath = [self cachePathForURL:newKey];
+    NSString* newPath = [self cachePathForKey:newKey];
     [fm moveItemAtPath:oldPath toPath:newPath error:nil];
   }
 }

@@ -66,20 +66,21 @@ def mergeProjects(projects, sourceLocaleName, focusedLocaleName=None, verbose=Fa
         sourceStrings = project.condenseStringSourceFiles()
     
         for localeName, localizedStrings in project.locales.iteritems():
-            if localizedStrings.name in translations:
-                translation =  translations[localizedStrings.name]
-            else:
-                translation = Translation(localizedStrings.name)
-                translation.open(".", "2")
-                translations[localizedStrings.name] = translation
+            if not focusedLocaleName or focusedLocaleName == localeName:
+                if localizedStrings.name in translations:
+                    translation =  translations[localizedStrings.name]
+                else:
+                    translation = Translation(localizedStrings.name)
+                    translation.open(".", "2")
+                    translations[localizedStrings.name] = translation
         
-            if translation.strings:
-                if verbose:
-                    localizedStrings.mergeReport(sourceStrings, translation)
+                if translation.strings:
+                    if verbose:
+                        localizedStrings.mergeReport(sourceStrings, translation)
 
-                localizedStrings.mergeTranslation(sourceStrings, translation)
-                if not dryRun:
-                    localizedStrings.save()
+                    localizedStrings.mergeTranslation(sourceStrings, translation)
+                    if not dryRun:
+                        localizedStrings.save()
 
 ###################################################################################################
 

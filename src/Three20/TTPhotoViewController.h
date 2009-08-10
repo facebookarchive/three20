@@ -77,4 +77,9 @@
  */
 - (void)didMoveToPhoto:(id<TTPhoto>)photo fromPhoto:(id<TTPhoto>)fromPhoto;
 
+/**
+ * Shows or hides an activity label on top of the photo.
+ */
+- (void)showActivity:(NSString*)title;
+
 @end

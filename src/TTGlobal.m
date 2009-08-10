@@ -37,6 +37,11 @@ BOOL TTIsEmptyString(id object) {
   return [object isKindOfClass:[NSString class]] && ![(NSString*)object length];
 }
 
+BOOL TTIsKeyboardVisible() {
+  UIWindow* window = [UIApplication sharedApplication].keyWindow;
+  return !![window performSelector:@selector(firstResponder)];
+}
+
 UIInterfaceOrientation TTDeviceOrientation() {
   UIInterfaceOrientation orient = [UIDevice currentDevice].orientation;
   if (!orient) {

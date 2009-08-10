@@ -164,6 +164,12 @@ BOOL TTIsEmptyArray(id object);
  * Tests if an object is a string which is empty.
  */
 BOOL TTIsEmptyString(id object);
+
+/**
+ * Tests if the keyboard is visible.
+ */
+BOOL TTIsKeyboardVisible();
+
 /**
  * Gets the current device orientation.
  */

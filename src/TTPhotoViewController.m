@@ -2,6 +2,7 @@
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTPhotoView.h"
+#import "Three20/TTActivityLabel.h"
 #import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -10,6 +11,7 @@
 static const NSTimeInterval kPhotoLoadLongDelay = 0.5;
 static const NSTimeInterval kPhotoLoadShortDelay = 0.25;
 static const NSTimeInterval kSlideshowInterval = 2;
+static const NSInteger kActivityLabelTag = 96;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -523,6 +525,7 @@ static const NSTimeInterval kSlideshowInterval = 2;
 
 - (void)model:(id<TTModel>)model didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (object == self.centerPhoto) {
+    [self showActivity:nil];
     [self moveToNextValidPhoto];
     [_scrollView reloadData];
     [self refresh];
@@ -656,6 +659,25 @@ static const NSTimeInterval kSlideshowInterval = 2;
 }
 
 - (void)didMoveToPhoto:(id<TTPhoto>)photo fromPhoto:(id<TTPhoto>)fromPhoto {
+}
+
+- (void)showActivity:(NSString*)title {
+  if (title) {
+    TTActivityLabel* label = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleBlackBezel];
+    label.tag = kActivityLabelTag;
+    label.text = title;
+    label.frame = _scrollView.frame;
+    [_innerView addSubview:label];
+
+    _scrollView.scrollEnabled = NO;
+  } else {
+    UIView* label = [_innerView viewWithTag:kActivityLabelTag];
+    if (label) {
+      [label removeFromSuperview];
+    }
+
+    _scrollView.scrollEnabled = YES;
+  }
 }
 
 @end
