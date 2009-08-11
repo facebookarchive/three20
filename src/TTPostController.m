@@ -60,16 +60,11 @@ static const CGFloat kMarginY = 6;
     _activityView.frame = CGRectOffset(CGRectInset(_textEditor.frame, 13, 13), 2, 0);
     _activityView.hidden = NO;
     _textEditor.textView.hidden = YES;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
   } else {
     _activityView.hidden = YES;
     _textEditor.textView.hidden = NO;
-  }
-}
-
-- (void)enableButtons:(BOOL)enabled {
-  for (int i = 1; i < _navigationBar.items.count; ++i) {
-    UIBarButtonItem* item = [_navigationBar.items objectAtIndex:i];
-    item.enabled = enabled;
+    self.navigationItem.rightBarButtonItem.enabled = YES;
   }
 }
 
@@ -349,7 +344,6 @@ static const CGFloat kMarginY = 6;
   if (shouldDismiss) {
     [self dismissWithResult:nil animated:YES];
   } else {
-    [self enableButtons:NO];
     [self showActivity:[self titleForActivity]];
   }
 }
@@ -414,7 +408,6 @@ static const CGFloat kMarginY = 6;
 }
 
 - (void)failWithError:(NSError*)error {
-  [self enableButtons:YES];
   [self showActivity:nil];
   
   NSString* title = [self titleForError:error];
