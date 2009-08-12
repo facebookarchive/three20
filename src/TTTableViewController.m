@@ -22,7 +22,7 @@ static const CGFloat kBannerViewHeight = 22;
 @synthesize tableView = _tableView, tableBannerView = _tableBannerView,
             tableOverlayView = _tableOverlayView,
             loadingView = _loadingView, errorView= _errorView, emptyView = _emptyView,
-            dataSource = _dataSource, tableViewStyle = _tableViewStyle,
+            menuView = _menuView, dataSource = _dataSource, tableViewStyle = _tableViewStyle,
             variableHeightRows = _variableHeightRows;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

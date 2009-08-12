@@ -135,6 +135,15 @@ static const CGFloat kSectionHeaderHeight = 35;
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewDelegate
+
+- (void)tableView:(UITableView*)tableView touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+  if (_controller.menuView) {
+    [_controller hideMenu:YES];
+  }
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

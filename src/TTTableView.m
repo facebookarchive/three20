@@ -37,11 +37,16 @@ static const CGFloat kCancelHighlightThreshold = 4;
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
 
+  if ([self.delegate respondsToSelector:@selector(tableView:touchesBegan:withEvent:)]) {
+    id<TTTableViewDelegate> delegate = (id<TTTableViewDelegate>)self.delegate;
+    [delegate tableView:self touchesBegan:touches withEvent:event];
+  }
+
   if (_highlightedLabel) {
     UITouch* touch = [touches anyObject];
     _highlightStartPoint = [touch locationInView:self];
   }
-  
+
 //  if (_menuView) {
 //    UITouch* touch = [touches anyObject];
 //    CGPoint point = [touch locationInView:_menuView];
@@ -58,6 +63,11 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesEnded:touches withEvent:event];
+
+  if ([self.delegate respondsToSelector:@selector(tableView:touchesEnded:withEvent:)]) {
+    id<TTTableViewDelegate> delegate = (id<TTTableViewDelegate>)self.delegate;
+    [delegate tableView:self touchesEnded:touches withEvent:event];
+  }
 
   if (_highlightedLabel) {
     TTStyledElement* element = _highlightedLabel.highlightedNode;

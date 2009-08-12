@@ -36,6 +36,14 @@ static CGFloat kButtonMaxWidth = 120;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIResponder
+
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+  // XXXjoe Hackish? This prevents weird things from happening when the user touches the
+  // background of the button bar while it is used as the menu in a table view.
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
 - (void)layoutSubviews {

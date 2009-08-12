@@ -20,3 +20,10 @@
 @property(nonatomic) CGFloat contentOrigin;
 
 @end
+
+@protocol TTTableViewDelegate <UITableViewDelegate>
+
+- (void)tableView:(UITableView*)tableView touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
+- (void)tableView:(UITableView*)tableView touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event;
+
+@end

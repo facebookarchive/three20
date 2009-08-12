@@ -35,6 +35,8 @@
 @property(nonatomic,retain) UIView* errorView;
 @property(nonatomic,retain) UIView* emptyView;
 
+@property(nonatomic,readonly) UIView* menuView;
+
 /** 
  * The data source used to populate the table view.
  *
