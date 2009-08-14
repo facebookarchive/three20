@@ -885,7 +885,7 @@ static const NSTimeInterval kOvershoot = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIResponder
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
   
   if (_touchCount < 2) {
@@ -1024,7 +1024,7 @@ static const NSTimeInterval kOvershoot = 2;
         [self stopDragging:YES];
       }
       
-      if (self.pinched || (_touchCount == 0 && self.pulled)) {
+      if ((self.pinched || (_touchCount == 0 && self.pulled)) && self.scrollEnabled) {
         UIEdgeInsets edges = [self pageEdgesForAnimation];
         NSTimeInterval dur = self.flicked ? kFlickDuration : kBounceDuration;
         //_overshoot = kOvershoot;

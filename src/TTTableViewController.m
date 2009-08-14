@@ -224,7 +224,7 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds {
   [super keyboardDidAppear:animated withBounds:bounds];
-  self.tableView.frame = TTRectContract(self.tableView.frame, 0, bounds.size.height);
+  self.tableView.frame = [self.tableView frameWithKeyboardSubtracted:0];
   [self.tableView scrollFirstResponderIntoView];
   [self layoutOverlayView];
   [self layoutBannerView];
@@ -683,11 +683,11 @@ static const CGFloat kBannerViewHeight = 22;
 }
 
 - (CGRect)rectForOverlayView {
-  return [_tableView frameWithKeyboardSubtracted];
+  return [_tableView frameWithKeyboardSubtracted:0];
 }
 
 - (CGRect)rectForBannerView {
-  CGRect tableFrame = [_tableView frameWithKeyboardSubtracted];
+  CGRect tableFrame = [_tableView frameWithKeyboardSubtracted:0];
   return CGRectMake(tableFrame.origin.x,
                     (tableFrame.origin.y + tableFrame.size.height) - kBannerViewHeight,
                     tableFrame.size.width, kBannerViewHeight);

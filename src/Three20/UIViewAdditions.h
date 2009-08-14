@@ -56,7 +56,7 @@
  *
  * If the keyboard is not showing, this will simply return the normal frame.
  */
-- (CGRect)frameWithKeyboardSubtracted;
+- (CGRect)frameWithKeyboardSubtracted:(CGFloat)plusHeight;
 
 /**
  * Shows the view in a window at the bottom of the screen.
