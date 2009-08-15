@@ -64,23 +64,24 @@ def mergeProjects(projects, sourceLocaleName, focusedLocaleName=None, verbose=Fa
     
     for project in projects:
         sourceStrings = project.condenseStringSourceFiles()
-    
-        for localeName, localizedStrings in project.locales.iteritems():
-            if not focusedLocaleName or focusedLocaleName == localeName:
-                if localizedStrings.name in translations:
-                    translation =  translations[localizedStrings.name]
-                else:
-                    translation = Translation(localizedStrings.name)
-                    translation.open(".", "2")
-                    translations[localizedStrings.name] = translation
+        sourceStrings.save()
         
-                if translation.strings:
-                    if verbose:
-                        localizedStrings.mergeReport(sourceStrings, translation)
-
-                    localizedStrings.mergeTranslation(sourceStrings, translation)
-                    if not dryRun:
-                        localizedStrings.save()
+        # for localeName, localizedStrings in project.locales.iteritems():
+        #     if not focusedLocaleName or focusedLocaleName == localeName:
+        #         if localizedStrings.name in translations:
+        #             translation =  translations[localizedStrings.name]
+        #         else:
+        #             translation = Translation(localizedStrings.name)
+        #             translation.open(".", "2")
+        #             translations[localizedStrings.name] = translation
+        # 
+        #         if translation.strings:
+        #             if verbose:
+        #                 localizedStrings.mergeReport(sourceStrings, translation)
+        # 
+        #             localizedStrings.mergeTranslation(sourceStrings, translation)
+        #             if not dryRun:
+        #                 localizedStrings.save()
 
 ###################################################################################################
 
@@ -98,6 +99,10 @@ class XcodeProject(object):
     def condenseStringSourceFiles(self):
         """ Copies all strings from all sources files into a single file."""
         sourceStrings = LocalizableStrings(self.sourceLocaleName)
+        
+        sourceStrings.path = self.__findSourceStringsPath()
+        if not sourceStrings.path:
+            sourceStrings.path = os.path.join(self.sourceLocalePath, "Localizable.strings")
         
         for sourceFile in self.stringSourceFiles:
             sourceStrings.update(sourceFile)
@@ -194,7 +199,13 @@ class XcodeProject(object):
                     filePath = os.path.join(buildPath, fileName)
                     strings.open(filePath)
                     yield strings
-    
+
+    def __findSourceStringsPath(self):
+        for name in os.listdir(self.sourceLocalePath):
+            m = reStringsFileName.match(name)
+            if m:
+                return os.path.join(self.sourceLocalePath, name)
+
     def __findSourceStrings(self):
         for name in os.listdir(self.sourceLocalePath):
             m = reStringsFileName.match(name)

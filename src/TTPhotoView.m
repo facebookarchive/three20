@@ -123,7 +123,7 @@
 
   UIDeviceOrientation orientation = TTDeviceOrientation();
   CGFloat marginRight = 0, marginLeft = 0, marginBottom = 0;
-  if (UIInterfaceOrientationIsPortrait(orientation)) {
+  if (!UIInterfaceOrientationIsLandscape(orientation)) {
     marginBottom = TT_ROW_HEIGHT;
   } else if (orientation == UIDeviceOrientationLandscapeLeft) {
     marginLeft = TTBarsHeight();

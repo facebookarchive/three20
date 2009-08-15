@@ -224,7 +224,7 @@ static const CGFloat kBannerViewHeight = 22;
 
 - (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds {
   [super keyboardDidAppear:animated withBounds:bounds];
-  self.tableView.frame = [self.tableView frameWithKeyboardSubtracted:0];
+  self.tableView.frame = TTRectContract(self.tableView.frame, 0, bounds.size.height);
   [self.tableView scrollFirstResponderIntoView];
   [self layoutOverlayView];
   [self layoutBannerView];
