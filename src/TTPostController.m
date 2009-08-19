@@ -196,6 +196,10 @@ static const CGFloat kMarginY = 6;
   [self.view addSubview:_navigationBar];    
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return YES;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 

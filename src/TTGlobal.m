@@ -85,7 +85,12 @@ CGFloat TTStatusHeight() {
 }
 
 CGFloat TTBarsHeight() {
-  return [UIScreen mainScreen].applicationFrame.origin.y + TT_ROW_HEIGHT;
+  CGRect frame = [UIApplication sharedApplication].statusBarFrame;
+  if (UIDeviceOrientationIsPortrait(TTDeviceOrientation())) {
+    return frame.size.height + TT_ROW_HEIGHT;
+  } else {
+    return frame.size.width + TT_LANDSCAPE_TOOLBAR_HEIGHT;
+  }
 }
 
 CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {

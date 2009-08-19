@@ -54,6 +54,8 @@
 // Dimensions of common iPhone OS Views
 
 #define TT_ROW_HEIGHT 44
+#define TT_TOOLBAR_HEIGHT 44
+#define TT_LANDSCAPE_TOOLBAR_HEIGHT 32
 #define TT_KEYBOARD_HEIGHT 216
 #define TT_ROUNDED -1
 

@@ -339,12 +339,14 @@ static const NSInteger kActivityLabelTag = 96;
   CGRect innerFrame = CGRectMake(0, 0,
                                  screenFrame.size.width, screenFrame.size.height);
   _innerView = [[UIView alloc] initWithFrame:innerFrame];
+  _innerView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   [self.view addSubview:_innerView];
   
   _scrollView = [[TTScrollView alloc] initWithFrame:screenFrame];
   _scrollView.delegate = self;
   _scrollView.dataSource = self;
   _scrollView.backgroundColor = [UIColor blackColor];
+  _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   [_innerView addSubview:_scrollView];
   
   _nextButton = [[UIBarButtonItem alloc] initWithImage:
@@ -365,10 +367,9 @@ static const NSInteger kActivityLabelTag = 96;
     CGRectMake(0, screenFrame.size.height - TT_ROW_HEIGHT,
                screenFrame.size.width, TT_ROW_HEIGHT)];
   _toolbar.barStyle = self.navigationBarStyle;
-  _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth
-                              | UIViewAutoresizingFlexibleTopMargin;
+  _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
   _toolbar.items = [NSArray arrayWithObjects:
-    space, _previousButton, space, _nextButton, space, nil];
+                   space, _previousButton, space, _nextButton, space, nil];
   [_innerView addSubview:_toolbar];    
 }
 
@@ -392,6 +393,14 @@ static const NSInteger kActivityLabelTag = 96;
   if (self.nextViewController) {
     [self showBars:YES animated:NO];
   }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return YES;
+}
+
+- (UIView *)rotatingFooterView {
+  return _toolbar;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

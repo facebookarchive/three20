@@ -232,6 +232,7 @@ static const CGFloat kVPadding = 7;
     _font = nil;
     
     self.backgroundColor = [UIColor clearColor];
+    self.contentMode = UIViewContentModeRedraw;
   }
   return self;
 }

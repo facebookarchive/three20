@@ -44,7 +44,7 @@ static const NSTimeInterval kOvershoot = 2;
     _scrollEnabled = YES;
     _zoomEnabled = YES;
     _rotateEnabled = YES;
-    _orientation = TTDeviceOrientation();
+    _orientation = UIDeviceOrientationPortrait;
     _holdsAfterTouchingForInterval = 0;
     _tapTimer = nil;
     _holdingTimer = nil;
@@ -1057,12 +1057,12 @@ static const NSTimeInterval kOvershoot = 2;
 // UIDeviceOrientationDidChangeNotification
 
 - (void)deviceOrientationDidChange:(void*)object {
-  UIInterfaceOrientation orientation = TTDeviceOrientation();
-  if (_rotateEnabled && !_holding
-      && (![_delegate respondsToSelector:@selector(scrollView:shouldAutorotateToInterfaceOrientation:)]
-      || [_delegate scrollView:self shouldAutorotateToInterfaceOrientation:orientation])) {
-    self.orientation = orientation;
-  }
+//  UIInterfaceOrientation orientation = TTDeviceOrientation();
+//  if (_rotateEnabled && !_holding
+//      && (![_delegate respondsToSelector:@selector(scrollView:shouldAutorotateToInterfaceOrientation:)]
+//      || [_delegate scrollView:self shouldAutorotateToInterfaceOrientation:orientation])) {
+//    self.orientation = orientation;
+//  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
