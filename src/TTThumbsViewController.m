@@ -237,7 +237,7 @@ static CGFloat kThumbSpacing = 4;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return YES;
+  return TTIsSupportedOrientation(interfaceOrientation);
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

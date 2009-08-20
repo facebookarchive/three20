@@ -396,7 +396,7 @@ static const NSInteger kActivityLabelTag = 96;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return YES;
+  return TTIsSupportedOrientation(interfaceOrientation);
 }
 
 - (UIView *)rotatingFooterView {

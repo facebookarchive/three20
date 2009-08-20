@@ -193,6 +193,54 @@
   }
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  UIViewController* popup = [self popupViewController];
+  if (popup) {
+    return [popup shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+  } else {
+    return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+  }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+        duration:(NSTimeInterval)duration {
+  UIViewController* popup = [self popupViewController];
+  if (popup) {
+    return [popup willAnimateRotationToInterfaceOrientation:fromInterfaceOrientation
+                  duration:duration];
+  } else {
+    return [super willAnimateRotationToInterfaceOrientation:fromInterfaceOrientation
+                  duration:duration];
+  }
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+  UIViewController* popup = [self popupViewController];
+  if (popup) {
+    return [popup didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+  } else {
+    return [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+  }
+}
+
+- (UIView*)rotatingHeaderView {
+  UIViewController* popup = [self popupViewController];
+  if (popup) {
+    return [popup rotatingHeaderView];
+  } else {
+    return [super rotatingHeaderView];
+  }
+}
+
+- (UIView*)rotatingFooterView {
+  UIViewController* popup = [self popupViewController];
+  if (popup) {
+    return [popup rotatingFooterView];
+  } else {
+    return [super rotatingFooterView];
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 

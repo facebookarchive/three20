@@ -395,7 +395,7 @@
   _textEditor.textDelegate = self;
   _textEditor.backgroundColor = TTSTYLEVAR(backgroundColor);
   _textEditor.textView.font = TTSTYLEVAR(messageFont);
-  _textEditor.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  _textEditor.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   _textEditor.autoresizesToText = YES;
   _textEditor.showsExtraLine = YES;
   _textEditor.minNumberOfLines = 5;
@@ -438,7 +438,12 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  return YES;
+  return TTIsSupportedOrientation(interfaceOrientation);
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+  _scrollView.height = self.view.height - TTKeyboardHeight();
+  [self layoutViews];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
