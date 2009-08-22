@@ -88,6 +88,15 @@ static const NSInteger kActivityLabelTag = 96;
   _nextButton.enabled = _centerPhotoIndex >= 0 && _centerPhotoIndex < _photoSource.numberOfPhotos-1;
 }
 
+- (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+    _toolbar.height = TT_TOOLBAR_HEIGHT;
+  } else {
+    _toolbar.height = TT_LANDSCAPE_TOOLBAR_HEIGHT+1;
+  }
+  _toolbar.top = self.view.height - _toolbar.height;
+}
+
 - (void)updatePhotoView {
   _scrollView.centerPageIndex = _centerPhotoIndex;
   [self loadImages];
@@ -385,6 +394,11 @@ static const NSInteger kActivityLabelTag = 96;
   TT_RELEASE_SAFELY(_toolbar);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self updateToolbarWithOrientation:self.interfaceOrientation];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
@@ -397,6 +411,11 @@ static const NSInteger kActivityLabelTag = 96;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return TTIsSupportedOrientation(interfaceOrientation);
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+        duration:(NSTimeInterval)duration {
+  [self updateToolbarWithOrientation:toInterfaceOrientation];
 }
 
 - (UIView *)rotatingFooterView {

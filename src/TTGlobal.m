@@ -120,6 +120,18 @@ CGFloat TTBarsHeight() {
   }
 }
 
+CGFloat TTToolbarHeight() {
+  return TTToolbarHeightForOrientation(TTInterfaceOrientation());
+}
+
+CGFloat TTToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
+  if (UIInterfaceOrientationIsPortrait(orientation)) {
+    return TT_ROW_HEIGHT;
+  } else {
+    return TT_LANDSCAPE_TOOLBAR_HEIGHT;
+  }
+}
+
 CGFloat TTKeyboardHeight() {
   return TTKeyboardHeightForOrientation(TTInterfaceOrientation());
 }

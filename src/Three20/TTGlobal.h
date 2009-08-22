@@ -226,6 +226,12 @@ CGFloat TTStatusHeight();
 CGFloat TTBarsHeight();
 
 /**
+ * The height of a toolbar.
+ */
+CGFloat TTToolbarHeight();
+CGFloat TTToolbarHeightForOrientation(UIInterfaceOrientation orientation);
+
+/**
  * The height of the keyboard.
  */
 CGFloat TTKeyboardHeight();

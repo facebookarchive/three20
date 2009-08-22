@@ -34,6 +34,16 @@
   [sheet showInView:self.view];
 }
 
+- (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+    _toolbar.height = TT_TOOLBAR_HEIGHT;
+  } else {
+    _toolbar.height = TT_LANDSCAPE_TOOLBAR_HEIGHT+1;
+  }
+  _webView.height = self.view.height - _toolbar.height;
+  _toolbar.top = self.view.height - _toolbar.height;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -113,7 +123,7 @@
    UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
 
   _toolbar = [[UIToolbar alloc] initWithFrame:
-    CGRectMake(0, self.view.height - TT_ROW_HEIGHT, self.view.width, TT_ROW_HEIGHT)];
+    CGRectMake(0, self.view.height - TTToolbarHeight(), self.view.width, TTToolbarHeight())];
   _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
   _toolbar.tintColor = TTSTYLEVAR(navigationBarTintColor);
   _toolbar.items = [NSArray arrayWithObjects:
@@ -133,6 +143,11 @@
   TT_RELEASE_SAFELY(_activityItem);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self updateToolbarWithOrientation:self.interfaceOrientation];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
   // If the browser launched the media player, it steals the key window and never gives it
   // back, so this is a way to try and fix that
@@ -143,6 +158,11 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return TTIsSupportedOrientation(interfaceOrientation);
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+        duration:(NSTimeInterval)duration {
+  [self updateToolbarWithOrientation:toInterfaceOrientation];
 }
 
 - (UIView *)rotatingFooterView {

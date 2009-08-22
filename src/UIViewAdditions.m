@@ -246,12 +246,12 @@
 }
 
 - (CGFloat)orientationWidth {
-  return UIDeviceOrientationIsLandscape(TTInterfaceOrientation())
+  return UIInterfaceOrientationIsLandscape(TTInterfaceOrientation())
     ? self.height : self.width;
 }
 
 - (CGFloat)orientationHeight {
-  return UIDeviceOrientationIsLandscape(TTInterfaceOrientation())
+  return UIInterfaceOrientationIsLandscape(TTInterfaceOrientation())
     ? self.width : self.height;
 }
 
