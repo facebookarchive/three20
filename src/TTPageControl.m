@@ -59,7 +59,12 @@
   TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
 
   CGSize dotSize = [self.normalDotStyle addToSize:CGSizeZero context:context];
-  CGRect contentRect = CGRectMake(0, 0, dotSize.width, dotSize.height);
+  
+  CGFloat dotWidth = dotSize.width + boxStyle.margin.left + boxStyle.margin.right;
+  CGFloat totalWidth = (dotWidth * _numberOfPages) - (boxStyle.margin.left + boxStyle.margin.right);
+  CGRect contentRect = CGRectMake(round(self.width/2 - totalWidth/2),
+                                  round(self.height/2 - dotSize.height/2),
+                                  dotSize.width, dotSize.height);
     
   for (NSInteger i = 0; i < _numberOfPages; ++i) {
     contentRect.origin.x += boxStyle.margin.left;

@@ -12,6 +12,7 @@
 #import "MessageTestController.h"
 #import "ActivityTestController.h"
 #import "ScrollViewTestController.h"
+#import "LauncherViewTestController.h"
 #import "StyledTextTestController.h"
 #import "StyledTextTableTestController.h"
 #import "StyleTestController.h"
@@ -48,6 +49,7 @@
   [map from:@"tt://youTubeTest" toViewController:[YouTubeTestController class]];
   [map from:@"tt://imageTest2" toViewController:[TableImageTestController class]];
   [map from:@"tt://scrollViewTest" toViewController:[ScrollViewTestController class]];
+  [map from:@"tt://launcherTest" toViewController:[LauncherViewTestController class]];
 
   if (![navigator restoreViewControllers]) {
     [navigator openURL:@"tt://catalog" animated:NO];

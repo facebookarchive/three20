@@ -52,6 +52,7 @@
     [TTTableTextItem itemWithText:@"Web Browser" URL:@"http://github.com/joehewitt/three20"],
     [TTTableTextItem itemWithText:@"Activity Labels" URL:@"tt://activityTest"],
     [TTTableTextItem itemWithText:@"Scroll View" URL:@"tt://scrollViewTest"],
+    [TTTableTextItem itemWithText:@"Launcher" URL:@"tt://launcherTest"],
     nil];
 }
 

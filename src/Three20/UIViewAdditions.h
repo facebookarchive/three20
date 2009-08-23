@@ -74,4 +74,9 @@
  */
 - (void)dismissAsKeyboard:(BOOL)animated;
 
+/**
+ * The view controller whose view contains this view.
+ */
+- (UIViewController*)viewController;
+
 @end

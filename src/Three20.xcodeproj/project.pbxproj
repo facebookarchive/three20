@@ -86,6 +86,12 @@
 		BEC270B40F8C9D2600EA638F /* TTLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC270B30F8C9D2600EA638F /* TTLayout.m */; };
 		BEC5EC3F0F8C29DA007622CD /* TTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC5EC3E0F8C29DA007622CD /* TTButton.m */; };
 		BEC5EC410F8C29EA007622CD /* TTButton.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC5EC400F8C29EA007622CD /* TTButton.h */; };
+		BEC787461040A33A005C00CF /* TTLauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC787451040A33A005C00CF /* TTLauncherView.m */; };
+		BEC787481040A34E005C00CF /* TTLauncherView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC787471040A34E005C00CF /* TTLauncherView.h */; };
+		BEC787951040A6C7005C00CF /* TTLauncherButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC787931040A6C7005C00CF /* TTLauncherButton.m */; };
+		BEC787971040A6EC005C00CF /* TTLauncherButton.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC787961040A6EC005C00CF /* TTLauncherButton.h */; };
+		BEC787B51040A79F005C00CF /* TTLauncherItem.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC787B41040A79F005C00CF /* TTLauncherItem.h */; };
+		BEC787B71040A7AA005C00CF /* TTLauncherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC787B61040A7AA005C00CF /* TTLauncherItem.m */; };
 		BECB1EC60F46C39F00AE5B52 /* TTStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = BECB1EC50F46C39F00AE5B52 /* TTStyleSheet.h */; };
 		BECB1EC80F46C3B000AE5B52 /* TTStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = BECB1EC70F46C3B000AE5B52 /* TTStyleSheet.m */; };
 		BED036EB10090FAA0083AC18 /* TTAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED036EA10090FAA0083AC18 /* TTAlertViewController.m */; };
@@ -248,6 +254,12 @@
 		BEC270B30F8C9D2600EA638F /* TTLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLayout.m; sourceTree = "<group>"; };
 		BEC5EC3E0F8C29DA007622CD /* TTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTButton.m; sourceTree = "<group>"; };
 		BEC5EC400F8C29EA007622CD /* TTButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTButton.h; path = Three20/TTButton.h; sourceTree = "<group>"; };
+		BEC787451040A33A005C00CF /* TTLauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLauncherView.m; sourceTree = "<group>"; };
+		BEC787471040A34E005C00CF /* TTLauncherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherView.h; path = Three20/TTLauncherView.h; sourceTree = "<group>"; };
+		BEC787931040A6C7005C00CF /* TTLauncherButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLauncherButton.m; sourceTree = "<group>"; };
+		BEC787961040A6EC005C00CF /* TTLauncherButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherButton.h; path = Three20/TTLauncherButton.h; sourceTree = "<group>"; };
+		BEC787B41040A79F005C00CF /* TTLauncherItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherItem.h; path = Three20/TTLauncherItem.h; sourceTree = "<group>"; };
+		BEC787B61040A7AA005C00CF /* TTLauncherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLauncherItem.m; sourceTree = "<group>"; };
 		BECB1EC50F46C39F00AE5B52 /* TTStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyleSheet.h; path = Three20/TTStyleSheet.h; sourceTree = "<group>"; };
 		BECB1EC70F46C3B000AE5B52 /* TTStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyleSheet.m; sourceTree = "<group>"; };
 		BED036EA10090FAA0083AC18 /* TTAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTAlertViewController.m; sourceTree = "<group>"; };
@@ -363,6 +375,7 @@
 				BEE341A40F480B91008C826E /* Text Fields */,
 				BE702EEF0F43F46E0028A119 /* Tables */,
 				BEF321B20F353B50000DE5D2 /* Photos */,
+				BEC787A51040A783005C00CF /* Launcher */,
 				BEF321B00F353B15000DE5D2 /* Network */,
 				BE8AA1870F428A0F00FD8C43 /* Additions */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -511,6 +524,19 @@
 				BEBB12721003EB5400744230 /* TTURLPattern.m */,
 			);
 			name = Navigator;
+			sourceTree = "<group>";
+		};
+		BEC787A51040A783005C00CF /* Launcher */ = {
+			isa = PBXGroup;
+			children = (
+				BEC787471040A34E005C00CF /* TTLauncherView.h */,
+				BEC787451040A33A005C00CF /* TTLauncherView.m */,
+				BEC787B41040A79F005C00CF /* TTLauncherItem.h */,
+				BEC787B61040A7AA005C00CF /* TTLauncherItem.m */,
+				BEC787961040A6EC005C00CF /* TTLauncherButton.h */,
+				BEC787931040A6C7005C00CF /* TTLauncherButton.m */,
+			);
+			name = Launcher;
 			sourceTree = "<group>";
 		};
 		BED631A10F88554F009923D8 /* Buttons and Tabs */ = {
@@ -725,6 +751,9 @@
 				BEA6B8E41013FC3400B83B3A /* UIFontAdditions.h in Headers */,
 				BEF45BC81019CA8500E9EC07 /* TTPostController.h in Headers */,
 				BEC171D4102A71EE006B431A /* TTPageControl.h in Headers */,
+				BEC787481040A34E005C00CF /* TTLauncherView.h in Headers */,
+				BEC787971040A6EC005C00CF /* TTLauncherButton.h in Headers */,
+				BEC787B51040A79F005C00CF /* TTLauncherItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +874,9 @@
 				BEA6B8E61013FC4900B83B3A /* UIFontAdditions.m in Sources */,
 				BEF45BC61019CA4400E9EC07 /* TTPostController.m in Sources */,
 				BEC171D2102A71CC006B431A /* TTPageControl.m in Sources */,
+				BEC787461040A33A005C00CF /* TTLauncherView.m in Sources */,
+				BEC787951040A6C7005C00CF /* TTLauncherButton.m in Sources */,
+				BEC787B71040A7AA005C00CF /* TTLauncherItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
