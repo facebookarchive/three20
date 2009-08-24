@@ -436,9 +436,33 @@
   }
 }
 
+- (TTStyle*)launcherButton:(UIControlState)state {
+  return
+    [TTPartStyle styleWithName:@"image" style:TTSTYLESTATE(launcherButtonImage:, state) next:
+    [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:11] color:RGBCOLOR(180, 180, 180)
+                 minimumFontSize:11 shadowColor:nil
+                 shadowOffset:CGSizeZero next:nil]];
+}
+
+- (TTStyle*)launcherButtonImage:(UIControlState)state {
+  TTStyle* style =
+    [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(-7, 0, 11, 0) next:
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
+    [TTImageStyle styleWithImageURL:nil defaultImage:nil contentMode:UIViewContentModeCenter
+                  size:CGSizeZero next:nil]]];
+
+  if (state == UIControlStateHighlighted || state == UIControlStateSelected) {
+      [style addStyle:
+        [TTBlendStyle styleWithBlend:kCGBlendModeSourceAtop next:
+        [TTSolidFillStyle styleWithColor:RGBACOLOR(0,0,0,0.5) next:nil]]];
+  }
+
+  return style;
+}
+
 - (TTStyle*)launcherCloseButtonImage:(UIControlState)state {
   return
-    [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(7, -3, 0, 0) next:
+    [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(-2, 0, 0, 0) next:
     [TTImageStyle styleWithImageURL:nil defaultImage:nil contentMode:UIViewContentModeCenter
                   size:CGSizeMake(10,10) next:nil]];
 }

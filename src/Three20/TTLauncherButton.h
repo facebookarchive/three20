@@ -3,13 +3,10 @@
 
 @class TTLauncherItem, TTLabel;
 
-@interface TTLauncherButton : TTButton <TTURLRequestDelegate> {
+@interface TTLauncherButton : TTButton {
   TTLauncherItem* _item;
-  UILabel* _titleLabel;
-  UIImage* _image;
   TTLabel* _badge;
   TTButton* _closeButton;
-  TTURLRequest* _imageRequest;
   BOOL _dragging;
   BOOL _editing;
 }

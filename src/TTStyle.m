@@ -767,7 +767,15 @@ static const NSInteger kDefaultLightSource = 125;
 - (void)draw:(TTStyleContext*)context {
   UIImage* image = [self imageForContext:context];
   if (image) {
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    CGRect rect = [image convertRect:context.contentFrame withContentMode:_contentMode];
+    [context.shape addToPath:rect];
+    CGContextClip(ctx);
+  
     [image drawInRect:context.contentFrame contentMode:_contentMode];
+    
+    CGContextRestoreGState(ctx);
   }
   return [self.next draw:context];
 }
@@ -776,7 +784,9 @@ static const NSInteger kDefaultLightSource = 125;
   if (_size.width || _size.height) {
     size.width += _size.width;
     size.height += _size.height;
-  } else if (_contentMode == UIViewContentModeScaleToFill) {
+  } else if (_contentMode != UIViewContentModeScaleToFill
+             && _contentMode != UIViewContentModeScaleAspectFill
+             && _contentMode != UIViewContentModeScaleAspectFit) {
     UIImage* image = [self imageForContext:context];
     if (image) {
       size.width += image.size.width;
@@ -849,6 +859,54 @@ static const NSInteger kDefaultLightSource = 125;
     CGRect maskRect = CGRectMake(0, 0, _mask.size.width, _mask.size.height);
     CGContextClipToMask(ctx, maskRect, _mask.CGImage);
 
+    [self.next draw:context];
+    CGContextRestoreGState(ctx);
+  } else {
+    return [self.next draw:context];
+  }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTBlendStyle
+
+@synthesize blendMode = _blendMode;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// class public
+
++ (TTBlendStyle*)styleWithBlend:(CGBlendMode)blendMode next:(TTStyle*)next {
+  TTBlendStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.blendMode = blendMode;
+  return style;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithNext:(TTStyle*)next {  
+  if (self = [super initWithNext:next]) {
+    _blendMode = kCGBlendModeNormal;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyle
+
+- (void)draw:(TTStyleContext*)context {
+  if (_blendMode) {
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    CGContextSetBlendMode(ctx, _blendMode);
+  
     [self.next draw:context];
     CGContextRestoreGState(ctx);
   } else {
