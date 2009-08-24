@@ -15,6 +15,7 @@
   NSTimer* _editHoldTimer;
   NSTimer* _springLoadTimer;
   TTLauncherButton* _dragButton;
+  UITouch* _dragTouch;
   NSInteger _positionOrigin;
   CGPoint _dragOrigin;
   CGPoint _touchOrigin;
@@ -40,6 +41,11 @@
  *
  */
 @property(nonatomic,readonly) NSInteger rowCount;
+
+/**
+ *
+ */
+@property(nonatomic) NSInteger currentPageIndex;
 
 /**
  *

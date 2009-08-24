@@ -50,15 +50,6 @@ static const NSInteger kMaxBadgeNumber = 99;
   _badge.left = self.width - (_badge.width + kBadgeMarginX);
 }
 
-- (void)updateLabel {
-  _titleLabel.highlighted = (self.highlighted || self.selected) && !_dragging;
-//  if (_titleLabel.highlighted && !_dragging) {
-//    _titleLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5];
-//  } else {
-//    _titleLabel.shadowColor = [UIColor colorWithWhite:1 alpha:0.7];
-//  }
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -92,7 +83,6 @@ static const NSInteger kMaxBadgeNumber = 99;
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.font = [UIFont boldSystemFontOfSize:14];
     _titleLabel.textColor = RGBCOLOR(50,50,50);
-//    _titleLabel.highlightedTextColor = RGBCOLOR(255, 255, 255);
     _titleLabel.shadowOffset = CGSizeMake(0, 1);
     _titleLabel.textAlignment = UITextAlignmentCenter;
     _titleLabel.backgroundColor = [UIColor clearColor];
@@ -101,8 +91,7 @@ static const NSInteger kMaxBadgeNumber = 99;
     _titleLabel.lineBreakMode = UILineBreakModeWordWrap;
     [self addSubview:_titleLabel];
     
-//    [self setStylesWithSelector:@"launcherButton:"];
-    [self updateLabel];
+    [self setStylesWithSelector:@"launcherButton:"];
   }
   return self;
 }
@@ -120,9 +109,19 @@ static const NSInteger kMaxBadgeNumber = 99;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIResponder
 
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent *)event {
+  [super touchesBegan:touches withEvent:event];
+  [[self nextResponder] touchesBegan:touches withEvent:event];
+}
+
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent *)event {
   [super touchesMoved:touches withEvent:event];
   [[self nextResponder] touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent *)event {
+  [super touchesEnded:touches withEvent:event];
+  [[self nextResponder] touchesEnded:touches withEvent:event];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,18 +131,8 @@ static const NSInteger kMaxBadgeNumber = 99;
   return !_dragging && [super isHighlighted];
 }
 
-- (void)setHighlighted:(BOOL)highlighted {
-  [super setHighlighted:highlighted];
-  [self updateLabel];
-}
-
 - (BOOL)isSelected {
   return !_dragging && [super isSelected];
-}
-
-- (void)setSelected:(BOOL)selected {
-  [super setSelected:selected];
-  [self updateLabel];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,10 +144,6 @@ static const NSInteger kMaxBadgeNumber = 99;
   if (_image) {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSaveGState(ctx);
-
-    if (self.highlighted || self.selected) {
-      CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
-    }
 
     CGContextSetShadowWithColor(ctx, CGSizeMake(0, -1), 2, RGBACOLOR(0,0,0,0.3).CGColor);
     CGContextBeginTransparencyLayer(ctx, nil);
@@ -178,6 +163,13 @@ static const NSInteger kMaxBadgeNumber = 99;
     }
 
     CGContextEndTransparencyLayer(ctx);
+
+    if (self.highlighted || self.selected) {
+      CGContextSetBlendMode(ctx, kCGBlendModeSourceAtop);
+      CGContextSetAlpha(ctx, 0.5);
+      CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+      CGContextFillRect(ctx, rect);
+    }
 
     CGContextRestoreGState(ctx);
   }
@@ -246,7 +238,6 @@ static const NSInteger kMaxBadgeNumber = 99;
       self.transform = CGAffineTransformIdentity;
       self.alpha = 1;
     }
-    [self updateLabel];
   }
 }
 

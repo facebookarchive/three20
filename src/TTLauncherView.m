@@ -15,8 +15,23 @@ static const CGFloat kWobbleRadians = 1.5;
 static const NSTimeInterval kEditHoldTimeInterval = 1;
 static const NSTimeInterval kSpringLoadTimeInterval = 1.5;
 
+static const NSInteger kPromptTag = 997;
+
 static const NSInteger kDefaultColumnCount = 3;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTLauncherScrollView : UIScrollView
+@end
+
+@implementation TTLauncherScrollView
+
+- (BOOL)touchesShouldCancelInContentView:(UIView *)view {
+  return !self.delaysContentTouches;
+}
+
+@end
+ 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTLauncherView
@@ -67,6 +82,19 @@ static const NSInteger kDefaultColumnCount = 3;
   }
 }
 
+- (NSMutableArray*)pageWithFreeSpace:(NSInteger)pageIndex {
+  for (NSInteger i = self.currentPageIndex; i < _pages.count; ++i) {
+    NSMutableArray* page = [_pages objectAtIndex:i];
+    if (page.count < self.columnCount*self.rowCount) {
+      return page;
+    }
+  }
+
+  NSMutableArray* page = [NSMutableArray array];
+  [_pages addObject:page];
+  return page;
+}
+
 - (void)updateItemBadge:(TTLauncherItem*)item {
   TTLauncherButton* button = [self buttonForItem:item];
   [button performSelector:@selector(updateBadge)];
@@ -81,14 +109,14 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)updatePagerWithContentOffset:(CGPoint)contentOffset {
   CGFloat pageWidth = _scrollView.width;
-  int page = floor((contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-  _pager.currentPage = page;
+  _pager.currentPage = floor((contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 }
 
 - (void)showPrompt {
   CGRect boxFrame = CGRectMake(_scrollView.width, 0, _scrollView.width, _scrollView.height);
   CGRect labelFrame = CGRectInset(boxFrame, kPromptMargin, kPromptMargin);
   UILabel* label = [[[UILabel alloc] initWithFrame:labelFrame] autorelease];
+  label.tag = kPromptTag;
   label.text = _prompt;    
   label.font = [UIFont systemFontOfSize:18];
   label.backgroundColor = [UIColor clearColor];
@@ -102,7 +130,6 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (TTLauncherButton*)addButtonWithItem:(TTLauncherItem*)item {
   TTLauncherButton* button = [[[TTLauncherButton alloc] initWithItem:item] autorelease];
-  button.backgroundColor = self.backgroundColor;
   
   [button addTarget:self action:@selector(buttonTouchedUpInside:)
         forControlEvents:UIControlEventTouchUpInside];
@@ -212,7 +239,6 @@ static const NSInteger kDefaultColumnCount = 3;
     button.transform = CGAffineTransformIdentity;
     [self addSubview:button];
     button.origin = [_scrollView convertPoint:button.origin toView:self];
-    button.backgroundColor = self.backgroundColor;
     [button layoutIfNeeded];
   }
   
@@ -227,19 +253,23 @@ static const NSInteger kDefaultColumnCount = 3;
   }
   
   if (button) {
-    UITouch* touch = [[event allTouches] anyObject];
-    _touchOrigin = [touch locationInView:_scrollView];
-    _dragOrigin = button.center;
-    
+    _dragButton = button;
+
     NSIndexPath* indexPath = [self indexPathOfItem:button.item];
     _positionOrigin = [indexPath indexAtPosition:1];
 
-    _dragButton = button;
+    UITouch* touch = [[event allTouches] anyObject];
+    _touchOrigin = [touch locationInView:_scrollView];
+    _dragOrigin = button.center;
+    _dragTouch = touch;
+    
     button.dragging = YES;
-    button.backgroundColor = [UIColor clearColor];
+
+    _scrollView.scrollEnabled = NO;
   } else {
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(releaseButtonDidStop)];
+    _scrollView.scrollEnabled = YES;
   }
   
   [UIView commitAnimations];
@@ -283,7 +313,9 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)buttonTouchedUpInside:(TTLauncherButton*)button {
   if (_editing) {
-    [self startDraggingButton:nil withEvent:nil];
+    if (button == _dragButton) {
+      [self startDraggingButton:nil withEvent:nil];
+    }
   } else {
     TT_INVALIDATE_TIMER(_editHoldTimer);
     [button setSelected:YES];
@@ -300,13 +332,19 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)buttonTouchedUpOutside:(TTLauncherButton*)button {
   if (_editing) {
-    [self startDraggingButton:nil withEvent:nil];
+    if (button == _dragButton) {
+      [self startDraggingButton:nil withEvent:nil];
+    }
+  } else {
+    TT_INVALIDATE_TIMER(_editHoldTimer);
   }
 }
 
 - (void)buttonTouchedDown:(TTLauncherButton*)button withEvent:(UIEvent*)event {
   if (_editing) {
-    [self startDraggingButton:button withEvent:event];
+    if (!_dragButton) {
+      [self startDraggingButton:button withEvent:event];
+    }
   } else {
     TT_INVALIDATE_TIMER(_editHoldTimer);
     
@@ -340,13 +378,21 @@ static const NSInteger kDefaultColumnCount = 3;
     [UIView setAnimationDuration:0.07];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(wobble)];
+    
+    NSInteger i = 0;
     for (NSArray* buttonPage in _buttons) {
       for (TTLauncherButton* button in buttonPage) {
         if (button != _dragButton) {
-          button.transform = wobblesLeft ? wobbleLeft : wobbleRight;
+          if (i % 2) {
+            button.transform = wobblesLeft ? wobbleRight : wobbleLeft;
+          } else {
+            button.transform = wobblesLeft ? wobbleLeft : wobbleRight;
+          }
         }
+        ++i;
       }
     }
+    
     [UIView commitAnimations];
     wobblesLeft = !wobblesLeft;
   }
@@ -378,6 +424,62 @@ static const NSInteger kDefaultColumnCount = 3;
   }
 }
 
+- (void)updateTouch {
+  CGPoint origin = [_dragTouch locationInView:_scrollView];
+  _dragButton.center = CGPointMake(_dragOrigin.x + (origin.x - _touchOrigin.x),
+                                   _dragOrigin.y + (origin.y - _touchOrigin.y));
+
+  CGFloat x = origin.x - _scrollView.contentOffset.x;
+  NSInteger column = round(x/_dragButton.width);
+  NSInteger row = round(origin.y/_dragButton.height);
+  NSInteger itemIndex = (row * self.columnCount) + column;
+  NSInteger pageIndex = floor(_scrollView.contentOffset.x/_scrollView.width);
+  
+  if (itemIndex != _positionOrigin) {
+    NSMutableArray* currentButtonPage = [_buttons objectAtIndex:pageIndex];
+    if (itemIndex > currentButtonPage.count) {
+      itemIndex = currentButtonPage.count;
+    }
+
+    if (itemIndex != _positionOrigin) {
+      [[_dragButton retain] autorelease];
+
+      NSMutableArray* itemPage = [self pageWithItem:_dragButton.item];
+      NSMutableArray* buttonPage = [self pageWithButton:_dragButton];
+      [itemPage removeObject:_dragButton.item];
+      [buttonPage removeObject:_dragButton];
+
+      if (itemIndex > currentButtonPage.count) {
+        itemIndex = currentButtonPage.count;
+      }
+      
+      NSMutableArray* currentItemPage = [_pages objectAtIndex:pageIndex];
+      [currentItemPage insertObject:_dragButton.item atIndex:itemIndex];
+      [currentButtonPage insertObject:_dragButton atIndex:itemIndex];
+      _positionOrigin = itemIndex;
+
+      [self checkButtonOverflow:pageIndex];
+      
+      [UIView beginAnimations:nil context:nil];
+      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+      [self layoutButtons];
+      [UIView commitAnimations];
+    }
+  }
+  
+  BOOL goToPreviousPage = x < _dragButton.width/4;
+  BOOL goToNextPage = x > _scrollView.width - _dragButton.width/4;
+  if (goToPreviousPage || goToNextPage) {
+    if (!_springLoadTimer) {
+    _springLoadTimer = [NSTimer scheduledTimerWithTimeInterval:kSpringLoadTimeInterval
+                                target:self selector:@selector(springLoadTimer:)
+                                userInfo:[NSNumber numberWithBool:goToPreviousPage] repeats:NO];
+    }
+  } else {
+    TT_INVALIDATE_TIMER(_springLoadTimer);
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
@@ -391,9 +493,10 @@ static const NSInteger kDefaultColumnCount = 3;
     _dragButton = nil;
     _columnCount = 0;
     _rowCount = 0;
+    _dragTouch = nil;
     _editing = NO;
 
-    _scrollView = [[UIScrollView alloc] initWithFrame:
+    _scrollView = [[TTLauncherScrollView alloc] initWithFrame:
                   CGRectMake(0, 0, self.width, self.height - kPagerHeight)];
     _scrollView.delegate = self;
     _scrollView.scrollsToTop = NO;
@@ -403,7 +506,8 @@ static const NSInteger kDefaultColumnCount = 3;
     _scrollView.pagingEnabled = YES;
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _scrollView.clipsToBounds = NO;
-    //_scrollView.delaysContentTouches = NO;
+    _scrollView.delaysContentTouches = NO;
+    _scrollView.multipleTouchEnabled = NO;
     [self addSubview:_scrollView];
 
     _pager = [[TTPageControl alloc] init];
@@ -443,59 +547,24 @@ static const NSInteger kDefaultColumnCount = 3;
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent *)event {
   [super touchesMoved:touches withEvent:event];
   if (_dragButton) {
-    UITouch* touch = [touches anyObject];
-    CGPoint origin = [touch locationInView:_scrollView];
-    _dragButton.center = CGPointMake(_dragOrigin.x + (origin.x - _touchOrigin.x),
-                                     _dragOrigin.y + (origin.y - _touchOrigin.y));
-
-    CGFloat x = origin.x - _scrollView.contentOffset.x;
-    NSInteger column = round(x/_dragButton.width);
-    NSInteger row = round(origin.y/_dragButton.height);
-    NSInteger itemIndex = (row * self.columnCount) + column;
-    NSInteger pageIndex = floor(_scrollView.contentOffset.x/_scrollView.width);
-    
-    if (itemIndex != _positionOrigin) {
-      NSMutableArray* currentButtonPage = [_buttons objectAtIndex:pageIndex];
-      if (itemIndex > currentButtonPage.count) {
-        itemIndex = currentButtonPage.count;
-      }
-
-      if (itemIndex != _positionOrigin) {
-        [[_dragButton retain] autorelease];
-
-        NSMutableArray* itemPage = [self pageWithItem:_dragButton.item];
-        NSMutableArray* buttonPage = [self pageWithButton:_dragButton];
-        [itemPage removeObject:_dragButton.item];
-        [buttonPage removeObject:_dragButton];
-
-        if (itemIndex > currentButtonPage.count) {
-          itemIndex = currentButtonPage.count;
-        }
-        
-        NSMutableArray* currentItemPage = [_pages objectAtIndex:pageIndex];
-        [currentItemPage insertObject:_dragButton.item atIndex:itemIndex];
-        [currentButtonPage insertObject:_dragButton atIndex:itemIndex];
-        _positionOrigin = itemIndex;
-
-        [self checkButtonOverflow:pageIndex];
-        
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-        [self layoutButtons];
-        [UIView commitAnimations];
+    for (UITouch* touch in touches) {
+      if (touch == _dragTouch) {
+        [self updateTouch];
+        break;
       }
     }
-    
-    BOOL goToPreviousPage = x < _dragButton.width/4;
-    BOOL goToNextPage = x > _scrollView.width - _dragButton.width/4;
-    if (goToPreviousPage || goToNextPage) {
-      if (!_springLoadTimer) {
-      _springLoadTimer = [NSTimer scheduledTimerWithTimeInterval:kSpringLoadTimeInterval
-                                  target:self selector:@selector(springLoadTimer:)
-                                  userInfo:[NSNumber numberWithBool:goToPreviousPage] repeats:NO];
+  }
+}
+
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent *)event {
+  [super touchesEnded:touches withEvent:event];
+  
+  if (_dragTouch) {
+    for (UITouch* touch in touches) {
+      if (touch == _dragTouch) {
+        _dragTouch = nil;
+        break;
       }
-    } else {
-      TT_INVALIDATE_TIMER(_springLoadTimer);
     }
   }
 }
@@ -515,6 +584,10 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIScrollViewDelegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView {
+  TT_INVALIDATE_TIMER(_editHoldTimer);
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
   [self updatePagerWithContentOffset:_scrollView.contentOffset];
@@ -573,6 +646,14 @@ static const NSInteger kDefaultColumnCount = 3;
   return _rowCount;
 }
 
+- (NSInteger)currentPageIndex {
+  return floor(_scrollView.contentOffset.x/_scrollView.width);
+}
+
+- (void)setCurrentPageIndex:(NSInteger)pageIndex {
+  _scrollView.contentOffset = CGPointMake(_scrollView.width*pageIndex, 0);
+}
+
 - (void)addItem:(TTLauncherItem*)item animated:(BOOL)animated {
   if (![self itemWithURL:item.URL]) {
     item.launcher = self;
@@ -580,12 +661,7 @@ static const NSInteger kDefaultColumnCount = 3;
     if (!_pages) {
       _pages = [[NSMutableArray arrayWithObject:[NSMutableArray arrayWithObject:item]] retain];
     } else {
-      NSMutableArray* page = [_pages lastObject];
-      if (page.count == self.columnCount*self.rowCount) {
-        page = [NSMutableArray array];
-        [_pages addObject:page];
-      }
-      
+      NSMutableArray* page = [self pageWithFreeSpace:self.currentPageIndex];
       [page addObject:item];
     }
           
@@ -668,7 +744,11 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)beginEditing {
   _editing = YES;
+  _scrollView.delaysContentTouches = YES;
 
+  UIView* prompt = [self viewWithTag:kPromptTag];
+  [prompt removeFromSuperview];
+  
   for (NSArray* buttonPage in _buttons) {
     for (TTLauncherButton* button in buttonPage) {
       button.editing = YES;
@@ -691,7 +771,8 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)endEditing {
   _editing = NO;
-
+  _scrollView.delaysContentTouches = NO;
+  
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   [UIView setAnimationDelegate:self];
