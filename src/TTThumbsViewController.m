@@ -9,8 +9,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
 
-static NSInteger kColumnCount = 4;
 static CGFloat kThumbnailRowHeight = 79;
+static CGFloat kThumbSize = 75;
+static CGFloat kThumbSpacing = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -23,6 +24,11 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (BOOL)hasMoreToLoad {
   return _photoSource.maxPhotoIndex+1 < _photoSource.numberOfPhotos;
+}
+
+- (NSInteger)columnCount {
+  CGFloat width = TTScreenBounds().size.width;
+  return round((width - kThumbSpacing*2) / (kThumbSize+kThumbSpacing));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,9 +53,10 @@ static CGFloat kThumbnailRowHeight = 79;
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
   NSInteger maxIndex = _photoSource.maxPhotoIndex;
+  NSInteger columnCount = self.columnCount;
   if (maxIndex >= 0) {
     maxIndex += 1;
-    NSInteger count =  ceil((maxIndex / kColumnCount) + (maxIndex % kColumnCount ? 1 : 0));
+    NSInteger count =  ceil((maxIndex / columnCount) + (maxIndex % columnCount ? 1 : 0));
     if (self.hasMoreToLoad) {
       return count + 1;
     } else {
@@ -82,7 +89,8 @@ static CGFloat kThumbnailRowHeight = 79;
     
     return [TTTableMoreButton itemWithText:text subtitle:caption];
   } else {
-    return [_photoSource photoAtIndex:indexPath.row * kColumnCount];
+    NSInteger columnCount = self.columnCount;
+    return [_photoSource photoAtIndex:indexPath.row * columnCount];
   }
 }
 
@@ -99,6 +107,7 @@ static CGFloat kThumbnailRowHeight = 79;
   if ([cell isKindOfClass:[TTThumbsTableViewCell class]]) {
     TTThumbsTableViewCell* thumbsCell = (TTThumbsTableViewCell*)cell;
     thumbsCell.delegate = _delegate;
+    thumbsCell.columnCount = self.columnCount;
   }
 }
 
@@ -149,6 +158,11 @@ static CGFloat kThumbnailRowHeight = 79;
       }
     }
   }
+}
+
+- (void)updateTableLayout {
+  self.tableView.contentInset = UIEdgeInsetsMake(TTBarsHeight()+4, 0, 0, 0);
+  self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(TTBarsHeight(), 0, 0, 0);
 }
 
 - (NSString*)URLForPhoto:(id<TTPhoto>)photo {
@@ -206,12 +220,10 @@ static CGFloat kThumbnailRowHeight = 79;
   [super loadView];
   
   self.tableView.rowHeight = kThumbnailRowHeight;
-	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-    | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   self.tableView.backgroundColor = TTSTYLEVAR(backgroundColor);
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  self.tableView.contentInset = UIEdgeInsetsMake(TTBarsHeight()+4, 0, 0, 0);
-  self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(TTBarsHeight(), 0, 0, 0);
+  [self updateTableLayout];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -222,6 +234,15 @@ static CGFloat kThumbnailRowHeight = 79;
 - (void)viewDidDisappear:(BOOL)animated {
   [self suspendLoadingThumbnails:YES];
   [super viewDidDisappear:animated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return TTIsSupportedOrientation(interfaceOrientation);
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+  [self updateTableLayout];
+  [self.tableView reloadData];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

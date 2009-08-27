@@ -19,10 +19,10 @@
   return controller;
 }
 
-- (void)showPost:(UIButton*)button {
+- (UIViewController*)post:(NSDictionary*)query {
   TTPostController* controller = [[[TTPostController alloc] init] autorelease];
-  controller.originView = button;
-  [controller showInView:self.view animated:YES];
+  controller.originView = [query objectForKey:@"__target__"];
+  return controller;
 }
 
 - (void)cancelAddressBook {
@@ -59,12 +59,16 @@
     
     [[TTNavigator navigator].URLMap from:@"tt://compose?to=(composeTo:)"
                                     toModalViewController:self selector:@selector(composeTo:)];
+
+    [[TTNavigator navigator].URLMap from:@"tt://post"
+                                    toViewController:self selector:@selector(post:)];
   }
   return self;
 }
 
 - (void)dealloc {
   [[TTNavigator navigator].URLMap removeURL:@"tt://compose?to=(composeTo:)"];
+  [[TTNavigator navigator].URLMap removeURL:@"tt://post"];
   [_sendTimer invalidate];
 	[super dealloc];
 }
@@ -86,10 +90,14 @@
 
   UIButton* button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [button2 setTitle:@"Show TTPostController" forState:UIControlStateNormal];
-  [button2 addTarget:self action:@selector(showPost:)
+  [button2 addTarget:@"tt://post" action:@selector(openURLFromButton:)
           forControlEvents:UIControlEventTouchUpInside];
   button2.frame = CGRectMake(20, button.bottom + 20, 280, 50);
   [self.view addSubview:button2];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return TTIsSupportedOrientation(interfaceOrientation);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +105,7 @@
 
 - (void)composeController:(TTMessageController*)controller didSendFields:(NSArray*)fields {
   _sendTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
-    selector:@selector(sendDelayed:) userInfo:fields repeats:NO];
+                        selector:@selector(sendDelayed:) userInfo:fields repeats:NO];
 }
 
 - (void)composeControllerDidCancel:(TTMessageController*)controller {

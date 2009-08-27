@@ -11,10 +11,12 @@
   NSString* _dotStyle;
   TTStyle* _normalDotStyle;
   TTStyle* _currentDotStyle;
+  BOOL _hidesForSinglePage;
 }
 
 @property(nonatomic) NSInteger numberOfPages;
 @property(nonatomic) NSInteger currentPage;
 @property(nonatomic,copy) NSString* dotStyle;
+@property(nonatomic) BOOL hidesForSinglePage;
 
 @end

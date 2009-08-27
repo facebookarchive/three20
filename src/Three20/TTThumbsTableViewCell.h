@@ -6,18 +6,17 @@
 @interface TTThumbsTableViewCell : TTTableViewCell {
   id<TTThumbsTableViewCellDelegate> _delegate;
   id<TTPhoto> _photo;
-  TTThumbView* _thumbView1;
-  TTThumbView* _thumbView2;
-  TTThumbView* _thumbView3;
-  TTThumbView* _thumbView4;
+  NSMutableArray* _thumbViews;
   CGFloat _thumbSize;
   CGPoint _thumbOrigin;
+  NSInteger _columnCount;
 }
 
 @property(nonatomic,retain) id<TTPhoto> photo;
 @property(nonatomic,assign) id<TTThumbsTableViewCellDelegate> delegate;
 @property(nonatomic) CGFloat thumbSize;
 @property(nonatomic) CGPoint thumbOrigin;
+@property(nonatomic) NSInteger columnCount;
 
 - (void)suspendLoading:(BOOL)suspended;
 

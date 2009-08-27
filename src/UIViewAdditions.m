@@ -1,5 +1,7 @@
 #import "Three20/TTGlobal.h"
 
+#ifdef DEBUG
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // This code for synthesizing touch events is derived from:
 // http://cocoawithlove.com/2008/10/synthesizing-touch-event-on-iphone.html
@@ -90,6 +92,8 @@
 }
 
 @end
+
+#endif
 
 @implementation UIView (TTCategory)
 
@@ -246,12 +250,12 @@
 }
 
 - (CGFloat)orientationWidth {
-  return UIDeviceOrientationIsLandscape(TTDeviceOrientation())
+  return UIInterfaceOrientationIsLandscape(TTInterfaceOrientation())
     ? self.height : self.width;
 }
 
 - (CGFloat)orientationHeight {
-  return UIDeviceOrientationIsLandscape(TTDeviceOrientation())
+  return UIInterfaceOrientationIsLandscape(TTInterfaceOrientation())
     ? self.width : self.height;
 }
 
@@ -285,6 +289,8 @@
   }
 }
 
+#ifdef DEBUG
+
 - (void)simulateTapAtPoint:(CGPoint)location {
   UITouch *touch = [[[UITouch alloc] initInView:self location:location] autorelease];
 
@@ -296,12 +302,13 @@
   UIEvent *eventUp = [[[UIEvent alloc] initWithTouch:touch] autorelease];
   [touch.view touchesEnded:[NSSet setWithObject:touch] withEvent:eventUp];
 }
+#endif
 
 - (CGRect)frameWithKeyboardSubtracted:(CGFloat)plusHeight {
   CGRect frame = self.frame;
   if ([self.window performSelector:@selector(firstResponder)]) {
     CGRect screenFrame = TTScreenBounds();
-    CGFloat keyboardTop = (screenFrame.size.height - (TT_KEYBOARD_HEIGHT + plusHeight));
+    CGFloat keyboardTop = (screenFrame.size.height - (TTKeyboardHeight() + plusHeight));
     CGFloat screenBottom = self.screenY + frame.size.height;
     CGFloat diff = screenBottom - keyboardTop;
     if (diff > 0) {
@@ -376,6 +383,16 @@
   } else {
     [self dismissAsKeyboardAnimationDidStop];
   }
+}
+
+- (UIViewController*)viewController {
+  for (UIView* next = [self superview]; next; next = next.superview) {
+    UIResponder* nextResponder = [next nextResponder];
+    if ([nextResponder isKindOfClass:[UIViewController class]]) {
+      return (UIViewController*)nextResponder;
+    }
+  }
+  return nil;
 }
 
 @end

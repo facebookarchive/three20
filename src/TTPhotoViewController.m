@@ -88,6 +88,15 @@ static const NSInteger kActivityLabelTag = 96;
   _nextButton.enabled = _centerPhotoIndex >= 0 && _centerPhotoIndex < _photoSource.numberOfPhotos-1;
 }
 
+- (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+    _toolbar.height = TT_TOOLBAR_HEIGHT;
+  } else {
+    _toolbar.height = TT_LANDSCAPE_TOOLBAR_HEIGHT+1;
+  }
+  _toolbar.top = self.view.height - _toolbar.height;
+}
+
 - (void)updatePhotoView {
   _scrollView.centerPageIndex = _centerPhotoIndex;
   [self loadImages];
@@ -339,12 +348,14 @@ static const NSInteger kActivityLabelTag = 96;
   CGRect innerFrame = CGRectMake(0, 0,
                                  screenFrame.size.width, screenFrame.size.height);
   _innerView = [[UIView alloc] initWithFrame:innerFrame];
+  _innerView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   [self.view addSubview:_innerView];
   
   _scrollView = [[TTScrollView alloc] initWithFrame:screenFrame];
   _scrollView.delegate = self;
   _scrollView.dataSource = self;
   _scrollView.backgroundColor = [UIColor blackColor];
+  _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   [_innerView addSubview:_scrollView];
   
   _nextButton = [[UIBarButtonItem alloc] initWithImage:
@@ -365,10 +376,9 @@ static const NSInteger kActivityLabelTag = 96;
     CGRectMake(0, screenFrame.size.height - TT_ROW_HEIGHT,
                screenFrame.size.width, TT_ROW_HEIGHT)];
   _toolbar.barStyle = self.navigationBarStyle;
-  _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth
-                              | UIViewAutoresizingFlexibleTopMargin;
+  _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
   _toolbar.items = [NSArray arrayWithObjects:
-    space, _previousButton, space, _nextButton, space, nil];
+                   space, _previousButton, space, _nextButton, space, nil];
   [_innerView addSubview:_toolbar];    
 }
 
@@ -384,6 +394,11 @@ static const NSInteger kActivityLabelTag = 96;
   TT_RELEASE_SAFELY(_toolbar);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self updateToolbarWithOrientation:self.interfaceOrientation];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
 
@@ -392,6 +407,20 @@ static const NSInteger kActivityLabelTag = 96;
   if (self.nextViewController) {
     [self showBars:YES animated:NO];
   }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return TTIsSupportedOrientation(interfaceOrientation);
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+        duration:(NSTimeInterval)duration {
+  [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+  [self updateToolbarWithOrientation:toInterfaceOrientation];
+}
+
+- (UIView *)rotatingFooterView {
+  return _toolbar;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -663,7 +692,8 @@ static const NSInteger kActivityLabelTag = 96;
 
 - (void)showActivity:(NSString*)title {
   if (title) {
-    TTActivityLabel* label = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleBlackBezel];
+    TTActivityLabel* label = [[[TTActivityLabel alloc]
+                             initWithStyle:TTActivityLabelStyleBlackBezel] autorelease];
     label.tag = kActivityLabelTag;
     label.text = title;
     label.frame = _scrollView.frame;

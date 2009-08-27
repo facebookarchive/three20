@@ -16,6 +16,7 @@
   id<UITableViewDelegate> _tableDelegate;
   NSTimer* _bannerTimer;
   UITableViewStyle _tableViewStyle;
+  UIInterfaceOrientation _lastInterfaceOrientation;
   BOOL _variableHeightRows;
 }
 

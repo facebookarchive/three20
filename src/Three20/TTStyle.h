@@ -211,6 +211,18 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+@interface TTBlendStyle : TTStyle {
+  CGBlendMode _blendMode;
+}
+
+@property(nonatomic) CGBlendMode blendMode;
+
++ (TTBlendStyle*)styleWithBlend:(CGBlendMode)blendMode next:(TTStyle*)next;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface TTSolidFillStyle : TTStyle {
   UIColor* _color;
 }

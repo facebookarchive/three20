@@ -116,22 +116,11 @@
 
 - (void)layoutSubviews {
   CGRect screenBounds = TTScreenBounds();
-  CGFloat width = self.orientationWidth;
-  CGFloat height = self.orientationHeight;
+  CGFloat width = self.width;
+  CGFloat height = self.height;
   CGFloat cx = self.bounds.origin.x + width/2;
   CGFloat cy = self.bounds.origin.y + height/2;
-
-  UIDeviceOrientation orientation = TTDeviceOrientation();
-  CGFloat marginRight = 0, marginLeft = 0, marginBottom = 0;
-  if (!UIInterfaceOrientationIsLandscape(orientation)) {
-    marginBottom = TT_ROW_HEIGHT;
-  } else if (orientation == UIDeviceOrientationLandscapeLeft) {
-    marginLeft = TTBarsHeight();
-    marginRight = TT_ROW_HEIGHT;
-  } else {
-    marginLeft = TT_ROW_HEIGHT;
-    marginRight = TTBarsHeight();
-  }
+  CGFloat marginRight = 0, marginLeft = 0, marginBottom = TTToolbarHeight();
 
   // Since the photo view is constrained to the size of the image, but we want to position
   // the status views relative to the screen, offset by the difference

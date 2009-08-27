@@ -41,10 +41,12 @@
  */
 - (void)removeAllSubviews;
 
+#ifdef DEBUG
 /**
  * WARNING: This depends on undocumented APIs and may be fragile.  For testing only.
  */
 - (void)simulateTapAtPoint:(CGPoint)location;
+#endif
 
 /**
  * Calculates the offset of this view from another view in screen coordinates.
@@ -73,5 +75,10 @@
  * observers who adjust their layout for the keyboard will also adjust for this view.
  */
 - (void)dismissAsKeyboard:(BOOL)animated;
+
+/**
+ * The view controller whose view contains this view.
+ */
+- (UIViewController*)viewController;
 
 @end

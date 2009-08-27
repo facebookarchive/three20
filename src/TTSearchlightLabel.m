@@ -6,31 +6,8 @@
 @synthesize text = _text, font = _font, textColor, spotlightColor = _spotlightColor,
   textAlignment = _textAlignment;
 
-- (id)initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
-    _timer = nil;
-    
-    self.text = @"";
-    self.font = TTSTYLEVAR(font);
-    self.textColor = [UIColor colorWithWhite:0.25 alpha:1];
-    self.spotlightColor = [UIColor whiteColor];
-    self.textAlignment = UITextAlignmentLeft;
-    self.backgroundColor = [UIColor clearColor];
-    self.contentMode = UIViewContentModeCenter;
-	}
-	return self;
-}
-
-- (void)dealloc {
-  [self stopAnimating];
-  TT_RELEASE_SAFELY(_text);
-  TT_RELEASE_SAFELY(_font);
-  TT_RELEASE_SAFELY(textColor);
-  TT_RELEASE_SAFELY(_spotlightColor);
-	[super dealloc];
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// private
 
 - (void)newMask {
   CGRect rect = self.frame;
@@ -72,6 +49,33 @@
   if (_spotlightPoint <= 1.5) {
     [self setNeedsDisplay];
   }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame:frame]) {
+    _timer = nil;
+    
+    self.text = @"";
+    self.font = TTSTYLEVAR(font);
+    self.textColor = [UIColor colorWithWhite:0.25 alpha:1];
+    self.spotlightColor = [UIColor whiteColor];
+    self.textAlignment = UITextAlignmentLeft;
+    self.backgroundColor = [UIColor clearColor];
+    self.contentMode = UIViewContentModeCenter;
+	}
+	return self;
+}
+
+- (void)dealloc {
+  [self stopAnimating];
+  TT_RELEASE_SAFELY(_text);
+  TT_RELEASE_SAFELY(_font);
+  TT_RELEASE_SAFELY(textColor);
+  TT_RELEASE_SAFELY(_spotlightColor);
+	[super dealloc];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,7 +128,22 @@
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// UIAccessibility
 
+- (BOOL)isAccessibilityElement {
+  return YES;
+}
+
+- (NSString *)accessibilityLabel {
+  return _text;
+}
+
+- (UIAccessibilityTraits)accessibilityTraits {
+  return [super accessibilityTraits] | UIAccessibilityTraitStaticText;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// public
 - (void)startAnimating {
   if (!_timer) {
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0/32 target:self

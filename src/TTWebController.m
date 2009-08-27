@@ -1,6 +1,8 @@
 #import "Three20/TTWebController.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTURLCache.h"
+#import "Three20/TTNavigator.h"
+#import "Three20/TTURLMap.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -32,6 +34,12 @@
     cancelButtonTitle:TTLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil
     otherButtonTitles:TTLocalizedString(@"Open in Safari", @""), nil] autorelease];
   [sheet showInView:self.view];
+}
+
+- (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  _toolbar.height = TTToolbarHeight();
+  _webView.height = self.view.height - _toolbar.height;
+  _toolbar.top = self.view.height - _toolbar.height;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,7 +121,7 @@
    UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
 
   _toolbar = [[UIToolbar alloc] initWithFrame:
-    CGRectMake(0, self.view.height - TT_ROW_HEIGHT, self.view.width, TT_ROW_HEIGHT)];
+    CGRectMake(0, self.view.height - TTToolbarHeight(), self.view.width, TTToolbarHeight())];
   _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
   _toolbar.tintColor = TTSTYLEVAR(navigationBarTintColor);
   _toolbar.items = [NSArray arrayWithObjects:
@@ -133,12 +141,31 @@
   TT_RELEASE_SAFELY(_activityItem);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self updateToolbarWithOrientation:self.interfaceOrientation];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
   // If the browser launched the media player, it steals the key window and never gives it
   // back, so this is a way to try and fix that
   [self.view.window makeKeyWindow];
 
   [super viewWillDisappear:animated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return TTIsSupportedOrientation(interfaceOrientation);
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+        duration:(NSTimeInterval)duration {
+  [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+  [self updateToolbarWithOrientation:toInterfaceOrientation];
+}
+
+- (UIView *)rotatingFooterView {
+  return _toolbar;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,8 +175,10 @@
   NSString* URL = self.URL.absoluteString;
   if (URL.length) {
     [state setObject:URL forKey:@"URL"];
+    return YES;
+  } else {
+    return NO;
   }
-  return [super persistView:state];
 }
 
 - (void)restoreView:(NSDictionary*)state {
@@ -164,6 +193,13 @@
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
         navigationType:(UIWebViewNavigationType)navigationType {
+  if ([[TTNavigator navigator].URLMap isAppURL:request.URL]) {
+    [_loadingURL release];
+    _loadingURL = [[NSURL URLWithString:@"about:blank"] retain];
+    [[UIApplication sharedApplication] openURL:request.URL];
+    return NO;
+  }
+  
   [_loadingURL release];
   _loadingURL = [request.URL retain];
   _backButton.enabled = [_webView canGoBack];

@@ -56,11 +56,7 @@
 }
 
 - (NSString*)outerText {
-  if (_nextSibling) {
-    return _nextSibling.outerText;
-  } else {
-    return @"";
-  }
+  return @"";
 }
 
 - (NSString*)outerHTML {
@@ -127,11 +123,7 @@
 // TTStyledNode
 
 - (NSString*)outerText {
-  if (_nextSibling) {
-    return [NSString stringWithFormat:@"%@%@", _text, _nextSibling.outerText];
-  } else {
-    return _text;
-  }
+  return _text;
 }
 
 - (NSString*)outerHTML {
@@ -190,14 +182,14 @@
 // TTStyledNode
 
 - (NSString*)outerText {
-  if (_firstChild && _nextSibling) {
-    return [NSString stringWithFormat:@"%@%@", _firstChild.outerText, _nextSibling.outerText];
-  } else if (_firstChild) {
-    return _firstChild.outerText;
-  } else if (_nextSibling) {
-    return _nextSibling.outerText;
+  if (_firstChild) {
+    NSMutableArray* strings = [NSMutableArray array];
+    for (TTStyledNode* node = _firstChild; node; node = node.nextSibling) {
+      [strings addObject:node.outerText];
+    }
+    return [strings componentsJoinedByString:@""];
   } else {
-    return @"";
+    return [super outerText];
   }
 }
 

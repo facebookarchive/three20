@@ -64,6 +64,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 // UISearchDisplayDelegate
 
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController*)controller {
+  self.searchContentsController.navigationItem.rightBarButtonItem.enabled = NO;
   UIView* backgroundView = [self.searchBar viewWithTag:TT_SEARCH_BAR_BACKGROUND_TAG];
   if (backgroundView) {
     [UIView beginAnimations:nil context:nil];
@@ -83,6 +84,8 @@ static const NSTimeInterval kPauseInterval = 0.4;
 }
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController*)controller {
+  self.searchContentsController.navigationItem.rightBarButtonItem.enabled = YES;
+  
   UIView* backgroundView = [self.searchBar viewWithTag:TT_SEARCH_BAR_BACKGROUND_TAG];
   if (backgroundView) {
     [UIView beginAnimations:nil context:nil];

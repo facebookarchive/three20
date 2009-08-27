@@ -3,9 +3,11 @@
 @interface TTButton : UIControl <TTStyleDelegate> {
   NSMutableDictionary* _content;
   UIFont* _font;
+  BOOL _isVertical;
 }
 
 @property(nonatomic,retain) UIFont* font;
+@property(nonatomic) BOOL isVertical;
 
 + (TTButton*)buttonWithStyle:(NSString*)selector;
 + (TTButton*)buttonWithStyle:(NSString*)selector title:(NSString*)title;
@@ -28,5 +30,7 @@
 - (void)setStylesWithSelector:(NSString*)selector;
 
 - (void)suspendLoadingImages:(BOOL)suspended;
+
+- (CGRect)rectForImage;
 
 @end

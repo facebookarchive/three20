@@ -56,6 +56,22 @@
   return [_style addToSize:CGSizeZero context:context];
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// UIAccessibility
+
+- (BOOL)isAccessibilityElement {
+  return YES;
+}
+
+- (NSString *)accessibilityLabel {
+  return _text;
+}
+
+- (UIAccessibilityTraits)accessibilityTraits {
+  return [super accessibilityTraits] | UIAccessibilityTraitStaticText;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyleDelegate
 

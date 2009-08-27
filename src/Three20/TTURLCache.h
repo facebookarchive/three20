@@ -3,6 +3,7 @@
 @class TTURLRequest;
 
 @interface TTURLCache : NSObject {
+  NSString* _name;
   NSString* _cachePath;
   NSMutableDictionary* _imageCache;
   NSMutableArray* _imageSortedList;
@@ -43,6 +44,11 @@
 @property(nonatomic) NSTimeInterval invalidationAge;
 
 /**
+ * Gets a shared cache identified with a unique name.
+ */
++ (TTURLCache*)cacheWithName:(NSString*)name;
+
+/**
  * Gets the shared cache singleton used across the application.
  */
 + (TTURLCache*)sharedCache;
@@ -53,9 +59,9 @@
 + (void)setSharedCache:(TTURLCache*)cache;
 
 /**
- * Gets the path to the default directory of the disk cache.
+ * 
  */
-+ (NSString*)defaultCachePath;
+- (id)initWithName:(NSString*)name;
 
 /**
  * Gets the key that would be used to cache a URL response.
@@ -141,6 +147,16 @@
  * retrieved from a server.  Once you know the permanent URL you can use this to move the data.
  */ 
 - (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL;
+
+/**
+ *
+ */
+- (void)moveDataFromPath:(NSString*)path toURL:(NSString*)newURL;
+
+/**
+ *
+ */
+- (NSString*)moveDataFromPathToTemporaryURL:(NSString*)path;
 
 /**
  * Removes the data for a URL from the memory cache and optionally from the disk cache.

@@ -49,6 +49,10 @@ static const CGFloat kMarginY = 6;
   [_textEditor.textView resignFirstResponder];
 }
 
+- (CGAffineTransform)transformForOrientation {
+  return TTRotateTransformForOrientation(TTInterfaceOrientation());
+}
+
 - (void)showActivity:(NSString*)activityText {
   if (!_activityView) {
     _activityView = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox];
@@ -69,8 +73,10 @@ static const CGFloat kMarginY = 6;
 }
 
 - (void)layoutTextEditor {
-  _textEditor.frame = CGRectMake(kMarginX, kMarginY+_navigationBar.height, self.view.width - kMarginX*2,
-                                self.view.height - (TT_KEYBOARD_HEIGHT+_navigationBar.height+kMarginY*2));
+  CGFloat keyboard = TTKeyboardHeightForOrientation(TTInterfaceOrientation());
+  _textEditor.frame = CGRectMake(kMarginX, kMarginY+_navigationBar.height,
+                                 _screenView.width - kMarginX*2,
+                                _screenView.height - (keyboard+_navigationBar.height+kMarginY*2));
   _textEditor.textView.hidden = NO;
 }
 
@@ -174,9 +180,12 @@ static const CGFloat kMarginY = 6;
   [super loadView];
   self.view.frame = [UIScreen mainScreen].applicationFrame;
   self.view.backgroundColor = [UIColor clearColor];
+  self.view.autoresizesSubviews = YES;
   
   _screenView = [[UIView alloc] init];
   _screenView.backgroundColor = [UIColor blackColor];
+  _screenView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+  _screenView.autoresizesSubviews = YES;
   [self.view addSubview:_screenView];
 
   _textEditor = [[TTTextEditor alloc] init];
@@ -192,8 +201,28 @@ static const CGFloat kMarginY = 6;
 
   _navigationBar = [[UINavigationBar alloc] init];
   _navigationBar.barStyle = UIBarStyleBlackOpaque;
+  _navigationBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   [_navigationBar pushNavigationItem:self.navigationItem animated:NO];
-  [self.view addSubview:_navigationBar];    
+  [_screenView addSubview:_navigationBar];    
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return TTIsSupportedOrientation(interfaceOrientation);
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+        duration:(NSTimeInterval)duration {
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+  self.view.transform = [self transformForOrientation];
+  self.view.frame = [UIScreen mainScreen].applicationFrame;
+  _screenView.frame = self.view.bounds;
+  [self layoutTextEditor];
+  [UIView commitAnimations];
+}
+
+- (UIView*)rotatingHeaderView {
+  return _navigationBar;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -236,6 +265,9 @@ static const CGFloat kMarginY = 6;
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
   [self retain];
   UIWindow* window = view.window ? view.window : [UIApplication sharedApplication].keyWindow;
+
+  self.view.transform = [self transformForOrientation];
+  self.view.frame = [UIScreen mainScreen].applicationFrame;
   [window addSubview:self.view];
   
   if (_defaultText) {
@@ -245,8 +277,8 @@ static const CGFloat kMarginY = 6;
     _defaultText = [_textEditor.text retain];
   }
   
-  [_navigationBar sizeToFit];
   _screenView.frame = self.view.bounds;
+  [_navigationBar sizeToFit];
   _originView.hidden = YES;
       
   if (animated) {
@@ -285,6 +317,7 @@ static const CGFloat kMarginY = 6;
     _screenView.alpha = 1;
     _textEditor.transform = CGAffineTransformIdentity;
     [self layoutTextEditor];
+    [self showAnimationDidStop];
   }
   
   [self showKeyboard];

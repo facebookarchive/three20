@@ -12,9 +12,9 @@
   NSString* _defaultText;
   CGRect _originRect;
   UIView* _originView;
-  TTTextEditor* _textEditor;
-  UINavigationBar* _navigationBar;
   UIView* _screenView;
+  UINavigationBar* _navigationBar;
+  TTTextEditor* _textEditor;
   TTActivityLabel* _activityView;
   BOOL _originalStatusBarHidden;
   UIStatusBarStyle _originalStatusBarStyle;

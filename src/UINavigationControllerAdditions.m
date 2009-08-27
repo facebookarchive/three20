@@ -44,6 +44,18 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
+
+- (UIView*)rotatingHeaderView {
+  UIViewController* popup = [self popupViewController];
+  if (popup) {
+    return [popup rotatingHeaderView];
+  } else {
+    return [super rotatingHeaderView];
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController (TTCategory)
 
 - (BOOL)canContainControllers {

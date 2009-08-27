@@ -129,7 +129,7 @@ static const CGFloat kVPadding = 7;
 
 @implementation TTButton
 
-@synthesize font = _font;
+@synthesize font = _font, isVertical = _isVertical;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -230,8 +230,10 @@ static const CGFloat kVPadding = 7;
   if (self = [super initWithFrame:frame]) {
     _content = nil;
     _font = nil;
+    _isVertical = NO;
     
     self.backgroundColor = [UIColor clearColor];
+    self.contentMode = UIViewContentModeRedraw;
   }
   return self;
 }
@@ -259,25 +261,38 @@ static const CGFloat kVPadding = 7;
     if (imageStyle) {
       imageBoxStyle = [imageStyle.style firstStyleOfClass:[TTBoxStyle class]];
       imageSize = [imageStyle.style addToSize:CGSizeZero context:context];
-      textFrame.origin.x += imageSize.width;
-      textFrame.size.width -= imageSize.width;
+      if (_isVertical) {
+        CGFloat height = imageSize.height + imageBoxStyle.margin.top + imageBoxStyle.margin.bottom;
+        textFrame.origin.y += height;
+        textFrame.size.height -= height;
+      } else {
+        textFrame.origin.x += imageSize.width + imageBoxStyle.margin.right;
+        textFrame.size.width -= imageSize.width + imageBoxStyle.margin.right;
+      }
     }
     
     context.delegate = self;
     context.frame = self.bounds;
     context.contentFrame = textFrame;
     context.font = [self fontForCurrentState];
-
+    
     [style draw:context];
 
     if (imageStyle) {
       CGRect frame = context.contentFrame;
-      frame.size = imageSize;
-      frame.origin.x += imageBoxStyle.margin.left;
-      frame.origin.y += imageBoxStyle.margin.top;
-      
+      if (_isVertical) {
+        frame = self.bounds;
+        frame.origin.x += imageBoxStyle.margin.left;
+        frame.origin.y += imageBoxStyle.margin.top;
+      } else {
+        frame.size = imageSize;
+        frame.origin.x += imageBoxStyle.margin.left;
+        frame.origin.y += imageBoxStyle.margin.top;
+      }
+
       context.frame = frame;
       context.contentFrame = context.frame;
+      context.shape = nil;
       
       [imageStyle drawPart:context];
     }
@@ -313,6 +328,21 @@ static const CGFloat kVPadding = 7;
 - (void)setEnabled:(BOOL)enabled {
   [super setEnabled:enabled];
   [self setNeedsDisplay];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// UIAccessibility
+
+- (BOOL)isAccessibilityElement {
+  return YES;
+}
+
+- (NSString *)accessibilityLabel {
+  return [self titleForCurrentState];
+}
+
+- (UIAccessibilityTraits)accessibilityTraits {
+  return [super accessibilityTraits] | UIAccessibilityTraitButton;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -397,6 +427,37 @@ static const CGFloat kVPadding = 7;
   } else if (!content.image) {
     [content reload];
   }
+}
+
+- (CGRect)rectForImage {
+  TTStyle* style = [self styleForCurrentState];
+  if (style) {
+    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+    context.delegate = self;
+    
+    TTPartStyle* imagePartStyle = [style styleForPart:@"image"];
+    if (imagePartStyle) {
+      TTImageStyle* imageStyle = [imagePartStyle.style firstStyleOfClass:[TTImageStyle class]];
+      TTBoxStyle* imageBoxStyle = [imagePartStyle.style firstStyleOfClass:[TTBoxStyle class]];
+      CGSize imageSize = [imagePartStyle.style addToSize:CGSizeZero context:context];
+
+      CGRect frame = context.contentFrame;
+      if (_isVertical) {
+        frame = self.bounds;
+        frame.origin.x += imageBoxStyle.margin.left;
+        frame.origin.y += imageBoxStyle.margin.top;
+      } else {
+        frame.size = imageSize;
+        frame.origin.x += imageBoxStyle.margin.left;
+        frame.origin.y += imageBoxStyle.margin.top;
+      }
+
+      UIImage* image = [self imageForCurrentState];
+      return [image convertRect:frame withContentMode:imageStyle.contentMode];
+    }
+  }
+
+  return CGRectZero;
 }
 
 @end

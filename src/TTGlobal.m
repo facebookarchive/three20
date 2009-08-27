@@ -1,4 +1,5 @@
 #import "Three20/TTGlobal.h"
+#import "Three20/TTNavigator.h"
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,18 +43,55 @@ BOOL TTIsKeyboardVisible() {
   return !![window performSelector:@selector(firstResponder)];
 }
 
-UIInterfaceOrientation TTDeviceOrientation() {
-  UIInterfaceOrientation orient = [UIDevice currentDevice].orientation;
+BOOL TTIsPhoneSupported() {
+  NSString *deviceType = [UIDevice currentDevice].model;
+  return [deviceType isEqualToString:@"iPhone"];
+}
+
+UIDeviceOrientation TTDeviceOrientation() {
+  UIDeviceOrientation orient = [UIDevice currentDevice].orientation;
   if (!orient) {
-    return UIInterfaceOrientationPortrait;
+    return UIDeviceOrientationPortrait;
   } else {
     return orient;
   }
 }
 
+UIInterfaceOrientation TTInterfaceOrientation() {
+  UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
+  if (!orient) {
+    return [TTNavigator navigator].visibleViewController.interfaceOrientation;
+  } else {
+    return orient;
+  }
+}
+
+BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation) {
+  switch (orientation) {
+    case UIInterfaceOrientationPortrait:
+    case UIInterfaceOrientationLandscapeLeft:
+    case UIInterfaceOrientationLandscapeRight:
+      return YES;
+    default:
+      return NO;
+  }
+}
+
+CGAffineTransform TTRotateTransformForOrientation(UIInterfaceOrientation orientation) {
+  if (orientation == UIInterfaceOrientationLandscapeLeft) {
+    return CGAffineTransformMakeRotation(M_PI*1.5);
+  } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+    return CGAffineTransformMakeRotation(M_PI/2);
+  } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+    return CGAffineTransformMakeRotation(-M_PI);
+  } else {
+    return CGAffineTransformIdentity;
+  }
+}
+
 CGRect TTScreenBounds() {
   CGRect bounds = [UIScreen mainScreen].bounds;
-  if (UIDeviceOrientationIsLandscape(TTDeviceOrientation())) {
+  if (UIInterfaceOrientationIsLandscape(TTInterfaceOrientation())) {
     CGFloat width = bounds.size.width;
     bounds.size.width = bounds.size.height;
     bounds.size.height = width;
@@ -68,24 +106,60 @@ CGRect TTApplicationFrame() {
 
 CGRect TTNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
-  return CGRectMake(0, 0, frame.size.width, frame.size.height - TT_ROW_HEIGHT);
+  return CGRectMake(0, 0, frame.size.width, frame.size.height - TTToolbarHeight());
 }
 
 CGRect TTKeyboardNavigationFrame() {
-  return TTRectContract(TTNavigationFrame(), 0, TT_KEYBOARD_HEIGHT);
+  return TTRectContract(TTNavigationFrame(), 0, TTKeyboardHeight());
 }
 
 CGRect TTToolbarNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
-  return CGRectMake(0, 0, frame.size.width, frame.size.height - TT_ROW_HEIGHT*2);
+  return CGRectMake(0, 0, frame.size.width, frame.size.height - TTToolbarHeight()*2);
 }
 
 CGFloat TTStatusHeight() {
-  return [UIScreen mainScreen].applicationFrame.origin.y;
+  UIInterfaceOrientation orientation = TTInterfaceOrientation();
+  if (orientation == UIInterfaceOrientationLandscapeLeft) {
+    return [UIScreen mainScreen].applicationFrame.origin.x;
+  } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+    return -[UIScreen mainScreen].applicationFrame.origin.x;
+  } else {
+    return [UIScreen mainScreen].applicationFrame.origin.y;
+  }
 }
 
 CGFloat TTBarsHeight() {
-  return [UIScreen mainScreen].applicationFrame.origin.y + TT_ROW_HEIGHT;
+  CGRect frame = [UIApplication sharedApplication].statusBarFrame;
+  if (UIInterfaceOrientationIsPortrait(TTInterfaceOrientation())) {
+    return frame.size.height + TT_ROW_HEIGHT;
+  } else {
+    return frame.size.width + TT_LANDSCAPE_TOOLBAR_HEIGHT;
+  }
+}
+
+CGFloat TTToolbarHeight() {
+  return TTToolbarHeightForOrientation(TTInterfaceOrientation());
+}
+
+CGFloat TTToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
+  if (UIInterfaceOrientationIsPortrait(orientation)) {
+    return TT_ROW_HEIGHT;
+  } else {
+    return TT_LANDSCAPE_TOOLBAR_HEIGHT;
+  }
+}
+
+CGFloat TTKeyboardHeight() {
+  return TTKeyboardHeightForOrientation(TTInterfaceOrientation());
+}
+
+CGFloat TTKeyboardHeightForOrientation(UIInterfaceOrientation orientation) {
+  if (UIInterfaceOrientationIsPortrait(orientation)) {
+    return TT_KEYBOARD_HEIGHT;
+  } else {
+    return TT_LANDSCAPE_KEYBOARD_HEIGHT;
+  }
 }
 
 CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {

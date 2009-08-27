@@ -2,7 +2,7 @@
 
 @class MockDataSource;
 
-@interface MessageTestController : UIViewController
+@interface MessageTestController : TTViewController
   <TTMessageControllerDelegate, SearchTestControllerDelegate> {
   NSTimer* _sendTimer;
 }

@@ -8,6 +8,8 @@
  */
 - (UIImage*)transformWidth:(CGFloat)width height:(CGFloat)height rotate:(BOOL)rotate;
 
+- (CGRect)convertRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode;
+
 /**
  * Draws the image using content mode rules.
  */
