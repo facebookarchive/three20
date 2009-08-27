@@ -116,8 +116,8 @@ static const NSInteger kMaxBadgeNumber = 99;
   if (_badge || _closeButton) {
     CGRect imageRect = [self rectForImage];
     if (_badge) {
-      _badge.origin = CGPointMake((imageRect.origin.x + imageRect.size.width) - (floor(_badge.width*0.6)),
-                                  imageRect.origin.y - (floor(_badge.height/3)));
+      _badge.origin = CGPointMake((imageRect.origin.x + imageRect.size.width) - (floor(_badge.width*0.7)),
+                                  imageRect.origin.y - (floor(_badge.height*0.25)));
     }
     
     if (_closeButton) {

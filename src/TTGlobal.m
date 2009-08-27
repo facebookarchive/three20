@@ -1,4 +1,5 @@
 #import "Three20/TTGlobal.h"
+#import "Three20/TTNavigator.h"
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,6 +43,11 @@ BOOL TTIsKeyboardVisible() {
   return !![window performSelector:@selector(firstResponder)];
 }
 
+BOOL TTIsPhoneSupported() {
+  NSString *deviceType = [UIDevice currentDevice].model;
+  return [deviceType isEqualToString:@"iPhone"];
+}
+
 UIDeviceOrientation TTDeviceOrientation() {
   UIDeviceOrientation orient = [UIDevice currentDevice].orientation;
   if (!orient) {
@@ -54,7 +60,7 @@ UIDeviceOrientation TTDeviceOrientation() {
 UIInterfaceOrientation TTInterfaceOrientation() {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
   if (!orient) {
-    return UIInterfaceOrientationPortrait;
+    return [TTNavigator navigator].visibleViewController.interfaceOrientation;
   } else {
     return orient;
   }
@@ -68,6 +74,18 @@ BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation) {
       return YES;
     default:
       return NO;
+  }
+}
+
+CGAffineTransform TTRotateTransformForOrientation(UIInterfaceOrientation orientation) {
+  if (orientation == UIInterfaceOrientationLandscapeLeft) {
+    return CGAffineTransformMakeRotation(M_PI*1.5);
+  } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+    return CGAffineTransformMakeRotation(M_PI/2);
+  } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+    return CGAffineTransformMakeRotation(-M_PI);
+  } else {
+    return CGAffineTransformIdentity;
   }
 }
 
@@ -88,7 +106,7 @@ CGRect TTApplicationFrame() {
 
 CGRect TTNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
-  return CGRectMake(0, 0, frame.size.width, frame.size.height - TT_ROW_HEIGHT);
+  return CGRectMake(0, 0, frame.size.width, frame.size.height - TTToolbarHeight());
 }
 
 CGRect TTKeyboardNavigationFrame() {
@@ -97,7 +115,7 @@ CGRect TTKeyboardNavigationFrame() {
 
 CGRect TTToolbarNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
-  return CGRectMake(0, 0, frame.size.width, frame.size.height - TT_ROW_HEIGHT*2);
+  return CGRectMake(0, 0, frame.size.width, frame.size.height - TTToolbarHeight()*2);
 }
 
 CGFloat TTStatusHeight() {

@@ -11,9 +11,10 @@ static const CGFloat kPadding = 0;
 static const CGFloat kPromptMargin = 40;
 static const CGFloat kPagerHeight = 20;
 static const CGFloat kWobbleRadians = 1.5;
+static const CGFloat kSpringLoadFraction = 0.18;
 
 static const NSTimeInterval kEditHoldTimeInterval = 1;
-static const NSTimeInterval kSpringLoadTimeInterval = 1.5;
+static const NSTimeInterval kSpringLoadTimeInterval = 0.5;
 
 static const NSInteger kPromptTag = 997;
 
@@ -42,11 +43,11 @@ static const NSInteger kDefaultColumnCount = 3;
 // private
 
 - (CGFloat)rowHeight {
-  if (UIInterfaceOrientationIsPortrait(TTInterfaceOrientation())) {
-    return 104;
-  } else {
-    return 74;
-  }
+//  if (UIInterfaceOrientationIsPortrait(TTInterfaceOrientation())) {
+    return 106;
+//  } else {
+//    return 74;
+//  }
 }
 
 - (TTLauncherButton*)buttonForItem:(TTLauncherItem*)item {
@@ -264,7 +265,7 @@ static const NSInteger kDefaultColumnCount = 3;
     _dragTouch = touch;
     
     button.dragging = YES;
-
+    
     _scrollView.scrollEnabled = NO;
   } else {
     [UIView setAnimationDelegate:self];
@@ -292,6 +293,8 @@ static const NSInteger kDefaultColumnCount = 3;
       [self updatePagerWithContentOffset:offset];
       _dragOrigin.x += _scrollView.width;
       _positionOrigin = -1;
+      _springing = YES;
+      [self performSelector:@selector(springingDidStop) withObject:nil afterDelay:0.3];
     }
   } else {
     CGFloat newX = _scrollView.contentOffset.x + _scrollView.width;
@@ -301,8 +304,14 @@ static const NSInteger kDefaultColumnCount = 3;
       [self updatePagerWithContentOffset:offset];
       _dragOrigin.x -= _scrollView.width;
       _positionOrigin = -1;
+      _springing = YES;
+      [self performSelector:@selector(springingDidStop) withObject:nil afterDelay:0.3];
     }
   }
+}
+
+- (void)springingDidStop {
+  _springing = NO;
 }
 
 - (void)releaseButtonDidStop {
@@ -453,22 +462,27 @@ static const NSInteger kDefaultColumnCount = 3;
         itemIndex = currentButtonPage.count;
       }
       
+      BOOL didMove = itemIndex != _positionOrigin;
+      
       NSMutableArray* currentItemPage = [_pages objectAtIndex:pageIndex];
       [currentItemPage insertObject:_dragButton.item atIndex:itemIndex];
       [currentButtonPage insertObject:_dragButton atIndex:itemIndex];
       _positionOrigin = itemIndex;
 
       [self checkButtonOverflow:pageIndex];
-      
-      [UIView beginAnimations:nil context:nil];
-      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-      [self layoutButtons];
-      [UIView commitAnimations];
+      if (didMove) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+        [self layoutButtons];
+        [UIView commitAnimations];
+      }
     }
   }
   
-  BOOL goToPreviousPage = x < _dragButton.width/4;
-  BOOL goToNextPage = x > _scrollView.width - _dragButton.width/4;
+  CGFloat springLoadDistance = _dragButton.width*kSpringLoadFraction;
+  TTLOG(@"%f < %f", springLoadDistance, _dragButton.center.x);
+  BOOL goToPreviousPage = _dragButton.center.x - springLoadDistance < 0;
+  BOOL goToNextPage = ((_scrollView.width - _dragButton.center.x) - springLoadDistance) < 0;
   if (goToPreviousPage || goToNextPage) {
     if (!_springLoadTimer) {
     _springLoadTimer = [NSTimer scheduledTimerWithTimeInterval:kSpringLoadTimeInterval
@@ -495,7 +509,8 @@ static const NSInteger kDefaultColumnCount = 3;
     _rowCount = 0;
     _dragTouch = nil;
     _editing = NO;
-
+    _springing = NO;
+    
     _scrollView = [[TTLauncherScrollView alloc] initWithFrame:
                   CGRectMake(0, 0, self.width, self.height - kPagerHeight)];
     _scrollView.delegate = self;
@@ -546,7 +561,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent *)event {
   [super touchesMoved:touches withEvent:event];
-  if (_dragButton) {
+  if (_dragButton && !_springing) {
     for (UITouch* touch in touches) {
       if (touch == _dragTouch) {
         [self updateTouch];
@@ -641,7 +656,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (NSInteger)rowCount {
   if (!_rowCount) {
-    _rowCount = floor(_scrollView.height / [self rowHeight]);
+    _rowCount = floor(self.height / [self rowHeight]);
   }
   return _rowCount;
 }

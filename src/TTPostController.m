@@ -50,14 +50,7 @@ static const CGFloat kMarginY = 6;
 }
 
 - (CGAffineTransform)transformForOrientation {
-  UIInterfaceOrientation orientation = TTInterfaceOrientation();
-  if (orientation == UIInterfaceOrientationLandscapeLeft) {
-    return CGAffineTransformMakeRotation(M_PI*1.5);
-  } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-    return CGAffineTransformMakeRotation(M_PI/2);
-  } else {
-    return CGAffineTransformIdentity;
-  }
+  return TTRotateTransformForOrientation(TTInterfaceOrientation());
 }
 
 - (void)showActivity:(NSString*)activityText {

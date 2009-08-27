@@ -20,6 +20,7 @@
   CGPoint _dragOrigin;
   CGPoint _touchOrigin;
   BOOL _editing;
+  BOOL _springing;
 }
 
 /**

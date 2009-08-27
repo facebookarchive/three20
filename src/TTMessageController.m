@@ -385,20 +385,20 @@
   
   _scrollView = [[[UIScrollView class] alloc] initWithFrame:TTKeyboardNavigationFrame()];
   _scrollView.backgroundColor = TTSTYLEVAR(backgroundColor);
-  _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   _scrollView.canCancelContentTouches = NO;
   _scrollView.showsVerticalScrollIndicator = NO;
   _scrollView.showsHorizontalScrollIndicator = NO;
   [self.view addSubview:_scrollView];
 
-  _textEditor = [[TTTextEditor alloc] initWithFrame:CGRectMake(0, 0, _scrollView.height, 0)];
+  _textEditor = [[TTTextEditor alloc] initWithFrame:CGRectMake(0, 0, _scrollView.width, 0)];
   _textEditor.textDelegate = self;
   _textEditor.backgroundColor = TTSTYLEVAR(backgroundColor);
   _textEditor.textView.font = TTSTYLEVAR(messageFont);
   _textEditor.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   _textEditor.autoresizesToText = YES;
   _textEditor.showsExtraLine = YES;
-  _textEditor.minNumberOfLines = 5;
+  _textEditor.minNumberOfLines = 6;
   [_textEditor sizeToFit];
   
   [self createFieldViews];
@@ -442,6 +442,7 @@
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+  [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
   _scrollView.height = self.view.height - TTKeyboardHeight();
   [self layoutViews];
 }

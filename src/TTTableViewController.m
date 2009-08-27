@@ -125,6 +125,7 @@ static const CGFloat kBannerViewHeight = 22;
     _bannerTimer = nil;
     _variableHeightRows = NO;
     _tableViewStyle = style;
+    _lastInterfaceOrientation = self.interfaceOrientation;
   }
   return self;
 }
@@ -180,12 +181,15 @@ static const CGFloat kBannerViewHeight = 22;
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];
-
-  if ([_tableView isKindOfClass:[TTTableView class]]) {
+  if (_lastInterfaceOrientation != self.interfaceOrientation) {
+    _lastInterfaceOrientation = self.interfaceOrientation;
+    [_tableView reloadData];
+  } else if ([_tableView isKindOfClass:[TTTableView class]]) {
     TTTableView* tableView = (TTTableView*)_tableView;
     tableView.highlightedLabel = nil;    
   }
+
+  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];
 }  
 
 - (void)viewWillDisappear:(BOOL)animated {

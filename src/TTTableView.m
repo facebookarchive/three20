@@ -115,6 +115,10 @@ static const CGFloat kCancelHighlightThreshold = 4;
   CGFloat y = self.contentOffset.y;
   [super reloadData];
 
+  if (_highlightedLabel) {
+    self.highlightedLabel = nil;
+  }
+  
   if (_contentOrigin) {
     self.contentOffset = CGPointMake(0, y);
   }
