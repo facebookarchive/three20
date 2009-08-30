@@ -105,6 +105,8 @@
 
 - (void)launcherView:(TTLauncherView*)launcher didRemoveItem:(TTLauncherItem*)item;
 
+- (void)launcherView:(TTLauncherView*)launcher didMoveItem:(TTLauncherItem*)item;
+
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item;
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher;

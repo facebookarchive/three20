@@ -111,6 +111,12 @@ static const CGFloat kSectionHeaderHeight = 35;
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  if (_controller.menuView) {
+    [_controller hideMenu:YES];
+  }
+}
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
   [TTURLRequestQueue mainQueue].suspended = YES;
 

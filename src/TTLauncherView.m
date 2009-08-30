@@ -471,6 +471,10 @@ static const NSInteger kDefaultColumnCount = 3;
 
       [self checkButtonOverflow:pageIndex];
       if (didMove) {
+        if ([_delegate respondsToSelector:@selector(launcherView:didMoveItem:)]) {
+          [_delegate launcherView:self didMoveItem:_dragButton.item];
+        }
+
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:TT_TRANSITION_DURATION];
         [self layoutButtons];
