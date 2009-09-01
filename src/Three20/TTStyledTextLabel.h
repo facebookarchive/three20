@@ -15,6 +15,7 @@
   BOOL _highlighted;
   TTStyledElement* _highlightedNode;
   TTStyledBoxFrame* _highlightedFrame;
+  NSMutableArray* _accessibilityElements;
 }
 
 /**

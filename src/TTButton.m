@@ -330,6 +330,21 @@ static const CGFloat kVPadding = 7;
   [self setNeedsDisplay];
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// UIAccessibility
+
+- (BOOL)isAccessibilityElement {
+  return YES;
+}
+
+- (NSString *)accessibilityLabel {
+  return [self titleForCurrentState];
+}
+
+- (UIAccessibilityTraits)accessibilityTraits {
+  return UIAccessibilityTraitButton;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTStyleDelegate
 
