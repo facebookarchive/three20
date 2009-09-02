@@ -375,7 +375,7 @@
 				BEE341A40F480B91008C826E /* Text Fields */,
 				BE702EEF0F43F46E0028A119 /* Tables */,
 				BEF321B20F353B50000DE5D2 /* Photos */,
-				BEC787A51040A783005C00CF /* Launcher */,
+				BEC787A51040A783005C00CF /* Springboard */,
 				BEF321B00F353B15000DE5D2 /* Network */,
 				BE8AA1870F428A0F00FD8C43 /* Additions */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -526,7 +526,7 @@
 			name = Navigator;
 			sourceTree = "<group>";
 		};
-		BEC787A51040A783005C00CF /* Launcher */ = {
+		BEC787A51040A783005C00CF /* Springboard */ = {
 			isa = PBXGroup;
 			children = (
 				BEC787471040A34E005C00CF /* TTLauncherView.h */,
@@ -536,7 +536,7 @@
 				BEC787961040A6EC005C00CF /* TTLauncherButton.h */,
 				BEC787931040A6C7005C00CF /* TTLauncherButton.m */,
 			);
-			name = Launcher;
+			name = Springboard;
 			sourceTree = "<group>";
 		};
 		BED631A10F88554F009923D8 /* Buttons and Tabs */ = {

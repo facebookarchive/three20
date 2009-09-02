@@ -342,7 +342,7 @@ static const CGFloat kVPadding = 7;
 }
 
 - (UIAccessibilityTraits)accessibilityTraits {
-  return UIAccessibilityTraitButton;
+  return [super accessibilityTraits] | UIAccessibilityTraitButton;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

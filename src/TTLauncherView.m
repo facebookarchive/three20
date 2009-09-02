@@ -44,7 +44,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (CGFloat)rowHeight {
 //  if (UIInterfaceOrientationIsPortrait(TTInterfaceOrientation())) {
-    return 106;
+    return 103;
 //  } else {
 //    return 74;
 //  }
@@ -524,7 +524,6 @@ static const NSInteger kDefaultColumnCount = 3;
     _scrollView.alwaysBounceHorizontal = YES;
     _scrollView.pagingEnabled = YES;
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    _scrollView.clipsToBounds = NO;
     _scrollView.delaysContentTouches = NO;
     _scrollView.multipleTouchEnabled = NO;
     [self addSubview:_scrollView];
@@ -550,6 +549,8 @@ static const NSInteger kDefaultColumnCount = 3;
       item.launcher = nil;
     }
   }
+
+  _scrollView.delegate = nil;
   
   TT_INVALIDATE_TIMER(_editHoldTimer);
   TT_INVALIDATE_TIMER(_springLoadTimer);

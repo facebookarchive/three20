@@ -692,7 +692,8 @@ static const NSInteger kActivityLabelTag = 96;
 
 - (void)showActivity:(NSString*)title {
   if (title) {
-    TTActivityLabel* label = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleBlackBezel];
+    TTActivityLabel* label = [[[TTActivityLabel alloc]
+                             initWithStyle:TTActivityLabelStyleBlackBezel] autorelease];
     label.tag = kActivityLabelTag;
     label.text = title;
     label.frame = _scrollView.frame;

@@ -82,7 +82,6 @@ static const NSInteger kDefaultLightSource = 125;
   CGColorSpaceRef space = CGBitmapContextGetColorSpace(context);
   CGGradientRef gradient = CGGradientCreateWithColorComponents(space, components, locations, count);
   free(components);
-  free(locations);
   return gradient;
 }
 

@@ -6,9 +6,10 @@
   
 #define TT_LARGE_IMAGE_SIZE (600*400)
 
-static NSString* kCacheDirPathName = @"Three20";
+static NSString* kDefaultCacheName = @"Three20";
 
 static TTURLCache* gSharedCache = nil;
+static NSMutableDictionary* gNamedCaches = nil;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -19,6 +20,19 @@ static TTURLCache* gSharedCache = nil;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
+
+
++ (TTURLCache*)cacheWithName:(NSString*)name {
+  if (!gNamedCaches) {
+    gNamedCaches = [[NSMutableDictionary alloc] init];
+  }
+  TTURLCache* cache = [gNamedCaches objectForKey:name];
+  if (!cache) {
+    cache = [[[TTURLCache alloc] initWithName:name] autorelease];
+    [gNamedCaches setObject:cache forKey:name];
+  }
+  return cache;
+}
 
 + (TTURLCache*)sharedCache {
   if (!gSharedCache) {
@@ -34,10 +48,10 @@ static TTURLCache* gSharedCache = nil;
   }
 }
 
-+ (NSString*)defaultCachePath {
++ (NSString*)cachePathWithName:(NSString*)name {
   NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
   NSString* cachesPath = [paths objectAtIndex:0];
-  NSString* cachePath = [cachesPath stringByAppendingPathComponent:kCacheDirPathName];
+  NSString* cachePath = [cachesPath stringByAppendingPathComponent:name];
   NSFileManager* fm = [NSFileManager defaultManager];
   if (![fm fileExistsAtPath:cachesPath]) {
     [fm createDirectoryAtPath:cachesPath attributes:nil];
@@ -106,12 +120,24 @@ static TTURLCache* gSharedCache = nil;
   return [NSString stringWithFormat:@"temp:%d", temporaryURLIncrement++];
 }
 
+- (NSString*)createUniqueTemporaryURL {
+  NSFileManager* fm = [NSFileManager defaultManager];
+  NSString* tempURL = nil;
+  NSString* newPath = nil;
+  do {
+    tempURL = [self createTemporaryURL];
+    newPath = [self cachePathForURL:tempURL];
+  } while ([fm fileExistsAtPath:newPath]);
+  return tempURL;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
+- (id)initWithName:(NSString*)name {
   if (self == [super init]) {
-    _cachePath = [[TTURLCache defaultCachePath] retain];
+    _name = [name copy];
+    _cachePath = [[TTURLCache cachePathWithName:name] retain];
     _imageCache = nil;
     _imageSortedList = nil;
     _totalLoading = 0;
@@ -135,10 +161,15 @@ static TTURLCache* gSharedCache = nil;
   return self;
 }
 
+- (id)init {
+  return [self initWithName:kDefaultCacheName];
+}
+
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                         name:UIApplicationDidReceiveMemoryWarningNotification  
                                         object:nil];  
+  TT_RELEASE_SAFELY(_name);
   TT_RELEASE_SAFELY(_imageCache);
   TT_RELEASE_SAFELY(_imageSortedList);
   TT_RELEASE_SAFELY(_cachePath);
@@ -249,7 +280,7 @@ static TTURLCache* gSharedCache = nil;
 }
   
 - (NSString*)storeTemporaryData:(NSData*)data {
-  NSString* URL = [self createTemporaryURL];
+  NSString* URL = [self createUniqueTemporaryURL];
   [self storeData:data forURL:URL];
   return URL;
 }
@@ -275,7 +306,7 @@ static TTURLCache* gSharedCache = nil;
 }
 
 - (NSString*)storeTemporaryImage:(UIImage*)image toDisk:(BOOL)toDisk {
-  NSString* URL = [self createTemporaryURL];
+  NSString* URL = [self createUniqueTemporaryURL];
   [self storeImage:image forURL:URL force:YES];
   
   NSData* data = UIImagePNGRepresentation(image);
@@ -299,6 +330,21 @@ static TTURLCache* gSharedCache = nil;
     NSString* newPath = [self cachePathForKey:newKey];
     [fm moveItemAtPath:oldPath toPath:newPath error:nil];
   }
+}
+
+- (void)moveDataFromPath:(NSString*)path toURL:(NSString*)newURL {
+  NSString* newKey = [self keyForURL:newURL];
+  NSFileManager* fm = [NSFileManager defaultManager];
+  if ([fm fileExistsAtPath:path]) {
+    NSString* newPath = [self cachePathForKey:newKey];
+    [fm moveItemAtPath:path toPath:newPath error:nil];
+  }
+}
+
+- (NSString*)moveDataFromPathToTemporaryURL:(NSString*)path {
+  NSString* tempURL = [self createUniqueTemporaryURL];
+  [self moveDataFromPath:path toURL:tempURL];
+  return tempURL;
 }
 
 - (void)removeURL:(NSString*)URL fromDisk:(BOOL)fromDisk {

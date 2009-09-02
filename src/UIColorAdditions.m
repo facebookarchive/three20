@@ -134,7 +134,7 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
   
   HSVtoRGB(&r, &g, &b, h, s, v);
   
-  return [[UIColor colorWithRed:r green:g blue:b alpha:a] retain];
+  return [UIColor colorWithRed:r green:g blue:b alpha:a];
 }
 
 - (UIColor*)highlight {

@@ -69,7 +69,7 @@
 }
 
 - (UIAccessibilityTraits)accessibilityTraits {
-  return UIAccessibilityTraitStaticText;
+  return [super accessibilityTraits] | UIAccessibilityTraitStaticText;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

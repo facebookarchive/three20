@@ -70,6 +70,7 @@
   return [self initWithTitle:nil message:nil delegate:nil];
 }
 - (void)dealloc {
+  [(UIAlertView*)self.view setDelegate:nil];
   TT_RELEASE_SAFELY(_URLs);
   TT_RELEASE_SAFELY(_userInfo);
   [super dealloc];
