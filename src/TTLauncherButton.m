@@ -1,5 +1,3 @@
-// Copyright 2004-2009 Facebook. All Rights Reserved.
-
 #import "Three20/TTLauncherButton.h"
 #import "Three20/TTLauncherItem.h"
 #import "Three20/TTLauncherView.h"

@@ -18,6 +18,8 @@
 		BE23E72B100B0A7200F40C3B /* TTListDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BE23E72A100B0A7200F40C3B /* TTListDataSource.h */; };
 		BE23E72D100B0ACD00F40C3B /* TTListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE23E72C100B0ACD00F40C3B /* TTListDataSource.m */; };
 		BE23E798100B13E200F40C3B /* TTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BE23E797100B13E200F40C3B /* TTModel.h */; };
+		BE30DB791056FD7D00FEB457 /* TTTextBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE30DB781056FD7D00FEB457 /* TTTextBarController.h */; };
+		BE30DB7B1056FD8700FEB457 /* TTTextBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE30DB7A1056FD8700FEB457 /* TTTextBarController.m */; };
 		BE3EDE410F80C78500A732BE /* TTStyledText.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3EDE400F80C78500A732BE /* TTStyledText.h */; };
 		BE3EDE430F80C79600A732BE /* TTStyledText.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3EDE420F80C79600A732BE /* TTStyledText.m */; };
 		BE42FB130F3BBAA900A3B65A /* TTLink.m in Sources */ = {isa = PBXBuildFile; fileRef = BE42FB120F3BBAA900A3B65A /* TTLink.m */; };
@@ -186,6 +188,8 @@
 		BE23E72A100B0A7200F40C3B /* TTListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTListDataSource.h; path = Three20/TTListDataSource.h; sourceTree = "<group>"; };
 		BE23E72C100B0ACD00F40C3B /* TTListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTListDataSource.m; sourceTree = "<group>"; };
 		BE23E797100B13E200F40C3B /* TTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModel.h; path = Three20/TTModel.h; sourceTree = "<group>"; };
+		BE30DB781056FD7D00FEB457 /* TTTextBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextBarController.h; path = Three20/TTTextBarController.h; sourceTree = "<group>"; };
+		BE30DB7A1056FD8700FEB457 /* TTTextBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTextBarController.m; sourceTree = "<group>"; };
 		BE3EDE400F80C78500A732BE /* TTStyledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledText.h; path = Three20/TTStyledText.h; sourceTree = "<group>"; };
 		BE3EDE420F80C79600A732BE /* TTStyledText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledText.m; sourceTree = "<group>"; };
 		BE42FB120F3BBAA900A3B65A /* TTLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLink.m; sourceTree = "<group>"; };
@@ -651,6 +655,8 @@
 				BED03765100915820083AC18 /* TTActionSheetController.m */,
 				BEF45BC71019CA8500E9EC07 /* TTPostController.h */,
 				BEF45BC41019CA4400E9EC07 /* TTPostController.m */,
+				BE30DB781056FD7D00FEB457 /* TTTextBarController.h */,
+				BE30DB7A1056FD8700FEB457 /* TTTextBarController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -754,6 +760,7 @@
 				BEC787481040A34E005C00CF /* TTLauncherView.h in Headers */,
 				BEC787971040A6EC005C00CF /* TTLauncherButton.h in Headers */,
 				BEC787B51040A79F005C00CF /* TTLauncherItem.h in Headers */,
+				BE30DB791056FD7D00FEB457 /* TTTextBarController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,6 +884,7 @@
 				BEC787461040A33A005C00CF /* TTLauncherView.m in Sources */,
 				BEC787951040A6C7005C00CF /* TTLauncherButton.m in Sources */,
 				BEC787B71040A7AA005C00CF /* TTLauncherItem.m in Sources */,
+				BE30DB7B1056FD8700FEB457 /* TTTextBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

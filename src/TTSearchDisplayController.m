@@ -72,11 +72,11 @@ static const NSTimeInterval kPauseInterval = 0.4;
     backgroundView.alpha = 0;
     [UIView commitAnimations];
   }
-  if (!self.searchContentsController.navigationController) {
-    [UIView beginAnimations:nil context:nil];
-    self.searchBar.superview.top -= self.searchBar.screenY - TTStatusHeight();
-    [UIView commitAnimations];
-  }
+//  if (!self.searchContentsController.navigationController) {
+//    [UIView beginAnimations:nil context:nil];
+//    self.searchBar.superview.top -= self.searchBar.screenY - TTStatusHeight();
+//    [UIView commitAnimations];
+//  }
 }
 
 - (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController*)controller {
@@ -94,11 +94,11 @@ static const NSTimeInterval kPauseInterval = 0.4;
     [UIView commitAnimations];
   }
 
-  if (!self.searchContentsController.navigationController) {
-    [UIView beginAnimations:nil context:nil];
-    self.searchBar.superview.top += self.searchBar.top - TTStatusHeight();
-    [UIView commitAnimations];
-  }
+//  if (!self.searchContentsController.navigationController) {
+//    [UIView beginAnimations:nil context:nil];
+//    self.searchBar.superview.top += self.searchBar.top - TTStatusHeight();
+//    [UIView commitAnimations];
+//  }
 }
  
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController*)controller {

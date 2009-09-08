@@ -3,14 +3,11 @@
 @protocol TTTextEditorDelegate;
 @class TTTextView, TTTextEditorInternal;
 
-@interface TTTextEditor : TTView {
-  id<TTTextEditorDelegate> _textDelegate;
+@interface TTTextEditor : TTView <UITextInputTraits> {
+  id<TTTextEditorDelegate> _delegate;
   TTTextEditorInternal* _internal;
-  NSString* _placeholder;
-  NSString* _fixedText;
+  UITextField* _textField;
   TTTextView* _textView;
-  UILabel* _placeholderLabel;
-  UILabel* _fixedTextLabel;
   NSInteger _minNumberOfLines;
   NSInteger _maxNumberOfLines;
   BOOL _editing;
@@ -19,11 +16,11 @@
   BOOL _showsExtraLine;
 }
 
-@property(nonatomic,assign) id<TTTextEditorDelegate> textDelegate;
-@property(nonatomic,readonly) UITextView* textView;
+@property(nonatomic,assign) id<TTTextEditorDelegate> delegate;
+@property(nonatomic,copy) NSString* text;
 @property(nonatomic,copy) NSString* placeholder;
-@property(nonatomic,copy) NSString* fixedText;
-@property(nonatomic,assign) NSString* text;
+@property(nonatomic,retain) UIFont* font;
+@property(nonatomic,retain) UIColor* textColor;
 @property(nonatomic) NSInteger minNumberOfLines;
 @property(nonatomic) NSInteger maxNumberOfLines;
 @property(nonatomic,readonly) BOOL editing;
@@ -36,9 +33,19 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@protocol TTTextEditorDelegate <UITextViewDelegate>
+@protocol TTTextEditorDelegate <NSObject>
 
 @optional
+
+- (BOOL)textEditorShouldBeginEditing:(TTTextEditor*)textEditor;
+- (BOOL)textEditorShouldEndEditing:(TTTextEditor*)textEditor;
+
+- (void)textEditorDidBeginEditing:(TTTextEditor*)textEditor;
+- (void)textEditorDidEndEditing:(TTTextEditor*)textEditor;
+
+- (BOOL)textEditor:(TTTextEditor*)textEditor shouldChangeTextInRange:(NSRange)range
+        replacementText:(NSString*)replacementText;
+- (void)textEditorDidChange:(TTTextEditor*)textEditor;
 
 - (BOOL)textEditor:(TTTextEditor*)textEditor shouldResizeBy:(CGFloat)height;
 - (BOOL)textEditorShouldReturn:(TTTextEditor*)textEditor;

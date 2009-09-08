@@ -42,12 +42,14 @@ static CGFloat kTextViewInset = 31;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface TTTextEditorInternal : NSObject <UITextViewDelegate> {
+@interface TTTextEditorInternal : NSObject <UITextViewDelegate, UITextFieldDelegate> {
   TTTextEditor* _textEditor;
   id<TTTextEditorDelegate> _delegate;
+  BOOL _ignoreBeginAndEnd;
 }
 
 @property(nonatomic,assign) id<TTTextEditorDelegate> delegate;
+@property(nonatomic) BOOL ignoreBeginAndEnd;
 
 - (id)initWithTextEditor:(TTTextEditor*)textEditor;
 
@@ -55,11 +57,16 @@ static CGFloat kTextViewInset = 31;
 
 @implementation TTTextEditorInternal
 
-@synthesize delegate = _delegate;
+@synthesize delegate = _delegate, ignoreBeginAndEnd = _ignoreBeginAndEnd;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
 
 - (id)initWithTextEditor:(TTTextEditor*)textEditor {
   if (self = [super init]) {
     _textEditor = textEditor;
+    _delegate = nil;
+    _ignoreBeginAndEnd = NO;
   }
   return self;
 }
@@ -72,34 +79,40 @@ static CGFloat kTextViewInset = 31;
 // UITextViewDelegate
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-  if ([_delegate respondsToSelector:@selector(textViewShouldBeginEditing:)]) {
-    return [_delegate textViewShouldBeginEditing:textView];
+  if (!_ignoreBeginAndEnd
+      && [_delegate respondsToSelector:@selector(textEditorShouldBeginEditing:)]) {
+    return [_delegate textEditorShouldBeginEditing:_textEditor];
   } else {
     return YES;
   }
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-  if ([_delegate respondsToSelector:@selector(textViewShouldEndEditing:)]) {
-    return [_delegate textViewShouldEndEditing:textView];
+  if (!_ignoreBeginAndEnd
+      && [_delegate respondsToSelector:@selector(textEditorShouldEndEditing:)]) {
+    return [_delegate textEditorShouldEndEditing:_textEditor];
   } else {
     return YES;
   }
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-  [_textEditor performSelector:@selector(didBeginEditing)];
+  if (!_ignoreBeginAndEnd) {
+    [_textEditor performSelector:@selector(didBeginEditing)];
 
-  if ([_delegate respondsToSelector:@selector(textViewDidBeginEditing:)]) {
-    [_delegate textViewDidBeginEditing:textView];
+    if ([_delegate respondsToSelector:@selector(textEditorDidBeginEditing:)]) {
+      [_delegate textEditorDidBeginEditing:_textEditor];
+    }
   }
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-  [_textEditor performSelector:@selector(didEndEditing)];
+  if (!_ignoreBeginAndEnd) {
+    [_textEditor performSelector:@selector(didEndEditing)];
 
-  if ([_delegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
-    [_delegate textViewDidEndEditing:textView];
+    if ([_delegate respondsToSelector:@selector(textEditorDidEndEditing:)]) {
+      [_delegate textEditorDidEndEditing:_textEditor];
+    }
   }
 }
 
@@ -113,31 +126,89 @@ static CGFloat kTextViewInset = 31;
     }
   }
 
-  if (![_textEditor performSelector:@selector(shouldChangeText:inRange:) withObject:text
-    withObject:(id)range.location]) {
-    return NO;
+  if ([_delegate respondsToSelector:@selector(textEditor:shouldChangeTextInRange:replacementText:)]) {
+    return [_delegate textEditor:_textEditor shouldChangeTextInRange:range replacementText:text];
   } else {
-    SEL sel = @selector(textView:shouldChangeTextInRange:replacementText:);
-    if ([_delegate respondsToSelector:sel]) {
-      return [_delegate textView:textView shouldChangeTextInRange:range replacementText:text];
-    } else {
-      return YES;
-    }
+    return YES;
   }
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-  [_textEditor performSelector:@selector(didChangeText)];
+  [_textEditor performSelector:@selector(didChangeText:) withObject:NO];
 
-  if ([_delegate respondsToSelector:@selector(textViewDidChange:)]) {
-    [_delegate textViewDidChange:textView];
+  if ([_delegate respondsToSelector:@selector(textEditorDidChange:)]) {
+    [_delegate textEditorDidChange:_textEditor];
   }
 }
 
 - (void)textViewDidChangeSelection:(UITextView *)textView {
-  if ([_delegate respondsToSelector:@selector(textViewDidChangeSelection:)]) {
-    [_delegate textViewDidChangeSelection:textView];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UITextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField*)textField {
+  if (!_ignoreBeginAndEnd && [_delegate respondsToSelector:@selector(textEditorShouldBeginEditing:)]) {
+    return [_delegate textEditorShouldBeginEditing:_textEditor];
+  } else {
+    return YES;
   }
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField*)textField {
+  if (!_ignoreBeginAndEnd && [_delegate respondsToSelector:@selector(textEditorShouldEndEditing:)]) {
+    return [_delegate textEditorShouldEndEditing:_textEditor];
+  } else {
+    return YES;
+  }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField*)textField {
+  if (!_ignoreBeginAndEnd) {
+    [_textEditor performSelector:@selector(didBeginEditing)];
+
+    if ([_delegate respondsToSelector:@selector(textEditorDidBeginEditing:)]) {
+      [_delegate textEditorDidBeginEditing:_textEditor];
+    }
+  }
+}
+
+- (void)textFieldDidEndEditing:(UITextField*)textField {
+  if (!_ignoreBeginAndEnd) {
+    [_textEditor performSelector:@selector(didEndEditing)];
+
+    if ([_delegate respondsToSelector:@selector(textEditorDidEndEditing:)]) {
+      [_delegate textEditorDidEndEditing:_textEditor];
+    }
+  }
+}
+
+- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range
+        replacementString:(NSString*)string {
+  BOOL shouldChange = YES;
+  if ([_delegate respondsToSelector:@selector(textEditor:shouldChangeTextInRange:replacementText:)]) {
+    shouldChange = [_delegate textEditor:_textEditor shouldChangeTextInRange:range
+                              replacementText:string];
+  }
+  if (shouldChange) {
+    [self performSelector:@selector(textViewDidChange:) withObject:nil afterDelay:0];
+  }
+  return shouldChange;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  if ([_delegate respondsToSelector:@selector(textEditorShouldReturn:)]) {
+    if (![_delegate performSelector:@selector(textEditorShouldReturn:) withObject:_textEditor]) {
+      return NO;
+    }
+  }
+  
+  [_textEditor performSelector:@selector(didChangeText:) withObject:(id)YES];
+
+  if ([_delegate respondsToSelector:@selector(textEditorDidChange:)]) {
+    [_delegate textEditorDidChange:_textEditor];
+  }
+  return YES;
 }
 
 @end
@@ -146,88 +217,55 @@ static CGFloat kTextViewInset = 31;
 
 @implementation TTTextEditor
 
-@synthesize textDelegate = _textDelegate, textView = _textView, placeholder = _placeholder,
-  fixedText = _fixedText, minNumberOfLines = _minNumberOfLines,
-  maxNumberOfLines = _maxNumberOfLines, editing = _editing, autoresizesToText = _autoresizesToText,
-  showsExtraLine= _showsExtraLine;
+@synthesize delegate = _delegate, minNumberOfLines = _minNumberOfLines,
+  maxNumberOfLines = _maxNumberOfLines, editing = _editing,
+  autoresizesToText = _autoresizesToText, showsExtraLine= _showsExtraLine;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
 
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    _textDelegate = nil;
-    _internal = [[TTTextEditorInternal alloc] initWithTextEditor:self];
-    _placeholder = nil;
-    _fixedText = nil;
-    _autoresizesToText = YES;
-    _showsExtraLine = NO;
-    _minNumberOfLines = 0;
-    _maxNumberOfLines = 0;
-    _editing = NO;
-    _overflowed = NO;
-    _textView = nil;
-    _placeholderLabel = nil;
-    _fixedTextLabel = nil;
+- (UIResponder*)activeTextField {
+  if (_textView && !_textView.hidden) {
+    return _textView;
+  } else {
+    return _textField;
+  }
+}
 
+- (void)createTextView {
+  if (!_textView) {
     _textView = [[TTTextView alloc] init];
     _textView.delegate = _internal;
     _textView.editable = YES;
     _textView.backgroundColor = [UIColor clearColor];
     _textView.scrollsToTop = NO;
     _textView.showsHorizontalScrollIndicator = NO;
+    _textView.font = _textField.font;
+    _textView.autoresizesToText = _autoresizesToText;
+    _textView.textColor = _textField.textColor;
+    _textView.autocapitalizationType = _textField.autocapitalizationType;
+    _textView.autocorrectionType = _textField.autocorrectionType;
+    _textView.enablesReturnKeyAutomatically = _textField.enablesReturnKeyAutomatically;
+    _textView.keyboardAppearance = _textField.keyboardAppearance;
+    _textView.keyboardType = _textField.keyboardType;
+    _textView.returnKeyType = _textField.returnKeyType;
+    _textView.secureTextEntry = _textField.secureTextEntry;
     [self addSubview:_textView];
-
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_internal);
-  TT_RELEASE_SAFELY(_textView);
-  TT_RELEASE_SAFELY(_placeholderLabel);
-  TT_RELEASE_SAFELY(_placeholder);
-  TT_RELEASE_SAFELY(_fixedText);
-  TT_RELEASE_SAFELY(_fixedTextLabel);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)updatePlaceholder {
-  if (_placeholder && !_editing && !_textView.text.length) {
-    if (!_placeholderLabel) {
-      _placeholderLabel = [[UILabel alloc] init];
-      _placeholderLabel.backgroundColor = [UIColor clearColor];
-      [self addSubview:_placeholderLabel];
-    }
-    
-    if (_textView.textColor == [UIColor whiteColor]) {
-      _placeholderLabel.textColor = [UIColor colorWithWhite:0.8 alpha:1];
-    } else {
-      _placeholderLabel.textColor = TTSTYLEVAR(placeholderTextColor);
-    }
-    _placeholderLabel.font = _textView.font;
-    _placeholderLabel.textAlignment = _textView.textAlignment;
-    _placeholderLabel.text = _placeholder;
-    [self bringSubviewToFront:_placeholderLabel];
-    _placeholderLabel.hidden = NO;
-  } else {
-    _placeholderLabel.hidden = YES;
   }
 }
 
-- (CGFloat)heightThatFits:(BOOL*)overflowed {
-  CGFloat lineHeight = _textView.font.lineHeight;
+- (CGFloat)heightThatFits:(BOOL*)overflowed numberOfLines:(NSInteger*)numberOfLines {
+  CGFloat lineHeight = self.font.lineHeight;
   CGFloat minHeight = _minNumberOfLines * lineHeight;
   CGFloat maxHeight = _maxNumberOfLines * lineHeight;
   CGFloat maxWidth = self.width - kTextViewInset;
   
-  NSString* text = _textView.text;
+  NSString* text = _textField.hidden ? _textView.text : _textField.text;
   if (!text.length) {
     text = @"M";
   }
 
-  CGSize textSize = [text sizeWithFont:_textView.font
+  CGSize textSize = [text sizeWithFont:self.font
                           constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
                           lineBreakMode:UILineBreakModeWordWrap];
   
@@ -243,6 +281,10 @@ static CGFloat kTextViewInset = 31;
     *overflowed = maxHeight && newHeight > maxHeight;
   }
 
+  if (numberOfLines) {
+    *numberOfLines = floor(textSize.height / lineHeight);
+  }
+  
   if (newHeight < minHeight) {
     newHeight = minHeight;
   }
@@ -253,17 +295,38 @@ static CGFloat kTextViewInset = 31;
   return newHeight + kPaddingY*2;
 }
 
-- (void)constrainToText {
-  CGFloat oldHeight = self.height;
-  CGFloat newHeight = [self heightThatFits:&_overflowed];
-  CGFloat diff = newHeight - oldHeight;
+- (void)stopIgnoringBeginAndEnd {
+  _internal.ignoreBeginAndEnd = NO;
+}
 
+- (void)constrainToText {
+  NSInteger numberOfLines = 0;
+  CGFloat oldHeight = self.height;
+  CGFloat newHeight = [self heightThatFits:&_overflowed numberOfLines:&numberOfLines];
+  CGFloat diff = newHeight - oldHeight;
+    
+  if (numberOfLines > 1 && !_textField.hidden) {
+    [self createTextView];
+    _textField.hidden = YES;
+    _textView.hidden = NO;
+    _textView.text = _textField.text;
+    _internal.ignoreBeginAndEnd = YES;
+    [_textView becomeFirstResponder];
+    [self performSelector:@selector(stopIgnoringBeginAndEnd) withObject:nil afterDelay:0];
+    
+  } else if (numberOfLines == 1 && _textField.hidden) {
+    _textField.hidden = NO;
+    _textView.hidden = YES;
+    _textField.text = _textView.text;
+    [_textField becomeFirstResponder];
+  }
+  
   _textView.overflowed = _overflowed;
   _textView.scrollEnabled = _overflowed;
   
   if (oldHeight && diff) {
-    if ([_textDelegate respondsToSelector:@selector(textEditor:shouldResizeBy:)]) {
-      if (![_textDelegate textEditor:self shouldResizeBy:diff]) {
+    if ([_delegate respondsToSelector:@selector(textEditor:shouldResizeBy:)]) {
+      if (![_delegate textEditor:self shouldResizeBy:diff]) {
         return;
       }
     }
@@ -272,121 +335,192 @@ static CGFloat kTextViewInset = 31;
   }
 }
 
-- (BOOL)shouldChangeText:(NSString*)text inRange:(NSUInteger)location {
-  if (_fixedText && location < _fixedText.length) {
-    return NO;
-  }
-  
-  return YES;
+- (void)didBeginEditing {
+  _editing = YES;
 }
 
-- (void)didChangeText {
+- (void)didEndEditing {
+  _editing = NO;
+}
+
+- (void)didChangeText:(BOOL)insertReturn {
+  if (insertReturn) {
+    [self createTextView];
+    _textField.hidden = YES;
+    _textView.hidden = NO;
+    _textView.text = [_textField.text stringByAppendingString:@"\n "];
+    _internal.ignoreBeginAndEnd = YES;
+    [_textView becomeFirstResponder];
+    [self performSelector:@selector(stopIgnoringBeginAndEnd) withObject:nil afterDelay:0];
+  }
   if (_autoresizesToText) {
     [self constrainToText];
   }
 }
 
-- (void)didBeginEditing {
-  _editing = YES;
-  [self updatePlaceholder];
-}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
 
-- (void)didEndEditing {
-  if (_editing) {
+- (id)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _delegate = nil;
+    _internal = [[TTTextEditorInternal alloc] initWithTextEditor:self];
+    _textView = nil;
+    _autoresizesToText = YES;
+    _showsExtraLine = NO;
+    _minNumberOfLines = 0;
+    _maxNumberOfLines = 0;
     _editing = NO;
-    [self updatePlaceholder];
+    _overflowed = NO;
+
+    _textField = [[UITextField alloc] init];
+    _textField.delegate = _internal;
+    [self addSubview:_textField];
   }
+  return self;
 }
 
-//- (void)_textViewDidChangeSelection:(UITextView *)_textView {
-//  // Workaround for weird bug - if user touches and holds placeholder, keyboard appears
-//  // but _textViewDidBeginEditing isn't called, so we call it here
-//  if (!_editing) {
-//    [self _textViewDidBeginEditing:_textView];
-//  }
-//}
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_internal);
+  TT_RELEASE_SAFELY(_textField);
+  TT_RELEASE_SAFELY(_textView);
+  [super dealloc];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIResponder
 
 - (BOOL)becomeFirstResponder {
-  return [_textView becomeFirstResponder];
+  return [[self activeTextField] becomeFirstResponder];
 }
 
 - (BOOL)resignFirstResponder {
-  return [_textView resignFirstResponder];
+  return [[self activeTextField] resignFirstResponder];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
 - (void)layoutSubviews {
-  _textView.frame = CGRectMake(0, 0, self.width-kPaddingX*2, self.height);
-
-  [_placeholderLabel sizeToFit];
-  _placeholderLabel.frame = CGRectMake(kPaddingX, kPaddingY,
-                                       self.width-kPaddingX*2, _placeholderLabel.height);
-    
-  if (_fixedTextLabel) {
-    [_fixedTextLabel sizeToFit];
-    _fixedTextLabel.frame = CGRectMake(_textView.left+kPaddingX, _textView.top+kPaddingY,
-                                       _fixedTextLabel.width+2, _fixedTextLabel.height+4);
-  }
+  CGRect frame = CGRectMake(0, 1, self.width-kPaddingX*2, self.height);
+  _textView.frame = frame;
+  _textField.frame = CGRectOffset(TTRectContract(frame, 7, 8), 7, 8);
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-  CGFloat height = [self heightThatFits:nil];
+  CGFloat height = [self heightThatFits:nil numberOfLines:nil];
   return CGSizeMake(size.width, height);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// UITextInputTraits
 
-- (void)setTextDelegate:(id<TTTextEditorDelegate>)delegate {
-  _textDelegate = delegate;
+- (UITextAutocapitalizationType)autocapitalizationType {
+  return _textField.autocapitalizationType;
+}
+
+- (void)setAutocapitalizationType:(UITextAutocapitalizationType)autocapitalizationType {
+  _textField.autocapitalizationType = autocapitalizationType;
+}
+
+- (UITextAutocorrectionType)autocorrectionType {
+  return _textField.autocorrectionType;
+}
+
+- (void)setAutocorrectionType:(UITextAutocorrectionType)autocorrectionType {
+  _textField.autocorrectionType = autocorrectionType;
+}
+
+- (BOOL)enablesReturnKeyAutomatically {
+  return _textField.enablesReturnKeyAutomatically;
+}
+
+- (void)setEnablesReturnKeyAutomatically:(BOOL)enablesReturnKeyAutomatically {
+  _textField.enablesReturnKeyAutomatically = enablesReturnKeyAutomatically;
+}
+
+- (UIKeyboardAppearance)keyboardAppearance {
+  return _textField.keyboardAppearance;
+}
+
+- (void)setKeyboardAppearance:(UIKeyboardAppearance)keyboardAppearance {
+  _textField.keyboardAppearance = keyboardAppearance;
+}
+
+- (UIKeyboardType)keyboardType {
+  return _textField.keyboardType;
+}
+
+- (void)setKeyboardType:(UIKeyboardType)keyboardType {
+  _textField.keyboardType = keyboardType;
+}
+
+- (UIReturnKeyType)returnKeyType {
+  return _textField.returnKeyType;
+}
+
+- (void)setReturnKeyType:(UIReturnKeyType)returnKeyType {
+  _textField.returnKeyType = returnKeyType;
+}
+
+- (BOOL)secureTextEntry {
+  return _textField.secureTextEntry;
+}
+
+- (void)setSecureTextEntry:(BOOL)secureTextEntry {
+  _textField.secureTextEntry = secureTextEntry;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// public
+
+- (void)setDelegate:(id<TTTextEditorDelegate>)delegate {
+  _delegate = delegate;
   _internal.delegate = delegate;
 }
 
 - (NSString*)text {
-  return _textView.text;
+  if (_textView && !_textView.hidden) {
+    return _textView.text;
+  } else {
+    return _textField.text;
+  }
 }
 
 - (void)setText:(NSString*)text {
-  if (_fixedText && text) {
-    _textView.text = [_fixedText stringByAppendingString:text];
-  } else {
-    _textView.text = text;
-  }
-  [self updatePlaceholder];
+  _textField.text = _textView.text = text;
   if (_autoresizesToText) {
     [self constrainToText];
   }
 }
 
-- (void)setPlaceholder:(NSString*)placeholder {
-  [_placeholder release];
-  _placeholder = [placeholder copy];
-  [self updatePlaceholder];
+- (NSString*)placeholder {
+  return _textField.placeholder;
 }
 
-- (void)setFixedText:(NSString*)text {
-  [_fixedText release];
-  _fixedText = [text copy];
-  
-  if (_fixedText && !_fixedTextLabel) {
-    _fixedTextLabel = [[UILabel alloc] init];
-    _fixedTextLabel.textColor = TTSTYLEVAR(placeholderTextColor);
-    _fixedTextLabel.font = _textView.font;
-    _fixedTextLabel.contentMode = UIViewContentModeBottom;
-    [self addSubview:_fixedTextLabel];
-  }
-
-  _fixedTextLabel.hidden = !_fixedText;
-  _fixedTextLabel.text = _fixedText;
+- (void)setPlaceholder:(NSString*)placeholder {
+  _textField.placeholder = placeholder;
 }
 
 - (void)setAutoresizesToText:(BOOL)autoresizesToText {
   _autoresizesToText = autoresizesToText;
   _textView.autoresizesToText = _autoresizesToText;
+}
+
+- (UIFont*)font {
+  return _textField.font;
+}
+
+- (void)setFont:(UIFont*)font {
+  _textField.font = font;
+}
+
+- (UIColor*)textColor {
+  return _textField.textColor;
+}
+
+- (void)setTextColor:(UIColor*)textColor {
+  _textField.textColor = textColor;
 }
 
 - (void)scrollContainerToCursor:(UIScrollView*)scrollView {

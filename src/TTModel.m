@@ -1,5 +1,3 @@
-// Copyright 2004-2009 Facebook. All Rights Reserved.
-
 #import "TTModel.h"
 #import "TTURLCache.h"
 #import "TTURLRequestQueue.h"

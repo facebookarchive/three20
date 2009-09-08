@@ -1,5 +1,3 @@
-// Copyright 2004-2009 Facebook. All Rights Reserved.
-
 #import "Three20/TTButtonBar.h"
 #import "Three20/TTButton.h"
 

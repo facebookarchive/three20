@@ -138,15 +138,6 @@
     [TTFourBorderStyle styleWithTop:nil right:nil bottom:highlight left:nil width:1 next:nil]]];
 }
 
-- (TTStyle*)searchBarBottom {
-  UIColor* color = TTSTYLEVAR(searchBarTintColor);
-  UIColor* highlight = [color multiplyHue:0 saturation:0 value:1.2];
-  UIColor* shadow = [color multiplyHue:0 saturation:0 value:0.82];
-  return
-    [TTLinearGradientFillStyle styleWithColor1:highlight color2:color next:
-    [TTFourBorderStyle styleWithTop:shadow right:nil bottom:nil left:nil width:1 next:nil]];
-}
-
 - (TTStyle*)tableHeader {
   UIColor* color = TTSTYLEVAR(tableHeaderTintColor);
   UIColor* highlight = [color multiplyHue:0 saturation:0 value:1.1];
@@ -403,8 +394,9 @@
 
 - (TTStyle*)postTextEditor {
   return
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(6, 5, 6, 5) next:
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:15] next:
-    [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:nil]];
+    [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:nil]]];
 }
 
 - (TTStyle*)photoCaption {
@@ -481,6 +473,35 @@
 
 - (TTStyle*)launcherPageDot:(UIControlState)state {
   return [self pageDot:state];
+}
+
+- (TTStyle*)textBar {
+  UIColor* color = TTSTYLEVAR(searchBarTintColor);
+  UIColor* highlight = [color multiplyHue:0 saturation:0 value:1.2];
+  UIColor* shadow = [color multiplyHue:0 saturation:0 value:0.82];
+  return
+    [TTLinearGradientFillStyle styleWithColor1:highlight color2:color next:
+    [TTFourBorderStyle styleWithTop:shadow right:nil bottom:nil left:nil width:1 next:nil]];
+}
+
+- (TTStyle*)textBarTextField {
+  return 
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(6, 0, 3, 6) next:
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:11] next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 0, 1, 0) next:
+    [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.4) blur:0 offset:CGSizeMake(0, 1) next:
+    [TTSolidFillStyle styleWithColor:TTSTYLEVAR(backgroundColor) next:
+    [TTInnerShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.4) blur:3 offset:CGSizeMake(0, 2) next:
+    [TTBevelBorderStyle styleWithHighlight:RGBACOLOR(0,0,0,0.25) shadow:RGBACOLOR(0,0,0,0.4)
+                        width:1 lightSource:270 next:nil]]]]]]];
+}
+
+- (TTStyle*)textBarPostButton:(UIControlState)state {
+  return
+    [self toolbarButtonForState:state
+          shape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED]
+          tintColor:TTSTYLEVAR(postButtonColor)
+          font:[UIFont boldSystemFontOfSize:14]];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -604,6 +625,10 @@
 
 - (UIColor*)thumbnailBackgroundColor {
   return [UIColor colorWithWhite:0.95 alpha:1];
+}
+
+- (UIColor*)postButtonColor {
+  return RGBCOLOR(117, 144, 181);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

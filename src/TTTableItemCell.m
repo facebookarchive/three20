@@ -1221,8 +1221,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       CGFloat lineHeight = textView.font.lineHeight;
       height = lineHeight * kDefaultTextViewLines;
     } else if ([view isKindOfClass:[TTTextEditor class]]) {
-      UITextView* textView = [(TTTextEditor*)view textView];
-      CGFloat lineHeight = textView.font.lineHeight;
+      TTTextEditor* textEditor = (TTTextEditor*)view;
+      CGFloat lineHeight = textEditor.font.lineHeight;
       height = lineHeight * kDefaultTextViewLines;
     } else if ([view isKindOfClass:[UITextField class]]) {
       UITextField* textField = (UITextField*)view;

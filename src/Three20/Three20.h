@@ -24,6 +24,7 @@
 #import "Three20/TTAlertViewController.h"
 #import "Three20/TTActionSheetController.h"
 #import "Three20/TTPostController.h"
+#import "Three20/TTTextBarController.h"
 
 #import "Three20/TTView.h"
 #import "Three20/TTImageView.h"

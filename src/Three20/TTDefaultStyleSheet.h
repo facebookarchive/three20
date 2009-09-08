@@ -40,6 +40,8 @@
 
 @property(nonatomic,readonly) UIColor* thumbnailBackgroundColor;
 
+@property(nonatomic,readonly) UIColor* postButtonColor;
+
 @property(nonatomic,readonly) UIFont* font;
 @property(nonatomic,readonly) UIFont* buttonFont;
 @property(nonatomic,readonly) UIFont* tableFont;

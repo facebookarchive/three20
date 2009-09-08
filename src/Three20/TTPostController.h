@@ -1,20 +1,18 @@
-// Copyright 2004-2009 Facebook. All Rights Reserved.
-
 #import "Three20/TTPopupViewController.h"
-#import "Three20/TTTextEditor.h"
 
 @protocol TTPostControllerDelegate;
-@class TTActivityLabel;
+@class TTActivityLabel, TTView;
 
-@interface TTPostController : TTPopupViewController <TTTextEditorDelegate> {
+@interface TTPostController : TTPopupViewController <UITextViewDelegate> {
   id<TTPostControllerDelegate> _delegate;
   id _result;
   NSString* _defaultText;
   CGRect _originRect;
   UIView* _originView;
-  UIView* _screenView;
+  UIView* _innerView;
   UINavigationBar* _navigationBar;
-  TTTextEditor* _textEditor;
+  TTView* _screenView;
+  UITextView* _textView;
   TTActivityLabel* _activityView;
   BOOL _originalStatusBarHidden;
   UIStatusBarStyle _originalStatusBarStyle;
@@ -22,7 +20,7 @@
 
 @property(nonatomic,assign) id<TTPostControllerDelegate> delegate;
 @property(nonatomic,retain) id result;
-@property(nonatomic,readonly) TTTextEditor* textEditor;
+@property(nonatomic,readonly) UITextView* textView;
 @property(nonatomic,readonly) UINavigationBar* navigatorBar;
 @property(nonatomic,retain) UIView* originView;
 
@@ -80,7 +78,6 @@
  * @return whether to dismiss the controller or wait for the user to call dismiss.
  */
 - (BOOL)postController:(TTPostController*)postController willPostText:(NSString*)text;
-
 
 /**
  * The text will animate towards a rectangle.
