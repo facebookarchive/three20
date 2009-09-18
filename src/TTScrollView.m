@@ -182,8 +182,8 @@ static const NSTimeInterval kOvershoot = 2;
   CGFloat width, height;
   if (UIInterfaceOrientationIsLandscape(_orientation)) {
     if (size.width > size.height) {
-      height = size.width/size.height * self.width;
-      width = self.width;
+      height = self.height;
+      width = size.height/size.width * self.height;
     } else {
       height = size.width/size.height * self.width;
       width = self.width;
