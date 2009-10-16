@@ -28,7 +28,7 @@
     textView.font = TTSTYLEVAR(font);
     
     TTTextEditor* editor = [[[TTTextEditor alloc] init] autorelease];
-    editor.textView.font = TTSTYLEVAR(font);
+    editor.font = TTSTYLEVAR(font);
     editor.backgroundColor = TTSTYLEVAR(backgroundColor);
     editor.autoresizesToText = NO;
     editor.minNumberOfLines = 3;

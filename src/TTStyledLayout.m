@@ -536,56 +536,90 @@
     CGFloat availWidth = _width ? _width : CGFLOAT_MAX;
 
     // Measure the word and check to see if it fits on the current line
-    CGSize wordSize = [word sizeWithFont:_font
-                            constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
-                            lineBreakMode:UILineBreakModeWordWrap];
-    if (_lineWidth + wordSize.width > _width) {
-      // The word will be placed on the next line, so create a new frame for
-      // the current line and mark it with a line break
+    CGSize wordSize = [word sizeWithFont:_font];
+    if (wordSize.width > _width) {
+      for (NSInteger i = 0; i < word.length; ++i) {
+        NSString* c = [word substringWithRange:NSMakeRange(i, 1)];
+        CGSize letterSize = [c sizeWithFont:_font];
+
+        if (_lineWidth + letterSize.width > _width) {
+          NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
+          if (lineRange.length) {
+            NSString* line = [text substringWithRange:lineRange];
+            [self addFrameForText:line element:element node:textNode width:frameWidth
+                  height:_lineHeight ? _lineHeight : [_font lineHeight]];
+          }
+
+          if (_lineWidth) {
+            [self breakLine];
+          }
+
+          lineStartIndex = lineRange.location + lineRange.length;
+          frameWidth = 0;
+        }
+        
+        frameWidth += letterSize.width;
+        [self expandLineWidth:letterSize.width];
+        [self inflateLineHeight:wordSize.height];
+        ++index;
+      }
+
       NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
       if (lineRange.length) {
         NSString* line = [text substringWithRange:lineRange];
         [self addFrameForText:line element:element node:textNode width:frameWidth
               height:_lineHeight ? _lineHeight : [_font lineHeight]];
+
+        lineStartIndex = lineRange.location + lineRange.length;
+        frameWidth = 0;
       }
-      
-      if (_lineWidth) {
-        [self breakLine];
-      } else {
-        _width = wordSize.width;
+    } else {
+      if (_lineWidth + wordSize.width > _width) {
+        // The word will be placed on the next line, so create a new frame for
+        // the current line and mark it with a line break
+        NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
+        if (lineRange.length) {
+          NSString* line = [text substringWithRange:lineRange];
+          [self addFrameForText:line element:element node:textNode width:frameWidth
+                height:_lineHeight ? _lineHeight : [_font lineHeight]];
+        }
+        
+        if (_lineWidth) {
+          [self breakLine];
+        }
+        lineStartIndex = lineRange.location + lineRange.length;
+        frameWidth = 0;
       }
-      lineStartIndex = lineRange.location + lineRange.length;
-      frameWidth = 0;
-    }
 
-    if (!_lineWidth && textNode == _lastNode) {
-      // We are at the start of a new line, and this is the last node, so we don't need to
-      // keep measuring every word.  We can just measure all remaining text and create a new
-      // frame for all of it.
-      NSString* lines = [text substringWithRange:searchRange];
-      CGSize linesSize = [lines sizeWithFont:_font
-                                constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
-                                lineBreakMode:UILineBreakModeWordWrap];
+      if (!_lineWidth && textNode == _lastNode) {
+        // We are at the start of a new line, and this is the last node, so we don't need to
+        // keep measuring every word.  We can just measure all remaining text and create a new
+        // frame for all of it.
+        NSString* lines = [text substringWithRange:searchRange];
+        CGSize linesSize = [lines sizeWithFont:_font
+                                  constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
+                                  lineBreakMode:UILineBreakModeWordWrap];
 
-      [self addFrameForText:lines element:element node:textNode width:linesSize.width
-           height:linesSize.height];
-      _height += linesSize.height;
-      break;
-    }
+        [self addFrameForText:lines element:element node:textNode width:linesSize.width
+             height:linesSize.height];
+        _height += linesSize.height;
+        break;
+      }
 
-    frameWidth += wordSize.width;
-    [self expandLineWidth:wordSize.width];
-    [self inflateLineHeight:wordSize.height];
+      frameWidth += wordSize.width;
+      [self expandLineWidth:wordSize.width];
+      [self inflateLineHeight:wordSize.height];
 
-    index = wordRange.location + wordRange.length;
-    if (index >= length) {
-      // The current word was at the very end of the string
-      NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
-                                                      - lineStartIndex);
-      NSString* line = !_lineWidth ? word : [text substringWithRange:lineRange];
-      [self addFrameForText:line element:element node:textNode width:frameWidth
-            height:[_font lineHeight]];
-      frameWidth = 0;
+      index = wordRange.location + wordRange.length;
+      if (index >= length) {
+        // The current word was at the very end of the string
+        NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
+                                                        - lineStartIndex);
+        NSString* line = !_lineWidth ? word : [text substringWithRange:lineRange];
+        [self addFrameForText:line element:element node:textNode width:frameWidth
+              height:[_font lineHeight]];
+        frameWidth = 0;
+      }
     }
   }
 }

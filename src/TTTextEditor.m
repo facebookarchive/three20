@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static CGFloat kPaddingX = 8;
-static CGFloat kPaddingY = 8;
+static CGFloat kPaddingY = 9;
 
 // XXXjoe This number is very sensitive - it is specifically calculated for precise word wrapping
 // with 15pt normal helvetica.  If you change this number at all, UITextView may wrap the text
@@ -313,12 +313,13 @@ static CGFloat kTextViewInset = 31;
     _internal.ignoreBeginAndEnd = YES;
     [_textView becomeFirstResponder];
     [self performSelector:@selector(stopIgnoringBeginAndEnd) withObject:nil afterDelay:0];
-    
   } else if (numberOfLines == 1 && _textField.hidden) {
     _textField.hidden = NO;
     _textView.hidden = YES;
     _textField.text = _textView.text;
+    _internal.ignoreBeginAndEnd = YES;
     [_textField becomeFirstResponder];
+    [self performSelector:@selector(stopIgnoringBeginAndEnd) withObject:nil afterDelay:0];
   }
   
   _textView.overflowed = _overflowed;
@@ -402,7 +403,7 @@ static CGFloat kTextViewInset = 31;
 // UIView
 
 - (void)layoutSubviews {
-  CGRect frame = CGRectMake(0, 1, self.width-kPaddingX*2, self.height);
+  CGRect frame = CGRectMake(0, 2, self.width-kPaddingX*2, self.height);
   _textView.frame = frame;
   _textField.frame = CGRectOffset(TTRectContract(frame, 7, 8), 7, 8);
 }

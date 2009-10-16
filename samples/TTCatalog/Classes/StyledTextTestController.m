@@ -71,6 +71,9 @@
 - (void)loadView {
   [super loadView];
   
+//  NSString* kText = @"\
+//<span>Thisisareallylongwordthatshouldwrapisareallylongwordthatshouldwrapisareallylongwordthatshould\
+//wrapisareallylongwordthatshouldwrapisareallylongwordthatshouldwrap</span>";
   NSString* kText = @"\
 This is a test of styled labels.  Styled labels support \
 <b>bold text</b>, <i>italic text</i>, <span class=\"blueText\">colored text</span>, \
