@@ -135,7 +135,7 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   NSArray* viewControllers = self.navigationController.viewControllers;
   if (viewControllers.count > 1) {
     NSUInteger index = [viewControllers indexOfObject:self];
-    if (index != NSNotFound) {
+    if (index != NSNotFound && index > 0) {
       return [viewControllers objectAtIndex:index-1];
     }
   }
