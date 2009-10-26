@@ -17,7 +17,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   timestamp = _timestamp, userInfo = _userInfo, isLoading = _isLoading,
   shouldHandleCookies = _shouldHandleCookies, totalBytesLoaded = _totalBytesLoaded,
   totalBytesExpected = _totalBytesExpected, respondedFromCache = _respondedFromCache,
-  headers = _headers;
+  headers = _headers, filterPasswordLogging = _filterPasswordLogging;
 
 + (TTURLRequest*)request {
   return [[[TTURLRequest alloc] init] autorelease];
@@ -58,6 +58,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _totalBytesLoaded = 0;
     _totalBytesExpected = 0;
     _respondedFromCache = NO;
+    _filterPasswordLogging = NO;
   }
   return self;
 }
@@ -241,7 +242,17 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 - (BOOL)send {
   if (_parameters) {
+    // Don't log passwords. Save now, restore after logging
+    NSString *password = [_parameters objectForKey:@"password"];
+    if (_filterPasswordLogging && password) {
+      [_parameters setObject:@"[FILTERED]" forKey:@"password"];
+    }
+
     TTDINFO(@"SEND %@ %@", self.URL, self.parameters);
+
+    if (password) {
+      [_parameters setObject:password forKey:@"password"];
+    }
   }
   return [[TTURLRequestQueue mainQueue] sendRequest:self];
 }

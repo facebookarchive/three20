@@ -22,6 +22,7 @@
   BOOL _isLoading;
   BOOL _shouldHandleCookies;
   BOOL _respondedFromCache;
+  BOOL _filterPasswordLogging;
 }
 
 /**
@@ -89,6 +90,11 @@
 @property(nonatomic) NSInteger totalBytesExpected;
 
 @property(nonatomic) BOOL respondedFromCache;
+
+/**
+ * Whether parameters named "password" should be suppressed in log messages.
+ */
+@property(nonatomic,assign) BOOL filterPasswordLogging;
 
 + (TTURLRequest*)request;
 
