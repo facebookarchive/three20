@@ -4,6 +4,8 @@
 #import "Three20/NSStringAdditions.h"
 #import "Three20/NSDateAdditions.h"
 #import "Three20/NSArrayAdditions.h"
+#import "Three20/NSMutableArrayAdditions.h"
+#import "Three20/NSMutableDictionaryAdditions.h"
 #import "Three20/UIColorAdditions.h"
 #import "Three20/UIFontAdditions.h"
 #import "Three20/UIImageAdditions.h"
@@ -217,6 +219,7 @@ typedef enum {
 #define TT_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
 #define TT_AUTORELEASE_SAFELY(__POINTER) { [__POINTER autorelease]; __POINTER = nil; }
 #define TT_INVALIDATE_TIMER(__TIMER) { [__TIMER invalidate]; __TIMER = nil; }
+#define TT_RELEASE_CF_SAFELY(__REF) { if (nil != (__REF)) { CFRelease(__REF); __REF = nil; } }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

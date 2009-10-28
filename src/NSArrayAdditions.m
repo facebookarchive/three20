@@ -76,4 +76,13 @@
   return nil;
 }
 
+- (BOOL)containsObject:(id)object withSelector:(SEL)selector {
+  for (id item in self) {
+    if ([item performSelector:selector withObject:object]) {
+      return YES;
+    }
+  }
+  return NO;
+}
+
 @end

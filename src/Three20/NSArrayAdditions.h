@@ -13,4 +13,10 @@
 - (id)objectWithValue:(id)value forKey:(id)key;
 - (id)objectWithClass:(Class)cls;
 
+/**
+ * Selector form:
+ * - (BOOL)method:(id)object;
+ */
+- (BOOL)containsObject:(id)object withSelector:(SEL)selector;
+
 @end
