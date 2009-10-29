@@ -22,6 +22,7 @@
   return CGRectMake(x, y, width, height);
 }
 
+#ifdef DEBUG
 - (void)simulateTapElement:(NSString*)query {
   CGRect frame = [self.window convertRect:self.frame fromView:self.superview];
   CGRect pluginFrame = [self frameOfElement:query];
@@ -31,5 +32,6 @@
   );
   [self simulateTapAtPoint:tapPoint];
 }
+#endif
 
 @end
