@@ -11,6 +11,7 @@
 #import "Three20/UIFontAdditions.h"
 #import "Three20/UIImageAdditions.h"
 #import "Three20/UIViewControllerAdditions.h"
+#import "Three20/UIWindowAdditions.h"
 #import "Three20/UINavigationControllerAdditions.h"
 #import "Three20/UITabBarControllerAdditions.h"
 #import "Three20/UIViewAdditions.h"

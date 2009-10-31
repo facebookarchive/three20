@@ -61,7 +61,7 @@
 }
 
 - (void)scrollFirstResponderIntoView {
-  UIView* responder = [self.window performSelector:@selector(firstResponder)];
+  UIView* responder = [self.window findFirstResponder];
   UITableViewCell* cell = (UITableViewCell*)[responder ancestorOrSelfWithClass:[UITableViewCell class]];
   if (cell) {
     NSIndexPath* indexPath = [self indexPathForCell:cell];
