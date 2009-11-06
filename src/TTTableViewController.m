@@ -372,12 +372,12 @@ static const CGFloat kBannerViewHeight = 22;
                                                  atIndexPath:indexPath];
         if (newIndexPath) {
           if (newIndexPath.length == 1) {
-            TTLOG(@"UPDATING SECTION AT %@", newIndexPath);
+            TTDINFO(@"UPDATING SECTION AT %@", newIndexPath);
             NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
             [_tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                         withRowAnimation:UITableViewRowAnimationTop];
           } else if (newIndexPath.length == 2) {
-            TTLOG(@"UPDATING ROW AT %@", newIndexPath);
+            TTDINFO(@"UPDATING ROW AT %@", newIndexPath);
             [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                         withRowAnimation:UITableViewRowAnimationTop];
           }
@@ -400,12 +400,12 @@ static const CGFloat kBannerViewHeight = 22;
                                                  atIndexPath:indexPath];
         if (newIndexPath) {
           if (newIndexPath.length == 1) {
-            TTLOG(@"INSERTING SECTION AT %@", newIndexPath);
+            TTDINFO(@"INSERTING SECTION AT %@", newIndexPath);
             NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
             [_tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                         withRowAnimation:UITableViewRowAnimationTop];
           } else if (newIndexPath.length == 2) {
-            TTLOG(@"INSERTING ROW AT %@", newIndexPath);
+            TTDINFO(@"INSERTING ROW AT %@", newIndexPath);
             [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                         withRowAnimation:UITableViewRowAnimationTop];
             
@@ -431,12 +431,12 @@ static const CGFloat kBannerViewHeight = 22;
                                                  atIndexPath:indexPath];
         if (newIndexPath) {
           if (newIndexPath.length == 1) {
-            TTLOG(@"DELETING SECTION AT %@", newIndexPath);
+            TTDINFO(@"DELETING SECTION AT %@", newIndexPath);
             NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
             [_tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                         withRowAnimation:UITableViewRowAnimationTop];
           } else if (newIndexPath.length == 2) {
-            TTLOG(@"DELETING ROW AT %@", newIndexPath);
+            TTDINFO(@"DELETING ROW AT %@", newIndexPath);
             [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                         withRowAnimation:UITableViewRowAnimationTop];
           }

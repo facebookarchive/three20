@@ -18,30 +18,107 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Logging Helpers
 
+// Deprecated, please use the new TTDPRINT statements.
 #ifdef DEBUG
 #define TTLOG NSLog
 #else
 #define TTLOG    
 #endif
 
+// Deprecated, please use the new TTD* statements.
 #define TTWARN TTLOG
 
+
+// A priority-based logging interface.
+//
+// TTDASSERT(statement) - Jumps into the debugger if statement evaluates to false
+//                        Use Cmd-Y to launch the app in debug mode.
+//
+// And the logging functions:
+// TTDERROR(text, var_args)
+// TTDWARNING(text, var_args)
+// TTDINFO(text, var_args)
+// TTDPRINT(text, var_args) - Generic logging function, similar to TTLOG
+//
+// All new logging functions include the file and line number that the log was issued from.
+//
+// ^               ^
+// | Informational |
+// |               |
+// |    Warning    |
+// | - - - - - - - | <- Max Log level, only print logs with
+// |     Error     |    a level below this line.
+// |               |
+// -----------------
+
+#define TTLOGLEVEL_INFO     5
+#define TTLOGLEVEL_WARNING  3
+#define TTLOGLEVEL_ERROR    1
+
+#ifndef TTMAXLOGLEVEL
+  #define TTMAXLOGLEVEL TTLOGLEVEL_WARNING
+#endif
+
+// The general purpose logger. This ignores logging levels.
+#ifdef DEBUG
+  #define TTDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __FILE__, __LINE__, ##__VA_ARGS__)
+#else
+  #define TTDPRINT(xx, ...)  ((void)0)
+#endif
+
+// Debug-only assertions.
+#ifdef DEBUG
+#if TARGET_IPHONE_SIMULATOR
+  bool inDebugger(void);
+  // We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
+  // a "breakInDebugger" function.
+  #define TTDASSERT(xx) { if(!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); \
+                                      if(inDebugger()) { __asm__("int $3\n" : : ); }; } }
+#else
+  #define TTDASSERT(xx) { if(!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); } }
+#endif
+#else
+  #define TTDASSERT(xx) ((void)0)
+#endif
+
+// Log-level based logging macros.
+#if TTLOGLEVEL_ERROR <= TTMAXLOGLEVEL
+  #define TTDERROR(xx, ...)  TTDPRINT(xx, ##__VA_ARGS__)
+#else
+  #define TTDERROR(xx, ...)  ((void)0)
+#endif
+
+#if TTLOGLEVEL_WARNING <= TTMAXLOGLEVEL
+  #define TTDWARNING(xx, ...)  TTDPRINT(xx, ##__VA_ARGS__)
+#else
+  #define TTDWARNING(xx, ...)  ((void)0)
+#endif
+
+#if TTLOGLEVEL_INFO <= TTMAXLOGLEVEL
+  #define TTDINFO(xx, ...)  TTDPRINT(xx, ##__VA_ARGS__)
+#else
+  #define TTDINFO(xx, ...)  ((void)0)
+#endif
+
+
+// Helper
+
 #define TTLOGRECT(rect) \
-  TTLOG(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
+  TTDINFO(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
     rect.size.width, rect.size.height)
 
 #define TTLOGPOINT(pt) \
-  TTLOG(@"%s x=%f, y=%f", #pt, pt.x, pt.y)
+  TTDINFO(@"%s x=%f, y=%f", #pt, pt.x, pt.y)
 
 #define TTLOGSIZE(size) \
-  TTLOG(@"%s w=%f, h=%f", #size, size.width, size.height)
+  TTDINFO(@"%s w=%f, h=%f", #size, size.width, size.height)
 
 #define TTLOGEDGES(edges) \
-  TTLOG(@"%s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
+  TTDINFO(@"%s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
     edges.top, edges.bottom)
 
 #define TTLOGHSV(_COLOR) \
-  TTLOG(@"%s h=%f, s=%f, v=%f", #_COLOR, _COLOR.hue, _COLOR.saturation, _COLOR.value)
+  TTDINFO(@"%s h=%f, s=%f, v=%f", #_COLOR, _COLOR.hue, _COLOR.saturation, _COLOR.value)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Errors
@@ -84,7 +161,7 @@
 #define TTSTYLEVAR(_VARNAME) [TTSTYLESHEET _VARNAME]
 
 #define TTLOGVIEWS(_VIEW) \
-  { for (UIView* view = _VIEW; view; view = view.superview) { TTLOG(@"%@", view); } }
+  { for (UIView* view = _VIEW; view; view = view.superview) { TTDINFO(@"%@", view); } }
 
 #define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
 

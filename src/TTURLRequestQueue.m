@@ -84,7 +84,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)connectToURL:(NSURL*)URL {
-  TTLOG(@"Connecting to %@", _URL);
+  TTDINFO(@"Connecting to %@", _URL);
   TTNetworkRequestStarted();
 
   TTURLRequest* request = _requests.count == 1 ? [_requests objectAtIndex:0] : nil;
@@ -157,7 +157,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSDictionary* headers = [response allHeaderFields];
   int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
   if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
-    TTLOG(@"MAX CONTENT LENGTH EXCEEDED (%d) %@", contentLength, _URL);
+    TTDINFO(@"MAX CONTENT LENGTH EXCEEDED (%d) %@", contentLength, _URL);
     [self cancel];
   }
 
@@ -186,7 +186,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     [_queue performSelector:@selector(loader:didLoadResponse:data:) withObject:self
       withObject:_response withObject:_responseData];
   } else {
-    TTLOG(@"  FAILED LOADING (%d) %@", _response.statusCode, _URL);
+    TTDINFO(@"  FAILED LOADING (%d) %@", _response.statusCode, _URL);
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
       userInfo:nil];
     [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
@@ -198,7 +198,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {  
-  TTLOG(@"  FAILED LOADING %@ FOR %@", _URL, error);
+  TTDINFO(@"  FAILED LOADING %@ FOR %@", _URL, error);
 
   TTNetworkRequestStopped();
   
@@ -482,7 +482,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 }
 
 - (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error {
-  TTLOG(@"ERROR: %@", error);
+  TTDINFO(@"ERROR: %@", error);
   [self removeLoader:loader];
   [loader dispatchError:error];
   [self loadNextInQueue];
@@ -500,7 +500,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)setSuspended:(BOOL)isSuspended {
-  // TTLOG(@"SUSPEND LOADING %d", isSuspended);
+  // TTDINFO(@"SUSPEND LOADING %d", isSuspended);
   _suspended = isSuspended;
   
   if (!_suspended) {

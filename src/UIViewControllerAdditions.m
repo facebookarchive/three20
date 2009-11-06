@@ -34,11 +34,11 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 }
 
 - (void)didAddSubview:(UIView*)subview {
-  TTLOG(@"ADD %@", subview);
+  TTDINFO(@"ADD %@", subview);
 }
 
 - (void)willRemoveSubview:(UIView*)subview {
-  TTLOG(@"REMOVE %@", subview);
+  TTDINFO(@"REMOVE %@", subview);
   [self removeFromSuperview];
 }
 

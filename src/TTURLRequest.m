@@ -182,7 +182,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     [_parameters removeObjectForKey:imageKey];
   }
 
-  //TTLOG(@"Sending %s", [body bytes]);
+  //TTDINFO(@"Sending %s", [body bytes]);
   return body;
 }
 
@@ -241,7 +241,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 - (BOOL)send {
   if (_parameters) {
-    TTLOG(@"SEND %@ %@", self.URL, self.parameters);
+    TTDINFO(@"SEND %@ %@", self.URL, self.parameters);
   }
   return [[TTURLRequestQueue mainQueue] sendRequest:self];
 }

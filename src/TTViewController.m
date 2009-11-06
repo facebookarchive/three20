@@ -98,7 +98,7 @@
 }
 
 - (void)dealloc {
-  TTLOG(@"DEALLOC %@", self);
+  TTDINFO(@"DEALLOC %@", self);
 
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
 
@@ -177,7 +177,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
-  TTLOG(@"MEMORY WARNING FOR %@", self);
+  TTDINFO(@"MEMORY WARNING FOR %@", self);
 
   if (_hasViewAppeared && !_isViewAppearing) {
     NSMutableDictionary* state = [[NSMutableDictionary alloc] init];
