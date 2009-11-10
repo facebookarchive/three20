@@ -622,6 +622,13 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    _imageView2.image = nil;
+    _titleLabel.text = nil;
+    _timestampLabel.text = nil;
+}
+
 - (void)layoutSubviews {
   [super layoutSubviews];
 
