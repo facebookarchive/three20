@@ -1,6 +1,8 @@
 #import "Three20/TTWebController.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTURLCache.h"
+#import "Three20/TTNavigator.h"
+#import "Three20/TTURLMap.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -173,8 +175,10 @@
   NSString* URL = self.URL.absoluteString;
   if (URL.length) {
     [state setObject:URL forKey:@"URL"];
+    return YES;
+  } else {
+    return NO;
   }
-  return [super persistView:state];
 }
 
 - (void)restoreView:(NSDictionary*)state {
@@ -189,6 +193,13 @@
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
         navigationType:(UIWebViewNavigationType)navigationType {
+  if ([[TTNavigator navigator].URLMap isAppURL:request.URL]) {
+    [_loadingURL release];
+    _loadingURL = [[NSURL URLWithString:@"about:blank"] retain];
+    [[UIApplication sharedApplication] openURL:request.URL];
+    return NO;
+  }
+  
   [_loadingURL release];
   _loadingURL = [request.URL retain];
   _backButton.enabled = [_webView canGoBack];

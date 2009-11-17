@@ -1,5 +1,7 @@
 #import "Three20/TTGlobal.h"
 
+#ifdef DEBUG
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // This code for synthesizing touch events is derived from:
 // http://cocoawithlove.com/2008/10/synthesizing-touch-event-on-iphone.html
@@ -90,6 +92,8 @@
 }
 
 @end
+
+#endif
 
 @implementation UIView (TTCategory)
 
