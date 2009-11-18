@@ -12,3 +12,6 @@ Changes from November 17, 2009
 - [DEPRECATED] TTLOG macros should no longer be used, consider switching to TTD* macros.
 
 - [SECURITY] Don't write passwords to the console in TTURLRequests.
+
+- [FIXED] github#67 Set the default cache expiration date for TTURLRequests to
+  TT_DEFAULT_CACHE_EXPIRATION_AGE.

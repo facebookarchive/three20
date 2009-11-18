@@ -231,7 +231,7 @@ static NSMutableDictionary* gNamedCaches = nil;
   if ([fm fileExistsAtPath:filePath]) {
     NSDictionary* attrs = [fm attributesOfItemAtPath:filePath error:nil];
     NSDate* modified = [attrs objectForKey:NSFileModificationDate];
-    if (expirationAge && [modified timeIntervalSinceNow] < -expirationAge) {
+    if ([modified timeIntervalSinceNow] < -expirationAge) {
       return nil;
     }
     if (timestamp) {
