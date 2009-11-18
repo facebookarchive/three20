@@ -52,11 +52,15 @@ static CGFloat kProgressMargin = 6;
       self.backgroundColor = [UIColor clearColor];
     }
 
+    self.autoresizingMask =
+      UIViewAutoresizingFlexibleWidth |
+      UIViewAutoresizingFlexibleHeight;
+
     _label = [[UILabel alloc] init];
     _label.text = text;
     _label.backgroundColor = [UIColor clearColor];
     _label.lineBreakMode = UILineBreakModeTailTruncation;
-        
+
     if (_style == TTActivityLabelStyleWhite) {
       _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
                                                             UIActivityIndicatorViewStyleWhite];

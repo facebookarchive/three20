@@ -21,3 +21,5 @@ Changes from November 17, 2009
 - [FIXED] github#92 Fix memory leak in TTViewController.
 
 - [FIXED] github#75 Fix memory leak in UIColorAdditions.
+
+- [FIXED] github#11 Add autoresizingMask to TTActivityLabel.
