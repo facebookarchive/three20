@@ -15,6 +15,7 @@ static const CGFloat kSpringLoadFraction = 0.18;
 
 static const NSTimeInterval kEditHoldTimeInterval = 1;
 static const NSTimeInterval kSpringLoadTimeInterval = 0.5;
+static const NSTimeInterval kWobbleTime = 0.07;
 
 static const NSInteger kPromptTag = 997;
 
@@ -384,14 +385,13 @@ static const NSInteger kDefaultColumnCount = 3;
     CGAffineTransform wobbleRight = CGAffineTransformMakeRotation(-rotation);
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.07];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(wobble)];
     
     NSInteger i = 0;
+    NSInteger nWobblyButtons = 0;
     for (NSArray* buttonPage in _buttons) {
       for (TTLauncherButton* button in buttonPage) {
         if (button != _dragButton) {
+          ++nWobblyButtons;
           if (i % 2) {
             button.transform = wobblesLeft ? wobbleRight : wobbleLeft;
           } else {
@@ -401,9 +401,18 @@ static const NSInteger kDefaultColumnCount = 3;
         ++i;
       }
     }
-    
+
+    if (nWobblyButtons >= 1) {
+      [UIView setAnimationDuration:kWobbleTime];
+      [UIView setAnimationDelegate:self];
+      [UIView setAnimationDidStopSelector:@selector(wobble)];
+      wobblesLeft = !wobblesLeft;
+    } else {
+      [NSObject cancelPreviousPerformRequestsWithTarget:self];
+      [self performSelector:@selector(wobble) withObject:nil afterDelay:kWobbleTime];
+    }
+
     [UIView commitAnimations];
-    wobblesLeft = !wobblesLeft;
   }
 }
 
