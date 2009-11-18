@@ -17,3 +17,5 @@ Changes from November 17, 2009
   TT_DEFAULT_CACHE_EXPIRATION_AGE.
 
 - [FIXED] github#85 Disallow recursive calls to wobble.
+
+- [FIXED] github#92 Fix memory leak in TTViewController.

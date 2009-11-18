@@ -183,6 +183,7 @@
     NSMutableDictionary* state = [[NSMutableDictionary alloc] init];
     [self persistView:state];
     self.frozenState = state;
+    TT_RELEASE_SAFELY(state);
   
     // This will come around to calling viewDidUnload
     [super didReceiveMemoryWarning];
