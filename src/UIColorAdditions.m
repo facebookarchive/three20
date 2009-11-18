@@ -115,7 +115,7 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
   CGFloat g = rgba[1];
   CGFloat b = rgba[2];
 
-  return [UIColor colorWithRed:r green:g blue:b alpha:newAlpha];
+  return [[UIColor colorWithRed:r green:g blue:b alpha:newAlpha] retain];
 }
 
 - (UIColor*)addHue:(CGFloat)hd saturation:(CGFloat)sd value:(CGFloat)vd {
