@@ -176,6 +176,8 @@
 		BEF45BC61019CA4400E9EC07 /* TTPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF45BC41019CA4400E9EC07 /* TTPostController.m */; };
 		BEF45BC81019CA8500E9EC07 /* TTPostController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF45BC71019CA8500E9EC07 /* TTPostController.h */; };
 		EB1F6C5F10B36C32003DAA1F /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1F6C5D10B36C32003DAA1F /* TTDebug.m */; };
+		EBA17A2010B4DDD500835016 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */; };
+		EBA17A3810B4DF5E00835016 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */; };
 		EBBB349710B36CCE00AD5BCF /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = EBBB349610B36CCE00AD5BCF /* TTDebug.h */; };
 /* End PBXBuildFile section */
 
@@ -350,6 +352,8 @@
 		BEF45BC41019CA4400E9EC07 /* TTPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPostController.m; sourceTree = "<group>"; };
 		BEF45BC71019CA8500E9EC07 /* TTPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPostController.h; path = Three20/TTPostController.h; sourceTree = "<group>"; };
 		EB1F6C5D10B36C32003DAA1F /* TTDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDebug.m; sourceTree = "<group>"; };
+		EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
+		EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataAdditions.h; path = Three20/NSDataAdditions.h; sourceTree = "<group>"; };
 		EBBB349610B36CCE00AD5BCF /* TTDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebug.h; path = Three20/TTDebug.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -488,6 +492,8 @@
 				6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */,
 				6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */,
 				6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */,
+				EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */,
+				EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -782,6 +788,7 @@
 				6E35CCFD10912C870066B478 /* NSMutableDictionaryAdditions.h in Headers */,
 				6E35CCFE10912C870066B478 /* NSMutableArrayAdditions.h in Headers */,
 				EBBB349710B36CCE00AD5BCF /* TTDebug.h in Headers */,
+				EBA17A3810B4DF5E00835016 /* NSDataAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +916,7 @@
 				6E35CCB610912B210066B478 /* NSMutableArrayAdditions.m in Sources */,
 				6E35CCC210912BE10066B478 /* NSMutableDictionaryAdditions.m in Sources */,
 				EB1F6C5F10B36C32003DAA1F /* TTDebug.m in Sources */,
+				EBA17A2010B4DDD500835016 /* NSDataAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
