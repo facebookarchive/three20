@@ -9,6 +9,8 @@ Changes from November 17, 2009
 
 - [NEW] [NSArray containsObject:(id)object withSelector:(SEL)selector]
 
+- [NEW] [NSData md5Hash]
+
 - [DEPRECATED] TTLOG macros should no longer be used, consider switching to TTD* macros.
 
 - [SECURITY] Don't write passwords to the console in TTURLRequests.
@@ -23,3 +25,5 @@ Changes from November 17, 2009
 - [FIXED] github#75 Fix memory leak in UIColorAdditions.
 
 - [FIXED] github#11 Add autoresizingMask to TTActivityLabel.
+
+- [FIXED] references to private APIs: firstResponder, UIView additions
