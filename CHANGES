@@ -1,4 +1,9 @@
 
+Changes from November 19, 2009
+
+- [FIXED] Revert to previous TTIsKeyboardVisible() check
+
+
 Changes from November 17, 2009
 
 - [NEW] TTD* logging macros. See TTDebug.h for info.

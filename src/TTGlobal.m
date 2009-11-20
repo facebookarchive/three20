@@ -39,16 +39,10 @@ BOOL TTIsEmptyString(id object) {
 }
 
 BOOL TTIsKeyboardVisible() {
-  NSArray *windows = [[UIApplication sharedApplication] windows];
-  for (UIWindow *window in [windows reverseObjectEnumerator]) {
-    for (UIView *view in [window subviews]) {
-      if (!strcmp(object_getClassName(view), "UIKeyboard")) {
-        return YES;
-      }
-    }
-  }
-
-  return NO;
+  // Operates on the assumption that the keyboard is visible if and only if there is a first
+  // responder; i.e. a control responding to key events
+  UIWindow *window = [UIApplication sharedApplication].keyWindow;
+  return !![window findFirstResponder];
 }
 
 BOOL TTIsPhoneSupported() {
