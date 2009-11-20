@@ -180,6 +180,14 @@
 		EB1F6C5F10B36C32003DAA1F /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1F6C5D10B36C32003DAA1F /* TTDebug.m */; };
 		EB9E6C7D10B6A98100DE563C /* AdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6C7C10B6A98100DE563C /* AdditionTests.m */; };
 		EB9E6C8210B6AA6000DE563C /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */; };
+		EB9E6CA410B6AD9400DE563C /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */; };
+		EB9E6CAC10B6AE0F00DE563C /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6CAA10B6AE0F00DE563C /* TTMarkupStripper.m */; };
+		EB9E6CDC10B6AECE00DE563C /* TTMarkupStripper.h in Headers */ = {isa = PBXBuildFile; fileRef = EB9E6CDB10B6AECE00DE563C /* TTMarkupStripper.h */; };
+		EB9E6CEE10B6AFA000DE563C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB9E6CED10B6AFA000DE563C /* QuartzCore.framework */; };
+		EB9E6CF310B6AFB200DE563C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		EB9E6CF810B6AFE000DE563C /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6CAA10B6AE0F00DE563C /* TTMarkupStripper.m */; };
+		EB9E6CFE10B6B01800DE563C /* TTNSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6CFC10B6B01800DE563C /* TTNSStringAdditions.m */; };
+		EB9E6D3910B6B0E200DE563C /* TTNSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EB9E6D3810B6B0E200DE563C /* TTNSStringAdditions.h */; };
 		EBA17A2010B4DDD500835016 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */; };
 		EBA17A3810B4DF5E00835016 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */; };
 		EBBB349710B36CCE00AD5BCF /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = EBBB349610B36CCE00AD5BCF /* TTDebug.h */; };
@@ -373,6 +381,11 @@
 		EB9E6C6310B6A8F800DE563C /* CoreUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreUnitTests-Info.plist"; sourceTree = "<group>"; };
 		EB9E6C7B10B6A98100DE563C /* AdditionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdditionTests.h; path = tests/AdditionTests.h; sourceTree = "<group>"; };
 		EB9E6C7C10B6A98100DE563C /* AdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdditionTests.m; path = tests/AdditionTests.m; sourceTree = "<group>"; };
+		EB9E6CAA10B6AE0F00DE563C /* TTMarkupStripper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMarkupStripper.m; sourceTree = "<group>"; };
+		EB9E6CDB10B6AECE00DE563C /* TTMarkupStripper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMarkupStripper.h; path = Three20/TTMarkupStripper.h; sourceTree = "<group>"; };
+		EB9E6CED10B6AFA000DE563C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EB9E6CFC10B6B01800DE563C /* TTNSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNSStringAdditions.m; sourceTree = "<group>"; };
+		EB9E6D3810B6B0E200DE563C /* TTNSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNSStringAdditions.h; path = Three20/TTNSStringAdditions.h; sourceTree = "<group>"; };
 		EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
 		EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataAdditions.h; path = Three20/NSDataAdditions.h; sourceTree = "<group>"; };
 		EBBB349610B36CCE00AD5BCF /* TTDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebug.h; path = Three20/TTDebug.h; sourceTree = "<group>"; };
@@ -394,6 +407,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB9E6CEE10B6AFA000DE563C /* QuartzCore.framework in Frameworks */,
+				EB9E6CF310B6AFB200DE563C /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +448,7 @@
 				EB9E6C7910B6A94700DE563C /* Tests */,
 				BEB463DC0F8F2DB5004B34A0 /* developer.h */,
 				EB9E6C6310B6A8F800DE563C /* CoreUnitTests-Info.plist */,
+				EB9E6CED10B6AFA000DE563C /* QuartzCore.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -492,10 +508,13 @@
 		BE8AA1870F428A0F00FD8C43 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
 				BEAF21350F4D32E100D75F3B /* NSObjectAdditions.h */,
 				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
 				BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */,
 				BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */,
+				EB9E6D3810B6B0E200DE563C /* TTNSStringAdditions.h */,
+				EB9E6CFC10B6B01800DE563C /* TTNSStringAdditions.m */,
 				BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */,
 				BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */,
 				BED623910F50F34B003EF242 /* NSArrayAdditions.h */,
@@ -747,6 +766,15 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		EB9E6CA810B6ADF300DE563C /* Markup Stripper */ = {
+			isa = PBXGroup;
+			children = (
+				EB9E6CDB10B6AECE00DE563C /* TTMarkupStripper.h */,
+				EB9E6CAA10B6AE0F00DE563C /* TTMarkupStripper.m */,
+			);
+			name = "Markup Stripper";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -842,6 +870,8 @@
 				EBA17A3810B4DF5E00835016 /* NSDataAdditions.h in Headers */,
 				C6620EAD109CEDA400EC35C6 /* UIWindowAdditions.h in Headers */,
 				EBDC8EB610C5CCB000257247 /* TTDebugFlags.h in Headers */,
+				EB9E6CDC10B6AECE00DE563C /* TTMarkupStripper.h in Headers */,
+				EB9E6D3910B6B0E200DE563C /* TTNSStringAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,6 +1047,8 @@
 				EB1F6C5F10B36C32003DAA1F /* TTDebug.m in Sources */,
 				EBA17A2010B4DDD500835016 /* NSDataAdditions.m in Sources */,
 				C6620EAE109CEDA400EC35C6 /* UIWindowAdditions.m in Sources */,
+				EB9E6CAC10B6AE0F00DE563C /* TTMarkupStripper.m in Sources */,
+				EB9E6CFE10B6B01800DE563C /* TTNSStringAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,6 +1058,8 @@
 			files = (
 				EB9E6C7D10B6A98100DE563C /* AdditionTests.m in Sources */,
 				EB9E6C8210B6AA6000DE563C /* NSDataAdditions.m in Sources */,
+				EB9E6CA410B6AD9400DE563C /* NSStringAdditions.m in Sources */,
+				EB9E6CF810B6AFE000DE563C /* TTMarkupStripper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

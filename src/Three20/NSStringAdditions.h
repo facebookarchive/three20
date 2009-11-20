@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NSString (TTCategory)
+@interface NSString (TTAdditions)
 
 /**
  * Determines if the string contains only whitespace.
@@ -43,17 +43,6 @@
  * Returns a string with all HTML tags removed.
  */
 - (NSString*)stringByRemovingHTMLTags;
-
-/**
- * Converts the string to an object using TTURLMap.
- */
-- (id)objectValue;
-
-/**
- * Opens a URL with the string using TTURLMap.
- */
-- (void)openURL;
-- (void)openURLFromButton:(UIView*)button;
 
 /**
  * Compares two strings expressing software versions.
@@ -90,3 +79,4 @@
 - (NSComparisonResult)versionStringCompare:(NSString *)other;
 
 @end
+
