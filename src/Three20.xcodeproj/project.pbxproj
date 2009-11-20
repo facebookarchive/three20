@@ -518,17 +518,12 @@
 		BE8AA1870F428A0F00FD8C43 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				EB9E6F9D10B73F1700DE563C /* Core */,
 				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
-				BEAF21350F4D32E100D75F3B /* NSObjectAdditions.h */,
-				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
-				BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */,
-				BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */,
 				EB9E6D3810B6B0E200DE563C /* TTNSStringAdditions.h */,
 				EB9E6CFC10B6B01800DE563C /* TTNSStringAdditions.m */,
 				BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */,
 				BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */,
-				BED623910F50F34B003EF242 /* NSArrayAdditions.h */,
-				BED623930F50F350003EF242 /* NSArrayAdditions.m */,
 				BEAF21360F4D32E100D75F3B /* UIColorAdditions.h */,
 				BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */,
 				BEA6B8E31013FC3400B83B3A /* UIFontAdditions.h */,
@@ -787,6 +782,19 @@
 				EB9E6CAA10B6AE0F00DE563C /* TTMarkupStripper.m */,
 			);
 			name = "Markup Stripper";
+			sourceTree = "<group>";
+		};
+		EB9E6F9D10B73F1700DE563C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				BEAF21350F4D32E100D75F3B /* NSObjectAdditions.h */,
+				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
+				BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */,
+				BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */,
+				BED623910F50F34B003EF242 /* NSArrayAdditions.h */,
+				BED623930F50F350003EF242 /* NSArrayAdditions.m */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
