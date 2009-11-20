@@ -188,6 +188,9 @@
 		EB9E6CF810B6AFE000DE563C /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6CAA10B6AE0F00DE563C /* TTMarkupStripper.m */; };
 		EB9E6CFE10B6B01800DE563C /* TTNSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6CFC10B6B01800DE563C /* TTNSStringAdditions.m */; };
 		EB9E6D3910B6B0E200DE563C /* TTNSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EB9E6D3810B6B0E200DE563C /* TTNSStringAdditions.h */; };
+		EB9E6E3A10B7300100DE563C /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6E3810B7300100DE563C /* TTGlobalCore.m */; };
+		EB9E6E3D10B730E700DE563C /* TTGlobalCore.h in Headers */ = {isa = PBXBuildFile; fileRef = EB9E6E3C10B730E700DE563C /* TTGlobalCore.h */; };
+		EB9E6E3E10B730EB00DE563C /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6E3810B7300100DE563C /* TTGlobalCore.m */; };
 		EBA17A2010B4DDD500835016 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */; };
 		EBA17A3810B4DF5E00835016 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */; };
 		EBBB349710B36CCE00AD5BCF /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = EBBB349610B36CCE00AD5BCF /* TTDebug.h */; };
@@ -386,6 +389,8 @@
 		EB9E6CED10B6AFA000DE563C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EB9E6CFC10B6B01800DE563C /* TTNSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNSStringAdditions.m; sourceTree = "<group>"; };
 		EB9E6D3810B6B0E200DE563C /* TTNSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNSStringAdditions.h; path = Three20/TTNSStringAdditions.h; sourceTree = "<group>"; };
+		EB9E6E3810B7300100DE563C /* TTGlobalCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCore.m; sourceTree = "<group>"; };
+		EB9E6E3C10B730E700DE563C /* TTGlobalCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCore.h; path = Three20/TTGlobalCore.h; sourceTree = "<group>"; };
 		EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
 		EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataAdditions.h; path = Three20/NSDataAdditions.h; sourceTree = "<group>"; };
 		EBBB349610B36CCE00AD5BCF /* TTDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebug.h; path = Three20/TTDebug.h; sourceTree = "<group>"; };
@@ -693,6 +698,8 @@
 				EBBB349610B36CCE00AD5BCF /* TTDebug.h */,
 				EB1F6C5D10B36C32003DAA1F /* TTDebug.m */,
 				EBDC8EB510C5CCB000257247 /* TTDebugFlags.h */,
+				EB9E6E3C10B730E700DE563C /* TTGlobalCore.h */,
+				EB9E6E3810B7300100DE563C /* TTGlobalCore.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -872,6 +879,7 @@
 				EBDC8EB610C5CCB000257247 /* TTDebugFlags.h in Headers */,
 				EB9E6CDC10B6AECE00DE563C /* TTMarkupStripper.h in Headers */,
 				EB9E6D3910B6B0E200DE563C /* TTNSStringAdditions.h in Headers */,
+				EB9E6E3D10B730E700DE563C /* TTGlobalCore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,6 +1057,7 @@
 				C6620EAE109CEDA400EC35C6 /* UIWindowAdditions.m in Sources */,
 				EB9E6CAC10B6AE0F00DE563C /* TTMarkupStripper.m in Sources */,
 				EB9E6CFE10B6B01800DE563C /* TTNSStringAdditions.m in Sources */,
+				EB9E6E3A10B7300100DE563C /* TTGlobalCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1060,6 +1069,7 @@
 				EB9E6C8210B6AA6000DE563C /* NSDataAdditions.m in Sources */,
 				EB9E6CA410B6AD9400DE563C /* NSStringAdditions.m in Sources */,
 				EB9E6CF810B6AFE000DE563C /* TTMarkupStripper.m in Sources */,
+				EB9E6E3E10B730EB00DE563C /* TTGlobalCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
