@@ -215,7 +215,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 }
 
 - (NSData*)dataForURL:(NSString*)URL {
-  return [self dataForURL:URL expires:0 timestamp:nil];
+  return [self dataForURL:URL expires:TT_CACHE_EXPIRATION_AGE_NEVER timestamp:nil];
 }
 
 - (NSData*)dataForURL:(NSString*)URL expires:(NSTimeInterval)expirationAge
