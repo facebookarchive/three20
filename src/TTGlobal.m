@@ -24,36 +24,6 @@ static int gNetworkTaskCount = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-static const void* TTRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
-static void TTReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
-
-NSMutableArray* TTCreateNonRetainingArray() {
-  CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
-  callbacks.retain = TTRetainNoOp;
-  callbacks.release = TTReleaseNoOp;
-  return (NSMutableArray*)CFArrayCreateMutable(nil, 0, &callbacks);
-}
-
-NSMutableDictionary* TTCreateNonRetainingDictionary() {
-  CFDictionaryKeyCallBacks keyCallbacks = kCFTypeDictionaryKeyCallBacks;
-  CFDictionaryValueCallBacks callbacks = kCFTypeDictionaryValueCallBacks;
-  callbacks.retain = TTRetainNoOp;
-  callbacks.release = TTReleaseNoOp;
-  return (NSMutableDictionary*)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
-}
-
-BOOL TTIsEmptyArray(id object) {
-  return [object isKindOfClass:[NSArray class]] && ![(NSArray*)object count];
-}
-
-BOOL TTIsEmptySet(id object) {
-  return [object isKindOfClass:[NSSet class]] && ![(NSSet*)object count];
-}
-
-BOOL TTIsEmptyString(id object) {
-  return [object isKindOfClass:[NSString class]] && ![(NSString*)object length];
-}
-
 BOOL TTIsKeyboardVisible() {
   // Operates on the assumption that the keyboard is visible if and only if there is a first
   // responder; i.e. a control responding to key events
@@ -178,20 +148,6 @@ CGFloat TTKeyboardHeightForOrientation(UIInterfaceOrientation orientation) {
   } else {
     return TT_LANDSCAPE_KEYBOARD_HEIGHT;
   }
-}
-
-CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
-}
-
-CGRect TTRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectOffset(TTRectContract(rect, dx, dy), dx, dy);
-}
-
-CGRect TTRectInset(CGRect rect, UIEdgeInsets insets) {
-  return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
-                    rect.size.width - (insets.left + insets.right),
-                    rect.size.height - (insets.top + insets.bottom));
 }
 
 void TTNetworkRequestStarted() {
