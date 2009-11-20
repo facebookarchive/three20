@@ -193,6 +193,7 @@
 		EB9E6E3E10B730EB00DE563C /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6E3810B7300100DE563C /* TTGlobalCore.m */; };
 		EB9E6E8710B731F600DE563C /* CoreGlobalTests.h in Headers */ = {isa = PBXBuildFile; fileRef = EB9E6E8510B731F600DE563C /* CoreGlobalTests.h */; };
 		EB9E6E8A10B7324900DE563C /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */; };
+		EB9E6F5D10B7391800DE563C /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BED623930F50F350003EF242 /* NSArrayAdditions.m */; };
 		EBA17A2010B4DDD500835016 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */; };
 		EBA17A3810B4DF5E00835016 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */; };
 		EBBB349710B36CCE00AD5BCF /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = EBBB349610B36CCE00AD5BCF /* TTDebug.h */; };
@@ -1078,6 +1079,7 @@
 				EB9E6CF810B6AFE000DE563C /* TTMarkupStripper.m in Sources */,
 				EB9E6E3E10B730EB00DE563C /* TTGlobalCore.m in Sources */,
 				EB9E6E8A10B7324900DE563C /* CoreGlobalTests.m in Sources */,
+				EB9E6F5D10B7391800DE563C /* NSArrayAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

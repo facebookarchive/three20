@@ -195,4 +195,110 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSArrayAdditions
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSArray_perform {
+  NSMutableArray* obj1 = [[NSMutableArray alloc] init];
+  NSMutableArray* obj2 = [[NSMutableArray alloc] init];
+  NSMutableArray* obj3 = [[NSMutableArray alloc] init];
+
+  NSArray* arrayWithObjects = [[NSArray alloc] initWithObjects:obj1, obj2, obj3, nil];
+
+  // No parameters
+
+  [arrayWithObjects perform:@selector(retain)];
+
+  for (id obj in arrayWithObjects) {
+    STAssertTrue([obj retainCount] == 3, @"Retain count wasn't modified, %d", [obj retainCount]);
+  }
+
+  [arrayWithObjects perform:@selector(release)];
+
+  for (id obj in arrayWithObjects) {
+    STAssertTrue([obj retainCount] == 2, @"Retain count wasn't modified, %d", [obj retainCount]);
+  }
+
+  // One parameter
+
+  NSMutableArray* obj4 = [[NSMutableArray alloc] init];
+  [arrayWithObjects perform:@selector(addObject:) withObject:obj4];
+
+  for (id obj in arrayWithObjects) {
+    STAssertTrue([obj count] == 1, @"The new object wasn't added, %d", [obj count]);
+  }
+
+  // Two parameters
+
+  NSMutableArray* obj5 = [[NSMutableArray alloc] init];
+  [arrayWithObjects perform:@selector(replaceObjectAtIndex:withObject:)
+    withObject:0 withObject:obj5];
+
+  for (id obj in arrayWithObjects) {
+    STAssertTrue([obj count] == 1, @"The array should have the same count, %d", [obj count]);
+    STAssertEquals([obj objectAtIndex:0], obj5, @"The new object should have been swapped");
+  }
+
+  TT_RELEASE_SAFELY(arrayWithObjects);
+  TT_RELEASE_SAFELY(obj1);
+  TT_RELEASE_SAFELY(obj2);
+  TT_RELEASE_SAFELY(obj3);
+  TT_RELEASE_SAFELY(obj4);
+  TT_RELEASE_SAFELY(obj5);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSArray_objectWithValue {
+  NSArray* arrayWithObjects = [[NSArray alloc] initWithObjects:
+    [NSDictionary dictionaryWithObject:@"three20" forKey:@"name"],
+    [NSDictionary dictionaryWithObject:@"objc"    forKey:@"name"],
+    nil];
+
+  STAssertNotNil([arrayWithObjects objectWithValue:@"three20" forKey:@"name"],
+    @"Should have found an object");
+
+  STAssertNil([arrayWithObjects objectWithValue:@"three20" forKey:@"no"],
+    @"Should not have found an object");
+
+  STAssertNil([arrayWithObjects objectWithValue:@"three20" forKey:nil],
+    @"Should not have found an object");
+
+  STAssertNil([arrayWithObjects objectWithValue:nil forKey:@"name"],
+    @"Should not have found an object");
+
+  STAssertNil([arrayWithObjects objectWithValue:nil forKey:nil],
+    @"Should not have found an object");
+
+  TT_RELEASE_SAFELY(arrayWithObjects);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSArray_objectWithClass {
+  NSArray* arrayWithObjects = [[NSArray alloc] initWithObjects:
+    [NSMutableDictionary dictionaryWithObject:@"three20" forKey:@"name"],
+    [NSMutableDictionary dictionaryWithObject:@"objc" forKey:@"name"],
+    nil];
+
+  STAssertNotNil([arrayWithObjects objectWithClass:[NSDictionary class]],
+    @"Should have found an object");
+
+  STAssertNotNil([arrayWithObjects objectWithClass:[NSMutableDictionary class]],
+    @"Should have found an object");
+
+  STAssertNil([arrayWithObjects objectWithClass:[NSArray class]],
+    @"Should not have found an object");
+
+  STAssertNil([arrayWithObjects objectWithClass:nil],
+    @"Should not have found an object");
+
+  TT_RELEASE_SAFELY(arrayWithObjects);
+}
+
+
 @end
