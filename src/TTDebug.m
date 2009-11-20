@@ -20,14 +20,11 @@
 
 #if TARGET_IPHONE_SIMULATOR
 
-#include <assert.h>
-#include <stdbool.h>
-#include <sys/types.h>
 #include <unistd.h>
 #include <sys/sysctl.h>
 
 // From: http://developer.apple.com/mac/library/qa/qa2004/qa1361.html
-bool inDebugger(void) {
+int TTIsInDebugger(void) {
   int                 junk;
   int                 mib[4];
   struct kinfo_proc   info;
