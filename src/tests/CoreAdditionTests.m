@@ -301,4 +301,44 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Non-empty strings for NSMutableArray and NSMutableDictionary
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNonEmptyArrayStrings {
+  NSMutableArray* arrayOfStrings = [[NSMutableArray alloc] init];
+
+  [arrayOfStrings addNonEmptyString:nil];
+  STAssertTrue([arrayOfStrings count] == 0, @"nil shouldn't be added");
+
+  [arrayOfStrings addNonEmptyString:@""];
+  STAssertTrue([arrayOfStrings count] == 0, @"empty string shouldn't be added");
+
+  [arrayOfStrings addNonEmptyString:@"three20"];
+  STAssertTrue([arrayOfStrings count] == 1, @"string should have been added");
+
+  TT_RELEASE_SAFELY(arrayOfStrings);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNonEmptyDictionaryStrings {
+  NSMutableDictionary* dictionaryOfStrings = [[NSMutableDictionary alloc] init];
+
+  [dictionaryOfStrings setNonEmptyString:nil forKey:@"name"];
+  STAssertTrue([dictionaryOfStrings count] == 0, @"nil shouldn't be added");
+
+  [dictionaryOfStrings setNonEmptyString:@"" forKey:@"name"];
+  STAssertTrue([dictionaryOfStrings count] == 0, @"empty string shouldn't be added");
+
+  [dictionaryOfStrings setNonEmptyString:@"three20" forKey:@"name"];
+  STAssertTrue([dictionaryOfStrings count] == 1, @"string should have been added");
+
+  TT_RELEASE_SAFELY(dictionaryOfStrings);
+}
+
+
 @end

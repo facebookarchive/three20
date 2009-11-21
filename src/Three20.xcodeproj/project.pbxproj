@@ -194,6 +194,8 @@
 		EB9E6E8710B731F600DE563C /* CoreGlobalTests.h in Headers */ = {isa = PBXBuildFile; fileRef = EB9E6E8510B731F600DE563C /* CoreGlobalTests.h */; };
 		EB9E6E8A10B7324900DE563C /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */; };
 		EB9E6F5D10B7391800DE563C /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BED623930F50F350003EF242 /* NSArrayAdditions.m */; };
+		EB9E71CC10B782EC00DE563C /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */; };
+		EB9E71CE10B782F100DE563C /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */; };
 		EBA17A2010B4DDD500835016 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */; };
 		EBA17A3810B4DF5E00835016 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */; };
 		EBBB349710B36CCE00AD5BCF /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = EBBB349610B36CCE00AD5BCF /* TTDebug.h */; };
@@ -518,40 +520,8 @@
 		BE8AA1870F428A0F00FD8C43 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				EB9E71EA10B783E500DE563C /* UI */,
 				EB9E6F9D10B73F1700DE563C /* Core */,
-				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
-				EB9E6D3810B6B0E200DE563C /* TTNSStringAdditions.h */,
-				EB9E6CFC10B6B01800DE563C /* TTNSStringAdditions.m */,
-				BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */,
-				BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */,
-				BEAF21360F4D32E100D75F3B /* UIColorAdditions.h */,
-				BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */,
-				BEA6B8E31013FC3400B83B3A /* UIFontAdditions.h */,
-				BEA6B8E51013FC4900B83B3A /* UIFontAdditions.m */,
-				BEAF21370F4D32E100D75F3B /* UIImageAdditions.h */,
-				BEAF211D0F4D329600D75F3B /* UIImageAdditions.m */,
-				BE8AA1920F428A4900FD8C43 /* UIViewControllerAdditions.h */,
-				BE8AA1900F428A3700FD8C43 /* UIViewControllerAdditions.m */,
-				BE7DD3A91001EDFF00662212 /* UINavigationControllerAdditions.h */,
-				BE7DD3A51001EDE000662212 /* UINavigationControllerAdditions.m */,
-				BE7DD3AA1001EDFF00662212 /* UITabBarControllerAdditions.h */,
-				BE7DD3A61001EDE000662212 /* UITabBarControllerAdditions.m */,
-				BEAF213A0F4D32E100D75F3B /* UIViewAdditions.h */,
-				BEAF21200F4D329600D75F3B /* UIViewAdditions.m */,
-				BEAF21380F4D32E100D75F3B /* UITableViewAdditions.h */,
-				BEAF211E0F4D329600D75F3B /* UITableViewAdditions.m */,
-				BEAF213B0F4D32E100D75F3B /* UIWebViewAdditions.h */,
-				BEAF21210F4D329600D75F3B /* UIWebViewAdditions.m */,
-				BEAF21390F4D32E100D75F3B /* UIToolbarAdditions.h */,
-				BEAF211F0F4D329600D75F3B /* UIToolbarAdditions.m */,
-				6E35CCFC10912C870066B478 /* NSMutableArrayAdditions.h */,
-				6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */,
-				6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */,
-				6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */,
-				EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */,
-				EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */,
-				C6620EAB109CEDA400EC35C6 /* UIWindowAdditions.h */,
-				C6620EAC109CEDA400EC35C6 /* UIWindowAdditions.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -787,14 +757,54 @@
 		EB9E6F9D10B73F1700DE563C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
 				BEAF21350F4D32E100D75F3B /* NSObjectAdditions.h */,
 				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
 				BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */,
 				BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */,
 				BED623910F50F34B003EF242 /* NSArrayAdditions.h */,
 				BED623930F50F350003EF242 /* NSArrayAdditions.m */,
+				6E35CCFC10912C870066B478 /* NSMutableArrayAdditions.h */,
+				6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */,
+				6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */,
+				6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */,
+				EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */,
+				EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */,
+				BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */,
+				BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		EB9E71EA10B783E500DE563C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EB9E6D3810B6B0E200DE563C /* TTNSStringAdditions.h */,
+				EB9E6CFC10B6B01800DE563C /* TTNSStringAdditions.m */,
+				BEAF21360F4D32E100D75F3B /* UIColorAdditions.h */,
+				BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */,
+				BEA6B8E31013FC3400B83B3A /* UIFontAdditions.h */,
+				BEA6B8E51013FC4900B83B3A /* UIFontAdditions.m */,
+				BEAF21370F4D32E100D75F3B /* UIImageAdditions.h */,
+				BEAF211D0F4D329600D75F3B /* UIImageAdditions.m */,
+				BE8AA1920F428A4900FD8C43 /* UIViewControllerAdditions.h */,
+				BE8AA1900F428A3700FD8C43 /* UIViewControllerAdditions.m */,
+				BE7DD3A91001EDFF00662212 /* UINavigationControllerAdditions.h */,
+				BE7DD3A51001EDE000662212 /* UINavigationControllerAdditions.m */,
+				BE7DD3AA1001EDFF00662212 /* UITabBarControllerAdditions.h */,
+				BE7DD3A61001EDE000662212 /* UITabBarControllerAdditions.m */,
+				BEAF213A0F4D32E100D75F3B /* UIViewAdditions.h */,
+				BEAF21200F4D329600D75F3B /* UIViewAdditions.m */,
+				BEAF21380F4D32E100D75F3B /* UITableViewAdditions.h */,
+				BEAF211E0F4D329600D75F3B /* UITableViewAdditions.m */,
+				BEAF213B0F4D32E100D75F3B /* UIWebViewAdditions.h */,
+				BEAF21210F4D329600D75F3B /* UIWebViewAdditions.m */,
+				BEAF21390F4D32E100D75F3B /* UIToolbarAdditions.h */,
+				BEAF211F0F4D329600D75F3B /* UIToolbarAdditions.m */,
+				C6620EAB109CEDA400EC35C6 /* UIWindowAdditions.h */,
+				C6620EAC109CEDA400EC35C6 /* UIWindowAdditions.m */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1088,6 +1098,8 @@
 				EB9E6E3E10B730EB00DE563C /* TTGlobalCore.m in Sources */,
 				EB9E6E8A10B7324900DE563C /* CoreGlobalTests.m in Sources */,
 				EB9E6F5D10B7391800DE563C /* NSArrayAdditions.m in Sources */,
+				EB9E71CC10B782EC00DE563C /* NSMutableArrayAdditions.m in Sources */,
+				EB9E71CE10B782F100DE563C /* NSMutableDictionaryAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
