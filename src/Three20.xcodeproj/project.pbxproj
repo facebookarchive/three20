@@ -618,7 +618,6 @@
 				BEF31F4D0F352E64000DE5D2 /* TTScrollView.m */,
 			);
 			name = Views;
-			path = ../src;
 			sourceTree = SOURCE_ROOT;
 		};
 		BEF321B00F353B15000DE5D2 /* Network */ = {
