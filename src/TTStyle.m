@@ -1026,6 +1026,7 @@ static const NSInteger kDefaultLightSource = 125;
 @implementation TTReflectiveFillStyle
 
 @synthesize color = _color;
+@synthesize withBottomHighlight = _withBottomHighlight;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -1033,6 +1034,15 @@ static const NSInteger kDefaultLightSource = 125;
 + (TTReflectiveFillStyle*)styleWithColor:(UIColor*)color next:(TTStyle*)next {
   TTReflectiveFillStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.color = color;
+  style.withBottomHighlight = NO;
+  return style;
+}
+
++ (TTReflectiveFillStyle*)styleWithColor:(UIColor*)color
+                          withBottomHighlight:(BOOL)withBottomHighlight next:(TTStyle*)next {
+  TTReflectiveFillStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.color = color;
+  style.withBottomHighlight = withBottomHighlight;
   return style;
 }
 
@@ -1062,30 +1072,33 @@ static const NSInteger kDefaultLightSource = 125;
   [context.shape addToPath:rect];
   CGContextClip(ctx);
 
+  // Draw the background color
   [_color setFill];
   CGContextFillRect(ctx, rect);
 
-  // XXjoe These numbers are totally biased towards the colors I tested with.  I need to figure out
-  // a formula that works well for all colors
-  UIColor* lighter = nil, *darker = nil;
-  if (_color.value < 0.5) {
-    lighter = HSVCOLOR(_color.hue, ZEROLIMIT(_color.saturation-0.5), ZEROLIMIT(_color.value+0.25));
-    darker = HSVCOLOR(_color.hue, ZEROLIMIT(_color.saturation-0.1), ZEROLIMIT(_color.value+0.1));
-  } else if (_color.saturation > 0.6) {
-    lighter = HSVCOLOR(_color.hue, _color.saturation*0.3, _color.value*1);
-    darker = HSVCOLOR(_color.hue, _color.saturation*0.9, _color.value+0.05);
+  // The highlights are drawn using an overlayed, semi-transparent gradient.
+  // The values here are absolutely arbitrary. They were nabbed by inspecting the colors of
+  // the "Delete Contact" button in the Contacts app.
+  UIColor* topStartHighlight = [UIColor colorWithWhite:1.0 alpha:0.685];
+  UIColor* topEndHighlight = [UIColor colorWithWhite:1.0 alpha:0.13];
+  UIColor* clearColor = [UIColor colorWithWhite:1.0 alpha:0.0];
+
+  UIColor* botEndHighlight;
+  if( _withBottomHighlight ) {
+    botEndHighlight = [UIColor colorWithWhite:1.0 alpha:0.27];
   } else {
-    lighter = HSVCOLOR(_color.hue, _color.saturation*0.4, _color.value*1.2);
-    darker = HSVCOLOR(_color.hue, _color.saturation*0.9, _color.value+0.05);
+    botEndHighlight = clearColor;
   }
-//  //UIColor* lighter = [_color multiplyHue:1 saturation:0.5 value:1.35];
-//  //UIColor* darker = [_color multiplyHue:1 saturation:0.88 value:1.05];
-  UIColor* colors[] = {lighter, darker};
-  
-  CGGradientRef gradient = [self newGradientWithColors:colors count:2];
+
+  UIColor* colors[] = {
+    topStartHighlight, topEndHighlight,
+    clearColor,
+    clearColor, botEndHighlight};
+  CGFloat locations[] = {0, 0.5, 0.5, 0.6, 1.0};
+
+  CGGradientRef gradient = [self newGradientWithColors:colors locations:locations count:5];
   CGContextDrawLinearGradient(ctx, gradient, CGPointMake(rect.origin.x, rect.origin.y),
-    CGPointMake(rect.origin.x, rect.origin.y+rect.size.height*0.5),
-    kCGGradientDrawsBeforeStartLocation);
+    CGPointMake(rect.origin.x, rect.origin.y+rect.size.height), 0);
   CGGradientRelease(gradient);
 
   CGContextRestoreGState(ctx);
@@ -1264,6 +1277,76 @@ static const NSInteger kDefaultLightSource = 125;
   CGContextRestoreGState(ctx);
 
   context.frame = CGRectInset(context.frame, _width, _width);
+  return [self.next draw:context];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation TTHighlightBorderStyle
+
+@synthesize color = _color, highlightColor = _highlightColor, width = _width;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
++ (TTHighlightBorderStyle*)styleWithColor:(UIColor*)color highlightColor:(UIColor*)highlightColor
+                           width:(CGFloat)width next:(TTStyle*)next {
+  TTHighlightBorderStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.color = color;
+  style.highlightColor = highlightColor;
+  style.width = width;
+  return style;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithNext:(TTStyle*)next {  
+  if (self = [super initWithNext:next]) {
+    _color = nil;
+    _highlightColor = nil;
+    _width = 1;
+  }
+  return self;
+}
+
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_color);
+  TT_RELEASE_SAFELY(_highlightColor);
+  [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTStyle
+
+- (void)draw:(TTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGContextSaveGState(ctx);
+
+  {
+    CGRect strokeRect = CGRectInset(context.frame, _width/2, _width/2);
+    strokeRect.size.height-=2;
+    strokeRect.origin.y++;
+    [context.shape addToPath:strokeRect];
+
+    [_highlightColor setStroke];
+    CGContextSetLineWidth(ctx, _width);
+    CGContextStrokePath(ctx);
+  }
+
+  {
+    CGRect strokeRect = CGRectInset(context.frame, _width/2, _width/2);
+    strokeRect.size.height-=2;
+    [context.shape addToPath:strokeRect];
+
+    [_color setStroke];
+    CGContextSetLineWidth(ctx, _width);
+    CGContextStrokePath(ctx);
+  }
+
+  context.frame = CGRectInset(context.frame, _width, _width * 2);
   return [self.next draw:context];
 }
 

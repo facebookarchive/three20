@@ -251,12 +251,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTReflectiveFillStyle : TTStyle {
-  UIColor* _color;
+  UIColor*  _color;
+  BOOL      _withBottomHighlight;
 }
 
 @property(nonatomic,retain) UIColor* color;
+@property(nonatomic,assign) BOOL     withBottomHighlight;
 
 + (TTReflectiveFillStyle*)styleWithColor:(UIColor*)color next:(TTStyle*)next;
++ (TTReflectiveFillStyle*)styleWithColor:(UIColor*)color
+                          withBottomHighlight:(BOOL)withBottomHighlight next:(TTStyle*)next;
 
 @end
 
@@ -293,6 +297,23 @@
 @property(nonatomic) CGFloat width;
 
 + (TTSolidBorderStyle*)styleWithColor:(UIColor*)color width:(CGFloat)width next:(TTStyle*)next;
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface TTHighlightBorderStyle : TTStyle {
+  UIColor* _color;
+  UIColor* _highlightColor;
+  CGFloat _width;
+}
+
+@property(nonatomic,retain) UIColor* color;
+@property(nonatomic,retain) UIColor* highlightColor;
+@property(nonatomic) CGFloat width;
+
++ (TTHighlightBorderStyle*)styleWithColor:(UIColor*)color highlightColor:(UIColor*)highlightColor
+                           width:(CGFloat)width next:(TTStyle*)next;
 
 @end
 
