@@ -33,7 +33,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   timestamp = _timestamp, userInfo = _userInfo, isLoading = _isLoading,
   shouldHandleCookies = _shouldHandleCookies, totalBytesLoaded = _totalBytesLoaded,
   totalBytesExpected = _totalBytesExpected, respondedFromCache = _respondedFromCache,
-  headers = _headers, filterPasswordLogging = _filterPasswordLogging;
+  headers = _headers, filterPasswordLogging = _filterPasswordLogging,
+  charsetForMultipart = _charsetForMultipart;
 
 + (TTURLRequest*)request {
   return [[[TTURLRequest alloc] init] autorelease];
@@ -75,6 +76,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _totalBytesExpected = 0;
     _respondedFromCache = NO;
     _filterPasswordLogging = NO;
+    _charsetForMultipart = NSUTF8StringEncoding;
   }
   return self;
 }
@@ -145,8 +147,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];        
       [body appendData:[[NSString
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
-          dataUsingEncoding:NSUTF8StringEncoding]];
-      [body appendData:[value dataUsingEncoding:NSUTF8StringEncoding]];
+          dataUsingEncoding:_charsetForMultipart]];
+      [body appendData:[value dataUsingEncoding:_charsetForMultipart]];
     }
   }
 
@@ -161,13 +163,13 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       [body appendData:[[NSString stringWithFormat:
                        @"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n",
                        key]
-          dataUsingEncoding:NSUTF8StringEncoding]];
+          dataUsingEncoding:_charsetForMultipart]];
       [body appendData:[[NSString
         stringWithFormat:@"Content-Length: %d\r\n", data.length]
-          dataUsingEncoding:NSUTF8StringEncoding]];  
+          dataUsingEncoding:_charsetForMultipart]];  
       [body appendData:[[NSString
         stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
-          dataUsingEncoding:NSUTF8StringEncoding]];  
+          dataUsingEncoding:_charsetForMultipart]];  
       [body appendData:data];
       imageKey = key;
     }
@@ -182,11 +184,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     [body appendData:[[NSString stringWithFormat:
                        @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",
                        fileName, fileName]
-          dataUsingEncoding:NSUTF8StringEncoding]];
+          dataUsingEncoding:_charsetForMultipart]];
     [body appendData:[[NSString stringWithFormat:@"Content-Length: %d\r\n", data.length]
-          dataUsingEncoding:NSUTF8StringEncoding]];  
+          dataUsingEncoding:_charsetForMultipart]];  
     [body appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType]
-          dataUsingEncoding:NSUTF8StringEncoding]];  
+          dataUsingEncoding:_charsetForMultipart]];  
     [body appendData:data];
   }
 

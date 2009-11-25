@@ -39,6 +39,7 @@
   BOOL _shouldHandleCookies;
   BOOL _respondedFromCache;
   BOOL _filterPasswordLogging;
+  NSStringEncoding _charsetForMultipart;
 }
 
 /**
@@ -111,6 +112,13 @@
  * Whether parameters named "password" should be suppressed in log messages.
  */
 @property(nonatomic,assign) BOOL filterPasswordLogging;
+
+/**
+ * Charset to use when creating multipart/form-data data.
+ * The default is NSUTF8StringEncoding to remain backwards
+ * compatible
+ */
+@property(nonatomic) NSStringEncoding charsetForMultipart;
 
 + (TTURLRequest*)request;
 
