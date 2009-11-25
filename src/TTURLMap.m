@@ -77,11 +77,11 @@
 }
 
 - (BOOL)isWebURL:(NSURL*)URL {
-  return [URL.scheme isEqualToString:@"http"]
-         || [URL.scheme isEqualToString:@"https"]
-         || [URL.scheme isEqualToString:@"ftp"]
-         || [URL.scheme isEqualToString:@"ftps"]
-         || [URL.scheme isEqualToString:@"data"];
+  return [URL.scheme caseInsensitiveCompare:@"http"] == NSOrderedSame
+         || [URL.scheme caseInsensitiveCompare:@"https"] == NSOrderedSame
+         || [URL.scheme caseInsensitiveCompare:@"ftp"] == NSOrderedSame
+         || [URL.scheme caseInsensitiveCompare:@"ftps"] == NSOrderedSame
+         || [URL.scheme caseInsensitiveCompare:@"data"] == NSOrderedSame;
 }
 
 - (BOOL)isExternalURL:(NSURL*)URL {
