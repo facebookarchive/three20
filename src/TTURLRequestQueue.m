@@ -44,6 +44,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (void)removeRequest:(TTURLRequest*)request;
 
 - (void)load:(NSURL*)URL;
+- (void)loadSynchronously:(NSURL*)URL;
 - (BOOL)cancel:(TTURLRequest*)request;
 
 @end
@@ -234,6 +235,37 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (void)load:(NSURL*)URL {
   if (!_connection) {
     [self connectToURL:URL];
+  }
+}
+
+- (void)loadSynchronously:(NSURL*)URL {
+  // This method simulates an asynchronous network connection. If your delegate isn't being called
+  // correctly, this would be the place to start tracing for errors.
+  TTNetworkRequestStarted();
+
+  TTURLRequest* request = _requests.count == 1 ? [_requests objectAtIndex:0] : nil;
+  NSURLRequest* URLRequest = [_queue createNSURLRequest:request URL:URL];
+
+  NSHTTPURLResponse* response = nil;
+  NSError* error = nil;
+  NSData* data = [NSURLConnection
+    sendSynchronousRequest: URLRequest
+         returningResponse: &response
+                     error: &error];
+
+  if (nil != error) {
+    TTNetworkRequestStopped();
+
+    TT_RELEASE_SAFELY(_responseData);
+    TT_RELEASE_SAFELY(_connection);
+
+    [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
+            withObject:error];
+  } else {
+    [self connection:nil didReceiveResponse:(NSHTTPURLResponse*)response];
+    [self connection:nil didReceiveData:data];
+
+    [self connectionDidFinishLoading:nil];
   }
 }
 
@@ -555,6 +587,42 @@ static TTURLRequestQueue* gMainQueue = nil;
   }
   [loader release];
   
+  return NO;
+}
+
+- (BOOL)sendSynchronousRequest:(TTURLRequest*)request {
+  if ([self loadRequestFromCache:request]) {
+    return YES;
+  }
+
+  for (id<TTURLRequestDelegate> delegate in request.delegates) {
+    if ([delegate respondsToSelector:@selector(requestDidStartLoad:)]) {
+      [delegate requestDidStartLoad:request];
+    }
+  }
+
+  if (!request.URL.length) {
+    NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
+    for (id<TTURLRequestDelegate> delegate in request.delegates) {
+      if ([delegate respondsToSelector:@selector(request:didFailLoadWithError:)]) {
+        [delegate request:request didFailLoadWithError:error];
+      }
+    }
+    return NO;
+  }
+
+  request.isLoading = YES;
+
+  // Finally, create a new loader and hit the network (unless we are suspended)
+  TTRequestLoader* loader = [[TTRequestLoader alloc] initForRequest:request queue:self];
+  [_loaders setObject:loader forKey:request.cacheKey];
+
+  // Should be decremented eventually by loadSynchronously
+  ++_totalLoading;
+
+  [loader loadSynchronously:[NSURL URLWithString:request.URL]];
+  TT_RELEASE_SAFELY(loader);
+
   return NO;
 }
 

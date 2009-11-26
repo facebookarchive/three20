@@ -59,6 +59,13 @@
 - (BOOL)sendRequest:(TTURLRequest*)request;
 
 /**
+ * Synchronously loads a request from the cache or the network if it is not in the cache.
+ *
+ * @return YES if the request was loaded from the cache.
+ */
+- (BOOL)sendSynchronousRequest:(TTURLRequest*)request;
+
+/**
  * Cancels a request that is in progress.
  */
 - (void)cancelRequest:(TTURLRequest*)request;

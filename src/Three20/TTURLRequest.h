@@ -120,6 +120,16 @@
 - (BOOL)send;
 
 /**
+ * Attempts to send a Synchronous request.
+ *
+ * The request will happen Synchronously, regardless of whether the data is being grabbed from
+ * the network or from the cache.
+ *
+ * @return YES if the request was loaded from the cache.
+ */
+- (BOOL)sendSynchronously;
+
+/**
  * Cancels the request.
  *
  * If there are multiple requests going to the same URL as this request, the others will
