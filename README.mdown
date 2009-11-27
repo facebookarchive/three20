@@ -15,7 +15,7 @@ Adding Three20 to your project
 
 Three20 is compiled as a static library, and the easiest way to add it to your project is to use Xcode's "dependent project" facilities.  Here is how:
 
-1. Clone the three20 git repository: `git clone git://github.com/joehewitt/three20.git`.  Make sure 
+1. Clone the three20 git repository: `git clone git://github.com/facebook/three20.git`.  Make sure 
    you store the repository in a permanent place because Xcode will need to reference the files
    every time you compile your project.
 
@@ -96,12 +96,12 @@ Your view controllers can simply register URL patterns that they handle, and whe
 TTNavigationCenter also persists and restores the full path of navigation controllers and modal view controllers, so your users can quite the app and come back exactly where they left off.
 
 [Facebook iPhone app]: http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284882215&mt=8
-[TTPhotoViewController]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTPhotoViewController.h
-[TTMessageController]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTMessageController.h
-[TTImageView]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTImageView.h
-[TTTableViewController]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTTableViewController.h
-[TTTableViewDataSource]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTTableViewDataSource.h
-[TTURLRequest]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTURLRequest.h
-[TTTextEditor]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTTextEditor.h
-[TTPickerTextField]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTPickerTextField.h
-[TTNavigationCenter]: http://github.com/joehewitt/three20/blob/master/src/Three20/TTNavigationCenter.h
+[TTPhotoViewController]: http://github.com/facebook/three20/blob/master/src/Three20/TTPhotoViewController.h
+[TTMessageController]: http://github.com/facebook/three20/blob/master/src/Three20/TTMessageController.h
+[TTImageView]: http://github.com/facebook/three20/blob/master/src/Three20/TTImageView.h
+[TTTableViewController]: http://github.com/facebook/three20/blob/master/src/Three20/TTTableViewController.h
+[TTTableViewDataSource]: http://github.com/facebook/three20/blob/master/src/Three20/TTTableViewDataSource.h
+[TTURLRequest]: http://github.com/facebook/three20/blob/master/src/Three20/TTURLRequest.h
+[TTTextEditor]: http://github.com/facebook/three20/blob/master/src/Three20/TTTextEditor.h
+[TTPickerTextField]: http://github.com/facebook/three20/blob/master/src/Three20/TTPickerTextField.h
+[TTNavigationCenter]: http://github.com/facebook/three20/blob/master/src/Three20/TTNavigationCenter.h
