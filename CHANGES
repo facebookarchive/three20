@@ -1,4 +1,28 @@
 
+Changes from November 27, 2009
+
+- [NEW] loadSynchronous added to TTURLRequest.
+
+- [NEW] TTHighlightBorderStyle New border style with a highlight.
+	http://three20.info/api/TTStyle#TTHighlightBorderStyle
+
+- [NEW] TTReflectiveFillStyle styleWithColor:withBottomHighlight:next:
+        http://three20.info/api/TTStyle#styleWithColor:withBottomHighlight:next:
+
+- [FIXED] TTReflectiveFillStyle's rendering algorithm now works without magic
+          numbers.
+
+- [FIXED] github#108 Show the proper accessoryType for shared URLs.
+
+- [FIXED] github#107 Check for known URL schemes case-insensitively.
+
+- [FIXED] github#106 Update the README to reference the new repo location.
+
+- [FIXED] github#104 Properly show TTTabStrip left/right images.
+
+- [FIXED] github#78 In TTScrollView notify the delegate when the page has
+          changed.
+
 Changes from November 19, 2009
 
 - [FIXED] Revert to previous TTIsKeyboardVisible() check
