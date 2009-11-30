@@ -1,4 +1,9 @@
 
+Changes from November 29, 2009
+
+- [FIXED] Table view delete-row animation slides to left, not up
+
+
 Changes from November 27, 2009
 
 - [NEW] loadSynchronous added to TTURLRequest.

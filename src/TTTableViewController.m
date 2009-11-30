@@ -434,11 +434,11 @@ static const CGFloat kBannerViewHeight = 22;
             TTDINFO(@"DELETING SECTION AT %@", newIndexPath);
             NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
             [_tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                        withRowAnimation:UITableViewRowAnimationTop];
+                        withRowAnimation:UITableViewRowAnimationLeft];
           } else if (newIndexPath.length == 2) {
             TTDINFO(@"DELETING ROW AT %@", newIndexPath);
             [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                        withRowAnimation:UITableViewRowAnimationTop];
+                        withRowAnimation:UITableViewRowAnimationLeft];
           }
           [self invalidateView];
         } else {
