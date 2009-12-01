@@ -15,26 +15,47 @@
  */
 
 //
-// A priority-based, debug-only logging interface.
+// A debug-only logging interface with priority and contional logs.
 //
 // How to use it
 // -------------
 //
-// To output text to the console:
-// TTDINFO(@"Logging text with args %@", stringArg);
-// or
+// The basic idea is that all TTD macros will only exist in debug builds.
+// A debug build is defined by a build that has the DEBUG preprocessor macro defined.
+//
+// There are four features of this debugging interface:
+//
+//   1) General-purpose logging
+//   2) Priority-based logging
+//   3) Condition-based logging
+//   4) Debug-only assertions
+//
+// 1) General purpose logging:
+//
 // TTDPRINT(@"Logging text with args %@", stringArg);
-// etc...
+//
+// 2) Priority-based logging
+//
+// Logs that will only be displayed if the project logging level is high enough.
+//
+// TTDWARNING(@"Priority logging text with args %@", stringArg);
 //
 // Each macro will only display its logging information if its level is below
 // TTMAXLOGLEVEL. TTDPRINT is an exception to this in that it will always
 // log the text, regardless of log level.  See "Default log level" for more info
 // about log levels.
 //
-// Note: these logging macros will only log if the DEBUG macro is set.
+// 3) Condition-based logging
+//
+// TTDCONDITIONLOG(some_condition, @"This will output if some_condition is true");
+//
+// 4) Debug-only assertions
 //
 // To assert something in debug mode:
 // TTDASSERT(value == 4);
+//
+// If a debug-only assertions fails in the simulator, gdb will be loaded at the exact assertion
+// line.
 //
 // Default log level
 // -----------------
@@ -47,6 +68,7 @@
 // ---------------------
 //
 // You need to set TTMAXLOGLEVEL in your project settings as a preprocessor macro.
+// If you don't, TTLOGLEVEL_WARNING is the default.
 // - To do so in Xcode, find the target you wish to configure in the
 //   "Groups and Files" view. Right click it and click "Get Info".
 // - Under the "Build" tab, look for the Preprocessor Macros setting.
@@ -67,17 +89,17 @@
 // TTDERROR(text, ...)
 // TTDWARNING(text, ...)
 // TTDINFO(text, ...)
+// TTDCONDITIONLOG(condition, text, ...)
 // TTDPRINT(text, ...) - Generic logging function, similar to deprecated TTLOG
 //
 // Output format example:
 // "/path/to/file(line_number): <message>"
 //
-//
 // ^               ^
 // | Informational |
-// | - - - - - - - | <- The max log level. Only logs with a level
-// |    Warning    |    below this line will be output.
 // |               |
+// |- - Warning - -| <- The default max log level. Only logs with a level
+// |               |    below this line will be displayed.
 // |     Error     |
 // |               |
 // -----------------
@@ -133,4 +155,13 @@
   #define TTDINFO(xx, ...)  TTDPRINT(xx, ##__VA_ARGS__)
 #else
   #define TTDINFO(xx, ...)  ((void)0)
+#endif
+
+#ifdef DEBUG
+  #define TTDCONDITIONLOG(condition, xx, ...) { if ((condition)) { \
+                                                  TTDPRINT(xx, ##__VA_ARGS__); \
+                                                } \
+                                              } ((void)0)
+#else
+  #define TTDCONDITIONLOG(condition, xx, ...) ((void)0)
 #endif

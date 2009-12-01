@@ -493,7 +493,7 @@ static const NSInteger kDefaultColumnCount = 3;
   }
   
   CGFloat springLoadDistance = _dragButton.width*kSpringLoadFraction;
-  TTDINFO(@"%f < %f", springLoadDistance, _dragButton.center.x);
+  TTDCONDITIONLOG(TTDFLAG_LAUNCHERVIEW, @"%f < %f", springLoadDistance, _dragButton.center.x);
   BOOL goToPreviousPage = _dragButton.center.x - springLoadDistance < 0;
   BOOL goToNextPage = ((_scrollView.width - _dragButton.center.x) - springLoadDistance) < 0;
   if (goToPreviousPage || goToNextPage) {

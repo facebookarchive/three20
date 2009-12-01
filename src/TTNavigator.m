@@ -222,7 +222,7 @@
     [self beginDelay];
   }
 
-  TTDINFO(@"OPENING URL %@", URL);
+  TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"OPENING URL %@", URL);
   
   TTURLNavigatorPattern* pattern = nil;
   UIViewController* controller = [self viewControllerForURL:URL query:query pattern:&pattern];
@@ -511,7 +511,7 @@
 - (void)persistViewControllers {
   NSMutableArray* path = [NSMutableArray array];
   [self persistController:_rootViewController path:path];
-  TTDINFO(@"DEBUG PERSIST %@", path);
+  TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"DEBUG PERSIST %@", path);
   
   // Check if any of the paths were "important", and therefore unable to expire
   BOOL important = NO;
@@ -540,7 +540,7 @@
   NSDate* timestamp = [defaults objectForKey:@"TTNavigatorHistoryTime"];
   NSArray* path = [defaults objectForKey:@"TTNavigatorHistory"];
   BOOL important = [[defaults objectForKey:@"TTNavigatorHistoryImportant"] boolValue];
-  TTDINFO(@"DEBUG RESTORE %@ FROM %@", path, [timestamp formatRelativeTime]);
+  TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"DEBUG RESTORE %@ FROM %@", path, [timestamp formatRelativeTime]);
   
   BOOL expired = _persistenceExpirationAge
                  && -timestamp.timeIntervalSinceNow > _persistenceExpirationAge;

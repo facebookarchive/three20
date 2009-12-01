@@ -69,7 +69,7 @@ static NSMutableDictionary* gNamedCaches = nil;
   while (_imageSortedList.count) {
     NSString* key = [_imageSortedList objectAtIndex:0];
     UIImage* image = [_imageCache objectForKey:key];
-    // TTDINFO(@"EXPIRING %@", key);
+    TTDCONDITIONLOG(TTDFLAG_URLCACHE, @"EXPIRING %@", key);
 
     _totalPixelCount -= image.size.width * image.size.height;
     [_imageCache removeObjectForKey:key];
@@ -413,11 +413,11 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 - (void)logMemoryUsage {
 #if TTLOGLEVEL_INFO <= TTMAXLOGLEVEL
-  TTDINFO(@"======= IMAGE CACHE: %d images, %d pixels ========", _imageCache.count, _totalPixelCount);
+  TTDCONDITIONLOG(TTDFLAG_URLCACHE, @"======= IMAGE CACHE: %d images, %d pixels ========", _imageCache.count, _totalPixelCount);
   NSEnumerator* e = [_imageCache keyEnumerator];
   for (NSString* key ; key = [e nextObject]; ) {
     UIImage* image = [_imageCache objectForKey:key];
-    TTDINFO(@"  %f x %f %@", image.size.width, image.size.height, key);
+    TTDCONDITIONLOG(TTDFLAG_URLCACHE, @"  %f x %f %@", image.size.width, image.size.height, key);
   }
 #endif
 }

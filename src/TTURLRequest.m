@@ -183,7 +183,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     [_parameters removeObjectForKey:imageKey];
   }
 
-  //TTDINFO(@"Sending %s", [body bytes]);
+  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"Sending %s", [body bytes]);
   return body;
 }
 
@@ -248,7 +248,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       [_parameters setObject:@"[FILTERED]" forKey:@"password"];
     }
 
-    TTDINFO(@"SEND %@ %@", self.URL, self.parameters);
+    TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"SEND %@ %@", self.URL, self.parameters);
 
     if (password) {
       [_parameters setObject:password forKey:@"password"];
