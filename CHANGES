@@ -3,6 +3,8 @@ Changes from November 29, 2009
 
 - [FIXED] Table view delete-row animation slides to left, not up
 
+- [FIXED] Table view show-menu animation slides down, not left
+
 
 Changes from November 27, 2009
 
