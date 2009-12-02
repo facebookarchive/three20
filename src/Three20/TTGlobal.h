@@ -174,7 +174,7 @@ BOOL TTIsEmptyArray(id object);
 /**
  * Tests if an object is a set which is empty.
  */
-BOOL TTIsEmptyArray(id object);
+BOOL TTIsEmptySet(id object);
 
 /**
  * Tests if an object is a string which is empty.

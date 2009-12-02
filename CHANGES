@@ -7,6 +7,8 @@ Changes from November 29, 2009
 
 - [FIXED] Table view show-menu animation slides down, not left
 
+- [MINOR] Duplicate TTIsEmptyArray in TTGlobal.h now TTIsEmptySet.
+
 Changes from November 27, 2009
 
 - [NEW] loadSynchronous added to TTURLRequest.
