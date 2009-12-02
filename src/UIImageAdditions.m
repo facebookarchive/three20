@@ -63,7 +63,7 @@
   
   CGImageRef imageRef = self.CGImage;
   CGContextRef bitmap = CGBitmapContextCreate(NULL, destW, destH,
-    CGImageGetBitsPerComponent(imageRef), 4*destW, CGImageGetColorSpace(imageRef),
+    CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), CGImageGetColorSpace(imageRef),
     CGImageGetBitmapInfo(imageRef));
 
   if (rotate) {
