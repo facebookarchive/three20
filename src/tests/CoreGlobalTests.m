@@ -30,6 +30,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testSuccess {
+  // This is just a test to ensure that you're building the unit tests properly.
   STAssertTrue(YES, @"Something is terribly, terribly wrong.");
 }
 
