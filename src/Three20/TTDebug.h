@@ -119,6 +119,9 @@
   #define TTDPRINT(xx, ...)  ((void)0)
 #endif
 
+// Prints the current method's name.
+#define TTDPRINTMETHODNAME() TTDPRINT(@"%@", NSStringFromSelector(_cmd))
+
 // Debug-only assertions.
 #ifdef DEBUG
 
