@@ -102,7 +102,7 @@
   NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
   NSScanner* scanner = [[[NSScanner alloc] initWithString:self] autorelease];
   while (![scanner isAtEnd]) {
-    NSString* pairString;
+    NSString* pairString = nil;
     [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];
     [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
     NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
@@ -169,6 +169,9 @@
     return NSOrderedDescending;
   } else if ([oneComponents count] > [twoComponents count]) {
     return NSOrderedAscending;
+  } else if ([oneComponents count] == 1) {
+    // Neither has an alpha part, and we know the main parts are the same
+    return NSOrderedSame;
   }
 
   // At this point the main parts are the same and both have alpha parts. Compare the alpha parts
