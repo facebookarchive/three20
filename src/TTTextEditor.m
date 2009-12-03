@@ -28,6 +28,8 @@ static CGFloat kPaddingY = 9;
 // hard-coding this value here sucks, and I need to implement a solution that works for any font.
 static CGFloat kTextViewInset = 31;
 
+static const CGFloat kUITextViewVerticalPadding = 6;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTTextView : UITextView {
@@ -45,10 +47,17 @@ static CGFloat kTextViewInset = 31;
 @synthesize autoresizesToText = _autoresizesToText, overflowed = _overflowed;
 
 - (void)setContentOffset:(CGPoint)offset animated:(BOOL)animated {
-  if (_autoresizesToText && !_overflowed) {
-    // In autosizing mode, we don't ever allow the text view to scroll past zero
-    // unless it has past its maximum number of lines
-    [super setContentOffset:CGPointZero animated:animated];
+  if (_autoresizesToText) {
+    if (!_overflowed) {
+      // In autosizing mode, we don't ever allow the text view to scroll past zero
+      // unless it has past its maximum number of lines
+      [super setContentOffset:CGPointZero animated:animated];
+    } else {
+      // If there is an overflow, we force the text view to keep the cursor at the bottom of the
+      // view.
+      [super setContentOffset: CGPointMake(offset.x, self.contentSize.height - self.height)
+                     animated: animated];
+    }
   } else {
     [super setContentOffset:offset animated:animated];
   }
@@ -256,6 +265,12 @@ static CGFloat kTextViewInset = 31;
     _textView.backgroundColor = [UIColor clearColor];
     _textView.scrollsToTop = NO;
     _textView.showsHorizontalScrollIndicator = NO;
+    // UITextViews have extra padding on the top and bottom that we don't want, so we force
+    // the content to take up slightly more space. This allows us to mimic the padding of the
+    // UITextLabel control.
+    _textView.contentInset = UIEdgeInsetsMake(
+      -kUITextViewVerticalPadding, 0,
+      -kUITextViewVerticalPadding, 0);
     _textView.font = _textField.font;
     _textView.autoresizesToText = _autoresizesToText;
     _textView.textColor = _textField.textColor;
@@ -298,7 +313,7 @@ static CGFloat kTextViewInset = 31;
   }
 
   if (numberOfLines) {
-    *numberOfLines = floor(textSize.height / lineHeight);
+    *numberOfLines = floor(newHeight / lineHeight);
   }
   
   if (newHeight < minHeight) {
@@ -365,7 +380,7 @@ static CGFloat kTextViewInset = 31;
     [self createTextView];
     _textField.hidden = YES;
     _textView.hidden = NO;
-    _textView.text = [_textField.text stringByAppendingString:@"\n "];
+    _textView.text = [_textField.text stringByAppendingString:@"\n"];
     _internal.ignoreBeginAndEnd = YES;
     [_textView becomeFirstResponder];
     [self performSelector:@selector(stopIgnoringBeginAndEnd) withObject:nil afterDelay:0];
@@ -420,8 +435,8 @@ static CGFloat kTextViewInset = 31;
 
 - (void)layoutSubviews {
   CGRect frame = CGRectMake(0, 2, self.width-kPaddingX*2, self.height);
-  _textView.frame = frame;
-  _textField.frame = CGRectOffset(TTRectContract(frame, 7, 8), 7, 8);
+  _textView.frame = CGRectOffset(TTRectContract(frame, 0, 14), 0, 7);
+  _textField.frame = CGRectOffset(TTRectContract(frame, 9, 14), 9, 7);
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
