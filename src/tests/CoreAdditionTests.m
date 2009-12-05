@@ -333,7 +333,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNonEmptyArrayStrings {
+- (void)testNSMutableArray_NonEmptyStrings {
   NSMutableArray* arrayOfStrings = [[NSMutableArray alloc] init];
 
   [arrayOfStrings addNonEmptyString:nil];
@@ -350,7 +350,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNonEmptyDictionaryStrings {
+- (void)testNSMutableDictionary_NonEmptyStrings {
   NSMutableDictionary* dictionaryOfStrings = [[NSMutableDictionary alloc] init];
 
   [dictionaryOfStrings setNonEmptyString:nil forKey:@"name"];

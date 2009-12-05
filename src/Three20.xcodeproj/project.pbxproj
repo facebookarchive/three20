@@ -760,6 +760,8 @@
 				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
 				BEAF21350F4D32E100D75F3B /* NSObjectAdditions.h */,
 				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
+				EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */,
+				EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */,
 				BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */,
 				BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */,
 				BED623910F50F34B003EF242 /* NSArrayAdditions.h */,
@@ -768,8 +770,6 @@
 				6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */,
 				6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */,
 				6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */,
-				EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */,
-				EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */,
 				BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */,
 				BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */,
 			);
