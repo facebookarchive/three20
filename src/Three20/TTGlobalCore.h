@@ -15,7 +15,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 #import "TTDebug.h"
 
@@ -125,18 +124,4 @@ BOOL TTIsEmptySet(id object);
  */
 BOOL TTIsEmptyString(id object);
 
-/**
- * Returns a rectangle that is smaller or larger than the source rectangle.
- */
-CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy);
-
-/**
- * Returns a rectangle whose edges have been moved a distance and shortened by that distance.
- */
-CGRect TTRectShift(CGRect rect, CGFloat dx, CGFloat dy);
-
-/**
- * Returns a rectangle whose edges have been added to the insets.
- */
-CGRect TTRectInset(CGRect rect, UIEdgeInsets insets);
-
+void TTSwapMethods(Class cls, SEL originalSel, SEL newSel);

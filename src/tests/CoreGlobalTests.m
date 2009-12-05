@@ -129,29 +129,4 @@
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark CGRect Transformations
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testRects {
-  STAssertTrue(CGRectEqualToRect(
-    TTRectContract(CGRectMake(0, 0, 5, 5), 5, 5),
-    CGRectMake(0, 0, 0, 0)),
-    @"The two rects are not equal");
-
-  STAssertTrue(CGRectEqualToRect(
-    TTRectShift(CGRectMake(0, 0, 5, 5), 5, 5),
-    CGRectMake(5, 5, 0, 0)),
-    @"The two rects are not equal");
-
-  STAssertTrue(CGRectEqualToRect(
-    TTRectInset(CGRectMake(0, 0, 5, 5), UIEdgeInsetsMake(1, 1, 1, 1)),
-    CGRectMake(1, 1, 3, 3)),
-    @"The two rects are not equal");
-}
-
-
 @end

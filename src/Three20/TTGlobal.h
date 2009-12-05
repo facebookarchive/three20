@@ -42,16 +42,11 @@
 
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalCorePaths.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
+#import "Three20/TTGlobalNetwork.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dimensions of common iPhone OS Views
-
-#define TT_ROW_HEIGHT 44
-#define TT_TOOLBAR_HEIGHT 44
-#define TT_LANDSCAPE_TOOLBAR_HEIGHT 33
-#define TT_KEYBOARD_HEIGHT 216
-#define TT_LANDSCAPE_KEYBOARD_HEIGHT 160
-#define TT_ROUNDED -1
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Style helpers
@@ -65,9 +60,6 @@
 
 #define TTSTYLEVAR(_VARNAME) [TTSTYLESHEET _VARNAME]
 
-#define TTLOGVIEWS(_VIEW) \
-  { for (UIView* view = _VIEW; view; view = view.superview) { TTDINFO(@"%@", view); } }
-
 #define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
 
 typedef enum {
@@ -76,153 +68,3 @@ typedef enum {
   TTPositionFloatLeft,
   TTPositionFloatRight,
 } TTPosition;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Networking
-
-typedef enum {
-   TTURLRequestCachePolicyNone = 0,
-   TTURLRequestCachePolicyMemory = 1,
-   TTURLRequestCachePolicyDisk = 2,
-   TTURLRequestCachePolicyNetwork = 4,
-   TTURLRequestCachePolicyNoCache = 8,    
-   TTURLRequestCachePolicyLocal
-    = (TTURLRequestCachePolicyMemory|TTURLRequestCachePolicyDisk),
-   TTURLRequestCachePolicyDefault
-    = (TTURLRequestCachePolicyMemory|TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyNetwork),
-} TTURLRequestCachePolicy;
-
-#define TT_DEFAULT_CACHE_INVALIDATION_AGE (60*60*24) // 1 day
-#define TT_DEFAULT_CACHE_EXPIRATION_AGE (60*60*24*7) // 1 week
-#define TT_CACHE_EXPIRATION_AGE_NEVER (1.0 / 0.0)    // inf
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Animation
-
-/**
- * The standard duration for transition animations.
- */
-#define TT_TRANSITION_DURATION 0.3
-
-#define TT_FAST_TRANSITION_DURATION 0.2
-
-#define TT_FLIP_TRANSITION_DURATION 0.7
-
-/**
- * Tests if the keyboard is visible.
- */
-BOOL TTIsKeyboardVisible();
-
-/**
- * Tests if the device has phone capabilities.
- */
-BOOL TTIsPhoneSupported();
-
-/**
- * Gets the current device orientation.
- */
-UIDeviceOrientation TTDeviceOrientation();
-
-/**
- * Gets the current interface orientation.
- */
-UIInterfaceOrientation TTInterfaceOrientation();
-
-/**
- * Checks if the orientation is portrait, landscape left, or landscape right.
- *
- * This helps to ignore upside down and flat orientations.
- */
-BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation);
-
-/**
- * Gets the rotation transform for a given orientation.
- */
-CGAffineTransform TTRotateTransformForOrientation(UIInterfaceOrientation orientation);
-
-/**
- * Gets the bounds of the screen with device orientation factored in.
- */
-CGRect TTScreenBounds();
-
-/**
- * Gets the application frame.
- */
-CGRect TTApplicationFrame();
-
-/**
- * Gets the application frame below the navigation bar.
- */
-CGRect TTNavigationFrame();
-
-/**
- * Gets the application frame below the navigation bar and above the keyboard.
- */
-CGRect TTKeyboardNavigationFrame();
-
-/**
- * Gets the application frame below the navigation bar and above a toolbar.
- */
-CGRect TTToolbarNavigationFrame();
-
-/**
- * The height of the area containing the status bar and possibly the in-call status bar.
- */
-CGFloat TTStatusHeight();
-
-/**
- * The height of the area containing the status bar and navigation bar.
- */
-CGFloat TTBarsHeight();
-
-/**
- * The height of a toolbar.
- */
-CGFloat TTToolbarHeight();
-CGFloat TTToolbarHeightForOrientation(UIInterfaceOrientation orientation);
-
-/**
- * The height of the keyboard.
- */
-CGFloat TTKeyboardHeight();
-CGFloat TTKeyboardHeightForOrientation(UIInterfaceOrientation orientation);
-
-/**
- * Increment the number of active network requests.
- *
- * The status bar activity indicator will be spinning while there are active requests.
- */
-void TTNetworkRequestStarted();
-
-/**
- * Decrement the number of active network requests.
- *
- * The status bar activity indicator will be spinning while there are active requests.
- */
-void TTNetworkRequestStopped();
-
-/**
- * A convenient way to show a UIAlertView with a message;
- */
-void TTAlert(NSString* message);
-void TTAlertError(NSString* message);
-
-/**
- * Gets the current runtime version of iPhone OS.
- */
-float TTOSVersion();
-
-/**
- * Checks if the link-time version of the OS is at least a certain version.
- */
-BOOL TTOSVersionIsAtLeast(float version);
-
-BOOL TTIsBundleURL(NSString* URL);
-
-BOOL TTIsDocumentsURL(NSString* URL);
-
-NSString* TTPathForBundleResource(NSString* relativePath);
-
-NSString* TTPathForDocumentsResource(NSString* relativePath);
-
-void TTSwapMethods(Class cls, SEL originalSel, SEL newSel);

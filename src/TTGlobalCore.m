@@ -16,6 +16,8 @@
 
 #import "TTGlobalCore.h"
 
+#import <objc/runtime.h>
+
 /**
  * This is provided for backwards-compatibility with the TTLOG macro.
  * If this code is still here come February, 2010, feel free to remove it and the
@@ -58,16 +60,8 @@ BOOL TTIsEmptyString(id object) {
   return [object isKindOfClass:[NSString class]] && ![(NSString*)object length];
 }
 
-CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
-}
-
-CGRect TTRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectOffset(TTRectContract(rect, dx, dy), dx, dy);
-}
-
-CGRect TTRectInset(CGRect rect, UIEdgeInsets insets) {
-  return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
-                    rect.size.width - (insets.left + insets.right),
-                    rect.size.height - (insets.top + insets.bottom));
+void TTSwapMethods(Class cls, SEL originalSel, SEL newSel) {
+  Method originalMethod = class_getInstanceMethod(cls, originalSel);
+  Method newMethod = class_getInstanceMethod(cls, newSel);
+  method_exchangeImplementations(originalMethod, newMethod);
 }
