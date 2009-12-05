@@ -697,11 +697,11 @@
 				EB4CDA4C10CAD82A00A856E5 /* Network */,
 				EB4CDB9E10CAE0B300A856E5 /* Style */,
 				BEF31F6F0F352E64000DE5D2 /* Three20.h */,
+				EBDC8EB510C5CCB000257247 /* TTDebugFlags.h */,
 				BEF31F5C0F352E64000DE5D2 /* TTGlobal.h */,
 				BEF31F480F352E64000DE5D2 /* TTGlobal.m */,
 				BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */,
 				BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */,
-				EBDC8EB510C5CCB000257247 /* TTDebugFlags.h */,
 			);
 			name = Global;
 			sourceTree = "<group>";
