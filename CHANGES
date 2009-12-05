@@ -3,13 +3,29 @@ Changes from November 29, 2009
 
 - [NEW] TTDCONDITIONLOG added to TTDebug.h
 
+- [NEW] TTDPRINTMETHODNAME added to TTDebug.h
+
 - [NEW] -[NSString versionStringCompare:]
+
+- [NEW] charsetForMultipart added to TTURLRequest
 
 - [FIXED] Table view delete-row animation slides to left, not up
 
-- [FIXED] Potentially uninitialized variable in NSStringAdditions.
+- [FIXED] Potentially uninitialized variable in NSStringAdditions
 
-- [MINOR] Duplicate TTIsEmptyArray in TTGlobal.h now TTIsEmptySet.
+- [FIXED] Layout problems in TTTextEditor
+
+- [MINOR] Stylistic consistency changes
+
+- [MINOR] Duplicate TTIsEmptyArray in TTGlobal.h now TTIsEmptySet
+
+- [MINOR] Reset TTTableMessageItemCell properties when preparing for reuse
+
+- [MINOR] Fix potential crash when asking for a nonexistent
+          previousViewController
+
+- [MINOR] Use the same bytes per row in the destination bitmap for
+          transformWidth
 
 
 Changes from November 27, 2009
