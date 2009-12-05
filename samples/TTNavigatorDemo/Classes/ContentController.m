@@ -13,7 +13,7 @@
 }
 
 - (void)orderAction:(NSString*)action {
-  TTLOG(@"ACTION: %@", action);
+  TTDINFO(@"ACTION: %@", action);
 }
 
 - (void)showNutrition {
@@ -38,7 +38,7 @@
         target:self action:@selector(dismiss)] autorelease];
 
     NSString* ref = [query objectForKey:@"ref"];
-    TTLOG(@"ORDER REFERRED FROM %@", ref);
+    TTDINFO(@"ORDER REFERRED FROM %@", ref);
   }
   return self;
 }

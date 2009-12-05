@@ -83,7 +83,7 @@
 }
 
 - (void)sendOrder {
-  TTLOG(@"SENDING THE ORDER...");
+  TTDINFO(@"SENDING THE ORDER...");
 }
 
 @end
