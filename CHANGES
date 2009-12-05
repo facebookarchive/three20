@@ -3,11 +3,14 @@ Changes from November 29, 2009
 
 - [NEW] TTDCONDITIONLOG added to TTDebug.h
 
+- [NEW] -[NSString versionStringCompare:]
+
 - [FIXED] Table view delete-row animation slides to left, not up
 
-- [FIXED] Table view show-menu animation slides down, not left
+- [FIXED] Potentially uninitialized variable in NSStringAdditions.
 
 - [MINOR] Duplicate TTIsEmptyArray in TTGlobal.h now TTIsEmptySet.
+
 
 Changes from November 27, 2009
 
