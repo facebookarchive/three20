@@ -469,7 +469,7 @@ static TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* prope
     TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
     wildcard.argIndex = [argNames indexOfObject:wildcard.name];
     if (wildcard.argIndex == NSNotFound) {
-      TTWARN(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
+      TTDINFO(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
     } else {
       char argType[256];
       method_getArgumentType(method, wildcard.argIndex+2, argType, 256);

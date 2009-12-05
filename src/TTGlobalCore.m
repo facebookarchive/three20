@@ -16,6 +16,17 @@
 
 #import "TTGlobalCore.h"
 
+/**
+ * This is provided for backwards-compatibility with the TTLOG macro.
+ * If this code is still here come February, 2010, feel free to remove it and the
+ * corresponding TTLOG/TTWARN macros in the header.
+ */
+void TTDeprecatedLog(NSString* text, ...) {
+  va_list ap;
+  va_start(ap, text);
+  NSLogv(text, ap);
+  va_end(ap);
+}
 
 static const void* TTRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 static void TTReleaseNoOp(CFAllocatorRef allocator, const void *value) { }

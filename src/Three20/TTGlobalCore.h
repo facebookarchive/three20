@@ -17,14 +17,24 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "Three20/TTDebug.h"
+#import "TTDebug.h"
+
+/**
+ * Borrowed from Apple's AvailabiltyInternal.h header. There's no reason why we shouldn't be
+ * able to use this macro, as it's a gcc-supported flag.
+ * Here's what we based it off of.
+ * #define __AVAILABILITY_INTERNAL_DEPRECATED         __attribute__((deprecated))
+ */
+#define __TTDEPRECATED_METHOD __attribute__((deprecated))
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Logging Helpers
 
+void TTDeprecatedLog(NSString* text, ...) __TTDEPRECATED_METHOD;
+
 // Deprecated, please see Three20/TTDebug.h for more details.
 #ifdef DEBUG
-#define TTLOG NSLog
+#define TTLOG TTDeprecatedLog
 #else
 #define TTLOG    
 #endif
