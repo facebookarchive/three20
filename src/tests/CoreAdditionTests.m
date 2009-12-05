@@ -21,6 +21,16 @@
 
 #import "Three20/Three20.h"
 
+//
+// Notice:
+//
+// NSDateAdditions cannot be easily tested from a library unit test due to their dependence upon
+// TTLocalizedString. This is because the Three20.bundle file needs to be loaded for
+// TTLocalizedString to work, but the octest framework does not play well with bundles.
+// It tries to load the bundle from
+// /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/usr/bin
+// which is not a place we can normally copy to from the Xcode project settings.
+//
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
