@@ -1233,6 +1233,7 @@
 				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				HEADER_SEARCH_PATHS = .;
 				INFOPLIST_FILE = "CoreUnitTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
