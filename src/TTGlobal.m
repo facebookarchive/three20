@@ -198,52 +198,6 @@ BOOL TTOSVersionIsAtLeast(float version) {
   return NO;
 }
 
-NSLocale* TTCurrentLocale() {
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  NSArray* languages = [defaults objectForKey:@"AppleLanguages"];
-  if (languages.count > 0) {
-    NSString *currentLanguage = [languages objectAtIndex:0];
-    return [[[NSLocale alloc] initWithLocaleIdentifier:currentLanguage] autorelease];
-  } else {
-    return [NSLocale currentLocale];
-  }
-}
-
-NSString* TTLocalizedString(NSString* key, NSString* comment) {
-  static NSBundle* bundle = nil;
-  if (!bundle) {
-    NSString* path = [[[NSBundle mainBundle] resourcePath]
-          stringByAppendingPathComponent:@"Three20.bundle"];
-    bundle = [[NSBundle bundleWithPath:path] retain];
-  }
-  
-  return [bundle localizedStringForKey:key value:key table:nil];
-}
-
-NSString* TTFormatInteger(NSInteger num) {
-  NSNumber* number = [NSNumber numberWithInt:num];
-  NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
-  [formatter setNumberStyle:kCFNumberFormatterDecimalStyle];
-  [formatter setGroupingSeparator:@","];
-  NSString* formatted = [formatter stringForObjectValue:number];
-  [formatter release];
-  return formatted;
-}
-
-NSString* TTDescriptionForError(NSError* error) {
-  TTDINFO(@"ERROR %@", error);
-  if ([error.domain isEqualToString:NSURLErrorDomain]) {
-    if (error.code == NSURLErrorTimedOut) {
-      return TTLocalizedString(@"Connection Timed Out", @"");
-    } else if (error.code == NSURLErrorNotConnectedToInternet) {
-      return TTLocalizedString(@"No Internet Connection", @"");
-    } else {
-      return TTLocalizedString(@"Connection Error", @"");
-    }
-  }
-  return TTLocalizedString(@"Error", @"");
-}
-
 BOOL TTIsBundleURL(NSString* URL) {
   if (URL.length >= 9) {
     return [URL rangeOfString:@"bundle://" options:0 range:NSMakeRange(0,9)].location == 0;

@@ -16,6 +16,8 @@
 
 #import "Three20/NSMutableDictionaryAdditions.h"
 
+#import "TTGlobalCore.h"
+
 @implementation NSMutableDictionary (TTCategory)
 
 - (void)setNonEmptyString:(NSString*)string forKey:(id)key {

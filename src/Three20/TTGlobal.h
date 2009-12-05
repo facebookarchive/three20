@@ -41,6 +41,7 @@
 #import "Three20/UIToolbarAdditions.h"
 
 #import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Dimensions of common iPhone OS Views
@@ -215,22 +216,6 @@ float TTOSVersion();
  * Checks if the link-time version of the OS is at least a certain version.
  */
 BOOL TTOSVersionIsAtLeast(float version);
-
-/**
- * Gets the current system locale chosen by the user.
- *
- * This is necessary because [NSLocale currentLocale] always returns en_US.
- */
-NSLocale* TTCurrentLocale();
-
-/**
- * Returns a localized string from the Three20 bundle.
- */
-NSString* TTLocalizedString(NSString* key, NSString* comment);
-
-NSString* TTDescriptionForError(NSError* error);
-
-NSString* TTFormatInteger(NSInteger num);
 
 BOOL TTIsBundleURL(NSString* URL);
 
