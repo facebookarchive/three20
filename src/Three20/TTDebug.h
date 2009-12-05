@@ -85,7 +85,9 @@
 // TTDASSERT(statement) - Jumps into the debugger if statement evaluates to false
 //                        Use Cmd-Y in Xcode to ensure gdb is attached.
 //
-// And the logging functions:
+// TTDPRINTMETHODNAME() - Logs the current method name.
+//
+// And the logging macros:
 // TTDERROR(text, ...)
 // TTDWARNING(text, ...)
 // TTDINFO(text, ...)
