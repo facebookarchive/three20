@@ -46,25 +46,4 @@
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
 #import "Three20/TTGlobalNetwork.h"
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Style helpers
-
-#define TTSTYLE(_SELECTOR) [[TTStyleSheet globalStyleSheet] styleWithSelector:@#_SELECTOR]
-
-#define TTSTYLESTATE(_SELECTOR, _STATE) [[TTStyleSheet globalStyleSheet] \
-                                           styleWithSelector:@#_SELECTOR forState:_STATE]
-
-#define TTSTYLESHEET ((id)[TTStyleSheet globalStyleSheet])
-
-#define TTSTYLEVAR(_VARNAME) [TTSTYLESHEET _VARNAME]
-
-#define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
-
-typedef enum {
-  TTPositionStatic,
-  TTPositionAbsolute,
-  TTPositionFloatLeft,
-  TTPositionFloatRight,
-} TTPosition;
+#import "Three20/TTGlobalStyle.h"

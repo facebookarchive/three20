@@ -20,7 +20,7 @@
 
 UIInterfaceOrientation TTInterfaceOrientation() {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
-  if (!orient) {
+  if (UIDeviceOrientationUnknown == orient) {
     return [TTNavigator navigator].visibleViewController.interfaceOrientation;
   } else {
     return orient;
