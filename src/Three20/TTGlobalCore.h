@@ -16,7 +16,16 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TTDebug.h"
+#import "Three20/TTDebug.h"
+#import "Three20/TTDebugFlags.h"
+
+#import "Three20/NSObjectAdditions.h"
+#import "Three20/NSDataAdditions.h"
+#import "Three20/NSStringAdditions.h"
+#import "Three20/NSArrayAdditions.h"
+#import "Three20/NSMutableArrayAdditions.h"
+#import "Three20/NSMutableDictionaryAdditions.h"
+#import "Three20/NSDateAdditions.h"
 
 /**
  * Borrowed from Apple's AvailabiltyInternal.h header. There's no reason why we shouldn't be

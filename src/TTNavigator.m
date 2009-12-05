@@ -15,11 +15,15 @@
 //
 
 #import "Three20/TTNavigator.h"
+
+#import "Three20/TTGlobalUI.h"
+
 #import "Three20/TTURLMap.h"
 #import "Three20/TTURLPattern.h"
-#import "Three20/TTTableViewController.h"
+
 #import "Three20/TTPopupViewController.h"
 #import "Three20/TTSearchDisplayController.h"
+#import "Three20/TTTableViewController.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

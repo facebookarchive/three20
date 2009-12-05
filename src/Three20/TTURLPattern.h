@@ -14,6 +14,10 @@
 // limitations under the License.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import "Three20/TTNavigator.h"
 #import "Three20/TTURLMap.h"
 
 @protocol TTURLPatternText;

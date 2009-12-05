@@ -15,7 +15,10 @@
 //
 
 #import "Three20/TTURLMap.h"
+
 #import "Three20/TTURLPattern.h"
+#import "Three20/TTGlobalCore.h"
+
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

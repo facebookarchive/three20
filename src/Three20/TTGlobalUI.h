@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "Three20/UIViewControllerAdditions.h"
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Debug logging helpers
 

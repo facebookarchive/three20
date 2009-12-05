@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-#import "TTGlobalUINavigator.h"
+#import "Three20/TTGlobalUINavigator.h"
 
-#import "TTGlobalUI.h"
+#import "Three20/TTGlobalUI.h"
 
-#import "TTNavigator.h"
+#import "Three20/TTNavigator.h"
 
 UIInterfaceOrientation TTInterfaceOrientation() {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;

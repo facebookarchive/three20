@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-#import "TTGlobalUI.h"
+#import "Three20/TTGlobalUI.h"
 
-#import "TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalCoreLocale.h"
 
-#import "UIWindowAdditions.h"
-#import "TTNavigator.h"
+#import "Three20/UIWindowAdditions.h"
+#import "Three20/TTNavigator.h"
 
 float TTOSVersion() {
   return [[[UIDevice currentDevice] systemVersion] floatValue];

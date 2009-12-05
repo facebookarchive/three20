@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#import "TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalCoreLocale.h"
 
-#import "TTGlobalCore.h"
+#import "Three20/TTGlobalCore.h"
 
 NSLocale* TTCurrentLocale() {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

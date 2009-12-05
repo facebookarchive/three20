@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#import "TTGlobalCorePaths.h"
+#import "Three20/TTGlobalCorePaths.h"
 
 BOOL TTIsBundleURL(NSString* URL) {
   if (URL.length >= 9) {
