@@ -16,6 +16,8 @@
 
 #import "TTGlobalUINavigator.h"
 
+#import "TTGlobalUI.h"
+
 #import "TTNavigator.h"
 
 UIInterfaceOrientation TTInterfaceOrientation() {

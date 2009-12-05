@@ -16,6 +16,8 @@
 
 #import "Three20/TTNavigator.h"
 
+#import "UIViewControllerAdditions.h"
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation UITabBarController (TTCategory)

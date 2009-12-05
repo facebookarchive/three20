@@ -16,6 +16,8 @@
 
 #import "TTGlobalUI.h"
 
+#import "TTGlobalCoreLocale.h"
+
 #import "UIWindowAdditions.h"
 #import "TTNavigator.h"
 
