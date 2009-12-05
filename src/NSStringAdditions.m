@@ -14,10 +14,9 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobal.h"
-#import "Three20/TTMarkupStripper.h"
-#import "Three20/TTURLMap.h"
-#import "Three20/TTNavigator.h"
+#import "NSStringAdditions.h"
+
+#import "TTMarkupStripper.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

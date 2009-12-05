@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobal.h"
+#import "NSMutableArrayAdditions.h"
 
 @implementation NSMutableArray (TTCategory)
 

@@ -178,6 +178,8 @@
 		C6620EAD109CEDA400EC35C6 /* UIWindowAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C6620EAB109CEDA400EC35C6 /* UIWindowAdditions.h */; };
 		C6620EAE109CEDA400EC35C6 /* UIWindowAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C6620EAC109CEDA400EC35C6 /* UIWindowAdditions.m */; };
 		EB1F6C5F10B36C32003DAA1F /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1F6C5D10B36C32003DAA1F /* TTDebug.m */; };
+		EB4CD6FB10CA019200A856E5 /* TTNSObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CD6FA10CA019200A856E5 /* TTNSObjectAdditions.h */; };
+		EB9193E410CA00D200F525AA /* TTNSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9193E210CA00D200F525AA /* TTNSObjectAdditions.m */; };
 		EB9E6C7D10B6A98100DE563C /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */; };
 		EB9E6C8210B6AA6000DE563C /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */; };
 		EB9E6CA410B6AD9400DE563C /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */; };
@@ -385,6 +387,8 @@
 		C6620EAB109CEDA400EC35C6 /* UIWindowAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWindowAdditions.h; path = Three20/UIWindowAdditions.h; sourceTree = "<group>"; };
 		C6620EAC109CEDA400EC35C6 /* UIWindowAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWindowAdditions.m; sourceTree = "<group>"; };
 		EB1F6C5D10B36C32003DAA1F /* TTDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDebug.m; sourceTree = "<group>"; };
+		EB4CD6FA10CA019200A856E5 /* TTNSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNSObjectAdditions.h; path = Three20/TTNSObjectAdditions.h; sourceTree = "<group>"; };
+		EB9193E210CA00D200F525AA /* TTNSObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNSObjectAdditions.m; sourceTree = "<group>"; };
 		EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6310B6A8F800DE563C /* CoreUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreUnitTests-Info.plist"; sourceTree = "<group>"; };
 		EB9E6C7B10B6A98100DE563C /* CoreAdditionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreAdditionTests.h; path = tests/CoreAdditionTests.h; sourceTree = "<group>"; };
@@ -781,6 +785,8 @@
 			children = (
 				EB9E6D3810B6B0E200DE563C /* TTNSStringAdditions.h */,
 				EB9E6CFC10B6B01800DE563C /* TTNSStringAdditions.m */,
+				EB4CD6FA10CA019200A856E5 /* TTNSObjectAdditions.h */,
+				EB9193E210CA00D200F525AA /* TTNSObjectAdditions.m */,
 				BEAF21360F4D32E100D75F3B /* UIColorAdditions.h */,
 				BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */,
 				BEA6B8E31013FC3400B83B3A /* UIFontAdditions.h */,
@@ -906,6 +912,7 @@
 				EB9E6D3910B6B0E200DE563C /* TTNSStringAdditions.h in Headers */,
 				EB9E6E3D10B730E700DE563C /* TTGlobalCore.h in Headers */,
 				EB9E6E8710B731F600DE563C /* CoreGlobalTests.h in Headers */,
+				EB4CD6FB10CA019200A856E5 /* TTNSObjectAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1084,6 +1091,7 @@
 				EB9E6CAC10B6AE0F00DE563C /* TTMarkupStripper.m in Sources */,
 				EB9E6CFE10B6B01800DE563C /* TTNSStringAdditions.m in Sources */,
 				EB9E6E3A10B7300100DE563C /* TTGlobalCore.m in Sources */,
+				EB9193E410CA00D200F525AA /* TTNSObjectAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

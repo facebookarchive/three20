@@ -14,12 +14,11 @@
 // limitations under the License.
 //
 
-#import "Three20/TTNavigator.h"
-#import "Three20/TTURLMap.h"
+#import "NSObjectAdditions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation NSObject (TTCategory)
+@implementation NSObject (TTAdditions)
 
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
   NSMethodSignature *sig = [self methodSignatureForSelector:selector];
@@ -143,14 +142,6 @@
   } else {
     return nil;
   }
-}
-
-- (NSString*)URLValue {
-  return [[TTNavigator navigator].URLMap URLForObject:self];
-}
-
-- (NSString*)URLValueWithName:(NSString*)name {
-  return [[TTNavigator navigator].URLMap URLForObject:self withName:name];
 }
 
 @end

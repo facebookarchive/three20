@@ -18,6 +18,8 @@
 #import <UIKit/UIKit.h>
 #import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"
+#import "Three20/TTNSObjectAdditions.h"
+#import "Three20/TTNSStringAdditions.h"
 #import "Three20/NSObjectAdditions.h"
 #import "Three20/NSStringAdditions.h"
 #import "Three20/TTNSStringAdditions.h"

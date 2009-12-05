@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobal.h"
+#import "Three20/NSMutableDictionaryAdditions.h"
 
 @implementation NSMutableDictionary (TTCategory)
 
