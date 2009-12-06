@@ -15,6 +15,9 @@ Changes from November 29, 2009
 
 - [FIXED] Layout problems in TTTextEditor
 
+- [FIXED] github#109 TTScrollView bug: displaying landscape views in
+          landscape orientation have a wrong size
+
 - [MINOR] Stylistic consistency changes
 
 - [MINOR] Duplicate TTIsEmptyArray in TTGlobal.h now TTIsEmptySet
