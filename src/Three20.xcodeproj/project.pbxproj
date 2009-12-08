@@ -134,7 +134,6 @@
 		BEF19D6D0F81B8530010D36E /* TTStyledTextParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF19D6C0F81B8530010D36E /* TTStyledTextParser.m */; };
 		BEF31F700F352E64000DE5D2 /* TTActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F460F352E64000DE5D2 /* TTActivityLabel.m */; };
 		BEF31F710F352E64000DE5D2 /* TTErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F470F352E64000DE5D2 /* TTErrorView.m */; };
-		BEF31F720F352E64000DE5D2 /* TTGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F480F352E64000DE5D2 /* TTGlobal.m */; };
 		BEF31F730F352E64000DE5D2 /* TTImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F490F352E64000DE5D2 /* TTImageView.m */; };
 		BEF31F740F352E64000DE5D2 /* TTView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4A0F352E64000DE5D2 /* TTView.m */; };
 		BEF31F750F352E64000DE5D2 /* TTPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F4B0F352E64000DE5D2 /* TTPhotoView.m */; };
@@ -360,7 +359,6 @@
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF31F460F352E64000DE5D2 /* TTActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTActivityLabel.m; sourceTree = "<group>"; };
 		BEF31F470F352E64000DE5D2 /* TTErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTErrorView.m; sourceTree = "<group>"; };
-		BEF31F480F352E64000DE5D2 /* TTGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobal.m; sourceTree = "<group>"; };
 		BEF31F490F352E64000DE5D2 /* TTImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageView.m; sourceTree = "<group>"; };
 		BEF31F4A0F352E64000DE5D2 /* TTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTView.m; sourceTree = "<group>"; };
 		BEF31F4B0F352E64000DE5D2 /* TTPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPhotoView.m; sourceTree = "<group>"; };
@@ -699,7 +697,6 @@
 				BEF31F6F0F352E64000DE5D2 /* Three20.h */,
 				EBDC8EB510C5CCB000257247 /* TTDebugFlags.h */,
 				BEF31F5C0F352E64000DE5D2 /* TTGlobal.h */,
-				BEF31F480F352E64000DE5D2 /* TTGlobal.m */,
 				BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */,
 				BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */,
 			);
@@ -1091,7 +1088,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEF31F720F352E64000DE5D2 /* TTGlobal.m in Sources */,
 				BEF31F700F352E64000DE5D2 /* TTActivityLabel.m in Sources */,
 				BEF31F710F352E64000DE5D2 /* TTErrorView.m in Sources */,
 				BEF31F730F352E64000DE5D2 /* TTImageView.m in Sources */,
