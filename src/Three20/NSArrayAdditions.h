@@ -31,7 +31,7 @@
 
 /**
  * Selector form:
- * - (BOOL)method:(id)object;
+ * - (NSNumber*)method:(id)object;
  */
 - (BOOL)containsObject:(id)object withSelector:(SEL)selector;
 
