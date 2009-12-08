@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Three20/TTCorePreprocessorMacros.h"
+
 // Debugging
 #import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"
@@ -28,75 +30,6 @@
 #import "Three20/NSMutableArrayAdditions.h"
 #import "Three20/NSMutableDictionaryAdditions.h"
 #import "Three20/NSDateAdditions.h"
-
-/**
- * Borrowed from Apple's AvailabiltyInternal.h header. There's no reason why we shouldn't be
- * able to use this macro, as it's a gcc-supported flag.
- * Here's what we based it off of.
- * #define __AVAILABILITY_INTERNAL_DEPRECATED         __attribute__((deprecated))
- */
-#define __TTDEPRECATED_METHOD __attribute__((deprecated))
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Logging Helpers
-
-void TTDeprecatedLog(NSString* text, ...) __TTDEPRECATED_METHOD;
-
-// Deprecated, please see Three20/TTDebug.h for more details.
-#ifdef DEBUG
-#define TTLOG TTDeprecatedLog
-#else
-#define TTLOG    
-#endif
-
-// Deprecated, please see Three20/TTDebug.h for more details.
-#define TTWARN TTLOG
-
-
-// Helper
-
-#define TTLOGRECT(rect) \
-  TTDINFO(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
-    rect.size.width, rect.size.height)
-
-#define TTLOGPOINT(pt) \
-  TTDINFO(@"%s x=%f, y=%f", #pt, pt.x, pt.y)
-
-#define TTLOGSIZE(size) \
-  TTDINFO(@"%s w=%f, h=%f", #size, size.width, size.height)
-
-#define TTLOGEDGES(edges) \
-  TTDINFO(@"%s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
-    edges.top, edges.bottom)
-
-#define TTLOGHSV(_COLOR) \
-  TTDINFO(@"%s h=%f, s=%f, v=%f", #_COLOR, _COLOR.hue, _COLOR.saturation, _COLOR.value)
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Errors
-
-#define TT_ERROR_DOMAIN @"three20.net"
-
-#define TT_EC_INVALID_IMAGE 101
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Time
-
-#define TT_MINUTE 60
-#define TT_HOUR (60*TT_MINUTE)
-#define TT_DAY (24*TT_HOUR)
-#define TT_WEEK (7*TT_DAY)
-#define TT_MONTH (30.5*TT_DAY)
-#define TT_YEAR (365*TT_DAY)
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-#define TT_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
-#define TT_AUTORELEASE_SAFELY(__POINTER) { [__POINTER autorelease]; __POINTER = nil; }
-#define TT_INVALIDATE_TIMER(__TIMER) { [__TIMER invalidate]; __TIMER = nil; }
-#define TT_RELEASE_CF_SAFELY(__REF) { if (nil != (__REF)) { CFRelease(__REF); __REF = nil; } }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Creates a mutable array which does not retain references to the objects it contains.
@@ -144,4 +77,14 @@ BOOL TTIsSetWithItems(id object);
  */
 BOOL TTIsStringWithAnyText(id object);
 
+/**
+ * Swap the two method implementations on the given class.
+ * Uses method_exchangeImplementations to accomplish this.
+ */
 void TTSwapMethods(Class cls, SEL originalSel, SEL newSel);
+
+/**
+ * The deprecated end-point for TTLOG.
+ * Please see Three20/TTDebug.h for details on the new debugging macros.
+ */
+void TTDeprecatedLog(NSString* text, ...) __TTDEPRECATED_METHOD;
