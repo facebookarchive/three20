@@ -82,15 +82,18 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testIsEmptyArray {
-  STAssertTrue(!TTIsEmptyArray(nil), @"nil should not be an empty array.");
+- (void)testIsArrayWithItems {
+  STAssertTrue(!TTIsArrayWithItems(nil), @"nil should not be an array with items.");
 
-  NSArray* array = [[NSArray alloc] init];
+  NSMutableArray* array = [[NSMutableArray alloc] init];
 
-  STAssertTrue(TTIsEmptyArray(array), @"This should be an empty array.");
+  STAssertTrue(!TTIsArrayWithItems(array), @"This array should not have any items.");
 
   NSDictionary* dictionary = [[NSDictionary alloc] init];
-  STAssertTrue(!TTIsEmptyArray(dictionary), @"This should not be an empty array.");
+  STAssertTrue(!TTIsArrayWithItems(dictionary), @"This is not an array.");
+
+  [array addObject:dictionary];
+  STAssertTrue(TTIsArrayWithItems(array), @"This array should have items.");
 
   TT_RELEASE_SAFELY(array);
   TT_RELEASE_SAFELY(dictionary);
@@ -99,14 +102,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testIsEmptySet {
-  STAssertTrue(!TTIsEmptySet(nil), @"nil should not be an empty set.");
+  STAssertTrue(!TTIsSetWithItems(nil), @"nil should not be a set with items.");
 
-  NSSet* set = [[NSSet alloc] init];
+  NSMutableSet* set = [[NSMutableSet alloc] init];
 
-  STAssertTrue(TTIsEmptySet(set), @"This should be an empty set.");
+  STAssertTrue(!TTIsSetWithItems(set), @"This set should not have any items.");
 
   NSDictionary* dictionary = [[NSDictionary alloc] init];
-  STAssertTrue(!TTIsEmptySet(dictionary), @"This should not be an empty set.");
+  STAssertTrue(!TTIsSetWithItems(dictionary), @"This is not an set.");
+
+  [set addObject:dictionary];
+  STAssertTrue(TTIsSetWithItems(set), @"This set should have items.");
 
   TT_RELEASE_SAFELY(set);
   TT_RELEASE_SAFELY(dictionary);
@@ -115,14 +121,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testIsEmptyString {
-  STAssertTrue(!TTIsEmptyString(nil), @"nil should not be an empty string.");
+  STAssertTrue(!TTIsStringWithAnyText(nil), @"nil should not be a string with any text.");
 
   NSString* string = [[NSString alloc] init];
 
-  STAssertTrue(TTIsEmptyString(string), @"This should be an empty string.");
+  STAssertTrue(!TTIsStringWithAnyText(string), @"This should be an empty string.");
 
   NSDictionary* dictionary = [[NSDictionary alloc] init];
-  STAssertTrue(!TTIsEmptyString(dictionary), @"This should not be an empty string.");
+  STAssertTrue(!TTIsStringWithAnyText(dictionary), @"This is not a string.");
+
+  STAssertTrue(!TTIsStringWithAnyText(@""), @"This should be an empty string.");
+  STAssertTrue(TTIsStringWithAnyText(@"three20"), @"This should be a string with text.");
 
   TT_RELEASE_SAFELY(string);
   TT_RELEASE_SAFELY(dictionary);

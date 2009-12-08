@@ -21,7 +21,7 @@
 @implementation NSMutableArray (TTCategory)
 
 - (void) addNonEmptyString:(NSString*)string {
-  if (nil != string && !TTIsEmptyString(string)) {
+  if (TTIsStringWithAnyText(string)) {
     [self addObject:string];
   }
 }

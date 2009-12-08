@@ -16,9 +16,11 @@
 
 #import <Foundation/Foundation.h>
 
+// Debugging
 #import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"
 
+// Core Additions
 #import "Three20/NSObjectAdditions.h"
 #import "Three20/NSDataAdditions.h"
 #import "Three20/NSStringAdditions.h"
@@ -108,17 +110,38 @@ NSMutableDictionary* TTCreateNonRetainingDictionary();
 
 /**
  * Tests if an object is an array which is empty.
+ *
+ * Deprecated due to ease of abuse. Please consider using TTIsArrayWithItems instead.
  */
-BOOL TTIsEmptyArray(id object);
+BOOL TTIsEmptyArray(id object) __TTDEPRECATED_METHOD;
 
 /**
  * Tests if an object is a set which is empty.
+ *
+ * Deprecated due to ease of abuse. Please consider using TTIsSetWithItems instead.
  */
-BOOL TTIsEmptySet(id object);
+BOOL TTIsEmptySet(id object) __TTDEPRECATED_METHOD;
 
 /**
  * Tests if an object is a string which is empty.
+ *
+ * Deprecated due to ease of abuse. Please consider using TTIsStringWithAnyText instead.
  */
-BOOL TTIsEmptyString(id object);
+BOOL TTIsEmptyString(id object) __TTDEPRECATED_METHOD;
+
+/**
+ * Tests if an object is an array which is not empty.
+ */
+BOOL TTIsArrayWithItems(id object);
+
+/**
+ * Tests if an object is a set which is not empty.
+ */
+BOOL TTIsSetWithItems(id object);
+
+/**
+ * Tests if an object is a string which is not empty.
+ */
+BOOL TTIsStringWithAnyText(id object);
 
 void TTSwapMethods(Class cls, SEL originalSel, SEL newSel);

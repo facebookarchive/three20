@@ -48,16 +48,31 @@ NSMutableDictionary* TTCreateNonRetainingDictionary() {
   return (NSMutableDictionary*)CFDictionaryCreateMutable(nil, 0, &keyCallbacks, &callbacks);
 }
 
+// Deprecated
 BOOL TTIsEmptyArray(id object) {
   return [object isKindOfClass:[NSArray class]] && ![(NSArray*)object count];
 }
 
+// Deprecated
 BOOL TTIsEmptySet(id object) {
   return [object isKindOfClass:[NSSet class]] && ![(NSSet*)object count];
 }
 
+// Deprecated
 BOOL TTIsEmptyString(id object) {
   return [object isKindOfClass:[NSString class]] && ![(NSString*)object length];
+}
+
+BOOL TTIsArrayWithItems(id object) {
+  return [object isKindOfClass:[NSArray class]] && [(NSArray*)object count] > 0;
+}
+
+BOOL TTIsSetWithItems(id object) {
+  return [object isKindOfClass:[NSSet class]] && [(NSSet*)object count] > 0;
+}
+
+BOOL TTIsStringWithAnyText(id object) {
+  return [object isKindOfClass:[NSString class]] && [(NSString*)object length] > 0;
 }
 
 void TTSwapMethods(Class cls, SEL originalSel, SEL newSel) {
