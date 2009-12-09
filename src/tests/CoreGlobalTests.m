@@ -101,7 +101,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testIsEmptySet {
+- (void)testIsSetWithItems {
   STAssertTrue(!TTIsSetWithItems(nil), @"nil should not be a set with items.");
 
   NSMutableSet* set = [[NSMutableSet alloc] init];
@@ -120,7 +120,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testIsEmptyString {
+- (void)testIsStringWithAnyText {
   STAssertTrue(!TTIsStringWithAnyText(nil), @"nil should not be a string with any text.");
 
   NSString* string = [[NSString alloc] init];
