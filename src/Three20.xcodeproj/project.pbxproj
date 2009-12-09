@@ -177,6 +177,8 @@
 		C6620EAD109CEDA400EC35C6 /* UIWindowAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C6620EAB109CEDA400EC35C6 /* UIWindowAdditions.h */; };
 		C6620EAE109CEDA400EC35C6 /* UIWindowAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C6620EAC109CEDA400EC35C6 /* UIWindowAdditions.m */; };
 		EB1F6C5F10B36C32003DAA1F /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1F6C5D10B36C32003DAA1F /* TTDebug.m */; };
+		EB2F8DBB10D027E9008522A7 /* UIAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB2F8DBA10D027E9008522A7 /* UIAdditionTests.m */; };
+		EB2F8DBD10D02815008522A7 /* UIColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */; };
 		EB4CD6FB10CA019200A856E5 /* UINSObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CD6FA10CA019200A856E5 /* UINSObjectAdditions.h */; };
 		EB4CD72010CA034000A856E5 /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CD71E10CA034000A856E5 /* TTGlobalCoreLocale.m */; };
 		EB4CD72210CA034F00A856E5 /* TTGlobalCoreLocale.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CD72110CA034F00A856E5 /* TTGlobalCoreLocale.h */; };
@@ -400,6 +402,8 @@
 		C6620EAB109CEDA400EC35C6 /* UIWindowAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWindowAdditions.h; path = Three20/UIWindowAdditions.h; sourceTree = "<group>"; };
 		C6620EAC109CEDA400EC35C6 /* UIWindowAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWindowAdditions.m; sourceTree = "<group>"; };
 		EB1F6C5D10B36C32003DAA1F /* TTDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDebug.m; sourceTree = "<group>"; };
+		EB2F8DB910D027E9008522A7 /* UIAdditionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIAdditionTests.h; path = tests/UIAdditionTests.h; sourceTree = "<group>"; };
+		EB2F8DBA10D027E9008522A7 /* UIAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAdditionTests.m; path = tests/UIAdditionTests.m; sourceTree = "<group>"; };
 		EB4CD6FA10CA019200A856E5 /* UINSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UINSObjectAdditions.h; path = Three20/UINSObjectAdditions.h; sourceTree = "<group>"; };
 		EB4CD71E10CA034000A856E5 /* TTGlobalCoreLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCoreLocale.m; sourceTree = "<group>"; };
 		EB4CD72110CA034F00A856E5 /* TTGlobalCoreLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCoreLocale.h; path = Three20/TTGlobalCoreLocale.h; sourceTree = "<group>"; };
@@ -796,6 +800,8 @@
 			children = (
 				EB4CDA5E10CADB3200A856E5 /* UIGlobalTests.h */,
 				EB4CDA5F10CADB3200A856E5 /* UIGlobalTests.m */,
+				EB2F8DB910D027E9008522A7 /* UIAdditionTests.h */,
+				EB2F8DBA10D027E9008522A7 /* UIAdditionTests.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1204,6 +1210,8 @@
 				EB4CDA6310CADB8200A856E5 /* UIGlobalTests.m in Sources */,
 				EB4CDAF410CADC6700A856E5 /* TTGlobalUI.m in Sources */,
 				EB4CDAF610CADC7100A856E5 /* TTGlobalCoreLocale.m in Sources */,
+				EB2F8DBB10D027E9008522A7 /* UIAdditionTests.m in Sources */,
+				EB2F8DBD10D02815008522A7 /* UIColorAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
