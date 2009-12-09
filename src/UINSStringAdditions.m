@@ -12,7 +12,7 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-#import "TTNSStringAdditions.h"
+#import "Three20/UINSStringAdditions.h"
 
 #import "Three20/TTURLMap.h"
 #import "Three20/TTNavigator.h"

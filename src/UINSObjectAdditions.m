@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#import "Three20/TTNSObjectAdditions.h"
+#import "Three20/UINSObjectAdditions.h"
 
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLMap.h"

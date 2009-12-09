@@ -58,18 +58,18 @@ CGRect TTRectInset(CGRect rect, UIEdgeInsets insets) {
 BOOL TTIsKeyboardVisible() {
   // Operates on the assumption that the keyboard is visible if and only if there is a first
   // responder; i.e. a control responding to key events
-  UIWindow *window = [UIApplication sharedApplication].keyWindow;
+  UIWindow* window = [UIApplication sharedApplication].keyWindow;
   return !![window findFirstResponder];
 }
 
 BOOL TTIsPhoneSupported() {
-  NSString *deviceType = [UIDevice currentDevice].model;
+  NSString* deviceType = [UIDevice currentDevice].model;
   return [deviceType isEqualToString:@"iPhone"];
 }
 
 UIDeviceOrientation TTDeviceOrientation() {
   UIDeviceOrientation orient = [UIDevice currentDevice].orientation;
-  if (!orient) {
+  if (UIDeviceOrientationUnknown == orient) {
     return UIDeviceOrientationPortrait;
   } else {
     return orient;

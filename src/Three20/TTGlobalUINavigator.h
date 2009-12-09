@@ -17,6 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "Three20/UINSStringAdditions.h"
+#import "Three20/UINSObjectAdditions.h"
+
 /**
  * Gets the current interface orientation.
  */

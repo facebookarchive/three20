@@ -16,34 +16,18 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "Three20/TTDebug.h"
-#import "Three20/TTDebugFlags.h"
-#import "Three20/TTNSObjectAdditions.h"
-#import "Three20/TTNSStringAdditions.h"
-#import "Three20/NSObjectAdditions.h"
-#import "Three20/NSStringAdditions.h"
-#import "Three20/TTNSStringAdditions.h"
-#import "Three20/NSDateAdditions.h"
-#import "Three20/NSDataAdditions.h"
-#import "Three20/NSArrayAdditions.h"
-#import "Three20/NSMutableArrayAdditions.h"
-#import "Three20/NSMutableDictionaryAdditions.h"
-#import "Three20/UIColorAdditions.h"
-#import "Three20/UIFontAdditions.h"
-#import "Three20/UIImageAdditions.h"
-#import "Three20/UIViewControllerAdditions.h"
-#import "Three20/UIWindowAdditions.h"
-#import "Three20/UINavigationControllerAdditions.h"
-#import "Three20/UITabBarControllerAdditions.h"
-#import "Three20/UIViewAdditions.h"
-#import "Three20/UITableViewAdditions.h"
-#import "Three20/UIWebViewAdditions.h"
-#import "Three20/UIToolbarAdditions.h"
 
+// Core
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalCorePaths.h"
+
+// UI
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
+
+// Network
 #import "Three20/TTGlobalNetwork.h"
+
+// Style
 #import "Three20/TTGlobalStyle.h"
