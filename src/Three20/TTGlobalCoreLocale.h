@@ -28,7 +28,17 @@ NSLocale* TTCurrentLocale();
  */
 NSString* TTLocalizedString(NSString* key, NSString* comment);
 
+/**
+ * Returns a localized description for NSURLErrorDomain errors.
+ *
+ * Error codes handled:
+ * - NSURLErrorTimedOut
+ * - NSURLErrorNotConnectedToInternet
+ */
 NSString* TTDescriptionForError(NSError* error);
 
+/**
+ * Returns the given number formatted as XX,XXX,XXX.XX
+ */
 NSString* TTFormatInteger(NSInteger num);
 

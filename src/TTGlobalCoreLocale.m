@@ -22,7 +22,7 @@ NSLocale* TTCurrentLocale() {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSArray* languages = [defaults objectForKey:@"AppleLanguages"];
   if (languages.count > 0) {
-    NSString *currentLanguage = [languages objectAtIndex:0];
+    NSString* currentLanguage = [languages objectAtIndex:0];
     return [[[NSLocale alloc] initWithLocaleIdentifier:currentLanguage] autorelease];
   } else {
     return [NSLocale currentLocale];
@@ -40,16 +40,6 @@ NSString* TTLocalizedString(NSString* key, NSString* comment) {
   return [bundle localizedStringForKey:key value:key table:nil];
 }
 
-NSString* TTFormatInteger(NSInteger num) {
-  NSNumber* number = [NSNumber numberWithInt:num];
-  NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
-  [formatter setNumberStyle:kCFNumberFormatterDecimalStyle];
-  [formatter setGroupingSeparator:@","];
-  NSString* formatted = [formatter stringForObjectValue:number];
-  [formatter release];
-  return formatted;
-}
-
 NSString* TTDescriptionForError(NSError* error) {
   TTDINFO(@"ERROR %@", error);
   if ([error.domain isEqualToString:NSURLErrorDomain]) {
@@ -62,4 +52,14 @@ NSString* TTDescriptionForError(NSError* error) {
     }
   }
   return TTLocalizedString(@"Error", @"");
+}
+
+NSString* TTFormatInteger(NSInteger num) {
+  NSNumber* number = [NSNumber numberWithInt:num];
+  NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+  [formatter setNumberStyle:kCFNumberFormatterDecimalStyle];
+  [formatter setGroupingSeparator:@","];
+  NSString* formatted = [formatter stringForObjectValue:number];
+  [formatter release];
+  return formatted;
 }
