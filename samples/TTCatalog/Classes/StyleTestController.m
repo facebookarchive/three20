@@ -142,7 +142,7 @@
     x += frame.size.width + padding;
   }
   
-  scrollView.contentSize = CGSizeMake(scrollView.width, y);
+  scrollView.contentSize = CGSizeMake(scrollView.width, y + viewHeight + padding);
 }
 
 @end
