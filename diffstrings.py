@@ -10,7 +10,7 @@ The path arguments supplied to this script should be the path containing your so
 import os.path, codecs, optparse, re, datetime
 from xml.sax.saxutils import escape
 from xml.dom import minidom
- 
+
 ###################################################################################################
 
 global xmlFormat
@@ -41,7 +41,7 @@ def diffProjects(projects, sourceLocaleName, focusedLocaleName=None, verbose=Fal
     if sourceLocaleName not in compiledStrings:
         print "WARNING: No '%s' locale found!" % sourceLocaleName
     else:
-        sourceStrings = compiledStrings[sourceLocaleName] 
+        sourceStrings = compiledStrings[sourceLocaleName]
 
         if verbose:
             print "\n", "=" * 80
@@ -61,11 +61,11 @@ def diffProjects(projects, sourceLocaleName, focusedLocaleName=None, verbose=Fal
 
 def mergeProjects(projects, sourceLocaleName, focusedLocaleName=None, verbose=False, dryRun=False):
     translations = {}
-    
+
     for project in projects:
         sourceStrings = project.condenseStringSourceFiles()
         sourceStrings.save()
-        
+
         # for localeName, localizedStrings in project.locales.iteritems():
         #     if not focusedLocaleName or focusedLocaleName == localeName:
         #         if localizedStrings.name in translations:
@@ -74,11 +74,11 @@ def mergeProjects(projects, sourceLocaleName, focusedLocaleName=None, verbose=Fa
         #             translation = Translation(localizedStrings.name)
         #             translation.open(".", "2")
         #             translations[localizedStrings.name] = translation
-        # 
+        #
         #         if translation.strings:
         #             if verbose:
         #                 localizedStrings.mergeReport(sourceStrings, translation)
-        # 
+        #
         #             localizedStrings.mergeTranslation(sourceStrings, translation)
         #             if not dryRun:
         #                 localizedStrings.save()
@@ -91,7 +91,7 @@ class XcodeProject(object):
         self.sourceLocaleName = sourceLocaleName
         self.sourceLocalePath = self.__findStringsFile(sourceLocaleName, self.path)
         self.stringSourceFiles = list(self.__iterateSourceStrings())
-        
+
         self.locales = {}
         for localeName, localizedStrings in self.__iterateLocalizableStrings():
             self.locales[localeName] = localizedStrings
@@ -99,58 +99,58 @@ class XcodeProject(object):
     def condenseStringSourceFiles(self):
         """ Copies all strings from all sources files into a single file."""
         sourceStrings = LocalizableStrings(self.sourceLocaleName)
-        
+
         sourceStrings.path = self.__findSourceStringsPath()
         if not sourceStrings.path:
             sourceStrings.path = os.path.join(self.sourceLocalePath, "Localizable.strings")
-        
+
         for sourceFile in self.stringSourceFiles:
             sourceStrings.update(sourceFile)
         return sourceStrings
-        
+
     def compileStrings(self, compiledStrings, focusedLocaleName=None):
         """ Copies all strings in a dictionary for each locale."""
-        
+
         if not self.sourceLocaleName in compiledStrings:
             compiledStrings[self.sourceLocaleName] = LocalizableStrings(self.sourceLocaleName)
         compiledStringsFile = compiledStrings[self.sourceLocaleName]
 
         for sourceStrings in self.stringSourceFiles:
             compiledStringsFile.update(sourceStrings)
-                            
+
         if focusedLocaleName:
             locales = {focusedLocaleName: self.locales[focusedLocaleName]}
         else:
             locales = self.locales
-                    
+
         for localeName, sourceStrings in locales.iteritems():
             if not localeName in compiledStrings:
                 compiledStringsFile = LocalizableStrings(localeName)
                 compiledStrings[localeName] = compiledStringsFile
             else:
                 compiledStringsFile = compiledStrings[localeName]
-             
+
             compiledStringsFile.update(sourceStrings)
-    
+
     def compileSourceMap(self, sourceMap):
         for sourceStrings in self.stringSourceFiles:
             for source in sourceStrings.strings:
                 if not source in sourceMap:
                     sourceMap[source] = []
-             
+
                 name,ext = os.path.splitext(os.path.basename(sourceStrings.path))
                 sourceMap[source].append(name)
-        
+
     def generateStrings(self):
         buildPath = None
 
         cwd = os.getcwd()
         os.chdir(self.path)
-            
+
         extras = ""
         if os.path.isdir(os.path.join(self.path, "Three20.xcodeproj")):
             extras = " -s TTLocalizedString"
-        
+
         for fileName in os.listdir(self.path):
             name,ext = os.path.splitext(fileName)
             if ext == ".m":
@@ -162,14 +162,14 @@ class XcodeProject(object):
                 command = "genstrings %s -o %s%s" % (fileName, buildPath, extras)
                 print "   %s" % command
                 os.system(command)
-                
+
                 resultPath = os.path.join(buildPath, "Localizable.strings")
                 if os.path.isfile(resultPath):
                     renamedPath = os.path.join(buildPath, "%s.strings" % name)
                     os.rename(resultPath, renamedPath)
 
         os.chdir(cwd)
-        
+
     def __findStringsFile(self, localeName, searchPath):
         dirName = "%s.lproj" % localeName
         localeDirPath = os.path.join(searchPath, dirName)
@@ -182,9 +182,9 @@ class XcodeProject(object):
                 localeDirPath = self.__findStringsFile(localeName, path)
                 if localeDirPath:
                     return localeDirPath
-            
+
         return None
-    
+
     def __iterateSourceStrings(self):
         buildPath = self.__makeBuildPath()
         if not os.path.exists(buildPath):
@@ -215,7 +215,7 @@ class XcodeProject(object):
                 filePath = os.path.join(self.sourceLocalePath, name)
                 strings.open(filePath)
                 yield strings
-       
+
     def __iterateLocalizableStrings(self):
         dirPath = os.path.dirname(self.sourceLocalePath)
         for dirName in os.listdir(dirPath):
@@ -237,7 +237,7 @@ class XcodeProject(object):
 
     def __makeBuildPath(self):
         return os.path.join(self.path, "build", "i18n")
-        
+
 ###################################################################################################
 
 class LocalizableStrings(object):
@@ -251,7 +251,7 @@ class LocalizableStrings(object):
         if os.path.isfile(path):
             self.path = path
             self.__parse()
-        
+
     def save(self, path=None, suffix=""):
         text = self.generate()
         if text:
@@ -259,11 +259,11 @@ class LocalizableStrings(object):
                 filePath = self.__makePath(path, suffix)
             else:
                 filePath = self.path
-             
+
             print "***** Saving %s" % filePath
             f = codecs.open(filePath, 'w', 'utf-16')
             f.write(text)
-            f.close()          
+            f.close()
 
     def generate(self):
         lines = []
@@ -272,9 +272,9 @@ class LocalizableStrings(object):
                 comment = self.comments[source]
                 lines.append("/* %s */" % comment)
             lines.append('"%s" = "%s";\n' % (source, target))
-            
+
         return "\n".join(lines)
-    
+
     def mergeTranslation(self, sourceStrings, translation):
         for source in sourceStrings.strings:
             sourceEnum = enumerateStringVariables(source)
@@ -289,7 +289,7 @@ class LocalizableStrings(object):
 
     def diff(self, localizedStrings):
         translation = Translation(localizedStrings.name)
-        
+
         for source, target in self.strings.iteritems():
             sourceEnum = enumerateStringVariables(source)
 
@@ -299,7 +299,7 @@ class LocalizableStrings(object):
 
             targetEnum = enumerateStringVariables(target)
             translation.strings[sourceEnum] = targetEnum
-            
+
             if source in self.comments:
                 translation.comments[sourceEnum] = self.comments[source]
 
@@ -310,9 +310,9 @@ class LocalizableStrings(object):
         newStrings = list(self.__compare(localizedStrings))
         obsoleteStrings = list(localizedStrings.__compare(self))
         troubleStrings = list(self.__compareSizes(localizedStrings))
-        
+
         print "\n", "=" * 80
-        
+
         if not len(newStrings):
             if len(obsoleteStrings):
                 print "%s is fully translated, but has %s obsolete strings" \
@@ -328,7 +328,7 @@ class LocalizableStrings(object):
                 print "%s has %s new strings, with %s already translated."\
                       % (name, len(newStrings), existingCount)
         print "=" * 80
-                
+
         if len(newStrings):
             print "\n---- %s NEW STRINGS ---\n" % name
             print "\n".join(newStrings)
@@ -339,13 +339,13 @@ class LocalizableStrings(object):
 
         if len(troubleStrings):
             print "\n---- %s TROUBLE STRINGS ---\n" % name
-            
+
             for source, diff in sorted(troubleStrings, lambda a,b: cmp(b[1], a[1])):
                 print "%3d. %s " % (diff, codecs.encode(source, 'utf-8'))
                 print "     %s " % codecs.encode(localizedStrings.strings[source], 'utf-8')
 
         print "\n"
-        
+
     def mergeReport(self, sourceStrings, translation):
         name = self.name
         updatedStrings = []
@@ -370,7 +370,7 @@ class LocalizableStrings(object):
         if len(updatedStrings):
             print "\n---- %s NEWLY TRANSLATED STRINGS ---\n" % name
             print "\n".join(updatedStrings)
-        
+
         if len(ignoredStrings):
             print "\n---- %s UNTRANSLATED STRINGS ---\n" % name
             print "\n".join(ignoredStrings)
@@ -378,7 +378,7 @@ class LocalizableStrings(object):
     def __makePath(self, path=".", suffix=""):
         fileName = "Localizable%s.strings" % (suffix)
         return os.path.abspath(os.path.join(path, fileName))
-        
+
     def __parse(self):
         lastIdentical = False
         lastComment = None
@@ -417,7 +417,7 @@ class LocalizableStrings(object):
                 diff = len(target) - len(source)
                 if ratio > 1.3 and diff > 5:
                     yield (source, diff)
-        
+
 ###################################################################################################
 
 class Translation(object):
@@ -453,7 +453,7 @@ class Translation(object):
 
         global xmlFormat
         prefix = xmlFormat['prefix']
-        
+
         lines.append('<?xml version="1.0" encoding="utf-16"?>')
         lines.append('<%sexternal>' % prefix)
         lines.append('  <meta>')
@@ -462,15 +462,15 @@ class Translation(object):
         lines.append('    <date>%s</date>' % datetime.datetime.now().strftime('%Y%m%d'))
         lines.append('    <locale>%s</locale>' % self.name)
         lines.append('  </meta>')
-        
+
         for sourceFileName, sourceFileStrings in self.__invertSourceMap(sourceMap):
             lines.append("  <!-- %s -->" % sourceFileName)
             for source in sourceFileStrings:
                 target = self.strings[source]
-                
+
                 lines.append("  <entry>")
                 lines.append("    <%ssource>%s</%ssource>" % (prefix, escape(source), prefix))
-            
+
                 if source in self.translated:
                     lines.append("    <%sxtarget>%s</%sxtarget>" % (prefix, escape(target), prefix))
                 else:
@@ -481,7 +481,7 @@ class Translation(object):
                                  % (prefix, escape(self.comments[source]), prefix))
 
                 lines.append("  </entry>")
-        
+
         lines.append('</%sexternal>' % prefix)
 
         return "\n".join(lines)
@@ -502,21 +502,21 @@ class Translation(object):
                 source = None
                 target = None
                 translated = False
-                
+
                 sources = entry.getElementsByTagName("%ssource" % prefix)
                 if len(sources):
                     source = sources[0]
                     source = source.childNodes[0].data
 
                 targets = entry.getElementsByTagName("%sxtarget" % prefix)
-                if not len(targets):       
+                if not len(targets):
                     targets = entry.getElementsByTagName("%starget" % prefix)
                     translated = True
-                    
+
                 if len(targets):
                     target = targets[0]
                     target = target.childNodes[0].data
-            
+
                 if source and target:
                    self.strings[source] = target
                    if translated:
@@ -524,7 +524,7 @@ class Translation(object):
 
     def __invertSourceMap(self, sourceMap):
         sourceFileMap = {}
-        
+
         for sourceEnum in self.strings:
             source = denumerateStringVariables(sourceEnum)
             if source in sourceMap:
@@ -534,13 +534,13 @@ class Translation(object):
                         sourceFileMap[sourcePath] = []
                     sourceFileMap[sourcePath].append(sourceEnum)
                     break
-        
+
         for sourceName, sourceFileStrings in sourceFileMap.iteritems():
             sourceFileStrings.sort()
 
         keys = sourceFileMap.keys()
         keys.sort()
-        
+
         for key in keys:
             yield key, sourceFileMap[key]
 
@@ -627,19 +627,19 @@ def main():
     global xmlFormat
     xmlFormat['prefix'] = options.prefix
     xmlFormat['appName'] = options.appName
-    
+
     projects = list(openProjects(projectPaths, options.locale))
-    
+
     if options.build:
         print "******* Generating strings *******"
         generateProjects(projects)
         print ""
-        
+
     if options.merge:
         print "******* Merging *******"
         mergeProjects(projects, options.locale, options.focus, options.verbose, options.dryrun)
         print ""
-    
+
     if options.diff:
         print "******* Diffing *******"
         diffProjects(projects, options.locale, options.focus, options.verbose, options.dryrun)
