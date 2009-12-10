@@ -62,7 +62,7 @@ static CGFloat kMinCursorWidth = 50;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (CGFloat)layoutCells {
-  CGFloat fontHeight = self.font.lineHeight;
+  CGFloat fontHeight = self.font.safeLineHeight;
   CGFloat lineIncrement = fontHeight + kCellPaddingY*2 + kSpacingY;
   CGFloat marginY = floor(fontHeight/kPaddingRatio);
   CGFloat marginLeft = self.leftView
@@ -118,32 +118,32 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (CGFloat)marginY {
-  return floor(self.font.lineHeight/kPaddingRatio);
+  return floor(self.font.safeLineHeight/kPaddingRatio);
 }
 
 - (CGFloat)topOfLine:(int)lineNumber {
   if (lineNumber == 0) {
     return 0;
   } else {
-    CGFloat lineHeight = self.font.lineHeight;
+    CGFloat safeLineHeight = self.font.safeLineHeight;
     CGFloat lineSpacing = kCellPaddingY*2 + kSpacingY;
-    CGFloat marginY = floor(lineHeight/kPaddingRatio);
-    CGFloat lineTop = marginY + lineHeight*lineNumber + lineSpacing*lineNumber;
+    CGFloat marginY = floor(safeLineHeight/kPaddingRatio);
+    CGFloat lineTop = marginY + safeLineHeight*lineNumber + lineSpacing*lineNumber;
     return lineTop - lineSpacing;
   }
 }
 
 - (CGFloat)centerOfLine:(int)lineNumber {
   CGFloat lineTop = [self topOfLine:lineNumber];
-  CGFloat lineHeight = self.font.lineHeight + kCellPaddingY*2 + kSpacingY;
-  return lineTop + floor(lineHeight/2);
+  CGFloat safeLineHeight = self.font.safeLineHeight + kCellPaddingY*2 + kSpacingY;
+  return lineTop + floor(safeLineHeight/2);
 }
 
 - (CGFloat)heightWithLines:(int)lines {
-  CGFloat lineHeight = self.font.lineHeight;
+  CGFloat safeLineHeight = self.font.safeLineHeight;
   CGFloat lineSpacing = kCellPaddingY*2 + kSpacingY;
-  CGFloat marginY = floor(lineHeight/kPaddingRatio);
-  return marginY + lineHeight*lines + lineSpacing*(lines ? lines-1 : 0) + marginY;
+  CGFloat marginY = floor(safeLineHeight/kPaddingRatio);
+  return marginY + safeLineHeight*lines + lineSpacing*(lines ? lines-1 : 0) + marginY;
 }
 
 - (void)selectLastCell {

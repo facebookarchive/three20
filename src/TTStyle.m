@@ -539,7 +539,7 @@ static const NSInteger kDefaultLightSource = 125;
     CGSize textSize = [text sizeWithFont:font constrainedToSize:maxSize
                             lineBreakMode:_lineBreakMode];
     if (_numberOfLines) {
-      CGFloat maxHeight = font.lineHeight * _numberOfLines;
+      CGFloat maxHeight = font.safeLineHeight * _numberOfLines;
       if (textSize.height > maxHeight) {
         textSize.height = maxHeight;
       }
@@ -669,7 +669,7 @@ static const NSInteger kDefaultLightSource = 125;
     if (!maxWidth) {
       maxWidth = CGFLOAT_MAX;
     }
-    CGFloat maxHeight = _numberOfLines ? _numberOfLines * font.lineHeight : CGFLOAT_MAX;
+    CGFloat maxHeight = _numberOfLines ? _numberOfLines * font.safeLineHeight : CGFLOAT_MAX;
     CGSize maxSize = CGSizeMake(maxWidth, maxHeight);
     CGSize textSize = [self sizeOfText:text withFont:font size:maxSize];
     

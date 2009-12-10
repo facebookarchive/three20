@@ -20,8 +20,17 @@
 
 @implementation UIFont (TTCategory)
 
-- (CGFloat)lineHeight {
-  return (self.ascender - self.descender)+1;
+- (CGFloat)safeLineHeight {
+  return (self.ascender - self.descender) + 1;
 }
+
+// Removing due to App Store static analysis bugs. See UIFontAdditions.h
+#ifdef DEBUG
+
+- (CGFloat)lineHeight {
+  return [self safeLineHeight];
+}
+
+#endif
 
 @end

@@ -260,7 +260,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   [super layoutSubviews];
     
   self.textLabel.frame = CGRectMake(kHPadding, kVPadding,
-                                    kKeyWidth, self.textLabel.font.lineHeight);
+                                    kKeyWidth, self.textLabel.font.safeLineHeight);
 
   CGFloat valueWidth = self.contentView.width - (kHPadding*2 + kKeyWidth + kKeySpacing);
   CGFloat innerHeight = self.contentView.height - kVPadding*2;
@@ -461,9 +461,9 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   TTTableSubtitleItem* item = object;
   
-  CGFloat height = TTSTYLEVAR(tableFont).lineHeight + kVPadding*2;
+  CGFloat height = TTSTYLEVAR(tableFont).safeLineHeight + kVPadding*2;
   if (item.subtitle) {
-    height += TTSTYLEVAR(font).lineHeight;
+    height += TTSTYLEVAR(font).safeLineHeight;
   }
   
   return height;
@@ -517,8 +517,8 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   }
 
   if (self.detailTextLabel.text.length) {
-    CGFloat textHeight = self.textLabel.font.lineHeight;
-    CGFloat subtitleHeight = self.detailTextLabel.font.lineHeight;
+    CGFloat textHeight = self.textLabel.font.safeLineHeight;
+    CGFloat subtitleHeight = self.detailTextLabel.font.safeLineHeight;
     CGFloat paddingY = floor((height - (textHeight + subtitleHeight))/2);
     
     self.textLabel.frame = CGRectMake(left, paddingY, width, textHeight);
@@ -645,21 +645,21 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   CGFloat top = kSmallMargin;
   
   if (_titleLabel.text.length) {
-    _titleLabel.frame = CGRectMake(left, top, width, _titleLabel.font.lineHeight);
+    _titleLabel.frame = CGRectMake(left, top, width, _titleLabel.font.safeLineHeight);
     top += _titleLabel.height;
   } else {
     _titleLabel.frame = CGRectZero;
   }
   
   if (self.captionLabel.text.length) {
-    self.captionLabel.frame = CGRectMake(left, top, width, self.captionLabel.font.lineHeight);
+    self.captionLabel.frame = CGRectMake(left, top, width, self.captionLabel.font.safeLineHeight);
     top += self.captionLabel.height;
   } else {
     self.captionLabel.frame = CGRectZero;
   }
   
   if (self.detailTextLabel.text.length) {
-    CGFloat textHeight = self.detailTextLabel.font.lineHeight * kMessageTextLineCount;
+    CGFloat textHeight = self.detailTextLabel.font.safeLineHeight * kMessageTextLineCount;
     self.detailTextLabel.frame = CGRectMake(left, top, width, textHeight);
   } else {
     self.detailTextLabel.frame = CGRectZero;
@@ -1242,16 +1242,16 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   if (!height) {
     if ([view isKindOfClass:[UITextView class]]) {
       UITextView* textView = (UITextView*)view;
-      CGFloat lineHeight = textView.font.lineHeight;
-      height = lineHeight * kDefaultTextViewLines;
+      CGFloat safeLineHeight = textView.font.safeLineHeight;
+      height = safeLineHeight * kDefaultTextViewLines;
     } else if ([view isKindOfClass:[TTTextEditor class]]) {
       TTTextEditor* textEditor = (TTTextEditor*)view;
-      CGFloat lineHeight = textEditor.font.lineHeight;
-      height = lineHeight * kDefaultTextViewLines;
+      CGFloat safeLineHeight = textEditor.font.safeLineHeight;
+      height = safeLineHeight * kDefaultTextViewLines;
     } else if ([view isKindOfClass:[UITextField class]]) {
       UITextField* textField = (UITextField*)view;
-      CGFloat lineHeight = textField.font.lineHeight;
-      height = lineHeight + kSmallMargin*2;
+      CGFloat safeLineHeight = textField.font.safeLineHeight;
+      height = safeLineHeight + kSmallMargin*2;
     } else {
       [view sizeToFit];
       height = view.height;
