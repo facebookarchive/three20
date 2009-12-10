@@ -29,8 +29,6 @@
 
 #define TTSTYLEVAR(_VARNAME) [TTSTYLESHEET _VARNAME]
 
-#define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
-
 typedef enum {
   TTPositionStatic,
   TTPositionAbsolute,

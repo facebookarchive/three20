@@ -71,6 +71,11 @@
 
 #define TT_FLIP_TRANSITION_DURATION 0.7
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Images
+
+#define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
+
 /**
  * Gets the current runtime version of iPhone OS.
  */
