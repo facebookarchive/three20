@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
+#import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableViewController.h"
 #import "Three20/TTThumbsTableViewCell.h"
-#import "Three20/TTPhotoSource.h"
 
 @protocol TTThumbsViewControllerDelegate, TTPhotoSource;
 @class TTPhotoViewController;

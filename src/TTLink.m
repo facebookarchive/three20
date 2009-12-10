@@ -14,11 +14,14 @@
 // limitations under the License.
 //
 
-#include "Three20/TTLink.h"
-#include "Three20/TTNavigator.h"
-#include "Three20/TTShape.h"
-#include "Three20/TTView.h"
-#include "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTLink.h"
+
+#import "Three20/TTGlobalCore.h"
+
+#import "Three20/TTNavigator.h"
+#import "Three20/TTShape.h"
+#import "Three20/TTView.h"
+#import "Three20/TTStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

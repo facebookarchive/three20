@@ -14,7 +14,8 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * The base class for table cells which are single-object based.

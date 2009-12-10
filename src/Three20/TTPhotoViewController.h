@@ -15,7 +15,6 @@
 //
 
 #import "Three20/TTModelViewController.h"
-#import "Three20/TTPhotoSource.h"
 #import "Three20/TTScrollView.h"
 #import "Three20/TTThumbsViewController.h"
 

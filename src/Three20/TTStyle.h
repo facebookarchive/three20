@@ -14,7 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import "Three20/TTGlobalStyle.h"
 
 @protocol TTStyleDelegate;
 @class TTShape, TTStyleContext;

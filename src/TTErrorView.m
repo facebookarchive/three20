@@ -15,6 +15,11 @@
 //
 
 #import "Three20/TTErrorView.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalStyle.h"
+
 #import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

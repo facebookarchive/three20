@@ -20,8 +20,8 @@
 
 #if TARGET_IPHONE_SIMULATOR
 
-#include <unistd.h>
-#include <sys/sysctl.h>
+#import <unistd.h>
+#import <sys/sysctl.h>
 
 // From: http://developer.apple.com/mac/library/qa/qa2004/qa1361.html
 int TTIsInDebugger(void) {

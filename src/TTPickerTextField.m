@@ -15,7 +15,13 @@
 //
 
 #import "Three20/TTPickerTextField.h"
-#import "TTPickerViewCell.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
+
+#import "Three20/TTTableViewDataSource.h"
+#import "Three20/TTPickerViewCell.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -15,10 +15,13 @@
 //
 
 #import "Three20/TTTabBar.h"
+
+#import "Three20/TTGlobalUI.h"
+
 #import "Three20/TTImageView.h"
 #import "Three20/TTLabel.h"
 #import "Three20/TTLayout.h"
-#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global

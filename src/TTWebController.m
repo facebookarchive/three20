@@ -15,7 +15,13 @@
 //
 
 #import "Three20/TTWebController.h"
-#import "Three20/TTDefaultStyleSheet.h"
+
+#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
+#import "Three20/TTGlobalStyle.h"
+
+#import "Three20/TTStyleSheet.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLMap.h"

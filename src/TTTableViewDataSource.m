@@ -15,11 +15,15 @@
 //
 
 #import "Three20/TTTableViewDataSource.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
+
 #import "Three20/TTTableItem.h"
 #import "Three20/TTTableItemCell.h"
-#import "Three20/TTURLCache.h"
 #import "Three20/TTTextEditor.h"
 #import "Three20/TTStyledText.h"
+
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

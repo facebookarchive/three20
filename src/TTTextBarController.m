@@ -14,10 +14,16 @@
 // limitations under the License.
 //
 
-#import "TTTextBarController.h"
-#import "TTButton.h"
-#import "TTNavigator.h"
-#import "TTDefaultStyleSheet.h"
+#import "Three20/TTTextBarController.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
+
+#import "Three20/TTButton.h"
+#import "Three20/TTNavigator.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global

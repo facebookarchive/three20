@@ -15,6 +15,10 @@
 //
 
 #import "Three20/TTStyle.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalUI.h"
+
 #import "Three20/TTShape.h"
 #import "Three20/TTURLCache.h"
 

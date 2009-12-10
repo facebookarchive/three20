@@ -14,11 +14,15 @@
 // limitations under the License.
 //
 
-#include "Three20/TTButton.h"
-#include "Three20/TTDefaultStyleSheet.h"
-#include "Three20/TTURLRequest.h"
-#include "Three20/TTURLResponse.h"
-#include "Three20/TTURLCache.h"
+#import "Three20/TTButton.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalUI.h"
+
+#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTURLRequest.h"
+#import "Three20/TTURLResponse.h"
+#import "Three20/TTURLCache.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global

@@ -14,7 +14,8 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableViewDataSource.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol TTTableViewDataSource;
 @class TTSearchTextFieldInternal, TTView;

@@ -15,14 +15,18 @@
 //
 
 #import "Three20/TTTableViewController.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
+#import "Three20/TTGlobalStyle.h"
+
 #import "Three20/TTListDataSource.h"
 #import "Three20/TTTableView.h"
-#import "Three20/TTTableItem.h"
-#import "Three20/TTTableItemCell.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTErrorView.h"
 #import "Three20/TTTableViewDelegate.h"
-#import "Three20/TTSearchDisplayController.h"
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTNavigator.h"
 

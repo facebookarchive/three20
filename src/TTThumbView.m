@@ -15,6 +15,7 @@
 //
 
 #import "Three20/TTThumbView.h"
+
 #import "Three20/TTDefaultStyleSheet.h"
 
 @implementation TTThumbView

@@ -15,11 +15,18 @@
 //
 
 #import "Three20/TTThumbsViewController.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
+#import "Three20/TTGlobalStyle.h"
+
 #import "Three20/TTPhotoViewController.h"
-#import "Three20/TTURLRequest.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTTableItem.h"
 #import "Three20/TTURLCache.h"
+#import "Three20/TTPhotoSource.h"
 #import "Three20/TTStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

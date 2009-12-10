@@ -15,11 +15,12 @@
 //
 
 #import "Three20/TTTableItemCell.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalUI.h"
+
 #import "Three20/TTTableItem.h"
 #import "Three20/TTImageView.h"
-#import "Three20/TTErrorView.h"
-#import "Three20/TTStyledNode.h"
-#import "Three20/TTStyledText.h"
 #import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTTextEditor.h"

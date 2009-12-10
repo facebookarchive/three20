@@ -16,7 +16,7 @@
 
 #import "Three20/TTStyle.h"
 
-@class TTStyle, TTLayout;
+@class TTLayout;
 
 /**
  * A decorational view that can styled using a TTStyle object.

@@ -15,25 +15,16 @@
 //
 
 
-#import "Three20/TTGlobal.h"
-#import "Three20/TTModel.h"
-#import "Three20/TTDefaultStyleSheet.h"
+// Core
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalCorePaths.h"
 
-#import "Three20/TTNavigator.h"
-#import "Three20/TTURLMap.h"
-#import "Three20/TTModel.h"
+// UI
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
 
-#import "Three20/TTDefaultStyleSheet.h"
-#import "Three20/TTStyle.h"
-#import "Three20/TTShape.h"
-
-#import "Three20/TTLayout.h"
-
-#import "Three20/TTStyledText.h"
-#import "Three20/TTStyledNode.h"
-#import "Three20/TTStyledFrame.h"
-#import "Three20/TTStyledTextParser.h"
-
+// UI Controllers
 #import "Three20/TTViewController.h"
 #import "Three20/TTWebController.h"
 #import "Three20/TTMessageController.h"
@@ -42,6 +33,7 @@
 #import "Three20/TTPostController.h"
 #import "Three20/TTTextBarController.h"
 
+// UI Views
 #import "Three20/TTView.h"
 #import "Three20/TTImageView.h"
 #import "Three20/TTYouTubeView.h"
@@ -84,7 +76,27 @@
 #import "Three20/TTThumbsTableViewCell.h"
 #import "Three20/TTThumbView.h"
 
+// Network
+#import "Three20/TTGlobalNetwork.h"
+
+#import "Three20/TTModel.h"
+#import "Three20/TTNavigator.h"
+#import "Three20/TTURLMap.h"
+
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTURLResponse.h"
+
+// Style
+#import "Three20/TTGlobalStyle.h"
+
+#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTLayout.h"
+#import "Three20/TTShape.h"
+#import "Three20/TTStyle.h"
+
+#import "Three20/TTStyledText.h"
+#import "Three20/TTStyledNode.h"
+#import "Three20/TTStyledFrame.h"
+#import "Three20/TTStyledTextParser.h"

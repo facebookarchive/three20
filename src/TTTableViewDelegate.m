@@ -15,6 +15,9 @@
 //
 
 #import "Three20/TTTableViewDelegate.h"
+
+#import "Three20/TTGlobalCore.h"
+
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableViewController.h"
 #import "Three20/TTTableItem.h"

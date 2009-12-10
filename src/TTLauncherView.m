@@ -15,6 +15,10 @@
 //
 
 #import "Three20/TTLauncherView.h"
+
+#import "Three20/TTGlobalUI.h"
+
+#import "Three20/TTURLRequest.h"
 #import "Three20/TTLauncherItem.h"
 #import "Three20/TTLauncherButton.h"
 #import "Three20/TTPageControl.h"

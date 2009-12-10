@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-// Copyright 2004-2009 Facebook. All Rights Reserved.
-
 #import "Three20/TTLauncherItem.h"
+
+#import "Three20/TTGlobalCore.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

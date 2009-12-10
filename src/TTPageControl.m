@@ -14,9 +14,13 @@
 // limitations under the License.
 //
 
-#include "Three20/TTPageControl.h"
-#include "Three20/TTStyleSheet.h"
-#include "Three20/TTStyle.h"
+#import "Three20/TTPageControl.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalUI.h"
+
+#import "Three20/TTStyleSheet.h"
+#import "Three20/TTStyle.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

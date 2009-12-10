@@ -15,7 +15,6 @@
 //
 
 #import "Three20/TTButton.h"
-#import "Three20/TTURLRequest.h"
 
 @class TTLauncherItem, TTLabel;
 

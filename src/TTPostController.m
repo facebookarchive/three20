@@ -15,7 +15,12 @@
 //
 
 #import "Three20/TTPostController.h"
-#import "Three20/TTStyle.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
+
 #import "Three20/TTStyleSheet.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTActivityLabel.h"

@@ -14,8 +14,10 @@
 // limitations under the License.
 //
 
-#include "Three20/TTTableHeaderView.h"
-#include "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTTableHeaderView.h"
+
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

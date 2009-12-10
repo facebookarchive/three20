@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#include "Three20/TTTableItem.h"
-#include "Three20/TTStyledNode.h"
-#include "Three20/TTStyledText.h"
+#import "Three20/TTTableItem.h"
+
+#import "Three20/TTGlobalCore.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

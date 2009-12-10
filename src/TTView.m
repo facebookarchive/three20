@@ -15,7 +15,9 @@
 //
 
 #import "Three20/TTView.h"
-#import "Three20/TTStyle.h"
+
+#import "Three20/TTGlobalCore.h"
+
 #import "Three20/TTLayout.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

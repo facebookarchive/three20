@@ -17,10 +17,13 @@
 // Copyright 2004-2009 Facebook. All Rights Reserved.
 
 #import "Three20/TTLauncherButton.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalUI.h"
+
 #import "Three20/TTLauncherItem.h"
-#import "Three20/TTLauncherView.h"
 #import "Three20/TTLabel.h"
-#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global

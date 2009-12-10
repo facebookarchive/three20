@@ -15,10 +15,15 @@
 //
 
 #import "Three20/TTImageView.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalUI.h"
+
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLResponse.h"
 #import "Three20/TTShape.h"
-#import "QuartzCore/CALayer.h"
+
+#import <QuartzCore/QuartzCore.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 

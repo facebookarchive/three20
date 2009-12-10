@@ -15,12 +15,16 @@
 //
 
 #import "Three20/TTPhotoView.h"
-#import "Three20/TTDefaultStyleSheet.h"
-#import "Three20/TTImageView.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
+
 #import "Three20/TTLabel.h"
-#import "Three20/TTActivityLabel.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequestQueue.h"
+#import "Three20/TTStyleSheet.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 

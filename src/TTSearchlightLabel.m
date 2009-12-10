@@ -15,6 +15,10 @@
 //
 
 #import "Three20/TTSearchlightLabel.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalStyle.h"
+
 #import "Three20/TTDefaultStyleSheet.h"
 
 @implementation TTSearchlightLabel

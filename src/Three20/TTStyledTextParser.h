@@ -14,7 +14,8 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobal.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class TTStyledNode, TTStyledElement;
 
