@@ -136,7 +136,7 @@
 - (NSString*)formatShortRelativeTime {
   NSTimeInterval elapsed = abs([self timeIntervalSinceNow]);
 
-  if (elapsed <= TT_MINUTE) {
+  if (elapsed < TT_MINUTE) {
     return TTLocalizedString(@"<1m", @"Date format: less than one minute ago");
 
   } else if (elapsed < TT_HOUR) {
