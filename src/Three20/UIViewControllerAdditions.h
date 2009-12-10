@@ -61,7 +61,6 @@
  * This would be the selected view controller of a tab bar controller, or the top 
  * view controller of a navigation controller.  This property offers custom UIViewController
  * subclasses the chance to tell TTNavigator how to follow the hierarchy of view controllers.
- 
  */
 - (UIViewController*)topSubcontroller;
 
@@ -135,6 +134,10 @@
  * This will be called when TTNavigator is persisting the navigation history so that it
  * can later be restored.  This usually happens when the app quits, or when there is a low
  * memory warning.
+ *
+ * Return NO to avoid adding this controller to the navigation history.
+ *
+ * Default return value: YES
  */
 - (BOOL)persistView:(NSMutableDictionary*)state;
 

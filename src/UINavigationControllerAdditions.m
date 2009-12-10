@@ -135,7 +135,7 @@
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:TT_FLIP_TRANSITION_DURATION];
   [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(pushAnimationDidStop)];
+  [UIView setAnimationDidStopSelector:@selector(pushAnimationDidStop)];
   [UIView setAnimationTransition:transition forView:self.view cache:YES];
   [UIView commitAnimations];
 }

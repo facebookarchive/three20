@@ -262,15 +262,6 @@
   self.frame = frame;
 }
 
-- (CGPoint)offsetFromView:(UIView*)otherView {
-  CGFloat x = 0, y = 0;
-  for (UIView* view = self; view && view != otherView; view = view.superview) {
-    x += view.left;
-    y += view.top;
-  }
-  return CGPointMake(x, y);
-}
-
 - (CGFloat)orientationWidth {
   return UIInterfaceOrientationIsLandscape(TTInterfaceOrientation())
     ? self.height : self.width;
@@ -324,6 +315,15 @@
   [touch.view touchesEnded:[NSSet setWithObject:touch] withEvent:eventUp];
 }
 #endif
+
+- (CGPoint)offsetFromView:(UIView*)otherView {
+  CGFloat x = 0, y = 0;
+  for (UIView* view = self; view && view != otherView; view = view.superview) {
+    x += view.left;
+    y += view.top;
+  }
+  return CGPointMake(x, y);
+}
 
 - (CGRect)frameWithKeyboardSubtracted:(CGFloat)plusHeight {
   CGRect frame = self.frame;
