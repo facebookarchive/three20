@@ -267,11 +267,15 @@ class LocalizableStrings(object):
 
     def generate(self):
         lines = []
-        for source, target in self.strings.iteritems():
+
+        # This may not sort non-English strings sensibly, but the order itself
+        # doesn't matter - this is just so that the strings come out in some
+        # consistent order every time. (Less efficient, but oh well.)
+        for source in sorted(self.strings.keys()):
             if source in self.comments:
                 comment = self.comments[source]
                 lines.append("/* %s */" % comment)
-            lines.append('"%s" = "%s";\n' % (source, target))
+            lines.append('"%s" = "%s";\n' % (source, self.strings[source]))
 
         return "\n".join(lines)
 
