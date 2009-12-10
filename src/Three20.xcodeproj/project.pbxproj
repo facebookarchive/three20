@@ -496,7 +496,6 @@
 				EB9E6C7910B6A94700DE563C /* Tests */,
 				BEB463DC0F8F2DB5004B34A0 /* developer.h */,
 				EB9E6C6310B6A8F800DE563C /* CoreUnitTests-Info.plist */,
-				EB9E6CED10B6AFA000DE563C /* QuartzCore.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -504,6 +503,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB9E6CED10B6AFA000DE563C /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
