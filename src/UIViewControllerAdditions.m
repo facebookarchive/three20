@@ -14,12 +14,11 @@
 // limitations under the License.
 //
 
-#import "UIViewControllerAdditions.h"
+#import "Three20/UIViewControllerAdditions.h"
 
-#import "TTGlobalCore.h"
-#import "TTGlobalUI.h"
-#import "TTNavigator.h"
-#import "TTURLMap.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTNavigator.h"
+#import "Three20/TTURLMap.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

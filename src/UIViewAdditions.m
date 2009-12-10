@@ -14,8 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobal.h"
+#import "Three20/UIViewAdditions.h"
 
+#import "TTGlobalUI.h"
+#import "TTGlobalUINavigator.h"
 
 // Remove GSEvent and UITouchAdditions from Release builds
 #ifdef DEBUG

@@ -14,9 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/TTNavigator.h"
+#import "Three20/UITabBarControllerAdditions.h"
 
-#import "UIViewControllerAdditions.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTNavigator.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -20,10 +20,13 @@
 @interface UIImage (TTCategory)
 
 /*
- * Resizes and/or rotates an image.
+ * Resizes an image. Optionally rotates the image based on imageOrientation.
  */
 - (UIImage*)transformWidth:(CGFloat)width height:(CGFloat)height rotate:(BOOL)rotate;
 
+/**
+ * Returns a CGRect positioned within rect given the contentMode.
+ */
 - (CGRect)convertRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode;
 
 /**

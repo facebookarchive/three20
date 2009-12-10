@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "UIWindowAdditions.h"
+#import "Three20/UIWindowAdditions.h"
 
 
 @implementation UIWindow (TTCategory)

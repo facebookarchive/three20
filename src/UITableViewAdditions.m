@@ -14,7 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobal.h"
+#import "Three20/UITableViewAdditions.h"
+
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIWindowAdditions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -14,7 +14,9 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobal.h"
+#import "Three20/UIWebViewAdditions.h"
+
+#import "Three20/UIViewAdditions.h"
 
 @implementation UIWebView (TTCategory)
 
