@@ -40,11 +40,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   return [[[TTURLRequest alloc] init] autorelease];
 }
 
-+ (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate {
++ (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate {
   return [[[TTURLRequest alloc] initWithURL:URL delegate:delegate] autorelease];
 }
 
-- (id)initWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate {
+- (id)initWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate {
   if (self = [self init]) {
     _URL = [URL retain];
     if (delegate) {

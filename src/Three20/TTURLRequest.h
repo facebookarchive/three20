@@ -122,9 +122,9 @@
 
 + (TTURLRequest*)request;
 
-+ (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate;
++ (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate;
 
-- (id)initWithURL:(NSString*)URL delegate:(id<TTURLRequestDelegate>)delegate;
+- (id)initWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate;
 
 - (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
 
