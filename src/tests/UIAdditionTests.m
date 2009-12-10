@@ -17,9 +17,16 @@
 // See: http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/905-A-Unit-Test_Result_Macro_Reference/unit-test_results.html#//apple_ref/doc/uid/TP40007959-CH21-SW2
 // for unit test macros.
 
-#import "UIAdditionTests.h"
+#import <SenTestingKit/SenTestingKit.h>
+#import <UIKit/UIKit.h>
 
 #import "TTGlobalUI.h"
+
+@interface UIAdditionTests : SenTestCase {
+}
+
+@end
+
 
 @implementation UIAdditionTests
 

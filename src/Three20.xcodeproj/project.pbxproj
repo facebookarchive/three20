@@ -402,7 +402,6 @@
 		C6620EAB109CEDA400EC35C6 /* UIWindowAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWindowAdditions.h; path = Three20/UIWindowAdditions.h; sourceTree = "<group>"; };
 		C6620EAC109CEDA400EC35C6 /* UIWindowAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWindowAdditions.m; sourceTree = "<group>"; };
 		EB1F6C5D10B36C32003DAA1F /* TTDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDebug.m; sourceTree = "<group>"; };
-		EB2F8DB910D027E9008522A7 /* UIAdditionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIAdditionTests.h; path = tests/UIAdditionTests.h; sourceTree = "<group>"; };
 		EB2F8DBA10D027E9008522A7 /* UIAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAdditionTests.m; path = tests/UIAdditionTests.m; sourceTree = "<group>"; };
 		EB4CD6FA10CA019200A856E5 /* UINSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UINSObjectAdditions.h; path = Three20/UINSObjectAdditions.h; sourceTree = "<group>"; };
 		EB4CD71E10CA034000A856E5 /* TTGlobalCoreLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCoreLocale.m; sourceTree = "<group>"; };
@@ -413,7 +412,6 @@
 		EB4CDA5110CAD85E00A856E5 /* TTGlobalNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalNetwork.h; path = Three20/TTGlobalNetwork.h; sourceTree = "<group>"; };
 		EB4CDA5510CADA3200A856E5 /* TTGlobalCorePaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCorePaths.m; sourceTree = "<group>"; };
 		EB4CDA5810CADA5B00A856E5 /* TTGlobalCorePaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCorePaths.h; path = Three20/TTGlobalCorePaths.h; sourceTree = "<group>"; };
-		EB4CDA5E10CADB3200A856E5 /* UIGlobalTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIGlobalTests.h; path = tests/UIGlobalTests.h; sourceTree = "<group>"; };
 		EB4CDA5F10CADB3200A856E5 /* UIGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIGlobalTests.m; path = tests/UIGlobalTests.m; sourceTree = "<group>"; };
 		EB4CDAF910CADC9A00A856E5 /* TTGlobalUINavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalUINavigator.m; sourceTree = "<group>"; };
 		EB4CDAFC10CADCB000A856E5 /* TTGlobalUINavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUINavigator.h; path = Three20/TTGlobalUINavigator.h; sourceTree = "<group>"; };
@@ -423,7 +421,6 @@
 		EB9193E210CA00D200F525AA /* UINSObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINSObjectAdditions.m; sourceTree = "<group>"; };
 		EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6310B6A8F800DE563C /* CoreUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreUnitTests-Info.plist"; sourceTree = "<group>"; };
-		EB9E6C7B10B6A98100DE563C /* CoreAdditionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreAdditionTests.h; path = tests/CoreAdditionTests.h; sourceTree = "<group>"; };
 		EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreAdditionTests.m; path = tests/CoreAdditionTests.m; sourceTree = "<group>"; };
 		EB9E6CAA10B6AE0F00DE563C /* TTMarkupStripper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMarkupStripper.m; sourceTree = "<group>"; };
 		EB9E6CDB10B6AECE00DE563C /* TTMarkupStripper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMarkupStripper.h; path = Three20/TTMarkupStripper.h; sourceTree = "<group>"; };
@@ -432,7 +429,6 @@
 		EB9E6D3810B6B0E200DE563C /* UINSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UINSStringAdditions.h; path = Three20/UINSStringAdditions.h; sourceTree = "<group>"; };
 		EB9E6E3810B7300100DE563C /* TTGlobalCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCore.m; sourceTree = "<group>"; };
 		EB9E6E3C10B730E700DE563C /* TTGlobalCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCore.h; path = Three20/TTGlobalCore.h; sourceTree = "<group>"; };
-		EB9E6E8510B731F600DE563C /* CoreGlobalTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreGlobalTests.h; path = tests/CoreGlobalTests.h; sourceTree = "<group>"; };
 		EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreGlobalTests.m; path = tests/CoreGlobalTests.m; sourceTree = "<group>"; };
 		EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
 		EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataAdditions.h; path = Three20/NSDataAdditions.h; sourceTree = "<group>"; };
@@ -798,9 +794,7 @@
 		EB4CDA5D10CADB0500A856E5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				EB4CDA5E10CADB3200A856E5 /* UIGlobalTests.h */,
 				EB4CDA5F10CADB3200A856E5 /* UIGlobalTests.m */,
-				EB2F8DB910D027E9008522A7 /* UIAdditionTests.h */,
 				EB2F8DBA10D027E9008522A7 /* UIAdditionTests.m */,
 			);
 			name = UI;
@@ -829,9 +823,7 @@
 		EB9E6C7A10B6A96400DE563C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				EB9E6C7B10B6A98100DE563C /* CoreAdditionTests.h */,
 				EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */,
-				EB9E6E8510B731F600DE563C /* CoreGlobalTests.h */,
 				EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */,
 			);
 			name = Core;

@@ -17,7 +17,10 @@
 // See: http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/905-A-Unit-Test_Result_Macro_Reference/unit-test_results.html#//apple_ref/doc/uid/TP40007959-CH21-SW2
 // for unit test macros.
 
-#import "CoreAdditionTests.h"
+// See Also: http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/135-Unit_Testing_Applications/unit_testing_applications.html
+
+#import <SenTestingKit/SenTestingKit.h>
+#import <UIKit/UIKit.h>
 
 #import "Three20/Three20.h"
 
@@ -31,6 +34,12 @@
 // /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/usr/bin
 // which is not a place we can normally copy to from the Xcode project settings.
 //
+
+@interface CoreAdditionTests : SenTestCase {
+}
+
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
