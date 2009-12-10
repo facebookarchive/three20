@@ -151,7 +151,8 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   return nil;
 }
 
-- (UIViewController*)previousViewController {
+
+- (UIViewController*)safePreviousViewController {
   NSArray* viewControllers = self.navigationController.viewControllers;
   if (viewControllers.count > 1) {
     NSUInteger index = [viewControllers indexOfObject:self];
@@ -162,6 +163,14 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   
   return nil;
 }
+
+#ifdef DEBUG
+
+- (UIViewController*)previousViewController {
+  return [self safePreviousViewController];
+}
+
+#endif
 
 - (UIViewController*)nextViewController {
   NSArray* viewControllers = self.navigationController.viewControllers;
