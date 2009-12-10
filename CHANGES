@@ -2,6 +2,9 @@ Changes from December 11, 2009
 
 - [NEW] -[NSDate formatShortRelativeTime]
 
+- [FIXED] diffstrings sorts strings tables to make diffs more sensible
+
+
 Changes from December 5, 2009
 
 - [NEW] TTDCONDITIONLOG added to TTDebug.h
