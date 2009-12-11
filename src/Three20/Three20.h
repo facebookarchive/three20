@@ -45,7 +45,8 @@
  * \section UI
  *
  * Three20 includes a growing set of common controls. Photo browsers, table view cells, and
- * springboard implementations are just a few.
+ * springboard implementations are just a few. The UI component includes the TTNavigator object
+ * that makes building persistent applications easy.
  *
  * \section Style
  *

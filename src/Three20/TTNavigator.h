@@ -153,7 +153,7 @@ typedef enum {
  * @see openURL:animated:
  *
  * @param URL         The URL to open.
- * @param parent      The parent URL (generally a tab bar controller page).
+ * @param parentURL   The parent URL (generally a tab bar controller page).
  * @param animated    Whether or not to animate the transition.
  * @return The view controller mapped to this URL.
  */
@@ -178,7 +178,7 @@ typedef enum {
  * @see openURL:animated:
  *
  * @param URL         The URL to open.
- * @param parent      The parent URL (generally a tab bar controller page).
+ * @param parentURL   The parent URL (generally a tab bar controller page).
  * @param query       A dictionary of query parameters.
  * @param animated    Whether or not to animate the transition.
  * @return The view controller mapped to this URL.
@@ -192,7 +192,7 @@ typedef enum {
  * @see openURL:animated:
  *
  * @param URL         The URL to open.
- * @param parent      The parent URL (generally a tab bar controller page).
+ * @param parentURL   The parent URL (generally a tab bar controller page).
  * @param query       A dictionary of query parameters.
  * @param animated    Whether or not to animate the transition.
  * @param transition  The view animation transition to use.
@@ -207,7 +207,7 @@ typedef enum {
  * @see openURL:animated:
  *
  * @param URL         The URL to open.
- * @param parent      The parent URL (generally a tab bar controller page).
+ * @param parentURL   The parent URL (generally a tab bar controller page).
  * @param query       A dictionary of query parameters.
  * @param animated    Whether or not to animate the transition.
  * @param transition  The view animation transition to use.
