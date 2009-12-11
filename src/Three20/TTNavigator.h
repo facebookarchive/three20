@@ -27,6 +27,9 @@ typedef enum {
   TTNavigatorPersistenceModeAll,   // persists all navigation paths
 } TTNavigatorPersistenceMode;
 
+/**
+ * A URL-based navigation system with built-in persistence.
+ */
 @interface TTNavigator : NSObject {
   id<TTNavigatorDelegate> _delegate;
   TTURLMap* _URLMap;
@@ -49,6 +52,9 @@ typedef enum {
 
 /**
  * The window that contains the views view controller hierarchy.
+ *
+ * By default retrieves the keyWindow. If there is no keyWindow, creates a new
+ * TTNavigatorWindow.
  */
 @property(nonatomic,retain) UIWindow* window;
 
@@ -106,7 +112,7 @@ typedef enum {
 @property(nonatomic) BOOL opensExternalURLs;
 
 /**
- * Indicates that we asking controllers to delay heavy operations until a later time.
+ * Indicates that we are asking controllers to delay heavy operations until a later time.
  *
  * The default value is NO.
  */
@@ -115,35 +121,129 @@ typedef enum {
 + (TTNavigator*)navigator;
 
 /**
- * Loads and displays a view controller with a pattern than matches the URL.
+ * Loads and displays the view controller with a pattern that matches the URL.
  *
  * If there is not yet a rootViewController, the view controller loaded with this URL
- * will be assigned as the rootViewController and inserted into the keyWinodw.  If there is not
+ * will be assigned as the rootViewController and inserted into the keyWindow. If there is not
  * a keyWindow, a UIWindow will be created and displayed.
+ *
+ * @param URL         The URL to open.
+ * @param animated    Whether or not to animate the transition.
+ * @return The view controller mapped to this URL.
  */
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated;
+
+/**
+ * Loads and displays the view controller with a pattern that matches the URL using a specific
+ * transition.
+ *
+ * @see openURL:animated:
+ * @param URL         The URL to open.
+ * @param animated    Whether or not to animate the transition.
+ * @param transition  The view animation transition to use.
+ * @return The view controller mapped to this URL.
+ */
 - (UIViewController*)openURL:(NSString*)URL animated:(BOOL)animated
                      transition:(UIViewAnimationTransition)transition;
+
+/**
+ * Loads and displays the view controller with a pattern that matches the URL and simultaneously
+ * sets the parent URL (useful for tab bar controllers).
+ *
+ * @see openURL:animated:
+ *
+ * @param URL         The URL to open.
+ * @param parent      The parent URL (generally a tab bar controller page).
+ * @param animated    Whether or not to animate the transition.
+ * @return The view controller mapped to this URL.
+ */
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL animated:(BOOL)animated;
+
+/**
+ * Loads and displays the view controller with a pattern that matches the URL and passes the
+ * given query.
+ *
+ * @see openURL:animated:
+ *
+ * @param URL         The URL to open.
+ * @param query       A dictionary of query parameters.
+ * @param animated    Whether or not to animate the transition.
+ * @return The view controller mapped to this URL.
+ */
 - (UIViewController*)openURL:(NSString*)URL query:(NSDictionary*)query animated:(BOOL)animated;
+
+/**
+ * Loads and displays the view controller with a pattern that matches the URL.
+ *
+ * @see openURL:animated:
+ *
+ * @param URL         The URL to open.
+ * @param parent      The parent URL (generally a tab bar controller page).
+ * @param query       A dictionary of query parameters.
+ * @param animated    Whether or not to animate the transition.
+ * @return The view controller mapped to this URL.
+ */
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated;
+
+/**
+ * Loads and displays the view controller with a pattern that matches the URL.
+ *
+ * @see openURL:animated:
+ *
+ * @param URL         The URL to open.
+ * @param parent      The parent URL (generally a tab bar controller page).
+ * @param query       A dictionary of query parameters.
+ * @param animated    Whether or not to animate the transition.
+ * @param transition  The view animation transition to use.
+ * @return The view controller mapped to this URL.
+ */
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated transition:(UIViewAnimationTransition)transition;
+
+/**
+ * Loads and displays the view controller with a pattern that matches the URL.
+ *
+ * @see openURL:animated:
+ *
+ * @param URL         The URL to open.
+ * @param parent      The parent URL (generally a tab bar controller page).
+ * @param query       A dictionary of query parameters.
+ * @param animated    Whether or not to animate the transition.
+ * @param transition  The view animation transition to use.
+ * @param withDelay   Whether or not to delay adding this controller.
+ * @return The view controller mapped to this URL.
+ */
 - (UIViewController*)openURL:(NSString*)URL parent:(NSString*)parentURL query:(NSDictionary*)query
                      animated:(BOOL)animated transition:(UIViewAnimationTransition)transition
                      withDelay:(BOOL)withDelay;
 
 /** 
- * Opens a sequence of URLs, with only the last one being animated.
+ * Opens a sequence of URLs.
+ *
+ * @return The view controller of the last opened URL.
  */
 - (UIViewController*)openURLs:(NSString*)URL,...;
 
 /**
  * Gets a view controller for the URL without opening it.
+ *
+ * @return The view controller mapped to URL.
  */
 - (UIViewController*)viewControllerForURL:(NSString*)URL;
+
+/**
+ * Gets a view controller for the URL without opening it.
+ *
+ * @return The view controller mapped to URL.
+ */
 - (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query;
+
+/**
+ * Gets a view controller for the URL without opening it.
+ *
+ * @return The view controller mapped to URL.
+ */
 - (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
                      pattern:(TTURLPattern**)pattern;
 
@@ -165,11 +265,6 @@ typedef enum {
  * Cancels the delay without notifying delayed controllers.
  */
 - (void)cancelDelay;
-
-/** 
- * Persists all view controllers to user defaults.
- */
-- (void)persistViewControllers;
 
 /** 
  * Persists all view controllers to user defaults.
