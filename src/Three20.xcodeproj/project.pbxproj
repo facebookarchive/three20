@@ -6,20 +6,6 @@
 	objectVersion = 45;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		EB4EDB0510D105F300FFB4D5 /* Documentation */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = EB4EDB0B10D1062B00FFB4D5 /* Build configuration list for PBXAggregateTarget "Documentation" */;
-			buildPhases = (
-				EB4EDB0410D105F300FFB4D5 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = Documentation;
-			productName = Documentation;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		6E35CCB610912B210066B478 /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */; };
 		6E35CCC210912BE10066B478 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */; };
@@ -484,26 +470,13 @@
 			isa = PBXGroup;
 			children = (
 				BEF321B10F353B25000DE5D2 /* Global */,
-				BEBB198A10068D1400744230 /* Navigator */,
-				BEF44D4F10182FD800E9EC07 /* Models */,
+				EBAE96F110D1F58900F497CA /* UI */,
+				EBAE96F210D1F5B300F497CA /* Network */,
 				BE1287F40F8969C100F65EA2 /* Style */,
-				BEB46A860F8F8170004B34A0 /* Layout */,
-				BEB46A870F8F818F004B34A0 /* Styled Text */,
-				BEF321B30F353B78000DE5D2 /* View Controllers */,
-				BEF31F450F352E64000DE5D2 /* Views */,
-				BEB460380F8EDE60004B34A0 /* Labels */,
-				BED631A10F88554F009923D8 /* Buttons and Tabs */,
-				BEE341A40F480B91008C826E /* Text Fields */,
-				BE702EEF0F43F46E0028A119 /* Tables */,
-				BEF321B20F353B50000DE5D2 /* Photos */,
-				BEC787A51040A783005C00CF /* Springboard */,
-				BEF321B00F353B15000DE5D2 /* Network */,
-				BE8AA1870F428A0F00FD8C43 /* Additions */,
+				EB9E6C7910B6A94700DE563C /* Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				EB9E6C7910B6A94700DE563C /* Tests */,
 				BEB463DC0F8F2DB5004B34A0 /* developer.h */,
-				EB9E6C6310B6A8F800DE563C /* CoreUnitTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -528,6 +501,8 @@
 				BE1288070F896A1900F65EA2 /* TTStyle.m */,
 				BE1288CC0F89813A00F65EA2 /* TTShape.h */,
 				BE1288CA0F89812E00F65EA2 /* TTShape.m */,
+				BEB46A860F8F8170004B34A0 /* Layout */,
+				BEB46A870F8F818F004B34A0 /* Styled Text */,
 			);
 			name = Style;
 			sourceTree = "<group>";
@@ -684,7 +659,7 @@
 				BEF31F4D0F352E64000DE5D2 /* TTScrollView.m */,
 			);
 			name = Views;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
 		BEF321B00F353B15000DE5D2 /* Network */ = {
 			isa = PBXGroup;
@@ -708,6 +683,7 @@
 				EB4CDA3B10CAD54100A856E5 /* UI */,
 				EB4CDA4C10CAD82A00A856E5 /* Network */,
 				EB4CDB9E10CAE0B300A856E5 /* Style */,
+				BE8AA1870F428A0F00FD8C43 /* Additions */,
 				BEF31F6F0F352E64000DE5D2 /* Three20.h */,
 			);
 			name = Global;
@@ -827,6 +803,7 @@
 			children = (
 				EB9E6C7A10B6A96400DE563C /* Core */,
 				EB4CDA5D10CADB0500A856E5 /* UI */,
+				EB9E6C6310B6A8F800DE563C /* CoreUnitTests-Info.plist */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -902,6 +879,31 @@
 				EB9193E210CA00D200F525AA /* UINSObjectAdditions.m */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		EBAE96F110D1F58900F497CA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				BEBB198A10068D1400744230 /* Navigator */,
+				BEF321B30F353B78000DE5D2 /* View Controllers */,
+				BEF31F450F352E64000DE5D2 /* Views */,
+				BEB460380F8EDE60004B34A0 /* Labels */,
+				BED631A10F88554F009923D8 /* Buttons and Tabs */,
+				BEE341A40F480B91008C826E /* Text Fields */,
+				BE702EEF0F43F46E0028A119 /* Tables */,
+				BEF321B20F353B50000DE5D2 /* Photos */,
+				BEC787A51040A783005C00CF /* Springboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		EBAE96F210D1F5B300F497CA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BEF44D4F10182FD800E9EC07 /* Models */,
+				BEF321B00F353B15000DE5D2 /* Network */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1065,7 +1067,6 @@
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* Three20 */,
 				EB9E6C6110B6A8F800DE563C /* CoreUnitTests */,
-				EB4EDB0510D105F300FFB4D5 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -1081,19 +1082,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		EB4EDB0410D105F300FFB4D5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#  Build the doxygen documentation for the project and load the docset into Xcode.\n\n#  Use the following to adjust the value of the $DOXYGEN_PATH User-Defined Setting:\n#    Binary install location: /Applications/Doxygen.app/Contents/Resources/doxygen\n#    Source build install location: /usr/local/bin/doxygen\n\n#  If the config file doesn't exist, run 'doxygen -g $SOURCE_ROOT/doxygen.config' to \n#   a get default file.\n\nif ! [ -f $SOURCE_ROOT/doxygen.config ] \nthen \n  echo doxygen config file does not exist\n  $DOXYGEN_PATH -g $SOURCE_ROOT/doxygen.config\nfi\n\n#  Append the proper input/output directories and docset info to the config file.\n#  This works even though values are assigned higher up in the file. Easier than sed.\n\ncp $SOURCE_ROOT/doxygen.config $SOURCE_ROOT/doxygen.config.backup\n\necho \"INPUT = $SOURCE_ROOT\" >> $SOURCE_ROOT/doxygen.config.backup\necho \"GENERATE_DOCSET        = NO\" >> $SOURCE_ROOT/doxygen.config.backup\n\n#  Run doxygen on the updated config file.\n#  Note: doxygen creates a Makefile that does most of the heavy lifting.\n\n$DOXYGEN_PATH $SOURCE_ROOT/doxygen.config.backup\n\ncp $SOURCE_ROOT/doxygen.config $SOURCE_ROOT/doxygen.config.backup\n\necho \"INPUT = $SOURCE_ROOT\" >> $SOURCE_ROOT/doxygen.config.backup\necho \"OUTPUT_DIRECTORY = $SOURCE_ROOT/DoxygenDocs.docset\" >> $SOURCE_ROOT/doxygen.config.backup\necho \"GENERATE_DOCSET        = YES\" >> $SOURCE_ROOT/doxygen.config.backup\necho \"DOCSET_BUNDLE_ID       = com.facebook.Three20\" >> $SOURCE_ROOT/doxygen.config.backup\n\n#  Run doxygen on the updated config file.\n#  Note: doxygen creates a Makefile that does most of the heavy lifting.\n\n$DOXYGEN_PATH $SOURCE_ROOT/doxygen.config.backup\n\n#  make will invoke docsetutil. Take a look at the Makefile to see how this is done.\n\nmake -C $SOURCE_ROOT/DoxygenDocs.docset/html install\n\n#  Construct a temporary applescript file to tell Xcode to load a docset.\n\nrm -f $TEMP_DIR/loadDocSet.scpt\n\necho \"tell application \\\"Xcode\\\"\" >> $TEMP_DIR/loadDocSet.scpt\necho \"load documentation set with path \\\"/Users/$USER/Library/Developer/Shared/Documentation/DocSets/\\\"\" \n     >> $TEMP_DIR/loadDocSet.scpt\necho \"end tell\" >> $TEMP_DIR/loadDocSet.scpt\n\n#  Run the load-docset applescript command.\n\nosascript $TEMP_DIR/loadDocSet.scpt\n\nrm -f $SOURCE_ROOT/doxygen.config.backup\n\nexit 0";
-		};
 		EB9E6C6010B6A8F800DE563C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1296,29 +1284,6 @@
 			};
 			name = Release;
 		};
-		EB4EDB0610D105F300FFB4D5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DOXYGEN_PATH = /Applications/Doxygen.app/Contents/Resources/doxygen;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = Documentation;
-			};
-			name = Debug;
-		};
-		EB4EDB0710D105F300FFB4D5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DOXYGEN_PATH = /Applications/Doxygen.app/Contents/Resources/doxygen;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PRODUCT_NAME = Documentation;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		EB9E6C6510B6A8F900DE563C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1394,15 +1359,6 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EB4EDB0B10D1062B00FFB4D5 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EB4EDB0610D105F300FFB4D5 /* Debug */,
-				EB4EDB0710D105F300FFB4D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
