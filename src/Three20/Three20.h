@@ -14,6 +14,14 @@
 // limitations under the License.
 //
 
+/*! \mainpage Three20 API Documentation
+ *
+ * \section intro_sec Introduction
+ *
+ * All of the API documentation you see here has been generated from the Three20 source, available
+ * for free at http://github.com/facebook/three20
+ *
+ */
 
 // Core
 #import "Three20/TTGlobalCore.h"

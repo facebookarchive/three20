@@ -44,6 +44,8 @@
  *
  * For now, use ttLineHeight. This method will be compiled out of your release builds,
  * so three20 should be App Store safe when you submit.
+ *
+ * @deprecated
  */
 - (CGFloat)lineHeight __TTDEPRECATED_METHOD;
 

@@ -18,6 +18,9 @@
 
 #import "TTGlobalCore.h"
 
+/**
+ * Additions.
+ */
 @implementation NSMutableDictionary (TTCategory)
 
 - (void)setNonEmptyString:(NSString*)string forKey:(id)key {

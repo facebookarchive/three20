@@ -18,7 +18,7 @@
  * Borrowed from Apple's AvailabiltyInternal.h header. There's no reason why we shouldn't be
  * able to use this macro, as it's a gcc-supported flag.
  * Here's what we based it off of.
- * #define __AVAILABILITY_INTERNAL_DEPRECATED         __attribute__((deprecated))
+ * __AVAILABILITY_INTERNAL_DEPRECATED         __attribute__((deprecated))
  */
 #define __TTDEPRECATED_METHOD __attribute__((deprecated))
 

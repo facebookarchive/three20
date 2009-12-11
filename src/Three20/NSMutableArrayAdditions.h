@@ -16,6 +16,10 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * Doxygen does not handle categories very well, so please refer to the .m file in general
+ * for the documentation that is reflected on api.three20.info.
+ */
 @interface NSMutableArray (TTCategory)
 
 /**

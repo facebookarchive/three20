@@ -22,6 +22,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * [private] A subclassed UIActionSheet that retains the popup view controller.
+ *
+ * This is a leightweight subclass whose sole additional purpose is to retain the popup view
+ * controller.
+ *
+ * @internal Questions to be answered:
+ *  - Why is this necessary? Can we get by without this subclass?
+ */
 @interface TTActionSheet : UIActionSheet {
   UIViewController* _popupViewController;
 }
@@ -30,6 +39,8 @@
 
 @end
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTActionSheet
 
 @synthesize popupViewController = _popupViewController;
@@ -162,8 +173,11 @@
 - (void)actionSheet:(UIActionSheet*)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
   NSString* URL = [self buttonURLAtIndex:buttonIndex];
   BOOL canOpenURL = YES;
-  if ([_delegate respondsToSelector:@selector(actionSheetController:didDismissWithButtonIndex:URL:)]) {
-    canOpenURL = [_delegate actionSheetController:self didDismissWithButtonIndex:buttonIndex URL:URL];
+  if ([_delegate
+        respondsToSelector:@selector(actionSheetController:didDismissWithButtonIndex:URL:)]) {
+    canOpenURL = [_delegate actionSheetController: self
+                        didDismissWithButtonIndex: buttonIndex
+                                              URL: URL];
   }
   if (URL && canOpenURL) {
     TTOpenURL(URL);

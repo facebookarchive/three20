@@ -93,6 +93,8 @@
  * Return the x coordinate on the screen.
  *
  * This method is being rejected by Apple due to false-positive private api static analysis.
+ *
+ * @deprecated
  */
 @property(nonatomic,readonly) CGFloat screenX __TTDEPRECATED_METHOD;
 
@@ -100,6 +102,8 @@
  * Return the y coordinate on the screen.
  *
  * This method is being rejected by Apple due to false-positive private api static analysis.
+ *
+ * @deprecated
  */
 @property(nonatomic,readonly) CGFloat screenY __TTDEPRECATED_METHOD;
 

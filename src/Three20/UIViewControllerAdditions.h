@@ -78,6 +78,8 @@
  *
  * This has been deprecated due to App Store rejections. Please use ttPreviousViewController
  * from now on.
+ *
+ * @deprecated
  */
 - (UIViewController*)previousViewController __TTDEPRECATED_METHOD;
 

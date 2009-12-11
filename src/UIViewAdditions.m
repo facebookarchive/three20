@@ -23,9 +23,13 @@
 #ifdef DEBUG
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// This code for synthesizing touch events is derived from:
-// http://cocoawithlove.com/2008/10/synthesizing-touch-event-on-iphone.html
-
+/**
+ * A private API class used for synthesizing touch events. This class is compiled out of release
+ * builds.
+ *
+ * This code for synthesizing touch events is derived from:
+ * http://cocoawithlove.com/2008/10/synthesizing-touch-event-on-iphone.html
+ */
 @interface GSEventFake : NSObject {
   @public
   int ignored1[5];
@@ -195,6 +199,9 @@
   self.frame = frame;
 }
 
+/**
+ * Return the x coordinate on the screen.
+ */
 - (CGFloat)ttScreenX {
   CGFloat x = 0;
   for (UIView* view = self; view; view = view.superview) {
@@ -203,6 +210,9 @@
   return x;
 }
 
+/**
+ * Return the y coordinate on the screen.
+ */
 - (CGFloat)ttScreenY {
   CGFloat y = 0;
   for (UIView* view = self; view; view = view.superview) {
@@ -213,10 +223,24 @@
 
 #ifdef DEBUG
 
+/**
+ * Return the x coordinate on the screen.
+ *
+ * This method is being rejected by Apple due to false-positive private api static analysis.
+ *
+ * @deprecated
+ */
 - (CGFloat)screenX {
   return [self ttScreenX];
 }
 
+/**
+ * Return the y coordinate on the screen.
+ *
+ * This method is being rejected by Apple due to false-positive private api static analysis.
+ *
+ * @deprecated
+ */
 - (CGFloat)screenY {
   return [self ttScreenY];
 }

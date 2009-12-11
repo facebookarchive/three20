@@ -18,6 +18,9 @@
 
 #import "TTGlobalCore.h"
 
+/**
+ * Additions.
+ */
 @implementation NSMutableArray (TTCategory)
 
 - (void) addNonEmptyString:(NSString*)string {

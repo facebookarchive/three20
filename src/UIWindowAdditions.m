@@ -17,6 +17,9 @@
 #import "Three20/UIWindowAdditions.h"
 
 
+/**
+ * Additions.
+ */
 @implementation UIWindow (TTCategory)
 
 - (UIView *)findFirstResponder {

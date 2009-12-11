@@ -22,6 +22,11 @@
 
 #import "Three20/Three20.h"
 
+/**
+ * Unit tests for the global methods found within Three20. These tests are a part of
+ * the comprehensive test suite for the Core functionality of the library.
+ */
+
 @interface CoreGlobalTests : SenTestCase {
 }
 

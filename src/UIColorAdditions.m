@@ -98,6 +98,9 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Additions.
+ */
 @implementation UIColor (TTCategory)
 
 + (UIColor*)colorWithHue:(CGFloat)h saturation:(CGFloat)s value:(CGFloat)v alpha:(CGFloat)a {

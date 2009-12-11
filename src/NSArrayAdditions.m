@@ -16,6 +16,9 @@
 
 #import "NSArrayAdditions.h"
 
+/**
+ * Additions.
+ */
 @implementation NSArray (TTCategory)
 
 - (void)perform:(SEL)selector {

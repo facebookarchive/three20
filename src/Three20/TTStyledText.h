@@ -72,7 +72,7 @@
 /**
  * Constructs styled text with XHTML tags turned into style nodes.
  *
- * Only the following XHTML tags are supported: <b>, <i>, <img>, <a>.  The source must
+ * Only the following XHTML tags are supported: b, i, img, a.  The source must
  * be a well-formed XHTML fragment.  You do not need to enclose the source in an tag --
  * it can be any string with XHTML tags throughout.
  */

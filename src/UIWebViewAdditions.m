@@ -18,6 +18,9 @@
 
 #import "Three20/UIViewAdditions.h"
 
+/**
+ * Additions.
+ */
 @implementation UIWebView (TTCategory)
 
 - (CGRect)frameOfElement:(NSString*)query {

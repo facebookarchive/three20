@@ -18,6 +18,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Additions.
+ */
 @implementation NSObject (TTAdditions)
 
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {

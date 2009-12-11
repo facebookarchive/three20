@@ -16,6 +16,10 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * Doxygen does not handle categories very well, so please refer to the .m file in general
+ * for the documentation that is reflected on api.three20.info.
+ */
 @interface NSArray (TTCategory)
 
 /**
@@ -26,12 +30,18 @@
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2;
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3;
 
+/**
+ * @return nil or an object that matches value with isEqual:
+ */
 - (id)objectWithValue:(id)value forKey:(id)key;
+
+/**
+ * @return the first object with the given class.
+ */
 - (id)objectWithClass:(Class)cls;
 
 /**
- * Selector form:
- * - (NSNumber*)method:(id)object;
+ * @param selector Required format: - (NSNumber*)method:(id)object;
  */
 - (BOOL)containsObject:(id)object withSelector:(SEL)selector;
 

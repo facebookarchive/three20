@@ -16,8 +16,17 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * Doxygen does not handle categories very well, so please refer to the .m file in general
+ * for the documentation that is reflected on api.three20.info.
+ */
 @interface NSData (TTCategory)
 
+/**
+ * Calculate the md5 hash of this data using CC_MD5.
+ *
+ * @return md5 hash of this data
+ */
 @property (nonatomic, readonly) NSString* md5Hash;
 
 @end

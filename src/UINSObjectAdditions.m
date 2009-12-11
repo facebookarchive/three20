@@ -19,6 +19,9 @@
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLMap.h"
 
+/**
+ * Additions.
+ */
 @implementation NSObject (TTCategory)
 
 - (NSString*)URLValue {
