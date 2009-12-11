@@ -37,8 +37,7 @@
         initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered
         target:self action:@selector(dismiss)] autorelease];
 
-    NSString* ref = [query objectForKey:@"ref"];
-    TTDINFO(@"ORDER REFERRED FROM %@", ref);
+    TTDINFO(@"ORDER REFERRED FROM %@", [query objectForKey:@"ref"]);
   }
   return self;
 }
