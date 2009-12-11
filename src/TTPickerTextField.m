@@ -68,7 +68,7 @@ static CGFloat kMinCursorWidth = 50;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (CGFloat)layoutCells {
-  CGFloat fontHeight = self.font.safeLineHeight;
+  CGFloat fontHeight = self.font.ttLineHeight;
   CGFloat lineIncrement = fontHeight + kCellPaddingY*2 + kSpacingY;
   CGFloat marginY = floor(fontHeight/kPaddingRatio);
   CGFloat marginLeft = self.leftView
@@ -124,32 +124,32 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (CGFloat)marginY {
-  return floor(self.font.safeLineHeight/kPaddingRatio);
+  return floor(self.font.ttLineHeight/kPaddingRatio);
 }
 
 - (CGFloat)topOfLine:(int)lineNumber {
   if (lineNumber == 0) {
     return 0;
   } else {
-    CGFloat safeLineHeight = self.font.safeLineHeight;
+    CGFloat ttLineHeight = self.font.ttLineHeight;
     CGFloat lineSpacing = kCellPaddingY*2 + kSpacingY;
-    CGFloat marginY = floor(safeLineHeight/kPaddingRatio);
-    CGFloat lineTop = marginY + safeLineHeight*lineNumber + lineSpacing*lineNumber;
+    CGFloat marginY = floor(ttLineHeight/kPaddingRatio);
+    CGFloat lineTop = marginY + ttLineHeight*lineNumber + lineSpacing*lineNumber;
     return lineTop - lineSpacing;
   }
 }
 
 - (CGFloat)centerOfLine:(int)lineNumber {
   CGFloat lineTop = [self topOfLine:lineNumber];
-  CGFloat safeLineHeight = self.font.safeLineHeight + kCellPaddingY*2 + kSpacingY;
-  return lineTop + floor(safeLineHeight/2);
+  CGFloat ttLineHeight = self.font.ttLineHeight + kCellPaddingY*2 + kSpacingY;
+  return lineTop + floor(ttLineHeight/2);
 }
 
 - (CGFloat)heightWithLines:(int)lines {
-  CGFloat safeLineHeight = self.font.safeLineHeight;
+  CGFloat ttLineHeight = self.font.ttLineHeight;
   CGFloat lineSpacing = kCellPaddingY*2 + kSpacingY;
-  CGFloat marginY = floor(safeLineHeight/kPaddingRatio);
-  return marginY + safeLineHeight*lines + lineSpacing*(lines ? lines-1 : 0) + marginY;
+  CGFloat marginY = floor(ttLineHeight/kPaddingRatio);
+  return marginY + ttLineHeight*lines + lineSpacing*(lines ? lines-1 : 0) + marginY;
 }
 
 - (void)selectLastCell {
@@ -270,7 +270,7 @@ static CGFloat kMinCursorWidth = 50;
 
 - (CGRect)rectForSearchResults:(BOOL)withKeyboard {
   UIView* superview = self.superviewForSearchResults;
-  CGFloat y = superview.safeScreenY;
+  CGFloat y = superview.ttScreenY;
   CGFloat visibleHeight = [self heightWithLines:1];
   CGFloat keyboardHeight = withKeyboard ? TTKeyboardHeight() : 0;
   CGFloat tableHeight = TTScreenBounds().size.height - (y + visibleHeight + keyboardHeight);

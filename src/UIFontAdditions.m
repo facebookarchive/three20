@@ -20,7 +20,7 @@
 
 @implementation UIFont (TTCategory)
 
-- (CGFloat)safeLineHeight {
+- (CGFloat)ttLineHeight {
   return (self.ascender - self.descender) + 1;
 }
 
@@ -28,7 +28,7 @@
 #ifdef DEBUG
 
 - (CGFloat)lineHeight {
-  return [self safeLineHeight];
+  return [self ttLineHeight];
 }
 
 #endif

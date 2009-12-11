@@ -220,7 +220,7 @@ static CGFloat kProgressMargin = 6;
     padding = kBannerPadding;
   }
 
-  CGFloat height = _label.font.safeLineHeight + padding*2;
+  CGFloat height = _label.font.ttLineHeight + padding*2;
   if (_progressView) {
     height += _progressView.height + kSpacing;
   }

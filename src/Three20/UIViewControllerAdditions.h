@@ -69,14 +69,14 @@
  *
  * This is an App Store-compatible version of previousViewController.
  */
-- (UIViewController*)safePreviousViewController;
+- (UIViewController*)ttPreviousViewController;
 
 #ifdef DEBUG
 
 /**
  * The view controller that comes before this one in a navigation controller's history.
  *
- * This has been deprecated due to App Store rejections. Please use safePreviousViewController
+ * This has been deprecated due to App Store rejections. Please use ttPreviousViewController
  * from now on.
  */
 - (UIViewController*)previousViewController __TTDEPRECATED_METHOD;

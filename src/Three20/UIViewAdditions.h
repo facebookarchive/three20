@@ -80,12 +80,12 @@
 /**
  * Return the x coordinate on the screen.
  */
-@property(nonatomic,readonly) CGFloat safeScreenX;
+@property(nonatomic,readonly) CGFloat ttScreenX;
 
 /**
  * Return the y coordinate on the screen.
  */
-@property(nonatomic,readonly) CGFloat safeScreenY;
+@property(nonatomic,readonly) CGFloat ttScreenY;
 
 #ifdef DEBUG
 

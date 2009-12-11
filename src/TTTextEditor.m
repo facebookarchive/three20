@@ -288,9 +288,9 @@ static const CGFloat kUITextViewVerticalPadding = 6;
 }
 
 - (CGFloat)heightThatFits:(BOOL*)overflowed numberOfLines:(NSInteger*)numberOfLines {
-  CGFloat safeLineHeight = self.font.safeLineHeight;
-  CGFloat minHeight = _minNumberOfLines * safeLineHeight;
-  CGFloat maxHeight = _maxNumberOfLines * safeLineHeight;
+  CGFloat ttLineHeight = self.font.ttLineHeight;
+  CGFloat minHeight = _minNumberOfLines * ttLineHeight;
+  CGFloat maxHeight = _maxNumberOfLines * ttLineHeight;
   CGFloat maxWidth = self.width - kTextViewInset;
   
   NSString* text = _textField.hidden ? _textView.text : _textField.text;
@@ -304,10 +304,10 @@ static const CGFloat kUITextViewVerticalPadding = 6;
   
   CGFloat newHeight = textSize.height;
   if ([text characterAtIndex:text.length-1] == 10) {
-    newHeight += safeLineHeight;
+    newHeight += ttLineHeight;
   }
   if (_showsExtraLine) {
-    newHeight += safeLineHeight;
+    newHeight += ttLineHeight;
   }
 
   if (overflowed) {
@@ -315,7 +315,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
   }
 
   if (numberOfLines) {
-    *numberOfLines = floor(newHeight / safeLineHeight);
+    *numberOfLines = floor(newHeight / ttLineHeight);
   }
   
   if (newHeight < minHeight) {

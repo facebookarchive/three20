@@ -365,7 +365,7 @@
 
       if (_lastFrame) {
         if (!_lineHeight && [elt isKindOfClass:[TTStyledLineBreakNode class]]) {
-          _lineHeight = [_font safeLineHeight];
+          _lineHeight = [_font ttLineHeight];
         }
         [self breakLine];
       }
@@ -566,7 +566,7 @@
           if (lineRange.length) {
             NSString* line = [text substringWithRange:lineRange];
             [self addFrameForText:line element:element node:textNode width:frameWidth
-                  height:_lineHeight ? _lineHeight : [_font safeLineHeight]];
+                  height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
           }
 
           if (_lineWidth) {
@@ -587,7 +587,7 @@
       if (lineRange.length) {
         NSString* line = [text substringWithRange:lineRange];
         [self addFrameForText:line element:element node:textNode width:frameWidth
-              height:_lineHeight ? _lineHeight : [_font safeLineHeight]];
+              height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
 
         lineStartIndex = lineRange.location + lineRange.length;
         frameWidth = 0;
@@ -600,7 +600,7 @@
         if (lineRange.length) {
           NSString* line = [text substringWithRange:lineRange];
           [self addFrameForText:line element:element node:textNode width:frameWidth
-                height:_lineHeight ? _lineHeight : [_font safeLineHeight]];
+                height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
         }
         
         if (_lineWidth) {
@@ -636,7 +636,7 @@
                                                         - lineStartIndex);
         NSString* line = !_lineWidth ? word : [text substringWithRange:lineRange];
         [self addFrameForText:line element:element node:textNode width:frameWidth
-              height:[_font safeLineHeight]];
+              height:[_font ttLineHeight]];
         frameWidth = 0;
       }
     }

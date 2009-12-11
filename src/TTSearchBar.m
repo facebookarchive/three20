@@ -167,7 +167,7 @@ static const CGFloat kIndexViewMargin = 4;
     buttonWidth = _cancelButton.width + kButtonSpacing;
   }
 
-  CGFloat boxHeight = self.font.safeLineHeight + 8;
+  CGFloat boxHeight = self.font.ttLineHeight + 8;
   _boxView.frame = CGRectMake(kMarginX, floor(self.height/2 - boxHeight/2),
                               self.width - (kMarginX*2 + indexViewWidth + buttonWidth), boxHeight);
     
@@ -182,7 +182,7 @@ static const CGFloat kIndexViewMargin = 4;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-  CGFloat height = self.font.safeLineHeight+kPaddingY*2;
+  CGFloat height = self.font.ttLineHeight+kPaddingY*2;
   if (height < TT_ROW_HEIGHT) {
     height = TT_ROW_HEIGHT;
   }
