@@ -40,23 +40,23 @@
 /**
  * Create an action sheet controller without a delegate.
  *
- * @param title the title of the action sheet
+ * @param title The title of the action sheet.
  */
 - (id)initWithTitle:(NSString*)title;
 
 /**
  * The designated initializer.
  *
- * @param title     the title of the action sheet
- * @param delegate  a delegate that implements the TTActionSheetControllerDelegate protocol
+ * @param title     The title of the action sheet.
+ * @param delegate  A delegate that implements the TTActionSheetControllerDelegate protocol.
  */
 - (id)initWithTitle:(NSString*)title delegate:(id)delegate;
 
 /**
  * Append a button with the given title and TTNavigator URL.
  *
- * @param title the title of the new button
- * @param URL   the TTNavigator url
+ * @param title The title of the new button.
+ * @param URL   The TTNavigator url.
  * @return The index of the new button. Button indices start at 0 and increase in the order they
  *         are added.
  */
@@ -67,8 +67,8 @@
  *
  * There can be only one cancel button.
  *
- * @param title the title of the cancel button
- * @param URL   the TTNavigator url
+ * @param title The title of the cancel button.
+ * @param URL   The TTNavigator url.
  * @return The index of the cancel button. Button indices start at 0 and increase in the order they
  *         are added.
  */
@@ -79,8 +79,8 @@
  *
  * There can be only one destructive button.
  *
- * @param title the title of the cancel button
- * @param URL   the TTNavigator url
+ * @param title The title of the cancel button.
+ * @param URL   The TTNavigator url.
  * @return The index of the destructive button. Button indices start at 0 and increase in the order
  *         they are added.
  */
@@ -89,7 +89,7 @@
 /**
  * Retrieve the button URL at the given index.
  *
- * @param index the index of the button in question
+ * @param index The index of the button in question
  * @return nil if index is out of range. Otherwise returns the button's URL at index.
  */
 - (NSString*)buttonURLAtIndex:(NSInteger)index;
@@ -101,6 +101,23 @@
  */
 @protocol TTActionSheetControllerDelegate <UIActionSheetDelegate>
 @optional
+/**
+ * Sent to the delegate after an action sheet is dismissed from the screen.
+ *
+ * This method is invoked after the animation ends and the view is hidden.
+ *
+ * If this method is not implemented, the default action is to open the given URL.
+ * If this method is implemented and returns NO, then the caller will not navigate to the given
+ * URL.
+ *
+ * @param controller  The controller that was dismissed.
+ * @param buttonIndex The index of the button that was clicked. The button indices start at 0. If
+ *                    this is the cancel button index, the action sheet is canceling. If -1, the
+ *                    cancel button index is not set.
+ * @param URL         The URL of the selected button.
+ *
+ * @return YES to open the given URL with TTOpenURL.
+ */
 - (BOOL)actionSheetController:(TTActionSheetController*)controller
         didDismissWithButtonIndex:(NSInteger)buttonIndex URL:(NSString*)URL;
 
