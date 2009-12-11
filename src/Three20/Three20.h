@@ -18,9 +18,9 @@
  *
  * \section intro_sec Introduction
  *
- * All of the API documentation you see here has been generated from the Three20 source, available
- * for free at http://github.com/facebook/three20
+ * All of the API documentation you see here has been generated from the Three20 source.
  *
+ * Get the source: http://github.com/facebook/three20
  */
 
 // Core
