@@ -2,8 +2,22 @@ Changes from December 11, 2009
 
 - [NEW] -[NSDate formatShortRelativeTime]
 
+- [NEW] Unit tests for most of Core and part of UI
+
+- [APPSTORE] Rename previousViewController to ttPreviousViewController
+
+- [APPSTORE] Rename lineHeight to ttLineHeight
+
+- [APPSTORE] Rename screenX and screenY to ttScreenX and ttScreenY
+
 - [FIXED] diffstrings sorts strings tables to make diffs more sensible
 
+- [DEPRECATED] TTLOG
+
+- [DEPRECATED] TTIsEmpty* methods
+
+- [MINOR] Properly calculate the scroll height in the "Styled Views"
+          example in TTCatalog
 
 Changes from December 5, 2009
 

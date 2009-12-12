@@ -237,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				BEE7FD130F358198002788A5 /* libThree20.a */,
-				EB4CD9FF10CA0FB300A856E5 /* CoreUnitTests.octest */,
+				EB4CD9FF10CA0FB300A856E5 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -517,7 +517,7 @@
 			remoteRef = BEE7FD120F358198002788A5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EB4CD9FF10CA0FB300A856E5 /* CoreUnitTests.octest */ = {
+		EB4CD9FF10CA0FB300A856E5 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
