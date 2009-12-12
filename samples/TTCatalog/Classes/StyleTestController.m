@@ -6,12 +6,11 @@
 // UIViewController
 
 - (void)loadView {
-  [super loadView];
   UIScrollView* scrollView = [[[UIScrollView alloc] initWithFrame:TTNavigationFrame()] autorelease];
 	scrollView.autoresizesSubviews = YES;
 	scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   scrollView.backgroundColor = RGBCOLOR(216, 221, 231);
-  [self.view addSubview:scrollView];
+  self.view = scrollView;
   
   UIColor* black = RGBCOLOR(158, 163, 172);
   UIColor* blue = RGBCOLOR(191, 197, 208);
