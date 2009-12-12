@@ -223,7 +223,7 @@
 		EB4CDA0210CA0FBE00A856E5 /* CoreUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = CoreUnitTests.octest;
+			path = UnitTests.octest;
 			remoteRef = EB4CDA0110CA0FBE00A856E5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
