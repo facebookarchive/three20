@@ -219,16 +219,6 @@
 		EBDC8EB610C5CCB000257247 /* TTDebugFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = EBDC8EB510C5CCB000257247 /* TTDebugFlags.h */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		EB9E6DBE10B6B7AF00DE563C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EB9E6C6110B6A8F800DE563C;
-			remoteInfo = CoreUnitTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1028,7 +1018,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				EB9E6DBF10B6B7AF00DE563C /* PBXTargetDependency */,
 			);
 			name = Three20;
 			productName = Three20;
@@ -1220,14 +1209,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EB9E6DBF10B6B7AF00DE563C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EB9E6C6110B6A8F800DE563C /* CoreUnitTests */;
-			targetProxy = EB9E6DBE10B6B7AF00DE563C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		BEF31F3B0F352DF6000DE5D2 /* Debug */ = {
