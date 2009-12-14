@@ -635,7 +635,6 @@ static TTURLRequestQueue* gMainQueue = nil;
 
   // Finally, create a new loader and hit the network (unless we are suspended)
   TTRequestLoader* loader = [[TTRequestLoader alloc] initForRequest:request queue:self];
-  [_loaders setObject:loader forKey:request.cacheKey];
 
   // Should be decremented eventually by loadSynchronously
   ++_totalLoading;
