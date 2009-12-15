@@ -66,22 +66,25 @@ def mergeProjects(projects, sourceLocaleName, focusedLocaleName=None, verbose=Fa
         sourceStrings = project.condenseStringSourceFiles()
         sourceStrings.save()
 
-        # for localeName, localizedStrings in project.locales.iteritems():
-        #     if not focusedLocaleName or focusedLocaleName == localeName:
-        #         if localizedStrings.name in translations:
-        #             translation =  translations[localizedStrings.name]
-        #         else:
-        #             translation = Translation(localizedStrings.name)
-        #             translation.open(".", "2")
-        #             translations[localizedStrings.name] = translation
-        #
-        #         if translation.strings:
-        #             if verbose:
-        #                 localizedStrings.mergeReport(sourceStrings, translation)
-        #
-        #             localizedStrings.mergeTranslation(sourceStrings, translation)
-        #             if not dryRun:
-        #                 localizedStrings.save()
+        for localeName, localizedStrings in project.locales.iteritems():
+            if not focusedLocaleName or focusedLocaleName == localeName:
+                if localizedStrings.name in translations:
+                    translation = translations[localizedStrings.name]
+                else:
+                    translation = Translation(localizedStrings.name)
+                    translation.open(".")
+                    translations[localizedStrings.name] = translation
+
+                if translation.strings:
+                    if verbose:
+                        localizedStrings.mergeReport(sourceStrings, translation)
+
+                    localizedStrings.mergeTranslation(sourceStrings, translation)
+                    if not dryRun:
+                        localizedStrings.save()
+                else:
+                    if verbose:
+                        print "no translation.strings for %s, sad" % localeName
 
 ###################################################################################################
 
