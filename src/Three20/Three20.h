@@ -115,6 +115,8 @@
 #import "Three20/TTThumbsTableViewCell.h"
 #import "Three20/TTThumbView.h"
 
+#import "Three20/TTRecursiveProgress.h"
+
 // Network
 #import "Three20/TTGlobalNetwork.h"
 
