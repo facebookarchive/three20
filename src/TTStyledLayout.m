@@ -375,6 +375,7 @@
     } else {
       if (padding) {
         _x += padding.margin.left;
+        _height += padding.margin.top;
       }
       if (style) {
         _inlineFrame = [self addInlineFrame:style element:elt width:0 height:0];
