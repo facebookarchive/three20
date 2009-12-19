@@ -14,6 +14,6 @@
 // limitations under the License.
 //
 
-#import "TTGlobalStyle.h"
+#import "Three20/TTGlobalStyle.h"
 
 

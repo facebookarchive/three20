@@ -16,7 +16,7 @@
 
 #import "Three20/NSMutableDictionaryAdditions.h"
 
-#import "TTGlobalCore.h"
+#import "Three20/TTGlobalCore.h"
 
 /**
  * Additions.

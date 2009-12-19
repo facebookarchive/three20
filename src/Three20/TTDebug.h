@@ -127,7 +127,7 @@
 // Debug-only assertions.
 #ifdef DEBUG
 
-#import "TargetConditionals.h"
+#import <TargetConditionals.h>
 
 #if TARGET_IPHONE_SIMULATOR
 

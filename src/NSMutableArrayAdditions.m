@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "NSMutableArrayAdditions.h"
+#import "Three20/NSMutableArrayAdditions.h"
 
-#import "TTGlobalCore.h"
+#import "Three20/TTGlobalCore.h"
 
 /**
  * Additions.

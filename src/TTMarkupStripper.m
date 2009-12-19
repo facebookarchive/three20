@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "TTMarkupStripper.h"
+#import "Three20/TTMarkupStripper.h"
 
-#import "TTGlobalCore.h"
+#import "Three20/TTGlobalCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

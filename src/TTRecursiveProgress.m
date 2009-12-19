@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "TTRecursiveProgress.h"
+#import "Three20/TTRecursiveProgress.h"
 
 #import "Three20/TTDebug.h"
 

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "NSArrayAdditions.h"
+#import "Three20/NSArrayAdditions.h"
 
 /**
  * Additions.

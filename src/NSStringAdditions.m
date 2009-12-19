@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "NSStringAdditions.h"
+#import "Three20/NSStringAdditions.h"
 
-#import "TTMarkupStripper.h"
+#import "Three20/TTMarkupStripper.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
