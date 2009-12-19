@@ -1,3 +1,18 @@
+Changes from December 18, 2009
+
+- [NEW] TTRecursiveProgress object for recursive progress (go figure!)
+        See TTRecursiveProgress.h for more details
+
+- [LOCALE] Numerous fixes to diffstrings
+
+- [LOCALE] Make --merge in diffstrings actually work
+
+- [LOCALE] Update German, Spanish, Italian, Japanese, Chinese, and Taiwanese
+
+- [NETWORK] TTNetworkRequestStarted/Stopped now threadsafe.
+
+- [CRASHFIX] Synchronous connections modifying non-threadsafe members
+
 Changes from December 11, 2009
 
 - [NEW] -[NSDate formatShortRelativeTime]
