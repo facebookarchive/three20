@@ -19,30 +19,30 @@
 
 @class TTURLRequest;
 
+/**
+ * A response protocol for TTURLRequest. This protocol is used upon the successful retrieval of
+ * data from a TTURLRequest. The processResponse method is used to process the data, whether it
+ * be an image or an XML string.
+ *
+ * @see TTURLDataResponse
+ * @see TTURLImageResponse
+ */
 @protocol TTURLResponse <NSObject>
+@required
 
 /**
  * Processes the data from a successful request and determines if it is valid.
  *
- * If the data is not valid, return an error.  The data will not be cached if there is an error.
+ * If the data is not valid, return an error. The data will not be cached if there is an error.
+ *
+ * @param  request    The request this response is bound to.
+ * @param  response   The response object, useful for getting the status code.
+ * @param  data       The data received from the TTURLRequest.
+ * @return NSError if there was an error parsing the data. nil otherwise.
+ *
+ * @required
  */
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
             data:(id)data;
-
-@end
-
-@interface TTURLDataResponse : NSObject <TTURLResponse> {
-  NSData* _data;
-}
-
-@property(nonatomic,readonly) NSData* data;
-
-@end
-
-@interface TTURLImageResponse : NSObject <TTURLResponse> {
-  UIImage* _image;
-}
-
-@property(nonatomic,readonly) UIImage* image;
 
 @end

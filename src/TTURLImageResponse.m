@@ -14,75 +14,58 @@
 // limitations under the License.
 //
 
-#import "Three20/TTURLResponse.h"
+#import "Three20/TTURLImageResponse.h"
 
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20/TTDebug.h"
 
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTURLCache.h"
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTURLDataResponse
-
-@synthesize data = _data;
-
-- (id)init {
-  if (self = [super init]) {
-    _data = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_data);
-  [super dealloc];
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// TTURLResponse
-
-- (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
-            data:(id)data {
-  if ([data isKindOfClass:[NSData class]]) {
-    _data = [data retain];
-  }
-  return nil;
-}
-
-@end
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTURLImageResponse
 
 @synthesize image = _image;
 
-- (id)init {
-  if (self = [super init]) {
-    _image = nil;
-  }
-  return self;
-}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_image);
+
   [super dealloc];
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// TTURLResponse
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark TTURLResponse
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
             data:(id)data {
+  // This response is designed for NSData and UIImage objects, so if we get anything else it's
+  // probably a mistake.
+  TTDASSERT([data isKindOfClass:[UIImage class]]
+            || [data isKindOfClass:[NSData class]]);
+  TTDASSERT(nil == _image);
+
   if ([data isKindOfClass:[UIImage class]]) {
     _image = [data retain];
+
   } else if ([data isKindOfClass:[NSData class]]) {
+    // TODO(jverkoey Feb 10, 2010): This logic doesn't entirely make sense. Why don't we just store
+    // the data in the cache if there was a cache miss, and then just retain the image data we
+    // downloaded? This needs to be tested in production.
     UIImage* image = [[TTURLCache sharedCache] imageForURL:request.URL fromDisk:NO];
-    if (!image) {
+
+    if (nil == image) {
       image = [UIImage imageWithData:data];
     }
-    if (image) {
+
+    if (nil != image) {
       if (!request.respondedFromCache) {
 // XXXjoe Working on option to scale down really large images to a smaller size to save memory      
 //        if (image.size.width * image.size.height > (300*300)) {
@@ -93,14 +76,18 @@
 //        }
         [[TTURLCache sharedCache] storeImage:image forURL:request.URL];
       }
+
       _image = [image retain];
+
     } else {
       return [NSError errorWithDomain:TT_ERROR_DOMAIN code:TT_EC_INVALID_IMAGE
                       userInfo:nil];
     }
   }
+
   return nil;
 }
+
 
 @end
 

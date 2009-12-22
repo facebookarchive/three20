@@ -21,7 +21,7 @@
 
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTURLRequest.h"
-#import "Three20/TTURLResponse.h"
+#import "Three20/TTURLImageResponse.h"
 #import "Three20/TTURLCache.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -23,7 +23,7 @@
 #import "Three20/TTStyledLayout.h"
 #import "Three20/TTStyledTextParser.h"
 
-#import "Three20/TTURLResponse.h"
+#import "Three20/TTURLImageResponse.h"
 #import "Three20/TTURLCache.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

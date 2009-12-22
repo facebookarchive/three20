@@ -22,7 +22,7 @@
 #import "Three20/TTImageLayer.h"
 
 #import "Three20/TTURLCache.h"
-#import "Three20/TTURLResponse.h"
+#import "Three20/TTURLImageResponse.h"
 #import "Three20/TTShape.h"
 
 #import "Three20/TTImageViewInternal.h"
