@@ -59,6 +59,8 @@
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalCorePaths.h"
 
+#import "Three20/TTXMLParser.h"
+
 // UI
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
@@ -136,6 +138,7 @@
 #import "Three20/TTURLResponse.h"
 #import "Three20/TTURLDataResponse.h"
 #import "Three20/TTURLImageResponse.h"
+#import "Three20/TTURLXMLResponse.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"

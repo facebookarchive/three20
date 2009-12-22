@@ -11,6 +11,14 @@
 		6E14D81410E0A12700445222 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D81210E0A12700445222 /* TTURLImageResponse.m */; };
 		6E14D82A10E0A16700445222 /* TTURLImageResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E14D82810E0A16700445222 /* TTURLImageResponse.h */; };
 		6E14D82B10E0A16700445222 /* TTURLDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E14D82910E0A16700445222 /* TTURLDataResponse.h */; };
+		6E14D8B210E0A8D200445222 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */; };
+		6E14D8EE10E0B60000445222 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8EC10E0B60000445222 /* TTXMLParser.m */; };
+		6E14D93810E0B92900445222 /* CoreXMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D93710E0B92900445222 /* CoreXMLTests.m */; };
+		6E14D95810E0B9CB00445222 /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E14D95710E0B9CB00445222 /* testcase.xml */; };
+		6E14D96410E0BAD300445222 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA5510CADA3200A856E5 /* TTGlobalCorePaths.m */; };
+		6E14D98E10E0BC4E00445222 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8EC10E0B60000445222 /* TTXMLParser.m */; };
+		6E14D99A10E0BC8000445222 /* TTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E14D99910E0BC8000445222 /* TTXMLParser.h */; };
+		6E14DAD810E0DC7D00445222 /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E14DAD710E0DC7D00445222 /* TTURLXMLResponse.h */; };
 		6E35CCB610912B210066B478 /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */; };
 		6E35CCC210912BE10066B478 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */; };
 		6E35CCFD10912C870066B478 /* NSMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */; };
@@ -270,6 +278,12 @@
 		6E14D81210E0A12700445222 /* TTURLImageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLImageResponse.m; sourceTree = "<group>"; };
 		6E14D82810E0A16700445222 /* TTURLImageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLImageResponse.h; path = Three20/TTURLImageResponse.h; sourceTree = "<group>"; };
 		6E14D82910E0A16700445222 /* TTURLDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLDataResponse.h; path = Three20/TTURLDataResponse.h; sourceTree = "<group>"; };
+		6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLXMLResponse.m; sourceTree = "<group>"; };
+		6E14D8EC10E0B60000445222 /* TTXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTXMLParser.m; sourceTree = "<group>"; };
+		6E14D93710E0B92900445222 /* CoreXMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreXMLTests.m; sourceTree = "<group>"; };
+		6E14D95710E0B9CB00445222 /* testcase.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase.xml; path = tests/testcase.xml; sourceTree = "<group>"; };
+		6E14D99910E0BC8000445222 /* TTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTXMLParser.h; path = Three20/TTXMLParser.h; sourceTree = "<group>"; };
+		6E14DAD710E0DC7D00445222 /* TTURLXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLResponse.h; path = Three20/TTURLXMLResponse.h; sourceTree = "<group>"; };
 		6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableArrayAdditions.m; sourceTree = "<group>"; };
 		6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableDictionaryAdditions.m; sourceTree = "<group>"; };
 		6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableDictionaryAdditions.h; path = Three20/NSMutableDictionaryAdditions.h; sourceTree = "<group>"; };
@@ -545,6 +559,7 @@
 			isa = PBXGroup;
 			children = (
 				BEF321B10F353B25000DE5D2 /* Global */,
+				6E14D8EA10E0B5F100445222 /* Core */,
 				EBAE96F210D1F5B300F497CA /* Network */,
 				EBAE96F110D1F58900F497CA /* UI */,
 				BE1287F40F8969C100F65EA2 /* Style */,
@@ -576,8 +591,35 @@
 				6E14D7E610E09A2300445222 /* TTURLDataResponse.m */,
 				6E14D82810E0A16700445222 /* TTURLImageResponse.h */,
 				6E14D81210E0A12700445222 /* TTURLImageResponse.m */,
+				6E14DAD710E0DC7D00445222 /* TTURLXMLResponse.h */,
+				6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */,
 			);
 			name = Responses;
+			sourceTree = "<group>";
+		};
+		6E14D8EA10E0B5F100445222 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6E14D92E10E0B6C000445222 /* XML */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		6E14D92E10E0B6C000445222 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				6E14D99910E0BC8000445222 /* TTXMLParser.h */,
+				6E14D8EC10E0B60000445222 /* TTXMLParser.m */,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
+		6E14D93910E0B99E00445222 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6E14D95710E0B9CB00445222 /* testcase.xml */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		6E75E7EA11229A4F00276F63 /* Requests */ = {
@@ -972,6 +1014,7 @@
 		EB9E6C7910B6A94700DE563C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				6E14D93910E0B99E00445222 /* Resources */,
 				EB9E6C7A10B6A96400DE563C /* Core */,
 				EB4CDA5D10CADB0500A856E5 /* UI */,
 				EB9E6C6310B6A8F800DE563C /* UnitTests-Info.plist */,
@@ -984,6 +1027,7 @@
 			children = (
 				EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */,
 				EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */,
+				6E14D93710E0B92900445222 /* CoreXMLTests.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1216,6 +1260,8 @@
 				6E924AA7112C77F200531F03 /* TTTableViewGroupedVarHeightDelegate.h in Headers */,
 				6E924D8E112CA76C00531F03 /* TTTableViewDragRefreshDelegate.h in Headers */,
 				6E924D98112CAA4A00531F03 /* TTTableHeaderDragRefreshView.h in Headers */,
+				6E14D99A10E0BC8000445222 /* TTXMLParser.h in Headers */,
+				6E14DAD810E0DC7D00445222 /* TTURLXMLResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1280,6 +1326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E14D95810E0B9CB00445222 /* testcase.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1417,6 +1464,8 @@
 				6E924AA5112C77E800531F03 /* TTTableViewGroupedVarHeightDelegate.m in Sources */,
 				6E924D8C112CA75C00531F03 /* TTTableViewDragRefreshDelegate.m in Sources */,
 				6E924D96112CAA3800531F03 /* TTTableHeaderDragRefreshView.m in Sources */,
+				6E14D8B210E0A8D200445222 /* TTURLXMLResponse.m in Sources */,
+				6E14D8EE10E0B60000445222 /* TTXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1439,6 +1488,9 @@
 				EB2F8DBB10D027E9008522A7 /* UIAdditionTests.m in Sources */,
 				EB2F8DBD10D02815008522A7 /* UIColorAdditions.m in Sources */,
 				6E8F7849110FD80C00069B64 /* TTDebug.m in Sources */,
+				6E14D93810E0B92900445222 /* CoreXMLTests.m in Sources */,
+				6E14D96410E0BAD300445222 /* TTGlobalCorePaths.m in Sources */,
+				6E14D98E10E0BC4E00445222 /* TTXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
