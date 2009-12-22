@@ -16,18 +16,16 @@
 
 #import "Three20/TTURLResponse.h"
 
-#import "Three20/TTXMLParser.h"
-
 /**
  * An implementation of the TTURLResponse protocal for turning XML responses into NSObjects.
  *
  * This particular implementation uses a strict XML parser (NSXMLParser). It is not designed to
  * parse HTML pages that are likely to have invalid markup.
  */
-@interface TTURLXMLResponse : NSObject <TTURLResponse, TTXMLParserDelegate> {
+@interface TTURLXMLResponse : NSObject <TTURLResponse> {
   id _rootObject;
 }
 
-@property (nonatomic, readonly) id rootObject;
+@property (nonatomic, retain, readonly) id rootObject;
 
 @end

@@ -18,6 +18,8 @@
 
 #import "Three20/TTGlobalCore.h"
 
+#import "Three20/TTXMLParser.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,6 +56,7 @@
     TTXMLParser* parser = [[TTXMLParser alloc] initWithData:data];
     parser.delegate = self;
     [parser parse];
+    _rootObject = [parser.rootObject retain];
     TT_RELEASE_SAFELY(parser);
   }
 

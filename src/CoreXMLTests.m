@@ -28,7 +28,7 @@
  * Unit tests for the Core XML parser. These tests are a part of the comprehensive test suite
  * for the Core functionality of the library.
  */
-@interface CoreXMLTests : SenTestCase <TTXMLParserDelegate>
+@interface CoreXMLTests : SenTestCase
 @end
 
 
@@ -52,15 +52,6 @@
   TTXMLParser* parser = [[TTXMLParser alloc] initWithData:xmlData];
   [parser parse];
   TT_RELEASE_SAFELY(parser);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark TTXMLParserDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didParseXML:(id)rootNode {
 }
 
 

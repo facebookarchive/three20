@@ -21,7 +21,8 @@
 static NSString* kCommonKey_Type = @"type";
 static NSString* kCommonType_Array = @"array";
 static NSString* kCommonType_Integer = @"integer";
-static NSString* kCommonType_Unknown = @"unknown";
+static NSString* kCommonType_DateTime = @"datetime";
+NSString* kCommonXMLType_Unknown = @"unknown";
 
 static NSString* kPrivateKey_EntityName = @"___Entity_Name___";
 static NSString* kPrivateKey_EntityType = @"___Entity_Type___";
@@ -35,42 +36,14 @@ static NSString* kPrivateKey_Array = @"___Array___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTXMLParser
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithContentsOfURL:(NSURL *)url {
-  if (self = [super initWithContentsOfURL:url]) {
-    super.delegate = self;
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithData:(NSData*)data {
-  if (self = [super initWithData:data]) {
-    super.delegate = self;
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setResultDelegate:(id<TTXMLParserDelegate>)delegate {
-  _resultDelegate = delegate;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id<TTXMLParserDelegate>)resultDelegate {
-  return _resultDelegate;
-}
+@synthesize rootObject = _rootObject;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)parse {
   _objectStack = [[NSMutableArray alloc] init];
+
+  self.delegate = self;
 
   BOOL result = [super parse];
 
@@ -83,132 +56,111 @@ static NSString* kPrivateKey_Array = @"___Array___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)allocObjectForElementName: (NSString*) elementName
                      attributes: (NSDictionary*) attributeDict {
-  id object = nil;
-
-  if ([_resultDelegate respondsToSelector:@selector(allocObjectForElementName:attributes:)]) {
-    object = [_resultDelegate allocObjectForElementName:elementName attributes:attributeDict];
+  id object = [[NSMutableDictionary alloc] init];
+  if (!TTIsStringWithAnyText(elementName)) {
+    elementName = @"";
   }
 
-  if (nil == object) {
-    // At this point, we have no idea what this object is. Let's just create a dictionary.
-    object = [[NSMutableDictionary alloc] init];
-    if (!TTIsStringWithAnyText(elementName)) {
-      elementName = @"";
-    }
+  NSString* type = [attributeDict objectForKey:kCommonKey_Type];
 
-    NSString* type = [attributeDict objectForKey:kCommonKey_Type];
-
-    if (!TTIsStringWithAnyText(type)) {
-      type = kCommonType_Unknown;
-    }
-
-    if ([type isEqualToString:kCommonType_Array]) {
-      NSMutableArray* array = [[NSMutableArray alloc] init];
-      [object setObject:array forKey:kPrivateKey_Array];
-      TT_RELEASE_SAFELY(array);
-    }
-
-    [object setObject:elementName forKey:kPrivateKey_EntityName];
-    [object setObject:type forKey:kPrivateKey_EntityType];
+  if (!TTIsStringWithAnyText(type)) {
+    type = kCommonXMLType_Unknown;
   }
+
+  if ([type isEqualToString:kCommonType_Array]) {
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    [object setObject:array forKey:kPrivateKey_Array];
+    TT_RELEASE_SAFELY(array);
+  }
+
+  [object setObject:elementName forKey:kPrivateKey_EntityName];
+  [object setObject:type forKey:kPrivateKey_EntityType];
 
   return object;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)addChild:(id)childObject toObject:(id)object {
+- (void)addChild:(id)childObject toObject:(id)object {
   // Is this an internal common "array" type?
-  BOOL couldAddChild = NO;
 
-  if ([_resultDelegate respondsToSelector:@selector(addChild:toObject:)]) {
-    couldAddChild = [_resultDelegate addChild:childObject toObject:object];
-  }
+  if ([object isKindOfClass:[NSDictionary class]] &&
+      [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Array]) {
 
-  if (!couldAddChild) {
-    if ([object isKindOfClass:[NSDictionary class]] &&
-        [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Array]) {
-
-      // Yes, it is. Let's add this object to the array then.
-      if (nil != childObject) {
-        [[object objectForKey:kPrivateKey_Array] addObject:childObject];
-        couldAddChild = YES;
-      }
-
-    } else if ([object isKindOfClass:[NSDictionary class]] &&
-        [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Unknown]) {
-      // It's an unknown dictionary type, let's just add this object then.
-      [object setObject:childObject forKey:[childObject objectForKey:kPrivateKey_EntityName]];
-      couldAddChild = YES;
+    // Yes, it is. Let's add this object to the array then.
+    if (nil != childObject) {
+      [[object objectForKey:kPrivateKey_Array] addObject:childObject];
     }
-  }
 
-  return couldAddChild;
+  } else if ([object isKindOfClass:[NSDictionary class]] &&
+      [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonXMLType_Unknown]) {
+    // It's an unknown dictionary type, let's just add this object then.
+    [object setObject:childObject forKey:[childObject objectForKey:kPrivateKey_EntityName]];
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)addCharacters: (NSString*)characters toObject:(id)object {
-  BOOL couldAddCharacters = NO;
+- (void)addCharacters: (NSString*)characters toObject:(id)object {
+  if ([object isKindOfClass:[NSDictionary class]] &&
+      [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonXMLType_Unknown]) {
+    // It's an unknown dictionary type, let's just add this object then.
+    NSString* value = [object objectForKey:kPrivateKey_EntityValue];
+    if (nil == value) {
+      value = [[NSString alloc] init];
+      [object setObject:value forKey:kPrivateKey_EntityValue];
+      [value release];
+    }
+    [object setObject:[value stringByAppendingString:characters] forKey:kPrivateKey_EntityValue];
 
-  if ([_resultDelegate respondsToSelector:@selector(addCharacters:toObject:)]) {
-    couldAddCharacters = [_resultDelegate addCharacters:characters toObject:object];
-  }
+  } else if ([object isKindOfClass:[NSDictionary class]] &&
+      ([[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Integer] ||
+       [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_DateTime])) {
 
-  if (!couldAddCharacters) {
-    if ([object isKindOfClass:[NSDictionary class]] &&
-        [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Unknown]) {
-      // It's an unknown dictionary type, let's just add this object then.
-      NSString* value = [object objectForKey:kPrivateKey_EntityValue];
-      if (nil == value) {
-        value = [[NSString alloc] init];
-        [object setObject:value forKey:kPrivateKey_EntityValue];
-        [value release];
-      }
-      [object setObject:[value stringByAppendingString:characters] forKey:kPrivateKey_EntityValue];
-
-      couldAddCharacters = YES;
-
-    } else if ([object isKindOfClass:[NSDictionary class]] &&
-        [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Integer]) {
-
-      NSString* buffer = [object objectForKey:kPrivateKey_EntityBuffer];
-      if (nil == buffer) {
-        buffer = [[NSString alloc] init];
-        [object setObject:buffer forKey:kPrivateKey_EntityBuffer];
-        [buffer release];
-      }
-      buffer = [buffer stringByAppendingString:characters];
+    NSString* buffer = [object objectForKey:kPrivateKey_EntityBuffer];
+    if (nil == buffer) {
+      buffer = [[NSString alloc] init];
       [object setObject:buffer forKey:kPrivateKey_EntityBuffer];
-
-      NSNumber* number = [[NSNumber alloc] initWithInt:[buffer intValue]];
-      [object setObject:number forKey:kPrivateKey_EntityValue];
-
-      couldAddCharacters = YES;
+      [buffer release];
     }
+    buffer = [buffer stringByAppendingString:characters];
+    [object setObject:buffer forKey:kPrivateKey_EntityBuffer];
   }
-
-  return couldAddCharacters;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)performCleanupForObject:(id)object {
-  BOOL couldPerformCleanup = NO;
+- (void)didFinishParsingObject:(id)object {
+  if ([object isKindOfClass:[NSDictionary class]] &&
+      [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Integer]) {
+    NSString* buffer = [object objectForKey:kPrivateKey_EntityBuffer];
+    NSNumber* number = [[NSNumber alloc] initWithInt:[buffer intValue]];
+    [object setObject:number forKey:kPrivateKey_EntityValue];
+    TT_RELEASE_SAFELY(number);
 
-  if ([_resultDelegate respondsToSelector:@selector(performCleanupForObject:)]) {
-    couldPerformCleanup = [_resultDelegate performCleanupForObject:object];
-  }
+    [object removeObjectForKey:kPrivateKey_EntityBuffer];
 
-  if (!couldPerformCleanup) {
-    if ([object isKindOfClass:[NSDictionary class]] &&
-        [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Integer]) {
-      [object removeObjectForKey:kPrivateKey_EntityBuffer];
+  } else if ([object isKindOfClass:[NSDictionary class]] &&
+             [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_DateTime]) {
+    NSString* buffer = [object objectForKey:kPrivateKey_EntityBuffer];
 
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
+    NSDate* date = [dateFormatter dateFromString:buffer];
+    if (nil == date) {
+      [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+      date = [dateFormatter dateFromString:buffer];
     }
-  }
 
-  return couldPerformCleanup;
+    if (nil != date) {
+      [object setObject:date forKey:kPrivateKey_EntityValue];
+    }
+    TT_RELEASE_SAFELY(dateFormatter);
+
+    [object removeObjectForKey:kPrivateKey_EntityBuffer];
+
+  }
 }
 
 
@@ -229,7 +181,6 @@ static NSString* kPrivateKey_Array = @"___Array___";
   }
 
   if ([_objectStack count] > 0) {
-    // The only case where there won't be anything on the stack is if this is the root node.
     [self addChild:object toObject:[_objectStack lastObject]];
   }
 
@@ -252,10 +203,11 @@ static NSString* kPrivateKey_Array = @"___Array___";
            namespaceURI: (NSString*) namespaceURI
           qualifiedName: (NSString*) qName {
 
-  [self performCleanupForObject:[_objectStack lastObject]];
+  [self didFinishParsingObject:[_objectStack lastObject]];
 
   if ([_objectStack count] == 1) {
-    [_resultDelegate didParseXML:[_objectStack lastObject]];
+    TTDASSERT(nil == _rootObject);
+    _rootObject = [[_objectStack lastObject] retain];
   }
 
   // Now that we've finished a node, let's step back up the tree.
@@ -271,8 +223,26 @@ static NSString* kPrivateKey_Array = @"___Array___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NSDictionary (TTXMLAdditions)
 
-- (id)objectForXMLValue {
-  return [self objectForKey:kPrivateKey_EntityValue];
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)nameForXMLNode {
+  return [self objectForKey:kPrivateKey_EntityName];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)typeForXMLNode {
+  return [self objectForKey:kPrivateKey_EntityType];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)objectForXMLNode {
+  if ([[self typeForXMLNode] isEqualToString:kCommonType_Array]) {
+    return [self objectForKey:kPrivateKey_Array];
+  } else {
+    return [self objectForKey:kPrivateKey_EntityValue];
+  }
 }
 
 @end

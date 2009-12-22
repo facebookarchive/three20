@@ -16,55 +16,42 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString* kCommonXMLType_Unknown;
+
 @protocol TTXMLParserDelegate;
 
 /**
- * A general-purpose XML parser.
- *
- * This parser is designed to easily allow entities to be created from the XML data.
+ * An implementation of the NSXMLParser object that turns XML into NSObjects.
  */
 @interface TTXMLParser : NSXMLParser {
-  id<TTXMLParserDelegate> _resultDelegate;
+@private
+  id              _rootObject;
 
-  /**
-   * The stack of objects we're dealing with.
-   */
   NSMutableArray* _objectStack;
 }
 
-@property (nonatomic, assign, getter = resultDelegate, setter = setResultDelegate)
-  id<TTXMLParserDelegate> delegate;
+@property (nonatomic, readonly) id rootObject;
 
 @end
 
-
+/**
+ * Additions for accessing TTXMLParser results.
+ */
 @interface NSDictionary (TTXMLAdditions)
 
-- (id)objectForXMLValue;
-
-@end
-
+/**
+ * @return The XML entity name.
+ */
+- (NSString*)nameForXMLNode;
 
 /**
- * The XML parser delegate.
+ * @return The XML entity type.
  */
-@protocol TTXMLParserDelegate <NSObject>
-@required
+- (NSString*)typeForXMLNode;
 
 /**
- * Called upon completion of parsing.
+ * @return The XML processed value for this object.
  */
-- (void)didParseXML:(id)rootObject;
-
-@optional
-- (id)allocObjectForElementName: (NSString*) elementName
-                     attributes: (NSDictionary*) attributeDict;
-
-- (BOOL)addChild:(id)childObject toObject:(id)object;
-
-- (BOOL)addCharacters: (NSString*)characters toObject:(id)object;
-
-- (BOOL)performCleanupForObject:(id)object;
+- (id)objectForXMLNode;
 
 @end
-
