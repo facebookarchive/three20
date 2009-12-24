@@ -2,6 +2,8 @@ Changes from December 25, 2009
 
 - [DEPRECATED] isWhitespace. Use isWhitespaceAndNewlines instead.
 
+- [MINOR] Use __PRETTY_FUNCTION__ for debug logs. (@steipete)
+
 Changes from December 18, 2009
 
 - [NEW] TTRecursiveProgress object for recursive progress (go figure!)

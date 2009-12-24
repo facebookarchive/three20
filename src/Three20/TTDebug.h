@@ -15,7 +15,7 @@
 //
 
 //
-// A debug-only logging interface with priority and contional logs.
+// A debug-only logging interface with priority and conditional logs.
 //
 // How to use it
 // -------------
@@ -54,7 +54,7 @@
 // To assert something in debug mode:
 // TTDASSERT(value == 4);
 //
-// If a debug-only assertions fails in the simulator, gdb will be loaded at the exact assertion
+// If a debug-only assertion fails in the simulator, gdb will be loaded at the exact assertion
 // line.
 //
 // Default log level
@@ -78,6 +78,9 @@
 //   or
 //   TTMAXLOGLEVEL=TTLOGLEVEL_INFO
 //   etc...
+//
+// Please note that since Three20 is its own Xcode project, you will need to set the TTMAXLOGLEVEL
+// macro in the Three20 project in order to see Three20-related debugging logs.
 //
 // Available Macros
 // ----------------
@@ -116,13 +119,13 @@
 
 // The general purpose logger. This ignores logging levels.
 #ifdef DEBUG
-  #define TTDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __FILE__, __LINE__, ##__VA_ARGS__)
+  #define TTDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
   #define TTDPRINT(xx, ...)  ((void)0)
 #endif
 
 // Prints the current method's name.
-#define TTDPRINTMETHODNAME() TTDPRINT(@"%@", NSStringFromSelector(_cmd))
+#define TTDPRINTMETHODNAME() TTDPRINT(@"%s", __PRETTY_FUNCTION__)
 
 // Debug-only assertions.
 #ifdef DEBUG
