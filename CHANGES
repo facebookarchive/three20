@@ -1,3 +1,7 @@
+Changes from December 25, 2009
+
+- [DEPRECATED] isWhitespace. Use isWhitespaceAndNewlines instead.
+
 Changes from December 18, 2009
 
 - [NEW] TTRecursiveProgress object for recursive progress (go figure!)

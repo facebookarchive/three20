@@ -28,7 +28,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (BOOL)isWhitespace {
+- (BOOL)isWhitespaceAndNewlines {
   NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
   for (NSInteger i = 0; i < self.length; ++i) {
     unichar c = [self characterAtIndex:i];
@@ -37,6 +37,10 @@
     }
   }
   return YES;
+}
+
+- (BOOL)isWhitespace {
+  return [self isWhitespaceAndNewlines];
 }
 
 - (BOOL)isEmptyOrWhitespace {
