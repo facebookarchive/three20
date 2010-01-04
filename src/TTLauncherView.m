@@ -441,8 +441,8 @@ static const NSInteger kDefaultColumnCount = 3;
   [self beginEditing];
 
   TTUserInfo* info = timer.userInfo;
-  TTLauncherButton* button = info.weak;
-  UIEvent* event = info.strong;
+  TTLauncherButton* button = info.weakRef;
+  UIEvent* event = info.strongRef;
   
   button.selected = NO;
   button.highlighted = NO;

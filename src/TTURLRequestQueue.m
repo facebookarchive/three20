@@ -675,7 +675,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 
       if ([request.userInfo isKindOfClass:[TTUserInfo class]]) {
         TTUserInfo* userInfo = request.userInfo;
-        if (userInfo.weak && userInfo.weak == delegate) {
+        if (userInfo.weakRef && userInfo.weakRef == delegate) {
           if (!requestsToCancel) {
             requestsToCancel = [NSMutableArray array];
           }

@@ -297,7 +297,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 @implementation TTUserInfo
 
-@synthesize topic = _topic, strong = _strong, weak = _weak;
+@synthesize topic = _topic, strongRef = _strong, weakRef = _weak;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -320,8 +320,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (id)initWithTopic:(NSString*)topic strong:(id)strong weak:(id)weak {
   if (self = [super init]) {
     self.topic = topic;
-    self.strong = strong;
-    self.weak = weak;
+    self.strongRef = strong;
+    self.weakRef = weak;
   }
   return self;
 }
