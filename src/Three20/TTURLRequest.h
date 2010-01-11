@@ -191,6 +191,11 @@
 - (void)requestDidFinishLoad:(TTURLRequest*)request;
 
 /**
+ * Allows delegate to handle any authentication challenges.
+ */
+- (void)request:(TTURLRequest*)request didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge;
+
+/**
  *
  */
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error;
