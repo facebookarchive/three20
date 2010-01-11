@@ -16,8 +16,8 @@
 
 #import "Three20/UIViewAdditions.h"
 
-#import "TTGlobalUI.h"
-#import "TTGlobalUINavigator.h"
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
 
 // Remove GSEvent and UITouchAdditions from Release builds
 #ifdef DEBUG
