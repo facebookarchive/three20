@@ -476,6 +476,7 @@ static const NSInteger kActivityLabelTag          = 96;
   _scrollView = [[TTScrollView alloc] initWithFrame:screenFrame];
   _scrollView.delegate = self;
   _scrollView.dataSource = self;
+  _scrollView.rotateEnabled = NO;
   _scrollView.backgroundColor = [UIColor blackColor];
   _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   [_innerView addSubview:_scrollView];

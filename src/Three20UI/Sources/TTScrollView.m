@@ -238,7 +238,7 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 
   CGFloat width, height;
   if (UIInterfaceOrientationIsLandscape(_orientation)) {
-    if (size.width > size.height) {
+    if (size.width / size.height > self.width / self.height) {
       height = self.height;
       width = size.height/size.width * self.height;
     } else {
@@ -246,7 +246,7 @@ static const CGFloat kFrameDuration = 1.0/40.0;
       width = self.width;
     }
   } else {
-    if (size.width > size.height) {
+    if (size.width / size.height > self.width / self.height) {
       width = self.width;
       height = size.height/size.width * self.width;
     } else {
