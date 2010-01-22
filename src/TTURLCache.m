@@ -19,6 +19,7 @@
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCorePaths.h"
 #import "Three20/TTGlobalNetwork.h"
+#import "Three20/TTDebugFlags.h"
 
 #import <CommonCrypto/CommonDigest.h>
 #import <QuartzCore/QuartzCore.h>

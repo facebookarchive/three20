@@ -18,6 +18,7 @@
 
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
+#import "Three20/TTDebugFlags.h"
 
 #import "Three20/TTURLAction.h"
 #import "Three20/TTURLMap.h"

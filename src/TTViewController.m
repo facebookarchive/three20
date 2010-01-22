@@ -19,6 +19,7 @@
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
 #import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDebugFlags.h"
 
 #import "Three20/TTTableViewController.h"
 #import "Three20/TTURLRequestQueue.h"
