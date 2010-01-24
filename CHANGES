@@ -1,5 +1,7 @@
 Changes since December 25, 2009
 
+- [NEW] TTURLRequest didReceiveAuthenticationChallenge for authentication challenges.
+
 - [DEPRECATED] isWhitespace. Use isWhitespaceAndNewlines instead.
 
 - [XCODE] Refactoring problems solved. TTUserInfo weak/strong properties renamed
