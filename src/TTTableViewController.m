@@ -49,7 +49,7 @@ static const CGFloat kBannerViewHeight = 22;
 // private
 
 - (void)createInterstitialModel {
-  self.dataSource = [[[TTTableViewInterstialDataSource alloc] init] autorelease];
+  self.dataSource = [[[TTTableViewInterstitialDataSource alloc] init] autorelease];
 }
 
 - (NSString*)defaultTitleForLoading {
