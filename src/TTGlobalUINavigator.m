@@ -20,6 +20,8 @@
 
 #import "Three20/TTNavigator.h"
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 UIInterfaceOrientation TTInterfaceOrientation() {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
   if (UIDeviceOrientationUnknown == orient) {
@@ -29,6 +31,8 @@ UIInterfaceOrientation TTInterfaceOrientation() {
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect TTScreenBounds() {
   CGRect bounds = [UIScreen mainScreen].bounds;
   if (UIInterfaceOrientationIsLandscape(TTInterfaceOrientation())) {
@@ -39,20 +43,28 @@ CGRect TTScreenBounds() {
   return bounds;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect TTNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
   return CGRectMake(0, 0, frame.size.width, frame.size.height - TTToolbarHeight());
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect TTToolbarNavigationFrame() {
   CGRect frame = [UIScreen mainScreen].applicationFrame;
   return CGRectMake(0, 0, frame.size.width, frame.size.height - TTToolbarHeight()*2);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGRect TTKeyboardNavigationFrame() {
   return TTRectContract(TTNavigationFrame(), 0, TTKeyboardHeight());
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat TTStatusHeight() {
   UIInterfaceOrientation orientation = TTInterfaceOrientation();
   if (orientation == UIInterfaceOrientationLandscapeLeft) {
@@ -64,6 +76,8 @@ CGFloat TTStatusHeight() {
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat TTBarsHeight() {
   CGRect frame = [UIApplication sharedApplication].statusBarFrame;
   if (UIInterfaceOrientationIsPortrait(TTInterfaceOrientation())) {
@@ -73,10 +87,14 @@ CGFloat TTBarsHeight() {
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat TTToolbarHeight() {
   return TTToolbarHeightForOrientation(TTInterfaceOrientation());
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 CGFloat TTKeyboardHeight() {
   return TTKeyboardHeightForOrientation(TTInterfaceOrientation());
 }

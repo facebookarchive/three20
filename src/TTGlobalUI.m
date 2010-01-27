@@ -169,13 +169,3 @@ void TTAlert(NSString* message) {
                                              otherButtonTitles:nil] autorelease];
   [alert show];
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-void TTAlertError(NSString* message) {
-  UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:TTLocalizedString(@"Alert", @"")
-                                              message:message delegate:nil
-                                              cancelButtonTitle:TTLocalizedString(@"OK", @"")
-                                              otherButtonTitles:nil] autorelease];
-  [alert show];
-}

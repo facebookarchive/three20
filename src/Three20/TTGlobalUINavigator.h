@@ -21,46 +21,46 @@
 #import "Three20/UINSObjectAdditions.h"
 
 /**
- * Returns the current orientation of the visible view controller.
+ * @return the current orientation of the visible view controller.
  */
 UIInterfaceOrientation TTInterfaceOrientation();
 
 /**
- * Returns the bounds of the screen with device orientation factored in.
+ * @return the bounds of the screen with device orientation factored in.
  */
 CGRect TTScreenBounds();
 
 /**
- * Returns the application frame below the navigation bar.
+ * @return the application frame below the navigation bar.
  */
 CGRect TTNavigationFrame();
 
 /**
- * Returns the application frame below the navigation bar and above a toolbar.
+ * @return the application frame below the navigation bar and above a toolbar.
  */
 CGRect TTToolbarNavigationFrame();
 
 /**
- * Returns the application frame below the navigation bar and above the keyboard.
+ * @return the application frame below the navigation bar and above the keyboard.
  */
 CGRect TTKeyboardNavigationFrame();
 
 /**
- * Returns the height of the area containing the status bar and possibly the in-call status bar.
+ * @return the height of the area containing the status bar and possibly the in-call status bar.
  */
 CGFloat TTStatusHeight();
 
 /**
- * Returns the height of the area containing the status bar and navigation bar.
+ * @return the height of the area containing the status bar and navigation bar.
  */
 CGFloat TTBarsHeight();
 
 /**
- * Returns the height of a toolbar.
+ * @return the height of a toolbar considering the current orientation.
  */
 CGFloat TTToolbarHeight();
 
 /**
- * Returns the height of the keyboard.
+ * @return the height of the keyboard considering the current orientation.
  */
 CGFloat TTKeyboardHeight();

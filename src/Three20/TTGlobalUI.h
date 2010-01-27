@@ -42,14 +42,14 @@ float TTOSVersion();
 BOOL TTOSVersionIsAtLeast(float version);
 
 /**
- * Returns a rectangle with dx and dy subtracted from the width and height, respectively.
+ * @return a rectangle with dx and dy subtracted from the width and height, respectively.
  *
  * Example result: CGRectMake(x, y, w - dx, h - dy)
  */
 CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy);
 
 /**
- * Returns a rectangle whose origin has been offset by dx, dy, and whose size has been
+ * @return a rectangle whose origin has been offset by dx, dy, and whose size has been
  * contracted by dx, dy.
  *
  * Example result: CGRectMake(x + dx, y + dy, w - dx, h - dy)
@@ -57,24 +57,24 @@ CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy);
 CGRect TTRectShift(CGRect rect, CGFloat dx, CGFloat dy);
 
 /**
- * Returns a rectangle with the given insets.
+ * @return a rectangle with the given insets.
  *
  * Example result: CGRectMake(x + left, y + top, w - (left + right), h - (top + bottom))
  */
 CGRect TTRectInset(CGRect rect, UIEdgeInsets insets);
 
 /**
- * Returns TRUE if the keyboard is visible.
+ * @return TRUE if the keyboard is visible.
  */
 BOOL TTIsKeyboardVisible();
 
 /**
- * Returns TRUE if the device has phone capabilities.
+ * @return TRUE if the device has phone capabilities.
  */
 BOOL TTIsPhoneSupported();
 
 /**
- * Returns the current device orientation.
+ * @return the current device orientation.
  */
 UIDeviceOrientation TTDeviceOrientation();
 
@@ -86,12 +86,12 @@ UIDeviceOrientation TTDeviceOrientation();
 BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation);
 
 /**
- * Returns the rotation transform for a given orientation.
+ * @return the rotation transform for a given orientation.
  */
 CGAffineTransform TTRotateTransformForOrientation(UIInterfaceOrientation orientation);
 
 /**
- * Returns the application frame with no offset.
+ * @return the application frame with no offset.
  *
  * From the apple docs:
  * Frame of application screen area in points (i.e. entire screen minus status bar if visible)
@@ -99,26 +99,21 @@ CGAffineTransform TTRotateTransformForOrientation(UIInterfaceOrientation orienta
 CGRect TTApplicationFrame();
 
 /**
- * Returns the toolbar height for a given orientation.
+ * @return the toolbar height for a given orientation.
  *
  * The toolbar is slightly shorter in landscape.
  */
 CGFloat TTToolbarHeightForOrientation(UIInterfaceOrientation orientation);
 
 /**
- * Returns the height of the keyboard for a given orientation.
+ * @return the height of the keyboard for a given orientation.
  */
 CGFloat TTKeyboardHeightForOrientation(UIInterfaceOrientation orientation);
 
 /**
- * A convenient way to show a UIAlertView with a message;
+ * A convenient way to show a UIAlertView with a message.
  */
 void TTAlert(NSString* message);
-
-/**
- * This method is identical to TTAlert.
- */
-void TTAlertError(NSString* message) __TTDEPRECATED_METHOD;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
