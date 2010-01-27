@@ -45,6 +45,13 @@
 - (BOOL)isEmptyOrWhitespace;
 
 /**
+ * Determines if the string begins with the given prefix.
+ *
+ * Debug assertion: prefix is a non-zero-length string.
+ */
+- (BOOL)startsWith:(NSString*)prefix;
+
+/**
  * Parses a URL query string into a dictionary.
  */
 - (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding;

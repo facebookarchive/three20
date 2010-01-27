@@ -16,24 +16,17 @@
 
 #import "Three20/TTGlobalCorePaths.h"
 
+#import "Three20/TTGlobalCore.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsBundleURL(NSString* URL) {
-  if (URL.length >= 9) {
-    return [URL rangeOfString:@"bundle://" options:0 range:NSMakeRange(0, 9)].location == 0;
-  } else {
-    return NO;
-  }
+  return [URL startsWith:@"bundle://"];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsDocumentsURL(NSString* URL) {
-  if (URL.length >= 12) {
-    return [URL rangeOfString:@"documents://" options:0 range:NSMakeRange(0, 12)].location == 0;
-  } else {
-    return NO;
-  }
+  return [URL startsWith:@"documents://"];
 }
 
 
