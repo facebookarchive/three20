@@ -23,20 +23,7 @@
 #define __TTDEPRECATED_METHOD __attribute__((deprecated))
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Logging Helpers
-
-// Deprecated, please see Three20/TTDebug.h for more details.
-#ifdef DEBUG
-#define TTLOG TTDeprecatedLog
-#else
-#define TTLOG    
-#endif
-
-// Deprecated, please see Three20/TTDebug.h for more details.
-#define TTWARN TTLOG
-
-
-// Helper
+// Logging
 
 #define TTLOGRECT(rect) \
   TTDINFO(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
@@ -66,15 +53,18 @@
 // Time
 
 #define TT_MINUTE 60
-#define TT_HOUR (60*TT_MINUTE)
-#define TT_DAY (24*TT_HOUR)
-#define TT_WEEK (7*TT_DAY)
-#define TT_MONTH (30.5*TT_DAY)
-#define TT_YEAR (365*TT_DAY)
+#define TT_HOUR   (60 * TT_MINUTE)
+#define TT_DAY    (24 * TT_HOUR)
+#define TT_WEEK   (7 * TT_DAY)
+#define TT_MONTH  (30.5 * TT_DAY)
+#define TT_YEAR   (365 * TT_DAY)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Safe releases
 
 #define TT_RELEASE_SAFELY(__POINTER) { [__POINTER release]; __POINTER = nil; }
 #define TT_AUTORELEASE_SAFELY(__POINTER) { [__POINTER autorelease]; __POINTER = nil; }
 #define TT_INVALIDATE_TIMER(__TIMER) { [__TIMER invalidate]; __TIMER = nil; }
+
+// Release a CoreFoundation object safely.
 #define TT_RELEASE_CF_SAFELY(__REF) { if (nil != (__REF)) { CFRelease(__REF); __REF = nil; } }

@@ -18,6 +18,8 @@
 
 #import "Three20/TTGlobalCore.h"
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 NSLocale* TTCurrentLocale() {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSArray* languages = [defaults objectForKey:@"AppleLanguages"];
@@ -29,6 +31,8 @@ NSLocale* TTCurrentLocale() {
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTLocalizedString(NSString* key, NSString* comment) {
   static NSBundle* bundle = nil;
   if (!bundle) {
@@ -40,9 +44,13 @@ NSString* TTLocalizedString(NSString* key, NSString* comment) {
   return [bundle localizedStringForKey:key value:key table:nil];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTDescriptionForError(NSError* error) {
   TTDINFO(@"ERROR %@", error);
+
   if ([error.domain isEqualToString:NSURLErrorDomain]) {
+    // Note: If new error codes are added here, be sure to document them in the header.
     if (error.code == NSURLErrorTimedOut) {
       return TTLocalizedString(@"Connection Timed Out", @"");
     } else if (error.code == NSURLErrorNotConnectedToInternet) {
@@ -54,6 +62,8 @@ NSString* TTDescriptionForError(NSError* error) {
   return TTLocalizedString(@"Error", @"");
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTFormatInteger(NSInteger num) {
   NSNumber* number = [NSNumber numberWithInt:num];
   NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];

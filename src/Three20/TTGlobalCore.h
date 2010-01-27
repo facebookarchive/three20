@@ -42,27 +42,6 @@ NSMutableArray* TTCreateNonRetainingArray();
 NSMutableDictionary* TTCreateNonRetainingDictionary();
 
 /**
- * Tests if an object is an array which is empty.
- *
- * Deprecated due to ease of abuse. Please consider using TTIsArrayWithItems instead.
- */
-BOOL TTIsEmptyArray(id object) __TTDEPRECATED_METHOD;
-
-/**
- * Tests if an object is a set which is empty.
- *
- * Deprecated due to ease of abuse. Please consider using TTIsSetWithItems instead.
- */
-BOOL TTIsEmptySet(id object) __TTDEPRECATED_METHOD;
-
-/**
- * Tests if an object is a string which is empty.
- *
- * Deprecated due to ease of abuse. Please consider using TTIsStringWithAnyText instead.
- */
-BOOL TTIsEmptyString(id object) __TTDEPRECATED_METHOD;
-
-/**
  * Tests if an object is an array which is not empty.
  */
 BOOL TTIsArrayWithItems(id object);
@@ -82,9 +61,3 @@ BOOL TTIsStringWithAnyText(id object);
  * Uses method_exchangeImplementations to accomplish this.
  */
 void TTSwapMethods(Class cls, SEL originalSel, SEL newSel);
-
-/**
- * The deprecated end-point for TTLOG.
- * Please see Three20/TTDebug.h for details on the new debugging macros.
- */
-void TTDeprecatedLog(NSString* text, ...) __TTDEPRECATED_METHOD;
