@@ -62,12 +62,12 @@
   // Before opening the tab bar, we see if the controller history was persisted the last time
   if (![navigator restoreViewControllers]) {
     // This is the first launch, so we just start with the tab bar
-    [navigator openURL:@"tt://tabBar" animated:NO];
+    [navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://tabBar"]];
   }
 }
 
 - (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)URL {
-  [[TTNavigator navigator] openURL:URL.absoluteString animated:NO];
+  [[TTNavigator navigator] openURLAction:[TTURLAction actionWithURLPath:URL.absoluteString]];
   return YES;
 }
 

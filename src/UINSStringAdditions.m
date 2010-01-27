@@ -32,14 +32,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openURL {
-  [[TTNavigator navigator] openURL:self animated:YES];
+  [[TTNavigator navigator] openURLAction:[[TTURLAction actionWithURLPath: self]
+                                                           applyAnimated: YES]];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openURLFromButton:(UIView*)button {
   NSDictionary* query = [NSDictionary dictionaryWithObjectsAndKeys:button, @"__target__", nil];
-  [[TTNavigator navigator] openURL:self query:query animated:YES];
+  [[TTNavigator navigator] openURLAction:[[[TTURLAction actionWithURLPath: self]
+                                                               applyQuery: query]
+                                                            applyAnimated: YES]];
 }
 
 
