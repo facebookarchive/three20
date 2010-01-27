@@ -14,100 +14,31 @@
 // limitations under the License.
 //
 
-//
-// A debug-only logging interface with priority and conditional logs.
-//
-// How to use it
-// -------------
-//
-// The basic idea is that all TTD macros will only exist in debug builds.
-// A debug build is defined by a build that has the DEBUG preprocessor macro defined.
-//
-// There are four features of this debugging interface:
-//
-//   1) General-purpose logging
-//   2) Priority-based logging
-//   3) Condition-based logging
-//   4) Debug-only assertions
-//
-// 1) General purpose logging:
-//
-// TTDPRINT(@"Logging text with args %@", stringArg);
-//
-// 2) Priority-based logging
-//
-// Logs that will only be displayed if the project logging level is high enough.
-//
-// TTDWARNING(@"Priority logging text with args %@", stringArg);
-//
-// Each macro will only display its logging information if its level is below
-// TTMAXLOGLEVEL. TTDPRINT is an exception to this in that it will always
-// log the text, regardless of log level.  See "Default log level" for more info
-// about log levels.
-//
-// 3) Condition-based logging
-//
-// TTDCONDITIONLOG(some_condition, @"This will output if some_condition is true");
-//
-// 4) Debug-only assertions
-//
-// To assert something in debug mode:
-// TTDASSERT(value == 4);
-//
-// If a debug-only assertion fails in the simulator, gdb will be loaded at the exact assertion
-// line.
-//
-// Default log level
-// -----------------
-//
-// The default log level for the Three20 project is WARNING. This means that
-// only WARNING and ERROR logs will be displayed. Most of the logs in Three20
-// are INFO logs, so by default they will not be displayed.
-//
-// Setting the log level
-// ---------------------
-//
-// You need to set TTMAXLOGLEVEL in your project settings as a preprocessor macro.
-// If you don't, TTLOGLEVEL_WARNING is the default.
-// - To do so in Xcode, find the target you wish to configure in the
-//   "Groups and Files" view. Right click it and click "Get Info".
-// - Under the "Build" tab, look for the Preprocessor Macros setting.
-// - Double-click the right-side column and click the "+" button.
-// - Type any of the following to set your log level:
-//   TTMAXLOGLEVEL=3
-//   or
-//   TTMAXLOGLEVEL=TTLOGLEVEL_INFO
-//   etc...
-//
-// Please note that since Three20 is its own Xcode project, you will need to set the TTMAXLOGLEVEL
-// macro in the Three20 project in order to see Three20-related debugging logs.
-//
-// Available Macros
-// ----------------
-//
-// TTDASSERT(statement) - Jumps into the debugger if statement evaluates to false
-//                        Use Cmd-Y in Xcode to ensure gdb is attached.
-//
-// TTDPRINTMETHODNAME() - Logs the current method name.
-//
-// And the logging macros:
-// TTDERROR(text, ...)
-// TTDWARNING(text, ...)
-// TTDINFO(text, ...)
-// TTDCONDITIONLOG(condition, text, ...)
-// TTDPRINT(text, ...) - Generic logging function, similar to deprecated TTLOG
-//
-// Output format example:
-// "/path/to/file(line_number): <message>"
-//
-// ^               ^
-// | Informational |
-// |               |
-// |- - Warning - -| <- The default max log level. Only logs with a level
-// |               |    below this line will be displayed.
-// |     Error     |
-// |               |
-// -----------------
+/**
+ * Three20 Debugging tools.
+ *
+ * Provided in this header are a set of debugging tools. This is meant quite literally, in that
+ * all of the macros below will only function when the DEBUG preprocessor macro is specified.
+ *
+ * TTDASSERT(<statement>);
+ * If <statement> is false, the statement will be written to the log and if you are running in
+ * the simulator with a debugger attached, the app will break on the assertion line.
+ *
+ * TTDPRINT(@"formatted log text %d", param1);
+ * Print the given formatted text to the log.
+ *
+ * TTDPRINTMETHODNAME();
+ * Print the current method to the log.
+ *
+ * TTDCONDITIONLOG(<statement>, @"formatted log text %d", param1);
+ * Only if <statement> is true then the formatted text will be written to the log.
+ *
+ * TTDINFO/TTDWARNING/TTDERROR(@"formatted log text %d", param1);
+ * Will only write the formatted text to the log if TTMAXLOGLEVEL is greater than the respective
+ * TTD* method's log level. See below for log levels.
+ *
+ * The default maximum log level is TTLOGLEVEL_WARNING.
+ */
 
 #define TTLOGLEVEL_INFO     5
 #define TTLOGLEVEL_WARNING  3
@@ -138,9 +69,10 @@
   // We leave the __asm__ in this macro so that when a break occurs, we don't have to step out of
   // a "breakInDebugger" function.
   #define TTDASSERT(xx) { if(!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); \
-                                      if(TTIsInDebugger()) { __asm__("int $3\n" : : ); }; } }
+                                      if(TTIsInDebugger()) { __asm__("int $3\n" : : ); }; } \
+                        } ((void)0)
 #else
-  #define TTDASSERT(xx) { if(!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); } }
+  #define TTDASSERT(xx) { if(!(xx)) { TTDPRINT(@"TTDASSERT failed: %s", #xx); } } ((void)0)
 #endif
 #else
   #define TTDASSERT(xx) ((void)0)
