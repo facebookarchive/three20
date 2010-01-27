@@ -193,7 +193,6 @@
 		EB4CDAF610CADC7100A856E5 /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CD71E10CA034000A856E5 /* TTGlobalCoreLocale.m */; };
 		EB4CDAFB10CADC9A00A856E5 /* TTGlobalUINavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDAF910CADC9A00A856E5 /* TTGlobalUINavigator.m */; };
 		EB4CDAFD10CADCB000A856E5 /* TTGlobalUINavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CDAFC10CADCB000A856E5 /* TTGlobalUINavigator.h */; };
-		EB4CDBA210CAE0C100A856E5 /* TTGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDBA010CAE0C100A856E5 /* TTGlobalStyle.m */; };
 		EB4CDBA410CAE0E300A856E5 /* TTGlobalStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CDBA310CAE0E300A856E5 /* TTGlobalStyle.h */; };
 		EB4CE18A10CF19FE00A856E5 /* TTCorePreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CE18910CF19FE00A856E5 /* TTCorePreprocessorMacros.h */; };
 		EB9193E410CA00D200F525AA /* UINSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9193E210CA00D200F525AA /* UINSObjectAdditions.m */; };
@@ -406,7 +405,6 @@
 		EB4CDA5F10CADB3200A856E5 /* UIGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIGlobalTests.m; path = tests/UIGlobalTests.m; sourceTree = "<group>"; };
 		EB4CDAF910CADC9A00A856E5 /* TTGlobalUINavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalUINavigator.m; sourceTree = "<group>"; };
 		EB4CDAFC10CADCB000A856E5 /* TTGlobalUINavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUINavigator.h; path = Three20/TTGlobalUINavigator.h; sourceTree = "<group>"; };
-		EB4CDBA010CAE0C100A856E5 /* TTGlobalStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalStyle.m; sourceTree = "<group>"; };
 		EB4CDBA310CAE0E300A856E5 /* TTGlobalStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalStyle.h; path = Three20/TTGlobalStyle.h; sourceTree = "<group>"; };
 		EB4CE18910CF19FE00A856E5 /* TTCorePreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCorePreprocessorMacros.h; path = Three20/TTCorePreprocessorMacros.h; sourceTree = "<group>"; };
 		EB9193E210CA00D200F525AA /* UINSObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINSObjectAdditions.m; sourceTree = "<group>"; };
@@ -786,7 +784,6 @@
 			isa = PBXGroup;
 			children = (
 				EB4CDBA310CAE0E300A856E5 /* TTGlobalStyle.h */,
-				EB4CDBA010CAE0C100A856E5 /* TTGlobalStyle.m */,
 				BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */,
 				BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */,
 			);
@@ -1199,7 +1196,6 @@
 				EB4CDA5010CAD83A00A856E5 /* TTGlobalNetwork.m in Sources */,
 				EB4CDA5710CADA3200A856E5 /* TTGlobalCorePaths.m in Sources */,
 				EB4CDAFB10CADC9A00A856E5 /* TTGlobalUINavigator.m in Sources */,
-				EB4CDBA210CAE0C100A856E5 /* TTGlobalStyle.m in Sources */,
 				EBC6184010D850E000D1997B /* TTRecursiveProgress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
