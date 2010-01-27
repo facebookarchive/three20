@@ -21,7 +21,7 @@
 
 #import "Three20/TTURLAction.h"
 #import "Three20/TTURLMap.h"
-#import "Three20/TTURLPattern.h"
+#import "Three20/TTURLNavigatorPattern.h"
 
 #import "Three20/TTPopupViewController.h"
 #import "Three20/TTSearchDisplayController.h"

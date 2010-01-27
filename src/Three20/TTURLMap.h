@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 
 @class TTURLNavigatorPattern;
+@class TTURLGeneratorPattern;
 
 typedef enum {
   TTNavigationModeNone,

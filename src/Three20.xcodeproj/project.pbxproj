@@ -14,6 +14,20 @@
 		6E8F7849110FD80C00069B64 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1F6C5D10B36C32003DAA1F /* TTDebug.m */; };
 		6E8F7930111023EE00069B64 /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F792E111023EE00069B64 /* TTURLAction.m */; };
 		6E8F79341110262700069B64 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F79331110262700069B64 /* TTURLAction.h */; };
+		6E8F79EF1110FE3D00069B64 /* TTURLNavigatorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F79ED1110FE3D00069B64 /* TTURLNavigatorPattern.m */; };
+		6E8F79F81110FE6200069B64 /* TTURLNavigatorPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F79F71110FE6200069B64 /* TTURLNavigatorPattern.h */; };
+		6E8F7A011110FEE500069B64 /* TTURLWildcard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F79FF1110FEE500069B64 /* TTURLWildcard.m */; };
+		6E8F7A031110FEF600069B64 /* TTURLWildcard.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7A021110FEF600069B64 /* TTURLWildcard.h */; };
+		6E8F7A071110FF7100069B64 /* TTURLPatternText.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7A061110FF7100069B64 /* TTURLPatternText.h */; };
+		6E8F7A0B1110FFC900069B64 /* TTURLArgumentType.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7A0A1110FFC900069B64 /* TTURLArgumentType.h */; };
+		6E8F7A101110FFEE00069B64 /* TTURLSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F7A0E1110FFEE00069B64 /* TTURLSelector.m */; };
+		6E8F7A121110FFFF00069B64 /* TTURLSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7A111110FFFF00069B64 /* TTURLSelector.h */; };
+		6E8F7A1C111100E800069B64 /* TTURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F7A1A111100E800069B64 /* TTURLArguments.m */; };
+		6E8F7A1E111100F900069B64 /* TTURLArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7A1D111100F900069B64 /* TTURLArguments.h */; };
+		6E8F7A87111101F000069B64 /* TTURLGeneratorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F7A85111101F000069B64 /* TTURLGeneratorPattern.m */; };
+		6E8F7A891111020000069B64 /* TTURLGeneratorPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7A881111020000069B64 /* TTURLGeneratorPattern.h */; };
+		6E8F7AAC111102AA00069B64 /* TTURLLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F7AAA111102AA00069B64 /* TTURLLiteral.m */; };
+		6E8F7AAE111102BB00069B64 /* TTURLLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */; };
 		BE1288060F896A0A00F65EA2 /* TTStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1288050F896A0A00F65EA2 /* TTStyle.h */; };
 		BE1288080F896A1900F65EA2 /* TTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288070F896A1900F65EA2 /* TTStyle.m */; };
 		BE1288CB0F89812E00F65EA2 /* TTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288CA0F89812E00F65EA2 /* TTShape.m */; };
@@ -233,6 +247,20 @@
 		6E35CCFC10912C870066B478 /* NSMutableArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableArrayAdditions.h; path = Three20/NSMutableArrayAdditions.h; sourceTree = "<group>"; };
 		6E8F792E111023EE00069B64 /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLAction.m; sourceTree = "<group>"; };
 		6E8F79331110262700069B64 /* TTURLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLAction.h; path = Three20/TTURLAction.h; sourceTree = "<group>"; };
+		6E8F79ED1110FE3D00069B64 /* TTURLNavigatorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLNavigatorPattern.m; sourceTree = "<group>"; };
+		6E8F79F71110FE6200069B64 /* TTURLNavigatorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLNavigatorPattern.h; path = Three20/TTURLNavigatorPattern.h; sourceTree = "<group>"; };
+		6E8F79FF1110FEE500069B64 /* TTURLWildcard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLWildcard.m; sourceTree = "<group>"; };
+		6E8F7A021110FEF600069B64 /* TTURLWildcard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLWildcard.h; path = Three20/TTURLWildcard.h; sourceTree = "<group>"; };
+		6E8F7A061110FF7100069B64 /* TTURLPatternText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLPatternText.h; path = Three20/TTURLPatternText.h; sourceTree = "<group>"; };
+		6E8F7A0A1110FFC900069B64 /* TTURLArgumentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLArgumentType.h; path = Three20/TTURLArgumentType.h; sourceTree = "<group>"; };
+		6E8F7A0E1110FFEE00069B64 /* TTURLSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLSelector.m; sourceTree = "<group>"; };
+		6E8F7A111110FFFF00069B64 /* TTURLSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLSelector.h; path = Three20/TTURLSelector.h; sourceTree = "<group>"; };
+		6E8F7A1A111100E800069B64 /* TTURLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLArguments.m; sourceTree = "<group>"; };
+		6E8F7A1D111100F900069B64 /* TTURLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLArguments.h; path = Three20/TTURLArguments.h; sourceTree = "<group>"; };
+		6E8F7A85111101F000069B64 /* TTURLGeneratorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLGeneratorPattern.m; sourceTree = "<group>"; };
+		6E8F7A881111020000069B64 /* TTURLGeneratorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLGeneratorPattern.h; path = Three20/TTURLGeneratorPattern.h; sourceTree = "<group>"; };
+		6E8F7AAA111102AA00069B64 /* TTURLLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLLiteral.m; sourceTree = "<group>"; };
+		6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLLiteral.h; path = Three20/TTURLLiteral.h; sourceTree = "<group>"; };
 		BE1288050F896A0A00F65EA2 /* TTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyle.h; path = Three20/TTStyle.h; sourceTree = "<group>"; };
 		BE1288070F896A1900F65EA2 /* TTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyle.m; sourceTree = "<group>"; };
 		BE1288CA0F89812E00F65EA2 /* TTShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShape.m; sourceTree = "<group>"; };
@@ -489,6 +517,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6E8F79FC1110FECB00069B64 /* Patterns */ = {
+			isa = PBXGroup;
+			children = (
+				6E8F79FD1110FED500069B64 /* Private */,
+				BEBB199B100690FE00744230 /* TTURLPattern.h */,
+				BEBB12721003EB5400744230 /* TTURLPattern.m */,
+				6E8F79F71110FE6200069B64 /* TTURLNavigatorPattern.h */,
+				6E8F79ED1110FE3D00069B64 /* TTURLNavigatorPattern.m */,
+				6E8F7A881111020000069B64 /* TTURLGeneratorPattern.h */,
+				6E8F7A85111101F000069B64 /* TTURLGeneratorPattern.m */,
+			);
+			name = Patterns;
+			sourceTree = "<group>";
+		};
+		6E8F79FD1110FED500069B64 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6E8F7A021110FEF600069B64 /* TTURLWildcard.h */,
+				6E8F79FF1110FEE500069B64 /* TTURLWildcard.m */,
+				6E8F7A061110FF7100069B64 /* TTURLPatternText.h */,
+				6E8F7A0A1110FFC900069B64 /* TTURLArgumentType.h */,
+				6E8F7A111110FFFF00069B64 /* TTURLSelector.h */,
+				6E8F7A0E1110FFEE00069B64 /* TTURLSelector.m */,
+				6E8F7A1D111100F900069B64 /* TTURLArguments.h */,
+				6E8F7A1A111100E800069B64 /* TTURLArguments.m */,
+				6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */,
+				6E8F7AAA111102AA00069B64 /* TTURLLiteral.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		BE1287F40F8969C100F65EA2 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,8 +651,7 @@
 				6E8F792E111023EE00069B64 /* TTURLAction.m */,
 				BE2178F3100093FA009329F2 /* TTURLMap.h */,
 				BE2178F51000940D009329F2 /* TTURLMap.m */,
-				BEBB199B100690FE00744230 /* TTURLPattern.h */,
-				BEBB12721003EB5400744230 /* TTURLPattern.m */,
+				6E8F79FC1110FECB00069B64 /* Patterns */,
 			);
 			name = Navigator;
 			sourceTree = "<group>";
@@ -1021,6 +1079,14 @@
 				EB4CE18A10CF19FE00A856E5 /* TTCorePreprocessorMacros.h in Headers */,
 				EBC6184210D850FC00D1997B /* TTRecursiveProgress.h in Headers */,
 				6E8F79341110262700069B64 /* TTURLAction.h in Headers */,
+				6E8F79F81110FE6200069B64 /* TTURLNavigatorPattern.h in Headers */,
+				6E8F7A031110FEF600069B64 /* TTURLWildcard.h in Headers */,
+				6E8F7A071110FF7100069B64 /* TTURLPatternText.h in Headers */,
+				6E8F7A0B1110FFC900069B64 /* TTURLArgumentType.h in Headers */,
+				6E8F7A121110FFFF00069B64 /* TTURLSelector.h in Headers */,
+				6E8F7A1E111100F900069B64 /* TTURLArguments.h in Headers */,
+				6E8F7A891111020000069B64 /* TTURLGeneratorPattern.h in Headers */,
+				6E8F7AAE111102BB00069B64 /* TTURLLiteral.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1205,6 +1271,12 @@
 				EB4CDAFB10CADC9A00A856E5 /* TTGlobalUINavigator.m in Sources */,
 				EBC6184010D850E000D1997B /* TTRecursiveProgress.m in Sources */,
 				6E8F7930111023EE00069B64 /* TTURLAction.m in Sources */,
+				6E8F79EF1110FE3D00069B64 /* TTURLNavigatorPattern.m in Sources */,
+				6E8F7A011110FEE500069B64 /* TTURLWildcard.m in Sources */,
+				6E8F7A101110FFEE00069B64 /* TTURLSelector.m in Sources */,
+				6E8F7A1C111100E800069B64 /* TTURLArguments.m in Sources */,
+				6E8F7A87111101F000069B64 /* TTURLGeneratorPattern.m in Sources */,
+				6E8F7AAC111102AA00069B64 /* TTURLLiteral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
