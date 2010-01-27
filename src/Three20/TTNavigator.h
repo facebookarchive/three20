@@ -96,6 +96,8 @@ typedef enum {
 
 /**
  * How view controllers are automatically persisted on termination and restored on launch.
+ *
+ * @default TTNavigatorPersistenceModeNone
  */
 @property(nonatomic) TTNavigatorPersistenceMode persistenceMode;
 
@@ -106,33 +108,38 @@ typedef enum {
  * the user probably won't remember how they got there, and would prefer to start from the
  * beginning.
  *
- * Set this to 0 to restore from any age. The default value is 0.
+ * Set this to 0 to restore from any age.
+ *
+ * @default 0
  */
 @property(nonatomic) NSTimeInterval persistenceExpirationAge;
 
 /**
  * Causes the current view controller to be reloaded when shaking the phone.
+ *
+ * @default NO
  */
 @property(nonatomic) BOOL supportsShakeToReload;
 
 /**
  * Allows URLs to be opened externally if they don't match any patterns.
  *
- * The default value is NO.
+ * @default NO
  */
 @property(nonatomic) BOOL opensExternalURLs;
 
 /**
  * Indicates that we are asking controllers to delay heavy operations until a later time.
  *
- * The default value is NO.
+ * @default NO
  */
 @property(nonatomic,readonly) BOOL isDelayed;
+
 
 + (TTNavigator*)navigator;
 
 /**
- * Loads and displays the view controller with a pattern that matches the URL.
+ * Load and display the view controller with a pattern that matches the URL.
  *
  * This method replaces all other openURL methods by using the chainable TTURLAction object.
  *
@@ -163,6 +170,7 @@ typedef enum {
  * @return The view controller mapped to this URL.
  * @deprecated
  * @see openURLAction
+ * Remove by February 28, 2010
  */
 - (UIViewController*)openURL: (NSString*)URL
                     animated: (BOOL)animated __TTDEPRECATED_METHOD;
@@ -178,6 +186,7 @@ typedef enum {
  * @return The view controller mapped to this URL.
  * @deprecated
  * @see openURLAction
+ * Remove by February 28, 2010
  */
 - (UIViewController*)openURL: (NSString*)URL
                     animated: (BOOL)animated
@@ -195,6 +204,7 @@ typedef enum {
  * @return The view controller mapped to this URL.
  * @deprecated
  * @see openURLAction
+ * Remove by February 28, 2010
  */
 - (UIViewController*)openURL: (NSString*)URL
                       parent: (NSString*)parentURL
@@ -212,6 +222,7 @@ typedef enum {
  * @return The view controller mapped to this URL.
  * @deprecated
  * @see openURLAction
+ * Remove by February 28, 2010
  */
 - (UIViewController*)openURL: (NSString*)URL
                        query: (NSDictionary*)query
@@ -229,6 +240,7 @@ typedef enum {
  * @return The view controller mapped to this URL.
  * @deprecated
  * @see openURLAction
+ * Remove by February 28, 2010
  */
 - (UIViewController*)openURL: (NSString*)URL
                       parent: (NSString*)parentURL
@@ -248,6 +260,7 @@ typedef enum {
  * @return The view controller mapped to this URL.
  * @deprecated
  * @see openURLAction
+ * Remove by February 28, 2010
  */
 - (UIViewController*)openURL: (NSString*)URL
                       parent: (NSString*)parentURL
@@ -269,6 +282,7 @@ typedef enum {
  * @return The view controller mapped to this URL.
  * @deprecated
  * @see openURLAction
+ * Remove by February 28, 2010
  */
 - (UIViewController*)openURL: (NSString*)URL
                       parent: (NSString*)parentURL

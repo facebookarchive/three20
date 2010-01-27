@@ -221,6 +221,10 @@ UIViewController* TTOpenURL(NSString* URL) {
  * the original controller completely. Classic examples include the Safari login controller when
  * authenticating on a network, creating a new contact in Contacts, and the Camera controller.
  *
+ * If the controller that is being presented is not a UINavigationController, then a
+ * UINavigationController is created and the controller is pushed onto the navigation controller.
+ * The navigation controller is then displayed instead.
+ *
  * @private
  */
 - (void)presentModalController: (UIViewController*)controller
@@ -243,6 +247,8 @@ UIViewController* TTOpenURL(NSString* URL) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
+ * @return NO if the controller already has a super controller and is simply made visible.
+ *         YES if the controller is the new root or if it did not have a super controller.
  * @private
  */
 - (BOOL)presentController: (UIViewController*)controller
@@ -250,11 +256,14 @@ UIViewController* TTOpenURL(NSString* URL) {
                      mode: (TTNavigationMode)mode
                  animated: (BOOL)animated
                transition: (NSInteger)transition {
-  if (!_rootViewController) {
+  BOOL didPresentNewController = YES;
+
+  if (nil == _rootViewController) {
     [self setRootViewController:controller];
+
   } else {
     UIViewController* previousSuper = controller.superController;
-    if (previousSuper) {
+    if (nil != previousSuper) {
       if (previousSuper != parentController) {
         // The controller already exists, so we just need to make it visible
         for (UIViewController* superController = previousSuper; controller; ) {
@@ -265,8 +274,9 @@ UIViewController* TTOpenURL(NSString* URL) {
           superController = nextSuper;
         }
       }
-      return NO;
-    } else if (parentController) {
+      didPresentNewController = NO;
+
+    } else if (nil != parentController) {
       if ([controller isKindOfClass:[TTPopupViewController class]]) {
         TTPopupViewController* popupViewController = (TTPopupViewController*)controller;
         [self presentPopupController: popupViewController
@@ -286,7 +296,8 @@ UIViewController* TTOpenURL(NSString* URL) {
       }
     }
   }
-  return YES;
+
+  return didPresentNewController;
 }
 
 
@@ -299,15 +310,17 @@ UIViewController* TTOpenURL(NSString* URL) {
               withPattern: (TTURLNavigatorPattern*)pattern
                  animated: (BOOL)animated
                transition: (NSInteger)transition {
-  if (controller) {
+  BOOL didPresentNewController = NO;
+
+  if (nil != controller) {
     UIViewController* topViewController = self.topViewController;
 
-    if (controller && controller != topViewController) {
+    if (controller != topViewController) {
       UIViewController* parentController = [self
         parentForController: controller
               parentURLPath: parentURLPath ? parentURLPath : pattern.parentURL];
 
-      if (parentController && parentController != topViewController) {
+      if (nil != parentController && parentController != topViewController) {
         [self presentController: parentController
                parentController: nil
                            mode: TTNavigationModeNone
@@ -315,14 +328,15 @@ UIViewController* TTOpenURL(NSString* URL) {
                      transition: 0];
       }
 
-      return [self presentController: controller
-                    parentController: parentController
-                                mode: pattern.navigationMode
-                            animated: animated
-                          transition: transition];
+      didPresentNewController = [self
+        presentController: controller
+         parentController: parentController
+                     mode: pattern.navigationMode
+                 animated: animated
+               transition: transition];
     }
   }
-  return NO;
+  return didPresentNewController;
 }
 
 
@@ -334,20 +348,23 @@ UIViewController* TTOpenURL(NSString* URL) {
   if (nil == action || nil == action.urlPath) {
     return nil;
   }
-  
-  NSURL* theURL = [NSURL URLWithString:action.urlPath];
+
+  // We may need to modify the urlPath, so let's create a local copy.
+  NSString* urlPath = action.urlPath;
+
+  NSURL* theURL = [NSURL URLWithString:urlPath];
   if ([_URLMap isAppURL:theURL]) {
     [[UIApplication sharedApplication] openURL:theURL];
     return nil;
   }
-  
-  if (!theURL.scheme) {
-    if (theURL.fragment) {
-      action.urlPath = [self.URL stringByAppendingString:action.urlPath];
+
+  if (nil == theURL.scheme) {
+    if (nil != theURL.fragment) {
+      urlPath = [self.URL stringByAppendingString:urlPath];
     } else {
-      action.urlPath = [@"http://" stringByAppendingString:action.urlPath];
+      urlPath = [@"http://" stringByAppendingString:urlPath];
     }
-    theURL = [NSURL URLWithString:action.urlPath];
+    theURL = [NSURL URLWithString:urlPath];
   }
   
   if ([_delegate respondsToSelector:@selector(navigator:shouldOpenURL:)]) {
@@ -360,14 +377,14 @@ UIViewController* TTOpenURL(NSString* URL) {
     [self beginDelay];
   }
 
-  TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"OPENING URL %@", action.urlPath);
+  TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"OPENING URL %@", urlPath);
   
   TTURLNavigatorPattern* pattern = nil;
-  UIViewController* controller = [self viewControllerForURL: action.urlPath
+  UIViewController* controller = [self viewControllerForURL: urlPath
                                                       query: action.query
                                                     pattern: &pattern];
-  if (controller) {
-    if (action.state) {
+  if (nil != controller) {
+    if (nil != action.state) {
       [controller restoreView:action.state];
       controller.frozenState = action.state;
 
@@ -387,7 +404,8 @@ UIViewController* TTOpenURL(NSString* URL) {
                             parentURLPath: action.parentURLPath
                               withPattern: pattern
                                  animated: action.animated
-                               transition: action.transition ? action.transition : pattern.transition];
+                               transition: action.transition ?
+                                             action.transition : pattern.transition];
   
     if (action.withDelay && !wasNew) {
       [self cancelDelay];
@@ -416,16 +434,8 @@ UIViewController* TTOpenURL(NSString* URL) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if (self = [super init]) {
-    _delegate = nil;
     _URLMap = [[TTURLMap alloc] init];
-    _window = nil;
-    _rootViewController = nil;
-    _delayedControllers = nil;
     _persistenceMode = TTNavigatorPersistenceModeNone;
-    _persistenceExpirationAge = 0;
-    _delayCount = 0;
-    _supportsShakeToReload = NO;
-    _opensExternalURLs = NO;
     
     // SwapMethods a new dealloc for UIViewController so it notifies us when it's going away.
     // We need to remove dying controllers from our binding cache.
@@ -483,9 +493,9 @@ UIViewController* TTOpenURL(NSString* URL) {
  * @public
  */
 - (UIWindow*)window {
-  if (!_window) {
+  if (nil == _window) {
     UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
-    if (keyWindow) {
+    if (nil != keyWindow) {
       _window = [keyWindow retain];
 
     } else {
@@ -709,8 +719,9 @@ UIViewController* TTOpenURL(NSString* URL) {
 /**
  * @public
  */
-- (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
-                     pattern:(TTURLNavigatorPattern**)pattern {
+- (UIViewController*)viewControllerForURL: (NSString*)URL
+                                    query: (NSDictionary*)query
+                                  pattern: (TTURLNavigatorPattern**)pattern {
   NSRange fragmentRange = [URL rangeOfString:@"#" options:NSBackwardsSearch];
   if (fragmentRange.location != NSNotFound) {
     NSString* baseURL = [URL substringToIndex:fragmentRange.location];
@@ -842,7 +853,8 @@ UIViewController* TTOpenURL(NSString* URL) {
   NSDate* timestamp = [defaults objectForKey:@"TTNavigatorHistoryTime"];
   NSArray* path = [defaults objectForKey:@"TTNavigatorHistory"];
   BOOL important = [[defaults objectForKey:@"TTNavigatorHistoryImportant"] boolValue];
-  TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"DEBUG RESTORE %@ FROM %@", path, [timestamp formatRelativeTime]);
+  TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"DEBUG RESTORE %@ FROM %@",
+    path, [timestamp formatRelativeTime]);
   
   BOOL expired = _persistenceExpirationAge
                  && -timestamp.timeIntervalSinceNow > _persistenceExpirationAge;
