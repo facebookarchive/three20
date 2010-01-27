@@ -17,24 +17,22 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Networking
-
 typedef enum {
-   TTURLRequestCachePolicyNone = 0,
-   TTURLRequestCachePolicyMemory = 1,
-   TTURLRequestCachePolicyDisk = 2,
+   TTURLRequestCachePolicyNone    = 0,
+   TTURLRequestCachePolicyMemory  = 1,
+   TTURLRequestCachePolicyDisk    = 2,
    TTURLRequestCachePolicyNetwork = 4,
    TTURLRequestCachePolicyNoCache = 8,    
    TTURLRequestCachePolicyLocal
-    = (TTURLRequestCachePolicyMemory|TTURLRequestCachePolicyDisk),
+    = (TTURLRequestCachePolicyMemory | TTURLRequestCachePolicyDisk),
    TTURLRequestCachePolicyDefault
-    = (TTURLRequestCachePolicyMemory|TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyNetwork),
+    = (TTURLRequestCachePolicyMemory | TTURLRequestCachePolicyDisk
+       | TTURLRequestCachePolicyNetwork),
 } TTURLRequestCachePolicy;
 
-#define TT_DEFAULT_CACHE_INVALIDATION_AGE (60*60*24) // 1 day
-#define TT_DEFAULT_CACHE_EXPIRATION_AGE (60*60*24*7) // 1 week
-#define TT_CACHE_EXPIRATION_AGE_NEVER (1.0 / 0.0)    // inf
+#define TT_DEFAULT_CACHE_INVALIDATION_AGE (60*60*24)    // 1 day
+#define TT_DEFAULT_CACHE_EXPIRATION_AGE   (60*60*24*7)  // 1 week
+#define TT_CACHE_EXPIRATION_AGE_NEVER     (1.0 / 0.0)   // inf
 
 /**
  * Increment the number of active network requests.

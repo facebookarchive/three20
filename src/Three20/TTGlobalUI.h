@@ -31,53 +31,8 @@
 #import "Three20/UIWindowAdditions.h"
 #import "Three20/UIViewControllerAdditions.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Debug logging helpers
-
-#define TTLOGVIEWS(_VIEW) \
-  { for (UIView* view = _VIEW; view; view = view.superview) { TTDINFO(@"%@", view); } }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Dimensions of common iPhone OS Views
-
-#define TT_ROW_HEIGHT 44
-#define TT_TOOLBAR_HEIGHT 44
-#define TT_LANDSCAPE_TOOLBAR_HEIGHT 33
-#define TT_KEYBOARD_HEIGHT 216
-#define TT_LANDSCAPE_KEYBOARD_HEIGHT 160
-#define TT_ROUNDED -1
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Color helpers
-
-#define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
-#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
-
-#define HSVCOLOR(h,s,v) [UIColor colorWithHue:h saturation:s value:v alpha:1]
-#define HSVACOLOR(h,s,v,a) [UIColor colorWithHue:h saturation:s value:v alpha:a]
-
-#define RGBA(r,g,b,a) r/255.0, g/255.0, b/255.0, a
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Animation
-
 /**
- * The standard duration for transition animations.
- */
-#define TT_TRANSITION_DURATION 0.3
-
-#define TT_FAST_TRANSITION_DURATION 0.2
-
-#define TT_FLIP_TRANSITION_DURATION 0.7
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Images
-
-#define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
-
-/**
- * Gets the current runtime version of iPhone OS.
+ * @return the current runtime version of the iPhone OS.
  */
 float TTOSVersion();
 
@@ -164,3 +119,107 @@ void TTAlert(NSString* message);
  * This method is identical to TTAlert.
  */
 void TTAlertError(NSString* message) __TTDEPRECATED_METHOD;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Debug logging helpers
+
+#define TTLOGVIEWS(_VIEW) \
+  { for (UIView* view = _VIEW; view; view = view.superview) { TTDINFO(@"%@", view); } }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Dimensions of common iPhone OS Views
+
+/**
+ * The standard height of a row in a table view controller.
+ * @const 44 pixels
+ */
+extern const CGFloat ttkDefaultRowHeight;
+
+/**
+ * The standard height of a toolbar in portrait orientation.
+ * @const 44 pixels
+ */
+extern const CGFloat ttkDefaultPortraitToolbarHeight;
+
+/**
+ * The standard height of a toolbar in landscape orientation.
+ * @const 33 pixels
+ */
+extern const CGFloat ttkDefaultLandscapeToolbarHeight;
+
+/**
+ * The standard height of the keyboard in portrait orientation.
+ * @const 216 pixels
+ */
+extern const CGFloat ttkDefaultPortraitKeyboardHeight;
+
+/**
+ * The standard height of the keyboard in landscape orientation.
+ * @const 160 pixels
+ */
+extern const CGFloat ttkDefaultLandscapeKeyboardHeight;
+
+/**
+ * A constant denoting that a corner should be rounded.
+ * @const -1
+ */
+extern const CGFloat ttkRounded;
+
+/**
+ * Deprecated macros for common constants.
+ */
+#define TT_ROW_HEIGHT                 ttkDefaultRowHeight
+#define TT_TOOLBAR_HEIGHT             ttkDefaultPortraitToolbarHeight
+#define TT_LANDSCAPE_TOOLBAR_HEIGHT   ttkDefaultLandscapeToolbarHeight
+
+#define TT_KEYBOARD_HEIGHT            ttkDefaultPortraitKeyboardHeight
+#define TT_LANDSCAPE_KEYBOARD_HEIGHT  ttkDefaultLandscapeKeyboardHeight
+
+#define TT_ROUNDED                    ttkRounded
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Color helpers
+
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 \
+                            alpha:(a)]
+
+#define HSVCOLOR(h,s,v) [UIColor colorWithHue:(h) saturation:(s) value:(v) alpha:1]
+#define HSVACOLOR(h,s,v,a) [UIColor colorWithHue:(h) saturation:(s) value:(v) alpha:(a)]
+
+#define RGBA(r,g,b,a) (r)/255.0, (g)/255.0, (b)/255.0, (a)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Animation
+
+/**
+ * The standard duration length for a transition.
+ * @const 0.3 seconds
+ */
+extern const CGFloat ttkDefaultTransitionDuration;
+
+/**
+ * The standard duration length for a fast transition.
+ * @const 0.2 seconds
+ */
+extern const CGFloat ttkDefaultFastTransitionDuration;
+
+/**
+ * The standard duration length for a flip transition.
+ * @const 0.7 seconds
+ */
+extern const CGFloat ttkDefaultFlipTransitionDuration;
+
+/**
+ * Deprecated macros for common constants.
+ */
+#define TT_TRANSITION_DURATION      ttkDefaultTransitionDuration
+#define TT_FAST_TRANSITION_DURATION ttkDefaultFastTransitionDuration
+#define TT_FLIP_TRANSITION_DURATION ttkDefaultFlipTransitionDuration
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Images
+
+#define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]
