@@ -209,8 +209,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setURL:(NSString*)URL {
-  if (self.image && _URL && [URL isEqualToString:_URL])
+  if (self.image && _URL && [URL isEqualToString:_URL]) {
     return;
+  }
   
   [self stopLoading];
   [_URL release];
@@ -309,5 +310,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)imageViewDidFailLoadWithError:(NSError*)error {
 }
+
 
 @end

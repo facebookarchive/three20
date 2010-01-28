@@ -31,14 +31,23 @@ static const NSTimeInterval kFlickDuration = 0.4;
 static const NSTimeInterval kBounceDuration = 0.3;
 static const NSTimeInterval kOvershoot = 2;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTScrollView
 
-@synthesize delegate = _delegate, dataSource = _dataSource, centerPageIndex = _centerPageIndex,
-  pageSpacing = _pageSpacing, scrollEnabled = _scrollEnabled, zoomEnabled = _zoomEnabled,
-  rotateEnabled = _rotateEnabled, orientation = _orientation,
-  holding = _holding, holdsAfterTouchingForInterval = _holdsAfterTouchingForInterval;
+@synthesize delegate        = _delegate;
+@synthesize dataSource      = _dataSource;
+@synthesize centerPageIndex = _centerPageIndex;
+@synthesize pageSpacing     = _pageSpacing;
+@synthesize scrollEnabled   = _scrollEnabled;
+@synthesize zoomEnabled     = _zoomEnabled;
+@synthesize rotateEnabled   = _rotateEnabled;
+@synthesize orientation     = _orientation;
+@synthesize holding         = _holding;
+
+@synthesize holdsAfterTouchingForInterval = _holdsAfterTouchingForInterval;
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {

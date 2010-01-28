@@ -55,70 +55,21 @@
   BOOL _holding;
 }
 
-/**
- *
- */
-@property(nonatomic,assign) id<TTScrollViewDelegate> delegate;
+@property(nonatomic)          NSInteger       centerPageIndex;
+@property(nonatomic,readonly) BOOL            zoomed;
+@property(nonatomic,readonly) BOOL            holding;
+@property(nonatomic)          BOOL            scrollEnabled;
+@property(nonatomic)          BOOL            zoomEnabled;
+@property(nonatomic)          BOOL            rotateEnabled;
+@property(nonatomic)          CGFloat         pageSpacing;
+@property(nonatomic)          UIInterfaceOrientation orientation;
+@property(nonatomic,readonly) NSInteger       numberOfPages;
+@property(nonatomic,readonly) UIView*         centerPage;
+@property(nonatomic)          NSTimeInterval  holdsAfterTouchingForInterval;
 
-/**
- *
- */
-@property(nonatomic,assign) id<TTScrollViewDataSource> dataSource;
 
-/**
- *
- */
-@property(nonatomic) NSInteger centerPageIndex;
-
-/**
- *
- */
-@property(nonatomic,readonly) BOOL zoomed;
-
-/**
- *
- */
-@property(nonatomic,readonly) BOOL holding;
-
-/**
- *
- */
-@property(nonatomic) BOOL scrollEnabled;
-
-/**
- *
- */
-@property(nonatomic) BOOL zoomEnabled;
-
-/**
- *
- */
-@property(nonatomic) BOOL rotateEnabled;
-
-/**
- *
- */
-@property(nonatomic) CGFloat pageSpacing;
-
-/**
- *
- */
-@property(nonatomic) UIInterfaceOrientation orientation;
-
-/**
- *
- */
-@property(nonatomic) NSTimeInterval holdsAfterTouchingForInterval;
-
-/**
- *
- */
-@property(nonatomic,readonly) NSInteger numberOfPages;
-
-/**
- *
- */
-@property(nonatomic,readonly) UIView* centerPage;
+@property(nonatomic,assign)   id<TTScrollViewDelegate>    delegate;
+@property(nonatomic,assign)   id<TTScrollViewDataSource>  dataSource;
 
 /**
  * A dictionary of visible pages keyed by the index of the page.
@@ -132,24 +83,12 @@
  */
 - (UIView*)dequeueReusablePage;
 
-/**
- *
- */
 - (void)reloadData;
 
-/**
- *
- */
 - (UIView*)pageAtIndex:(NSInteger)pageIndex;
 
-/**
- *
- */
 - (void)zoomToFit;
 
-/**
- *
- */
 - (void)zoomToDistance:(CGFloat)distance;
 
 /**
@@ -163,80 +102,38 @@
 
 @protocol TTScrollViewDelegate <NSObject>
 
-/**
- *
- */
+@required
+
 - (void)scrollView:(TTScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex;
 
 @optional
 
-/**
- *
- */
 - (void)scrollViewWillRotate:(TTScrollView*)scrollView
         toOrientation:(UIInterfaceOrientation)orientation;
 
-/**
- *
- */
 - (void)scrollViewDidRotate:(TTScrollView*)scrollView;
 
-/**
- *
- */
 - (void)scrollViewWillBeginDragging:(TTScrollView*)scrollView;
 
-/**
- *
- */
 - (void)scrollViewDidEndDragging:(TTScrollView*)scrollView willDecelerate:(BOOL)willDecelerate;
 
-/**
- *
- */
 - (void)scrollViewDidEndDecelerating:(TTScrollView*)scrollView;
 
-/**
- *
- */
 - (BOOL)scrollViewShouldZoom:(TTScrollView*)scrollView;
 
-/**
- *
- */
 - (void)scrollViewDidBeginZooming:(TTScrollView*)scrollView;
 
-/**
- *
- */
 - (void)scrollViewDidEndZooming:(TTScrollView*)scrollView;
 
-/**
- *
- */
 - (void)scrollView:(TTScrollView*)scrollView touchedDown:(UITouch*)touch;
 
-/**
- *
- */
 - (void)scrollView:(TTScrollView*)scrollView touchedUpInside:(UITouch*)touch;
 
-/**
- *
- */
 - (void)scrollView:(TTScrollView*)scrollView tapped:(UITouch*)touch;
 
-/**
- *
- */
 - (void)scrollViewDidBeginHolding:(TTScrollView*)scrollView;
 
-/**
- *
- */
 - (void)scrollViewDidEndHolding:(TTScrollView*)scrollView;
-
-@optional
 
 - (BOOL)scrollView:(TTScrollView*)scrollView 
         shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation;
@@ -247,9 +144,6 @@
 
 @protocol TTScrollViewDataSource <NSObject>
 
-/**
- *
- */
 - (NSInteger)numberOfPagesInScrollView:(TTScrollView*)scrollView;
 
 /**
