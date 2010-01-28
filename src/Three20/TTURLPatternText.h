@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol TTURLPatternText <NSObject>
+@required
 
 - (BOOL)match:(NSString*)text;
 

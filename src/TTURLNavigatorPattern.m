@@ -26,23 +26,43 @@
 
 static NSString* kUniversalURLPattern = @"*";
 
-@implementation TTURLNavigatorPattern
-
-@synthesize targetClass = _targetClass, targetObject = _targetObject,
-            navigationMode = _navigationMode, parentURL = _parentURL,
-            transition = _transition, argumentCount = _argumentCount;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation TTURLNavigatorPattern
 
+@synthesize targetClass     = _targetClass;
+@synthesize targetObject    = _targetObject;
+@synthesize navigationMode  = _navigationMode;
+@synthesize parentURL       = _parentURL;
+@synthesize transition      = _transition;
+@synthesize argumentCount   = _argumentCount;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
 - (BOOL)instantiatesClass {
-  return _targetClass && _navigationMode;
+  return nil != _targetClass && TTNavigationModeNone != _navigationMode;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
 - (BOOL)callsInstanceMethod {
-  return (_targetObject && [_targetObject class] != _targetObject) || _targetClass;
+  return (nil != _targetObject && [_targetObject class] != _targetObject)
+         || nil != _targetClass;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
 - (NSComparisonResult)compareSpecificity:(TTURLPattern*)pattern2 {
   if (_specificity > pattern2.specificity) {
     return NSOrderedAscending;
@@ -53,9 +73,14 @@ static NSString* kUniversalURLPattern = @"*";
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
 - (void)deduceSelector {
   NSMutableArray* parts = [NSMutableArray array];
-  
+
   for (id<TTURLPatternText> pattern in _path) {
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
       TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
@@ -73,7 +98,7 @@ static NSString* kUniversalURLPattern = @"*";
       }
     }
   }
-  
+
   if ([_fragment isKindOfClass:[TTURLWildcard class]]) {
     TTURLWildcard* wildcard = (TTURLWildcard*)_fragment;
     if (wildcard.name) {
@@ -92,13 +117,20 @@ static NSString* kUniversalURLPattern = @"*";
   }
 }
 
-- (void)analyzeArgument:(id<TTURLPatternText>)pattern method:(Method)method
-        argNames:(NSArray*)argNames {
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
+- (void)analyzeArgument: (id<TTURLPatternText>)pattern
+                 method: (Method)method
+               argNames: (NSArray*)argNames {
   if ([pattern isKindOfClass:[TTURLWildcard class]]) {
     TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
     wildcard.argIndex = [argNames indexOfObject:wildcard.name];
     if (wildcard.argIndex == NSNotFound) {
       TTDINFO(@"Argument %@ not found in @selector(%s)", wildcard.name, sel_getName(_selector));
+
     } else {
       char argType[256];
       method_getArgumentType(method, wildcard.argIndex+2, argType, 256);
@@ -107,6 +139,11 @@ static NSString* kUniversalURLPattern = @"*";
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
 - (void)analyzeMethod {
   Class cls = [self classForInvocation];
   Method method = [self callsInstanceMethod]
@@ -130,18 +167,23 @@ static NSString* kUniversalURLPattern = @"*";
     for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
       [self analyzeArgument:pattern method:method argNames:argNames];
     }
-    
+
     if (_fragment) {
       [self analyzeArgument:_fragment method:method argNames:argNames];
     }
-    
+
     [selectorName release];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
 - (void)analyzeProperties {
   Class cls = [self classForInvocation];
-  
+
   for (id<TTURLPatternText> pattern in _path) {
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
       TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
@@ -157,8 +199,14 @@ static NSString* kUniversalURLPattern = @"*";
   }
 }
 
-- (BOOL)setArgument:(NSString*)text pattern:(id<TTURLPatternText>)patternText
-        forInvocation:(NSInvocation*)invocation {
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
+- (BOOL)setArgument: (NSString*)text
+            pattern: (id<TTURLPatternText>)patternText
+      forInvocation: (NSInvocation*)invocation {
   if ([patternText isKindOfClass:[TTURLWildcard class]]) {
     TTURLWildcard* wildcard = (TTURLWildcard*)patternText;
     NSInteger index = wildcard.argIndex;
@@ -203,11 +251,17 @@ static NSString* kUniversalURLPattern = @"*";
   return NO;
 }
 
-- (void)setArgumentsFromURL:(NSURL*)URL forInvocation:(NSInvocation*)invocation
-        query:(NSDictionary*)query {
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
+- (void)setArgumentsFromURL: (NSURL*)URL
+              forInvocation: (NSInvocation*)invocation
+                      query: (NSDictionary*)query {
   NSInteger remainingArgs = _argumentCount;
   NSMutableDictionary* unmatchedArgs = query ? [[query mutableCopy] autorelease] : nil;
-  
+
   NSArray* pathComponents = URL.path.pathComponents;
   for (NSInteger i = 0; i < _path.count; ++i) {
     id<TTURLPatternText> patternText = [_path objectAtIndex:i];
@@ -216,7 +270,7 @@ static NSString* kUniversalURLPattern = @"*";
       --remainingArgs;
     }
   }
-  
+
   NSDictionary* URLQuery = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
   if (URLQuery.count) {
     for (NSString* name in [URLQuery keyEnumerator]) {
@@ -240,20 +294,22 @@ static NSString* kUniversalURLPattern = @"*";
     // then pass the dictionary of unmatched arguments as the last argument
     [invocation setArgument:&unmatchedArgs atIndex:_argumentCount+1];
   }
-  
+
   if (URL.fragment && _fragment) {
     [self setArgument:URL.fragment pattern:_fragment forInvocation:invocation];
-  }  
+  }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSObject
 
-- (id)initWithTarget:(id)target {
-  return [self initWithTarget:target mode:TTNavigationModeNone];
-}
 
-- (id)initWithTarget:(id)target mode:(TTNavigationMode)navigationMode {
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithTarget: (id)target
+                mode: (TTNavigationMode)navigationMode {
   if (self = [super init]) {
     _targetClass = nil;
     _targetObject = nil;
@@ -271,33 +327,51 @@ static NSString* kUniversalURLPattern = @"*";
   return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithTarget:(id)target {
+  return [self initWithTarget:target mode:TTNavigationModeNone];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   return [self initWithTarget:nil];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_parentURL);
   [super dealloc];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTURLPattern
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTURLPattern
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)classForInvocation {
   return _targetClass ? _targetClass : [_targetObject class];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isUniversal {
   return [_URL isEqualToString:kUniversalURLPattern];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isFragment {
   return [_URL rangeOfString:@"#" options:NSBackwardsSearch].location != NSNotFound;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)compile {
   if ([_URL isEqualToString:kUniversalURLPattern]) {
     if (!_selector) {
@@ -305,7 +379,7 @@ static NSString* kUniversalURLPattern = @"*";
     }
   } else {
     [self compileURL];
-    
+
     // XXXjoe Don't do this if the pattern is a URL generator
     if (!_selector) {
       [self deduceSelector];
@@ -316,6 +390,8 @@ static NSString* kUniversalURLPattern = @"*";
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)matchURL:(NSURL*)URL {
   if (!URL.scheme || !URL.host || ![_scheme isEqualToString:URL.scheme]) {
     return NO;
@@ -333,7 +409,7 @@ static NSString* kUniversalURLPattern = @"*";
       return NO;
     }
   }
-  
+
   for (NSInteger i = 1; i < _path.count; ++i) {
     id<TTURLPatternText>pathPattern = [_path objectAtIndex:i];
     NSString* pathText = [pathComponents objectAtIndex:i];
@@ -341,19 +417,23 @@ static NSString* kUniversalURLPattern = @"*";
       return NO;
     }
   }
-  
+
   if ((URL.fragment && !_fragment) || (_fragment && !URL.fragment)) {
     return NO;
   } else if (URL.fragment && _fragment && ![_fragment match:URL.fragment]) {
     return NO;
   }
-  
+
   return YES;
 }
 
-- (id)invoke:(id)target withURL:(NSURL*)URL query:(NSDictionary*)query {
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)invoke: (id)target
+     withURL: (NSURL*)URL
+       query: (NSDictionary*)query {
   id returnValue = nil;
-  
+
   NSMethodSignature *sig = [target methodSignatureForSelector:self.selector];
   if (sig) {
     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:sig];
@@ -368,16 +448,19 @@ static NSString* kUniversalURLPattern = @"*";
       [self setArgumentsFromURL:URL forInvocation:invocation query:query];
     }
     [invocation invoke];
-    
+
     if (sig.methodReturnLength) {
       [invocation getReturnValue:&returnValue];
     }
   }
-  
+
   return returnValue;
 }
 
-- (id)createObjectFromURL:(NSURL*)URL query:(NSDictionary*)query {
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)createObjectFromURL: (NSURL*)URL
+                    query: (NSDictionary*)query {
   id target = nil;
   if (self.instantiatesClass) {
     target = [_targetClass alloc];
@@ -395,5 +478,6 @@ static NSString* kUniversalURLPattern = @"*";
   [target autorelease];
   return returnValue;
 }
+
 
 @end

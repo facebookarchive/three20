@@ -18,6 +18,8 @@
 
 #import <objc/runtime.h>
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 TTURLArgumentType TTConvertArgumentType(char argType) {
   if (argType == 'c'
       || argType == 'i'
@@ -41,6 +43,8 @@ TTURLArgumentType TTConvertArgumentType(char argType) {
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* propertyName) {
   objc_property_t prop = class_getProperty(cls, propertyName.UTF8String);
   if (prop) {

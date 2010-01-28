@@ -24,27 +24,38 @@
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTURLPattern
 
-@synthesize URL = _URL, scheme = _scheme, specificity = _specificity, selector = _selector;
+@synthesize URL         = _URL;
+@synthesize scheme      = _scheme;
+@synthesize specificity = _specificity;
+@synthesize selector    = _selector;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
+/**
+ * @private
+ */
 - (id<TTURLPatternText>)parseText:(NSString*)text {
   NSInteger len = text.length;
   if (len >= 2
       && [text characterAtIndex:0] == '('
-      && [text characterAtIndex:len-1] == ')') {
-    NSInteger endRange = len > 3 && [text characterAtIndex:len-2] == ':'
+      && [text characterAtIndex:len - 1] == ')') {
+    NSInteger endRange = len > 3 && [text characterAtIndex:len - 2] == ':'
       ? len - 3
       : len - 2;
+
     NSString* name = len > 2 ? [text substringWithRange:NSMakeRange(1, endRange)] : nil;
+
     TTURLWildcard* wildcard = [[[TTURLWildcard alloc] init] autorelease];
     wildcard.name = name;
+
     ++_specificity;
+
     return wildcard;
+
   } else {
     TTURLLiteral* literal = [[[TTURLLiteral alloc] init] autorelease];
     literal.name = text;
@@ -53,29 +64,49 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
 - (void)parsePathComponent:(NSString*)value {
   id<TTURLPatternText> component = [self parseText:value];
   [_path addObject:component];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
 - (void)parseParameter:(NSString*)name value:(NSString*)value {
-  if (!_query) {
+  if (nil == _query) {
     _query = [[NSMutableDictionary alloc] init];
   }
-  
+
   id<TTURLPatternText> component = [self parseText:value];
   [_query setObject:component forKey:name];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @private
+ */
 - (void)setSelectorWithNames:(NSArray*)names {
   NSString* selectorName = [[names componentsJoinedByString:@":"] stringByAppendingString:@":"];
   SEL selector = NSSelectorFromString(selectorName);
   [self setSelectorIfPossible:selector];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSObject
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   if (self = [super init]) {
     _URL = nil;
@@ -89,6 +120,8 @@
   return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_URL);
   TT_RELEASE_SAFELY(_scheme);
@@ -98,25 +131,40 @@
   [super dealloc];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @public
+ */
 - (Class)classForInvocation {
   return nil;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @public
+ */
 - (void)setSelectorIfPossible:(SEL)selector {
   Class cls = [self classForInvocation];
-  if (!cls || class_respondsToSelector(cls, selector) || class_getClassMethod(cls, selector)) {
+  if (nil == cls
+      || class_respondsToSelector(cls, selector)
+      || class_getClassMethod(cls, selector)) {
     _selector = selector;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @public
+ */
 - (void)compileURL {
   NSURL* URL = [NSURL URLWithString:_URL];
   _scheme = [URL.scheme copy];
   if (URL.host) {
     [self parsePathComponent:URL.host];
+
     if (URL.path) {
       for (NSString* name in URL.path.pathComponents) {
         if (![name isEqualToString:@"/"]) {
@@ -125,7 +173,7 @@
       }
     }
   }
-  
+
   if (URL.query) {
     NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
     for (NSString* name in [query keyEnumerator]) {
@@ -138,5 +186,6 @@
     _fragment = [[self parseText:URL.fragment] retain];
   }
 }
+
 
 @end

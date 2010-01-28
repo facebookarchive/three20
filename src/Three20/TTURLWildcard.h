@@ -19,16 +19,16 @@
 #import "Three20/TTURLSelector.h"
 
 @interface TTURLWildcard : NSObject <TTURLPatternText> {
-  NSString* _name;
-  NSInteger _argIndex;
+  NSString*         _name;
+  NSInteger         _argIndex;
   TTURLArgumentType _argType;
-  TTURLSelector* _selector;
+  TTURLSelector*    _selector;
 }
 
-@property(nonatomic,copy) NSString* name;
-@property(nonatomic) NSInteger argIndex;
-@property(nonatomic) TTURLArgumentType argType;
-@property(nonatomic,retain) TTURLSelector* selector;
+@property(nonatomic,copy)   NSString*         name;
+@property(nonatomic)        NSInteger         argIndex;
+@property(nonatomic)        TTURLArgumentType argType;
+@property(nonatomic,retain) TTURLSelector*    selector;
 
 - (void)deduceSelectorForClass:(Class)cls;
 

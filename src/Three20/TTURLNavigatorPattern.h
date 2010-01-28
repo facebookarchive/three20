@@ -16,23 +16,25 @@
 
 #import "Three20/TTURLPattern.h"
 
+#import "Three20/TTURLMap.h"
+
 @interface TTURLNavigatorPattern : TTURLPattern {
-  Class _targetClass;
-  id _targetObject;
-  TTNavigationMode _navigationMode;
-  NSString* _parentURL;
-  NSInteger _transition;
-  NSInteger _argumentCount;
+  Class             _targetClass;
+  id                _targetObject;
+  TTNavigationMode  _navigationMode;
+  NSString*         _parentURL;
+  NSInteger         _transition;
+  NSInteger         _argumentCount;
 }
 
-@property(nonatomic) Class targetClass;
-@property(nonatomic,assign) id targetObject;
-@property(nonatomic,readonly) TTNavigationMode navigationMode;
-@property(nonatomic,copy) NSString* parentURL;
-@property(nonatomic) NSInteger transition;
-@property(nonatomic) NSInteger argumentCount;
-@property(nonatomic,readonly) BOOL isUniversal;
-@property(nonatomic,readonly) BOOL isFragment;
+@property(nonatomic)          Class             targetClass;
+@property(nonatomic,assign)   id                targetObject;
+@property(nonatomic,readonly) TTNavigationMode  navigationMode;
+@property(nonatomic,copy)     NSString*         parentURL;
+@property(nonatomic)          NSInteger         transition;
+@property(nonatomic)          NSInteger         argumentCount;
+@property(nonatomic,readonly) BOOL              isUniversal;
+@property(nonatomic,readonly) BOOL              isFragment;
 
 - (id)initWithTarget:(id)target;
 - (id)initWithTarget:(id)target mode:(TTNavigationMode)navigationMode;

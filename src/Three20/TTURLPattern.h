@@ -17,26 +17,23 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "Three20/TTNavigator.h"
-#import "Three20/TTURLMap.h"
-
 @protocol TTURLPatternText;
 
 @interface TTURLPattern : NSObject {
-  NSString* _URL;
-  NSString* _scheme;
-  NSMutableArray* _path;
-  NSMutableDictionary* _query;
-  id<TTURLPatternText> _fragment;
-  NSInteger _specificity;
-  SEL _selector;
+  NSString*             _URL;
+  NSString*             _scheme;
+  NSMutableArray*       _path;
+  NSMutableDictionary*  _query;
+  id<TTURLPatternText>  _fragment;
+  NSInteger             _specificity;
+  SEL                   _selector;
 }
 
-@property(nonatomic,copy) NSString* URL;
+@property(nonatomic,copy)     NSString* URL;
 @property(nonatomic,readonly) NSString* scheme;
 @property(nonatomic,readonly) NSInteger specificity;
-@property(nonatomic,readonly) Class classForInvocation;
-@property(nonatomic) SEL selector;
+@property(nonatomic,readonly) Class     classForInvocation;
+@property(nonatomic)          SEL       selector;
 
 - (void)setSelectorIfPossible:(SEL)selector;
 
