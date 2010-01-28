@@ -20,21 +20,23 @@
 @protocol TTImageViewDelegate;
 
 @interface TTImageView : TTView <TTURLRequestDelegate> {
-  id<TTImageViewDelegate> _delegate;
   TTURLRequest* _request;
-  NSString* _URL;
-  UIImage* _image;
-  UIImage* _defaultImage;
-  BOOL _autoresizesToImage;
+  NSString*     _URL;
+  UIImage*      _image;
+  UIImage*      _defaultImage;
+  BOOL          _autoresizesToImage;
+
+  id<TTImageViewDelegate> _delegate;
 }
 
-@property(nonatomic,assign) id<TTImageViewDelegate> delegate;
-@property(nonatomic,copy) NSString* URL;
-@property(nonatomic,retain) UIImage* image;
-@property(nonatomic,retain) UIImage* defaultImage;
-@property(nonatomic) BOOL autoresizesToImage;
-@property(nonatomic,readonly) BOOL isLoading;
-@property(nonatomic,readonly) BOOL isLoaded;
+@property(nonatomic,copy)     NSString* URL;
+@property(nonatomic,retain)   UIImage*  image;
+@property(nonatomic,retain)   UIImage*  defaultImage;
+@property(nonatomic)          BOOL      autoresizesToImage;
+@property(nonatomic,readonly) BOOL      isLoading;
+@property(nonatomic,readonly) BOOL      isLoaded;
+
+@property(nonatomic,assign)   id<TTImageViewDelegate> delegate;
 
 - (void)reload;
 - (void)stopLoading;
@@ -45,8 +47,8 @@
 
 @end
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @protocol TTImageViewDelegate <NSObject>
 
 @optional

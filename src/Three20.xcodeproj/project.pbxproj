@@ -28,6 +28,8 @@
 		6E8F7A891111020000069B64 /* TTURLGeneratorPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7A881111020000069B64 /* TTURLGeneratorPattern.h */; };
 		6E8F7AAC111102AA00069B64 /* TTURLLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F7AAA111102AA00069B64 /* TTURLLiteral.m */; };
 		6E8F7AAE111102BB00069B64 /* TTURLLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */; };
+		6EB0117911118040004D204C /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0117711118040004D204C /* TTImageLayer.m */; };
+		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
 		BE1288060F896A0A00F65EA2 /* TTStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1288050F896A0A00F65EA2 /* TTStyle.h */; };
 		BE1288080F896A1900F65EA2 /* TTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288070F896A1900F65EA2 /* TTStyle.m */; };
 		BE1288CB0F89812E00F65EA2 /* TTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288CA0F89812E00F65EA2 /* TTShape.m */; };
@@ -261,6 +263,8 @@
 		6E8F7A881111020000069B64 /* TTURLGeneratorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLGeneratorPattern.h; path = Three20/TTURLGeneratorPattern.h; sourceTree = "<group>"; };
 		6E8F7AAA111102AA00069B64 /* TTURLLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLLiteral.m; sourceTree = "<group>"; };
 		6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLLiteral.h; path = Three20/TTURLLiteral.h; sourceTree = "<group>"; };
+		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
+		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		BE1288050F896A0A00F65EA2 /* TTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyle.h; path = Three20/TTStyle.h; sourceTree = "<group>"; };
 		BE1288070F896A1900F65EA2 /* TTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyle.m; sourceTree = "<group>"; };
 		BE1288CA0F89812E00F65EA2 /* TTShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShape.m; sourceTree = "<group>"; };
@@ -548,6 +552,15 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		6EB0117C1111805D004D204C /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6EB0117A11118052004D204C /* TTImageLayer.h */,
+				6EB0117711118040004D204C /* TTImageLayer.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		BE1287F40F8969C100F65EA2 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +719,7 @@
 		BEF31F450F352E64000DE5D2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6EB0117C1111805D004D204C /* Private */,
 				BEF31F5F0F352E64000DE5D2 /* TTView.h */,
 				BEF31F4A0F352E64000DE5D2 /* TTView.m */,
 				BEF31F5D0F352E64000DE5D2 /* TTImageView.h */,
@@ -1087,6 +1101,7 @@
 				6E8F7A1E111100F900069B64 /* TTURLArguments.h in Headers */,
 				6E8F7A891111020000069B64 /* TTURLGeneratorPattern.h in Headers */,
 				6E8F7AAE111102BB00069B64 /* TTURLLiteral.h in Headers */,
+				6EB0117B11118052004D204C /* TTImageLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1277,6 +1292,7 @@
 				6E8F7A1C111100E800069B64 /* TTURLArguments.m in Sources */,
 				6E8F7A87111101F000069B64 /* TTURLGeneratorPattern.m in Sources */,
 				6E8F7AAC111102AA00069B64 /* TTURLLiteral.m in Sources */,
+				6EB0117911118040004D204C /* TTImageLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

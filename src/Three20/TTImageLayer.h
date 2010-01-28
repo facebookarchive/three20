@@ -14,21 +14,17 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyle.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@class TTLayout;
+#import <QuartzCore/QuartzCore.h>
 
-/**
- * A decorational view that can be styled using a TTStyle object.
- */
-@interface TTView : UIView <TTStyleDelegate> {
-  TTStyle* _style;
-  TTLayout* _layout;
+@class TTImageView;
+
+@interface TTImageLayer : CALayer {
+  TTImageView* _override;
 }
 
-@property(nonatomic,retain) TTStyle* style;
-@property(nonatomic,retain) TTLayout* layout;
-
-- (void)drawContent:(CGRect)rect;
+@property(nonatomic,assign) TTImageView* override;
 
 @end
