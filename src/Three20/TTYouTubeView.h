@@ -17,6 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ * A web view that displays a YouTube video.
+ */
 @interface TTYouTubeView : UIWebView {
   NSString* _URL;
 }
