@@ -26,6 +26,8 @@
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTStyleSheet.h"
 
+#import "Three20/TTImageViewInternal.h"
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTPhotoView

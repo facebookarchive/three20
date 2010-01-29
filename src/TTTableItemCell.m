@@ -625,7 +625,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    _imageView2.image = nil;
+    [_imageView2 unsetImage];
     _titleLabel.text = nil;
     _timestampLabel.text = nil;
 }

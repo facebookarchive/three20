@@ -30,6 +30,8 @@
 		6E8F7AAE111102BB00069B64 /* TTURLLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */; };
 		6EB0117911118040004D204C /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0117711118040004D204C /* TTImageLayer.m */; };
 		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
+		6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB013871112C513004D204C /* TTImageViewInternal.m */; };
+		6EB0138B1112C538004D204C /* TTImageViewInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0138A1112C538004D204C /* TTImageViewInternal.h */; };
 		BE1288060F896A0A00F65EA2 /* TTStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1288050F896A0A00F65EA2 /* TTStyle.h */; };
 		BE1288080F896A1900F65EA2 /* TTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288070F896A1900F65EA2 /* TTStyle.m */; };
 		BE1288CB0F89812E00F65EA2 /* TTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288CA0F89812E00F65EA2 /* TTShape.m */; };
@@ -265,6 +267,8 @@
 		6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLLiteral.h; path = Three20/TTURLLiteral.h; sourceTree = "<group>"; };
 		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
+		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
+		6EB0138A1112C538004D204C /* TTImageViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageViewInternal.h; path = Three20/TTImageViewInternal.h; sourceTree = "<group>"; };
 		BE1288050F896A0A00F65EA2 /* TTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyle.h; path = Three20/TTStyle.h; sourceTree = "<group>"; };
 		BE1288070F896A1900F65EA2 /* TTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyle.m; sourceTree = "<group>"; };
 		BE1288CA0F89812E00F65EA2 /* TTShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShape.m; sourceTree = "<group>"; };
@@ -557,6 +561,8 @@
 			children = (
 				6EB0117A11118052004D204C /* TTImageLayer.h */,
 				6EB0117711118040004D204C /* TTImageLayer.m */,
+				6EB0138A1112C538004D204C /* TTImageViewInternal.h */,
+				6EB013871112C513004D204C /* TTImageViewInternal.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -1102,6 +1108,7 @@
 				6E8F7A891111020000069B64 /* TTURLGeneratorPattern.h in Headers */,
 				6E8F7AAE111102BB00069B64 /* TTURLLiteral.h in Headers */,
 				6EB0117B11118052004D204C /* TTImageLayer.h in Headers */,
+				6EB0138B1112C538004D204C /* TTImageViewInternal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1293,6 +1300,7 @@
 				6E8F7A87111101F000069B64 /* TTURLGeneratorPattern.m in Sources */,
 				6E8F7AAC111102AA00069B64 /* TTURLLiteral.m in Sources */,
 				6EB0117911118040004D204C /* TTImageLayer.m in Sources */,
+				6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
