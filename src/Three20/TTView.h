@@ -19,14 +19,15 @@
 @class TTLayout;
 
 /**
- * A decorational view that can be styled using a TTStyle object.
+ * A UIView with an attached style and layout that are used to render and
+ * layout the view, respectively. Style and layout are optional.
  */
 @interface TTView : UIView <TTStyleDelegate> {
-  TTStyle* _style;
+  TTStyle*  _style;
   TTLayout* _layout;
 }
 
-@property(nonatomic,retain) TTStyle* style;
+@property(nonatomic,retain) TTStyle*  style;
 @property(nonatomic,retain) TTLayout* layout;
 
 - (void)drawContent:(CGRect)rect;

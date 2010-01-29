@@ -19,6 +19,9 @@
 
 @protocol TTImageViewDelegate;
 
+/**
+ * A view that asynchronously loads an image and subsequently displays it.
+ */
 @interface TTImageView : TTView <TTURLRequestDelegate> {
   TTURLRequest* _request;
   NSString*     _URL;
