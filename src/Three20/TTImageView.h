@@ -17,6 +17,8 @@
 #import "Three20/TTView.h"
 #import "Three20/TTURLRequest.h"
 
+#import "Three20/TTCorePreprocessorMacros.h"
+
 @protocol TTImageViewDelegate;
 
 /**
@@ -24,7 +26,7 @@
  */
 @interface TTImageView : TTView <TTURLRequestDelegate> {
   TTURLRequest* _request;
-  NSString*     _URL;
+  NSString*     _urlPath;
   UIImage*      _image;
   UIImage*      _defaultImage;
   BOOL          _autoresizesToImage;
@@ -32,10 +34,16 @@
   id<TTImageViewDelegate> _delegate;
 }
 
-@property(nonatomic,copy)     NSString* URL;
+@property(nonatomic,copy)     NSString* urlPath;
+@property(nonatomic,copy)     NSString* URL __TTDEPRECATED_METHOD;
 @property(nonatomic,retain)   UIImage*  image;
 @property(nonatomic,retain)   UIImage*  defaultImage;
+
+/**
+ * @default NO
+ */
 @property(nonatomic)          BOOL      autoresizesToImage;
+
 @property(nonatomic,readonly) BOOL      isLoading;
 @property(nonatomic,readonly) BOOL      isLoaded;
 

@@ -42,7 +42,7 @@
     UIImage* image = [[TTURLCache sharedCache] imageForURL:URL];
     if (image || fromNetwork) {
       _photoVersion = version;
-      self.URL = URL;
+      self.urlPath = URL;
       return YES;
     }
   }
@@ -98,7 +98,7 @@
 // UIImageView
 
 - (void)setImage:(UIImage*)image {
-  if (image != _defaultImage || !_photo || self.URL != [_photo URLForVersion:TTPhotoVersionLarge]) {
+  if (image != _defaultImage || !_photo || self.urlPath != [_photo URLForVersion:TTPhotoVersionLarge]) {
     if (image == _defaultImage) {
       self.contentMode = UIViewContentModeCenter;
     } else {
@@ -189,7 +189,7 @@
     _photo = [photo retain];
     _photoVersion = TTPhotoVersionNone;
     
-    self.URL = nil;
+    self.urlPath = nil;
     
     [self showCaption:photo.caption];
   }
@@ -235,7 +235,7 @@
 - (void)loadImage {
   if (_photo) {
     _photoVersion = TTPhotoVersionLarge;
-    self.URL = [_photo URLForVersion:TTPhotoVersionLarge];
+    self.urlPath = [_photo URLForVersion:TTPhotoVersionLarge];
   }
 }
 

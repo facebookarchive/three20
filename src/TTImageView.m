@@ -31,11 +31,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTImageView
 
-@synthesize delegate            = _delegate;
-@synthesize URL                 = _URL;
+@synthesize URL                 = _urlPath;
+@synthesize urlPath             = _urlPath;
 @synthesize image               = _image;
 @synthesize defaultImage        = _defaultImage;
 @synthesize autoresizesToImage  = _autoresizesToImage;
+@synthesize delegate            = _delegate;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,11 +62,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _delegate = nil;
-    _request = nil;
-    _URL = nil;
-    _image = nil;
-    _defaultImage = nil;
     _autoresizesToImage = NO;
   }
   return self;
@@ -77,7 +73,7 @@
   _delegate = nil;
   [_request cancel];
   TT_RELEASE_SAFELY(_request);
-  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_urlPath);
   TT_RELEASE_SAFELY(_image);
   TT_RELEASE_SAFELY(_defaultImage);
   [super dealloc];
@@ -208,16 +204,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setURL:(NSString*)URL {
-  if (self.image && _URL && [URL isEqualToString:_URL]) {
+- (void)setUrlPath:(NSString*)urlPath {
+  if (self.image && nil != _urlPath && [urlPath isEqualToString:_urlPath]) {
     return;
   }
   
   [self stopLoading];
-  [_URL release];
-  _URL = [URL retain];
+  [_urlPath release];
+  _urlPath = [urlPath retain];
   
-  if (!_URL || !_URL.length) {
+  if (!_urlPath || !_urlPath.length) {
     if (self.image != _defaultImage) {
       self.image = _defaultImage;
     }
@@ -273,14 +269,14 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reload {
-  if (!_request && _URL) {
-    UIImage* image = [[TTURLCache sharedCache] imageForURL:_URL];
+  if (!_request && _urlPath) {
+    UIImage* image = [[TTURLCache sharedCache] imageForURL:_urlPath];
     if (image) {
       self.image = image;
     } else {
-      TTURLRequest* request = [TTURLRequest requestWithURL:_URL delegate:self];
+      TTURLRequest* request = [TTURLRequest requestWithURL:_urlPath delegate:self];
       request.response = [[[TTURLImageResponse alloc] init] autorelease];
-      if (_URL && ![request send]) {
+      if (_urlPath && ![request send]) {
         // Put the default image in place while waiting for the request to load
         if (_defaultImage && self.image != _defaultImage) {
           self.image = _defaultImage;

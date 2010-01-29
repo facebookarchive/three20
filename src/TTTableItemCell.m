@@ -548,7 +548,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       self.imageView2.defaultImage = item.defaultImage;
     }
     if (item.imageURL) {
-      self.imageView2.URL = item.imageURL;
+      self.imageView2.urlPath = item.imageURL;
     }
   }  
 }
@@ -707,7 +707,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       self.timestampLabel.text = [item.timestamp formatShortTime];
     }
     if (item.imageURL) {
-      self.imageView2.URL = item.imageURL;
+      self.imageView2.urlPath = item.imageURL;
     }
   }  
 }
@@ -930,7 +930,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       ? image.size.height
       : (item.imageURL ? kDefaultImageSize : 0);
     
-    if (_imageView2.URL) {
+    if (_imageView2.urlPath) {
       CGFloat innerWidth = self.contentView.width - (kHPadding*2 + imageWidth + kKeySpacing);
       CGFloat innerHeight = self.contentView.height - kVPadding*2;
       self.textLabel.frame = CGRectMake(kHPadding, kVPadding, innerWidth, innerHeight);
@@ -942,7 +942,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
       _imageView2.frame = CGRectZero;
     }
   } else {
-    if (_imageView2.URL) {
+    if (_imageView2.urlPath) {
         CGFloat iconWidth = image
           ? image.size.width
           : (item.imageURL ? kDefaultImageSize : 0);
@@ -994,7 +994,7 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     TTTableImageItem* item = object;
     _imageView2.style = item.imageStyle;
     _imageView2.defaultImage = item.defaultImage;
-    _imageView2.URL = item.imageURL;
+    _imageView2.urlPath = item.imageURL;
 
     if ([_item isKindOfClass:[TTTableRightImageItem class]]) {
       self.textLabel.font = TTSTYLEVAR(tableSmallFont);
