@@ -21,47 +21,74 @@
 @protocol TTScrollViewDataSource;
 
 @interface TTScrollView : UIView {
-  id<TTScrollViewDelegate> _delegate;
-  id<TTScrollViewDataSource> _dataSource;
-  NSInteger _centerPageIndex;
-  NSInteger _visiblePageIndex;
-  BOOL _scrollEnabled;
-  BOOL _zoomEnabled;
-  BOOL _rotateEnabled;
-  CGFloat _pageSpacing;
-  UIInterfaceOrientation _orientation;
-  NSTimeInterval _holdsAfterTouchingForInterval;
+  NSInteger       _centerPageIndex;
+  NSInteger       _visiblePageIndex;
+  BOOL            _scrollEnabled;
+  BOOL            _zoomEnabled;
+  BOOL            _rotateEnabled;
+  CGFloat         _pageSpacing;
+  NSTimeInterval  _holdsAfterTouchingForInterval;
+
+  UIInterfaceOrientation  _orientation;
   
+  id<TTScrollViewDelegate>    _delegate;
+  id<TTScrollViewDataSource>  _dataSource;
+
   NSMutableArray* _pages;
   NSMutableArray* _pageQueue;
-  NSInteger _maxPages;
-  NSInteger _pageArrayIndex;
-  NSTimer* _tapTimer;
-  NSTimer* _holdingTimer;
-  NSTimer* _animationTimer;
-  NSDate* _animationStartTime;
-  NSTimeInterval _animationDuration;
-  UIEdgeInsets _animateEdges;
-  UIEdgeInsets _pageEdges;
-  UIEdgeInsets _pageStartEdges;
-  UIEdgeInsets _touchEdges;
-  UIEdgeInsets _touchStartEdges;
-  NSUInteger _touchCount;
-  CGFloat _overshoot;
-  UITouch* _touch1;
-  UITouch* _touch2;
-  BOOL _dragging;
-  BOOL _zooming;
-  BOOL _holding;
+  NSInteger       _maxPages;
+  NSInteger       _pageArrayIndex;
+  NSTimer*        _tapTimer;
+  NSTimer*        _holdingTimer;
+  NSTimer*        _animationTimer;
+  NSDate*         _animationStartTime;
+  NSTimeInterval  _animationDuration;
+  UIEdgeInsets    _animateEdges;
+  UIEdgeInsets    _pageEdges;
+  UIEdgeInsets    _pageStartEdges;
+  UIEdgeInsets    _touchEdges;
+  UIEdgeInsets    _touchStartEdges;
+  NSUInteger      _touchCount;
+  CGFloat         _overshoot;
+  UITouch*        _touch1;
+  UITouch*        _touch2;
+  BOOL            _dragging;
+  BOOL            _zooming;
+  BOOL            _holding;
 }
 
+/**
+ * The current page index.
+ */
 @property(nonatomic)          NSInteger       centerPageIndex;
+
+/**
+ * Whether or not the current page is zoomed.
+ */
 @property(nonatomic,readonly) BOOL            zoomed;
+
 @property(nonatomic,readonly) BOOL            holding;
+
+/**
+ * @default YES
+ */
 @property(nonatomic)          BOOL            scrollEnabled;
+
+/**
+ * @default YES
+ */
 @property(nonatomic)          BOOL            zoomEnabled;
+
+/**
+ * @default YES
+ */
 @property(nonatomic)          BOOL            rotateEnabled;
+
+/**
+ * @default 40
+ */
 @property(nonatomic)          CGFloat         pageSpacing;
+
 @property(nonatomic)          UIInterfaceOrientation orientation;
 @property(nonatomic,readonly) NSInteger       numberOfPages;
 @property(nonatomic,readonly) UIView*         centerPage;
@@ -158,7 +185,8 @@
  * Gets the natural size of the page. 
  *
  * The actual width and height are not as important as the ratio between width and height.
- * This is used to determine how to 
+ *
+ * If the size is not specified, then the size of the page is used.
  */
 - (CGSize)scrollView:(TTScrollView*)scrollView sizeOfPageAtIndex:(NSInteger)pageIndex;
 
