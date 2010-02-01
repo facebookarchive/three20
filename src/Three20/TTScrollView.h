@@ -30,7 +30,7 @@
   NSTimeInterval  _holdsAfterTouchingForInterval;
 
   UIInterfaceOrientation  _orientation;
-  
+
   id<TTScrollViewDelegate>    _delegate;
   id<TTScrollViewDataSource>  _dataSource;
 
@@ -44,14 +44,24 @@
   NSDate*         _animationStartTime;
   NSTimeInterval  _animationDuration;
   UIEdgeInsets    _animateEdges;
+
+  // The offset of the page edges from the edge of the screen.
   UIEdgeInsets    _pageEdges;
+
+  // At the beginning of an animation, the page edges are cached within this member.
   UIEdgeInsets    _pageStartEdges;
+
   UIEdgeInsets    _touchEdges;
   UIEdgeInsets    _touchStartEdges;
   NSUInteger      _touchCount;
   CGFloat         _overshoot;
+
+  // The first touch in this view.
   UITouch*        _touch1;
+
+  // The second touch in this view.
   UITouch*        _touch2;
+
   BOOL            _dragging;
   BOOL            _zooming;
   BOOL            _holding;
@@ -92,6 +102,12 @@
 @property(nonatomic)          UIInterfaceOrientation orientation;
 @property(nonatomic,readonly) NSInteger       numberOfPages;
 @property(nonatomic,readonly) UIView*         centerPage;
+
+/**
+ * The number of seconds to wait before initiating the "hold" action.
+ *
+ * @default 0
+ */
 @property(nonatomic)          NSTimeInterval  holdsAfterTouchingForInterval;
 
 
@@ -162,7 +178,7 @@
 
 - (void)scrollViewDidEndHolding:(TTScrollView*)scrollView;
 
-- (BOOL)scrollView:(TTScrollView*)scrollView 
+- (BOOL)scrollView:(TTScrollView*)scrollView
         shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation;
 
 @end
@@ -182,7 +198,7 @@
 - (UIView*)scrollView:(TTScrollView*)scrollView pageAtIndex:(NSInteger)pageIndex;
 
 /**
- * Gets the natural size of the page. 
+ * Gets the natural size of the page.
  *
  * The actual width and height are not as important as the ratio between width and height.
  *
