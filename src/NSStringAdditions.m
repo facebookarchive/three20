@@ -51,18 +51,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)startsWith:(NSString*)prefix {
-  TTDASSERT(nil != prefix);
-  TTDASSERT(prefix.length > 0);
-  if (nil != prefix && self.length >= prefix.length) {
-    return [self rangeOfString:prefix options:0 range:NSMakeRange(0, prefix.length)].location == 0;
-  } else {
-    return NO;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)stringByRemovingHTMLTags {
   TTMarkupStripper* stripper = [[[TTMarkupStripper alloc] init] autorelease];
   return [stripper parse:self];

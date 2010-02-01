@@ -131,19 +131,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testNSString_startsWith {
-  STAssertFalse([@"" startsWith:nil], @"nil prefix doesn't mean anything");
-  STAssertFalse([@"" startsWith:@""], @"empty prefix doesn't mean anything");
-  STAssertFalse([@"" startsWith:@"cat"], @"prefix shouldn't exist in an empty string");
-  STAssertTrue([@"cat" startsWith:@"cat"], @"string is a prefix of itself");
-  STAssertTrue([@"catch" startsWith:@"cat"], @"valid prefix");
-  STAssertFalse([@"CATCH" startsWith:@"cat"], @"startsWith is case sensitive");
-  STAssertFalse([@"catch" startsWith:@"CAT"], @"startsWith is case sensitive");
-  STAssertFalse([@"nocatch" startsWith:@"cat"], @"not a valid prefix");
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNSString_stringByRemovingHTMLTags {
   STAssertTrue([[@"" stringByRemovingHTMLTags] isEqualToString:@""], @"Empty case failed");
 
