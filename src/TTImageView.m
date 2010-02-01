@@ -33,7 +33,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTImageView
 
-@synthesize URL                 = _urlPath;
 @synthesize urlPath             = _urlPath;
 @synthesize image               = _image;
 @synthesize defaultImage        = _defaultImage;
@@ -273,6 +272,20 @@
   } else {
     [self reload];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated
+- (void)setURL:(NSString*)urlPath {
+  [self setUrlPath:urlPath];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated
+- (NSString*)URL {
+  return [self urlPath];
 }
 
 
