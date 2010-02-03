@@ -26,7 +26,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTURLXMLResponse
 
-@synthesize rootObject = _rootObject;
+@synthesize rootObject  = _rootObject;
+@synthesize isRssFeed   = _isRssFeed;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,9 +53,12 @@
   TTDASSERT(nil == _rootObject);
 
   if ([data isKindOfClass:[NSData class]]) {
-    NSLog(@"Data: %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+    //NSLog(@"Data: %@", [[[NSString alloc]
+    //  initWithData: data
+    //      encoding: NSUTF8StringEncoding] autorelease]);
     TTXMLParser* parser = [[TTXMLParser alloc] initWithData:data];
     parser.delegate = self;
+    parser.treatDuplicateKeysAsArrayItems = self.isRssFeed;
     [parser parse];
     _rootObject = [parser.rootObject retain];
     TT_RELEASE_SAFELY(parser);

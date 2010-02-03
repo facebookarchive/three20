@@ -27,10 +27,22 @@ extern NSString* kCommonXMLType_Unknown;
 @private
   id              _rootObject;
 
+  BOOL            _treatDuplicateKeysAsArrayItems;
+
   NSMutableArray* _objectStack;
 }
 
-@property (nonatomic, readonly) id rootObject;
+@property (nonatomic, readonly) id    rootObject;
+
+/**
+ * When a duplicate key is encountered, the key's value is turned into an array and both
+ * the original item and the new duplicate item are added to the array. Any subsequent duplicates
+ * are also added to this array.
+ * This is useful for RSS feeds, where feed items are presented inline (and not as array items).
+ *
+ * @default NO
+ */
+@property (nonatomic, assign)   BOOL  treatDuplicateKeysAsArrayItems;
 
 @end
 

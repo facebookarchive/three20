@@ -36,7 +36,8 @@ static NSString* kPrivateKey_Array = @"___Array___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTXMLParser
 
-@synthesize rootObject = _rootObject;
+@synthesize rootObject                      = _rootObject;
+@synthesize treatDuplicateKeysAsArrayItems  = _treatDuplicateKeysAsArrayItems;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,8 +83,8 @@ static NSString* kPrivateKey_Array = @"___Array___";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addChild:(id)childObject toObject:(id)object {
-  // Is this an internal common "array" type?
 
+  // Is this an internal common "array" type?
   if ([object isKindOfClass:[NSDictionary class]] &&
       [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Array]) {
 
@@ -92,10 +93,37 @@ static NSString* kPrivateKey_Array = @"___Array___";
       [[object objectForKey:kPrivateKey_Array] addObject:childObject];
     }
 
+  // Is it an unknown dictionary type?
   } else if ([object isKindOfClass:[NSDictionary class]] &&
       [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonXMLType_Unknown]) {
-    // It's an unknown dictionary type, let's just add this object then.
-    [object setObject:childObject forKey:[childObject objectForKey:kPrivateKey_EntityName]];
+
+    if (self.treatDuplicateKeysAsArrayItems) {
+      NSString* entityName = [childObject objectForKey:kPrivateKey_EntityName];
+      id entityObject = [object objectForKey:entityName];
+      if (nil == entityObject) {
+        // No collision, add it!
+        [object setObject:childObject forKey:entityName];
+
+      } else {
+        // Collision, check if it's already an array.
+        if (TTIsArrayWithItems(entityObject)) {
+          [entityObject addObject:childObject];
+        } else {
+          NSMutableArray* array = [[NSMutableArray alloc] init];
+          [array addObject:entityObject];
+          [array addObject:childObject];
+          [object setObject:array forKey:entityName];
+          TT_RELEASE_SAFELY(array);
+        }
+      }
+
+    } else {
+      // Avoid overwriting existing keys.
+      // If this is asserting, you probably need treatDuplicateKeysAsArrayItems set to YES.
+      TTDASSERT(nil == [object objectForKey:[childObject objectForKey:kPrivateKey_EntityName]]);
+
+      [object setObject:childObject forKey:[childObject objectForKey:kPrivateKey_EntityName]];
+    }
   }
 }
 
@@ -212,6 +240,12 @@ static NSString* kPrivateKey_Array = @"___Array___";
 
   // Now that we've finished a node, let's step back up the tree.
   [_objectStack removeLastObject];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
+  TTDERROR(@"Error parsing the XML: %@", [parseError localizedDescription]);
 }
 
 

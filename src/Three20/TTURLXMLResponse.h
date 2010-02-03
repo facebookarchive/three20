@@ -23,9 +23,18 @@
  * parse HTML pages that are likely to have invalid markup.
  */
 @interface TTURLXMLResponse : NSObject <TTURLResponse> {
-  id _rootObject;
+  id    _rootObject;
+  BOOL  _isRssFeed;
 }
 
-@property (nonatomic, retain, readonly) id rootObject;
+@property (nonatomic, retain, readonly) id    rootObject;
+
+/**
+ * Is this XML response an RSS feed? This distinction is necessary in order to allow duplicate
+ * keys in the XML objects.
+ *
+ * @default NO
+ */
+@property (nonatomic, assign)           BOOL  isRssFeed;
 
 @end
