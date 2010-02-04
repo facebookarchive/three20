@@ -74,6 +74,10 @@ static NSString* kPrivateKey_Array = @"___Array___";
     TT_RELEASE_SAFELY(array);
   }
 
+  for (id key in attributeDict) {
+    [object setObject:[attributeDict objectForKey:key] forKey:key];
+  }
+
   [object setObject:elementName forKey:kPrivateKey_EntityName];
   [object setObject:type forKey:kPrivateKey_EntityType];
 
@@ -131,17 +135,6 @@ static NSString* kPrivateKey_Array = @"___Array___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addCharacters: (NSString*)characters toObject:(id)object {
   if ([object isKindOfClass:[NSDictionary class]] &&
-      [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonXMLType_Unknown]) {
-    // It's an unknown dictionary type, let's just add this object then.
-    NSString* value = [object objectForKey:kPrivateKey_EntityValue];
-    if (nil == value) {
-      value = [[NSString alloc] init];
-      [object setObject:value forKey:kPrivateKey_EntityValue];
-      [value release];
-    }
-    [object setObject:[value stringByAppendingString:characters] forKey:kPrivateKey_EntityValue];
-
-  } else if ([object isKindOfClass:[NSDictionary class]] &&
       ([[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Integer] ||
        [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_DateTime])) {
 
@@ -153,6 +146,16 @@ static NSString* kPrivateKey_Array = @"___Array___";
     }
     buffer = [buffer stringByAppendingString:characters];
     [object setObject:buffer forKey:kPrivateKey_EntityBuffer];
+
+  } else if ([object isKindOfClass:[NSDictionary class]]) {
+      // It's an unknown dictionary type, let's just add this object then.
+    NSString* value = [object objectForKey:kPrivateKey_EntityValue];
+    if (nil == value) {
+      value = [[NSString alloc] init];
+      [object setObject:value forKey:kPrivateKey_EntityValue];
+      [value release];
+    }
+    [object setObject:[value stringByAppendingString:characters] forKey:kPrivateKey_EntityValue];
   }
 }
 
