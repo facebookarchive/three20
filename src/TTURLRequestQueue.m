@@ -346,7 +346,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   request.isLoading = YES;
   
   TTRequestLoader* loader = nil;
-  if (![request.httpMethod isEqualToString:@"POST"]) {
+  if (![request.httpMethod isEqualToString:@"POST"] && ![request.httpMethod isEqualToString:@"PUT"]) {
     // Next, see if there is an active loader for the URL and if so join that bandwagon
     loader = [_loaders objectForKey:request.cacheKey];
     if (loader) {
