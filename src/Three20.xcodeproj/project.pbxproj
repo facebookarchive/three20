@@ -18,6 +18,8 @@
 		6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */; };
 		6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
 		6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E85811229CA500276F63 /* TTUserInfo.h */; };
+		6E75E8DA1122AB7900276F63 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E8D81122AB7900276F63 /* TTRequestLoader.m */; };
+		6E75E8DC1122AB9000276F63 /* TTRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E8DB1122AB9000276F63 /* TTRequestLoader.h */; };
 		6E8F7849110FD80C00069B64 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1F6C5D10B36C32003DAA1F /* TTDebug.m */; };
 		6E8F7930111023EE00069B64 /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F792E111023EE00069B64 /* TTURLAction.m */; };
 		6E8F79341110262700069B64 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F79331110262700069B64 /* TTURLAction.h */; };
@@ -262,6 +264,8 @@
 		6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
 		6E75E85511229C9100276F63 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
 		6E75E85811229CA500276F63 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
+		6E75E8D81122AB7900276F63 /* TTRequestLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRequestLoader.m; sourceTree = "<group>"; };
+		6E75E8DB1122AB9000276F63 /* TTRequestLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRequestLoader.h; path = Three20/TTRequestLoader.h; sourceTree = "<group>"; };
 		6E8F792E111023EE00069B64 /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLAction.m; sourceTree = "<group>"; };
 		6E8F79331110262700069B64 /* TTURLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLAction.h; path = Three20/TTURLAction.h; sourceTree = "<group>"; };
 		6E8F79ED1110FE3D00069B64 /* TTURLNavigatorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLNavigatorPattern.m; sourceTree = "<group>"; };
@@ -559,6 +563,15 @@
 			name = Requests;
 			sourceTree = "<group>";
 		};
+		6E75E8D61122AB6A00276F63 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6E75E8DB1122AB9000276F63 /* TTRequestLoader.h */,
+				6E75E8D81122AB7900276F63 /* TTRequestLoader.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		6E8F79FC1110FECB00069B64 /* Patterns */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +788,7 @@
 		BEF321B00F353B15000DE5D2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				6E75E8D61122AB6A00276F63 /* Private */,
 				6E75E7EA11229A4F00276F63 /* Requests */,
 				6E14D7EC10E09A7F00445222 /* Responses */,
 				6E75E85811229CA500276F63 /* TTUserInfo.h */,
@@ -1147,6 +1161,7 @@
 				6E14D82B10E0A16700445222 /* TTURLDataResponse.h in Headers */,
 				6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */,
 				6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */,
+				6E75E8DC1122AB9000276F63 /* TTRequestLoader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,6 +1356,7 @@
 				6E14D7E810E09A2300445222 /* TTURLDataResponse.m in Sources */,
 				6E14D81410E0A12700445222 /* TTURLImageResponse.m in Sources */,
 				6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */,
+				6E75E8DA1122AB7900276F63 /* TTRequestLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
