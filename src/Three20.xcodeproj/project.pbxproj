@@ -555,8 +555,6 @@
 				BEF31F6C0F352E64000DE5D2 /* TTURLRequest.h */,
 				BEF31F560F352E64000DE5D2 /* TTURLRequest.m */,
 				6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */,
-				6E75E85811229CA500276F63 /* TTUserInfo.h */,
-				6E75E85511229C9100276F63 /* TTUserInfo.m */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -779,6 +777,8 @@
 			children = (
 				6E75E7EA11229A4F00276F63 /* Requests */,
 				6E14D7EC10E09A7F00445222 /* Responses */,
+				6E75E85811229CA500276F63 /* TTUserInfo.h */,
+				6E75E85511229C9100276F63 /* TTUserInfo.m */,
 				BE8A9C180F4143DA00FD8C43 /* TTURLRequestQueue.h */,
 				BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */,
 				BEF31F6A0F352E64000DE5D2 /* TTURLCache.h */,
