@@ -23,6 +23,9 @@
 
 /**
  * The request has begun loading.
+ *
+ * This method will not be called if the data is loaded immediately from the cache.
+ * @see requestDidFinishLoad:
  */
 - (void)requestDidStartLoad:(TTURLRequest*)request;
 
@@ -34,7 +37,7 @@
 - (void)requestDidUploadData:(TTURLRequest*)request;
 
 /**
- * The request has loaded data has loaded and been processed into a response.
+ * The request has loaded data and been processed into a response.
  *
  * If the request is served from the cache, this is the only delegate method that will be called.
  */
@@ -43,15 +46,16 @@
 /**
  * Allows delegate to handle any authentication challenges.
  */
-- (void)request:(TTURLRequest*)request didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge;
+- (void)request:(TTURLRequest*)request
+  didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge;
 
 /**
- *
+ * The request failed to load.
  */
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error;
 
 /**
- *
+ * The request was canceled.
  */
 - (void)requestDidCancelLoad:(TTURLRequest*)request;
 
