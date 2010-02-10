@@ -16,6 +16,7 @@
 
 #import "Three20/TTView.h"
 #import "Three20/TTURLRequest.h"
+#import "Three20/TTURLRequestDelegate.h"
 
 #import "Three20/TTCorePreprocessorMacros.h"
 

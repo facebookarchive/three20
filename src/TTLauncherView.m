@@ -20,6 +20,7 @@
 #import "Three20/TTDebugFlags.h"
 
 #import "Three20/TTURLRequest.h"
+#import "Three20/TTUserInfo.h"
 #import "Three20/TTLauncherItem.h"
 #import "Three20/TTLauncherButton.h"
 #import "Three20/TTPageControl.h"

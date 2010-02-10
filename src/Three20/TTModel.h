@@ -15,6 +15,7 @@
 //
 
 #import "Three20/TTURLRequest.h"
+#import "Three20/TTURLRequestDelegate.h"
 
 /**
  * TTModel describes the state of an object that can be loaded from a remote source.

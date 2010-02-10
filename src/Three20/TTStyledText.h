@@ -14,7 +14,9 @@
 // limitations under the License.
 //
 
-#import "Three20/TTURLRequest.h"
+#import <UIKit/UIKit.h>
+
+#import "Three20/TTURLRequestDelegate.h"
 
 @protocol TTStyledTextDelegate;
 @class TTStyledNode, TTStyledFrame, TTStyledBoxFrame;

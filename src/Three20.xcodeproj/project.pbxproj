@@ -15,6 +15,9 @@
 		6E35CCC210912BE10066B478 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */; };
 		6E35CCFD10912C870066B478 /* NSMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */; };
 		6E35CCFE10912C870066B478 /* NSMutableArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E35CCFC10912C870066B478 /* NSMutableArrayAdditions.h */; };
+		6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */; };
+		6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
+		6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E85811229CA500276F63 /* TTUserInfo.h */; };
 		6E8F7849110FD80C00069B64 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1F6C5D10B36C32003DAA1F /* TTDebug.m */; };
 		6E8F7930111023EE00069B64 /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F792E111023EE00069B64 /* TTURLAction.m */; };
 		6E8F79341110262700069B64 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F79331110262700069B64 /* TTURLAction.h */; };
@@ -256,6 +259,9 @@
 		6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableDictionaryAdditions.m; sourceTree = "<group>"; };
 		6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableDictionaryAdditions.h; path = Three20/NSMutableDictionaryAdditions.h; sourceTree = "<group>"; };
 		6E35CCFC10912C870066B478 /* NSMutableArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableArrayAdditions.h; path = Three20/NSMutableArrayAdditions.h; sourceTree = "<group>"; };
+		6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
+		6E75E85511229C9100276F63 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
+		6E75E85811229CA500276F63 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
 		6E8F792E111023EE00069B64 /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLAction.m; sourceTree = "<group>"; };
 		6E8F79331110262700069B64 /* TTURLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLAction.h; path = Three20/TTURLAction.h; sourceTree = "<group>"; };
 		6E8F79ED1110FE3D00069B64 /* TTURLNavigatorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLNavigatorPattern.m; sourceTree = "<group>"; };
@@ -543,6 +549,18 @@
 			name = Responses;
 			sourceTree = "<group>";
 		};
+		6E75E7EA11229A4F00276F63 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				BEF31F6C0F352E64000DE5D2 /* TTURLRequest.h */,
+				BEF31F560F352E64000DE5D2 /* TTURLRequest.m */,
+				6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */,
+				6E75E85811229CA500276F63 /* TTUserInfo.h */,
+				6E75E85511229C9100276F63 /* TTUserInfo.m */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
 		6E8F79FC1110FECB00069B64 /* Patterns */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,9 +777,8 @@
 		BEF321B00F353B15000DE5D2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				6E75E7EA11229A4F00276F63 /* Requests */,
 				6E14D7EC10E09A7F00445222 /* Responses */,
-				BEF31F6C0F352E64000DE5D2 /* TTURLRequest.h */,
-				BEF31F560F352E64000DE5D2 /* TTURLRequest.m */,
 				BE8A9C180F4143DA00FD8C43 /* TTURLRequestQueue.h */,
 				BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */,
 				BEF31F6A0F352E64000DE5D2 /* TTURLCache.h */,
@@ -1128,6 +1145,8 @@
 				6EB0138B1112C538004D204C /* TTImageViewInternal.h in Headers */,
 				6E14D82A10E0A16700445222 /* TTURLImageResponse.h in Headers */,
 				6E14D82B10E0A16700445222 /* TTURLDataResponse.h in Headers */,
+				6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */,
+				6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1321,6 +1340,7 @@
 				6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */,
 				6E14D7E810E09A2300445222 /* TTURLDataResponse.m in Sources */,
 				6E14D81410E0A12700445222 /* TTURLImageResponse.m in Sources */,
+				6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

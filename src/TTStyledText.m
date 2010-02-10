@@ -18,6 +18,8 @@
 
 #import "Three20/TTGlobalCore.h"
 
+#import "Three20/TTURLRequest.h"
+
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyledLayout.h"

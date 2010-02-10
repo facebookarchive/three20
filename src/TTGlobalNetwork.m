@@ -18,6 +18,7 @@
 
 #import "Three20/TTDebug.h"
 
+#import <UIKit/UIKit.h>
 #import <pthread.h>
 
 static int              gNetworkTaskCount = 0;
