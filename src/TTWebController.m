@@ -325,13 +325,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)openRequest:(NSURLRequest*)request {
-  self.view;
-  [_webView loadRequest:request];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setHeaderView:(UIView*)headerView {
   if (headerView != _headerView) {
     BOOL addingHeader = !_headerView && headerView;
@@ -363,5 +356,13 @@
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
   [self openRequest:request];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)openRequest:(NSURLRequest*)request {
+  self.view;
+  [_webView loadRequest:request];
+}
+
 
 @end
