@@ -19,29 +19,36 @@
 @protocol TTWebControllerDelegate;
 
 @interface TTWebController : TTModelViewController <UIWebViewDelegate, UIActionSheetDelegate> {
+  UIWebView*        _webView;
+
+  UIToolbar*        _toolbar;
+
+  UIView*           _headerView;
+
+  UIBarButtonItem*  _backButton;
+  UIBarButtonItem*  _forwardButton;
+  UIBarButtonItem*  _refreshButton;
+  UIBarButtonItem*  _stopButton;
+  UIBarButtonItem*  _activityItem;
+
+  NSURL*            _loadingURL;
+
   id<TTWebControllerDelegate> _delegate;
-  UIWebView* _webView;
-  UIToolbar* _toolbar;
-  UIView* _headerView;
-  UIBarButtonItem* _backButton;
-  UIBarButtonItem* _forwardButton;
-  UIBarButtonItem* _refreshButton;
-  UIBarButtonItem* _stopButton;
-  UIBarButtonItem* _activityItem;
-  NSURL* _loadingURL;
 }
 
-@property(nonatomic,assign) id<TTWebControllerDelegate> delegate;
-@property(nonatomic,readonly) NSURL* URL;
-@property(nonatomic,retain) UIView* headerView;
+@property(nonatomic,readonly) NSURL*  URL;
+@property(nonatomic,retain)   UIView* headerView;
+@property(nonatomic,assign)   id<TTWebControllerDelegate> delegate;
 
 - (void)openURL:(NSURL*)URL;
 - (void)openRequest:(NSURLRequest*)request;
 
 @end
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @protocol TTWebControllerDelegate <NSObject>
 // XXXjoe Need to make this similar to UIWebViewDelegate
 @end
