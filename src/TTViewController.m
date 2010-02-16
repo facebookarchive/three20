@@ -146,6 +146,10 @@
 - (void)loadView {
   [super loadView];
 
+  if (nil != self.nibName) {
+    return;
+  }
+
   CGRect frame = self.wantsFullScreenLayout ? TTScreenBounds() : TTNavigationFrame();
   self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
 	self.view.autoresizesSubviews = YES;
