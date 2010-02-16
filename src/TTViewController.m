@@ -43,12 +43,19 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+  return [self initWithNibName:nil bundle:nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _navigationBarStyle = UIBarStyleDefault;
     _statusBarStyle     = UIStatusBarStyleDefault;
 
     self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
   }
+
   return self;
 }
 
