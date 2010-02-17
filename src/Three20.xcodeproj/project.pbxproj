@@ -38,6 +38,14 @@
 		6E8F7AAC111102AA00069B64 /* TTURLLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F7AAA111102AA00069B64 /* TTURLLiteral.m */; };
 		6E8F7AAE111102BB00069B64 /* TTURLLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */; };
 		6E92494F112C6F7000531F03 /* Three20_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6E92494D112C6F7000531F03 /* Three20_Prefix.pch */; };
+		6E924A93112C770500531F03 /* TTTableViewVarHeightDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E924A91112C770500531F03 /* TTTableViewVarHeightDelegate.m */; };
+		6E924A95112C771900531F03 /* TTTableViewVarHeightDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E924A94112C771900531F03 /* TTTableViewVarHeightDelegate.h */; };
+		6E924A99112C776800531F03 /* TTTableViewPlainDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E924A97112C776800531F03 /* TTTableViewPlainDelegate.m */; };
+		6E924A9B112C778600531F03 /* TTTableViewPlainDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E924A9A112C778600531F03 /* TTTableViewPlainDelegate.h */; };
+		6E924A9F112C77B100531F03 /* TTTableViewPlainVarHeightDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E924A9D112C77B100531F03 /* TTTableViewPlainVarHeightDelegate.m */; };
+		6E924AA1112C77C100531F03 /* TTTableViewPlainVarHeightDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E924AA0112C77C100531F03 /* TTTableViewPlainVarHeightDelegate.h */; };
+		6E924AA5112C77E800531F03 /* TTTableViewGroupedVarHeightDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E924AA3112C77E800531F03 /* TTTableViewGroupedVarHeightDelegate.m */; };
+		6E924AA7112C77F200531F03 /* TTTableViewGroupedVarHeightDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E924AA6112C77F200531F03 /* TTTableViewGroupedVarHeightDelegate.h */; };
 		6EB0117911118040004D204C /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0117711118040004D204C /* TTImageLayer.m */; };
 		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
 		6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB013871112C513004D204C /* TTImageViewInternal.m */; };
@@ -284,6 +292,14 @@
 		6E8F7AAA111102AA00069B64 /* TTURLLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLLiteral.m; sourceTree = "<group>"; };
 		6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLLiteral.h; path = Three20/TTURLLiteral.h; sourceTree = "<group>"; };
 		6E92494D112C6F7000531F03 /* Three20_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Three20_Prefix.pch; sourceTree = "<group>"; };
+		6E924A91112C770500531F03 /* TTTableViewVarHeightDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewVarHeightDelegate.m; sourceTree = "<group>"; };
+		6E924A94112C771900531F03 /* TTTableViewVarHeightDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewVarHeightDelegate.h; path = Three20/TTTableViewVarHeightDelegate.h; sourceTree = "<group>"; };
+		6E924A97112C776800531F03 /* TTTableViewPlainDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewPlainDelegate.m; sourceTree = "<group>"; };
+		6E924A9A112C778600531F03 /* TTTableViewPlainDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewPlainDelegate.h; path = Three20/TTTableViewPlainDelegate.h; sourceTree = "<group>"; };
+		6E924A9D112C77B100531F03 /* TTTableViewPlainVarHeightDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewPlainVarHeightDelegate.m; sourceTree = "<group>"; };
+		6E924AA0112C77C100531F03 /* TTTableViewPlainVarHeightDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewPlainVarHeightDelegate.h; path = Three20/TTTableViewPlainVarHeightDelegate.h; sourceTree = "<group>"; };
+		6E924AA3112C77E800531F03 /* TTTableViewGroupedVarHeightDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewGroupedVarHeightDelegate.m; sourceTree = "<group>"; };
+		6E924AA6112C77F200531F03 /* TTTableViewGroupedVarHeightDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewGroupedVarHeightDelegate.h; path = Three20/TTTableViewGroupedVarHeightDelegate.h; sourceTree = "<group>"; };
 		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
@@ -606,6 +622,23 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		6E924A8F112C76F200531F03 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				BED62FD80F882FD1009923D8 /* TTTableViewDelegate.h */,
+				BED62FDA0F882FE3009923D8 /* TTTableViewDelegate.m */,
+				6E924A94112C771900531F03 /* TTTableViewVarHeightDelegate.h */,
+				6E924A91112C770500531F03 /* TTTableViewVarHeightDelegate.m */,
+				6E924A9A112C778600531F03 /* TTTableViewPlainDelegate.h */,
+				6E924A97112C776800531F03 /* TTTableViewPlainDelegate.m */,
+				6E924AA0112C77C100531F03 /* TTTableViewPlainVarHeightDelegate.h */,
+				6E924A9D112C77B100531F03 /* TTTableViewPlainVarHeightDelegate.m */,
+				6E924AA6112C77F200531F03 /* TTTableViewGroupedVarHeightDelegate.h */,
+				6E924AA3112C77E800531F03 /* TTTableViewGroupedVarHeightDelegate.m */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		6EB0117C1111805D004D204C /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,12 +668,11 @@
 		BE702EEF0F43F46E0028A119 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
+				6E924A8F112C76F200531F03 /* Delegates */,
 				BEF31F650F352E64000DE5D2 /* TTTableViewController.h */,
 				BEF31F4F0F352E64000DE5D2 /* TTTableViewController.m */,
 				BE781808100ECF21001FACA5 /* TTSearchDisplayController.h */,
 				BE781806100ECF0F001FACA5 /* TTSearchDisplayController.m */,
-				BED62FD80F882FD1009923D8 /* TTTableViewDelegate.h */,
-				BED62FDA0F882FE3009923D8 /* TTTableViewDelegate.m */,
 				BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */,
 				BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */,
 				BE23E72A100B0A7200F40C3B /* TTListDataSource.h */,
@@ -1166,6 +1198,10 @@
 				6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */,
 				6E75E8DC1122AB9000276F63 /* TTRequestLoader.h in Headers */,
 				6E92494F112C6F7000531F03 /* Three20_Prefix.pch in Headers */,
+				6E924A95112C771900531F03 /* TTTableViewVarHeightDelegate.h in Headers */,
+				6E924A9B112C778600531F03 /* TTTableViewPlainDelegate.h in Headers */,
+				6E924AA1112C77C100531F03 /* TTTableViewPlainVarHeightDelegate.h in Headers */,
+				6E924AA7112C77F200531F03 /* TTTableViewGroupedVarHeightDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1361,6 +1397,10 @@
 				6E14D81410E0A12700445222 /* TTURLImageResponse.m in Sources */,
 				6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */,
 				6E75E8DA1122AB7900276F63 /* TTRequestLoader.m in Sources */,
+				6E924A93112C770500531F03 /* TTTableViewVarHeightDelegate.m in Sources */,
+				6E924A99112C776800531F03 /* TTTableViewPlainDelegate.m in Sources */,
+				6E924A9F112C77B100531F03 /* TTTableViewPlainVarHeightDelegate.m in Sources */,
+				6E924AA5112C77E800531F03 /* TTTableViewGroupedVarHeightDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

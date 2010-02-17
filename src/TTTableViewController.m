@@ -16,6 +16,8 @@
 
 #import "Three20/TTTableViewController.h"
 
+#import "Three20/TTTableViewVarHeightDelegate.h"
+
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalUI.h"

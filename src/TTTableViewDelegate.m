@@ -32,9 +32,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
 
-static const CGFloat kEmptyHeaderHeight = 1;
-static const CGFloat kSectionHeaderHeight = 35;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTTableViewDelegate
@@ -166,54 +163,6 @@ static const CGFloat kSectionHeaderHeight = 35;
 - (void)tableView:(UITableView*)tableView touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   if (_controller.menuView) {
     [_controller hideMenu:YES];
-  }
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTableViewVarHeightDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-  id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
-
-  id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
-  Class cls = [dataSource tableView:tableView cellClassForObject:object];
-  return [cls tableView:tableView rowHeightForObject:object];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTableViewPlainDelegate
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTableViewPlainVarHeightDelegate
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTTableViewGroupedVarHeightDelegate : TTTableViewVarHeightDelegate
-@end
-
-@implementation TTTableViewGroupedVarHeightDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
-  NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-  if (!title.length) {
-    return kEmptyHeaderHeight;
-  } else {
-    return kSectionHeaderHeight;
   }
 }
 
