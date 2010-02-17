@@ -37,6 +37,7 @@
 		6E8F7A891111020000069B64 /* TTURLGeneratorPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7A881111020000069B64 /* TTURLGeneratorPattern.h */; };
 		6E8F7AAC111102AA00069B64 /* TTURLLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F7AAA111102AA00069B64 /* TTURLLiteral.m */; };
 		6E8F7AAE111102BB00069B64 /* TTURLLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */; };
+		6E92494F112C6F7000531F03 /* Three20_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6E92494D112C6F7000531F03 /* Three20_Prefix.pch */; };
 		6EB0117911118040004D204C /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0117711118040004D204C /* TTImageLayer.m */; };
 		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
 		6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB013871112C513004D204C /* TTImageViewInternal.m */; };
@@ -282,6 +283,7 @@
 		6E8F7A881111020000069B64 /* TTURLGeneratorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLGeneratorPattern.h; path = Three20/TTURLGeneratorPattern.h; sourceTree = "<group>"; };
 		6E8F7AAA111102AA00069B64 /* TTURLLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLLiteral.m; sourceTree = "<group>"; };
 		6E8F7AAD111102BB00069B64 /* TTURLLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLLiteral.h; path = Three20/TTURLLiteral.h; sourceTree = "<group>"; };
+		6E92494D112C6F7000531F03 /* Three20_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Three20_Prefix.pch; sourceTree = "<group>"; };
 		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				BEB463DC0F8F2DB5004B34A0 /* developer.h */,
+				6E92494D112C6F7000531F03 /* Three20_Prefix.pch */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1162,6 +1165,7 @@
 				6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */,
 				6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */,
 				6E75E8DC1122AB9000276F63 /* TTRequestLoader.h in Headers */,
+				6E92494F112C6F7000531F03 /* Three20_Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1385,7 +1389,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		BEF31F3B0F352DF6000DE5D2 /* Debug */ = {
+		6E92493F112C6F4000531F03 /* Debug Dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = .;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = "Debug Dev";
+		};
+		6E924940112C6F4000531F03 /* Debug Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1394,6 +1413,50 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = Three20;
+			};
+			name = "Debug Dev";
+		};
+		6E924941112C6F4000531F03 /* Debug Dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				INFOPLIST_FILE = "UnitTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = UnitTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug Dev";
+		};
+		BEF31F3B0F352DF6000DE5D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Three20_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				PRODUCT_NAME = Three20;
@@ -1407,8 +1470,8 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Three20_Prefix.pch;
 				PREBINDING = NO;
 				PRODUCT_NAME = Three20;
 				ZERO_LINK = NO;
@@ -1508,6 +1571,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BEF31F3B0F352DF6000DE5D2 /* Debug */,
+				6E924940112C6F4000531F03 /* Debug Dev */,
 				BEF31F3C0F352DF6000DE5D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1517,6 +1581,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
+				6E92493F112C6F4000531F03 /* Debug Dev */,
 				C01FCF5008A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1526,6 +1591,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB9E6C6510B6A8F900DE563C /* Debug */,
+				6E924941112C6F4000531F03 /* Debug Dev */,
 				EB9E6C6610B6A8F900DE563C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
