@@ -629,12 +629,12 @@
 				BED62FDA0F882FE3009923D8 /* TTTableViewDelegate.m */,
 				6E924A94112C771900531F03 /* TTTableViewVarHeightDelegate.h */,
 				6E924A91112C770500531F03 /* TTTableViewVarHeightDelegate.m */,
+				6E924AA6112C77F200531F03 /* TTTableViewGroupedVarHeightDelegate.h */,
+				6E924AA3112C77E800531F03 /* TTTableViewGroupedVarHeightDelegate.m */,
 				6E924A9A112C778600531F03 /* TTTableViewPlainDelegate.h */,
 				6E924A97112C776800531F03 /* TTTableViewPlainDelegate.m */,
 				6E924AA0112C77C100531F03 /* TTTableViewPlainVarHeightDelegate.h */,
 				6E924A9D112C77B100531F03 /* TTTableViewPlainVarHeightDelegate.m */,
-				6E924AA6112C77F200531F03 /* TTTableViewGroupedVarHeightDelegate.h */,
-				6E924AA3112C77E800531F03 /* TTTableViewGroupedVarHeightDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";

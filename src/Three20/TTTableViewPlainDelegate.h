@@ -16,7 +16,9 @@
 
 #import "Three20/TTTableViewDelegate.h"
 
-
+/**
+ * The most basic delegate. No size calculations are made.
+ */
 @interface TTTableViewPlainDelegate : TTTableViewDelegate {
 
 }

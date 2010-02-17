@@ -16,7 +16,9 @@
 
 #import "Three20/TTTableViewDelegate.h"
 
-
+/**
+ * A table view delegate that queries the cell items for their height.
+ */
 @interface TTTableViewVarHeightDelegate : TTTableViewDelegate {
 
 }

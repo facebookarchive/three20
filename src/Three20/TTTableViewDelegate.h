@@ -27,10 +27,15 @@
  * scrolling the table.  TTTableViewController automatically assigns an instance of this
  * delegate class to your table, but you can override the createDelegate method there to provide
  * a delegate implementation of your own.
+ *
+ * If you would like to change the background color of the section headers, specify the
+ * tableHeaderTintColor property in your global style sheet.
+ *
+ * This is also where the table view menu is hidden if the user starts scrolling.
  */
 @interface TTTableViewDelegate : NSObject <UITableViewDelegate> {
-  TTTableViewController* _controller;
-  NSMutableDictionary* _headers;
+  TTTableViewController*  _controller;
+  NSMutableDictionary*    _headers;
 }
 
 - (id)initWithController:(TTTableViewController*)controller;

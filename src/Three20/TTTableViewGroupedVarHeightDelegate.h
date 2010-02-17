@@ -16,7 +16,9 @@
 
 #import "Three20/TTTableViewVarHeightDelegate.h"
 
-
+/**
+ * A table view delegate for grouped table views that provides the header size.
+ */
 @interface TTTableViewGroupedVarHeightDelegate : TTTableViewVarHeightDelegate {
 
 }
