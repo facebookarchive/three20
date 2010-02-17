@@ -661,6 +661,34 @@
   return [UIColor colorWithWhite:0.85 alpha:1];
 }
 
+- (UIFont*)tableRefreshHeaderLastUpdatedFont {
+  return [UIFont systemFontOfSize:12.0f];
+}
+
+- (UIFont*)tableRefreshHeaderStatusFont {
+  return [UIFont boldSystemFontOfSize:13.0f];
+}
+
+- (UIColor*)tableRefreshHeaderBackgroundColor {
+  return RGBCOLOR(226, 231, 237);
+}
+
+- (UIColor*)tableRefreshHeaderTextColor {
+  return RGBCOLOR(87, 108, 137);
+}
+
+- (UIColor*)tableRefreshHeaderTextShadowColor {
+  return [UIColor colorWithWhite:0.9 alpha:1];
+}
+
+- (CGSize)tableRefreshHeaderTextShadowOffset {
+  return CGSizeMake(0.0f, 1.0f);
+}
+
+- (UIImage*)tableRefreshHeaderArrowImage {
+  return TTIMAGE(@"bundle://Three20.bundle/images/blueArrow.png");
+}
+
 - (UIColor*)tabBarTintColor {
   return RGBCOLOR(119, 140, 168);
 }
