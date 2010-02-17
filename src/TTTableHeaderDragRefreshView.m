@@ -44,7 +44,9 @@
   if(self = [super initWithFrame:frame]) {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
-    _lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _lastUpdatedLabel = [[UILabel alloc]
+                         initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f,
+                                                  frame.size.width, 20.0f)];
     _lastUpdatedLabel.autoresizingMask =
       UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
     _lastUpdatedLabel.font            = TTSTYLEVAR(tableRefreshHeaderLastUpdatedFont);
@@ -55,7 +57,9 @@
     _lastUpdatedLabel.textAlignment   = UITextAlignmentCenter;
     [self addSubview:_lastUpdatedLabel];
     
-    _statusLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _statusLabel = [[UILabel alloc]
+                    initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f,
+                                             frame.size.width, 20.0f )];
     _statusLabel.autoresizingMask =
       UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
     _statusLabel.font             = TTSTYLEVAR(tableRefreshHeaderStatusFont);
@@ -67,21 +71,21 @@
     [self setStatus:TTTableHeaderDragRefreshPullToReload];
     [self addSubview:_statusLabel];
     
-    _arrowImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _arrowImage = [[UIImageView alloc]
+                   initWithFrame:CGRectMake(25.0f, frame.size.height - 65.0f,
+                                            30.0f, 55.0f)];
     _arrowImage.contentMode       = UIViewContentModeScaleAspectFit;
     _arrowImage.image             = TTSTYLEVAR(tableRefreshHeaderArrowImage);
     [_arrowImage layer].transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
-    [_arrowImage sizeToFit];
     [self addSubview:_arrowImage];
     
     _activityView = [[UIActivityIndicatorView alloc]
                      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _activityView.frame = CGRectMake( 25.0f, frame.size.height - 38.0f, 20.0f, 20.0f );
     _activityView.hidesWhenStopped  = YES;
-    [_activityView sizeToFit];
     [self addSubview:_activityView];
     
     _isFlipped = NO;
-    
   }
   return self;
 }
