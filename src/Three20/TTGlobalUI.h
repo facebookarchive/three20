@@ -163,6 +163,12 @@ extern const CGFloat ttkDefaultLandscapeKeyboardHeight;
 extern const CGFloat ttkRounded;
 
 /**
+ * The space between the edge of the screen and the cell edge in grouped table views.
+ * @const 10 pixels
+ */
+extern const CGFloat ttkGroupedTableCellInset;
+
+/**
  * Deprecated macros for common constants.
  */
 #define TT_ROW_HEIGHT                 ttkDefaultRowHeight

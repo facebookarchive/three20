@@ -31,6 +31,8 @@ const CGFloat ttkDefaultLandscapeKeyboardHeight = 160;
 
 const CGFloat ttkRounded = -1;
 
+const CGFloat ttkGroupedTableCellInset = 10.0;
+
 const CGFloat ttkDefaultTransitionDuration      = 0.3;
 const CGFloat ttkDefaultFastTransitionDuration  = 0.2;
 const CGFloat ttkDefaultFlipTransitionDuration  = 0.7;
