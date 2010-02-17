@@ -24,7 +24,7 @@
   [super loadView];
   self.view.backgroundColor = [UIColor redColor];
     
-  youTubeView = [[TTYouTubeView alloc] initWithURL:@"http://www.youtube.com/watch?v=g8thp78oXsg"];
+  youTubeView = [[TTYouTubeView alloc] initWithURLPath:@"http://www.youtube.com/watch?v=g8thp78oXsg"];
   youTubeView.center = CGPointMake(self.view.width/2, 150);
   [self.view addSubview:youTubeView];
   

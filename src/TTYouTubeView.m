@@ -16,7 +16,6 @@
 
 #import "Three20/TTYouTubeView.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,13 +44,23 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTYouTubeView
 
-@synthesize URL = _URL;
+@synthesize urlPath = _urlPath;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated.
+// Remove by March 17, 2010.
 - (id)initWithURL:(NSString*)URL {
+  if (self = [self initWithURLPath:URL]) {
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithURLPath:(NSString*)urlPath {
   if (self = [self initWithFrame:CGRectMake(0, 0, kDefaultWidth, kDefaultHeight)]) {
-    self.URL = URL;
+    self.urlPath = urlPath;
   }
   return self;
 }
@@ -59,7 +68,7 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_urlPath);
   [super dealloc];
 }
 
@@ -78,13 +87,14 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setURL:(NSString*)URL {
-  [_URL release];
-  _URL = [URL copy];
+- (void)setUrlPath:(NSString*)urlPath {
+  NSString* newUrlPath = [urlPath copy];
+  [_urlPath release];
+  _urlPath = newUrlPath;
 
-  if (_URL) {
+  if (nil != _urlPath) {
     NSString* html = [NSString stringWithFormat:kEmbedHTML, self.width, self.width,
-                               self.height, _URL, _URL, self.width, self.height];
+                               self.height, _urlPath, _urlPath, self.width, self.height];
     [self loadHTMLString:html baseURL:nil];
   } else {
     [self loadHTMLString:@"&nbsp;" baseURL:nil];
