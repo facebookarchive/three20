@@ -14,18 +14,16 @@
 // limitations under the License.
 //
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface TTTwitterSearchFeedModel : TTURLRequestModel {
-  NSString* _searchQuery;
-
-  NSArray*  _tweets;
+@interface TTTwitterTweet : NSObject {
+  NSDate*   _created;
+  NSNumber* _tweetId;
+  NSString* _text;
+  NSString* _source;
 }
 
-@property (nonatomic, copy)     NSString* searchQuery;
-@property (nonatomic, readonly) NSArray*  tweets;
-
-- (id)initWithSearchQuery:(NSString*)searchQuery;
+@property (nonatomic, retain) NSDate*   created;
+@property (nonatomic, retain) NSNumber* tweetId;
+@property (nonatomic, copy)   NSString* text;
+@property (nonatomic, copy)   NSString* source;
 
 @end

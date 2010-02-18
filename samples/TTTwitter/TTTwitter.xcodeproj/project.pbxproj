@@ -16,6 +16,7 @@
 		6E1059AA112CCF8400549F42 /* TTTwitterSearchFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1059A9112CCF8400549F42 /* TTTwitterSearchFeedViewController.m */; };
 		6E1059AF112CCFAF00549F42 /* TTTwitterSearchFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1059AE112CCFAF00549F42 /* TTTwitterSearchFeedModel.m */; };
 		6E1059B3112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1059B2112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m */; };
+		6E105AD2112CDBCC00549F42 /* TTTwitterTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E105AD1112CDBCC00549F42 /* TTTwitterTweet.m */; };
 		EB383B6110BBF6200000B2D2 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383B5F10BBF6180000B2D2 /* libThree20.a */; };
 		EB383B6510BBF62B0000B2D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */; };
 		EB383B6D10BBF6360000B2D2 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EB383B6C10BBF6360000B2D2 /* Three20.bundle */; };
@@ -26,7 +27,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = EB383B5710BBF6180000B2D2 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		EB383B5E10BBF6180000B2D2 /* PBXContainerItemProxy */ = {
@@ -62,6 +63,8 @@
 		6E1059AE112CCFAF00549F42 /* TTTwitterSearchFeedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterSearchFeedModel.m; sourceTree = "<group>"; };
 		6E1059B1112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTwitterSearchFeedDataSource.h; sourceTree = "<group>"; };
 		6E1059B2112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterSearchFeedDataSource.m; sourceTree = "<group>"; };
+		6E105AD0112CDBCC00549F42 /* TTTwitterTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTwitterTweet.h; sourceTree = "<group>"; };
+		6E105AD1112CDBCC00549F42 /* TTTwitterTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterTweet.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TTTwitter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTTwitter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		EB383B5710BBF6180000B2D2 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -168,6 +171,7 @@
 		6E1059AC112CCF9200549F42 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6E105ACF112CDBBB00549F42 /* XML Objects */,
 				6E1059AD112CCFAF00549F42 /* TTTwitterSearchFeedModel.h */,
 				6E1059AE112CCFAF00549F42 /* TTTwitterSearchFeedModel.m */,
 			);
@@ -181,6 +185,15 @@
 				6E1059B2112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m */,
 			);
 			name = "Data Source";
+			sourceTree = "<group>";
+		};
+		6E105ACF112CDBBB00549F42 /* XML Objects */ = {
+			isa = PBXGroup;
+			children = (
+				6E105AD0112CDBCC00549F42 /* TTTwitterTweet.h */,
+				6E105AD1112CDBCC00549F42 /* TTTwitterTweet.m */,
+			);
+			name = "XML Objects";
 			sourceTree = "<group>";
 		};
 		EB383B5810BBF6180000B2D2 /* Products */ = {
@@ -275,6 +288,7 @@
 				6E1059AA112CCF8400549F42 /* TTTwitterSearchFeedViewController.m in Sources */,
 				6E1059AF112CCFAF00549F42 /* TTTwitterSearchFeedModel.m in Sources */,
 				6E1059B3112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m in Sources */,
+				6E105AD2112CDBCC00549F42 /* TTTwitterTweet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
