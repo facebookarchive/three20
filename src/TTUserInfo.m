@@ -28,31 +28,53 @@
 @synthesize strongRef = _strongRef;
 @synthesize weakRef   = _weakRef;
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated.
+// Remove by March 17, 2010.
 + (id)topic:(NSString*)topic strong:(id)strong weak:(id)weak {
-  return [[[TTUserInfo alloc] initWithTopic:topic strong:strong weak:weak] autorelease];
+  return [self topic:topic strong:strong weak:weak];
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)topic:(NSString*)topic {
-  return [[[TTUserInfo alloc] initWithTopic:topic strong:nil weak:nil] autorelease];
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated.
+// Remove by March 17, 2010.
 + (id)weak:(id)weak {
-  return [[[TTUserInfo alloc] initWithTopic:nil strong:nil weak:weak] autorelease];
+  return [self weak:weak];
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTopic:(NSString*)topic strong:(id)strong weak:(id)weak {
+  self = [self initWithTopic:topic strong:strong weak:weak];
+  return self;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)topic:(NSString*)topic strongRef:(id)strongRef weakRef:(id)weakRef {
+  return [[[TTUserInfo alloc] initWithTopic:topic strongRef:strongRef weakRef:weakRef] autorelease];
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)topic:(NSString*)topic {
+  return [[[TTUserInfo alloc] initWithTopic:topic strongRef:nil weakRef:nil] autorelease];
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)weakRef:(id)weakRef {
+  return [[[TTUserInfo alloc] initWithTopic:nil strongRef:nil weakRef:weakRef] autorelease];
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithTopic:(NSString*)topic strongRef:(id)strongRef weakRef:(id)weakRef {
   if (self = [super init]) {
     self.topic      = topic;
-    self.strongRef  = strong;
-    self.weakRef    = weak;
+    self.strongRef  = strongRef;
+    self.weakRef    = weakRef;
   }
   return self;
 }

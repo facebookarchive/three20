@@ -382,7 +382,7 @@ static const NSInteger kDefaultColumnCount = 3;
     
     _editHoldTimer = [NSTimer scheduledTimerWithTimeInterval:kEditHoldTimeInterval
                               target:self selector:@selector(editHoldTimer:)
-                              userInfo:[TTUserInfo topic:nil strong:event weak:button]
+                              userInfo:[TTUserInfo topic:nil strongRef:event weakRef:button]
                               repeats:NO];
   }
 }
