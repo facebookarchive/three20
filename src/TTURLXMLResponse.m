@@ -16,9 +16,10 @@
 
 #import "Three20/TTURLXMLResponse.h"
 
-#import "Three20/TTGlobalCore.h"
-
 #import "Three20/TTXMLParser.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTDebugFlags.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,9 +54,9 @@
   TTDASSERT(nil == _rootObject);
 
   if ([data isKindOfClass:[NSData class]]) {
-    //NSLog(@"Data: %@", [[[NSString alloc]
-    //  initWithData: data
-    //      encoding: NSUTF8StringEncoding] autorelease]);
+    TTDCONDITIONLOG(TTDFLAG_XMLPARSER, @"Data: %@", [[[NSString alloc]
+      initWithData: data
+          encoding: NSUTF8StringEncoding] autorelease]);
     TTXMLParser* parser = [[TTXMLParser alloc] initWithData:data];
     parser.delegate = self;
     parser.treatDuplicateKeysAsArrayItems = self.isRssFeed;
