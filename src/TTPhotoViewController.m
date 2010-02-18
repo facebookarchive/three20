@@ -19,6 +19,7 @@
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalUI.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 #import "Three20/TTURLCache.h"
 #import "Three20/TTPhotoView.h"
@@ -395,6 +396,10 @@ static const NSInteger kActivityLabelTag = 96;
   _toolbar = [[UIToolbar alloc] initWithFrame:
     CGRectMake(0, screenFrame.size.height - TT_ROW_HEIGHT,
                screenFrame.size.width, TT_ROW_HEIGHT)];
+  if (self.navigationBarStyle == UIBarStyleDefault) {
+    _toolbar.tintColor = TTSTYLEVAR(toolbarTintColor);
+  }
+
   _toolbar.barStyle = self.navigationBarStyle;
   _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
   _toolbar.items = [NSArray arrayWithObjects:
