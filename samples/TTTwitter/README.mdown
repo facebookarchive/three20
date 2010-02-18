@@ -35,31 +35,26 @@ Architecture
 ------------
 
 Atlas.h/m - This is where all of the app's navigator routings will go. By placing the URL paths in
-            a central location, we can easily change the URL routings without fear of breaking the
-            app's navigation hierarchy.
+a central location, we can easily change the URL routings without fear of breaking the app's
+navigation hierarchy.
 
 AppDelegate.h/m - This is a simple shell for initializing the TTNavigator routes. Nothing crazy
-                  going on here.
+going on here.
 
-TTTwitterSearchFeedViewController.h/m - This is where the magic happens in this app.
-                                        We do two important things here. First, we create the
-                                        data source. Second, we create a
-                                        TTTableViewDragRefreshDelegate. The second step is what
-                                        enables the drag-to-refresh header.
-                                        Simple, eh?
+TTTwitterSearchFeedViewController.h/m - This is where the magic happens in this app. We do two
+important things here. First, we create the data source. Second, we create a
+TTTableViewDragRefreshDelegate. The second step is what enables the drag-to-refresh header.
+Simple, eh?
 
 TTTwitterSearchFeedModel.h/m - The model is what loads the data. In this case we're using a
-                               TTURLRequestModel, which is a model that loads its data from a URL
-                               request. Before we fire off the request, we also attach the response
-                               object, a TTURLXMLResponse, which receives the resulting data and
-                               processes it. The Three20 XML parser is incredibly leightweight and
-                               simply transforms the XML text into NSObjects.
-                               Upon receiving the response, we then enumerate the feed items and
-                               create tweets from the objects.
+TTURLRequestModel, which is a model that loads its data from a URL request. Before we fire off the
+request, we also attach the response object, a TTURLXMLResponse, which receives the resulting data
+and processes it. The Three20 XML parser is incredibly leightweight and simply transforms the XML
+text into NSObjects. Upon receiving the response, we then enumerate the feed items and create
+tweets from the objects.
 
 TTTwitterSearchFeedDataSource.h/m - The data source binds the controller to the model. We create
-                                    the model here as well as defining the text that is displayed
-                                    when errors occur, or when there aren't any results from the
-                                    model. When the model completes loading, we take the resulting
-                                    data and create the table items.
+the model here as well as defining the text that is displayed when errors occur, or when there
+aren't any results from the model. When the model completes loading, we take the resulting data and
+create the table items.
 
