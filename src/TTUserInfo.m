@@ -32,7 +32,7 @@
 // Deprecated.
 // Remove by March 17, 2010.
 + (id)topic:(NSString*)topic strong:(id)strong weak:(id)weak {
-  return [self topic:topic strong:strong weak:weak];
+  return [self topic:topic strongRef:strong weakRef:weak];
 }
 
 
@@ -40,7 +40,7 @@
 // Deprecated.
 // Remove by March 17, 2010.
 + (id)weak:(id)weak {
-  return [self weak:weak];
+  return [self weakRef:weak];
 }
 
 
