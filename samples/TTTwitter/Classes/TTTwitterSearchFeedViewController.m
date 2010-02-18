@@ -29,6 +29,7 @@
 - (id) init {
   if (self = [super init]) {
     self.title = @"Twitter feed";
+    self.variableHeightRows = YES;
   }
 
   return self;
@@ -39,6 +40,12 @@
 - (void)createModel {
   self.dataSource = [[[TTTwitterSearchFeedDataSource alloc]
                       initWithSearchQuery:@"three20"] autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id<UITableViewDelegate>)createDelegate {
+  return [[[TTTableViewDragRefreshDelegate alloc] initWithController:self] autorelease];
 }
 
 

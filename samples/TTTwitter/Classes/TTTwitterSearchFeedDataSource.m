@@ -17,6 +17,7 @@
 #import "TTTwitterSearchFeedDataSource.h"
 
 #import "TTTwitterSearchFeedModel.h"
+#import "TTTwitterTweet.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,6 +53,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)tableViewDidLoadModel:(UITableView*)tableView {
   NSMutableArray* items = [[NSMutableArray alloc] init];
+
+  for (TTTwitterTweet* tweet in _searchFeedModel.tweets) {
+    //TTDPRINT(@"Response text: %@", response.text);
+    TTStyledText* styledText = [TTStyledText textFromXHTML:
+                                [NSString stringWithFormat:@"%@\n<b>%@</b>",
+                                 [tweet.text stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"],
+                                 [tweet.created formatRelativeTime]]
+                                                lineBreaks:YES URLs:YES];
+    TTDASSERT(nil != styledText);
+    [items addObject:[TTTableStyledTextItem itemWithText:styledText]];
+  }
+  
   self.items = items;
   TT_RELEASE_SAFELY(items);
 }
