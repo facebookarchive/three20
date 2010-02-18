@@ -291,7 +291,7 @@ typedef enum {
                   transition: (UIViewAnimationTransition)transition
                    withDelay: (BOOL)withDelay __TTDEPRECATED_METHOD;
 
-/** 
+/**
  * Opens a sequence of URLs.
  *
  * @return The view controller of the last opened URL.
@@ -339,12 +339,12 @@ typedef enum {
  */
 - (void)cancelDelay;
 
-/** 
+/**
  * Persists all view controllers to user defaults.
  */
 - (void)persistViewControllers;
 
-/** 
+/**
  * Restores all view controllers from user defaults and returns the last one.
  */
 - (UIViewController*)restoreViewControllers;
@@ -357,7 +357,7 @@ typedef enum {
  */
 - (void)persistController:(UIViewController*)controller path:(NSMutableArray*)path;
 
-/** 
+/**
  * Removes all view controllers from the window and releases them.
  */
 - (void)removeAllViewControllers;
@@ -372,7 +372,7 @@ typedef enum {
  */
 - (id)objectForPath:(NSString*)path;
 
-/** 
+/**
  * Erases all data stored in user defaults.
  */
 - (void)resetDefaults;
@@ -392,8 +392,18 @@ typedef enum {
 
 /**
  * Asks if the URL should be opened and allows the delegate to prevent it.
+ * See -navigator:URLToOpen: for a superset of functionality
  */
 - (BOOL)navigator:(TTNavigator*)navigator shouldOpenURL:(NSURL*)URL;
+
+/**
+ * Asks if the URL should be opened and allows the delegate to return a different URL to open
+ * instead. A return value of nil indicates the URL should not be opened.
+ *
+ * This is a superset of the functionality of -navigator:shouldOpenURL:. Returning YES from that
+ * method is equivalent to returning URL from this method.
+ */
+- (NSURL*)navigator:(TTNavigator*)navigator URLToOpen:(NSURL*)URL;
 
 /**
  * The URL is about to be opened in a controller.
@@ -406,7 +416,7 @@ typedef enum {
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// global 
+// global
 
 /**
  * Shortcut for calling [[TTNavigator navigator] openURL:]
