@@ -16,6 +16,8 @@
 
 #import "Three20/TTTableHeaderDragRefreshView.h"
 
+#import "Three20/TTGlobalCoreLocale.h"
+
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTURLCache.h"
 
@@ -133,14 +135,14 @@
     [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     _lastUpdatedLabel.text = [NSString stringWithFormat:
-                              NSLocalizedString(@"Last updated: %@",
+                              TTLocalizedString(@"Last updated: %@",
                                                 @"The last time the table view was updated."),
                               [formatter stringFromDate:_lastUpdatedDate]];
     [formatter release];
     
   } else {
     _lastUpdatedDate = nil;
-    _lastUpdatedLabel.text = NSLocalizedString(@"Last updated: never",
+    _lastUpdatedLabel.text = TTLocalizedString(@"Last updated: never",
                                                @"The table view has never been updated");
   }
 }
@@ -156,19 +158,19 @@
 - (void)setStatus:(TTTableHeaderDragRefreshStatus)status {
   switch (status) {
     case TTTableHeaderDragRefreshReleaseToReload: {
-      _statusLabel.text = NSLocalizedString(@"Release to update...",
+      _statusLabel.text = TTLocalizedString(@"Release to update...",
                                             @"Release the table view to update the contents.");
       break;
     }
       
     case TTTableHeaderDragRefreshPullToReload: {
-      _statusLabel.text = NSLocalizedString(@"Pull down to update...",
+      _statusLabel.text = TTLocalizedString(@"Pull down to update...",
                                             @"Drag the table view down to update the contents.");
       break;
     }
       
     case TTTableHeaderDragRefreshLoadingStatus: {
-      _statusLabel.text = NSLocalizedString(@"Updating...",
+      _statusLabel.text = TTLocalizedString(@"Updating...",
                                             @"Updating the contents of a table view.");
       break;
     }
