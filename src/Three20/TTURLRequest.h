@@ -69,6 +69,7 @@
  *
  * @example @"POST"
  * @example @"GET"
+ * @example @"PUT"
  * @default nil (equivalent to @"GET")
  */
 @property(nonatomic,copy) NSString* httpMethod;
@@ -84,20 +85,21 @@
 /**
  * The HTTP body to send with the request.
  *
- * If provided, will always be used. Please consider this when using POST methods: if httpBody is
- * provided, then the POST data generated from the parameters property will not be used.
+ * If provided, will always be used. Please consider this when using POST/PUT methods: if
+ * httpBody is provided, then the POST/PUT data generated from the parameters property will not
+ * be used.
  */
 @property(nonatomic,retain) NSData* httpBody;
 
 /**
  * The content type of the data in the request.
  *
- * If not provided and httpMethod is POST, then contentType is multipart/form-data.
+ * If not provided and httpMethod is POST/PUT, then contentType is multipart/form-data.
  */
 @property(nonatomic,copy) NSString* contentType;
 
 /**
- * Parameters to use for an HTTP post.
+ * Parameters to use for an HTTP POST/PUT.
  */
 @property(nonatomic,readonly) NSMutableDictionary* parameters;
 
@@ -120,7 +122,7 @@
 
 /**
  * If no cache key is provided, a unique key is generated from the request data. If the request
- * is a POST request, then the POST parameters are also used to generate the cache key.
+ * is a POST/PUT request, then the POST/PUT parameters are also used to generate the cache key.
  *
  * By setting the cacheKey, you may override the default cache key generator with your own.
  */
