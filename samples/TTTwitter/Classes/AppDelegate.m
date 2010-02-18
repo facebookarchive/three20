@@ -26,7 +26,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
   TTNavigator* navigator = [TTNavigator navigator];
-  navigator.persistenceMode = TTNavigatorPersistenceModeAll;
+  navigator.persistenceMode = TTNavigatorPersistenceModeNone;
 
   TTURLMap* map = navigator.URLMap;
 
