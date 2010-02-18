@@ -16,11 +16,65 @@
 
 #import "TTTwitterSearchFeedModel.h"
 
+static NSString* kTwitterSearchFeedFormat = @"http://search.twitter.com/search.atom?q=%@";
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTTwitterSearchFeedModel
+
+@synthesize searchQuery = _searchQuery;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithSearchQuery:(NSString*)searchQuery {
+  if (self = [super init]) {
+    self.searchQuery = searchQuery;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) dealloc {
+  TT_RELEASE_SAFELY(_searchQuery);
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
+  if (!self.isLoading && TTIsStringWithAnyText(_searchQuery)) {
+    NSString* url = [NSString stringWithFormat:kTwitterSearchFeedFormat, _searchQuery];
+    
+    TTURLRequest* request = [TTURLRequest
+                             requestWithURL: url
+                             delegate: self];
+    
+    request.cachePolicy = cachePolicy;
+    request.cacheExpirationAge = TT_CACHE_EXPIRATION_AGE_NEVER;
+    
+    id<TTURLResponse> response = [[TTURLDataResponse alloc] init];
+    request.response = response;
+    TT_RELEASE_SAFELY(response);
+    
+    [request send];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)requestDidFinishLoad:(TTURLRequest*)request {
+  TTURLDataResponse* response = request.response;
+
+  NSString* text = [[NSString alloc] initWithData:response.data encoding:NSUTF8StringEncoding];
+  TTDPRINT(@"Text: %@", text);
+
+  [super requestDidFinishLoad:request];
+}
+
 
 @end
 
