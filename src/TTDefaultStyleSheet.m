@@ -67,7 +67,7 @@
 - (TTStyle*)toolbarButton:(UIControlState)state {
   return [self toolbarButtonForState:state
                shape:[TTRoundedRectangleShape shapeWithRadius:4.5]
-               tintColor:TTSTYLEVAR(navigationBarTintColor)
+               tintColor:TTSTYLEVAR(toolbarTintColor)
                font:nil];
 }
 
@@ -75,7 +75,7 @@
   return
     [self toolbarButtonForState:state
           shape:[TTRoundedLeftArrowShape shapeWithRadius:4.5]
-          tintColor:TTSTYLEVAR(navigationBarTintColor)
+          tintColor:TTSTYLEVAR(toolbarTintColor)
           font:nil];
 }
 
@@ -83,7 +83,7 @@
   return
     [self toolbarButtonForState:state
           shape:[TTRoundedRightArrowShape shapeWithRadius:4.5]
-          tintColor:TTSTYLEVAR(navigationBarTintColor)
+          tintColor:TTSTYLEVAR(toolbarTintColor)
           font:nil];
 }
 
@@ -91,7 +91,7 @@
   return
     [self toolbarButtonForState:state
           shape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED]
-          tintColor:TTSTYLEVAR(navigationBarTintColor)
+          tintColor:TTSTYLEVAR(toolbarTintColor)
           font:nil];
 }
 

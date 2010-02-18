@@ -20,6 +20,7 @@
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
 #import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 #import "Three20/TTStyleSheet.h"
 #import "Three20/TTURLCache.h"
@@ -161,7 +162,7 @@
   _toolbar = [[UIToolbar alloc] initWithFrame:
     CGRectMake(0, self.view.height - TTToolbarHeight(), self.view.width, TTToolbarHeight())];
   _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-  _toolbar.tintColor = TTSTYLEVAR(navigationBarTintColor);
+  _toolbar.tintColor = TTSTYLEVAR(toolbarTintColor);
   _toolbar.items = [NSArray arrayWithObjects:
     _backButton, space, _forwardButton, space, _refreshButton, space, actionButton, nil];
   [self.view addSubview:_toolbar];
