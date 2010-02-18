@@ -51,6 +51,20 @@
 
   TTXMLParser* parser = [[TTXMLParser alloc] initWithData:xmlData];
   [parser parse];
+  STAssertTrue([parser.rootObject isKindOfClass:[NSDictionary class]],
+               @"Root object should be an NSDictionary");
+
+  NSDictionary* rootObject = parser.rootObject;
+  STAssertTrue([[rootObject nameForXMLNode] isEqualToString:@"issues"],
+               @"Root object name should be 'issues'");
+  STAssertTrue([[rootObject typeForXMLNode] isEqualToString:@"array"],
+               @"Root object type should be 'array'");
+  STAssertTrue([[rootObject objectForXMLNode] isKindOfClass:[NSArray class]],
+               @"Root object type should be 'array'");
+
+  NSArray* issues = [rootObject objectForXMLNode];
+  STAssertEquals((NSUInteger)50, [issues count], @"There should be 50 issues in the array");
+
   TT_RELEASE_SAFELY(parser);
 }
 
