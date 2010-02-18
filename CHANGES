@@ -1,3 +1,30 @@
+Changes since February 1, 2010
+
+- [NEW] TTTwitter sample app. See the README.mdown file for in-depth details.
+
+- [NEW] TTXMLParser - A barebones XML parser that takes an XML string and creates an NSObject.
+        Options include support for RSS feeds. See the new TTTwitter sample app for an example.
+
+- [NEW] TTTableHeaderDragRefreshView, TTTableViewDragRefreshDelegate. These two new objects
+        together implement the "drag-to-refresh" table header seen in other apps on the app
+        store. Thanks to uprise78 for this fix.
+
+- [NEW] Add support for PUT HTTP methods. Thanks to dima.
+
+- [FIXED] github#71 navigationBarTintColor and toolbarTintColor issues for TTDefaultSheet
+          and TTWebController.
+
+- [FIXED] github#148 Add _toolbar.tintColor to TTPhotoViewController.
+
+- [DOCUMENTATION] TTURLRequestDelegate, TTURLRequest, TTURLRequestQueue, TTWebController,
+                  TTYouTubeView, TTTableViewDelegate*.
+
+- [BUILD] Add a prefix header to Debug and Release builds.
+
+- [BUILD] Add a new build mode "Debug Dev" for use when hacking on Three20.
+
+- [BUILD] Reduced include scope of TTDebugFlags.h for faster rebuild times when debugging.
+
 Changes since January 22, 2010
 
 - [NEW] TTURLAction object for TTNavigator.
