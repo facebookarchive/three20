@@ -46,7 +46,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTopic:(NSString*)topic strong:(id)strong weak:(id)weak {
-  self = [self initWithTopic:topic strong:strong weak:weak];
+  self = [self initWithTopic:topic strongRef:strong weakRef:weak];
   return self;
 }
 
