@@ -20,6 +20,20 @@
 @protocol TTTableViewDataSource, TTMessageControllerDelegate;
 @class TTPickerTextField, TTActivityLabel;
 
+/**
+ * A view controller for composing email like messages, which is visually
+ * similar to Apple's in-app mail composer.
+ *
+ * This class was originally implemented before iPhone OS 3.0, which
+ * introduced the MFMailComposeViewController. It's original purpose
+ * was to fill that gap in the SDK. If you want to allow users to send
+ * an email via their existing Mail.app accounts, you should use
+ * MFMailComposeViewController.
+ *
+ * You may find this class useful if you need to present a visually similar
+ * view, but handle the delivery of the message yourself. This class is also
+ * useful when you want to customize the fields presented to the user.
+ */
 @interface TTMessageController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
   id<TTMessageControllerDelegate> _delegate;
   id<TTTableViewDataSource> _dataSource;
@@ -94,6 +108,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * A protocol for the object that implements the backend logic for the
+ * TTMessageController. This object is responsible for delivering the message
+ * that was composed in the view controller when the user chooses the send option.
+ * It receive a message when the user cancels the creation of a message or when
+ * they press the plus icon in a recipient field.
+ */
 @protocol TTMessageControllerDelegate <NSObject>
 
 @optional
@@ -108,6 +129,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * The base class for all fields used the the TTMessageController.
+ */
 @interface TTMessageField : NSObject {
   NSString* _title;
   BOOL _required;
@@ -120,6 +144,11 @@
 
 @end
 
+/**
+ * A field for holding recipients, typically found in an address book.
+ * Distinct values are rendered as individual cells. Once a cell has been
+ * inserted, it is deleted as a whole.
+ */
 @interface TTMessageRecipientField : TTMessageField {
   NSArray* _recipients;
 } 
@@ -128,6 +157,9 @@
 
 @end
 
+/**
+ * A field for holding variable free form text.
+ */
 @interface TTMessageTextField : TTMessageField {
   NSString* _text;
 } 
@@ -136,6 +168,11 @@
 
 @end
 
+/**
+ * A field for the subject of the message. This field's value is used to set
+ * the title in the navigation bar. You should only have one of these fields
+ * in your fields array.
+ */
 @interface TTMessageSubjectField : TTMessageTextField
 
 @end
