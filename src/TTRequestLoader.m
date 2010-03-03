@@ -210,8 +210,9 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   TTNetworkRequestStopped();
-  
-  if (_response.statusCode == 200) {
+
+  // We need to accept valid HTTP status codes, not only 200.
+  if (_response.statusCode >= 200 && _response.statusCode < 300) {
     [_queue performSelector:@selector(loader:didLoadResponse:data:) withObject:self
                  withObject:_response withObject:_responseData];
   } else {
