@@ -47,26 +47,112 @@
   BOOL _isModified;
 }
 
+/**
+ * The delegate that will receive messages from the TTMessageControllerDelegate
+ * protocol.
+ */
 @property(nonatomic,assign) id<TTMessageControllerDelegate> delegate;
+
+/**
+ * The datasource used to autocomplete TTMessageRecipientFields. This class is
+ * also responsible for determining how cells representing recipients are
+ * labeled.
+ */
 @property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
+
+/**
+ * An array of TTMessageField instances representing the editable fields. These
+ * fields are rendered in order using appropriate views for each field type.
+ */
 @property(nonatomic,retain) NSArray* fields;
+
+/**
+ * A convenience property for editing the text value of the
+ * TTMessageSubjectField. If no TTMessageSubjectField is found in the fields
+ * array, nil will be returned from the getter and the setter will be a no-op.
+ */
 @property(nonatomic,retain) NSString* subject;
+
+/**
+ * The body of the message. The body is not required for the user to send a
+ * message.
+ */
 @property(nonatomic,retain) NSString* body;
+
+/**
+ * Controls whether a contact add button is shown in the views for
+ * TTMessageRecipientField instances.
+ */
 @property(nonatomic) BOOL showsRecipientPicker;
+
+/**
+ * Indicates if this message has been modified since it was originally
+ * shown. If the message has been modified, the user will be asked for
+ * confirmation before their cancel request is enacted.
+ */
 @property(nonatomic,readonly) BOOL isModified;
 
+/**
+ * Initializes the class with an array of recipients. These recipients will
+ * be pre-filled in the TTMessageRecipientField's view.
+ *
+ * If a non-empty recipients array is provided, TTMessageController expects
+ * the first field to be an instance of TTMessageRecipientField. You may pass
+ * nil if you do not wish to supply initial recipients.
+ */
 - (id)initWithRecipients:(NSArray*)recipients;
 
+/**
+ * Adds the supplied recipient to the field at the index provided. That
+ * recipient will be rendered as a cell within that field's view. The cell's
+ * label will be determined by asking the datasource for a string label for
+ * the recipient object provided.
+ *
+ * This method is a no-op if the datasource fails to provide a label for the
+ * cell, or if the fieldIndex provided does not refer to a
+ * TTPickerTextField.
+ */
 - (void)addRecipient:(id)recipient forFieldAtIndex:(NSUInteger)fieldIndex;
 
+/**
+ * Returns the text value of the field at the supplied index. Passing
+ * fields.count returns the body contents.
+ *
+ * Whitespace has been trimmed from the returned value.
+ */
 - (NSString*)textForFieldAtIndex:(NSUInteger)fieldIndex;
+
+/**
+ * Sets the text value for the field at fieldIndex. Passing fields.count
+ * sets the body text.
+ */
 - (void)setText:(NSString*)text forFieldAtIndex:(NSUInteger)fieldIndex;
 
+/**
+ * Returns true if the field at the supplied index is not empty or has
+ * only whitespace. Passing fields.count returns true if the body has any
+ * text, whitespace included.
+ */
 - (BOOL)fieldHasValueAtIndex:(NSUInteger)fieldIndex;
+
+/**
+ * Returns the UIView instance representing the field at fieldIndex. Passing
+ * fields.count returns the view representing the body contents.
+ */
 - (UIView*)viewForFieldAtIndex:(NSUInteger)fieldIndex;
 
+/**
+ * Causes a view used to indicate message activity to be shown or dismissed
+ * depending on the value of show. This view obscures the editable field views.
+ * It is usually shown while the message is being sent.
+ */
 - (void)showActivityView:(BOOL)show;
 
+/**
+ * Returns the title for the activity view that is shown by showActivityView.
+ * By default, the title is "Sending...", but subclasses may override this
+ * method to show a different title. The default title has been localized.
+ */
 - (NSString*)titleForSending;
 
 /**
@@ -85,22 +171,28 @@
 - (void)confirmCancellation;
 
 /**
- *
+ * Sent before the delegate is informed that it should send the message.
+ * Subclasses can override this method to implement custom logic.
  */
 - (void)messageWillSend:(NSArray*)fields;
 
 /**
- * The user touched the recipient picker button.
+ * The user touched the recipient picker button. Subclasses can override
+ * this method to implement custom logic.
  */
 - (void)messageWillShowRecipientPicker;
 
 /**
- *
+ * Sent after the delegate has been informed that it should send the message.
+ * Subclasses can override this method to implement custom logic.
  */
 - (void)messageDidSend;
 
 /**
  * Determines if the message should cancel without confirming with the user.
+ * The default implementation is to allow the user to cancel without
+ * confirmation if no required fields have been modified and they have not
+ * entered any subject or body text.
  */
 - (BOOL)messageShouldCancel;
 
@@ -119,10 +211,26 @@
 
 @optional
 
+/**
+ * Received when the user touches the send button, indicating they wish to send
+ * their message. Implementations should send the message represented by the
+ * supplied fields. The fields array contains subclasses of TTMessageField. Its
+ * last object is the body of the message, contained within a TTMessageTextField.
+ */
 - (void)composeController:(TTMessageController*)controller didSendFields:(NSArray*)fields;
 
+/**
+ * Received when the user has chosen to cancel creating their message. Upon
+ * returning, the TTMessageController will be dismissed. Implementations
+ * can use this callback to cleanup any resources.
+ */
 - (void)composeControllerWillCancel:(TTMessageController*)controller;
 
+/**
+ * Received in response to the user touching a contact add button. This method
+ * should prepare and present a view for the user to choose a contact. Upon
+ * choosing a contact, that contact should be added to the field.
+ */
 - (void)composeControllerShowRecipientPicker:(TTMessageController*)controller;
 
 @end
@@ -137,7 +245,16 @@
   BOOL _required;
 } 
 
+/**
+ * The title of this field, which will be rendered along with the field's
+ * contents.
+ */
 @property(nonatomic,copy) NSString* title;
+
+/**
+ * If true, the user must supply a value for this field before they will be
+ * able to send their message.
+ */
 @property(nonatomic) BOOL required;
 
 - (id)initWithTitle:(NSString*)title required:(BOOL)required;
