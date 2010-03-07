@@ -66,4 +66,10 @@ extern NSString* kCommonXMLType_Unknown;
  */
 - (id)objectForXMLNode;
 
+/**
+ * @return performs an "objectForKey", then puts the object into an array. If the
+ * object already is an array, that array is returned.
+ */
+- (NSArray*)arrayForKey:(id)key;
+
 @end
