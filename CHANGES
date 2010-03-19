@@ -1,3 +1,7 @@
+Changes since February 26, 2010
+
+- [DOX] Doug Barth contributed complete documentation of TTMessageController.
+
 Changes since February 1, 2010
 
 - [NEW] TTTwitter sample app. See the README.mdown file for in-depth details.
