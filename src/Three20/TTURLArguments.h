@@ -18,3 +18,4 @@
 
 TTURLArgumentType TTConvertArgumentType(char argType);
 TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* propertyName);
+

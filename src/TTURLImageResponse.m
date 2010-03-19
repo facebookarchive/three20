@@ -67,7 +67,7 @@
 
     if (nil != image) {
       if (!request.respondedFromCache) {
-// XXXjoe Working on option to scale down really large images to a smaller size to save memory      
+// XXXjoe Working on option to scale down really large images to a smaller size to save memory
 //        if (image.size.width * image.size.height > (300*300)) {
 //          image = [image transformWidth:300 height:(image.size.height/image.size.width)*300.0
 //                         rotate:NO];

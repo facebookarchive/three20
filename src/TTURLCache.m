@@ -25,7 +25,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-  
+
 #define TT_LARGE_IMAGE_SIZE (600*400)
 
 static NSString* kDefaultCacheName = @"Three20";
@@ -96,7 +96,7 @@ static NSMutableDictionary* gNamedCaches = nil;
     _totalPixelCount -= image.size.width * image.size.height;
     [_imageCache removeObjectForKey:key];
     [_imageSortedList removeObjectAtIndex:0];
-    
+
     if (_totalPixelCount <= _maxPixelCount) {
       break;
     }
@@ -168,7 +168,7 @@ static NSMutableDictionary* gNamedCaches = nil;
     _invalidationAge = TT_DEFAULT_CACHE_INVALIDATION_AGE;
     _maxPixelCount = 0;
     _totalPixelCount = 0;
-    
+
     // XXXjoe Disabling the built-in cache may save memory but it also makes UIWebView slow
     // NSURLCache* sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0
     // diskPath:nil];
@@ -177,8 +177,8 @@ static NSMutableDictionary* gNamedCaches = nil;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                           selector:@selector(didReceiveMemoryWarning:)
-                                          name:UIApplicationDidReceiveMemoryWarningNotification  
-                                          object:nil];  
+                                          name:UIApplicationDidReceiveMemoryWarningNotification
+                                          object:nil];
   }
   return self;
 }
@@ -189,8 +189,8 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self
-                                        name:UIApplicationDidReceiveMemoryWarningNotification  
-                                        object:nil];  
+                                        name:UIApplicationDidReceiveMemoryWarningNotification
+                                        object:nil];
   TT_RELEASE_SAFELY(_name);
   TT_RELEASE_SAFELY(_imageCache);
   TT_RELEASE_SAFELY(_imageSortedList);
@@ -300,7 +300,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 - (void)storeImage:(UIImage*)image forURL:(NSString*)URL {
   [self storeImage:image forURL:URL force:NO];
 }
-  
+
 - (NSString*)storeTemporaryData:(NSData*)data {
   NSString* URL = [self createUniqueTemporaryURL];
   [self storeData:data forURL:URL];
@@ -330,7 +330,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 - (NSString*)storeTemporaryImage:(UIImage*)image toDisk:(BOOL)toDisk {
   NSString* URL = [self createUniqueTemporaryURL];
   [self storeImage:image forURL:URL force:YES];
-  
+
   NSData* data = UIImagePNGRepresentation(image);
   [self storeData:data forURL:URL];
   return URL;
@@ -373,7 +373,7 @@ static NSMutableDictionary* gNamedCaches = nil;
   NSString*  key = [self keyForURL:URL];
   [_imageSortedList removeObject:key];
   [_imageCache removeObjectForKey:key];
-  
+
   if (fromDisk) {
     NSString* filePath = [self cachePathForKey:key];
     NSFileManager* fm = [NSFileManager defaultManager];

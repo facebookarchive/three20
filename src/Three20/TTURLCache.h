@@ -76,7 +76,7 @@
 + (void)setSharedCache:(TTURLCache*)cache;
 
 /**
- * 
+ *
  */
 - (id)initWithName:(NSString*)name;
 
@@ -103,7 +103,7 @@
 /**
  * Gets the data for a URL from the cache if it exists.
  *
- * @return nil if the URL is not cached. 
+ * @return nil if the URL is not cached.
  */
 - (NSData*)dataForURL:(NSString*)URL;
 
@@ -159,10 +159,10 @@
 
 /**
  * Moves the data currently stored under one URL to another URL.
- * 
+ *
  * This is handy when you are caching data at a temporary URL while the permanent URL is being
  * retrieved from a server.  Once you know the permanent URL you can use this to move the data.
- */ 
+ */
 - (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL;
 
 /**
@@ -181,16 +181,16 @@
 - (void)removeURL:(NSString*)URL fromDisk:(BOOL)fromDisk;
 
 /**
- * 
+ *
  */
 - (void)removeKey:(NSString*)key;
 
-/** 
+/**
  * Erases the memory cache and optionally the disk cache.
  */
 - (void)removeAll:(BOOL)fromDisk;
 
-/** 
+/**
  * Invalidates the file in the disk cache so that its modified timestamp is the current
  * time minus the default cache expiration age.
  *

@@ -25,7 +25,7 @@
  */
 @protocol TTModel <NSObject>
 
-/** 
+/**
  * An array of objects that conform to the TTModelDelegate protocol.
  */
 - (NSMutableArray*)delegates;

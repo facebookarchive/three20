@@ -64,9 +64,9 @@
     _flags.isModelDidLoadFirstTimeInvalid = NO;
     _flags.isShowingModel = NO;
   }
-  
+
   BOOL showModel = NO, showLoading = NO, showError = NO, showEmpty = NO;
-  
+
   if (_model.isLoaded || ![self shouldLoad]) {
     if ([self canShowModel]) {
       showModel = !_flags.isShowingModel;
@@ -113,7 +113,7 @@
       _flags.isShowingEmpty = NO;
     }
   }
-  
+
   if (showModel) {
     [self showModel:YES];
     [self didShowModel:_flags.isModelDidShowFirstTimeInvalid];
@@ -170,9 +170,9 @@
 - (void)viewWillAppear:(BOOL)animated {
   _isViewAppearing = YES;
   _hasViewAppeared = YES;
-  
+
   [self updateView];
-  
+
   [super viewWillAppear:animated];
 }
 
@@ -272,14 +272,14 @@
     _model = [model retain];
     [_model.delegates addObject:self];
     TT_RELEASE_SAFELY(_modelError);
-    
+
     if (_model) {
       _flags.isModelWillLoadInvalid = NO;
       _flags.isModelDidLoadInvalid = NO;
       _flags.isModelDidLoadFirstTimeInvalid = NO;
       _flags.isModelDidShowFirstTimeInvalid = YES;
     }
-    
+
     [self refresh];
   }
 }
@@ -340,7 +340,7 @@
 - (void)refresh {
   _flags.isViewInvalid = YES;
   _flags.isModelDidRefreshInvalid = YES;
-  
+
   BOOL loading = self.model.isLoading;
   BOOL loaded = self.model.isLoaded;
   if (!loading && !loaded && [self shouldLoad]) {

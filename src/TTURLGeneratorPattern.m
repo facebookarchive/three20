@@ -115,7 +115,7 @@
     }
     [queries addObject:pair];
   }
-  
+
   NSString* path = [paths componentsJoinedByString:@"/"];
   if (queries) {
     NSString* query = [queries componentsJoinedByString:@"&"];

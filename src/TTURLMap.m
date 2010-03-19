@@ -36,7 +36,7 @@
  */
 - (NSString*)keyForClass:(Class)cls withName:(NSString*)name {
   const char* className = class_getName(cls);
-  return [NSString stringWithFormat:@"%s_%@", className, (nil != name) ? name : @""];  
+  return [NSString stringWithFormat:@"%s_%@", className, (nil != name) ? name : @""];
 }
 
 

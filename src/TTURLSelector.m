@@ -58,7 +58,7 @@
     [invocation setTarget:object];
     [invocation setSelector:_selector];
     [invocation invoke];
-    
+
     if (!returnType) {
       returnType = TTURLArgumentTypeForProperty([object class], _name);
     }

@@ -47,7 +47,7 @@
 
 /**
  * An error that occurred while trying to load content.
- */ 
+ */
 @property(nonatomic, retain) NSError* modelError;
 
 /**
@@ -132,7 +132,7 @@
  */
 - (void)invalidateView;
 
-/** 
+/**
  * Immediately creates, loads, and displays the model (if it was not already).
  */
 - (void)updateView;
@@ -141,7 +141,7 @@
  * Called when the model is refreshed.
  *
  * Subclasses should override this function update parts of the view that may need to changed
- * when there is a new model, or something about the existing model changes. 
+ * when there is a new model, or something about the existing model changes.
  */
 - (void)didRefreshModel;
 
@@ -195,7 +195,7 @@
 - (void)showLoading:(BOOL)show;
 
 /**
- * Shows views to represent an empty model. 
+ * Shows views to represent an empty model.
  *
  * The default implementation of this method does nothing. Subclasses may override this method
  * to take an appropriate action.

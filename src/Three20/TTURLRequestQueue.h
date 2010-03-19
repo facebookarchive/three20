@@ -34,7 +34,7 @@
  * Gets the flag that determines if new load requests are allowed to reach the network.
  *
  * Because network requests tend to slow down performance, this property can be used to
- * temporarily delay them.  All requests made while suspended are queued, and when 
+ * temporarily delay them.  All requests made while suspended are queued, and when
  * suspended becomes false again they are executed.
  */
 @property(nonatomic) BOOL suspended;
@@ -43,7 +43,7 @@
  * The maximum size of a download that is allowed.
  *
  * If a response reports a content length greater than the max, the download will be
- * cancelled. This is helpful for preventing excessive memory usage. Setting this to 
+ * cancelled. This is helpful for preventing excessive memory usage. Setting this to
  * zero will allow all downloads regardless of size.
  *
  * @default 150000 bytes
