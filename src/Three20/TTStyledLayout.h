@@ -35,7 +35,7 @@
   TTStyledBoxFrame* _topFrame;
   TTStyledFrame* _lastFrame;
   UIFont* _font;
-  UIFont* _boldFont;
+  TTStyle* _boldStyle;
   UIFont* _italicFont;
   TTStyle* _linkStyle;
   TTStyledNode* _rootNode;

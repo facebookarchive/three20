@@ -43,6 +43,10 @@
   }
 }
 
+- (TTStyle*)boldText {
+	return [TTTextStyle styleWithColor:[UIColor blackColor] next:nil];
+}
+
 - (TTStyle*)linkHighlighted {
   return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:

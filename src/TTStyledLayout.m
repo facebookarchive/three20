@@ -56,11 +56,11 @@
   return lastNode;
 }
 
-- (UIFont*)boldFont {
-  if (!_boldFont) {
-    _boldFont = [[self boldVersionOfFont:self.font] retain];
+- (TTStyle*)boldStyle {
+  if (!_boldStyle) {
+    _boldStyle = [TTSTYLE(boldText) retain];
   }
-  return _boldFont;
+  return _boldStyle;
 }
 
 - (UIFont*)italicFont {
@@ -279,6 +279,9 @@
   if (!style && [elt isKindOfClass:[TTStyledLinkNode class]]) {
     style = self.linkStyle;
   }
+  if (!style && [elt isKindOfClass:[TTStyledBoldNode class]]) {
+	style = self.boldStyle;
+  }
 
   // Figure out which font to use for the node
   UIFont* font = nil;
@@ -292,7 +295,7 @@
   if (!font) {
     if ([elt isKindOfClass:[TTStyledLinkNode class]]
         || [elt isKindOfClass:[TTStyledBoldNode class]]) {
-      font = self.boldFont;
+      font = self.font;
     } else if ([elt isKindOfClass:[TTStyledItalicNode class]]) {
       font = self.italicFont;
     } else {
@@ -681,7 +684,7 @@
     _topFrame = nil;
     _lastFrame = nil;
     _font = nil;
-    _boldFont = nil;
+    _boldStyle = nil;
     _italicFont = nil;
     _linkStyle = nil;
     _rootNode = nil;
@@ -694,7 +697,7 @@
 - (void)dealloc {
   TT_RELEASE_SAFELY(_rootFrame);
   TT_RELEASE_SAFELY(_font);
-  TT_RELEASE_SAFELY(_boldFont);
+  TT_RELEASE_SAFELY(_boldStyle);
   TT_RELEASE_SAFELY(_italicFont);
   TT_RELEASE_SAFELY(_linkStyle);
   TT_RELEASE_SAFELY(_invalidImages);
@@ -715,7 +718,7 @@
   if (font != _font) {
     [_font release];
     _font = [font retain];
-    TT_RELEASE_SAFELY(_boldFont);
+    TT_RELEASE_SAFELY(_boldStyle);
     TT_RELEASE_SAFELY(_italicFont);
   }
 }
