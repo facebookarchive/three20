@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 
 @class TTStyledText, TTStyle;
+@protocol TTModel;
 
 @interface TTTableItem : NSObject <NSCoding> {
   id _userInfo;
@@ -40,7 +41,7 @@
 @interface TTTableTextItem : TTTableLinkedItem {
   NSString* _text;
 }
-  
+
 @property(nonatomic,copy) NSString* text;
 
 + (id)itemWithText:(NSString*)text;
@@ -125,9 +126,11 @@
 
 @interface TTTableMoreButton : TTTableSubtitleItem {
   BOOL _isLoading;
+  id<TTModel> _model;
 }
 
 @property(nonatomic) BOOL isLoading;
+@property(nonatomic,retain) id<TTModel> model;
 
 @end
 

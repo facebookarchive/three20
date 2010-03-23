@@ -449,16 +449,18 @@
 
 @implementation TTTableMoreButton
 
-@synthesize isLoading = _isLoading;
+@synthesize isLoading = _isLoading, model = _model;
 
 - (id)init {
   if (self = [super init]) {
     _isLoading = NO;
+    _model = nil;
   }
   return self;
 }
 
 - (void)dealloc {
+  self.model = nil;
   [super dealloc];
 }
 
