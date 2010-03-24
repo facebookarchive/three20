@@ -537,7 +537,8 @@
     return;
   }
 
-  NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+  NSMutableCharacterSet *separators = [NSMutableCharacterSet whitespaceAndNewlineCharacterSet];
+  [separators formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"-—"]];
 
   NSInteger index = 0;
   NSInteger lineStartIndex = 0;
@@ -546,7 +547,7 @@
   while (index < length) {
     // Search for the next whitespace character
     NSRange searchRange = NSMakeRange(index, length - index);
-    NSRange spaceRange = [text rangeOfCharacterFromSet:whitespace options:0 range:searchRange];
+    NSRange spaceRange = [text rangeOfCharacterFromSet:separators options:0 range:searchRange];
 
     // Get the word prior to the whitespace
     NSRange wordRange = spaceRange.location != NSNotFound
