@@ -33,9 +33,6 @@ static const NSTimeInterval kTimeout = 300.0;
 static const NSInteger kMaxConcurrentLoads = 5;
 static NSUInteger kDefaultMaxContentLength = 150000;
 
-static NSString* kSafariUserAgent = @"Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_2 like Mac OS X;\
- en-us) AppleWebKit/525.181 (KHTML, like Gecko) Version/3.1.1 Mobile/5H11 Safari/525.20";
-
 static TTURLRequestQueue* gMainQueue = nil;
 
 
@@ -77,7 +74,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     _totalLoading = 0;
     _maxContentLength = kDefaultMaxContentLength;
     _imageCompressionQuality = 0.75;
-    _userAgent = [kSafariUserAgent copy];
+    _userAgent = nil;
     _suspended = NO;
   }
   return self;
@@ -476,7 +473,10 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSMutableURLRequest* URLRequest = [NSMutableURLRequest requestWithURL:URL
                                     cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                     timeoutInterval:kTimeout];
-  [URLRequest setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
+
+  if (self.userAgent) {
+      [URLRequest setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];
+  }
 
   if (request) {
     [URLRequest setHTTPShouldHandleCookies:request.shouldHandleCookies];
