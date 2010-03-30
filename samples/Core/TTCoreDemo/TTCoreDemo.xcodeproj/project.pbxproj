@@ -15,6 +15,7 @@
 		6EEFB94411627E29009B479E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EEFB94311627E29009B479E /* UIKit.framework */; };
 		6EEFBAEC11627F2E009B479E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EEFBAEB11627F2E009B479E /* CoreGraphics.framework */; };
 		6EEFBB7B116280E3009B479E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEFBB7A116280E3009B479E /* Icon.png */; };
+		6EEFBBAB1162829A009B479E /* PlaygroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFBBAA1162829A009B479E /* PlaygroundViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,9 @@
 		6EEFB94311627E29009B479E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6EEFBAEB11627F2E009B479E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6EEFBB7A116280E3009B479E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		6EEFBB8B11628138009B479E /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
+		6EEFBBA91162829A009B479E /* PlaygroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaygroundViewController.h; sourceTree = "<group>"; };
+		6EEFBBAA1162829A009B479E /* PlaygroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaygroundViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TTCoreDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTCoreDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +78,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6EEFBBA811628283009B479E /* Playground Controller */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 			);
@@ -91,6 +96,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				6EEFBB8B11628138009B479E /* README.mdown */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -137,6 +143,15 @@
 				6EEFB8F311627DA1009B479E /* UnitTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6EEFBBA811628283009B479E /* Playground Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6EEFBBA91162829A009B479E /* PlaygroundViewController.h */,
+				6EEFBBAA1162829A009B479E /* PlaygroundViewController.m */,
+			);
+			name = "Playground Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +234,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				6EEFBBAB1162829A009B479E /* PlaygroundViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

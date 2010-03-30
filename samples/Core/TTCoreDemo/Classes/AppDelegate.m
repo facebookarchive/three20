@@ -16,6 +16,9 @@
 
 #import "AppDelegate.h"
 
+// View Controllers
+#import "PlaygroundViewController.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,6 +31,9 @@
   _window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
   _window.backgroundColor = [UIColor whiteColor];
 
+  _controller = [[PlaygroundViewController alloc] init];
+  [_window addSubview:_controller.view];
+
 	[_window makeKeyAndVisible];
 }
 
@@ -35,6 +41,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) dealloc {
   TT_RELEASE_SAFELY(_window);
+  TT_RELEASE_SAFELY(_controller);
   [super dealloc];
 }
 
