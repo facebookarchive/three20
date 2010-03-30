@@ -129,6 +129,7 @@
 #import "Three20/TTGlobalNetwork.h"
 
 #import "Three20/TTModel.h"
+#import "Three20/TTURLRequestModel.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLMap.h"
 
