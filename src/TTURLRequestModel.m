@@ -89,12 +89,16 @@
 - (BOOL)isOutdated {
   if (!_cacheKey && _loadedTime) {
     return YES;
+
   } else if (!_cacheKey) {
     return NO;
+
   } else {
     NSDate* loadedTime = self.loadedTime;
+
     if (loadedTime) {
       return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
+
     } else {
       return NO;
     }
@@ -113,9 +117,11 @@
   if (_cacheKey) {
     if (erase) {
       [[TTURLCache sharedCache] removeKey:_cacheKey];
+
     } else {
       [[TTURLCache sharedCache] invalidateKey:_cacheKey];
     }
+
     TT_RELEASE_SAFELY(_cacheKey);
   }
 }
