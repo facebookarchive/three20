@@ -16,7 +16,9 @@
 
 #import "PlaygroundViewController.h"
 
-static const CGFloat kFramePadding = 10;
+static const CGFloat kFramePadding    = 10;
+static const CGFloat kElementSpacing  = 5;
+static const CGFloat kGroupSpacing    = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,28 +28,121 @@ static const CGFloat kFramePadding = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat) addHeader:(NSString*)text yOffset:(CGFloat)yOffset {
+  UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
+  label.text = text;
+  label.font = [UIFont systemFontOfSize:20];
+  label.numberOfLines = 0;
+
+  CGRect frame = label.frame;
+  frame.origin.x = kFramePadding;
+  frame.origin.y = yOffset;
+  frame.size.width = 320 - kFramePadding * 2;
+  frame.size.height = [text sizeWithFont:label.font
+                       constrainedToSize:CGSizeMake(frame.size.width, 10000)].height;
+  label.frame = frame;
+
+  [_scrollView addSubview:label];
+
+  yOffset += label.frame.size.height + kElementSpacing;
+
+  TT_RELEASE_SAFELY(label);
+
+  return yOffset;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat) addText:(NSString*)text yOffset:(CGFloat)yOffset {
+  UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
+  label.text = text;
+  label.numberOfLines = 0;
+
+  CGRect frame = label.frame;
+  frame.origin.x = kFramePadding;
+  frame.origin.y = yOffset;
+  frame.size.width = 320 - kFramePadding * 2;
+  frame.size.height = [text sizeWithFont:label.font
+                       constrainedToSize:CGSizeMake(frame.size.width, 10000)].height;
+  label.frame = frame;
+
+  [_scrollView addSubview:label];
+
+  yOffset += label.frame.size.height + kElementSpacing;
+
+  TT_RELEASE_SAFELY(label);
+
+  return yOffset;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) loadView {
   [super loadView];
 
-  UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  [button setTitle:NSLocalizedString(@"Debug test", @"") forState:UIControlStateNormal];
-  [button addTarget: self
-             action: @selector(debugTestAction)
-   forControlEvents: UIControlEventTouchUpInside];
-  [button sizeToFit];
+  _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+  _scrollView.autoresizingMask =
+    UIViewAutoresizingFlexibleWidth
+    | UIViewAutoresizingFlexibleHeight;
 
-  CGRect frame = button.frame;
-  frame.origin.x = kFramePadding;
-  frame.origin.y = kFramePadding;
-  button.frame = frame;
+  [self.view addSubview:_scrollView];
 
-  [self.view addSubview:button];
+  CGFloat yOffset = kFramePadding;
+
+  yOffset = [self addHeader:NSLocalizedString(@"TTDebug.h", @"") yOffset:yOffset];
+
+  {
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:NSLocalizedString(@"Debug test", @"") forState:UIControlStateNormal];
+    [button addTarget: self
+               action: @selector(debugTestAction)
+     forControlEvents: UIControlEventTouchUpInside];
+    [button sizeToFit];
+
+    CGRect frame = button.frame;
+    frame.origin.x = kFramePadding;
+    frame.origin.y = yOffset;
+    button.frame = frame;
+
+    [_scrollView addSubview:button];
+
+    yOffset += frame.size.height;
+  }
+
+  yOffset += kGroupSpacing;
+
+  yOffset = [self addHeader:NSLocalizedString(@"TTGlobalCoreLocale.h", @"") yOffset:yOffset];
+  yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"Current locale: %@", @""),
+                           [TTCurrentLocale()
+                            displayNameForKey:NSLocaleIdentifier
+                                        value:[TTCurrentLocale() localeIdentifier]]]
+                  yOffset:yOffset];
+  yOffset += kGroupSpacing;
+
+  yOffset = [self addHeader:NSLocalizedString(@"TTGlobalCorePaths.h", @"") yOffset:yOffset];
+  yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"Bundle path: %@", @""),
+                           TTPathForBundleResource(@"Icon.png")]
+                  yOffset:yOffset];
+  yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"Document path: %@", @""),
+                           TTPathForDocumentsResource(@"document.pdf")]
+                  yOffset:yOffset];
+  yOffset += kGroupSpacing;
+
+  [_scrollView setContentSize:CGSizeMake(320, yOffset)];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) viewDidUnload {
+  [super viewDidUnload];
+
+  TT_RELEASE_SAFELY(_scrollView);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) debugTestAction {
-  NSLog(@"Three20 debugging is currently...%@", ((DEBUG) ? @"ON" : @"OFF"));
+  NSLog(@"Three20 debug logging is currently...%@", ((DEBUG) ? @"ON" : @"OFF"));
 
   // This will print the current method name.
   TTDPRINTMETHODNAME();

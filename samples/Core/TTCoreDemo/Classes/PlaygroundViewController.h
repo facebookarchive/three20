@@ -16,7 +16,7 @@
 
 
 @interface PlaygroundViewController : UIViewController {
-
+  UIScrollView* _scrollView;
 }
 
 @end
