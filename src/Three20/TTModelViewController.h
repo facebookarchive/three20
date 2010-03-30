@@ -16,6 +16,7 @@
 
 #import "Three20/TTViewController.h"
 #import "Three20/TTModel.h"
+#import "Three20/TTModelDelegate.h"
 
 /**
  * A view controller that manages a model in addition to a view.
