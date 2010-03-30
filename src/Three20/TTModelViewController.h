@@ -23,7 +23,7 @@
  */
 @interface TTModelViewController : TTViewController <TTModelDelegate> {
   id<TTModel> _model;
-  NSError* _modelError;
+  NSError*    _modelError;
 
   struct {
     unsigned int isModelDidRefreshInvalid:1;
@@ -41,9 +41,6 @@
   } _flags;
 }
 
-/**
- *
- */
 @property(nonatomic,retain) id<TTModel> model;
 
 /**
