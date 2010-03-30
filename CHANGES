@@ -4,6 +4,10 @@ Changes since February 26, 2010
 
 - [NEW] Support for successful HTTP status codes from [200, 300).
 
+- [NEW] Three20Core library.
+
+- [NEW] TTCoreDemo example project.
+
 - [FIXED] UIImage's transformWidth:height:rotate: implementation.
 
 - [FIXED] Keyboard display notifications.
