@@ -32,7 +32,6 @@
 /**
  * Indicates that the data has been loaded.
  */
-
 - (BOOL)isLoaded;
 
 /**
