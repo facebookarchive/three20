@@ -89,7 +89,7 @@ static const CGFloat kGroupSpacing    = 10;
 
   CGFloat yOffset = kFramePadding;
 
-  yOffset = [self addHeader:NSLocalizedString(@"TTDebug.h", @"") yOffset:yOffset];
+  yOffset = [self addHeader:NSLocalizedString(@"TTDebug", @"") yOffset:yOffset];
 
   {
     UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -111,7 +111,7 @@ static const CGFloat kGroupSpacing    = 10;
 
   yOffset += kGroupSpacing;
 
-  yOffset = [self addHeader:NSLocalizedString(@"TTGlobalCoreLocale.h", @"") yOffset:yOffset];
+  yOffset = [self addHeader:NSLocalizedString(@"TTGlobalCoreLocale", @"") yOffset:yOffset];
   yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"Current locale: %@", @""),
                            [TTCurrentLocale()
                             displayNameForKey:NSLocaleIdentifier
@@ -119,12 +119,18 @@ static const CGFloat kGroupSpacing    = 10;
                   yOffset:yOffset];
   yOffset += kGroupSpacing;
 
-  yOffset = [self addHeader:NSLocalizedString(@"TTGlobalCorePaths.h", @"") yOffset:yOffset];
+  yOffset = [self addHeader:NSLocalizedString(@"TTGlobalCorePaths", @"") yOffset:yOffset];
   yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"Bundle path: %@", @""),
                            TTPathForBundleResource(@"Icon.png")]
                   yOffset:yOffset];
   yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"Document path: %@", @""),
                            TTPathForDocumentsResource(@"document.pdf")]
+                  yOffset:yOffset];
+  yOffset += kGroupSpacing;
+
+  yOffset = [self addHeader:NSLocalizedString(@"NSDataAdditions", @"") yOffset:yOffset];
+  yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"MD5 Hash of \"Three20\": %@", @""),
+                           [[@"Three20" dataUsingEncoding:NSUTF8StringEncoding] md5Hash]]
                   yOffset:yOffset];
   yOffset += kGroupSpacing;
 
@@ -137,6 +143,14 @@ static const CGFloat kGroupSpacing    = 10;
   [super viewDidUnload];
 
   TT_RELEASE_SAFELY(_scrollView);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+
+  [_scrollView flashScrollIndicators];
 }
 
 
