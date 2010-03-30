@@ -272,4 +272,8 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   [self dismissModalViewControllerAnimated:YES];
 }
 
+- (BOOL)canBeTopViewController {
+  return YES;
+}
+
 @end

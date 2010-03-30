@@ -556,7 +556,7 @@ UIViewController* TTOpenURL(NSString* URL) {
   UIViewController* controller = _rootViewController;
   while (controller) {
     UIViewController* child = controller.popupViewController;
-    if (!child) {
+    if (!child || ![child canBeTopViewController]) {
       child = controller.modalViewController;
     }
     if (!child) {

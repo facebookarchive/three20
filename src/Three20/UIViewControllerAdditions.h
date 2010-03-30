@@ -175,6 +175,13 @@
 - (void)dismissModalViewController;
 
 /**
+ * Whether or not this controller should ever be counted as the "top" view controller. That is
+ * used for the purposes of determining which controllers should have modal controllers presented
+ * within them. Defaults to YES; subclasses may override to NO if they so desire.
+ */
+- (BOOL)canBeTopViewController;
+
+/**
  * A temporary holding place for persisted view state waiting to be restored.
  *
  * While restoring controllers, TTURLMap will assign this the dictionary created by persistView.

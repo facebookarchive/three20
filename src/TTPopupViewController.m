@@ -46,4 +46,8 @@
 - (void)dismissPopupViewControllerAnimated:(BOOL)animated {
 }
 
+- (BOOL)canBeTopViewController {
+  return NO;
+}
+
 @end
