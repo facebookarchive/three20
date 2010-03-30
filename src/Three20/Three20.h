@@ -55,11 +55,7 @@
  */
 
 // Core
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTGlobalCorePaths.h"
-
-#import "Three20/TTXMLParser.h"
+#import "Three20/Three20Core.h"
 
 // UI
 #import "Three20/TTGlobalUI.h"

@@ -18,7 +18,6 @@
 // for unit test macros.
 
 #import <SenTestingKit/SenTestingKit.h>
-#import <UIKit/UIKit.h>
 
 #import "Three20/Three20.h"
 
