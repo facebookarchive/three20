@@ -14,13 +14,13 @@ Overview
 --------
 
 The TTCoreDemo example project is an incredibly light-weight project that only uses the Core
-component of Three20. This might be preferable for a developer if you don't need any of the
+component of Three20. Using Three20 Core might be preferable for you if you don't need any of the
 User Interface, Network, or Style components of Three20, and simply want the powerful debugging
-utilities and path processing provided by Core, amonst other features.
+utilities and path processing provided by Core, amongst other features.
 
 Architecture
 ------------
 
 PlaygroundViewController.h/m: Within this controller you will find numerous examples of core
 Three20 features. If you run the app, you will be greeted with an incredibly simple UI composed
-of a matrix of buttons that each perform a rudimentary, hopefully self-explanatory task.
+of text and buttons that each perform a rudimentary, hopefully self-explanatory task.
