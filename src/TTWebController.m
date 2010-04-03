@@ -35,6 +35,7 @@
 
 @synthesize delegate    = _delegate;
 @synthesize headerView  = _headerView;
+@synthesize webView     = _webView;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,6 +86,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Called by TTViewController's init method
+ */
+- (void)commonSetup {
+  self.hidesBottomBarWhenPushed = YES;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
   if (self = [self init]) {
     NSURLRequest* request = [query objectForKey:@"request"];
@@ -93,15 +103,6 @@
     } else {
       [self openURL:URL];
     }
-  }
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [super init]) {
-    self.hidesBottomBarWhenPushed = YES;
   }
   return self;
 }
@@ -122,9 +123,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loadView {  
+- (void)loadView {
   [super loadView];
-  
+
   _webView = [[UIWebView alloc] initWithFrame:TTToolbarNavigationFrame()];
   _webView.delegate = self;
   _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth
@@ -262,7 +263,7 @@
     [[UIApplication sharedApplication] openURL:request.URL];
     return NO;
   }
-  
+
   [_loadingURL release];
   _loadingURL = [request.URL retain];
   _backButton.enabled = [_webView canGoBack];
@@ -286,7 +287,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
   TT_RELEASE_SAFELY(_loadingURL);
-  
+
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
@@ -294,7 +295,7 @@
   [_toolbar replaceItemWithTag:3 withItem:_refreshButton];
 
   _backButton.enabled = [_webView canGoBack];
-  _forwardButton.enabled = [_webView canGoForward];    
+  _forwardButton.enabled = [_webView canGoForward];
 }
 
 
@@ -343,10 +344,10 @@
 
     if (addingHeader) {
       docView.top += headerView.height;
-      docView.height -= headerView.height; 
+      docView.height -= headerView.height;
     } else if (removingHeader) {
       docView.top -= headerView.height;
-      docView.height += headerView.height; 
+      docView.height += headerView.height;
     }
   }
 }

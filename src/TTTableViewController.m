@@ -132,27 +132,18 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-  if (self = [super initWithNibName:nibName bundle:bundle]) {
-    _tableBannerView = nil;
-    _tableOverlayView = nil;
-    _loadingView = nil;
-    _errorView = nil;
-    _emptyView = nil;
-    _menuView = nil;
-    _menuCell = nil;
-    _dataSource = nil;
-    _tableDelegate = nil;
-    _bannerTimer = nil;
-    _variableHeightRows = NO;
-    _lastInterfaceOrientation = self.interfaceOrientation;
-  }
-  return self;
+/**
+ * Called by TTViewController's init method
+ */
+- (void)commonSetup {
+  [super commonSetup];
+
+  _lastInterfaceOrientation = self.interfaceOrientation;
+  _tableViewStyle = UITableViewStylePlain;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
-  if (self = [self initWithNibName:nil bundle:nil]) {
-    _tableView = nil;
+  if (self = [super init]) { // TTViewController calls commonSetup
     _tableViewStyle = style;
   }
   return self;
@@ -179,11 +170,12 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
-- (void)loadView {
-  [super loadView];
+- (void)viewDidLoad {
+  [super viewDidLoad];
 
-  if (nil == self.nibName) {
+  if (nil == _tableView) {
     self.tableView;
+
   } else {
     _tableViewStyle = self.tableView.style;
   }
@@ -220,7 +212,7 @@ static const CGFloat kBannerViewHeight = 22;
   } else if ([_tableView isKindOfClass:[TTTableView class]]) {
     TTTableView* tableView = (TTTableView*)_tableView;
     tableView.highlightedLabel = nil;
-	tableView.showShadows = _showTableShadows;
+    tableView.showShadows = _showTableShadows;
   }
 
   [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];

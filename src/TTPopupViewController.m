@@ -25,11 +25,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
-  if (self = [super init]) {
-    _statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
-  }
-  return self;
+/**
+ * Called by TTViewController's init method
+ */
+- (void)commonSetup {
+  [super commonSetup];
+
+  _statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 }
 
 - (void)dealloc {

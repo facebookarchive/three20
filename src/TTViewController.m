@@ -42,18 +42,31 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  return [self initWithNibName:nil bundle:nil];
+/**
+ * Initialization common to all init* methods
+ */
+- (void)commonSetup {
+  _navigationBarStyle = UIBarStyleDefault;
+  _statusBarStyle = UIStatusBarStyleDefault;
+
+  self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-    _navigationBarStyle = UIBarStyleDefault;
-    _statusBarStyle     = UIStatusBarStyleDefault;
+- (id)init {
+  if (self = [super init]) {
+    [self commonSetup];
+  }
 
-    self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
+    [self commonSetup];
   }
 
   return self;
@@ -164,8 +177,7 @@
     CGRect frame = self.wantsFullScreenLayout ? TTScreenBounds() : TTNavigationFrame();
     self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
     self.view.autoresizesSubviews = YES;
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth
-                  | UIViewAutoresizingFlexibleHeight;
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.view.backgroundColor = TTSTYLEVAR(backgroundColor);
   }
 }

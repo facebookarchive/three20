@@ -32,17 +32,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  return [self initWithNibName:nil bundle:nil];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-  if (self = [super initWithNibName:nibName bundle:bundle]) {
-    _flags.isViewInvalid = YES;
-  }
-  return self;
+/**
+ * Called by TTViewController's init method
+ */
+- (void)commonSetup {
+  [super commonSetup];
+  _flags.isViewInvalid = YES;
 }
 
 

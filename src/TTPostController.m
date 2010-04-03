@@ -36,7 +36,7 @@ static const CGFloat kMarginY = 6;
 
 @implementation TTPostController
 
-@synthesize delegate = _delegate, result = _result, textView = _textView, 
+@synthesize delegate = _delegate, result = _result, textView = _textView,
             originView = _originView;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,7 +112,7 @@ static const CGFloat kMarginY = 6;
   if ([_delegate respondsToSelector:@selector(postController:didPostText:withResult:)]) {
     [_delegate postController:self didPostText:_textView.text withResult:_result];
   }
-  
+
   TT_RELEASE_SAFELY(_originView);
   [self dismissPopupViewControllerAnimated:NO];
 }
@@ -120,14 +120,14 @@ static const CGFloat kMarginY = 6;
 - (void)fadeOut {
   _originView.hidden = NO;
   TT_RELEASE_SAFELY(_originView);
-  
+
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(fadeAnimationDidStop)];
   [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   self.view.alpha = 0;
   [UIView commitAnimations];
-  
+
   [self hideKeyboard];
 }
 
@@ -139,32 +139,39 @@ static const CGFloat kMarginY = 6;
   if ([_delegate respondsToSelector:@selector(postControllerDidCancel:)]) {
     [_delegate postControllerDidCancel:self];
   }
-  
+
   [self dismissPopupViewControllerAnimated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
+/**
+ * Called by TTViewController's init method.
+ */
+- (void)commonSetup {
+	[super commonSetup];
+
+  self.navigationItem.leftBarButtonItem =
+    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                   target:self
+                                                   action:@selector(cancel)] autorelease];
+  self.navigationItem.rightBarButtonItem =
+    [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
+                                      style:UIBarButtonItemStyleDone
+                                     target:self
+                                     action:@selector(post)] autorelease];
+}
+
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
-  if (self = [super init]) {
-    _delegate = nil;
-    _result = nil;
-    _defaultText = nil;
-    _originRect = CGRectZero;
-    _originView = nil;
-    _innerView = nil;
-    _navigationBar = nil;
-    _screenView = nil;
-    _textView = nil;
-    _activityView = nil;
+  if (self = [super init]) { // TTViewController calls commonSetup
 
     if (query) {
       _delegate = [query objectForKey:@"delegate"];
       _defaultText = [[query objectForKey:@"text"] copy];
-      
+
       self.navigationItem.title = [query objectForKey:@"title"];
-      
+
       self.originView = [query objectForKey:@"__target__"];
       NSValue* originRect = [query objectForKey:@"originRect"];
       if (originRect) {
@@ -172,13 +179,6 @@ static const CGFloat kMarginY = 6;
       }
     }
 
-    self.navigationItem.leftBarButtonItem = 
-      [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                target:self action:@selector(cancel)] autorelease];
-    self.navigationItem.rightBarButtonItem = 
-      [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
-                                style:UIBarButtonItemStyleDone
-                                target:self action:@selector(post)] autorelease];
   }
   return self;
 }
@@ -206,7 +206,7 @@ static const CGFloat kMarginY = 6;
   self.view.frame = [UIScreen mainScreen].applicationFrame;
   self.view.backgroundColor = [UIColor clearColor];
   self.view.autoresizesSubviews = YES;
-  
+
   _innerView = [[UIView alloc] init];
   _innerView.backgroundColor = [UIColor blackColor];
   _innerView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -233,7 +233,7 @@ static const CGFloat kMarginY = 6;
   _navigationBar.barStyle = UIBarStyleBlackOpaque;
   _navigationBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   [_navigationBar pushNavigationItem:self.navigationItem animated:NO];
-  [_innerView addSubview:_navigationBar];    
+  [_innerView addSubview:_navigationBar];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -266,13 +266,13 @@ static const CGFloat kMarginY = 6;
     [state setObject:delegate forKey:@"delegate"];
   }
   [state setObject:self.textView.text forKey:@"text"];
-  
+
   NSString* title = self.navigationItem.title;
-  
+
   if (title) {
     [state setObject:title forKey:@"title"];
   }
-  
+
   return [super persistView:state];
 }
 
@@ -299,18 +299,18 @@ static const CGFloat kMarginY = 6;
   self.view.transform = [self transformForOrientation];
   self.view.frame = [UIScreen mainScreen].applicationFrame;
   [window addSubview:self.view];
-  
+
   if (_defaultText) {
     _textView.text = _defaultText;
     TT_RELEASE_SAFELY(_defaultText);
   } else {
     _defaultText = [_textView.text retain];
   }
-  
+
   _innerView.frame = self.view.bounds;
   [_navigationBar sizeToFit];
   _originView.hidden = YES;
-      
+
   if (animated) {
     _innerView.alpha = 0;
     _navigationBar.alpha = 0;
@@ -332,10 +332,10 @@ static const CGFloat kMarginY = 6;
     [UIView setAnimationDuration:TT_TRANSITION_DURATION];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(showAnimationDidStop)];
-    
+
     _navigationBar.alpha = 1;
     _innerView.alpha = 1;
-    
+
     if (originRect.size.width) {
       [self layoutTextEditor];
     } else {
@@ -349,7 +349,7 @@ static const CGFloat kMarginY = 6;
     [self layoutTextEditor];
     [self showAnimationDidStop];
   }
-  
+
   [self showKeyboard];
 }
 
@@ -403,7 +403,7 @@ static const CGFloat kMarginY = 6;
   if ([_delegate respondsToSelector:@selector(postController:willPostText:)]) {
     shouldDismiss = [_delegate postController:self willPostText:_textView.text];
   }
-  
+
   if (shouldDismiss) {
     [self dismissWithResult:nil animated:YES];
   } else {
@@ -428,7 +428,7 @@ static const CGFloat kMarginY = 6;
 - (void)dismissWithResult:(id)result animated:(BOOL)animated {
   [_result release];
   _result = [result retain];
-  
+
   if (animated) {
     if ([_delegate respondsToSelector:@selector(postController:willAnimateTowards:)]) {
       CGRect rect = [_delegate postController:self willAnimateTowards:_originRect];
@@ -445,13 +445,13 @@ static const CGFloat kMarginY = 6;
     _originView.hidden = NO;
     _activityView.hidden = YES;
     _textView.hidden = YES;
-    
+
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_TRANSITION_DURATION];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(dismissAnimationDidStop)];
-    
+
     if (!CGRectIsEmpty(originRect)) {
       _screenView.frame = CGRectOffset(originRect, 0, -TTStatusHeight());
     } else {
@@ -460,18 +460,18 @@ static const CGFloat kMarginY = 6;
 
     _innerView.alpha = 0;
     _navigationBar.alpha = 0;
-    
+
     [UIView commitAnimations];
   } else {
     [self dismissAnimationDidStop];
   }
-  
+
   [self hideKeyboard];
 }
 
 - (void)failWithError:(NSError*)error {
   [self showActivity:nil];
-  
+
   NSString* title = [self titleForError:error];
   if (title.length) {
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:TTLocalizedString(@"Error", @"")
