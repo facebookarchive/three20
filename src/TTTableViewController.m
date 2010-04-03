@@ -46,7 +46,7 @@ static const CGFloat kBannerViewHeight = 22;
             tableOverlayView = _tableOverlayView,
             loadingView = _loadingView, errorView= _errorView, emptyView = _emptyView,
             menuView = _menuView, dataSource = _dataSource, tableViewStyle = _tableViewStyle,
-            variableHeightRows = _variableHeightRows;
+            variableHeightRows = _variableHeightRows, showTableShadows = _showTableShadows;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -210,6 +210,7 @@ static const CGFloat kBannerViewHeight = 22;
   } else if ([_tableView isKindOfClass:[TTTableView class]]) {
     TTTableView* tableView = (TTTableView*)_tableView;
     tableView.highlightedLabel = nil;
+	tableView.showShadows = _showTableShadows;
   }
 
   [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];

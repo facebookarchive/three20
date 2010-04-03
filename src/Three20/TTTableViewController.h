@@ -34,7 +34,10 @@
   UITableViewStyle _tableViewStyle;
   UIInterfaceOrientation _lastInterfaceOrientation;
   BOOL _variableHeightRows;
+  BOOL _showTableShadows;
 }
+
+@property(nonatomic) BOOL showTableShadows;
 
 @property(nonatomic,retain) UITableView* tableView;
 
