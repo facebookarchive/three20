@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* NibDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* NibDemoAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		28F335F11007B36200424DE2 /* DemoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* DemoTableViewController.xib */; };
+		CC85CDA31167DF1700D3FE00 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CC85CDA21167DF1700D3FE00 /* Three20.bundle */; };
+		CC85CDA51167DF3B00D3FE00 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC85CDA41167DF3B00D3FE00 /* QuartzCore.framework */; };
+		CC85CDFB1167E22E00D3FE00 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC85CDC61167E0BB00D3FE00 /* libThree20.a */; };
+		CC85CE031167E25200D3FE00 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC85CE021167E25200D3FE00 /* DemoTableViewController.m */; };
+		CC85D4B511681EC500D3FE00 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = CC85D4B411681EC500D3FE00 /* readme.txt */; };
+		CC85D4D21168229C00D3FE00 /* FooterTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC85D4D11168229C00D3FE00 /* FooterTableViewController.xib */; };
+		CC85D5F211682A2500D3FE00 /* DemoPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC85D5F011682A2500D3FE00 /* DemoPostController.m */; };
+		CC85D5F311682A2500D3FE00 /* DemoPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC85D5F111682A2500D3FE00 /* DemoPostController.xib */; };
+		CC85D6D411682DCA00D3FE00 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC85D6D211682DC900D3FE00 /* DemoViewController.m */; };
+		CC85D6D511682DCA00D3FE00 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC85D6D311682DC900D3FE00 /* DemoViewController.xib */; };
+		CC85D6E611682E9B00D3FE00 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CC85D6E511682E9B00D3FE00 /* blueArrow.png */; };
+		CC85D725116830A300D3FE00 /* DemoMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC85D723116830A300D3FE00 /* DemoMessageController.m */; };
+		CC85D726116830A300D3FE00 /* DemoMessageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC85D724116830A300D3FE00 /* DemoMessageController.xib */; };
+		CC85D8221168373300D3FE00 /* StyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CC85D8211168373300D3FE00 /* StyleSheet.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CC85CDC51167E0BB00D3FE00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20.a */;
+			remoteInfo = Three20;
+		};
+		CC85CDC71167E0BB00D3FE00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteInfo = UnitTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* NibDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NibDemoAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* NibDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibDemoAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* NibDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NibDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28A0AAE50D9B0CCF005BE974 /* NibDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NibDemo_Prefix.pch; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		28F335F01007B36200424DE2 /* DemoTableViewController.xib */ = {isa = PBXFileReference; explicitFileType = file.xib; path = DemoTableViewController.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* NibDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NibDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */ = {isa = PBXFileReference; explicitFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CC85CDA21167DF1700D3FE00 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../../src/Three20.bundle; sourceTree = SOURCE_ROOT; };
+		CC85CDA41167DF3B00D3FE00 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CC85CE011167E25200D3FE00 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
+		CC85CE021167E25200D3FE00 /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
+		CC85D4B411681EC500D3FE00 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		CC85D4D11168229C00D3FE00 /* FooterTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterTableViewController.xib; sourceTree = "<group>"; };
+		CC85D5EF11682A2500D3FE00 /* DemoPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoPostController.h; sourceTree = "<group>"; };
+		CC85D5F011682A2500D3FE00 /* DemoPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoPostController.m; sourceTree = "<group>"; };
+		CC85D5F111682A2500D3FE00 /* DemoPostController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DemoPostController.xib; path = Classes/DemoPostController.xib; sourceTree = "<group>"; };
+		CC85D6D111682DC900D3FE00 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		CC85D6D211682DC900D3FE00 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		CC85D6D311682DC900D3FE00 /* DemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DemoViewController.xib; path = Classes/DemoViewController.xib; sourceTree = "<group>"; };
+		CC85D6E511682E9B00D3FE00 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = SOURCE_ROOT; };
+		CC85D722116830A300D3FE00 /* DemoMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoMessageController.h; sourceTree = "<group>"; };
+		CC85D723116830A300D3FE00 /* DemoMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoMessageController.m; sourceTree = "<group>"; };
+		CC85D724116830A300D3FE00 /* DemoMessageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DemoMessageController.xib; path = Classes/DemoMessageController.xib; sourceTree = "<group>"; };
+		CC85D8201168373300D3FE00 /* StyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleSheet.h; sourceTree = "<group>"; };
+		CC85D8211168373300D3FE00 /* StyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleSheet.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				CC85CDA51167DF3B00D3FE00 /* QuartzCore.framework in Frameworks */,
+				CC85CDFB1167E22E00D3FE00 /* libThree20.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CC85D8201168373300D3FE00 /* StyleSheet.h */,
+				CC85D8211168373300D3FE00 /* StyleSheet.m */,
+				CC85D722116830A300D3FE00 /* DemoMessageController.h */,
+				CC85D723116830A300D3FE00 /* DemoMessageController.m */,
+				CC85D6D111682DC900D3FE00 /* DemoViewController.h */,
+				CC85D6D211682DC900D3FE00 /* DemoViewController.m */,
+				CC85D5EF11682A2500D3FE00 /* DemoPostController.h */,
+				CC85D5F011682A2500D3FE00 /* DemoPostController.m */,
+				CC85CE011167E25200D3FE00 /* DemoTableViewController.h */,
+				CC85CE021167E25200D3FE00 /* DemoTableViewController.m */,
+				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
+				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+				1D3623240D0F684500981E51 /* NibDemoAppDelegate.h */,
+				1D3623250D0F684500981E51 /* NibDemoAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* NibDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				CC85D6E411682E7A00D3FE00 /* art */,
+				CC85CDA21167DF1700D3FE00 /* Three20.bundle */,
+				CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				CC85D4B411681EC500D3FE00 /* readme.txt */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				28A0AAE50D9B0CCF005BE974 /* NibDemo_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CC85D724116830A300D3FE00 /* DemoMessageController.xib */,
+				CC85D5F111682A2500D3FE00 /* DemoPostController.xib */,
+				CC85D6D311682DC900D3FE00 /* DemoViewController.xib */,
+				CC85D4D11168229C00D3FE00 /* FooterTableViewController.xib */,
+				28F335F01007B36200424DE2 /* DemoTableViewController.xib */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* NibDemo-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				CC85CDA41167DF3B00D3FE00 /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC85CDC11167E0BB00D3FE00 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC85CDC61167E0BB00D3FE00 /* libThree20.a */,
+				CC85CDC81167E0BB00D3FE00 /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC85D6E411682E7A00D3FE00 /* art */ = {
+			isa = PBXGroup;
+			children = (
+				CC85D6E511682E9B00D3FE00 /* blueArrow.png */,
+			);
+			name = art;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* NibDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "NibDemo" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NibDemo;
+			productName = NibDemo;
+			productReference = 1D6058910D05DD3D006BFB54 /* NibDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Brusth The Dog, Inc";
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NibDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CC85CDC11167E0BB00D3FE00 /* Products */;
+					ProjectRef = CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* NibDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CC85CDC61167E0BB00D3FE00 /* libThree20.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20.a;
+			remoteRef = CC85CDC51167E0BB00D3FE00 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CC85CDC81167E0BB00D3FE00 /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = CC85CDC71167E0BB00D3FE00 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
+				28F335F11007B36200424DE2 /* DemoTableViewController.xib in Resources */,
+				CC85CDA31167DF1700D3FE00 /* Three20.bundle in Resources */,
+				CC85D4B511681EC500D3FE00 /* readme.txt in Resources */,
+				CC85D4D21168229C00D3FE00 /* FooterTableViewController.xib in Resources */,
+				CC85D5F311682A2500D3FE00 /* DemoPostController.xib in Resources */,
+				CC85D6D511682DCA00D3FE00 /* DemoViewController.xib in Resources */,
+				CC85D6E611682E9B00D3FE00 /* blueArrow.png in Resources */,
+				CC85D726116830A300D3FE00 /* DemoMessageController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* NibDemoAppDelegate.m in Sources */,
+				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
+				CC85CE031167E25200D3FE00 /* DemoTableViewController.m in Sources */,
+				CC85D5F211682A2500D3FE00 /* DemoPostController.m in Sources */,
+				CC85D6D411682DCA00D3FE00 /* DemoViewController.m in Sources */,
+				CC85D725116830A300D3FE00 /* DemoMessageController.m in Sources */,
+				CC85D8221168373300D3FE00 /* StyleSheet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = NibDemo_Prefix.pch;
+				INFOPLIST_FILE = "NibDemo-Info.plist";
+				PRODUCT_NAME = NibDemo;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = NibDemo_Prefix.pch;
+				INFOPLIST_FILE = "NibDemo-Info.plist";
+				PRODUCT_NAME = NibDemo;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../../src/**";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../../src/**";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "NibDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "NibDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
