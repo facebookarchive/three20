@@ -86,11 +86,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Called by TTViewController's init method
- */
-- (void)commonSetup {
-  self.hidesBottomBarWhenPushed = YES;
+- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
+	if (self = [super initWithNibName:nibName bundle:bundle]) {
+    self.hidesBottomBarWhenPushed = YES;
+	}
+
+	return self;
 }
 
 
@@ -103,6 +104,14 @@
     } else {
       [self openURL:URL];
     }
+  }
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+  if (self = [self initWithNibName:nil bundle:nil]) {
   }
   return self;
 }

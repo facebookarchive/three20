@@ -64,12 +64,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithTitle:(NSString*)title message:(NSString*)message delegate:(id)delegate {
-  if (self = [super init]) {
-    _delegate = delegate;
+
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
+	if (self = [super initWithNibName:nibName bundle:bundle]) {
     _userInfo = nil;
+    _delegate = nil;
     _URLs = [[NSMutableArray alloc] init];
-    
+	}
+
+	return self;
+}
+
+- (id)initWithTitle:(NSString*)title message:(NSString*)message delegate:(id)delegate {
+  if (self = [self initWithNibName:nil bundle:nil]) {
+    _delegate = delegate;
     if (title) {
       self.alertView.title = title;
     }

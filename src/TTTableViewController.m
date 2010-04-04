@@ -132,20 +132,20 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-/**
- * Called by TTViewController's init method
- */
-- (void)commonSetup {
-  [super commonSetup];
+- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
+	if (self = [super initWithNibName:nibName bundle:bundle]) {
+    _lastInterfaceOrientation = self.interfaceOrientation;
+    _tableViewStyle = UITableViewStylePlain;
+	}
 
-  _lastInterfaceOrientation = self.interfaceOrientation;
-  _tableViewStyle = UITableViewStylePlain;
+	return self;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
-  if (self = [super init]) { // TTViewController calls commonSetup
-    _tableViewStyle = style;
+  if (self = [self initWithNibName:nil bundle:nil]) {
+	  _tableViewStyle = style;
   }
+
   return self;
 }
 
@@ -170,14 +170,21 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIViewController
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
+-(void)viewDidLoad {
+	[super viewDidLoad];
+  self.tableView; //create the tableView if it doesn't already exist
 
-  if (nil == _tableView) {
-    self.tableView;
+  TTDASSERT(![self.view isKindOfClass:TTTableView.class]);
+  TTDASSERT([self.tableView isKindOfClass:TTTableView.class]);
+  TTDASSERT(self.tableView.superview == self.view);
+  _tableViewStyle = self.tableView.style;
 
-  } else {
-    _tableViewStyle = self.tableView.style;
+  UIColor* backgroundColor = _tableViewStyle == UITableViewStyleGrouped
+  ? TTSTYLEVAR(tableGroupedBackgroundColor)
+  : TTSTYLEVAR(tablePlainBackgroundColor);
+  if (backgroundColor) {
+    _tableView.backgroundColor = backgroundColor;
+    self.view.backgroundColor = backgroundColor;
   }
 }
 
@@ -496,7 +503,9 @@ static const CGFloat kBannerViewHeight = 22;
 // public
 
 - (UITableView*)tableView {
+
   if (!_tableView) {
+
     _tableView = [[TTTableView alloc] initWithFrame:self.view.bounds style:_tableViewStyle];
     _tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
                                    | UIViewAutoresizingFlexibleHeight;

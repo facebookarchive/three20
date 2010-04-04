@@ -313,27 +313,15 @@ static const NSInteger kActivityLabelTag = 96;
   return self;
 }
 
-- (id)init {
-  if (self = [super init]) {
-    _photoSource = nil;
-    _centerPhoto = nil;
-    _centerPhotoIndex = 0;
-    _scrollView = nil;
-    _photoStatusView = nil;
-    _toolbar = nil;
-    _defaultImage = nil;
-    _captionStyle = nil;
-    _nextButton = nil;
-    _previousButton = nil;
-    _statusText = nil;
-    _thumbsController = nil;
-    _slideshowTimer = nil;
-    _loadTimer = nil;
-    _delayLoad = NO;
-
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:
-      TTLocalizedString(@"Photo", @"Title for back button that returns to photo browser")
-      style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
+	if (self = [super initWithNibName:nibName bundle:bundle]) {
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc]
+                                              initWithTitle:
+                                              TTLocalizedString(@"Photo",
+                                                                @"Title for back button that returns to photo browser")
+                                                      style: UIBarButtonItemStylePlain
+                                                     target: nil
+                                                     action: nil] autorelease];
 
     self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
     self.navigationBarStyle = UIBarStyleBlackTranslucent;
@@ -342,6 +330,13 @@ static const NSInteger kActivityLabelTag = 96;
     self.hidesBottomBarWhenPushed = YES;
 
     self.defaultImage = TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
+	}
+
+	return self;
+}
+
+- (id)init {
+  if (self = [self initWithNibName:nil bundle:nil]) {
   }
   return self;
 }

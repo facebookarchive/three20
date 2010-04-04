@@ -42,34 +42,28 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Initialization common to all init* methods
- */
-- (void)commonSetup {
-  _navigationBarStyle = UIBarStyleDefault;
-  _statusBarStyle = UIStatusBarStyleDefault;
-
-  self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
-    [self commonSetup];
-  }
-
-  return self;
+  return [self initWithNibName:nil bundle:nil];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-  if (self = [super initWithNibName:nibName bundle:bundle]) {
-    [self commonSetup];
-  }
+/*
+ Since this is the designated initializer for UIViewController, this contains
+ initialization common to all init* methods
+ */
+- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle *)bundle {
+	if (self = [super initWithNibName:nibName bundle:bundle]) {
+#ifdef DEBUG
+    m_initCalled = YES;
+#endif
+    _navigationBarStyle = UIBarStyleDefault;
+    _statusBarStyle = UIStatusBarStyleDefault;
 
-  return self;
+    self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
+	}
+
+	return self;
 }
 
 
@@ -182,8 +176,11 @@
   }
 }
 
+- (void)viewDidLoad {
+	TTDASSERT(m_initCalled); //make sure that we got properly initialized
+  [super viewDidLoad];
+}
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
   [super viewDidUnload];
   TT_RELEASE_SAFELY(_searchController);

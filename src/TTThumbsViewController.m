@@ -198,6 +198,18 @@ static CGFloat kThumbSpacing = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
+- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
+	if (self = [super initWithNibName:nibName bundle:bundle]) {
+    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    self.navigationBarStyle = UIBarStyleBlackTranslucent;
+    self.navigationBarTintColor = nil;
+    self.wantsFullScreenLayout = YES;
+    self.hidesBottomBarWhenPushed = YES;
+	}
+
+	return self;
+}
+
 - (id)initWithDelegate:(id<TTThumbsViewControllerDelegate>)delegate {
   if (self = [self init]) {
     self.delegate = delegate;
@@ -215,17 +227,8 @@ static CGFloat kThumbSpacing = 4;
 }
 
 - (id)init {
-  if (self = [super init]) {
-    _delegate = nil;
-    _photoSource = nil;
-
-    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
-    self.navigationBarStyle = UIBarStyleBlackTranslucent;
-    self.navigationBarTintColor = nil;
-    self.wantsFullScreenLayout = YES;
-    self.hidesBottomBarWhenPushed = YES;
+  if (self = [self initWithNibName:nil bundle:nil]) {
   }
-
   return self;
 }
 

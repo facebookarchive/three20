@@ -55,7 +55,7 @@ static CGFloat kPadding = 5;
   if ([_delegate respondsToSelector:@selector(textBarDidCancel:)]) {
     [_delegate textBarDidCancel:self];
   }
-  
+
   [self dismissPopupViewControllerAnimated:YES];
 }
 
@@ -63,20 +63,13 @@ static CGFloat kPadding = 5;
 // NSObject
 
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
-  if (self = [super init]) {
-    _delegate = nil;
-    _result = nil;
-    _defaultText = nil;
-    _textEditor = nil;
-    _postButton = nil;
-    _footerBar = nil;
-    _previousRightBarButtonItem = nil;
-
-    if (query) {
+  if (self = [super initWithNibName:nil bundle:nil]) {
+    if (nil != query) {
       _delegate = [query objectForKey:@"delegate"];
       _defaultText = [[query objectForKey:@"text"] copy];
     }
   }
+
   return self;
 }
 
@@ -103,9 +96,9 @@ static CGFloat kPadding = 5;
   _textBar.style = TTSTYLE(textBar);
   [self.view addSubview:_textBar];
 
-  [_textBar addSubview:self.textEditor];  
+  [_textBar addSubview:self.textEditor];
   [_textBar addSubview:self.postButton];
-  
+
   [self.postButton sizeToFit];
   _postButton.frame = CGRectMake(screenSize.width - (_postButton.width + kPadding),
                                  kMargin+kPadding, _postButton.width, 0);
@@ -114,7 +107,7 @@ static CGFloat kPadding = 5;
                                  screenSize.width - (_postButton.width+kPadding*2), 0);
   [_textEditor sizeToFit];
   _postButton.height = _textEditor.size.height - 8;
-  
+
   _textBar.frame = CGRectMake(0, 0,
                               screenSize.width, _textEditor.height+kMargin*2);
 
@@ -127,7 +120,7 @@ static CGFloat kPadding = 5;
     self.view.top -= _footerBar.height;
     self.view.height += _footerBar.height;
   }
-  
+
   self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth
                               | UIViewAutoresizingFlexibleTopMargin;
   _postButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
@@ -156,13 +149,13 @@ static CGFloat kPadding = 5;
     [state setObject:delegate forKey:@"delegate"];
   }
   [state setObject:_textEditor.text forKey:@"text"];
-  
+
   NSString* title = self.navigationItem.title;
-  
+
   if (title) {
     [state setObject:title forKey:@"title"];
   }
-  
+
   return [super persistView:state];
 }
 
@@ -185,7 +178,7 @@ static CGFloat kPadding = 5;
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
   self.view.transform = TTRotateTransformForOrientation(TTInterfaceOrientation());
   [view addSubview:self.view];
-  
+
   if (_defaultText) {
     _textEditor.text = _defaultText;
     TT_RELEASE_SAFELY(_defaultText);
@@ -215,9 +208,9 @@ static CGFloat kPadding = 5;
 
 - (void)textEditorDidBeginEditing:(TTTextEditor*)textEditor {
   [self retain];
-  
+
   _originTop = self.view.top;
-  
+
   UIViewController* controller = self.view.viewController;
   _previousRightBarButtonItem = [controller.navigationItem.rightBarButtonItem retain];
   [controller.navigationItem setRightBarButtonItem:
@@ -228,10 +221,10 @@ static CGFloat kPadding = 5;
   [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(showAnimationDidStop)];
-  
+
   CGRect rect = [self.view.superview frameWithKeyboardSubtracted:0];
   self.view.top = rect.size.height - self.view.height;
-  
+
   [UIView commitAnimations];
 
   if ([_delegate respondsToSelector:@selector(textBarDidBeginEditing:)]) {
@@ -248,9 +241,9 @@ static CGFloat kPadding = 5;
   [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(dismissAnimationDidStop)];
-  
+
   self.view.top = _originTop;
-  
+
   [UIView commitAnimations];
 
   if ([_delegate respondsToSelector:@selector(textBarDidEndEditing:)]) {
@@ -262,14 +255,14 @@ static CGFloat kPadding = 5;
   [_postButton setEnabled:textEditor.text.length > 0];
 }
 
-- (BOOL)textEditor:(TTTextEditor*)textEditor shouldResizeBy:(CGFloat)height {    
+- (BOOL)textEditor:(TTTextEditor*)textEditor shouldResizeBy:(CGFloat)height {
   CGRect frame = self.view.frame;
   frame.origin.y -= height;
   frame.size.height += height;
   _textBar.height += height;
   _footerBar.top += height;
   self.view.frame = frame;
-  
+
   return YES;
 }
 
@@ -316,7 +309,7 @@ static CGFloat kPadding = 5;
 
   _textEditor.text = @"";
   _postButton.enabled = NO;
-  
+
   if (shouldDismiss) {
     [self dismissWithResult:nil animated:YES];
   } else {
@@ -343,7 +336,7 @@ static CGFloat kPadding = 5;
   _result = [result retain];
 
   [self dismissPopupViewControllerAnimated:YES];
-  
+
 //  if (animated) {
 //    if ([_delegate respondsToSelector:@selector(textBar:willAnimateTowards:)]) {
 //      CGRect rect = [_delegate textBar:self willAnimateTowards:_originRect];
@@ -360,13 +353,13 @@ static CGFloat kPadding = 5;
 //    _originView.hidden = NO;
 //    _activityView.hidden = YES;
 //    _textEditor.hidden = YES;
-//    
+//
 //    [UIView beginAnimations:nil context:nil];
 //    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
 //    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
 //    [UIView setAnimationDelegate:self];
 //    [UIView setAnimationDidStopSelector:@selector(dismissAnimationDidStop)];
-//    
+//
 //    if (!CGRectIsEmpty(originRect)) {
 //      _screenView.frame = CGRectOffset(originRect, 0, -TTStatusHeight());
 //    } else {
@@ -375,18 +368,18 @@ static CGFloat kPadding = 5;
 //
 //    _innerView.alpha = 0;
 //    _navigationBar.alpha = 0;
-//    
+//
 //    [UIView commitAnimations];
 //  } else {
 //    [self dismissAnimationDidStop];
 //  }
-//  
+//
 //  [self hideKeyboard];
 }
 
 - (void)failWithError:(NSError*)error {
   [self showActivity:nil];
-  
+
   NSString* title = [self titleForError:error];
   if (title.length) {
     UIAlertView* alertView = [[[UIAlertView alloc] initWithTitle:TTLocalizedString(@"Error", @"")
