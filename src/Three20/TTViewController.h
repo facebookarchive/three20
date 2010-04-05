@@ -88,14 +88,6 @@
 
 
 /**
- * Initialization common to all init* methods. Used specifically for nib support.
- *
- * If you want your TTViewController-based controller to work with nibs, you will
- * want to implement this method.
- */
-- (void)commonSetup;
-
-/**
  * Sent to the controller before the keyboard slides in.
  */
 - (void)keyboardWillAppear:(BOOL)animated withBounds:(CGRect)bounds;

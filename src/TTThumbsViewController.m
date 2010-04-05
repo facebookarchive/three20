@@ -227,9 +227,7 @@ static CGFloat kThumbSpacing = 4;
 }
 
 - (id)init {
-  if (self = [self initWithNibName:nil bundle:nil]) {
-  }
-  return self;
+  return [self initWithNibName:nil bundle:nil];
 }
 
 - (void)dealloc {
