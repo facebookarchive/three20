@@ -32,18 +32,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		573EA43D1169B15300BE6A24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20 */;
+			remoteInfo = Three20;
+		};
 		CC85CDC51167E0BB00D3FE00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20;
 		};
 		CC85CDC71167E0BB00D3FE00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 /* End PBXContainerItemProxy section */
@@ -209,6 +216,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				573EA43E1169B15300BE6A24 /* PBXTargetDependency */,
 			);
 			name = NibDemo;
 			productName = NibDemo;
@@ -301,6 +309,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		573EA43E1169B15300BE6A24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20;
+			targetProxy = 573EA43D1169B15300BE6A24 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
