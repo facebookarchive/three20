@@ -8,6 +8,7 @@
 #import "TableItemTestController.h"
 #import "TableControlsTestController.h"
 #import "TableTestController.h"
+#import "TableWithShadowController.h"
 #import "SearchTestController.h"
 #import "MessageTestController.h"
 #import "ActivityTestController.h"
@@ -39,6 +40,7 @@
   [map from:@"tt://tableItemTest" toViewController:[TableItemTestController class]];
   [map from:@"tt://tableControlsTest" toViewController:[TableControlsTestController class]];
   [map from:@"tt://styledTextTableTest" toViewController:[StyledTextTableTestController class]];
+  [map from:@"tt://tableWithShadow" toViewController:[TableWithShadowController class]];
   [map from:@"tt://composerTest" toViewController:[MessageTestController class]];
   [map from:@"tt://searchTest" toViewController:[SearchTestController class]];
   [map from:@"tt://activityTest" toViewController:[ActivityTestController class]];
