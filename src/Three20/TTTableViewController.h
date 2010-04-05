@@ -37,8 +37,6 @@
   BOOL _showTableShadows;
 }
 
-@property(nonatomic) BOOL showTableShadows;
-
 @property(nonatomic,retain) UITableView* tableView;
 
 /**
@@ -57,7 +55,7 @@
 
 @property(nonatomic,readonly) UIView* menuView;
 
-/** 
+/**
  * The data source used to populate the table view.
  *
  * Setting dataSource has the side effect of also setting model to the value of the
@@ -70,10 +68,18 @@
  */
 @property(nonatomic) UITableViewStyle tableViewStyle;
 
-/** 
+/**
  * Indicates if the table should support non-fixed row heights.
  */
 @property(nonatomic) BOOL variableHeightRows;
+
+/**
+ * When enabled, draws gutter shadows above the first table item and below the last table item.
+ *
+ * Known issues: When there aren't enough cell items to fill the screen, the table view draws
+ * empty cells for the remaining space. This causes the bottom shadow to appear out of place.
+ */
+@property(nonatomic) BOOL showTableShadows;
 
 /**
  * Initializes and returns a controller having the given style.
