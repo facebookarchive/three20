@@ -180,7 +180,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  if (!_showShadows) {
+  if (!_showShadows || UITableViewStylePlain != self.style) {
     return;
   }
 
