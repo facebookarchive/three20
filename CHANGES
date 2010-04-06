@@ -1,3 +1,11 @@
+Changes since March 30, 2010
+
+- [NEW] New showTableShadows option for table gutter shadows.
+
+- [MINOR] Don't hard code the HTTP User-Agent.
+
+- [MINOR] Convert TTLink to use TTURLAction instead of just a URL.
+
 Changes since February 26, 2010
 
 - [NEW] arrayForKey in the TTXMLAdditions.
