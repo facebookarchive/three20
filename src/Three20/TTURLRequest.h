@@ -62,7 +62,7 @@
 /**
  * The URL to be loaded by the request.
  */
-@property(nonatomic,copy) NSString* URL;
+@property (nonatomic, copy) NSString* URL;
 
 /**
  * The HTTP method to send with the request.
@@ -72,7 +72,7 @@
  * @example @"PUT"
  * @default nil (equivalent to @"GET")
  */
-@property(nonatomic,copy) NSString* httpMethod;
+@property (nonatomic, copy) NSString* httpMethod;
 
 /**
  * An object that handles the response data and may parse and validate it.
@@ -80,7 +80,7 @@
  * @see TTURLDataResponse
  * @see TTURLImageResponse
  */
-@property(nonatomic,retain) id<TTURLResponse> response;
+@property (nonatomic, retain) id<TTURLResponse> response;
 
 /**
  * The HTTP body to send with the request.
@@ -89,36 +89,36 @@
  * httpBody is provided, then the POST/PUT data generated from the parameters property will not
  * be used.
  */
-@property(nonatomic,retain) NSData* httpBody;
+@property (nonatomic, retain) NSData* httpBody;
 
 /**
  * The content type of the data in the request.
  *
  * If not provided and httpMethod is POST/PUT, then contentType is multipart/form-data.
  */
-@property(nonatomic,copy) NSString* contentType;
+@property (nonatomic, copy) NSString* contentType;
 
 /**
  * Parameters to use for an HTTP POST/PUT.
  */
-@property(nonatomic,readonly) NSMutableDictionary* parameters;
+@property (nonatomic, readonly) NSMutableDictionary* parameters;
 
 /**
  * Custom HTTP headers.
  */
-@property(nonatomic,readonly) NSMutableDictionary* headers;
+@property (nonatomic, readonly) NSMutableDictionary* headers;
 
 /**
  * @default TTURLRequestCachePolicyDefault
  */
-@property(nonatomic) TTURLRequestCachePolicy cachePolicy;
+@property (nonatomic) TTURLRequestCachePolicy cachePolicy;
 
 /**
  * The maximum age of cached data that can be used as a response.
  *
  * @default TT_DEFAULT_CACHE_EXPIRATION_AGE (1 week)
  */
-@property(nonatomic) NSTimeInterval cacheExpirationAge;
+@property (nonatomic) NSTimeInterval cacheExpirationAge;
 
 /**
  * If no cache key is provided, a unique key is generated from the request data. If the request
@@ -126,7 +126,7 @@
  *
  * By setting the cacheKey, you may override the default cache key generator with your own.
  */
-@property(nonatomic,retain) NSString* cacheKey;
+@property (nonatomic, retain) NSString* cacheKey;
 
 /**
  * A dummy object used to uniquely identify this request object once it's been sent into the fray.
@@ -134,14 +134,14 @@
  *
  * @see TTUserInfo
  */
-@property(nonatomic,retain) id userInfo;
+@property (nonatomic, retain) id userInfo;
 
-@property(nonatomic,retain) NSDate* timestamp;
+@property (nonatomic, retain) NSDate* timestamp;
 
 /**
  * Whether or not the request is currently active.
  */
-@property(nonatomic) BOOL isLoading;
+@property (nonatomic) BOOL isLoading;
 
 /**
  * Decide whether default cookie handling will happen for this request.
@@ -153,41 +153,42 @@
  *
  * @default YES
  */
-@property(nonatomic) BOOL shouldHandleCookies;
+@property (nonatomic) BOOL shouldHandleCookies;
 
 /**
  * The number of bytes loaded by this request.
  */
-@property(nonatomic) NSInteger totalBytesLoaded;
+@property (nonatomic) NSInteger totalBytesLoaded;
 
 /**
  * The number of expected bytes from this request.
  */
-@property(nonatomic) NSInteger totalBytesExpected;
+@property (nonatomic) NSInteger totalBytesExpected;
 
 /**
  * Whether or not the request was loaded from the cache.
  *
  * This is only valid after the request has completed.
  */
-@property(nonatomic) BOOL respondedFromCache;
+@property (nonatomic) BOOL respondedFromCache;
 
 /**
  * Whether parameters named "password" should be suppressed in log messages.
  */
-@property(nonatomic,assign) BOOL filterPasswordLogging;
+@property (nonatomic,assign) BOOL filterPasswordLogging;
 
 /**
  * Charset to use when creating multipart/form-data data.
  *
  * @default NSUTF8StringEncoding to remain backwards compatible.
  */
-@property(nonatomic) NSStringEncoding charsetForMultipart;
+@property (nonatomic) NSStringEncoding charsetForMultipart;
 
 /**
  * An array of non-retained objects that receive messages about the progress of the request.
  */
-@property(nonatomic,readonly) NSMutableArray* delegates;
+@property (nonatomic, readonly) NSMutableArray* delegates;
+
 
 + (TTURLRequest*)request;
 
