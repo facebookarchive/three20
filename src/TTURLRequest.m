@@ -32,7 +32,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTURLRequest
 
-@synthesize URL         = _URL;
+@synthesize urlPath     = _urlPath;
 @synthesize httpMethod  = _httpMethod;
 @synthesize httpBody    = _httpBody;
 @synthesize parameters  = _parameters;
@@ -77,7 +77,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate {
   if (self = [self init]) {
-    _URL = [URL retain];
+    _urlPath = [URL retain];
     if (nil != delegate) {
       [_delegates addObject:delegate];
     }
@@ -92,12 +92,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _delegates = TTCreateNonRetainingArray();
     _cachePolicy = TTURLRequestCachePolicyDefault;
     _cacheExpirationAge = TT_DEFAULT_CACHE_EXPIRATION_AGE;
-    _isLoading = NO;
     _shouldHandleCookies = YES;
-    _totalBytesLoaded = 0;
-    _totalBytesExpected = 0;
-    _respondedFromCache = NO;
-    _filterPasswordLogging = NO;
     _charsetForMultipart = NSUTF8StringEncoding;
   }
   return self;
@@ -106,7 +101,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_urlPath);
   TT_RELEASE_SAFELY(_httpMethod);
   TT_RELEASE_SAFELY(_response);
   TT_RELEASE_SAFELY(_httpBody);
@@ -118,18 +113,19 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   TT_RELEASE_SAFELY(_timestamp);
   TT_RELEASE_SAFELY(_files);
   TT_RELEASE_SAFELY(_delegates);
+
   [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)description {
-  return [NSString stringWithFormat:@"<TTURLRequest %@>", _URL];
+  return [NSString stringWithFormat:@"<TTURLRequest %@>", _urlPath];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString *)md5HexDigest:(NSString*)input {
+- (NSString*)md5HexDigest:(NSString*)input {
   const char* str = [input UTF8String];
   unsigned char result[CC_MD5_DIGEST_LENGTH];
   CC_MD5(str, strlen(str), result);
@@ -146,7 +142,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (NSString*)generateCacheKey {
   if ([_httpMethod isEqualToString:@"POST"]
       || [_httpMethod isEqualToString:@"PUT"]) {
-    NSMutableString* joined = [[[NSMutableString alloc] initWithString:self.URL] autorelease];
+    NSMutableString* joined = [[[NSMutableString alloc] initWithString:self.urlPath] autorelease];
     NSEnumerator* e = [_parameters keyEnumerator];
     for (id key; key = [e nextObject]; ) {
       [joined appendString:key];
@@ -159,15 +155,15 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
     return [self md5HexDigest:joined];
   } else {
-    return [self md5HexDigest:self.URL];
+    return [self md5HexDigest:self.urlPath];
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)generatePostBody {
-  NSMutableData *body = [NSMutableData data];
-  NSString *beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
+  NSMutableData* body = [NSMutableData data];
+  NSString* beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
 
   [body appendData:[[NSString stringWithFormat:@"--%@\r\n", kStringBoundary]
     dataUsingEncoding:NSUTF8StringEncoding]];
@@ -282,7 +278,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
+- (void)setValue:(NSString*)value forHTTPHeaderField:(NSString*)field {
   if (!_headers) {
     _headers = [[NSMutableDictionary alloc] init];
   }
@@ -306,12 +302,12 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (BOOL)send {
   if (_parameters) {
     // Don't log passwords. Save now, restore after logging
-    NSString *password = [_parameters objectForKey:@"password"];
+    NSString* password = [_parameters objectForKey:@"password"];
     if (_filterPasswordLogging && password) {
       [_parameters setObject:@"[FILTERED]" forKey:@"password"];
     }
 
-    TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"SEND %@ %@", self.URL, self.parameters);
+    TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"SEND %@ %@", self.urlPath, self.parameters);
 
     if (password) {
       [_parameters setObject:password forKey:@"password"];
@@ -338,5 +334,25 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   return [[TTURLRequestQueue mainQueue] createNSURLRequest:self URL:nil];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Properties
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated
+- (void)setURL:(NSString*)urlPath {
+  NSString* aUrlPath = [urlPath copy];
+  [_urlPath release];
+  _urlPath = aUrlPath;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated
+- (NSString*)URL {
+  return _urlPath;
+}
 
 @end

@@ -16,6 +16,8 @@
 
 #import "Three20/TTGlobalNetwork.h"
 
+#import "Three20/TTCorePreprocessorMacros.h"
+
 @protocol TTURLRequestDelegate;
 @protocol TTURLResponse;
 
@@ -26,7 +28,7 @@
  * processing using TTURLResponse objects.
  */
 @interface TTURLRequest : NSObject {
-  NSString*             _URL;
+  NSString*             _urlPath;
 
   NSString*             _httpMethod;
   NSData*               _httpBody;
@@ -60,9 +62,17 @@
 }
 
 /**
- * The URL to be loaded by the request.
+ * The URL path to be loaded by the request.
  */
-@property (nonatomic, copy) NSString* URL;
+@property (nonatomic, copy) NSString* urlPath;
+
+/**
+ * The URL path to be loaded by the request.
+ *
+ * Deprecated due to name ambiguity. Use urlPath instead.
+ * Remove after May 6, 2010.
+ */
+@property (nonatomic, copy) NSString* URL __TTDEPRECATED_METHOD;
 
 /**
  * The HTTP method to send with the request.

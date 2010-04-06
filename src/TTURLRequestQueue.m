@@ -153,7 +153,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)loadRequestFromCache:(TTURLRequest*)request {
   if (!request.cacheKey) {
-    request.cacheKey = [[TTURLCache sharedCache] keyForURL:request.URL];
+    request.cacheKey = [[TTURLCache sharedCache] keyForURL:request.urlPath];
   }
 
   if (request.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory)) {
@@ -161,7 +161,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     NSDate* timestamp = nil;
     NSError* error = nil;
 
-    if ([self loadFromCache:request.URL cacheKey:request.cacheKey
+    if ([self loadFromCache:request.urlPath cacheKey:request.cacheKey
               expires:request.cacheExpirationAge
               fromDisk:!_suspended && request.cachePolicy & TTURLRequestCachePolicyDisk
               data:&data error:&error timestamp:&timestamp]) {
@@ -333,7 +333,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     }
   }
 
-  if (!request.URL.length) {
+  if (!request.urlPath.length) {
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
       if ([delegate respondsToSelector:@selector(request:didFailLoadWithError:)]) {
@@ -365,7 +365,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     [_loaderQueue addObject:loader];
   } else {
     ++_totalLoading;
-    [loader load:[NSURL URLWithString:request.URL]];
+    [loader load:[NSURL URLWithString:request.urlPath]];
   }
   [loader release];
 
@@ -385,7 +385,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     }
   }
 
-  if (!request.URL.length) {
+  if (!request.urlPath.length) {
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
       if ([delegate respondsToSelector:@selector(request:didFailLoadWithError:)]) {
@@ -403,7 +403,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   // Should be decremented eventually by loadSynchronously
   ++_totalLoading;
 
-  [loader loadSynchronously:[NSURL URLWithString:request.URL]];
+  [loader loadSynchronously:[NSURL URLWithString:request.urlPath]];
   TT_RELEASE_SAFELY(loader);
 
   return NO;
@@ -470,7 +470,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSURLRequest*)createNSURLRequest:(TTURLRequest*)request URL:(NSURL*)URL {
   if (!URL) {
-    URL = [NSURL URLWithString:request.URL];
+    URL = [NSURL URLWithString:request.urlPath];
   }
 
   NSMutableURLRequest* URLRequest = [NSMutableURLRequest requestWithURL:URL
