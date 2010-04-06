@@ -29,19 +29,14 @@
   SEL                   _selector;
 }
 
-@property(nonatomic,copy)     NSString* URL;
-@property(nonatomic,readonly) NSString* scheme;
-@property(nonatomic,readonly) NSInteger specificity;
-@property(nonatomic,readonly) Class     classForInvocation;
-@property(nonatomic)          SEL       selector;
+@property (nonatomic, copy)     NSString* URL;
+@property (nonatomic, readonly) NSString* scheme;
+@property (nonatomic, readonly) NSInteger specificity;
+@property (nonatomic, readonly) Class     classForInvocation;
+@property (nonatomic)           SEL       selector;
 
 - (void)setSelectorIfPossible:(SEL)selector;
 
 - (void)compileURL;
-
-/**
- * @protected
- */
-- (void)setSelectorWithNames:(NSArray*)names;
 
 @end

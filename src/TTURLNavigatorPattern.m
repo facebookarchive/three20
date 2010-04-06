@@ -16,6 +16,8 @@
 
 #import "Three20/TTURLNavigatorPattern.h"
 
+#import "Three20/TTURLPatternInternal.h"
+
 #import "Three20/TTURLWildcard.h"
 #import "Three20/TTURLArguments.h"
 
