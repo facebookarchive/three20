@@ -29,14 +29,18 @@ typedef enum {
 } TTNavigationMode;
 
 @interface TTURLMap : NSObject {
-  NSMutableDictionary* _objectMappings;
-  NSMutableArray* _objectPatterns;
-  NSMutableArray* _fragmentPatterns;
-  NSMutableDictionary* _stringPatterns;
-  NSMutableDictionary* _schemes;
-  TTURLNavigatorPattern* _defaultObjectPattern;
-  TTURLNavigatorPattern* _hashPattern;
-  BOOL _invalidPatterns;
+  NSMutableDictionary*    _objectMappings;
+
+  NSMutableArray*         _objectPatterns;
+  NSMutableArray*         _fragmentPatterns;
+  NSMutableDictionary*    _stringPatterns;
+
+  NSMutableDictionary*    _schemes;
+
+  TTURLNavigatorPattern*  _defaultObjectPattern;
+  TTURLNavigatorPattern*  _hashPattern;
+
+  BOOL                    _invalidPatterns;
 }
 
 /**

@@ -31,6 +31,24 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_objectMappings);
+  TT_RELEASE_SAFELY(_objectPatterns);
+  TT_RELEASE_SAFELY(_fragmentPatterns);
+  TT_RELEASE_SAFELY(_stringPatterns);
+  TT_RELEASE_SAFELY(_schemes);
+  TT_RELEASE_SAFELY(_defaultObjectPattern);
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * @return a unique key for a class with a given name.
  * @private
@@ -141,10 +159,10 @@
  */
 - (BOOL)isWebURL:(NSURL*)URL {
   return [URL.scheme caseInsensitiveCompare:@"http"] == NSOrderedSame
-         || [URL.scheme caseInsensitiveCompare:@"https"] == NSOrderedSame
-         || [URL.scheme caseInsensitiveCompare:@"ftp"] == NSOrderedSame
-         || [URL.scheme caseInsensitiveCompare:@"ftps"] == NSOrderedSame
-         || [URL.scheme caseInsensitiveCompare:@"data"] == NSOrderedSame;
+  || [URL.scheme caseInsensitiveCompare:@"https"] == NSOrderedSame
+  || [URL.scheme caseInsensitiveCompare:@"ftp"] == NSOrderedSame
+  || [URL.scheme caseInsensitiveCompare:@"ftps"] == NSOrderedSame
+  || [URL.scheme caseInsensitiveCompare:@"data"] == NSOrderedSame;
 }
 
 
@@ -160,39 +178,6 @@
   } else {
     return NO;
   }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSObject
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [super init]) {
-    _objectMappings = nil;
-    _objectPatterns = nil;
-    _fragmentPatterns = nil;
-    _stringPatterns = nil;
-    _schemes = nil;
-    _defaultObjectPattern = nil;
-    _invalidPatterns = NO;
-  }
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_objectMappings);
-  TT_RELEASE_SAFELY(_objectPatterns);
-  TT_RELEASE_SAFELY(_fragmentPatterns);
-  TT_RELEASE_SAFELY(_stringPatterns);
-  TT_RELEASE_SAFELY(_schemes);
-  TT_RELEASE_SAFELY(_defaultObjectPattern);
-  [super dealloc];
 }
 
 
