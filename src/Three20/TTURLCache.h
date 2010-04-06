@@ -20,16 +20,16 @@
 @class TTURLRequest;
 
 @interface TTURLCache : NSObject {
-  NSString* _name;
-  NSString* _cachePath;
+  NSString*             _name;
+  NSString*             _cachePath;
   NSMutableDictionary* _imageCache;
-  NSMutableArray* _imageSortedList;
-  NSUInteger _totalPixelCount;
-  NSUInteger _maxPixelCount;
-  NSInteger _totalLoading;
-  NSTimeInterval _invalidationAge;
-  BOOL _disableDiskCache;
-  BOOL _disableImageCache;
+  NSMutableArray*       _imageSortedList;
+  NSUInteger            _totalPixelCount;
+  NSUInteger            _maxPixelCount;
+  NSInteger             _totalLoading;
+  NSTimeInterval        _invalidationAge;
+  BOOL                  _disableDiskCache;
+  BOOL                  _disableImageCache;
 }
 
 /**
@@ -60,6 +60,7 @@
  */
 @property(nonatomic) NSTimeInterval invalidationAge;
 
+
 /**
  * Gets a shared cache identified with a unique name.
  */
@@ -75,9 +76,6 @@
  */
 + (void)setSharedCache:(TTURLCache*)cache;
 
-/**
- *
- */
 - (id)initWithName:(NSString*)name;
 
 /**
@@ -165,14 +163,8 @@
  */
 - (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL;
 
-/**
- *
- */
 - (void)moveDataFromPath:(NSString*)path toURL:(NSString*)newURL;
 
-/**
- *
- */
 - (NSString*)moveDataFromPathToTemporaryURL:(NSString*)path;
 
 /**
@@ -180,9 +172,6 @@
  */
 - (void)removeURL:(NSString*)URL fromDisk:(BOOL)fromDisk;
 
-/**
- *
- */
 - (void)removeKey:(NSString*)key;
 
 /**
@@ -199,9 +188,6 @@
  */
 - (void)invalidateURL:(NSString*)URL;
 
-/**
- *
- */
 - (void)invalidateKey:(NSString*)key;
 
 /**
