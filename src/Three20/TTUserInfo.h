@@ -31,9 +31,9 @@
   id        _weakRef;
 }
 
-@property(nonatomic,retain) NSString* topic;
-@property(nonatomic,retain) id        strongRef;
-@property(nonatomic,assign) id        weakRef;
+@property (nonatomic, retain) NSString* topic;
+@property (nonatomic, retain) id        strongRef;
+@property (nonatomic, assign) id        weakRef;
 
 + (id)topic:(NSString*)topic strongRef:(id)strongRef weakRef:(id)weakRef;
 + (id)topic:(NSString*)topic;

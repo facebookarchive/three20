@@ -27,6 +27,6 @@
   UIImage* _image;
 }
 
-@property(nonatomic,readonly) UIImage* image;
+@property (nonatomic, readonly) UIImage* image;
 
 @end
