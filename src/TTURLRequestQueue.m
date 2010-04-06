@@ -203,7 +203,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSError* error = nil;
 
   if ((loader.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory))
-      && [self loadFromCache:loader.URL cacheKey:loader.cacheKey
+      && [self loadFromCache:loader.urlPath cacheKey:loader.cacheKey
                expires:loader.cacheExpirationAge
                fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
                data:&data error:&error timestamp:&timestamp]) {
@@ -219,7 +219,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     }
   } else {
     ++_totalLoading;
-    [loader load:[NSURL URLWithString:loader.URL]];
+    [loader load:[NSURL URLWithString:loader.urlPath]];
   }
 }
 

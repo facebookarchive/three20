@@ -16,29 +16,42 @@
 
 #import "Three20/TTGlobalNetwork.h"
 
+#import "Three20/TTCorePreprocessorMacros.h"
+
 @class TTURLRequestQueue;
 @class TTURLRequest;
 
 
 @interface TTRequestLoader : NSObject {
-  NSString* _URL;
-  TTURLRequestQueue* _queue;
-  NSString* _cacheKey;
+  NSString*               _urlPath;
+
+  TTURLRequestQueue*      _queue;
+
+  NSString*               _cacheKey;
   TTURLRequestCachePolicy _cachePolicy;
-  NSTimeInterval _cacheExpirationAge;
-  NSMutableArray* _requests;
-  NSURLConnection* _connection;
-  NSHTTPURLResponse* _response;
-  NSMutableData* _responseData;
-  int _retriesLeft;
+  NSTimeInterval          _cacheExpirationAge;
+
+  NSMutableArray*         _requests;
+  NSURLConnection*        _connection;
+
+  NSHTTPURLResponse*      _response;
+  NSMutableData*          _responseData;
+
+  int                     _retriesLeft;
 }
 
-@property(nonatomic,readonly) NSArray* requests;
-@property(nonatomic,readonly) NSString* URL;
-@property(nonatomic,readonly) NSString* cacheKey;
-@property(nonatomic,readonly) TTURLRequestCachePolicy cachePolicy;
-@property(nonatomic,readonly) NSTimeInterval cacheExpirationAge;
-@property(nonatomic,readonly) BOOL isLoading;
+@property (nonatomic, readonly) NSArray*                requests;
+@property (nonatomic, readonly) NSString*               urlPath;
+@property (nonatomic, readonly) NSString*               cacheKey;
+@property (nonatomic, readonly) TTURLRequestCachePolicy cachePolicy;
+@property (nonatomic, readonly) NSTimeInterval          cacheExpirationAge;
+@property (nonatomic, readonly) BOOL                    isLoading;
+
+/**
+ * Deprecated due to name ambiguity. Use urlPath instead.
+ * Remove after May 6, 2010.
+ */
+@property (nonatomic, readonly) NSString*               URL __TTDEPRECATED_METHOD;
 
 - (id)initForRequest:(TTURLRequest*)request queue:(TTURLRequestQueue*)queue;
 
