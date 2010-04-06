@@ -26,10 +26,10 @@
   TTURLSelector*    _selector;
 }
 
-@property(nonatomic,copy)   NSString*         name;
-@property(nonatomic)        NSInteger         argIndex;
-@property(nonatomic)        TTURLArgumentType argType;
-@property(nonatomic,retain) TTURLSelector*    selector;
+@property (nonatomic, copy)   NSString*         name;
+@property (nonatomic)         NSInteger         argIndex;
+@property (nonatomic)         TTURLArgumentType argType;
+@property (nonatomic, retain) TTURLSelector*    selector;
 
 - (void)deduceSelectorForClass:(Class)cls;
 

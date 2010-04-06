@@ -17,13 +17,13 @@
 #import "Three20/TTURLArgumentType.h"
 
 @interface TTURLSelector : NSObject {
-  NSString* _name;
-  SEL _selector;
-  TTURLSelector* _next;
+  NSString*       _name;
+  SEL             _selector;
+  TTURLSelector*  _next;
 }
 
-@property(nonatomic,readonly) NSString* name;
-@property(nonatomic,retain) TTURLSelector* next;
+@property (nonatomic, readonly) NSString*       name;
+@property (nonatomic, retain)   TTURLSelector*  next;
 
 - (id)initWithName:(NSString*)name;
 
