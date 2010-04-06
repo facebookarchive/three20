@@ -20,6 +20,7 @@
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
+#import "Three20/TTURLMap.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTPhotoView.h"
 #import "Three20/TTActivityLabel.h"
