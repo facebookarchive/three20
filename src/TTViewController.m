@@ -27,70 +27,33 @@
 #import "Three20/TTStyleSheet.h"
 #import "Three20/TTNavigator.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTViewController
 
-@synthesize navigationBarStyle = _navigationBarStyle,
-  navigationBarTintColor = _navigationBarTintColor, statusBarStyle = _statusBarStyle,
-  isViewAppearing = _isViewAppearing, hasViewAppeared = _hasViewAppeared,
-  autoresizesForKeyboard = _autoresizesForKeyboard;
+@synthesize navigationBarStyle      = _navigationBarStyle;
+@synthesize navigationBarTintColor  = _navigationBarTintColor;
+@synthesize statusBarStyle          = _statusBarStyle;
+@synthesize isViewAppearing         = _isViewAppearing;
+@synthesize hasViewAppeared         = _hasViewAppeared;
+@synthesize autoresizesForKeyboard  = _autoresizesForKeyboard;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
-  NSValue* v1 = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
-  CGRect keyboardBounds;
-  [v1 getValue:&keyboardBounds];
-
-  NSValue* v2 = [notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey];
-  CGPoint keyboardStart;
-  [v2 getValue:&keyboardStart];
-
-  NSValue* v3 = [notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey];
-  CGPoint keyboardEnd;
-  [v3 getValue:&keyboardEnd];
-
-  BOOL animated = keyboardStart.y != keyboardEnd.y;
-  if (animated) {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-  }
-
-  if (appearing) {
-    [self keyboardWillAppear:animated withBounds:keyboardBounds];
-  } else {
-    [self keyboardDidDisappear:animated withBounds:keyboardBounds];
-  }
-
-  if (animated) {
-    [UIView commitAnimations];
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
 - (id)init {
   if (self = [super init]) {
-    _frozenState = nil;
     _navigationBarStyle = UIBarStyleDefault;
-    _navigationBarTintColor = nil;
-    _statusBarStyle = UIStatusBarStyleDefault;
-    _hasViewAppeared = NO;
-    _isViewAppearing = NO;
-    _autoresizesForKeyboard = NO;
+    _statusBarStyle     = UIStatusBarStyleDefault;
 
     self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
   }
   return self;
 }
 
-- (void)awakeFromNib {
-  [self init];
-}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TTDCONDITIONLOG(TTDFLAG_VIEWCONTROLLERS, @"DEALLOC %@", self);
 
@@ -110,18 +73,69 @@
   [super dealloc];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIResponder
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)awakeFromNib {
+  [self init];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
+  CGRect keyboardBounds;
+  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
+
+  CGPoint keyboardStart;
+  [[notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey] getValue:&keyboardStart];
+
+  CGPoint keyboardEnd;
+  [[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
+
+  BOOL animated = keyboardStart.y != keyboardEnd.y;
+  if (animated) {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+  }
+
+  if (appearing) {
+    [self keyboardWillAppear:animated withBounds:keyboardBounds];
+  } else {
+    [self keyboardDidDisappear:animated withBounds:keyboardBounds];
+  }
+
+  if (animated) {
+    [UIView commitAnimations];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIResponder
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
   if (event.type == UIEventSubtypeMotionShake && [TTNavigator navigator].supportsShakeToReload) {
     [[TTNavigator navigator] reload];
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIViewController
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
 
@@ -133,13 +147,18 @@
   self.view.backgroundColor = TTSTYLEVAR(backgroundColor);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
   [super viewDidUnload];
   TT_RELEASE_SAFELY(_searchController);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+
   _isViewAppearing = YES;
   _hasViewAppeared = YES;
 
@@ -160,16 +179,24 @@
 //  }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
+
   _isViewAppearing = NO;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didReceiveMemoryWarning {
   TTDCONDITIONLOG(TTDFLAG_VIEWCONTROLLERS, @"MEMORY WARNING FOR %@", self);
 
@@ -183,81 +210,115 @@
     [super didReceiveMemoryWarning];
 
     _hasViewAppeared = NO;
+
   } else {
     [super didReceiveMemoryWarning];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   UIViewController* popup = [self popupViewController];
   if (popup) {
     return [popup shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+
   } else {
     return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
         duration:(NSTimeInterval)duration {
   UIViewController* popup = [self popupViewController];
+
   if (popup) {
-    return [popup willAnimateRotationToInterfaceOrientation:fromInterfaceOrientation
-                  duration:duration];
+    return [popup willAnimateRotationToInterfaceOrientation: fromInterfaceOrientation
+                                                   duration: duration];
+
   } else {
-    return [super willAnimateRotationToInterfaceOrientation:fromInterfaceOrientation
-                  duration:duration];
+    return [super willAnimateRotationToInterfaceOrientation: fromInterfaceOrientation
+                                                   duration: duration];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
   UIViewController* popup = [self popupViewController];
+
   if (popup) {
     return [popup didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+
   } else {
     return [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView*)rotatingHeaderView {
   UIViewController* popup = [self popupViewController];
+
   if (popup) {
     return [popup rotatingHeaderView];
+
   } else {
     return [super rotatingHeaderView];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView*)rotatingFooterView {
   UIViewController* popup = [self popupViewController];
+
   if (popup) {
     return [popup rotatingFooterView];
+
   } else {
     return [super rotatingFooterView];
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIViewController (TTCategory)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIViewController (TTCategory)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDictionary*)frozenState {
   return _frozenState;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFrozenState:(NSDictionary*)frozenState {
   [_frozenState release];
   _frozenState = [frozenState retain];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIKeyboardNotifications
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIKeyboardNotifications
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillShow:(NSNotification*)notification {
   if (self.isViewAppearing) {
     [self resizeForKeyboard:notification appearing:YES];
   }
 }
 
-- (void)keyboardDidShow:(NSNotification *)notification {
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)keyboardDidShow:(NSNotification*)notification {
   NSValue* value = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
   CGRect keyboardBounds;
   [value getValue:&keyboardBounds];
@@ -265,13 +326,17 @@
   [self keyboardDidAppear:YES withBounds:keyboardBounds];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidHide:(NSNotification*)notification {
   if (self.isViewAppearing) {
     [self resizeForKeyboard:notification appearing:NO];
   }
 }
 
-- (void)keyboardWillHide:(NSNotification *)notification {
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)keyboardWillHide:(NSNotification*)notification {
   NSValue* value = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
   CGRect keyboardBounds;
   [value getValue:&keyboardBounds];
@@ -279,16 +344,23 @@
   [self keyboardWillDisappear:YES withBounds:keyboardBounds];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTTableViewController*)searchViewController {
   return _searchController.searchResultsViewController;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSearchViewController:(TTTableViewController*)searchViewController {
   if (searchViewController) {
-    if (!_searchController) {
+    if (nil == _searchController) {
       UISearchBar* searchBar = [[[UISearchBar alloc] init] autorelease];
       [searchBar sizeToFit];
 
@@ -298,60 +370,77 @@
 
     searchViewController.superController = self;
     _searchController.searchResultsViewController = searchViewController;
+
   } else {
     _searchController.searchResultsViewController = nil;
     TT_RELEASE_SAFELY(_searchController);
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setAutoresizesForKeyboard:(BOOL)autoresizesForKeyboard {
   if (autoresizesForKeyboard != _autoresizesForKeyboard) {
     _autoresizesForKeyboard = autoresizesForKeyboard;
 
     if (_autoresizesForKeyboard) {
-      [[NSNotificationCenter defaultCenter] addObserver:self
-                                               selector:@selector(keyboardWillShow:)
-                                                   name:UIKeyboardWillShowNotification
-                                                 object:nil];
-      [[NSNotificationCenter defaultCenter] addObserver:self
-                                               selector:@selector(keyboardWillHide:)
-                                                   name:UIKeyboardWillHideNotification
-                                                 object:nil];
-      [[NSNotificationCenter defaultCenter] addObserver:self
-                                               selector:@selector(keyboardDidShow:)
-                                                   name:UIKeyboardDidShowNotification
-                                                 object:nil];
-      [[NSNotificationCenter defaultCenter] addObserver:self
-                                               selector:@selector(keyboardDidHide:)
-                                                   name:UIKeyboardDidHideNotification
-                                                 object:nil];
+      [[NSNotificationCenter defaultCenter] addObserver: self
+                                               selector: @selector(keyboardWillShow:)
+                                                   name: UIKeyboardWillShowNotification
+                                                 object: nil];
+      [[NSNotificationCenter defaultCenter] addObserver: self
+                                               selector: @selector(keyboardWillHide:)
+                                                   name: UIKeyboardWillHideNotification
+                                                 object: nil];
+      [[NSNotificationCenter defaultCenter] addObserver: self
+                                               selector: @selector(keyboardDidShow:)
+                                                   name: UIKeyboardDidShowNotification
+                                                 object: nil];
+      [[NSNotificationCenter defaultCenter] addObserver: self
+                                               selector: @selector(keyboardDidHide:)
+                                                   name: UIKeyboardDidHideNotification
+                                                 object: nil];
+
     } else {
-      [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                      name:UIKeyboardWillShowNotification
-                                                    object:nil];
-      [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                      name:UIKeyboardWillHideNotification
-                                                    object:nil];
-      [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                      name:UIKeyboardDidShowNotification
-                                                    object:nil];
-      [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                      name:UIKeyboardDidHideNotification
-                                                    object:nil];
+      [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                      name: UIKeyboardWillShowNotification
+                                                    object: nil];
+      [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                      name: UIKeyboardWillHideNotification
+                                                    object: nil];
+      [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                      name: UIKeyboardDidShowNotification
+                                                    object: nil];
+      [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                      name: UIKeyboardDidHideNotification
+                                                    object: nil];
     }
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillAppear:(BOOL)animated withBounds:(CGRect)bounds {
+  // Empty default implementation.
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillDisappear:(BOOL)animated withBounds:(CGRect)bounds {
+  // Empty default implementation.
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds {
+  // Empty default implementation.
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidDisappear:(BOOL)animated withBounds:(CGRect)bounds {
+  // Empty default implementation.
 }
+
 
 @end
