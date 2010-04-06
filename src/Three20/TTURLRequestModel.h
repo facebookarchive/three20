@@ -31,8 +31,16 @@
   BOOL          _hasNoMore;
 }
 
+/**
+ * Valid upon completion of the URL request. Represents the timestamp of the completed request.
+ */
 @property (nonatomic, retain) NSDate*   loadedTime;
+
+/**
+ * Valid upon completion of the URL request. Represents the request's cache key.
+ */
 @property (nonatomic, copy)   NSString* cacheKey;
+
 @property (nonatomic)         BOOL      hasNoMore;
 
 /**

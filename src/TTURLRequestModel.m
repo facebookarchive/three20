@@ -34,15 +34,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [super init]) {
-    _isLoadingMore = NO;
-  }
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
   [_loadingRequest cancel];
@@ -88,16 +79,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isOutdated {
-  if (!_cacheKey && _loadedTime) {
+  if (nil == _cacheKey && nil != _loadedTime) {
     return YES;
 
-  } else if (!_cacheKey) {
+  } else if (nil == _cacheKey) {
     return NO;
 
   } else {
     NSDate* loadedTime = self.loadedTime;
 
-    if (loadedTime) {
+    if (nil != loadedTime) {
       return -[loadedTime timeIntervalSinceNow] > [TTURLCache sharedCache].invalidationAge;
 
     } else {
@@ -115,7 +106,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)invalidate:(BOOL)erase {
-  if (_cacheKey) {
+  if (nil != _cacheKey) {
     if (erase) {
       [[TTURLCache sharedCache] removeKey:_cacheKey];
 
