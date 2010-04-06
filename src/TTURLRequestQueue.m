@@ -70,12 +70,8 @@ static TTURLRequestQueue* gMainQueue = nil;
   if (self == [super init]) {
     _loaders = [[NSMutableDictionary alloc] init];
     _loaderQueue = [[NSMutableArray alloc] init];
-    _loaderQueueTimer = nil;
-    _totalLoading = 0;
     _maxContentLength = kDefaultMaxContentLength;
     _imageCompressionQuality = 0.75;
-    _userAgent = nil;
-    _suspended = NO;
   }
   return self;
 }

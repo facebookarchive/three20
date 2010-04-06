@@ -268,7 +268,13 @@ static const NSInteger kLoadMaxRetries = 2;
   NSDictionary* headers = [response allHeaderFields];
   int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
 
+  // If you hit this assertion it's because a massive file is about to be downloaded.
+  // If you're sure you want to do this, add the following line to your app delegate startup
+  // method. Setting the max content length to zero allows anything to go through. If you just
+  // want to raise the limit, set it to any positive byte size.
+  // [[TTURLRequestQueue mainQueue] setMaxContentLength:0]
   TTDASSERT(0 == _queue.maxContentLength || contentLength <=_queue.maxContentLength);
+
   if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
     TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"MAX CONTENT LENGTH EXCEEDED (%d) %@",
                     contentLength, _urlPath);
