@@ -17,16 +17,22 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class TTView;
+@class TTView, TTURLAction;
 
 @interface TTLink : UIControl {
-  id _URL;
+  TTURLAction* _URLAction;
   TTView* _screenView;
 }
 
 /**
- * The URL that will be loaded when the control is touched.
+ * The URL that will be loaded when the control is touched. This is a wrapper around URLAction;
+ * setting this property is equivalent to setting a URLAction with animated set to YES.
  */
-@property(nonatomic,retain) id URL;
+@property(nonatomic,copy) id URL;
+
+/**
+ * The TTURLAction that will be opened.
+ */
+@property(nonatomic,retain) TTURLAction* URLAction;
 
 @end

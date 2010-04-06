@@ -19,6 +19,7 @@
 #import "Three20/TTGlobalCore.h"
 
 #import "Three20/TTNavigator.h"
+#import "Three20/TTURLAction.h"
 #import "Three20/TTShape.h"
 #import "Three20/TTView.h"
 #import "Three20/TTStyleSheet.h"
@@ -27,13 +28,13 @@
 
 @implementation TTLink
 
-@synthesize URL = _URL;
+@synthesize URLAction = _URLAction;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
 - (void)linkTouched {
-  TTOpenURL(_URL);
+  [[TTNavigator navigator] openURLAction:_URLAction];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,9 +42,9 @@
 
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _URL = nil;
+    _URLAction = nil;
     _screenView = nil;
-    
+
     self.userInteractionEnabled = NO;
     [self addTarget:self action:@selector(linkTouched)
           forControlEvents:UIControlEventTouchUpInside];
@@ -52,7 +53,7 @@
 }
 
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_URLAction);
   TT_RELEASE_SAFELY(_screenView);
   [super dealloc];
 }
@@ -89,11 +90,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+- (void)setURLAction:(TTURLAction*)URLAction {
+  [URLAction retain];
+  [_URLAction release];
+  _URLAction = URLAction;
+
+  self.userInteractionEnabled = !!URLAction;
+}
+
+- (id)URL {
+  return _URLAction.urlPath;
+}
+
 - (void)setURL:(id)URL {
-  [_URL release];
-  _URL = [URL retain];
-  
-  self.userInteractionEnabled = !!_URL;
+  self.URLAction = [[TTURLAction actionWithURLPath:URL] applyAnimated:YES];
 }
 
 @end
