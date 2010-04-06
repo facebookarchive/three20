@@ -17,6 +17,7 @@
 #import "Three20/TTURLWildcard.h"
 
 #import "Three20/TTURLArguments.h"
+#import "Three20/TTURLSelector.h"
 
 #import "Three20/TTCorePreprocessorMacros.h"
 

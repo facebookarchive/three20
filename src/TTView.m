@@ -102,9 +102,9 @@
   if (style != _style) {
     [_style release];
     _style = [style retain];
-    
+
     [self setNeedsDisplay];
-  }  
+  }
 }
 
 

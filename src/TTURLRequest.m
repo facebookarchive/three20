@@ -16,11 +16,11 @@
 
 #import "Three20/TTURLRequest.h"
 
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTDebugFlags.h"
-
 #import "Three20/TTURLResponse.h"
 #import "Three20/TTURLRequestQueue.h"
+
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTDebugFlags.h"
 
 #import <CommonCrypto/CommonDigest.h>
 

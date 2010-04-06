@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTModelViewController.h"
+#import "Three20/TTViewController.h"
 #import "Three20/TTTextEditor.h"
 
 @protocol TTTableViewDataSource, TTMessageControllerDelegate;
@@ -243,7 +243,7 @@
 @interface TTMessageField : NSObject {
   NSString* _title;
   BOOL _required;
-} 
+}
 
 /**
  * The title of this field, which will be rendered along with the field's
@@ -268,7 +268,7 @@
  */
 @interface TTMessageRecipientField : TTMessageField {
   NSArray* _recipients;
-} 
+}
 
 @property(nonatomic,retain) NSArray* recipients;
 
@@ -279,7 +279,7 @@
  */
 @interface TTMessageTextField : TTMessageField {
   NSString* _text;
-} 
+}
 
 @property(nonatomic,copy) NSString* text;
 

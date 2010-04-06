@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTURLArguments.h"
+#import "Three20/TTURLArgumentType.h"
 
 @interface TTURLSelector : NSObject {
   NSString* _name;

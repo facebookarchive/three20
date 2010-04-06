@@ -48,16 +48,6 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated.
-// Remove by March 17, 2010.
-- (id)initWithURL:(NSString*)URL {
-  if (self = [self initWithURLPath:URL]) {
-  }
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURLPath:(NSString*)urlPath {
   if (self = [self initWithFrame:CGRectMake(0, 0, kDefaultWidth, kDefaultHeight)]) {
     self.urlPath = urlPath;

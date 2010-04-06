@@ -28,28 +28,6 @@
 @synthesize strongRef = _strongRef;
 @synthesize weakRef   = _weakRef;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated.
-// Remove by March 17, 2010.
-+ (id)topic:(NSString*)topic strong:(id)strong weak:(id)weak {
-  return [self topic:topic strongRef:strong weakRef:weak];
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated.
-// Remove by March 17, 2010.
-+ (id)weak:(id)weak {
-  return [self weakRef:weak];
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTopic:(NSString*)topic strong:(id)strong weak:(id)weak {
-  self = [self initWithTopic:topic strongRef:strong weakRef:weak];
-  return self;
-}
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)topic:(NSString*)topic strongRef:(id)strongRef weakRef:(id)weakRef {

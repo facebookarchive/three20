@@ -15,7 +15,7 @@
 //
 
 #import "Three20/TTImageView.h"
-#import "Three20/TTPhotoSource.h"
+#import "Three20/TTPhotoSource.h" // For TTPhotoVersion
 
 @protocol TTPhoto;
 @class TTActivityLabel, TTLabel;

@@ -16,7 +16,6 @@
 
 #import "Three20/TTButton.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 
 #import "Three20/TTDefaultStyleSheet.h"
@@ -97,7 +96,7 @@ static const CGFloat kVPadding = 7;
   TTURLImageResponse* response = request.response;
   self.image = response.image;
   [_button setNeedsDisplay];
-  
+
   TT_RELEASE_SAFELY(_request);
 }
 
@@ -115,11 +114,11 @@ static const CGFloat kVPadding = 7;
 - (void)setImageURL:(NSString*)URL {
   if (self.image && _imageURL && [URL isEqualToString:_imageURL])
     return;
-  
+
   [self stopLoading];
   [_imageURL release];
   _imageURL = [URL retain];
-  
+
   if (_imageURL.length) {
     [self reload];
   } else {
@@ -193,14 +192,14 @@ static const CGFloat kVPadding = 7;
   if (!_content) {
     _content = [[NSMutableDictionary alloc] init];
   }
-  
+
   id key = [self keyForState:state];
   TTButtonContent* content = [_content objectForKey:key];
   if (!content) {
     content = [[[TTButtonContent alloc] initWithButton:self] autorelease];
     [_content setObject:content forKey:key];
   }
-  
+
   return content;
 }
 
@@ -254,7 +253,7 @@ static const CGFloat kVPadding = 7;
     _content = nil;
     _font = nil;
     _isVertical = NO;
-    
+
     self.backgroundColor = [UIColor clearColor];
     self.contentMode = UIViewContentModeRedraw;
   }
@@ -277,7 +276,7 @@ static const CGFloat kVPadding = 7;
 
     TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
     context.delegate = self;
-    
+
     TTPartStyle* imageStyle = [style styleForPart:@"image"];
     TTBoxStyle* imageBoxStyle = nil;
     CGSize imageSize = CGSizeZero;
@@ -293,12 +292,12 @@ static const CGFloat kVPadding = 7;
         textFrame.size.width -= imageSize.width + imageBoxStyle.margin.right;
       }
     }
-    
+
     context.delegate = self;
     context.frame = self.bounds;
     context.contentFrame = textFrame;
     context.font = [self fontForCurrentState];
-    
+
     [style draw:context];
 
     if (imageStyle) {
@@ -316,7 +315,7 @@ static const CGFloat kVPadding = 7;
       context.frame = frame;
       context.contentFrame = context.frame;
       context.shape = nil;
-      
+
       [imageStyle drawPart:context];
     }
   }
@@ -429,7 +428,7 @@ static const CGFloat kVPadding = 7;
 
 - (void)setStylesWithSelector:(NSString*)selector {
   TTStyleSheet* ss = [TTStyleSheet globalStyleSheet];
-  
+
   TTStyle* normalStyle = [ss styleWithSelector:selector forState:UIControlStateNormal];
   [self setStyle:normalStyle forState:UIControlStateNormal];
 
@@ -457,7 +456,7 @@ static const CGFloat kVPadding = 7;
   if (style) {
     TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
     context.delegate = self;
-    
+
     TTPartStyle* imagePartStyle = [style styleForPart:@"image"];
     if (imagePartStyle) {
       TTImageStyle* imageStyle = [imagePartStyle.style firstStyleOfClass:[TTImageStyle class]];

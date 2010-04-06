@@ -16,7 +16,7 @@
 
 #import "Three20/TTListDataSource.h"
 
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 
 #import "Three20/TTTableItem.h"
 
@@ -37,7 +37,7 @@
     [items addObject:object];
     object = va_arg(ap, id);
   }
-  va_end(ap); 
+  va_end(ap);
 
   return [[[self alloc] initWithItems:items] autorelease];
 }

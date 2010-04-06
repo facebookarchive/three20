@@ -17,8 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "Three20/TTCorePreprocessorMacros.h"
-
 /**
  * A web view that displays a YouTube video.
  */
@@ -27,16 +25,6 @@
 }
 
 @property(nonatomic,copy) NSString* urlPath;
-
-/**
- * Initialize with a YouTube video URL.
- * For example: http://www.youtube.com/watch?v=g8thp78oXsg
- *
- * @deprecated Due to using urlPath for URLs now.
- * @see initWithURLPath:
- * Remove by March 17, 2010.
- */
-- (id)initWithURL:(NSString*)URL __TTDEPRECATED_METHOD;
 
 /**
  * Initialize with a YouTube video URL.

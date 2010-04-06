@@ -16,7 +16,6 @@
 
 #import "Three20/TTStyledFrame.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 
 #import "Three20/TTStyledNode.h"
@@ -140,9 +139,9 @@
       CGContextRef ctx = UIGraphicsGetCurrentContext();
       CGContextSaveGState(ctx);
       [textStyle.color setFill];
-      
+
       [self drawSubframes];
-      
+
       CGContextRestoreGState(ctx);
     } else {
       [self drawSubframes];
@@ -212,7 +211,7 @@
     return (TTStyledInlineFrame*)_parentFrame;
   } else {
     return nil;
-  }  
+  }
 }
 
 @end
@@ -276,7 +275,7 @@
   CGContextSaveGState(ctx);
   CGContextAddRect(ctx, rect);
   CGContextClip(ctx);
-  
+
   UIImage* image = _imageNode.image ? _imageNode.image : _imageNode.defaultImage;
   [image drawInRect:rect contentMode:UIViewContentModeScaleAspectFit];
   CGContextRestoreGState(ctx);
@@ -290,7 +289,7 @@
   CGContextSaveGState(ctx);
   [context.shape addToPath:context.frame];
   CGContextClip(ctx);
-  
+
   UIViewContentMode contentMode = UIViewContentModeScaleAspectFit;
   if ([style isMemberOfClass:[TTImageStyle class]]) {
     TTImageStyle* imageStyle = (TTImageStyle*)style;

@@ -18,7 +18,6 @@
 
 #import "Three20/TTLauncherButton.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 
 #import "Three20/TTLauncherItem.h"
@@ -66,7 +65,7 @@ static const NSInteger kMaxBadgeNumber = 99;
 - (id)initWithItem:(TTLauncherItem*)item {
   if (self = [self init]) {
     _item = [item retain];
-    
+
     NSString* title =  [[NSBundle mainBundle] localizedStringForKey:item.title value:nil table:nil];
     [self setTitle:title forState:UIControlStateNormal];
     [self setImage:item.image forState:UIControlStateNormal];
@@ -140,7 +139,7 @@ static const NSInteger kMaxBadgeNumber = 99;
       _badge.origin = CGPointMake((imageRect.origin.x + imageRect.size.width) - (floor(_badge.width*0.7)),
                                   imageRect.origin.y - (floor(_badge.height*0.25)));
     }
-    
+
     if (_closeButton) {
       _closeButton.origin = CGPointMake(imageRect.origin.x - (floor(_closeButton.width*0.4)),
                                         imageRect.origin.y - (floor(_closeButton.height*0.4)));

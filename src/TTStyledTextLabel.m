@@ -16,7 +16,6 @@
 
 #import "Three20/TTStyledTextLabel.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 
 #import "Three20/TTStyledNode.h"
@@ -64,19 +63,19 @@ static const CGFloat kCancelHighlightThreshold = 4;
 - (void)setHighlightedFrame:(TTStyledBoxFrame*)frame{
   if (frame != _highlightedFrame) {
     TTTableView* tableView = (TTTableView*)[self ancestorOrSelfWithClass:[TTTableView class]];
-    
+
     TTStyledBoxFrame* affectFrame = frame ? frame : _highlightedFrame;
     NSString* className = affectFrame.element.className;
     if (!className && [affectFrame.element isKindOfClass:[TTStyledLinkNode class]]) {
       className = @"linkText:";
     }
-    
+
     if (className && [className rangeOfString:@":"].location != NSNotFound) {
       if (frame) {
         TTStyle* style = [TTSTYLESHEET styleWithSelector:className
                                        forState:UIControlStateHighlighted];
         [self setStyle:style forFrame:frame];
-        
+
         [_highlightedFrame release];
         _highlightedFrame = [frame retain];
         [_highlightedNode release];
@@ -140,7 +139,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
   } else if ([node isKindOfClass:[TTStyledTextNode class]]) {
     TTStyledTextFrame* startFrame = (TTStyledTextFrame*)[_text getFrameForNode:node];
     UIEdgeInsets edges = [self edgesForRect:startFrame.bounds];
-  
+
     TTStyledTextFrame* frame = (TTStyledTextFrame*)startFrame.nextFrame;
     for (; [frame isKindOfClass:[TTStyledTextFrame class]]; frame = (TTStyledTextFrame*)frame.nextFrame) {
       if (frame.bounds.origin.x < edges.left) {
@@ -156,7 +155,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
         }
       }
     }
-    
+
     if (frame != startFrame) {
       [self addAccessibilityElementFromFrame:startFrame toFrame:frame withEdges:edges];
     }
@@ -191,7 +190,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _highlightedNode = nil;
     _highlightedFrame = nil;
     _accessibilityElements = nil;
-    
+
     self.font = TTSTYLEVAR(font);
     self.backgroundColor = TTSTYLEVAR(backgroundColor);
     self.contentMode = UIViewContentModeRedraw;
@@ -243,14 +242,14 @@ static const CGFloat kCancelHighlightThreshold = 4;
   CGPoint point = [touch locationInView:self];
   point.x -= _contentInset.left;
   point.y -= _contentInset.top;
-  
+
   TTStyledBoxFrame* frame = [_text hitTest:point];
   if (frame) {
     [self setHighlightedFrame:frame];
   }
-  
+
   //[self performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.5];
-  
+
   [super touchesBegan:touches withEvent:event];
 }
 
@@ -262,7 +261,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
   TTTableView* tableView = (TTTableView*)[self ancestorOrSelfWithClass:[TTTableView class]];
   if (!tableView) {
     if (_highlightedNode) {
-      [_highlightedNode performDefaultAction];    
+      [_highlightedNode performDefaultAction];
       [self setHighlightedFrame:nil];
     }
   }
@@ -285,7 +284,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
   } else {
     [self.textColor setFill];
   }
-  
+
   CGPoint origin = CGPointMake(rect.origin.x + _contentInset.left,
                                rect.origin.y + _contentInset.top);
   [_text drawAtPoint:origin highlighted:_highlighted];
@@ -298,7 +297,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
     // Remove the highlighted node+frame when resizing the text
     self.highlightedNode = nil;
   }
-  
+
   _text.width = newWidth;
 }
 
@@ -403,7 +402,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
       [_highlightedNode release];
       _highlightedNode = [node retain];
     }
-  }  
+  }
 }
 
 @end

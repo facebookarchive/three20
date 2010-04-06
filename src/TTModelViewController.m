@@ -16,10 +16,10 @@
 
 #import "Three20/TTModelViewController.h"
 
+#import "Three20/TTNavigator.h"
+
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
-
-#import "Three20/TTNavigator.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

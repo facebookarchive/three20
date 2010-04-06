@@ -16,7 +16,6 @@
 
 #import "Three20/TTSearchDisplayController.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 
 #import "Three20/TTTableViewController.h"
@@ -67,7 +66,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
     _searchResultsViewController = nil;
     _pauseTimer = nil;
     _pausesBeforeSearching = NO;
-    
+
     self.delegate = self;
   }
   return self;
@@ -105,7 +104,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController*)controller {
   self.searchContentsController.navigationItem.rightBarButtonItem.enabled = YES;
-  
+
   UIView* backgroundView = [self.searchBar viewWithTag:TT_SEARCH_BAR_BACKGROUND_TAG];
   if (backgroundView) {
     [UIView beginAnimations:nil context:nil];
@@ -120,7 +119,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 //    [UIView commitAnimations];
 //  }
 }
- 
+
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController*)controller {
   [self resetResults];
 }
@@ -128,7 +127,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 - (void)searchDisplayController:(UISearchDisplayController *)controller
         didLoadSearchResultsTableView:(UITableView *)tableView {
 }
- 
+
 - (void)searchDisplayController:(UISearchDisplayController *)controller
         willUnloadSearchResultsTableView:(UITableView *)tableView {
 }

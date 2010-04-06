@@ -16,7 +16,6 @@
 
 #import "Three20/TTTableView.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 
 #import "Three20/TTStyledNode.h"

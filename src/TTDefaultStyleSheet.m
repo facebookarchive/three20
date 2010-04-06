@@ -16,11 +16,11 @@
 
 #import "Three20/TTDefaultStyleSheet.h"
 
-#import "Three20/TTGlobalUI.h"
-
 #import "Three20/TTStyle.h"
 #import "Three20/TTShape.h"
 #import "Three20/TTURLCache.h"
+
+#import "Three20/TTGlobalUI.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -303,10 +303,10 @@
   } else {
     shape = [TTRectangleShape shape];
   }
-  
+
   UIColor* highlight = RGBACOLOR(255, 255, 255, 0.7);
   UIColor* shadow = [TTSTYLEVAR(tabTintColor) multiplyHue:1 saturation:1.1 value:0.88];
-  
+
   if (state == UIControlStateSelected) {
     return
       [TTShapeStyle styleWithShape:shape next:
@@ -360,7 +360,7 @@
 - (TTStyle*)tab:(UIControlState)state {
   if (state == UIControlStateSelected) {
     UIColor* border = [TTSTYLEVAR(tabBarTintColor) multiplyHue:0 saturation:0 value:0.7];
-    
+
     return
       [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithTopLeft:4.5 topRight:4.5
                                                             bottomRight:0 bottomLeft:0] next:
@@ -526,7 +526,7 @@
 }
 
 - (TTStyle*)textBarTextField {
-  return 
+  return
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(6, 0, 3, 6) next:
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:12.5] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 0, 1, 0) next:
@@ -544,7 +544,7 @@
   UIColor* textColor = state == UIControlStateDisabled
                        ? RGBACOLOR(255, 255, 255, 0.5)
                        : RGBCOLOR(255, 255, 255);
-  return 
+  return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:13] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 1, 0) next:
     [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.5) blur:0 offset:CGSizeMake(0, 1) next:
@@ -826,7 +826,7 @@
   UIColor* stateTintColor = [self toolbarButtonColorWithTintColor:tintColor forState:state];
   UIColor* stateTextColor = [self toolbarButtonTextColorForState:state];
 
-  return 
+  return
     [TTShapeStyle styleWithShape:shape next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 1, 0) next:
     [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0.18) blur:0 offset:CGSizeMake(0, 1) next:

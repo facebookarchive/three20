@@ -23,26 +23,6 @@
 #define __TTDEPRECATED_METHOD __attribute__((deprecated))
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Logging
-
-#define TTLOGRECT(rect) \
-  TTDINFO(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y, \
-    rect.size.width, rect.size.height)
-
-#define TTLOGPOINT(pt) \
-  TTDINFO(@"%s x=%f, y=%f", #pt, pt.x, pt.y)
-
-#define TTLOGSIZE(size) \
-  TTDINFO(@"%s w=%f, h=%f", #size, size.width, size.height)
-
-#define TTLOGEDGES(edges) \
-  TTDINFO(@"%s left=%f, right=%f, top=%f, bottom=%f", #edges, edges.left, edges.right, \
-    edges.top, edges.bottom)
-
-#define TTLOGHSV(_COLOR) \
-  TTDINFO(@"%s h=%f, s=%f, v=%f", #_COLOR, _COLOR.hue, _COLOR.saturation, _COLOR.value)
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Errors
 
 #define TT_ERROR_DOMAIN @"three20.net"

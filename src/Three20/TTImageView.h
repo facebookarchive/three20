@@ -15,11 +15,9 @@
 //
 
 #import "Three20/TTView.h"
-#import "Three20/TTURLRequest.h"
 #import "Three20/TTURLRequestDelegate.h"
 
-#import "Three20/TTCorePreprocessorMacros.h"
-
+@class TTURLRequest;
 @protocol TTImageViewDelegate;
 
 /**
@@ -34,15 +32,6 @@
 
   id<TTImageViewDelegate> _delegate;
 }
-
-/**
- * The path of the image. This may be a web path (http://path/to/image.gif) or a local bundle
- * path (bundle://path/to/image.png).
- *
- * Deprecated on account of name ambiguity. URL implies NSURL, urlPath implies NSString.
- * @deprecated
- */
-@property(nonatomic,copy)     NSString* URL __TTDEPRECATED_METHOD;
 
 /**
  * The path of the image. This may be a web path (http://path/to/image.gif) or a local bundle

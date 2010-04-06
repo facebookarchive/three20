@@ -128,6 +128,7 @@
 #import "Three20/TTModelDelegate.h"
 #import "Three20/TTURLRequestModel.h"
 #import "Three20/TTNavigator.h"
+#import "Three20/TTURLAction.h"
 #import "Three20/TTURLMap.h"
 
 #import "Three20/TTUserInfo.h"

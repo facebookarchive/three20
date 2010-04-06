@@ -16,7 +16,6 @@
 
 #import "Three20/TTErrorView.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalStyle.h"
 
@@ -57,7 +56,7 @@ static CGFloat kHPadding = 10;
     _titleView.font = TTSTYLEVAR(errorTitleFont);
     _titleView.textAlignment = UITextAlignmentCenter;
     [self addSubview:_titleView];
-    
+
     _subtitleView = [[UILabel alloc] init];
     _subtitleView.backgroundColor = [UIColor clearColor];
     _subtitleView.textColor = TTSTYLEVAR(tableErrorTextColor);
@@ -87,7 +86,7 @@ static CGFloat kHPadding = 10;
   CGFloat maxHeight = _imageView.height + _titleView.height + _subtitleView.height
                       + kVPadding1 + kVPadding2;
   BOOL canShowImage = _imageView.image && self.height > maxHeight;
-  
+
   CGFloat totalHeight = 0;
 
   if (canShowImage) {
@@ -99,9 +98,9 @@ static CGFloat kHPadding = 10;
   if (_subtitleView.text.length) {
     totalHeight += (totalHeight ? kVPadding2 : 0) + _subtitleView.height;
   }
-  
+
   CGFloat top = floor(self.height/2 - totalHeight/2);
-  
+
   if (canShowImage) {
     _imageView.origin = CGPointMake(floor(self.width/2 - _imageView.width/2), top);
     _imageView.hidden = NO;

@@ -16,7 +16,6 @@
 
 #import "Three20/TTPickerTextField.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
 
@@ -47,7 +46,7 @@ static CGFloat kMinCursorWidth = 50;
     _selectedCell = nil;
     _lineCount = 1;
     _cursorOrigin = CGPointZero;
-    
+
     self.text = kEmpty;
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
     self.clearButtonMode = UITextFieldViewModeNever;
@@ -103,7 +102,7 @@ static CGFloat kMinCursorWidth = 50;
         ++_lineCount;
     }
   }
-  
+
   return _cursorOrigin.y + fontHeight + marginY;
 }
 
@@ -113,7 +112,7 @@ static CGFloat kMinCursorWidth = 50;
   if (previousHeight && newHeight != previousHeight) {
     self.height = newHeight;
     [self setNeedsDisplay];
-    
+
     SEL sel = @selector(textFieldDidResize:);
     if ([self.delegate respondsToSelector:sel]) {
       [self.delegate performSelector:sel withObject:self];
@@ -328,12 +327,12 @@ static CGFloat kMinCursorWidth = 50;
   TTPickerViewCell* cell = [[[TTPickerViewCell alloc] init] autorelease];
 
   NSString* label = [self labelForObject:object];
-  
+
   cell.object = object;
   cell.label = label;
   cell.font = self.font;
   [_cellViews addObject:cell];
-  [self addSubview:cell];  
+  [self addSubview:cell];
 
   // Reset text so the cursor moves to be at the end of the cellViews
   self.text = kEmpty;
@@ -369,7 +368,7 @@ static CGFloat kMinCursorWidth = 50;
     [cell removeFromSuperview];
     [_cellViews removeObjectAtIndex:0];
   }
-  
+
   _selectedCell = nil;
 }
 
@@ -377,7 +376,7 @@ static CGFloat kMinCursorWidth = 50;
   if (_selectedCell) {
     _selectedCell.selected = NO;
   }
-  
+
   _selectedCell = cell;
 
   if (_selectedCell) {

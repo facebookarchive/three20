@@ -16,7 +16,8 @@
 
 #import "Three20/TTURLPatternText.h"
 #import "Three20/TTURLArgumentType.h"
-#import "Three20/TTURLSelector.h"
+
+@class TTURLSelector;
 
 @interface TTURLWildcard : NSObject <TTURLPatternText> {
   NSString*         _name;

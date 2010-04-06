@@ -18,6 +18,7 @@
 
 #import "Three20/TTURLNavigatorPattern.h"
 #import "Three20/TTURLGeneratorPattern.h"
+
 #import "Three20/TTGlobalCore.h"
 
 #import <objc/runtime.h>

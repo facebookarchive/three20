@@ -16,7 +16,7 @@
 
 #import "Three20/TTTableViewDataSource.h"
 
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalCoreLocale.h"
 
 #import "Three20/TTTableItem.h"
@@ -40,16 +40,16 @@
   if (search) {
     [titles addObject:UITableViewIndexSearch];
   }
-  
+
   for (unichar c = 'A'; c <= 'Z'; ++c) {
     NSString* letter = [NSString stringWithFormat:@"%c", c];
     [titles addObject:letter];
   }
-  
+
   if (summary) {
     [titles addObject:@"#"];
   }
-  
+
   return titles;
 }
 
@@ -91,13 +91,13 @@
                                reuseIdentifier:identifier] autorelease];
   }
   [identifier release];
-  
+
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
     [(TTTableViewCell*)cell setObject:object];
   }
-  
+
   [self tableView:tableView cell:cell willAppearAtIndexPath:indexPath];
-      
+
   return cell;
 }
 
@@ -105,7 +105,7 @@
   return nil;
 }
 
-- (NSInteger)tableView:(UITableView*)tableView sectionForSectionIndexTitle:(NSString*)title 
+- (NSInteger)tableView:(UITableView*)tableView sectionForSectionIndexTitle:(NSString*)title
             atIndex:(NSInteger)index {
   if (tableView.tableHeaderView) {
     if (index == 0)  {
@@ -209,7 +209,7 @@
   } else if ([object isKindOfClass:[UIView class]]) {
     return [TTTableFlushViewCell class];
   }
-  
+
   // This will display an empty white table cell - probably not what you want, but it
   // is better than crashing, which is what happens if you return nil here
   return [TTTableViewCell class];

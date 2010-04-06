@@ -285,12 +285,12 @@ static NSString* kPrivateKey_Array = @"___Array___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSArray*)arrayForKey:(id)key {
 	id object = [self objectForKey:key];
-	
+
 	// if it's not an array, then make it a 1-element array
 	if (![object isKindOfClass:[NSArray class]]) {
 		object = [NSArray arrayWithObject:object];
 	}
-	
+
 	return object;
 }
 

@@ -16,7 +16,7 @@
 
 #import "Three20/TTLink.h"
 
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLAction.h"

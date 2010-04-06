@@ -16,7 +16,7 @@
 
 #import "Three20/TTLauncherItem.h"
 
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,7 +85,7 @@
 
 - (void)setBadgeNumber:(NSInteger)badgeNumber {
   _badgeNumber = badgeNumber;
-  
+
   [_launcher performSelector:@selector(updateItemBadge:) withObject:self];
 }
 

@@ -16,7 +16,6 @@
 
 #import "Three20/TTButtonBar.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTButton.h"
 
@@ -40,7 +39,7 @@ static CGFloat kButtonMaxWidth = 120;
   if (self = [super initWithFrame:frame]) {
     _buttons = [[NSMutableArray alloc] init];
     _buttonStyle = nil;
-    
+
     self.buttonStyle = @"toolbarButton:";
   }
   return self;
@@ -71,7 +70,7 @@ static CGFloat kButtonMaxWidth = 120;
 
   CGFloat x = kPadding + floor(self.width/2 - ((buttonWidth+kPadding)*_buttons.count)/2);
   CGFloat y = floor(self.height/2 - kButtonHeight/2);
-  
+
   for (UIButton* button in _buttons) {
     button.frame = CGRectMake(x, y, buttonWidth, kButtonHeight);
     x += button.width + kPadding;

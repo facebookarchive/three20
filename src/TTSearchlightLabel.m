@@ -16,7 +16,7 @@
 
 #import "Three20/TTSearchlightLabel.h"
 
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalStyle.h"
 
 #import "Three20/TTDefaultStyleSheet.h"
@@ -77,7 +77,7 @@
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
     _timer = nil;
-    
+
     self.text = @"";
     self.font = TTSTYLEVAR(font);
     self.textColor = [UIColor colorWithWhite:0.25 alpha:1];
@@ -105,14 +105,14 @@
   CGContextRef context = UIGraphicsGetCurrentContext();
 
   CGSize textSize = [self sizeThatFits:CGSizeZero];
-  
+
   CGFloat x = 0;
   if (_textAlignment == UITextAlignmentRight) {
     x = self.frame.size.width - textSize.width;
   } else if (_textAlignment == UITextAlignmentCenter) {
     x = ceil(self.frame.size.width/2 - textSize.width/2);
   }
-  
+
   CGFloat y = 0;
   if (self.contentMode == UIViewContentModeCenter) {
     y = ceil(rect.size.height/2 + _font.capHeight/2);
@@ -121,7 +121,7 @@
   } else {
     y = _font.capHeight;
   }
-  
+
   CGContextSelectFont(context, [_font.fontName UTF8String], _font.pointSize, kCGEncodingMacRoman);
   CGContextSetTextDrawingMode(context, kCGTextFill);
   CGContextSetTextMatrix(context, CGAffineTransformScale(CGAffineTransformIdentity, 1, -1));
@@ -137,7 +137,7 @@
     CGImageRef mask = [self newSpotlightMask:rect origin:spotOrigin radius:spotRadius];
     CGContextClipToMask(context, rect, mask);
     CGImageRelease(mask);
-    
+
     [_spotlightColor setFill];
     CGContextShowTextAtPoint(context, x, y, [self.text UTF8String], self.text.length);
   }
@@ -179,7 +179,7 @@
     _timer = nil;
     [self releaseMask];
   }
-  [self setNeedsDisplay];	
+  [self setNeedsDisplay];
 }
 
 @end

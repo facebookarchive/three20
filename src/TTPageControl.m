@@ -16,7 +16,6 @@
 
 #import "Three20/TTPageControl.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 
 #import "Three20/TTStyleSheet.h"
@@ -59,7 +58,7 @@
     _normalDotStyle = nil;
     _currentDotStyle = nil;
     _hidesForSinglePage = NO;
-    
+
     self.backgroundColor = [UIColor clearColor];
     self.dotStyle = @"pageDot:";
   }
@@ -82,19 +81,19 @@
     TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
 
     CGSize dotSize = [self.normalDotStyle addToSize:CGSizeZero context:context];
-    
+
     CGFloat dotWidth = dotSize.width + boxStyle.margin.left + boxStyle.margin.right;
     CGFloat totalWidth = (dotWidth * _numberOfPages) - (boxStyle.margin.left + boxStyle.margin.right);
     CGRect contentRect = CGRectMake(round(self.width/2 - totalWidth/2),
                                     round(self.height/2 - dotSize.height/2),
                                     dotSize.width, dotSize.height);
-      
+
     for (NSInteger i = 0; i < _numberOfPages; ++i) {
       contentRect.origin.x += boxStyle.margin.left;
 
       context.frame = contentRect;
       context.contentFrame = contentRect;
-      
+
       if (i == _currentPage) {
         [self.currentDotStyle draw:context];
       } else {
@@ -114,7 +113,7 @@
   if (boxStyle) {
     margin = boxStyle.margin.right + boxStyle.margin.left;
   }
-  
+
   return CGSizeMake((dotSize.width * _numberOfPages) + (margin * (_numberOfPages-1)),
                     dotSize.height);
 }

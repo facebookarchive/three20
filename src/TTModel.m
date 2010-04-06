@@ -16,10 +16,10 @@
 
 #import "Three20/TTModel.h"
 
-#import "Three20/TTGlobalCore.h"
-
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequestQueue.h"
+
+#import "Three20/TTGlobalCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

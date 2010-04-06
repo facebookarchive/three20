@@ -16,8 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Three20/TTCorePreprocessorMacros.h"
-
 /**
  * A helper class for storing user info to help identify a request.
  *
@@ -43,23 +41,5 @@
 
 - (id)initWithTopic:(NSString*)topic strongRef:(id)strongRef weakRef:(id)weakRef;
 
-
-/**
- * @deprecated Due to refactoring bugs in Xcode with properties named "weak".
- * Remove by March 17, 2010.
- */
-+ (id)topic:(NSString*)topic strong:(id)strong weak:(id)weak __TTDEPRECATED_METHOD;
-
-/**
- * @deprecated Due to refactoring bugs in Xcode with properties named "weak".
- * Remove by March 17, 2010.
- */
-+ (id)weak:(id)weak __TTDEPRECATED_METHOD;
-
-/**
- * @deprecated Due to refactoring bugs in Xcode with properties named "weak".
- * Remove by March 17, 2010.
- */
-- (id)initWithTopic:(NSString*)topic strong:(id)strong weak:(id)weak __TTDEPRECATED_METHOD;
 
 @end

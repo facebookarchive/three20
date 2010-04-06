@@ -16,7 +16,6 @@
 
 #import "Three20/TTSearchTextField.h"
 
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
 
@@ -121,7 +120,7 @@ static const CGFloat kDesiredTableHeight = 150;
   if ([_delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
     shouldReturn = [_delegate textFieldShouldReturn:textField];
   }
-  
+
   if (shouldReturn) {
     if (!_textField.searchesAutomatically) {
       [_textField search];
@@ -160,7 +159,7 @@ static const CGFloat kDesiredTableHeight = 150;
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.searchesAutomatically = YES;
-    
+
     [self addTarget:self action:@selector(didBeginEditing)
       forControlEvents:UIControlEventEditingDidBegin];
     [self addTarget:self action:@selector(didEndEditing)
@@ -192,7 +191,7 @@ static const CGFloat kDesiredTableHeight = 150;
     if (show) {
       _previousNavigationItem = [controller.navigationItem retain];
       _previousRightBarButtonItem = [controller.navigationItem.rightBarButtonItem retain];
-      
+
       UIBarButtonItem* doneButton = [[[UIBarButtonItem alloc]
       initWithBarButtonSystemItem:UIBarButtonSystemItemDone
       target:self action:@selector(doneAction)] autorelease];
@@ -214,18 +213,18 @@ static const CGFloat kDesiredTableHeight = 150;
     [_screenView addTarget:self action:@selector(doneAction)
       forControlEvents:UIControlEventTouchUpInside];
   }
-  
+
   if (show) {
     [self.superviewForSearchResults addSubview:_screenView];
   }
-  
+
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(screenAnimationDidStop)];
 
   _screenView.alpha = show ? 1 : 0;
-  
+
   [UIView commitAnimations];
 }
 
@@ -322,7 +321,7 @@ static const CGFloat kDesiredTableHeight = 150;
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     if (cell.selectionStyle != UITableViewCellSeparatorStyleNone) {
       [_internal.delegate performSelector:@selector(textField:didSelectObject:) withObject:self
-                          withObject:object];      
+                          withObject:object];
     }
   }
 }
@@ -374,9 +373,9 @@ static const CGFloat kDesiredTableHeight = 150;
     UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
     scrollView.scrollEnabled = YES;
     scrollView.scrollsToTop = YES;
-    
+
     [self showSearchResults:NO];
-    
+
     if (_showsDoneButton) {
       [self showDoneButton:NO];
     }
@@ -408,7 +407,7 @@ static const CGFloat kDesiredTableHeight = 150;
     _tableView.delegate = self;
     _tableView.scrollsToTop = NO;
   }
-  
+
   return _tableView;
 }
 
@@ -437,7 +436,7 @@ static const CGFloat kDesiredTableHeight = 150;
 - (void)showSearchResults:(BOOL)show {
   if (show && _dataSource) {
     self.tableView;
-    
+
     if (!_shadowView) {
       _shadowView = [[TTView alloc] init];
       _shadowView.style = TTSTYLE(searchTableShadow);
@@ -449,7 +448,7 @@ static const CGFloat kDesiredTableHeight = 150;
       _tableView.frame = [self rectForSearchResults:YES];
       _shadowView.frame = CGRectMake(_tableView.left, _tableView.top-1,
                                      _tableView.width, kShadowHeight);
-      
+
       UIView* superview = self.superviewForSearchResults;
       [superview addSubview:_tableView];
 
@@ -457,7 +456,7 @@ static const CGFloat kDesiredTableHeight = 150;
         [superview addSubview:_shadowView];
       }
     }
-    
+
     [_tableView deselectRowAtIndexPath:_tableView.indexPathForSelectedRow animated:NO];
   } else {
     [_tableView removeFromSuperview];
@@ -475,7 +474,7 @@ static const CGFloat kDesiredTableHeight = 150;
         return view;
       }
     }
-    
+
     return self.superview;
   }
 }
@@ -488,12 +487,12 @@ static const CGFloat kDesiredTableHeight = 150;
   while (view != superview) {
     y += view.top;
     view = view.superview;
-  }  
-  
+  }
+
   CGFloat height = self.height;
   CGFloat keyboardHeight = withKeyboard ? TTKeyboardHeight() : 0;
   CGFloat tableHeight = self.window.height - (self.ttScreenY + height + keyboardHeight);
-    
+
   return CGRectMake(0, y + self.height-1, superview.frame.size.width, tableHeight+1);
 }
 
