@@ -17,7 +17,8 @@
 		6E1059AF112CCFAF00549F42 /* TTTwitterSearchFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1059AE112CCFAF00549F42 /* TTTwitterSearchFeedModel.m */; };
 		6E1059B3112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1059B2112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m */; };
 		6E105AD2112CDBCC00549F42 /* TTTwitterTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E105AD1112CDBCC00549F42 /* TTTwitterTweet.m */; };
-		6E105B45112CDFF000549F42 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E105B44112CDFF000549F42 /* Icon.png */; };
+		6E94C738116D985F0012B12C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C736116D985F0012B12C /* Default.png */; };
+		6E94C73D116D98920012B12C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C73C116D98920012B12C /* Icon.png */; };
 		6EECCB78112CE5B700A8908C /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = 6EECCB77112CE5B700A8908C /* README.mdown */; };
 		EB383B6110BBF6200000B2D2 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383B5F10BBF6180000B2D2 /* libThree20.a */; };
 		EB383B6510BBF62B0000B2D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */; };
@@ -67,7 +68,8 @@
 		6E1059B2112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterSearchFeedDataSource.m; sourceTree = "<group>"; };
 		6E105AD0112CDBCC00549F42 /* TTTwitterTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTwitterTweet.h; sourceTree = "<group>"; };
 		6E105AD1112CDBCC00549F42 /* TTTwitterTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterTweet.m; sourceTree = "<group>"; };
-		6E105B44112CDFF000549F42 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
+		6E94C736116D985F0012B12C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Resources/Default.png; sourceTree = SOURCE_ROOT; };
+		6E94C73C116D98920012B12C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		6EECCB77112CE5B700A8908C /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* TTTwitter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTTwitter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		EB383B5710BBF6180000B2D2 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -136,8 +138,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6E105B44112CDFF000549F42 /* Icon.png */,
 				EB383B6C10BBF6360000B2D2 /* Three20.bundle */,
+				6E94C736116D985F0012B12C /* Default.png */,
+				6E94C73C116D98920012B12C /* Icon.png */,
 				8D1107310486CEB800E47090 /* TTTwitter-Info.plist */,
 			);
 			name = Resources;
@@ -278,8 +281,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB383B6D10BBF6360000B2D2 /* Three20.bundle in Resources */,
-				6E105B45112CDFF000549F42 /* Icon.png in Resources */,
 				6EECCB78112CE5B700A8908C /* README.mdown in Resources */,
+				6E94C738116D985F0012B12C /* Default.png in Resources */,
+				6E94C73D116D98920012B12C /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
