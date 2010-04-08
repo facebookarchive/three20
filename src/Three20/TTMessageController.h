@@ -201,25 +201,3 @@
 - (BOOL)messageShouldCancel;
 
 @end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * A field for holding variable free form text.
- */
-@interface TTMessageTextField : TTMessageField {
-  NSString* _text;
-}
-
-@property (nonatomic, copy) NSString* text;
-
-@end
-
-/**
- * A field for the subject of the message. This field's value is used to set
- * the title in the navigation bar. You should only have one of these fields
- * in your fields array.
- */
-@interface TTMessageSubjectField : TTMessageTextField
-
-@end

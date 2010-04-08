@@ -17,7 +17,10 @@
 #import "Three20/TTMessageController.h"
 
 #import "Three20/TTMessageControllerDelegate.h"
+
 #import "Three20/TTMessageRecipientField.h"
+#import "Three20/TTMessageTextField.h"
+#import "Three20/TTMessageSubjectField.h"
 
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
@@ -28,50 +31,6 @@
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTActivityLabel.h"
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTMessageTextField
-
-@synthesize text = _text;
-
-- (id)init {
-  if (self = [super init]) {
-    _text = nil;
-  }
-  return self;
-}
-
-- (NSString*)description {
-  return [NSString stringWithFormat:@"%@ %@", _title, _text];
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_text);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTMessageField
-
-- (UITextField*)createViewForController:(TTMessageController*)controller {
-  return [[[TTPickerTextField alloc] init] autorelease];
-}
-
-- (id)persistField:(UITextField*)textField {
-  return textField.text;
-}
-
-- (void)restoreField:(UITextField*)textField withData:(id)data {
-  textField.text = data;
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTMessageSubjectField
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

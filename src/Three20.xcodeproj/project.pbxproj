@@ -68,6 +68,10 @@
 		6E94C7DA116DA19A0012B12C /* TTMessageField.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C7D9116DA19A0012B12C /* TTMessageField.h */; };
 		6E94C80A116DA3790012B12C /* TTMessageRecipientField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94C808116DA3790012B12C /* TTMessageRecipientField.m */; };
 		6E94C80C116DA3920012B12C /* TTMessageRecipientField.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C80B116DA3920012B12C /* TTMessageRecipientField.h */; };
+		6E94C82B116DA4B00012B12C /* TTMessageTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94C829116DA4B00012B12C /* TTMessageTextField.m */; };
+		6E94C82D116DA4BF0012B12C /* TTMessageTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C82C116DA4BF0012B12C /* TTMessageTextField.h */; };
+		6E94C833116DAA250012B12C /* TTMessageSubjectField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94C831116DAA250012B12C /* TTMessageSubjectField.m */; };
+		6E94C835116DAA320012B12C /* TTMessageSubjectField.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C834116DAA320012B12C /* TTMessageSubjectField.h */; };
 		6EB0117911118040004D204C /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0117711118040004D204C /* TTImageLayer.m */; };
 		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
 		6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB013871112C513004D204C /* TTImageViewInternal.m */; };
@@ -345,6 +349,10 @@
 		6E94C7D9116DA19A0012B12C /* TTMessageField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMessageField.h; path = Three20/TTMessageField.h; sourceTree = "<group>"; };
 		6E94C808116DA3790012B12C /* TTMessageRecipientField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMessageRecipientField.m; sourceTree = "<group>"; };
 		6E94C80B116DA3920012B12C /* TTMessageRecipientField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMessageRecipientField.h; path = Three20/TTMessageRecipientField.h; sourceTree = "<group>"; };
+		6E94C829116DA4B00012B12C /* TTMessageTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMessageTextField.m; sourceTree = "<group>"; };
+		6E94C82C116DA4BF0012B12C /* TTMessageTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMessageTextField.h; path = Three20/TTMessageTextField.h; sourceTree = "<group>"; };
+		6E94C831116DAA250012B12C /* TTMessageSubjectField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMessageSubjectField.m; sourceTree = "<group>"; };
+		6E94C834116DAA320012B12C /* TTMessageSubjectField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMessageSubjectField.h; path = Three20/TTMessageSubjectField.h; sourceTree = "<group>"; };
 		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
@@ -735,6 +743,10 @@
 				6E94C7D6116DA1810012B12C /* TTMessageField.m */,
 				6E94C80B116DA3920012B12C /* TTMessageRecipientField.h */,
 				6E94C808116DA3790012B12C /* TTMessageRecipientField.m */,
+				6E94C82C116DA4BF0012B12C /* TTMessageTextField.h */,
+				6E94C829116DA4B00012B12C /* TTMessageTextField.m */,
+				6E94C834116DAA320012B12C /* TTMessageSubjectField.h */,
+				6E94C831116DAA250012B12C /* TTMessageSubjectField.m */,
 			);
 			name = "Message Fields";
 			sourceTree = "<group>";
@@ -1325,6 +1337,8 @@
 				6E94C7C3116DA0CF0012B12C /* TTMessageControllerDelegate.h in Headers */,
 				6E94C7DA116DA19A0012B12C /* TTMessageField.h in Headers */,
 				6E94C80C116DA3920012B12C /* TTMessageRecipientField.h in Headers */,
+				6E94C82D116DA4BF0012B12C /* TTMessageTextField.h in Headers */,
+				6E94C835116DAA320012B12C /* TTMessageSubjectField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,6 +1548,8 @@
 				6E311D5D116BC5B30045C0DF /* TTURLPatternInternal.m in Sources */,
 				6E94C7D8116DA1810012B12C /* TTMessageField.m in Sources */,
 				6E94C80A116DA3790012B12C /* TTMessageRecipientField.m in Sources */,
+				6E94C82B116DA4B00012B12C /* TTMessageTextField.m in Sources */,
+				6E94C833116DAA250012B12C /* TTMessageSubjectField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
