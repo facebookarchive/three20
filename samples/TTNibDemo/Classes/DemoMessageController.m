@@ -44,8 +44,7 @@
   }
 
   self.body =
-    @"This class is loaded from a NIB. Notice that title view "
-    @"that is defined in the NIB file";
+    @"This class is loaded from a NIB. Notice the title view that is defined in the NIB file";
 }
 
 @end
