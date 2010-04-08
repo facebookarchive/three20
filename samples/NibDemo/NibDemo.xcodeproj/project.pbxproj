@@ -19,7 +19,7 @@
 		CC85CDA51167DF3B00D3FE00 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC85CDA41167DF3B00D3FE00 /* QuartzCore.framework */; };
 		CC85CDFB1167E22E00D3FE00 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC85CDC61167E0BB00D3FE00 /* libThree20.a */; };
 		CC85CE031167E25200D3FE00 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC85CE021167E25200D3FE00 /* DemoTableViewController.m */; };
-		CC85D4B511681EC500D3FE00 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = CC85D4B411681EC500D3FE00 /* readme.txt */; };
+		CC85D4B511681EC500D3FE00 /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = CC85D4B411681EC500D3FE00 /* README.mdown */; };
 		CC85D4D21168229C00D3FE00 /* FooterTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC85D4D11168229C00D3FE00 /* FooterTableViewController.xib */; };
 		CC85D5F211682A2500D3FE00 /* DemoPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC85D5F011682A2500D3FE00 /* DemoPostController.m */; };
 		CC85D5F311682A2500D3FE00 /* DemoPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC85D5F111682A2500D3FE00 /* DemoPostController.xib */; };
@@ -74,7 +74,7 @@
 		CC85CDA41167DF3B00D3FE00 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CC85CE011167E25200D3FE00 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
 		CC85CE021167E25200D3FE00 /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
-		CC85D4B411681EC500D3FE00 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		CC85D4B411681EC500D3FE00 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
 		CC85D4D11168229C00D3FE00 /* FooterTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterTableViewController.xib; sourceTree = "<group>"; };
 		CC85D5EF11682A2500D3FE00 /* DemoPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoPostController.h; sourceTree = "<group>"; };
 		CC85D5F011682A2500D3FE00 /* DemoPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoPostController.m; sourceTree = "<group>"; };
@@ -128,12 +128,12 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				CC85D4B411681EC500D3FE00 /* README.mdown */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				CC85D4B411681EC500D3FE00 /* readme.txt */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -337,7 +337,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* DemoTableViewController.xib in Resources */,
 				CC85CDA31167DF1700D3FE00 /* Three20.bundle in Resources */,
-				CC85D4B511681EC500D3FE00 /* readme.txt in Resources */,
+				CC85D4B511681EC500D3FE00 /* README.mdown in Resources */,
 				CC85D4D21168229C00D3FE00 /* FooterTableViewController.xib in Resources */,
 				CC85D5F311682A2500D3FE00 /* DemoPostController.xib in Resources */,
 				CC85D6D511682DCA00D3FE00 /* DemoViewController.xib in Resources */,

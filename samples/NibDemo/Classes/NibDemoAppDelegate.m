@@ -1,9 +1,17 @@
 //
-//  NibDemoAppDelegate.m
-//  NibDemo
+// Copyright 2009-2010 Facebook
 //
-//  Created by Don Skotch Vail on 4/3/10.
-//  Copyright Brush The Dog Inc 2010. All rights reserved.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 
 #import "NibDemoAppDelegate.h"
@@ -23,20 +31,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark Memory management
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  TT_RELEASE_SAFELY(navigationController);
-  TT_RELEASE_SAFELY(window);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
 #pragma mark Application lifecycle
 
 
@@ -51,10 +45,10 @@
 
   TTURLMap* map = navigator.URLMap;
   [map from:@"*" toViewController:[TTWebController class]];
-  [map from:@"tt://nib/(loadFromNib:)" toSharedViewController:self];
-  [map from:@"tt://nib/(loadFromNib:)/(WithClass:)" toSharedViewController:self];
-  [map from:@"tt://viewController/(loadFromVC:)" toSharedViewController:self];
   [map from:@"tt://root" toViewController:NSClassFromString(@"RootViewController")];
+  [map from:@"tt://nib/(loadFromNib:)" toSharedViewController:self];
+  [map from:@"tt://nib/(loadFromNib:)/(withClass:)" toSharedViewController:self];
+  [map from:@"tt://viewController/(loadFromVC:)" toSharedViewController:self];
   [map from:@"tt://modal/(loadFromNib:)" toModalViewController:self];
 
   if (![navigator restoreViewControllers]) {
@@ -64,10 +58,19 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  TT_RELEASE_SAFELY(navigationController);
+  TT_RELEASE_SAFELY(window);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Loads the given viewcontroller from the nib
  */
-- (UIViewController*)loadFromNib:(NSString *)nibName WithClass:className {
+- (UIViewController*)loadFromNib:(NSString *)nibName withClass:className {
   UIViewController* newController = [[NSClassFromString(className) alloc]
                                       initWithNibName:nibName bundle:nil];
   [newController autorelease];
@@ -82,8 +85,7 @@
  * class
  */
 - (UIViewController*)loadFromNib:(NSString*)className {
-  return [self loadFromNib:className WithClass:className];
-
+  return [self loadFromNib:className withClass:className];
 }
 
 
