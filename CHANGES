@@ -2,9 +2,15 @@ Changes since March 30, 2010
 
 - [NEW] New showTableShadows option for table gutter shadows.
 
+- [NEW] Nib support for TTViewControllers.
+
+- [NEW] TTNibDemo app demoing new Nib support.
+
 - [MINOR] Don't hard code the HTTP User-Agent.
 
 - [MINOR] Convert TTLink to use TTURLAction instead of just a URL.
+
+- [MINOR] Cleaning up and standardizing the coding style.
 
 Changes since February 26, 2010
 
