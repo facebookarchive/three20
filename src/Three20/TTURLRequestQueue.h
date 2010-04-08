@@ -37,7 +37,7 @@
  * temporarily delay them.  All requests made while suspended are queued, and when
  * suspended becomes false again they are executed.
  */
-@property(nonatomic) BOOL suspended;
+@property (nonatomic) BOOL suspended;
 
 /**
  * The maximum size of a download that is allowed.
@@ -48,7 +48,7 @@
  *
  * @default 150000 bytes
  */
-@property(nonatomic) NSUInteger maxContentLength;
+@property (nonatomic) NSUInteger maxContentLength;
 
 /**
  * The user-agent string that is sent with all HTTP requests.
@@ -57,14 +57,14 @@
  *
  * @default nil
  */
-@property(nonatomic,copy) NSString* userAgent;
+@property (nonatomic, copy) NSString* userAgent;
 
 /**
  * The compression quality used for encoding images sent with HTTP posts.
  *
  * @default 0.75
  */
-@property(nonatomic) CGFloat imageCompressionQuality;
+@property (nonatomic) CGFloat imageCompressionQuality;
 
 /**
  * Get the shared cache singleton used across the application.

@@ -24,7 +24,7 @@
   NSString* _urlPath;
 }
 
-@property(nonatomic,copy) NSString* urlPath;
+@property (nonatomic, copy) NSString* urlPath;
 
 /**
  * Initialize with a YouTube video URL.

@@ -31,10 +31,10 @@
   BOOL _hidesCaption;
 }
 
-@property(nonatomic,retain) id<TTPhoto> photo;
-@property(nonatomic,retain) TTStyle* captionStyle;
-@property(nonatomic) BOOL hidesExtras;
-@property(nonatomic) BOOL hidesCaption;
+@property (nonatomic, retain) id<TTPhoto> photo;
+@property (nonatomic, retain) TTStyle* captionStyle;
+@property (nonatomic) BOOL hidesExtras;
+@property (nonatomic) BOOL hidesCaption;
 
 - (BOOL)loadPreview:(BOOL)fromNetwork;
 - (void)loadImage;

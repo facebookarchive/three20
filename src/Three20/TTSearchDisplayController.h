@@ -37,7 +37,7 @@
   BOOL _pausesBeforeSearching;
 }
 
-@property(nonatomic,retain) TTTableViewController* searchResultsViewController;
-@property(nonatomic) BOOL pausesBeforeSearching;
+@property (nonatomic, retain) TTTableViewController* searchResultsViewController;
+@property (nonatomic) BOOL pausesBeforeSearching;
 
 @end

@@ -24,25 +24,25 @@
   CGRect _bounds;
 }
 
-/** 
+/**
  * The element that contains the frame.
  */
-@property(nonatomic,readonly) TTStyledElement* element;
+@property (nonatomic, readonly) TTStyledElement* element;
 
 /**
  * The next in the linked list of frames.
  */
-@property(nonatomic,retain) TTStyledFrame* nextFrame;
+@property (nonatomic, retain) TTStyledFrame* nextFrame;
 
 /**
  * The bounds of the content that is displayed by this frame.
  */
-@property(nonatomic) CGRect bounds;
+@property (nonatomic) CGRect bounds;
 
-@property(nonatomic) CGFloat x;
-@property(nonatomic) CGFloat y;
-@property(nonatomic) CGFloat width;
-@property(nonatomic) CGFloat height;
+@property (nonatomic) CGFloat x;
+@property (nonatomic) CGFloat y;
+@property (nonatomic) CGFloat width;
+@property (nonatomic) CGFloat height;
 
 - (UIFont*)font;
 
@@ -65,13 +65,13 @@
   TTStyle* _style;
 }
 
-@property(nonatomic,assign) TTStyledBoxFrame* parentFrame;
-@property(nonatomic,retain) TTStyledFrame* firstChildFrame;
+@property (nonatomic, assign) TTStyledBoxFrame* parentFrame;
+@property (nonatomic, retain) TTStyledFrame* firstChildFrame;
 
 /**
  * The style used to render the frame;
  */
-@property(nonatomic,retain) TTStyle* style;
+@property (nonatomic, retain) TTStyle* style;
 
 @end
 
@@ -82,9 +82,9 @@
   TTStyledInlineFrame* _inlineNextFrame;
 }
 
-@property(nonatomic,readonly) TTStyledInlineFrame* inlineParentFrame;
-@property(nonatomic,assign) TTStyledInlineFrame* inlinePreviousFrame;
-@property(nonatomic,assign) TTStyledInlineFrame* inlineNextFrame;
+@property (nonatomic, readonly) TTStyledInlineFrame* inlineParentFrame;
+@property (nonatomic, assign) TTStyledInlineFrame* inlinePreviousFrame;
+@property (nonatomic, assign) TTStyledInlineFrame* inlineNextFrame;
 
 @end
 
@@ -96,20 +96,20 @@
   UIFont* _font;
 }
 
-/** 
+/**
  * The node represented by the frame.
  */
-@property(nonatomic,readonly) TTStyledTextNode* node;
+@property (nonatomic, readonly) TTStyledTextNode* node;
 
 /**
  * The text that is displayed by this frame.
  */
-@property(nonatomic,readonly) NSString* text;
+@property (nonatomic, readonly) NSString* text;
 
 /**
  * The font that is used to measure and display the text of this frame.
  */
-@property(nonatomic,retain) UIFont* font;
+@property (nonatomic, retain) UIFont* font;
 
 - (id)initWithText:(NSString*)text element:(TTStyledElement*)element node:(TTStyledTextNode*)node;
 
@@ -122,15 +122,15 @@
   TTStyle* _style;
 }
 
-/** 
+/**
  * The node represented by the frame.
  */
-@property(nonatomic,readonly) TTStyledImageNode* imageNode;
+@property (nonatomic, readonly) TTStyledImageNode* imageNode;
 
 /**
  * The style used to render the frame;
  */
-@property(nonatomic,retain) TTStyle* style;
+@property (nonatomic, retain) TTStyle* style;
 
 - (id)initWithElement:(TTStyledElement*)element node:(TTStyledImageNode*)node;
 

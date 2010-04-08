@@ -32,16 +32,16 @@
   BOOL _showsExtraLine;
 }
 
-@property(nonatomic,assign) id<TTTextEditorDelegate> delegate;
-@property(nonatomic,copy) NSString* text;
-@property(nonatomic,copy) NSString* placeholder;
-@property(nonatomic,retain) UIFont* font;
-@property(nonatomic,retain) UIColor* textColor;
-@property(nonatomic) NSInteger minNumberOfLines;
-@property(nonatomic) NSInteger maxNumberOfLines;
-@property(nonatomic,readonly) BOOL editing;
-@property(nonatomic) BOOL autoresizesToText;
-@property(nonatomic) BOOL showsExtraLine;
+@property (nonatomic, assign) id<TTTextEditorDelegate> delegate;
+@property (nonatomic, copy) NSString* text;
+@property (nonatomic, copy) NSString* placeholder;
+@property (nonatomic, retain) UIFont* font;
+@property (nonatomic, retain) UIColor* textColor;
+@property (nonatomic) NSInteger minNumberOfLines;
+@property (nonatomic) NSInteger maxNumberOfLines;
+@property (nonatomic, readonly) BOOL editing;
+@property (nonatomic) BOOL autoresizesToText;
+@property (nonatomic) BOOL showsExtraLine;
 
 - (void)scrollContainerToCursor:(UIScrollView*)scrollView;
 

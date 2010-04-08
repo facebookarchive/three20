@@ -33,7 +33,7 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   UIViewController* _popupViewController;
 }
 
-@property(nonatomic,retain) UIViewController* popupViewController;
+@property (nonatomic, retain) UIViewController* popupViewController;
 
 @end
 
@@ -81,7 +81,7 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 
   self.superController = nil;
   self.popupViewController = nil;
-  
+
   // Calls the original dealloc, swizzled away
   [self ttdealloc];
 }
@@ -165,7 +165,7 @@ static NSMutableDictionary* gPopupViewControllers = nil;
       return [viewControllers objectAtIndex:index-1];
     }
   }
-  
+
   return nil;
 }
 

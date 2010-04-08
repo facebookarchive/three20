@@ -26,6 +26,6 @@
   BOOL                          _isDragging;
 }
 
-@property(nonatomic, retain) TTTableHeaderDragRefreshView* headerView;
+@property (nonatomic, retain) TTTableHeaderDragRefreshView* headerView;
 
 @end

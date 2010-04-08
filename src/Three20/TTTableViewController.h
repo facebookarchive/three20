@@ -37,23 +37,23 @@
   BOOL _showTableShadows;
 }
 
-@property(nonatomic,retain) IBOutlet UITableView* tableView;
+@property (nonatomic, retain) IBOutlet UITableView* tableView;
 
 /**
  * A view that is displayed as a banner at the bottom of the table view.
  */
-@property(nonatomic,retain) UIView* tableBannerView;
+@property (nonatomic, retain) UIView* tableBannerView;
 
 /**
  * A view that is displayed over the table view.
  */
-@property(nonatomic,retain) UIView* tableOverlayView;
+@property (nonatomic, retain) UIView* tableOverlayView;
 
-@property(nonatomic,retain) UIView* loadingView;
-@property(nonatomic,retain) UIView* errorView;
-@property(nonatomic,retain) UIView* emptyView;
+@property (nonatomic, retain) UIView* loadingView;
+@property (nonatomic, retain) UIView* errorView;
+@property (nonatomic, retain) UIView* emptyView;
 
-@property(nonatomic,readonly) UIView* menuView;
+@property (nonatomic, readonly) UIView* menuView;
 
 /**
  * The data source used to populate the table view.
@@ -61,17 +61,17 @@
  * Setting dataSource has the side effect of also setting model to the value of the
  * dataSource's model property.
  */
-@property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
+@property (nonatomic, retain) id<TTTableViewDataSource> dataSource;
 
 /**
  * The style of the table view.
  */
-@property(nonatomic) UITableViewStyle tableViewStyle;
+@property (nonatomic) UITableViewStyle tableViewStyle;
 
 /**
  * Indicates if the table should support non-fixed row heights.
  */
-@property(nonatomic) BOOL variableHeightRows;
+@property (nonatomic) BOOL variableHeightRows;
 
 /**
  * When enabled, draws gutter shadows above the first table item and below the last table item.
@@ -79,7 +79,7 @@
  * Known issues: When there aren't enough cell items to fill the screen, the table view draws
  * empty cells for the remaining space. This causes the bottom shadow to appear out of place.
  */
-@property(nonatomic) BOOL showTableShadows;
+@property (nonatomic) BOOL showTableShadows;
 
 /**
  * Initializes and returns a controller having the given style.

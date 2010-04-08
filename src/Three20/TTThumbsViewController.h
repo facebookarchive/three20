@@ -26,8 +26,8 @@
   id<TTPhotoSource> _photoSource;
 }
 
-@property(nonatomic,assign) id<TTThumbsViewControllerDelegate> delegate;
-@property(nonatomic,retain) id<TTPhotoSource> photoSource;
+@property (nonatomic, assign) id<TTThumbsViewControllerDelegate> delegate;
+@property (nonatomic, retain) id<TTPhotoSource> photoSource;
 
 - (id)initWithDelegate:(id<TTThumbsViewControllerDelegate>)delegate;
 - (id)initWithQuery:(NSDictionary*)query;
@@ -44,8 +44,8 @@
   id<TTPhotoSource> _photoSource;
 }
 
-@property(nonatomic,assign) id<TTThumbsTableViewCellDelegate> delegate;
-@property(nonatomic,retain) id<TTPhotoSource> photoSource;
+@property (nonatomic, assign) id<TTThumbsTableViewCellDelegate> delegate;
+@property (nonatomic, retain) id<TTPhotoSource> photoSource;
 
 - (id)initWithPhotoSource:(id<TTPhotoSource>)photoSource
       delegate:(id<TTThumbsTableViewCellDelegate>)delegate;

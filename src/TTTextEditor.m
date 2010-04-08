@@ -39,8 +39,8 @@ static const CGFloat kUITextViewVerticalPadding = 6;
   BOOL _overflowed;
 }
 
-@property(nonatomic) BOOL autoresizesToText;
-@property(nonatomic) BOOL overflowed;
+@property (nonatomic) BOOL autoresizesToText;
+@property (nonatomic) BOOL overflowed;
 
 @end
 
@@ -75,8 +75,8 @@ static const CGFloat kUITextViewVerticalPadding = 6;
   BOOL _ignoreBeginAndEnd;
 }
 
-@property(nonatomic,assign) id<TTTextEditorDelegate> delegate;
-@property(nonatomic) BOOL ignoreBeginAndEnd;
+@property (nonatomic, assign) id<TTTextEditorDelegate> delegate;
+@property (nonatomic) BOOL ignoreBeginAndEnd;
 
 - (id)initWithTextEditor:(TTTextEditor*)textEditor;
 
@@ -229,7 +229,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
       return NO;
     }
   }
-  
+
   [_textEditor performSelector:@selector(didChangeText:) withObject:(id)YES];
 
   if ([_delegate respondsToSelector:@selector(textEditorDidChange:)]) {
@@ -292,7 +292,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
   CGFloat minHeight = _minNumberOfLines * ttLineHeight;
   CGFloat maxHeight = _maxNumberOfLines * ttLineHeight;
   CGFloat maxWidth = self.width - kTextViewInset;
-  
+
   NSString* text = _textField.hidden ? _textView.text : _textField.text;
   if (!text.length) {
     text = @"M";
@@ -301,7 +301,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
   CGSize textSize = [text sizeWithFont:self.font
                           constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
                           lineBreakMode:UILineBreakModeWordWrap];
-  
+
   CGFloat newHeight = textSize.height;
   if ([text characterAtIndex:text.length-1] == 10) {
     newHeight += ttLineHeight;
@@ -317,14 +317,14 @@ static const CGFloat kUITextViewVerticalPadding = 6;
   if (numberOfLines) {
     *numberOfLines = floor(newHeight / ttLineHeight);
   }
-  
+
   if (newHeight < minHeight) {
     newHeight = minHeight;
   }
   if (maxHeight && newHeight > maxHeight) {
     newHeight = maxHeight;
   }
-  
+
   return newHeight + kPaddingY*2;
 }
 
@@ -337,7 +337,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
   CGFloat oldHeight = self.height;
   CGFloat newHeight = [self heightThatFits:&_overflowed numberOfLines:&numberOfLines];
   CGFloat diff = newHeight - oldHeight;
-    
+
   if (numberOfLines > 1 && !_textField.hidden) {
     [self createTextView];
     _textField.hidden = YES;
@@ -354,17 +354,17 @@ static const CGFloat kUITextViewVerticalPadding = 6;
     [_textField becomeFirstResponder];
     [self performSelector:@selector(stopIgnoringBeginAndEnd) withObject:nil afterDelay:0];
   }
-  
+
   _textView.overflowed = _overflowed;
   _textView.scrollEnabled = _overflowed;
-  
+
   if (oldHeight && diff) {
     if ([_delegate respondsToSelector:@selector(textEditor:shouldResizeBy:)]) {
       if (![_delegate textEditor:self shouldResizeBy:diff]) {
         return;
       }
     }
-    
+
     self.frame = TTRectContract(self.frame, 0, -diff);
   }
 }

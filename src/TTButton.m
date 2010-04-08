@@ -43,10 +43,10 @@ static const CGFloat kVPadding = 7;
   TTURLRequest* _request;
 }
 
-@property(nonatomic,copy) NSString* title;
-@property(nonatomic,copy) NSString* imageURL;
-@property(nonatomic,retain) UIImage* image;
-@property(nonatomic,retain) TTStyle* style;
+@property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString* imageURL;
+@property (nonatomic, retain) UIImage* image;
+@property (nonatomic, retain) TTStyle* style;
 
 - (id)initWithButton:(TTButton*)button;
 

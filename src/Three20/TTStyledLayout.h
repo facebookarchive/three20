@@ -43,11 +43,11 @@
   NSMutableArray* _invalidImages;
 }
 
-@property(nonatomic) CGFloat width;
-@property(nonatomic) CGFloat height;
-@property(nonatomic,retain) UIFont* font;
-@property(nonatomic,readonly) TTStyledFrame* rootFrame;
-@property(nonatomic,retain) NSMutableArray* invalidImages;
+@property (nonatomic) CGFloat width;
+@property (nonatomic) CGFloat height;
+@property (nonatomic, retain) UIFont* font;
+@property (nonatomic, readonly) TTStyledFrame* rootFrame;
+@property (nonatomic, retain) NSMutableArray* invalidImages;
 
 - (id)initWithRootNode:(TTStyledNode*)rootNode;
 - (id)initWithX:(CGFloat)x width:(CGFloat)width height:(CGFloat)height;

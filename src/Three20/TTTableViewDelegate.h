@@ -40,6 +40,6 @@
 
 - (id)initWithController:(TTTableViewController*)controller;
 
-@property(nonatomic,readonly) TTTableViewController* controller;
+@property (nonatomic, readonly) TTTableViewController* controller;
 
 @end

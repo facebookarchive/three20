@@ -34,11 +34,11 @@
   UIStatusBarStyle _originalStatusBarStyle;
 }
 
-@property(nonatomic,assign) id<TTPostControllerDelegate> delegate;
-@property(nonatomic,retain) id result;
-@property(nonatomic,readonly) UITextView* textView;
-@property(nonatomic,readonly) UINavigationBar* navigatorBar;
-@property(nonatomic,retain) UIView* originView;
+@property (nonatomic, assign) id<TTPostControllerDelegate> delegate;
+@property (nonatomic, retain) id result;
+@property (nonatomic, readonly) UITextView* textView;
+@property (nonatomic, readonly) UINavigationBar* navigatorBar;
+@property (nonatomic, retain) UIView* originView;
 
 /**
  * Posts the text to delegates, who have to actually do something with it.

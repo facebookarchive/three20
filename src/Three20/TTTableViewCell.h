@@ -31,7 +31,7 @@
  */
 @interface TTTableViewCell : UITableViewCell
 
-@property(nonatomic,retain) id object;
+@property (nonatomic, retain) id object;
 
 /**
  * Measure the height of the row with the object that will be assigned to the cell.

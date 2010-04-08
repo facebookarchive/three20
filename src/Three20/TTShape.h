@@ -55,10 +55,10 @@
   CGFloat _bottomLeftRadius;
 }
 
-@property(nonatomic) CGFloat topLeftRadius;
-@property(nonatomic) CGFloat topRightRadius;
-@property(nonatomic) CGFloat bottomRightRadius;
-@property(nonatomic) CGFloat bottomLeftRadius;
+@property (nonatomic) CGFloat topLeftRadius;
+@property (nonatomic) CGFloat topRightRadius;
+@property (nonatomic) CGFloat bottomRightRadius;
+@property (nonatomic) CGFloat bottomLeftRadius;
 
 + (TTRoundedRectangleShape*)shapeWithRadius:(CGFloat)radius;
 
@@ -73,7 +73,7 @@
   CGFloat _radius;
 }
 
-@property(nonatomic) CGFloat radius;
+@property (nonatomic) CGFloat radius;
 
 + (TTRoundedRightArrowShape*)shapeWithRadius:(CGFloat)radius;
 
@@ -85,7 +85,7 @@
   CGFloat _radius;
 }
 
-@property(nonatomic) CGFloat radius;
+@property (nonatomic) CGFloat radius;
 
 + (TTRoundedLeftArrowShape*)shapeWithRadius:(CGFloat)radius;
 
@@ -100,10 +100,10 @@
   CGSize _pointSize;
 }
 
-@property(nonatomic) CGFloat radius;
-@property(nonatomic) CGFloat pointLocation;
-@property(nonatomic) CGFloat pointAngle;
-@property(nonatomic) CGSize pointSize;
+@property (nonatomic) CGFloat radius;
+@property (nonatomic) CGFloat pointLocation;
+@property (nonatomic) CGFloat pointAngle;
+@property (nonatomic) CGSize pointSize;
 
 + (TTSpeechBubbleShape*)shapeWithRadius:(CGFloat)radius pointLocation:(CGFloat)pointLocation
                         pointAngle:(CGFloat)pointAngle pointSize:(CGSize)pointSize;

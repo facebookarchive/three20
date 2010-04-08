@@ -41,12 +41,12 @@
   } _flags;
 }
 
-@property(nonatomic,retain) id<TTModel> model;
+@property (nonatomic, retain) id<TTModel> model;
 
 /**
  * An error that occurred while trying to load content.
  */
-@property(nonatomic, retain) NSError* modelError;
+@property (nonatomic, retain) NSError* modelError;
 
 /**
  * Creates the model that the controller manages.

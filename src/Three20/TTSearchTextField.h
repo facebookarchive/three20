@@ -35,13 +35,13 @@
   BOOL _showsDarkScreen;
 }
 
-@property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
-@property(nonatomic,readonly) UITableView* tableView;
-@property(nonatomic) CGFloat rowHeight;
-@property(nonatomic,readonly) BOOL hasText;
-@property(nonatomic) BOOL searchesAutomatically;
-@property(nonatomic) BOOL showsDoneButton;
-@property(nonatomic) BOOL showsDarkScreen;
+@property (nonatomic, retain) id<TTTableViewDataSource> dataSource;
+@property (nonatomic, readonly) UITableView* tableView;
+@property (nonatomic) CGFloat rowHeight;
+@property (nonatomic, readonly) BOOL hasText;
+@property (nonatomic) BOOL searchesAutomatically;
+@property (nonatomic) BOOL showsDoneButton;
+@property (nonatomic) BOOL showsDarkScreen;
 
 - (void)search;
 

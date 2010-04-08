@@ -50,14 +50,14 @@ typedef enum {
   BOOL                        _opensExternalURLs;
 }
 
-@property(nonatomic,assign) id<TTNavigatorDelegate> delegate;
+@property (nonatomic, assign) id<TTNavigatorDelegate> delegate;
 
 /**
  * The URL map used to translate between URLs and view controllers.
  *
  * @see TTURLMap
  */
-@property(nonatomic,readonly) TTURLMap* URLMap;
+@property (nonatomic, readonly) TTURLMap* URLMap;
 
 /**
  * The window that contains the view controller hierarchy.
@@ -65,17 +65,17 @@ typedef enum {
  * By default retrieves the keyWindow. If there is no keyWindow, creates a new
  * TTNavigatorWindow.
  */
-@property(nonatomic,retain) UIWindow* window;
+@property (nonatomic, retain) UIWindow* window;
 
 /**
  * The controller that is at the root of the view controller hierarchy.
  */
-@property(nonatomic,readonly) UIViewController* rootViewController;
+@property (nonatomic, readonly) UIViewController* rootViewController;
 
 /**
  * The currently visible view controller.
  */
-@property(nonatomic,readonly) UIViewController* visibleViewController;
+@property (nonatomic, readonly) UIViewController* visibleViewController;
 
 /**
  * The view controller that is currently on top of the navigation stack.
@@ -83,21 +83,21 @@ typedef enum {
  * This differs from visibleViewController in that it ignores things like search
  * display controllers which are visible, but not part of navigation.
  */
-@property(nonatomic,readonly) UIViewController* topViewController;
+@property (nonatomic, readonly) UIViewController* topViewController;
 
 /**
  * The URL of the currently visible view controller;
  *
  * Setting this property will open a new URL.
  */
-@property(nonatomic,copy) NSString* URL;
+@property (nonatomic, copy) NSString* URL;
 
 /**
  * How view controllers are automatically persisted on termination and restored on launch.
  *
  * @default TTNavigatorPersistenceModeNone
  */
-@property(nonatomic) TTNavigatorPersistenceMode persistenceMode;
+@property (nonatomic) TTNavigatorPersistenceMode persistenceMode;
 
 /**
  * The age at which persisted view controllers are too old to be restored.
@@ -110,28 +110,28 @@ typedef enum {
  *
  * @default 0
  */
-@property(nonatomic) NSTimeInterval persistenceExpirationAge;
+@property (nonatomic) NSTimeInterval persistenceExpirationAge;
 
 /**
  * Causes the current view controller to be reloaded when shaking the phone.
  *
  * @default NO
  */
-@property(nonatomic) BOOL supportsShakeToReload;
+@property (nonatomic) BOOL supportsShakeToReload;
 
 /**
  * Allows URLs to be opened externally if they don't match any patterns.
  *
  * @default NO
  */
-@property(nonatomic) BOOL opensExternalURLs;
+@property (nonatomic) BOOL opensExternalURLs;
 
 /**
  * Indicates that we are asking controllers to delay heavy operations until a later time.
  *
  * @default NO
  */
-@property(nonatomic,readonly) BOOL isDelayed;
+@property (nonatomic, readonly) BOOL isDelayed;
 
 
 + (TTNavigator*)navigator;

@@ -185,7 +185,7 @@
 /**
  * Whether parameters named "password" should be suppressed in log messages.
  */
-@property (nonatomic,assign) BOOL filterPasswordLogging;
+@property (nonatomic, assign) BOOL filterPasswordLogging;
 
 /**
  * Charset to use when creating multipart/form-data data.

@@ -21,8 +21,8 @@
   UIFont* _font;
 }
 
-@property(nonatomic,copy) NSString* text;
-@property(nonatomic,retain) UIFont* font;
+@property (nonatomic, copy) NSString* text;
+@property (nonatomic, retain) UIFont* font;
 
 - (id)initWithText:(NSString*)text;
 

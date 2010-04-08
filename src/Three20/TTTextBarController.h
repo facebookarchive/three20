@@ -34,10 +34,10 @@
   UIBarButtonItem* _previousRightBarButtonItem;
 }
 
-@property(nonatomic,assign) id <TTTextBarDelegate> delegate;
-@property(nonatomic,readonly) TTTextEditor* textEditor;
-@property(nonatomic,readonly) TTButton* postButton;
-@property(nonatomic,retain) UIView* footerBar;
+@property (nonatomic, assign) id <TTTextBarDelegate> delegate;
+@property (nonatomic, readonly) TTTextEditor* textEditor;
+@property (nonatomic, readonly) TTButton* postButton;
+@property (nonatomic, retain) UIView* footerBar;
 
 /**
  * Posts the text to delegates, who have to actually do something with it.

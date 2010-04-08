@@ -35,62 +35,64 @@
  * useful when you want to customize the fields presented to the user.
  */
 @interface TTMessageController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
-  id<TTMessageControllerDelegate> _delegate;
-  id<TTTableViewDataSource> _dataSource;
-  NSArray* _fields;
-  NSMutableArray* _fieldViews;
-  UIScrollView* _scrollView;
-  TTTextEditor* _textEditor;
-  TTActivityLabel* _activityView;
-  NSArray* _initialRecipients;
+  NSArray*          _fields;
+  NSMutableArray*   _fieldViews;
+  UIScrollView*     _scrollView;
+  TTTextEditor*     _textEditor;
+  TTActivityLabel*  _activityView;
+  NSArray*          _initialRecipients;
+
   BOOL _showsRecipientPicker;
   BOOL _isModified;
+
+  id<TTTableViewDataSource>       _dataSource;
+  id<TTMessageControllerDelegate> _delegate;
 }
 
 /**
  * The delegate that will receive messages from the TTMessageControllerDelegate
  * protocol.
  */
-@property(nonatomic,assign) id<TTMessageControllerDelegate> delegate;
+@property (nonatomic, assign) id<TTMessageControllerDelegate> delegate;
 
 /**
  * The datasource used to autocomplete TTMessageRecipientFields. This class is
  * also responsible for determining how cells representing recipients are
  * labeled.
  */
-@property(nonatomic,retain) id<TTTableViewDataSource> dataSource;
+@property (nonatomic, retain) id<TTTableViewDataSource> dataSource;
 
 /**
  * An array of TTMessageField instances representing the editable fields. These
  * fields are rendered in order using appropriate views for each field type.
  */
-@property(nonatomic,retain) NSArray* fields;
+@property (nonatomic, retain) NSArray* fields;
 
 /**
  * A convenience property for editing the text value of the
  * TTMessageSubjectField. If no TTMessageSubjectField is found in the fields
  * array, nil will be returned from the getter and the setter will be a no-op.
  */
-@property(nonatomic,retain) NSString* subject;
+@property (nonatomic, retain) NSString* subject;
 
 /**
  * The body of the message. The body is not required for the user to send a
  * message.
  */
-@property(nonatomic,retain) NSString* body;
+@property (nonatomic, retain) NSString* body;
 
 /**
  * Controls whether a contact add button is shown in the views for
  * TTMessageRecipientField instances.
  */
-@property(nonatomic) BOOL showsRecipientPicker;
+@property (nonatomic) BOOL showsRecipientPicker;
 
 /**
  * Indicates if this message has been modified since it was originally
  * shown. If the message has been modified, the user will be asked for
  * confirmation before their cancel request is enacted.
  */
-@property(nonatomic,readonly) BOOL isModified;
+@property (nonatomic, readonly) BOOL isModified;
 
 /**
  * Initializes the class with an array of recipients. These recipients will
@@ -249,13 +251,13 @@
  * The title of this field, which will be rendered along with the field's
  * contents.
  */
-@property(nonatomic,copy) NSString* title;
+@property (nonatomic,copy) NSString* title;
 
 /**
  * If true, the user must supply a value for this field before they will be
  * able to send their message.
  */
-@property(nonatomic) BOOL required;
+@property (nonatomic) BOOL required;
 
 - (id)initWithTitle:(NSString*)title required:(BOOL)required;
 
@@ -270,7 +272,7 @@
   NSArray* _recipients;
 }
 
-@property(nonatomic,retain) NSArray* recipients;
+@property (nonatomic, retain) NSArray* recipients;
 
 @end
 
@@ -281,7 +283,7 @@
   NSString* _text;
 }
 
-@property(nonatomic,copy) NSString* text;
+@property (nonatomic, copy) NSString* text;
 
 @end
 

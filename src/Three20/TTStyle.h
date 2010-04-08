@@ -28,12 +28,12 @@
   BOOL _didDrawContent;
 }
 
-@property(nonatomic,assign) id<TTStyleDelegate> delegate;
-@property(nonatomic) CGRect frame;
-@property(nonatomic) CGRect contentFrame;
-@property(nonatomic,retain) TTShape* shape;
-@property(nonatomic,retain) UIFont* font;
-@property(nonatomic) BOOL didDrawContent;
+@property (nonatomic, assign) id<TTStyleDelegate> delegate;
+@property (nonatomic) CGRect frame;
+@property (nonatomic) CGRect contentFrame;
+@property (nonatomic, retain) TTShape* shape;
+@property (nonatomic, retain) UIFont* font;
+@property (nonatomic) BOOL didDrawContent;
 
 @end
 
@@ -43,7 +43,7 @@
   TTStyle* _next;
 }
 
-@property(nonatomic,retain) TTStyle* next;
+@property (nonatomic, retain) TTStyle* next;
 
 - (id)initWithNext:(TTStyle*)next;
 
@@ -76,8 +76,8 @@
   TTStyle* _style;
 }
 
-@property(nonatomic,copy) NSString* name;
-@property(nonatomic,retain) TTStyle* style;
+@property (nonatomic, copy) NSString* name;
+@property (nonatomic, retain) TTStyle* style;
 
 + (TTPartStyle*)styleWithName:(NSString*)name style:(TTStyle*)style next:(TTStyle*)next;
 
@@ -94,7 +94,7 @@
   TTShape* _shape;
 }
 
-@property(nonatomic,retain) TTShape* shape;
+@property (nonatomic, retain) TTShape* shape;
 
 + (TTShapeStyle*)styleWithShape:(TTShape*)shape next:(TTStyle*)next;
 
@@ -106,7 +106,7 @@
   UIEdgeInsets _inset;
 }
 
-@property(nonatomic) UIEdgeInsets inset;
+@property (nonatomic) UIEdgeInsets inset;
 
 + (TTInsetStyle*)styleWithInset:(UIEdgeInsets)inset next:(TTStyle*)next;
 
@@ -121,10 +121,10 @@
   TTPosition _position;
 }
 
-@property(nonatomic) UIEdgeInsets margin;
-@property(nonatomic) UIEdgeInsets padding;
-@property(nonatomic) CGSize minSize;
-@property(nonatomic) TTPosition position;
+@property (nonatomic) UIEdgeInsets margin;
+@property (nonatomic) UIEdgeInsets padding;
+@property (nonatomic) CGSize minSize;
+@property (nonatomic) TTPosition position;
 
 + (TTBoxStyle*)styleWithMargin:(UIEdgeInsets)margin next:(TTStyle*)next;
 + (TTBoxStyle*)styleWithPadding:(UIEdgeInsets)padding next:(TTStyle*)next;
@@ -150,15 +150,15 @@
   UILineBreakMode _lineBreakMode;
 }
 
-@property(nonatomic,retain) UIFont* font;
-@property(nonatomic,retain) UIColor* color;
-@property(nonatomic,retain) UIColor* shadowColor;
-@property(nonatomic) CGFloat minimumFontSize;
-@property(nonatomic) CGSize shadowOffset;
-@property(nonatomic) NSInteger numberOfLines;
-@property(nonatomic) UITextAlignment textAlignment;
-@property(nonatomic) UIControlContentVerticalAlignment verticalAlignment;
-@property(nonatomic) UILineBreakMode lineBreakMode;
+@property (nonatomic, retain) UIFont* font;
+@property (nonatomic, retain) UIColor* color;
+@property (nonatomic, retain) UIColor* shadowColor;
+@property (nonatomic) CGFloat minimumFontSize;
+@property (nonatomic) CGSize shadowOffset;
+@property (nonatomic) NSInteger numberOfLines;
+@property (nonatomic) UITextAlignment textAlignment;
+@property (nonatomic) UIControlContentVerticalAlignment verticalAlignment;
+@property (nonatomic) UILineBreakMode lineBreakMode;
 
 + (TTTextStyle*)styleWithFont:(UIFont*)font next:(TTStyle*)next;
 + (TTTextStyle*)styleWithColor:(UIColor*)color next:(TTStyle*)next;
@@ -192,11 +192,11 @@
   CGSize _size;
 }
 
-@property(nonatomic,copy) NSString* imageURL;
-@property(nonatomic,retain) UIImage* image;
-@property(nonatomic,retain) UIImage* defaultImage;
-@property(nonatomic) CGSize size;
-@property(nonatomic) UIViewContentMode contentMode;
+@property (nonatomic, copy) NSString* imageURL;
+@property (nonatomic, retain) UIImage* image;
+@property (nonatomic, retain) UIImage* defaultImage;
+@property (nonatomic) CGSize size;
+@property (nonatomic) UIViewContentMode contentMode;
 
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL next:(TTStyle*)next;
 + (TTImageStyle*)styleWithImageURL:(NSString*)imageURL defaultImage:(UIImage*)defaultImage
@@ -219,7 +219,7 @@
   UIImage* _mask;
 }
 
-@property(nonatomic,retain) UIImage* mask;
+@property (nonatomic, retain) UIImage* mask;
 
 + (TTMaskStyle*)styleWithMask:(UIImage*)mask next:(TTStyle*)next;
 
@@ -231,7 +231,7 @@
   CGBlendMode _blendMode;
 }
 
-@property(nonatomic) CGBlendMode blendMode;
+@property (nonatomic) CGBlendMode blendMode;
 
 + (TTBlendStyle*)styleWithBlend:(CGBlendMode)blendMode next:(TTStyle*)next;
 
@@ -243,7 +243,7 @@
   UIColor* _color;
 }
 
-@property(nonatomic,retain) UIColor* color;
+@property (nonatomic, retain) UIColor* color;
 
 + (TTSolidFillStyle*)styleWithColor:(UIColor*)color next:(TTStyle*)next;
 
@@ -256,8 +256,8 @@
   UIColor* _color2;
 }
 
-@property(nonatomic,retain) UIColor* color1;
-@property(nonatomic,retain) UIColor* color2;
+@property (nonatomic, retain) UIColor* color1;
+@property (nonatomic, retain) UIColor* color2;
 
 + (TTLinearGradientFillStyle*)styleWithColor1:(UIColor*)color1 color2:(UIColor*)color2
                               next:(TTStyle*)next;
@@ -271,8 +271,8 @@
   BOOL      _withBottomHighlight;
 }
 
-@property(nonatomic,retain) UIColor* color;
-@property(nonatomic,assign) BOOL     withBottomHighlight;
+@property (nonatomic, retain) UIColor* color;
+@property (nonatomic, assign) BOOL     withBottomHighlight;
 
 + (TTReflectiveFillStyle*)styleWithColor:(UIColor*)color next:(TTStyle*)next;
 + (TTReflectiveFillStyle*)styleWithColor:(UIColor*)color
@@ -288,9 +288,9 @@
   CGSize _offset;
 }
 
-@property(nonatomic,retain) UIColor* color;
-@property(nonatomic) CGFloat blur;
-@property(nonatomic) CGSize offset;
+@property (nonatomic, retain) UIColor* color;
+@property (nonatomic) CGFloat blur;
+@property (nonatomic) CGSize offset;
 
 + (TTShadowStyle*)styleWithColor:(UIColor*)color blur:(CGFloat)blur offset:(CGSize)offset
                   next:(TTStyle*)next;
@@ -309,8 +309,8 @@
   CGFloat _width;
 }
 
-@property(nonatomic,retain) UIColor* color;
-@property(nonatomic) CGFloat width;
+@property (nonatomic, retain) UIColor* color;
+@property (nonatomic) CGFloat width;
 
 + (TTSolidBorderStyle*)styleWithColor:(UIColor*)color width:(CGFloat)width next:(TTStyle*)next;
 
@@ -324,9 +324,9 @@
   CGFloat _width;
 }
 
-@property(nonatomic,retain) UIColor* color;
-@property(nonatomic,retain) UIColor* highlightColor;
-@property(nonatomic) CGFloat width;
+@property (nonatomic, retain) UIColor* color;
+@property (nonatomic, retain) UIColor* highlightColor;
+@property (nonatomic) CGFloat width;
 
 + (TTHighlightBorderStyle*)styleWithColor:(UIColor*)color highlightColor:(UIColor*)highlightColor
                            width:(CGFloat)width next:(TTStyle*)next;
@@ -343,11 +343,11 @@
   CGFloat _width;
 }
 
-@property(nonatomic,retain) UIColor* top;
-@property(nonatomic,retain) UIColor* right;
-@property(nonatomic,retain) UIColor* bottom;
-@property(nonatomic,retain) UIColor* left;
-@property(nonatomic) CGFloat width;
+@property (nonatomic, retain) UIColor* top;
+@property (nonatomic, retain) UIColor* right;
+@property (nonatomic, retain) UIColor* bottom;
+@property (nonatomic, retain) UIColor* left;
+@property (nonatomic) CGFloat width;
 
 + (TTFourBorderStyle*)styleWithTop:(UIColor*)top right:(UIColor*)right bottom:(UIColor*)bottom
                       left:(UIColor*)left width:(CGFloat)width next:(TTStyle*)next;
@@ -367,10 +367,10 @@
   NSInteger _lightSource;
 }
 
-@property(nonatomic,retain) UIColor* highlight;
-@property(nonatomic,retain) UIColor* shadow;
-@property(nonatomic) CGFloat width;
-@property(nonatomic) NSInteger lightSource;
+@property (nonatomic, retain) UIColor* highlight;
+@property (nonatomic, retain) UIColor* shadow;
+@property (nonatomic) CGFloat width;
+@property (nonatomic) NSInteger lightSource;
 
 + (TTBevelBorderStyle*)styleWithColor:(UIColor*)color width:(CGFloat)width next:(TTStyle*)next;
 
@@ -389,11 +389,11 @@
   CGFloat _width;
 }
 
-@property(nonatomic,retain) UIColor* color1;
-@property(nonatomic,retain) UIColor* color2;
-@property(nonatomic) CGFloat location1;
-@property(nonatomic) CGFloat location2;
-@property(nonatomic) CGFloat width;
+@property (nonatomic, retain) UIColor* color1;
+@property (nonatomic, retain) UIColor* color2;
+@property (nonatomic) CGFloat location1;
+@property (nonatomic) CGFloat location2;
+@property (nonatomic) CGFloat width;
 
 + (TTLinearGradientBorderStyle*)styleWithColor1:(UIColor*)color1 color2:(UIColor*)color2
                                 width:(CGFloat)width next:(TTStyle*)next;

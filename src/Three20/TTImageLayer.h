@@ -25,6 +25,6 @@
   TTImageView* _override;
 }
 
-@property(nonatomic,assign) TTImageView* override;
+@property (nonatomic, assign) TTImageView* override;
 
 @end

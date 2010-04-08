@@ -22,10 +22,10 @@
   TTStyledNode* _parentNode;
 }
 
-@property(nonatomic, retain) TTStyledNode* nextSibling;
-@property(nonatomic, assign) TTStyledNode* parentNode;
-@property(nonatomic, readonly) NSString* outerText;
-@property(nonatomic, readonly) NSString* outerHTML;
+@property (nonatomic, retain) TTStyledNode* nextSibling;
+@property (nonatomic, assign) TTStyledNode* parentNode;
+@property (nonatomic, readonly) NSString* outerText;
+@property (nonatomic, readonly) NSString* outerHTML;
 
 - (id)initWithNextSibling:(TTStyledNode*)nextSibling;
 
@@ -41,7 +41,7 @@
   NSString* _text;
 }
 
-@property(nonatomic, retain) NSString* text;
+@property (nonatomic, retain) NSString* text;
 
 - (id)initWithText:(NSString*)text;
 - (id)initWithText:(NSString*)text next:(TTStyledNode*)nextSibling;
@@ -56,9 +56,9 @@
   NSString* _className;
 }
 
-@property(nonatomic, readonly) TTStyledNode* firstChild;
-@property(nonatomic, readonly) TTStyledNode* lastChild;
-@property(nonatomic, retain) NSString* className;
+@property (nonatomic, readonly) TTStyledNode* firstChild;
+@property (nonatomic, readonly) TTStyledNode* lastChild;
+@property (nonatomic, retain) NSString* className;
 
 - (id)initWithText:(NSString*)text;
 - (id)initWithText:(NSString*)text next:(TTStyledNode*)nextSibling;
@@ -103,8 +103,8 @@
   BOOL _highlighted;
 }
 
-@property(nonatomic) BOOL highlighted;
-@property(nonatomic,retain) NSString* URL;
+@property (nonatomic) BOOL highlighted;
+@property (nonatomic, retain) NSString* URL;
 
 - (id)initWithURL:(NSString*)URL;
 - (id)initWithURL:(NSString*)URL next:(TTStyledNode*)nextSibling;
@@ -119,8 +119,8 @@
   BOOL _highlighted;
 }
 
-@property(nonatomic) BOOL highlighted;
-@property(nonatomic,retain) NSString* URL;
+@property (nonatomic) BOOL highlighted;
+@property (nonatomic, retain) NSString* URL;
 
 - (id)initWithURL:(NSString*)URL;
 - (id)initWithURL:(NSString*)URL next:(TTStyledNode*)nextSibling;
@@ -138,11 +138,11 @@
   CGFloat _height;
 }
 
-@property(nonatomic,retain) NSString* URL;
-@property(nonatomic,retain) UIImage* image;
-@property(nonatomic,retain) UIImage* defaultImage;
-@property(nonatomic) CGFloat width;
-@property(nonatomic) CGFloat height;
+@property (nonatomic, retain) NSString* URL;
+@property (nonatomic, retain) UIImage* image;
+@property (nonatomic, retain) UIImage* defaultImage;
+@property (nonatomic) CGFloat width;
+@property (nonatomic) CGFloat height;
 
 - (id)initWithURL:(NSString*)URL;
 

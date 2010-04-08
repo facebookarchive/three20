@@ -24,7 +24,7 @@
   id _userInfo;
 }
 
-@property(nonatomic,retain) id userInfo;
+@property (nonatomic, retain) id userInfo;
 
 @end
 
@@ -33,8 +33,8 @@
   NSString* _accessoryURL;
 }
 
-@property(nonatomic,copy) NSString* URL;
-@property(nonatomic,copy) NSString* accessoryURL;
+@property (nonatomic, copy) NSString* URL;
+@property (nonatomic, copy) NSString* accessoryURL;
 
 @end
 
@@ -42,7 +42,7 @@
   NSString* _text;
 }
 
-@property(nonatomic,copy) NSString* text;
+@property (nonatomic, copy) NSString* text;
 
 + (id)itemWithText:(NSString*)text;
 + (id)itemWithText:(NSString*)text URL:(NSString*)URL;
@@ -54,7 +54,7 @@
   NSString* _caption;
 }
 
-@property(nonatomic,copy) NSString* caption;
+@property (nonatomic, copy) NSString* caption;
 
 + (id)itemWithText:(NSString*)text caption:(NSString*)caption;
 + (id)itemWithText:(NSString*)text caption:(NSString*)caption URL:(NSString*)URL;
@@ -75,9 +75,9 @@
   UIImage* _defaultImage;
 }
 
-@property(nonatomic,copy) NSString* subtitle;
-@property(nonatomic,copy) NSString* imageURL;
-@property(nonatomic,retain) UIImage* defaultImage;
+@property (nonatomic, copy) NSString* subtitle;
+@property (nonatomic, copy) NSString* imageURL;
+@property (nonatomic, retain) UIImage* defaultImage;
 
 + (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle;
 + (id)itemWithText:(NSString*)text subtitle:(NSString*)subtitle URL:(NSString*)URL;
@@ -97,10 +97,10 @@
   NSString* _imageURL;
 }
 
-@property(nonatomic,copy) NSString* title;
-@property(nonatomic,copy) NSString* caption;
-@property(nonatomic,retain) NSDate* timestamp;
-@property(nonatomic,copy) NSString* imageURL;
+@property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString* caption;
+@property (nonatomic, retain) NSDate* timestamp;
+@property (nonatomic, copy) NSString* imageURL;
 
 + (id)itemWithTitle:(NSString*)title caption:(NSString*)caption text:(NSString*)text
       timestamp:(NSDate*)timestamp URL:(NSString*)URL;
@@ -129,8 +129,8 @@
   id<TTModel> _model;
 }
 
-@property(nonatomic) BOOL isLoading;
-@property(nonatomic,retain) id<TTModel> model;
+@property (nonatomic) BOOL isLoading;
+@property (nonatomic, retain) id<TTModel> model;
 
 @end
 
@@ -140,9 +140,9 @@
   TTStyle* _imageStyle;
 }
 
-@property(nonatomic,copy) NSString* imageURL;
-@property(nonatomic,retain) UIImage* defaultImage;
-@property(nonatomic,retain) TTStyle* imageStyle;
+@property (nonatomic, copy) NSString* imageURL;
+@property (nonatomic, retain) UIImage* defaultImage;
+@property (nonatomic, retain) TTStyle* imageStyle;
 
 + (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL;
 + (id)itemWithText:(NSString*)text imageURL:(NSString*)imageURL URL:(NSString*)URL;
@@ -160,7 +160,7 @@
   NSString* _text;
 }
 
-@property(nonatomic,copy) NSString* text;
+@property (nonatomic, copy) NSString* text;
 
 + (id)itemWithText:(NSString*)text;
 
@@ -172,9 +172,9 @@
   UIEdgeInsets _padding;
 }
 
-@property(nonatomic,retain) TTStyledText* text;
-@property(nonatomic) UIEdgeInsets margin;
-@property(nonatomic) UIEdgeInsets padding;
+@property (nonatomic, retain) TTStyledText* text;
+@property (nonatomic) UIEdgeInsets margin;
+@property (nonatomic) UIEdgeInsets padding;
 
 + (id)itemWithText:(TTStyledText*)text;
 + (id)itemWithText:(TTStyledText*)text URL:(NSString*)URL;
@@ -187,8 +187,8 @@
   UIControl* _control;
 }
 
-@property(nonatomic,copy) NSString* caption;
-@property(nonatomic,retain) UIControl* control;
+@property (nonatomic, copy) NSString* caption;
+@property (nonatomic, retain) UIControl* control;
 
 + (id)itemWithCaption:(NSString*)caption control:(UIControl*)control;
 
@@ -199,8 +199,8 @@
   UIView* _view;
 }
 
-@property(nonatomic,copy) NSString* caption;
-@property(nonatomic,retain) UIView* view;
+@property (nonatomic, copy) NSString* caption;
+@property (nonatomic, retain) UIView* view;
 
 + (id)itemWithCaption:(NSString*)caption view:(UIView*)view;
 

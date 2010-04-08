@@ -43,37 +43,37 @@
 /**
  *
  */
-@property(nonatomic,assign) id<TTLauncherViewDelegate> delegate;
+@property (nonatomic, assign) id<TTLauncherViewDelegate> delegate;
 
 /**
  *
  */
-@property(nonatomic,copy) NSArray* pages;
+@property (nonatomic, copy) NSArray* pages;
 
 /**
  *
  */
-@property(nonatomic) NSInteger columnCount;
+@property (nonatomic) NSInteger columnCount;
 
 /**
  *
  */
-@property(nonatomic,readonly) NSInteger rowCount;
+@property (nonatomic, readonly) NSInteger rowCount;
 
 /**
  *
  */
-@property(nonatomic) NSInteger currentPageIndex;
+@property (nonatomic) NSInteger currentPageIndex;
 
 /**
  *
  */
-@property(nonatomic,copy) NSString* prompt;
+@property (nonatomic, copy) NSString* prompt;
 
 /**
  *
  */
-@property(nonatomic,readonly) BOOL editing;
+@property (nonatomic, readonly) BOOL editing;
 
 /**
  *

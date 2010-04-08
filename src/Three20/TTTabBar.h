@@ -29,13 +29,13 @@
   NSMutableArray* _tabViews;
 }
 
-@property(nonatomic,assign) id<TTTabDelegate> delegate;
-@property(nonatomic,retain) NSArray* tabItems;
-@property(nonatomic,readonly) NSArray* tabViews;
-@property(nonatomic,copy) NSString* tabStyle;
-@property(nonatomic,assign) TTTabItem* selectedTabItem;
-@property(nonatomic,assign) TTTab* selectedTabView;
-@property(nonatomic) NSInteger selectedTabIndex;
+@property (nonatomic, assign) id<TTTabDelegate> delegate;
+@property (nonatomic, retain) NSArray* tabItems;
+@property (nonatomic, readonly) NSArray* tabViews;
+@property (nonatomic, copy) NSString* tabStyle;
+@property (nonatomic, assign) TTTabItem* selectedTabItem;
+@property (nonatomic, assign) TTTab* selectedTabView;
+@property (nonatomic) NSInteger selectedTabIndex;
 
 - (id)initWithFrame:(CGRect)frame;
 
@@ -60,7 +60,7 @@
   NSInteger _columnCount;
 }
 
-@property(nonatomic) NSInteger columnCount;
+@property (nonatomic) NSInteger columnCount;
 
 @end
 
@@ -71,7 +71,7 @@
   TTLabel* _badge;
 }
 
-@property(nonatomic,retain) TTTabItem* tabItem;
+@property (nonatomic, retain) TTTabItem* tabItem;
 
 - (id)initWithItem:(TTTabItem*)item tabBar:(TTTabBar*)tabBar;
 
@@ -87,10 +87,10 @@
   TTTabBar* _tabBar;
 }
 
-@property(nonatomic,copy) NSString* title;
-@property(nonatomic,copy) NSString* icon;
-@property(nonatomic,retain) id object;
-@property(nonatomic) int badgeNumber;
+@property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString* icon;
+@property (nonatomic, retain) id object;
+@property (nonatomic) int badgeNumber;
 
 - (id)initWithTitle:(NSString*)title;
 

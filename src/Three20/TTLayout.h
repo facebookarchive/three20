@@ -30,8 +30,8 @@
   CGFloat _spacing;
 }
 
-@property(nonatomic) CGFloat padding;
-@property(nonatomic) CGFloat spacing;
+@property (nonatomic) CGFloat padding;
+@property (nonatomic) CGFloat spacing;
 
 @end
 
@@ -43,8 +43,8 @@
   CGFloat _spacing;
 }
 
-@property(nonatomic) NSInteger columnCount;
-@property(nonatomic) CGFloat padding;
-@property(nonatomic) CGFloat spacing;
+@property (nonatomic) NSInteger columnCount;
+@property (nonatomic) CGFloat padding;
+@property (nonatomic) CGFloat spacing;
 
 @end

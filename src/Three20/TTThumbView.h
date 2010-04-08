@@ -18,6 +18,6 @@
 
 @interface TTThumbView : TTButton
 
-@property(nonatomic,copy) NSString* thumbURL;
+@property (nonatomic, copy) NSString* thumbURL;
 
 @end

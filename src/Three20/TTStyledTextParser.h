@@ -30,9 +30,9 @@
   BOOL _parseURLs;
 }
 
-@property(nonatomic, retain) TTStyledNode* rootNode;
-@property(nonatomic) BOOL parseLineBreaks;
-@property(nonatomic) BOOL parseURLs;
+@property (nonatomic, retain) TTStyledNode* rootNode;
+@property (nonatomic) BOOL parseLineBreaks;
+@property (nonatomic) BOOL parseURLs;
 
 - (void)parseXHTML:(NSString*)html;
 - (void)parseText:(NSString*)string;

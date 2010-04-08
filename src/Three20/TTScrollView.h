@@ -70,54 +70,54 @@
 /**
  * The current page index.
  */
-@property(nonatomic)          NSInteger       centerPageIndex;
+@property (nonatomic)          NSInteger       centerPageIndex;
 
 /**
  * Whether or not the current page is zoomed.
  */
-@property(nonatomic,readonly) BOOL            zoomed;
+@property (nonatomic, readonly) BOOL            zoomed;
 
-@property(nonatomic,readonly) BOOL            holding;
-
-/**
- * @default YES
- */
-@property(nonatomic)          BOOL            scrollEnabled;
+@property (nonatomic, readonly) BOOL            holding;
 
 /**
  * @default YES
  */
-@property(nonatomic)          BOOL            zoomEnabled;
+@property (nonatomic)          BOOL            scrollEnabled;
 
 /**
  * @default YES
  */
-@property(nonatomic)          BOOL            rotateEnabled;
+@property (nonatomic)          BOOL            zoomEnabled;
+
+/**
+ * @default YES
+ */
+@property (nonatomic)          BOOL            rotateEnabled;
 
 /**
  * @default 40
  */
-@property(nonatomic)          CGFloat         pageSpacing;
+@property (nonatomic)          CGFloat         pageSpacing;
 
-@property(nonatomic)          UIInterfaceOrientation orientation;
-@property(nonatomic,readonly) NSInteger       numberOfPages;
-@property(nonatomic,readonly) UIView*         centerPage;
+@property (nonatomic)          UIInterfaceOrientation orientation;
+@property (nonatomic, readonly) NSInteger       numberOfPages;
+@property (nonatomic, readonly) UIView*         centerPage;
 
 /**
  * The number of seconds to wait before initiating the "hold" action.
  *
  * @default 0
  */
-@property(nonatomic)          NSTimeInterval  holdsAfterTouchingForInterval;
+@property (nonatomic)          NSTimeInterval  holdsAfterTouchingForInterval;
 
 
-@property(nonatomic,assign)   id<TTScrollViewDelegate>    delegate;
-@property(nonatomic,assign)   id<TTScrollViewDataSource>  dataSource;
+@property (nonatomic, assign)   id<TTScrollViewDelegate>    delegate;
+@property (nonatomic, assign)   id<TTScrollViewDataSource>  dataSource;
 
 /**
  * A dictionary of visible pages keyed by the index of the page.
  */
-@property(nonatomic,readonly) NSDictionary* visiblePages;
+@property (nonatomic, readonly) NSDictionary* visiblePages;
 
 - (void)setOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated;
 

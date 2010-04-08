@@ -29,19 +29,19 @@
 
 @interface TTTableCaptionItemCell : TTTableLinkedItemCell
 
-@property(nonatomic,readonly) UILabel* captionLabel;
+@property (nonatomic, readonly) UILabel* captionLabel;
 
 @end
 
 @interface TTTableSubtextItemCell : TTTableLinkedItemCell
 
-@property(nonatomic,readonly) UILabel* captionLabel;
+@property (nonatomic, readonly) UILabel* captionLabel;
 
 @end
 
 @interface TTTableRightCaptionItemCell : TTTableLinkedItemCell
 
-@property(nonatomic,readonly) UILabel* captionLabel;
+@property (nonatomic, readonly) UILabel* captionLabel;
 
 @end
 
@@ -49,8 +49,8 @@
   TTImageView* _imageView2;
 }
 
-@property(nonatomic,readonly,retain) UILabel* subtitleLabel;
-@property(nonatomic,readonly,retain) TTImageView* imageView2;
+@property (nonatomic, readonly, retain) UILabel* subtitleLabel;
+@property (nonatomic, readonly, retain) TTImageView* imageView2;
 
 @end
 
@@ -60,10 +60,10 @@
   TTImageView* _imageView2;
 }
 
-@property(nonatomic,readonly,retain) UILabel* titleLabel;
-@property(nonatomic,readonly) UILabel* captionLabel;
-@property(nonatomic,readonly,retain) UILabel* timestampLabel;
-@property(nonatomic,readonly,retain) TTImageView* imageView2;
+@property (nonatomic, readonly, retain) UILabel* titleLabel;
+@property (nonatomic, readonly) UILabel* captionLabel;
+@property (nonatomic, readonly, retain) UILabel* timestampLabel;
+@property (nonatomic, readonly, retain) TTImageView* imageView2;
 
 @end
 
@@ -72,8 +72,8 @@
   BOOL _animating;
 }
 
-@property(nonatomic,readonly,retain) UIActivityIndicatorView* activityIndicatorView;
-@property(nonatomic) BOOL animating;
+@property (nonatomic, readonly, retain) UIActivityIndicatorView* activityIndicatorView;
+@property (nonatomic) BOOL animating;
 
 @end
 
@@ -81,7 +81,7 @@
   TTImageView* _imageView2;
 }
 
-@property(nonatomic,readonly,retain) TTImageView* imageView2;
+@property (nonatomic, readonly, retain) TTImageView* imageView2;
 
 @end
 
@@ -89,7 +89,7 @@
   TTStyledTextLabel* _label;
 }
 
-@property(nonatomic,readonly) TTStyledTextLabel* label;
+@property (nonatomic, readonly) TTStyledTextLabel* label;
 
 @end
 
@@ -97,7 +97,7 @@
   TTStyledTextLabel* _label;
 }
 
-@property(nonatomic,readonly) TTStyledTextLabel* label;
+@property (nonatomic, readonly) TTStyledTextLabel* label;
 
 @end
 
@@ -106,7 +106,7 @@
   TTActivityLabel* _activityLabel;
 }
 
-@property(nonatomic,readonly,retain) TTActivityLabel* activityLabel;
+@property (nonatomic, readonly, retain) TTActivityLabel* activityLabel;
 
 @end
 
@@ -115,8 +115,8 @@
   UIControl* _control;
 }
 
-@property(nonatomic,readonly,retain) TTTableControlItem* item;
-@property(nonatomic,readonly,retain) UIControl* control;
+@property (nonatomic, readonly, retain) TTTableControlItem* item;
+@property (nonatomic, readonly, retain) UIControl* control;
 
 @end
 
@@ -125,7 +125,7 @@
   UIView* _view;
 }
 
-@property(nonatomic,readonly,retain) TTTableViewItem* item;
-@property(nonatomic,readonly,retain) UIView* view;
+@property (nonatomic, readonly, retain) TTTableViewItem* item;
+@property (nonatomic, readonly, retain) UIView* view;
 
 @end

@@ -29,11 +29,11 @@
   void* _maskData;
 }
 
-@property(nonatomic,copy) NSString* text;
-@property(nonatomic,retain) UIFont* font;
-@property(nonatomic,retain) UIColor* textColor;
-@property(nonatomic,retain) UIColor* spotlightColor;
-@property(nonatomic) UITextAlignment textAlignment;
+@property (nonatomic, copy) NSString* text;
+@property (nonatomic, retain) UIFont* font;
+@property (nonatomic, retain) UIColor* textColor;
+@property (nonatomic, retain) UIColor* spotlightColor;
+@property (nonatomic) UITextAlignment textAlignment;
 
 - (void)startAnimating;
 - (void)stopAnimating;

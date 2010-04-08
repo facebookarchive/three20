@@ -23,7 +23,7 @@
 /**
  * Optional method to return a model object to delegate the TTModel protocol to.
  */
-@property(nonatomic,retain) id<TTModel> model;
+@property (nonatomic, retain) id<TTModel> model;
 
 /**
  *

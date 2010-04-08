@@ -26,10 +26,10 @@
   BOOL _editing;
 }
 
-@property(nonatomic,readonly) TTLauncherItem* item;
-@property(nonatomic,readonly) TTButton* closeButton;
-@property(nonatomic) BOOL dragging;
-@property(nonatomic) BOOL editing;
+@property (nonatomic, readonly) TTLauncherItem* item;
+@property (nonatomic, readonly) TTButton* closeButton;
+@property (nonatomic) BOOL dragging;
+@property (nonatomic) BOOL editing;
 
 - (id)initWithItem:(TTLauncherItem*)item;
 

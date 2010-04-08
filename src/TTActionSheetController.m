@@ -35,7 +35,7 @@
   UIViewController* _popupViewController;
 }
 
-@property(nonatomic,retain) UIViewController* popupViewController;
+@property (nonatomic, retain) UIViewController* popupViewController;
 
 @end
 

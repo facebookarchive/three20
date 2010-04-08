@@ -25,10 +25,10 @@
   CGPoint _cursorOrigin;
 }
 
-@property(nonatomic,readonly) NSArray* cellViews;
-@property(nonatomic,readonly) NSArray* cells;
-@property(nonatomic,assign) TTPickerViewCell* selectedCell;
-@property(nonatomic,readonly) int lineCount;
+@property (nonatomic, readonly) NSArray* cellViews;
+@property (nonatomic, readonly) NSArray* cells;
+@property (nonatomic, assign) TTPickerViewCell* selectedCell;
+@property (nonatomic, readonly) int lineCount;
 
 - (void)addCellWithObject:(id)object;
 

@@ -38,7 +38,7 @@ static const CGFloat kDesiredTableHeight = 150;
   id<UITextFieldDelegate> _delegate;
 }
 
-@property(nonatomic,assign) id<UITextFieldDelegate> delegate;
+@property (nonatomic, assign) id<UITextFieldDelegate> delegate;
 
 - (id)initWithTextField:(TTSearchTextField*)textField;
 

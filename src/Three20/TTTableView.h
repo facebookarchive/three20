@@ -39,9 +39,9 @@
   CAGradientLayer* _bottomShadow;
 }
 
-@property(nonatomic,retain) TTStyledTextLabel* highlightedLabel;
-@property(nonatomic) CGFloat contentOrigin;
-@property(nonatomic) BOOL showShadows;
+@property (nonatomic, retain) TTStyledTextLabel* highlightedLabel;
+@property (nonatomic) CGFloat contentOrigin;
+@property (nonatomic) BOOL showShadows;
 
 @end
 

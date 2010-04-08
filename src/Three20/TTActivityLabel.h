@@ -40,12 +40,12 @@ typedef enum {
   NSTimer* _smoothTimer;
 }
 
-@property(nonatomic,readonly) TTActivityLabelStyle style;
-@property(nonatomic,assign) NSString* text;
-@property(nonatomic,assign) UIFont* font;
-@property(nonatomic) float progress;
-@property(nonatomic) BOOL isAnimating;
-@property(nonatomic) BOOL smoothesProgress;
+@property (nonatomic, readonly) TTActivityLabelStyle style;
+@property (nonatomic, assign) NSString* text;
+@property (nonatomic, assign) UIFont* font;
+@property (nonatomic) float progress;
+@property (nonatomic) BOOL isAnimating;
+@property (nonatomic) BOOL smoothesProgress;
 
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style;
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text;

@@ -29,7 +29,7 @@
 /**
  * The current URL that this view controller represents.
  */
-@property(nonatomic,readonly) NSString* navigatorURL;
+@property (nonatomic, readonly) NSString* navigatorURL;
 
 /**
  * The URL that was used to load this controller through TTNavigator.
@@ -39,12 +39,12 @@
  * the view controller's life.  You can override navigatorURL if you want to specify
  * a different URL for your view controller to use when persisting and restoring it.
  */
-@property(nonatomic,copy) NSString* originalNavigatorURL;
+@property (nonatomic, copy) NSString* originalNavigatorURL;
 
 /**
  * Determines whether a controller is primarily a container of other controllers.
  */
-@property(nonatomic,readonly) BOOL canContainControllers;
+@property (nonatomic, readonly) BOOL canContainControllers;
 
 /**
  * The view controller that contains this view controller.
@@ -53,12 +53,12 @@
  * custom UIViewController subclasses the chance to tell TTNavigator how to follow the hierarchy
  * of view controllers.
  */
-@property(nonatomic,retain) UIViewController* superController;
+@property (nonatomic, retain) UIViewController* superController;
 
 /**
  * The child of this view controller which is most visible.
  *
- * This would be the selected view controller of a tab bar controller, or the top 
+ * This would be the selected view controller of a tab bar controller, or the top
  * view controller of a navigation controller.  This property offers custom UIViewController
  * subclasses the chance to tell TTNavigator how to follow the hierarchy of view controllers.
  */
@@ -91,16 +91,16 @@
 - (UIViewController*)nextViewController;
 
 /**
- * A popup view controller that is presented on top of this view controller. 
+ * A popup view controller that is presented on top of this view controller.
  */
-@property(nonatomic,retain) UIViewController* popupViewController;
+@property (nonatomic, retain) UIViewController* popupViewController;
 
 /**
  * Displays a controller inside this controller.
  *
  * TTURLMap uses this to display newly created controllers.  The default does nothing --
  * UIViewController categories and subclasses should implement to display the controller
- * in a manner specific to them.  
+ * in a manner specific to them.
  */
 - (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
         transition:(UIViewAnimationTransition)transition;
@@ -116,7 +116,7 @@
  *
  * TTURLMap uses this to display controllers that exist already, but may not be visible.
  * The default does nothing -- UIViewController categories and subclasses should implement
- * to display the controller in a manner specific to them.  
+ * to display the controller in a manner specific to them.
  */
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated;
 
@@ -146,7 +146,7 @@
 /**
  * Restores aspects of the view state from a dictionary populated by persistView.
  *
- * This will be called when TTNavigator is restoring the navigation history.  This may 
+ * This will be called when TTNavigator is restoring the navigation history.  This may
  * happen after launch, or when the controller appears again after a low memory warning.
  */
 - (void)restoreView:(NSDictionary*)state;
@@ -190,6 +190,6 @@
  *
  * After you've restored the state, you should set frozenState to nil.
  */
-@property(nonatomic,retain) NSDictionary* frozenState;
+@property (nonatomic, retain) NSDictionary* frozenState;
 
 @end

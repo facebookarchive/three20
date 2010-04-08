@@ -23,9 +23,9 @@
   UILabel* _subtitleView;
 }
 
-@property(nonatomic,retain) UIImage* image;
-@property(nonatomic,copy) NSString* title;
-@property(nonatomic,copy) NSString* subtitle;
+@property (nonatomic, retain) UIImage* image;
+@property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString* subtitle;
 
 - (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image;
 

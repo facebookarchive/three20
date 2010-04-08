@@ -37,48 +37,48 @@
 /**
  * The styled text displayed by the label.
  */
-@property(nonatomic, retain) TTStyledText* text;
+@property (nonatomic, retain) TTStyledText* text;
 
 /**
  * A shortcut for setting the text property to an HTML string.
  */
-@property(nonatomic, copy) NSString* html;
+@property (nonatomic, copy) NSString* html;
 
 /**
  * The font of the text.
  */
-@property(nonatomic, retain) UIFont* font;
+@property (nonatomic, retain) UIFont* font;
 
 /**
  * The color of the text.
  */
-@property(nonatomic, retain) UIColor* textColor;
+@property (nonatomic, retain) UIColor* textColor;
 
 /**
  * The highlight color applied to the text.
  */
-@property(nonatomic, retain) UIColor* highlightedTextColor;
+@property (nonatomic, retain) UIColor* highlightedTextColor;
 
 /**
  * The alignment of the text. (NOT YET IMPLEMENTED)
  */
-@property(nonatomic) UITextAlignment textAlignment;
+@property (nonatomic) UITextAlignment textAlignment;
 
-/** 
+/**
  * The inset of the edges around the text.
  *
  * This will increase the size of the label when sizeToFit is called.
  */
-@property(nonatomic) UIEdgeInsets contentInset;
+@property (nonatomic) UIEdgeInsets contentInset;
 
 /**
  * A Boolean value indicating whether the receiver should be drawn with a highlight.
  */
-@property(nonatomic) BOOL highlighted;
+@property (nonatomic) BOOL highlighted;
 
 /**
  * The link node which is being touched and highlighted by the user.
  */
-@property(nonatomic,retain) TTStyledElement* highlightedNode;
+@property (nonatomic, retain) TTStyledElement* highlightedNode;
 
 @end

@@ -28,11 +28,11 @@
   NSInteger _columnCount;
 }
 
-@property(nonatomic,retain) id<TTPhoto> photo;
-@property(nonatomic,assign) id<TTThumbsTableViewCellDelegate> delegate;
-@property(nonatomic) CGFloat thumbSize;
-@property(nonatomic) CGPoint thumbOrigin;
-@property(nonatomic) NSInteger columnCount;
+@property (nonatomic, retain) id<TTPhoto> photo;
+@property (nonatomic, assign) id<TTThumbsTableViewCellDelegate> delegate;
+@property (nonatomic) CGFloat thumbSize;
+@property (nonatomic) CGPoint thumbOrigin;
+@property (nonatomic) NSInteger columnCount;
 
 - (void)suspendLoading:(BOOL)suspended;
 
