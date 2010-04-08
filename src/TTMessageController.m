@@ -16,6 +16,8 @@
 
 #import "Three20/TTMessageController.h"
 
+#import "Three20/TTMessageControllerDelegate.h"
+
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalUI.h"

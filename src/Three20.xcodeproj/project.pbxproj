@@ -63,6 +63,7 @@
 		6E924D8E112CA76C00531F03 /* TTTableViewDragRefreshDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E924D8D112CA76C00531F03 /* TTTableViewDragRefreshDelegate.h */; };
 		6E924D96112CAA3800531F03 /* TTTableHeaderDragRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E924D94112CAA3800531F03 /* TTTableHeaderDragRefreshView.m */; };
 		6E924D98112CAA4A00531F03 /* TTTableHeaderDragRefreshView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E924D97112CAA4A00531F03 /* TTTableHeaderDragRefreshView.h */; };
+		6E94C7C3116DA0CF0012B12C /* TTMessageControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C7C2116DA0CF0012B12C /* TTMessageControllerDelegate.h */; };
 		6EB0117911118040004D204C /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0117711118040004D204C /* TTImageLayer.m */; };
 		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
 		6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB013871112C513004D204C /* TTImageViewInternal.m */; };
@@ -335,6 +336,7 @@
 		6E924D8D112CA76C00531F03 /* TTTableViewDragRefreshDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewDragRefreshDelegate.h; path = Three20/TTTableViewDragRefreshDelegate.h; sourceTree = "<group>"; };
 		6E924D94112CAA3800531F03 /* TTTableHeaderDragRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableHeaderDragRefreshView.m; sourceTree = "<group>"; };
 		6E924D97112CAA4A00531F03 /* TTTableHeaderDragRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableHeaderDragRefreshView.h; path = Three20/TTTableHeaderDragRefreshView.h; sourceTree = "<group>"; };
+		6E94C7C2116DA0CF0012B12C /* TTMessageControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMessageControllerDelegate.h; path = Three20/TTMessageControllerDelegate.h; sourceTree = "<group>"; };
 		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
@@ -959,6 +961,7 @@
 				BEA69ECA0FAC0FD600DA7DDC /* TTWebController.m */,
 				BEE34EAF0F495C4A008C826E /* TTMessageController.h */,
 				BEE34EAD0F495C42008C826E /* TTMessageController.m */,
+				6E94C7C2116DA0CF0012B12C /* TTMessageControllerDelegate.h */,
 				BED037A2100920CC0083AC18 /* TTPopupViewController.h */,
 				BED037A0100920C60083AC18 /* TTPopupViewController.m */,
 				BED036EC10090FB90083AC18 /* TTAlertViewController.h */,
@@ -1299,6 +1302,7 @@
 				6E311D2D116BC2CF0045C0DF /* TTNavigatorWindow.h in Headers */,
 				6E311D3B116BC4330045C0DF /* TTURLObject.h in Headers */,
 				6E311D65116BC6370045C0DF /* TTURLPatternInternal.h in Headers */,
+				6E94C7C3116DA0CF0012B12C /* TTMessageControllerDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
