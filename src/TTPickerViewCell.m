@@ -32,7 +32,7 @@ static CGFloat kMaxWidth = 250;
 @synthesize object = _object, selected = _selected;
 
 - (id)initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
+  if (self = [super initWithFrame:frame]) {
     _object = nil;
     _selected = NO;
 
@@ -44,14 +44,14 @@ static CGFloat kMaxWidth = 250;
     [self addSubview:_labelView];
 
     self.backgroundColor = [UIColor clearColor];
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
   TT_RELEASE_SAFELY(_object);
   TT_RELEASE_SAFELY(_labelView);
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

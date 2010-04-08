@@ -133,17 +133,17 @@ static const CGFloat kBannerViewHeight = 22;
 // NSObject
 
 - (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     _lastInterfaceOrientation = self.interfaceOrientation;
     _tableViewStyle = UITableViewStylePlain;
-	}
+  }
 
-	return self;
+  return self;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
   if (self = [self initWithNibName:nil bundle:nil]) {
-	  _tableViewStyle = style;
+    _tableViewStyle = style;
   }
 
   return self;
@@ -171,7 +171,7 @@ static const CGFloat kBannerViewHeight = 22;
 // UIViewController
 
 -(void)viewDidLoad {
-	[super viewDidLoad];
+  [super viewDidLoad];
   self.tableView; //create the tableView if it doesn't already exist
 
   TTDASSERT(![self.view isKindOfClass:TTTableView.class]);

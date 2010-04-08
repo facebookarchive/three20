@@ -363,7 +363,7 @@
 }
 
 - (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     _delegate = nil;
     _dataSource = nil;
     _fields = [[NSArray alloc] initWithObjects:
@@ -391,13 +391,15 @@
                                                       target: self
                                                       action: @selector(send)] autorelease];
     self.navigationItem.rightBarButtonItem.enabled = NO;
-	}
+  }
 
-	return self;
+  return self;
 }
 
 - (id)init {
-  return [self initWithNibName:nil bundle:nil];
+  if (self = [self initWithNibName:nil bundle:nil]) {
+  }
+  return self;
 }
 
 - (void)dealloc {

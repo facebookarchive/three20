@@ -87,28 +87,28 @@ If the class uses TTPositionAbsolute, then the link will no longer work. I notic
 For example: I've added minimal XIB&#160;/ Interface Builder support by adding this method to TTView class:
 
 - (id)initWithCoder:(NSCoder *)decoder {
-	if (self = [super initWithCoder:decoder]) {
-		_style = nil;
-		_layout = nil;
-		// Avoid fixing content mode here, because it will be specified in XIB
-		//self.contentMode = UIViewContentModeRedraw;
-	}
-	return self;
+  if (self = [super initWithCoder:decoder]) {
+    _style = nil;
+    _layout = nil;
+    // Avoid fixing content mode here, because it will be specified in XIB
+    //self.contentMode = UIViewContentModeRedraw;
+  }
+  return self;
 }
 
 And by adding this method to TTTabBar class:
 
 - (id)initWithCoder:(NSCoder *)decoder {
-	if (self = [super initWithCoder:decoder]) {
-		_selectedTabIndex = NSIntegerMax;
-		_tabItems = nil;
-		_tabViews = [[NSMutableArray alloc] init];
-		_tabStyle = nil;
-		
-		self.style = TTSTYLE(tabBar);
-		self.tabStyle = @&quot;tab:&quot;;
-	}
-	return self;
+  if (self = [super initWithCoder:decoder]) {
+    _selectedTabIndex = NSIntegerMax;
+    _tabItems = nil;
+    _tabViews = [[NSMutableArray alloc] init];
+    _tabStyle = nil;
+    
+    self.style = TTSTYLE(tabBar);
+    self.tabStyle = @&quot;tab:&quot;;
+  }
+  return self;
 }
 
 Now with these methods, I can add a view of TTTabBar to my NIB&#160;/ XIB. It shows a blank view in Interface Builder, but it correctly build up at runtime.</body>
@@ -185,19 +185,19 @@ key works). Seems like something is messed up with touches / events / responders
     <body>TTTextEditor needs to overwrite UIResponder *FirstResponder messages.
 
 - (BOOL)isFirstResponder {
-	return [_textView isFirstResponder];
+  return [_textView isFirstResponder];
 }
 
 - (BOOL)canBecomeFirstResponder {
-	return [_textView canBecomeFirstResponder];
+  return [_textView canBecomeFirstResponder];
 }
 
 - (BOOL)becomeFirstResponder {
-	return [_textView becomeFirstResponder];
+  return [_textView becomeFirstResponder];
 }
 
 - (BOOL)resignFirstResponder {
-	return [_textView resignFirstResponder];
+  return [_textView resignFirstResponder];
 }
 </body>
     <title>TTTextEditor becomeFirstResponder</title>
@@ -269,7 +269,7 @@ After a long time in the debugger, I figured out that on return, it wasn't calli
 
     - (void)layoutSubviews {
       [super layoutSubviews];
-  
+
       TTStyledTextTableItem* field = self.object;
       _label.frame = CGRectOffset(self.contentView.bounds, field.margin.left, field.margin.top);
       [_label layoutSubviews];
@@ -336,7 +336,7 @@ In fact, even the word &quot;Subviews&quot; is too specific. I would prefer if t
     <created-at type="datetime">2009-07-20T18:19:14-07:00</created-at>
     <body>For a TTTextEditor added to the dataSource at an offscreen index. This is done after initial load through a method in the respective TTViewController.
 
-[TTTextEditor.textView becomeFirstResponder] doest not bring up the keyboard. When scrolling to this location, an obj_msgSend ccrash occurs where GDB logs &quot;Program received signal: &quot;EXC_BAD_ACCESS&quot;. 
+[TTTextEditor.textView becomeFirstResponder] doest not bring up the keyboard. When scrolling to this location, an obj_msgSend ccrash occurs where GDB logs &quot;Program received signal: &quot;EXC_BAD_ACCESS&quot;.
 </body>
     <title>Offscreen TTTextEditor becomeFirstResponder crashes</title>
     <updated-at type="datetime">2009-12-09T15:45:13-08:00</updated-at>
@@ -401,10 +401,10 @@ When the keyboard appears in a window which contains a tab bar, the size of the 
     <number type="integer">60</number>
     <votes type="integer">1</votes>
     <created-at type="datetime">2009-07-27T13:02:44-07:00</created-at>
-    <body>If i'm zoomed in on a photo in the TTPhotoViewController i've noticed 
-it takes quite a bit of effort to move to the next page.  It seems 
-much more resistive than the iPhone's actual photo viewer. 
-Could this be tweaked a bit? 
+    <body>If i'm zoomed in on a photo in the TTPhotoViewController i've noticed
+it takes quite a bit of effort to move to the next page.  It seems
+much more resistive than the iPhone's actual photo viewer.
+Could this be tweaked a bit?
 Thanks!</body>
     <title>Resistance in TTPhotoViewController when zoomed in seems too high Options </title>
     <updated-at type="datetime">2009-10-06T02:13:19-07:00</updated-at>
@@ -421,12 +421,12 @@ Thanks!</body>
     <number type="integer">61</number>
     <votes type="integer">1</votes>
     <created-at type="datetime">2009-07-27T13:05:12-07:00</created-at>
-    <body>Hi all, 
-When i use the TTPhotoViewController to look at a large image, i am 
-able to zoom in and pan around successfully.  However, if i rotate the 
-device, i notice that the image rotates but i *can't* pan entirely to 
-the top or bottom anymore. 
-Is this a known issue? 
+    <body>Hi all,
+When i use the TTPhotoViewController to look at a large image, i am
+able to zoom in and pan around successfully.  However, if i rotate the
+device, i notice that the image rotates but i *can't* pan entirely to
+the top or bottom anymore.
+Is this a known issue?
 I can supply a repro if that would be helpful.</body>
     <title>TTPhotoViewController seems to have a problem zooming in *and* rotating</title>
     <updated-at type="datetime">2009-08-02T13:18:17-07:00</updated-at>
@@ -443,10 +443,10 @@ I can supply a repro if that would be helpful.</body>
     <number type="integer">62</number>
     <votes type="integer">-1</votes>
     <created-at type="datetime">2009-07-27T13:06:37-07:00</created-at>
-    <body>In the normal iphone photo viewer you can flick a zoomed in image and 
-it will fly across the screen and bounce.  This doesn't seem to eb the 
-case with TTPhotoViewController.  When i zoom in and i flick, it seems 
-to stop immediately after releasing my touch. 
+    <body>In the normal iphone photo viewer you can flick a zoomed in image and
+it will fly across the screen and bounce.  This doesn't seem to eb the
+case with TTPhotoViewController.  When i zoom in and i flick, it seems
+to stop immediately after releasing my touch.
 Cheers!</body>
     <title>Flicking when zoomed in in a TTPhotoViewController doesn't seem to decelerate the image</title>
     <updated-at type="datetime">2009-10-28T15:53:14-07:00</updated-at>
@@ -479,7 +479,7 @@ Cheers!</body>
     <number type="integer">65</number>
     <votes type="integer">0</votes>
     <created-at type="datetime">2009-07-31T14:11:26-07:00</created-at>
-    <body>Currently setSelectedTabIndex only calls the delegates tabSelected method if the new tab index is different from the current index. 
+    <body>Currently setSelectedTabIndex only calls the delegates tabSelected method if the new tab index is different from the current index.
 
 When explicilty setting the index it's likely the delegate is expecting to update something based on the selected index.  On tab initialization, the default selected tab is 0, so if other initialization code determines the start tab to be 0, the delegate is never called.
 
@@ -499,9 +499,9 @@ Proposed new setSelectedTabIndex ...
       self.selectedTabView.selected = YES;
     }
   }
-  
+
   if ([_delegate respondsToSelector:@selector(tabBar:tabSelected:)]) {
-	[_delegate tabBar:self tabSelected:_selectedTabIndex];
+  [_delegate tabBar:self tabSelected:_selectedTabIndex];
   }
 }
 </body>
@@ -577,7 +577,7 @@ Replacing a couple of methods in TTRequestLoader will allow loading of files:
     - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response {
       _response = [response retain];
       long long contentLength = NSURLResponseUnknownLength;
-      
+
       if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSDictionary* headers = [(NSHTTPURLResponse*)response allHeaderFields];
         contentLength = [[headers objectForKey:@&quot;Content-Length&quot;] intValue];
@@ -585,7 +585,7 @@ Replacing a couple of methods in TTRequestLoader will allow loading of files:
       else {
         contentLength = [response expectedContentLength];
       }
-      
+
       if (contentLength &gt; _queue.maxContentLength &amp;&amp; _queue.maxContentLength) {
         TTLOG(@&quot;MAX CONTENT LENGTH EXCEEDED (%d) %@&quot;, contentLength, _URL);
         [self cancel];
@@ -593,7 +593,7 @@ Replacing a couple of methods in TTRequestLoader will allow loading of files:
       else if (contentLength == NSURLResponseUnknownLength) {
         contentLength = 0;
       }
-      
+
       _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
     }
 
@@ -601,7 +601,7 @@ and
 
     - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
       TTNetworkRequestStopped();
-      
+
       if (![_response isKindOfClass:[NSHTTPURLResponse class]] &amp;&amp; _response.statusCode == 200) {
         [_queue performSelector:@selector(loader:didLoadResponse:data:) withObject:self
           withObject:_response withObject:_responseData];
@@ -812,29 +812,29 @@ Should this method be commented out or is it a bug?
     <created-at type="datetime">2009-09-21T14:18:30-07:00</created-at>
     <body>The line breaks still aren't working properly for long links. The link is truncated (usually at the /), but space is still allocated for the wrapped portion of the link. If you touch down on the link, the wrapped area is highlighted, but there is no text in it.
 
-	CGRect screenBounds = [[UIScreen mainScreen] bounds];
-	[self setWindow:[[[UIWindow alloc] initWithFrame:screenBounds] autorelease]];
+  CGRect screenBounds = [[UIScreen mainScreen] bounds];
+  [self setWindow:[[[UIWindow alloc] initWithFrame:screenBounds] autorelease]];
 
-	UIView *v = [UIView instantiate];
-	[v setFrame:[window frame]];
-	[v setBackgroundColor:[UIColor whiteColor]];
-	[window addSubview:v];
+  UIView *v = [UIView instantiate];
+  [v setFrame:[window frame]];
+  [v setBackgroundColor:[UIColor whiteColor]];
+  [window addSubview:v];
 
-	TTStyledTextLabel *label = [[[TTStyledTextLabel alloc] initWithFrame:CGRectZero] autorelease];
-	[label setBackgroundColor:[UIColor colorWithWhite:.9 alpha:1.0]];
-	[label setWidth:320];
+  TTStyledTextLabel *label = [[[TTStyledTextLabel alloc] initWithFrame:CGRectZero] autorelease];
+  [label setBackgroundColor:[UIColor colorWithWhite:.9 alpha:1.0]];
+  [label setWidth:320];
 
-	[label setContentInset:UIEdgeInsetsMake(4, 4, 4, 4)];
+  [label setContentInset:UIEdgeInsetsMake(4, 4, 4, 4)];
 
-	NSString *xhtml = @&quot;Long links get truncated: http://foo.com/ajdsajdhasjdhasjhsdhasdhasdlkahsdkhaslkdshdklashdkashdksah&quot;;
-	[label setText:[TTStyledText textFromXHTML:xhtml lineBreaks:YES URLs:YES]];
-	[label sizeToFit];
-	[v addSubview:label];
+  NSString *xhtml = @&quot;Long links get truncated: http://foo.com/ajdsajdhasjdhasjhsdhasdhasdlkahsdkhaslkdshdklashdkashdksah&quot;;
+  [label setText:[TTStyledText textFromXHTML:xhtml lineBreaks:YES URLs:YES]];
+  [label sizeToFit];
+  [v addSubview:label];
 
-	CGRect labelBounds = [label bounds];
-	[label setFrame:CGRectMake(0, screenBounds.size.height / 2 - labelBounds.size.height / 2, labelBounds.size.width, labelBounds.size.height)];
+  CGRect labelBounds = [label bounds];
+  [label setFrame:CGRectMake(0, screenBounds.size.height / 2 - labelBounds.size.height / 2, labelBounds.size.width, labelBounds.size.height)];
 
-	[window makeKeyAndVisible];</body>
+  [window makeKeyAndVisible];</body>
     <title>Long links don't wrap properly in TTStyledTextLabels</title>
     <updated-at type="datetime">2009-09-21T14:52:05-07:00</updated-at>
     <closed-at nil="true"></closed-at>
@@ -933,9 +933,9 @@ Proposed Patch:
 This resolves it here, but I think there maybe be need to do this for a number of different cells (i.e. I've not traced every one through to see if they have similar issues.)
 
 - (void)prepareForReuse {
-	[super prepareForReuse];
+  [super prepareForReuse];
 
-	_imageView2.image = nil;
+  _imageView2.image = nil;
 }
 </body>
     <title>Cell Re-ue Cleanup</title>
@@ -956,7 +956,7 @@ This resolves it here, but I think there maybe be need to do this for a number o
     <body>TTImageStyle return always a CGSizeZero with default UIViewContentModeScaleToFill.
 
 Fix this, replacing (TTStyle.m, line 786):
-_contentMode != UIViewContentModeScaleToFill 
+_contentMode != UIViewContentModeScaleToFill
 by :
 _contentMode == UIViewContentModeScaleToFill </body>
     <title>TTImageStyle and default currentMode</title>
@@ -991,15 +991,15 @@ it is impossible to catch the click on a number of situations mainly when the us
 The problem is that the default delegate identifies that you clicked on the TTTableMoreButton button and calls the model to load more items. when the model loads the datasource is being populated with more items and the cell is no longer of type TTTableMoreButton.
 
 IMHO the call to   [_controller didSelectObject:object atIndexPath:indexPath];
-in - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath;  on TTTableViewDelegate happens too late. 
+in - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath;  on TTTableViewDelegate happens too late.
 
-what happens when you try to investigate the cell that was clicked is that you get your own content cell (depends on what you used to populate the table). 
+what happens when you try to investigate the cell that was clicked is that you get your own content cell (depends on what you used to populate the table).
 Any ideas how I can simply identify what kind of cell was clicked without implementing a custom TTTableViewDelegate ?
 
 
 
 </body>
-    <title>TTTableViewDelegate call to 	[_controller didSelectObject:object atIndexPath:indexPath]; creates an impossible situation to catch - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath </title>
+    <title>TTTableViewDelegate call to   [_controller didSelectObject:object atIndexPath:indexPath]; creates an impossible situation to catch - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath </title>
     <updated-at type="datetime">2009-10-16T10:57:49-07:00</updated-at>
     <closed-at nil="true"></closed-at>
     <user>yosit</user>
@@ -1032,7 +1032,7 @@ Any suggestions?</body>
     <number type="integer">97</number>
     <votes type="integer">0</votes>
     <created-at type="datetime">2009-11-01T09:01:36-08:00</created-at>
-    <body>I have a view that displays a bunch of views in a gridlayout. 1 view is a TTImageView. 
+    <body>I have a view that displays a bunch of views in a gridlayout. 1 view is a TTImageView.
 
 I am having a weird issue with only the imageView appearing on first request. Once it has been cached, I never see it again?
 
@@ -1186,7 +1186,7 @@ Matt</body>
     <created-at type="datetime">2009-12-15T07:31:21-08:00</created-at>
     <body>Creating complex custom table view cell subclasses is hard when it should be possible to insert them into regular and grouped table views, as portions of the view just seem to get cut of and the size of the frame is not correctly set.
 
-It would be a nice addition to Three20 if the TTTableViewDataSource, which knows if the table view is in a grouped mode, would set a flag on TTTableViewCell if it is in a grouped table view. 
+It would be a nice addition to Three20 if the TTTableViewDataSource, which knows if the table view is in a grouped mode, would set a flag on TTTableViewCell if it is in a grouped table view.
 
 We could then fetch this flag in layoutSubviews and adjust to grouped table view mode.</body>
     <title>TTTableViewCell should have a flag if it is in a grouped table view</title>
@@ -1204,7 +1204,7 @@ We could then fetch this flag in layoutSubviews and adjust to grouped table view
     <number type="integer">116</number>
     <votes type="integer">0</votes>
     <created-at type="datetime">2009-12-15T23:56:13-08:00</created-at>
-    <body>The document of UIViewController says &quot;initWithNibName:bundle: is the designated initializer. 
+    <body>The document of UIViewController says &quot;initWithNibName:bundle: is the designated initializer.
 
 // The designated initializer. If you subclass UIViewController, you must call the super implementation of this method, even if you aren't using a NIB.
 
@@ -1270,3 +1270,4 @@ Reproduce this with the following TTStyleText object:
     <state>open</state>
   </issue>
 </issues>
+

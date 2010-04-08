@@ -75,7 +75,7 @@
 // NSObject
 
 - (id)initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
+  if (self = [super initWithFrame:frame]) {
     _timer = nil;
 
     self.text = @"";
@@ -85,8 +85,8 @@
     self.textAlignment = UITextAlignmentLeft;
     self.backgroundColor = [UIColor clearColor];
     self.contentMode = UIViewContentModeCenter;
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
@@ -95,7 +95,7 @@
   TT_RELEASE_SAFELY(_font);
   TT_RELEASE_SAFELY(textColor);
   TT_RELEASE_SAFELY(_spotlightColor);
-	[super dealloc];
+  [super dealloc];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

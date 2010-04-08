@@ -24,7 +24,7 @@
  */
 @interface TTViewController : UIViewController {
 #ifdef DEBUG
-	BOOL		m_initCalled; //verify new initialization works fine
+  BOOL    m_initCalled; //verify new initialization works fine
 #endif
   NSDictionary*     _frozenState;
   UIBarStyle        _navigationBarStyle;

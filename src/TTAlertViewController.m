@@ -66,13 +66,13 @@
 
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     _userInfo = nil;
     _delegate = nil;
     _URLs = [[NSMutableArray alloc] init];
-	}
+  }
 
-	return self;
+  return self;
 }
 
 - (id)initWithTitle:(NSString*)title message:(NSString*)message delegate:(id)delegate {

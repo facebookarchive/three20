@@ -53,7 +53,7 @@
  initialization common to all init* methods
  */
 - (id)initWithNibName:(NSString*)nibName bundle:(NSBundle *)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
 #ifdef DEBUG
     m_initCalled = YES;
 #endif
@@ -61,9 +61,9 @@
     _statusBarStyle = UIStatusBarStyleDefault;
 
     self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
-	}
+  }
 
-	return self;
+  return self;
 }
 
 
@@ -177,7 +177,7 @@
 }
 
 - (void)viewDidLoad {
-	TTDASSERT(m_initCalled); //make sure that we got properly initialized
+  TTDASSERT(m_initCalled); //make sure that we got properly initialized
   [super viewDidLoad];
 }
 

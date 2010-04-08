@@ -87,11 +87,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     self.hidesBottomBarWhenPushed = YES;
-	}
+  }
 
-	return self;
+  return self;
 }
 
 
@@ -111,7 +111,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  return [self initWithNibName:nil bundle:nil];
+  if (self = [self initWithNibName:nil bundle:nil]) {
+  }
+  return self;
 }
 
 

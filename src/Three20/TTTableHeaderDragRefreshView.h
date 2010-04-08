@@ -18,9 +18,9 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-	TTTableHeaderDragRefreshReleaseToReload,
-	TTTableHeaderDragRefreshPullToReload,
-	TTTableHeaderDragRefreshLoadingStatus
+  TTTableHeaderDragRefreshReleaseToReload,
+  TTTableHeaderDragRefreshPullToReload,
+  TTTableHeaderDragRefreshLoadingStatus
 } TTTableHeaderDragRefreshStatus;
 
 /**
@@ -28,12 +28,12 @@ typedef enum {
  */
 @interface TTTableHeaderDragRefreshView : UIView {
   NSDate*                   _lastUpdatedDate;
-	UILabel*                  _lastUpdatedLabel;
-	UILabel*                  _statusLabel;
-	UIImageView*              _arrowImage;
-	UIActivityIndicatorView*  _activityView;
-  
-	BOOL                      _isFlipped;
+  UILabel*                  _lastUpdatedLabel;
+  UILabel*                  _statusLabel;
+  UIImageView*              _arrowImage;
+  UIActivityIndicatorView*  _activityView;
+
+  BOOL                      _isFlipped;
 }
 
 @property (nonatomic) BOOL isFlipped;

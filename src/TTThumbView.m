@@ -21,17 +21,17 @@
 @implementation TTThumbView
 
 - (id)initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
+  if (self = [super initWithFrame:frame]) {
     self.backgroundColor = TTSTYLEVAR(thumbnailBackgroundColor);
     self.clipsToBounds = YES;
-    
+
     [self setStylesWithSelector:@"thumbView:"];
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

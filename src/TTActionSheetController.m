@@ -76,13 +76,13 @@
 // NSObject
 
 - (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     _delegate = nil;
     _userInfo = nil;
     _URLs = [[NSMutableArray alloc] init];
-	}
+  }
 
-	return self;
+  return self;
 }
 
 - (id)initWithTitle:(NSString*)title delegate:(id)delegate {

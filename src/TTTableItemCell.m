@@ -60,13 +60,13 @@ static const CGFloat kDefaultMessageImageHeight = 34;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
     _item = nil;
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
   TT_RELEASE_SAFELY(_item);
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,12 +146,12 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     self.textLabel.numberOfLines = 0;
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -245,12 +245,12 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     self.detailTextLabel.minimumFontSize = 8;
     self.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
     self.detailTextLabel.numberOfLines = 0;
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -330,12 +330,12 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     self.textLabel.contentMode = UIViewContentModeTop;
     self.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     self.textLabel.numberOfLines = 0;
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -411,12 +411,12 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
 
     // XXXjoe TODO
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -490,13 +490,13 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     self.detailTextLabel.contentMode = UIViewContentModeTop;
     self.detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
     self.detailTextLabel.numberOfLines = kMessageTextLineCount;
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
   TT_RELEASE_SAFELY(_imageView2);
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -608,15 +608,15 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     self.detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
     self.detailTextLabel.numberOfLines = kMessageTextLineCount;
     self.detailTextLabel.contentMode = UIViewContentModeLeft;
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
   TT_RELEASE_SAFELY(_titleLabel);
   TT_RELEASE_SAFELY(_timestampLabel);
   TT_RELEASE_SAFELY(_imageView2);
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -900,13 +900,13 @@ static const CGFloat kDefaultMessageImageHeight = 34;
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
     _imageView2 = [[TTImageView alloc] init];
     [self.contentView addSubview:_imageView2];
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
   TT_RELEASE_SAFELY(_imageView2);
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1274,14 +1274,14 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     _control = nil;
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
   TT_RELEASE_SAFELY(_item);
   TT_RELEASE_SAFELY(_control);
-	[super dealloc];
+  [super dealloc];
 }
 
 - (void)layoutSubviews {
@@ -1370,14 +1370,14 @@ static const CGFloat kDefaultMessageImageHeight = 34;
     _view = nil;
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-	}
-	return self;
+  }
+  return self;
 }
 
 - (void)dealloc {
   TT_RELEASE_SAFELY(_item);
   TT_RELEASE_SAFELY(_view);
-	[super dealloc];
+  [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

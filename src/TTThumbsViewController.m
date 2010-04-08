@@ -199,15 +199,15 @@ static CGFloat kThumbSpacing = 4;
 // NSObject
 
 - (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
     self.navigationBarStyle = UIBarStyleBlackTranslucent;
     self.navigationBarTintColor = nil;
     self.wantsFullScreenLayout = YES;
     self.hidesBottomBarWhenPushed = YES;
-	}
+  }
 
-	return self;
+  return self;
 }
 
 - (id)initWithDelegate:(id<TTThumbsViewControllerDelegate>)delegate {
@@ -227,7 +227,9 @@ static CGFloat kThumbSpacing = 4;
 }
 
 - (id)init {
-  return [self initWithNibName:nil bundle:nil];
+  if (self = [self initWithNibName:nil bundle:nil]) {
+  }
+  return self;
 }
 
 - (void)dealloc {
@@ -243,7 +245,7 @@ static CGFloat kThumbSpacing = 4;
   [super loadView];
 
   self.tableView.rowHeight = kThumbnailRowHeight;
-	self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+  self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   self.tableView.backgroundColor = TTSTYLEVAR(backgroundColor);
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   [self updateTableLayout];

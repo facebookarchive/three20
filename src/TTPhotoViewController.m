@@ -314,7 +314,7 @@ static const NSInteger kActivityLabelTag = 96;
 }
 
 - (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc]
                                               initWithTitle:
                                               TTLocalizedString(@"Photo",
@@ -330,13 +330,15 @@ static const NSInteger kActivityLabelTag = 96;
     self.hidesBottomBarWhenPushed = YES;
 
     self.defaultImage = TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
-	}
+  }
 
-	return self;
+  return self;
 }
 
 - (id)init {
-  return [self initWithNibName:nil bundle:nil];
+  if (self = [self initWithNibName:nil bundle:nil]) {
+  }
+  return self;
 }
 
 - (void)dealloc {

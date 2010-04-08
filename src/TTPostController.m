@@ -147,7 +147,7 @@ static const CGFloat kMarginY = 6;
 // NSObject
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle*)bundle {
-	if (self = [super initWithNibName:nibName bundle:bundle]) {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     self.navigationItem.leftBarButtonItem =
     [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
                                                    target: self
@@ -157,9 +157,9 @@ static const CGFloat kMarginY = 6;
                                       style: UIBarButtonItemStyleDone
                                      target: self
                                      action: @selector(post)] autorelease];
-	}
+  }
 
-	return self;
+  return self;
 }
 
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
