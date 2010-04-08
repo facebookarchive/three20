@@ -15,12 +15,12 @@
 //
 
 @interface NibDemoAppDelegate : NSObject <UIApplicationDelegate> {
-  UIWindow* window;
-  UINavigationController* navigationController;
+  UIWindow*               _window;
+  UINavigationController* _navigationController;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow* window;
-@property (nonatomic, retain) IBOutlet UINavigationController* navigationController;
+@property (nonatomic, retain) IBOutlet UIWindow*                window;
+@property (nonatomic, retain) IBOutlet UINavigationController*  navigationController;
 
 @end
 

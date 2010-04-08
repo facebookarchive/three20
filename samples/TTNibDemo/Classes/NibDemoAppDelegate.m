@@ -24,8 +24,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation NibDemoAppDelegate
 
-@synthesize window;
-@synthesize navigationController;
+@synthesize window                = _window;
+@synthesize navigationController  = _navigationController;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,8 +59,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(navigationController);
-  TT_RELEASE_SAFELY(window);
+  TT_RELEASE_SAFELY(_navigationController);
+  TT_RELEASE_SAFELY(_window);
 
   [super dealloc];
 }
