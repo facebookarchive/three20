@@ -17,6 +17,7 @@
 #import "Three20/TTMessageController.h"
 
 #import "Three20/TTMessageControllerDelegate.h"
+#import "Three20/TTMessageRecipientField.h"
 
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
@@ -27,82 +28,6 @@
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTActivityLabel.h"
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTMessageRecipientField
-
-@synthesize recipients = _recipients;
-
-- (id)init {
-  if (self = [super init]) {
-    _recipients = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_recipients);
-  [super dealloc];
-}
-
-- (NSString*)description {
-  return [NSString stringWithFormat:@"%@ %@", _title, _recipients];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTMessageField
-
-- (UITextField*)createViewForController:(TTMessageController*)controller {
-  TTPickerTextField* textField = [[[TTPickerTextField alloc] init] autorelease];
-  textField.dataSource = controller.dataSource;
-  textField.autocorrectionType = UITextAutocorrectionTypeNo;
-  textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-  textField.rightViewMode = UITextFieldViewModeAlways;
-
-  if (controller.showsRecipientPicker) {
-    UIButton* addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    [addButton addTarget:controller action:@selector(showRecipientPicker)
-      forControlEvents:UIControlEventTouchUpInside];
-    textField.rightView = addButton;
-  }
-  return textField;
-}
-
-- (id)persistField:(UITextField*)textField {
-  if ([textField isKindOfClass:[TTPickerTextField class]]) {
-    TTPickerTextField* picker = (TTPickerTextField*)textField;
-    NSMutableArray* cellsData = [NSMutableArray array];
-    for (id cell in picker.cells) {
-      if ([cell conformsToProtocol:@protocol(NSCoding)]) {
-        NSData* data = [NSKeyedArchiver archivedDataWithRootObject:cell];
-        [cellsData addObject:data];
-      }
-    }
-    return [NSDictionary dictionaryWithObjectsAndKeys:cellsData, @"cells",
-                                                      textField.text, @"text", nil];
-  } else {
-    return [NSDictionary dictionaryWithObjectsAndKeys:textField.text, @"text", nil];
-  }
-}
-
-- (void)restoreField:(UITextField*)textField withData:(id)data {
-  NSDictionary* dict = data;
-
-  if ([textField isKindOfClass:[TTPickerTextField class]]) {
-    TTPickerTextField* picker = (TTPickerTextField*)textField;
-    NSArray* cellsData = [dict objectForKey:@"cells"];
-    [picker removeAllCells];
-    for (id cellData in cellsData) {
-      id cell = [NSKeyedUnarchiver unarchiveObjectWithData:cellData];
-      [picker addCellWithObject:cell];
-    }
-  }
-
-  textField.text = [dict objectForKey:@"text"];
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

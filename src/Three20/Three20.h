@@ -67,6 +67,7 @@
 #import "Three20/TTMessageController.h"
 #import "Three20/TTMessageControllerDelegate.h"
 #import "Three20/TTMessageField.h"
+#import "Three20/TTMessageRecipientField.h"
 #import "Three20/TTAlertViewController.h"
 #import "Three20/TTActionSheetController.h"
 #import "Three20/TTPostController.h"

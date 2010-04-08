@@ -205,19 +205,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * A field for holding recipients, typically found in an address book.
- * Distinct values are rendered as individual cells. Once a cell has been
- * inserted, it is deleted as a whole.
- */
-@interface TTMessageRecipientField : TTMessageField {
-  NSArray* _recipients;
-}
-
-@property (nonatomic, retain) NSArray* recipients;
-
-@end
-
-/**
  * A field for holding variable free form text.
  */
 @interface TTMessageTextField : TTMessageField {
