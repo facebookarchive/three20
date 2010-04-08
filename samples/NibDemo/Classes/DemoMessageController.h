@@ -6,14 +6,10 @@
 //  Copyright 2010 Brush The Dog, Inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-
 @interface DemoMessageController : TTMessageController {
-  UIView * mTitleView;
-
+  UIView* _titleView;
 }
 
-@property (nonatomic, retain) IBOutlet UIView * titleView;
+@property (nonatomic, retain) IBOutlet UIView* titleView;
 
 @end

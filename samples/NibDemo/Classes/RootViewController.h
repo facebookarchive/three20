@@ -6,8 +6,6 @@
 //  Copyright Brush The Dog Inc 2010. All rights reserved.
 //
 
-#import <Three20/Three20.h>
-
 @interface RootViewController : TTTableViewController {
 }
 

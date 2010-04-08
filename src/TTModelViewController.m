@@ -32,9 +32,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Called by TTViewController's init method
- */
 - (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
   if (self = [super initWithNibName:nibName bundle:bundle]) {
     _flags.isViewInvalid = YES;

@@ -9,30 +9,35 @@
 #import "DemoMessageController.h"
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation DemoMessageController
 
-@synthesize titleView = mTitleView;
+@synthesize titleView = _titleView;
 
-- (void)dealloc {
-    [super dealloc];
-}
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     self.title = @"DemoMessageController";
   }
+
   return self;
 }
 
--(void)viewDidLoad
-{
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewDidLoad {
   [super viewDidLoad];
 
-  if (self.titleView)
+  if (self.titleView) {
     self.navigationItem.titleView = self.titleView;
+  }
 
-  self.body = @"This class is loaded from a NIB. Notice that title view "
-  "that is defined in the NIB file";
+  self.body =
+    @"This class is loaded from a NIB. Notice that title view "
+    @"that is defined in the NIB file";
 }
 
 @end

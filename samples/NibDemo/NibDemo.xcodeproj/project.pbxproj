@@ -109,18 +109,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CC85D8201168373300D3FE00 /* StyleSheet.h */,
-				CC85D8211168373300D3FE00 /* StyleSheet.m */,
-				CC85D722116830A300D3FE00 /* DemoMessageController.h */,
-				CC85D723116830A300D3FE00 /* DemoMessageController.m */,
-				CC85D6D111682DC900D3FE00 /* DemoViewController.h */,
-				CC85D6D211682DC900D3FE00 /* DemoViewController.m */,
-				CC85D5EF11682A2500D3FE00 /* DemoPostController.h */,
-				CC85D5F011682A2500D3FE00 /* DemoPostController.m */,
-				CC85CE011167E25200D3FE00 /* DemoTableViewController.h */,
-				CC85CE021167E25200D3FE00 /* DemoTableViewController.m */,
-				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
-				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+				6EEA881E116D74A0007B0155 /* Style Sheets */,
+				6EEA881F116D74A8007B0155 /* Controllers */,
 				1D3623240D0F684500981E51 /* NibDemoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* NibDemoAppDelegate.m */,
 			);
@@ -138,9 +128,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				CC85D6E411682E7A00D3FE00 /* art */,
-				CC85CDA21167DF1700D3FE00 /* Three20.bundle */,
-				CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -163,6 +150,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CC85D6E411682E7A00D3FE00 /* art */,
+				CC85CDA21167DF1700D3FE00 /* Three20.bundle */,
 				CC85D724116830A300D3FE00 /* DemoMessageController.xib */,
 				CC85D5F111682A2500D3FE00 /* DemoPostController.xib */,
 				CC85D6D311682DC900D3FE00 /* DemoViewController.xib */,
@@ -177,12 +166,79 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC85CD6D1167DE7F00D3FE00 /* Three20.xcodeproj */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				CC85CDA41167DF3B00D3FE00 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6EEA881E116D74A0007B0155 /* Style Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				CC85D8201168373300D3FE00 /* StyleSheet.h */,
+				CC85D8211168373300D3FE00 /* StyleSheet.m */,
+			);
+			name = "Style Sheets";
+			sourceTree = "<group>";
+		};
+		6EEA881F116D74A8007B0155 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6EEA8855116D76BE007B0155 /* Table Controller */,
+				6EEA8839116D759B007B0155 /* Other */,
+				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
+				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6EEA8820116D74B3007B0155 /* Message Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CC85D722116830A300D3FE00 /* DemoMessageController.h */,
+				CC85D723116830A300D3FE00 /* DemoMessageController.m */,
+			);
+			name = "Message Controller";
+			sourceTree = "<group>";
+		};
+		6EEA8838116D758C007B0155 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CC85D6D111682DC900D3FE00 /* DemoViewController.h */,
+				CC85D6D211682DC900D3FE00 /* DemoViewController.m */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		6EEA8839116D759B007B0155 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				6EEA883A116D75A3007B0155 /* Post Controller */,
+				6EEA8838116D758C007B0155 /* View Controller */,
+				6EEA8820116D74B3007B0155 /* Message Controller */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		6EEA883A116D75A3007B0155 /* Post Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CC85D5EF11682A2500D3FE00 /* DemoPostController.h */,
+				CC85D5F011682A2500D3FE00 /* DemoPostController.m */,
+			);
+			name = "Post Controller";
+			sourceTree = "<group>";
+		};
+		6EEA8855116D76BE007B0155 /* Table Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CC85CE011167E25200D3FE00 /* DemoTableViewController.h */,
+				CC85CE021167E25200D3FE00 /* DemoTableViewController.m */,
+			);
+			name = "Table Controller";
 			sourceTree = "<group>";
 		};
 		CC85CDC11167E0BB00D3FE00 /* Products */ = {

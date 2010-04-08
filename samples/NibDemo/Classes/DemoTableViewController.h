@@ -8,13 +8,12 @@
 //  Copyright Brush The Dog Inc 2010. All rights reserved.
 //
 
-@interface DemoTableViewController : TTTableViewController
-{
-	UIView *	mHeaderView;
-	UIView *	mFooterView;
+@interface DemoTableViewController : TTTableViewController {
+  UIView* _headerView;
+  UIView* _footerView;
 }
 
-@property (nonatomic, retain) IBOutlet UIView * headerView;
-@property (nonatomic, retain) IBOutlet UIView * footerView;
+@property (nonatomic, retain) IBOutlet UIView* headerView;
+@property (nonatomic, retain) IBOutlet UIView* footerView;
 
 @end

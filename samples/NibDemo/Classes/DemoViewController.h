@@ -6,9 +6,6 @@
 //  Copyright 2010 Brush The Dog, Inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-
 @interface DemoViewController : TTViewController {
 
 }

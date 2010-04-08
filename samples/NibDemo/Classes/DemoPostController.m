@@ -9,23 +9,25 @@
 #import "DemoPostController.h"
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation DemoPostController
 
-@synthesize titleView = mTitleView;
+@synthesize titleView = _titleView;
 
-- (void)dealloc {
-    [super dealloc];
-}
 
--(void)viewDidLoad
-{
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewDidLoad {
   [super viewDidLoad];
 
-  if (self.titleView)
+  if (self.titleView) {
     self.navigationItem.titleView = self.titleView;
+  }
 
-  self.textView.text = @"notice that there is a  UISwitch in the nav bar that "
-  "was loaded from a nib";
+  self.textView.text =
+    @"Notice that there is a UISwitch in the nav bar that was loaded from a nib";
 }
+
 
 @end
