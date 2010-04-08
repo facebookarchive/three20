@@ -30,48 +30,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation TTMessageField
-
-@synthesize title = _title, required = _required;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithTitle:(NSString*)title required:(BOOL)required {
-  if (self = [self init]) {
-    _title = [title copy];
-    _required = required;
-  }
-  return self;
-}
-
-- (NSString*)description {
-  return [NSString stringWithFormat:@"%@", _title];
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_title);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
-
-- (TTPickerTextField*)createViewForController:(TTMessageController*)controller {
-  return nil;
-}
-
-- (id)persistField:(UITextField*)textField {
-  return nil;
-}
-
-- (void)restoreField:(UITextField*)textField withData:(id)data {
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 @implementation TTMessageRecipientField
 
 @synthesize recipients = _recipients;

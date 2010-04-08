@@ -17,6 +17,8 @@
 #import "Three20/TTViewController.h"
 #import "Three20/TTTextEditor.h"
 
+#import "Three20/TTMessageField.h"
+
 @protocol TTTableViewDataSource, TTMessageControllerDelegate;
 @class TTPickerTextField, TTActivityLabel;
 
@@ -201,30 +203,6 @@
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * The base class for all fields used the the TTMessageController.
- */
-@interface TTMessageField : NSObject {
-  NSString* _title;
-  BOOL _required;
-}
-
-/**
- * The title of this field, which will be rendered along with the field's
- * contents.
- */
-@property (nonatomic,copy) NSString* title;
-
-/**
- * If true, the user must supply a value for this field before they will be
- * able to send their message.
- */
-@property (nonatomic) BOOL required;
-
-- (id)initWithTitle:(NSString*)title required:(BOOL)required;
-
-@end
 
 /**
  * A field for holding recipients, typically found in an address book.
