@@ -121,6 +121,7 @@
 - (void)dealloc {
   TT_RELEASE_SAFELY(_loadingURL);
   TT_RELEASE_SAFELY(_headerView);
+
   [super dealloc];
 }
 
@@ -171,7 +172,8 @@
 
   _toolbar = [[UIToolbar alloc] initWithFrame:
     CGRectMake(0, self.view.height - TTToolbarHeight(), self.view.width, TTToolbarHeight())];
-  _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+  _toolbar.autoresizingMask =
+    UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
   _toolbar.tintColor = TTSTYLEVAR(toolbarTintColor);
   _toolbar.items = [NSArray arrayWithObjects:
     _backButton, space, _forwardButton, space, _refreshButton, space, actionButton, nil];
@@ -182,7 +184,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
   [super viewDidUnload];
+
   _webView.delegate = nil;
+
   TT_RELEASE_SAFELY(_webView);
   TT_RELEASE_SAFELY(_toolbar);
   TT_RELEASE_SAFELY(_backButton);
@@ -225,7 +229,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView *)rotatingFooterView {
+- (UIView*)rotatingFooterView {
   return _toolbar;
 }
 
