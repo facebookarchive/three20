@@ -27,7 +27,7 @@
 -(void)viewDidLoad
 {
   [super viewDidLoad];
-  
+
   if (self.titleView)
     self.navigationItem.titleView = self.titleView;
 

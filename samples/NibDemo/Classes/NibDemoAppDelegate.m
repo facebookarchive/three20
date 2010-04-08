@@ -27,16 +27,16 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
-    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.supportsShakeToReload = YES;
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
-  navigator.window = self.window; 
+  navigator.window = self.window;
 
   [TTStyleSheet setGlobalStyleSheet:[[[StyleSheet alloc] init] autorelease]];
 
-  
+
   TTURLMap* map = navigator.URLMap;
   [map from:@"*" toViewController:[TTWebController class]];
   [map from:@"tt://nib/(loadFromNib:)" toSharedViewController:self];
@@ -44,9 +44,9 @@
   [map from:@"tt://viewController/(loadFromVC:)" toSharedViewController:self];
   [map from:@"tt://root" toViewController:NSClassFromString(@"RootViewController")];
   [map from:@"tt://modal/(loadFromNib:)" toModalViewController:self];
-  
-  
-  
+
+
+
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://root"]];
   }
@@ -58,15 +58,15 @@
 -(UIViewController *)loadFromNib:(NSString *)nibName WithClass:className
 {
 	UIViewController * newController = [[ NSClassFromString(className) alloc]
-                                      initWithNibName:nibName bundle:nil] ;  
+                                      initWithNibName:nibName bundle:nil] ;
 	[newController autorelease];
-	
+
 	return newController;
 }
 
 
 /*
- Loads the given viewcontroller from the the nib with the same name as the 
+ Loads the given viewcontroller from the the nib with the same name as the
  class
  */
 -(UIViewController *)loadFromNib:(NSString *)className
@@ -81,9 +81,9 @@
  */
 -(UIViewController *)loadFromVC:(NSString *)className
 {
-	UIViewController * newController = [[ NSClassFromString(className) alloc] init];  
+	UIViewController * newController = [[ NSClassFromString(className) alloc] init];
 	[newController autorelease];
-	
+
 	return newController;
 }
 

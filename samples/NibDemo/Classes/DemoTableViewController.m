@@ -2,7 +2,7 @@
 
 @implementation DemoTableViewController
 
-@synthesize 
+@synthesize
 headerView = mHeaderView,
 footerView = mFooterView
 ;
@@ -10,7 +10,7 @@ footerView = mFooterView
 
 /*
  This class can be called with a nib or without a nib. It can show an optional
- table header and / or table footer. 
+ table header and / or table footer.
  */
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -50,7 +50,7 @@ footerView = mFooterView
   self.tableView.tableHeaderView = self.headerView;
   self.tableView.tableFooterView = self.footerView;
 }
- 
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTModelViewController
@@ -63,8 +63,8 @@ footerView = mFooterView
   else {
    nibString = @"Called without a NIB";
   }
-  
-  
+
+
   self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
     @"TTTableViewController",
     [TTTableTextItem itemWithText:@"This demonstates a table"],

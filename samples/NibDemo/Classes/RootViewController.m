@@ -11,7 +11,7 @@
 @implementation RootViewController
 
 -(void)dealloc {
-  
+
   [super dealloc];
 }
 
@@ -32,19 +32,19 @@
        [TTTableTextItem itemWithText:@"Table No Nib" URL:@"tt://viewController/DemoTableViewController"],
        [TTTableTextItem itemWithText:@"Table with default NIB" URL:@"tt://nib/DemoTableViewController"],
        [TTTableTextItem itemWithText:@"Table with specific NIB" URL:@"tt://nib/FooterTableViewController/DemoTableViewController"],
-       
+
        @"Other",
        [TTTableTextItem itemWithText:@"TTPostController" URL:@"tt://nib/DemoPostController"],
        [TTTableTextItem itemWithText:@"TTViewController" URL:@"tt://nib/DemoViewController"],
-       
+
        [TTTableTextItem itemWithText:@"TTMessageController" URL:@"tt://modal/DemoMessageController"],
 //       [TTTableTextItem itemWithText:@"TTWebController" URL:@"tt://g"],
 //       [TTTableTextItem itemWithText:@"TTPopupViewController" URL:@"tt://h"],
-//       
+//
 //       [TTTableTextItem itemWithText:@"TTPhotoViewController" URL:@"tt://i"],
 //       [TTTableTextItem itemWithText:@"TTAlertViewController" URL:@"tt://k"],
 //       [TTTableTextItem itemWithText:@"TTActionSheetController" URL:@"tt://viewController/TTActionSheetController"],
-       
+
        nil];
 }
 

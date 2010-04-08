@@ -20,10 +20,10 @@
 -(void)viewDidLoad
 {
   [super viewDidLoad];
-  
+
   if (self.titleView)
     self.navigationItem.titleView = self.titleView;
-  
+
   self.textView.text = @"notice that there is a  UISwitch in the nav bar that "
   "was loaded from a nib";
 }

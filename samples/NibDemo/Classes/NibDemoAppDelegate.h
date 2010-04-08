@@ -7,7 +7,7 @@
 //
 
 @interface NibDemoAppDelegate : NSObject <UIApplicationDelegate> {
-    
+
     UIWindow *window;
     UINavigationController *navigationController;
 }

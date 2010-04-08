@@ -10,8 +10,8 @@
 
 @interface DemoTableViewController : TTTableViewController
 {
-	UIView *	mHeaderView;	
-	UIView *	mFooterView;	
+	UIView *	mHeaderView;
+	UIView *	mFooterView;
 }
 
 @property (nonatomic, retain) IBOutlet UIView * headerView;
