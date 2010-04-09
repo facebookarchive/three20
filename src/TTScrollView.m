@@ -16,6 +16,9 @@
 
 #import "Three20/TTScrollView.h"
 
+#import "Three20/TTScrollViewDelegate.h"
+#import "Three20/TTScrollViewDataSource.h"
+
 #import "Three20/TTGlobalUI.h"
 
 static const NSInteger kOffscreenPages = 1;

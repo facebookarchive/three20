@@ -85,6 +85,8 @@
 #import "Three20/TTImageViewDelegate.h"
 #import "Three20/TTYouTubeView.h"
 #import "Three20/TTScrollView.h"
+#import "Three20/TTScrollViewDelegate.h"
+#import "Three20/TTScrollViewDataSource.h"
 
 #import "Three20/TTLauncherView.h"
 #import "Three20/TTLauncherItem.h"

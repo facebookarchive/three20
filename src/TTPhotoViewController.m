@@ -25,6 +25,7 @@
 #import "Three20/TTPhotoView.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTNavigator.h"
+#import "Three20/TTScrollView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
