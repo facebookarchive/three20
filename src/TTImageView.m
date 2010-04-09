@@ -16,6 +16,8 @@
 
 #import "Three20/TTImageView.h"
 
+#import "Three20/TTImageViewDelegate.h"
+
 #import "Three20/TTGlobalUI.h"
 
 #import "Three20/TTImageLayer.h"

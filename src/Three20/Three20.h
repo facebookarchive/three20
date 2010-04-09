@@ -82,6 +82,7 @@
 // UI Views
 #import "Three20/TTView.h"
 #import "Three20/TTImageView.h"
+#import "Three20/TTImageViewDelegate.h"
 #import "Three20/TTYouTubeView.h"
 #import "Three20/TTScrollView.h"
 

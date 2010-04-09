@@ -89,7 +89,6 @@
  */
 - (void)stopLoading;
 
-
 /**
  * Called when the image begins loading asynchronously.
  * Overridable method.
@@ -113,28 +112,5 @@
  * @protected
  */
 - (void)imageViewDidFailLoadWithError:(NSError*)error;
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@protocol TTImageViewDelegate <NSObject>
-@optional
-
-/**
- * Called when the image begins loading asynchronously.
- */
-- (void)imageViewDidStartLoad:(TTImageView*)imageView;
-
-/**
- * Called when the image finishes loading asynchronously.
- */
-- (void)imageView:(TTImageView*)imageView didLoadImage:(UIImage*)image;
-
-/**
- * Called when the image failed to load asynchronously.
- * If error is nil then the request was cancelled.
- */
-- (void)imageView:(TTImageView*)imageView didFailLoadWithError:(NSError*)error;
 
 @end
