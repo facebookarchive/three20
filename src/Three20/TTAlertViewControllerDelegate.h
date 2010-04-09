@@ -17,9 +17,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class TTAlertViewController;
+
 @protocol TTAlertViewControllerDelegate <UIAlertViewDelegate>
 
-- (BOOL)alertViewController:(TTAlertViewController*)controller
-  didDismissWithButtonIndex:(NSInteger)buttonIndex URL:(NSString*)URL;
+- (BOOL)alertViewController: (TTAlertViewController*)controller
+  didDismissWithButtonIndex: (NSInteger)buttonIndex
+                        URL: (NSString*)URL;
 
 @end
