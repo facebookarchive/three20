@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "TTTableViewPlainVarHeightDelegate.h"
+#import "Three20/TTTableViewPlainVarHeightDelegate.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
