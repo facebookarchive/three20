@@ -16,6 +16,8 @@
 
 #import "Three20/TTAlertViewController.h"
 
+#import "Three20/TTAlertViewControllerDelegate.h"
+
 #import "Three20/TTGlobalCore.h"
 
 #import "Three20/TTNavigator.h"
