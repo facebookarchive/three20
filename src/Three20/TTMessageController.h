@@ -96,6 +96,7 @@
  */
 @property (nonatomic, readonly) BOOL isModified;
 
+
 /**
  * Initializes the class with an array of recipients. These recipients will
  * be pre-filled in the TTMessageRecipientField's view.
