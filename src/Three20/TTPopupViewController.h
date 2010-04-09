@@ -23,10 +23,8 @@
  * controller, and even remove its view from the view hierarchy.  Popup view controllers allow
  * you to present a "modal" view which overlaps the parent view controller but does not
  * necessarily hide it.
- * 
- * The best way to use this class is to bind 
  *
- * This class does is meant to be subclassed, not used directly.
+ * This class is meant to be subclassed, not used directly.
  */
 @interface TTPopupViewController : TTModelViewController {
 }
