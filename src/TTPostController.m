@@ -28,126 +28,25 @@
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTView.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// global
-
 static const CGFloat kMarginX = 5;
 static const CGFloat kMarginY = 6;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTPostController
 
-@synthesize delegate = _delegate, result = _result, textView = _textView,
-            originView = _originView;
+@synthesize result      = _result;
+@synthesize textView    = _textView;
+@synthesize originView  = _originView;
+
+@synthesize delegate = _delegate;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (NSString*)stripWhitespace:(NSString*)text {
-  if (text) {
-    NSCharacterSet* whitespace = [NSCharacterSet whitespaceCharacterSet];
-    return [text stringByTrimmingCharactersInSet:whitespace];
-  } else {
-    return @"";
-  }
-}
-
-- (void)showKeyboard {
-  UIApplication* app = [UIApplication sharedApplication];
-  _originalStatusBarStyle = app.statusBarStyle;
-  _originalStatusBarHidden = app.statusBarHidden;
-  if (!_originalStatusBarHidden) {
-    [app setStatusBarHidden:NO animated:YES];
-    [app setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
-  }
-  [_textView becomeFirstResponder];
-}
-
-- (void)hideKeyboard {
-  UIApplication* app = [UIApplication sharedApplication];
-  [app setStatusBarHidden:_originalStatusBarHidden animated:YES];
-  [app setStatusBarStyle:_originalStatusBarStyle animated:NO];
-  [_textView resignFirstResponder];
-}
-
-- (CGAffineTransform)transformForOrientation {
-  return TTRotateTransformForOrientation(TTInterfaceOrientation());
-}
-
-- (void)showActivity:(NSString*)activityText {
-  if (!_activityView) {
-    _activityView = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox];
-    [self.view addSubview:_activityView];
-  }
-
-  if (activityText) {
-    _activityView.text = activityText;
-    _activityView.frame = CGRectOffset(CGRectInset(_textView.frame, 13, 13), 2, 0);
-    _activityView.hidden = NO;
-    _textView.hidden = YES;
-    self.navigationItem.rightBarButtonItem.enabled = NO;
-  } else {
-    _activityView.hidden = YES;
-    _textView.hidden = NO;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
-  }
-}
-
-- (void)layoutTextEditor {
-  CGFloat keyboard = TTKeyboardHeightForOrientation(TTInterfaceOrientation());
-  _screenView.frame = CGRectMake(0, _navigationBar.bottom,
-                                 self.view.orientationWidth,
-                                 self.view.orientationHeight - (keyboard+_navigationBar.height));
-
-  _textView.frame = CGRectMake(kMarginX, kMarginY+_navigationBar.height,
-                                 _screenView.width - kMarginX*2,
-                                 _screenView.height - kMarginY*2);
-  _textView.hidden = NO;
-}
-
-- (void)showAnimationDidStop {
-  _textView.hidden = NO;
-}
-
-- (void)dismissAnimationDidStop {
-  if ([_delegate respondsToSelector:@selector(postController:didPostText:withResult:)]) {
-    [_delegate postController:self didPostText:_textView.text withResult:_result];
-  }
-
-  TT_RELEASE_SAFELY(_originView);
-  [self dismissPopupViewControllerAnimated:NO];
-}
-
-- (void)fadeOut {
-  _originView.hidden = NO;
-  TT_RELEASE_SAFELY(_originView);
-
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(fadeAnimationDidStop)];
-  [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-  self.view.alpha = 0;
-  [UIView commitAnimations];
-
-  [self hideKeyboard];
-}
-
-- (void)fadeAnimationDidStop {
-  [self dismissPopupViewControllerAnimated:NO];
-}
-
-- (void)dismissWithCancel {
-  if ([_delegate respondsToSelector:@selector(postControllerDidCancel:)]) {
-    [_delegate postControllerDidCancel:self];
-  }
-
-  [self dismissPopupViewControllerAnimated:YES];
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle*)bundle {
   if (self = [super initWithNibName:nibName bundle:bundle]) {
     self.navigationItem.leftBarButtonItem =
@@ -164,9 +63,11 @@ static const CGFloat kMarginY = 6;
   return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
-    if (self = [self initWithNibName:nil bundle:nil]) {
-      if (nil != query) {
+  if (self = [self initWithNibName:nil bundle:nil]) {
+    if (nil != query) {
       _delegate = [query objectForKey:@"delegate"];
       _defaultText = [[query objectForKey:@"text"] copy];
 
@@ -174,7 +75,7 @@ static const CGFloat kMarginY = 6;
 
       self.originView = [query objectForKey:@"__target__"];
       NSValue* originRect = [query objectForKey:@"originRect"];
-      if (originRect) {
+      if (nil != originRect) {
         _originRect = [originRect CGRectValue];
       }
     }
@@ -183,10 +84,14 @@ static const CGFloat kMarginY = 6;
   return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
   return [self initWithNavigatorURL:nil query:nil];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_result);
   TT_RELEASE_SAFELY(_defaultText);
@@ -195,12 +100,149 @@ static const CGFloat kMarginY = 6;
   TT_RELEASE_SAFELY(_navigationBar);
   TT_RELEASE_SAFELY(_innerView);
   TT_RELEASE_SAFELY(_activityView);
+
   [super dealloc];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIViewController
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)stripWhitespace:(NSString*)text {
+  if (nil != text) {
+    NSCharacterSet* whitespace = [NSCharacterSet whitespaceCharacterSet];
+    return [text stringByTrimmingCharactersInSet:whitespace];
+
+  } else {
+    return @"";
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showKeyboard {
+  UIApplication* app = [UIApplication sharedApplication];
+  _originalStatusBarStyle = app.statusBarStyle;
+  _originalStatusBarHidden = app.statusBarHidden;
+  if (!_originalStatusBarHidden) {
+    [app setStatusBarHidden:NO animated:YES];
+    [app setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+  }
+  [_textView becomeFirstResponder];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)hideKeyboard {
+  UIApplication* app = [UIApplication sharedApplication];
+  [app setStatusBarHidden:_originalStatusBarHidden animated:YES];
+  [app setStatusBarStyle:_originalStatusBarStyle animated:NO];
+  [_textView resignFirstResponder];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGAffineTransform)transformForOrientation {
+  return TTRotateTransformForOrientation(TTInterfaceOrientation());
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showActivity:(NSString*)activityText {
+  if (nil == _activityView) {
+    _activityView = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox];
+    [self.view addSubview:_activityView];
+  }
+
+  if (nil != activityText) {
+    _activityView.text = activityText;
+    _activityView.frame = CGRectOffset(CGRectInset(_textView.frame, 13, 13), 2, 0);
+    _activityView.hidden = NO;
+    _textView.hidden = YES;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+
+  } else {
+    _activityView.hidden = YES;
+    _textView.hidden = NO;
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutTextEditor {
+  CGFloat keyboard = TTKeyboardHeightForOrientation(TTInterfaceOrientation());
+  _screenView.frame = CGRectMake(0, _navigationBar.bottom,
+                                 self.view.orientationWidth,
+                                 self.view.orientationHeight - (keyboard+_navigationBar.height));
+
+  _textView.frame = CGRectMake(kMarginX, kMarginY+_navigationBar.height,
+                                 _screenView.width - kMarginX*2,
+                                 _screenView.height - kMarginY*2);
+  _textView.hidden = NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showAnimationDidStop {
+  _textView.hidden = NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dismissAnimationDidStop {
+  if ([_delegate respondsToSelector:@selector(postController:didPostText:withResult:)]) {
+    [_delegate postController:self didPostText:_textView.text withResult:_result];
+  }
+
+  TT_RELEASE_SAFELY(_originView);
+  [self dismissPopupViewControllerAnimated:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)fadeOut {
+  _originView.hidden = NO;
+  TT_RELEASE_SAFELY(_originView);
+
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDelegate:self];
+  [UIView setAnimationDidStopSelector:@selector(fadeAnimationDidStop)];
+  [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+  self.view.alpha = 0;
+  [UIView commitAnimations];
+
+  [self hideKeyboard];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)fadeAnimationDidStop {
+  [self dismissPopupViewControllerAnimated:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dismissWithCancel {
+  if ([_delegate respondsToSelector:@selector(postControllerDidCancel:)]) {
+    [_delegate postControllerDidCancel:self];
+  }
+
+  [self dismissPopupViewControllerAnimated:YES];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
   self.view.frame = [UIScreen mainScreen].applicationFrame;
@@ -236,10 +278,14 @@ static const CGFloat kMarginY = 6;
   [_innerView addSubview:_navigationBar];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return TTIsSupportedOrientation(interfaceOrientation);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
         duration:(NSTimeInterval)duration {
   [UIView beginAnimations:nil context:nil];
@@ -251,13 +297,20 @@ static const CGFloat kMarginY = 6;
   [UIView commitAnimations];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView*)rotatingHeaderView {
   return _navigationBar;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// UIViewController (TTCategory)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIViewController (TTCategory)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)persistView:(NSMutableDictionary*)state {
   [state setObject:[NSNumber numberWithBool:YES] forKey:@"__important__"];
 
@@ -276,6 +329,8 @@ static const CGFloat kMarginY = 6;
   return [super persistView:state];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)restoreView:(NSDictionary*)state {
   [super restoreView:state];
   NSString* delegate = [state objectForKey:@"delegate"];
@@ -289,9 +344,14 @@ static const CGFloat kMarginY = 6;
   _defaultText = [[state objectForKey:@"text"] retain];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTPopupViewController
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTPopupViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
   [self retain];
   UIWindow* window = view.window ? view.window : [UIApplication sharedApplication].keyWindow;
@@ -343,6 +403,7 @@ static const CGFloat kMarginY = 6;
     }
 
     [UIView commitAnimations];
+
   } else {
     _innerView.alpha = 1;
     _screenView.transform = CGAffineTransformIdentity;
@@ -353,9 +414,12 @@ static const CGFloat kMarginY = 6;
   [self showKeyboard];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissPopupViewControllerAnimated:(BOOL)animated {
   if (animated) {
     [self fadeOut];
+
   } else {
     UIViewController* superController = self.superController;
     [self.view removeFromSuperview];
@@ -366,23 +430,35 @@ static const CGFloat kMarginY = 6;
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIAlertViewDelegate
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == 0) {
     [self dismissWithCancel];
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITextView*)textView {
   self.view;
   return _textView;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UINavigationBar*)navigatorBar {
   if (!_navigationBar) {
     self.view;
@@ -390,6 +466,8 @@ static const CGFloat kMarginY = 6;
   return _navigationBar;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setOriginView:(UIView*)view {
   if (view != _originView) {
     [_originView release];
@@ -398,6 +476,8 @@ static const CGFloat kMarginY = 6;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)post {
   BOOL shouldDismiss = [self willPostText:_textView.text];
   if ([_delegate respondsToSelector:@selector(postController:willPostText:)]) {
@@ -411,6 +491,8 @@ static const CGFloat kMarginY = 6;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cancel {
   if (!_textView.text.isEmptyOrWhitespace
       && !(_defaultText && [_defaultText isEqualToString:_textView.text])) {
@@ -425,6 +507,8 @@ static const CGFloat kMarginY = 6;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissWithResult:(id)result animated:(BOOL)animated {
   [_result release];
   _result = [result retain];
@@ -462,6 +546,7 @@ static const CGFloat kMarginY = 6;
     _navigationBar.alpha = 0;
 
     [UIView commitAnimations];
+
   } else {
     [self dismissAnimationDidStop];
   }
@@ -469,6 +554,8 @@ static const CGFloat kMarginY = 6;
   [self hideKeyboard];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)failWithError:(NSError*)error {
   [self showActivity:nil];
 
@@ -481,16 +568,23 @@ static const CGFloat kMarginY = 6;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)willPostText:(NSString*)text {
   return YES;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)titleForActivity {
   return nil;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)titleForError:(NSError*)error {
   return nil;
 }
+
 
 @end
