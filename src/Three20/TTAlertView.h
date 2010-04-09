@@ -17,9 +17,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol TTAlertViewControllerDelegate <UIAlertViewDelegate>
+@interface TTAlertView : UIAlertView {
+  UIViewController* _popupViewController;
+}
 
-- (BOOL)alertViewController:(TTAlertViewController*)controller
-  didDismissWithButtonIndex:(NSInteger)buttonIndex URL:(NSString*)URL;
+@property (nonatomic, retain) UIViewController* popupViewController;
 
 @end

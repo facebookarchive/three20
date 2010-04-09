@@ -17,45 +17,11 @@
 #import "Three20/TTAlertViewController.h"
 
 #import "Three20/TTAlertViewControllerDelegate.h"
+#import "Three20/TTAlertView.h"
 
 #import "Three20/TTGlobalCore.h"
 
 #import "Three20/TTNavigator.h"
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTAlertView : UIAlertView {
-  UIViewController* _popupViewController;
-}
-
-@property (nonatomic, retain) UIViewController* popupViewController;
-
-@end
-
-@implementation TTAlertView
-
-@synthesize popupViewController = _popupViewController;
-
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    _popupViewController = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_popupViewController);
-  [super dealloc];
-}
-
-- (void)didMoveToSuperview {
-  if (!self.superview) {
-    [_popupViewController autorelease];
-    _popupViewController = nil;
-  }
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
