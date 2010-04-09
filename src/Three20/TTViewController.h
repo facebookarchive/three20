@@ -23,6 +23,7 @@
  * A view controller with some useful additions.
  */
 @interface TTViewController : UIViewController {
+@protected
 #ifdef DEBUG
   BOOL    m_initCalled; //verify new initialization works fine
 #endif

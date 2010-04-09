@@ -27,6 +27,7 @@
  *  - Why is this necessary? Can we get by without this subclass?
  */
 @interface TTActionSheet : UIActionSheet {
+@protected
   UIViewController* _popupViewController;
 }
 

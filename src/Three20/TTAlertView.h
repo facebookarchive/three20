@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TTAlertView : UIAlertView {
+@protected
   UIViewController* _popupViewController;
 }
 

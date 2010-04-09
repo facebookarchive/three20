@@ -20,6 +20,7 @@
 @class TTActivityLabel, TTView;
 
 @interface TTPostController : TTPopupViewController <UITextViewDelegate> {
+@protected
   id<TTPostControllerDelegate> _delegate;
   id _result;
   NSString* _defaultText;

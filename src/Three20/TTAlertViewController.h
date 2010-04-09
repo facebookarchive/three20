@@ -25,6 +25,7 @@
  * all the benefits of persistence and URL dispatch.
  */
 @interface TTAlertViewController : TTPopupViewController <UIAlertViewDelegate> {
+@protected
   id              _userInfo;
   NSMutableArray* _URLs;
 

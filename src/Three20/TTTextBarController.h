@@ -23,6 +23,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTTextBarController : TTPopupViewController <TTTextEditorDelegate> {
+@protected
   id <TTTextBarDelegate> _delegate;
   id _result;
   NSString* _defaultText;

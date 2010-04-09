@@ -37,6 +37,7 @@
  * useful when you want to customize the fields presented to the user.
  */
 @interface TTMessageController : TTViewController <UITextFieldDelegate, TTTextEditorDelegate> {
+@protected
   NSArray*          _fields;
   NSMutableArray*   _fieldViews;
   UIScrollView*     _scrollView;

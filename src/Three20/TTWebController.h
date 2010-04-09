@@ -19,6 +19,7 @@
 @protocol TTWebControllerDelegate;
 
 @interface TTWebController : TTModelViewController <UIWebViewDelegate, UIActionSheetDelegate> {
+@protected
   UIWebView*        _webView;
 
   UIToolbar*        _toolbar;

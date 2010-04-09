@@ -27,7 +27,7 @@
  * By default this controller is not persisted in the navigation history.
  */
 @interface TTActionSheetController : TTPopupViewController <UIActionSheetDelegate> {
-@private
+@protected
   id              _userInfo;
   NSMutableArray* _URLs;
 
