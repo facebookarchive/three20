@@ -16,6 +16,8 @@
 
 #import "Three20/TTTextBarController.h"
 
+#import "Three20/TTTextBarDelegate.h"
+
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalUI.h"

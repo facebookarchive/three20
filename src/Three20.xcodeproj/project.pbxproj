@@ -78,6 +78,7 @@
 		6E94C885116EE87E0012B12C /* TTActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94C883116EE87E0012B12C /* TTActionSheet.m */; };
 		6E94C887116EE8860012B12C /* TTActionSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C886116EE8860012B12C /* TTActionSheet.h */; };
 		6E94C8CC116EEA660012B12C /* TTPostControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C8CB116EEA660012B12C /* TTPostControllerDelegate.h */; };
+		6E94C8E0116EEC310012B12C /* TTTextBarDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C8DF116EEC310012B12C /* TTTextBarDelegate.h */; };
 		6EB0117911118040004D204C /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0117711118040004D204C /* TTImageLayer.m */; };
 		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
 		6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB013871112C513004D204C /* TTImageViewInternal.m */; };
@@ -366,6 +367,7 @@
 		6E94C883116EE87E0012B12C /* TTActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTActionSheet.m; sourceTree = "<group>"; };
 		6E94C886116EE8860012B12C /* TTActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTActionSheet.h; path = Three20/TTActionSheet.h; sourceTree = "<group>"; };
 		6E94C8CB116EEA660012B12C /* TTPostControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPostControllerDelegate.h; path = Three20/TTPostControllerDelegate.h; sourceTree = "<group>"; };
+		6E94C8DF116EEC310012B12C /* TTTextBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextBarDelegate.h; path = Three20/TTTextBarDelegate.h; sourceTree = "<group>"; };
 		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
@@ -1040,6 +1042,7 @@
 				6E94C8CB116EEA660012B12C /* TTPostControllerDelegate.h */,
 				BE30DB781056FD7D00FEB457 /* TTTextBarController.h */,
 				BE30DB7A1056FD8700FEB457 /* TTTextBarController.m */,
+				6E94C8DF116EEC310012B12C /* TTTextBarDelegate.h */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1379,6 +1382,7 @@
 				6E94C871116EE5970012B12C /* TTAlertView.h in Headers */,
 				6E94C887116EE8860012B12C /* TTActionSheet.h in Headers */,
 				6E94C8CC116EEA660012B12C /* TTPostControllerDelegate.h in Headers */,
+				6E94C8E0116EEC310012B12C /* TTTextBarDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,8 +20,6 @@
 @protocol TTTextBarDelegate;
 @class TTButton;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 @interface TTTextBarController : TTPopupViewController <TTTextEditorDelegate> {
 @protected
   id <TTTextBarDelegate> _delegate;
@@ -80,39 +78,5 @@
  */
 - (NSString*)titleForError:(NSError*)error;
 
-
-@end
-
-@protocol TTTextBarDelegate <NSObject>
-
-@optional
-
-/**
- *
- */
-- (void)textBarDidBeginEditing:(TTTextBarController*)textBar;
-
-/**
- *
- */
-- (void)textBarDidEndEditing:(TTTextBarController*)textBar;
-
-/**
- * The user has posted text and an animation is about to show the text return to its origin.
- *
- * @return whether to dismiss the controller or wait for the user to call dismiss.
- */
-- (BOOL)textBar:(TTTextBarController*)textBar willPostText:(NSString*)text;
-
-/**
- * The text has been posted.
- */
-- (void)textBar:(TTTextBarController*)textBar didPostText:(NSString*)text
-        withResult:(id)result;
-
-/**
- * The controller was cancelled before posting.
- */
-- (void)textBarDidCancel:(TTTextBarController*)textBar;
 
 @end

@@ -77,6 +77,7 @@
 #import "Three20/TTPostController.h"
 #import "Three20/TTPostControllerDelegate.h"
 #import "Three20/TTTextBarController.h"
+#import "Three20/TTTextBarDelegate.h"
 
 // UI Views
 #import "Three20/TTView.h"
