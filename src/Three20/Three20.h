@@ -73,6 +73,7 @@
 #import "Three20/TTAlertViewController.h"
 #import "Three20/TTAlertViewControllerDelegate.h"
 #import "Three20/TTActionSheetController.h"
+#import "Three20/TTActionSheetControllerDelegate.h"
 #import "Three20/TTPostController.h"
 #import "Three20/TTTextBarController.h"
 

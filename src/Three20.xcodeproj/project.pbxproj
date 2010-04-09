@@ -359,6 +359,7 @@
 		6E94C865116EE5030012B12C /* TTAlertViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTAlertViewControllerDelegate.h; path = Three20/TTAlertViewControllerDelegate.h; sourceTree = "<group>"; };
 		6E94C86D116EE58B0012B12C /* TTAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTAlertView.m; sourceTree = "<group>"; };
 		6E94C870116EE5970012B12C /* TTAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTAlertView.h; path = Three20/TTAlertView.h; sourceTree = "<group>"; };
+		6E94C87C116EE7D70012B12C /* TTActionSheetControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTActionSheetControllerDelegate.h; path = Three20/TTActionSheetControllerDelegate.h; sourceTree = "<group>"; };
 		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
@@ -1017,6 +1018,7 @@
 				6E94C86B116EE57A0012B12C /* Private */,
 				BED03763100915700083AC18 /* TTActionSheetController.h */,
 				BED03765100915820083AC18 /* TTActionSheetController.m */,
+				6E94C87C116EE7D70012B12C /* TTActionSheetControllerDelegate.h */,
 				BEF45BC71019CA8500E9EC07 /* TTPostController.h */,
 				BEF45BC41019CA4400E9EC07 /* TTPostController.m */,
 				BE30DB781056FD7D00FEB457 /* TTTextBarController.h */,
