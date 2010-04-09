@@ -14,6 +14,11 @@
 // limitations under the License.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@class TTTextBarController;
+
 @protocol TTTextBarDelegate <NSObject>
 @optional
 
@@ -31,8 +36,9 @@
 /**
  * The text has been posted.
  */
-- (void)textBar:(TTTextBarController*)textBar didPostText:(NSString*)text
-     withResult:(id)result;
+- (void)textBar: (TTTextBarController*)textBar
+    didPostText: (NSString*)text
+     withResult: (id)result;
 
 /**
  * The controller was cancelled before posting.
