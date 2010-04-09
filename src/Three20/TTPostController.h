@@ -17,29 +17,38 @@
 #import "Three20/TTPopupViewController.h"
 
 @protocol TTPostControllerDelegate;
-@class TTActivityLabel, TTView;
+@class TTActivityLabel;
+@class TTView;
 
 @interface TTPostController : TTPopupViewController <UITextViewDelegate> {
 @protected
+  id                _result;
+
+  NSString*         _defaultText;
+
+  CGRect            _originRect;
+
+  UIView*           _originView;
+  UIView*           _innerView;
+
+  UINavigationBar*  _navigationBar;
+
+  TTView*           _screenView;
+  UITextView*       _textView;
+  TTActivityLabel*  _activityView;
+
+  BOOL              _originalStatusBarHidden;
+  UIStatusBarStyle  _originalStatusBarStyle;
+
   id<TTPostControllerDelegate> _delegate;
-  id _result;
-  NSString* _defaultText;
-  CGRect _originRect;
-  UIView* _originView;
-  UIView* _innerView;
-  UINavigationBar* _navigationBar;
-  TTView* _screenView;
-  UITextView* _textView;
-  TTActivityLabel* _activityView;
-  BOOL _originalStatusBarHidden;
-  UIStatusBarStyle _originalStatusBarStyle;
 }
 
-@property (nonatomic, assign) id<TTPostControllerDelegate> delegate;
-@property (nonatomic, retain) id result;
-@property (nonatomic, readonly) UITextView* textView;
-@property (nonatomic, readonly) UINavigationBar* navigatorBar;
-@property (nonatomic, retain) UIView* originView;
+@property (nonatomic, retain) 	id                result;
+@property (nonatomic, readonly) UITextView*       textView;
+@property (nonatomic, readonly) UINavigationBar*  navigatorBar;
+@property (nonatomic, retain)   UIView*           originView;
+
+@property (nonatomic, assign)   id<TTPostControllerDelegate> delegate;
 
 /**
  * Posts the text to delegates, who have to actually do something with it.
@@ -71,47 +80,8 @@
  */
 - (BOOL)willPostText:(NSString*)text;
 
-/**
- *
- */
 - (NSString*)titleForActivity;
 
-/**
- *
- */
 - (NSString*)titleForError:(NSError*)error;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@protocol TTPostControllerDelegate <NSObject>
-
-@optional
-
-/**
- * The user has posted text and an animation is about to show the text return to its origin.
- *
- * @return whether to dismiss the controller or wait for the user to call dismiss.
- */
-- (BOOL)postController:(TTPostController*)postController willPostText:(NSString*)text;
-
-/**
- * The text will animate towards a rectangle.
- *
- * @return the rect in screen coordinates where the text should animate towards.
- */
-- (CGRect)postController:(TTPostController*)postController willAnimateTowards:(CGRect)rect;
-
-/**
- * The text has been posted.
- */
-- (void)postController:(TTPostController*)postController didPostText:(NSString*)text
-        withResult:(id)result;
-
-/**
- * The controller was cancelled before posting.
- */
-- (void)postControllerDidCancel:(TTPostController*)postController;
 
 @end

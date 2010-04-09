@@ -16,6 +16,8 @@
 
 #import "Three20/TTPostController.h"
 
+#import "Three20/TTPostControllerDelegate.h"
+
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalUI.h"
