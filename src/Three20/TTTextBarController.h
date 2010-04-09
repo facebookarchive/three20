@@ -22,21 +22,23 @@
 
 @interface TTTextBarController : TTPopupViewController <TTTextEditorDelegate> {
 @protected
+  id                _result;
+  NSString*         _defaultText;
+  TTView*           _textBar;
+  TTTextEditor*     _textEditor;
+  TTButton*         _postButton;
+  UIView*           _footerBar;
+  CGFloat           _originTop;
+  UIBarButtonItem*  _previousRightBarButtonItem;
+
   id <TTTextBarDelegate> _delegate;
-  id _result;
-  NSString* _defaultText;
-  TTView* _textBar;
-  TTTextEditor* _textEditor;
-  TTButton* _postButton;
-  UIView* _footerBar;
-  CGFloat _originTop;
-  UIBarButtonItem* _previousRightBarButtonItem;
 }
 
-@property (nonatomic, assign) id <TTTextBarDelegate> delegate;
 @property (nonatomic, readonly) TTTextEditor* textEditor;
-@property (nonatomic, readonly) TTButton* postButton;
-@property (nonatomic, retain) UIView* footerBar;
+@property (nonatomic, readonly) TTButton*     postButton;
+@property (nonatomic, retain)   UIView*       footerBar;
+
+@property (nonatomic, assign)   id <TTTextBarDelegate> delegate;
 
 /**
  * Posts the text to delegates, who have to actually do something with it.
@@ -68,14 +70,8 @@
  */
 - (BOOL)willPostText:(NSString*)text;
 
-/**
- *
- */
 - (NSString*)titleForActivity;
 
-/**
- *
- */
 - (NSString*)titleForError:(NSError*)error;
 
 
