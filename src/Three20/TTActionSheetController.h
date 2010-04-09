@@ -36,6 +36,7 @@
 
 @property (nonatomic, readonly) UIActionSheet*  actionSheet;
 @property (nonatomic, retain)   id              userInfo;
+
 @property (nonatomic, assign)   id<TTActionSheetControllerDelegate> delegate;
 
 /**

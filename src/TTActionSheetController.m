@@ -17,56 +17,12 @@
 #import "Three20/TTActionSheetController.h"
 
 #import "Three20/TTActionSheetControllerDelegate.h"
+#import "Three20/TTActionSheet.h"
 
 #import "Three20/TTGlobalCore.h"
 
 #import "Three20/TTNavigator.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * [private] A subclassed UIActionSheet that retains the popup view controller.
- *
- * This is a leightweight subclass whose sole additional purpose is to retain the popup view
- * controller.
- *
- * @internal Questions to be answered:
- *  - Why is this necessary? Can we get by without this subclass?
- */
-@interface TTActionSheet : UIActionSheet {
-  UIViewController* _popupViewController;
-}
-
-@property (nonatomic, retain) UIViewController* popupViewController;
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTActionSheet
-
-@synthesize popupViewController = _popupViewController;
-
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    _popupViewController = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_popupViewController);
-  [super dealloc];
-}
-
-- (void)didMoveToSuperview {
-  if (!self.superview) {
-    [_popupViewController autorelease];
-    _popupViewController = nil;
-  }
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
