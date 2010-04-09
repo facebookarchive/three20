@@ -21,7 +21,7 @@
 /**
  * A view controller that displays an alert view.
  *
- * This class exists in order to allow alert views to be displayed by TTNavigator, and gain
+ * This class exists in order to allow alert views to be displayed by TTNavigator and gain
  * all the benefits of persistence and URL dispatch.
  */
 @interface TTAlertViewController : TTPopupViewController <UIAlertViewDelegate> {
@@ -35,6 +35,7 @@
 @property (nonatomic, retain)   id            userInfo;
 
 @property (nonatomic, assign)   id<TTAlertViewControllerDelegate> delegate;
+
 
 - (id)initWithTitle:(NSString*)title message:(NSString*)message;
 - (id)initWithTitle:(NSString*)title message:(NSString*)message delegate:(id)delegate;
