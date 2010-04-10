@@ -16,64 +16,16 @@
 
 #import "PlaygroundViewController.h"
 
-static const CGFloat kFramePadding    = 10;
-static const CGFloat kElementSpacing  = 5;
-static const CGFloat kGroupSpacing    = 10;
+static const  CGFloat   kFramePadding    = 10;
+static const  CGFloat   kElementSpacing  = 5;
+static const  CGFloat   kGroupSpacing    = 10;
 
+static        NSString* kRequestURLPath  = @"http://farm3.static.flickr.com/2373/2177444005_0d71df1713.jpg";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation PlaygroundViewController
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat) addHeader:(NSString*)text yOffset:(CGFloat)yOffset {
-  UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
-  label.text = text;
-  label.font = [UIFont systemFontOfSize:20];
-  label.numberOfLines = 0;
-
-  CGRect frame = label.frame;
-  frame.origin.x = kFramePadding;
-  frame.origin.y = yOffset;
-  frame.size.width = 320 - kFramePadding * 2;
-  frame.size.height = [text sizeWithFont:label.font
-                       constrainedToSize:CGSizeMake(frame.size.width, 10000)].height;
-  label.frame = frame;
-
-  [_scrollView addSubview:label];
-
-  yOffset += label.frame.size.height + kElementSpacing;
-
-  TT_RELEASE_SAFELY(label);
-
-  return yOffset;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat) addText:(NSString*)text yOffset:(CGFloat)yOffset {
-  UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
-  label.text = text;
-  label.numberOfLines = 0;
-
-  CGRect frame = label.frame;
-  frame.origin.x = kFramePadding;
-  frame.origin.y = yOffset;
-  frame.size.width = 320 - kFramePadding * 2;
-  frame.size.height = [text sizeWithFont:label.font
-                       constrainedToSize:CGSizeMake(frame.size.width, 10000)].height;
-  label.frame = frame;
-
-  [_scrollView addSubview:label];
-
-  yOffset += label.frame.size.height + kElementSpacing;
-
-  TT_RELEASE_SAFELY(label);
-
-  return yOffset;
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,50 +41,43 @@ static const CGFloat kGroupSpacing    = 10;
 
   CGFloat yOffset = kFramePadding;
 
-  yOffset = [self addHeader:NSLocalizedString(@"TTDebug", @"") yOffset:yOffset];
-
   {
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitle:NSLocalizedString(@"Debug test", @"") forState:UIControlStateNormal];
-    [button addTarget: self
-               action: @selector(debugTestAction)
+    _requestButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+    [_requestButton setTitle: NSLocalizedString(@"TTURLRequest test", @"")
+                    forState: UIControlStateNormal];
+    [_requestButton addTarget: self
+               action: @selector(requestAction)
      forControlEvents: UIControlEventTouchUpInside];
-    [button sizeToFit];
+    [_requestButton sizeToFit];
 
-    CGRect frame = button.frame;
+    CGRect frame = _requestButton.frame;
     frame.origin.x = kFramePadding;
     frame.origin.y = yOffset;
-    button.frame = frame;
+    _requestButton.frame = frame;
 
-    [_scrollView addSubview:button];
+    [_scrollView addSubview:_requestButton];
 
     yOffset += frame.size.height;
   }
 
-  yOffset += kGroupSpacing;
+  {
+    _clearCacheButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+    [_clearCacheButton setTitle: NSLocalizedString(@"Clear the cache", @"")
+                       forState: UIControlStateNormal];
+    [_clearCacheButton addTarget: self
+                          action: @selector(clearCacheAction)
+                forControlEvents: UIControlEventTouchUpInside];
+    [_clearCacheButton sizeToFit];
 
-  yOffset = [self addHeader:NSLocalizedString(@"TTGlobalCoreLocale", @"") yOffset:yOffset];
-  yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"Current locale: %@", @""),
-                           [TTCurrentLocale()
-                            displayNameForKey:NSLocaleIdentifier
-                                        value:[TTCurrentLocale() localeIdentifier]]]
-                  yOffset:yOffset];
-  yOffset += kGroupSpacing;
+    CGRect frame = _clearCacheButton.frame;
+    frame.origin.x = kFramePadding;
+    frame.origin.y = yOffset;
+    _clearCacheButton.frame = frame;
 
-  yOffset = [self addHeader:NSLocalizedString(@"TTGlobalCorePaths", @"") yOffset:yOffset];
-  yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"Bundle path: %@", @""),
-                           TTPathForBundleResource(@"Icon.png")]
-                  yOffset:yOffset];
-  yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"Document path: %@", @""),
-                           TTPathForDocumentsResource(@"document.pdf")]
-                  yOffset:yOffset];
-  yOffset += kGroupSpacing;
+    [_scrollView addSubview:_clearCacheButton];
 
-  yOffset = [self addHeader:NSLocalizedString(@"NSDataAdditions", @"") yOffset:yOffset];
-  yOffset = [self addText:[NSString stringWithFormat:NSLocalizedString(@"MD5 Hash of \"Three20\": %@", @""),
-                           [[@"Three20" dataUsingEncoding:NSUTF8StringEncoding] md5Hash]]
-                  yOffset:yOffset];
-  yOffset += kGroupSpacing;
+    yOffset += frame.size.height;
+  }
 
   [_scrollView setContentSize:CGSizeMake(320, yOffset)];
 }
@@ -142,6 +87,9 @@ static const CGFloat kGroupSpacing    = 10;
 - (void) viewDidUnload {
   [super viewDidUnload];
 
+  TT_RELEASE_SAFELY(_imageView);
+  TT_RELEASE_SAFELY(_requestButton);
+  TT_RELEASE_SAFELY(_clearCacheButton);
   TT_RELEASE_SAFELY(_scrollView);
 }
 
@@ -155,39 +103,63 @@ static const CGFloat kGroupSpacing    = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) debugTestAction {
-  NSLog(@"Three20 debug logging is currently...%@", ((DEBUG) ? @"ON" : @"OFF"));
+- (void) requestAction {
+  TTURLRequest* request = [TTURLRequest requestWithURL: kRequestURLPath
+                                              delegate: self];
 
-  // This will print the current method name.
-  TTDPRINTMETHODNAME();
+  // TTURLImageResponse is just one of a set of response types you can use.
+  // Also available are TTURLDataResponse and TTURLXMLResponse.
+  request.response = [[[TTURLImageResponse alloc] init] autorelease];
 
-  TTDPRINT(@"Showing TTDPRINT.");
-  TTDPRINT(@"-----------------");
-  TTDPRINT(@"Showing TTD log levels <= %d", TTMAXLOGLEVEL);
-  TTDERROR(@"This is TTDERROR, level %d.", TTLOGLEVEL_ERROR);
-  TTDWARNING(@"This is TTDWARNING, level %d.", TTLOGLEVEL_WARNING);
-  TTDINFO(@"This is TTDINFO, level %d.", TTLOGLEVEL_INFO);
+  [request send];
+}
 
-  TTDPRINT(@"");
-  TTDPRINT(@"Showing TTDCONDITIONLOG.");
-  TTDPRINT(@"------------------------");
-  TTDCONDITIONLOG(true, @"This will always display, because the condition is \"true\"");
-  TTDCONDITIONLOG(false, @"This will never display, because the condition is \"false\"");
-  TTDCONDITIONLOG(rand()%2, @"This will randomly display, because the condition is \"rand()%2\"");
 
-  TTDPRINT(@"");
-  TTDPRINT(@"Showing TTDASSERT.");
-  TTDPRINT(@"------------------");
-  // Should do nothing at all.
-  TTDASSERT(true);
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void) clearCacheAction {
+  [[TTURLCache sharedCache] removeAll:YES];
+}
 
-  // This will jump you into the debugger in the simulator.
-  // Note that this isn't a crash! Simply the equivalent of setting
-  // a breakpoint in the debugger, but programmatically. These TTDASSERTs
-  // will be completely stripped away from your final product, assuming
-  // you don't declare the DEBUG preprocessor macro (and you shouldn't
-  // be).
-  TTDASSERT(false);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTURLRequestDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)requestDidStartLoad:(TTURLRequest*)request {
+  [_requestButton setTitle:@"Loading..." forState:UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)requestDidFinishLoad:(TTURLRequest*)request {
+  TTURLImageResponse* imageResponse = (TTURLImageResponse*)request.response;
+
+  if (nil == _imageView) {
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [_scrollView addSubview:_imageView];
+  }
+  _imageView.image = imageResponse.image;
+  [_imageView sizeToFit];
+  _imageView.alpha = 0;
+
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.5];
+
+  _requestButton.alpha = 0;
+  _clearCacheButton.alpha = 0;
+  [_scrollView setContentSize:_imageView.frame.size];
+  _imageView.alpha = 1;
+
+  [UIView commitAnimations];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
+  [_requestButton setTitle:@"Failed to load, try again." forState:UIControlStateNormal];
 }
 
 

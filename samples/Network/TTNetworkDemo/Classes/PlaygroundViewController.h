@@ -15,8 +15,11 @@
 //
 
 
-@interface PlaygroundViewController : UIViewController {
+@interface PlaygroundViewController : UIViewController <TTURLRequestDelegate> {
   UIScrollView* _scrollView;
+  UIButton*     _requestButton;
+  UIButton*     _clearCacheButton;
+  UIImageView*  _imageView;
 }
 
 @end
