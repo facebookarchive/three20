@@ -93,6 +93,8 @@
 		6E94C98D117003730012B12C /* TTTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94C98B117003730012B12C /* TTTabItem.m */; };
 		6E94C98F1170037B0012B12C /* TTTabItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C98E1170037B0012B12C /* TTTabItem.h */; };
 		6E94C991117003E60012B12C /* TTTabDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C990117003E60012B12C /* TTTabDelegate.h */; };
+		6E94C9ED1170060B0012B12C /* TTTabBarInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94C9EB1170060B0012B12C /* TTTabBarInternal.m */; };
+		6E94C9EF117006180012B12C /* TTTabBarInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C9EE117006180012B12C /* TTTabBarInternal.h */; };
 		6EB0117911118040004D204C /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0117711118040004D204C /* TTImageLayer.m */; };
 		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
 		6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB013871112C513004D204C /* TTImageViewInternal.m */; };
@@ -396,6 +398,8 @@
 		6E94C98B117003730012B12C /* TTTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTabItem.m; sourceTree = "<group>"; };
 		6E94C98E1170037B0012B12C /* TTTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTabItem.h; path = Three20/TTTabItem.h; sourceTree = "<group>"; };
 		6E94C990117003E60012B12C /* TTTabDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTabDelegate.h; path = Three20/TTTabDelegate.h; sourceTree = "<group>"; };
+		6E94C9EB1170060B0012B12C /* TTTabBarInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTabBarInternal.m; sourceTree = "<group>"; };
+		6E94C9EE117006180012B12C /* TTTabBarInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTabBarInternal.h; path = Three20/TTTabBarInternal.h; sourceTree = "<group>"; };
 		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
@@ -836,6 +840,15 @@
 			name = "Tab Bars";
 			sourceTree = "<group>";
 		};
+		6E94C9E9117005FF0012B12C /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6E94C9EE117006180012B12C /* TTTabBarInternal.h */,
+				6E94C9EB1170060B0012B12C /* TTTabBarInternal.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		6EB0117C1111805D004D204C /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -982,6 +995,7 @@
 				BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */,
 				BE42FB790F3BBF3400A3B65A /* TTTabBar.m */,
 				6E94C990117003E60012B12C /* TTTabDelegate.h */,
+				6E94C9E9117005FF0012B12C /* Private */,
 				6E94C971117001C80012B12C /* Tab Bars */,
 				BED429440F97F7E50035B153 /* TTButtonBar.h */,
 				BED429410F97F7DB0035B153 /* TTButtonBar.m */,
@@ -1450,6 +1464,7 @@
 				6E94C987117003140012B12C /* TTTab.h in Headers */,
 				6E94C98F1170037B0012B12C /* TTTabItem.h in Headers */,
 				6E94C991117003E60012B12C /* TTTabDelegate.h in Headers */,
+				6E94C9EF117006180012B12C /* TTTabBarInternal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1668,6 +1683,7 @@
 				6E94C97B1170027C0012B12C /* TTTabGrid.m in Sources */,
 				6E94C9851170030B0012B12C /* TTTab.m in Sources */,
 				6E94C98D117003730012B12C /* TTTabItem.m in Sources */,
+				6E94C9ED1170060B0012B12C /* TTTabBarInternal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

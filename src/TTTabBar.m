@@ -16,6 +16,8 @@
 
 #import "Three20/TTTabBar.h"
 
+#import "Three20/TTTabBarInternal.h"
+
 #import "Three20/TTTab.h"
 #import "Three20/TTTabDelegate.h"
 
@@ -25,10 +27,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
-
-CGFloat kTabMargin = 10;
-static CGFloat kPadding = 10;
-const NSInteger kMaxBadgeNumber = 99;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -42,60 +40,6 @@ const NSInteger kMaxBadgeNumber = 99;
 
 - (void)addTab:(TTTab*)tab {
   [self addSubview:tab];
-}
-
-- (CGSize)layoutTabs {
-  CGFloat x = kTabMargin;
-
-  if (self.contentMode == UIViewContentModeScaleToFill) {
-    CGFloat maxTextWidth = self.width - (kTabMargin*2 + kPadding*2*_tabViews.count);
-    CGFloat totalTextWidth = 0;
-    CGFloat totalTabWidth = kTabMargin*2;
-    CGFloat maxTabWidth = 0;
-    for (int i = 0; i < _tabViews.count; ++i) {
-      TTTab* tab = [_tabViews objectAtIndex:i];
-      [tab sizeToFit];
-      totalTextWidth += tab.width - kPadding*2;
-      totalTabWidth += tab.width;
-      if (tab.width > maxTabWidth) {
-        maxTabWidth = tab.width;
-      }
-    }
-
-    if (totalTextWidth > maxTextWidth) {
-      CGFloat shrinkFactor = maxTextWidth/totalTextWidth;
-      for (int i = 0; i < _tabViews.count; ++i) {
-        TTTab* tab = [_tabViews objectAtIndex:i];
-        CGFloat textWidth = tab.width - kPadding*2;
-        tab.frame = CGRectMake(x, 0, ceil(textWidth * shrinkFactor) + kPadding*2 , self.height);
-        x += tab.width;
-      }
-    } else {
-      CGFloat averageTabWidth = ceil((self.width - kTabMargin*2)/_tabViews.count);
-      if (maxTabWidth > averageTabWidth && self.width - totalTabWidth < kTabMargin) {
-        for (int i = 0; i < _tabViews.count; ++i) {
-          TTTab* tab = [_tabViews objectAtIndex:i];
-          tab.frame = CGRectMake(x, 0, tab.width, self.height);
-          x += tab.width;
-        }
-      } else {
-        for (int i = 0; i < _tabViews.count; ++i) {
-          TTTab* tab = [_tabViews objectAtIndex:i];
-          tab.frame = CGRectMake(x, 0, averageTabWidth, self.height);
-          x += tab.width;
-        }
-      }
-    }
-  } else {
-    for (int i = 0; i < _tabViews.count; ++i) {
-      TTTab* tab = [_tabViews objectAtIndex:i];
-      [tab sizeToFit];
-      tab.frame = CGRectMake(x, 0, tab.width, self.height);
-      x += tab.width;
-    }
-  }
-
-  return CGSizeMake(x, self.height);
 }
 
 - (void)tabTouchedUp:(TTTab*)tab {

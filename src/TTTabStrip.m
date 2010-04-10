@@ -16,6 +16,8 @@
 
 #import "Three20/TTTabStrip.h"
 
+#import "Three20/TTTabBarInternal.h"
+
 #import "Three20/TTTab.h"
 #import "Three20/TTStyleSheet.h"
 

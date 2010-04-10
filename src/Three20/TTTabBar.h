@@ -24,10 +24,6 @@
 
 @protocol TTTabDelegate;
 
-// Protected
-extern CGFloat kTabMargin;
-extern const NSInteger kMaxBadgeNumber;
-
 @interface TTTabBar : TTView {
   NSString*       _tabStyle;
 
@@ -53,8 +49,5 @@ extern const NSInteger kMaxBadgeNumber;
 
 - (void)showTabAtIndex:(NSInteger)tabIndex;
 - (void)hideTabAtIndex:(NSInteger)tabIndex;
-
-// Protected
-- (CGSize)layoutTabs;
 
 @end

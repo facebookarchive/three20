@@ -16,7 +16,7 @@
 
 #import "Three20/TTTab.h"
 
-#import "Three20/TTTabBar.h" // For kMaxBadgeNumber
+#import "Three20/TTTabBarInternal.h"
 
 #import "Three20/TTCorePreprocessorMacros.h"
 
