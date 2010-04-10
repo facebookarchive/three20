@@ -17,11 +17,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class TTView, TTURLAction;
+@class TTView;
+@class TTURLAction;
 
 @interface TTLink : UIControl {
-  TTURLAction* _URLAction;
-  TTView* _screenView;
+  TTURLAction*  _URLAction;
+  TTView*       _screenView;
 }
 
 /**
