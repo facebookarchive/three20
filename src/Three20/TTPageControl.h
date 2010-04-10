@@ -25,15 +25,18 @@
 @interface TTPageControl : UIControl {
   NSInteger _numberOfPages;
   NSInteger _currentPage;
+
   NSString* _dotStyle;
-  TTStyle* _normalDotStyle;
-  TTStyle* _currentDotStyle;
-  BOOL _hidesForSinglePage;
+  TTStyle*  _normalDotStyle;
+  TTStyle*  _currentDotStyle;
+
+  BOOL      _hidesForSinglePage;
 }
 
-@property (nonatomic) NSInteger numberOfPages;
-@property (nonatomic) NSInteger currentPage;
+@property (nonatomic)       NSInteger numberOfPages;
+@property (nonatomic)       NSInteger currentPage;
 @property (nonatomic, copy) NSString* dotStyle;
-@property (nonatomic) BOOL hidesForSinglePage;
+
+@property (nonatomic)       BOOL      hidesForSinglePage;
 
 @end
