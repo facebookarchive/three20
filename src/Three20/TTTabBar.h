@@ -17,25 +17,33 @@
 #import "Three20/TTView.h"
 #import "Three20/TTButton.h"
 
-@class TTTabItem, TTTab, TTImageView, TTLabel;
+@class TTTabItem;
+@class TTTab;
+@class TTImageView;
+@class TTLabel;
 
 @protocol TTTabDelegate;
 
 @interface TTTabBar : TTView {
-  id<TTTabDelegate> _delegate;
-  NSString* _tabStyle;
-  NSInteger _selectedTabIndex;
-  NSArray* _tabItems;
+  NSString*       _tabStyle;
+
+  NSInteger       _selectedTabIndex;
+  NSArray*        _tabItems;
   NSMutableArray* _tabViews;
+
+  id<TTTabDelegate> _delegate;
 }
 
-@property (nonatomic, assign) id<TTTabDelegate> delegate;
-@property (nonatomic, retain) NSArray* tabItems;
-@property (nonatomic, readonly) NSArray* tabViews;
-@property (nonatomic, copy) NSString* tabStyle;
-@property (nonatomic, assign) TTTabItem* selectedTabItem;
-@property (nonatomic, assign) TTTab* selectedTabView;
-@property (nonatomic) NSInteger selectedTabIndex;
+@property (nonatomic, copy)     NSString*   tabStyle;
+
+@property (nonatomic, assign)   TTTabItem*  selectedTabItem;
+@property (nonatomic, assign) 	TTTab*      selectedTabView;
+@property (nonatomic)           NSInteger   selectedTabIndex;
+
+@property (nonatomic, retain)   NSArray*    tabItems;
+@property (nonatomic, readonly) NSArray*    tabViews;
+
+@property (nonatomic, assign)   id<TTTabDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame;
 
@@ -67,8 +75,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTTab : TTButton {
-  TTTabItem* _tabItem;
-  TTLabel* _badge;
+  TTTabItem*  _tabItem;
+  TTLabel*    _badge;
 }
 
 @property (nonatomic, retain) TTTabItem* tabItem;
@@ -82,15 +90,15 @@
 @interface TTTabItem : NSObject {
   NSString* _title;
   NSString* _icon;
-  id _object;
-  int _badgeNumber;
+  id        _object;
+  int       _badgeNumber;
   TTTabBar* _tabBar;
 }
 
-@property (nonatomic, copy) NSString* title;
-@property (nonatomic, copy) NSString* icon;
-@property (nonatomic, retain) id object;
-@property (nonatomic) int badgeNumber;
+@property (nonatomic, copy)   NSString* title;
+@property (nonatomic, copy)   NSString* icon;
+@property (nonatomic, retain) id        object;
+@property (nonatomic)         int       badgeNumber;
 
 - (id)initWithTitle:(NSString*)title;
 
