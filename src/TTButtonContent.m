@@ -108,6 +108,7 @@
 
   if (_imageURL.length) {
     [self reload];
+
   } else {
     self.image = nil;
     [_button setNeedsDisplay];

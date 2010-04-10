@@ -22,18 +22,18 @@
 @class TTStyle;
 
 @interface TTButtonContent : NSObject <TTURLRequestDelegate> {
-  TTButton* _button;
-  NSString* _title;
-  NSString* _imageURL;
-  UIImage* _image;
-  TTStyle* _style;
+  TTButton*     _button;
+  NSString*     _title;
+  NSString*     _imageURL;
+  UIImage*      _image;
+  TTStyle*      _style;
   TTURLRequest* _request;
 }
 
-@property (nonatomic, copy) NSString* title;
-@property (nonatomic, copy) NSString* imageURL;
-@property (nonatomic, retain) UIImage* image;
-@property (nonatomic, retain) TTStyle* style;
+@property (nonatomic, copy)   NSString* title;
+@property (nonatomic, copy)   NSString* imageURL;
+@property (nonatomic, retain) UIImage*  image;
+@property (nonatomic, retain) TTStyle*  style;
 
 - (id)initWithButton:(TTButton*)button;
 
