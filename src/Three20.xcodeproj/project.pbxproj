@@ -82,6 +82,8 @@
 		6E94C8F7116FF1550012B12C /* TTImageViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C8F6116FF1550012B12C /* TTImageViewDelegate.h */; };
 		6E94C907116FF45E0012B12C /* TTScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C906116FF45E0012B12C /* TTScrollViewDelegate.h */; };
 		6E94C90D116FF50E0012B12C /* TTScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C90C116FF50E0012B12C /* TTScrollViewDataSource.h */; };
+		6E94C924116FFD120012B12C /* TTButtonContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E94C922116FFD120012B12C /* TTButtonContent.m */; };
+		6E94C926116FFD240012B12C /* TTButtonContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E94C925116FFD240012B12C /* TTButtonContent.h */; };
 		6EB0117911118040004D204C /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB0117711118040004D204C /* TTImageLayer.m */; };
 		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
 		6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB013871112C513004D204C /* TTImageViewInternal.m */; };
@@ -374,6 +376,8 @@
 		6E94C8F6116FF1550012B12C /* TTImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageViewDelegate.h; path = Three20/TTImageViewDelegate.h; sourceTree = "<group>"; };
 		6E94C906116FF45E0012B12C /* TTScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTScrollViewDelegate.h; path = Three20/TTScrollViewDelegate.h; sourceTree = "<group>"; };
 		6E94C90C116FF50E0012B12C /* TTScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTScrollViewDataSource.h; path = Three20/TTScrollViewDataSource.h; sourceTree = "<group>"; };
+		6E94C922116FFD120012B12C /* TTButtonContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTButtonContent.m; sourceTree = "<group>"; };
+		6E94C925116FFD240012B12C /* TTButtonContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTButtonContent.h; path = Three20/TTButtonContent.h; sourceTree = "<group>"; };
 		6EB0117711118040004D204C /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageLayer.m; sourceTree = "<group>"; };
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
@@ -790,6 +794,15 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		6E94C920116FFD080012B12C /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6E94C925116FFD240012B12C /* TTButtonContent.h */,
+				6E94C922116FFD120012B12C /* TTButtonContent.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		6EB0117C1111805D004D204C /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -928,6 +941,7 @@
 		BED631A10F88554F009923D8 /* Buttons and Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				6E94C920116FFD080012B12C /* Private */,
 				BEC5EC400F8C29EA007622CD /* TTButton.h */,
 				BEC5EC3E0F8C29DA007622CD /* TTButton.m */,
 				BE42FB150F3BBAB400A3B65A /* TTLink.h */,
@@ -1395,6 +1409,7 @@
 				6E94C8F7116FF1550012B12C /* TTImageViewDelegate.h in Headers */,
 				6E94C907116FF45E0012B12C /* TTScrollViewDelegate.h in Headers */,
 				6E94C90D116FF50E0012B12C /* TTScrollViewDataSource.h in Headers */,
+				6E94C926116FFD240012B12C /* TTButtonContent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1608,6 +1623,7 @@
 				6E94C833116DAA250012B12C /* TTMessageSubjectField.m in Sources */,
 				6E94C86F116EE58B0012B12C /* TTAlertView.m in Sources */,
 				6E94C885116EE87E0012B12C /* TTActionSheet.m in Sources */,
+				6E94C924116FFD120012B12C /* TTButtonContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

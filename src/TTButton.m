@@ -16,6 +16,8 @@
 
 #import "Three20/TTButton.h"
 
+#import "Three20/TTButtonContent.h"
+
 #import "Three20/TTGlobalUI.h"
 
 #import "Three20/TTDefaultStyleSheet.h"
@@ -26,126 +28,8 @@
 
 #import "Three20/TTURLCache.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// global
-
 static const CGFloat kHPadding = 8;
 static const CGFloat kVPadding = 7;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTButtonContent : NSObject <TTURLRequestDelegate> {
-  TTButton* _button;
-  NSString* _title;
-  NSString* _imageURL;
-  UIImage* _image;
-  TTStyle* _style;
-  TTURLRequest* _request;
-}
-
-@property (nonatomic, copy) NSString* title;
-@property (nonatomic, copy) NSString* imageURL;
-@property (nonatomic, retain) UIImage* image;
-@property (nonatomic, retain) TTStyle* style;
-
-- (id)initWithButton:(TTButton*)button;
-
-- (void)reload;
-- (void)stopLoading;
-
-@end
-
-@implementation TTButtonContent
-
-@synthesize title = _title, imageURL = _imageURL, image = _image, style = _style;
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithButton:(TTButton*)button {
-  if (self = [super init]) {
-    _button = button;
-    _title = nil;
-    _imageURL = nil;
-    _image = nil;
-    _request = nil;
-    _style = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [_request cancel];
-  TT_RELEASE_SAFELY(_request);
-  TT_RELEASE_SAFELY(_title);
-  TT_RELEASE_SAFELY(_imageURL);
-  TT_RELEASE_SAFELY(_image);
-  TT_RELEASE_SAFELY(_style);
-  [super dealloc];
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// TTURLRequestDelegate
-
-- (void)requestDidStartLoad:(TTURLRequest*)request {
-  [_request release];
-  _request = [request retain];
-}
-
-- (void)requestDidFinishLoad:(TTURLRequest*)request {
-  TTURLImageResponse* response = request.response;
-  self.image = response.image;
-  [_button setNeedsDisplay];
-
-  TT_RELEASE_SAFELY(_request);
-}
-
-- (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
-  TT_RELEASE_SAFELY(_request);
-}
-
-- (void)requestDidCancelLoad:(TTURLRequest*)request {
-  TT_RELEASE_SAFELY(_request);
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// public
-
-- (void)setImageURL:(NSString*)URL {
-  if (self.image && _imageURL && [URL isEqualToString:_imageURL])
-    return;
-
-  [self stopLoading];
-  [_imageURL release];
-  _imageURL = [URL retain];
-
-  if (_imageURL.length) {
-    [self reload];
-  } else {
-    self.image = nil;
-    [_button setNeedsDisplay];
-  }
-}
-
-- (void)reload {
-  if (!_request && _imageURL) {
-    UIImage* image = [[TTURLCache sharedCache] imageForURL:_imageURL];
-    if (image) {
-      self.image = image;
-      [_button setNeedsDisplay];
-    } else {
-      TTURLRequest* request = [TTURLRequest requestWithURL:_imageURL delegate:self];
-      request.response = [[[TTURLImageResponse alloc] init] autorelease];
-      [request send];
-    }
-  }
-}
-
-- (void)stopLoading {
-  [_request cancel];
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

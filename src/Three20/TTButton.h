@@ -17,13 +17,13 @@
 #import "Three20/TTStyle.h"
 
 @interface TTButton : UIControl <TTStyleDelegate> {
-  NSMutableDictionary* _content;
-  UIFont* _font;
-  BOOL _isVertical;
+  NSMutableDictionary*  _content;
+  UIFont*               _font;
+  BOOL                  _isVertical;
 }
 
 @property (nonatomic, retain) UIFont* font;
-@property (nonatomic) BOOL isVertical;
+@property (nonatomic)         BOOL    isVertical;
 
 + (TTButton*)buttonWithStyle:(NSString*)selector;
 + (TTButton*)buttonWithStyle:(NSString*)selector title:(NSString*)title;
