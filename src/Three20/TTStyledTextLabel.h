@@ -16,22 +16,28 @@
 
 #import "Three20/TTStyledText.h"
 
-@class TTStyledElement, TTStyledBoxFrame, TTStyle;
+@class TTStyledElement;
+@class TTStyledBoxFrame;
+@class TTStyle;
 
 /**
  * A view that can display styled text.
  */
 @interface TTStyledTextLabel : UIView <TTStyledTextDelegate> {
-  TTStyledText* _text;
-  UIFont* _font;
-  UIColor* _textColor;
-  UIColor* _highlightedTextColor;
-  UITextAlignment _textAlignment;
-  UIEdgeInsets _contentInset;
-  BOOL _highlighted;
-  TTStyledElement* _highlightedNode;
+  TTStyledText*     _text;
+
+  UIColor*          _textColor;
+  UIColor*          _highlightedTextColor;
+  UIFont*           _font;
+  UITextAlignment   _textAlignment;
+
+  UIEdgeInsets      _contentInset;
+
+  BOOL              _highlighted;
+  TTStyledElement*  _highlightedNode;
   TTStyledBoxFrame* _highlightedFrame;
-  NSMutableArray* _accessibilityElements;
+
+  NSMutableArray*   _accessibilityElements;
 }
 
 /**

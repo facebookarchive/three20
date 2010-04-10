@@ -23,28 +23,68 @@
 #import "Three20/TTStyleSheet.h"
 #import "Three20/TTTableView.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// global
-
 static const CGFloat kCancelHighlightThreshold = 4;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTStyledTextLabel
 
-@synthesize text = _text, font = _font, textColor = _textColor,
-            highlightedTextColor = _highlightedTextColor, textAlignment = _textAlignment,
-            contentInset = _contentInset, highlighted = _highlighted,
-            highlightedNode = _highlightedNode;
+@synthesize text                  = _text;
+@synthesize textColor             = _textColor;
+@synthesize highlightedTextColor  = _highlightedTextColor;
+@synthesize font                  = _font;
+@synthesize textAlignment         = _textAlignment;
+@synthesize contentInset          = _contentInset;
+@synthesize highlighted           = _highlighted;
+@synthesize highlightedNode       = _highlightedNode;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
+- (id)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _textAlignment  = UITextAlignmentLeft;
+    _contentInset   = UIEdgeInsetsZero;
 
+    self.font = TTSTYLEVAR(font);
+    self.backgroundColor = TTSTYLEVAR(backgroundColor);
+    self.contentMode = UIViewContentModeRedraw;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  _text.delegate = nil;
+  TT_RELEASE_SAFELY(_text);
+  TT_RELEASE_SAFELY(_font);
+  TT_RELEASE_SAFELY(_textColor);
+  TT_RELEASE_SAFELY(_highlightedTextColor);
+  TT_RELEASE_SAFELY(_highlightedNode);
+  TT_RELEASE_SAFELY(_highlightedFrame);
+  TT_RELEASE_SAFELY(_accessibilityElements);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // UITableView looks for this function and crashes if it is not found when you select a cell
 - (BOOL)isHighlighted {
   return _highlighted;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setStyle:(TTStyle*)style forFrame:(TTStyledBoxFrame*)frame {
   if ([frame isKindOfClass:[TTStyledInlineFrame class]]) {
     TTStyledInlineFrame* inlineFrame = (TTStyledInlineFrame*)frame;
@@ -60,6 +100,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setHighlightedFrame:(TTStyledBoxFrame*)frame{
   if (frame != _highlightedFrame) {
     TTTableView* tableView = (TTTableView*)[self ancestorOrSelfWithClass:[TTTableView class]];
@@ -95,6 +137,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)combineTextFromFrame:(TTStyledTextFrame*)fromFrame toFrame:(TTStyledTextFrame*)toFrame {
   NSMutableArray* strings = [NSMutableArray array];
   for (TTStyledTextFrame* frame = fromFrame; frame && frame != toFrame;
@@ -104,6 +148,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   return [strings componentsJoinedByString:@""];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addAccessibilityElementFromFrame:(TTStyledTextFrame*)fromFrame
         toFrame:(TTStyledTextFrame*)toFrame withEdges:(UIEdgeInsets)edges {
   CGRect rect = CGRectMake(edges.left, edges.top,
@@ -121,12 +167,16 @@ static const CGFloat kCancelHighlightThreshold = 4;
   [_accessibilityElements addObject:acc];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIEdgeInsets)edgesForRect:(CGRect)rect {
   return UIEdgeInsetsMake(rect.origin.y, rect.origin.x,
                           rect.origin.y+rect.size.height,
                           rect.origin.x+rect.size.width);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addAccessibilityElementsForNode:(TTStyledNode*)node {
   if ([node isKindOfClass:[TTStyledLinkNode class]]) {
     UIAccessibilityElement* acc = [[[UIAccessibilityElement alloc]
@@ -167,6 +217,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSMutableArray*)accessibilityElements {
   if (!_accessibilityElements) {
     _accessibilityElements = [[NSMutableArray alloc] init];
@@ -175,49 +227,20 @@ static const CGFloat kCancelHighlightThreshold = 4;
   return _accessibilityElements;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    _text = nil;
-    _font = nil;
-    _textColor = nil;
-    _highlightedTextColor = nil;
-    _textAlignment = UITextAlignmentLeft;
-    _contentInset = UIEdgeInsetsZero;
-    _highlighted = NO;
-    _highlightedNode = nil;
-    _highlightedFrame = nil;
-    _accessibilityElements = nil;
-
-    self.font = TTSTYLEVAR(font);
-    self.backgroundColor = TTSTYLEVAR(backgroundColor);
-    self.contentMode = UIViewContentModeRedraw;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  _text.delegate = nil;
-  TT_RELEASE_SAFELY(_text);
-  TT_RELEASE_SAFELY(_font);
-  TT_RELEASE_SAFELY(_textColor);
-  TT_RELEASE_SAFELY(_highlightedTextColor);
-  TT_RELEASE_SAFELY(_highlightedNode);
-  TT_RELEASE_SAFELY(_highlightedFrame);
-  TT_RELEASE_SAFELY(_accessibilityElements);
-  [super dealloc];
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// UIResponder
+#pragma mark -
+#pragma mark UIResponder
 
 /*
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)canBecomeFirstResponder {
   return YES;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)becomeFirstResponder {
   BOOL became = [super becomeFirstResponder];
 
@@ -229,6 +252,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   return became;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)resignFirstResponder {
   self.highlighted = NO;
   BOOL resigned = [super resignFirstResponder];
@@ -237,6 +262,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 */
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   UITouch* touch = [touches anyObject];
   CGPoint point = [touch locationInView:self];
@@ -253,10 +280,14 @@ static const CGFloat kCancelHighlightThreshold = 4;
   [super touchesBegan:touches withEvent:event];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesMoved:touches withEvent:event];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
   TTTableView* tableView = (TTTableView*)[self ancestorOrSelfWithClass:[TTTableView class]];
   if (!tableView) {
@@ -271,13 +302,20 @@ static const CGFloat kCancelHighlightThreshold = 4;
   [super touchesEnded:touches withEvent:event];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesCancelled:touches withEvent:event];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIView
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawRect:(CGRect)rect {
   if (_highlighted) {
     [self.highlightedTextColor setFill];
@@ -290,6 +328,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   [_text drawAtPoint:origin highlighted:_highlighted];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   [super layoutSubviews];
   CGFloat newWidth = self.width - (_contentInset.left + _contentInset.right);
@@ -301,6 +341,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   _text.width = newWidth;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)sizeThatFits:(CGSize)size {
   [self layoutIfNeeded];
   return CGSizeMake(_text.width + (_contentInset.left + _contentInset.right),
@@ -308,40 +350,63 @@ static const CGFloat kCancelHighlightThreshold = 4;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// UIAccessibilityContainer
+#pragma mark -
+#pragma mark UIAccessibilityContainer
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)accessibilityElementAtIndex:(NSInteger)index {
   return [[self accessibilityElements] objectAtIndex:index];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)accessibilityElementCount {
   return [self accessibilityElements].count;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)indexOfAccessibilityElement:(id)element {
   return [[self accessibilityElements] indexOfObject:element];
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// UIResponderStandardEditActions
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIResponderStandardEditActions
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)copy:(id)sender {
   NSString* text = _text.rootNode.outerText;
   UIPasteboard* pasteboard = [UIPasteboard generalPasteboard];
   [pasteboard setValue:text forPasteboardType:@"public.utf8-plain-text"];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTStyledTextDelegate
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTStyledTextDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)styledTextNeedsDisplay:(TTStyledText*)text {
   [self setNeedsDisplay];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setText:(TTStyledText*)text {
   if (text != _text) {
     _text.delegate = nil;
@@ -355,14 +420,20 @@ static const CGFloat kCancelHighlightThreshold = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)html {
   return [_text description];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setHtml:(NSString*)html {
   self.text = [TTStyledText textFromXHTML:html];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFont:(UIFont*)font {
   if (font != _font) {
     [_font release];
@@ -372,6 +443,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)textColor {
   if (!_textColor) {
     _textColor = [TTSTYLEVAR(textColor) retain];
@@ -379,6 +452,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   return _textColor;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextColor:(UIColor*)textColor {
   if (textColor != _textColor) {
     [_textColor release];
@@ -387,6 +462,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)highlightedTextColor {
   if (!_highlightedTextColor) {
     _highlightedTextColor = [TTSTYLEVAR(highlightedTextColor) retain];
@@ -394,6 +471,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   return _highlightedTextColor;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setHighlightedNode:(TTStyledElement*)node {
   if (node != _highlightedNode) {
     if (!node) {
@@ -404,5 +483,6 @@ static const CGFloat kCancelHighlightThreshold = 4;
     }
   }
 }
+
 
 @end
