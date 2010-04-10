@@ -70,7 +70,7 @@
 		6E105AD1112CDBCC00549F42 /* TTTwitterTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterTweet.m; sourceTree = "<group>"; };
 		6E94C736116D985F0012B12C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Resources/Default.png; sourceTree = SOURCE_ROOT; };
 		6E94C73C116D98920012B12C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		6EECCB77112CE5B700A8908C /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = SOURCE_ROOT; };
+		6EECCB77112CE5B700A8908C /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TTTwitter-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTTwitter-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		EB383B5710BBF6180000B2D2 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -101,7 +101,6 @@
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				6E10599A112CCCC400549F42 /* Atlas.h */,
 				6E10599B112CCCC400549F42 /* Atlas.m */,
-				6EECCB77112CE5B700A8908C /* README.mdown */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -117,6 +116,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				6EECCB77112CE5B700A8908C /* README.mdown */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
