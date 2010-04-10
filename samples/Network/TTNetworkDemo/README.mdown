@@ -1,0 +1,15 @@
+
+TTNetworkDemo Example Project
+=============================
+
+Version: 1.0
+
+Created by: Jeff Verkoeyen (github.com/jverkoey && @featherless)
+
+Three20 technologies used:
+
+Three20 Core
+Three20 Network
+
+Overview
+--------
