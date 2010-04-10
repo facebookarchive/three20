@@ -16,26 +16,26 @@
 
 #import "Three20/TTTabBar.h"
 
+#import "Three20/TTTab.h"
+#import "Three20/TTTabDelegate.h"
+
 #import "Three20/TTGlobalUI.h"
 
-#import "Three20/TTImageView.h"
-#import "Three20/TTLabel.h"
-#import "Three20/TTLayout.h"
 #import "Three20/TTStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
 
-static CGFloat kTabMargin = 10;
+CGFloat kTabMargin = 10;
 static CGFloat kPadding = 10;
-static const NSInteger kMaxBadgeNumber = 99;
+const NSInteger kMaxBadgeNumber = 99;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTTabBar
 
 @synthesize delegate = _delegate, tabItems = _tabItems, tabViews = _tabViews,
-            tabStyle = _tabStyle, selectedTabIndex = _selectedTabIndex; 
+            tabStyle = _tabStyle, selectedTabIndex = _selectedTabIndex;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
@@ -46,7 +46,7 @@ static const NSInteger kMaxBadgeNumber = 99;
 
 - (CGSize)layoutTabs {
   CGFloat x = kTabMargin;
-  
+
   if (self.contentMode == UIViewContentModeScaleToFill) {
     CGFloat maxTextWidth = self.width - (kTabMargin*2 + kPadding*2*_tabViews.count);
     CGFloat totalTextWidth = 0;
@@ -94,7 +94,7 @@ static const NSInteger kMaxBadgeNumber = 99;
       x += tab.width;
     }
   }
-  
+
   return CGSizeMake(x, self.height);
 }
 
@@ -111,7 +111,7 @@ static const NSInteger kMaxBadgeNumber = 99;
     _tabItems = nil;
     _tabViews = [[NSMutableArray alloc] init];
     _tabStyle = nil;
-    
+
     self.style = TTSTYLE(tabBar);
     self.tabStyle = @"tab:";
   }
@@ -169,7 +169,7 @@ static const NSInteger kMaxBadgeNumber = 99;
     if (_selectedTabIndex != NSIntegerMax) {
       self.selectedTabView.selected = YES;
     }
-    
+
     if ([_delegate respondsToSelector:@selector(tabBar:tabSelected:)]) {
       [_delegate tabBar:self tabSelected:_selectedTabIndex];
     }
@@ -179,12 +179,12 @@ static const NSInteger kMaxBadgeNumber = 99;
 - (void)setTabItems:(NSArray*)tabItems {
   [_tabItems release];
   _tabItems =  [tabItems retain];
-  
+
   for (int i = 0; i < _tabViews.count; ++i) {
     TTTab* tab = [_tabViews objectAtIndex:i];
     [tab removeFromSuperview];
   }
-  
+
   [_tabViews removeAllObjects];
 
   if (_selectedTabIndex >= _tabViews.count) {
@@ -202,7 +202,7 @@ static const NSInteger kMaxBadgeNumber = 99;
       tab.selected = YES;
     }
   }
-  
+
   [self setNeedsLayout];
 }
 
@@ -214,319 +214,6 @@ static const NSInteger kMaxBadgeNumber = 99;
 - (void)hideTabAtIndex:(NSInteger)tabIndex {
   TTTab* tab = [_tabViews objectAtIndex:tabIndex];
   tab.hidden = YES;
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTabStrip
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (void)addTab:(TTTab*)tab {
-  [_scrollView addSubview:tab];
-}
-
-- (void)updateOverflow {
-  if (_scrollView.contentOffset.x < (_scrollView.contentSize.width-self.width)) {
-    if (!_overflowRight) {
-      _overflowRight = [[TTView alloc] init];
-      _overflowRight.style = TTSTYLE(tabOverflowRight);
-      _overflowRight.userInteractionEnabled = NO;
-      _overflowRight.backgroundColor = [UIColor clearColor];
-      [_overflowRight sizeToFit];
-      [self addSubview:_overflowRight];
-    }
-    
-    _overflowRight.left = self.width-_overflowRight.width;
-    _overflowRight.hidden = NO;
-  } else {
-    _overflowRight.hidden = YES;
-  }
-  if (_scrollView.contentOffset.x > 0) {
-    if (!_overflowLeft) {
-      _overflowLeft = [[TTView alloc] init];
-      _overflowLeft.style = TTSTYLE(tabOverflowLeft);
-      _overflowLeft.userInteractionEnabled = NO;
-      _overflowLeft.backgroundColor = [UIColor clearColor];
-      [_overflowLeft sizeToFit];
-      [self addSubview:_overflowLeft];
-    }
-
-    _overflowLeft.hidden = NO;
-  } else {
-    _overflowLeft.hidden = YES;
-  }
-}
-
-- (CGSize)layoutTabs {
-  CGSize size = [super layoutTabs];
-  
-  CGPoint contentOffset = _scrollView.contentOffset;
-  _scrollView.frame = self.bounds;
-  _scrollView.contentSize = CGSizeMake(size.width + kTabMargin, self.height);
-  _scrollView.contentOffset = contentOffset;
-  
-  return size;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithFrame:(CGRect)frame  {
-  if (self = [super initWithFrame:frame]) {
-    _overflowLeft = nil;
-    _overflowRight = nil;
-
-    _scrollView = [[UIScrollView alloc] init];
-    _scrollView.scrollEnabled = YES;
-    _scrollView.scrollsToTop = NO;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.showsHorizontalScrollIndicator = NO;
-    [self addSubview:_scrollView];
-    
-    self.style = TTSTYLE(tabStrip);
-    self.tabStyle = @"tabRound:";
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_overflowLeft);
-  TT_RELEASE_SAFELY(_overflowRight);
-  TT_RELEASE_SAFELY(_scrollView);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  [self updateOverflow];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTabBar
-
-- (void)setTabItems:(NSArray*)tabItems {
-  [super setTabItems:tabItems];
-  [self updateOverflow];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTabGrid
-
-@synthesize columnCount = _columnCount;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (NSInteger)rowCount {
-  return ceil((float)self.tabViews.count / self.columnCount);
-}
-
-- (void)updateTabStyles {
-  CGFloat columnCount = [self columnCount];
-  int rowCount = [self rowCount];
-  int cellCount = rowCount * columnCount;
-
-  if (self.tabViews.count > columnCount) {
-    int column = 0;
-    for (TTTab* tab in self.tabViews) {
-      if (column == 0) {
-        [tab setStylesWithSelector:@"tabGridTabTopLeft:"];
-      } else if (column == columnCount-1) {
-        [tab setStylesWithSelector:@"tabGridTabTopRight:"];
-      } else if (column == cellCount - columnCount) {
-        [tab setStylesWithSelector:@"tabGridTabBottomLeft:"];
-      } else if (column == cellCount - 1) {
-        [tab setStylesWithSelector:@"tabGridTabBottomRight:"];
-      } else {
-        [tab setStylesWithSelector:@"tabGridTabCenter:"];
-      }
-      ++column;
-    }
-  } else {
-    int column = 0;
-    for (TTTab* tab in self.tabViews) {
-      if (column == 0) {
-        [tab setStylesWithSelector:@"tabGridTabLeft:"];
-      } else if (column == columnCount-1) {
-        [tab setStylesWithSelector:@"tabGridTabRight:"];
-      } else {
-        [tab setStylesWithSelector:@"tabGridTabCenter:"];
-      }
-      ++column;
-    }
-  }
-}
-
-- (CGSize)layoutTabs {
-  if (self.width && self.height) {
-    TTGridLayout* layout = [[[TTGridLayout alloc] init] autorelease];
-    layout.padding = 1;
-    layout.columnCount = [self columnCount];
-    return [layout layoutSubviews:self.tabViews forView:self];
-  } else {
-    return self.frame.size;
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithFrame:(CGRect)frame  {
-  if (self = [super initWithFrame:frame]) {
-    self.style = TTSTYLE(tabGrid);
-    _columnCount = 3;
-  }
-  return self;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
-
-- (CGSize)sizeThatFits:(CGSize)size {
-  CGSize styleSize = [super sizeThatFits:size];
-  for (TTTab* tab in self.tabViews) {
-    CGSize tabSize = [tab sizeThatFits:CGSizeZero];
-    NSInteger rowCount = [self rowCount];
-    return CGSizeMake(size.width,
-                      rowCount ? tabSize.height * [self rowCount] + styleSize.height : 0);
-  }
-  return size;
-}
-
-- (void)setTabItems:(NSArray*)tabItems {
-  [super setTabItems:tabItems];
-  [self updateTabStyles];
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTab
-
-@synthesize tabItem = _tabItem;
-
-- (id)initWithItem:(TTTabItem*)tabItem tabBar:(TTTabBar*)tabBar {
-  if (self = [self init]) {
-    _badge = nil;
-    
-    self.tabItem = tabItem;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_tabItem);
-  TT_RELEASE_SAFELY(_badge);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)updateBadgeNumber {
-  if (_tabItem.badgeNumber) {
-    if (!_badge) {
-      _badge = [[TTLabel alloc] init];
-      _badge.style = TTSTYLE(badge);
-      _badge.backgroundColor = [UIColor clearColor];
-      _badge.userInteractionEnabled = NO;
-      [self addSubview:_badge];
-    }
-    if (_tabItem.badgeNumber <= kMaxBadgeNumber) {
-      _badge.text = [NSString stringWithFormat:@"%d", _tabItem.badgeNumber];
-    } else {
-      _badge.text = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
-    }
-    [_badge sizeToFit];
-    
-    _badge.frame = CGRectMake(self.width - _badge.width-1, 1, _badge.width, _badge.height);
-    _badge.hidden = NO;
-  } else {
-    _badge.hidden = YES;
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTabItemDelegate
-
-- (void)tabItem:(TTTabItem*)item badgeNumberChangedTo:(int)value {
-  [self updateBadgeNumber];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)setTabItem:(TTTabItem*)tabItem {
-  if (tabItem != _tabItem) {
-    [_tabItem performSelector:@selector(setTabBar:) withObject:nil];
-    [_tabItem release];
-    _tabItem = [tabItem retain];
-    [_tabItem performSelector:@selector(setTabBar:) withObject:self];
-
-    [self setTitle:_tabItem.title forState:UIControlStateNormal];
-    [self setImage:_tabItem.icon forState:UIControlStateNormal];
-
-    if (_tabItem.badgeNumber) {
-      [self updateBadgeNumber];
-    }
-  }
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation TTTabItem
-
-@synthesize title = _title, icon = _icon, object = _object, badgeNumber = _badgeNumber;
-
-- (id)initWithTitle:(NSString*)title {
-  if (self = [self init]) {
-    self.title = title;
-  }
-  return self;
-}
-
-- (id)init {
-  if (self = [super init]) {
-    _title = nil;
-    _icon = nil;
-    _object = nil;
-    _badgeNumber = 0;
-    _tabBar = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_title);
-  TT_RELEASE_SAFELY(_icon);
-  TT_RELEASE_SAFELY(_object);
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)setTabBar:(TTTabBar*)tabBar {
-  _tabBar = tabBar;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-- (void)setBadgeNumber:(int)value {
-  value = value < 0 ? 0 : value;
-  _badgeNumber = value;
-  [_tabBar performSelector:@selector(tabItem:badgeNumberChangedTo:) withObject:self
-    withObject:(id)value];
 }
 
 @end

@@ -99,6 +99,11 @@
 #import "Three20/TTButton.h"
 #import "Three20/TTLink.h"
 #import "Three20/TTTabBar.h"
+#import "Three20/TTTabDelegate.h"
+#import "Three20/TTTabStrip.h"
+#import "Three20/TTTabGrid.h"
+#import "Three20/TTTab.h"
+#import "Three20/TTTabItem.h"
 #import "Three20/TTButtonBar.h"
 #import "Three20/TTPageControl.h"
 
