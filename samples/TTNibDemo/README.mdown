@@ -4,7 +4,7 @@ NibDemo Example Project
 
 Version: 1.0
 
-Created by: Don Skotch Vail (github.com/skotchvail) and Brian Chapados (http://github.com/chapados)
+Created by: Skotch Vail (github.com/skotchvail) and Brian Chapados (http://github.com/chapados)
 
 Notes
 -----
