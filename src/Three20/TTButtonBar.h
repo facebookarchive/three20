@@ -21,11 +21,11 @@
  */
 @interface TTButtonBar : TTView {
   NSMutableArray* _buttons;
-  NSString* _buttonStyle;
+  NSString*       _buttonStyle;
 }
 
-@property (nonatomic, retain) NSArray* buttons;
-@property (nonatomic, copy) NSString* buttonStyle;
+@property (nonatomic, retain) NSArray*  buttons;
+@property (nonatomic, copy)   NSString* buttonStyle;
 
 - (void)addButton:(NSString*)title target:(id)target action:(SEL)selector;
 - (void)removeButtons;
