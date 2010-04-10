@@ -16,11 +16,13 @@
 
 #import "Three20/TTRequestLoader.h"
 
+// Network
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTURLRequestDelegate.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTURLResponse.h"
 
+// Core
 #import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"

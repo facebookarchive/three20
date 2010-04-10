@@ -16,13 +16,15 @@
 
 #import "Three20/TTURLCache.h"
 
+// Network
+#import "Three20/TTGlobalNetwork.h"
+
+// Core
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCorePaths.h"
-#import "Three20/TTGlobalNetwork.h"
 #import "Three20/TTDebugFlags.h"
 
-#import <CommonCrypto/CommonDigest.h>
-#import <QuartzCore/QuartzCore.h>
+#import <CommonCrypto/CommonDigest.h> // For CC_MD5
 
 static const  CGFloat   kLargeImageSize   = 600 * 400;
 static        NSString* kDefaultCacheName = @"Three20";

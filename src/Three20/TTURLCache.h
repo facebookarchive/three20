@@ -22,7 +22,7 @@
 @interface TTURLCache : NSObject {
   NSString*             _name;
   NSString*             _cachePath;
-  NSMutableDictionary* _imageCache;
+  NSMutableDictionary*  _imageCache;
   NSMutableArray*       _imageSortedList;
   NSUInteger            _totalPixelCount;
   NSUInteger            _maxPixelCount;

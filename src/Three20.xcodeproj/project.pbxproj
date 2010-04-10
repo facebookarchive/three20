@@ -1093,6 +1093,8 @@
 			children = (
 				BEF31F6D0F352E64000DE5D2 /* TTViewController.h */,
 				BEF31F570F352E64000DE5D2 /* TTViewController.m */,
+				BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */,
+				BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */,
 				BEA69ECC0FAC0FEC00DA7DDC /* TTWebController.h */,
 				BEA69ECA0FAC0FD600DA7DDC /* TTWebController.m */,
 				BEE34EAF0F495C4A008C826E /* TTMessageController.h */,
@@ -1127,8 +1129,6 @@
 				6EEFB6DD11627305009B479E /* TTModelDelegate.h */,
 				6EEFB6C61162717F009B479E /* TTURLRequestModel.h */,
 				6EEFB6C811627188009B479E /* TTURLRequestModel.m */,
-				BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */,
-				BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";

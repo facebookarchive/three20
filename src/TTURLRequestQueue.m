@@ -16,17 +16,20 @@
 
 #import "Three20/TTURLRequestQueue.h"
 
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTGlobalCorePaths.h"
-#import "Three20/TTDebugFlags.h"
-
+// Network
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTURLRequestDelegate.h"
 #import "Three20/TTUserInfo.h"
 #import "Three20/TTURLResponse.h"
 #import "Three20/TTURLCache.h"
 
+// Network (Private)
 #import "Three20/TTRequestLoader.h"
+
+// Core
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCorePaths.h"
+#import "Three20/TTDebugFlags.h"
 
 static const NSTimeInterval kFlushDelay = 0.3;
 static const NSTimeInterval kTimeout = 300.0;

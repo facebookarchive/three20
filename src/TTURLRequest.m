@@ -16,13 +16,15 @@
 
 #import "Three20/TTURLRequest.h"
 
+// Network
 #import "Three20/TTURLResponse.h"
 #import "Three20/TTURLRequestQueue.h"
 
+// Core
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTDebugFlags.h"
 
-#import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonDigest.h> // For CC_MD5
 
 static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 

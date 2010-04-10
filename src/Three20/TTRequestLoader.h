@@ -14,9 +14,11 @@
 // limitations under the License.
 //
 
+// Network
 #import "Three20/TTGlobalNetwork.h"
 
-#import "Three20/TTCorePreprocessorMacros.h"
+// Core
+#import "Three20/TTCorePreprocessorMacros.h" // For __TTDEPRECATED_METHOD
 
 @class TTURLRequestQueue;
 @class TTURLRequest;

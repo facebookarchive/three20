@@ -16,10 +16,12 @@
 
 #import "Three20/TTURLRequestModel.h"
 
+// Network
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTURLCache.h"
 
+// Core
 #import "Three20/TTGlobalCore.h"
 
 
