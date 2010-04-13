@@ -18,7 +18,8 @@
 #import <UIKit/UIKit.h>
 
 @protocol TTTableViewDataSource;
-@class TTSearchTextFieldInternal, TTView;
+@class TTSearchTextFieldInternal;
+@class TTView;
 
 @interface TTSearchTextField : UITextField <UITableViewDelegate> {
   TTSearchTextFieldInternal*  _internal;

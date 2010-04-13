@@ -17,6 +17,7 @@
 #import "Three20/TTSearchTextField.h"
 
 #import "Three20/TTSearchTextFieldDelegate.h"
+#import "Three20/TTSearchTextFieldInternal.h"
 
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
@@ -28,112 +29,8 @@
 #import "Three20/TTTableItemCell.h"
 #import "Three20/TTTableViewDataSource.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 static const CGFloat kShadowHeight = 24;
 static const CGFloat kDesiredTableHeight = 150;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTSearchTextFieldInternal : NSObject <UITextFieldDelegate> {
-  TTSearchTextField* _textField;
-  id<UITextFieldDelegate> _delegate;
-}
-
-@property (nonatomic, assign) id<UITextFieldDelegate> delegate;
-
-- (id)initWithTextField:(TTSearchTextField*)textField;
-
-@end
-
-@implementation TTSearchTextFieldInternal
-
-@synthesize delegate = _delegate;
-
-- (id)initWithTextField:(TTSearchTextField*)textField {
-  if (self = [super init]) {
-    _textField = textField;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [super dealloc];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UITextFieldDelegate
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-  if ([_delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)]) {
-    return [_delegate textFieldShouldBeginEditing:textField];
-  } else {
-    return YES;
-  }
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-  if ([_delegate respondsToSelector:@selector(textFieldDidBeginEditing:)]) {
-    [_delegate textFieldDidBeginEditing:textField];
-  }
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-  if ([_delegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
-    return [_delegate textFieldShouldEndEditing:textField];
-  } else {
-    return YES;
-  }
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-  if ([_delegate respondsToSelector:@selector(textFieldDidEndEditing:)]) {
-    [_delegate textFieldDidEndEditing:textField];
-  }
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
-    replacementString:(NSString *)string {
-  if (![_textField shouldUpdate:!string.length]) {
-    return NO;
-  }
-
-  SEL sel = @selector(textField:shouldChangeCharactersInRange:replacementString:);
-  if ([_delegate respondsToSelector:sel]) {
-    return [_delegate textField:textField shouldChangeCharactersInRange:range
-      replacementString:string];
-  } else {
-    return YES;
-  }
-}
-
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-  [_textField shouldUpdate:YES];
-
-  if ([_delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
-    return [_delegate textFieldShouldClear:textField];
-  } else {
-    return YES;
-  }
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-  BOOL shouldReturn = YES;
-  if ([_delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
-    shouldReturn = [_delegate textFieldShouldReturn:textField];
-  }
-
-  if (shouldReturn) {
-    if (!_textField.searchesAutomatically) {
-      [_textField search];
-    } else {
-      [_textField performSelector:@selector(doneAction)];
-    }
-  }
-  return shouldReturn;
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
