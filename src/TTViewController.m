@@ -48,9 +48,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/*
- Since this is the designated initializer for UIViewController, this contains
- initialization common to all init* methods
+/**
+ * Since this is the designated initializer for UIViewController, this contains
+ * initialization common to all init* methods.
  */
 - (id)initWithNibName:(NSString*)nibName bundle:(NSBundle *)bundle {
   if (self = [super initWithNibName:nibName bundle:bundle]) {
@@ -176,11 +176,15 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
   TTDASSERT(m_initCalled); //make sure that we got properly initialized
   [super viewDidLoad];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
   [super viewDidUnload];
   TT_RELEASE_SAFELY(_searchController);
