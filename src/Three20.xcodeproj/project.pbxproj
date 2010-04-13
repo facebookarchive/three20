@@ -904,6 +904,17 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		6EFDD5771175298500BAE58A /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BE23E72A100B0A7200F40C3B /* TTListDataSource.h */,
+				BE23E72C100B0ACD00F40C3B /* TTListDataSource.m */,
+				6EFDD5571175284400BAE58A /* TTSectionedDataSource.h */,
+				6EFDD5541175283500BAE58A /* TTSectionedDataSource.m */,
+			);
+			name = "Data Sources";
+			sourceTree = "<group>";
+		};
 		BE1287F40F8969C100F65EA2 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,10 +940,7 @@
 				BE781806100ECF0F001FACA5 /* TTSearchDisplayController.m */,
 				BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */,
 				BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */,
-				BE23E72A100B0A7200F40C3B /* TTListDataSource.h */,
-				BE23E72C100B0ACD00F40C3B /* TTListDataSource.m */,
-				6EFDD5571175284400BAE58A /* TTSectionedDataSource.h */,
-				6EFDD5541175283500BAE58A /* TTSectionedDataSource.m */,
+				6EFDD5771175298500BAE58A /* Data Sources */,
 				BED4290E0F97F5C70035B153 /* TTTableView.h */,
 				BED429100F97F5DD0035B153 /* TTTableView.m */,
 				BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */,

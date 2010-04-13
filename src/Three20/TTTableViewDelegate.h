@@ -32,6 +32,9 @@
  * tableHeaderTintColor property in your global style sheet.
  *
  * This is also where the table view menu is hidden if the user starts scrolling.
+ *
+ * TODO(jverkoey 04/13/2010): Rename this object because it's not a protocol, and therefor
+ * shouldn't be affixed the "Delegate" title.
  */
 @interface TTTableViewDelegate : NSObject <UITableViewDelegate> {
   TTTableViewController*  _controller;
