@@ -20,28 +20,34 @@
 @class TTTextView, TTTextEditorInternal;
 
 @interface TTTextEditor : TTView <UITextInputTraits> {
-  id<TTTextEditorDelegate> _delegate;
   TTTextEditorInternal* _internal;
-  UITextField* _textField;
-  TTTextView* _textView;
+  UITextField*          _textField;
+  TTTextView*           _textView;
+
   NSInteger _minNumberOfLines;
   NSInteger _maxNumberOfLines;
+
   BOOL _editing;
   BOOL _overflowed;
   BOOL _autoresizesToText;
   BOOL _showsExtraLine;
+
+  id<TTTextEditorDelegate> _delegate;
 }
 
-@property (nonatomic, assign) id<TTTextEditorDelegate> delegate;
-@property (nonatomic, copy) NSString* text;
-@property (nonatomic, copy) NSString* placeholder;
-@property (nonatomic, retain) UIFont* font;
-@property (nonatomic, retain) UIColor* textColor;
-@property (nonatomic) NSInteger minNumberOfLines;
-@property (nonatomic) NSInteger maxNumberOfLines;
+@property (nonatomic, copy)     NSString* text;
+@property (nonatomic, copy)     NSString* placeholder;
+@property (nonatomic, retain)   UIFont*   font;
+@property (nonatomic, retain)   UIColor*  textColor;
+
+@property (nonatomic)           NSInteger minNumberOfLines;
+@property (nonatomic)           NSInteger maxNumberOfLines;
+
 @property (nonatomic, readonly) BOOL editing;
-@property (nonatomic) BOOL autoresizesToText;
-@property (nonatomic) BOOL showsExtraLine;
+@property (nonatomic)           BOOL autoresizesToText;
+@property (nonatomic)           BOOL showsExtraLine;
+
+@property (nonatomic, assign) id<TTTextEditorDelegate> delegate;
 
 - (void)scrollContainerToCursor:(UIScrollView*)scrollView;
 
