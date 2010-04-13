@@ -23,105 +23,43 @@
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTButton.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+static const CGFloat kMarginX   = 5;
+static const CGFloat kMarginY   = 7;
+static const CGFloat kPaddingX  = 10;
+static const CGFloat kPaddingY  = 10;
+static const CGFloat kSpacingX  = 4;
 
-static const CGFloat kMarginX = 5;  
-static const CGFloat kMarginY = 7;
-static const CGFloat kPaddingX = 10;
-static const CGFloat kPaddingY = 10;
-static const CGFloat kSpacingX = 4;
 static const CGFloat kButtonSpacing = 12;
-static const CGFloat kButtonHeight = 30;
+static const CGFloat kButtonHeight  = 30;
 
 static const CGFloat kIndexViewMargin = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTSearchBar
 
-@synthesize boxView = _boxView, tintColor = _tintColor, textFieldStyle = _textFieldStyle,
-            showsCancelButton = _showsCancelButton, showsSearchIcon = _showsSearchIcon;
+@synthesize boxView           = _boxView;
+@synthesize tintColor         = _tintColor;
+@synthesize textFieldStyle    = _textFieldStyle;
+@synthesize showsCancelButton = _showsCancelButton;
+@synthesize showsSearchIcon   = _showsSearchIcon;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (CGFloat)indexViewWidth {
-  UITableView* tableView = (UITableView*)[self ancestorOrSelfWithClass:[UITableView class]];
-  if (tableView) {
-    UIView* indexView = tableView.indexView;
-    if (indexView) {
-      return indexView.width;
-    }
-  }
-  return 0;
-}
-
-- (void)showIndexView:(BOOL)show {
-  UITableView* tableView = (UITableView*)[self ancestorOrSelfWithClass:[UITableView class]];
-  if (tableView) {
-    UIView* indexView = tableView.indexView;
-    if (indexView) {
-      [UIView beginAnimations:nil context:nil];
-      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
-      
-      if (show) {
-        CGRect frame = indexView.frame;
-        frame.origin.x = self.width - (indexView.width + kIndexViewMargin);
-        indexView.frame = frame;
-      } else {
-        indexView.frame = CGRectOffset(indexView.frame, indexView.width + kIndexViewMargin, 0);
-      }
-      indexView.alpha = show ? 1 : 0;
-      
-      CGRect searchFrame = _searchField.frame;
-      searchFrame.size.width += show ? -self.indexViewWidth : self.indexViewWidth;
-      _searchField.frame = searchFrame;
-
-      CGRect boxFrame = _boxView.frame;
-      boxFrame.size.width += show ? -self.indexViewWidth : self.indexViewWidth;
-      _boxView.frame = boxFrame;
-      
-      [UIView commitAnimations];
-    }
-  }
-}
-
-- (void)scrollToTop {
-  UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
-  if (scrollView) {
-    CGPoint offset = scrollView.contentOffset;
-    CGPoint myOffset = [self offsetFromView:scrollView];
-    if (offset.y != myOffset.y) {
-      [scrollView setContentOffset:CGPointMake(offset.x, myOffset.y) animated:YES];
-    }
-  }
-}
-
-- (void)textFieldDidBeginEditing {
-  [self scrollToTop];
-  [self showIndexView:NO];
-}
-
-- (void)textFieldDidEndEditing {
-  [self showIndexView:YES];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _boxView = [[TTView alloc] init];
     _boxView.backgroundColor = [UIColor clearColor];
     [self addSubview:_boxView];
-        
+
     _searchField = [[TTSearchTextField alloc] init];
     _searchField.placeholder = TTLocalizedString(@"Search", @"");
     _searchField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     [_searchField addTarget:self action:@selector(textFieldDidBeginEditing)
-      forControlEvents:UIControlEventEditingDidBegin];
+           forControlEvents:UIControlEventEditingDidBegin];
     [_searchField addTarget:self action:@selector(textFieldDidEndEditing)
-      forControlEvents:UIControlEventEditingDidEnd];
+           forControlEvents:UIControlEventEditingDidEnd];
     [self addSubview:_searchField];
 
     self.tintColor = TTSTYLEVAR(searchBarTintColor);
@@ -134,29 +72,121 @@ static const CGFloat kIndexViewMargin = 4;
   return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_searchField);
   TT_RELEASE_SAFELY(_boxView);
   TT_RELEASE_SAFELY(_textFieldStyle);
   TT_RELEASE_SAFELY(_tintColor);
   TT_RELEASE_SAFELY(_cancelButton);
+
   [super dealloc];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIResponder
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)indexViewWidth {
+  UITableView* tableView = (UITableView*)[self ancestorOrSelfWithClass:[UITableView class]];
+  if (tableView) {
+    UIView* indexView = tableView.indexView;
+    if (indexView) {
+      return indexView.width;
+    }
+  }
+  return 0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showIndexView:(BOOL)show {
+  UITableView* tableView = (UITableView*)[self ancestorOrSelfWithClass:[UITableView class]];
+  if (tableView) {
+    UIView* indexView = tableView.indexView;
+    if (indexView) {
+      [UIView beginAnimations:nil context:nil];
+      [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+
+      if (show) {
+        CGRect frame = indexView.frame;
+        frame.origin.x = self.width - (indexView.width + kIndexViewMargin);
+        indexView.frame = frame;
+      } else {
+        indexView.frame = CGRectOffset(indexView.frame, indexView.width + kIndexViewMargin, 0);
+      }
+      indexView.alpha = show ? 1 : 0;
+
+      CGRect searchFrame = _searchField.frame;
+      searchFrame.size.width += show ? -self.indexViewWidth : self.indexViewWidth;
+      _searchField.frame = searchFrame;
+
+      CGRect boxFrame = _boxView.frame;
+      boxFrame.size.width += show ? -self.indexViewWidth : self.indexViewWidth;
+      _boxView.frame = boxFrame;
+
+      [UIView commitAnimations];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollToTop {
+  UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
+  if (scrollView) {
+    CGPoint offset = scrollView.contentOffset;
+    CGPoint myOffset = [self offsetFromView:scrollView];
+    if (offset.y != myOffset.y) {
+      [scrollView setContentOffset:CGPointMake(offset.x, myOffset.y) animated:YES];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)textFieldDidBeginEditing {
+  [self scrollToTop];
+  [self showIndexView:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)textFieldDidEndEditing {
+  [self showIndexView:YES];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIResponder
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)becomeFirstResponder {
   return [_searchField becomeFirstResponder];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)resignFirstResponder {
   return [_searchField resignFirstResponder];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIView
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIView
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   CGFloat indexViewWidth = [_searchField isEditing] ? 0 : self.indexViewWidth;
   CGFloat leftPadding = _showsSearchIcon ? 0 : kSpacingX;
@@ -170,10 +200,10 @@ static const CGFloat kIndexViewMargin = 4;
   CGFloat boxHeight = self.font.ttLineHeight + 8;
   _boxView.frame = CGRectMake(kMarginX, floor(self.height/2 - boxHeight/2),
                               self.width - (kMarginX*2 + indexViewWidth + buttonWidth), boxHeight);
-    
+
   _searchField.frame = CGRectMake(kMarginX+kPaddingX+leftPadding, 0,
     self.width - (kMarginX*2+kPaddingX+leftPadding+buttonWidth+indexViewWidth), self.height);
-  
+
   if (_showsCancelButton) {
     _cancelButton.frame = CGRectMake(_boxView.right + kButtonSpacing,
                                      floor(self.height/2 - kButtonHeight/2),
@@ -181,6 +211,8 @@ static const CGFloat kIndexViewMargin = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)sizeThatFits:(CGSize)size {
   CGFloat height = self.font.ttLineHeight+kPaddingY*2;
   if (height < TT_ROW_HEIGHT) {
@@ -189,49 +221,72 @@ static const CGFloat kIndexViewMargin = 4;
   return CGSizeMake(size.width, height);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id<UITextFieldDelegate>)delegate {
   return _searchField.delegate;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDelegate:(id<UITextFieldDelegate>)delegate {
   _searchField.delegate = delegate;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id<TTTableViewDataSource>)dataSource {
   return _searchField.dataSource;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
   _searchField.dataSource = dataSource;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)editing {
   return _searchField.editing;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)showsDoneButton {
   return _searchField.showsDoneButton;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setShowsDoneButton:(BOOL)showsDoneButton {
   _searchField.showsDoneButton = showsDoneButton;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)showsDarkScreen {
   return _searchField.showsDarkScreen;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setShowsDarkScreen:(BOOL)showsDarkScreen {
   _searchField.showsDarkScreen = showsDarkScreen;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setShowsCancelButton:(BOOL)showsCancelButton {
   if (showsCancelButton != _showsCancelButton) {
     _showsCancelButton = showsCancelButton;
-    
+
     if (_showsCancelButton) {
       _cancelButton = [[TTButton buttonWithStyle:@"blackToolbarButton:"
                                  title:TTLocalizedString(@"Cancel", @"")] retain];
@@ -245,10 +300,12 @@ static const CGFloat kIndexViewMargin = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setShowsSearchIcon:(BOOL)showsSearchIcon {
   if (showsSearchIcon != _showsSearchIcon) {
     _showsSearchIcon = showsSearchIcon;
-    
+
     if (_showsSearchIcon) {
       UIImageView* iconView = [[[UIImageView alloc] initWithImage:
         [UIImage imageNamed:@"Three20.bundle/images/searchIcon.png"]] autorelease];
@@ -264,34 +321,50 @@ static const CGFloat kIndexViewMargin = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)searchesAutomatically {
   return _searchField.searchesAutomatically;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSearchesAutomatically:(BOOL)searchesAutomatically {
   _searchField.searchesAutomatically = searchesAutomatically;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)text {
   return _searchField.text;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setText:(NSString*)text {
   _searchField.text = text;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)placeholder {
   return _searchField.placeholder;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setPlaceholder:(NSString*)placeholder {
   _searchField.placeholder = placeholder;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableView*)tableView {
   return _searchField.tableView;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTintColor:(UIColor*)tintColor {
   if (tintColor != _tintColor) {
     [_tintColor release];
@@ -299,6 +372,8 @@ static const CGFloat kIndexViewMargin = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextFieldStyle:(TTStyle*)textFieldStyle {
   if (textFieldStyle != _textFieldStyle) {
     [_textFieldStyle release];
@@ -307,45 +382,66 @@ static const CGFloat kIndexViewMargin = 4;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)textColor {
   return _searchField.textColor;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTextColor:(UIColor*)textColor {
   _searchField.textColor = textColor;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)font {
   return _searchField.font;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFont:(UIFont*)font {
   _searchField.font = font;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)rowHeight {
   return _searchField.rowHeight;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setRowHeight:(CGFloat)rowHeight {
   _searchField.rowHeight = rowHeight;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIReturnKeyType)returnKeyType {
   return _searchField.returnKeyType;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setReturnKeyType:(UIReturnKeyType)returnKeyType {
   _searchField.returnKeyType = returnKeyType;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)search {
   [_searchField search];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showSearchResults:(BOOL)show {
   [_searchField showSearchResults:show];
 }
+
 
 @end
 
