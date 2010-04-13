@@ -17,6 +17,7 @@
 #import "Three20/TTNavigator.h"
 
 #import "Three20/TTNavigatorWindow.h"
+#import "Three20/TTNavigatorDelegate.h"
 
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"

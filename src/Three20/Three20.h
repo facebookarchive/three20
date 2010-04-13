@@ -62,6 +62,8 @@
 #import "Three20/TTGlobalUINavigator.h"
 
 // UI Controllers
+#import "Three20/TTNavigator.h"
+#import "Three20/TTNavigatorDelegate.h"
 #import "Three20/TTViewController.h"
 #import "Three20/TTWebController.h"
 #import "Three20/TTMessageController.h"

@@ -250,37 +250,6 @@ typedef enum {
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@protocol TTNavigatorDelegate <NSObject>
-
-@optional
-
-/**
- * Asks if the URL should be opened and allows the delegate to prevent it.
- * See -navigator:URLToOpen: for a superset of functionality
- */
-- (BOOL)navigator:(TTNavigator*)navigator shouldOpenURL:(NSURL*)URL;
-
-/**
- * Asks if the URL should be opened and allows the delegate to return a different URL to open
- * instead. A return value of nil indicates the URL should not be opened.
- *
- * This is a superset of the functionality of -navigator:shouldOpenURL:. Returning YES from that
- * method is equivalent to returning URL from this method.
- */
-- (NSURL*)navigator:(TTNavigator*)navigator URLToOpen:(NSURL*)URL;
-
-/**
- * The URL is about to be opened in a controller.
- *
- * If the controller argument is nil, the URL is going to be opened externally.
- */
-- (void)navigator:(TTNavigator*)navigator willOpenURL:(NSURL*)URL
-        inViewController:(UIViewController*)controller;
-
-@end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
 
 /**
