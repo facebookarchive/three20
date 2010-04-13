@@ -112,6 +112,7 @@
 #import "Three20/TTTextEditor.h"
 #import "Three20/TTTextEditorDelegate.h"
 #import "Three20/TTSearchTextField.h"
+#import "Three20/TTSearchTextFieldDelegate.h"
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTSearchBar.h"
 

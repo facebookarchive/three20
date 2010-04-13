@@ -16,6 +16,8 @@
 
 #import "Three20/TTSearchTextField.h"
 
+#import "Three20/TTSearchTextFieldDelegate.h"
+
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
 
