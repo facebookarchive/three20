@@ -52,24 +52,3 @@
 - (void)scrollContainerToCursor:(UIScrollView*)scrollView;
 
 @end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@protocol TTTextEditorDelegate <NSObject>
-
-@optional
-
-- (BOOL)textEditorShouldBeginEditing:(TTTextEditor*)textEditor;
-- (BOOL)textEditorShouldEndEditing:(TTTextEditor*)textEditor;
-
-- (void)textEditorDidBeginEditing:(TTTextEditor*)textEditor;
-- (void)textEditorDidEndEditing:(TTTextEditor*)textEditor;
-
-- (BOOL)textEditor:(TTTextEditor*)textEditor shouldChangeTextInRange:(NSRange)range
-        replacementText:(NSString*)replacementText;
-- (void)textEditorDidChange:(TTTextEditor*)textEditor;
-
-- (BOOL)textEditor:(TTTextEditor*)textEditor shouldResizeBy:(CGFloat)height;
-- (BOOL)textEditorShouldReturn:(TTTextEditor*)textEditor;
-
-@end

@@ -15,12 +15,13 @@
 //
 
 #import "Three20/TTViewController.h"
-#import "Three20/TTTextEditor.h"
+#import "Three20/TTTextEditorDelegate.h"
 
 #import "Three20/TTMessageField.h"
 
 @protocol TTTableViewDataSource, TTMessageControllerDelegate;
 @class TTPickerTextField, TTActivityLabel;
+@class TTTextEditor;
 
 /**
  * A view controller for composing email like messages, which is visually

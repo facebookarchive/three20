@@ -24,6 +24,7 @@
 #import "Three20/TTGlobalUINavigator.h"
 
 #import "Three20/TTButton.h"
+#import "Three20/TTTextEditor.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTDefaultStyleSheet.h"
 

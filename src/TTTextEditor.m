@@ -16,6 +16,8 @@
 
 #import "Three20/TTTextEditor.h"
 
+#import "Three20/TTTextEditorDelegate.h"
+
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
