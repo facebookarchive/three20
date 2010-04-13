@@ -112,6 +112,8 @@
 		6EFDD502117517B600BAE58A /* TTSearchTextFieldInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD500117517B600BAE58A /* TTSearchTextFieldInternal.m */; };
 		6EFDD504117517D400BAE58A /* TTSearchTextFieldInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD503117517D400BAE58A /* TTSearchTextFieldInternal.h */; };
 		6EFDD51611751EEC00BAE58A /* TTPickerTextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD51511751EEC00BAE58A /* TTPickerTextFieldDelegate.h */; };
+		6EFDD5561175283500BAE58A /* TTSectionedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5541175283500BAE58A /* TTSectionedDataSource.m */; };
+		6EFDD5581175284400BAE58A /* TTSectionedDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5571175284400BAE58A /* TTSectionedDataSource.h */; };
 		BE1288060F896A0A00F65EA2 /* TTStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1288050F896A0A00F65EA2 /* TTStyle.h */; };
 		BE1288080F896A1900F65EA2 /* TTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288070F896A1900F65EA2 /* TTStyle.m */; };
 		BE1288CB0F89812E00F65EA2 /* TTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288CA0F89812E00F65EA2 /* TTShape.m */; };
@@ -427,6 +429,8 @@
 		6EFDD500117517B600BAE58A /* TTSearchTextFieldInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSearchTextFieldInternal.m; sourceTree = "<group>"; };
 		6EFDD503117517D400BAE58A /* TTSearchTextFieldInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSearchTextFieldInternal.h; path = Three20/TTSearchTextFieldInternal.h; sourceTree = "<group>"; };
 		6EFDD51511751EEC00BAE58A /* TTPickerTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPickerTextFieldDelegate.h; path = Three20/TTPickerTextFieldDelegate.h; sourceTree = "<group>"; };
+		6EFDD5541175283500BAE58A /* TTSectionedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSectionedDataSource.m; sourceTree = "<group>"; };
+		6EFDD5571175284400BAE58A /* TTSectionedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSectionedDataSource.h; path = Three20/TTSectionedDataSource.h; sourceTree = "<group>"; };
 		BE1288050F896A0A00F65EA2 /* TTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyle.h; path = Three20/TTStyle.h; sourceTree = "<group>"; };
 		BE1288070F896A1900F65EA2 /* TTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyle.m; sourceTree = "<group>"; };
 		BE1288CA0F89812E00F65EA2 /* TTShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShape.m; sourceTree = "<group>"; };
@@ -927,6 +931,8 @@
 				BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */,
 				BE23E72A100B0A7200F40C3B /* TTListDataSource.h */,
 				BE23E72C100B0ACD00F40C3B /* TTListDataSource.m */,
+				6EFDD5571175284400BAE58A /* TTSectionedDataSource.h */,
+				6EFDD5541175283500BAE58A /* TTSectionedDataSource.m */,
 				BED4290E0F97F5C70035B153 /* TTTableView.h */,
 				BED429100F97F5DD0035B153 /* TTTableView.m */,
 				BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */,
@@ -1518,6 +1524,7 @@
 				6EFDD4EC117516EB00BAE58A /* TTSearchTextFieldDelegate.h in Headers */,
 				6EFDD504117517D400BAE58A /* TTSearchTextFieldInternal.h in Headers */,
 				6EFDD51611751EEC00BAE58A /* TTPickerTextFieldDelegate.h in Headers */,
+				6EFDD5581175284400BAE58A /* TTSectionedDataSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1740,6 +1747,7 @@
 				6EFDD4BF11743CAE00BAE58A /* TTTextView.m in Sources */,
 				6EFDD4D411743D5F00BAE58A /* TTTextEditorInternal.m in Sources */,
 				6EFDD502117517B600BAE58A /* TTSearchTextFieldInternal.m in Sources */,
+				6EFDD5561175283500BAE58A /* TTSectionedDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

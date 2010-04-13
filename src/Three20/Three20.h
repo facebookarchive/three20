@@ -127,6 +127,7 @@
 #import "Three20/TTTableViewDragRefreshDelegate.h"
 
 #import "Three20/TTListDataSource.h"
+#import "Three20/TTSectionedDataSource.h"
 #import "Three20/TTTableHeaderView.h"
 #import "Three20/TTTableViewCell.h"
 #import "Three20/TTTableItem.h"
