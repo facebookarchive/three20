@@ -20,21 +20,27 @@
 @class TTActivityLabel;
 
 @interface TTTableViewController : TTModelViewController {
-  UITableView* _tableView;
-  UIView* _tableBannerView;
-  UIView* _tableOverlayView;
-  UIView* _loadingView;
-  UIView* _errorView;
-  UIView* _emptyView;
-  UIView* _menuView;
-  UITableViewCell* _menuCell;
-  id<TTTableViewDataSource> _dataSource;
-  id<UITableViewDelegate> _tableDelegate;
-  NSTimer* _bannerTimer;
-  UITableViewStyle _tableViewStyle;
-  UIInterfaceOrientation _lastInterfaceOrientation;
+  UITableView*  _tableView;
+  UIView*       _tableBannerView;
+  UIView*       _tableOverlayView;
+  UIView*       _loadingView;
+  UIView*       _errorView;
+  UIView*       _emptyView;
+
+  NSTimer*      _bannerTimer;
+
+  UIView*           _menuView;
+  UITableViewCell*  _menuCell;
+
+  UITableViewStyle        _tableViewStyle;
+
+  UIInterfaceOrientation  _lastInterfaceOrientation;
+
   BOOL _variableHeightRows;
   BOOL _showTableShadows;
+
+  id<TTTableViewDataSource> _dataSource;
+  id<UITableViewDelegate>   _tableDelegate;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;

@@ -32,32 +32,90 @@
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTNavigator.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// global
-
 static const CGFloat kBannerViewHeight = 22;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTTableViewController
 
-@synthesize tableView = _tableView, tableBannerView = _tableBannerView,
-            tableOverlayView = _tableOverlayView,
-            loadingView = _loadingView, errorView= _errorView, emptyView = _emptyView,
-            menuView = _menuView, dataSource = _dataSource, tableViewStyle = _tableViewStyle,
-            variableHeightRows = _variableHeightRows, showTableShadows = _showTableShadows;
+@synthesize tableView           = _tableView;
+@synthesize tableBannerView     = _tableBannerView;
+@synthesize tableOverlayView    = _tableOverlayView;
+@synthesize loadingView         = _loadingView;
+@synthesize errorView           = _errorView;
+@synthesize emptyView           = _emptyView;
+@synthesize menuView            = _menuView;
+@synthesize tableViewStyle      = _tableViewStyle;
+@synthesize variableHeightRows  = _variableHeightRows;
+@synthesize showTableShadows    = _showTableShadows;
+@synthesize dataSource          = _dataSource;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
+- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
+    _lastInterfaceOrientation = self.interfaceOrientation;
+    _tableViewStyle           = UITableViewStylePlain;
+  }
 
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewStyle)style {
+  if (self = [self initWithNibName:nil bundle:nil]) {
+    _tableViewStyle = style;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+  return [self initWithStyle:UITableViewStylePlain];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  _tableView.delegate = nil;
+  _tableView.dataSource = nil;
+  TT_RELEASE_SAFELY(_tableDelegate);
+  TT_RELEASE_SAFELY(_dataSource);
+  TT_RELEASE_SAFELY(_tableView);
+  TT_RELEASE_SAFELY(_loadingView);
+  TT_RELEASE_SAFELY(_errorView);
+  TT_RELEASE_SAFELY(_emptyView);
+  TT_RELEASE_SAFELY(_tableOverlayView);
+  TT_RELEASE_SAFELY(_tableBannerView);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)createInterstitialModel {
   self.dataSource = [[[TTTableViewInterstitialDataSource alloc] init] autorelease];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)defaultTitleForLoading {
   return TTLocalizedString(@"Loading...", @"");
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateTableDelegate {
   if (!_tableView.delegate) {
     [_tableDelegate release];
@@ -69,6 +127,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addToOverlayView:(UIView*)view {
   if (!_tableOverlayView) {
     CGRect frame = [self rectForOverlayView];
@@ -87,6 +147,8 @@ static const CGFloat kBannerViewHeight = 22;
   [_tableOverlayView addSubview:view];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetOverlayView {
   if (_tableOverlayView && !_tableOverlayView.subviews.count) {
     [_tableOverlayView removeFromSuperview];
@@ -94,18 +156,24 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutOverlayView {
   if (_tableOverlayView) {
     _tableOverlayView.frame = [self rectForOverlayView];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutBannerView {
   if (_tableBannerView) {
     _tableBannerView.frame = [self rectForBannerView];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)fadeOutView:(UIView*)view {
   [view retain];
   [UIView beginAnimations:nil context:view];
@@ -116,6 +184,8 @@ static const CGFloat kBannerViewHeight = 22;
   [UIView commitAnimations];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)fadingOutViewDidStop:(NSString*)animationID finished:(NSNumber*)finished
         context:(void*)context {
   UIView* view = (UIView*)context;
@@ -123,53 +193,22 @@ static const CGFloat kBannerViewHeight = 22;
   [view release];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)hideMenuAnimationDidStop:(NSString*)animationID finished:(NSNumber*)finished
         context:(void*)context {
   UIView* menuView = (UIView*)context;
   [menuView removeFromSuperview];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-  if (self = [super initWithNibName:nibName bundle:bundle]) {
-    _lastInterfaceOrientation = self.interfaceOrientation;
-    _tableViewStyle = UITableViewStylePlain;
-  }
-
-  return self;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style {
-  if (self = [self initWithNibName:nil bundle:nil]) {
-    _tableViewStyle = style;
-  }
-
-  return self;
-}
-
-- (id)init {
-  return [self initWithStyle:UITableViewStylePlain];
-}
-
-- (void)dealloc {
-  _tableView.delegate = nil;
-  _tableView.dataSource = nil;
-  TT_RELEASE_SAFELY(_tableDelegate);
-  TT_RELEASE_SAFELY(_dataSource);
-  TT_RELEASE_SAFELY(_tableView);
-  TT_RELEASE_SAFELY(_loadingView);
-  TT_RELEASE_SAFELY(_errorView);
-  TT_RELEASE_SAFELY(_emptyView);
-  TT_RELEASE_SAFELY(_tableOverlayView);
-  TT_RELEASE_SAFELY(_tableBannerView);
-  [super dealloc];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// UIViewController
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIViewController
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)viewDidLoad {
   [super viewDidLoad];
   self.tableView; //create the tableView if it doesn't already exist
@@ -188,6 +227,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidUnload {
   [super viewDidUnload];
   _tableView.delegate = nil;
@@ -210,6 +251,8 @@ static const CGFloat kBannerViewHeight = 22;
   TT_RELEASE_SAFELY(_menuCell);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
@@ -225,25 +268,36 @@ static const CGFloat kBannerViewHeight = 22;
   [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   [self hideMenu:YES];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
   [super setEditing:editing animated:animated];
   [self.tableView setEditing:editing animated:animated];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// UTViewController (TTCategory)
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UTViewController (TTCategory)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)persistView:(NSMutableDictionary*)state {
   CGFloat scrollY = _tableView.contentOffset.y;
   [state setObject:[NSNumber numberWithFloat:scrollY] forKey:@"scrollOffsetY"];
   return [super persistView:state];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)restoreView:(NSDictionary*)state {
   CGFloat scrollY = [[state objectForKey:@"scrollOffsetY"] floatValue];
   if (scrollY) {
@@ -256,9 +310,14 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTViewController
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds {
   [super keyboardDidAppear:animated withBounds:bounds];
   self.tableView.frame = TTRectContract(self.tableView.frame, 0, bounds.size.height);
@@ -267,6 +326,8 @@ static const CGFloat kBannerViewHeight = 22;
   [self layoutBannerView];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillDisappear:(BOOL)animated withBounds:(CGRect)bounds {
   [super keyboardWillDisappear:animated withBounds:bounds];
 
@@ -287,25 +348,36 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidDisappear:(BOOL)animated withBounds:(CGRect)bounds {
   [super keyboardDidDisappear:animated withBounds:bounds];
   [self layoutOverlayView];
   [self layoutBannerView];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTModelViewController
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTModelViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)beginUpdates {
   [super beginUpdates];
   [_tableView beginUpdates];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)endUpdates {
   [super endUpdates];
   [_tableView endUpdates];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)canShowModel {
   if ([_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
     NSInteger numberOfSections = [_dataSource numberOfSectionsInTableView:_tableView];
@@ -323,11 +395,15 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didLoadModel:(BOOL)firstTime {
   [super didLoadModel:firstTime];
   [_dataSource tableViewDidLoadModel:_tableView];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didShowModel:(BOOL)firstTime {
   [super didShowModel:firstTime];
   if (firstTime) {
@@ -335,6 +411,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showModel:(BOOL)show {
   [self hideMenu:YES];
   if (show) {
@@ -346,6 +424,8 @@ static const CGFloat kBannerViewHeight = 22;
   [_tableView reloadData];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showLoading:(BOOL)show {
   if (show) {
     if (!self.model.isLoaded || ![self canShowModel]) {
@@ -365,6 +445,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showError:(BOOL)show {
   if (show) {
     if (!self.model.isLoaded || ![self canShowModel]) {
@@ -388,6 +470,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showEmpty:(BOOL)show {
   if (show) {
     NSString* title = [_dataSource titleForEmpty];
@@ -409,9 +493,14 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// TTModelDelegate
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTModelDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
     if (_isViewAppearing && _flags.isShowingModel) {
@@ -440,6 +529,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
     if (_isViewAppearing && _flags.isShowingModel) {
@@ -471,6 +562,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
     if (_isViewAppearing && _flags.isShowingModel) {
@@ -499,13 +592,16 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableView*)tableView {
-
-  if (!_tableView) {
-
+  if (nil == _tableView) {
     _tableView = [[TTTableView alloc] initWithFrame:self.view.bounds style:_tableViewStyle];
     _tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
                                    | UIViewAutoresizingFlexibleHeight;
@@ -522,6 +618,8 @@ static const CGFloat kBannerViewHeight = 22;
   return _tableView;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTableView:(UITableView*)tableView {
   if (tableView != _tableView) {
     [_tableView release];
@@ -533,10 +631,14 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTableBannerView:(UIView*)tableBannerView {
   [self setTableBannerView:tableBannerView animated:YES];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTableBannerView:(UIView*)tableBannerView animated:(BOOL)animated {
   TT_INVALIDATE_TIMER(_bannerTimer);
   if (tableBannerView != _tableBannerView) {
@@ -568,6 +670,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTableOverlayView:(UIView*)tableOverlayView animated:(BOOL)animated {
   if (tableOverlayView != _tableOverlayView) {
     if (_tableOverlayView) {
@@ -591,6 +695,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDataSource:(id<TTTableViewDataSource>)dataSource {
   if (dataSource != _dataSource) {
     [_dataSource release];
@@ -601,6 +707,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setVariableHeightRows:(BOOL)variableHeightRows {
   if (variableHeightRows != _variableHeightRows) {
     _variableHeightRows = variableHeightRows;
@@ -610,6 +718,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setLoadingView:(UIView*)view {
   if (view != _loadingView) {
     if (_loadingView) {
@@ -625,6 +735,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setErrorView:(UIView*)view {
   if (view != _errorView) {
     if (_errorView) {
@@ -641,6 +753,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setEmptyView:(UIView*)view {
   if (view != _emptyView) {
     if (_emptyView) {
@@ -656,6 +770,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id<UITableViewDelegate>)createDelegate {
   if (_variableHeightRows) {
     return [[[TTTableViewVarHeightDelegate alloc] initWithController:self] autorelease];
@@ -664,6 +780,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showMenu:(UIView*)view forCell:(UITableViewCell*)cell animated:(BOOL)animated {
   [self hideMenu:YES];
 
@@ -691,6 +809,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)hideMenu:(BOOL)animated {
   if (_menuView) {
     if (animated) {
@@ -717,6 +837,8 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if ([object respondsToSelector:@selector(URLValue)]) {
     NSString* URL = [object URLValue];
@@ -726,26 +848,37 @@ static const CGFloat kBannerViewHeight = 22;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldOpenURL:(NSString*)URL {
   return YES;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didBeginDragging {
   [self hideMenu:YES];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didEndDragging {
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)rectForOverlayView {
   return [_tableView frameWithKeyboardSubtracted:0];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)rectForBannerView {
   CGRect tableFrame = [_tableView frameWithKeyboardSubtracted:0];
   return CGRectMake(tableFrame.origin.x,
                     (tableFrame.origin.y + tableFrame.size.height) - kBannerViewHeight,
                     tableFrame.size.width, kBannerViewHeight);
 }
+
 
 @end
