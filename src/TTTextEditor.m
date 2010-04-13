@@ -16,12 +16,11 @@
 
 #import "Three20/TTTextEditor.h"
 
+#import "Three20/TTTextView.h"
 #import "Three20/TTTextEditorDelegate.h"
 
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTDefaultStyleSheet.h"
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
 static CGFloat kPaddingX = 8;
 static CGFloat kPaddingY = 9;
@@ -33,41 +32,6 @@ static CGFloat kPaddingY = 9;
 static CGFloat kTextViewInset = 31;
 
 static const CGFloat kUITextViewVerticalPadding = 6;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTTextView : UITextView {
-  BOOL _autoresizesToText;
-  BOOL _overflowed;
-}
-
-@property (nonatomic) BOOL autoresizesToText;
-@property (nonatomic) BOOL overflowed;
-
-@end
-
-@implementation TTTextView
-
-@synthesize autoresizesToText = _autoresizesToText, overflowed = _overflowed;
-
-- (void)setContentOffset:(CGPoint)offset animated:(BOOL)animated {
-  if (_autoresizesToText) {
-    if (!_overflowed) {
-      // In autosizing mode, we don't ever allow the text view to scroll past zero
-      // unless it has past its maximum number of lines
-      [super setContentOffset:CGPointZero animated:animated];
-    } else {
-      // If there is an overflow, we force the text view to keep the cursor at the bottom of the
-      // view.
-      [super setContentOffset: CGPointMake(offset.x, self.contentSize.height - self.height)
-                     animated: animated];
-    }
-  } else {
-    [super setContentOffset:offset animated:animated];
-  }
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

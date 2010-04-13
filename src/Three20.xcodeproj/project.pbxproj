@@ -104,6 +104,8 @@
 		6EEFB6DE11627305009B479E /* TTModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EEFB6DD11627305009B479E /* TTModelDelegate.h */; };
 		6EFDD4331174295D00BAE58A /* TTNavigatorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD4311174295D00BAE58A /* TTNavigatorDelegate.h */; };
 		6EFDD43F11743B9300BAE58A /* TTTextEditorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD43E11743B9300BAE58A /* TTTextEditorDelegate.h */; };
+		6EFDD4BF11743CAE00BAE58A /* TTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD4BD11743CAE00BAE58A /* TTTextView.m */; };
+		6EFDD4C111743CCE00BAE58A /* TTTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD4C011743CCE00BAE58A /* TTTextView.h */; };
 		BE1288060F896A0A00F65EA2 /* TTStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1288050F896A0A00F65EA2 /* TTStyle.h */; };
 		BE1288080F896A1900F65EA2 /* TTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288070F896A1900F65EA2 /* TTStyle.m */; };
 		BE1288CB0F89812E00F65EA2 /* TTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288CA0F89812E00F65EA2 /* TTShape.m */; };
@@ -411,6 +413,8 @@
 		6EEFB6DD11627305009B479E /* TTModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModelDelegate.h; path = Three20/TTModelDelegate.h; sourceTree = "<group>"; };
 		6EFDD4311174295D00BAE58A /* TTNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorDelegate.h; path = Three20/TTNavigatorDelegate.h; sourceTree = "<group>"; };
 		6EFDD43E11743B9300BAE58A /* TTTextEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextEditorDelegate.h; path = Three20/TTTextEditorDelegate.h; sourceTree = "<group>"; };
+		6EFDD4BD11743CAE00BAE58A /* TTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTextView.m; sourceTree = "<group>"; };
+		6EFDD4C011743CCE00BAE58A /* TTTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextView.h; path = Three20/TTTextView.h; sourceTree = "<group>"; };
 		BE1288050F896A0A00F65EA2 /* TTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyle.h; path = Three20/TTStyle.h; sourceTree = "<group>"; };
 		BE1288070F896A1900F65EA2 /* TTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyle.m; sourceTree = "<group>"; };
 		BE1288CA0F89812E00F65EA2 /* TTShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShape.m; sourceTree = "<group>"; };
@@ -864,6 +868,15 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		6EFDD4BB11743CA600BAE58A /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6EFDD4C011743CCE00BAE58A /* TTTextView.h */,
+				6EFDD4BD11743CAE00BAE58A /* TTTextView.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		BE1287F40F8969C100F65EA2 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -1013,6 +1026,7 @@
 		BEE341A40F480B91008C826E /* Text Fields */ = {
 			isa = PBXGroup;
 			children = (
+				6EFDD4BB11743CA600BAE58A /* Private */,
 				BEE34F260F496620008C826E /* TTTextEditor.h */,
 				BEE34F240F496615008C826E /* TTTextEditor.m */,
 				6EFDD43E11743B9300BAE58A /* TTTextEditorDelegate.h */,
@@ -1473,6 +1487,7 @@
 				6E94C9EF117006180012B12C /* TTTabBarInternal.h in Headers */,
 				6EFDD4331174295D00BAE58A /* TTNavigatorDelegate.h in Headers */,
 				6EFDD43F11743B9300BAE58A /* TTTextEditorDelegate.h in Headers */,
+				6EFDD4C111743CCE00BAE58A /* TTTextView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1692,6 +1707,7 @@
 				6E94C9851170030B0012B12C /* TTTab.m in Sources */,
 				6E94C98D117003730012B12C /* TTTabItem.m in Sources */,
 				6E94C9ED1170060B0012B12C /* TTTabBarInternal.m in Sources */,
+				6EFDD4BF11743CAE00BAE58A /* TTTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,7 +17,8 @@
 #import "Three20/TTView.h"
 
 @protocol TTTextEditorDelegate;
-@class TTTextView, TTTextEditorInternal;
+@class TTTextView;
+@class TTTextEditorInternal;
 
 @interface TTTextEditor : TTView <UITextInputTraits> {
   TTTextEditorInternal* _internal;
