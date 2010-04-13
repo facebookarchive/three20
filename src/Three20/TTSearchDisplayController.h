@@ -20,7 +20,7 @@
 @protocol TTTableViewDataSource;
 @class TTTableViewController;
 
-#define TT_SEARCH_BAR_BACKGROUND_TAG 18942
+extern const int kTTSearchBarBackgroundTag;
 
 /**
  * Shows search results using a TTTableViewController.
@@ -31,13 +31,14 @@
  * TTTableViewController's status views.
  */
 @interface TTSearchDisplayController : UISearchDisplayController <UISearchDisplayDelegate> {
+  TTTableViewController*  _searchResultsViewController;
+  NSTimer*                _pauseTimer;
+  BOOL                    _pausesBeforeSearching;
+
   id<UITableViewDelegate> _searchResultsDelegate2;
-  TTTableViewController* _searchResultsViewController;
-  NSTimer* _pauseTimer;
-  BOOL _pausesBeforeSearching;
 }
 
 @property (nonatomic, retain) TTTableViewController* searchResultsViewController;
-@property (nonatomic) BOOL pausesBeforeSearching;
+@property (nonatomic)         BOOL                   pausesBeforeSearching;
 
 @end
