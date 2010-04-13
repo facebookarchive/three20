@@ -111,6 +111,7 @@
 		6EFDD4EC117516EB00BAE58A /* TTSearchTextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD4EB117516EB00BAE58A /* TTSearchTextFieldDelegate.h */; };
 		6EFDD502117517B600BAE58A /* TTSearchTextFieldInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD500117517B600BAE58A /* TTSearchTextFieldInternal.m */; };
 		6EFDD504117517D400BAE58A /* TTSearchTextFieldInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD503117517D400BAE58A /* TTSearchTextFieldInternal.h */; };
+		6EFDD51611751EEC00BAE58A /* TTPickerTextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD51511751EEC00BAE58A /* TTPickerTextFieldDelegate.h */; };
 		BE1288060F896A0A00F65EA2 /* TTStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1288050F896A0A00F65EA2 /* TTStyle.h */; };
 		BE1288080F896A1900F65EA2 /* TTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288070F896A1900F65EA2 /* TTStyle.m */; };
 		BE1288CB0F89812E00F65EA2 /* TTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288CA0F89812E00F65EA2 /* TTShape.m */; };
@@ -425,6 +426,7 @@
 		6EFDD4EB117516EB00BAE58A /* TTSearchTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSearchTextFieldDelegate.h; path = Three20/TTSearchTextFieldDelegate.h; sourceTree = "<group>"; };
 		6EFDD500117517B600BAE58A /* TTSearchTextFieldInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSearchTextFieldInternal.m; sourceTree = "<group>"; };
 		6EFDD503117517D400BAE58A /* TTSearchTextFieldInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSearchTextFieldInternal.h; path = Three20/TTSearchTextFieldInternal.h; sourceTree = "<group>"; };
+		6EFDD51511751EEC00BAE58A /* TTPickerTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPickerTextFieldDelegate.h; path = Three20/TTPickerTextFieldDelegate.h; sourceTree = "<group>"; };
 		BE1288050F896A0A00F65EA2 /* TTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyle.h; path = Three20/TTStyle.h; sourceTree = "<group>"; };
 		BE1288070F896A1900F65EA2 /* TTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyle.m; sourceTree = "<group>"; };
 		BE1288CA0F89812E00F65EA2 /* TTShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShape.m; sourceTree = "<group>"; };
@@ -1057,6 +1059,7 @@
 				6EFDD4EB117516EB00BAE58A /* TTSearchTextFieldDelegate.h */,
 				BEE3419C0F480B87008C826E /* TTPickerTextField.h */,
 				BEE341A50F480BA2008C826E /* TTPickerTextField.m */,
+				6EFDD51511751EEC00BAE58A /* TTPickerTextFieldDelegate.h */,
 				BEE341BD0F48133F008C826E /* TTPickerViewCell.h */,
 				BEE341BF0F481345008C826E /* TTPickerViewCell.m */,
 				BEE3476D0F48F5F6008C826E /* TTSearchBar.h */,
@@ -1514,6 +1517,7 @@
 				6EFDD4D611743D6800BAE58A /* TTTextEditorInternal.h in Headers */,
 				6EFDD4EC117516EB00BAE58A /* TTSearchTextFieldDelegate.h in Headers */,
 				6EFDD504117517D400BAE58A /* TTSearchTextFieldInternal.h in Headers */,
+				6EFDD51611751EEC00BAE58A /* TTPickerTextFieldDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

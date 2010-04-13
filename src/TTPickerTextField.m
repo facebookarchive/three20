@@ -16,6 +16,8 @@
 
 #import "Three20/TTPickerTextField.h"
 
+#import "Three20/TTPickerTextFieldDelegate.h"
+
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
 
