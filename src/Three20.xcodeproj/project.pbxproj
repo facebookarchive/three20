@@ -915,6 +915,17 @@
 			name = "Data Sources";
 			sourceTree = "<group>";
 		};
+		6EFDD57A11752B0100BAE58A /* Header Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */,
+				BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */,
+				6E924D97112CAA4A00531F03 /* TTTableHeaderDragRefreshView.h */,
+				6E924D94112CAA3800531F03 /* TTTableHeaderDragRefreshView.m */,
+			);
+			name = "Header Views";
+			sourceTree = "<group>";
+		};
 		BE1287F40F8969C100F65EA2 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -941,12 +952,9 @@
 				BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */,
 				BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */,
 				6EFDD5771175298500BAE58A /* Data Sources */,
+				6EFDD57A11752B0100BAE58A /* Header Views */,
 				BED4290E0F97F5C70035B153 /* TTTableView.h */,
 				BED429100F97F5DD0035B153 /* TTTableView.m */,
-				BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */,
-				BE7EB6400F50D30C008A4B05 /* TTTableHeaderView.m */,
-				6E924D97112CAA4A00531F03 /* TTTableHeaderDragRefreshView.h */,
-				6E924D94112CAA3800531F03 /* TTTableHeaderDragRefreshView.m */,
 				BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */,
 				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
 				BE702EFA0F43F9DC0028A119 /* TTTableItem.h */,
