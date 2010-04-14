@@ -49,6 +49,8 @@
 		6E6207D511766B8B00035C6C /* TTThumbsViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6207D411766B8B00035C6C /* TTThumbsViewControllerDelegate.h */; };
 		6E62080C11766EA900035C6C /* TTThumbsTableViewCellDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E62080B11766EA900035C6C /* TTThumbsTableViewCellDelegate.h */; };
 		6E6208331176702000035C6C /* TTLauncherViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6208321176702000035C6C /* TTLauncherViewDelegate.h */; };
+		6E6208421176708600035C6C /* TTLauncherScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6208401176708600035C6C /* TTLauncherScrollView.m */; };
+		6E6208441176709500035C6C /* TTLauncherScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6208431176709500035C6C /* TTLauncherScrollView.h */; };
 		6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */; };
 		6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
 		6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E85811229CA500276F63 /* TTUserInfo.h */; };
@@ -437,6 +439,8 @@
 		6E6207D411766B8B00035C6C /* TTThumbsViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsViewControllerDelegate.h; path = Three20/TTThumbsViewControllerDelegate.h; sourceTree = "<group>"; };
 		6E62080B11766EA900035C6C /* TTThumbsTableViewCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsTableViewCellDelegate.h; path = Three20/TTThumbsTableViewCellDelegate.h; sourceTree = "<group>"; };
 		6E6208321176702000035C6C /* TTLauncherViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherViewDelegate.h; path = Three20/TTLauncherViewDelegate.h; sourceTree = "<group>"; };
+		6E6208401176708600035C6C /* TTLauncherScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLauncherScrollView.m; sourceTree = "<group>"; };
+		6E6208431176709500035C6C /* TTLauncherScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherScrollView.h; path = Three20/TTLauncherScrollView.h; sourceTree = "<group>"; };
 		6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
 		6E75E85511229C9100276F63 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
 		6E75E85811229CA500276F63 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
@@ -878,6 +882,15 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		6E62083E1176708100035C6C /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6E6208431176709500035C6C /* TTLauncherScrollView.h */,
+				6E6208401176708600035C6C /* TTLauncherScrollView.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		6E75E7EA11229A4F00276F63 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1259,6 +1272,7 @@
 		BEC787A51040A783005C00CF /* Springboard */ = {
 			isa = PBXGroup;
 			children = (
+				6E62083E1176708100035C6C /* Private */,
 				BEC787471040A34E005C00CF /* TTLauncherView.h */,
 				BEC787451040A33A005C00CF /* TTLauncherView.m */,
 				6E6208321176702000035C6C /* TTLauncherViewDelegate.h */,
@@ -1808,6 +1822,7 @@
 				6E6207D511766B8B00035C6C /* TTThumbsViewControllerDelegate.h in Headers */,
 				6E62080C11766EA900035C6C /* TTThumbsTableViewCellDelegate.h in Headers */,
 				6E6208331176702000035C6C /* TTLauncherViewDelegate.h in Headers */,
+				6E6208441176709500035C6C /* TTLauncherScrollView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2064,6 +2079,7 @@
 				6E6206C711764ABC00035C6C /* TTTableControlCell.m in Sources */,
 				6E6206CD11764B6100035C6C /* TTTableFlushViewCell.m in Sources */,
 				6E6207A911766A0300035C6C /* TTThumbsDataSource.m in Sources */,
+				6E6208421176708600035C6C /* TTLauncherScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

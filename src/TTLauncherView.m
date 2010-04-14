@@ -17,6 +17,7 @@
 #import "Three20/TTLauncherView.h"
 
 #import "Three20/TTLauncherViewDelegate.h"
+#import "Three20/TTLauncherScrollView.h"
 
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTDebugFlags.h"
@@ -26,9 +27,6 @@
 #import "Three20/TTLauncherItem.h"
 #import "Three20/TTLauncherButton.h"
 #import "Three20/TTPageControl.h"
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// global
 
 static const CGFloat kMargin = 0;
 static const CGFloat kPadding = 0;
@@ -44,19 +42,6 @@ static const NSTimeInterval kWobbleTime = 0.07;
 static const NSInteger kPromptTag = 997;
 
 static const NSInteger kDefaultColumnCount = 3;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@interface TTLauncherScrollView : UIScrollView
-@end
-
-@implementation TTLauncherScrollView
-
-- (BOOL)touchesShouldCancelInContentView:(UIView *)view {
-  return !self.delaysContentTouches;
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
