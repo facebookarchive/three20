@@ -177,6 +177,7 @@
 #import "Three20/TTPhotoViewController.h"
 #import "Three20/TTPhotoView.h"
 #import "Three20/TTThumbsViewController.h"
+#import "Three20/TTThumbsDataSource.h"
 #import "Three20/TTThumbsTableViewCell.h"
 #import "Three20/TTThumbView.h"
 

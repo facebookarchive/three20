@@ -44,6 +44,8 @@
 		6E6207381176587A00035C6C /* TTTableActivityItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6207371176587A00035C6C /* TTTableActivityItemCell.h */; };
 		6E620742117658EE00035C6C /* TTPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E620741117658EE00035C6C /* TTPhoto.h */; };
 		6E6207441176593200035C6C /* TTPhotoVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6207431176593200035C6C /* TTPhotoVersion.h */; };
+		6E6207A911766A0300035C6C /* TTThumbsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6207A711766A0300035C6C /* TTThumbsDataSource.m */; };
+		6E6207AB11766A1400035C6C /* TTThumbsDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6207AA11766A1400035C6C /* TTThumbsDataSource.h */; };
 		6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */; };
 		6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
 		6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E85811229CA500276F63 /* TTUserInfo.h */; };
@@ -427,6 +429,8 @@
 		6E6207371176587A00035C6C /* TTTableActivityItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableActivityItemCell.h; path = Three20/TTTableActivityItemCell.h; sourceTree = "<group>"; };
 		6E620741117658EE00035C6C /* TTPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhoto.h; path = Three20/TTPhoto.h; sourceTree = "<group>"; };
 		6E6207431176593200035C6C /* TTPhotoVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoVersion.h; path = Three20/TTPhotoVersion.h; sourceTree = "<group>"; };
+		6E6207A711766A0300035C6C /* TTThumbsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTThumbsDataSource.m; sourceTree = "<group>"; };
+		6E6207AA11766A1400035C6C /* TTThumbsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsDataSource.h; path = Three20/TTThumbsDataSource.h; sourceTree = "<group>"; };
 		6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
 		6E75E85511229C9100276F63 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
 		6E75E85811229CA500276F63 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
@@ -1362,6 +1366,8 @@
 				BEF31F4B0F352E64000DE5D2 /* TTPhotoView.m */,
 				BEF31F670F352E64000DE5D2 /* TTThumbsViewController.h */,
 				BEF31F510F352E64000DE5D2 /* TTThumbsViewController.m */,
+				6E6207AA11766A1400035C6C /* TTThumbsDataSource.h */,
+				6E6207A711766A0300035C6C /* TTThumbsDataSource.m */,
 				BEF31F660F352E64000DE5D2 /* TTThumbsTableViewCell.h */,
 				BEF31F500F352E64000DE5D2 /* TTThumbsTableViewCell.m */,
 				BEF31F680F352E64000DE5D2 /* TTThumbView.h */,
@@ -1789,6 +1795,7 @@
 				6E6207381176587A00035C6C /* TTTableActivityItemCell.h in Headers */,
 				6E620742117658EE00035C6C /* TTPhoto.h in Headers */,
 				6E6207441176593200035C6C /* TTPhotoVersion.h in Headers */,
+				6E6207AB11766A1400035C6C /* TTThumbsDataSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2044,6 +2051,7 @@
 				6E6206C311764A4F00035C6C /* TTTableActivityItemCell.m in Sources */,
 				6E6206C711764ABC00035C6C /* TTTableControlCell.m in Sources */,
 				6E6206CD11764B6100035C6C /* TTTableFlushViewCell.m in Sources */,
+				6E6207A911766A0300035C6C /* TTThumbsDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
