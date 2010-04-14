@@ -19,7 +19,9 @@
 #import "Three20/TTGlobalCore.h"
 
 #import "Three20/TTThumbView.h"
+#import "Three20/TTPhotoVersion.h"
 #import "Three20/TTPhotoSource.h"
+#import "Three20/TTPhoto.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -50,7 +52,7 @@ static CGFloat kDefaultThumbSize = 75;
 - (void)thumbTouched:(TTThumbView*)thumbView {
   NSUInteger thumbViewIndex = [_thumbViews indexOfObject:thumbView];
   NSInteger index = _photo.index + thumbViewIndex;
-  
+
   id<TTPhoto> photo = [_photo.photoSource photoAtIndex:index];
   [_delegate thumbsTableViewCell:self didSelectPhoto:photo];
 }
@@ -76,7 +78,7 @@ static CGFloat kDefaultThumbSize = 75;
     _thumbSize = kDefaultThumbSize;
     _thumbOrigin = CGPointMake(kSpacing, 0);
     _columnCount = 0;
-        
+
     self.accessoryType = UITableViewCellAccessoryNone;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
   }
@@ -118,7 +120,7 @@ static CGFloat kDefaultThumbSize = 75;
 
 - (void)setThumbOrigin:(CGPoint)thumbOrigin {
   _thumbOrigin = thumbOrigin;
-  [self setNeedsLayout];  
+  [self setNeedsLayout];
 }
 
 - (void)setColumnCount:(NSInteger)columnCount {
@@ -129,9 +131,9 @@ static CGFloat kDefaultThumbSize = 75;
       }
       [_thumbViews removeAllObjects];
     }
-    
+
     _columnCount = columnCount;
-    
+
     for (NSInteger i = _thumbViews.count; i < _columnCount; ++i) {
       TTThumbView* thumbView = [[[TTThumbView alloc] init] autorelease];
       [thumbView addTarget:self action:@selector(thumbTouched:)
@@ -156,13 +158,13 @@ static CGFloat kDefaultThumbSize = 75;
       }
       return;
     }
-    
+
     NSInteger i = 0;
     for (TTThumbView* thumbView in _thumbViews) {
       [self assignPhotoAtIndex:_photo.index+i toView:thumbView];
       ++i;
     }
-  }  
+  }
 }
 
 - (void)suspendLoading:(BOOL)suspended {

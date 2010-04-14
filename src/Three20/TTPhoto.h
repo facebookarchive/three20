@@ -15,30 +15,35 @@
 //
 
 #import "Three20/TTURLObject.h"
-#import "Three20/TTModel.h"
+#import "Three20/TTPhotoVersion.h"
 
-#define TT_NULL_PHOTO_INDEX NSIntegerMax
+@protocol TTPhotoSource;
 
-@protocol TTPhoto;
-@class TTURLRequest;
-
-@protocol TTPhotoSource <TTModel, TTURLObject>
+@protocol TTPhoto <NSObject, TTURLObject>
 
 /**
- * The title of this collection of photos.
+ * The photo source that the photo belongs to.
  */
-@property (nonatomic, copy) NSString* title;
+@property (nonatomic, assign) id<TTPhotoSource> photoSource;
 
 /**
- * The total number of photos in the source, independent of the number that have been loaded.
+ * The index of the photo within its photo source.
  */
-@property (nonatomic, readonly) NSInteger numberOfPhotos;
+@property (nonatomic) CGSize size;
 
 /**
- * The maximum index of photos that have already been loaded.
+ * The index of the photo within its photo source.
  */
-@property (nonatomic, readonly) NSInteger maxPhotoIndex;
+@property (nonatomic) NSInteger index;
 
-- (id<TTPhoto>)photoAtIndex:(NSInteger)index;
+/**
+ * The caption of the photo.
+ */
+@property (nonatomic, copy) NSString* caption;
+
+/**
+ * Gets the URL of one of the differently sized versions of the photo.
+ */
+- (NSString*)URLForVersion:(TTPhotoVersion)version;
 
 @end

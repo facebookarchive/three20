@@ -26,6 +26,7 @@
 #import "Three20/TTTableMoreButton.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTPhotoSource.h"
+#import "Three20/TTPhoto.h"
 #import "Three20/TTStyleSheet.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -15,7 +15,7 @@
 //
 
 #import "Three20/TTImageView.h"
-#import "Three20/TTPhotoSource.h" // For TTPhotoVersion
+#import "Three20/TTPhotoVersion.h"
 #import "Three20/TTImageViewDelegate.h"
 
 @protocol TTPhoto;

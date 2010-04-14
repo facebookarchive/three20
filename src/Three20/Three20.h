@@ -171,7 +171,9 @@
 
 #import "Three20/TTErrorView.h"
 
+#import "Three20/TTPhotoVersion.h"
 #import "Three20/TTPhotoSource.h"
+#import "Three20/TTPhoto.h"
 #import "Three20/TTPhotoViewController.h"
 #import "Three20/TTPhotoView.h"
 #import "Three20/TTThumbsViewController.h"

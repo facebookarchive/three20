@@ -16,6 +16,9 @@
 
 #import "Three20/TTPhotoView.h"
 
+#import "Three20/TTPhoto.h"
+#import "Three20/TTPhotoSource.h"
+
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalUI.h"
@@ -79,7 +82,7 @@
     _photoVersion = TTPhotoVersionNone;
     _hidesExtras = NO;
     _hidesCaption = NO;
-    
+
     self.clipsToBounds = NO;
   }
   return self;
@@ -119,7 +122,7 @@
     [self showProgress:-1];
     [self showStatus:nil];
   }
-  
+
   if (!_photo.size.width) {
     _photo.size = image.size;
     [self.superview setNeedsLayout];
@@ -147,31 +150,31 @@
   // Since the photo view is constrained to the size of the image, but we want to position
   // the status views relative to the screen, offset by the difference
   CGFloat screenOffset = -floor(screenBounds.size.height/2 - height/2);
-  
+
   // Vertically center in the space between the bottom of the image and the bottom of the screen
   CGFloat imageBottom = screenBounds.size.height/2 + self.defaultImage.size.height/2;
   CGFloat textWidth = screenBounds.size.width - (marginLeft+marginRight);
-  
+
   if (_statusLabel.text.length) {
     CGSize statusSize = [_statusLabel sizeThatFits:CGSizeMake(textWidth, 0)];
-    _statusLabel.frame = 
-        CGRectMake(marginLeft + (cx - screenBounds.size.width/2), 
+    _statusLabel.frame =
+        CGRectMake(marginLeft + (cx - screenBounds.size.width/2),
                    cy + floor(screenBounds.size.height/2 - (statusSize.height+marginBottom)),
                    textWidth, statusSize.height);
   } else {
     _statusLabel.frame = CGRectZero;
   }
-  
+
   if (_captionLabel.text.length) {
     CGSize captionSize = [_captionLabel sizeThatFits:CGSizeMake(textWidth, 0)];
-    _captionLabel.frame = CGRectMake(marginLeft + (cx - screenBounds.size.width/2), 
+    _captionLabel.frame = CGRectMake(marginLeft + (cx - screenBounds.size.width/2),
                                      cy + floor(screenBounds.size.height/2
                                                 - (captionSize.height+marginBottom)),
                                      textWidth, captionSize.height);
   } else {
     _captionLabel.frame = CGRectZero;
   }
-  
+
   CGFloat spinnerTop = _captionLabel.height
     ? _captionLabel.top - floor(_statusSpinner.height + _statusSpinner.height/2)
     : screenOffset + imageBottom + floor(_statusSpinner.height/2);
@@ -190,12 +193,12 @@
     [_photo release];
     _photo = [photo retain];
     _photoVersion = TTPhotoVersionNone;
-    
+
     self.urlPath = nil;
-    
+
     [self showCaption:photo.caption];
   }
-  
+
   if (!_photo || _photo.photoSource.isLoading) {
     [self showProgress:0];
   } else {
@@ -230,7 +233,7 @@
       }
     }
   }
-  
+
   return YES;
 }
 

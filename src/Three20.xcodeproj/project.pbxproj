@@ -42,6 +42,8 @@
 		6E6206CD11764B6100035C6C /* TTTableFlushViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206CB11764B6100035C6C /* TTTableFlushViewCell.m */; };
 		6E6206CF11764B6F00035C6C /* TTTableFlushViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206CE11764B6F00035C6C /* TTTableFlushViewCell.h */; };
 		6E6207381176587A00035C6C /* TTTableActivityItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6207371176587A00035C6C /* TTTableActivityItemCell.h */; };
+		6E620742117658EE00035C6C /* TTPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E620741117658EE00035C6C /* TTPhoto.h */; };
+		6E6207441176593200035C6C /* TTPhotoVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6207431176593200035C6C /* TTPhotoVersion.h */; };
 		6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */; };
 		6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
 		6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E85811229CA500276F63 /* TTUserInfo.h */; };
@@ -423,6 +425,8 @@
 		6E6206CB11764B6100035C6C /* TTTableFlushViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableFlushViewCell.m; sourceTree = "<group>"; };
 		6E6206CE11764B6F00035C6C /* TTTableFlushViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableFlushViewCell.h; path = Three20/TTTableFlushViewCell.h; sourceTree = "<group>"; };
 		6E6207371176587A00035C6C /* TTTableActivityItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableActivityItemCell.h; path = Three20/TTTableActivityItemCell.h; sourceTree = "<group>"; };
+		6E620741117658EE00035C6C /* TTPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhoto.h; path = Three20/TTPhoto.h; sourceTree = "<group>"; };
+		6E6207431176593200035C6C /* TTPhotoVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPhotoVersion.h; path = Three20/TTPhotoVersion.h; sourceTree = "<group>"; };
 		6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
 		6E75E85511229C9100276F63 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
 		6E75E85811229CA500276F63 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
@@ -1349,6 +1353,8 @@
 		BEF321B20F353B50000DE5D2 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				6E6207431176593200035C6C /* TTPhotoVersion.h */,
+				6E620741117658EE00035C6C /* TTPhoto.h */,
 				BEF31F600F352E64000DE5D2 /* TTPhotoSource.h */,
 				BEF31F620F352E64000DE5D2 /* TTPhotoViewController.h */,
 				BEF31F4C0F352E64000DE5D2 /* TTPhotoViewController.m */,
@@ -1781,6 +1787,8 @@
 				6E6206C911764AC800035C6C /* TTTableControlCell.h in Headers */,
 				6E6206CF11764B6F00035C6C /* TTTableFlushViewCell.h in Headers */,
 				6E6207381176587A00035C6C /* TTTableActivityItemCell.h in Headers */,
+				6E620742117658EE00035C6C /* TTPhoto.h in Headers */,
+				6E6207441176593200035C6C /* TTPhotoVersion.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

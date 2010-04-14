@@ -16,6 +16,9 @@
 
 #import "Three20/TTPhotoViewController.h"
 
+#import "Three20/TTPhotoSource.h"
+#import "Three20/TTPhoto.h"
+
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTDefaultStyleSheet.h"
