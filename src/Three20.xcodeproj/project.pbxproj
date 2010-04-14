@@ -114,6 +114,44 @@
 		6EFDD51611751EEC00BAE58A /* TTPickerTextFieldDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD51511751EEC00BAE58A /* TTPickerTextFieldDelegate.h */; };
 		6EFDD5561175283500BAE58A /* TTSectionedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5541175283500BAE58A /* TTSectionedDataSource.m */; };
 		6EFDD5581175284400BAE58A /* TTSectionedDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5571175284400BAE58A /* TTSectionedDataSource.h */; };
+		6EFDD59111756EFE00BAE58A /* TTTableLinkedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD58F11756EFE00BAE58A /* TTTableLinkedItem.m */; };
+		6EFDD59311756F1700BAE58A /* TTTableLinkedItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD59211756F1700BAE58A /* TTTableLinkedItem.h */; };
+		6EFDD59E11761B1600BAE58A /* TTTableTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD59C11761B1600BAE58A /* TTTableTextItem.m */; };
+		6EFDD5A011761B2A00BAE58A /* TTTableTextItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD59F11761B2A00BAE58A /* TTTableTextItem.h */; };
+		6EFDD5B311761BE100BAE58A /* TTTableCaptionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5B111761BE100BAE58A /* TTTableCaptionItem.m */; };
+		6EFDD5B511761BEC00BAE58A /* TTTableCaptionItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5B411761BEC00BAE58A /* TTTableCaptionItem.h */; };
+		6EFDD5BD11761C6800BAE58A /* TTTableRightCaptionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5BB11761C6800BAE58A /* TTTableRightCaptionItem.m */; };
+		6EFDD5BF11761C7400BAE58A /* TTTableRightCaptionItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5BE11761C7400BAE58A /* TTTableRightCaptionItem.h */; };
+		6EFDD5C51176210800BAE58A /* TTTableSubtextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5C31176210800BAE58A /* TTTableSubtextItem.m */; };
+		6EFDD5C71176211200BAE58A /* TTTableSubtextItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5C61176211200BAE58A /* TTTableSubtextItem.h */; };
+		6EFDD5CB1176215400BAE58A /* TTTableSubtitleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5C91176215400BAE58A /* TTTableSubtitleItem.m */; };
+		6EFDD5CD1176215D00BAE58A /* TTTableSubtitleItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5CC1176215D00BAE58A /* TTTableSubtitleItem.h */; };
+		6EFDD5D3117621FB00BAE58A /* TTTableMessageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5D1117621FB00BAE58A /* TTTableMessageItem.m */; };
+		6EFDD5D51176220300BAE58A /* TTTableMessageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5D41176220300BAE58A /* TTTableMessageItem.h */; };
+		6EFDD5EB117622B900BAE58A /* TTTableLongTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5E9117622B900BAE58A /* TTTableLongTextItem.m */; };
+		6EFDD5ED117622C700BAE58A /* TTTableLongTextItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5EC117622C700BAE58A /* TTTableLongTextItem.h */; };
+		6EFDD5F1117622EE00BAE58A /* TTTableGrayTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5EF117622EE00BAE58A /* TTTableGrayTextItem.m */; };
+		6EFDD5F3117622F700BAE58A /* TTTableGrayTextItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5F2117622F700BAE58A /* TTTableGrayTextItem.h */; };
+		6EFDD5F71176232000BAE58A /* TTTableSummaryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5F51176232000BAE58A /* TTTableSummaryItem.m */; };
+		6EFDD5F91176232C00BAE58A /* TTTableSummaryItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5F81176232C00BAE58A /* TTTableSummaryItem.h */; };
+		6EFDD5FD1176234B00BAE58A /* TTTableLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD5FB1176234B00BAE58A /* TTTableLink.m */; };
+		6EFDD5FF1176235400BAE58A /* TTTableLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD5FE1176235400BAE58A /* TTTableLink.h */; };
+		6EFDD6031176237300BAE58A /* TTTableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6011176237300BAE58A /* TTTableButton.m */; };
+		6EFDD6051176237C00BAE58A /* TTTableButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD6041176237C00BAE58A /* TTTableButton.h */; };
+		6EFDD60B1176239F00BAE58A /* TTTableMoreButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6091176239F00BAE58A /* TTTableMoreButton.m */; };
+		6EFDD60D117623AA00BAE58A /* TTTableMoreButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD60C117623AA00BAE58A /* TTTableMoreButton.h */; };
+		6EFDD613117623F800BAE58A /* TTTableImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD611117623F800BAE58A /* TTTableImageItem.m */; };
+		6EFDD6151176240400BAE58A /* TTTableImageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD6141176240400BAE58A /* TTTableImageItem.h */; };
+		6EFDD6191176246E00BAE58A /* TTTableRightImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6171176246E00BAE58A /* TTTableRightImageItem.m */; };
+		6EFDD61B1176247700BAE58A /* TTTableRightImageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD61A1176247700BAE58A /* TTTableRightImageItem.h */; };
+		6EFDD621117624B700BAE58A /* TTTableActivityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD61F117624B700BAE58A /* TTTableActivityItem.m */; };
+		6EFDD623117624C200BAE58A /* TTTableActivityItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD622117624C200BAE58A /* TTTableActivityItem.h */; };
+		6EFDD6291176250C00BAE58A /* TTTableStyledTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6271176250C00BAE58A /* TTTableStyledTextItem.m */; };
+		6EFDD62B1176251800BAE58A /* TTTableStyledTextItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD62A1176251800BAE58A /* TTTableStyledTextItem.h */; };
+		6EFDD6311176258300BAE58A /* TTTableControlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD62F1176258300BAE58A /* TTTableControlItem.m */; };
+		6EFDD635117625DD00BAE58A /* TTTableViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD633117625DD00BAE58A /* TTTableViewItem.m */; };
+		6EFDD637117625EF00BAE58A /* TTTableControlItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD636117625EF00BAE58A /* TTTableControlItem.h */; };
+		6EFDD639117625F800BAE58A /* TTTableViewItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD638117625F800BAE58A /* TTTableViewItem.h */; };
 		BE1288060F896A0A00F65EA2 /* TTStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1288050F896A0A00F65EA2 /* TTStyle.h */; };
 		BE1288080F896A1900F65EA2 /* TTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288070F896A1900F65EA2 /* TTStyle.m */; };
 		BE1288CB0F89812E00F65EA2 /* TTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288CA0F89812E00F65EA2 /* TTShape.m */; };
@@ -431,6 +469,44 @@
 		6EFDD51511751EEC00BAE58A /* TTPickerTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPickerTextFieldDelegate.h; path = Three20/TTPickerTextFieldDelegate.h; sourceTree = "<group>"; };
 		6EFDD5541175283500BAE58A /* TTSectionedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSectionedDataSource.m; sourceTree = "<group>"; };
 		6EFDD5571175284400BAE58A /* TTSectionedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSectionedDataSource.h; path = Three20/TTSectionedDataSource.h; sourceTree = "<group>"; };
+		6EFDD58F11756EFE00BAE58A /* TTTableLinkedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableLinkedItem.m; sourceTree = "<group>"; };
+		6EFDD59211756F1700BAE58A /* TTTableLinkedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableLinkedItem.h; path = Three20/TTTableLinkedItem.h; sourceTree = "<group>"; };
+		6EFDD59C11761B1600BAE58A /* TTTableTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableTextItem.m; sourceTree = "<group>"; };
+		6EFDD59F11761B2A00BAE58A /* TTTableTextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableTextItem.h; path = Three20/TTTableTextItem.h; sourceTree = "<group>"; };
+		6EFDD5B111761BE100BAE58A /* TTTableCaptionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableCaptionItem.m; sourceTree = "<group>"; };
+		6EFDD5B411761BEC00BAE58A /* TTTableCaptionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableCaptionItem.h; path = Three20/TTTableCaptionItem.h; sourceTree = "<group>"; };
+		6EFDD5BB11761C6800BAE58A /* TTTableRightCaptionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableRightCaptionItem.m; sourceTree = "<group>"; };
+		6EFDD5BE11761C7400BAE58A /* TTTableRightCaptionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableRightCaptionItem.h; path = Three20/TTTableRightCaptionItem.h; sourceTree = "<group>"; };
+		6EFDD5C31176210800BAE58A /* TTTableSubtextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableSubtextItem.m; sourceTree = "<group>"; };
+		6EFDD5C61176211200BAE58A /* TTTableSubtextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableSubtextItem.h; path = Three20/TTTableSubtextItem.h; sourceTree = "<group>"; };
+		6EFDD5C91176215400BAE58A /* TTTableSubtitleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableSubtitleItem.m; sourceTree = "<group>"; };
+		6EFDD5CC1176215D00BAE58A /* TTTableSubtitleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableSubtitleItem.h; path = Three20/TTTableSubtitleItem.h; sourceTree = "<group>"; };
+		6EFDD5D1117621FB00BAE58A /* TTTableMessageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMessageItem.m; sourceTree = "<group>"; };
+		6EFDD5D41176220300BAE58A /* TTTableMessageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMessageItem.h; path = Three20/TTTableMessageItem.h; sourceTree = "<group>"; };
+		6EFDD5E9117622B900BAE58A /* TTTableLongTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableLongTextItem.m; sourceTree = "<group>"; };
+		6EFDD5EC117622C700BAE58A /* TTTableLongTextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableLongTextItem.h; path = Three20/TTTableLongTextItem.h; sourceTree = "<group>"; };
+		6EFDD5EF117622EE00BAE58A /* TTTableGrayTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableGrayTextItem.m; sourceTree = "<group>"; };
+		6EFDD5F2117622F700BAE58A /* TTTableGrayTextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableGrayTextItem.h; path = Three20/TTTableGrayTextItem.h; sourceTree = "<group>"; };
+		6EFDD5F51176232000BAE58A /* TTTableSummaryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableSummaryItem.m; sourceTree = "<group>"; };
+		6EFDD5F81176232C00BAE58A /* TTTableSummaryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableSummaryItem.h; path = Three20/TTTableSummaryItem.h; sourceTree = "<group>"; };
+		6EFDD5FB1176234B00BAE58A /* TTTableLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableLink.m; sourceTree = "<group>"; };
+		6EFDD5FE1176235400BAE58A /* TTTableLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableLink.h; path = Three20/TTTableLink.h; sourceTree = "<group>"; };
+		6EFDD6011176237300BAE58A /* TTTableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableButton.m; sourceTree = "<group>"; };
+		6EFDD6041176237C00BAE58A /* TTTableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableButton.h; path = Three20/TTTableButton.h; sourceTree = "<group>"; };
+		6EFDD6091176239F00BAE58A /* TTTableMoreButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButton.m; sourceTree = "<group>"; };
+		6EFDD60C117623AA00BAE58A /* TTTableMoreButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButton.h; path = Three20/TTTableMoreButton.h; sourceTree = "<group>"; };
+		6EFDD611117623F800BAE58A /* TTTableImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItem.m; sourceTree = "<group>"; };
+		6EFDD6141176240400BAE58A /* TTTableImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableImageItem.h; path = Three20/TTTableImageItem.h; sourceTree = "<group>"; };
+		6EFDD6171176246E00BAE58A /* TTTableRightImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableRightImageItem.m; sourceTree = "<group>"; };
+		6EFDD61A1176247700BAE58A /* TTTableRightImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableRightImageItem.h; path = Three20/TTTableRightImageItem.h; sourceTree = "<group>"; };
+		6EFDD61F117624B700BAE58A /* TTTableActivityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableActivityItem.m; sourceTree = "<group>"; };
+		6EFDD622117624C200BAE58A /* TTTableActivityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableActivityItem.h; path = Three20/TTTableActivityItem.h; sourceTree = "<group>"; };
+		6EFDD6271176250C00BAE58A /* TTTableStyledTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableStyledTextItem.m; sourceTree = "<group>"; };
+		6EFDD62A1176251800BAE58A /* TTTableStyledTextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableStyledTextItem.h; path = Three20/TTTableStyledTextItem.h; sourceTree = "<group>"; };
+		6EFDD62F1176258300BAE58A /* TTTableControlItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableControlItem.m; sourceTree = "<group>"; };
+		6EFDD633117625DD00BAE58A /* TTTableViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewItem.m; sourceTree = "<group>"; };
+		6EFDD636117625EF00BAE58A /* TTTableControlItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableControlItem.h; path = Three20/TTTableControlItem.h; sourceTree = "<group>"; };
+		6EFDD638117625F800BAE58A /* TTTableViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewItem.h; path = Three20/TTTableViewItem.h; sourceTree = "<group>"; };
 		BE1288050F896A0A00F65EA2 /* TTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyle.h; path = Three20/TTStyle.h; sourceTree = "<group>"; };
 		BE1288070F896A1900F65EA2 /* TTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyle.m; sourceTree = "<group>"; };
 		BE1288CA0F89812E00F65EA2 /* TTShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShape.m; sourceTree = "<group>"; };
@@ -926,6 +1002,51 @@
 			name = "Header Views";
 			sourceTree = "<group>";
 		};
+		6EFDD59411756F1900BAE58A /* Table Items */ = {
+			isa = PBXGroup;
+			children = (
+				6EFDD59211756F1700BAE58A /* TTTableLinkedItem.h */,
+				6EFDD58F11756EFE00BAE58A /* TTTableLinkedItem.m */,
+				6EFDD59F11761B2A00BAE58A /* TTTableTextItem.h */,
+				6EFDD59C11761B1600BAE58A /* TTTableTextItem.m */,
+				6EFDD5B411761BEC00BAE58A /* TTTableCaptionItem.h */,
+				6EFDD5B111761BE100BAE58A /* TTTableCaptionItem.m */,
+				6EFDD5BE11761C7400BAE58A /* TTTableRightCaptionItem.h */,
+				6EFDD5BB11761C6800BAE58A /* TTTableRightCaptionItem.m */,
+				6EFDD5C61176211200BAE58A /* TTTableSubtextItem.h */,
+				6EFDD5C31176210800BAE58A /* TTTableSubtextItem.m */,
+				6EFDD5CC1176215D00BAE58A /* TTTableSubtitleItem.h */,
+				6EFDD5C91176215400BAE58A /* TTTableSubtitleItem.m */,
+				6EFDD5D41176220300BAE58A /* TTTableMessageItem.h */,
+				6EFDD5D1117621FB00BAE58A /* TTTableMessageItem.m */,
+				6EFDD5EC117622C700BAE58A /* TTTableLongTextItem.h */,
+				6EFDD5E9117622B900BAE58A /* TTTableLongTextItem.m */,
+				6EFDD5F2117622F700BAE58A /* TTTableGrayTextItem.h */,
+				6EFDD5EF117622EE00BAE58A /* TTTableGrayTextItem.m */,
+				6EFDD5F81176232C00BAE58A /* TTTableSummaryItem.h */,
+				6EFDD5F51176232000BAE58A /* TTTableSummaryItem.m */,
+				6EFDD5FE1176235400BAE58A /* TTTableLink.h */,
+				6EFDD5FB1176234B00BAE58A /* TTTableLink.m */,
+				6EFDD6041176237C00BAE58A /* TTTableButton.h */,
+				6EFDD6011176237300BAE58A /* TTTableButton.m */,
+				6EFDD60C117623AA00BAE58A /* TTTableMoreButton.h */,
+				6EFDD6091176239F00BAE58A /* TTTableMoreButton.m */,
+				6EFDD6141176240400BAE58A /* TTTableImageItem.h */,
+				6EFDD611117623F800BAE58A /* TTTableImageItem.m */,
+				6EFDD61A1176247700BAE58A /* TTTableRightImageItem.h */,
+				6EFDD6171176246E00BAE58A /* TTTableRightImageItem.m */,
+				6EFDD622117624C200BAE58A /* TTTableActivityItem.h */,
+				6EFDD61F117624B700BAE58A /* TTTableActivityItem.m */,
+				6EFDD62A1176251800BAE58A /* TTTableStyledTextItem.h */,
+				6EFDD6271176250C00BAE58A /* TTTableStyledTextItem.m */,
+				6EFDD636117625EF00BAE58A /* TTTableControlItem.h */,
+				6EFDD62F1176258300BAE58A /* TTTableControlItem.m */,
+				6EFDD638117625F800BAE58A /* TTTableViewItem.h */,
+				6EFDD633117625DD00BAE58A /* TTTableViewItem.m */,
+			);
+			name = "Table Items";
+			sourceTree = "<group>";
+		};
 		BE1287F40F8969C100F65EA2 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -959,6 +1080,7 @@
 				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
 				BE702EFA0F43F9DC0028A119 /* TTTableItem.h */,
 				BE702EF80F43F9D20028A119 /* TTTableItem.m */,
+				6EFDD59411756F1900BAE58A /* Table Items */,
 				BE702ED10F43F3390028A119 /* TTTableItemCell.h */,
 				BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */,
 				BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */,
@@ -1541,6 +1663,25 @@
 				6EFDD504117517D400BAE58A /* TTSearchTextFieldInternal.h in Headers */,
 				6EFDD51611751EEC00BAE58A /* TTPickerTextFieldDelegate.h in Headers */,
 				6EFDD5581175284400BAE58A /* TTSectionedDataSource.h in Headers */,
+				6EFDD59311756F1700BAE58A /* TTTableLinkedItem.h in Headers */,
+				6EFDD5A011761B2A00BAE58A /* TTTableTextItem.h in Headers */,
+				6EFDD5B511761BEC00BAE58A /* TTTableCaptionItem.h in Headers */,
+				6EFDD5BF11761C7400BAE58A /* TTTableRightCaptionItem.h in Headers */,
+				6EFDD5C71176211200BAE58A /* TTTableSubtextItem.h in Headers */,
+				6EFDD5CD1176215D00BAE58A /* TTTableSubtitleItem.h in Headers */,
+				6EFDD5D51176220300BAE58A /* TTTableMessageItem.h in Headers */,
+				6EFDD5ED117622C700BAE58A /* TTTableLongTextItem.h in Headers */,
+				6EFDD5F3117622F700BAE58A /* TTTableGrayTextItem.h in Headers */,
+				6EFDD5F91176232C00BAE58A /* TTTableSummaryItem.h in Headers */,
+				6EFDD5FF1176235400BAE58A /* TTTableLink.h in Headers */,
+				6EFDD6051176237C00BAE58A /* TTTableButton.h in Headers */,
+				6EFDD60D117623AA00BAE58A /* TTTableMoreButton.h in Headers */,
+				6EFDD6151176240400BAE58A /* TTTableImageItem.h in Headers */,
+				6EFDD61B1176247700BAE58A /* TTTableRightImageItem.h in Headers */,
+				6EFDD623117624C200BAE58A /* TTTableActivityItem.h in Headers */,
+				6EFDD62B1176251800BAE58A /* TTTableStyledTextItem.h in Headers */,
+				6EFDD637117625EF00BAE58A /* TTTableControlItem.h in Headers */,
+				6EFDD639117625F800BAE58A /* TTTableViewItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1764,6 +1905,25 @@
 				6EFDD4D411743D5F00BAE58A /* TTTextEditorInternal.m in Sources */,
 				6EFDD502117517B600BAE58A /* TTSearchTextFieldInternal.m in Sources */,
 				6EFDD5561175283500BAE58A /* TTSectionedDataSource.m in Sources */,
+				6EFDD59111756EFE00BAE58A /* TTTableLinkedItem.m in Sources */,
+				6EFDD59E11761B1600BAE58A /* TTTableTextItem.m in Sources */,
+				6EFDD5B311761BE100BAE58A /* TTTableCaptionItem.m in Sources */,
+				6EFDD5BD11761C6800BAE58A /* TTTableRightCaptionItem.m in Sources */,
+				6EFDD5C51176210800BAE58A /* TTTableSubtextItem.m in Sources */,
+				6EFDD5CB1176215400BAE58A /* TTTableSubtitleItem.m in Sources */,
+				6EFDD5D3117621FB00BAE58A /* TTTableMessageItem.m in Sources */,
+				6EFDD5EB117622B900BAE58A /* TTTableLongTextItem.m in Sources */,
+				6EFDD5F1117622EE00BAE58A /* TTTableGrayTextItem.m in Sources */,
+				6EFDD5F71176232000BAE58A /* TTTableSummaryItem.m in Sources */,
+				6EFDD5FD1176234B00BAE58A /* TTTableLink.m in Sources */,
+				6EFDD6031176237300BAE58A /* TTTableButton.m in Sources */,
+				6EFDD60B1176239F00BAE58A /* TTTableMoreButton.m in Sources */,
+				6EFDD613117623F800BAE58A /* TTTableImageItem.m in Sources */,
+				6EFDD6191176246E00BAE58A /* TTTableRightImageItem.m in Sources */,
+				6EFDD621117624B700BAE58A /* TTTableActivityItem.m in Sources */,
+				6EFDD6291176250C00BAE58A /* TTTableStyledTextItem.m in Sources */,
+				6EFDD6311176258300BAE58A /* TTTableControlItem.m in Sources */,
+				6EFDD635117625DD00BAE58A /* TTTableViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -130,7 +130,30 @@
 #import "Three20/TTSectionedDataSource.h"
 #import "Three20/TTTableHeaderView.h"
 #import "Three20/TTTableViewCell.h"
+
+// Table Items
 #import "Three20/TTTableItem.h"
+#import "Three20/TTTableLinkedItem.h"
+#import "Three20/TTTableTextItem.h"
+#import "Three20/TTTableCaptionItem.h"
+#import "Three20/TTTableRightCaptionItem.h"
+#import "Three20/TTTableSubtextItem.h"
+#import "Three20/TTTableSubtitleItem.h"
+#import "Three20/TTTableMessageItem.h"
+#import "Three20/TTTableLongTextItem.h"
+#import "Three20/TTTableGrayTextItem.h"
+#import "Three20/TTTableSummaryItem.h"
+#import "Three20/TTTableLink.h"
+#import "Three20/TTTableButton.h"
+#import "Three20/TTTableMoreButton.h"
+#import "Three20/TTTableImageItem.h"
+#import "Three20/TTTableRightImageItem.h"
+#import "Three20/TTTableActivityItem.h"
+#import "Three20/TTTableStyledTextItem.h"
+#import "Three20/TTTableControlItem.h"
+#import "Three20/TTTableViewItem.h"
+
+
 #import "Three20/TTTableItemCell.h"
 #import "Three20/TTErrorView.h"
 

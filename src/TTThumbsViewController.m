@@ -23,7 +23,7 @@
 
 #import "Three20/TTPhotoViewController.h"
 #import "Three20/TTNavigator.h"
-#import "Three20/TTTableItem.h"
+#import "Three20/TTTableMoreButton.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTStyleSheet.h"

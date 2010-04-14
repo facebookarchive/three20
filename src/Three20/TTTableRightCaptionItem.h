@@ -14,17 +14,7 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTTableCaptionItem.h"
 
-@class TTStyledText;
-@class TTStyle;
-@protocol TTModel;
-
-@interface TTTableItem : NSObject <NSCoding> {
-  id _userInfo;
-}
-
-@property (nonatomic, retain) id userInfo;
-
+@interface TTTableRightCaptionItem : TTTableCaptionItem
 @end

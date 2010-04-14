@@ -1,3 +1,4 @@
+
 //
 // Copyright 2009-2010 Facebook
 //
@@ -14,17 +15,16 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTTableItem.h"
 
-@class TTStyledText;
-@class TTStyle;
-@protocol TTModel;
-
-@interface TTTableItem : NSObject <NSCoding> {
-  id _userInfo;
+@interface TTTableControlItem : TTTableItem {
+  NSString*   _caption;
+  UIControl*  _control;
 }
 
-@property (nonatomic, retain) id userInfo;
+@property (nonatomic, copy)   NSString*   caption;
+@property (nonatomic, retain) UIControl*  control;
+
++ (id)itemWithCaption:(NSString*)caption control:(UIControl*)control;
 
 @end

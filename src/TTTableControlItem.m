@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableItem.h"
+#import "Three20/TTTableControlItem.h"
 
 #import "Three20/TTCorePreprocessorMacros.h"
 
@@ -22,16 +22,33 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTTableItem
+@implementation TTTableControlItem
 
-@synthesize userInfo = _userInfo;
+@synthesize caption = _caption;
+@synthesize control = _control;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_userInfo);
+  TT_RELEASE_SAFELY(_caption);
+  TT_RELEASE_SAFELY(_control);
 
   [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Class public
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)itemWithCaption:(NSString*)caption control:(UIControl*)control {
+  TTTableControlItem* item = [[[self alloc] init] autorelease];
+  item.caption = caption;
+  item.control = control;
+  return item;
 }
 
 
@@ -43,12 +60,23 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder*)decoder {
-  return [self init];
+  if (self = [super initWithCoder:decoder]) {
+    self.caption = [decoder decodeObjectForKey:@"caption"];
+    self.control = [decoder decodeObjectForKey:@"control"];
+  }
+  return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.caption) {
+    [encoder encodeObject:self.caption forKey:@"caption"];
+  }
+  if (self.control) {
+    [encoder encodeObject:self.control forKey:@"control"];
+  }
 }
 
 

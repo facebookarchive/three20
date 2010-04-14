@@ -14,17 +14,14 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTTableItem.h"
 
-@class TTStyledText;
-@class TTStyle;
-@protocol TTModel;
-
-@interface TTTableItem : NSObject <NSCoding> {
-  id _userInfo;
+@interface TTTableActivityItem : TTTableItem {
+  NSString* _text;
 }
 
-@property (nonatomic, retain) id userInfo;
+@property (nonatomic, copy) NSString* text;
+
++ (id)itemWithText:(NSString*)text;
 
 @end

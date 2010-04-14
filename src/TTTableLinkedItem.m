@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableItem.h"
+#import "Three20/TTTableLinkedItem.h"
 
 #import "Three20/TTCorePreprocessorMacros.h"
 
@@ -22,14 +22,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTTableItem
+@implementation TTTableLinkedItem
 
-@synthesize userInfo = _userInfo;
+@synthesize URL           = _URL;
+@synthesize accessoryURL  = _accessoryURL;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_userInfo);
+  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_accessoryURL);
 
   [super dealloc];
 }
@@ -43,13 +45,24 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder*)decoder {
-  return [self init];
+  if (self = [super initWithCoder:decoder]) {
+    self.URL = [decoder decodeObjectForKey:@"URL"];
+  }
+  return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)encodeWithCoder:(NSCoder*)encoder {
+  [super encodeWithCoder:encoder];
+  if (self.URL) {
+    [encoder encodeObject:self.URL forKey:@"URL"];
+  }
+  if (self.accessoryURL) {
+    [encoder encodeObject:self.accessoryURL forKey:@"URL"];
+  }
 }
 
 
 @end
+

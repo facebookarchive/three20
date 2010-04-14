@@ -14,17 +14,14 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTTableSubtitleItem.h"
 
-@class TTStyledText;
-@class TTStyle;
-@protocol TTModel;
-
-@interface TTTableItem : NSObject <NSCoding> {
-  id _userInfo;
+@interface TTTableMoreButton : TTTableSubtitleItem {
+  BOOL        _isLoading;
+  id<TTModel> _model;
 }
 
-@property (nonatomic, retain) id userInfo;
+@property (nonatomic)         BOOL        isLoading;
+@property (nonatomic, retain) id<TTModel> model;
 
 @end
