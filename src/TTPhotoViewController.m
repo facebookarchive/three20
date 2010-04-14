@@ -16,6 +16,7 @@
 
 #import "Three20/TTPhotoViewController.h"
 
+#import "Three20/TTThumbsViewController.h"
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTPhoto.h"
 

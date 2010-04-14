@@ -37,16 +37,3 @@
 - (id<TTTableViewDataSource>)createDataSource;
 
 @end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@protocol TTThumbsViewControllerDelegate <NSObject>
-
-- (void)thumbsViewController:(TTThumbsViewController*)controller didSelectPhoto:(id<TTPhoto>)photo;
-
-@optional
-
-- (BOOL)thumbsViewController:(TTThumbsViewController*)controller
-        shouldNavigateToPhoto:(id<TTPhoto>)photo;
-
-@end
