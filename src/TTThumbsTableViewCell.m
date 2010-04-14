@@ -19,6 +19,7 @@
 #import "Three20/TTGlobalCore.h"
 
 #import "Three20/TTThumbView.h"
+#import "Three20/TTThumbsTableViewCellDelegate.h"
 #import "Three20/TTPhotoVersion.h"
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTPhoto.h"

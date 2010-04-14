@@ -22,6 +22,7 @@
 #import "Three20/TTGlobalStyle.h"
 
 #import "Three20/TTThumbsDataSource.h"
+#import "Three20/TTThumbsTableViewCell.h"
 #import "Three20/TTPhotoViewController.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTPhotoSource.h"

@@ -180,6 +180,7 @@
 #import "Three20/TTThumbsViewControllerDelegate.h"
 #import "Three20/TTThumbsDataSource.h"
 #import "Three20/TTThumbsTableViewCell.h"
+#import "Three20/TTThumbsTableViewCellDelegate.h"
 #import "Three20/TTThumbView.h"
 
 #import "Three20/TTRecursiveProgress.h"
