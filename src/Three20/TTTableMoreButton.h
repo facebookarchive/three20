@@ -16,6 +16,8 @@
 
 #import "Three20/TTTableSubtitleItem.h"
 
+@protocol TTModel;
+
 @interface TTTableMoreButton : TTTableSubtitleItem {
   BOOL        _isLoading;
   id<TTModel> _model;

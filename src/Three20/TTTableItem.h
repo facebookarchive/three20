@@ -17,10 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class TTStyledText;
-@class TTStyle;
-@protocol TTModel;
-
 @interface TTTableItem : NSObject <NSCoding> {
   id _userInfo;
 }

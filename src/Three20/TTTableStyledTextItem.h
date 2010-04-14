@@ -16,6 +16,8 @@
 
 #import "Three20/TTTableLinkedItem.h"
 
+@class TTStyledText;
+
 @interface TTTableStyledTextItem : TTTableLinkedItem {
   TTStyledText* _text;
   UIEdgeInsets  _margin;

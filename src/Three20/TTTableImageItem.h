@@ -16,6 +16,8 @@
 
 #import "Three20/TTTableTextItem.h"
 
+@class TTStyle;
+
 @interface TTTableImageItem : TTTableTextItem {
   NSString* _imageURL;
   UIImage*  _defaultImage;
