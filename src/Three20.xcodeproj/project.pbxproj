@@ -48,6 +48,7 @@
 		6E6207AB11766A1400035C6C /* TTThumbsDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6207AA11766A1400035C6C /* TTThumbsDataSource.h */; };
 		6E6207D511766B8B00035C6C /* TTThumbsViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6207D411766B8B00035C6C /* TTThumbsViewControllerDelegate.h */; };
 		6E62080C11766EA900035C6C /* TTThumbsTableViewCellDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E62080B11766EA900035C6C /* TTThumbsTableViewCellDelegate.h */; };
+		6E6208331176702000035C6C /* TTLauncherViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6208321176702000035C6C /* TTLauncherViewDelegate.h */; };
 		6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */; };
 		6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
 		6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E85811229CA500276F63 /* TTUserInfo.h */; };
@@ -435,6 +436,7 @@
 		6E6207AA11766A1400035C6C /* TTThumbsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsDataSource.h; path = Three20/TTThumbsDataSource.h; sourceTree = "<group>"; };
 		6E6207D411766B8B00035C6C /* TTThumbsViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsViewControllerDelegate.h; path = Three20/TTThumbsViewControllerDelegate.h; sourceTree = "<group>"; };
 		6E62080B11766EA900035C6C /* TTThumbsTableViewCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsTableViewCellDelegate.h; path = Three20/TTThumbsTableViewCellDelegate.h; sourceTree = "<group>"; };
+		6E6208321176702000035C6C /* TTLauncherViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherViewDelegate.h; path = Three20/TTLauncherViewDelegate.h; sourceTree = "<group>"; };
 		6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
 		6E75E85511229C9100276F63 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
 		6E75E85811229CA500276F63 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
@@ -1259,6 +1261,7 @@
 			children = (
 				BEC787471040A34E005C00CF /* TTLauncherView.h */,
 				BEC787451040A33A005C00CF /* TTLauncherView.m */,
+				6E6208321176702000035C6C /* TTLauncherViewDelegate.h */,
 				BEC787B41040A79F005C00CF /* TTLauncherItem.h */,
 				BEC787B61040A7AA005C00CF /* TTLauncherItem.m */,
 				BEC787961040A6EC005C00CF /* TTLauncherButton.h */,
@@ -1804,6 +1807,7 @@
 				6E6207AB11766A1400035C6C /* TTThumbsDataSource.h in Headers */,
 				6E6207D511766B8B00035C6C /* TTThumbsViewControllerDelegate.h in Headers */,
 				6E62080C11766EA900035C6C /* TTThumbsTableViewCellDelegate.h in Headers */,
+				6E6208331176702000035C6C /* TTLauncherViewDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

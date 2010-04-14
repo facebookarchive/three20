@@ -91,6 +91,7 @@
 #import "Three20/TTScrollViewDataSource.h"
 
 #import "Three20/TTLauncherView.h"
+#import "Three20/TTLauncherViewDelegate.h"
 #import "Three20/TTLauncherItem.h"
 
 #import "Three20/TTLabel.h"

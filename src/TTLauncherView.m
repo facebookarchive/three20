@@ -16,6 +16,8 @@
 
 #import "Three20/TTLauncherView.h"
 
+#import "Three20/TTLauncherViewDelegate.h"
+
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTDebugFlags.h"
 
@@ -55,7 +57,7 @@ static const NSInteger kDefaultColumnCount = 3;
 }
 
 @end
- 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTLauncherView
@@ -141,7 +143,7 @@ static const NSInteger kDefaultColumnCount = 3;
   CGRect labelFrame = CGRectInset(boxFrame, kPromptMargin, kPromptMargin);
   UILabel* label = [[[UILabel alloc] initWithFrame:labelFrame] autorelease];
   label.tag = kPromptTag;
-  label.text = _prompt;    
+  label.text = _prompt;
   label.font = [UIFont boldSystemFontOfSize:17];
   label.backgroundColor = [UIColor clearColor];
   label.textColor = RGBCOLOR(81,95,122);
@@ -154,7 +156,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (TTLauncherButton*)addButtonWithItem:(TTLauncherItem*)item {
   TTLauncherButton* button = [[[TTLauncherButton alloc] initWithItem:item] autorelease];
-  
+
   [button addTarget:self action:@selector(buttonTouchedUpInside:)
         forControlEvents:UIControlEventTouchUpInside];
   [button addTarget:self action:@selector(buttonTouchedUpOutside:)
@@ -168,12 +170,12 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)layoutButtons {
   [self layoutIfNeeded];
-  
+
   CGFloat buttonWidth = ceil((self.width
                         - (kMargin*2 + kPadding*(self.columnCount-1))) / self.columnCount);
   CGFloat buttonHeight = [self rowHeight];
   CGFloat pageWidth = _scrollView.width;
-  
+
   CGFloat x = kMargin, minX = 0;
   for (NSMutableArray* buttonPage in _buttons) {
     CGFloat y = kMargin;
@@ -189,24 +191,24 @@ static const NSInteger kDefaultColumnCount = 3;
         x = minX+kMargin;
       }
     }
-    
+
     minX += pageWidth;
     x = minX;
   }
-  
+
   NSInteger numberOfPages = _pages.count;
   if (numberOfPages == 1 && _prompt) {
     [self showPrompt];
     ++numberOfPages;
   }
-  
+
   [self updateContentSize:numberOfPages];
 }
 
 - (void)recreateButtons {
   [self layoutIfNeeded];
   [_scrollView removeAllSubviews];
-  
+
   [_buttons release];
   _buttons = [[NSMutableArray alloc] init];
 
@@ -219,7 +221,7 @@ static const NSInteger kDefaultColumnCount = 3;
       [buttonPage addObject:button];
     }
   }
-    
+
   [self layoutButtons];
 }
 
@@ -230,7 +232,7 @@ static const NSInteger kDefaultColumnCount = 3;
     BOOL isLastPage = pageIndex == _buttons.count-1;
 
     NSMutableArray* itemsPage = [_pages objectAtIndex:pageIndex];
-        
+
     NSMutableArray* nextButtonPage = nil;
     NSMutableArray* nextItemsPage = nil;
     if (isLastPage) {
@@ -242,14 +244,14 @@ static const NSInteger kDefaultColumnCount = 3;
       nextButtonPage = [_buttons objectAtIndex:pageIndex+1];
       nextItemsPage = [_pages objectAtIndex:pageIndex+1];
     }
-    
+
     while (buttonPage.count > maxButtonsPerPage) {
       [nextButtonPage insertObject:[buttonPage lastObject] atIndex:0];
       [buttonPage removeLastObject];
       [nextItemsPage insertObject:[itemsPage lastObject] atIndex:0];
       [itemsPage removeLastObject];
     }
-    
+
     if (pageIndex+1 < _buttons.count) {
       [self checkButtonOverflow:pageIndex+1];
     }
@@ -265,7 +267,7 @@ static const NSInteger kDefaultColumnCount = 3;
     button.origin = [_scrollView convertPoint:button.origin toView:self];
     [button layoutIfNeeded];
   }
-  
+
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
 
@@ -275,7 +277,7 @@ static const NSInteger kDefaultColumnCount = 3;
     _dragButton.dragging = NO;
     [self layoutButtons];
   }
-  
+
   if (button) {
     _dragButton = button;
 
@@ -286,16 +288,16 @@ static const NSInteger kDefaultColumnCount = 3;
     _touchOrigin = [touch locationInView:_scrollView];
     _dragOrigin = button.center;
     _dragTouch = touch;
-    
+
     button.dragging = YES;
-    
+
     _scrollView.scrollEnabled = NO;
   } else {
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(releaseButtonDidStop)];
     _scrollView.scrollEnabled = YES;
   }
-  
+
   [UIView commitAnimations];
 }
 
@@ -307,7 +309,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)springLoadTimer:(NSTimer*)timer {
   _springLoadTimer = nil;
-  
+
   if ([(NSNumber*)timer.userInfo boolValue]) {
     CGFloat newX = _scrollView.contentOffset.x - _scrollView.width;
     if (newX >= 0) {
@@ -379,7 +381,7 @@ static const NSInteger kDefaultColumnCount = 3;
     }
   } else {
     TT_INVALIDATE_TIMER(_editHoldTimer);
-    
+
     _editHoldTimer = [NSTimer scheduledTimerWithTimeInterval:kEditHoldTimeInterval
                               target:self selector:@selector(editHoldTimer:)
                               userInfo:[TTUserInfo topic:nil strongRef:event weakRef:button]
@@ -400,14 +402,14 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)wobble {
   static BOOL wobblesLeft = NO;
-  
+
   if (_editing) {
     CGFloat rotation = (kWobbleRadians * M_PI) / 180.0;
     CGAffineTransform wobbleLeft = CGAffineTransformMakeRotation(rotation);
     CGAffineTransform wobbleRight = CGAffineTransformMakeRotation(-rotation);
-    
+
     [UIView beginAnimations:nil context:nil];
-    
+
     NSInteger i = 0;
     NSInteger nWobblyButtons = 0;
     for (NSArray* buttonPage in _buttons) {
@@ -445,7 +447,7 @@ static const NSInteger kDefaultColumnCount = 3;
   TTUserInfo* info = timer.userInfo;
   TTLauncherButton* button = info.weakRef;
   UIEvent* event = info.strongRef;
-  
+
   button.selected = NO;
   button.highlighted = NO;
   [self startDraggingButton:button withEvent:event];
@@ -474,7 +476,7 @@ static const NSInteger kDefaultColumnCount = 3;
   NSInteger row = round(origin.y/_dragButton.height);
   NSInteger itemIndex = (row * self.columnCount) + column;
   NSInteger pageIndex = floor(_scrollView.contentOffset.x/_scrollView.width);
-  
+
   if (itemIndex != _positionOrigin) {
     NSMutableArray* currentButtonPage = [_buttons objectAtIndex:pageIndex];
     if (itemIndex > currentButtonPage.count) {
@@ -492,9 +494,9 @@ static const NSInteger kDefaultColumnCount = 3;
       if (itemIndex > currentButtonPage.count) {
         itemIndex = currentButtonPage.count;
       }
-      
+
       BOOL didMove = itemIndex != _positionOrigin;
-      
+
       NSMutableArray* currentItemPage = [_pages objectAtIndex:pageIndex];
       [currentItemPage insertObject:_dragButton.item atIndex:itemIndex];
       [currentButtonPage insertObject:_dragButton atIndex:itemIndex];
@@ -513,7 +515,7 @@ static const NSInteger kDefaultColumnCount = 3;
       }
     }
   }
-  
+
   CGFloat springLoadDistance = _dragButton.width*kSpringLoadFraction;
   TTDCONDITIONLOG(TTDFLAG_LAUNCHERVIEW, @"%f < %f", springLoadDistance, _dragButton.center.x);
   BOOL goToPreviousPage = _dragButton.center.x - springLoadDistance < 0;
@@ -545,7 +547,7 @@ static const NSInteger kDefaultColumnCount = 3;
     _dragTouch = nil;
     _editing = NO;
     _springing = NO;
-    
+
     _scrollView = [[TTLauncherScrollView alloc] initWithFrame:
                   CGRectMake(0, 0, self.width, self.height - kPagerHeight)];
     _scrollView.delegate = self;
@@ -567,7 +569,7 @@ static const NSInteger kDefaultColumnCount = 3;
     [_pager addTarget:self action:@selector(pageChanged)
             forControlEvents:UIControlEventValueChanged];
     [self addSubview:_pager];
-    
+
     self.autoresizesSubviews = YES;
     self.columnCount = kDefaultColumnCount;
   }
@@ -582,7 +584,7 @@ static const NSInteger kDefaultColumnCount = 3;
   }
 
   _scrollView.delegate = nil;
-  
+
   TT_INVALIDATE_TIMER(_editHoldTimer);
   TT_INVALIDATE_TIMER(_springLoadTimer);
   TT_RELEASE_SAFELY(_pages);
@@ -609,7 +611,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent *)event {
   [super touchesEnded:touches withEvent:event];
-  
+
   if (_dragTouch) {
     for (UITouch* touch in touches) {
       if (touch == _dragTouch) {
@@ -625,7 +627,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  
+
   _pager.frame = CGRectMake(0, _scrollView.height, self.width, kPagerHeight);
 
   if (!_buttons) {
@@ -664,7 +666,7 @@ static const NSInteger kDefaultColumnCount = 3;
       item.launcher = nil;
     }
   }
-  
+
   [_pages release];
   _pages = [[NSMutableArray alloc] init];
 
@@ -676,7 +678,7 @@ static const NSInteger kDefaultColumnCount = 3;
     }
     [pageCopy release];
   }
-  
+
   TT_RELEASE_SAFELY(_buttons);
   [self setNeedsLayout];
 }
@@ -715,7 +717,7 @@ static const NSInteger kDefaultColumnCount = 3;
       NSMutableArray* page = [self pageWithFreeSpace:self.currentPageIndex];
       [page addObject:item];
     }
-          
+
     if ([_delegate respondsToSelector:@selector(launcherView:didAddItem:)]) {
       [_delegate launcherView:self didAddItem:item];
     }
@@ -723,7 +725,7 @@ static const NSInteger kDefaultColumnCount = 3;
     if (_buttons) {
       [self recreateButtons];
     }
-    
+
     [self scrollToItem:item animated:animated];
   }
 }
@@ -739,7 +741,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
     if (buttonPage) {
       [buttonPage removeObject:button];
-  
+
       if (animated) {
         [UIView beginAnimations:nil context:button];
         [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
@@ -799,7 +801,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
   UIView* prompt = [self viewWithTag:kPromptTag];
   [prompt removeFromSuperview];
-  
+
   for (NSArray* buttonPage in _buttons) {
     for (TTLauncherButton* button in buttonPage) {
       button.editing = YES;
@@ -807,14 +809,14 @@ static const NSInteger kDefaultColumnCount = 3;
               forControlEvents:UIControlEventTouchUpInside];
     }
   }
-    
+
   // Add a page at the end
   [_pages addObject:[NSMutableArray array]];
   [_buttons addObject:[NSMutableArray array]];
   [self updateContentSize:_pages.count];
-  
+
   [self wobble];
-  
+
   if ([_delegate respondsToSelector:@selector(launcherViewDidBeginEditing:)]) {
     [_delegate launcherViewDidBeginEditing:self];
   }
@@ -823,7 +825,7 @@ static const NSInteger kDefaultColumnCount = 3;
 - (void)endEditing {
   _editing = NO;
   _scrollView.delaysContentTouches = NO;
-  
+
   [UIView beginAnimations:nil context:nil];
   [UIView setAnimationDuration:TT_TRANSITION_DURATION];
   [UIView setAnimationDelegate:self];
@@ -846,7 +848,7 @@ static const NSInteger kDefaultColumnCount = 3;
       --i;
     }
   }
-  
+
   [self layoutButtons];
 
   if ([_delegate respondsToSelector:@selector(launcherViewDidEndEditing:)]) {
