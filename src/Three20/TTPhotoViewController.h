@@ -15,30 +15,44 @@
 //
 
 #import "Three20/TTModelViewController.h"
-#import "Three20/TTThumbsViewController.h"
 #import "Three20/TTScrollViewDelegate.h"
 #import "Three20/TTScrollViewDataSource.h"
+#import "Three20/TTThumbsViewController.h"
 
-@class TTScrollView, TTPhotoView, TTStyle;
+@class TTScrollView;
+@class TTPhotoView;
+@class TTStyle;
 
-@interface TTPhotoViewController : TTModelViewController
-          <TTScrollViewDelegate, TTScrollViewDataSource, TTThumbsViewControllerDelegate> {
-  id<TTPhotoSource> _photoSource;
-  id<TTPhoto> _centerPhoto;
-  NSInteger _centerPhotoIndex;
-  UIView* _innerView;
-  TTScrollView* _scrollView;
-  TTPhotoView* _photoStatusView;
-  UIToolbar* _toolbar;
-  UIBarButtonItem* _nextButton;
-  UIBarButtonItem* _previousButton;
-  TTStyle* _captionStyle;
-  UIImage* _defaultImage;
-  NSString* _statusText;
+@interface TTPhotoViewController : TTModelViewController <
+  TTScrollViewDelegate,
+  TTScrollViewDataSource,
+  TTThumbsViewControllerDelegate
+> {
+  id<TTPhoto>       _centerPhoto;
+  NSInteger         _centerPhotoIndex;
+
+  UIView*           _innerView;
+  TTScrollView*     _scrollView;
+  TTPhotoView*      _photoStatusView;
+
+  UIToolbar*        _toolbar;
+  UIBarButtonItem*  _nextButton;
+  UIBarButtonItem*  _previousButton;
+
+  TTStyle*          _captionStyle;
+
+  UIImage*          _defaultImage;
+
+  NSString*         _statusText;
+
+  NSTimer*          _slideshowTimer;
+  NSTimer*          _loadTimer;
+
+  BOOL              _delayLoad;
+
   TTThumbsViewController* _thumbsController;
-  NSTimer* _slideshowTimer;
-  NSTimer* _loadTimer;
-  BOOL _delayLoad;
+
+  id<TTPhotoSource> _photoSource;
 }
 
 /**
