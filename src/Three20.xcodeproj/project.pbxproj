@@ -28,6 +28,20 @@
 		6E35CCC210912BE10066B478 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */; };
 		6E35CCFD10912C870066B478 /* NSMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */; };
 		6E35CCFE10912C870066B478 /* NSMutableArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E35CCFC10912C870066B478 /* NSMutableArrayAdditions.h */; };
+		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
+		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
+		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
+		6E6206B31176490400035C6C /* TTTableImageItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206B21176490400035C6C /* TTTableImageItemCell.h */; };
+		6E6206B71176497700035C6C /* TTStyledTextTableItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206B51176497700035C6C /* TTStyledTextTableItemCell.m */; };
+		6E6206B91176498800035C6C /* TTStyledTextTableItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206B81176498800035C6C /* TTStyledTextTableItemCell.h */; };
+		6E6206BD117649E500035C6C /* TTStyledTextTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206BB117649E500035C6C /* TTStyledTextTableCell.m */; };
+		6E6206BF117649EE00035C6C /* TTStyledTextTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206BE117649EE00035C6C /* TTStyledTextTableCell.h */; };
+		6E6206C311764A4F00035C6C /* TTTableActivityItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206C111764A4F00035C6C /* TTTableActivityItemCell.m */; };
+		6E6206C711764ABC00035C6C /* TTTableControlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206C511764ABC00035C6C /* TTTableControlCell.m */; };
+		6E6206C911764AC800035C6C /* TTTableControlCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206C811764AC800035C6C /* TTTableControlCell.h */; };
+		6E6206CD11764B6100035C6C /* TTTableFlushViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206CB11764B6100035C6C /* TTTableFlushViewCell.m */; };
+		6E6206CF11764B6F00035C6C /* TTTableFlushViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206CE11764B6F00035C6C /* TTTableFlushViewCell.h */; };
+		6E6207381176587A00035C6C /* TTTableActivityItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6207371176587A00035C6C /* TTTableActivityItemCell.h */; };
 		6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */; };
 		6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
 		6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E85811229CA500276F63 /* TTUserInfo.h */; };
@@ -152,6 +166,20 @@
 		6EFDD635117625DD00BAE58A /* TTTableViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD633117625DD00BAE58A /* TTTableViewItem.m */; };
 		6EFDD637117625EF00BAE58A /* TTTableControlItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD636117625EF00BAE58A /* TTTableControlItem.h */; };
 		6EFDD639117625F800BAE58A /* TTTableViewItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD638117625F800BAE58A /* TTTableViewItem.h */; };
+		6EFDD6E11176444000BAE58A /* TTTableLinkedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6DF1176444000BAE58A /* TTTableLinkedItemCell.m */; };
+		6EFDD6E31176444F00BAE58A /* TTTableLinkedItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD6E21176444F00BAE58A /* TTTableLinkedItemCell.h */; };
+		6EFDD6E7117644AA00BAE58A /* TTTableTextItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6E5117644AA00BAE58A /* TTTableTextItemCell.m */; };
+		6EFDD6E9117644B400BAE58A /* TTTableTextItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD6E8117644B400BAE58A /* TTTableTextItemCell.h */; };
+		6EFDD6ED1176453400BAE58A /* TTTableCaptionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6EB1176453400BAE58A /* TTTableCaptionItemCell.m */; };
+		6EFDD6EF1176454000BAE58A /* TTTableCaptionItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD6EE1176454000BAE58A /* TTTableCaptionItemCell.h */; };
+		6EFDD6F3117645A700BAE58A /* TTTableSubtextItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6F1117645A700BAE58A /* TTTableSubtextItemCell.m */; };
+		6EFDD6F5117645B300BAE58A /* TTTableSubtextItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD6F4117645B300BAE58A /* TTTableSubtextItemCell.h */; };
+		6EFDD6F91176461500BAE58A /* TTTableRightCaptionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6F71176461500BAE58A /* TTTableRightCaptionItemCell.m */; };
+		6EFDD6FB1176461D00BAE58A /* TTTableRightCaptionItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD6FA1176461D00BAE58A /* TTTableRightCaptionItemCell.h */; };
+		6EFDD6FF1176467500BAE58A /* TTTableSubtitleItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD6FD1176467500BAE58A /* TTTableSubtitleItemCell.m */; };
+		6EFDD7011176468000BAE58A /* TTTableSubtitleItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD7001176468000BAE58A /* TTTableSubtitleItemCell.h */; };
+		6EFDD7081176473E00BAE58A /* TTTableMessageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD7061176473E00BAE58A /* TTTableMessageItemCell.m */; };
+		6EFDD70A1176474600BAE58A /* TTTableMessageItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD7091176474600BAE58A /* TTTableMessageItemCell.h */; };
 		BE1288060F896A0A00F65EA2 /* TTStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = BE1288050F896A0A00F65EA2 /* TTStyle.h */; };
 		BE1288080F896A1900F65EA2 /* TTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288070F896A1900F65EA2 /* TTStyle.m */; };
 		BE1288CB0F89812E00F65EA2 /* TTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288CA0F89812E00F65EA2 /* TTShape.m */; };
@@ -176,8 +204,6 @@
 		BE52E994100D8EF800E03DB7 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE52E993100D8EF800E03DB7 /* TTModel.m */; };
 		BE6E4A520F465237001CE9B4 /* TTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */; };
 		BE6E4A540F465243001CE9B4 /* TTTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */; };
-		BE702ED00F43F32E0028A119 /* TTTableItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */; };
-		BE702ED20F43F3390028A119 /* TTTableItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702ED10F43F3390028A119 /* TTTableItemCell.h */; };
 		BE702EF10F43F6720028A119 /* TTTableViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */; };
 		BE702EF30F43F6800028A119 /* TTTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */; };
 		BE702EF90F43F9D20028A119 /* TTTableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE702EF80F43F9D20028A119 /* TTTableItem.m */; };
@@ -383,6 +409,20 @@
 		6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableDictionaryAdditions.m; sourceTree = "<group>"; };
 		6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableDictionaryAdditions.h; path = Three20/NSMutableDictionaryAdditions.h; sourceTree = "<group>"; };
 		6E35CCFC10912C870066B478 /* NSMutableArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableArrayAdditions.h; path = Three20/NSMutableArrayAdditions.h; sourceTree = "<group>"; };
+		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
+		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
+		6E6206AF117648F900035C6C /* TTTableImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItemCell.m; sourceTree = "<group>"; };
+		6E6206B21176490400035C6C /* TTTableImageItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableImageItemCell.h; path = Three20/TTTableImageItemCell.h; sourceTree = "<group>"; };
+		6E6206B51176497700035C6C /* TTStyledTextTableItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledTextTableItemCell.m; sourceTree = "<group>"; };
+		6E6206B81176498800035C6C /* TTStyledTextTableItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextTableItemCell.h; path = Three20/TTStyledTextTableItemCell.h; sourceTree = "<group>"; };
+		6E6206BB117649E500035C6C /* TTStyledTextTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledTextTableCell.m; sourceTree = "<group>"; };
+		6E6206BE117649EE00035C6C /* TTStyledTextTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextTableCell.h; path = Three20/TTStyledTextTableCell.h; sourceTree = "<group>"; };
+		6E6206C111764A4F00035C6C /* TTTableActivityItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableActivityItemCell.m; sourceTree = "<group>"; };
+		6E6206C511764ABC00035C6C /* TTTableControlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableControlCell.m; sourceTree = "<group>"; };
+		6E6206C811764AC800035C6C /* TTTableControlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableControlCell.h; path = Three20/TTTableControlCell.h; sourceTree = "<group>"; };
+		6E6206CB11764B6100035C6C /* TTTableFlushViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableFlushViewCell.m; sourceTree = "<group>"; };
+		6E6206CE11764B6F00035C6C /* TTTableFlushViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableFlushViewCell.h; path = Three20/TTTableFlushViewCell.h; sourceTree = "<group>"; };
+		6E6207371176587A00035C6C /* TTTableActivityItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableActivityItemCell.h; path = Three20/TTTableActivityItemCell.h; sourceTree = "<group>"; };
 		6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
 		6E75E85511229C9100276F63 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
 		6E75E85811229CA500276F63 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
@@ -507,6 +547,20 @@
 		6EFDD633117625DD00BAE58A /* TTTableViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewItem.m; sourceTree = "<group>"; };
 		6EFDD636117625EF00BAE58A /* TTTableControlItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableControlItem.h; path = Three20/TTTableControlItem.h; sourceTree = "<group>"; };
 		6EFDD638117625F800BAE58A /* TTTableViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewItem.h; path = Three20/TTTableViewItem.h; sourceTree = "<group>"; };
+		6EFDD6DF1176444000BAE58A /* TTTableLinkedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableLinkedItemCell.m; sourceTree = "<group>"; };
+		6EFDD6E21176444F00BAE58A /* TTTableLinkedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableLinkedItemCell.h; path = Three20/TTTableLinkedItemCell.h; sourceTree = "<group>"; };
+		6EFDD6E5117644AA00BAE58A /* TTTableTextItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableTextItemCell.m; sourceTree = "<group>"; };
+		6EFDD6E8117644B400BAE58A /* TTTableTextItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableTextItemCell.h; path = Three20/TTTableTextItemCell.h; sourceTree = "<group>"; };
+		6EFDD6EB1176453400BAE58A /* TTTableCaptionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableCaptionItemCell.m; sourceTree = "<group>"; };
+		6EFDD6EE1176454000BAE58A /* TTTableCaptionItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableCaptionItemCell.h; path = Three20/TTTableCaptionItemCell.h; sourceTree = "<group>"; };
+		6EFDD6F1117645A700BAE58A /* TTTableSubtextItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableSubtextItemCell.m; sourceTree = "<group>"; };
+		6EFDD6F4117645B300BAE58A /* TTTableSubtextItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableSubtextItemCell.h; path = Three20/TTTableSubtextItemCell.h; sourceTree = "<group>"; };
+		6EFDD6F71176461500BAE58A /* TTTableRightCaptionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableRightCaptionItemCell.m; sourceTree = "<group>"; };
+		6EFDD6FA1176461D00BAE58A /* TTTableRightCaptionItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableRightCaptionItemCell.h; path = Three20/TTTableRightCaptionItemCell.h; sourceTree = "<group>"; };
+		6EFDD6FD1176467500BAE58A /* TTTableSubtitleItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableSubtitleItemCell.m; sourceTree = "<group>"; };
+		6EFDD7001176468000BAE58A /* TTTableSubtitleItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableSubtitleItemCell.h; path = Three20/TTTableSubtitleItemCell.h; sourceTree = "<group>"; };
+		6EFDD7061176473E00BAE58A /* TTTableMessageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMessageItemCell.m; sourceTree = "<group>"; };
+		6EFDD7091176474600BAE58A /* TTTableMessageItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMessageItemCell.h; path = Three20/TTTableMessageItemCell.h; sourceTree = "<group>"; };
 		BE1288050F896A0A00F65EA2 /* TTStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyle.h; path = Three20/TTStyle.h; sourceTree = "<group>"; };
 		BE1288070F896A1900F65EA2 /* TTStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyle.m; sourceTree = "<group>"; };
 		BE1288CA0F89812E00F65EA2 /* TTShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShape.m; sourceTree = "<group>"; };
@@ -531,8 +585,6 @@
 		BE52E993100D8EF800E03DB7 /* TTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModel.m; sourceTree = "<group>"; };
 		BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewCell.m; sourceTree = "<group>"; };
 		BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewCell.h; path = Three20/TTTableViewCell.h; sourceTree = "<group>"; };
-		BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableItemCell.m; sourceTree = "<group>"; };
-		BE702ED10F43F3390028A119 /* TTTableItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableItemCell.h; path = Three20/TTTableItemCell.h; sourceTree = "<group>"; };
 		BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewDataSource.h; path = Three20/TTTableViewDataSource.h; sourceTree = "<group>"; };
 		BE702EF20F43F6800028A119 /* TTTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewDataSource.m; sourceTree = "<group>"; };
 		BE702EF80F43F9D20028A119 /* TTTableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableItem.m; sourceTree = "<group>"; };
@@ -1047,6 +1099,41 @@
 			name = "Table Items";
 			sourceTree = "<group>";
 		};
+		6EFDD6DD1176443500BAE58A /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6EFDD6E21176444F00BAE58A /* TTTableLinkedItemCell.h */,
+				6EFDD6DF1176444000BAE58A /* TTTableLinkedItemCell.m */,
+				6EFDD6E8117644B400BAE58A /* TTTableTextItemCell.h */,
+				6EFDD6E5117644AA00BAE58A /* TTTableTextItemCell.m */,
+				6EFDD6EE1176454000BAE58A /* TTTableCaptionItemCell.h */,
+				6EFDD6EB1176453400BAE58A /* TTTableCaptionItemCell.m */,
+				6EFDD6F4117645B300BAE58A /* TTTableSubtextItemCell.h */,
+				6EFDD6F1117645A700BAE58A /* TTTableSubtextItemCell.m */,
+				6EFDD6FA1176461D00BAE58A /* TTTableRightCaptionItemCell.h */,
+				6EFDD6F71176461500BAE58A /* TTTableRightCaptionItemCell.m */,
+				6EFDD7001176468000BAE58A /* TTTableSubtitleItemCell.h */,
+				6EFDD6FD1176467500BAE58A /* TTTableSubtitleItemCell.m */,
+				6EFDD7091176474600BAE58A /* TTTableMessageItemCell.h */,
+				6EFDD7061176473E00BAE58A /* TTTableMessageItemCell.m */,
+				6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */,
+				6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */,
+				6E6206B21176490400035C6C /* TTTableImageItemCell.h */,
+				6E6206AF117648F900035C6C /* TTTableImageItemCell.m */,
+				6E6206B81176498800035C6C /* TTStyledTextTableItemCell.h */,
+				6E6206B51176497700035C6C /* TTStyledTextTableItemCell.m */,
+				6E6206BE117649EE00035C6C /* TTStyledTextTableCell.h */,
+				6E6206BB117649E500035C6C /* TTStyledTextTableCell.m */,
+				6E6207371176587A00035C6C /* TTTableActivityItemCell.h */,
+				6E6206C111764A4F00035C6C /* TTTableActivityItemCell.m */,
+				6E6206C811764AC800035C6C /* TTTableControlCell.h */,
+				6E6206C511764ABC00035C6C /* TTTableControlCell.m */,
+				6E6206CE11764B6F00035C6C /* TTTableFlushViewCell.h */,
+				6E6206CB11764B6100035C6C /* TTTableFlushViewCell.m */,
+			);
+			name = "Table Cells";
+			sourceTree = "<group>";
+		};
 		BE1287F40F8969C100F65EA2 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -1076,13 +1163,12 @@
 				6EFDD57A11752B0100BAE58A /* Header Views */,
 				BED4290E0F97F5C70035B153 /* TTTableView.h */,
 				BED429100F97F5DD0035B153 /* TTTableView.m */,
-				BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */,
-				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
 				BE702EFA0F43F9DC0028A119 /* TTTableItem.h */,
 				BE702EF80F43F9D20028A119 /* TTTableItem.m */,
 				6EFDD59411756F1900BAE58A /* Table Items */,
-				BE702ED10F43F3390028A119 /* TTTableItemCell.h */,
-				BE702ECF0F43F32E0028A119 /* TTTableItemCell.m */,
+				BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */,
+				BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */,
+				6EFDD6DD1176443500BAE58A /* Table Cells */,
 				BEF31F5B0F352E64000DE5D2 /* TTErrorView.h */,
 				BEF31F470F352E64000DE5D2 /* TTErrorView.m */,
 			);
@@ -1528,7 +1614,6 @@
 				BE42FB7C0F3BBF3D00A3B65A /* TTTabBar.h in Headers */,
 				BE8A9C190F4143DA00FD8C43 /* TTURLRequestQueue.h in Headers */,
 				BE8AA1930F428A4900FD8C43 /* UIViewControllerAdditions.h in Headers */,
-				BE702ED20F43F3390028A119 /* TTTableItemCell.h in Headers */,
 				BE702EF10F43F6720028A119 /* TTTableViewDataSource.h in Headers */,
 				BE702EFB0F43F9DC0028A119 /* TTTableItem.h in Headers */,
 				BE6E4A540F465243001CE9B4 /* TTTableViewCell.h in Headers */,
@@ -1682,6 +1767,20 @@
 				6EFDD62B1176251800BAE58A /* TTTableStyledTextItem.h in Headers */,
 				6EFDD637117625EF00BAE58A /* TTTableControlItem.h in Headers */,
 				6EFDD639117625F800BAE58A /* TTTableViewItem.h in Headers */,
+				6EFDD6E31176444F00BAE58A /* TTTableLinkedItemCell.h in Headers */,
+				6EFDD6E9117644B400BAE58A /* TTTableTextItemCell.h in Headers */,
+				6EFDD6EF1176454000BAE58A /* TTTableCaptionItemCell.h in Headers */,
+				6EFDD6F5117645B300BAE58A /* TTTableSubtextItemCell.h in Headers */,
+				6EFDD6FB1176461D00BAE58A /* TTTableRightCaptionItemCell.h in Headers */,
+				6EFDD7011176468000BAE58A /* TTTableSubtitleItemCell.h in Headers */,
+				6EFDD70A1176474600BAE58A /* TTTableMessageItemCell.h in Headers */,
+				6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */,
+				6E6206B31176490400035C6C /* TTTableImageItemCell.h in Headers */,
+				6E6206B91176498800035C6C /* TTStyledTextTableItemCell.h in Headers */,
+				6E6206BF117649EE00035C6C /* TTStyledTextTableCell.h in Headers */,
+				6E6206C911764AC800035C6C /* TTTableControlCell.h in Headers */,
+				6E6206CF11764B6F00035C6C /* TTTableFlushViewCell.h in Headers */,
+				6E6207381176587A00035C6C /* TTTableActivityItemCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1793,7 +1892,6 @@
 				BE42FB7A0F3BBF3500A3B65A /* TTTabBar.m in Sources */,
 				BE8A9C170F4143C800FD8C43 /* TTURLRequestQueue.m in Sources */,
 				BE8AA1910F428A3700FD8C43 /* UIViewControllerAdditions.m in Sources */,
-				BE702ED00F43F32E0028A119 /* TTTableItemCell.m in Sources */,
 				BE702EF30F43F6800028A119 /* TTTableViewDataSource.m in Sources */,
 				BE702EF90F43F9D20028A119 /* TTTableItem.m in Sources */,
 				BE6E4A520F465237001CE9B4 /* TTTableViewCell.m in Sources */,
@@ -1924,6 +2022,20 @@
 				6EFDD6291176250C00BAE58A /* TTTableStyledTextItem.m in Sources */,
 				6EFDD6311176258300BAE58A /* TTTableControlItem.m in Sources */,
 				6EFDD635117625DD00BAE58A /* TTTableViewItem.m in Sources */,
+				6EFDD6E11176444000BAE58A /* TTTableLinkedItemCell.m in Sources */,
+				6EFDD6E7117644AA00BAE58A /* TTTableTextItemCell.m in Sources */,
+				6EFDD6ED1176453400BAE58A /* TTTableCaptionItemCell.m in Sources */,
+				6EFDD6F3117645A700BAE58A /* TTTableSubtextItemCell.m in Sources */,
+				6EFDD6F91176461500BAE58A /* TTTableRightCaptionItemCell.m in Sources */,
+				6EFDD6FF1176467500BAE58A /* TTTableSubtitleItemCell.m in Sources */,
+				6EFDD7081176473E00BAE58A /* TTTableMessageItemCell.m in Sources */,
+				6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */,
+				6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */,
+				6E6206B71176497700035C6C /* TTStyledTextTableItemCell.m in Sources */,
+				6E6206BD117649E500035C6C /* TTStyledTextTableCell.m in Sources */,
+				6E6206C311764A4F00035C6C /* TTTableActivityItemCell.m in Sources */,
+				6E6206C711764ABC00035C6C /* TTTableControlCell.m in Sources */,
+				6E6206CD11764B6100035C6C /* TTTableFlushViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

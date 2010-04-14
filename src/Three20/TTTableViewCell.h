@@ -17,6 +17,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+extern const CGFloat    kTableCellSmallMargin;
+extern const CGFloat    kTableCellSpacing;
+extern const CGFloat    kTableCellMargin;
+extern const CGFloat    kTableCellHPadding;
+extern const CGFloat    kTableCellVPadding;
+extern const NSInteger  kTableMessageTextLineCount;
+
 /**
  * The base class for table cells which are single-object based.
  *

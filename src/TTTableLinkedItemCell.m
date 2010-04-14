@@ -14,52 +14,78 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableViewCell.h"
+#import "Three20/TTTableLinkedItemCell.h"
 
-#import "Three20/TTGlobalUI.h"
+// UI
+#import "Three20/TTTableLinkedItem.h"
 
-const CGFloat   kTableCellSmallMargin = 6;
-const CGFloat   kTableCellSpacing     = 8;
-const CGFloat   kTableCellMargin      = 10;
-const CGFloat   kTableCellHPadding    = 10;
-const CGFloat   kTableCellVPadding    = 10;
+// Style
+#import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
-const NSInteger kTableMessageTextLineCount = 2;
+// Network
+#import "Three20/TTURLMap.h"
+#import "Three20/TTNavigator.h"
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTTableViewCell
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
-  return TT_ROW_HEIGHT;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation TTTableLinkedItemCell
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_item);
+
+  [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark UITableViewCell
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)prepareForReuse {
-  self.object = nil;
-  [super prepareForReuse];
-}
+#pragma mark TTTableViewCell
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)object {
-  return nil;
+  return _item;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
+  if (_item != object) {
+    [_item release];
+    _item = [object retain];
+
+    TTTableLinkedItem* item = object;
+
+    if (item.URL) {
+      TTNavigationMode navigationMode = [[TTNavigator navigator].URLMap
+                                         navigationModeForURL:item.URL];
+      if (item.accessoryURL) {
+        self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+
+      } else if (navigationMode == TTNavigationModeCreate ||
+                 navigationMode == TTNavigationModeShare) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+      } else {
+        self.accessoryType = UITableViewCellAccessoryNone;
+      }
+
+      self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
+
+    } else {
+      self.accessoryType = UITableViewCellAccessoryNone;
+      self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+  }
 }
 
 

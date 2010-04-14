@@ -19,6 +19,7 @@
 #import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalCoreLocale.h"
 
+// Table Items
 #import "Three20/TTTableItem.h"
 #import "Three20/TTTableMoreButton.h"
 #import "Three20/TTTableSubtextItem.h"
@@ -32,7 +33,21 @@
 #import "Three20/TTTableActivityItem.h"
 #import "Three20/TTTableControlItem.h"
 
-#import "Three20/TTTableItemCell.h"
+// Table Cells
+#import "Three20/TTTableMoreButtonCell.h"
+#import "Three20/TTTableSubtextItemCell.h"
+#import "Three20/TTTableRightCaptionItemCell.h"
+#import "Three20/TTTableCaptionItemCell.h"
+#import "Three20/TTTableSubtitleItemCell.h"
+#import "Three20/TTTableMessageItemCell.h"
+#import "Three20/TTTableImageItemCell.h"
+#import "Three20/TTStyledTextTableItemCell.h"
+#import "Three20/TTTableActivityItemCell.h"
+#import "Three20/TTTableControlCell.h"
+#import "Three20/TTTableTextItemCell.h"
+#import "Three20/TTStyledTextTableCell.h"
+#import "Three20/TTTableFlushViewCell.h"
+
 #import "Three20/TTTextEditor.h"
 #import "Three20/TTStyledText.h"
 

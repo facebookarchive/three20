@@ -14,52 +14,80 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableViewCell.h"
+#import "Three20/TTTableActivityItemCell.h"
 
-#import "Three20/TTGlobalUI.h"
+// UI
+#import "Three20/TTActivityLabel.h"
+#import "Three20/TTTableActivityItem.h"
 
-const CGFloat   kTableCellSmallMargin = 6;
-const CGFloat   kTableCellSpacing     = 8;
-const CGFloat   kTableCellMargin      = 10;
-const CGFloat   kTableCellHPadding    = 10;
-const CGFloat   kTableCellVPadding    = 10;
-
-const NSInteger kTableMessageTextLineCount = 2;
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTTableViewCell
+@implementation TTTableActivityItemCell
+
+@synthesize activityLabel = _activityLabel;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
-  return TT_ROW_HEIGHT;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
+  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
+    _activityLabel = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleGray];
+    [self.contentView addSubview:_activityLabel];
+
+    self.accessoryType = UITableViewCellAccessoryNone;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_activityLabel);
+
+  [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark UITableViewCell
+#pragma mark UIView
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)prepareForReuse {
-  self.object = nil;
-  [super prepareForReuse];
+- (void)layoutSubviews {
+  [super layoutSubviews];
+
+  UITableView* tableView = (UITableView*)self.superview;
+  if (tableView.style == UITableViewStylePlain) {
+    _activityLabel.frame = self.contentView.bounds;
+  } else {
+    _activityLabel.frame = CGRectInset(self.contentView.bounds, -1, -1);
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)object {
-  return nil;
-}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTTableViewCell
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
+  if (_item != object) {
+    [_item release];
+    _item = [object retain];
+
+    TTTableActivityItem* item = object;
+    _activityLabel.text = item.text;
+  }
 }
 
 

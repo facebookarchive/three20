@@ -153,8 +153,22 @@
 #import "Three20/TTTableControlItem.h"
 #import "Three20/TTTableViewItem.h"
 
+// Table Item Cells
+#import "Three20/TTTableLinkedItemCell.h"
+#import "Three20/TTTableTextItemCell.h"
+#import "Three20/TTTableCaptionItemCell.h"
+#import "Three20/TTTableSubtextItemCell.h"
+#import "Three20/TTTableRightCaptionItemCell.h"
+#import "Three20/TTTableSubtitleItemCell.h"
+#import "Three20/TTTableMessageItemCell.h"
+#import "Three20/TTTableMoreButtonCell.h"
+#import "Three20/TTTableImageItemCell.h"
+#import "Three20/TTStyledTextTableItemCell.h"
+#import "Three20/TTStyledTextTableCell.h"
+#import "Three20/TTTableActivityItemCell.h"
+#import "Three20/TTTableControlCell.h"
+#import "Three20/TTTableFlushViewCell.h"
 
-#import "Three20/TTTableItemCell.h"
 #import "Three20/TTErrorView.h"
 
 #import "Three20/TTPhotoSource.h"
