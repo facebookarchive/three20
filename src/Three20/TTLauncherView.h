@@ -33,7 +33,7 @@
   NSMutableArray* _buttons;
   UIScrollView*   _scrollView;
 
-  TTPageControl* 	_pager;
+  TTPageControl*   _pager;
 
   NSTimer*        _editHoldTimer;
   NSTimer*        _springLoadTimer;

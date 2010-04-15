@@ -47,9 +47,9 @@
 @property (nonatomic, readonly) BOOL hasText;
 @property (nonatomic)           BOOL searchesAutomatically;
 @property (nonatomic)           BOOL showsDoneButton;
-@property (nonatomic)         	BOOL showsDarkScreen;
+@property (nonatomic)           BOOL showsDarkScreen;
 
-@property (nonatomic, retain) 	id<TTTableViewDataSource> dataSource;
+@property (nonatomic, retain)   id<TTTableViewDataSource> dataSource;
 
 - (void)search;
 

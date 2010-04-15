@@ -43,7 +43,7 @@
   id<TTPostControllerDelegate> _delegate;
 }
 
-@property (nonatomic, retain) 	id                result;
+@property (nonatomic, retain)   id                result;
 @property (nonatomic, readonly) UITextView*       textView;
 @property (nonatomic, readonly) UINavigationBar*  navigatorBar;
 @property (nonatomic, retain)   UIView*           originView;

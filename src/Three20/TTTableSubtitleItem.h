@@ -22,7 +22,7 @@
   UIImage*  _defaultImage;
 }
 
-@property (nonatomic, copy) 	NSString* subtitle;
+@property (nonatomic, copy)   NSString* subtitle;
 @property (nonatomic, copy)   NSString* imageURL;
 @property (nonatomic, retain) UIImage*  defaultImage;
 

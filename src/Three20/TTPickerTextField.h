@@ -20,7 +20,7 @@
 @class TTPickerViewCell;
 
 @interface TTPickerTextField : TTSearchTextField {
-  NSMutableArray* 	_cellViews;
+  NSMutableArray*   _cellViews;
   TTPickerViewCell* _selectedCell;
   int               _lineCount;
   CGPoint           _cursorOrigin;

@@ -33,10 +33,10 @@
 }
 
 @property (nonatomic, assign) TTLauncherView* launcher;
-@property (nonatomic, copy) 	NSString*       title;
+@property (nonatomic, copy)   NSString*       title;
 @property (nonatomic, copy)   NSString*       image;
-@property (nonatomic, copy) 	NSString*       URL;
-@property (nonatomic, copy) 	NSString*       style;
+@property (nonatomic, copy)   NSString*       URL;
+@property (nonatomic, copy)   NSString*       style;
 @property (nonatomic)         NSInteger       badgeNumber;
 @property (nonatomic)         BOOL            canDelete;
 
