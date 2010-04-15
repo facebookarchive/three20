@@ -42,20 +42,6 @@ static CGFloat kThumbnailRowHeight = 79;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-  if (self = [super initWithNibName:nibName bundle:bundle]) {
-    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
-    self.navigationBarStyle = UIBarStyleBlackTranslucent;
-    self.navigationBarTintColor = nil;
-    self.wantsFullScreenLayout = YES;
-    self.hidesBottomBarWhenPushed = YES;
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithDelegate:(id<TTThumbsViewControllerDelegate>)delegate {
   if (self = [self init]) {
     self.delegate = delegate;
@@ -79,7 +65,12 @@ static CGFloat kThumbnailRowHeight = 79;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+  if (self = [super init]) {
+    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    self.navigationBarStyle = UIBarStyleBlackTranslucent;
+    self.navigationBarTintColor = nil;
+    self.wantsFullScreenLayout = YES;
+    self.hidesBottomBarWhenPushed = YES;
   }
 
   return self;
@@ -144,7 +135,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
   self.tableView.rowHeight = kThumbnailRowHeight;
   self.tableView.autoresizingMask =
-    UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.tableView.backgroundColor = TTSTYLEVAR(backgroundColor);
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   [self updateTableLayout];
@@ -210,14 +201,14 @@ static CGFloat kThumbnailRowHeight = 79;
 
   if (_delegate) {
     self.navigationItem.leftBarButtonItem =
-      [[[UIBarButtonItem alloc] initWithCustomView:[[[UIView alloc] init]
-                                                    autorelease]]
-       autorelease];
+    [[[UIBarButtonItem alloc] initWithCustomView:[[[UIView alloc] init]
+                                                  autorelease]]
+     autorelease];
     self.navigationItem.rightBarButtonItem =
-      [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
-                                style:UIBarButtonItemStyleBordered
-                                target:self
-                                action:@selector(removeFromSupercontroller)] autorelease];
+    [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"Done", @"")
+                                      style:UIBarButtonItemStyleBordered
+                                     target:self
+                                     action:@selector(removeFromSupercontroller)] autorelease];
   }
 }
 

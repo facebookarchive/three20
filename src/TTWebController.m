@@ -35,17 +35,6 @@
 
 @synthesize delegate    = _delegate;
 @synthesize headerView  = _headerView;
-@synthesize webView     = _webView;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-  if (self = [super initWithNibName:nibName bundle:bundle]) {
-    self.hidesBottomBarWhenPushed = YES;
-  }
-
-  return self;
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,8 +53,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+  if (self = [super init]) {
+    self.hidesBottomBarWhenPushed = YES;
   }
+
   return self;
 }
 
@@ -112,8 +103,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shareAction {
   UIActionSheet* sheet = [[[UIActionSheet alloc] initWithTitle:@"" delegate:self
-    cancelButtonTitle:TTLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil
-    otherButtonTitles:TTLocalizedString(@"Open in Safari", @""), nil] autorelease];
+                                             cancelButtonTitle:TTLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil
+                                             otherButtonTitles:TTLocalizedString(@"Open in Safari", @""), nil] autorelease];
   [sheet showInView:self.view];
 }
 
@@ -139,44 +130,44 @@
   _webView = [[UIWebView alloc] initWithFrame:TTToolbarNavigationFrame()];
   _webView.delegate = self;
   _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-                              | UIViewAutoresizingFlexibleHeight;
+  | UIViewAutoresizingFlexibleHeight;
   _webView.scalesPageToFit = YES;
   [self.view addSubview:_webView];
 
   UIActivityIndicatorView* spinner = [[[UIActivityIndicatorView alloc]
-  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+                                       initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
   [spinner startAnimating];
   _activityItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 
   _backButton = [[UIBarButtonItem alloc] initWithImage:
-    TTIMAGE(@"bundle://Three20.bundle/images/backIcon.png")
-     style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
+                 TTIMAGE(@"bundle://Three20.bundle/images/backIcon.png")
+                                                 style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
   _backButton.tag = 2;
   _backButton.enabled = NO;
   _forwardButton = [[UIBarButtonItem alloc] initWithImage:
-    TTIMAGE(@"bundle://Three20.bundle/images/forwardIcon.png")
-     style:UIBarButtonItemStylePlain target:self action:@selector(forwardAction)];
+                    TTIMAGE(@"bundle://Three20.bundle/images/forwardIcon.png")
+                                                    style:UIBarButtonItemStylePlain target:self action:@selector(forwardAction)];
   _forwardButton.tag = 1;
   _forwardButton.enabled = NO;
   _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-    UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction)];
+                    UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction)];
   _refreshButton.tag = 3;
   _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-    UIBarButtonSystemItemStop target:self action:@selector(stopAction)];
+                 UIBarButtonSystemItemStop target:self action:@selector(stopAction)];
   _stopButton.tag = 3;
   UIBarButtonItem* actionButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-    UIBarButtonSystemItemAction target:self action:@selector(shareAction)] autorelease];
+                                    UIBarButtonSystemItemAction target:self action:@selector(shareAction)] autorelease];
 
   UIBarItem* space = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-   UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+                       UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
 
   _toolbar = [[UIToolbar alloc] initWithFrame:
-    CGRectMake(0, self.view.height - TTToolbarHeight(), self.view.width, TTToolbarHeight())];
+              CGRectMake(0, self.view.height - TTToolbarHeight(), self.view.width, TTToolbarHeight())];
   _toolbar.autoresizingMask =
-    UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
   _toolbar.tintColor = TTSTYLEVAR(toolbarTintColor);
   _toolbar.items = [NSArray arrayWithObjects:
-    _backButton, space, _forwardButton, space, _refreshButton, space, actionButton, nil];
+                    _backButton, space, _forwardButton, space, _refreshButton, space, actionButton, nil];
   [self.view addSubview:_toolbar];
 }
 
@@ -222,7 +213,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-        duration:(NSTimeInterval)duration {
+                                         duration:(NSTimeInterval)duration {
   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
   [self updateToolbarWithOrientation:toInterfaceOrientation];
 }
@@ -269,7 +260,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
-        navigationType:(UIWebViewNavigationType)navigationType {
+ navigationType:(UIWebViewNavigationType)navigationType {
   if ([[TTNavigator navigator].URLMap isAppURL:request.URL]) {
     [_loadingURL release];
     _loadingURL = [[NSURL URLWithString:@"about:blank"] retain];

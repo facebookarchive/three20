@@ -46,7 +46,7 @@ static CGFloat kPadding = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
-  if (self = [super initWithNibName:nil bundle:nil]) {
+  if (self = [super init]) {
     if (nil != query) {
       _delegate = [query objectForKey:@"delegate"];
       _defaultText = [[query objectForKey:@"text"] copy];

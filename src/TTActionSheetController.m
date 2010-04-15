@@ -34,19 +34,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-  if (self = [super initWithNibName:nibName bundle:bundle]) {
-    _URLs = [[NSMutableArray alloc] init];
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title delegate:(id)delegate {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+  if (self = [super init]) {
     _delegate = delegate;
+    _URLs = [[NSMutableArray alloc] init];
 
     if (title) {
       self.actionSheet.title = title;

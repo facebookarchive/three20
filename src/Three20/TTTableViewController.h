@@ -43,7 +43,7 @@
   id<UITableViewDelegate>   _tableDelegate;
 }
 
-@property (nonatomic, retain) IBOutlet UITableView* tableView;
+@property (nonatomic, retain) UITableView* tableView;
 
 /**
  * A view that is displayed as a banner at the bottom of the table view.

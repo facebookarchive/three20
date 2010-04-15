@@ -32,19 +32,11 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle {
-  if (self = [super initWithNibName:nibName bundle:bundle]) {
+- (id)init {
+  if (self = [super init]) {
     _flags.isViewInvalid = YES;
   }
 
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [self initWithNibName:nil bundle:nil]) {
-  }
   return self;
 }
 
