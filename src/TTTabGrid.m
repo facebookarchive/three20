@@ -16,6 +16,7 @@
 
 #import "Three20/TTTabGrid.h"
 
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTStyleSheet.h"
 
 #import "Three20/TTCorePreprocessorMacros.h"

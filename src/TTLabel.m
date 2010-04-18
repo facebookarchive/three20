@@ -17,6 +17,7 @@
 #import "Three20/TTLabel.h"
 
 #import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 

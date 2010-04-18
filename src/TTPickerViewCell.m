@@ -18,6 +18,7 @@
 
 #import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTGlobalStyle.h"
 
 static const CGFloat kPaddingX = 8;
 static const CGFloat kPaddingY = 3;

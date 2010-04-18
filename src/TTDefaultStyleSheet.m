@@ -20,6 +20,7 @@
 #import "Three20/TTShape.h"
 #import "Three20/TTURLCache.h"
 
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTGlobalUI.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -16,6 +16,8 @@
 
 #import "Three20/TTActivityLabel.h"
 
+#import "Three20/TTGlobalStyle.h"
+
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
 

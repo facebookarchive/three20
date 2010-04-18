@@ -22,6 +22,7 @@
 #import "Three20/TTTabDelegate.h"
 
 #import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalStyle.h"
 
 #import "Three20/TTStyleSheet.h"
 

@@ -18,6 +18,7 @@
 
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalStyle.h"
 
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTDefaultStyleSheet.h"

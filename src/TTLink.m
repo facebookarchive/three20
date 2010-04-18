@@ -18,6 +18,7 @@
 
 #import "Three20/TTCorePreprocessorMacros.h"
 
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLAction.h"
 #import "Three20/TTShape.h"

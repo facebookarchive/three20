@@ -17,6 +17,7 @@
 #import "Three20/TTStyledTextLabel.h"
 
 #import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalStyle.h"
 
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledFrame.h"

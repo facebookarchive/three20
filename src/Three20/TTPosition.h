@@ -14,19 +14,9 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#import "Three20/TTPosition.h"
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Style helpers
-
-#define TTSTYLE(_SELECTOR) [[TTStyleSheet globalStyleSheet] styleWithSelector:@#_SELECTOR]
-
-#define TTSTYLESTATE(_SELECTOR, _STATE) [[TTStyleSheet globalStyleSheet] \
-                                           styleWithSelector:@#_SELECTOR forState:_STATE]
-
-#define TTSTYLESHEET ((id)[TTStyleSheet globalStyleSheet])
-
-#define TTSTYLEVAR(_VARNAME) [TTSTYLESHEET _VARNAME]
+typedef enum {
+  TTPositionStatic,
+  TTPositionAbsolute,
+  TTPositionFloatLeft,
+  TTPositionFloatRight,
+} TTPosition;

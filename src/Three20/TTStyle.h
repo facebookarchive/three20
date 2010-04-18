@@ -14,18 +14,26 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobalStyle.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import "Three20/TTPosition.h"
 
 @protocol TTStyleDelegate;
-@class TTShape, TTStyleContext;
+@class TTShape;
+@class TTStyleContext;
 
 @interface TTStyleContext : NSObject {
+  CGRect    _frame;
+  CGRect    _contentFrame;
+
+  TTShape*  _shape;
+
+  UIFont*   _font;
+
+  BOOL      _didDrawContent;
+
   id<TTStyleDelegate> _delegate;
-  CGRect _frame;
-  CGRect _contentFrame;
-  TTShape* _shape;
-  UIFont* _font;
-  BOOL _didDrawContent;
 }
 
 @property (nonatomic, assign) id<TTStyleDelegate> delegate;

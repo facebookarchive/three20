@@ -21,6 +21,7 @@
 #import "Three20/TTCorePreprocessorMacros.h"
 
 #import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalStyle.h"
 
 #import "Three20/TTTabItem.h"
 #import "Three20/TTLabel.h"
