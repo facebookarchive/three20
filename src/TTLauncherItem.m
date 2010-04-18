@@ -41,7 +41,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL {
-  return [self initWithTitle:title image:image URL:URL canDelete:NO];
+  if (self = [self initWithTitle:title image:image URL:URL canDelete:NO]) {
+  }
+
+  return self;
 }
 
 

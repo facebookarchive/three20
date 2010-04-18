@@ -61,13 +61,19 @@ static NSString* kUniversalURLPattern = @"*";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTarget:(id)target {
-  return [self initWithTarget:target mode:TTNavigationModeNone];
+  if (self = [self initWithTarget:target mode:TTNavigationModeNone]) {
+  }
+
+  return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  return [self initWithTarget:nil];
+  if (self = [self initWithTarget:nil]) {
+  }
+
+  return self;
 }
 
 

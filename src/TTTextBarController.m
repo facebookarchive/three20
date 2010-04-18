@@ -59,7 +59,10 @@ static CGFloat kPadding = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  return [self initWithNavigatorURL:nil query:nil];
+  if (self = [self initWithNavigatorURL:nil query:nil]) {
+  }
+
+  return self;
 }
 
 

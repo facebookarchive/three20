@@ -80,7 +80,10 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  return [self initWithName:kDefaultCacheName];
+  if (self = [self initWithName:kDefaultCacheName]) {
+  }
+
+  return self;
 }
 
 

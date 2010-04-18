@@ -44,7 +44,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  return [self initWithTargetClass:nil];
+  if (self = [self initWithTargetClass:nil]) {
+  }
+
+  return self;
 }
 
 

@@ -122,19 +122,28 @@ static CGFloat kProgressMargin  = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style {
-  return [self initWithFrame:frame style:style text:nil];
+  if (self = [self initWithFrame:frame style:style text:nil]) {
+  }
+
+  return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(TTActivityLabelStyle)style {
-  return [self initWithFrame:CGRectZero style:style text:nil];
+  if (self = [self initWithFrame:CGRectZero style:style text:nil]) {
+  }
+
+  return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  return [self initWithFrame:frame style:TTActivityLabelStyleWhiteBox text:nil];
+  if (self = [self initWithFrame:frame style:TTActivityLabelStyleWhiteBox text:nil]) {
+  }
+
+  return self;
 }
 
 

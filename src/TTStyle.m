@@ -119,7 +119,10 @@ static const NSInteger kDefaultLightSource = 125;
 }
 
 - (id)init {
-  return [self initWithNext:nil];
+  if (self = [self initWithNext:nil]) {
+  }
+
+  return self;
 }
 
 - (void)dealloc {

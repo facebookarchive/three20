@@ -55,11 +55,13 @@ static CGFloat kThumbnailRowHeight = 79;
 - (id)initWithQuery:(NSDictionary*)query {
   id<TTThumbsViewControllerDelegate> delegate = [query objectForKey:@"delegate"];
   if (delegate) {
-    return [self initWithDelegate:delegate];
+    self = [self initWithDelegate:delegate];
 
   } else {
-    return [self init];
+    self = [self init];
   }
+
+  return self;
 }
 
 
