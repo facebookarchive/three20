@@ -17,12 +17,15 @@
 #import "Three20/TTStyle.h"
 #import "Three20/TTStyleDelegate.h"
 
-@class TTStyledElement, TTStyledTextNode, TTStyledImageNode, TTStyledBoxFrame;
+@class TTStyledElement;
+@class TTStyledTextNode;
+@class TTStyledImageNode;
+@class TTStyledBoxFrame;
 
 @interface TTStyledFrame : NSObject {
-  TTStyledElement* _element;
-  TTStyledFrame* _nextFrame;
-  CGRect _bounds;
+  TTStyledElement*  _element;
+  TTStyledFrame*    _nextFrame;
+  CGRect            _bounds;
 }
 
 /**
@@ -62,12 +65,12 @@
 
 @interface TTStyledBoxFrame : TTStyledFrame <TTStyleDelegate> {
   TTStyledBoxFrame* _parentFrame;
-  TTStyledFrame* _firstChildFrame;
-  TTStyle* _style;
+  TTStyledFrame*    _firstChildFrame;
+  TTStyle*          _style;
 }
 
 @property (nonatomic, assign) TTStyledBoxFrame* parentFrame;
-@property (nonatomic, retain) TTStyledFrame* firstChildFrame;
+@property (nonatomic, retain) TTStyledFrame*    firstChildFrame;
 
 /**
  * The style used to render the frame;
@@ -84,8 +87,8 @@
 }
 
 @property (nonatomic, readonly) TTStyledInlineFrame* inlineParentFrame;
-@property (nonatomic, assign) TTStyledInlineFrame* inlinePreviousFrame;
-@property (nonatomic, assign) TTStyledInlineFrame* inlineNextFrame;
+@property (nonatomic, assign)   TTStyledInlineFrame* inlinePreviousFrame;
+@property (nonatomic, assign)   TTStyledInlineFrame* inlineNextFrame;
 
 @end
 
@@ -93,8 +96,8 @@
 
 @interface TTStyledTextFrame : TTStyledFrame {
   TTStyledTextNode* _node;
-  NSString* _text;
-  UIFont* _font;
+  NSString*         _text;
+  UIFont*           _font;
 }
 
 /**
@@ -119,8 +122,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTStyledImageFrame : TTStyledFrame <TTStyleDelegate> {
-  TTStyledImageNode* _imageNode;
-  TTStyle* _style;
+  TTStyledImageNode*  _imageNode;
+  TTStyle*            _style;
 }
 
 /**
