@@ -26,7 +26,7 @@
 
 /**
  * Determines if the string contains only whitespace and newlines.
- */ 
+ */
 - (BOOL)isWhitespaceAndNewlines;
 
 /**
@@ -41,7 +41,7 @@
 
 /**
  * Determines if the string is empty or contains only whitespace.
- */ 
+ */
 - (BOOL)isEmptyOrWhitespace;
 
 /**
@@ -92,6 +92,13 @@
  *   "3.02" ?? "3.0.2"
  */
 - (NSComparisonResult)versionStringCompare:(NSString *)other;
+
+/**
+ * Calculate the md5 hash of this string using CC_MD5.
+ *
+ * @return md5 hash of this string
+ */
+@property (nonatomic, readonly) NSString* md5Hash;
 
 @end
 
