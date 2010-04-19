@@ -18,17 +18,21 @@
 
 #import "Three20/TTGlobalCore.h"
 
-static NSString* kCommonKey_Type = @"type";
-static NSString* kCommonType_Array = @"array";
-static NSString* kCommonType_Integer = @"integer";
-static NSString* kCommonType_DateTime = @"datetime";
-NSString* kCommonXMLType_Unknown = @"unknown";
+// XML attribute keys.
+static NSString* kCommonKey_Type        = @"type";
 
-static NSString* kPrivateKey_EntityName = @"___Entity_Name___";
-static NSString* kPrivateKey_EntityType = @"___Entity_Type___";
-static NSString* kPrivateKey_EntityValue = @"___Entity_Value___";
+// XML object types.
+static NSString* kCommonType_Array      = @"array";
+static NSString* kCommonType_Integer    = @"integer";
+static NSString* kCommonType_DateTime   = @"datetime";
+       NSString* kCommonXMLType_Unknown = @"unknown";
+
+// Internal key names for the resulting NSDictionaries.
+static NSString* kPrivateKey_EntityName   = @"___Entity_Name___";
+static NSString* kPrivateKey_EntityType   = @"___Entity_Type___";
+static NSString* kPrivateKey_EntityValue  = @"___Entity_Value___";
 static NSString* kPrivateKey_EntityBuffer = @"___Entity_Buffer___";
-static NSString* kPrivateKey_Array = @"___Array___";
+static NSString* kPrivateKey_Array        = @"___Array___";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
