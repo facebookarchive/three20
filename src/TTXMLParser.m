@@ -101,7 +101,8 @@ static NSString* kInternalKey_Array         = @"___Array___";
   if ([object isKindOfClass:[NSDictionary class]]) {
 
     // Is this an internal common "array" type?
-    if ([[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Array]) {
+    if ([[object objectForKey:kInternalKey_EntityType]
+         isEqualToString:kCommonXMLType_Array]) {
 
       // Yes, it is. Let's add this object to the array then.
       if (nil != childObject) {
@@ -109,7 +110,8 @@ static NSString* kInternalKey_Array         = @"___Array___";
       }
 
     // Is it an unknown dictionary type?
-    } else if ([[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Unknown]) {
+    } else if ([[object objectForKey:kInternalKey_EntityType]
+                isEqualToString:kCommonXMLType_Unknown]) {
 
       if (self.treatDuplicateKeysAsArrayItems) {
         NSString* entityName = [childObject objectForKey:kInternalKey_EntityName];
@@ -172,7 +174,8 @@ static NSString* kInternalKey_Array         = @"___Array___";
     TT_RELEASE_SAFELY(number);
 
   } else if ([object isKindOfClass:[NSDictionary class]] &&
-             [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_DateTime]) {
+             [[object objectForKey:kInternalKey_EntityType]
+              isEqualToString:kCommonXMLType_DateTime]) {
     NSString* buffer = [object objectForKey:kInternalKey_EntityValue];
 
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
