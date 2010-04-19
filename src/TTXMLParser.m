@@ -59,9 +59,16 @@ static NSString* kInternalKey_Array         = @"___Array___";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Create an NSDictionary from the given XML node.
+ * All XML attributes are added to the dictionary.
+ */
 - (id)allocObjectForElementName: (NSString*) elementName
                      attributes: (NSDictionary*) attributeDict {
-  id object = [[NSMutableDictionary alloc] init];
+  static const int kNumberOfInternalKeys = 3;
+
+  id object = [[NSMutableDictionary alloc]
+               initWithCapacity:kNumberOfInternalKeys + [attributeDict count]];
   if (!TTIsStringWithAnyText(elementName)) {
     elementName = @"";
   }
@@ -83,54 +90,55 @@ static NSString* kInternalKey_Array         = @"___Array___";
   }
 
   [object setObject:elementName forKey:kInternalKey_EntityName];
-  [object setObject:type forKey:kInternalKey_EntityType];
+  [object setObject:type        forKey:kInternalKey_EntityType];
 
   return object;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addChild:(id)childObject toObject:(id)object {
+- (void)addChildObject:(id)childObject toObject:(id)object {
 
-  // Is this an internal common "array" type?
-  if ([object isKindOfClass:[NSDictionary class]] &&
-      [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Array]) {
+  if ([object isKindOfClass:[NSDictionary class]]) {
 
-    // Yes, it is. Let's add this object to the array then.
-    if (nil != childObject) {
-      [[object objectForKey:kInternalKey_Array] addObject:childObject];
-    }
+    // Is this an internal common "array" type?
+    if ([[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Array]) {
 
-  // Is it an unknown dictionary type?
-  } else if ([object isKindOfClass:[NSDictionary class]] &&
-      [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Unknown]) {
-
-    if (self.treatDuplicateKeysAsArrayItems) {
-      NSString* entityName = [childObject objectForKey:kInternalKey_EntityName];
-      id entityObject = [object objectForKey:entityName];
-      if (nil == entityObject) {
-        // No collision, add it!
-        [object setObject:childObject forKey:entityName];
-
-      } else {
-        // Collision, check if it's already an array.
-        if (TTIsArrayWithItems(entityObject)) {
-          [entityObject addObject:childObject];
-        } else {
-          NSMutableArray* array = [[NSMutableArray alloc] init];
-          [array addObject:entityObject];
-          [array addObject:childObject];
-          [object setObject:array forKey:entityName];
-          TT_RELEASE_SAFELY(array);
-        }
+      // Yes, it is. Let's add this object to the array then.
+      if (nil != childObject) {
+        [[object objectForKey:kInternalKey_Array] addObject:childObject];
       }
 
-    } else {
-      // Avoid overwriting existing keys.
-      // If this is asserting, you probably need treatDuplicateKeysAsArrayItems set to YES.
-      TTDASSERT(nil == [object objectForKey:[childObject objectForKey:kInternalKey_EntityName]]);
+    // Is it an unknown dictionary type?
+    } else if ([[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Unknown]) {
 
-      [object setObject:childObject forKey:[childObject objectForKey:kInternalKey_EntityName]];
+      if (self.treatDuplicateKeysAsArrayItems) {
+        NSString* entityName = [childObject objectForKey:kInternalKey_EntityName];
+        id entityObject = [object objectForKey:entityName];
+        if (nil == entityObject) {
+          // No collision, add it!
+          [object setObject:childObject forKey:entityName];
+
+        } else {
+          // Collision, check if it's already an array.
+          if (TTIsArrayWithItems(entityObject)) {
+            [entityObject addObject:childObject];
+          } else {
+            NSMutableArray* array = [[NSMutableArray alloc] init];
+            [array addObject:entityObject];
+            [array addObject:childObject];
+            [object setObject:array forKey:entityName];
+            TT_RELEASE_SAFELY(array);
+          }
+        }
+
+      } else {
+        // Avoid overwriting existing keys.
+        // If this is asserting, you probably need treatDuplicateKeysAsArrayItems set to YES.
+        TTDASSERT(nil == [object objectForKey:[childObject objectForKey:kInternalKey_EntityName]]);
+
+        [object setObject:childObject forKey:[childObject objectForKey:kInternalKey_EntityName]];
+      }
     }
   }
 }
@@ -216,7 +224,7 @@ static NSString* kInternalKey_Array         = @"___Array___";
   }
 
   if ([_objectStack count] > 0) {
-    [self addChild:object toObject:[_objectStack lastObject]];
+    [self addChildObject:object toObject:[_objectStack lastObject]];
   }
 
   [_objectStack addObject:object];
