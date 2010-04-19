@@ -247,5 +247,11 @@
 #import "Three20/TTStyledImageNode.h"
 #import "Three20/TTStyledLineBreakNode.h"
 
+// Styled frames
 #import "Three20/TTStyledFrame.h"
+#import "Three20/TTStyledBoxFrame.h"
+#import "Three20/TTStyledInlineFrame.h"
+#import "Three20/TTStyledTextFrame.h"
+#import "Three20/TTStyledImageFrame.h"
+
 #import "Three20/TTStyledTextParser.h"

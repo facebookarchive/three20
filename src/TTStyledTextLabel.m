@@ -21,7 +21,11 @@
 
 #import "Three20/TTStyledText.h"
 #import "Three20/TTStyledNode.h"
-#import "Three20/TTStyledFrame.h"
+
+// Styled frames
+#import "Three20/TTStyledInlineFrame.h"
+#import "Three20/TTStyledTextFrame.h"
+
 #import "Three20/TTStyleSheet.h"
 #import "Three20/TTStyledElement.h"
 #import "Three20/TTStyledLinkNode.h"

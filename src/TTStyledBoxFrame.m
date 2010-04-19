@@ -14,7 +14,11 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyledFrame.h"
+#import "Three20/TTStyledBoxFrame.h"
+
+// Style
+#import "Three20/TTStyleContext.h"
+#import "Three20/TTTextStyle.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"
@@ -23,27 +27,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTStyledFrame
+@implementation TTStyledBoxFrame
 
-@synthesize element   = _element;
-@synthesize nextFrame = _nextFrame;
-@synthesize bounds    = _bounds;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithElement:(TTStyledElement*)element {
-  if (self = [super init]) {
-    _element = element;
-    _bounds = CGRectZero;
-  }
-
-  return self;
-}
+@synthesize parentFrame     = _parentFrame;
+@synthesize firstChildFrame = _firstChildFrame;
+@synthesize style           = _style;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_nextFrame);
+  TT_RELEASE_SAFELY(_firstChildFrame);
+  TT_RELEASE_SAFELY(_style);
 
   [super dealloc];
 }
@@ -52,71 +46,94 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark Public
+#pragma mark Private
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)x {
-  return _bounds.origin.x;
+- (void)drawSubframes {
+  TTStyledFrame* frame = _firstChildFrame;
+  while (frame) {
+    [frame drawInRect:frame.bounds];
+    frame = frame.nextFrame;
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setX:(CGFloat)x {
-  _bounds.origin.x = x;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTStyleDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)drawLayer:(TTStyleContext*)context withStyle:(TTStyle*)style {
+  if ([style isKindOfClass:[TTTextStyle class]]) {
+    TTTextStyle* textStyle = (TTTextStyle*)style;
+    UIFont* font = context.font;
+    context.font = textStyle.font;
+    if (textStyle.color) {
+      CGContextRef ctx = UIGraphicsGetCurrentContext();
+      CGContextSaveGState(ctx);
+      [textStyle.color setFill];
+
+      [self drawSubframes];
+
+      CGContextRestoreGState(ctx);
+
+    } else {
+      [self drawSubframes];
+    }
+
+    context.font = font;
+
+  } else {
+    [self drawSubframes];
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)y {
-  return _bounds.origin.y;
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setY:(CGFloat)y {
-  _bounds.origin.y = y;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)width {
-  return _bounds.size.width;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setWidth:(CGFloat)width {
-  _bounds.size.width = width;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGFloat)height {
-  return _bounds.size.height;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setHeight:(CGFloat)height {
-  _bounds.size.height = height;
-}
+#pragma mark -
+#pragma mark TTStyledFrame
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)font {
-  return nil;
+  return _firstChildFrame.font;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawInRect:(CGRect)rect {
+  if (_style && !CGRectIsEmpty(_bounds)) {
+    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+    context.delegate = self;
+    context.frame = rect;
+    context.contentFrame = rect;
+
+    [_style draw:context];
+    if (context.didDrawContent) {
+      return;
+    }
+  }
+
+  [self drawSubframes];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyledBoxFrame*)hitTest:(CGPoint)point {
-  return [_nextFrame hitTest:point];
+  if (CGRectContainsPoint(_bounds, point)) {
+    TTStyledBoxFrame* frame = [_firstChildFrame hitTest:point];
+    return frame ? frame : self;
+
+  } else if (_nextFrame) {
+    return [_nextFrame hitTest:point];
+
+  } else {
+    return nil;
+  }
 }
 
 

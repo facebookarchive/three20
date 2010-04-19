@@ -25,6 +25,9 @@
 #import "Three20/TTBoxStyle.h"
 #import "Three20/TTTextStyle.h"
 #import "Three20/TTStyledElement.h"
+#import "Three20/TTStyledInlineFrame.h"
+#import "Three20/TTStyledTextFrame.h"
+#import "Three20/TTStyledImageFrame.h"
 
 // Styled nodes
 #import "Three20/TTStyledImageNode.h"
