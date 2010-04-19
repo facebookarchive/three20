@@ -16,33 +16,87 @@
 
 #import "Three20/TTStyledText.h"
 
-#import "Three20/TTGlobalCore.h"
-
-#import "Three20/TTURLRequest.h"
-
+// Style
 #import "Three20/TTStyledTextDelegate.h"
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyledLayout.h"
 #import "Three20/TTStyledTextParser.h"
 
+// Network
 #import "Three20/TTURLImageResponse.h"
 #import "Three20/TTURLCache.h"
+#import "Three20/TTURLRequest.h"
 
+// Core
+#import "Three20/TTGlobalCore.h"
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface TTStyledText()
+
+- (void)stopLoadingImages;
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
-
 @implementation TTStyledText
 
-@synthesize delegate = _delegate, rootNode = _rootNode, font = _font, width = _width,
-            height = _height, invalidImages = _invalidImages;
+@synthesize rootNode      = _rootNode;
+@synthesize font          = _font;
+@synthesize width         = _width;
+@synthesize height        = _height;
+@synthesize invalidImages = _invalidImages;
+@synthesize delegate      = _delegate;
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNode:(TTStyledNode*)rootNode {
+  if (self = [super init]) {
+    _rootNode = [rootNode retain];
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  [self stopLoadingImages];
+  TT_RELEASE_SAFELY(_rootNode);
+  TT_RELEASE_SAFELY(_rootFrame);
+  TT_RELEASE_SAFELY(_font);
+  TT_RELEASE_SAFELY(_invalidImages);
+  TT_RELEASE_SAFELY(_imageRequests);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)description {
+  return [self.rootNode outerText];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// class public
+#pragma mark -
+#pragma mark Class public
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTStyledText*)textFromXHTML:(NSString*)source {
   return [self textFromXHTML:source lineBreaks:NO URLs:YES];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTStyledText*)textFromXHTML:(NSString*)source lineBreaks:(BOOL)lineBreaks URLs:(BOOL)URLs {
   TTStyledTextParser* parser = [[[TTStyledTextParser alloc] init] autorelease];
   parser.parseLineBreaks = lineBreaks;
@@ -50,15 +104,20 @@
   [parser parseXHTML:source];
   if (parser.rootNode) {
     return [[[TTStyledText alloc] initWithNode:parser.rootNode] autorelease];
+
   } else {
     return nil;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTStyledText*)textWithURLs:(NSString*)source {
   return [self textWithURLs:source lineBreaks:NO];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTStyledText*)textWithURLs:(NSString*)source lineBreaks:(BOOL)lineBreaks {
   TTStyledTextParser* parser = [[[TTStyledTextParser alloc] init] autorelease];
   parser.parseLineBreaks = lineBreaks;
@@ -66,14 +125,20 @@
   [parser parseText:source];
   if (parser.rootNode) {
     return [[[TTStyledText alloc] initWithNode:parser.rootNode] autorelease];
+
   } else {
     return nil;
   }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)stopLoadingImages {
   if (_imageRequests) {
     NSMutableArray* requests = [_imageRequests retain];
@@ -91,6 +156,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadImages {
   [self stopLoadingImages];
 
@@ -102,6 +169,7 @@
         if (image) {
           imageNode.image = image;
           loadedSome = YES;
+
         } else {
           TTURLRequest* request = [TTURLRequest requestWithURL:imageNode.URL delegate:self];
           request.userInfo = imageNode;
@@ -119,6 +187,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyledFrame*)getFrameForNode:(TTStyledNode*)node inFrame:(TTStyledFrame*)frame {
   while (frame) {
     if ([frame isKindOfClass:[TTStyledBoxFrame class]]) {
@@ -126,66 +196,38 @@
       if (boxFrame.element == node) {
         return boxFrame;
       }
+
       TTStyledFrame* found = [self getFrameForNode:node inFrame:boxFrame.firstChildFrame];
       if (found) {
         return found;
       }
+
     } else if ([frame isKindOfClass:[TTStyledTextFrame class]]) {
       TTStyledTextFrame* textFrame = (TTStyledTextFrame*)frame;
       if (textFrame.node == node) {
         return textFrame;
       }
+
     } else if ([frame isKindOfClass:[TTStyledImageFrame class]]) {
       TTStyledImageFrame* imageFrame = (TTStyledImageFrame*)frame;
       if (imageFrame.imageNode == node) {
         return imageFrame;
       }
     }
+
     frame = frame.nextFrame;
   }
   return nil;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (id)initWithNode:(TTStyledNode*)rootNode {
-  if (self = [self init]) {
-    _rootNode = [rootNode retain];
-  }
-  return self;
-}
-
-- (id)init {
-  if (self = [super init]) {
-    _rootNode = nil;
-    _rootFrame = nil;
-    _font = nil;
-    _width = 0;
-    _height = 0;
-    _invalidImages = nil;
-    _imageRequests = nil;
-  }
-  return self;
-}
-
-- (void)dealloc {
-  [self stopLoadingImages];
-  TT_RELEASE_SAFELY(_rootNode);
-  TT_RELEASE_SAFELY(_rootFrame);
-  TT_RELEASE_SAFELY(_font);
-  TT_RELEASE_SAFELY(_invalidImages);
-  TT_RELEASE_SAFELY(_imageRequests);
-  [super dealloc];
-}
-
-- (NSString*)description {
-  return [self.rootNode outerText];
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
-// TTURLRequestDelegate
+#pragma mark -
+#pragma mark TTURLRequestDelegate
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestDidStartLoad:(TTURLRequest*)request {
   if (!_imageRequests) {
     _imageRequests = [[NSMutableArray alloc] init];
@@ -193,6 +235,8 @@
   [_imageRequests addObject:request];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestDidFinishLoad:(TTURLRequest*)request {
   TTURLImageResponse* response = request.response;
   TTStyledImageNode* imageNode = request.userInfo;
@@ -203,17 +247,26 @@
   [_delegate styledTextNeedsDisplay:self];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
   [_imageRequests removeObject:request];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestDidCancelLoad:(TTURLRequest*)request {
   [_imageRequests removeObject:request];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// public
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDelegate:(id<TTStyledTextDelegate>)delegate {
   if (_delegate != delegate) {
     _delegate = delegate;
@@ -221,11 +274,15 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyledFrame*)rootFrame {
   [self layoutIfNeeded];
   return _rootFrame;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFont:(UIFont*)font {
   if (font != _font) {
     [_font release];
@@ -234,6 +291,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setWidth:(CGFloat)width {
   if (width != _width) {
     _width = width;
@@ -241,15 +300,21 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)height {
   [self layoutIfNeeded];
   return _height;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)needsLayout {
   return !_rootFrame;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutFrames {
   TTStyledLayout* layout = [[TTStyledLayout alloc] initWithRootNode:_rootNode];
   layout.width = _width;
@@ -266,21 +331,29 @@
   [self loadImages];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutIfNeeded {
   if (!_rootFrame) {
     [self layoutFrames];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setNeedsLayout {
   TT_RELEASE_SAFELY(_rootFrame);
   _height = 0;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawAtPoint:(CGPoint)point {
   [self drawAtPoint:point highlighted:NO];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawAtPoint:(CGPoint)point highlighted:(BOOL)highlighted {
   CGContextRef ctx = UIGraphicsGetCurrentContext();
   CGContextSaveGState(ctx);
@@ -295,14 +368,20 @@
   CGContextRestoreGState(ctx);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyledBoxFrame*)hitTest:(CGPoint)point {
   return [self.rootFrame hitTest:point];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyledFrame*)getFrameForNode:(TTStyledNode*)node {
   return [self getFrameForNode:node inFrame:_rootFrame];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addChild:(TTStyledNode*)child {
   if (!_rootNode) {
     self.rootNode = child;
@@ -317,10 +396,14 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addText:(NSString*)text {
   [self addChild:[[[TTStyledTextNode alloc] initWithText:text] autorelease]];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index {
   if (!_rootNode) {
     self.rootNode = child;
@@ -341,6 +424,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyledNode*)getElementByClassName:(NSString*)className {
   TTStyledNode* node = _rootNode;
   while (node) {
@@ -359,5 +444,6 @@
   }
   return nil;
 }
+
 
 @end
