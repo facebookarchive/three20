@@ -19,20 +19,20 @@
 #import "Three20/TTGlobalCore.h"
 
 // XML attribute keys.
-static NSString* kCommonKey_Type        = @"type";
+static NSString* kCommonXMLKey_Type       = @"type";
 
 // XML object types.
-static NSString* kCommonType_Array      = @"array";
-static NSString* kCommonType_Integer    = @"integer";
-static NSString* kCommonType_DateTime   = @"datetime";
-       NSString* kCommonXMLType_Unknown = @"unknown";
+static NSString* kCommonXMLType_Array     = @"array";
+static NSString* kCommonXMLType_Integer   = @"integer";
+static NSString* kCommonXMLType_DateTime  = @"datetime";
+       NSString* kCommonXMLType_Unknown   = @"unknown";
 
 // Internal key names for the resulting NSDictionaries.
-static NSString* kPrivateKey_EntityName   = @"___Entity_Name___";
-static NSString* kPrivateKey_EntityType   = @"___Entity_Type___";
-static NSString* kPrivateKey_EntityValue  = @"___Entity_Value___";
-static NSString* kPrivateKey_EntityBuffer = @"___Entity_Buffer___";
-static NSString* kPrivateKey_Array        = @"___Array___";
+static NSString* kInternalKey_EntityName    = @"___Entity_Name___";
+static NSString* kInternalKey_EntityType    = @"___Entity_Type___";
+static NSString* kInternalKey_EntityValue   = @"___Entity_Value___";
+static NSString* kInternalKey_EntityBuffer  = @"___Entity_Buffer___";
+static NSString* kInternalKey_Array         = @"___Array___";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,15 +66,15 @@ static NSString* kPrivateKey_Array        = @"___Array___";
     elementName = @"";
   }
 
-  NSString* type = [attributeDict objectForKey:kCommonKey_Type];
+  NSString* type = [attributeDict objectForKey:kCommonXMLKey_Type];
 
   if (!TTIsStringWithAnyText(type)) {
     type = kCommonXMLType_Unknown;
   }
 
-  if ([type isEqualToString:kCommonType_Array]) {
+  if ([type isEqualToString:kCommonXMLType_Array]) {
     NSMutableArray* array = [[NSMutableArray alloc] init];
-    [object setObject:array forKey:kPrivateKey_Array];
+    [object setObject:array forKey:kInternalKey_Array];
     TT_RELEASE_SAFELY(array);
   }
 
@@ -82,8 +82,8 @@ static NSString* kPrivateKey_Array        = @"___Array___";
     [object setObject:[attributeDict objectForKey:key] forKey:key];
   }
 
-  [object setObject:elementName forKey:kPrivateKey_EntityName];
-  [object setObject:type forKey:kPrivateKey_EntityType];
+  [object setObject:elementName forKey:kInternalKey_EntityName];
+  [object setObject:type forKey:kInternalKey_EntityType];
 
   return object;
 }
@@ -94,19 +94,19 @@ static NSString* kPrivateKey_Array        = @"___Array___";
 
   // Is this an internal common "array" type?
   if ([object isKindOfClass:[NSDictionary class]] &&
-      [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Array]) {
+      [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Array]) {
 
     // Yes, it is. Let's add this object to the array then.
     if (nil != childObject) {
-      [[object objectForKey:kPrivateKey_Array] addObject:childObject];
+      [[object objectForKey:kInternalKey_Array] addObject:childObject];
     }
 
   // Is it an unknown dictionary type?
   } else if ([object isKindOfClass:[NSDictionary class]] &&
-      [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonXMLType_Unknown]) {
+      [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Unknown]) {
 
     if (self.treatDuplicateKeysAsArrayItems) {
-      NSString* entityName = [childObject objectForKey:kPrivateKey_EntityName];
+      NSString* entityName = [childObject objectForKey:kInternalKey_EntityName];
       id entityObject = [object objectForKey:entityName];
       if (nil == entityObject) {
         // No collision, add it!
@@ -128,9 +128,9 @@ static NSString* kPrivateKey_Array        = @"___Array___";
     } else {
       // Avoid overwriting existing keys.
       // If this is asserting, you probably need treatDuplicateKeysAsArrayItems set to YES.
-      TTDASSERT(nil == [object objectForKey:[childObject objectForKey:kPrivateKey_EntityName]]);
+      TTDASSERT(nil == [object objectForKey:[childObject objectForKey:kInternalKey_EntityName]]);
 
-      [object setObject:childObject forKey:[childObject objectForKey:kPrivateKey_EntityName]];
+      [object setObject:childObject forKey:[childObject objectForKey:kInternalKey_EntityName]];
     }
   }
 }
@@ -139,27 +139,27 @@ static NSString* kPrivateKey_Array        = @"___Array___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addCharacters: (NSString*)characters toObject:(id)object {
   if ([object isKindOfClass:[NSDictionary class]] &&
-      ([[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Integer] ||
-       [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_DateTime])) {
+      ([[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Integer] ||
+       [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_DateTime])) {
 
-    NSString* buffer = [object objectForKey:kPrivateKey_EntityBuffer];
+    NSString* buffer = [object objectForKey:kInternalKey_EntityBuffer];
     if (nil == buffer) {
       buffer = [[NSString alloc] init];
-      [object setObject:buffer forKey:kPrivateKey_EntityBuffer];
+      [object setObject:buffer forKey:kInternalKey_EntityBuffer];
       [buffer release];
     }
     buffer = [buffer stringByAppendingString:characters];
-    [object setObject:buffer forKey:kPrivateKey_EntityBuffer];
+    [object setObject:buffer forKey:kInternalKey_EntityBuffer];
 
   } else if ([object isKindOfClass:[NSDictionary class]]) {
       // It's an unknown dictionary type, let's just add this object then.
-    NSString* value = [object objectForKey:kPrivateKey_EntityValue];
+    NSString* value = [object objectForKey:kInternalKey_EntityValue];
     if (nil == value) {
       value = [[NSString alloc] init];
-      [object setObject:value forKey:kPrivateKey_EntityValue];
+      [object setObject:value forKey:kInternalKey_EntityValue];
       [value release];
     }
-    [object setObject:[value stringByAppendingString:characters] forKey:kPrivateKey_EntityValue];
+    [object setObject:[value stringByAppendingString:characters] forKey:kInternalKey_EntityValue];
   }
 }
 
@@ -167,17 +167,17 @@ static NSString* kPrivateKey_Array        = @"___Array___";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFinishParsingObject:(id)object {
   if ([object isKindOfClass:[NSDictionary class]] &&
-      [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_Integer]) {
-    NSString* buffer = [object objectForKey:kPrivateKey_EntityBuffer];
+      [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Integer]) {
+    NSString* buffer = [object objectForKey:kInternalKey_EntityBuffer];
     NSNumber* number = [[NSNumber alloc] initWithInt:[buffer intValue]];
-    [object setObject:number forKey:kPrivateKey_EntityValue];
+    [object setObject:number forKey:kInternalKey_EntityValue];
     TT_RELEASE_SAFELY(number);
 
-    [object removeObjectForKey:kPrivateKey_EntityBuffer];
+    [object removeObjectForKey:kInternalKey_EntityBuffer];
 
   } else if ([object isKindOfClass:[NSDictionary class]] &&
-             [[object objectForKey:kPrivateKey_EntityType] isEqualToString:kCommonType_DateTime]) {
-    NSString* buffer = [object objectForKey:kPrivateKey_EntityBuffer];
+             [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_DateTime]) {
+    NSString* buffer = [object objectForKey:kInternalKey_EntityBuffer];
 
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
@@ -189,11 +189,11 @@ static NSString* kPrivateKey_Array        = @"___Array___";
     }
 
     if (nil != date) {
-      [object setObject:date forKey:kPrivateKey_EntityValue];
+      [object setObject:date forKey:kInternalKey_EntityValue];
     }
     TT_RELEASE_SAFELY(dateFormatter);
 
-    [object removeObjectForKey:kPrivateKey_EntityBuffer];
+    [object removeObjectForKey:kInternalKey_EntityBuffer];
 
   }
 }
@@ -267,22 +267,22 @@ static NSString* kPrivateKey_Array        = @"___Array___";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)nameForXMLNode {
-  return [self objectForKey:kPrivateKey_EntityName];
+  return [self objectForKey:kInternalKey_EntityName];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)typeForXMLNode {
-  return [self objectForKey:kPrivateKey_EntityType];
+  return [self objectForKey:kInternalKey_EntityType];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectForXMLNode {
-  if ([[self typeForXMLNode] isEqualToString:kCommonType_Array]) {
-    return [self objectForKey:kPrivateKey_Array];
+  if ([[self typeForXMLNode] isEqualToString:kCommonXMLType_Array]) {
+    return [self objectForKey:kInternalKey_Array];
   } else {
-    return [self objectForKey:kPrivateKey_EntityValue];
+    return [self objectForKey:kInternalKey_EntityValue];
   }
 }
 
