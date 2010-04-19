@@ -251,7 +251,7 @@ static NSString* kInternalKey_Array         = @"___Array___";
   [self didFinishParsingObject:[_objectStack lastObject]];
 
   if ([_objectStack count] == 1) {
-    TTDASSERT(nil == _rootObject);
+    TT_RELEASE_SAFELY(_rootObject);
     _rootObject = [[_objectStack lastObject] retain];
   }
 
