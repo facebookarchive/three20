@@ -21,7 +21,7 @@
 
 #import "Three20/TTCorePreprocessorMacros.h"
 
-#import "Three20/TTLayout.h"
+#import "Three20/TTGridLayout.h"
 #import "Three20/TTGlobalUI.h"
 
 

@@ -14,11 +14,14 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTLayout.h"
 
-@interface TTLayout : NSObject
+@interface TTFlowLayout : TTLayout {
+  CGFloat _padding;
+  CGFloat _spacing;
+}
 
-- (CGSize)layoutSubviews:(NSArray*)subviews forView:(UIView*)view;
+@property (nonatomic) CGFloat padding;
+@property (nonatomic) CGFloat spacing;
 
 @end

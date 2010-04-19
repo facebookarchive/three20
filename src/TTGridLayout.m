@@ -14,13 +14,30 @@
 // limitations under the License.
 //
 
-#import "Three20/TTLayout.h"
+#import "Three20/TTGridLayout.h"
+
+// UI
+#import "Three20/TTGlobalUI.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTLayout
+@implementation TTGridLayout
+
+@synthesize columnCount = _columnCount;
+@synthesize padding     = _padding;
+@synthesize spacing     = _spacing;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+  if (self = [super init]) {
+    _columnCount = 1;
+  }
+
+  return self;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +48,30 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)layoutSubviews:(NSArray*)subviews forView:(UIView*)view {
-  return CGSizeZero;
+  CGFloat innerWidth = (view.width - _padding*2);
+  CGFloat width = ceil(innerWidth / _columnCount);
+  CGFloat rowHeight = 0;
+
+  CGFloat x = _padding, y = _padding;
+  CGFloat maxX = 0, lastHeight = 0;
+  NSInteger column = 0;
+  for (UIView* subview in subviews) {
+    if (column % _columnCount == 0) {
+      x = _padding;
+      y += rowHeight + _spacing;
+    }
+    CGSize size = [subview sizeThatFits:CGSizeMake(width, 0)];
+    rowHeight = size.height;
+    subview.frame = CGRectMake(x, y, width, size.height);
+    x += subview.width + _spacing;
+    if (x > maxX) {
+      maxX = x;
+    }
+    lastHeight = subview.height;
+    ++column;
+  }
+
+  return CGSizeMake(maxX+_padding, y+lastHeight+_padding);
 }
 
 

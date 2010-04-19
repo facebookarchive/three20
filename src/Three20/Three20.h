@@ -195,7 +195,11 @@
 
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTLayout.h"
+#import "Three20/TTFlowLayout.h"
+#import "Three20/TTGridLayout.h"
+
 #import "Three20/TTShape.h"
+
 #import "Three20/TTStyle.h"
 #import "Three20/TTStyleDelegate.h"
 #import "Three20/TTStyleContext.h"

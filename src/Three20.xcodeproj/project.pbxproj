@@ -72,6 +72,10 @@
 		6E5CE9B1117CAAEE00798CF8 /* TTStyleDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CE9B0117CAAEE00798CF8 /* TTStyleDelegate.h */; };
 		6E5CE9CA117CAE9E00798CF8 /* TTStyleInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CE9C8117CAE9E00798CF8 /* TTStyleInternal.m */; };
 		6E5CE9CC117CAEAB00798CF8 /* TTStyleInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CE9CB117CAEAB00798CF8 /* TTStyleInternal.h */; };
+		6E5CEA38117CB8FF00798CF8 /* TTFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA36117CB8FF00798CF8 /* TTFlowLayout.m */; };
+		6E5CEA3A117CB91400798CF8 /* TTFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA39117CB91400798CF8 /* TTFlowLayout.h */; };
+		6E5CEA3E117CB96200798CF8 /* TTGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA3C117CB96200798CF8 /* TTGridLayout.m */; };
+		6E5CEA40117CB96E00798CF8 /* TTGridLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA3F117CB96E00798CF8 /* TTGridLayout.h */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -506,6 +510,10 @@
 		6E5CE9B0117CAAEE00798CF8 /* TTStyleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyleDelegate.h; path = Three20/TTStyleDelegate.h; sourceTree = "<group>"; };
 		6E5CE9C8117CAE9E00798CF8 /* TTStyleInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyleInternal.m; sourceTree = "<group>"; };
 		6E5CE9CB117CAEAB00798CF8 /* TTStyleInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyleInternal.h; path = Three20/TTStyleInternal.h; sourceTree = "<group>"; };
+		6E5CEA36117CB8FF00798CF8 /* TTFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFlowLayout.m; sourceTree = "<group>"; };
+		6E5CEA39117CB91400798CF8 /* TTFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTFlowLayout.h; path = Three20/TTFlowLayout.h; sourceTree = "<group>"; };
+		6E5CEA3C117CB96200798CF8 /* TTGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGridLayout.m; sourceTree = "<group>"; };
+		6E5CEA3F117CB96E00798CF8 /* TTGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGridLayout.h; path = Three20/TTGridLayout.h; sourceTree = "<group>"; };
 		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
 		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
 		6E6206AF117648F900035C6C /* TTTableImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItemCell.m; sourceTree = "<group>"; };
@@ -1379,6 +1387,10 @@
 			children = (
 				BEC270B10F8C9D1900EA638F /* TTLayout.h */,
 				BEC270B30F8C9D2600EA638F /* TTLayout.m */,
+				6E5CEA39117CB91400798CF8 /* TTFlowLayout.h */,
+				6E5CEA36117CB8FF00798CF8 /* TTFlowLayout.m */,
+				6E5CEA3F117CB96E00798CF8 /* TTGridLayout.h */,
+				6E5CEA3C117CB96200798CF8 /* TTGridLayout.m */,
 			);
 			name = Layout;
 			sourceTree = "<group>";
@@ -1994,6 +2006,8 @@
 				6E5CE9AF117CAAA800798CF8 /* TTLinearGradientBorderStyle.h in Headers */,
 				6E5CE9B1117CAAEE00798CF8 /* TTStyleDelegate.h in Headers */,
 				6E5CE9CC117CAEAB00798CF8 /* TTStyleInternal.h in Headers */,
+				6E5CEA3A117CB91400798CF8 /* TTFlowLayout.h in Headers */,
+				6E5CEA40117CB96E00798CF8 /* TTGridLayout.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2272,6 +2286,8 @@
 				6E5CE9A7117CAA6700798CF8 /* TTBevelBorderStyle.m in Sources */,
 				6E5CE9AD117CAA9B00798CF8 /* TTLinearGradientBorderStyle.m in Sources */,
 				6E5CE9CA117CAE9E00798CF8 /* TTStyleInternal.m in Sources */,
+				6E5CEA38117CB8FF00798CF8 /* TTFlowLayout.m in Sources */,
+				6E5CEA3E117CB96200798CF8 /* TTGridLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
