@@ -89,6 +89,30 @@
 		6E5CEA7D117CBFDC00798CF8 /* TTShapeInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA7B117CBFDC00798CF8 /* TTShapeInternal.m */; };
 		6E5CEA7F117CBFF500798CF8 /* TTShapeInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA7E117CBFF500798CF8 /* TTShapeInternal.h */; };
 		6E5CEB23117CC24500798CF8 /* TTStyledTextDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEB22117CC24500798CF8 /* TTStyledTextDelegate.h */; };
+		6E5CEB83117CCFB400798CF8 /* TTStyledTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEB81117CCFB400798CF8 /* TTStyledTextNode.m */; };
+		6E5CEB85117CCFC800798CF8 /* TTStyledTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEB84117CCFC800798CF8 /* TTStyledTextNode.h */; };
+		6E5CEB89117CCFFC00798CF8 /* TTStyledElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEB87117CCFFC00798CF8 /* TTStyledElement.m */; };
+		6E5CEB8B117CD00400798CF8 /* TTStyledElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEB8A117CD00400798CF8 /* TTStyledElement.h */; };
+		6E5CEB8F117CD04300798CF8 /* TTStyledBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEB8D117CD04300798CF8 /* TTStyledBlock.m */; };
+		6E5CEB91117CD04C00798CF8 /* TTStyledBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEB90117CD04C00798CF8 /* TTStyledBlock.h */; };
+		6E5CEB95117CD07400798CF8 /* TTStyledInline.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEB93117CD07400798CF8 /* TTStyledInline.m */; };
+		6E5CEB97117CD08100798CF8 /* TTStyledInline.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEB96117CD08100798CF8 /* TTStyledInline.h */; };
+		6E5CEB9B117CD0B000798CF8 /* TTStyledInlineBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEB99117CD0B000798CF8 /* TTStyledInlineBlock.m */; };
+		6E5CEB9D117CD0B800798CF8 /* TTStyledInlineBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEB9C117CD0B800798CF8 /* TTStyledInlineBlock.h */; };
+		6E5CEBA1117CD0D900798CF8 /* TTStyledBoldNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEB9F117CD0D900798CF8 /* TTStyledBoldNode.m */; };
+		6E5CEBA5117CD10500798CF8 /* TTStyledBoldNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEBA4117CD10500798CF8 /* TTStyledBoldNode.h */; };
+		6E5CEBA9117CD14C00798CF8 /* TTStyledItalicNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEBA7117CD14C00798CF8 /* TTStyledItalicNode.m */; };
+		6E5CEBAB117CD15600798CF8 /* TTStyledItalicNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEBAA117CD15600798CF8 /* TTStyledItalicNode.h */; };
+		6E5CEBAF117CD17B00798CF8 /* TTStyledLinkNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEBAD117CD17B00798CF8 /* TTStyledLinkNode.m */; };
+		6E5CEBB1117CD18500798CF8 /* TTStyledLinkNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEBB0117CD18500798CF8 /* TTStyledLinkNode.h */; };
+		6E5CEBB5117CD1B000798CF8 /* TTStyledButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEBB3117CD1B000798CF8 /* TTStyledButtonNode.m */; };
+		6E5CEBB7117CD1B900798CF8 /* TTStyledButtonNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEBB6117CD1B900798CF8 /* TTStyledButtonNode.h */; };
+		6E5CEBBB117CD1F800798CF8 /* TTStyledImageNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEBB9117CD1F800798CF8 /* TTStyledImageNode.m */; };
+		6E5CEBBD117CD20100798CF8 /* TTStyledImageNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEBBC117CD20100798CF8 /* TTStyledImageNode.h */; };
+		6E5CEBC1117CD24900798CF8 /* TTStyledLineBreakNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEBBF117CD24900798CF8 /* TTStyledLineBreakNode.m */; };
+		6E5CEBC3117CD25400798CF8 /* TTStyledLineBreakNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEBC2117CD25400798CF8 /* TTStyledLineBreakNode.h */; };
+		6E5CEBCE117CD32900798CF8 /* TTStyledNodeInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEBCC117CD32900798CF8 /* TTStyledNodeInternal.m */; };
+		6E5CEBD0117CD33800798CF8 /* TTStyledNodeInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEBCF117CD33800798CF8 /* TTStyledNodeInternal.h */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -540,6 +564,30 @@
 		6E5CEA7B117CBFDC00798CF8 /* TTShapeInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShapeInternal.m; sourceTree = "<group>"; };
 		6E5CEA7E117CBFF500798CF8 /* TTShapeInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTShapeInternal.h; path = Three20/TTShapeInternal.h; sourceTree = "<group>"; };
 		6E5CEB22117CC24500798CF8 /* TTStyledTextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextDelegate.h; path = Three20/TTStyledTextDelegate.h; sourceTree = "<group>"; };
+		6E5CEB81117CCFB400798CF8 /* TTStyledTextNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledTextNode.m; sourceTree = "<group>"; };
+		6E5CEB84117CCFC800798CF8 /* TTStyledTextNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledTextNode.h; path = Three20/TTStyledTextNode.h; sourceTree = "<group>"; };
+		6E5CEB87117CCFFC00798CF8 /* TTStyledElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledElement.m; sourceTree = "<group>"; };
+		6E5CEB8A117CD00400798CF8 /* TTStyledElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledElement.h; path = Three20/TTStyledElement.h; sourceTree = "<group>"; };
+		6E5CEB8D117CD04300798CF8 /* TTStyledBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledBlock.m; sourceTree = "<group>"; };
+		6E5CEB90117CD04C00798CF8 /* TTStyledBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledBlock.h; path = Three20/TTStyledBlock.h; sourceTree = "<group>"; };
+		6E5CEB93117CD07400798CF8 /* TTStyledInline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledInline.m; sourceTree = "<group>"; };
+		6E5CEB96117CD08100798CF8 /* TTStyledInline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledInline.h; path = Three20/TTStyledInline.h; sourceTree = "<group>"; };
+		6E5CEB99117CD0B000798CF8 /* TTStyledInlineBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledInlineBlock.m; sourceTree = "<group>"; };
+		6E5CEB9C117CD0B800798CF8 /* TTStyledInlineBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledInlineBlock.h; path = Three20/TTStyledInlineBlock.h; sourceTree = "<group>"; };
+		6E5CEB9F117CD0D900798CF8 /* TTStyledBoldNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledBoldNode.m; sourceTree = "<group>"; };
+		6E5CEBA4117CD10500798CF8 /* TTStyledBoldNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledBoldNode.h; path = Three20/TTStyledBoldNode.h; sourceTree = "<group>"; };
+		6E5CEBA7117CD14C00798CF8 /* TTStyledItalicNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledItalicNode.m; sourceTree = "<group>"; };
+		6E5CEBAA117CD15600798CF8 /* TTStyledItalicNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledItalicNode.h; path = Three20/TTStyledItalicNode.h; sourceTree = "<group>"; };
+		6E5CEBAD117CD17B00798CF8 /* TTStyledLinkNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledLinkNode.m; sourceTree = "<group>"; };
+		6E5CEBB0117CD18500798CF8 /* TTStyledLinkNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledLinkNode.h; path = Three20/TTStyledLinkNode.h; sourceTree = "<group>"; };
+		6E5CEBB3117CD1B000798CF8 /* TTStyledButtonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledButtonNode.m; sourceTree = "<group>"; };
+		6E5CEBB6117CD1B900798CF8 /* TTStyledButtonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledButtonNode.h; path = Three20/TTStyledButtonNode.h; sourceTree = "<group>"; };
+		6E5CEBB9117CD1F800798CF8 /* TTStyledImageNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledImageNode.m; sourceTree = "<group>"; };
+		6E5CEBBC117CD20100798CF8 /* TTStyledImageNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledImageNode.h; path = Three20/TTStyledImageNode.h; sourceTree = "<group>"; };
+		6E5CEBBF117CD24900798CF8 /* TTStyledLineBreakNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledLineBreakNode.m; sourceTree = "<group>"; };
+		6E5CEBC2117CD25400798CF8 /* TTStyledLineBreakNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledLineBreakNode.h; path = Three20/TTStyledLineBreakNode.h; sourceTree = "<group>"; };
+		6E5CEBCC117CD32900798CF8 /* TTStyledNodeInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledNodeInternal.m; sourceTree = "<group>"; };
+		6E5CEBCF117CD33800798CF8 /* TTStyledNodeInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledNodeInternal.h; path = Three20/TTStyledNodeInternal.h; sourceTree = "<group>"; };
 		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
 		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
 		6E6206AF117648F900035C6C /* TTTableImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItemCell.m; sourceTree = "<group>"; };
@@ -1086,6 +1134,44 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		6E5CEB7F117CCFA500798CF8 /* Styled Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				6E5CEB84117CCFC800798CF8 /* TTStyledTextNode.h */,
+				6E5CEB81117CCFB400798CF8 /* TTStyledTextNode.m */,
+				6E5CEB8A117CD00400798CF8 /* TTStyledElement.h */,
+				6E5CEB87117CCFFC00798CF8 /* TTStyledElement.m */,
+				6E5CEB90117CD04C00798CF8 /* TTStyledBlock.h */,
+				6E5CEB8D117CD04300798CF8 /* TTStyledBlock.m */,
+				6E5CEB96117CD08100798CF8 /* TTStyledInline.h */,
+				6E5CEB93117CD07400798CF8 /* TTStyledInline.m */,
+				6E5CEB9C117CD0B800798CF8 /* TTStyledInlineBlock.h */,
+				6E5CEB99117CD0B000798CF8 /* TTStyledInlineBlock.m */,
+				6E5CEBA4117CD10500798CF8 /* TTStyledBoldNode.h */,
+				6E5CEB9F117CD0D900798CF8 /* TTStyledBoldNode.m */,
+				6E5CEBAA117CD15600798CF8 /* TTStyledItalicNode.h */,
+				6E5CEBA7117CD14C00798CF8 /* TTStyledItalicNode.m */,
+				6E5CEBB0117CD18500798CF8 /* TTStyledLinkNode.h */,
+				6E5CEBAD117CD17B00798CF8 /* TTStyledLinkNode.m */,
+				6E5CEBB6117CD1B900798CF8 /* TTStyledButtonNode.h */,
+				6E5CEBB3117CD1B000798CF8 /* TTStyledButtonNode.m */,
+				6E5CEBBC117CD20100798CF8 /* TTStyledImageNode.h */,
+				6E5CEBB9117CD1F800798CF8 /* TTStyledImageNode.m */,
+				6E5CEBC2117CD25400798CF8 /* TTStyledLineBreakNode.h */,
+				6E5CEBBF117CD24900798CF8 /* TTStyledLineBreakNode.m */,
+			);
+			name = "Styled Nodes";
+			sourceTree = "<group>";
+		};
+		6E5CEBCA117CD32000798CF8 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6E5CEBCF117CD33800798CF8 /* TTStyledNodeInternal.h */,
+				6E5CEBCC117CD32900798CF8 /* TTStyledNodeInternal.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		6E62083E1176708100035C6C /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -1457,6 +1543,8 @@
 				6E5CEB22117CC24500798CF8 /* TTStyledTextDelegate.h */,
 				BEF198E10F818A240010D36E /* TTStyledNode.h */,
 				BEF198DF0F818A1C0010D36E /* TTStyledNode.m */,
+				6E5CEBCA117CD32000798CF8 /* Private */,
+				6E5CEB7F117CCFA500798CF8 /* Styled Nodes */,
 				BE8541000F998FA900DA3E9E /* TTStyledFrame.h */,
 				BE8541020F998FB800DA3E9E /* TTStyledFrame.m */,
 				BE1942760F9ACE85005F4EFC /* TTStyledLayout.h */,
@@ -2070,6 +2158,18 @@
 				6E5CEA6B117CBDD700798CF8 /* TTSpeechBubbleShape.h in Headers */,
 				6E5CEA7F117CBFF500798CF8 /* TTShapeInternal.h in Headers */,
 				6E5CEB23117CC24500798CF8 /* TTStyledTextDelegate.h in Headers */,
+				6E5CEB85117CCFC800798CF8 /* TTStyledTextNode.h in Headers */,
+				6E5CEB8B117CD00400798CF8 /* TTStyledElement.h in Headers */,
+				6E5CEB91117CD04C00798CF8 /* TTStyledBlock.h in Headers */,
+				6E5CEB97117CD08100798CF8 /* TTStyledInline.h in Headers */,
+				6E5CEB9D117CD0B800798CF8 /* TTStyledInlineBlock.h in Headers */,
+				6E5CEBA5117CD10500798CF8 /* TTStyledBoldNode.h in Headers */,
+				6E5CEBAB117CD15600798CF8 /* TTStyledItalicNode.h in Headers */,
+				6E5CEBB1117CD18500798CF8 /* TTStyledLinkNode.h in Headers */,
+				6E5CEBB7117CD1B900798CF8 /* TTStyledButtonNode.h in Headers */,
+				6E5CEBBD117CD20100798CF8 /* TTStyledImageNode.h in Headers */,
+				6E5CEBC3117CD25400798CF8 /* TTStyledLineBreakNode.h in Headers */,
+				6E5CEBD0117CD33800798CF8 /* TTStyledNodeInternal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2356,6 +2456,18 @@
 				6E5CEA63117CBD6F00798CF8 /* TTRoundedLeftArrowShape.m in Sources */,
 				6E5CEA69117CBDCC00798CF8 /* TTSpeechBubbleShape.m in Sources */,
 				6E5CEA7D117CBFDC00798CF8 /* TTShapeInternal.m in Sources */,
+				6E5CEB83117CCFB400798CF8 /* TTStyledTextNode.m in Sources */,
+				6E5CEB89117CCFFC00798CF8 /* TTStyledElement.m in Sources */,
+				6E5CEB8F117CD04300798CF8 /* TTStyledBlock.m in Sources */,
+				6E5CEB95117CD07400798CF8 /* TTStyledInline.m in Sources */,
+				6E5CEB9B117CD0B000798CF8 /* TTStyledInlineBlock.m in Sources */,
+				6E5CEBA1117CD0D900798CF8 /* TTStyledBoldNode.m in Sources */,
+				6E5CEBA9117CD14C00798CF8 /* TTStyledItalicNode.m in Sources */,
+				6E5CEBAF117CD17B00798CF8 /* TTStyledLinkNode.m in Sources */,
+				6E5CEBB5117CD1B000798CF8 /* TTStyledButtonNode.m in Sources */,
+				6E5CEBBB117CD1F800798CF8 /* TTStyledImageNode.m in Sources */,
+				6E5CEBC1117CD24900798CF8 /* TTStyledLineBreakNode.m in Sources */,
+				6E5CEBCE117CD32900798CF8 /* TTStyledNodeInternal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,8 @@
 #import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyledLayout.h"
 #import "Three20/TTStyledTextParser.h"
+#import "Three20/TTStyledImageNode.h"
+#import "Three20/TTStyledTextNode.h"
 
 // Network
 #import "Three20/TTURLImageResponse.h"

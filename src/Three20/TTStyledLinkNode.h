@@ -14,24 +14,20 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTStyledInline.h"
 
-@interface TTStyledNode : NSObject {
-  TTStyledNode* _nextSibling;
-  TTStyledNode* _parentNode;
+@interface TTStyledLinkNode : TTStyledInline {
+  NSString* _URL;
+  BOOL      _highlighted;
 }
 
-@property (nonatomic, retain)   TTStyledNode* nextSibling;
-@property (nonatomic, assign)   TTStyledNode* parentNode;
-@property (nonatomic, readonly) NSString*     outerText;
-@property (nonatomic, readonly) NSString*     outerHTML;
+@property (nonatomic)         BOOL      highlighted;
+@property (nonatomic, retain) NSString* URL;
+
+- (id)initWithURL:(NSString*)URL;
+- (id)initWithURL:(NSString*)URL next:(TTStyledNode*)nextSibling;
 
 // Designated initializer
-- (id)initWithNextSibling:(TTStyledNode*)nextSibling;
-
-- (id)ancestorOrSelfWithClass:(Class)cls;
-
-- (void) performDefaultAction;
+- (id)initWithText:(NSString*)text URL:(NSString*)URL next:(TTStyledNode*)nextSibling;
 
 @end

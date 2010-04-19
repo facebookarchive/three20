@@ -232,6 +232,20 @@
 
 #import "Three20/TTStyledText.h"
 #import "Three20/TTStyledTextDelegate.h"
+
+// Styled nodes
 #import "Three20/TTStyledNode.h"
+#import "Three20/TTStyledTextNode.h"
+#import "Three20/TTStyledElement.h"
+#import "Three20/TTStyledBlock.h"
+#import "Three20/TTStyledInline.h"
+#import "Three20/TTStyledInlineBlock.h"
+#import "Three20/TTStyledBoldNode.h"
+#import "Three20/TTStyledItalicNode.h"
+#import "Three20/TTStyledLinkNode.h"
+#import "Three20/TTStyledButtonNode.h"
+#import "Three20/TTStyledImageNode.h"
+#import "Three20/TTStyledLineBreakNode.h"
+
 #import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyledTextParser.h"

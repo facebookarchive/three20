@@ -14,24 +14,22 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTStyledElement.h"
 
-@interface TTStyledNode : NSObject {
-  TTStyledNode* _nextSibling;
-  TTStyledNode* _parentNode;
+@interface TTStyledImageNode : TTStyledElement {
+  NSString* _URL;
+  UIImage*  _image;
+  UIImage*  _defaultImage;
+  CGFloat   _width;
+  CGFloat   _height;
 }
 
-@property (nonatomic, retain)   TTStyledNode* nextSibling;
-@property (nonatomic, assign)   TTStyledNode* parentNode;
-@property (nonatomic, readonly) NSString*     outerText;
-@property (nonatomic, readonly) NSString*     outerHTML;
+@property (nonatomic, retain) NSString* URL;
+@property (nonatomic, retain) UIImage*  image;
+@property (nonatomic, retain) UIImage*  defaultImage;
+@property (nonatomic)         CGFloat   width;
+@property (nonatomic)         CGFloat   height;
 
-// Designated initializer
-- (id)initWithNextSibling:(TTStyledNode*)nextSibling;
-
-- (id)ancestorOrSelfWithClass:(Class)cls;
-
-- (void) performDefaultAction;
+- (id)initWithURL:(NSString*)URL;
 
 @end

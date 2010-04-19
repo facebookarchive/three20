@@ -14,24 +14,19 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTStyledItalicNode.h"
 
-@interface TTStyledNode : NSObject {
-  TTStyledNode* _nextSibling;
-  TTStyledNode* _parentNode;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation TTStyledItalicNode
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)description {
+  return [NSString stringWithFormat:@"/%@/", _firstChild];
 }
 
-@property (nonatomic, retain)   TTStyledNode* nextSibling;
-@property (nonatomic, assign)   TTStyledNode* parentNode;
-@property (nonatomic, readonly) NSString*     outerText;
-@property (nonatomic, readonly) NSString*     outerHTML;
-
-// Designated initializer
-- (id)initWithNextSibling:(TTStyledNode*)nextSibling;
-
-- (id)ancestorOrSelfWithClass:(Class)cls;
-
-- (void) performDefaultAction;
 
 @end

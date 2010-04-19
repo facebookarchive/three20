@@ -25,6 +25,9 @@
 #import "Three20/TTImageStyle.h"
 #import "Three20/TTTextStyle.h"
 
+// Styled nodes
+#import "Three20/TTStyledImageNode.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

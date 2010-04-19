@@ -18,7 +18,18 @@
 
 #import "Three20/TTGlobalCore.h"
 
-#import "Three20/TTStyledNode.h"
+// Style
+#import "Three20/TTStyledElement.h"
+#import "Three20/TTStyledTextNode.h"
+#import "Three20/TTStyledLinkNode.h"
+#import "Three20/TTStyledInline.h"
+#import "Three20/TTStyledBlock.h"
+#import "Three20/TTStyledLineBreakNode.h"
+#import "Three20/TTStyledBoldNode.h"
+#import "Three20/TTStyledButtonNode.h"
+#import "Three20/TTStyledItalicNode.h"
+#import "Three20/TTStyledImageNode.h"
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,7 +75,7 @@
   if (_chars.length) {
     [self parseText:_chars];
   }
-  
+
   TT_RELEASE_SAFELY(_chars);
 }
 
@@ -183,7 +194,7 @@
     [self pushNode:node];
   }
 }
- 
+
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
   if (!_chars) {
     _chars = [string mutableCopy];
@@ -236,7 +247,7 @@
         NSRange textRange = NSMakeRange(index, range.location - index);
         NSString* substr = [string substringWithRange:textRange];
         [self parseURLs:substr];
-        
+
         // Add a line break node after the text
         TTStyledLineBreakNode* br = [[[TTStyledLineBreakNode alloc] init] autorelease];
         [self addNode:br];

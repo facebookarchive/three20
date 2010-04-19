@@ -14,7 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyledNode.h"
+#import "Three20/TTStyledImageNode.h"
+
+// Network
+#import "Three20/TTURLCache.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"
@@ -23,16 +26,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTStyledNode
+@implementation TTStyledImageNode
 
-@synthesize nextSibling = _nextSibling;
-@synthesize parentNode  = _parentNode;
+@synthesize URL           = _URL;
+@synthesize image         = _image;
+@synthesize defaultImage  = _defaultImage;
+@synthesize width         = _width;
+@synthesize height        = _height;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNextSibling:(TTStyledNode*)nextSibling {
-  if (self = [super init]) {
-    self.nextSibling = nextSibling;
+- (id)initWithURL:(NSString*)URL {
+  if (self = [super initWithText:nil next:nil]) {
+    self.URL = URL;
   }
 
   return self;
@@ -41,7 +47,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithNextSibling:nil]) {
+  if (self = [self initWithURL:nil]) {
   }
 
   return self;
@@ -50,9 +56,34 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_nextSibling);
+  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_image);
+  TT_RELEASE_SAFELY(_defaultImage);
 
   [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)description {
+  return [NSString stringWithFormat:@"(%@)", _URL];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTStyledNode
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)outerHTML {
+  NSString* html = [NSString stringWithFormat:@"<img src=\"%@\"/>", _URL];
+  if (_nextSibling) {
+    return [NSString stringWithFormat:@"%@%@", html, _nextSibling.outerHTML];
+  } else {
+    return html;
+  }
 }
 
 
@@ -63,43 +94,17 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setNextSibling:(TTStyledNode*)node {
-  if (node != _nextSibling) {
-    [_nextSibling release];
-    _nextSibling = [node retain];
-    node.parentNode = _parentNode;
+- (void)setURL:(NSString*)URL {
+  if (!_URL || ![URL isEqualToString:_URL]) {
+    [_URL release];
+    _URL = [URL retain];
+
+    if (_URL) {
+      self.image = [[TTURLCache sharedCache] imageForURL:_URL];
+    } else {
+      self.image = nil;
+    }
   }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)outerText {
-  return @"";
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)outerHTML {
-  if (_nextSibling) {
-    return _nextSibling.outerHTML;
-  } else {
-    return @"";
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)ancestorOrSelfWithClass:(Class)cls {
-  if ([self isKindOfClass:cls]) {
-    return self;
-  } else {
-    return [_parentNode ancestorOrSelfWithClass:cls];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) performDefaultAction {
 }
 
 

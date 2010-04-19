@@ -20,11 +20,20 @@
 #import "Three20/TTGlobalStyle.h"
 
 // Style
-#import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyleSheet.h"
 #import "Three20/TTBoxStyle.h"
 #import "Three20/TTTextStyle.h"
+#import "Three20/TTStyledElement.h"
+
+// Styled nodes
+#import "Three20/TTStyledImageNode.h"
+#import "Three20/TTStyledLinkNode.h"
+#import "Three20/TTStyledBoldNode.h"
+#import "Three20/TTStyledItalicNode.h"
+#import "Three20/TTStyledBlock.h"
+#import "Three20/TTStyledLineBreakNode.h"
+#import "Three20/TTStyledTextNode.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

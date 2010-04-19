@@ -14,24 +14,17 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTStyledNode.h"
 
-@interface TTStyledNode : NSObject {
-  TTStyledNode* _nextSibling;
-  TTStyledNode* _parentNode;
+@interface TTStyledTextNode : TTStyledNode {
+  NSString* _text;
 }
 
-@property (nonatomic, retain)   TTStyledNode* nextSibling;
-@property (nonatomic, assign)   TTStyledNode* parentNode;
-@property (nonatomic, readonly) NSString*     outerText;
-@property (nonatomic, readonly) NSString*     outerHTML;
+@property (nonatomic, retain) NSString* text;
+
+- (id)initWithText:(NSString*)text;
 
 // Designated initializer
-- (id)initWithNextSibling:(TTStyledNode*)nextSibling;
-
-- (id)ancestorOrSelfWithClass:(Class)cls;
-
-- (void) performDefaultAction;
+- (id)initWithText:(NSString*)text next:(TTStyledNode*)nextSibling;
 
 @end

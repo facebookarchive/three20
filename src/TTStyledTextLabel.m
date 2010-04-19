@@ -23,6 +23,9 @@
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyleSheet.h"
+#import "Three20/TTStyledElement.h"
+#import "Three20/TTStyledLinkNode.h"
+#import "Three20/TTStyledTextNode.h"
 #import "Three20/TTTableView.h"
 
 static const CGFloat kCancelHighlightThreshold = 4;
