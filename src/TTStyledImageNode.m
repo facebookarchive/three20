@@ -81,6 +81,7 @@
   NSString* html = [NSString stringWithFormat:@"<img src=\"%@\"/>", _URL];
   if (_nextSibling) {
     return [NSString stringWithFormat:@"%@%@", html, _nextSibling.outerHTML];
+
   } else {
     return html;
   }
@@ -95,12 +96,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setURL:(NSString*)URL {
-  if (!_URL || ![URL isEqualToString:_URL]) {
+  if (nil == _URL || ![URL isEqualToString:_URL]) {
     [_URL release];
     _URL = [URL retain];
 
-    if (_URL) {
+    if (nil != _URL) {
       self.image = [[TTURLCache sharedCache] imageForURL:_URL];
+
     } else {
       self.image = nil;
     }
