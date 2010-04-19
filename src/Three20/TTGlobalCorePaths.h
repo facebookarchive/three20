@@ -17,21 +17,21 @@
 #import <Foundation/Foundation.h>
 
 /**
- * Returns TRUE if the URL begins with "bundle://"
+ * @return YES if the URL begins with "bundle://"
  */
 BOOL TTIsBundleURL(NSString* URL);
 
 /**
- * Returns TRUE if the URL begins with "documents://"
+ * @return YES if the URL begins with "documents://"
  */
 BOOL TTIsDocumentsURL(NSString* URL);
 
 /**
- * Returns the main bundle path concatenated with the given relative path.
+ * @return The main bundle path concatenated with the given relative path.
  */
 NSString* TTPathForBundleResource(NSString* relativePath);
 
 /**
- * Returns the documents path concatenated with the given relative path.
+ * @return The documents path concatenated with the given relative path.
  */
 NSString* TTPathForDocumentsResource(NSString* relativePath);
