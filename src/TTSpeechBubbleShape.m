@@ -69,15 +69,18 @@ static const CGFloat kInsetWidth = 5;
       x += _pointSize.width;
       w -= _pointSize.width;
     }
+
   } else if (_pointLocation >= 45 && _pointLocation < 135) {
     if (_pointAngle >= 0 && _pointAngle < 180) {
       y += _pointSize.height;
       h -= _pointSize.height;
     }
+
   } else if (_pointLocation >= 135 && _pointLocation < 225) {
     if (_pointAngle >= 90 && _pointAngle < 270) {
       w -= _pointSize.width;
     }
+
   } else if (_pointLocation >= 225 && _pointLocation <= 315) {
     if (_pointAngle >= 180 && _pointAngle < 360) {
       h -= _pointSize.height;
@@ -99,6 +102,7 @@ static const CGFloat kInsetWidth = 5;
     if (reset) {
       CGPathMoveToPoint(path, nil, RD(_radius), 0);
     }
+
   } else {
     if (reset) {
       CGPathMoveToPoint(path, nil, 0, RD(_radius));
@@ -146,8 +150,10 @@ static const CGFloat kInsetWidth = 5;
 
   if (_pointLocation >= 225 && _pointLocation <= 315) {
     CGFloat ph;
+
     if (_pointAngle >= 0 && _pointAngle < 180) {
       ph = _pointSize.height;
+
     } else {
       ph = -_pointSize.height;
     }
@@ -175,6 +181,7 @@ static const CGFloat kInsetWidth = 5;
 
   if (lightSource >= 0 && lightSource <= 90) {
     CGPathAddArcToPoint(path, nil, 0, 0, RD(_radius), 0, RD(_radius));
+
   } else {
     CGPathAddLineToPoint(path, nil, 0, RD(_radius));
   }
