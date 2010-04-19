@@ -31,7 +31,6 @@ static NSString* kCommonXMLType_DateTime  = @"datetime";
 static NSString* kInternalKey_EntityName    = @"___Entity_Name___";
 static NSString* kInternalKey_EntityType    = @"___Entity_Type___";
 static NSString* kInternalKey_EntityValue   = @"___Entity_Value___";
-static NSString* kInternalKey_EntityBuffer  = @"___Entity_Buffer___";
 static NSString* kInternalKey_Array         = @"___Array___";
 
 
@@ -145,22 +144,8 @@ static NSString* kInternalKey_Array         = @"___Array___";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addCharacters: (NSString*)characters toObject:(id)object {
-  if ([object isKindOfClass:[NSDictionary class]] &&
-      ([[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Integer] ||
-       [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_DateTime])) {
-
-    NSString* buffer = [object objectForKey:kInternalKey_EntityBuffer];
-    if (nil == buffer) {
-      buffer = [[NSString alloc] init];
-      [object setObject:buffer forKey:kInternalKey_EntityBuffer];
-      [buffer release];
-    }
-    buffer = [buffer stringByAppendingString:characters];
-    [object setObject:buffer forKey:kInternalKey_EntityBuffer];
-
-  } else if ([object isKindOfClass:[NSDictionary class]]) {
-      // It's an unknown dictionary type, let's just add this object then.
+- (void)addCharacters:(NSString*)characters toObject:(id)object {
+  if ([object isKindOfClass:[NSDictionary class]]) {
     NSString* value = [object objectForKey:kInternalKey_EntityValue];
     if (nil == value) {
       value = [[NSString alloc] init];
@@ -168,6 +153,10 @@ static NSString* kInternalKey_Array         = @"___Array___";
       [value release];
     }
     [object setObject:[value stringByAppendingString:characters] forKey:kInternalKey_EntityValue];
+
+  } else {
+    // Not implemented, we're losing data here.
+    TTDASSERT(false);
   }
 }
 
@@ -176,16 +165,15 @@ static NSString* kInternalKey_Array         = @"___Array___";
 - (void)didFinishParsingObject:(id)object {
   if ([object isKindOfClass:[NSDictionary class]] &&
       [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Integer]) {
-    NSString* buffer = [object objectForKey:kInternalKey_EntityBuffer];
+    NSString* buffer = [object objectForKey:kInternalKey_EntityValue];
+
     NSNumber* number = [[NSNumber alloc] initWithInt:[buffer intValue]];
     [object setObject:number forKey:kInternalKey_EntityValue];
     TT_RELEASE_SAFELY(number);
 
-    [object removeObjectForKey:kInternalKey_EntityBuffer];
-
   } else if ([object isKindOfClass:[NSDictionary class]] &&
              [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_DateTime]) {
-    NSString* buffer = [object objectForKey:kInternalKey_EntityBuffer];
+    NSString* buffer = [object objectForKey:kInternalKey_EntityValue];
 
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
@@ -200,9 +188,6 @@ static NSString* kInternalKey_Array         = @"___Array___";
       [object setObject:date forKey:kInternalKey_EntityValue];
     }
     TT_RELEASE_SAFELY(dateFormatter);
-
-    [object removeObjectForKey:kInternalKey_EntityBuffer];
-
   }
 }
 

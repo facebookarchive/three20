@@ -64,6 +64,19 @@
   NSArray* issues = [rootObject objectForXMLNode];
   STAssertEquals((NSUInteger)50, [issues count], @"There should be 50 issues in the array");
 
+  NSDictionary* issue = [issues objectAtIndex:0];
+  STAssertTrue([issue isKindOfClass:[NSDictionary class]],
+               @"The issue node should be an NSDictionary");
+  STAssertTrue([[issue objectForKey:@"number"] isKindOfClass:[NSDictionary class]],
+               @"The number node should be an NSDictionary");
+
+  NSDictionary* number = [issue objectForKey:@"number"];
+  STAssertTrue([[number objectForXMLNode] isKindOfClass:[NSNumber class]],
+               @"The number object should be an NSNumber");
+  STAssertEquals(3, [[number objectForXMLNode] intValue],
+               @"The number value should be 3");
+
+
   TT_RELEASE_SAFELY(parser);
 }
 
