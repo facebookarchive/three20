@@ -18,8 +18,6 @@
 
 extern NSString* kCommonXMLType_Unknown;
 
-@protocol TTXMLParserDelegate;
-
 /**
  * An implementation of the NSXMLParser object that turns XML into NSObjects.
  *
