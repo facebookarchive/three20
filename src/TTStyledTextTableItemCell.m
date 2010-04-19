@@ -24,6 +24,7 @@
 // Style
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTGlobalStyle.h"
+#import "Three20/TTStyledText.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

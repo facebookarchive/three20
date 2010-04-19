@@ -14,8 +14,9 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyledText.h"
+#import "Three20/TTStyledTextDelegate.h"
 
+@class TTStyledText;
 @class TTStyledElement;
 @class TTStyledBoxFrame;
 @class TTStyle;

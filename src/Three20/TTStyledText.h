@@ -19,17 +19,20 @@
 #import "Three20/TTURLRequestDelegate.h"
 
 @protocol TTStyledTextDelegate;
-@class TTStyledNode, TTStyledFrame, TTStyledBoxFrame;
+@class TTStyledNode;
+@class TTStyledFrame;
+@class TTStyledBoxFrame;
 
 @interface TTStyledText : NSObject <TTURLRequestDelegate> {
-  id<TTStyledTextDelegate> _delegate;
-  TTStyledNode* _rootNode;
-  TTStyledFrame* _rootFrame;
-  UIFont* _font;
-  CGFloat _width;
-  CGFloat _height;
+  TTStyledNode*   _rootNode;
+  TTStyledFrame*  _rootFrame;
+  UIFont*         _font;
+  CGFloat         _width;
+  CGFloat         _height;
   NSMutableArray* _invalidImages;
   NSMutableArray* _imageRequests;
+
+  id<TTStyledTextDelegate> _delegate;
 }
 
 @property (nonatomic, assign) id<TTStyledTextDelegate> delegate;
@@ -91,14 +94,8 @@
 
 - (id)initWithNode:(TTStyledNode*)rootNode;
 
-/**
- *
- */
 - (void)layoutFrames;
 
-/**
- *
- */
 - (void)layoutIfNeeded;
 
 /**
@@ -131,35 +128,12 @@
  */
 - (TTStyledFrame*)getFrameForNode:(TTStyledNode*)node;
 
-/**
- *
- */
 - (void)addChild:(TTStyledNode*)child;
 
-/**
- *
- */
 - (void)addText:(NSString*)text;
 
-/**
- *
- */
 - (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index;
 
-/**
- *
- */
 - (TTStyledNode*)getElementByClassName:(NSString*)className;
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-@protocol TTStyledTextDelegate <NSObject>
-
-@optional
-
-- (void)styledTextNeedsDisplay:(TTStyledText*)text;
 
 @end
