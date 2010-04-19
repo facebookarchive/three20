@@ -14,129 +14,71 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyle.h"
+#import "Three20/TTInsetStyle.h"
 
 // Style
-#import "Three20/TTPartStyle.h"
-
-// Core
-#import "Three20/TTCorePreprocessorMacros.h"
-
-
-#define ZEROLIMIT(_VALUE) (_VALUE < 0 ? 0 : (_VALUE > 1 ? 1 : _VALUE))
+#import "Three20/TTStyleContext.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTStyle
+@implementation TTInsetStyle
 
-@synthesize next = _next;
+@synthesize inset = _inset;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNext:(TTStyle*)next {
-  if (self = [super init]) {
-    _next = [next retain];
+  if (self = [super initWithNext:next]) {
+    _inset = UIEdgeInsetsZero;
   }
 
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [self initWithNext:nil]) {
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_next);
-
-  [super dealloc];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark Public
+#pragma mark Class public
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTStyle*)next:(TTStyle*)next {
-  self.next = next;
-  return self;
++ (TTInsetStyle*)styleWithInset:(UIEdgeInsets)inset next:(TTStyle*)next {
+  TTInsetStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.inset = inset;
+  return style;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTStyle
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)draw:(TTStyleContext*)context {
+  CGRect rect = context.frame;
+  context.frame = CGRectMake(rect.origin.x+_inset.left, rect.origin.y+_inset.top,
+                             rect.size.width - (_inset.left + _inset.right),
+                             rect.size.height - (_inset.top + _inset.bottom));
   [self.next draw:context];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
+  insets.top += _inset.top;
+  insets.right += _inset.right;
+  insets.bottom += _inset.bottom;
+  insets.left += _inset.left;
   if (self.next) {
     return [self.next addToInsets:insets forSize:size];
-
   } else {
     return insets;
   }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
-  if (_next) {
-    return [self.next addToSize:size context:context];
-
-  } else {
-    return size;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addStyle:(TTStyle*)style {
-  if (_next) {
-    [_next addStyle:style];
-
-  } else {
-    _next = [style retain];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)firstStyleOfClass:(Class)cls {
-  if ([self isKindOfClass:cls]) {
-    return self;
-
-  } else {
-    return [self.next firstStyleOfClass:cls];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)styleForPart:(NSString*)name {
-  TTStyle* style = self;
-  while (style) {
-    if ([style isKindOfClass:[TTPartStyle class]]) {
-      TTPartStyle* partStyle = (TTPartStyle*)style;
-      if ([partStyle.name isEqualToString:name]) {
-        return partStyle;
-      }
-    }
-    style = style.next;
-  }
-  return nil;
 }
 
 

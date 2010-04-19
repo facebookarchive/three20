@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyle.h"
+#import "Three20/TTStyleDelegate.h"
 
 @interface TTButton : UIControl <TTStyleDelegate> {
   NSMutableDictionary*  _content;

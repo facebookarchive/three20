@@ -17,26 +17,28 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class TTStyleContext;
+@class TTShape;
+@protocol TTStyleDelegate;
 
-@interface TTStyle : NSObject {
-  TTStyle* _next;
+@interface TTStyleContext : NSObject {
+  CGRect    _frame;
+  CGRect    _contentFrame;
+
+  TTShape*  _shape;
+
+  UIFont*   _font;
+
+  BOOL      _didDrawContent;
+
+  id<TTStyleDelegate> _delegate;
 }
 
-@property (nonatomic, retain) TTStyle* next;
+@property (nonatomic)         CGRect    frame;
+@property (nonatomic)         CGRect    contentFrame;
+@property (nonatomic, retain) TTShape*  shape;
+@property (nonatomic, retain) UIFont*   font;
+@property (nonatomic)         BOOL      didDrawContent;
 
-- (id)initWithNext:(TTStyle*)next;
-
-- (TTStyle*)next:(TTStyle*)next;
-
-- (void)draw:(TTStyleContext*)context;
-
-- (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;
-- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context;
-
-- (void)addStyle:(TTStyle*)style;
-
-- (id)firstStyleOfClass:(Class)cls;
-- (id)styleForPart:(NSString*)name;
+@property (nonatomic, assign) id<TTStyleDelegate> delegate;
 
 @end

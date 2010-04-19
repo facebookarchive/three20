@@ -19,7 +19,14 @@
 #import "Three20/TTButtonContent.h"
 
 #import "Three20/TTGlobalUI.h"
+
+// Style
 #import "Three20/TTGlobalStyle.h"
+#import "Three20/TTStyleContext.h"
+#import "Three20/TTTextStyle.h"
+#import "Three20/TTPartStyle.h"
+#import "Three20/TTBoxStyle.h"
+#import "Three20/TTImageStyle.h"
 
 #import "Three20/TTDefaultStyleSheet.h"
 

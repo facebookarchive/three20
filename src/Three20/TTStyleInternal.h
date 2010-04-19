@@ -14,29 +14,15 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTStyle.h"
 
-@class TTStyleContext;
+extern const NSInteger kDefaultLightSource;
 
-@interface TTStyle : NSObject {
-  TTStyle* _next;
-}
+@interface TTStyle (TTInternal)
 
-@property (nonatomic, retain) TTStyle* next;
+- (CGGradientRef)newGradientWithColors:(UIColor**)colors locations:(CGFloat*)locations
+                                 count:(int)count;
 
-- (id)initWithNext:(TTStyle*)next;
-
-- (TTStyle*)next:(TTStyle*)next;
-
-- (void)draw:(TTStyleContext*)context;
-
-- (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;
-- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context;
-
-- (void)addStyle:(TTStyle*)style;
-
-- (id)firstStyleOfClass:(Class)cls;
-- (id)styleForPart:(NSString*)name;
+- (CGGradientRef)newGradientWithColors:(UIColor**)colors count:(int)count;
 
 @end

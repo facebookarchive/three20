@@ -14,29 +14,19 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTStyle.h"
 
-@class TTStyleContext;
+@class TTShape;
 
-@interface TTStyle : NSObject {
-  TTStyle* _next;
+/**
+ * Causes all layers going forward to use a particular shape.
+ */
+@interface TTShapeStyle : TTStyle {
+  TTShape* _shape;
 }
 
-@property (nonatomic, retain) TTStyle* next;
+@property (nonatomic, retain) TTShape* shape;
 
-- (id)initWithNext:(TTStyle*)next;
-
-- (TTStyle*)next:(TTStyle*)next;
-
-- (void)draw:(TTStyleContext*)context;
-
-- (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;
-- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context;
-
-- (void)addStyle:(TTStyle*)style;
-
-- (id)firstStyleOfClass:(Class)cls;
-- (id)styleForPart:(NSString*)name;
++ (TTShapeStyle*)styleWithShape:(TTShape*)shape next:(TTStyle*)next;
 
 @end

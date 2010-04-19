@@ -17,26 +17,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class TTStyle;
 @class TTStyleContext;
 
-@interface TTStyle : NSObject {
-  TTStyle* _next;
-}
+@protocol TTStyleDelegate <NSObject>
+@optional
 
-@property (nonatomic, retain) TTStyle* next;
+- (NSString*)textForLayerWithStyle:(TTStyle*)style;
 
-- (id)initWithNext:(TTStyle*)next;
+- (UIImage*)imageForLayerWithStyle:(TTStyle*)style;
 
-- (TTStyle*)next:(TTStyle*)next;
-
-- (void)draw:(TTStyleContext*)context;
-
-- (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;
-- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context;
-
-- (void)addStyle:(TTStyle*)style;
-
-- (id)firstStyleOfClass:(Class)cls;
-- (id)styleForPart:(NSString*)name;
+- (void)drawLayer:(TTStyleContext*)context withStyle:(TTStyle*)style;
 
 @end

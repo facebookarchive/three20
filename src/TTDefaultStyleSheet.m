@@ -23,6 +23,26 @@
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTGlobalUI.h"
 
+// Style
+#import "Three20/TTInsetStyle.h"
+#import "Three20/TTShapeStyle.h"
+#import "Three20/TTSolidFillStyle.h"
+#import "Three20/TTTextStyle.h"
+#import "Three20/TTImageStyle.h"
+#import "Three20/TTSolidBorderStyle.h"
+#import "Three20/TTShadowStyle.h"
+#import "Three20/TTInnerShadowStyle.h"
+#import "Three20/TTBevelBorderStyle.h"
+#import "Three20/TTLinearGradientFillStyle.h"
+#import "Three20/TTFourBorderStyle.h"
+#import "Three20/TTLinearGradientBorderStyle.h"
+#import "Three20/TTReflectiveFillStyle.h"
+#import "Three20/TTBoxStyle.h"
+#import "Three20/TTPartStyle.h"
+#import "Three20/TTContentStyle.h"
+#import "Three20/TTBlendStyle.h"
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation TTDefaultStyleSheet

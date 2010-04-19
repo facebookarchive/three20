@@ -25,6 +25,7 @@
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTImageStyle.h"
 
 // Network
 #import "Three20/TTURLCache.h"

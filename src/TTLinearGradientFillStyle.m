@@ -14,38 +14,32 @@
 // limitations under the License.
 //
 
-#import "Three20/TTView.h"
+#import "Three20/TTLinearGradientFillStyle.h"
 
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTStyleInternal.h"
 
 // Style
+#import "Three20/TTShape.h"
 #import "Three20/TTStyleContext.h"
-#import "Three20/TTStyle.h"
-#import "Three20/TTLayout.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTView
+@implementation TTLinearGradientFillStyle
 
-@synthesize style   = _style;
-@synthesize layout  = _layout;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    self.contentMode = UIViewContentModeRedraw;
-  }
-  return self;
-}
+@synthesize color1 = _color1;
+@synthesize color2 = _color2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_style);
-  TT_RELEASE_SAFELY(_layout);
+  TT_RELEASE_SAFELY(_color1);
+  TT_RELEASE_SAFELY(_color2);
+
   [super dealloc];
 }
 
@@ -53,60 +47,44 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark UIView
+#pragma mark Class public
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)drawRect:(CGRect)rect {
-  TTStyle* style = self.style;
-  if (nil != style) {
-    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-    context.delegate = self;
-    context.frame = self.bounds;
-    context.contentFrame = context.frame;
-
-    [style draw:context];
-    if (!context.didDrawContent) {
-      [self drawContent:self.bounds];
-    }
-
-  } else {
-    [self drawContent:self.bounds];
-  }
++ (TTLinearGradientFillStyle*)styleWithColor1:(UIColor*)color1 color2:(UIColor*)color2
+                                         next:(TTStyle*)next {
+  TTLinearGradientFillStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.color1 = color1;
+  style.color2 = color2;
+  return style;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutSubviews {
-  TTLayout* layout = self.layout;
-  if (nil != layout) {
-    [layout layoutSubviews:self.subviews forView:self];
-  }
-}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTStyle
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGSize)sizeThatFits:(CGSize)size {
-  TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-  context.delegate = self;
-  context.font = nil;
-  return [_style addToSize:CGSizeZero context:context];
-}
+- (void)draw:(TTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGRect rect = context.frame;
 
+  CGContextSaveGState(ctx);
+  [context.shape addToPath:rect];
+  CGContextClip(ctx);
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setStyle:(TTStyle*)style {
-  if (style != _style) {
-    [_style release];
-    _style = [style retain];
+  UIColor* colors[] = {_color1, _color2};
+  CGGradientRef gradient = [self newGradientWithColors:colors count:2];
+  CGContextDrawLinearGradient(ctx, gradient, CGPointMake(rect.origin.x, rect.origin.y),
+                              CGPointMake(rect.origin.x, rect.origin.y+rect.size.height),
+                              kCGGradientDrawsAfterEndLocation);
+  CGGradientRelease(gradient);
 
-    [self setNeedsDisplay];
-  }
-}
+  CGContextRestoreGState(ctx);
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)drawContent:(CGRect)rect {
+  return [self.next draw:context];
 }
 
 

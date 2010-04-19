@@ -14,29 +14,14 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTStyle.h"
 
-@class TTStyleContext;
-
-@interface TTStyle : NSObject {
-  TTStyle* _next;
+@interface TTInsetStyle : TTStyle {
+  UIEdgeInsets _inset;
 }
 
-@property (nonatomic, retain) TTStyle* next;
+@property (nonatomic) UIEdgeInsets inset;
 
-- (id)initWithNext:(TTStyle*)next;
-
-- (TTStyle*)next:(TTStyle*)next;
-
-- (void)draw:(TTStyleContext*)context;
-
-- (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;
-- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context;
-
-- (void)addStyle:(TTStyle*)style;
-
-- (id)firstStyleOfClass:(Class)cls;
-- (id)styleForPart:(NSString*)name;
++ (TTInsetStyle*)styleWithInset:(UIEdgeInsets)inset next:(TTStyle*)next;
 
 @end

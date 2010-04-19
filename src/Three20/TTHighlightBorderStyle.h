@@ -14,29 +14,19 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20/TTStyle.h"
 
-@class TTStyleContext;
-
-@interface TTStyle : NSObject {
-  TTStyle* _next;
+@interface TTHighlightBorderStyle : TTStyle {
+  UIColor*  _color;
+  UIColor*  _highlightColor;
+  CGFloat   _width;
 }
 
-@property (nonatomic, retain) TTStyle* next;
+@property (nonatomic, retain) UIColor*  color;
+@property (nonatomic, retain) UIColor*  highlightColor;
+@property (nonatomic)         CGFloat   width;
 
-- (id)initWithNext:(TTStyle*)next;
-
-- (TTStyle*)next:(TTStyle*)next;
-
-- (void)draw:(TTStyleContext*)context;
-
-- (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size;
-- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context;
-
-- (void)addStyle:(TTStyle*)style;
-
-- (id)firstStyleOfClass:(Class)cls;
-- (id)styleForPart:(NSString*)name;
++ (TTHighlightBorderStyle*)styleWithColor:(UIColor*)color highlightColor:(UIColor*)highlightColor
+                                    width:(CGFloat)width next:(TTStyle*)next;
 
 @end

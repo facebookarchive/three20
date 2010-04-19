@@ -14,48 +14,30 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyle.h"
+#import "Three20/TTShapeStyle.h"
 
 // Style
-#import "Three20/TTPartStyle.h"
+#import "Three20/TTStyleContext.h"
+#import "Three20/TTShape.h"
+
+// UI
+#import "Three20/TTGlobalUI.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"
 
 
-#define ZEROLIMIT(_VALUE) (_VALUE < 0 ? 0 : (_VALUE > 1 ? 1 : _VALUE))
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTStyle
+@implementation TTShapeStyle
 
-@synthesize next = _next;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithNext:(TTStyle*)next {
-  if (self = [super init]) {
-    _next = [next retain];
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [self initWithNext:nil]) {
-  }
-
-  return self;
-}
+@synthesize shape = _shape;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_next);
+  TT_RELEASE_SAFELY(_shape);
 
   [super dealloc];
 }
@@ -64,24 +46,40 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark Public
+#pragma mark Class public
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTStyle*)next:(TTStyle*)next {
-  self.next = next;
-  return self;
++ (TTShapeStyle*)styleWithShape:(TTShape*)shape next:(TTStyle*)next {
+  TTShapeStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.shape = shape;
+  return style;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTStyle
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)draw:(TTStyleContext*)context {
+  UIEdgeInsets shapeInsets = [_shape insetsForSize:context.frame.size];
+  context.contentFrame = TTRectInset(context.contentFrame, shapeInsets);
+  context.shape = _shape;
   [self.next draw:context];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
+  UIEdgeInsets shapeInsets = [_shape insetsForSize:size];
+  insets.top += shapeInsets.top;
+  insets.right += shapeInsets.right;
+  insets.bottom += shapeInsets.bottom;
+  insets.left += shapeInsets.left;
+
   if (self.next) {
     return [self.next addToInsets:insets forSize:size];
 
@@ -93,50 +91,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
-  if (_next) {
-    return [self.next addToSize:size context:context];
+  CGSize innerSize = [self.next addToSize:size context:context];
+  UIEdgeInsets shapeInsets = [_shape insetsForSize:innerSize];
+  innerSize.width += shapeInsets.left + shapeInsets.right;
+  innerSize.height += shapeInsets.top + shapeInsets.bottom;
 
-  } else {
-    return size;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addStyle:(TTStyle*)style {
-  if (_next) {
-    [_next addStyle:style];
-
-  } else {
-    _next = [style retain];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)firstStyleOfClass:(Class)cls {
-  if ([self isKindOfClass:cls]) {
-    return self;
-
-  } else {
-    return [self.next firstStyleOfClass:cls];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)styleForPart:(NSString*)name {
-  TTStyle* style = self;
-  while (style) {
-    if ([style isKindOfClass:[TTPartStyle class]]) {
-      TTPartStyle* partStyle = (TTPartStyle*)style;
-      if ([partStyle.name isEqualToString:name]) {
-        return partStyle;
-      }
-    }
-    style = style.next;
-  }
-  return nil;
+  return innerSize;
 }
 
 

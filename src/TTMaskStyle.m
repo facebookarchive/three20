@@ -14,38 +14,27 @@
 // limitations under the License.
 //
 
-#import "Three20/TTView.h"
-
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTMaskStyle.h"
 
 // Style
 #import "Three20/TTStyleContext.h"
-#import "Three20/TTStyle.h"
-#import "Three20/TTLayout.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTView
+@implementation TTMaskStyle
 
-@synthesize style   = _style;
-@synthesize layout  = _layout;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    self.contentMode = UIViewContentModeRedraw;
-  }
-  return self;
-}
+@synthesize mask = _mask;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_style);
-  TT_RELEASE_SAFELY(_layout);
+  TT_RELEASE_SAFELY(_mask);
+
   [super dealloc];
 }
 
@@ -53,60 +42,42 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark UIView
+#pragma mark Class public
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)drawRect:(CGRect)rect {
-  TTStyle* style = self.style;
-  if (nil != style) {
-    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-    context.delegate = self;
-    context.frame = self.bounds;
-    context.contentFrame = context.frame;
++ (TTMaskStyle*)styleWithMask:(UIImage*)mask next:(TTStyle*)next {
+  TTMaskStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.mask = mask;
+  return style;
+}
 
-    [style draw:context];
-    if (!context.didDrawContent) {
-      [self drawContent:self.bounds];
-    }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTStyle
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)draw:(TTStyleContext*)context {
+  if (_mask) {
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+
+    // Translate context upside-down to invert the clip-to-mask, which turns the mask upside down
+    CGContextTranslateCTM(ctx, 0, context.frame.size.height);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
+
+    CGRect maskRect = CGRectMake(0, 0, _mask.size.width, _mask.size.height);
+    CGContextClipToMask(ctx, maskRect, _mask.CGImage);
+
+    [self.next draw:context];
+    CGContextRestoreGState(ctx);
 
   } else {
-    [self drawContent:self.bounds];
+    return [self.next draw:context];
   }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutSubviews {
-  TTLayout* layout = self.layout;
-  if (nil != layout) {
-    [layout layoutSubviews:self.subviews forView:self];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGSize)sizeThatFits:(CGSize)size {
-  TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-  context.delegate = self;
-  context.font = nil;
-  return [_style addToSize:CGSizeZero context:context];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setStyle:(TTStyle*)style {
-  if (style != _style) {
-    [_style release];
-    _style = [style retain];
-
-    [self setNeedsDisplay];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)drawContent:(CGRect)rect {
 }
 
 

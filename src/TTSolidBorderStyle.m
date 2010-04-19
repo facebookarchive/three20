@@ -14,39 +14,29 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyle.h"
+#import "Three20/TTSolidBorderStyle.h"
 
 // Style
-#import "Three20/TTPartStyle.h"
+#import "Three20/TTStyleContext.h"
+#import "Three20/TTShape.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"
 
 
-#define ZEROLIMIT(_VALUE) (_VALUE < 0 ? 0 : (_VALUE > 1 ? 1 : _VALUE))
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTStyle
+@implementation TTSolidBorderStyle
 
-@synthesize next = _next;
+@synthesize color = _color;
+@synthesize width = _width;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNext:(TTStyle*)next {
-  if (self = [super init]) {
-    _next = [next retain];
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [self initWithNext:nil]) {
+  if (self = [super initWithNext:next]) {
+    _width = 1;
   }
 
   return self;
@@ -55,7 +45,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_next);
+  TT_RELEASE_SAFELY(_color);
 
   [super dealloc];
 }
@@ -64,79 +54,40 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark Public
+#pragma mark Class public
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTStyle*)next:(TTStyle*)next {
-  self.next = next;
-  return self;
++ (TTSolidBorderStyle*)styleWithColor:(UIColor*)color width:(CGFloat)width next:(TTStyle*)next {
+  TTSolidBorderStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.color = color;
+  style.width = width;
+  return style;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTStyle
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)draw:(TTStyleContext*)context {
-  [self.next draw:context];
-}
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+  CGContextSaveGState(ctx);
 
+  CGRect strokeRect = CGRectInset(context.frame, _width/2, _width/2);
+  [context.shape addToPath:strokeRect];
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIEdgeInsets)addToInsets:(UIEdgeInsets)insets forSize:(CGSize)size {
-  if (self.next) {
-    return [self.next addToInsets:insets forSize:size];
+  [_color setStroke];
+  CGContextSetLineWidth(ctx, _width);
+  CGContextStrokePath(ctx);
 
-  } else {
-    return insets;
-  }
-}
+  CGContextRestoreGState(ctx);
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
-  if (_next) {
-    return [self.next addToSize:size context:context];
-
-  } else {
-    return size;
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)addStyle:(TTStyle*)style {
-  if (_next) {
-    [_next addStyle:style];
-
-  } else {
-    _next = [style retain];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)firstStyleOfClass:(Class)cls {
-  if ([self isKindOfClass:cls]) {
-    return self;
-
-  } else {
-    return [self.next firstStyleOfClass:cls];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)styleForPart:(NSString*)name {
-  TTStyle* style = self;
-  while (style) {
-    if ([style isKindOfClass:[TTPartStyle class]]) {
-      TTPartStyle* partStyle = (TTPartStyle*)style;
-      if ([partStyle.name isEqualToString:name]) {
-        return partStyle;
-      }
-    }
-    style = style.next;
-  }
-  return nil;
+  context.frame = CGRectInset(context.frame, _width, _width);
+  return [self.next draw:context];
 }
 
 

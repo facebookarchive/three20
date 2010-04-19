@@ -18,8 +18,13 @@
 
 #import "Three20/TTGlobalUI.h"
 
+// Style
+#import "Three20/TTStyleContext.h"
 #import "Three20/TTStyledNode.h"
 #import "Three20/TTShape.h"
+#import "Three20/TTImageStyle.h"
+#import "Three20/TTTextStyle.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -15,6 +15,7 @@
 //
 
 #import "Three20/TTStyle.h"
+#import "Three20/TTStyleDelegate.h"
 
 @class TTStyledElement, TTStyledTextNode, TTStyledImageNode, TTStyledBoxFrame;
 

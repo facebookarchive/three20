@@ -14,38 +14,26 @@
 // limitations under the License.
 //
 
-#import "Three20/TTView.h"
+#import "Three20/TTPartStyle.h"
 
-#import "Three20/TTGlobalCore.h"
-
-// Style
-#import "Three20/TTStyleContext.h"
-#import "Three20/TTStyle.h"
-#import "Three20/TTLayout.h"
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTView
+@implementation TTPartStyle
 
-@synthesize style   = _style;
-@synthesize layout  = _layout;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    self.contentMode = UIViewContentModeRedraw;
-  }
-  return self;
-}
+@synthesize name  = _name;
+@synthesize style = _style;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+  TT_RELEASE_SAFELY(_name);
   TT_RELEASE_SAFELY(_style);
-  TT_RELEASE_SAFELY(_layout);
+
   [super dealloc];
 }
 
@@ -53,60 +41,33 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark UIView
+#pragma mark Class public
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)drawRect:(CGRect)rect {
-  TTStyle* style = self.style;
-  if (nil != style) {
-    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-    context.delegate = self;
-    context.frame = self.bounds;
-    context.contentFrame = context.frame;
-
-    [style draw:context];
-    if (!context.didDrawContent) {
-      [self drawContent:self.bounds];
-    }
-
-  } else {
-    [self drawContent:self.bounds];
-  }
++ (TTPartStyle*)styleWithName:(NSString*)name style:(TTStyle*)stylez next:(TTStyle*)next {
+  TTPartStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.name = name;
+  style.style = stylez;
+  return style;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutSubviews {
-  TTLayout* layout = self.layout;
-  if (nil != layout) {
-    [layout layoutSubviews:self.subviews forView:self];
-  }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTStyle
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)draw:(TTStyleContext*)context {
+  [self.next draw:context];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGSize)sizeThatFits:(CGSize)size {
-  TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-  context.delegate = self;
-  context.font = nil;
-  return [_style addToSize:CGSizeZero context:context];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setStyle:(TTStyle*)style {
-  if (style != _style) {
-    [_style release];
-    _style = [style retain];
-
-    [self setNeedsDisplay];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)drawContent:(CGRect)rect {
+- (void)drawPart:(TTStyleContext*)context {
+  [_style draw:context];
 }
 
 
