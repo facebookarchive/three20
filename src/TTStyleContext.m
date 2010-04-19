@@ -17,7 +17,7 @@
 #import "Three20/TTStyleContext.h"
 
 // Style
-#import "Three20/TTShape.h" // For TTRectangleShape
+#import "Three20/TTRectangleShape.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

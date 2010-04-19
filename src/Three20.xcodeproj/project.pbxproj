@@ -76,6 +76,18 @@
 		6E5CEA3A117CB91400798CF8 /* TTFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA39117CB91400798CF8 /* TTFlowLayout.h */; };
 		6E5CEA3E117CB96200798CF8 /* TTGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA3C117CB96200798CF8 /* TTGridLayout.m */; };
 		6E5CEA40117CB96E00798CF8 /* TTGridLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA3F117CB96E00798CF8 /* TTGridLayout.h */; };
+		6E5CEA51117CBBA400798CF8 /* TTRectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA4F117CBBA400798CF8 /* TTRectangleShape.m */; };
+		6E5CEA53117CBBB500798CF8 /* TTRectangleShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA52117CBBB500798CF8 /* TTRectangleShape.h */; };
+		6E5CEA57117CBC6000798CF8 /* TTRoundedRectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA55117CBC6000798CF8 /* TTRoundedRectangleShape.m */; };
+		6E5CEA59117CBC6C00798CF8 /* TTRoundedRectangleShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA58117CBC6C00798CF8 /* TTRoundedRectangleShape.h */; };
+		6E5CEA5D117CBCEB00798CF8 /* TTRoundedRightArrowShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA5B117CBCEB00798CF8 /* TTRoundedRightArrowShape.m */; };
+		6E5CEA5F117CBCF800798CF8 /* TTRoundedRightArrowShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA5E117CBCF800798CF8 /* TTRoundedRightArrowShape.h */; };
+		6E5CEA63117CBD6F00798CF8 /* TTRoundedLeftArrowShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA61117CBD6F00798CF8 /* TTRoundedLeftArrowShape.m */; };
+		6E5CEA65117CBD7900798CF8 /* TTRoundedLeftArrowShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA64117CBD7900798CF8 /* TTRoundedLeftArrowShape.h */; };
+		6E5CEA69117CBDCC00798CF8 /* TTSpeechBubbleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA67117CBDCC00798CF8 /* TTSpeechBubbleShape.m */; };
+		6E5CEA6B117CBDD700798CF8 /* TTSpeechBubbleShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA6A117CBDD700798CF8 /* TTSpeechBubbleShape.h */; };
+		6E5CEA7D117CBFDC00798CF8 /* TTShapeInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEA7B117CBFDC00798CF8 /* TTShapeInternal.m */; };
+		6E5CEA7F117CBFF500798CF8 /* TTShapeInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEA7E117CBFF500798CF8 /* TTShapeInternal.h */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -514,6 +526,18 @@
 		6E5CEA39117CB91400798CF8 /* TTFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTFlowLayout.h; path = Three20/TTFlowLayout.h; sourceTree = "<group>"; };
 		6E5CEA3C117CB96200798CF8 /* TTGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGridLayout.m; sourceTree = "<group>"; };
 		6E5CEA3F117CB96E00798CF8 /* TTGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGridLayout.h; path = Three20/TTGridLayout.h; sourceTree = "<group>"; };
+		6E5CEA4F117CBBA400798CF8 /* TTRectangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRectangleShape.m; sourceTree = "<group>"; };
+		6E5CEA52117CBBB500798CF8 /* TTRectangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRectangleShape.h; path = Three20/TTRectangleShape.h; sourceTree = "<group>"; };
+		6E5CEA55117CBC6000798CF8 /* TTRoundedRectangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRoundedRectangleShape.m; sourceTree = "<group>"; };
+		6E5CEA58117CBC6C00798CF8 /* TTRoundedRectangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRoundedRectangleShape.h; path = Three20/TTRoundedRectangleShape.h; sourceTree = "<group>"; };
+		6E5CEA5B117CBCEB00798CF8 /* TTRoundedRightArrowShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRoundedRightArrowShape.m; sourceTree = "<group>"; };
+		6E5CEA5E117CBCF800798CF8 /* TTRoundedRightArrowShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRoundedRightArrowShape.h; path = Three20/TTRoundedRightArrowShape.h; sourceTree = "<group>"; };
+		6E5CEA61117CBD6F00798CF8 /* TTRoundedLeftArrowShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRoundedLeftArrowShape.m; sourceTree = "<group>"; };
+		6E5CEA64117CBD7900798CF8 /* TTRoundedLeftArrowShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRoundedLeftArrowShape.h; path = Three20/TTRoundedLeftArrowShape.h; sourceTree = "<group>"; };
+		6E5CEA67117CBDCC00798CF8 /* TTSpeechBubbleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSpeechBubbleShape.m; sourceTree = "<group>"; };
+		6E5CEA6A117CBDD700798CF8 /* TTSpeechBubbleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSpeechBubbleShape.h; path = Three20/TTSpeechBubbleShape.h; sourceTree = "<group>"; };
+		6E5CEA7B117CBFDC00798CF8 /* TTShapeInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTShapeInternal.m; sourceTree = "<group>"; };
+		6E5CEA7E117CBFF500798CF8 /* TTShapeInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTShapeInternal.h; path = Three20/TTShapeInternal.h; sourceTree = "<group>"; };
 		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
 		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
 		6E6206AF117648F900035C6C /* TTTableImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItemCell.m; sourceTree = "<group>"; };
@@ -1034,6 +1058,32 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		6E5CEA4D117CBB6200798CF8 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				6E5CEA52117CBBB500798CF8 /* TTRectangleShape.h */,
+				6E5CEA4F117CBBA400798CF8 /* TTRectangleShape.m */,
+				6E5CEA58117CBC6C00798CF8 /* TTRoundedRectangleShape.h */,
+				6E5CEA55117CBC6000798CF8 /* TTRoundedRectangleShape.m */,
+				6E5CEA5E117CBCF800798CF8 /* TTRoundedRightArrowShape.h */,
+				6E5CEA5B117CBCEB00798CF8 /* TTRoundedRightArrowShape.m */,
+				6E5CEA64117CBD7900798CF8 /* TTRoundedLeftArrowShape.h */,
+				6E5CEA61117CBD6F00798CF8 /* TTRoundedLeftArrowShape.m */,
+				6E5CEA6A117CBDD700798CF8 /* TTSpeechBubbleShape.h */,
+				6E5CEA67117CBDCC00798CF8 /* TTSpeechBubbleShape.m */,
+			);
+			name = Shapes;
+			sourceTree = "<group>";
+		};
+		6E5CEA84117CC02600798CF8 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6E5CEA7E117CBFF500798CF8 /* TTShapeInternal.h */,
+				6E5CEA7B117CBFDC00798CF8 /* TTShapeInternal.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		6E62083E1176708100035C6C /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -1326,6 +1376,8 @@
 				6E5CE92E117CA0CA00798CF8 /* Styles */,
 				BE1288CC0F89813A00F65EA2 /* TTShape.h */,
 				BE1288CA0F89812E00F65EA2 /* TTShape.m */,
+				6E5CEA84117CC02600798CF8 /* Private */,
+				6E5CEA4D117CBB6200798CF8 /* Shapes */,
 				BEB46A860F8F8170004B34A0 /* Layout */,
 				BEB46A870F8F818F004B34A0 /* Styled Text */,
 			);
@@ -2008,6 +2060,12 @@
 				6E5CE9CC117CAEAB00798CF8 /* TTStyleInternal.h in Headers */,
 				6E5CEA3A117CB91400798CF8 /* TTFlowLayout.h in Headers */,
 				6E5CEA40117CB96E00798CF8 /* TTGridLayout.h in Headers */,
+				6E5CEA53117CBBB500798CF8 /* TTRectangleShape.h in Headers */,
+				6E5CEA59117CBC6C00798CF8 /* TTRoundedRectangleShape.h in Headers */,
+				6E5CEA5F117CBCF800798CF8 /* TTRoundedRightArrowShape.h in Headers */,
+				6E5CEA65117CBD7900798CF8 /* TTRoundedLeftArrowShape.h in Headers */,
+				6E5CEA6B117CBDD700798CF8 /* TTSpeechBubbleShape.h in Headers */,
+				6E5CEA7F117CBFF500798CF8 /* TTShapeInternal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2288,6 +2346,12 @@
 				6E5CE9CA117CAE9E00798CF8 /* TTStyleInternal.m in Sources */,
 				6E5CEA38117CB8FF00798CF8 /* TTFlowLayout.m in Sources */,
 				6E5CEA3E117CB96200798CF8 /* TTGridLayout.m in Sources */,
+				6E5CEA51117CBBA400798CF8 /* TTRectangleShape.m in Sources */,
+				6E5CEA57117CBC6000798CF8 /* TTRoundedRectangleShape.m in Sources */,
+				6E5CEA5D117CBCEB00798CF8 /* TTRoundedRightArrowShape.m in Sources */,
+				6E5CEA63117CBD6F00798CF8 /* TTRoundedLeftArrowShape.m in Sources */,
+				6E5CEA69117CBDCC00798CF8 /* TTSpeechBubbleShape.m in Sources */,
+				6E5CEA7D117CBFDC00798CF8 /* TTShapeInternal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

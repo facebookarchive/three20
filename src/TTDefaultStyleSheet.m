@@ -16,14 +16,15 @@
 
 #import "Three20/TTDefaultStyleSheet.h"
 
-#import "Three20/TTStyle.h"
-#import "Three20/TTShape.h"
 #import "Three20/TTURLCache.h"
 
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTGlobalUI.h"
 
 // Style
+#import "Three20/TTStyle.h"
+
+// Styles
 #import "Three20/TTInsetStyle.h"
 #import "Three20/TTShapeStyle.h"
 #import "Three20/TTSolidFillStyle.h"
@@ -41,6 +42,12 @@
 #import "Three20/TTPartStyle.h"
 #import "Three20/TTContentStyle.h"
 #import "Three20/TTBlendStyle.h"
+
+// Shapes
+#import "Three20/TTRectangleShape.h"
+#import "Three20/TTRoundedRectangleShape.h"
+#import "Three20/TTRoundedLeftArrowShape.h"
+#import "Three20/TTRoundedRightArrowShape.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

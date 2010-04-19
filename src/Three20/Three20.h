@@ -198,8 +198,15 @@
 #import "Three20/TTFlowLayout.h"
 #import "Three20/TTGridLayout.h"
 
+// Shapes
 #import "Three20/TTShape.h"
+#import "Three20/TTRectangleShape.h"
+#import "Three20/TTRoundedRectangleShape.h"
+#import "Three20/TTRoundedRightArrowShape.h"
+#import "Three20/TTRoundedLeftArrowShape.h"
+#import "Three20/TTSpeechBubbleShape.h"
 
+// Styles
 #import "Three20/TTStyle.h"
 #import "Three20/TTStyleDelegate.h"
 #import "Three20/TTStyleContext.h"
