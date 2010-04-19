@@ -62,8 +62,8 @@ static NSString* kInternalKey_Array         = @"___Array___";
  * Create an NSDictionary from the given XML node.
  * All XML attributes are added to the dictionary.
  */
-- (id)allocObjectForElementName: (NSString*) elementName
-                     attributes: (NSDictionary*) attributeDict {
+- (id)allocObjectForElementName: (NSString*)elementName
+                     attributes: (NSDictionary*)attributeDict {
   static const int kNumberOfInternalKeys = 3;
 
   id object = [[NSMutableDictionary alloc]
@@ -164,13 +164,19 @@ static NSString* kInternalKey_Array         = @"___Array___";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Post-object parsing cleanup. Turns integers and dates into their respective NSObject types.
+ */
 - (void)didFinishParsingObject:(id)object {
   if ([object isKindOfClass:[NSDictionary class]] &&
       [[object objectForKey:kInternalKey_EntityType] isEqualToString:kCommonXMLType_Integer]) {
     NSString* buffer = [object objectForKey:kInternalKey_EntityValue];
 
     NSNumber* number = [[NSNumber alloc] initWithInt:[buffer intValue]];
-    [object setObject:number forKey:kInternalKey_EntityValue];
+    TTDASSERT(nil != number);
+    if (nil != number) {
+      [object setObject:number forKey:kInternalKey_EntityValue];
+    }
     TT_RELEASE_SAFELY(number);
 
   } else if ([object isKindOfClass:[NSDictionary class]] &&
@@ -189,6 +195,12 @@ static NSString* kInternalKey_Array         = @"___Array___";
 
     if (nil != date) {
       [object setObject:date forKey:kInternalKey_EntityValue];
+
+    } else {
+      // We weren't able to parse the date properly, so the value at this node has been left as
+      // a string.
+      TTDPRINT(@"Unparseable date: %@", buffer);
+      TTDASSERT(false);
     }
     TT_RELEASE_SAFELY(dateFormatter);
   }
