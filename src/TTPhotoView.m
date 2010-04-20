@@ -16,21 +16,27 @@
 
 #import "Three20/TTPhotoView.h"
 
-#import "Three20/TTPhoto.h"
-#import "Three20/TTPhotoSource.h"
-
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTGlobalCoreLocale.h"
+// UI
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTGlobalStyle.h"
-
+#import "Three20/TTPhoto.h"
+#import "Three20/TTPhotoSource.h"
 #import "Three20/TTLabel.h"
-#import "Three20/TTURLCache.h"
-#import "Three20/TTURLRequestQueue.h"
+
+// UI (private)
+#import "Three20/TTImageViewInternal.h"
+
+// Style
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTStyleSheet.h"
 
-#import "Three20/TTImageViewInternal.h"
+// Network
+#import "Three20/TTURLCache.h"
+#import "Three20/TTURLRequestQueue.h"
+
+// Core
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -17,11 +17,11 @@
 #import "Three20/TTThumbsDataSource.h"
 
 // UI
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTTableMoreButton.h"
 #import "Three20/TTThumbsTableViewCell.h"
-#import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTGlobalUI.h"
 
 // Network
 #import "Three20/TTURLCache.h"

@@ -16,13 +16,15 @@
 
 #import "Three20/TTThumbsTableViewCell.h"
 
-#import "Three20/TTGlobalCore.h"
-
+// UI
 #import "Three20/TTThumbView.h"
 #import "Three20/TTThumbsTableViewCellDelegate.h"
 #import "Three20/TTPhotoVersion.h"
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTPhoto.h"
+
+// Core
+#import "Three20/TTGlobalCore.h"
 
 static const CGFloat kSpacing = 4;
 static const CGFloat kDefaultThumbSize = 75;

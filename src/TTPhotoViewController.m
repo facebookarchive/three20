@@ -16,21 +16,26 @@
 
 #import "Three20/TTPhotoViewController.h"
 
+// UI
+#import "Three20/TTGlobalUI.h"
 #import "Three20/TTThumbsViewController.h"
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTPhoto.h"
-
-#import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTDefaultStyleSheet.h"
-
 #import "Three20/TTURLMap.h"
-#import "Three20/TTURLCache.h"
 #import "Three20/TTPhotoView.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTScrollView.h"
+
+// Style
+#import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDefaultStyleSheet.h"
+
+// Network
+#import "Three20/TTURLCache.h"
+
+// Core
+#import "Three20/TTGlobalCoreLocale.h"
 
 static const NSTimeInterval kPhotoLoadLongDelay   = 0.5;
 static const NSTimeInterval kPhotoLoadShortDelay  = 0.25;

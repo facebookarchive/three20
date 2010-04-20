@@ -14,7 +14,10 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTURLObject.h"
+
+// Network
 #import "Three20/TTModel.h"
 
 #define TT_NULL_PHOTO_INDEX NSIntegerMax
