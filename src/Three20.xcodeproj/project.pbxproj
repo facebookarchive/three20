@@ -350,7 +350,6 @@
 		BEB210D40FA3E784007DEE5F /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */; };
 		BEB460830F8EE14C004B34A0 /* TTLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB460820F8EE14C004B34A0 /* TTLabel.h */; };
 		BEB460850F8EE156004B34A0 /* TTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB460840F8EE156004B34A0 /* TTLabel.m */; };
-		BEB463DD0F8F2DB5004B34A0 /* developer.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB463DC0F8F2DB5004B34A0 /* developer.h */; };
 		BEBB12741003EB5400744230 /* TTURLPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB12721003EB5400744230 /* TTURLPattern.m */; };
 		BEBB198310068D0F00744230 /* TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB198210068D0F00744230 /* TTNavigator.m */; };
 		BEBB198E10068D5800744230 /* TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = BEBB198D10068D5800744230 /* TTNavigator.h */; };
@@ -833,7 +832,6 @@
 		BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringAdditions.h; path = Three20/NSStringAdditions.h; sourceTree = "<group>"; };
 		BEB460820F8EE14C004B34A0 /* TTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLabel.h; path = Three20/TTLabel.h; sourceTree = "<group>"; };
 		BEB460840F8EE156004B34A0 /* TTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLabel.m; sourceTree = "<group>"; };
-		BEB463DC0F8F2DB5004B34A0 /* developer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = developer.h; path = Three20/developer.h; sourceTree = "<group>"; };
 		BEBB12721003EB5400744230 /* TTURLPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLPattern.m; sourceTree = "<group>"; };
 		BEBB198210068D0F00744230 /* TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNavigator.m; sourceTree = "<group>"; };
 		BEBB198D10068D5800744230 /* TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigator.h; path = Three20/TTNavigator.h; sourceTree = "<group>"; };
@@ -995,7 +993,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				BEF321B10F353B25000DE5D2 /* Global */,
+				BEF31F6F0F352E64000DE5D2 /* Three20.h */,
+				6E92494D112C6F7000531F03 /* Three20_Prefix.pch */,
 				6E14D8EA10E0B5F100445222 /* Core */,
 				EBAE96F210D1F5B300F497CA /* Network */,
 				EBAE96F110D1F58900F497CA /* UI */,
@@ -1003,8 +1002,6 @@
 				EB9E6C7910B6A94700DE563C /* Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				BEB463DC0F8F2DB5004B34A0 /* developer.h */,
-				6E92494D112C6F7000531F03 /* Three20_Prefix.pch */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1037,6 +1034,8 @@
 		6E14D8EA10E0B5F100445222 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				6E5CEE0C117D908800798CF8 /* Additions */,
+				6E5CEE0B117D907C00798CF8 /* Global */,
 				6E14D92E10E0B6C000445222 /* XML */,
 			);
 			name = Core;
@@ -1201,6 +1200,108 @@
 				6E5CEC65117CD83400798CF8 /* TTStyledImageFrame.m */,
 			);
 			name = "Styled Frames";
+			sourceTree = "<group>";
+		};
+		6E5CEE0B117D907C00798CF8 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				EB4CE18910CF19FE00A856E5 /* TTCorePreprocessorMacros.h */,
+				EB9E6E3C10B730E700DE563C /* TTGlobalCore.h */,
+				EB9E6E3810B7300100DE563C /* TTGlobalCore.m */,
+				EB4CD72110CA034F00A856E5 /* TTGlobalCoreLocale.h */,
+				EB4CD71E10CA034000A856E5 /* TTGlobalCoreLocale.m */,
+				EB4CDA5810CADA5B00A856E5 /* TTGlobalCorePaths.h */,
+				EB4CDA5510CADA3200A856E5 /* TTGlobalCorePaths.m */,
+				EBBB349610B36CCE00AD5BCF /* TTDebug.h */,
+				EB1F6C5D10B36C32003DAA1F /* TTDebug.m */,
+				EBDC8EB510C5CCB000257247 /* TTDebugFlags.h */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		6E5CEE0C117D908800798CF8 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
+				BEAF21350F4D32E100D75F3B /* NSObjectAdditions.h */,
+				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
+				EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */,
+				EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */,
+				BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */,
+				BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */,
+				BED623910F50F34B003EF242 /* NSArrayAdditions.h */,
+				BED623930F50F350003EF242 /* NSArrayAdditions.m */,
+				6E35CCFC10912C870066B478 /* NSMutableArrayAdditions.h */,
+				6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */,
+				6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */,
+				6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */,
+				BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */,
+				BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		6E5CEE0D117D909E00798CF8 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				EB4CDA5110CAD85E00A856E5 /* TTGlobalNetwork.h */,
+				EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		6E5CEE0E117D90AA00798CF8 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				EB4CDA4110CAD6E200A856E5 /* TTGlobalUI.h */,
+				EB4CDA3E10CAD55400A856E5 /* TTGlobalUI.m */,
+				EB4CDAFC10CADCB000A856E5 /* TTGlobalUINavigator.h */,
+				EB4CDAF910CADC9A00A856E5 /* TTGlobalUINavigator.m */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		6E5CEE0F117D90B800798CF8 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				BEAF21360F4D32E100D75F3B /* UIColorAdditions.h */,
+				BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */,
+				BEA6B8E31013FC3400B83B3A /* UIFontAdditions.h */,
+				BEA6B8E51013FC4900B83B3A /* UIFontAdditions.m */,
+				BEAF21370F4D32E100D75F3B /* UIImageAdditions.h */,
+				BEAF211D0F4D329600D75F3B /* UIImageAdditions.m */,
+				BEAF213A0F4D32E100D75F3B /* UIViewAdditions.h */,
+				BEAF21200F4D329600D75F3B /* UIViewAdditions.m */,
+				BE8AA1920F428A4900FD8C43 /* UIViewControllerAdditions.h */,
+				BE8AA1900F428A3700FD8C43 /* UIViewControllerAdditions.m */,
+				BE7DD3A91001EDFF00662212 /* UINavigationControllerAdditions.h */,
+				BE7DD3A51001EDE000662212 /* UINavigationControllerAdditions.m */,
+				BE7DD3AA1001EDFF00662212 /* UITabBarControllerAdditions.h */,
+				BE7DD3A61001EDE000662212 /* UITabBarControllerAdditions.m */,
+				BEAF21380F4D32E100D75F3B /* UITableViewAdditions.h */,
+				BEAF211E0F4D329600D75F3B /* UITableViewAdditions.m */,
+				BEAF213B0F4D32E100D75F3B /* UIWebViewAdditions.h */,
+				BEAF21210F4D329600D75F3B /* UIWebViewAdditions.m */,
+				BEAF21390F4D32E100D75F3B /* UIToolbarAdditions.h */,
+				BEAF211F0F4D329600D75F3B /* UIToolbarAdditions.m */,
+				C6620EAB109CEDA400EC35C6 /* UIWindowAdditions.h */,
+				C6620EAC109CEDA400EC35C6 /* UIWindowAdditions.m */,
+				EB9E6D3810B6B0E200DE563C /* UINSStringAdditions.h */,
+				EB9E6CFC10B6B01800DE563C /* UINSStringAdditions.m */,
+				EB4CD6FA10CA019200A856E5 /* UINSObjectAdditions.h */,
+				EB9193E210CA00D200F525AA /* UINSObjectAdditions.m */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		6E5CEE10117D90C600798CF8 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				EB4CDBA310CAE0E300A856E5 /* TTGlobalStyle.h */,
+				BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */,
+				BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */,
+			);
+			name = Global;
 			sourceTree = "<group>";
 		};
 		6E62083E1176708100035C6C /* Private */ = {
@@ -1485,6 +1586,7 @@
 		BE1287F40F8969C100F65EA2 /* Style */ = {
 			isa = PBXGroup;
 			children = (
+				6E5CEE10117D90C600798CF8 /* Global */,
 				6E5CE870117AD40400798CF8 /* TTPosition.h */,
 				BECB1EC50F46C39F00AE5B52 /* TTStyleSheet.h */,
 				BECB1EC70F46C3B000AE5B52 /* TTStyleSheet.m */,
@@ -1527,15 +1629,6 @@
 				BEF31F470F352E64000DE5D2 /* TTErrorView.m */,
 			);
 			name = Tables;
-			sourceTree = "<group>";
-		};
-		BE8AA1870F428A0F00FD8C43 /* Additions */ = {
-			isa = PBXGroup;
-			children = (
-				EB9E6F9D10B73F1700DE563C /* Core */,
-				EB9E71EA10B783E500DE563C /* UI */,
-			);
-			name = Additions;
 			sourceTree = "<group>";
 		};
 		BEB460380F8EDE60004B34A0 /* Labels */ = {
@@ -1697,19 +1790,6 @@
 			name = Network;
 			sourceTree = "<group>";
 		};
-		BEF321B10F353B25000DE5D2 /* Global */ = {
-			isa = PBXGroup;
-			children = (
-				EB4CD71C10CA033400A856E5 /* Core */,
-				EB4CDA4C10CAD82A00A856E5 /* Network */,
-				EB4CDA3B10CAD54100A856E5 /* UI */,
-				EB4CDB9E10CAE0B300A856E5 /* Style */,
-				BE8AA1870F428A0F00FD8C43 /* Additions */,
-				BEF31F6F0F352E64000DE5D2 /* Three20.h */,
-			);
-			name = Global;
-			sourceTree = "<group>";
-		};
 		BEF321B20F353B50000DE5D2 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
@@ -1779,43 +1859,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		EB4CD71C10CA033400A856E5 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				EB4CE18910CF19FE00A856E5 /* TTCorePreprocessorMacros.h */,
-				EB9E6E3C10B730E700DE563C /* TTGlobalCore.h */,
-				EB9E6E3810B7300100DE563C /* TTGlobalCore.m */,
-				EB4CD72110CA034F00A856E5 /* TTGlobalCoreLocale.h */,
-				EB4CD71E10CA034000A856E5 /* TTGlobalCoreLocale.m */,
-				EB4CDA5810CADA5B00A856E5 /* TTGlobalCorePaths.h */,
-				EB4CDA5510CADA3200A856E5 /* TTGlobalCorePaths.m */,
-				EBBB349610B36CCE00AD5BCF /* TTDebug.h */,
-				EB1F6C5D10B36C32003DAA1F /* TTDebug.m */,
-				EBDC8EB510C5CCB000257247 /* TTDebugFlags.h */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		EB4CDA3B10CAD54100A856E5 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				EB4CDA4110CAD6E200A856E5 /* TTGlobalUI.h */,
-				EB4CDA3E10CAD55400A856E5 /* TTGlobalUI.m */,
-				EB4CDAFC10CADCB000A856E5 /* TTGlobalUINavigator.h */,
-				EB4CDAF910CADC9A00A856E5 /* TTGlobalUINavigator.m */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		EB4CDA4C10CAD82A00A856E5 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				EB4CDA5110CAD85E00A856E5 /* TTGlobalNetwork.h */,
-				EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */,
-			);
-			name = Network;
-			sourceTree = "<group>";
-		};
 		EB4CDA5D10CADB0500A856E5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1823,16 +1866,6 @@
 				EB2F8DBA10D027E9008522A7 /* UIAdditionTests.m */,
 			);
 			name = UI;
-			sourceTree = "<group>";
-		};
-		EB4CDB9E10CAE0B300A856E5 /* Style */ = {
-			isa = PBXGroup;
-			children = (
-				EB4CDBA310CAE0E300A856E5 /* TTGlobalStyle.h */,
-				BE7604DA0F8DE02100C9F4BB /* TTDefaultStyleSheet.h */,
-				BE7604D80F8DE01400C9F4BB /* TTDefaultStyleSheet.m */,
-			);
-			name = Style;
 			sourceTree = "<group>";
 		};
 		EB9E6C7910B6A94700DE563C /* Tests */ = {
@@ -1865,64 +1898,11 @@
 			name = "Markup Stripper";
 			sourceTree = "<group>";
 		};
-		EB9E6F9D10B73F1700DE563C /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
-				BEAF21350F4D32E100D75F3B /* NSObjectAdditions.h */,
-				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
-				EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */,
-				EBA17A1E10B4DDD500835016 /* NSDataAdditions.m */,
-				BEB210D30FA3E784007DEE5F /* NSStringAdditions.h */,
-				BEB210D10FA3E77E007DEE5F /* NSStringAdditions.m */,
-				BED623910F50F34B003EF242 /* NSArrayAdditions.h */,
-				BED623930F50F350003EF242 /* NSArrayAdditions.m */,
-				6E35CCFC10912C870066B478 /* NSMutableArrayAdditions.h */,
-				6E35CCB410912B210066B478 /* NSMutableArrayAdditions.m */,
-				6E35CCFB10912C870066B478 /* NSMutableDictionaryAdditions.h */,
-				6E35CCC010912BE10066B478 /* NSMutableDictionaryAdditions.m */,
-				BEA7624F0FBA1E290091B567 /* NSDateAdditions.h */,
-				BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		EB9E71EA10B783E500DE563C /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				BEAF21360F4D32E100D75F3B /* UIColorAdditions.h */,
-				BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */,
-				BEA6B8E31013FC3400B83B3A /* UIFontAdditions.h */,
-				BEA6B8E51013FC4900B83B3A /* UIFontAdditions.m */,
-				BEAF21370F4D32E100D75F3B /* UIImageAdditions.h */,
-				BEAF211D0F4D329600D75F3B /* UIImageAdditions.m */,
-				BEAF213A0F4D32E100D75F3B /* UIViewAdditions.h */,
-				BEAF21200F4D329600D75F3B /* UIViewAdditions.m */,
-				BE8AA1920F428A4900FD8C43 /* UIViewControllerAdditions.h */,
-				BE8AA1900F428A3700FD8C43 /* UIViewControllerAdditions.m */,
-				BE7DD3A91001EDFF00662212 /* UINavigationControllerAdditions.h */,
-				BE7DD3A51001EDE000662212 /* UINavigationControllerAdditions.m */,
-				BE7DD3AA1001EDFF00662212 /* UITabBarControllerAdditions.h */,
-				BE7DD3A61001EDE000662212 /* UITabBarControllerAdditions.m */,
-				BEAF21380F4D32E100D75F3B /* UITableViewAdditions.h */,
-				BEAF211E0F4D329600D75F3B /* UITableViewAdditions.m */,
-				BEAF213B0F4D32E100D75F3B /* UIWebViewAdditions.h */,
-				BEAF21210F4D329600D75F3B /* UIWebViewAdditions.m */,
-				BEAF21390F4D32E100D75F3B /* UIToolbarAdditions.h */,
-				BEAF211F0F4D329600D75F3B /* UIToolbarAdditions.m */,
-				C6620EAB109CEDA400EC35C6 /* UIWindowAdditions.h */,
-				C6620EAC109CEDA400EC35C6 /* UIWindowAdditions.m */,
-				EB9E6D3810B6B0E200DE563C /* UINSStringAdditions.h */,
-				EB9E6CFC10B6B01800DE563C /* UINSStringAdditions.m */,
-				EB4CD6FA10CA019200A856E5 /* UINSObjectAdditions.h */,
-				EB9193E210CA00D200F525AA /* UINSObjectAdditions.m */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
 		EBAE96F110D1F58900F497CA /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6E5CEE0F117D90B800798CF8 /* Additions */,
+				6E5CEE0E117D90AA00798CF8 /* Global */,
 				BEBB198A10068D1400744230 /* Navigator */,
 				BEF321B30F353B78000DE5D2 /* View Controllers */,
 				BEF31F450F352E64000DE5D2 /* Views */,
@@ -1940,6 +1920,7 @@
 		EBAE96F210D1F5B300F497CA /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				6E5CEE0D117D909E00798CF8 /* Global */,
 				BEF44D4F10182FD800E9EC07 /* Models */,
 				BEF321B00F353B15000DE5D2 /* Network */,
 			);
@@ -2015,7 +1996,6 @@
 				BEC270B20F8C9D1900EA638F /* TTLayout.h in Headers */,
 				BE7604DB0F8DE02100C9F4BB /* TTDefaultStyleSheet.h in Headers */,
 				BEB460830F8EE14C004B34A0 /* TTLabel.h in Headers */,
-				BEB463DD0F8F2DB5004B34A0 /* developer.h in Headers */,
 				BED4290F0F97F5C70035B153 /* TTTableView.h in Headers */,
 				BED429450F97F7E50035B153 /* TTButtonBar.h in Headers */,
 				BE8541010F998FA900DA3E9E /* TTStyledFrame.h in Headers */,
