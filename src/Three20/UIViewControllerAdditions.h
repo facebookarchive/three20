@@ -17,8 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "Three20/TTGlobalCore.h"
-
 @interface UIViewController (TTCategory)
 
 /**

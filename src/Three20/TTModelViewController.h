@@ -14,9 +14,13 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTViewController.h"
-#import "Three20/TTModel.h"
+
+// Network
 #import "Three20/TTModelDelegate.h"
+
+@protocol TTModel;
 
 /**
  * A view controller that manages a model in addition to a view.

@@ -16,6 +16,7 @@
 
 #import "Three20/TTURLGeneratorPattern.h"
 
+// UI (private)
 #import "Three20/TTURLWildcard.h"
 
 

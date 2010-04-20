@@ -32,6 +32,9 @@
 #import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTNavigator.h"
 
+// Core
+#import "Three20/TTDebug.h"
+
 static const CGFloat kBannerViewHeight = 22;
 
 

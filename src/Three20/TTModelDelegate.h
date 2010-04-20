@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol TTModel;
+
 @protocol TTModelDelegate <NSObject>
 
 @optional

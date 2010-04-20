@@ -16,6 +16,7 @@
 
 #import "Three20/UITableViewAdditions.h"
 
+// UI
 #import "Three20/UIViewAdditions.h"
 #import "Three20/UIWindowAdditions.h"
 

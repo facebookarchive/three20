@@ -17,7 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class TTTableViewController, TTSearchDisplayController;
+@class TTTableViewController;
+@class TTSearchDisplayController;
 
 /**
  * A view controller with some useful additions.

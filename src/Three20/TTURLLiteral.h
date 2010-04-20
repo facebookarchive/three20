@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+// UI (private)
 #import "Three20/TTURLPatternText.h"
 
 @interface TTURLLiteral : NSObject <TTURLPatternText> {

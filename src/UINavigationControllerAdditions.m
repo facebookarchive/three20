@@ -16,9 +16,11 @@
 
 #import "Three20/UINavigationControllerAdditions.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
-
 #import "Three20/TTNavigator.h"
+
+// Network
 #import "Three20/TTURLMap.h"
 #import "Three20/TTURLRequestQueue.h"
 

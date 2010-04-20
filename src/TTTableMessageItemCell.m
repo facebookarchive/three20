@@ -27,6 +27,7 @@
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20/NSDateAdditions.h"
 
 static const NSInteger  kMessageTextLineCount       = 2;
 static const CGFloat    kDefaultMessageImageWidth   = 34;

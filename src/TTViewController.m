@@ -16,16 +16,25 @@
 
 #import "Three20/TTViewController.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTDebugFlags.h"
-
-#import "Three20/TTTableViewController.h"
-#import "Three20/TTURLRequestQueue.h"
-#import "Three20/TTSearchDisplayController.h"
-#import "Three20/TTStyleSheet.h"
 #import "Three20/TTNavigator.h"
+
+// - Controllers
+#import "Three20/TTTableViewController.h"
+#import "Three20/TTSearchDisplayController.h"
+
+// Style
+#import "Three20/TTGlobalStyle.h"
+#import "Three20/TTStyleSheet.h"
+
+// Network
+#import "Three20/TTURLRequestQueue.h"
+
+// Core
+#import "Three20/TTDebug.h"
+#import "Three20/TTDebugFlags.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

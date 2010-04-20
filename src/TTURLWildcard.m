@@ -16,9 +16,11 @@
 
 #import "Three20/TTURLWildcard.h"
 
+// UI (private)
 #import "Three20/TTURLArguments.h"
 #import "Three20/TTURLSelector.h"
 
+// Core
 #import "Three20/TTCorePreprocessorMacros.h"
 
 

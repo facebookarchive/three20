@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTURLPattern.h"
-
 #import "Three20/TTURLMap.h" // For TTNavigationMode
 
 @interface TTURLNavigatorPattern : TTURLPattern {

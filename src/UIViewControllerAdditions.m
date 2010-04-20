@@ -16,10 +16,17 @@
 
 #import "Three20/UIViewControllerAdditions.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
-#import "Three20/TTDebugFlags.h"
 #import "Three20/TTNavigator.h"
+
+// Network
 #import "Three20/TTURLMap.h"
+
+// Core
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTDebug.h"
+#import "Three20/TTDebugFlags.h"
 
 static NSMutableDictionary* gNavigatorURLs = nil;
 static NSMutableDictionary* gSuperControllers = nil;

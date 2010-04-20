@@ -16,7 +16,10 @@
 
 #import "Three20/UINSObjectAdditions.h"
 
+// UI
 #import "Three20/TTNavigator.h"
+
+// Network
 #import "Three20/TTURLMap.h"
 
 

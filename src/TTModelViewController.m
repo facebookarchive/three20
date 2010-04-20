@@ -18,6 +18,9 @@
 
 #import "Three20/TTNavigator.h"
 
+// Network
+#import "Three20/TTModel.h"
+
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalUI.h"
 

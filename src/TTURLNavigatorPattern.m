@@ -16,11 +16,12 @@
 
 #import "Three20/TTURLNavigatorPattern.h"
 
+// UI (private)
 #import "Three20/TTURLPatternInternal.h"
-
 #import "Three20/TTURLWildcard.h"
 #import "Three20/TTURLArguments.h"
 
+// Core
 #import "Three20/TTDebug.h"
 #import "Three20/NSStringAdditions.h"
 

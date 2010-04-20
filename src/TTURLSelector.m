@@ -16,8 +16,10 @@
 
 #import "Three20/TTURLSelector.h"
 
+// UI (private)
 #import "Three20/TTURLArguments.h"
 
+// Core
 #import "Three20/TTCorePreprocessorMacros.h"
 
 
@@ -36,6 +38,7 @@
     _name     = [name copy];
     _selector = NSSelectorFromString(_name);
   }
+
   return self;
 }
 

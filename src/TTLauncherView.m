@@ -28,6 +28,9 @@
 #import "Three20/TTLauncherButton.h"
 #import "Three20/TTPageControl.h"
 
+// Core
+#import "Three20/TTDebug.h"
+
 static const CGFloat kMargin = 0;
 static const CGFloat kPadding = 0;
 static const CGFloat kPromptMargin = 40;

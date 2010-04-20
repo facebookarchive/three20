@@ -17,8 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "Three20/TTCorePreprocessorMacros.h"
-
+// UI
 #import "Three20/UIColorAdditions.h"
 #import "Three20/UIFontAdditions.h"
 #import "Three20/UIImageAdditions.h"
@@ -30,6 +29,9 @@
 #import "Three20/UIToolbarAdditions.h"
 #import "Three20/UIWindowAdditions.h"
 #import "Three20/UIViewControllerAdditions.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 /**
  * @return the current runtime version of the iPhone OS.

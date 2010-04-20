@@ -14,9 +14,12 @@
 
 #import "Three20/UINSStringAdditions.h"
 
-#import "Three20/TTURLMap.h"
+// UI
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLAction.h"
+
+// Network
+#import "Three20/TTURLMap.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
