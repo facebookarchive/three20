@@ -24,8 +24,6 @@
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTDebugFlags.h"
 
-#import <CommonCrypto/CommonDigest.h> // For CC_MD5
-
 static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 
@@ -127,20 +125,6 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)md5HexDigest:(NSString*)input {
-  const char* str = [input UTF8String];
-  unsigned char result[CC_MD5_DIGEST_LENGTH];
-  CC_MD5(str, strlen(str), result);
-
-  return [NSString stringWithFormat:
-    @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-    result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
-    result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15]
-  ];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)generateCacheKey {
   if ([_httpMethod isEqualToString:@"POST"]
       || [_httpMethod isEqualToString:@"PUT"]) {
@@ -155,9 +139,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       }
     }
 
-    return [self md5HexDigest:joined];
+    return [joined md5Hash];
   } else {
-    return [self md5HexDigest:self.urlPath];
+    return [self.urlPath md5Hash];
   }
 }
 

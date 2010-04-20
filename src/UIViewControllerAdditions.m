@@ -77,13 +77,18 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSObject
+- (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
+  if (self = [self init]) {
+  }
+
+  return self;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Swapped with dealloc by TTURLMap (only if you're using TTURLMap)
+/**
+ * Swapped with dealloc by TTURLMap (only if you're using TTURLMap)
+ */
 - (void)ttdealloc {
   NSString* URL = self.originalNavigatorURL;
   if (URL) {
