@@ -19,13 +19,17 @@
 #import "Three20/UIViewAdditions.h"
 #import "Three20/UIWindowAdditions.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Additions.
  */
 @implementation UITableView (TTCategory)
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView*)indexView {
   Class indexViewClass = NSClassFromString(@"UITableViewIndex");
   NSEnumerator* e = [self.subviews reverseObjectEnumerator];
@@ -37,6 +41,8 @@
   return nil;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tableCellMargin {
   if (self.style == UITableViewStyleGrouped) {
     return 10;
@@ -45,10 +51,14 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollToTop:(BOOL)animated {
   [self setContentOffset:CGPointMake(0,0) animated:animated];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollToBottom:(BOOL)animated {
   NSUInteger sectionCount = [self numberOfSections];
   if (sectionCount) {
@@ -62,6 +72,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollToFirstRow:(BOOL)animated {
   if ([self numberOfSections] > 0 && [self numberOfRowsInSection:0] > 0) {
     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -70,6 +82,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollToLastRow:(BOOL)animated {
   if ([self numberOfSections] > 0) {
     NSInteger section = [self numberOfSections]-1;
@@ -82,6 +96,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollFirstResponderIntoView {
   UIView* responder = [self.window findFirstResponder];
   UITableViewCell* cell = (UITableViewCell*)[responder ancestorOrSelfWithClass:[UITableViewCell class]];
@@ -94,11 +110,13 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchRowAtIndexPath:(NSIndexPath*)indexPath animated:(BOOL)animated {
   if (![self cellForRowAtIndexPath:indexPath]) {
     [self reloadData];
   }
-  
+
   if ([self.delegate respondsToSelector:@selector(tableView:willSelectRowAtIndexPath:)]) {
     [self.delegate tableView:self willSelectRowAtIndexPath:indexPath];
   }
@@ -110,5 +128,6 @@
     [self.delegate tableView:self didSelectRowAtIndexPath:indexPath];
   }
 }
+
 
 @end

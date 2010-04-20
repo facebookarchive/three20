@@ -18,11 +18,17 @@
 
 #import "Three20/UIViewAdditions.h"
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Additions.
  */
 @implementation UIWebView (TTCategory)
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)frameOfElement:(NSString*)query {
   NSString* result = [self stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"\
     var target = %@; \
@@ -33,7 +39,7 @@
     } \
     x + ',' + y + ',' + target.offsetWidth + ',' + target.offsetHeight; \
 ", query]];
-  
+
   NSArray* points = [result componentsSeparatedByString:@","];
   CGFloat x = [[points objectAtIndex:0] floatValue];
   CGFloat y = [[points objectAtIndex:1] floatValue];
@@ -44,6 +50,8 @@
 }
 
 #ifdef DEBUG
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)simulateTapElement:(NSString*)query {
   CGRect frame = [self.window convertRect:self.frame fromView:self.superview];
   CGRect pluginFrame = [self frameOfElement:query];
@@ -53,6 +61,8 @@
   );
   [self simulateTapAtPoint:tapPoint];
 }
+
 #endif
+
 
 @end
