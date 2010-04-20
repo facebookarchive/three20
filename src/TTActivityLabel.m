@@ -16,14 +16,15 @@
 
 #import "Three20/TTActivityLabel.h"
 
-#import "Three20/TTGlobalStyle.h"
-
+// UI
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
-
 #import "Three20/TTView.h"
-#import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTButton.h"
+
+// Style
+#import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 static CGFloat kMargin          = 10;
 static CGFloat kPadding         = 15;
