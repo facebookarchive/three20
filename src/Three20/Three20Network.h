@@ -15,24 +15,22 @@
 //
 
 // Core
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTGlobalCorePaths.h"
-
-#import "Three20/TTXMLParser.h"
+#import "Three20/Three20Core.h"
 
 // Network
+// - Global
 #import "Three20/TTGlobalNetwork.h"
 
+// - Models
 #import "Three20/TTModel.h"
 #import "Three20/TTModelDelegate.h"
 #import "Three20/TTURLRequestModel.h"
+
+// - URLs
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLAction.h"
 #import "Three20/TTURLMap.h"
 #import "Three20/TTURLObject.h"
-
-#import "Three20/TTUserInfo.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequestQueue.h"
 #import "Three20/TTURLRequest.h"
@@ -40,3 +38,6 @@
 #import "Three20/TTURLDataResponse.h"
 #import "Three20/TTURLImageResponse.h"
 #import "Three20/TTURLXMLResponse.h"
+
+// - Classes
+#import "Three20/TTUserInfo.h"

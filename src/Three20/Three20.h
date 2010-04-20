@@ -26,8 +26,8 @@
  * components:
  *
  * <center>
- *   <a href="#Style" style="display:block;width:200px;font-size:1.5em">Style</a>
  *   <a href="#UI" style="display:block;width:200px;font-size:1.5em">UI</a>
+ *   <a href="#Style" style="display:block;width:200px;font-size:1.5em">Style</a>
  *   <a href="#Network" style="display:block;width:200px;font-size:1.5em">Network</a>
  *   <a href="#Core" style="display:block;width:200px;font-size:1.5em">Core</a>
  * </center>
@@ -42,20 +42,23 @@
  * A full network+cache implementation has been built around NSURLRequests with support for
  * disc and memory caching.
  *
+ * \section Style
+ *
+ * A robust style framework that makes it easy to create gradients, shadows, and rounded borders.
+ *
  * \section UI
  *
  * Three20 includes a growing set of common controls. Photo browsers, table view cells, and
  * springboard implementations are just a few. The UI component includes the TTNavigator object
  * that makes building persistent applications easy.
  *
- * \section Style
- *
- * A robust style framework that makes it easy to create gradients, shadows, and rounded borders.
- *
  */
 
 // Core
 #import "Three20/Three20Core.h"
+
+// Network
+#import "Three20/Three20Network.h"
 
 // UI
 #import "Three20/TTGlobalUI.h"
@@ -185,9 +188,6 @@
 #import "Three20/TTThumbView.h"
 
 #import "Three20/TTRecursiveProgress.h"
-
-// Network
-#import "Three20/Three20Network.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
