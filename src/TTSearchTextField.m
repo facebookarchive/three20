@@ -16,19 +16,22 @@
 
 #import "Three20/TTSearchTextField.h"
 
-#import "Three20/TTSearchTextFieldDelegate.h"
-#import "Three20/TTSearchTextFieldInternal.h"
-
+// UI
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTGlobalStyle.h"
-
 #import "Three20/TTNavigator.h"
 #import "Three20/TTView.h"
-#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20/TTSearchTextFieldDelegate.h"
 #import "Three20/TTTableView.h"
 #import "Three20/TTTableViewCell.h"
 #import "Three20/TTTableViewDataSource.h"
+
+// UI (private)
+#import "Three20/TTSearchTextFieldInternal.h"
+
+// Style
+#import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 static const CGFloat kShadowHeight = 24;
 static const CGFloat kDesiredTableHeight = 150;

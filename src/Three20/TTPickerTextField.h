@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTSearchTextField.h"
-#import "Three20/TTSearchTextFieldDelegate.h"
 
 @class TTPickerViewCell;
 

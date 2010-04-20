@@ -16,9 +16,12 @@
 
 #import "Three20/TTPickerViewCell.h"
 
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/TTDefaultStyleSheet.h"
+// Style
 #import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDefaultStyleSheet.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static const CGFloat kPaddingX = 8;
 static const CGFloat kPaddingY = 3;
