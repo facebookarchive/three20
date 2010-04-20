@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTTableLinkedItem.h"
 
 @interface TTTableTextItem : TTTableLinkedItem {

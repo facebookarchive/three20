@@ -16,8 +16,8 @@
 
 #import "Three20/TTSearchDisplayController.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
-
 #import "Three20/TTTableViewController.h"
 #import "Three20/TTTableViewDataSource.h"
 

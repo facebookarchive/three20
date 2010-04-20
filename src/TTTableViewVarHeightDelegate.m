@@ -16,6 +16,7 @@
 
 #import "Three20/TTTableViewVarHeightDelegate.h"
 
+// UI
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTTableViewCell.h"         // For tableView:rowHeightForObject:
 
@@ -29,7 +30,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
   id<TTTableViewDataSource> dataSource = (id<TTTableViewDataSource>)tableView.dataSource;
-  
+
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   Class cls = [dataSource tableView:tableView cellClassForObject:object];
   return [cls tableView:tableView rowHeightForObject:object];

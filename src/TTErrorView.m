@@ -16,9 +16,11 @@
 
 #import "Three20/TTErrorView.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalStyle.h"
 
+// Style
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 static const CGFloat kVPadding1 = 30;

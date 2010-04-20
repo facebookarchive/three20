@@ -17,9 +17,9 @@
 #import "Three20/TTTableControlCell.h"
 
 // UI
+#import "Three20/TTGlobalUI.h"
 #import "Three20/TTTableControlItem.h"
 #import "Three20/TTTextEditor.h"
-#import "Three20/TTGlobalUI.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

@@ -16,6 +16,7 @@
 
 #import "Three20/TTTableViewCell.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
 
 const CGFloat   kTableCellSmallMargin = 6;

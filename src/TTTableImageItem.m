@@ -16,6 +16,7 @@
 
 #import "Three20/TTTableImageItem.h"
 
+// Core
 #import "Three20/TTCorePreprocessorMacros.h"
 
 

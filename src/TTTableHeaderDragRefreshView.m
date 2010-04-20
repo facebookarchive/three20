@@ -16,13 +16,18 @@
 
 #import "Three20/TTTableHeaderDragRefreshView.h"
 
-#import "Three20/TTGlobalCoreLocale.h"
-
+// UI
 #import "Three20/TTGlobalUI.h"
-#import "Three20/TTURLCache.h"
 
+// Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
+
+// Network
+#import "Three20/TTURLCache.h"
+
+// Core
+#import "Three20/TTGlobalCoreLocale.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -45,7 +50,7 @@
 - (id)initWithFrame:(CGRect)frame {
   if(self = [super initWithFrame:frame]) {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    
+
     _lastUpdatedLabel = [[UILabel alloc]
                          initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f,
                                                   frame.size.width, 20.0f)];
@@ -58,7 +63,7 @@
     _lastUpdatedLabel.backgroundColor = [UIColor clearColor];
     _lastUpdatedLabel.textAlignment   = UITextAlignmentCenter;
     [self addSubview:_lastUpdatedLabel];
-    
+
     _statusLabel = [[UILabel alloc]
                     initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f,
                                              frame.size.width, 20.0f )];
@@ -72,7 +77,7 @@
     _statusLabel.textAlignment    = UITextAlignmentCenter;
     [self setStatus:TTTableHeaderDragRefreshPullToReload];
     [self addSubview:_statusLabel];
-    
+
     _arrowImage = [[UIImageView alloc]
                    initWithFrame:CGRectMake(25.0f, frame.size.height - 65.0f,
                                             30.0f, 55.0f)];
@@ -80,13 +85,13 @@
     _arrowImage.image             = TTSTYLEVAR(tableRefreshHeaderArrowImage);
     [_arrowImage layer].transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     [self addSubview:_arrowImage];
-    
+
     _activityView = [[UIActivityIndicatorView alloc]
                      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _activityView.frame = CGRectMake( 25.0f, frame.size.height - 38.0f, 20.0f, 20.0f );
     _activityView.hidesWhenStopped  = YES;
     [self addSubview:_activityView];
-    
+
     _isFlipped = NO;
   }
   return self;
@@ -117,7 +122,7 @@
     CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f) :
     CATransform3DMakeRotation(M_PI * 2, 0.0f, 0.0f, 1.0f);
   [UIView commitAnimations];
-  
+
   _isFlipped = !_isFlipped;
 }
 
@@ -128,9 +133,9 @@
     if (_lastUpdatedDate != newDate) {
       [_lastUpdatedDate release];
     }
-    
+
     _lastUpdatedDate = [newDate retain];
-    
+
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
@@ -139,7 +144,7 @@
                                                 @"The last time the table view was updated."),
                               [formatter stringFromDate:_lastUpdatedDate]];
     [formatter release];
-    
+
   } else {
     _lastUpdatedDate = nil;
     _lastUpdatedLabel.text = TTLocalizedString(@"Last updated: never",
@@ -162,19 +167,19 @@
                                             @"Release the table view to update the contents.");
       break;
     }
-      
+
     case TTTableHeaderDragRefreshPullToReload: {
       _statusLabel.text = TTLocalizedString(@"Pull down to update...",
                                             @"Drag the table view down to update the contents.");
       break;
     }
-      
+
     case TTTableHeaderDragRefreshLoadingStatus: {
       _statusLabel.text = TTLocalizedString(@"Updating...",
                                             @"Updating the contents of a table view.");
       break;
     }
-      
+
     default: {
       break;
     }
@@ -188,12 +193,12 @@
     [_activityView startAnimating];
     _arrowImage.hidden = YES;
     [self setStatus:TTTableHeaderDragRefreshLoadingStatus];
-    
+
   } else {
     [_activityView stopAnimating];
     _arrowImage.hidden = NO;
   }
-  
+
 }
 
 

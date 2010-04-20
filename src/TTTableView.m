@@ -16,10 +16,12 @@
 
 #import "Three20/TTTableView.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
-
-#import "Three20/TTStyledNode.h"
 #import "Three20/TTStyledTextLabel.h"
+
+// Style
+#import "Three20/TTStyledNode.h"
 
 static const CGFloat kShadowHeight        = 20.0;
 static const CGFloat kShadowInverseHeight = 10.0;

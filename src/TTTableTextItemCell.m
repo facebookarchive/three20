@@ -17,13 +17,15 @@
 #import "Three20/TTTableTextItemCell.h"
 
 // UI
+#import "Three20/TTGlobalUI.h"
+
+// - Table items
 #import "Three20/TTTableTextItem.h"
 #import "Three20/TTTableLongTextItem.h"
 #import "Three20/TTTableGrayTextItem.h"
 #import "Three20/TTTableButton.h"
 #import "Three20/TTTableLink.h"
 #import "Three20/TTTableSummaryItem.h"
-#import "Three20/TTGlobalUI.h"
 
 // Style
 #import "Three20/TTDefaultStyleSheet.h"

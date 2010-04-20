@@ -15,6 +15,7 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTTableItem.h"
 
 @interface TTTableControlItem : TTTableItem {

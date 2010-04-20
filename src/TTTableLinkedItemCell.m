@@ -18,6 +18,7 @@
 
 // UI
 #import "Three20/TTTableLinkedItem.h"
+#import "Three20/TTNavigator.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
@@ -25,7 +26,6 @@
 
 // Network
 #import "Three20/TTURLMap.h"
-#import "Three20/TTNavigator.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

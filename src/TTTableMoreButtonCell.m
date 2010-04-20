@@ -17,12 +17,12 @@
 #import "Three20/TTTableMoreButtonCell.h"
 
 // UI
-#import "Three20/TTTableMoreButton.h"
 #import "Three20/TTGlobalUI.h"
+#import "Three20/TTTableMoreButton.h"
 
 // Style
-#import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDefaultStyleSheet.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

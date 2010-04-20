@@ -17,8 +17,8 @@
 #import "Three20/TTTableFlushViewCell.h"
 
 // UI
-#import "Three20/TTTableViewItem.h"
 #import "Three20/TTGlobalUI.h"
+#import "Three20/TTTableViewItem.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

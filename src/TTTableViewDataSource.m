@@ -16,10 +16,10 @@
 
 #import "Three20/TTTableViewDataSource.h"
 
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/TTGlobalCoreLocale.h"
+// UI
+#import "Three20/TTTextEditor.h"
 
-// Table Items
+// - Table Items
 #import "Three20/TTTableItem.h"
 #import "Three20/TTTableMoreButton.h"
 #import "Three20/TTTableSubtextItem.h"
@@ -33,7 +33,7 @@
 #import "Three20/TTTableActivityItem.h"
 #import "Three20/TTTableControlItem.h"
 
-// Table Cells
+// - Table Cells
 #import "Three20/TTTableMoreButtonCell.h"
 #import "Three20/TTTableSubtextItemCell.h"
 #import "Three20/TTTableRightCaptionItemCell.h"
@@ -48,8 +48,12 @@
 #import "Three20/TTStyledTextTableCell.h"
 #import "Three20/TTTableFlushViewCell.h"
 
-#import "Three20/TTTextEditor.h"
+// Style
 #import "Three20/TTStyledText.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20/TTGlobalCoreLocale.h"
 
 #import <objc/runtime.h>
 

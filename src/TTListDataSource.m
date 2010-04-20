@@ -16,9 +16,11 @@
 
 #import "Three20/TTListDataSource.h"
 
-#import "Three20/TTCorePreprocessorMacros.h"
-
+// UI
 #import "Three20/TTTableItem.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

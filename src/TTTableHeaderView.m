@@ -16,7 +16,10 @@
 
 #import "Three20/TTTableHeaderView.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
+
+// Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
