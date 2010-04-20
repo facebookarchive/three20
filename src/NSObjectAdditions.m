@@ -16,13 +16,17 @@
 
 #import "Three20/NSObjectAdditions.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Additions.
  */
 @implementation NSObject (TTAdditions)
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
   NSMethodSignature *sig = [self methodSignatureForSelector:selector];
   if (sig) {
@@ -45,7 +49,9 @@
   }
 }
 
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
     withObject:(id)p4 {
   NSMethodSignature *sig = [self methodSignatureForSelector:selector];
   if (sig) {
@@ -69,7 +75,9 @@
   }
 }
 
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
     withObject:(id)p4 withObject:(id)p5 {
   NSMethodSignature *sig = [self methodSignatureForSelector:selector];
   if (sig) {
@@ -94,7 +102,9 @@
   }
 }
 
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
     withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 {
   NSMethodSignature *sig = [self methodSignatureForSelector:selector];
   if (sig) {
@@ -120,7 +130,9 @@
   }
 }
 
-- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
     withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 withObject:(id)p7 {
   NSMethodSignature *sig = [self methodSignatureForSelector:selector];
   if (sig) {
@@ -146,5 +158,6 @@
     return nil;
   }
 }
+
 
 @end

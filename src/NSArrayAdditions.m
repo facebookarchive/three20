@@ -16,11 +16,17 @@
 
 #import "Three20/NSArrayAdditions.h"
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Additions.
  */
 @implementation NSArray (TTCategory)
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector {
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
   for (id delegate; delegate = [e nextObject]; ) {
@@ -30,6 +36,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 {
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
   for (id delegate; delegate = [e nextObject]; ) {
@@ -44,6 +52,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 {
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
   for (id delegate; delegate = [e nextObject]; ) {
@@ -59,6 +69,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2
     withObject:(id)p3 {
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
@@ -76,6 +88,8 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectWithValue:(id)value forKey:(id)key {
   for (id object in self) {
     id propertyValue = [object valueForKey:key];
@@ -86,6 +100,8 @@
   return nil;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectWithClass:(Class)cls {
   for (id object in self) {
     if ([object isKindOfClass:cls]) {
@@ -95,6 +111,8 @@
   return nil;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)containsObject:(id)object withSelector:(SEL)selector {
   for (id item in self) {
     if ([[item performSelector:selector withObject:object] boolValue]) {
@@ -103,5 +121,6 @@
   }
   return NO;
 }
+
 
 @end
