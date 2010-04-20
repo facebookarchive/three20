@@ -16,9 +16,6 @@
 
 #import "Three20/TTGridLayout.h"
 
-// UI
-#import "Three20/TTGlobalUI.h"
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +45,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)layoutSubviews:(NSArray*)subviews forView:(UIView*)view {
-  CGFloat innerWidth = (view.width - _padding*2);
+  CGFloat innerWidth = (view.frame.size.width - _padding*2);
   CGFloat width = ceil(innerWidth / _columnCount);
   CGFloat rowHeight = 0;
 
@@ -63,11 +60,11 @@
     CGSize size = [subview sizeThatFits:CGSizeMake(width, 0)];
     rowHeight = size.height;
     subview.frame = CGRectMake(x, y, width, size.height);
-    x += subview.width + _spacing;
+    x += subview.frame.size.width + _spacing;
     if (x > maxX) {
       maxX = x;
     }
-    lastHeight = subview.height;
+    lastHeight = subview.frame.size.height;
     ++column;
   }
 

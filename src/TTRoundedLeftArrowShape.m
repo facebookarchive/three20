@@ -16,6 +16,7 @@
 
 #import "Three20/TTRoundedLeftArrowShape.h"
 
+// Style (private)
 #import "Three20/TTShapeInternal.h"
 
 

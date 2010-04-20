@@ -16,6 +16,7 @@
 
 #import "Three20/TTSpeechBubbleShape.h"
 
+// Style (private)
 #import "Three20/TTShapeInternal.h"
 
 static const CGFloat kInsetWidth = 5;

@@ -16,6 +16,7 @@
 
 #import "Three20/TTRoundedRectangleShape.h"
 
+// Style (private)
 #import "Three20/TTShapeInternal.h"
 
 
