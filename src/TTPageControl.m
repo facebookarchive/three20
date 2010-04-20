@@ -16,12 +16,13 @@
 
 #import "Three20/TTPageControl.h"
 
-#import "Three20/TTGlobalUI.h"
-
 // Style
 #import "Three20/TTStyleContext.h"
 #import "Three20/TTStyleSheet.h"
 #import "Three20/TTBoxStyle.h"
+
+// UI
+#import "Three20/TTGlobalUI.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

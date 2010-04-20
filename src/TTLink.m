@@ -16,14 +16,18 @@
 
 #import "Three20/TTLink.h"
 
-#import "Three20/TTCorePreprocessorMacros.h"
-
-#import "Three20/TTGlobalStyle.h"
+// UI
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLAction.h"
-#import "Three20/TTShape.h"
 #import "Three20/TTView.h"
+
+// Style
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTStyleSheet.h"
+#import "Three20/TTShape.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

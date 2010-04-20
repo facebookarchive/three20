@@ -16,11 +16,13 @@
 
 #import "Three20/TTButtonContent.h"
 
-#import "Three20/TTCorePreprocessorMacros.h"
-
+// Network
 #import "Three20/TTURLImageResponse.h"
 #import "Three20/TTURLCache.h"
 #import "Three20/TTURLRequest.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

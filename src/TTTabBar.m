@@ -16,14 +16,16 @@
 
 #import "Three20/TTTabBar.h"
 
-#import "Three20/TTTabBarInternal.h"
-
+// UI
+#import "Three20/TTGlobalUI.h"
 #import "Three20/TTTab.h"
 #import "Three20/TTTabDelegate.h"
 
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalStyle.h"
+// UI (private)
+#import "Three20/TTTabBarInternal.h"
 
+// Style
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTStyleSheet.h"
 
 

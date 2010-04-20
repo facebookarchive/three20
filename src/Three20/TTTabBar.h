@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTView.h"
-#import "Three20/TTButton.h"
 
 @class TTTabItem;
 @class TTTab;

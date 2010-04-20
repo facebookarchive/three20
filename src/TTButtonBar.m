@@ -16,6 +16,7 @@
 
 #import "Three20/TTButtonBar.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTButton.h"
 

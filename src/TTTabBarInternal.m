@@ -16,6 +16,7 @@
 
 #import "Three20/TTTabBarInternal.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTTab.h"
 
