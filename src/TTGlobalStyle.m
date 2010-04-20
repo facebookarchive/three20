@@ -14,10 +14,6 @@
 // limitations under the License.
 //
 
-// Style
-#import "Three20/TTGlobalStyle.h" // For TT_ROUNDED
+#import "Three20/TTGlobalStyle.h"
 
-extern const CGFloat kArrowPointWidth;
-extern const CGFloat kArrowRadius;
-
-#define RD(_RADIUS) (_RADIUS == TT_ROUNDED ? round(fh/2) : _RADIUS)
+const CGFloat ttkRounded = -1;

@@ -26,6 +26,9 @@
 // UI (private)
 #import "Three20/TTLauncherScrollView.h"
 
+// Style
+#import "Three20/TTGlobalStyle.h"
+
 // Network
 #import "Three20/TTURLRequest.h"
 #import "Three20/TTUserInfo.h"

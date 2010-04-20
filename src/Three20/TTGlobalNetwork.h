@@ -21,7 +21,7 @@ typedef enum {
    TTURLRequestCachePolicyMemory  = 1,
    TTURLRequestCachePolicyDisk    = 2,
    TTURLRequestCachePolicyNetwork = 4,
-   TTURLRequestCachePolicyNoCache = 8,    
+   TTURLRequestCachePolicyNoCache = 8,
    TTURLRequestCachePolicyLocal
     = (TTURLRequestCachePolicyMemory | TTURLRequestCachePolicyDisk),
    TTURLRequestCachePolicyDefault
@@ -47,3 +47,7 @@ void TTNetworkRequestStarted();
  */
 void TTNetworkRequestStopped();
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Images
+
+#define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]

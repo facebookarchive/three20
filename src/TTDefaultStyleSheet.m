@@ -19,7 +19,6 @@
 #import "Three20/TTURLCache.h"
 
 #import "Three20/TTGlobalStyle.h"
-#import "Three20/TTGlobalUI.h"
 
 // Style
 #import "Three20/TTStyle.h"
@@ -48,6 +47,9 @@
 #import "Three20/TTRoundedRectangleShape.h"
 #import "Three20/TTRoundedLeftArrowShape.h"
 #import "Three20/TTRoundedRightArrowShape.h"
+
+// Network
+#import "Three20/TTGlobalNetwork.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

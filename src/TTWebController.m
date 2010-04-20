@@ -28,6 +28,7 @@
 #import "Three20/TTStyleSheet.h"
 
 // Network
+#import "Three20/TTGlobalNetwork.h"
 #import "Three20/TTURLCache.h"
 
 // Core

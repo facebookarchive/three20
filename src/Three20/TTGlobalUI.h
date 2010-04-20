@@ -18,7 +18,6 @@
 #import <UIKit/UIKit.h>
 
 // UI
-#import "Three20/UIColorAdditions.h"
 #import "Three20/UIFontAdditions.h"
 #import "Three20/UIImageAdditions.h"
 #import "Three20/UINavigationControllerAdditions.h"
@@ -176,12 +175,6 @@ extern const CGFloat ttkDefaultPortraitKeyboardHeight;
 extern const CGFloat ttkDefaultLandscapeKeyboardHeight;
 
 /**
- * A constant denoting that a corner should be rounded.
- * @const -1
- */
-extern const CGFloat ttkRounded;
-
-/**
  * The space between the edge of the screen and the cell edge in grouped table views.
  * @const 10 pixels
  */
@@ -196,20 +189,6 @@ extern const CGFloat ttkGroupedTableCellInset;
 
 #define TT_KEYBOARD_HEIGHT            ttkDefaultPortraitKeyboardHeight
 #define TT_LANDSCAPE_KEYBOARD_HEIGHT  ttkDefaultLandscapeKeyboardHeight
-
-#define TT_ROUNDED                    ttkRounded
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Color helpers
-
-#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
-#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 \
-                            alpha:(a)]
-
-#define HSVCOLOR(h,s,v) [UIColor colorWithHue:(h) saturation:(s) value:(v) alpha:1]
-#define HSVACOLOR(h,s,v,a) [UIColor colorWithHue:(h) saturation:(s) value:(v) alpha:(a)]
-
-#define RGBA(r,g,b,a) (r)/255.0, (g)/255.0, (b)/255.0, (a)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Animation
@@ -238,8 +217,3 @@ extern const CGFloat ttkDefaultFlipTransitionDuration;
 #define TT_TRANSITION_DURATION      ttkDefaultTransitionDuration
 #define TT_FAST_TRANSITION_DURATION ttkDefaultFastTransitionDuration
 #define TT_FLIP_TRANSITION_DURATION ttkDefaultFlipTransitionDuration
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Images
-
-#define TTIMAGE(_URL) [[TTURLCache sharedCache] imageForURL:_URL]

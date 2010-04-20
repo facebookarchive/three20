@@ -17,12 +17,12 @@
 #import "Three20/TTStyledTextTableCell.h"
 
 // UI
-#import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTGlobalUI.h"
+#import "Three20/TTStyledTextLabel.h"
 
 // Style
-#import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDefaultStyleSheet.h"
 #import "Three20/TTStyledText.h"
 
 // Core

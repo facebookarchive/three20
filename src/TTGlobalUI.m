@@ -30,8 +30,6 @@ const CGFloat ttkDefaultLandscapeToolbarHeight  = 33;
 const CGFloat ttkDefaultPortraitKeyboardHeight  = 216;
 const CGFloat ttkDefaultLandscapeKeyboardHeight = 160;
 
-const CGFloat ttkRounded = -1;
-
 const CGFloat ttkGroupedTableCellInset = 10.0;
 
 const CGFloat ttkDefaultTransitionDuration      = 0.3;
