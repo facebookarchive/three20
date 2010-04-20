@@ -16,18 +16,21 @@
 
 #import "Three20/TTPostController.h"
 
-#import "Three20/TTPostControllerDelegate.h"
-
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTGlobalCoreLocale.h"
+// UI
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTGlobalStyle.h"
-
-#import "Three20/TTStyleSheet.h"
+#import "Three20/TTPostControllerDelegate.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTView.h"
+
+// Style
+#import "Three20/TTGlobalStyle.h"
+#import "Three20/TTStyleSheet.h"
+
+// Core
+#import "Three20/TTGlobalCore.h"
+#import "Three20/TTGlobalCoreLocale.h"
 
 static const CGFloat kMarginX = 5;
 static const CGFloat kMarginY = 6;

@@ -16,12 +16,13 @@
 
 #import "Three20/TTActionSheetController.h"
 
+// UI
 #import "Three20/TTActionSheetControllerDelegate.h"
 #import "Three20/TTActionSheet.h"
-
-#import "Three20/TTGlobalCore.h"
-
 #import "Three20/TTNavigator.h"
+
+// Core
+#import "Three20/TTGlobalCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

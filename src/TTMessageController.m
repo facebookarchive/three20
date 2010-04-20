@@ -16,23 +16,25 @@
 
 #import "Three20/TTMessageController.h"
 
+// UI
+#import "Three20/TTGlobalUI.h"
+#import "Three20/TTGlobalUINavigator.h"
 #import "Three20/TTMessageControllerDelegate.h"
-
 #import "Three20/TTMessageRecipientField.h"
 #import "Three20/TTMessageTextField.h"
 #import "Three20/TTMessageSubjectField.h"
+#import "Three20/TTActivityLabel.h"
+#import "Three20/TTPickerTextField.h"
 #import "Three20/TTTextEditor.h"
+#import "Three20/TTTableViewDataSource.h"
 
+// Style
+#import "Three20/TTGlobalStyle.h"
+#import "Three20/TTDefaultStyleSheet.h"
+
+// Core
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTGlobalStyle.h"
-
-#import "Three20/TTTableViewDataSource.h"
-#import "Three20/TTDefaultStyleSheet.h"
-#import "Three20/TTPickerTextField.h"
-#import "Three20/TTActivityLabel.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTMessageTextField.h"
-
 
 /**
  * A field for the subject of the message. This field's value is used to set

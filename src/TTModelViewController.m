@@ -16,13 +16,15 @@
 
 #import "Three20/TTModelViewController.h"
 
+// UI
+#import "Three20/TTGlobalUI.h"
 #import "Three20/TTNavigator.h"
 
 // Network
 #import "Three20/TTModel.h"
 
+// Core
 #import "Three20/TTGlobalCore.h"
-#import "Three20/TTGlobalUI.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

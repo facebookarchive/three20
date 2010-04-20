@@ -14,13 +14,14 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTViewController.h"
 #import "Three20/TTTextEditorDelegate.h"
 
-#import "Three20/TTMessageField.h"
-
-@protocol TTTableViewDataSource, TTMessageControllerDelegate;
-@class TTPickerTextField, TTActivityLabel;
+@protocol TTTableViewDataSource;
+@protocol TTMessageControllerDelegate;
+@class TTPickerTextField;
+@class TTActivityLabel;
 @class TTTextEditor;
 
 /**

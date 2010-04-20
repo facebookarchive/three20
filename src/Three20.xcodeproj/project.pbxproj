@@ -1401,8 +1401,6 @@
 		6E94C7D4116DA1660012B12C /* Message Fields */ = {
 			isa = PBXGroup;
 			children = (
-				6E94C7D9116DA19A0012B12C /* TTMessageField.h */,
-				6E94C7D6116DA1810012B12C /* TTMessageField.m */,
 				6E94C80B116DA3920012B12C /* TTMessageRecipientField.h */,
 				6E94C808116DA3790012B12C /* TTMessageRecipientField.m */,
 				6E94C82C116DA4BF0012B12C /* TTMessageTextField.h */,
@@ -1840,6 +1838,8 @@
 				BEE34EAF0F495C4A008C826E /* TTMessageController.h */,
 				BEE34EAD0F495C42008C826E /* TTMessageController.m */,
 				6E94C7C2116DA0CF0012B12C /* TTMessageControllerDelegate.h */,
+				6E94C7D9116DA19A0012B12C /* TTMessageField.h */,
+				6E94C7D6116DA1810012B12C /* TTMessageField.m */,
 				6E94C7D4116DA1660012B12C /* Message Fields */,
 				BED037A2100920CC0083AC18 /* TTPopupViewController.h */,
 				BED037A0100920C60083AC18 /* TTPopupViewController.m */,

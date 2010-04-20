@@ -16,9 +16,11 @@
 
 #import "Three20/TTMessageRecipientField.h"
 
+// UI
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTMessageController.h"
 
+// Core
 #import "Three20/TTCorePreprocessorMacros.h"
 
 
