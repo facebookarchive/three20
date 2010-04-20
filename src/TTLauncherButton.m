@@ -14,15 +14,15 @@
 // limitations under the License.
 //
 
-// Copyright 2004-2009 Facebook. All Rights Reserved.
-
 #import "Three20/TTLauncherButton.h"
 
+// UI
 #import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalStyle.h"
-
 #import "Three20/TTLauncherItem.h"
 #import "Three20/TTLabel.h"
+
+// Style
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTStyleSheet.h"
 
 static const NSInteger kMaxBadgeNumber = 99;

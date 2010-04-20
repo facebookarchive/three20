@@ -1712,10 +1712,10 @@
 		BEC787A51040A783005C00CF /* Springboard */ = {
 			isa = PBXGroup;
 			children = (
-				6E62083E1176708100035C6C /* Private */,
 				BEC787471040A34E005C00CF /* TTLauncherView.h */,
 				BEC787451040A33A005C00CF /* TTLauncherView.m */,
 				6E6208321176702000035C6C /* TTLauncherViewDelegate.h */,
+				6E62083E1176708100035C6C /* Private */,
 				BEC787B41040A79F005C00CF /* TTLauncherItem.h */,
 				BEC787B61040A7AA005C00CF /* TTLauncherItem.m */,
 				BEC787961040A6EC005C00CF /* TTLauncherButton.h */,
