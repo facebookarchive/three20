@@ -16,22 +16,23 @@
 
 #import "Three20/TTImageView.h"
 
-#import "Three20/TTImageViewDelegate.h"
-
+// UI
 #import "Three20/TTGlobalUI.h"
-
+#import "Three20/TTImageViewDelegate.h"
 #import "Three20/TTImageLayer.h"
 
-#import "Three20/TTURLCache.h"
-#import "Three20/TTURLImageResponse.h"
-#import "Three20/TTURLRequest.h"
-#import "Three20/TTShape.h"
-
+// UI (private)
 #import "Three20/TTImageViewInternal.h"
 
 // Style
+#import "Three20/TTShape.h"
 #import "Three20/TTStyleContext.h"
 #import "Three20/TTContentStyle.h"
+
+// Network
+#import "Three20/TTURLCache.h"
+#import "Three20/TTURLImageResponse.h"
+#import "Three20/TTURLRequest.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

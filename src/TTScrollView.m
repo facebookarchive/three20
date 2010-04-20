@@ -16,10 +16,10 @@
 
 #import "Three20/TTScrollView.h"
 
+// UI
+#import "Three20/TTGlobalUI.h"
 #import "Three20/TTScrollViewDelegate.h"
 #import "Three20/TTScrollViewDataSource.h"
-
-#import "Three20/TTGlobalUI.h"
 
 static const NSInteger kOffscreenPages = 1;
 static const CGFloat kDefaultPageSpacing = 40.0;

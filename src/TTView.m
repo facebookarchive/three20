@@ -16,12 +16,13 @@
 
 #import "Three20/TTView.h"
 
-#import "Three20/TTGlobalCore.h"
-
 // Style
 #import "Three20/TTStyleContext.h"
 #import "Three20/TTStyle.h"
 #import "Three20/TTLayout.h"
+
+// Core
+#import "Three20/TTGlobalCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

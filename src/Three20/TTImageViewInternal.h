@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTImageView.h"
 
 @interface TTImageView (TTInternal)

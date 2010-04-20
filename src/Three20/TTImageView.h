@@ -14,7 +14,10 @@
 // limitations under the License.
 //
 
+// UI
 #import "Three20/TTView.h"
+
+// Network
 #import "Three20/TTURLRequestDelegate.h"
 
 @class TTURLRequest;
