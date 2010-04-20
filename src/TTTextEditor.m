@@ -23,6 +23,7 @@
 #import "Three20/TTTextEditorDelegate.h"
 
 // Style
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 static const CGFloat kPaddingX = 8;

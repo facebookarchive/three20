@@ -16,8 +16,11 @@
 
 #import "Three20/TTStyleSheet.h"
 
-#import "Three20/TTGlobalCore.h"
+// Style
 #import "Three20/TTDefaultStyleSheet.h"
+
+// Core
+#import "Three20/TTGlobalCore.h"
 
 static TTStyleSheet* gStyleSheet = nil;
 

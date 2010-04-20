@@ -1271,10 +1271,6 @@
 		6E5CEE0F117D90B800798CF8 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				BEA6B8E31013FC3400B83B3A /* UIFontAdditions.h */,
-				BEA6B8E51013FC4900B83B3A /* UIFontAdditions.m */,
-				BEAF21370F4D32E100D75F3B /* UIImageAdditions.h */,
-				BEAF211D0F4D329600D75F3B /* UIImageAdditions.m */,
 				BEAF213A0F4D32E100D75F3B /* UIViewAdditions.h */,
 				BEAF21200F4D329600D75F3B /* UIViewAdditions.m */,
 				BE8AA1920F428A4900FD8C43 /* UIViewControllerAdditions.h */,
@@ -1324,6 +1320,10 @@
 			children = (
 				BEAF21360F4D32E100D75F3B /* UIColorAdditions.h */,
 				BEAF211C0F4D329600D75F3B /* UIColorAdditions.m */,
+				BEA6B8E31013FC3400B83B3A /* UIFontAdditions.h */,
+				BEA6B8E51013FC4900B83B3A /* UIFontAdditions.m */,
+				BEAF21370F4D32E100D75F3B /* UIImageAdditions.h */,
+				BEAF211D0F4D329600D75F3B /* UIImageAdditions.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";

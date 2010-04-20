@@ -19,8 +19,6 @@
 // Style
 #import "Three20/TTStyleContext.h"
 #import "Three20/TTStyleDelegate.h"
-
-// UI
 #import "Three20/UIFontAdditions.h"
 
 // Core

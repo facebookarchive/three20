@@ -17,11 +17,9 @@
 #import "Three20/TTShadowStyle.h"
 
 // Style
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTStyleContext.h"
 #import "Three20/TTShape.h"
-
-// UI
-#import "Three20/TTGlobalUI.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

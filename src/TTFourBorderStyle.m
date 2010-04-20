@@ -16,11 +16,12 @@
 
 #import "Three20/TTFourBorderStyle.h"
 
-#import "Three20/TTStyleInternal.h"
-
 // Style
 #import "Three20/TTShape.h"
 #import "Three20/TTStyleContext.h"
+
+// Style (private)
+#import "Three20/TTStyleInternal.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

@@ -16,14 +16,13 @@
 
 #import "Three20/TTBevelBorderStyle.h"
 
-#import "Three20/TTStyleInternal.h"
-
-// UI
-#import "Three20/UIColorAdditions.h"
-
 // Style
 #import "Three20/TTShape.h"
 #import "Three20/TTStyleContext.h"
+#import "Three20/UIColorAdditions.h"
+
+// Style (private)
+#import "Three20/TTStyleInternal.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

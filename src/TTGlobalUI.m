@@ -62,26 +62,6 @@ BOOL TTOSVersionIsAtLeast(float version) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect TTRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
-  return CGRectOffset(TTRectContract(rect, dx, dy), dx, dy);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-CGRect TTRectInset(CGRect rect, UIEdgeInsets insets) {
-  return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
-                    rect.size.width - (insets.left + insets.right),
-                    rect.size.height - (insets.top + insets.bottom));
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsKeyboardVisible() {
   // Operates on the assumption that the keyboard is visible if and only if there is a first
   // responder; i.e. a control responding to key events

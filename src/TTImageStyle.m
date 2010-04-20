@@ -20,8 +20,6 @@
 #import "Three20/TTStyleContext.h"
 #import "Three20/TTStyleDelegate.h"
 #import "Three20/TTShape.h"
-
-// UI
 #import "Three20/UIImageAdditions.h"
 
 // Network
