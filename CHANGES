@@ -1,3 +1,13 @@
+Changes since April 09, 2010
+
+- [NEW] New +Additions library header files.
+
+- [NEW] Network unit tests.
+
+- [NEW] Nib support moved to a separate 'nibs' branch.
+
+- [DOX] Style consistency throughout the entire framework.
+
 Changes since March 30, 2010
 
 - [NEW] New showTableShadows option for table gutter shadows.
