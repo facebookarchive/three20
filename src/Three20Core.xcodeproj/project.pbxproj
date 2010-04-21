@@ -50,6 +50,8 @@
 		6E5CEE6A117E2E9900798CF8 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEE41117E2E5E00798CF8 /* TTXMLParser.m */; };
 		6E5CEE6B117E2E9A00798CF8 /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEE25117E2E5E00798CF8 /* TTMarkupStripper.m */; };
 		6E5CEE6C117E2E9B00798CF8 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEE3B117E2E5E00798CF8 /* TTGlobalCorePaths.m */; };
+		6E5F1C0A117EB2C3004BEBA9 /* Three20Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C08117EB2C3004BEBA9 /* Three20Core.h */; };
+		6E5F1C0B117EB2C3004BEBA9 /* Three20Core+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C09117EB2C3004BEBA9 /* Three20Core+Additions.h */; };
 		6EEFB80611627CC6009B479E /* Three20Core_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6EEFB80511627CC6009B479E /* Three20Core_Prefix.pch */; };
 		EB9E6C7D10B6A98100DE563C /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */; };
 		EB9E6E8A10B7324900DE563C /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */; };
@@ -86,6 +88,8 @@
 		6E5CEE3E117E2E5E00798CF8 /* TTDebugFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebugFlags.h; path = Three20/TTDebugFlags.h; sourceTree = "<group>"; };
 		6E5CEE40117E2E5E00798CF8 /* TTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTXMLParser.h; path = Three20/TTXMLParser.h; sourceTree = "<group>"; };
 		6E5CEE41117E2E5E00798CF8 /* TTXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTXMLParser.m; sourceTree = "<group>"; };
+		6E5F1C08117EB2C3004BEBA9 /* Three20Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core.h; path = Three20/Three20Core.h; sourceTree = "<group>"; };
+		6E5F1C09117EB2C3004BEBA9 /* Three20Core+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Core+Additions.h"; path = "Three20/Three20Core+Additions.h"; sourceTree = "<group>"; };
 		6EEFB80511627CC6009B479E /* Three20Core_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Three20Core_Prefix.pch; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20Core.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +128,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				6E5F1C08117EB2C3004BEBA9 /* Three20Core.h */,
+				6E5F1C09117EB2C3004BEBA9 /* Three20Core+Additions.h */,
 				6E5CEE21117E2E5E00798CF8 /* Core */,
 				EB9E6C7910B6A94700DE563C /* Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -258,6 +264,8 @@
 				6E5CEE59117E2E5E00798CF8 /* TTDebug.h in Headers */,
 				6E5CEE5B117E2E5E00798CF8 /* TTDebugFlags.h in Headers */,
 				6E5CEE5C117E2E5E00798CF8 /* TTXMLParser.h in Headers */,
+				6E5F1C0A117EB2C3004BEBA9 /* Three20Core.h in Headers */,
+				6E5F1C0B117EB2C3004BEBA9 /* Three20Core+Additions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
