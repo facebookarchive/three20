@@ -24,7 +24,7 @@
 #import "Three20/TTGlobalCorePaths.h"
 #import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"
-//#import "Three20/NSStringAdditions.h"
+#import "Three20/NSStringAdditions.h"
 
 static const  CGFloat   kLargeImageSize   = 600 * 400;
 static        NSString* kDefaultCacheName = @"Three20";
@@ -183,10 +183,12 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)storeImage:(UIImage*)image forURL:(NSString*)URL force:(BOOL)force {
-  if (image && (force || !_disableImageCache)) {
+  if (nil != image && (force || !_disableImageCache)) {
     int pixelCount = image.size.width * image.size.height;
+
     if (force || pixelCount < kLargeImageSize) {
       _totalPixelCount += pixelCount;
+
       if (_totalPixelCount > _maxPixelCount && _maxPixelCount) {
         [self expireImagesFromMemory];
       }
@@ -194,6 +196,7 @@ static NSMutableDictionary* gNamedCaches = nil;
       if (!_imageCache) {
         _imageCache = [[NSMutableDictionary alloc] init];
       }
+
       if (!_imageSortedList) {
         _imageSortedList = [[NSMutableArray alloc] init];
       }
@@ -332,15 +335,18 @@ static NSMutableDictionary* gNamedCaches = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)imageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
   UIImage* image = [_imageCache objectForKey:URL];
-  if (!image && fromDisk) {
+
+  if (nil == image && fromDisk) {
     if (TTIsBundleURL(URL)) {
       image = [self loadImageFromBundle:URL];
       [self storeImage:image forURL:URL];
+
     } else if (TTIsDocumentsURL(URL)) {
       image = [self loadImageFromDocuments:URL];
       [self storeImage:image forURL:URL];
     }
   }
+
   return image;
 }
 
