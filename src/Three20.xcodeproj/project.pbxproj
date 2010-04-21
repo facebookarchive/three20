@@ -136,6 +136,9 @@
 		6E5F1DE9117EC61F004BEBA9 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */; };
 		6E5F1DEE117EC626004BEBA9 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
 		6E5F1DF5117EC62F004BEBA9 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F540F352E64000DE5D2 /* TTURLCache.m */; };
+		6E5F1E2D117F701F004BEBA9 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F560F352E64000DE5D2 /* TTURLRequest.m */; };
+		6E5F1E2E117F7022004BEBA9 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFB6C811627188009B479E /* TTURLRequestModel.m */; };
+		6E5F1E3D117F70EF004BEBA9 /* CoreXMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D7F117EC29C004BEBA9 /* CoreXMLTests.m */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -2593,6 +2596,9 @@
 				6E5F1DE9117EC61F004BEBA9 /* TTURLRequestQueue.m in Sources */,
 				6E5F1DEE117EC626004BEBA9 /* TTUserInfo.m in Sources */,
 				6E5F1DF5117EC62F004BEBA9 /* TTURLCache.m in Sources */,
+				6E5F1E2D117F701F004BEBA9 /* TTURLRequest.m in Sources */,
+				6E5F1E2E117F7022004BEBA9 /* TTURLRequestModel.m in Sources */,
+				6E5F1E3D117F70EF004BEBA9 /* CoreXMLTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

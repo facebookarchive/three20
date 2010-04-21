@@ -26,6 +26,8 @@
 
 // Network
 #import "Three20/TTModel.h"
+#import "Three20/TTURLRequest.h"
+#import "Three20/TTURLRequestModel.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"
@@ -106,6 +108,41 @@
 
   TT_RELEASE_SAFELY(mockResults);
   TT_RELEASE_SAFELY(model);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTURLRequest
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testTTURLRequestModel_defaultRequest {
+  TTURLRequestModel* model = [[TTURLRequestModel alloc] init];
+
+  NSBundle* testBundle = [NSBundle bundleWithIdentifier:@"com.facebook.three20.UnitTests"];
+  STAssertTrue(nil != testBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
+
+  NSString* xmlDataPath = [[testBundle bundlePath]
+                           stringByAppendingPathComponent:@"testcase.xml"];
+
+  TTURLRequest* request = [[TTURLRequest alloc] initWithURL:xmlDataPath delegate:nil];
+
+  STAssertEquals(request.urlPath, xmlDataPath, @"The url path should equal the passed-in path.");
+
+  STAssertNil(request.httpMethod, @"The default http method is nil.");
+  STAssertNil(request.httpBody, @"The default http body is nil.");
+  STAssertNil(request.contentType, @"The default content type is nil.");
+  STAssertEquals([request.parameters count], (NSUInteger)0,
+                 @"There should not be any parameters by default.");
+  STAssertEquals([request.headers count], (NSUInteger)0,
+                 @"There should not be any custom header properties by default.");
+  STAssertEquals(request.cachePolicy, TTURLRequestCachePolicyDefault,
+                 @"The cache policy by default, should be the default.");
+
+  TT_RELEASE_SAFELY(model);
+  TT_RELEASE_SAFELY(request);
 }
 
 
