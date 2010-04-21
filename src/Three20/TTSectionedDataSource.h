@@ -44,7 +44,7 @@
 /**
  *  `items`
  *   
- *    An array of arrays, where each array is the contents of 
+ *    An array of arrays, where each array is the contents of a 
  *    section, to be listed under the section title held in the
  *    corresponding index of the `section` array.
  *
