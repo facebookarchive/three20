@@ -58,13 +58,18 @@
     //TTDPRINT(@"Response text: %@", response.text);
     TTStyledText* styledText = [TTStyledText textFromXHTML:
                                 [NSString stringWithFormat:@"%@\n<b>%@</b>",
-                                 [tweet.text stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"],
+                                 [[tweet.text stringByReplacingOccurrencesOfString:@"&"
+                                                                        withString:@"&amp;"]
+                                  stringByReplacingOccurrencesOfString:@"<"
+                                  withString:@"&lt;"],
                                  [tweet.created formatRelativeTime]]
                                                 lineBreaks:YES URLs:YES];
+    // If this asserts, it's likely that the tweet.text contains an HTML character that caused
+    // the XML parser to fail.
     TTDASSERT(nil != styledText);
     [items addObject:[TTTableStyledTextItem itemWithText:styledText]];
   }
-  
+
   self.items = items;
   TT_RELEASE_SAFELY(items);
 }
