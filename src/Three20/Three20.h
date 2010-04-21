@@ -193,6 +193,20 @@
 
 #import "Three20/TTRecursiveProgress.h"
 
+// Additions
+// TODO (jverkoey): Remove these additions by May 20, 2010.
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIViewControllerAdditions.h"
+#import "Three20/UINavigationControllerAdditions.h"
+#import "Three20/UINavigationControllerAdditions.h"
+#import "Three20/UITabBarControllerAdditions.h"
+#import "Three20/UITableViewAdditions.h"
+#import "Three20/UIWebViewAdditions.h"
+#import "Three20/UIToolbarAdditions.h"
+#import "Three20/UIWindowAdditions.h"
+#import "Three20/UINSStringAdditions.h"
+#import "Three20/UINSObjectAdditions.h"
+
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTPosition.h"
@@ -259,3 +273,9 @@
 #import "Three20/TTStyledImageFrame.h"
 
 #import "Three20/TTStyledTextParser.h"
+
+// Additions
+// TODO (jverkoey): Remove these additions by May 20, 2010.
+#import "Three20/UIColorAdditions.h"
+#import "Three20/UIFontAdditions.h"
+#import "Three20/UIImageAdditions.h"

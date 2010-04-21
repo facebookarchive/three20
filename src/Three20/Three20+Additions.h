@@ -14,20 +14,9 @@
 // limitations under the License.
 //
 
-// Core
+#import "Three20/Three20.h"
 
-// - Global
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTGlobalCorePaths.h"
-#import "Three20/TTDebug.h"
-
-// - Classes
-#import "Three20/TTXMLParser.h"
-
-// - Additions
-// TODO (jverkoey): Remove these additions by May 20, 2010.
+// Core Additions
 #import "Three20/NSObjectAdditions.h"
 #import "Three20/NSDataAdditions.h"
 #import "Three20/NSStringAdditions.h"
@@ -35,3 +24,21 @@
 #import "Three20/NSMutableArrayAdditions.h"
 #import "Three20/NSMutableDictionaryAdditions.h"
 #import "Three20/NSDateAdditions.h"
+
+// Style Additions
+#import "Three20/UIColorAdditions.h"
+#import "Three20/UIFontAdditions.h"
+#import "Three20/UIImageAdditions.h"
+
+// UI Additions
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIViewControllerAdditions.h"
+#import "Three20/UINavigationControllerAdditions.h"
+#import "Three20/UINavigationControllerAdditions.h"
+#import "Three20/UITabBarControllerAdditions.h"
+#import "Three20/UITableViewAdditions.h"
+#import "Three20/UIWebViewAdditions.h"
+#import "Three20/UIToolbarAdditions.h"
+#import "Three20/UIWindowAdditions.h"
+#import "Three20/UINSStringAdditions.h"
+#import "Three20/UINSObjectAdditions.h"

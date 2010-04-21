@@ -125,6 +125,8 @@
 		6E5CEEBE117E2F4900798CF8 /* Three20Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEEBC117E2F4900798CF8 /* Three20Network.h */; };
 		6E5CEFA6117E47C900798CF8 /* TTGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */; };
 		6E5CF241117E90EE00798CF8 /* TTURLRequestCachePolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */; };
+		6E5F1BA1117E9E9E004BEBA9 /* Three20+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */; };
+		6E5F1BA3117E9F99004BEBA9 /* Three20Core+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -611,6 +613,8 @@
 		6E5CEEBC117E2F4900798CF8 /* Three20Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Network.h; path = Three20/Three20Network.h; sourceTree = "<group>"; };
 		6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalStyle.m; sourceTree = "<group>"; };
 		6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestCachePolicy.h; path = Three20/TTURLRequestCachePolicy.h; sourceTree = "<group>"; };
+		6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20+Additions.h"; path = "Three20/Three20+Additions.h"; sourceTree = "<group>"; };
+		6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Core+Additions.h"; path = "Three20/Three20Core+Additions.h"; sourceTree = "<group>"; };
 		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
 		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
 		6E6206AF117648F900035C6C /* TTTableImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItemCell.m; sourceTree = "<group>"; };
@@ -1003,6 +1007,7 @@
 			children = (
 				6E5CEE9B117E2F2C00798CF8 /* Library Headers */,
 				BEF31F6F0F352E64000DE5D2 /* Three20.h */,
+				6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */,
 				6E92494D112C6F7000531F03 /* Three20_Prefix.pch */,
 				6E14D8EA10E0B5F100445222 /* Core */,
 				EBAE96F210D1F5B300F497CA /* Network */,
@@ -1313,6 +1318,7 @@
 			isa = PBXGroup;
 			children = (
 				6E5CEEBB117E2F4900798CF8 /* Three20Core.h */,
+				6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */,
 				6E5CEEBC117E2F4900798CF8 /* Three20Network.h */,
 			);
 			name = "Library Headers";
@@ -2217,6 +2223,8 @@
 				6E5CEEBD117E2F4900798CF8 /* Three20Core.h in Headers */,
 				6E5CEEBE117E2F4900798CF8 /* Three20Network.h in Headers */,
 				6E5CF241117E90EE00798CF8 /* TTURLRequestCachePolicy.h in Headers */,
+				6E5F1BA1117E9E9E004BEBA9 /* Three20+Additions.h in Headers */,
+				6E5F1BA3117E9F99004BEBA9 /* Three20Core+Additions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

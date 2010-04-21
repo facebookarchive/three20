@@ -14,20 +14,9 @@
 // limitations under the License.
 //
 
-// Core
+#import "Three20/Three20Core.h"
 
-// - Global
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTGlobalCorePaths.h"
-#import "Three20/TTDebug.h"
-
-// - Classes
-#import "Three20/TTXMLParser.h"
-
-// - Additions
-// TODO (jverkoey): Remove these additions by May 20, 2010.
+// Additions
 #import "Three20/NSObjectAdditions.h"
 #import "Three20/NSDataAdditions.h"
 #import "Three20/NSStringAdditions.h"
