@@ -126,21 +126,16 @@
 		6E5CF241117E90EE00798CF8 /* TTURLRequestCachePolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */; };
 		6E5F1BA1117E9E9E004BEBA9 /* Three20+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */; };
 		6E5F1BA3117E9F99004BEBA9 /* Three20Core+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */; };
-		6E5F1D59117EC039004BEBA9 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFB6C811627188009B479E /* TTURLRequestModel.m */; };
-		6E5F1D5A117EC03B004BEBA9 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F560F352E64000DE5D2 /* TTURLRequest.m */; };
 		6E5F1D5B117EC03E004BEBA9 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE52E993100D8EF800E03DB7 /* TTModel.m */; };
-		6E5F1D5C117EC040004BEBA9 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */; };
-		6E5F1D5D117EC041004BEBA9 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E8D81122AB7900276F63 /* TTRequestLoader.m */; };
-		6E5F1D5E117EC041004BEBA9 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F540F352E64000DE5D2 /* TTURLCache.m */; };
-		6E5F1D5F117EC042004BEBA9 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D7E610E09A2300445222 /* TTURLDataResponse.m */; };
-		6E5F1D60117EC044004BEBA9 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D81210E0A12700445222 /* TTURLImageResponse.m */; };
-		6E5F1D61117EC046004BEBA9 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */; };
-		6E5F1D62117EC046004BEBA9 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */; };
-		6E5F1D63117EC047004BEBA9 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
 		6E5F1D6A117EC099004BEBA9 /* TTGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */; };
 		6E5F1D9C117EC35C004BEBA9 /* MockModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1D9A117EC35C004BEBA9 /* MockModelDelegate.h */; };
 		6E5F1D9F117EC3C3004BEBA9 /* MockModelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D9B117EC35C004BEBA9 /* MockModelDelegate.m */; };
 		6E5F1DBA117EC576004BEBA9 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D7D117EC287004BEBA9 /* NetworkModelTests.m */; };
+		6E5F1DDD117EC604004BEBA9 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */; };
+		6E5F1DE0117EC60E004BEBA9 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E8D81122AB7900276F63 /* TTRequestLoader.m */; };
+		6E5F1DE9117EC61F004BEBA9 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */; };
+		6E5F1DEE117EC626004BEBA9 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
+		6E5F1DF5117EC62F004BEBA9 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F540F352E64000DE5D2 /* TTURLCache.m */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -2589,20 +2584,15 @@
 				6E8F7849110FD80C00069B64 /* TTDebug.m in Sources */,
 				6E14D96410E0BAD300445222 /* TTGlobalCorePaths.m in Sources */,
 				6E14D98E10E0BC4E00445222 /* TTXMLParser.m in Sources */,
-				6E5F1D59117EC039004BEBA9 /* TTURLRequestModel.m in Sources */,
-				6E5F1D5A117EC03B004BEBA9 /* TTURLRequest.m in Sources */,
 				6E5F1D5B117EC03E004BEBA9 /* TTModel.m in Sources */,
-				6E5F1D5C117EC040004BEBA9 /* TTGlobalNetwork.m in Sources */,
-				6E5F1D5D117EC041004BEBA9 /* TTRequestLoader.m in Sources */,
-				6E5F1D5E117EC041004BEBA9 /* TTURLCache.m in Sources */,
-				6E5F1D5F117EC042004BEBA9 /* TTURLDataResponse.m in Sources */,
-				6E5F1D60117EC044004BEBA9 /* TTURLImageResponse.m in Sources */,
-				6E5F1D61117EC046004BEBA9 /* TTURLRequestQueue.m in Sources */,
-				6E5F1D62117EC046004BEBA9 /* TTURLXMLResponse.m in Sources */,
-				6E5F1D63117EC047004BEBA9 /* TTUserInfo.m in Sources */,
 				6E5F1D6A117EC099004BEBA9 /* TTGlobalStyle.m in Sources */,
 				6E5F1D9F117EC3C3004BEBA9 /* MockModelDelegate.m in Sources */,
 				6E5F1DBA117EC576004BEBA9 /* NetworkModelTests.m in Sources */,
+				6E5F1DDD117EC604004BEBA9 /* TTGlobalNetwork.m in Sources */,
+				6E5F1DE0117EC60E004BEBA9 /* TTRequestLoader.m in Sources */,
+				6E5F1DE9117EC61F004BEBA9 /* TTURLRequestQueue.m in Sources */,
+				6E5F1DEE117EC626004BEBA9 /* TTUserInfo.m in Sources */,
+				6E5F1DF5117EC62F004BEBA9 /* TTURLCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
