@@ -41,6 +41,21 @@
  */
 + (TTSectionedDataSource*)dataSourceWithArrays:(id)object,...;
 
+/**
+ *  `items`
+ *   
+ *    An array of arrays, where each array is the contents of 
+ *    section, to be listed under the section title held in the
+ *    corresponding index of the `section` array.
+ *
+ *  `sections` 
+ *
+ *    An array of strings, where each string is the title
+ *    of a section.
+ *
+ *  The `items` and `sections` arrays should be of equal length. 
+ *
+ */
 + (TTSectionedDataSource*)dataSourceWithItems:(NSArray*)items sections:(NSArray*)sections;
 
 - (id)initWithItems:(NSArray*)items sections:(NSArray*)sections;
