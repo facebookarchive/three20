@@ -27,7 +27,7 @@
 #import "Three20/TTXMLParser.h"
 
 // - Additions
-// TODO (jverkoey): Remove these additions by May 20, 2010.
+// TODO (jverkoey): Remove these additions after May 20, 2010.
 #import "Three20/NSObjectAdditions.h"
 #import "Three20/NSDataAdditions.h"
 #import "Three20/NSStringAdditions.h"

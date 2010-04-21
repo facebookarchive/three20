@@ -194,7 +194,7 @@
 #import "Three20/TTRecursiveProgress.h"
 
 // Additions
-// TODO (jverkoey): Remove these additions by May 20, 2010.
+// TODO (jverkoey): Remove these additions after May 20, 2010.
 #import "Three20/UIViewAdditions.h"
 #import "Three20/UIViewControllerAdditions.h"
 #import "Three20/UINavigationControllerAdditions.h"
@@ -275,7 +275,7 @@
 #import "Three20/TTStyledTextParser.h"
 
 // Additions
-// TODO (jverkoey): Remove these additions by May 20, 2010.
+// TODO (jverkoey): Remove these additions after May 20, 2010.
 #import "Three20/UIColorAdditions.h"
 #import "Three20/UIFontAdditions.h"
 #import "Three20/UIImageAdditions.h"
