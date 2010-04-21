@@ -127,6 +127,19 @@
 		6E5CF241117E90EE00798CF8 /* TTURLRequestCachePolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */; };
 		6E5F1BA1117E9E9E004BEBA9 /* Three20+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */; };
 		6E5F1BA3117E9F99004BEBA9 /* Three20Core+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */; };
+		6E5F1D58117EC025004BEBA9 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D55117EBF9F004BEBA9 /* NetworkModelTests.m */; };
+		6E5F1D59117EC039004BEBA9 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFB6C811627188009B479E /* TTURLRequestModel.m */; };
+		6E5F1D5A117EC03B004BEBA9 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F560F352E64000DE5D2 /* TTURLRequest.m */; };
+		6E5F1D5B117EC03E004BEBA9 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE52E993100D8EF800E03DB7 /* TTModel.m */; };
+		6E5F1D5C117EC040004BEBA9 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */; };
+		6E5F1D5D117EC041004BEBA9 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E8D81122AB7900276F63 /* TTRequestLoader.m */; };
+		6E5F1D5E117EC041004BEBA9 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F540F352E64000DE5D2 /* TTURLCache.m */; };
+		6E5F1D5F117EC042004BEBA9 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D7E610E09A2300445222 /* TTURLDataResponse.m */; };
+		6E5F1D60117EC044004BEBA9 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D81210E0A12700445222 /* TTURLImageResponse.m */; };
+		6E5F1D61117EC046004BEBA9 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */; };
+		6E5F1D62117EC046004BEBA9 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */; };
+		6E5F1D63117EC047004BEBA9 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
+		6E5F1D6A117EC099004BEBA9 /* TTGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -615,6 +628,7 @@
 		6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestCachePolicy.h; path = Three20/TTURLRequestCachePolicy.h; sourceTree = "<group>"; };
 		6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20+Additions.h"; path = "Three20/Three20+Additions.h"; sourceTree = "<group>"; };
 		6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Core+Additions.h"; path = "Three20/Three20Core+Additions.h"; sourceTree = "<group>"; };
+		6E5F1D55117EBF9F004BEBA9 /* NetworkModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkModelTests.m; sourceTree = "<group>"; };
 		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
 		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
 		6E6206AF117648F900035C6C /* TTTableImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItemCell.m; sourceTree = "<group>"; };
@@ -1337,6 +1351,14 @@
 			name = Additions;
 			sourceTree = "<group>";
 		};
+		6E5F1D53117EBF85004BEBA9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6E5F1D55117EBF9F004BEBA9 /* NetworkModelTests.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		6E62083E1176708100035C6C /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -1907,6 +1929,7 @@
 			children = (
 				6E14D93910E0B99E00445222 /* Resources */,
 				EB9E6C7A10B6A96400DE563C /* Core */,
+				6E5F1D53117EBF85004BEBA9 /* Network */,
 				EB4CDA5D10CADB0500A856E5 /* UI */,
 				EB9E6C6310B6A8F800DE563C /* UnitTests-Info.plist */,
 			);
@@ -2553,6 +2576,19 @@
 				6E14D93810E0B92900445222 /* CoreXMLTests.m in Sources */,
 				6E14D96410E0BAD300445222 /* TTGlobalCorePaths.m in Sources */,
 				6E14D98E10E0BC4E00445222 /* TTXMLParser.m in Sources */,
+				6E5F1D58117EC025004BEBA9 /* NetworkModelTests.m in Sources */,
+				6E5F1D59117EC039004BEBA9 /* TTURLRequestModel.m in Sources */,
+				6E5F1D5A117EC03B004BEBA9 /* TTURLRequest.m in Sources */,
+				6E5F1D5B117EC03E004BEBA9 /* TTModel.m in Sources */,
+				6E5F1D5C117EC040004BEBA9 /* TTGlobalNetwork.m in Sources */,
+				6E5F1D5D117EC041004BEBA9 /* TTRequestLoader.m in Sources */,
+				6E5F1D5E117EC041004BEBA9 /* TTURLCache.m in Sources */,
+				6E5F1D5F117EC042004BEBA9 /* TTURLDataResponse.m in Sources */,
+				6E5F1D60117EC044004BEBA9 /* TTURLImageResponse.m in Sources */,
+				6E5F1D61117EC046004BEBA9 /* TTURLRequestQueue.m in Sources */,
+				6E5F1D62117EC046004BEBA9 /* TTURLXMLResponse.m in Sources */,
+				6E5F1D63117EC047004BEBA9 /* TTUserInfo.m in Sources */,
+				6E5F1D6A117EC099004BEBA9 /* TTGlobalStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

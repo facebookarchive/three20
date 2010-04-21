@@ -32,7 +32,6 @@
 
 @synthesize loadedTime  = _loadedTime;
 @synthesize cacheKey    = _cacheKey;
-@synthesize hasNoMore   = _hasNoMore;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,11 +80,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isOutdated {
-  if (nil == _cacheKey && nil != _loadedTime) {
-    return YES;
-
-  } else if (nil == _cacheKey) {
-    return NO;
+  if (nil == _cacheKey) {
+    return nil != _loadedTime;
 
   } else {
     NSDate* loadedTime = self.loadedTime;

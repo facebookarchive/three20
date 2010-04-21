@@ -17,13 +17,22 @@
 // See: http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/905-A-Unit-Test_Result_Macro_Reference/unit-test_results.html#//apple_ref/doc/uid/TP40007959-CH21-SW2
 // for unit test macros.
 
+// See Also: http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/135-Unit_Testing_Applications/unit_testing_applications.html
+
 #import <SenTestingKit/SenTestingKit.h>
-#import <UIKit/UIKit.h>
 
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalStyle.h"
+// Network
+#import "Three20/TTModel.h"
 
-@interface UIGlobalTests : SenTestCase {
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
+
+/**
+ * Unit tests for the Network model found within Three20. These tests are a part of
+ * the comprehensive test suite for the Network functionality of the library.
+ */
+
+@interface NetworkModelTests : SenTestCase {
 }
 
 @end
@@ -32,30 +41,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation UIGlobalTests
+@implementation NetworkModelTests
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark CGRect Transformations
+#pragma mark TTModel
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testRects {
-  STAssertTrue(CGRectEqualToRect(
-    TTRectContract(CGRectMake(0, 0, 5, 5), 5, 5),
-    CGRectMake(0, 0, 0, 0)),
-    @"The two rects are not equal");
+- (void)testTTModel_messages {
+  TTModel* model = [[TTModel alloc] init];
 
-  STAssertTrue(CGRectEqualToRect(
-    TTRectShift(CGRectMake(0, 0, 5, 5), 5, 5),
-    CGRectMake(5, 5, 0, 0)),
-    @"The two rects are not equal");
+  STAssertTrue(model.isLoaded, @"A TTModel is supposed to be loaded by default.");
+  STAssertFalse(model.isLoading, @"A TTModel is not supposed to be loading by default.");
+  STAssertFalse(model.isLoadingMore, @"A TTModel is not supposed to be loading more by default.");
+  STAssertFalse(model.isOutdated, @"A TTModel is not supposed to be outdated by default.");
 
-  STAssertTrue(CGRectEqualToRect(
-    TTRectInset(CGRectMake(0, 0, 5, 5), UIEdgeInsetsMake(1, 1, 1, 1)),
-    CGRectMake(1, 1, 3, 3)),
-    @"The two rects are not equal");
+  TT_RELEASE_SAFELY(model);
 }
 
 

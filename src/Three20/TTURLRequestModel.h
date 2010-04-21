@@ -26,10 +26,11 @@
  */
 @interface TTURLRequestModel : TTModel <TTURLRequestDelegate> {
   TTURLRequest* _loadingRequest;
+
   NSDate*       _loadedTime;
   NSString*     _cacheKey;
+
   BOOL          _isLoadingMore;
-  BOOL          _hasNoMore;
 }
 
 /**
@@ -41,8 +42,6 @@
  * Valid upon completion of the URL request. Represents the request's cache key.
  */
 @property (nonatomic, copy)   NSString* cacheKey;
-
-@property (nonatomic)         BOOL      hasNoMore;
 
 /**
  * Resets the model to its original state before any data was loaded.
