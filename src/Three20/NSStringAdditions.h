@@ -16,8 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Three20/TTCorePreprocessorMacros.h"
-
 /**
  * Doxygen does not handle categories very well, so please refer to the .m file in general
  * for the documentation that is reflected on api.three20.info.
@@ -28,16 +26,6 @@
  * Determines if the string contains only whitespace and newlines.
  */
 - (BOOL)isWhitespaceAndNewlines;
-
-/**
- * Determines if the string contains only whitespace.
- *
- * Deprecated due to the name not being clear. The new isWhiteSpcaeAndNewlines method is
- * functionality identical, yet more proper in its naming.
- *
- * @deprecated
- */
-- (BOOL)isWhitespace __TTDEPRECATED_METHOD;
 
 /**
  * Determines if the string is empty or contains only whitespace.
