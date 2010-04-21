@@ -16,7 +16,7 @@
 
 #import "Three20/TTStyledLinkNode.h"
 
-// Network
+// UI
 #import "Three20/TTNavigator.h"
 
 // Core
@@ -91,7 +91,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)performDefaultAction {
-  if (_URL) {
+  if (nil != _URL) {
+    // TODO (jverkoey 04/20/2010): Remove dependency on UI.
     TTOpenURL(_URL);
   }
 }

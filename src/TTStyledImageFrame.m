@@ -21,8 +21,6 @@
 #import "Three20/TTStyleContext.h"
 #import "Three20/TTShape.h"
 #import "Three20/TTImageStyle.h"
-
-// UI
 #import "Three20/UIImageAdditions.h"
 
 // Core

@@ -16,10 +16,8 @@
 
 #import "Three20/TTStyledLayout.h"
 
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalStyle.h"
-
 // Style
+#import "Three20/TTGlobalStyle.h"
 #import "Three20/TTStyledFrame.h"
 #import "Three20/TTStyleSheet.h"
 #import "Three20/TTBoxStyle.h"
@@ -28,6 +26,7 @@
 #import "Three20/TTStyledInlineFrame.h"
 #import "Three20/TTStyledTextFrame.h"
 #import "Three20/TTStyledImageFrame.h"
+#import "Three20/UIFontAdditions.h"
 
 // Styled nodes
 #import "Three20/TTStyledImageNode.h"

@@ -16,10 +16,11 @@
 
 #import "Three20/TTStyledElement.h"
 
-#import "Three20/TTStyledNodeInternal.h"
-
 // Style
 #import "Three20/TTStyledTextNode.h"
+
+// Style (private)
+#import "Three20/TTStyledNodeInternal.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

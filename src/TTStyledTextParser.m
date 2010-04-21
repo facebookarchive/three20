@@ -16,8 +16,6 @@
 
 #import "Three20/TTStyledTextParser.h"
 
-#import "Three20/TTGlobalCore.h"
-
 // Style
 #import "Three20/TTStyledElement.h"
 #import "Three20/TTStyledTextNode.h"
@@ -29,6 +27,9 @@
 #import "Three20/TTStyledButtonNode.h"
 #import "Three20/TTStyledItalicNode.h"
 #import "Three20/TTStyledImageNode.h"
+
+// Core
+#import "Three20/TTGlobalCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
