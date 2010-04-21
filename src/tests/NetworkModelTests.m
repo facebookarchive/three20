@@ -74,14 +74,35 @@
 
   [model.delegates addObject:mockResults];
 
-  [model didStartLoad];
-  STAssertTrue(mockResults.isLoading, @"The delegate is supposed to be loading now.");
+  // Successful loading
+  {
+    [model didStartLoad];
+    STAssertTrue(mockResults.isLoading, @"The delegate is supposed to be loading now.");
 
-  // The default model implementation doesn't provide any state, it's perpetually "loaded".
-  STAssertFalse(model.isLoading, @"A TTModel is not supposed to be loading by default.");
+    // The default model implementation doesn't provide any state, it's perpetually "loaded".
+    STAssertFalse(model.isLoading, @"A TTModel is not supposed to be loading by default.");
 
-  [model didFinishLoad];
-  STAssertFalse(mockResults.isLoading, @"The delegate is supposed to be finished loading now.");
+    [model didFinishLoad];
+    STAssertFalse(mockResults.isLoading, @"The delegate is supposed to be finished loading now.");
+  }
+
+  // Cancellation
+  {
+    [model didStartLoad];
+    STAssertTrue(mockResults.isLoading, @"The delegate is supposed to be loading now.");
+
+    [model didCancelLoad];
+    STAssertFalse(mockResults.isLoading, @"The delegate is supposed to have canceled loading.");
+  }
+
+  // Failures
+  {
+    [model didStartLoad];
+    STAssertTrue(mockResults.isLoading, @"The delegate is supposed to be loading now.");
+
+    [model didFailLoadWithError:nil];
+    STAssertTrue(mockResults.didFail, @"The delegate is supposed to have failed.");
+  }
 
   TT_RELEASE_SAFELY(mockResults);
   TT_RELEASE_SAFELY(model);

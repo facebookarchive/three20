@@ -19,8 +19,10 @@
 @interface MockModelDelegate : NSObject <TTModelDelegate> {
 @private
   BOOL _isLoading;
+  BOOL _didFail;
 }
 
 @property (nonatomic, readonly) BOOL isLoading;
+@property (nonatomic, readonly) BOOL didFail;
 
 @end
