@@ -13,7 +13,6 @@
 		6E14D82B10E0A16700445222 /* TTURLDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E14D82910E0A16700445222 /* TTURLDataResponse.h */; };
 		6E14D8B210E0A8D200445222 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */; };
 		6E14D8EE10E0B60000445222 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8EC10E0B60000445222 /* TTXMLParser.m */; };
-		6E14D93810E0B92900445222 /* CoreXMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D93710E0B92900445222 /* CoreXMLTests.m */; };
 		6E14D95810E0B9CB00445222 /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E14D95710E0B9CB00445222 /* testcase.xml */; };
 		6E14D96410E0BAD300445222 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA5510CADA3200A856E5 /* TTGlobalCorePaths.m */; };
 		6E14D98E10E0BC4E00445222 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8EC10E0B60000445222 /* TTXMLParser.m */; };
@@ -127,7 +126,6 @@
 		6E5CF241117E90EE00798CF8 /* TTURLRequestCachePolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */; };
 		6E5F1BA1117E9E9E004BEBA9 /* Three20+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */; };
 		6E5F1BA3117E9F99004BEBA9 /* Three20Core+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */; };
-		6E5F1D58117EC025004BEBA9 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D55117EBF9F004BEBA9 /* NetworkModelTests.m */; };
 		6E5F1D59117EC039004BEBA9 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFB6C811627188009B479E /* TTURLRequestModel.m */; };
 		6E5F1D5A117EC03B004BEBA9 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F560F352E64000DE5D2 /* TTURLRequest.m */; };
 		6E5F1D5B117EC03E004BEBA9 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE52E993100D8EF800E03DB7 /* TTModel.m */; };
@@ -140,6 +138,8 @@
 		6E5F1D62117EC046004BEBA9 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */; };
 		6E5F1D63117EC047004BEBA9 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
 		6E5F1D6A117EC099004BEBA9 /* TTGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */; };
+		6E5F1D7E117EC287004BEBA9 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D7D117EC287004BEBA9 /* NetworkModelTests.m */; };
+		6E5F1D80117EC29C004BEBA9 /* CoreXMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D7F117EC29C004BEBA9 /* CoreXMLTests.m */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -516,7 +516,6 @@
 		6E14D82910E0A16700445222 /* TTURLDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLDataResponse.h; path = Three20/TTURLDataResponse.h; sourceTree = "<group>"; };
 		6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLXMLResponse.m; sourceTree = "<group>"; };
 		6E14D8EC10E0B60000445222 /* TTXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTXMLParser.m; sourceTree = "<group>"; };
-		6E14D93710E0B92900445222 /* CoreXMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreXMLTests.m; sourceTree = "<group>"; };
 		6E14D95710E0B9CB00445222 /* testcase.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase.xml; path = tests/testcase.xml; sourceTree = "<group>"; };
 		6E14D99910E0BC8000445222 /* TTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTXMLParser.h; path = Three20/TTXMLParser.h; sourceTree = "<group>"; };
 		6E14DAD710E0DC7D00445222 /* TTURLXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLResponse.h; path = Three20/TTURLXMLResponse.h; sourceTree = "<group>"; };
@@ -628,7 +627,8 @@
 		6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestCachePolicy.h; path = Three20/TTURLRequestCachePolicy.h; sourceTree = "<group>"; };
 		6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20+Additions.h"; path = "Three20/Three20+Additions.h"; sourceTree = "<group>"; };
 		6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Core+Additions.h"; path = "Three20/Three20Core+Additions.h"; sourceTree = "<group>"; };
-		6E5F1D55117EBF9F004BEBA9 /* NetworkModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkModelTests.m; sourceTree = "<group>"; };
+		6E5F1D7D117EC287004BEBA9 /* NetworkModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkModelTests.m; path = tests/NetworkModelTests.m; sourceTree = "<group>"; };
+		6E5F1D7F117EC29C004BEBA9 /* CoreXMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreXMLTests.m; path = tests/CoreXMLTests.m; sourceTree = "<group>"; };
 		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
 		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
 		6E6206AF117648F900035C6C /* TTTableImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItemCell.m; sourceTree = "<group>"; };
@@ -1354,7 +1354,7 @@
 		6E5F1D53117EBF85004BEBA9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1D55117EBF9F004BEBA9 /* NetworkModelTests.m */,
+				6E5F1D7D117EC287004BEBA9 /* NetworkModelTests.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -1918,8 +1918,8 @@
 		EB4CDA5D10CADB0500A856E5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				EB4CDA5F10CADB3200A856E5 /* UIGlobalTests.m */,
 				EB2F8DBA10D027E9008522A7 /* UIAdditionTests.m */,
+				EB4CDA5F10CADB3200A856E5 /* UIGlobalTests.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1941,7 +1941,7 @@
 			children = (
 				EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */,
 				EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */,
-				6E14D93710E0B92900445222 /* CoreXMLTests.m */,
+				6E5F1D7F117EC29C004BEBA9 /* CoreXMLTests.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -2551,6 +2551,8 @@
 				6E5CEC61117CD7FD00798CF8 /* TTStyledTextFrame.m in Sources */,
 				6E5CEC67117CD83400798CF8 /* TTStyledImageFrame.m in Sources */,
 				6E5CEFA6117E47C900798CF8 /* TTGlobalStyle.m in Sources */,
+				6E5F1D7E117EC287004BEBA9 /* NetworkModelTests.m in Sources */,
+				6E5F1D80117EC29C004BEBA9 /* CoreXMLTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2573,10 +2575,8 @@
 				EB2F8DBB10D027E9008522A7 /* UIAdditionTests.m in Sources */,
 				EB2F8DBD10D02815008522A7 /* UIColorAdditions.m in Sources */,
 				6E8F7849110FD80C00069B64 /* TTDebug.m in Sources */,
-				6E14D93810E0B92900445222 /* CoreXMLTests.m in Sources */,
 				6E14D96410E0BAD300445222 /* TTGlobalCorePaths.m in Sources */,
 				6E14D98E10E0BC4E00445222 /* TTXMLParser.m in Sources */,
-				6E5F1D58117EC025004BEBA9 /* NetworkModelTests.m in Sources */,
 				6E5F1D59117EC039004BEBA9 /* TTURLRequestModel.m in Sources */,
 				6E5F1D5A117EC03B004BEBA9 /* TTURLRequest.m in Sources */,
 				6E5F1D5B117EC03E004BEBA9 /* TTModel.m in Sources */,
