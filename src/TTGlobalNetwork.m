@@ -44,6 +44,7 @@ void TTNetworkRequestStopped() {
   pthread_mutex_lock(&gMutex);
 
   --gNetworkTaskCount;
+  // If this asserts, you don't have enough stop requests to match your start requests.
   TTDASSERT(gNetworkTaskCount >= 0);
   gNetworkTaskCount = MAX(0, gNetworkTaskCount);
 
