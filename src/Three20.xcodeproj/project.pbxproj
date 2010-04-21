@@ -1050,6 +1050,7 @@
 			children = (
 				6E5CEE0B117D907C00798CF8 /* Global */,
 				6E5CEE0C117D908800798CF8 /* Additions */,
+				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
 				6E14D92E10E0B6C000445222 /* XML */,
 			);
 			name = Core;
@@ -1236,7 +1237,6 @@
 		6E5CEE0C117D908800798CF8 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
 				BEAF21350F4D32E100D75F3B /* NSObjectAdditions.h */,
 				BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */,
 				EBA17A3710B4DF5E00835016 /* NSDataAdditions.h */,
