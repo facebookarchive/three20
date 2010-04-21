@@ -77,6 +77,9 @@
   [model didStartLoad];
   STAssertTrue(mockResults.isLoading, @"The delegate is supposed to be loading now.");
 
+  // The default model implementation doesn't provide any state, it's perpetually "loaded".
+  STAssertFalse(model.isLoading, @"A TTModel is not supposed to be loading by default.");
+
   [model didFinishLoad];
   STAssertFalse(mockResults.isLoading, @"The delegate is supposed to be finished loading now.");
 
