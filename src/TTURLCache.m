@@ -24,7 +24,7 @@
 #import "Three20/TTGlobalCorePaths.h"
 #import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"
-#import "Three20/NSStringAdditions.h"
+//#import "Three20/NSStringAdditions.h"
 
 static const  CGFloat   kLargeImageSize   = 600 * 400;
 static        NSString* kDefaultCacheName = @"Three20";

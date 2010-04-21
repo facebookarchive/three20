@@ -21,7 +21,6 @@
 #import "Three20/TTURLCache.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTDebug.h"
 
 
