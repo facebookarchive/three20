@@ -22,6 +22,7 @@
 #import "Three20/TTURLArguments.h"
 
 // Core
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTDebug.h"
 #import "Three20/NSStringAdditions.h"
 

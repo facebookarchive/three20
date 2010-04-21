@@ -16,7 +16,7 @@
 
 #import "Three20/NSStringAdditions.h"
 
-#import "Three20/TTDebug.h"
+// Core
 #import "Three20/TTMarkupStripper.h"
 #import "Three20/NSDataAdditions.h"
 
