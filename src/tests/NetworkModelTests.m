@@ -21,6 +21,9 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
+// Mocks
+#import "mocks/MockModelDelegate.h"
+
 // Network
 #import "Three20/TTModel.h"
 
@@ -51,7 +54,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testTTModel_messages {
+- (void)testTTModel_init {
   TTModel* model = [[TTModel alloc] init];
 
   STAssertTrue(model.isLoaded, @"A TTModel is supposed to be loaded by default.");
@@ -59,6 +62,25 @@
   STAssertFalse(model.isLoadingMore, @"A TTModel is not supposed to be loading more by default.");
   STAssertFalse(model.isOutdated, @"A TTModel is not supposed to be outdated by default.");
 
+  TT_RELEASE_SAFELY(model);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testTTModel_delegate {
+  TTModel* model = [[TTModel alloc] init];
+
+  MockModelDelegate* mockResults = [[MockModelDelegate alloc] init];
+
+  [model.delegates addObject:mockResults];
+
+  [model didStartLoad];
+  STAssertTrue(mockResults.isLoading, @"The delegate is supposed to be loading now.");
+
+  [model didFinishLoad];
+  STAssertFalse(mockResults.isLoading, @"The delegate is supposed to be finished loading now.");
+
+  TT_RELEASE_SAFELY(mockResults);
   TT_RELEASE_SAFELY(model);
 }
 
