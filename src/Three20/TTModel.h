@@ -14,8 +14,10 @@
 // limitations under the License.
 //
 
+#import <Foundation/Foundation.h>
+
 // Network
-#import "Three20/TTGlobalNetwork.h" // For TTURLRequestCachePolicy
+#import "Three20/TTURLRequestCachePolicy.h"
 
 /**
  * TTModel describes the state of an object that can be loaded from a remote source.

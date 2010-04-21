@@ -36,6 +36,7 @@
 #import "Three20/TTDefaultStyleSheet.h"
 
 // Network
+#import "Three20/TTGlobalNetwork.h"
 #import "Three20/TTURLCache.h"
 
 // Core

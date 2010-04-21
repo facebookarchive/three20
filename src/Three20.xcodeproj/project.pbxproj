@@ -124,6 +124,7 @@
 		6E5CEEBD117E2F4900798CF8 /* Three20Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEEBB117E2F4900798CF8 /* Three20Core.h */; };
 		6E5CEEBE117E2F4900798CF8 /* Three20Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEEBC117E2F4900798CF8 /* Three20Network.h */; };
 		6E5CEFA6117E47C900798CF8 /* TTGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */; };
+		6E5CF241117E90EE00798CF8 /* TTURLRequestCachePolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -609,6 +610,7 @@
 		6E5CEEBB117E2F4900798CF8 /* Three20Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core.h; path = Three20/Three20Core.h; sourceTree = "<group>"; };
 		6E5CEEBC117E2F4900798CF8 /* Three20Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Network.h; path = Three20/Three20Network.h; sourceTree = "<group>"; };
 		6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalStyle.m; sourceTree = "<group>"; };
+		6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestCachePolicy.h; path = Three20/TTURLRequestCachePolicy.h; sourceTree = "<group>"; };
 		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
 		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
 		6E6206AF117648F900035C6C /* TTTableImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItemCell.m; sourceTree = "<group>"; };
@@ -1253,6 +1255,7 @@
 			children = (
 				EB4CDA5110CAD85E00A856E5 /* TTGlobalNetwork.h */,
 				EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */,
+				6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -2213,6 +2216,7 @@
 				6E5CEC69117CD83F00798CF8 /* TTStyledImageFrame.h in Headers */,
 				6E5CEEBD117E2F4900798CF8 /* Three20Core.h in Headers */,
 				6E5CEEBE117E2F4900798CF8 /* Three20Network.h in Headers */,
+				6E5CF241117E90EE00798CF8 /* TTURLRequestCachePolicy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

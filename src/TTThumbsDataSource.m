@@ -24,6 +24,7 @@
 #import "Three20/TTThumbsTableViewCell.h"
 
 // Network
+#import "Three20/TTGlobalNetwork.h"
 #import "Three20/TTURLCache.h"
 
 // Core

@@ -17,6 +17,7 @@
 #import "Three20/TTURLRequest.h"
 
 // Network
+#import "Three20/TTGlobalNetwork.h"
 #import "Three20/TTURLResponse.h"
 #import "Three20/TTURLRequestQueue.h"
 

@@ -14,8 +14,10 @@
 // limitations under the License.
 //
 
+#import <Foundation/Foundation.h>
+
 // Network
-#import "Three20/TTGlobalNetwork.h"
+#import "Three20/TTURLRequestCachePolicy.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h" // For __TTDEPRECATED_METHOD

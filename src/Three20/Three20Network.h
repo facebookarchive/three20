@@ -20,6 +20,7 @@
 // Network
 // - Global
 #import "Three20/TTGlobalNetwork.h"
+#import "Three20/TTURLRequestCachePolicy.h"
 
 // - Models
 #import "Three20/TTModel.h"
