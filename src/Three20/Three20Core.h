@@ -15,10 +15,22 @@
 //
 
 // Core
+
 // - Global
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTGlobalCorePaths.h"
+#import "Three20/TTDebug.h"
+
+// - Additions
+#import "Three20/NSObjectAdditions.h"
+#import "Three20/NSDataAdditions.h"
+#import "Three20/NSStringAdditions.h"
+#import "Three20/NSArrayAdditions.h"
+#import "Three20/NSMutableArrayAdditions.h"
+#import "Three20/NSMutableDictionaryAdditions.h"
+#import "Three20/NSDateAdditions.h"
 
 // - Classes
 #import "Three20/TTXMLParser.h"

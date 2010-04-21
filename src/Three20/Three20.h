@@ -83,6 +83,10 @@
 #import "Three20/TTPostControllerDelegate.h"
 #import "Three20/TTTextBarController.h"
 #import "Three20/TTTextBarDelegate.h"
+#import "Three20/TTURLAction.h"
+#import "Three20/TTURLMap.h"
+#import "Three20/TTURLObject.h"
+#import "Three20/TTURLCache.h"
 
 // UI Views
 #import "Three20/TTView.h"
