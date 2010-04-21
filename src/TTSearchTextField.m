@@ -25,6 +25,7 @@
 #import "Three20/TTTableView.h"
 #import "Three20/TTTableViewCell.h"
 #import "Three20/TTTableViewDataSource.h"
+#import "Three20/UIViewAdditions.h"
 
 // UI (private)
 #import "Three20/TTSearchTextFieldInternal.h"
@@ -32,6 +33,9 @@
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static const CGFloat kShadowHeight = 24;
 static const CGFloat kDesiredTableHeight = 150;

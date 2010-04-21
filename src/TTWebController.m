@@ -21,6 +21,8 @@
 #import "Three20/TTGlobalUINavigator.h"
 #import "Three20/TTNavigator.h"
 #import "Three20/TTURLMap.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIToolbarAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
@@ -32,6 +34,7 @@
 #import "Three20/TTURLCache.h"
 
 // Core
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalCoreLocale.h"
 
 

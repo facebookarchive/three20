@@ -21,6 +21,9 @@
 #import "Three20/TTTableViewController.h"
 #import "Three20/TTTableViewDataSource.h"
 
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
+
 const int kTTSearchBarBackgroundTag = 18942;
 
 static const NSTimeInterval kPauseInterval = 0.4;

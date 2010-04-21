@@ -17,7 +17,8 @@
 #import "Three20/TTTableTextItemCell.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UITableViewAdditions.h"
 
 // - Table items
 #import "Three20/TTTableTextItem.h"

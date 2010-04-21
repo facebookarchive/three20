@@ -17,14 +17,18 @@
 #import "Three20/TTTextEditor.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
 #import "Three20/TTTextView.h"
 #import "Three20/TTTextEditorInternal.h"
 #import "Three20/TTTextEditorDelegate.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIFontAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static const CGFloat kPaddingX = 8;
 static const CGFloat kPaddingY = 9;

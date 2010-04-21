@@ -20,12 +20,16 @@
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTSearchTextField.h"
 #import "Three20/TTButton.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UITableViewAdditions.h"
+#import "Three20/UIFontAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 // Core
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalCoreLocale.h"
 
 static const CGFloat kMarginX   = 5;

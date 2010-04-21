@@ -18,6 +18,8 @@
 
 // Core
 #import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20/TTDebug.h"
 
 // XML attribute keys.
 static NSString* kCommonXMLKey_Type       = @"type";

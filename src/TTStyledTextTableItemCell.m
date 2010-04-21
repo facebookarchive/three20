@@ -17,9 +17,10 @@
 #import "Three20/TTStyledTextTableItemCell.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
 #import "Three20/TTStyledTextLabel.h"
 #import "Three20/TTTableStyledTextItem.h"
+#import "Three20/UITableViewAdditions.h"
+#import "Three20/UIViewAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"

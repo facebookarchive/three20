@@ -16,9 +16,6 @@
 
 #import "Three20/TTTableHeaderDragRefreshView.h"
 
-// UI
-#import "Three20/TTGlobalUI.h"
-
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
@@ -28,6 +25,7 @@
 
 // Core
 #import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 
 #import <QuartzCore/QuartzCore.h>
 

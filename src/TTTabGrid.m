@@ -17,8 +17,8 @@
 #import "Three20/TTTabGrid.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
 #import "Three20/TTButton.h"
+#import "Three20/UIViewAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"

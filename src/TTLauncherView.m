@@ -22,6 +22,7 @@
 #import "Three20/TTLauncherItem.h"
 #import "Three20/TTLauncherViewDelegate.h"
 #import "Three20/TTPageControl.h"
+#import "Three20/UIViewAdditions.h"
 
 // UI (private)
 #import "Three20/TTLauncherScrollView.h"

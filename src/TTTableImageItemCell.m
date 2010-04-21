@@ -17,10 +17,10 @@
 #import "Three20/TTTableImageItemCell.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
 #import "Three20/TTImageView.h"
 #import "Three20/TTTableImageItem.h"
 #import "Three20/TTTableRightImageItem.h"
+#import "Three20/UIViewAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"

@@ -17,11 +17,15 @@
 #import "Three20/TTPickerTextField.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
 #import "Three20/TTGlobalUINavigator.h"
 #import "Three20/TTPickerTextFieldDelegate.h"
 #import "Three20/TTTableViewDataSource.h"
 #import "Three20/TTPickerViewCell.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIFontAdditions.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static NSString* kEmpty = @" ";
 static NSString* kSelected = @"`";

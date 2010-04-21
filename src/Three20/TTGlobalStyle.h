@@ -17,12 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-// Additions
-#import "Three20/UIColorAdditions.h"
-
-// Style
-#import "Three20/TTPosition.h"
-
 /**
  * @return a rectangle with dx and dy subtracted from the width and height, respectively.
  *

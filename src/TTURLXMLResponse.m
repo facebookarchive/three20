@@ -18,7 +18,8 @@
 
 // Core
 #import "Three20/TTXMLParser.h"
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"
 
 

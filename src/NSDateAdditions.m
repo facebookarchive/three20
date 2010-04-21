@@ -16,7 +16,7 @@
 
 #import "Three20/NSDateAdditions.h"
 
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalCoreLocale.h"
 
 

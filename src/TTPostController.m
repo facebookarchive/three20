@@ -23,14 +23,17 @@
 #import "Three20/TTNavigator.h"
 #import "Three20/TTActivityLabel.h"
 #import "Three20/TTView.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIViewControllerAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTStyleSheet.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20/NSStringAdditions.h"
 
 static const CGFloat kMarginX = 5;
 static const CGFloat kMarginY = 6;

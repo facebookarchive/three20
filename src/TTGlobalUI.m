@@ -17,10 +17,12 @@
 #import "Three20/TTGlobalUI.h"
 
 // UI
+#import "Three20/TTGlobalUI.h"
 #import "Three20/TTNavigator.h"
 
 // Core
 #import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/UIWindowAdditions.h"
 
 const CGFloat ttkDefaultRowHeight = 44;
 

@@ -22,7 +22,7 @@
 #import "Three20/TTLayout.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,6 +39,7 @@
   if (self = [super initWithFrame:frame]) {
     self.contentMode = UIViewContentModeRedraw;
   }
+
   return self;
 }
 
@@ -47,6 +48,7 @@
 - (void)dealloc {
   TT_RELEASE_SAFELY(_style);
   TT_RELEASE_SAFELY(_layout);
+
   [super dealloc];
 }
 

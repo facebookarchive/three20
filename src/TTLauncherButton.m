@@ -17,13 +17,16 @@
 #import "Three20/TTLauncherButton.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
 #import "Three20/TTLauncherItem.h"
 #import "Three20/TTLabel.h"
+#import "Three20/UIViewAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTStyleSheet.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static const NSInteger kMaxBadgeNumber = 99;
 

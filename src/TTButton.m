@@ -17,7 +17,7 @@
 #import "Three20/TTButton.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
+#import "Three20/UIImageAdditions.h"
 
 // UI (private)
 #import "Three20/TTButtonContent.h"
@@ -30,6 +30,9 @@
 #import "Three20/TTPartStyle.h"
 #import "Three20/TTBoxStyle.h"
 #import "Three20/TTImageStyle.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static const CGFloat kHPadding = 8;
 static const CGFloat kVPadding = 7;

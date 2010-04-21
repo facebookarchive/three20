@@ -29,7 +29,7 @@
 #import "Three20/TTStyledImageNode.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

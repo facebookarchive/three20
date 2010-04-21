@@ -23,14 +23,17 @@
 #import "Three20/TTTextBarDelegate.h"
 #import "Three20/TTButton.h"
 #import "Three20/TTTextEditor.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIViewControllerAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20/NSStringAdditions.h"
 
 static CGFloat kMargin  = 1;
 static CGFloat kPadding = 5;

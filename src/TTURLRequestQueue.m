@@ -27,9 +27,9 @@
 #import "Three20/TTRequestLoader.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
 #import "Three20/TTGlobalCorePaths.h"
 #import "Three20/TTDebugFlags.h"
+#import "Three20/TTDebug.h"
 
 static const NSTimeInterval kFlushDelay = 0.3;
 static const NSTimeInterval kTimeout = 300.0;

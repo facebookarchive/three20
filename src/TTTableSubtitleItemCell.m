@@ -17,9 +17,10 @@
 #import "Three20/TTTableSubtitleItemCell.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
 #import "Three20/TTImageView.h"
 #import "Three20/TTTableSubtitleItem.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIFontAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"

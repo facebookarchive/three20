@@ -22,6 +22,7 @@
 #import "Three20/TTPhoto.h"
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTLabel.h"
+#import "Three20/UIViewAdditions.h"
 
 // UI (private)
 #import "Three20/TTImageViewInternal.h"
@@ -35,7 +36,7 @@
 #import "Three20/TTURLRequestQueue.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalCoreLocale.h"
 
 

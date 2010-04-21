@@ -17,8 +17,11 @@
 #import "Three20/TTButtonBar.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
 #import "Three20/TTButton.h"
+#import "Three20/UIViewAdditions.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static CGFloat kPadding         = 10;
 static CGFloat kButtonHeight    = 30;

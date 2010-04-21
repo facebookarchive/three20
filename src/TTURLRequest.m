@@ -22,7 +22,9 @@
 
 // Core
 #import "Three20/TTGlobalCore.h"
+#import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"
+#import "Three20/NSStringAdditions.h"
 
 static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 

@@ -24,7 +24,7 @@
 #import "Three20/TTPhoto.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static const CGFloat kSpacing = 4;
 static const CGFloat kDefaultThumbSize = 75;

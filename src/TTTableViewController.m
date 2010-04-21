@@ -26,12 +26,16 @@
 #import "Three20/TTTableView.h"
 #import "Three20/TTTableViewDelegate.h"
 #import "Three20/TTTableViewVarHeightDelegate.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIViewControllerAdditions.h"
+#import "Three20/UITableViewAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 // Core
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalCoreLocale.h"
 #import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"

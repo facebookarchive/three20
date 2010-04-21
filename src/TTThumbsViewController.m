@@ -25,6 +25,8 @@
 #import "Three20/TTPhoto.h"
 #import "Three20/TTPhotoSource.h"
 #import "Three20/TTPhotoViewController.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIViewControllerAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
@@ -32,6 +34,7 @@
 
 // Core
 #import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static CGFloat kThumbnailRowHeight = 79;
 

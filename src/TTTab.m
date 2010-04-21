@@ -17,9 +17,9 @@
 #import "Three20/TTTab.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
 #import "Three20/TTTabItem.h"
 #import "Three20/TTLabel.h"
+#import "Three20/UIViewAdditions.h"
 
 // UI (private)
 #import "Three20/TTTabBarInternal.h"

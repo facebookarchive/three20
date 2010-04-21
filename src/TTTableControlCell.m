@@ -20,6 +20,8 @@
 #import "Three20/TTGlobalUI.h"
 #import "Three20/TTTableControlItem.h"
 #import "Three20/TTTextEditor.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIFontAdditions.h"
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"

@@ -24,9 +24,9 @@
 
 // Core
 #import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20/NSObjectAdditions.h"
 #import "Three20/TTDebug.h"
 #import "Three20/TTDebugFlags.h"
-#import "Three20/TTGlobalCore.h"
 
 static const NSInteger kLoadMaxRetries = 2;
 

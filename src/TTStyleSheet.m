@@ -20,7 +20,7 @@
 #import "Three20/TTDefaultStyleSheet.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 
 static TTStyleSheet* gStyleSheet = nil;
 

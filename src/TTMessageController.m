@@ -27,14 +27,17 @@
 #import "Three20/TTPickerTextField.h"
 #import "Three20/TTTextEditor.h"
 #import "Three20/TTTableViewDataSource.h"
+#import "Three20/UIViewAdditions.h"
+#import "Three20/UIViewControllerAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
+#import "Three20/TTCorePreprocessorMacros.h"
 #import "Three20/TTGlobalCoreLocale.h"
+#import "Three20/NSStringAdditions.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

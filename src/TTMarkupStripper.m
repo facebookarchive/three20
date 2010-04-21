@@ -16,7 +16,8 @@
 
 #import "Three20/TTMarkupStripper.h"
 
-#import "Three20/TTGlobalCore.h"
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,7 +75,7 @@
   NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
   parser.delegate = self;
   [parser parse];
-  
+
   return [_strings componentsJoinedByString:@""];
 }
 

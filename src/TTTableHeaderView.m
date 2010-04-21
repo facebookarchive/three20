@@ -17,11 +17,14 @@
 #import "Three20/TTTableHeaderView.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
+#import "Three20/UIViewAdditions.h"
 
 // Style
 #import "Three20/TTGlobalStyle.h"
 #import "Three20/TTDefaultStyleSheet.h"
+
+// Core
+#import "Three20/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
