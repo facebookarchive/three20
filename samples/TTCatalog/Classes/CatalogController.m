@@ -1,5 +1,4 @@
 #import "CatalogController.h"
-#import "Three20/developer.h"
 
 @implementation CatalogController
 

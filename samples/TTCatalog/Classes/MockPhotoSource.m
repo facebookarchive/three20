@@ -1,5 +1,7 @@
 #import "MockPhotoSource.h"
 
+#import "Three20/NSArrayAdditions.h"
+
 @implementation MockPhotoSource
 
 @synthesize title = _title;
@@ -27,7 +29,7 @@
 
     [_photos release];
     _photos = [newPhotos retain];
-    
+
     for (int i = 0; i < _photos.count; ++i) {
       id<TTPhoto> photo = [_photos objectAtIndex:i];
       if ((NSNull*)photo != [NSNull null]) {
@@ -93,7 +95,7 @@
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
   if (cachePolicy & TTURLRequestCachePolicyNetwork) {
     [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
-    
+
     TT_RELEASE_SAFELY(_photos);
     _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self
       selector:@selector(fakeLoadReady) userInfo:nil repeats:NO];

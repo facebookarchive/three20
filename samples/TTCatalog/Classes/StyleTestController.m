@@ -1,4 +1,6 @@
 #import "StyleTestController.h"
+#import <Three20/UIColorAdditions.h>
+#import <Three20/UIViewAdditions.h>
 
 @implementation StyleTestController
 
@@ -11,11 +13,11 @@
 	scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   scrollView.backgroundColor = RGBCOLOR(216, 221, 231);
   self.view = scrollView;
-  
+
   UIColor* black = RGBCOLOR(158, 163, 172);
   UIColor* blue = RGBCOLOR(191, 197, 208);
   UIColor* darkBlue = RGBCOLOR(109, 132, 162);
-  
+
   NSArray* styles = [NSArray arrayWithObjects:
     // Rectangle
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
@@ -56,7 +58,7 @@
                                                       pointSize:CGSizeMake(20,10)] next:
     [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
     [TTSolidBorderStyle styleWithColor:black width:1 next:nil]]],
-       
+
     // Drop shadow
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:10] next:
     [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.5) blur:5 offset:CGSizeMake(2, 2) next:
@@ -77,13 +79,13 @@
     [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(255, 255, 255)
                                color2:RGBCOLOR(216, 221, 231) next:
     [TTSolidBorderStyle styleWithColor:blue width:1 next:nil]]]],
-    
+
     // Embossed button
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:10] next:
     [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(255, 255, 255)
                                color2:RGBCOLOR(216, 221, 231) next:
     [TTFourBorderStyle styleWithTop:blue right:black bottom:black left:blue width:1 next:nil]]],
-    
+
     // Toolbar button
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:4.5] next:
     [TTShadowStyle styleWithColor:RGBCOLOR(255,255,255) blur:1 offset:CGSizeMake(0, 1) next:
@@ -120,11 +122,11 @@
                                color2:RGBCOLOR(0, 0, 255) next:nil]],
 
     nil];
-  
+
   CGFloat padding = 10;
   CGFloat viewWidth = scrollView.width/2 - padding*2;
   CGFloat viewHeight = TT_ROW_HEIGHT;
-  
+
   CGFloat x = padding;
   CGFloat y = padding;
   for (TTStyle* style in styles) {
@@ -138,10 +140,10 @@
     view.backgroundColor = scrollView.backgroundColor;
     view.style = style;
     [scrollView addSubview:view];
-    
+
     x += frame.size.width + padding;
   }
-  
+
   scrollView.contentSize = CGSizeMake(scrollView.width, y + viewHeight + padding);
 }
 

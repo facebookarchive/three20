@@ -2,6 +2,7 @@
 #import "MessageTestController.h"
 #import "SearchTestController.h"
 #import "MockDataSource.h"
+#import <Three20/UIViewAdditions.h>
 
 @implementation MessageTestController
 
@@ -31,11 +32,11 @@
 
 - (void)sendDelayed:(NSTimer*)timer {
   _sendTimer = nil;
-  
+
   NSArray* fields = timer.userInfo;
   UIView* lastView = [self.view.subviews lastObject];
   CGFloat y = lastView.bottom + 20;
-  
+
   TTMessageRecipientField* toField = [fields objectAtIndex:0];
   for (id recipient in toField.recipients) {
     UILabel* label = [[[UILabel alloc] init] autorelease];
@@ -46,7 +47,7 @@
     y += label.height;
     [self.view addSubview:label];
   }
-  
+
   [self.modalViewController dismissModalViewControllerAnimated:YES];
 }
 
@@ -56,7 +57,7 @@
 - (id)init {
   if (self = [super init]) {
     _sendTimer = nil;
-    
+
     [[TTNavigator navigator].URLMap from:@"tt://compose?to=(composeTo:)"
                                     toModalViewController:self selector:@selector(composeTo:)];
 
@@ -80,7 +81,7 @@
   CGRect appFrame = [UIScreen mainScreen].applicationFrame;
   self.view = [[[UIView alloc] initWithFrame:appFrame] autorelease];;
   self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-  
+
   UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [button setTitle:@"Show TTMessageController" forState:UIControlStateNormal];
   [button addTarget:@"tt://compose?to=Alan%20Jones" action:@selector(openURL)
@@ -120,10 +121,10 @@
   searchController.delegate = self;
   searchController.title = @"Address Book";
   searchController.navigationItem.prompt = @"Select a recipient";
-  searchController.navigationItem.rightBarButtonItem = 
+  searchController.navigationItem.rightBarButtonItem =
     [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
       target:self action:@selector(cancelAddressBook)] autorelease];
-    
+
   UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
   [navController pushViewController:searchController animated:NO];
   [controller presentModalViewController:navController animated:YES];

@@ -1,5 +1,6 @@
 
 #import "MockDataSource.h"
+#import <Three20/NSArrayAdditions.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -320,14 +321,14 @@
 
 - (void)fakeSearch:(NSString*)text {
   self.names = [NSMutableArray array];
-  
+
   if (text.length) {
     text = [text lowercaseString];
     for (NSString* name in _allNames) {
       if ([[name lowercaseString] rangeOfString:text].location == 0) {
         [_names addObject:name];
       }
-    }    
+    }
   }
 
   [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
@@ -415,7 +416,7 @@
 
 - (void)search:(NSString*)text {
   [self cancel];
-  
+
   if (text.length) {
     if (_fakeSearchDuration) {
       TT_INVALIDATE_TIMER(_fakeSearchTimer);
@@ -470,7 +471,7 @@
 - (void)tableViewDidLoadModel:(UITableView*)tableView {
   self.items = [NSMutableArray array];
   self.sections = [NSMutableArray array];
-  
+
   NSMutableDictionary* groups = [NSMutableDictionary dictionary];
   for (NSString* name in _addressBook.names) {
     NSString* letter = [NSString stringWithFormat:@"%c", [name characterAtIndex:0]];
@@ -479,7 +480,7 @@
       section = [NSMutableArray array];
       [groups setObject:section forKey:letter];
     }
-    
+
     TTTableItem* item = [TTTableTextItem itemWithText:name URL:nil];
     [section addObject:item];
   }
@@ -526,7 +527,7 @@
 
 - (void)tableViewDidLoadModel:(UITableView*)tableView {
   self.items = [NSMutableArray array];
-    
+
   for (NSString* name in _addressBook.names) {
     TTTableItem* item = [TTTableTextItem itemWithText:name URL:@"http://google.com"];
     [_items addObject:item];

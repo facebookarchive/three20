@@ -1,4 +1,5 @@
 #import "TabBarTestController.h"
+#import <Three20/UIViewAdditions.h>
 
 @implementation TabBarTestController
 
@@ -12,7 +13,7 @@
 - (void)loadView {
   self.view = [[[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
   self.view.backgroundColor = TTSTYLEVAR(tabTintColor);
-    
+
   _tabBar1 = [[TTTabStrip alloc] initWithFrame:CGRectMake(0, 0, 320, 41)];
   _tabBar1.tabItems = [NSArray arrayWithObjects:
     [[[TTTabItem alloc] initWithTitle:@"Item 1"] autorelease],
@@ -37,7 +38,7 @@
     nil];
   _tabBar2.selectedTabIndex = 2;
   [self.view addSubview:_tabBar2];
-  
+
   TTTabItem* item = [_tabBar2.tabItems objectAtIndex:1];
   item.badgeNumber = 2;
 

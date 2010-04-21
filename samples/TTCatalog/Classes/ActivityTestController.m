@@ -1,6 +1,7 @@
 
 #import "ActivityTestController.h"
 #import <Three20/Three20.h>
+#import <Three20/UIViewAdditions.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -38,7 +39,7 @@
 -(void)showLabelsWithProgress:(BOOL)progress {
   UIScrollView* scrollView = (UIScrollView*)self.view;
   [scrollView removeAllSubviews];
-  
+
   if (progress) {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"No Progress"
       style:UIBarButtonItemStyleBordered target:self action:@selector(hideProgress)] autorelease];
@@ -57,7 +58,7 @@
   label.frame = CGRectMake(0, 0, self.view.width, label.height + 40);
   [self.view addSubview:label];
   [label startAnimating];
-  
+
   [self addActivityLabelWithStyle:TTActivityLabelStyleWhiteBox progress:progress];
   [self addActivityLabelWithStyle:TTActivityLabelStyleBlackBox progress:progress];
   [self addActivityLabelWithStyle:TTActivityLabelStyleWhiteBezel progress:progress];
@@ -85,7 +86,7 @@
   UIScrollView* scrollView = [[[UIScrollView alloc] initWithFrame:TTNavigationFrame()] autorelease];
   scrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
   self.view = scrollView;
-  
+
   [self showLabelsWithProgress:NO];
 }
 
