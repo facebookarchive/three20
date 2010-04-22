@@ -23,10 +23,10 @@
  */
 @interface TTURLRequestQueue (TTRequestLoader)
 
-- (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response data:(id)data;
-
 - (void)                       loader: (TTRequestLoader*)loader
     didReceiveAuthenticationChallenge: (NSURLAuthenticationChallenge*)challenge;
+
+- (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response data:(id)data;
 
 - (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error;
 - (void)loaderDidCancel:(TTRequestLoader*)loader wasLoading:(BOOL)wasLoading;

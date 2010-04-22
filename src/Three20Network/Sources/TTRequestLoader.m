@@ -275,19 +275,6 @@ static const NSInteger kLoadMaxRetries = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSURLRequest*)connection: (NSURLConnection*)connection
-            willSendRequest: (NSURLRequest*)request
-           redirectResponse: (NSURLResponse*)redirectResponse {
-  NSMutableURLRequest* newReq = [request mutableCopy];
-
-  // TODO: Use the request's last etag.
-  [newReq setValue:@"\"2a68a87234b44aedd1c65f756b2e608c\"" forHTTPHeaderField:@"If-None-Match"];
-
-  return [newReq autorelease];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response {
   _response = [response retain];
   NSDictionary* headers = [response allHeaderFields];

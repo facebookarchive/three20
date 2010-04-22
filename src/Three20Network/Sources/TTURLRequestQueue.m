@@ -473,6 +473,11 @@ static TTURLRequestQueue* gMainQueue = nil;
     for (NSString *key in [headers keyEnumerator]) {
       [URLRequest setValue:[headers objectForKey:key] forHTTPHeaderField:key];
     }
+
+    if (request.cachePolicy & TTURLRequestCachePolicyEtag) {
+      // TODO: Use the request's last etag.
+      [URLRequest setValue:@"\"2a68a87234b44aedd1c65f756b2e608c\"" forHTTPHeaderField:@"If-None-Match"];
+    }
   }
 
   return URLRequest;
