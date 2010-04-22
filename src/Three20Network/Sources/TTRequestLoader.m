@@ -23,6 +23,9 @@
 #import "Three20Network/TTURLRequestQueue.h"
 #import "Three20Network/TTURLResponse.h"
 
+// Network (private)
+#import "Three20Network/private/TTURLRequestQueueInternal.h"
+
 // Core
 #import "Three20Core/NSObjectAdditions.h"
 #import "Three20Core/TTDebug.h"
@@ -161,8 +164,7 @@ static const NSInteger kLoadMaxRetries = 2;
     TT_RELEASE_SAFELY(_responseData);
     TT_RELEASE_SAFELY(_connection);
 
-    [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
-                 withObject:error];
+    [_queue loader:self didFailLoadWithError:error];
   } else {
     [self connection:nil didReceiveResponse:(NSHTTPURLResponse*)response];
     [self connection:nil didReceiveData:data];
@@ -188,8 +190,7 @@ static const NSInteger kLoadMaxRetries = 2;
   }
 
   if (![_requests count]) {
-    [_queue performSelector:@selector(loaderDidCancel:wasLoading:) withObject:self
-                 withObject:(id)!!_connection];
+    [_queue loaderDidCancel:self wasLoading:!!_connection];
     if (nil != _connection) {
       TTNetworkRequestStopped();
       [_connection cancel];
@@ -274,6 +275,19 @@ static const NSInteger kLoadMaxRetries = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSURLRequest*)connection: (NSURLConnection*)connection
+            willSendRequest: (NSURLRequest*)request
+           redirectResponse: (NSURLResponse*)redirectResponse {
+  NSMutableURLRequest* newReq = [request mutableCopy];
+
+  // TODO: Use the request's last etag.
+  [newReq setValue:@"\"2a68a87234b44aedd1c65f756b2e608c\"" forHTTPHeaderField:@"If-None-Match"];
+
+  return [newReq autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response {
   _response = [response retain];
   NSDictionary* headers = [response allHeaderFields];
@@ -324,15 +338,13 @@ static const NSInteger kLoadMaxRetries = 2;
 
   // We need to accept valid HTTP status codes, not only 200.
   if (_response.statusCode >= 200 && _response.statusCode < 300) {
-    [_queue performSelector:@selector(loader:didLoadResponse:data:) withObject:self
-                 withObject:_response withObject:_responseData];
+    [_queue loader:self didLoadResponse:_response data:_responseData];
   } else {
     TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  FAILED LOADING (%d) %@",
                     _response.statusCode, _urlPath);
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
                                      userInfo:nil];
-    [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
-                 withObject:error];
+    [_queue loader:self didFailLoadWithError:error];
   }
 
   TT_RELEASE_SAFELY(_responseData);
@@ -344,9 +356,7 @@ static const NSInteger kLoadMaxRetries = 2;
 - (void)connection:(NSURLConnection *)connection
 didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
   TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  RECEIVED AUTH CHALLENGE LOADING %@ ", _urlPath);
-  [_queue performSelector: @selector(loader:didReceiveAuthenticationChallenge:)
-               withObject: self
-               withObject: challenge];
+  [_queue loader:self didReceiveAuthenticationChallenge:challenge];
 }
 
 
@@ -367,8 +377,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
     [self load:[NSURL URLWithString:_urlPath]];
 
   } else {
-    [_queue performSelector:@selector(loader:didFailLoadWithError:) withObject:self
-                 withObject:error];
+    [_queue loader:self didFailLoadWithError:error];
   }
 }
 
@@ -390,5 +399,6 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
 - (NSString*)URL {
   return _urlPath;
 }
+
 
 @end

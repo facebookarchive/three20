@@ -166,7 +166,13 @@ static TTURLRequestQueue* gMainQueue = nil;
     request.cacheKey = [[TTURLCache sharedCache] keyForURL:request.urlPath];
   }
 
-  if (request.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory)) {
+  if (request.cachePolicy & TTURLRequestCachePolicyEtag) {
+    // Etags always make the request. The request headers will then include the etag.
+    // - If there is new data, server returns 200 with data.
+    // - Otherwise, returns a 304, with empty request body.
+    return NO;
+
+  } else if (request.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory)) {
     id data = nil;
     NSDate* timestamp = nil;
     NSError* error = nil;
@@ -271,53 +277,6 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response data:(id)data {
-  [loader retain];
-  [self removeLoader:loader];
-
-  NSError* error = [loader processResponse:response data:data];
-  if (error) {
-    [loader dispatchError:error];
-  } else {
-    if (!(loader.cachePolicy & TTURLRequestCachePolicyNoCache)) {
-      [[TTURLCache sharedCache] storeData:data forKey:loader.cacheKey];
-    }
-    [loader dispatchLoaded:[NSDate date]];
-  }
-  [loader release];
-
-  [self loadNextInQueue];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)loader:(TTRequestLoader*)loader didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *) challenge{
-  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"CHALLENGE: %@", challenge);
-  [loader dispatchAuthenticationChallenge:challenge];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error {
-  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"ERROR: %@", error);
-  [self removeLoader:loader];
-  [loader dispatchError:error];
-  [self loadNextInQueue];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loaderDidCancel:(TTRequestLoader*)loader wasLoading:(BOOL)wasLoading {
-  if (wasLoading) {
-    [self removeLoader:loader];
-    [self loadNextInQueue];
-  } else {
-    [_loaders removeObjectForKey:loader.cacheKey];
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSuspended:(BOOL)isSuspended {
   TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"SUSPEND LOADING %d", isSuspended);
   _suspended = isSuspended;
@@ -343,6 +302,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     }
   }
 
+  // If the url is empty, fail.
   if (!request.urlPath.length) {
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
@@ -516,6 +476,64 @@ static TTURLRequestQueue* gMainQueue = nil;
   }
 
   return URLRequest;
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation TTURLRequestQueue (TTRequestLoader)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response data:(id)data {
+  [loader retain];
+  [self removeLoader:loader];
+
+  NSError* error = [loader processResponse:response data:data];
+  if (error) {
+    [loader dispatchError:error];
+
+  } else {
+    if (!(loader.cachePolicy & TTURLRequestCachePolicyNoCache)) {
+      [[TTURLCache sharedCache] storeData:data forKey:loader.cacheKey];
+    }
+    [loader dispatchLoaded:[NSDate date]];
+  }
+  [loader release];
+
+  [self loadNextInQueue];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)                       loader: (TTRequestLoader*)loader
+    didReceiveAuthenticationChallenge: (NSURLAuthenticationChallenge*) challenge {
+  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"CHALLENGE: %@", challenge);
+  [loader dispatchAuthenticationChallenge:challenge];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error {
+  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"ERROR: %@", error);
+  [self removeLoader:loader];
+  [loader dispatchError:error];
+  [self loadNextInQueue];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)loaderDidCancel:(TTRequestLoader*)loader wasLoading:(BOOL)wasLoading {
+  if (wasLoading) {
+    [self removeLoader:loader];
+    [self loadNextInQueue];
+  } else {
+    [_loaders removeObjectForKey:loader.cacheKey];
+  }
 }
 
 
