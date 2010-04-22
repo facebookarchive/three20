@@ -45,8 +45,6 @@
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
 
-static const CGFloat kBannerViewHeight = 22;
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -653,11 +651,11 @@ static const CGFloat kBannerViewHeight = 22;
       [self addToOverlayView:_tableBannerView];
 
       if (animated) {
-        _tableBannerView.top += kBannerViewHeight;
+        _tableBannerView.top += TTSTYLEVAR(tableBannerViewHeight);
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:TT_TRANSITION_DURATION];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        _tableBannerView.top -= kBannerViewHeight;
+        _tableBannerView.top -= TTSTYLEVAR(tableBannerViewHeight);
         [UIView commitAnimations];
       }
     }
@@ -869,9 +867,10 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)rectForBannerView {
   CGRect tableFrame = [_tableView frameWithKeyboardSubtracted:0];
+  const CGFloat bannerViewHeight = TTSTYLEVAR(tableBannerViewHeight);
   return CGRectMake(tableFrame.origin.x,
-                    (tableFrame.origin.y + tableFrame.size.height) - kBannerViewHeight,
-                    tableFrame.size.width, kBannerViewHeight);
+                    (tableFrame.origin.y + tableFrame.size.height) - bannerViewHeight,
+                    tableFrame.size.width, bannerViewHeight);
 }
 
 
