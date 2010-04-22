@@ -161,6 +161,14 @@
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addSubviewOverTableView:(UIView*)view {
+  NSInteger tableIndex = [_tableView.superview.subviews
+                          indexOfObject:_tableView];
+  if (NSNotFound != tableIndex) {
+    [_tableView.superview addSubview:view];
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutOverlayView {
@@ -646,9 +654,14 @@
     _tableBannerView = [tableBannerView retain];
 
     if (_tableBannerView) {
+      self.tableView.contentInset = UIEdgeInsetsMake(0, 0, TTSTYLEVAR(tableBannerViewHeight), 0);
+      self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
       _tableBannerView.frame = [self rectForBannerView];
       _tableBannerView.userInteractionEnabled = NO;
-      [self addToOverlayView:_tableBannerView];
+      _tableBannerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                           | UIViewAutoresizingFlexibleTopMargin);
+      [self addSubviewOverTableView:_tableBannerView];
+
 
       if (animated) {
         _tableBannerView.top += TTSTYLEVAR(tableBannerViewHeight);
@@ -658,6 +671,10 @@
         _tableBannerView.top -= TTSTYLEVAR(tableBannerViewHeight);
         [UIView commitAnimations];
       }
+
+    } else {
+      self.tableView.contentInset = UIEdgeInsetsZero;
+      self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
     }
   }
 }
