@@ -475,8 +475,15 @@ static TTURLRequestQueue* gMainQueue = nil;
     }
 
     if (request.cachePolicy & TTURLRequestCachePolicyEtag) {
-      // TODO: Use the request's last etag.
-      [URLRequest setValue:@"\"2a68a87234b44aedd1c65f756b2e608c\"" forHTTPHeaderField:@"If-None-Match"];
+      NSString* etag = [[TTURLCache sharedCache] etagForKey:request.cacheKey];
+      TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Etag: %@", etag);
+
+      if (nil != etag) {
+        // By setting the etag here, we let the server know what the last "version" of the file
+        // was that we saw. If the file has changed since this etag, we'll get data back in our
+        // response. Otherwise we'll get a 302.
+        [URLRequest setValue:etag forHTTPHeaderField:@"If-None-Match"];
+      }
     }
   }
 
