@@ -25,7 +25,15 @@
 @class TTURLRequestQueue;
 @class TTURLRequest;
 
-
+/**
+ * The loader manages a set of TTURLRequests and makes the necessary callbacks for each.
+ * It implements the NSURLConnectionDelegate protocol and calls the required operations on the
+ * queue as the protocol methods are invoked.
+ *
+ * The loader collects identical GET TTURLRequests into a single object. This logic is handled in
+ * TTURLRequestQueue's sendRequest.
+ * For all other TTURLRequest types, they will each have their own loader.
+ */
 @interface TTRequestLoader : NSObject {
   NSString*               _urlPath;
 
