@@ -26,8 +26,10 @@
 #import "Three20Core/TTDebugFlags.h"
 #import "Three20Core/NSStringAdditions.h"
 
-static const  CGFloat   kLargeImageSize   = 600 * 400;
-static        NSString* kDefaultCacheName = @"Three20";
+static const  CGFloat   kLargeImageSize = 600 * 400;
+
+static        NSString* kDefaultCacheName       = @"Three20";
+static        NSString* kEtagCacheDirectoryName = @"etag";
 
 static TTURLCache*          gSharedCache = nil;
 static NSMutableDictionary* gNamedCaches = nil;
@@ -146,12 +148,16 @@ static NSMutableDictionary* gNamedCaches = nil;
   NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
   NSString* cachesPath = [paths objectAtIndex:0];
   NSString* cachePath = [cachesPath stringByAppendingPathComponent:name];
+  NSString* etagCachePath = [cachePath stringByAppendingPathComponent:kEtagCacheDirectoryName];
   NSFileManager* fm = [NSFileManager defaultManager];
   if (![fm fileExistsAtPath:cachesPath]) {
     [fm createDirectoryAtPath:cachesPath attributes:nil];
   }
   if (![fm fileExistsAtPath:cachePath]) {
     [fm createDirectoryAtPath:cachePath attributes:nil];
+  }
+  if (![fm fileExistsAtPath:etagCachePath]) {
+    [fm createDirectoryAtPath:etagCachePath attributes:nil];
   }
   return cachePath;
 }
@@ -225,6 +231,14 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)loadEtagFromCacheWithKey:(NSString*)key {
+  NSString* path = [self etagCachePathForKey:key];
+  NSData* data = [NSData dataWithContentsOfFile:path];
+  return [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)createTemporaryURL {
   static int temporaryURLIncrement = 0;
   return [NSString stringWithFormat:@"temp:%d", temporaryURLIncrement++];
@@ -264,6 +278,12 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)etagCachePath {
+  return [self.cachePath stringByAppendingPathComponent:kEtagCacheDirectoryName];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)keyForURL:(NSString*)URL {
   return [URL md5Hash];
 }
@@ -279,6 +299,12 @@ static NSMutableDictionary* gNamedCaches = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)cachePathForKey:(NSString*)key {
   return [_cachePath stringByAppendingPathComponent:key];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)etagCachePathForKey:(NSString*)key {
+  return [self.etagCachePath stringByAppendingPathComponent:key];
 }
 
 
@@ -352,6 +378,12 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)etagForKey:(NSString*)key {
+  return [self loadEtagFromCacheWithKey:key];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)storeData:(NSData*)data forURL:(NSString*)URL {
   NSString* key = [self keyForURL:URL];
   [self storeData:data forKey:key];
@@ -371,6 +403,16 @@ static NSMutableDictionary* gNamedCaches = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)storeImage:(UIImage*)image forURL:(NSString*)URL {
   [self storeImage:image forURL:URL force:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)storeEtag:(NSString*)etag forKey:(NSString*)key {
+  NSString* filePath = [self etagCachePathForKey:key];
+  NSFileManager* fm = [NSFileManager defaultManager];
+  [fm createFileAtPath: filePath
+              contents: [etag dataUsingEncoding:NSUTF8StringEncoding]
+            attributes: nil];
 }
 
 

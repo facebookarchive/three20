@@ -19,6 +19,11 @@
 
 @class TTURLRequest;
 
+/**
+ * A general purpose URL cache for caching data in memory and on disk.
+ *
+ * Etags are supported.
+ */
 @interface TTURLCache : NSObject {
   NSString*             _name;
   NSString*             _cachePath;
@@ -33,7 +38,7 @@
 }
 
 /**
- * Disables the disk cache.
+ * Disables the disk cache. Does not disable etag disk caching.
  */
 @property (nonatomic) BOOL disableDiskCache;
 
@@ -46,6 +51,11 @@
  * Gets the path to the directory of the disk cache.
  */
 @property (nonatomic, copy) NSString* cachePath;
+
+/**
+ * Gets the path to the directory of the disk cache for etags.
+ */
+@property (nonatomic, readonly) NSString* etagCachePath;
 
 /**
  * The maximum number of pixels to keep in memory for cached images.
@@ -94,6 +104,15 @@
 - (NSString*)cachePathForKey:(NSString*)key;
 
 /**
+ * Etag cache files are stored in the following way:
+ * File name: <key>
+ * File data: <etag value>
+ *
+ * @return The etag cache path for the given key.
+ */
+- (NSString*)etagCachePathForKey:(NSString*)key;
+
+/**
  * Determines if there is a cache entry for a URL.
  */
 - (BOOL)hasDataForURL:(NSString*)URL;
@@ -124,6 +143,11 @@
 - (id)imageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk;
 
 /**
+ * Get an etag value for a given cache key.
+ */
+- (NSString*)etagForKey:(NSString*)key;
+
+/**
  * Stores a data on disk.
  */
 - (void)storeData:(NSData*)data forURL:(NSString*)URL;
@@ -133,6 +157,11 @@
  * Stores an image in the memory cache.
  */
 - (void)storeImage:(UIImage*)image forURL:(NSString*)URL;
+
+/**
+ * Stores an etag value in the etag cache.
+ */
+- (void)storeEtag:(NSString*)etag forKey:(NSString*)key;
 
 /**
  * Convenient way to create a temporary URL for some data and cache it in memory.
