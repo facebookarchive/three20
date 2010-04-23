@@ -17,13 +17,7 @@
 #import "Three20/Three20.h"
 
 // Core Additions
-#import "Three20/NSObjectAdditions.h"
-#import "Three20/NSDataAdditions.h"
-#import "Three20/NSStringAdditions.h"
-#import "Three20/NSArrayAdditions.h"
-#import "Three20/NSMutableArrayAdditions.h"
-#import "Three20/NSMutableDictionaryAdditions.h"
-#import "Three20/NSDateAdditions.h"
+#import "Three20/Three20Core+Additions.h"
 
 // Style Additions
 #import "Three20/UIColorAdditions.h"
