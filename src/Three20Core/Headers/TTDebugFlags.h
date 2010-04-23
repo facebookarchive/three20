@@ -29,3 +29,4 @@
 #define TTDFLAG_URLREQUEST              0
 #define TTDFLAG_URLCACHE                0
 #define TTDFLAG_XMLPARSER               0
+#define TTDFLAG_ETAGS                   0
