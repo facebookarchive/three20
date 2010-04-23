@@ -156,6 +156,13 @@
 		6E5F22C611813D23004BEBA9 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B911813D23004BEBA9 /* SBJsonWriter.m */; };
 		6E5F22D111814CE6004BEBA9 /* TTURLJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22CF11814CE6004BEBA9 /* TTURLJSONResponse.m */; };
 		6E5F22D311814CF2004BEBA9 /* TTURLJSONResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F22D211814CF2004BEBA9 /* TTURLJSONResponse.h */; };
+		6E5F22E911814E8F004BEBA9 /* CoreJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22E511814E68004BEBA9 /* CoreJSONTests.m */; };
+		6E5F22EA11814E94004BEBA9 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B311813D23004BEBA9 /* SBJSON.m */; };
+		6E5F22EB11814E94004BEBA9 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B511813D23004BEBA9 /* SBJsonBase.m */; };
+		6E5F22EC11814E95004BEBA9 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B711813D23004BEBA9 /* SBJsonParser.m */; };
+		6E5F22ED11814E95004BEBA9 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B911813D23004BEBA9 /* SBJsonWriter.m */; };
+		6E5F22EE11814E9B004BEBA9 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22AF11813D23004BEBA9 /* NSObject+SBJSON.m */; };
+		6E5F231811814F58004BEBA9 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B111813D23004BEBA9 /* NSString+SBJSON.m */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -662,6 +669,7 @@
 		6E5F22B911813D23004BEBA9 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		6E5F22CF11814CE6004BEBA9 /* TTURLJSONResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLJSONResponse.m; sourceTree = "<group>"; };
 		6E5F22D211814CF2004BEBA9 /* TTURLJSONResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLJSONResponse.h; path = Three20/TTURLJSONResponse.h; sourceTree = "<group>"; };
+		6E5F22E511814E68004BEBA9 /* CoreJSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreJSONTests.m; path = tests/CoreJSONTests.m; sourceTree = "<group>"; };
 		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
 		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
 		6E6206AF117648F900035C6C /* TTTableImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableImageItemCell.m; sourceTree = "<group>"; };
@@ -2008,6 +2016,7 @@
 				EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */,
 				EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */,
 				6E5F1D7F117EC29C004BEBA9 /* CoreXMLTests.m */,
+				6E5F22E511814E68004BEBA9 /* CoreJSONTests.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -2671,6 +2680,13 @@
 				6E5F1E3D117F70EF004BEBA9 /* CoreXMLTests.m in Sources */,
 				6E5F1FCB117FC77A004BEBA9 /* NSDateAdditions.m in Sources */,
 				6E5F1FCC117FC77C004BEBA9 /* NSObjectAdditions.m in Sources */,
+				6E5F22E911814E8F004BEBA9 /* CoreJSONTests.m in Sources */,
+				6E5F22EA11814E94004BEBA9 /* SBJSON.m in Sources */,
+				6E5F22EB11814E94004BEBA9 /* SBJsonBase.m in Sources */,
+				6E5F22EC11814E95004BEBA9 /* SBJsonParser.m in Sources */,
+				6E5F22ED11814E95004BEBA9 /* SBJsonWriter.m in Sources */,
+				6E5F22EE11814E9B004BEBA9 /* NSObject+SBJSON.m in Sources */,
+				6E5F231811814F58004BEBA9 /* NSString+SBJSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,8 @@ Changes since April 09, 2010
 
 - [NEW] Nib support moved to a separate 'nibs' branch.
 
+- [NEW] Added the JSON library.
+
 - [DOX] Style consistency throughout the entire framework.
 
 Changes since March 30, 2010
