@@ -114,6 +114,11 @@ static const NSInteger kLoadMaxRetries = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addRequest:(TTURLRequest*)request {
+  TTDASSERT([_urlPath isEqualToString:request.urlPath]);
+  TTDASSERT(_cacheKey == request.cacheKey);
+  TTDASSERT(_cachePolicy == request.cachePolicy);
+  TTDASSERT(_cacheExpirationAge == request.cacheExpirationAge);
+
   [_requests addObject:request];
 }
 
