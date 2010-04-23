@@ -501,7 +501,9 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loader:(TTRequestLoader*)loader didLoadResponse:(NSHTTPURLResponse*)response data:(id)data {
+- (void)     loader: (TTRequestLoader*)loader
+    didLoadResponse: (NSHTTPURLResponse*)response
+               data: (id)data {
   [loader retain];
   [self removeLoader:loader];
 
@@ -511,6 +513,31 @@ static TTURLRequestQueue* gMainQueue = nil;
 
   } else {
     if (!(loader.cachePolicy & TTURLRequestCachePolicyNoCache)) {
+
+      // Store the etag key if the etag cache policy has been requested.
+      if (loader.cachePolicy & TTURLRequestCachePolicyEtag) {
+        NSDictionary* headers = [response allHeaderFields];
+
+        // First, try to use the casing as defined by the standard for ETag headers.
+        // http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
+        NSString* etag = [headers objectForKey:@"ETag"];
+        if (nil == etag) {
+          // Some servers don't use the standard casing (e.g. twitter).
+          etag = [headers objectForKey:@"Etag"];
+        }
+
+        // Still no etag?
+        if (nil == etag) {
+          TTDWARNING(@"Etag expected, but none found.");
+          TTDWARNING(@"Here are the headers: %@", headers);
+
+        } else {
+          // At last, we have our etag. Let's cache it.
+          TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Response etag: %@", etag);
+          [[TTURLCache sharedCache] storeEtag:etag forKey:loader.cacheKey];
+        }
+      }
+
       [[TTURLCache sharedCache] storeData:data forKey:loader.cacheKey];
     }
     [loader dispatchLoaded:[NSDate date]];

@@ -323,6 +323,8 @@ static const NSInteger kLoadMaxRetries = 2;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   TTNetworkRequestStopped();
 
+  TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Response status code: %d", _response.statusCode);
+
   // We need to accept valid HTTP status codes, not only 200.
   if (_response.statusCode >= 200 && _response.statusCode < 300) {
     [_queue loader:self didLoadResponse:_response data:_responseData];
