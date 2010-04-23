@@ -475,14 +475,15 @@ static TTURLRequestQueue* gMainQueue = nil;
       [URLRequest setValue:[headers objectForKey:key] forHTTPHeaderField:key];
     }
 
-    if (request.cachePolicy & TTURLRequestCachePolicyEtag) {
+    if (![[TTURLCache sharedCache] disableDiskCache]
+        && (request.cachePolicy & TTURLRequestCachePolicyEtag)) {
       NSString* etag = [[TTURLCache sharedCache] etagForKey:request.cacheKey];
       TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Etag: %@", etag);
 
       if (TTIsStringWithAnyText(etag)) {
         // By setting the etag here, we let the server know what the last "version" of the file
         // was that we saw. If the file has changed since this etag, we'll get data back in our
-        // response. Otherwise we'll get a 302.
+        // response. Otherwise we'll get a 304.
         [URLRequest setValue:etag forHTTPHeaderField:@"If-None-Match"];
       }
     }
@@ -516,7 +517,8 @@ static TTURLRequestQueue* gMainQueue = nil;
     if (!(loader.cachePolicy & TTURLRequestCachePolicyNoCache)) {
 
       // Store the etag key if the etag cache policy has been requested.
-      if (loader.cachePolicy & TTURLRequestCachePolicyEtag) {
+      if (![[TTURLCache sharedCache] disableDiskCache]
+          && (loader.cachePolicy & TTURLRequestCachePolicyEtag)) {
         NSDictionary* headers = [response allHeaderFields];
 
         // First, try to use the casing as defined by the standard for ETag headers.
