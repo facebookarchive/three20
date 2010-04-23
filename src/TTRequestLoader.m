@@ -179,15 +179,17 @@ static const NSInteger kLoadMaxRetries = 2;
 
     [_requests removeObjectAtIndex:index];
   }
+
   if (![_requests count]) {
     [_queue performSelector:@selector(loaderDidCancel:wasLoading:) withObject:self
                  withObject:(id)!!_connection];
-    if (_connection) {
+    if (nil != _connection) {
       TTNetworkRequestStopped();
       [_connection cancel];
       TT_RELEASE_SAFELY(_connection);
     }
     return NO;
+
   } else {
     return YES;
   }
@@ -352,8 +354,8 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
 
   if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCannotFindHost
       && _retriesLeft) {
-    // If there is a network error then we will wait and retry a few times just in case
-    // it was just a temporary blip in connectivity
+    // If there is a network error then we will wait and retry a few times in case
+    // it was just a temporary blip in connectivity.
     --_retriesLeft;
     [self load:[NSURL URLWithString:_urlPath]];
 
