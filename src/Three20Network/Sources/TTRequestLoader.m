@@ -328,6 +328,10 @@ static const NSInteger kLoadMaxRetries = 2;
   // We need to accept valid HTTP status codes, not only 200.
   if (_response.statusCode >= 200 && _response.statusCode < 300) {
     [_queue loader:self didLoadResponse:_response data:_responseData];
+
+  } else if (_response.statusCode == 304) {
+    [_queue loader:self didLoadUnmodifiedResponse:_response];
+
   } else {
     TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  FAILED LOADING (%d) %@",
                     _response.statusCode, _urlPath);
