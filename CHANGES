@@ -8,6 +8,8 @@ Changes since April 09, 2010
 
 - [NEW] Added the JSON library.
 
+- [NEW] Add a TTFacebook sample project using the new Open Graph API.
+
 - [DOX] Style consistency throughout the entire framework.
 
 Changes since March 30, 2010
