@@ -18,7 +18,7 @@
 
 #import "TTTwitterTweet.h"
 
-static NSString* kTwitterSearchFeedFormat = @"http://search.twitter.com/search.atom?q=%@";
+static NSString* kTwitterSearchFeedFormat = @"http://search.twitter.com/search.json?q=%@";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,19 +52,18 @@ static NSString* kTwitterSearchFeedFormat = @"http://search.twitter.com/search.a
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
   if (!self.isLoading && TTIsStringWithAnyText(_searchQuery)) {
     NSString* url = [NSString stringWithFormat:kTwitterSearchFeedFormat, _searchQuery];
-    
+
     TTURLRequest* request = [TTURLRequest
                              requestWithURL: url
                              delegate: self];
-    
+
     request.cachePolicy = cachePolicy;
     request.cacheExpirationAge = TT_CACHE_EXPIRATION_AGE_NEVER;
-    
-    TTURLXMLResponse* response = [[TTURLXMLResponse alloc] init];
-    response.isRssFeed = YES;
+
+    TTURLJSONResponse* response = [[TTURLJSONResponse alloc] init];
     request.response = response;
     TT_RELEASE_SAFELY(response);
-    
+
     [request send];
   }
 }
@@ -76,33 +75,32 @@ static NSString* kTwitterSearchFeedFormat = @"http://search.twitter.com/search.a
   TTDASSERT([response.rootObject isKindOfClass:[NSDictionary class]]);
 
   NSDictionary* feed = response.rootObject;
-  TTDASSERT([[feed objectForKey:@"entry"] isKindOfClass:[NSArray class]]);
+  TTDASSERT([[feed objectForKey:@"results"] isKindOfClass:[NSArray class]]);
 
-  NSArray* entries = [feed objectForKey:@"entry"];
-  
+  NSArray* entries = [feed objectForKey:@"results"];
+
   NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
   [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
-  [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-  
+  [dateFormatter setDateFormat:@"EEE, dd MMMM yyyy HH:mm:ss ZZ"];
+
   TT_RELEASE_SAFELY(_tweets);
   NSMutableArray* tweets = [[NSMutableArray alloc] initWithCapacity:[entries count]];
 
   for (NSDictionary* entry in entries) {
     TTTwitterTweet* tweet = [[TTTwitterTweet alloc] init];
-    
-    NSDate* date = [dateFormatter dateFromString:[[entry objectForKey:@"published"]
-                                                  objectForXMLNode]];
+
+    NSDate* date = [dateFormatter dateFromString:[entry objectForKey:@"created_at"]];
     tweet.created = date;
     tweet.tweetId = [NSNumber numberWithLongLong:
-                     [[[entry objectForKey:@"id"] objectForXMLNode] longLongValue]];
-    tweet.text = [[entry objectForKey:@"title"] objectForXMLNode];
-    tweet.source = [[entry objectForKey:@"twitter:source"] objectForXMLNode];
-    
+                     [[entry objectForKey:@"id"] longLongValue]];
+    tweet.text = [entry objectForKey:@"text"];
+    tweet.source = [entry objectForKey:@"source"];
+
     [tweets addObject:tweet];
     TT_RELEASE_SAFELY(tweet);
   }
   _tweets = tweets;
-  
+
   TT_RELEASE_SAFELY(dateFormatter);
 
   [super requestDidFinishLoad:request];

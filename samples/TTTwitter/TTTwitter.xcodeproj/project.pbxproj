@@ -180,7 +180,7 @@
 		6E1059AC112CCF9200549F42 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6E105ACF112CDBBB00549F42 /* XML Objects */,
+				6E105ACF112CDBBB00549F42 /* Objects */,
 				6E1059AD112CCFAF00549F42 /* TTTwitterSearchFeedModel.h */,
 				6E1059AE112CCFAF00549F42 /* TTTwitterSearchFeedModel.m */,
 			);
@@ -196,13 +196,13 @@
 			name = "Data Source";
 			sourceTree = "<group>";
 		};
-		6E105ACF112CDBBB00549F42 /* XML Objects */ = {
+		6E105ACF112CDBBB00549F42 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
 				6E105AD0112CDBCC00549F42 /* TTTwitterTweet.h */,
 				6E105AD1112CDBCC00549F42 /* TTTwitterTweet.m */,
 			);
-			name = "XML Objects";
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		EB383B5810BBF6180000B2D2 /* Products */ = {
