@@ -128,6 +128,10 @@ static TTURLRequestQueue* gMainQueue = nil;
             timestamp: (NSDate**)timestamp {
   TTDASSERT(nil != data);
 
+  if (nil == data) {
+    return NO;
+  }
+
   UIImage* image = [[TTURLCache sharedCache] imageForURL:URL fromDisk:fromDisk];
 
   if (nil != image) {
