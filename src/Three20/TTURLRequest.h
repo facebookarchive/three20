@@ -94,7 +94,6 @@
  * @see TTURLDataResponse
  * @see TTURLImageResponse
  * @see TTURLXMLResponse
- * @see TTURLJSONResponse
  */
 @property (nonatomic, retain) id<TTURLResponse> response;
 

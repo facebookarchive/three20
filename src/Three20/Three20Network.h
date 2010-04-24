@@ -37,7 +37,6 @@
 #import "Three20/TTURLDataResponse.h"
 #import "Three20/TTURLImageResponse.h"
 #import "Three20/TTURLXMLResponse.h"
-#import "Three20/TTURLJSONResponse.h"
 
 // - Classes
 #import "Three20/TTUserInfo.h"

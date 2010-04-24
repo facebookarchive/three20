@@ -16,6 +16,8 @@
 
 #import "PlaygroundViewController.h"
 
+#import <Three20/NSDataAdditions.h>
+
 static const CGFloat kFramePadding    = 10;
 static const CGFloat kElementSpacing  = 5;
 static const CGFloat kGroupSpacing    = 10;

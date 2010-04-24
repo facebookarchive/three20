@@ -7,17 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E14D7E810E09A2300445222 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D7E610E09A2300445222 /* TTURLDataResponse.m */; };
-		6E14D81410E0A12700445222 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D81210E0A12700445222 /* TTURLImageResponse.m */; };
-		6E14D82A10E0A16700445222 /* TTURLImageResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E14D82810E0A16700445222 /* TTURLImageResponse.h */; };
-		6E14D82B10E0A16700445222 /* TTURLDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E14D82910E0A16700445222 /* TTURLDataResponse.h */; };
-		6E14D8B210E0A8D200445222 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */; };
+		6E08B7A71183B19A00DA1579 /* TTGlobalNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B7891183B19A00DA1579 /* TTGlobalNetwork.h */; };
+		6E08B7A81183B19A00DA1579 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B78A1183B19A00DA1579 /* TTGlobalNetwork.m */; };
+		6E08B7A91183B19A00DA1579 /* TTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B78B1183B19A00DA1579 /* TTModel.h */; };
+		6E08B7AA1183B19A00DA1579 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B78C1183B19A00DA1579 /* TTModel.m */; };
+		6E08B7AB1183B19A00DA1579 /* TTModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B78D1183B19A00DA1579 /* TTModelDelegate.h */; };
+		6E08B7AC1183B19A00DA1579 /* TTURLRequestModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B78F1183B19A00DA1579 /* TTURLRequestModel.h */; };
+		6E08B7AD1183B19A00DA1579 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B7901183B19A00DA1579 /* TTURLRequestModel.m */; };
+		6E08B7AE1183B19A00DA1579 /* TTRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B7931183B19A00DA1579 /* TTRequestLoader.h */; };
+		6E08B7AF1183B19A00DA1579 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B7941183B19A00DA1579 /* TTRequestLoader.m */; };
+		6E08B7B01183B19A00DA1579 /* TTURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B7951183B19A00DA1579 /* TTURLRequest.h */; };
+		6E08B7B11183B19A00DA1579 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B7961183B19A00DA1579 /* TTURLRequest.m */; };
+		6E08B7B21183B19A00DA1579 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B7971183B19A00DA1579 /* TTURLRequestDelegate.h */; };
+		6E08B7B31183B19A00DA1579 /* TTURLRequestCachePolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B7981183B19A00DA1579 /* TTURLRequestCachePolicy.h */; };
+		6E08B7B41183B19A00DA1579 /* TTURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B7991183B19A00DA1579 /* TTURLResponse.h */; };
+		6E08B7B51183B19A00DA1579 /* TTURLDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B79B1183B19A00DA1579 /* TTURLDataResponse.h */; };
+		6E08B7B61183B19A00DA1579 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B79C1183B19A00DA1579 /* TTURLDataResponse.m */; };
+		6E08B7B71183B19A00DA1579 /* TTURLImageResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B79D1183B19A00DA1579 /* TTURLImageResponse.h */; };
+		6E08B7B81183B19A00DA1579 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B79E1183B19A00DA1579 /* TTURLImageResponse.m */; };
+		6E08B7B91183B19A00DA1579 /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B79F1183B19A00DA1579 /* TTURLXMLResponse.h */; };
+		6E08B7BA1183B19A00DA1579 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B7A01183B19A00DA1579 /* TTURLXMLResponse.m */; };
+		6E08B7BB1183B19A00DA1579 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B7A11183B19A00DA1579 /* TTUserInfo.h */; };
+		6E08B7BC1183B19A00DA1579 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B7A21183B19A00DA1579 /* TTUserInfo.m */; };
+		6E08B7BD1183B19A00DA1579 /* TTURLRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B7A31183B19A00DA1579 /* TTURLRequestQueue.h */; };
+		6E08B7BE1183B19A00DA1579 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B7A41183B19A00DA1579 /* TTURLRequestQueue.m */; };
+		6E08B7BF1183B19A00DA1579 /* TTURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B7A51183B19A00DA1579 /* TTURLCache.h */; };
+		6E08B7C01183B19A00DA1579 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B7A61183B19A00DA1579 /* TTURLCache.m */; };
 		6E14D8EE10E0B60000445222 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8EC10E0B60000445222 /* TTXMLParser.m */; };
 		6E14D95810E0B9CB00445222 /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E14D95710E0B9CB00445222 /* testcase.xml */; };
 		6E14D96410E0BAD300445222 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA5510CADA3200A856E5 /* TTGlobalCorePaths.m */; };
 		6E14D98E10E0BC4E00445222 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D8EC10E0B60000445222 /* TTXMLParser.m */; };
 		6E14D99A10E0BC8000445222 /* TTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E14D99910E0BC8000445222 /* TTXMLParser.h */; };
-		6E14DAD810E0DC7D00445222 /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E14DAD710E0DC7D00445222 /* TTURLXMLResponse.h */; };
 		6E311D2B116BC2B60045C0DF /* TTNavigatorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E311D29116BC2B60045C0DF /* TTNavigatorWindow.m */; };
 		6E311D2D116BC2CF0045C0DF /* TTNavigatorWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E311D2C116BC2CF0045C0DF /* TTNavigatorWindow.h */; };
 		6E311D3B116BC4330045C0DF /* TTURLObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E311D3A116BC4330045C0DF /* TTURLObject.h */; };
@@ -123,46 +143,16 @@
 		6E5CEEBD117E2F4900798CF8 /* Three20Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEEBB117E2F4900798CF8 /* Three20Core.h */; };
 		6E5CEEBE117E2F4900798CF8 /* Three20Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CEEBC117E2F4900798CF8 /* Three20Network.h */; };
 		6E5CEFA6117E47C900798CF8 /* TTGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */; };
-		6E5CF241117E90EE00798CF8 /* TTURLRequestCachePolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */; };
 		6E5F1BA1117E9E9E004BEBA9 /* Three20+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */; };
 		6E5F1BA3117E9F99004BEBA9 /* Three20Core+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */; };
-		6E5F1D5B117EC03E004BEBA9 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE52E993100D8EF800E03DB7 /* TTModel.m */; };
 		6E5F1D6A117EC099004BEBA9 /* TTGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */; };
 		6E5F1D9C117EC35C004BEBA9 /* MockModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1D9A117EC35C004BEBA9 /* MockModelDelegate.h */; };
 		6E5F1D9F117EC3C3004BEBA9 /* MockModelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D9B117EC35C004BEBA9 /* MockModelDelegate.m */; };
 		6E5F1DBA117EC576004BEBA9 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D7D117EC287004BEBA9 /* NetworkModelTests.m */; };
-		6E5F1DDD117EC604004BEBA9 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */; };
-		6E5F1DE0117EC60E004BEBA9 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E8D81122AB7900276F63 /* TTRequestLoader.m */; };
-		6E5F1DE9117EC61F004BEBA9 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */; };
-		6E5F1DEE117EC626004BEBA9 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
-		6E5F1DF5117EC62F004BEBA9 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F540F352E64000DE5D2 /* TTURLCache.m */; };
-		6E5F1E2D117F701F004BEBA9 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F560F352E64000DE5D2 /* TTURLRequest.m */; };
-		6E5F1E2E117F7022004BEBA9 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFB6C811627188009B479E /* TTURLRequestModel.m */; };
 		6E5F1E3D117F70EF004BEBA9 /* CoreXMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1D7F117EC29C004BEBA9 /* CoreXMLTests.m */; };
 		6E5F1FCB117FC77A004BEBA9 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA7624D0FBA1E220091B567 /* NSDateAdditions.m */; };
 		6E5F1FCC117FC77C004BEBA9 /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF211B0F4D329600D75F3B /* NSObjectAdditions.m */; };
-		6E5F22BA11813D23004BEBA9 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F22AD11813D23004BEBA9 /* JSON.h */; };
-		6E5F22BB11813D23004BEBA9 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F22AE11813D23004BEBA9 /* NSObject+SBJSON.h */; };
-		6E5F22BC11813D23004BEBA9 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22AF11813D23004BEBA9 /* NSObject+SBJSON.m */; };
-		6E5F22BD11813D23004BEBA9 /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F22B011813D23004BEBA9 /* NSString+SBJSON.h */; };
-		6E5F22BE11813D23004BEBA9 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B111813D23004BEBA9 /* NSString+SBJSON.m */; };
-		6E5F22BF11813D23004BEBA9 /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F22B211813D23004BEBA9 /* SBJSON.h */; };
-		6E5F22C011813D23004BEBA9 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B311813D23004BEBA9 /* SBJSON.m */; };
-		6E5F22C111813D23004BEBA9 /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F22B411813D23004BEBA9 /* SBJsonBase.h */; };
-		6E5F22C211813D23004BEBA9 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B511813D23004BEBA9 /* SBJsonBase.m */; };
-		6E5F22C311813D23004BEBA9 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F22B611813D23004BEBA9 /* SBJsonParser.h */; };
-		6E5F22C411813D23004BEBA9 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B711813D23004BEBA9 /* SBJsonParser.m */; };
-		6E5F22C511813D23004BEBA9 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F22B811813D23004BEBA9 /* SBJsonWriter.h */; };
-		6E5F22C611813D23004BEBA9 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B911813D23004BEBA9 /* SBJsonWriter.m */; };
-		6E5F22D111814CE6004BEBA9 /* TTURLJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22CF11814CE6004BEBA9 /* TTURLJSONResponse.m */; };
-		6E5F22D311814CF2004BEBA9 /* TTURLJSONResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F22D211814CF2004BEBA9 /* TTURLJSONResponse.h */; };
 		6E5F22E911814E8F004BEBA9 /* CoreJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22E511814E68004BEBA9 /* CoreJSONTests.m */; };
-		6E5F22EA11814E94004BEBA9 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B311813D23004BEBA9 /* SBJSON.m */; };
-		6E5F22EB11814E94004BEBA9 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B511813D23004BEBA9 /* SBJsonBase.m */; };
-		6E5F22EC11814E95004BEBA9 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B711813D23004BEBA9 /* SBJsonParser.m */; };
-		6E5F22ED11814E95004BEBA9 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B911813D23004BEBA9 /* SBJsonWriter.m */; };
-		6E5F22EE11814E9B004BEBA9 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22AF11813D23004BEBA9 /* NSObject+SBJSON.m */; };
-		6E5F231811814F58004BEBA9 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F22B111813D23004BEBA9 /* NSString+SBJSON.m */; };
 		6E6206A91176486D00035C6C /* TTTableMoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */; };
 		6E6206AB1176487B00035C6C /* TTTableMoreButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */; };
 		6E6206B1117648F900035C6C /* TTTableImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6206AF117648F900035C6C /* TTTableImageItemCell.m */; };
@@ -186,11 +176,6 @@
 		6E6208331176702000035C6C /* TTLauncherViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6208321176702000035C6C /* TTLauncherViewDelegate.h */; };
 		6E6208421176708600035C6C /* TTLauncherScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6208401176708600035C6C /* TTLauncherScrollView.m */; };
 		6E6208441176709500035C6C /* TTLauncherScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6208431176709500035C6C /* TTLauncherScrollView.h */; };
-		6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */; };
-		6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E85511229C9100276F63 /* TTUserInfo.m */; };
-		6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E85811229CA500276F63 /* TTUserInfo.h */; };
-		6E75E8DA1122AB7900276F63 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E75E8D81122AB7900276F63 /* TTRequestLoader.m */; };
-		6E75E8DC1122AB9000276F63 /* TTRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E75E8DB1122AB9000276F63 /* TTRequestLoader.h */; };
 		6E8F7849110FD80C00069B64 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EB1F6C5D10B36C32003DAA1F /* TTDebug.m */; };
 		6E8F7930111023EE00069B64 /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F792E111023EE00069B64 /* TTURLAction.m */; };
 		6E8F79341110262700069B64 /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8F79331110262700069B64 /* TTURLAction.h */; };
@@ -257,9 +242,6 @@
 		6EB0117B11118052004D204C /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0117A11118052004D204C /* TTImageLayer.h */; };
 		6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB013871112C513004D204C /* TTImageViewInternal.m */; };
 		6EB0138B1112C538004D204C /* TTImageViewInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB0138A1112C538004D204C /* TTImageViewInternal.h */; };
-		6EEFB6C71162717F009B479E /* TTURLRequestModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EEFB6C61162717F009B479E /* TTURLRequestModel.h */; };
-		6EEFB6C911627188009B479E /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFB6C811627188009B479E /* TTURLRequestModel.m */; };
-		6EEFB6DE11627305009B479E /* TTModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EEFB6DD11627305009B479E /* TTModelDelegate.h */; };
 		6EFDD4331174295D00BAE58A /* TTNavigatorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD4311174295D00BAE58A /* TTNavigatorDelegate.h */; };
 		6EFDD43F11743B9300BAE58A /* TTTextEditorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFDD43E11743B9300BAE58A /* TTTextEditorDelegate.h */; };
 		6EFDD4BF11743CAE00BAE58A /* TTTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFDD4BD11743CAE00BAE58A /* TTTextView.m */; };
@@ -334,7 +316,6 @@
 		BE2178F61000940D009329F2 /* TTURLMap.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2178F51000940D009329F2 /* TTURLMap.m */; };
 		BE23E72B100B0A7200F40C3B /* TTListDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BE23E72A100B0A7200F40C3B /* TTListDataSource.h */; };
 		BE23E72D100B0ACD00F40C3B /* TTListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE23E72C100B0ACD00F40C3B /* TTListDataSource.m */; };
-		BE23E798100B13E200F40C3B /* TTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = BE23E797100B13E200F40C3B /* TTModel.h */; };
 		BE30DB791056FD7D00FEB457 /* TTTextBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE30DB781056FD7D00FEB457 /* TTTextBarController.h */; };
 		BE30DB7B1056FD8700FEB457 /* TTTextBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE30DB7A1056FD8700FEB457 /* TTTextBarController.m */; };
 		BE3EDE410F80C78500A732BE /* TTStyledText.h in Headers */ = {isa = PBXBuildFile; fileRef = BE3EDE400F80C78500A732BE /* TTStyledText.h */; };
@@ -345,7 +326,6 @@
 		BE42FB7C0F3BBF3D00A3B65A /* TTTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */; };
 		BE52E93F100D7DEE00E03DB7 /* TTModelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */; };
 		BE52E941100D7DFD00E03DB7 /* TTModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */; };
-		BE52E994100D8EF800E03DB7 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE52E993100D8EF800E03DB7 /* TTModel.m */; };
 		BE6E4A520F465237001CE9B4 /* TTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */; };
 		BE6E4A540F465243001CE9B4 /* TTTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */; };
 		BE702EF10F43F6720028A119 /* TTTableViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */; };
@@ -364,8 +344,6 @@
 		BE7EB6550F50D339008A4B05 /* TTTableHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */; };
 		BE8541010F998FA900DA3E9E /* TTStyledFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8541000F998FA900DA3E9E /* TTStyledFrame.h */; };
 		BE8541030F998FB800DA3E9E /* TTStyledFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8541020F998FB800DA3E9E /* TTStyledFrame.m */; };
-		BE8A9C170F4143C800FD8C43 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */; };
-		BE8A9C190F4143DA00FD8C43 /* TTURLRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8A9C180F4143DA00FD8C43 /* TTURLRequestQueue.h */; };
 		BE8AA1910F428A3700FD8C43 /* UIViewControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8AA1900F428A3700FD8C43 /* UIViewControllerAdditions.m */; };
 		BE8AA1930F428A4900FD8C43 /* UIViewControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8AA1920F428A4900FD8C43 /* UIViewControllerAdditions.h */; };
 		BEA69ECB0FAC0FD600DA7DDC /* TTWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA69ECA0FAC0FD600DA7DDC /* TTWebController.m */; };
@@ -424,7 +402,6 @@
 		BED623940F50F350003EF242 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = BED623930F50F350003EF242 /* NSArrayAdditions.m */; };
 		BED62FD90F882FD1009923D8 /* TTTableViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BED62FD80F882FD1009923D8 /* TTTableViewDelegate.h */; };
 		BED62FDB0F882FE3009923D8 /* TTTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BED62FDA0F882FE3009923D8 /* TTTableViewDelegate.m */; };
-		BEDCF3290F4EBE2F0060B7D1 /* TTURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */; };
 		BEE3419D0F480B87008C826E /* TTPickerTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE3419C0F480B87008C826E /* TTPickerTextField.h */; };
 		BEE341A60F480BA2008C826E /* TTPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341A50F480BA2008C826E /* TTPickerTextField.m */; };
 		BEE341BE0F48133F008C826E /* TTPickerViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEE341BD0F48133F008C826E /* TTPickerViewCell.h */; };
@@ -453,8 +430,6 @@
 		BEF31F7A0F352E64000DE5D2 /* TTThumbsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F500F352E64000DE5D2 /* TTThumbsTableViewCell.m */; };
 		BEF31F7B0F352E64000DE5D2 /* TTThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F510F352E64000DE5D2 /* TTThumbsViewController.m */; };
 		BEF31F7C0F352E64000DE5D2 /* TTThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F520F352E64000DE5D2 /* TTThumbView.m */; };
-		BEF31F7E0F352E64000DE5D2 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F540F352E64000DE5D2 /* TTURLCache.m */; };
-		BEF31F800F352E64000DE5D2 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F560F352E64000DE5D2 /* TTURLRequest.m */; };
 		BEF31F810F352E64000DE5D2 /* TTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F570F352E64000DE5D2 /* TTViewController.m */; };
 		BEF31F820F352E64000DE5D2 /* TTYouTubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF31F580F352E64000DE5D2 /* TTYouTubeView.m */; };
 		BEF31F830F352E64000DE5D2 /* TTActivityLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F5A0F352E64000DE5D2 /* TTActivityLabel.h */; };
@@ -470,8 +445,6 @@
 		BEF31F8F0F352E64000DE5D2 /* TTThumbsTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F660F352E64000DE5D2 /* TTThumbsTableViewCell.h */; };
 		BEF31F900F352E64000DE5D2 /* TTThumbsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F670F352E64000DE5D2 /* TTThumbsViewController.h */; };
 		BEF31F910F352E64000DE5D2 /* TTThumbView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F680F352E64000DE5D2 /* TTThumbView.h */; };
-		BEF31F930F352E64000DE5D2 /* TTURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F6A0F352E64000DE5D2 /* TTURLCache.h */; };
-		BEF31F950F352E64000DE5D2 /* TTURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F6C0F352E64000DE5D2 /* TTURLRequest.h */; };
 		BEF31F960F352E64000DE5D2 /* TTViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F6D0F352E64000DE5D2 /* TTViewController.h */; };
 		BEF31F970F352E64000DE5D2 /* TTYouTubeView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F6E0F352E64000DE5D2 /* TTYouTubeView.h */; };
 		BEF31F980F352E64000DE5D2 /* Three20.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF31F6F0F352E64000DE5D2 /* Three20.h */; };
@@ -492,8 +465,6 @@
 		EB4CD72210CA034F00A856E5 /* TTGlobalCoreLocale.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CD72110CA034F00A856E5 /* TTGlobalCoreLocale.h */; };
 		EB4CDA4010CAD55400A856E5 /* TTGlobalUI.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA3E10CAD55400A856E5 /* TTGlobalUI.m */; };
 		EB4CDA4210CAD6E200A856E5 /* TTGlobalUI.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CDA4110CAD6E200A856E5 /* TTGlobalUI.h */; };
-		EB4CDA5010CAD83A00A856E5 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */; };
-		EB4CDA5210CAD85E00A856E5 /* TTGlobalNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CDA5110CAD85E00A856E5 /* TTGlobalNetwork.h */; };
 		EB4CDA5710CADA3200A856E5 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA5510CADA3200A856E5 /* TTGlobalCorePaths.m */; };
 		EB4CDA5910CADA5B00A856E5 /* TTGlobalCorePaths.h in Headers */ = {isa = PBXBuildFile; fileRef = EB4CDA5810CADA5B00A856E5 /* TTGlobalCorePaths.h */; };
 		EB4CDA6310CADB8200A856E5 /* UIGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4CDA5F10CADB3200A856E5 /* UIGlobalTests.m */; };
@@ -533,15 +504,35 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		6E14D7E610E09A2300445222 /* TTURLDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLDataResponse.m; sourceTree = "<group>"; };
-		6E14D81210E0A12700445222 /* TTURLImageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLImageResponse.m; sourceTree = "<group>"; };
-		6E14D82810E0A16700445222 /* TTURLImageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLImageResponse.h; path = Three20/TTURLImageResponse.h; sourceTree = "<group>"; };
-		6E14D82910E0A16700445222 /* TTURLDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLDataResponse.h; path = Three20/TTURLDataResponse.h; sourceTree = "<group>"; };
-		6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLXMLResponse.m; sourceTree = "<group>"; };
+		6E08B7891183B19A00DA1579 /* TTGlobalNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalNetwork.h; path = Three20/TTGlobalNetwork.h; sourceTree = "<group>"; };
+		6E08B78A1183B19A00DA1579 /* TTGlobalNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalNetwork.m; sourceTree = "<group>"; };
+		6E08B78B1183B19A00DA1579 /* TTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModel.h; path = Three20/TTModel.h; sourceTree = "<group>"; };
+		6E08B78C1183B19A00DA1579 /* TTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModel.m; sourceTree = "<group>"; };
+		6E08B78D1183B19A00DA1579 /* TTModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModelDelegate.h; path = Three20/TTModelDelegate.h; sourceTree = "<group>"; };
+		6E08B78F1183B19A00DA1579 /* TTURLRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestModel.h; path = Three20/TTURLRequestModel.h; sourceTree = "<group>"; };
+		6E08B7901183B19A00DA1579 /* TTURLRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestModel.m; sourceTree = "<group>"; };
+		6E08B7931183B19A00DA1579 /* TTRequestLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRequestLoader.h; path = Three20/TTRequestLoader.h; sourceTree = "<group>"; };
+		6E08B7941183B19A00DA1579 /* TTRequestLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRequestLoader.m; sourceTree = "<group>"; };
+		6E08B7951183B19A00DA1579 /* TTURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequest.h; path = Three20/TTURLRequest.h; sourceTree = "<group>"; };
+		6E08B7961183B19A00DA1579 /* TTURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequest.m; sourceTree = "<group>"; };
+		6E08B7971183B19A00DA1579 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
+		6E08B7981183B19A00DA1579 /* TTURLRequestCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestCachePolicy.h; path = Three20/TTURLRequestCachePolicy.h; sourceTree = "<group>"; };
+		6E08B7991183B19A00DA1579 /* TTURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLResponse.h; path = Three20/TTURLResponse.h; sourceTree = "<group>"; };
+		6E08B79B1183B19A00DA1579 /* TTURLDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLDataResponse.h; path = Three20/TTURLDataResponse.h; sourceTree = "<group>"; };
+		6E08B79C1183B19A00DA1579 /* TTURLDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLDataResponse.m; sourceTree = "<group>"; };
+		6E08B79D1183B19A00DA1579 /* TTURLImageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLImageResponse.h; path = Three20/TTURLImageResponse.h; sourceTree = "<group>"; };
+		6E08B79E1183B19A00DA1579 /* TTURLImageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLImageResponse.m; sourceTree = "<group>"; };
+		6E08B79F1183B19A00DA1579 /* TTURLXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLResponse.h; path = Three20/TTURLXMLResponse.h; sourceTree = "<group>"; };
+		6E08B7A01183B19A00DA1579 /* TTURLXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLXMLResponse.m; sourceTree = "<group>"; };
+		6E08B7A11183B19A00DA1579 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
+		6E08B7A21183B19A00DA1579 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
+		6E08B7A31183B19A00DA1579 /* TTURLRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestQueue.h; path = Three20/TTURLRequestQueue.h; sourceTree = "<group>"; };
+		6E08B7A41183B19A00DA1579 /* TTURLRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestQueue.m; sourceTree = "<group>"; };
+		6E08B7A51183B19A00DA1579 /* TTURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLCache.h; path = Three20/TTURLCache.h; sourceTree = "<group>"; };
+		6E08B7A61183B19A00DA1579 /* TTURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLCache.m; sourceTree = "<group>"; };
 		6E14D8EC10E0B60000445222 /* TTXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTXMLParser.m; sourceTree = "<group>"; };
 		6E14D95710E0B9CB00445222 /* testcase.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase.xml; path = tests/testcase.xml; sourceTree = "<group>"; };
 		6E14D99910E0BC8000445222 /* TTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTXMLParser.h; path = Three20/TTXMLParser.h; sourceTree = "<group>"; };
-		6E14DAD710E0DC7D00445222 /* TTURLXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLResponse.h; path = Three20/TTURLXMLResponse.h; sourceTree = "<group>"; };
 		6E311D29116BC2B60045C0DF /* TTNavigatorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNavigatorWindow.m; sourceTree = "<group>"; };
 		6E311D2C116BC2CF0045C0DF /* TTNavigatorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorWindow.h; path = Three20/TTNavigatorWindow.h; sourceTree = "<group>"; };
 		6E311D3A116BC4330045C0DF /* TTURLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLObject.h; path = Three20/TTURLObject.h; sourceTree = "<group>"; };
@@ -647,28 +638,12 @@
 		6E5CEEBB117E2F4900798CF8 /* Three20Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core.h; path = Three20/Three20Core.h; sourceTree = "<group>"; };
 		6E5CEEBC117E2F4900798CF8 /* Three20Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Network.h; path = Three20/Three20Network.h; sourceTree = "<group>"; };
 		6E5CEFA5117E47C900798CF8 /* TTGlobalStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalStyle.m; sourceTree = "<group>"; };
-		6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestCachePolicy.h; path = Three20/TTURLRequestCachePolicy.h; sourceTree = "<group>"; };
 		6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20+Additions.h"; path = "Three20/Three20+Additions.h"; sourceTree = "<group>"; };
 		6E5F1BA2117E9F99004BEBA9 /* Three20Core+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Core+Additions.h"; path = "Three20/Three20Core+Additions.h"; sourceTree = "<group>"; };
 		6E5F1D7D117EC287004BEBA9 /* NetworkModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkModelTests.m; path = tests/NetworkModelTests.m; sourceTree = "<group>"; };
 		6E5F1D7F117EC29C004BEBA9 /* CoreXMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreXMLTests.m; path = tests/CoreXMLTests.m; sourceTree = "<group>"; };
 		6E5F1D9A117EC35C004BEBA9 /* MockModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockModelDelegate.h; path = tests/mocks/MockModelDelegate.h; sourceTree = "<group>"; };
 		6E5F1D9B117EC35C004BEBA9 /* MockModelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockModelDelegate.m; path = tests/mocks/MockModelDelegate.m; sourceTree = "<group>"; };
-		6E5F22AD11813D23004BEBA9 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		6E5F22AE11813D23004BEBA9 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
-		6E5F22AF11813D23004BEBA9 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
-		6E5F22B011813D23004BEBA9 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
-		6E5F22B111813D23004BEBA9 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
-		6E5F22B211813D23004BEBA9 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
-		6E5F22B311813D23004BEBA9 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
-		6E5F22B411813D23004BEBA9 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
-		6E5F22B511813D23004BEBA9 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
-		6E5F22B611813D23004BEBA9 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		6E5F22B711813D23004BEBA9 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
-		6E5F22B811813D23004BEBA9 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		6E5F22B911813D23004BEBA9 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		6E5F22CF11814CE6004BEBA9 /* TTURLJSONResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLJSONResponse.m; sourceTree = "<group>"; };
-		6E5F22D211814CF2004BEBA9 /* TTURLJSONResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLJSONResponse.h; path = Three20/TTURLJSONResponse.h; sourceTree = "<group>"; };
 		6E5F22E511814E68004BEBA9 /* CoreJSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreJSONTests.m; path = tests/CoreJSONTests.m; sourceTree = "<group>"; };
 		6E6206A71176486D00035C6C /* TTTableMoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableMoreButtonCell.m; sourceTree = "<group>"; };
 		6E6206AA1176487B00035C6C /* TTTableMoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableMoreButtonCell.h; path = Three20/TTTableMoreButtonCell.h; sourceTree = "<group>"; };
@@ -693,11 +668,6 @@
 		6E6208321176702000035C6C /* TTLauncherViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherViewDelegate.h; path = Three20/TTLauncherViewDelegate.h; sourceTree = "<group>"; };
 		6E6208401176708600035C6C /* TTLauncherScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTLauncherScrollView.m; sourceTree = "<group>"; };
 		6E6208431176709500035C6C /* TTLauncherScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherScrollView.h; path = Three20/TTLauncherScrollView.h; sourceTree = "<group>"; };
-		6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
-		6E75E85511229C9100276F63 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
-		6E75E85811229CA500276F63 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
-		6E75E8D81122AB7900276F63 /* TTRequestLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRequestLoader.m; sourceTree = "<group>"; };
-		6E75E8DB1122AB9000276F63 /* TTRequestLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRequestLoader.h; path = Three20/TTRequestLoader.h; sourceTree = "<group>"; };
 		6E8F792E111023EE00069B64 /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLAction.m; sourceTree = "<group>"; };
 		6E8F79331110262700069B64 /* TTURLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLAction.h; path = Three20/TTURLAction.h; sourceTree = "<group>"; };
 		6E8F79ED1110FE3D00069B64 /* TTURLNavigatorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLNavigatorPattern.m; sourceTree = "<group>"; };
@@ -764,9 +734,6 @@
 		6EB0117A11118052004D204C /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Three20/TTImageLayer.h; sourceTree = "<group>"; };
 		6EB013871112C513004D204C /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTImageViewInternal.m; sourceTree = "<group>"; };
 		6EB0138A1112C538004D204C /* TTImageViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageViewInternal.h; path = Three20/TTImageViewInternal.h; sourceTree = "<group>"; };
-		6EEFB6C61162717F009B479E /* TTURLRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestModel.h; path = Three20/TTURLRequestModel.h; sourceTree = "<group>"; };
-		6EEFB6C811627188009B479E /* TTURLRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestModel.m; sourceTree = "<group>"; };
-		6EEFB6DD11627305009B479E /* TTModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModelDelegate.h; path = Three20/TTModelDelegate.h; sourceTree = "<group>"; };
 		6EFDD4311174295D00BAE58A /* TTNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorDelegate.h; path = Three20/TTNavigatorDelegate.h; sourceTree = "<group>"; };
 		6EFDD43E11743B9300BAE58A /* TTTextEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextEditorDelegate.h; path = Three20/TTTextEditorDelegate.h; sourceTree = "<group>"; };
 		6EFDD4BD11743CAE00BAE58A /* TTTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTextView.m; sourceTree = "<group>"; };
@@ -841,7 +808,6 @@
 		BE2178F51000940D009329F2 /* TTURLMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLMap.m; sourceTree = "<group>"; };
 		BE23E72A100B0A7200F40C3B /* TTListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTListDataSource.h; path = Three20/TTListDataSource.h; sourceTree = "<group>"; };
 		BE23E72C100B0ACD00F40C3B /* TTListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTListDataSource.m; sourceTree = "<group>"; };
-		BE23E797100B13E200F40C3B /* TTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModel.h; path = Three20/TTModel.h; sourceTree = "<group>"; };
 		BE30DB781056FD7D00FEB457 /* TTTextBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextBarController.h; path = Three20/TTTextBarController.h; sourceTree = "<group>"; };
 		BE30DB7A1056FD8700FEB457 /* TTTextBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTextBarController.m; sourceTree = "<group>"; };
 		BE3EDE400F80C78500A732BE /* TTStyledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledText.h; path = Three20/TTStyledText.h; sourceTree = "<group>"; };
@@ -852,7 +818,6 @@
 		BE42FB7B0F3BBF3D00A3B65A /* TTTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTabBar.h; path = Three20/TTTabBar.h; sourceTree = "<group>"; };
 		BE52E93E100D7DEE00E03DB7 /* TTModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModelViewController.h; path = Three20/TTModelViewController.h; sourceTree = "<group>"; };
 		BE52E940100D7DFD00E03DB7 /* TTModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModelViewController.m; sourceTree = "<group>"; };
-		BE52E993100D8EF800E03DB7 /* TTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModel.m; sourceTree = "<group>"; };
 		BE6E4A510F465237001CE9B4 /* TTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewCell.m; sourceTree = "<group>"; };
 		BE6E4A530F465243001CE9B4 /* TTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewCell.h; path = Three20/TTTableViewCell.h; sourceTree = "<group>"; };
 		BE702EF00F43F6720028A119 /* TTTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewDataSource.h; path = Three20/TTTableViewDataSource.h; sourceTree = "<group>"; };
@@ -871,8 +836,6 @@
 		BE7EB6540F50D339008A4B05 /* TTTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableHeaderView.h; path = Three20/TTTableHeaderView.h; sourceTree = "<group>"; };
 		BE8541000F998FA900DA3E9E /* TTStyledFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledFrame.h; path = Three20/TTStyledFrame.h; sourceTree = "<group>"; };
 		BE8541020F998FB800DA3E9E /* TTStyledFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTStyledFrame.m; sourceTree = "<group>"; };
-		BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestQueue.m; sourceTree = "<group>"; };
-		BE8A9C180F4143DA00FD8C43 /* TTURLRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestQueue.h; path = Three20/TTURLRequestQueue.h; sourceTree = "<group>"; };
 		BE8AA1900F428A3700FD8C43 /* UIViewControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerAdditions.m; sourceTree = "<group>"; };
 		BE8AA1920F428A4900FD8C43 /* UIViewControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewControllerAdditions.h; path = Three20/UIViewControllerAdditions.h; sourceTree = "<group>"; };
 		BEA69ECA0FAC0FD600DA7DDC /* TTWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTWebController.m; sourceTree = "<group>"; };
@@ -931,7 +894,6 @@
 		BED623930F50F350003EF242 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditions.m; sourceTree = "<group>"; };
 		BED62FD80F882FD1009923D8 /* TTTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewDelegate.h; path = Three20/TTTableViewDelegate.h; sourceTree = "<group>"; };
 		BED62FDA0F882FE3009923D8 /* TTTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTableViewDelegate.m; sourceTree = "<group>"; };
-		BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLResponse.h; path = Three20/TTURLResponse.h; sourceTree = "<group>"; };
 		BEE3419C0F480B87008C826E /* TTPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPickerTextField.h; path = Three20/TTPickerTextField.h; sourceTree = "<group>"; };
 		BEE341A50F480BA2008C826E /* TTPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPickerTextField.m; sourceTree = "<group>"; };
 		BEE341BD0F48133F008C826E /* TTPickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTPickerViewCell.h; path = Three20/TTPickerViewCell.h; sourceTree = "<group>"; };
@@ -961,8 +923,6 @@
 		BEF31F500F352E64000DE5D2 /* TTThumbsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTThumbsTableViewCell.m; sourceTree = "<group>"; };
 		BEF31F510F352E64000DE5D2 /* TTThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTThumbsViewController.m; sourceTree = "<group>"; };
 		BEF31F520F352E64000DE5D2 /* TTThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTThumbView.m; sourceTree = "<group>"; };
-		BEF31F540F352E64000DE5D2 /* TTURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLCache.m; sourceTree = "<group>"; };
-		BEF31F560F352E64000DE5D2 /* TTURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequest.m; sourceTree = "<group>"; };
 		BEF31F570F352E64000DE5D2 /* TTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTViewController.m; sourceTree = "<group>"; };
 		BEF31F580F352E64000DE5D2 /* TTYouTubeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTYouTubeView.m; sourceTree = "<group>"; };
 		BEF31F5A0F352E64000DE5D2 /* TTActivityLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTActivityLabel.h; path = Three20/TTActivityLabel.h; sourceTree = "<group>"; };
@@ -978,8 +938,6 @@
 		BEF31F660F352E64000DE5D2 /* TTThumbsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsTableViewCell.h; path = Three20/TTThumbsTableViewCell.h; sourceTree = "<group>"; };
 		BEF31F670F352E64000DE5D2 /* TTThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbsViewController.h; path = Three20/TTThumbsViewController.h; sourceTree = "<group>"; };
 		BEF31F680F352E64000DE5D2 /* TTThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTThumbView.h; path = Three20/TTThumbView.h; sourceTree = "<group>"; };
-		BEF31F6A0F352E64000DE5D2 /* TTURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLCache.h; path = Three20/TTURLCache.h; sourceTree = "<group>"; };
-		BEF31F6C0F352E64000DE5D2 /* TTURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequest.h; path = Three20/TTURLRequest.h; sourceTree = "<group>"; };
 		BEF31F6D0F352E64000DE5D2 /* TTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTViewController.h; path = Three20/TTViewController.h; sourceTree = "<group>"; };
 		BEF31F6E0F352E64000DE5D2 /* TTYouTubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTYouTubeView.h; path = Three20/TTYouTubeView.h; sourceTree = "<group>"; };
 		BEF31F6F0F352E64000DE5D2 /* Three20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20.h; path = Three20/Three20.h; sourceTree = "<group>"; };
@@ -996,8 +954,6 @@
 		EB4CD72110CA034F00A856E5 /* TTGlobalCoreLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCoreLocale.h; path = Three20/TTGlobalCoreLocale.h; sourceTree = "<group>"; };
 		EB4CDA3E10CAD55400A856E5 /* TTGlobalUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalUI.m; sourceTree = "<group>"; };
 		EB4CDA4110CAD6E200A856E5 /* TTGlobalUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUI.h; path = Three20/TTGlobalUI.h; sourceTree = "<group>"; };
-		EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalNetwork.m; sourceTree = "<group>"; };
-		EB4CDA5110CAD85E00A856E5 /* TTGlobalNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalNetwork.h; path = Three20/TTGlobalNetwork.h; sourceTree = "<group>"; };
 		EB4CDA5510CADA3200A856E5 /* TTGlobalCorePaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCorePaths.m; sourceTree = "<group>"; };
 		EB4CDA5810CADA5B00A856E5 /* TTGlobalCorePaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCorePaths.h; path = Three20/TTGlobalCorePaths.h; sourceTree = "<group>"; };
 		EB4CDA5F10CADB3200A856E5 /* UIGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIGlobalTests.m; path = tests/UIGlobalTests.m; sourceTree = "<group>"; };
@@ -1065,7 +1021,7 @@
 				6E5F1BA0117E9E9E004BEBA9 /* Three20+Additions.h */,
 				6E92494D112C6F7000531F03 /* Three20_Prefix.pch */,
 				6E14D8EA10E0B5F100445222 /* Core */,
-				EBAE96F210D1F5B300F497CA /* Network */,
+				6E08B7881183B19A00DA1579 /* Network */,
 				BE1287F40F8969C100F65EA2 /* Style */,
 				EBAE96F110D1F58900F497CA /* UI */,
 				EB9E6C7910B6A94700DE563C /* Tests */,
@@ -1086,20 +1042,101 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6E14D7EC10E09A7F00445222 /* Responses */ = {
+		6E08B7881183B19A00DA1579 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				BEDCF3280F4EBE2F0060B7D1 /* TTURLResponse.h */,
-				6E14D82910E0A16700445222 /* TTURLDataResponse.h */,
-				6E14D7E610E09A2300445222 /* TTURLDataResponse.m */,
-				6E14D82810E0A16700445222 /* TTURLImageResponse.h */,
-				6E14D81210E0A12700445222 /* TTURLImageResponse.m */,
-				6E14DAD710E0DC7D00445222 /* TTURLXMLResponse.h */,
-				6E14D8B010E0A8D200445222 /* TTURLXMLResponse.m */,
-				6E5F22D211814CF2004BEBA9 /* TTURLJSONResponse.h */,
-				6E5F22CF11814CE6004BEBA9 /* TTURLJSONResponse.m */,
+				6E08B7891183B19A00DA1579 /* TTGlobalNetwork.h */,
+				6E08B78A1183B19A00DA1579 /* TTGlobalNetwork.m */,
+				6E08B7A11183B19A00DA1579 /* TTUserInfo.h */,
+				6E08B7A21183B19A00DA1579 /* TTUserInfo.m */,
+				6E08B7C41183B24700DA1579 /* Model */,
+				6E08B7C51183B25500DA1579 /* Response */,
+				6E08B7C61183B25D00DA1579 /* Request */,
+				6E08B7C11183B1F100DA1579 /* Cache */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		6E08B78E1183B19A00DA1579 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B78F1183B19A00DA1579 /* TTURLRequestModel.h */,
+				6E08B7901183B19A00DA1579 /* TTURLRequestModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6E08B7911183B19A00DA1579 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B7971183B19A00DA1579 /* TTURLRequestDelegate.h */,
+				6E08B7981183B19A00DA1579 /* TTURLRequestCachePolicy.h */,
+				6E08B7A31183B19A00DA1579 /* TTURLRequestQueue.h */,
+				6E08B7A41183B19A00DA1579 /* TTURLRequestQueue.m */,
+				6E08B7921183B19A00DA1579 /* Private */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
+		6E08B7921183B19A00DA1579 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B7931183B19A00DA1579 /* TTRequestLoader.h */,
+				6E08B7941183B19A00DA1579 /* TTRequestLoader.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
+		6E08B79A1183B19A00DA1579 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B79B1183B19A00DA1579 /* TTURLDataResponse.h */,
+				6E08B79C1183B19A00DA1579 /* TTURLDataResponse.m */,
+				6E08B79D1183B19A00DA1579 /* TTURLImageResponse.h */,
+				6E08B79E1183B19A00DA1579 /* TTURLImageResponse.m */,
+				6E08B79F1183B19A00DA1579 /* TTURLXMLResponse.h */,
+				6E08B7A01183B19A00DA1579 /* TTURLXMLResponse.m */,
 			);
 			name = Responses;
+			sourceTree = "<group>";
+		};
+		6E08B7C11183B1F100DA1579 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B7A51183B19A00DA1579 /* TTURLCache.h */,
+				6E08B7A61183B19A00DA1579 /* TTURLCache.m */,
+			);
+			name = Cache;
+			sourceTree = "<group>";
+		};
+		6E08B7C41183B24700DA1579 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B78B1183B19A00DA1579 /* TTModel.h */,
+				6E08B78C1183B19A00DA1579 /* TTModel.m */,
+				6E08B78D1183B19A00DA1579 /* TTModelDelegate.h */,
+				6E08B78E1183B19A00DA1579 /* Models */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6E08B7C51183B25500DA1579 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B7991183B19A00DA1579 /* TTURLResponse.h */,
+				6E08B79A1183B19A00DA1579 /* Responses */,
+			);
+			name = Response;
+			sourceTree = "<group>";
+		};
+		6E08B7C61183B25D00DA1579 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B7951183B19A00DA1579 /* TTURLRequest.h */,
+				6E08B7961183B19A00DA1579 /* TTURLRequest.m */,
+				6E08B7911183B19A00DA1579 /* Requests */,
+			);
+			name = Request;
 			sourceTree = "<group>";
 		};
 		6E14D8EA10E0B5F100445222 /* Core */ = {
@@ -1110,7 +1147,6 @@
 				6E5CEE0C117D908800798CF8 /* Additions */,
 				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
 				6E14D92E10E0B6C000445222 /* XML */,
-				6E5F22AC11813D23004BEBA9 /* JSON */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1313,16 +1349,6 @@
 			name = Additions;
 			sourceTree = "<group>";
 		};
-		6E5CEE0D117D909E00798CF8 /* Global */ = {
-			isa = PBXGroup;
-			children = (
-				EB4CDA5110CAD85E00A856E5 /* TTGlobalNetwork.h */,
-				EB4CDA4E10CAD83A00A856E5 /* TTGlobalNetwork.m */,
-				6E5CF240117E90EE00798CF8 /* TTURLRequestCachePolicy.h */,
-			);
-			name = Global;
-			sourceTree = "<group>";
-		};
 		6E5CEE0E117D90AA00798CF8 /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -1413,50 +1439,11 @@
 			name = Mocks;
 			sourceTree = "<group>";
 		};
-		6E5F22AC11813D23004BEBA9 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				6E5F22AD11813D23004BEBA9 /* JSON.h */,
-				6E5F22AE11813D23004BEBA9 /* NSObject+SBJSON.h */,
-				6E5F22AF11813D23004BEBA9 /* NSObject+SBJSON.m */,
-				6E5F22B011813D23004BEBA9 /* NSString+SBJSON.h */,
-				6E5F22B111813D23004BEBA9 /* NSString+SBJSON.m */,
-				6E5F22B211813D23004BEBA9 /* SBJSON.h */,
-				6E5F22B311813D23004BEBA9 /* SBJSON.m */,
-				6E5F22B411813D23004BEBA9 /* SBJsonBase.h */,
-				6E5F22B511813D23004BEBA9 /* SBJsonBase.m */,
-				6E5F22B611813D23004BEBA9 /* SBJsonParser.h */,
-				6E5F22B711813D23004BEBA9 /* SBJsonParser.m */,
-				6E5F22B811813D23004BEBA9 /* SBJsonWriter.h */,
-				6E5F22B911813D23004BEBA9 /* SBJsonWriter.m */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
 		6E62083E1176708100035C6C /* Private */ = {
 			isa = PBXGroup;
 			children = (
 				6E6208431176709500035C6C /* TTLauncherScrollView.h */,
 				6E6208401176708600035C6C /* TTLauncherScrollView.m */,
-			);
-			name = Private;
-			sourceTree = "<group>";
-		};
-		6E75E7EA11229A4F00276F63 /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				BEF31F6C0F352E64000DE5D2 /* TTURLRequest.h */,
-				BEF31F560F352E64000DE5D2 /* TTURLRequest.m */,
-				6E75E7EF11229A7F00276F63 /* TTURLRequestDelegate.h */,
-			);
-			name = Requests;
-			sourceTree = "<group>";
-		};
-		6E75E8D61122AB6A00276F63 /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				6E75E8DB1122AB9000276F63 /* TTRequestLoader.h */,
-				6E75E8D81122AB7900276F63 /* TTRequestLoader.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -1902,22 +1889,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		BEF321B00F353B15000DE5D2 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				6E75E8D61122AB6A00276F63 /* Private */,
-				6E75E7EA11229A4F00276F63 /* Requests */,
-				6E14D7EC10E09A7F00445222 /* Responses */,
-				6E75E85811229CA500276F63 /* TTUserInfo.h */,
-				6E75E85511229C9100276F63 /* TTUserInfo.m */,
-				BE8A9C180F4143DA00FD8C43 /* TTURLRequestQueue.h */,
-				BE8A9C160F4143C800FD8C43 /* TTURLRequestQueue.m */,
-				BEF31F6A0F352E64000DE5D2 /* TTURLCache.h */,
-				BEF31F540F352E64000DE5D2 /* TTURLCache.m */,
-			);
-			name = Network;
-			sourceTree = "<group>";
-		};
 		BEF321B20F353B50000DE5D2 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
@@ -1975,18 +1946,6 @@
 				6E94C8DF116EEC310012B12C /* TTTextBarDelegate.h */,
 			);
 			name = "View Controllers";
-			sourceTree = "<group>";
-		};
-		BEF44D4F10182FD800E9EC07 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				BE23E797100B13E200F40C3B /* TTModel.h */,
-				BE52E993100D8EF800E03DB7 /* TTModel.m */,
-				6EEFB6DD11627305009B479E /* TTModelDelegate.h */,
-				6EEFB6C61162717F009B479E /* TTURLRequestModel.h */,
-				6EEFB6C811627188009B479E /* TTURLRequestModel.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		EB4CDA5D10CADB0500A856E5 /* UI */ = {
@@ -2049,16 +2008,6 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
-		EBAE96F210D1F5B300F497CA /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				6E5CEE0D117D909E00798CF8 /* Global */,
-				BEF44D4F10182FD800E9EC07 /* Models */,
-				BEF321B00F353B15000DE5D2 /* Network */,
-			);
-			name = Network;
-			sourceTree = "<group>";
-		};
 		EBC6183C10D850BB00D1997B /* Progress */ = {
 			isa = PBXGroup;
 			children = (
@@ -2088,14 +2037,11 @@
 				BEF31F8F0F352E64000DE5D2 /* TTThumbsTableViewCell.h in Headers */,
 				BEF31F900F352E64000DE5D2 /* TTThumbsViewController.h in Headers */,
 				BEF31F910F352E64000DE5D2 /* TTThumbView.h in Headers */,
-				BEF31F930F352E64000DE5D2 /* TTURLCache.h in Headers */,
-				BEF31F950F352E64000DE5D2 /* TTURLRequest.h in Headers */,
 				BEF31F960F352E64000DE5D2 /* TTViewController.h in Headers */,
 				BEF31F970F352E64000DE5D2 /* TTYouTubeView.h in Headers */,
 				BEF31F980F352E64000DE5D2 /* Three20.h in Headers */,
 				BE42FB160F3BBAB400A3B65A /* TTLink.h in Headers */,
 				BE42FB7C0F3BBF3D00A3B65A /* TTTabBar.h in Headers */,
-				BE8A9C190F4143DA00FD8C43 /* TTURLRequestQueue.h in Headers */,
 				BE8AA1930F428A4900FD8C43 /* UIViewControllerAdditions.h in Headers */,
 				BE702EF10F43F6720028A119 /* TTTableViewDataSource.h in Headers */,
 				BE702EFB0F43F9DC0028A119 /* TTTableItem.h in Headers */,
@@ -2114,7 +2060,6 @@
 				BEAF21400F4D32E100D75F3B /* UIToolbarAdditions.h in Headers */,
 				BEAF21410F4D32E100D75F3B /* UIViewAdditions.h in Headers */,
 				BEAF21420F4D32E100D75F3B /* UIWebViewAdditions.h in Headers */,
-				BEDCF3290F4EBE2F0060B7D1 /* TTURLResponse.h in Headers */,
 				BE7EB6550F50D339008A4B05 /* TTTableHeaderView.h in Headers */,
 				BED623920F50F34B003EF242 /* NSArrayAdditions.h in Headers */,
 				BEF341970F8042520027E93C /* TTStyledTextLabel.h in Headers */,
@@ -2144,7 +2089,6 @@
 				BED03764100915700083AC18 /* TTActionSheetController.h in Headers */,
 				BED037A3100920CC0083AC18 /* TTPopupViewController.h in Headers */,
 				BE23E72B100B0A7200F40C3B /* TTListDataSource.h in Headers */,
-				BE23E798100B13E200F40C3B /* TTModel.h in Headers */,
 				BE52E93F100D7DEE00E03DB7 /* TTModelViewController.h in Headers */,
 				BE781809100ECF21001FACA5 /* TTSearchDisplayController.h in Headers */,
 				BEA6B8E41013FC3400B83B3A /* UIFontAdditions.h in Headers */,
@@ -2166,7 +2110,6 @@
 				EB4CD6FB10CA019200A856E5 /* UINSObjectAdditions.h in Headers */,
 				EB4CD72210CA034F00A856E5 /* TTGlobalCoreLocale.h in Headers */,
 				EB4CDA4210CAD6E200A856E5 /* TTGlobalUI.h in Headers */,
-				EB4CDA5210CAD85E00A856E5 /* TTGlobalNetwork.h in Headers */,
 				EB4CDA5910CADA5B00A856E5 /* TTGlobalCorePaths.h in Headers */,
 				EB4CDAFD10CADCB000A856E5 /* TTGlobalUINavigator.h in Headers */,
 				EB4CDBA410CAE0E300A856E5 /* TTGlobalStyle.h in Headers */,
@@ -2183,11 +2126,6 @@
 				6E8F7AAE111102BB00069B64 /* TTURLLiteral.h in Headers */,
 				6EB0117B11118052004D204C /* TTImageLayer.h in Headers */,
 				6EB0138B1112C538004D204C /* TTImageViewInternal.h in Headers */,
-				6E14D82A10E0A16700445222 /* TTURLImageResponse.h in Headers */,
-				6E14D82B10E0A16700445222 /* TTURLDataResponse.h in Headers */,
-				6E75E7F011229A7F00276F63 /* TTURLRequestDelegate.h in Headers */,
-				6E75E85911229CA500276F63 /* TTUserInfo.h in Headers */,
-				6E75E8DC1122AB9000276F63 /* TTRequestLoader.h in Headers */,
 				6E92494F112C6F7000531F03 /* Three20_Prefix.pch in Headers */,
 				6E924A95112C771900531F03 /* TTTableViewVarHeightDelegate.h in Headers */,
 				6E924A9B112C778600531F03 /* TTTableViewPlainDelegate.h in Headers */,
@@ -2196,9 +2134,6 @@
 				6E924D8E112CA76C00531F03 /* TTTableViewDragRefreshDelegate.h in Headers */,
 				6E924D98112CAA4A00531F03 /* TTTableHeaderDragRefreshView.h in Headers */,
 				6E14D99A10E0BC8000445222 /* TTXMLParser.h in Headers */,
-				6E14DAD810E0DC7D00445222 /* TTURLXMLResponse.h in Headers */,
-				6EEFB6C71162717F009B479E /* TTURLRequestModel.h in Headers */,
-				6EEFB6DE11627305009B479E /* TTModelDelegate.h in Headers */,
 				6E311D2D116BC2CF0045C0DF /* TTNavigatorWindow.h in Headers */,
 				6E311D3B116BC4330045C0DF /* TTURLObject.h in Headers */,
 				6E311D65116BC6370045C0DF /* TTURLPatternInternal.h in Headers */,
@@ -2320,18 +2255,24 @@
 				6E5CEC69117CD83F00798CF8 /* TTStyledImageFrame.h in Headers */,
 				6E5CEEBD117E2F4900798CF8 /* Three20Core.h in Headers */,
 				6E5CEEBE117E2F4900798CF8 /* Three20Network.h in Headers */,
-				6E5CF241117E90EE00798CF8 /* TTURLRequestCachePolicy.h in Headers */,
 				6E5F1BA1117E9E9E004BEBA9 /* Three20+Additions.h in Headers */,
 				6E5F1BA3117E9F99004BEBA9 /* Three20Core+Additions.h in Headers */,
 				6E5F1D9C117EC35C004BEBA9 /* MockModelDelegate.h in Headers */,
-				6E5F22BA11813D23004BEBA9 /* JSON.h in Headers */,
-				6E5F22BB11813D23004BEBA9 /* NSObject+SBJSON.h in Headers */,
-				6E5F22BD11813D23004BEBA9 /* NSString+SBJSON.h in Headers */,
-				6E5F22BF11813D23004BEBA9 /* SBJSON.h in Headers */,
-				6E5F22C111813D23004BEBA9 /* SBJsonBase.h in Headers */,
-				6E5F22C311813D23004BEBA9 /* SBJsonParser.h in Headers */,
-				6E5F22C511813D23004BEBA9 /* SBJsonWriter.h in Headers */,
-				6E5F22D311814CF2004BEBA9 /* TTURLJSONResponse.h in Headers */,
+				6E08B7A71183B19A00DA1579 /* TTGlobalNetwork.h in Headers */,
+				6E08B7A91183B19A00DA1579 /* TTModel.h in Headers */,
+				6E08B7AB1183B19A00DA1579 /* TTModelDelegate.h in Headers */,
+				6E08B7AC1183B19A00DA1579 /* TTURLRequestModel.h in Headers */,
+				6E08B7AE1183B19A00DA1579 /* TTRequestLoader.h in Headers */,
+				6E08B7B01183B19A00DA1579 /* TTURLRequest.h in Headers */,
+				6E08B7B21183B19A00DA1579 /* TTURLRequestDelegate.h in Headers */,
+				6E08B7B31183B19A00DA1579 /* TTURLRequestCachePolicy.h in Headers */,
+				6E08B7B41183B19A00DA1579 /* TTURLResponse.h in Headers */,
+				6E08B7B51183B19A00DA1579 /* TTURLDataResponse.h in Headers */,
+				6E08B7B71183B19A00DA1579 /* TTURLImageResponse.h in Headers */,
+				6E08B7B91183B19A00DA1579 /* TTURLXMLResponse.h in Headers */,
+				6E08B7BB1183B19A00DA1579 /* TTUserInfo.h in Headers */,
+				6E08B7BD1183B19A00DA1579 /* TTURLRequestQueue.h in Headers */,
+				6E08B7BF1183B19A00DA1579 /* TTURLCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2435,13 +2376,10 @@
 				BEF31F7A0F352E64000DE5D2 /* TTThumbsTableViewCell.m in Sources */,
 				BEF31F7B0F352E64000DE5D2 /* TTThumbsViewController.m in Sources */,
 				BEF31F7C0F352E64000DE5D2 /* TTThumbView.m in Sources */,
-				BEF31F7E0F352E64000DE5D2 /* TTURLCache.m in Sources */,
-				BEF31F800F352E64000DE5D2 /* TTURLRequest.m in Sources */,
 				BEF31F810F352E64000DE5D2 /* TTViewController.m in Sources */,
 				BEF31F820F352E64000DE5D2 /* TTYouTubeView.m in Sources */,
 				BE42FB130F3BBAA900A3B65A /* TTLink.m in Sources */,
 				BE42FB7A0F3BBF3500A3B65A /* TTTabBar.m in Sources */,
-				BE8A9C170F4143C800FD8C43 /* TTURLRequestQueue.m in Sources */,
 				BE8AA1910F428A3700FD8C43 /* UIViewControllerAdditions.m in Sources */,
 				BE702EF30F43F6800028A119 /* TTTableViewDataSource.m in Sources */,
 				BE702EF90F43F9D20028A119 /* TTTableItem.m in Sources */,
@@ -2490,7 +2428,6 @@
 				BED037A1100920C60083AC18 /* TTPopupViewController.m in Sources */,
 				BE23E72D100B0ACD00F40C3B /* TTListDataSource.m in Sources */,
 				BE52E941100D7DFD00E03DB7 /* TTModelViewController.m in Sources */,
-				BE52E994100D8EF800E03DB7 /* TTModel.m in Sources */,
 				BE781807100ECF0F001FACA5 /* TTSearchDisplayController.m in Sources */,
 				BEA6B8E61013FC4900B83B3A /* UIFontAdditions.m in Sources */,
 				BEF45BC61019CA4400E9EC07 /* TTPostController.m in Sources */,
@@ -2510,7 +2447,6 @@
 				EB9193E410CA00D200F525AA /* UINSObjectAdditions.m in Sources */,
 				EB4CD72010CA034000A856E5 /* TTGlobalCoreLocale.m in Sources */,
 				EB4CDA4010CAD55400A856E5 /* TTGlobalUI.m in Sources */,
-				EB4CDA5010CAD83A00A856E5 /* TTGlobalNetwork.m in Sources */,
 				EB4CDA5710CADA3200A856E5 /* TTGlobalCorePaths.m in Sources */,
 				EB4CDAFB10CADC9A00A856E5 /* TTGlobalUINavigator.m in Sources */,
 				EBC6184010D850E000D1997B /* TTRecursiveProgress.m in Sources */,
@@ -2523,19 +2459,13 @@
 				6E8F7AAC111102AA00069B64 /* TTURLLiteral.m in Sources */,
 				6EB0117911118040004D204C /* TTImageLayer.m in Sources */,
 				6EB013891112C513004D204C /* TTImageViewInternal.m in Sources */,
-				6E14D7E810E09A2300445222 /* TTURLDataResponse.m in Sources */,
-				6E14D81410E0A12700445222 /* TTURLImageResponse.m in Sources */,
-				6E75E85711229C9100276F63 /* TTUserInfo.m in Sources */,
-				6E75E8DA1122AB7900276F63 /* TTRequestLoader.m in Sources */,
 				6E924A93112C770500531F03 /* TTTableViewVarHeightDelegate.m in Sources */,
 				6E924A99112C776800531F03 /* TTTableViewPlainDelegate.m in Sources */,
 				6E924A9F112C77B100531F03 /* TTTableViewPlainVarHeightDelegate.m in Sources */,
 				6E924AA5112C77E800531F03 /* TTTableViewGroupedVarHeightDelegate.m in Sources */,
 				6E924D8C112CA75C00531F03 /* TTTableViewDragRefreshDelegate.m in Sources */,
 				6E924D96112CAA3800531F03 /* TTTableHeaderDragRefreshView.m in Sources */,
-				6E14D8B210E0A8D200445222 /* TTURLXMLResponse.m in Sources */,
 				6E14D8EE10E0B60000445222 /* TTXMLParser.m in Sources */,
-				6EEFB6C911627188009B479E /* TTURLRequestModel.m in Sources */,
 				6E311D2B116BC2B60045C0DF /* TTNavigatorWindow.m in Sources */,
 				6E311D5D116BC5B30045C0DF /* TTURLPatternInternal.m in Sources */,
 				6E94C7D8116DA1810012B12C /* TTMessageField.m in Sources */,
@@ -2635,13 +2565,17 @@
 				6E5CEC61117CD7FD00798CF8 /* TTStyledTextFrame.m in Sources */,
 				6E5CEC67117CD83400798CF8 /* TTStyledImageFrame.m in Sources */,
 				6E5CEFA6117E47C900798CF8 /* TTGlobalStyle.m in Sources */,
-				6E5F22BC11813D23004BEBA9 /* NSObject+SBJSON.m in Sources */,
-				6E5F22BE11813D23004BEBA9 /* NSString+SBJSON.m in Sources */,
-				6E5F22C011813D23004BEBA9 /* SBJSON.m in Sources */,
-				6E5F22C211813D23004BEBA9 /* SBJsonBase.m in Sources */,
-				6E5F22C411813D23004BEBA9 /* SBJsonParser.m in Sources */,
-				6E5F22C611813D23004BEBA9 /* SBJsonWriter.m in Sources */,
-				6E5F22D111814CE6004BEBA9 /* TTURLJSONResponse.m in Sources */,
+				6E08B7A81183B19A00DA1579 /* TTGlobalNetwork.m in Sources */,
+				6E08B7AA1183B19A00DA1579 /* TTModel.m in Sources */,
+				6E08B7AD1183B19A00DA1579 /* TTURLRequestModel.m in Sources */,
+				6E08B7AF1183B19A00DA1579 /* TTRequestLoader.m in Sources */,
+				6E08B7B11183B19A00DA1579 /* TTURLRequest.m in Sources */,
+				6E08B7B61183B19A00DA1579 /* TTURLDataResponse.m in Sources */,
+				6E08B7B81183B19A00DA1579 /* TTURLImageResponse.m in Sources */,
+				6E08B7BA1183B19A00DA1579 /* TTURLXMLResponse.m in Sources */,
+				6E08B7BC1183B19A00DA1579 /* TTUserInfo.m in Sources */,
+				6E08B7BE1183B19A00DA1579 /* TTURLRequestQueue.m in Sources */,
+				6E08B7C01183B19A00DA1579 /* TTURLCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2666,27 +2600,13 @@
 				6E8F7849110FD80C00069B64 /* TTDebug.m in Sources */,
 				6E14D96410E0BAD300445222 /* TTGlobalCorePaths.m in Sources */,
 				6E14D98E10E0BC4E00445222 /* TTXMLParser.m in Sources */,
-				6E5F1D5B117EC03E004BEBA9 /* TTModel.m in Sources */,
 				6E5F1D6A117EC099004BEBA9 /* TTGlobalStyle.m in Sources */,
 				6E5F1D9F117EC3C3004BEBA9 /* MockModelDelegate.m in Sources */,
 				6E5F1DBA117EC576004BEBA9 /* NetworkModelTests.m in Sources */,
-				6E5F1DDD117EC604004BEBA9 /* TTGlobalNetwork.m in Sources */,
-				6E5F1DE0117EC60E004BEBA9 /* TTRequestLoader.m in Sources */,
-				6E5F1DE9117EC61F004BEBA9 /* TTURLRequestQueue.m in Sources */,
-				6E5F1DEE117EC626004BEBA9 /* TTUserInfo.m in Sources */,
-				6E5F1DF5117EC62F004BEBA9 /* TTURLCache.m in Sources */,
-				6E5F1E2D117F701F004BEBA9 /* TTURLRequest.m in Sources */,
-				6E5F1E2E117F7022004BEBA9 /* TTURLRequestModel.m in Sources */,
 				6E5F1E3D117F70EF004BEBA9 /* CoreXMLTests.m in Sources */,
 				6E5F1FCB117FC77A004BEBA9 /* NSDateAdditions.m in Sources */,
 				6E5F1FCC117FC77C004BEBA9 /* NSObjectAdditions.m in Sources */,
 				6E5F22E911814E8F004BEBA9 /* CoreJSONTests.m in Sources */,
-				6E5F22EA11814E94004BEBA9 /* SBJSON.m in Sources */,
-				6E5F22EB11814E94004BEBA9 /* SBJsonBase.m in Sources */,
-				6E5F22EC11814E95004BEBA9 /* SBJsonParser.m in Sources */,
-				6E5F22ED11814E95004BEBA9 /* SBJsonWriter.m in Sources */,
-				6E5F22EE11814E9B004BEBA9 /* NSObject+SBJSON.m in Sources */,
-				6E5F231811814F58004BEBA9 /* NSString+SBJSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

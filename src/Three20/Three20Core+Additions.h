@@ -24,5 +24,3 @@
 #import "Three20/NSMutableArrayAdditions.h"
 #import "Three20/NSMutableDictionaryAdditions.h"
 #import "Three20/NSDateAdditions.h"
-#import "JSON/NSObject+SBJSON.h"
-#import "JSON/NSString+SBJSON.h"
