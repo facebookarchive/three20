@@ -7,154 +7,200 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E14D93810E0B92900445222 /* CoreXMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E14D93710E0B92900445222 /* CoreXMLTests.m */; };
-		6E14D95810E0B9CB00445222 /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E14D95710E0B9CB00445222 /* testcase.xml */; };
-		6E5F1C6F117EB3E1004BEBA9 /* TTCorePreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C2F117EB3E0004BEBA9 /* TTCorePreprocessorMacros.h */; };
-		6E5F1C70117EB3E1004BEBA9 /* TTGlobalCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C30117EB3E0004BEBA9 /* TTGlobalCore.h */; };
-		6E5F1C71117EB3E1004BEBA9 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C31117EB3E0004BEBA9 /* TTGlobalCore.m */; };
-		6E5F1C72117EB3E1004BEBA9 /* TTGlobalCoreLocale.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C32117EB3E0004BEBA9 /* TTGlobalCoreLocale.h */; };
-		6E5F1C73117EB3E1004BEBA9 /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C33117EB3E0004BEBA9 /* TTGlobalCoreLocale.m */; };
-		6E5F1C74117EB3E1004BEBA9 /* TTGlobalCorePaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C34117EB3E0004BEBA9 /* TTGlobalCorePaths.h */; };
-		6E5F1C75117EB3E1004BEBA9 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C35117EB3E0004BEBA9 /* TTGlobalCorePaths.m */; };
-		6E5F1C76117EB3E1004BEBA9 /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C36117EB3E0004BEBA9 /* TTDebug.h */; };
-		6E5F1C77117EB3E1004BEBA9 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C37117EB3E0004BEBA9 /* TTDebug.m */; };
-		6E5F1C78117EB3E1004BEBA9 /* TTDebugFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C38117EB3E0004BEBA9 /* TTDebugFlags.h */; };
-		6E5F1C79117EB3E1004BEBA9 /* TTMarkupStripper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C3B117EB3E0004BEBA9 /* TTMarkupStripper.h */; };
-		6E5F1C7A117EB3E1004BEBA9 /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C3C117EB3E0004BEBA9 /* TTMarkupStripper.m */; };
-		6E5F1C7B117EB3E1004BEBA9 /* NSObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C3D117EB3E0004BEBA9 /* NSObjectAdditions.h */; };
-		6E5F1C7C117EB3E1004BEBA9 /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C3E117EB3E0004BEBA9 /* NSObjectAdditions.m */; };
-		6E5F1C7D117EB3E1004BEBA9 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C3F117EB3E0004BEBA9 /* NSDataAdditions.h */; };
-		6E5F1C7E117EB3E1004BEBA9 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C40117EB3E0004BEBA9 /* NSDataAdditions.m */; };
-		6E5F1C7F117EB3E1004BEBA9 /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C41117EB3E0004BEBA9 /* NSStringAdditions.h */; };
-		6E5F1C80117EB3E1004BEBA9 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C42117EB3E1004BEBA9 /* NSStringAdditions.m */; };
-		6E5F1C81117EB3E1004BEBA9 /* NSArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C43117EB3E1004BEBA9 /* NSArrayAdditions.h */; };
-		6E5F1C82117EB3E1004BEBA9 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C44117EB3E1004BEBA9 /* NSArrayAdditions.m */; };
-		6E5F1C83117EB3E1004BEBA9 /* NSMutableArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C45117EB3E1004BEBA9 /* NSMutableArrayAdditions.h */; };
-		6E5F1C84117EB3E1004BEBA9 /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C46117EB3E1004BEBA9 /* NSMutableArrayAdditions.m */; };
-		6E5F1C85117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C47117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.h */; };
-		6E5F1C86117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C48117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.m */; };
-		6E5F1C87117EB3E1004BEBA9 /* NSDateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C49117EB3E1004BEBA9 /* NSDateAdditions.h */; };
-		6E5F1C88117EB3E1004BEBA9 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C4A117EB3E1004BEBA9 /* NSDateAdditions.m */; };
-		6E5F1C89117EB3E1004BEBA9 /* TTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C4C117EB3E1004BEBA9 /* TTXMLParser.h */; };
-		6E5F1C8A117EB3E1004BEBA9 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C4D117EB3E1004BEBA9 /* TTXMLParser.m */; };
-		6E5F1C8B117EB3E1004BEBA9 /* TTGlobalNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C50117EB3E1004BEBA9 /* TTGlobalNetwork.h */; };
-		6E5F1C8C117EB3E1004BEBA9 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C51117EB3E1004BEBA9 /* TTGlobalNetwork.m */; };
-		6E5F1C8D117EB3E1004BEBA9 /* TTURLRequestCachePolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C52117EB3E1004BEBA9 /* TTURLRequestCachePolicy.h */; };
-		6E5F1C8E117EB3E1004BEBA9 /* TTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C54117EB3E1004BEBA9 /* TTModel.h */; };
-		6E5F1C8F117EB3E1004BEBA9 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C55117EB3E1004BEBA9 /* TTModel.m */; };
-		6E5F1C90117EB3E1004BEBA9 /* TTModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C56117EB3E1004BEBA9 /* TTModelDelegate.h */; };
-		6E5F1C91117EB3E1004BEBA9 /* TTURLRequestModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C57117EB3E1004BEBA9 /* TTURLRequestModel.h */; };
-		6E5F1C92117EB3E1004BEBA9 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C58117EB3E1004BEBA9 /* TTURLRequestModel.m */; };
-		6E5F1C93117EB3E1004BEBA9 /* TTRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C5B117EB3E1004BEBA9 /* TTRequestLoader.h */; };
-		6E5F1C94117EB3E1004BEBA9 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C5C117EB3E1004BEBA9 /* TTRequestLoader.m */; };
-		6E5F1C95117EB3E1004BEBA9 /* TTURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C5E117EB3E1004BEBA9 /* TTURLRequest.h */; };
-		6E5F1C96117EB3E1004BEBA9 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C5F117EB3E1004BEBA9 /* TTURLRequest.m */; };
-		6E5F1C97117EB3E1004BEBA9 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C60117EB3E1004BEBA9 /* TTURLRequestDelegate.h */; };
-		6E5F1C98117EB3E1004BEBA9 /* TTURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C62117EB3E1004BEBA9 /* TTURLResponse.h */; };
-		6E5F1C99117EB3E1004BEBA9 /* TTURLDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C63117EB3E1004BEBA9 /* TTURLDataResponse.h */; };
-		6E5F1C9A117EB3E1004BEBA9 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C64117EB3E1004BEBA9 /* TTURLDataResponse.m */; };
-		6E5F1C9B117EB3E1004BEBA9 /* TTURLImageResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C65117EB3E1004BEBA9 /* TTURLImageResponse.h */; };
-		6E5F1C9C117EB3E1004BEBA9 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C66117EB3E1004BEBA9 /* TTURLImageResponse.m */; };
-		6E5F1C9D117EB3E1004BEBA9 /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C67117EB3E1004BEBA9 /* TTURLXMLResponse.h */; };
-		6E5F1C9E117EB3E1004BEBA9 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C68117EB3E1004BEBA9 /* TTURLXMLResponse.m */; };
-		6E5F1C9F117EB3E1004BEBA9 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C69117EB3E1004BEBA9 /* TTUserInfo.h */; };
-		6E5F1CA0117EB3E1004BEBA9 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C6A117EB3E1004BEBA9 /* TTUserInfo.m */; };
-		6E5F1CA1117EB3E1004BEBA9 /* TTURLRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C6B117EB3E1004BEBA9 /* TTURLRequestQueue.h */; };
-		6E5F1CA2117EB3E1004BEBA9 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C6C117EB3E1004BEBA9 /* TTURLRequestQueue.m */; };
-		6E5F1CA3117EB3E1004BEBA9 /* TTURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5F1C6D117EB3E1004BEBA9 /* TTURLCache.h */; };
-		6E5F1CA4117EB3E1004BEBA9 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C6E117EB3E1004BEBA9 /* TTURLCache.m */; };
-		6E5F1CB4117EB48F004BEBA9 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C44117EB3E1004BEBA9 /* NSArrayAdditions.m */; };
-		6E5F1CB5117EB490004BEBA9 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C40117EB3E0004BEBA9 /* NSDataAdditions.m */; };
-		6E5F1CB6117EB491004BEBA9 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C4A117EB3E1004BEBA9 /* NSDateAdditions.m */; };
-		6E5F1CB7117EB493004BEBA9 /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C46117EB3E1004BEBA9 /* NSMutableArrayAdditions.m */; };
-		6E5F1CB8117EB494004BEBA9 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C48117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.m */; };
-		6E5F1CB9117EB495004BEBA9 /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C3E117EB3E0004BEBA9 /* NSObjectAdditions.m */; };
-		6E5F1CBA117EB496004BEBA9 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C42117EB3E1004BEBA9 /* NSStringAdditions.m */; };
-		6E5F1CBB117EB49A004BEBA9 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C37117EB3E0004BEBA9 /* TTDebug.m */; };
-		6E5F1CBC117EB49A004BEBA9 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C31117EB3E0004BEBA9 /* TTGlobalCore.m */; };
-		6E5F1CBD117EB49B004BEBA9 /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C33117EB3E0004BEBA9 /* TTGlobalCoreLocale.m */; };
-		6E5F1CBE117EB49E004BEBA9 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C35117EB3E0004BEBA9 /* TTGlobalCorePaths.m */; };
-		6E5F1CBF117EB49E004BEBA9 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C51117EB3E1004BEBA9 /* TTGlobalNetwork.m */; };
-		6E5F1CC0117EB49F004BEBA9 /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C3C117EB3E0004BEBA9 /* TTMarkupStripper.m */; };
-		6E5F1CC1117EB4A0004BEBA9 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C55117EB3E1004BEBA9 /* TTModel.m */; };
-		6E5F1CC2117EB4A2004BEBA9 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C5C117EB3E1004BEBA9 /* TTRequestLoader.m */; };
-		6E5F1CC3117EB4A3004BEBA9 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C6E117EB3E1004BEBA9 /* TTURLCache.m */; };
-		6E5F1CC4117EB4A4004BEBA9 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C64117EB3E1004BEBA9 /* TTURLDataResponse.m */; };
-		6E5F1CC5117EB4A5004BEBA9 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C66117EB3E1004BEBA9 /* TTURLImageResponse.m */; };
-		6E5F1CC6117EB4A7004BEBA9 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C5F117EB3E1004BEBA9 /* TTURLRequest.m */; };
-		6E5F1CC7117EB4A9004BEBA9 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C58117EB3E1004BEBA9 /* TTURLRequestModel.m */; };
-		6E5F1CC8117EB4AA004BEBA9 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C6C117EB3E1004BEBA9 /* TTURLRequestQueue.m */; };
-		6E5F1CC9117EB4AB004BEBA9 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C68117EB3E1004BEBA9 /* TTURLXMLResponse.m */; };
-		6E5F1CCA117EB4AB004BEBA9 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C6A117EB3E1004BEBA9 /* TTUserInfo.m */; };
-		6E5F1CCB117EB4AC004BEBA9 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1C4D117EB3E1004BEBA9 /* TTXMLParser.m */; };
+		6E08B2231182820700DA1579 /* TTCorePreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1D31182820700DA1579 /* TTCorePreprocessorMacros.h */; };
+		6E08B2241182820700DA1579 /* TTGlobalCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1D41182820700DA1579 /* TTGlobalCore.h */; };
+		6E08B2251182820700DA1579 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1D51182820700DA1579 /* TTGlobalCore.m */; };
+		6E08B2261182820700DA1579 /* TTGlobalCoreLocale.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1D61182820700DA1579 /* TTGlobalCoreLocale.h */; };
+		6E08B2271182820700DA1579 /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1D71182820700DA1579 /* TTGlobalCoreLocale.m */; };
+		6E08B2281182820700DA1579 /* TTGlobalCorePaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1D81182820700DA1579 /* TTGlobalCorePaths.h */; };
+		6E08B2291182820700DA1579 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1D91182820700DA1579 /* TTGlobalCorePaths.m */; };
+		6E08B22A1182820700DA1579 /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1DA1182820700DA1579 /* TTDebug.h */; };
+		6E08B22B1182820700DA1579 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1DB1182820700DA1579 /* TTDebug.m */; };
+		6E08B22C1182820700DA1579 /* TTDebugFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1DC1182820700DA1579 /* TTDebugFlags.h */; };
+		6E08B22D1182820700DA1579 /* NSObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1DE1182820700DA1579 /* NSObjectAdditions.h */; };
+		6E08B22E1182820700DA1579 /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1DF1182820700DA1579 /* NSObjectAdditions.m */; };
+		6E08B22F1182820700DA1579 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1E01182820700DA1579 /* NSDataAdditions.h */; };
+		6E08B2301182820700DA1579 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E11182820700DA1579 /* NSDataAdditions.m */; };
+		6E08B2311182820700DA1579 /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1E21182820700DA1579 /* NSStringAdditions.h */; };
+		6E08B2321182820700DA1579 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E31182820700DA1579 /* NSStringAdditions.m */; };
+		6E08B2331182820700DA1579 /* NSArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1E41182820700DA1579 /* NSArrayAdditions.h */; };
+		6E08B2341182820700DA1579 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E51182820700DA1579 /* NSArrayAdditions.m */; };
+		6E08B2351182820700DA1579 /* NSMutableArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1E61182820700DA1579 /* NSMutableArrayAdditions.h */; };
+		6E08B2361182820700DA1579 /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E71182820700DA1579 /* NSMutableArrayAdditions.m */; };
+		6E08B2371182820700DA1579 /* NSMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1E81182820700DA1579 /* NSMutableDictionaryAdditions.h */; };
+		6E08B2381182820700DA1579 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E91182820700DA1579 /* NSMutableDictionaryAdditions.m */; };
+		6E08B2391182820700DA1579 /* NSDateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1EA1182820700DA1579 /* NSDateAdditions.h */; };
+		6E08B23A1182820700DA1579 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1EB1182820700DA1579 /* NSDateAdditions.m */; };
+		6E08B23B1182820700DA1579 /* TTMarkupStripper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1ED1182820700DA1579 /* TTMarkupStripper.h */; };
+		6E08B23C1182820700DA1579 /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1EE1182820700DA1579 /* TTMarkupStripper.m */; };
+		6E08B23D1182820700DA1579 /* TTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1F01182820700DA1579 /* TTXMLParser.h */; };
+		6E08B23E1182820700DA1579 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1F11182820700DA1579 /* TTXMLParser.m */; };
+		6E08B23F1182820700DA1579 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1F31182820700DA1579 /* JSON.h */; };
+		6E08B2401182820700DA1579 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1F41182820700DA1579 /* NSObject+SBJSON.h */; };
+		6E08B2411182820700DA1579 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1F51182820700DA1579 /* NSObject+SBJSON.m */; };
+		6E08B2421182820700DA1579 /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1F61182820700DA1579 /* NSString+SBJSON.h */; };
+		6E08B2431182820700DA1579 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1F71182820700DA1579 /* NSString+SBJSON.m */; };
+		6E08B2441182820700DA1579 /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1F81182820700DA1579 /* SBJSON.h */; };
+		6E08B2451182820700DA1579 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1F91182820700DA1579 /* SBJSON.m */; };
+		6E08B2461182820700DA1579 /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1FA1182820700DA1579 /* SBJsonBase.h */; };
+		6E08B2471182820700DA1579 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1FB1182820700DA1579 /* SBJsonBase.m */; };
+		6E08B2481182820700DA1579 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1FC1182820700DA1579 /* SBJsonParser.h */; };
+		6E08B2491182820700DA1579 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1FD1182820700DA1579 /* SBJsonParser.m */; };
+		6E08B24A1182820700DA1579 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B1FE1182820700DA1579 /* SBJsonWriter.h */; };
+		6E08B24B1182820700DA1579 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1FF1182820700DA1579 /* SBJsonWriter.m */; };
+		6E08B24C1182820700DA1579 /* TTGlobalNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2021182820700DA1579 /* TTGlobalNetwork.h */; };
+		6E08B24D1182820700DA1579 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2031182820700DA1579 /* TTGlobalNetwork.m */; };
+		6E08B24E1182820700DA1579 /* TTURLRequestCachePolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2041182820700DA1579 /* TTURLRequestCachePolicy.h */; };
+		6E08B24F1182820700DA1579 /* TTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2061182820700DA1579 /* TTModel.h */; };
+		6E08B2501182820700DA1579 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2071182820700DA1579 /* TTModel.m */; };
+		6E08B2511182820700DA1579 /* TTModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2081182820700DA1579 /* TTModelDelegate.h */; };
+		6E08B2521182820700DA1579 /* TTURLRequestModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2091182820700DA1579 /* TTURLRequestModel.h */; };
+		6E08B2531182820700DA1579 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B20A1182820700DA1579 /* TTURLRequestModel.m */; };
+		6E08B2541182820700DA1579 /* TTRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B20D1182820700DA1579 /* TTRequestLoader.h */; };
+		6E08B2551182820700DA1579 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B20E1182820700DA1579 /* TTRequestLoader.m */; };
+		6E08B2561182820700DA1579 /* TTURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2101182820700DA1579 /* TTURLRequest.h */; };
+		6E08B2571182820700DA1579 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2111182820700DA1579 /* TTURLRequest.m */; };
+		6E08B2581182820700DA1579 /* TTURLRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2121182820700DA1579 /* TTURLRequestDelegate.h */; };
+		6E08B2591182820700DA1579 /* TTURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2141182820700DA1579 /* TTURLResponse.h */; };
+		6E08B25A1182820700DA1579 /* TTURLDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2151182820700DA1579 /* TTURLDataResponse.h */; };
+		6E08B25B1182820700DA1579 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2161182820700DA1579 /* TTURLDataResponse.m */; };
+		6E08B25C1182820700DA1579 /* TTURLImageResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2171182820700DA1579 /* TTURLImageResponse.h */; };
+		6E08B25D1182820700DA1579 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2181182820700DA1579 /* TTURLImageResponse.m */; };
+		6E08B25E1182820700DA1579 /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2191182820700DA1579 /* TTURLXMLResponse.h */; };
+		6E08B25F1182820700DA1579 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B21A1182820700DA1579 /* TTURLXMLResponse.m */; };
+		6E08B2601182820700DA1579 /* TTURLJSONResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B21B1182820700DA1579 /* TTURLJSONResponse.h */; };
+		6E08B2611182820700DA1579 /* TTURLJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B21C1182820700DA1579 /* TTURLJSONResponse.m */; };
+		6E08B2621182820700DA1579 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B21D1182820700DA1579 /* TTUserInfo.h */; };
+		6E08B2631182820700DA1579 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B21E1182820700DA1579 /* TTUserInfo.m */; };
+		6E08B2641182820700DA1579 /* TTURLRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B21F1182820700DA1579 /* TTURLRequestQueue.h */; };
+		6E08B2651182820700DA1579 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2201182820700DA1579 /* TTURLRequestQueue.m */; };
+		6E08B2661182820700DA1579 /* TTURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2211182820700DA1579 /* TTURLCache.h */; };
+		6E08B2671182820700DA1579 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2221182820700DA1579 /* TTURLCache.m */; };
+		6E08B2901182830E00DA1579 /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B278118282F700DA1579 /* CoreAdditionTests.m */; };
+		6E08B2911182830F00DA1579 /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B279118282F700DA1579 /* CoreGlobalTests.m */; };
+		6E08B2921182830F00DA1579 /* CoreJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B27B118282F700DA1579 /* CoreJSONTests.m */; };
+		6E08B2931182831000DA1579 /* CoreXMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B27A118282F700DA1579 /* CoreXMLTests.m */; };
+		6E08B2941182831100DA1579 /* MockModelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B27F118282F700DA1579 /* MockModelDelegate.m */; };
+		6E08B2951182831200DA1579 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B280118282F700DA1579 /* NetworkModelTests.m */; };
+		6E08B2971182831800DA1579 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2031182820700DA1579 /* TTGlobalNetwork.m */; };
+		6E08B2981182831800DA1579 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2071182820700DA1579 /* TTModel.m */; };
+		6E08B2991182831900DA1579 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B20E1182820700DA1579 /* TTRequestLoader.m */; };
+		6E08B29A1182831A00DA1579 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2221182820700DA1579 /* TTURLCache.m */; };
+		6E08B29B1182831D00DA1579 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2161182820700DA1579 /* TTURLDataResponse.m */; };
+		6E08B29C1182831D00DA1579 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2181182820700DA1579 /* TTURLImageResponse.m */; };
+		6E08B29D1182832000DA1579 /* TTURLJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B21C1182820700DA1579 /* TTURLJSONResponse.m */; };
+		6E08B29E1182832100DA1579 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2111182820700DA1579 /* TTURLRequest.m */; };
+		6E08B29F1182832300DA1579 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B20A1182820700DA1579 /* TTURLRequestModel.m */; };
+		6E08B2A01182832300DA1579 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B2201182820700DA1579 /* TTURLRequestQueue.m */; };
+		6E08B2A11182832400DA1579 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B21A1182820700DA1579 /* TTURLXMLResponse.m */; };
+		6E08B2A21182832600DA1579 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B21E1182820700DA1579 /* TTUserInfo.m */; };
+		6E08B2A31182832D00DA1579 /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1DF1182820700DA1579 /* NSObjectAdditions.m */; };
+		6E08B2A41182832E00DA1579 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E51182820700DA1579 /* NSArrayAdditions.m */; };
+		6E08B2A51182832E00DA1579 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1FD1182820700DA1579 /* SBJsonParser.m */; };
+		6E08B2A61182832F00DA1579 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1F51182820700DA1579 /* NSObject+SBJSON.m */; };
+		6E08B2A71182833000DA1579 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E11182820700DA1579 /* NSDataAdditions.m */; };
+		6E08B2A81182833000DA1579 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1D91182820700DA1579 /* TTGlobalCorePaths.m */; };
+		6E08B2A91182833200DA1579 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1F91182820700DA1579 /* SBJSON.m */; };
+		6E08B2AA1182833300DA1579 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1DB1182820700DA1579 /* TTDebug.m */; };
+		6E08B2AB1182833300DA1579 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1FF1182820700DA1579 /* SBJsonWriter.m */; };
+		6E08B2AC1182833500DA1579 /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1D71182820700DA1579 /* TTGlobalCoreLocale.m */; };
+		6E08B2AD1182833600DA1579 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E31182820700DA1579 /* NSStringAdditions.m */; };
+		6E08B2AE1182833600DA1579 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1D51182820700DA1579 /* TTGlobalCore.m */; };
+		6E08B2AF1182833600DA1579 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1FB1182820700DA1579 /* SBJsonBase.m */; };
+		6E08B2B01182833700DA1579 /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1EE1182820700DA1579 /* TTMarkupStripper.m */; };
+		6E08B2B11182833800DA1579 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1F71182820700DA1579 /* NSString+SBJSON.m */; };
+		6E08B2B21182833900DA1579 /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1F11182820700DA1579 /* TTXMLParser.m */; };
+		6E08B2B31182833A00DA1579 /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E71182820700DA1579 /* NSMutableArrayAdditions.m */; };
+		6E08B2B41182833A00DA1579 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1EB1182820700DA1579 /* NSDateAdditions.m */; };
+		6E08B2B51182833B00DA1579 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B1E91182820700DA1579 /* NSMutableDictionaryAdditions.m */; };
+		6E08B2BD1182834F00DA1579 /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E08B276118282F700DA1579 /* testcase.xml */; };
+		6E08B2E91182839600DA1579 /* Three20Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E08B2E81182839600DA1579 /* Three20Network.h */; };
 		6EEFB80611627CC6009B479E /* Three20Network_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6EEFB80511627CC6009B479E /* Three20Network_Prefix.pch */; };
-		EB9E6C7D10B6A98100DE563C /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */; };
-		EB9E6E8A10B7324900DE563C /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6E14D93710E0B92900445222 /* CoreXMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreXMLTests.m; sourceTree = "<group>"; };
-		6E14D95710E0B9CB00445222 /* testcase.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase.xml; path = tests/testcase.xml; sourceTree = "<group>"; };
-		6E5F1C2F117EB3E0004BEBA9 /* TTCorePreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCorePreprocessorMacros.h; path = Three20/TTCorePreprocessorMacros.h; sourceTree = "<group>"; };
-		6E5F1C30117EB3E0004BEBA9 /* TTGlobalCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCore.h; path = Three20/TTGlobalCore.h; sourceTree = "<group>"; };
-		6E5F1C31117EB3E0004BEBA9 /* TTGlobalCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCore.m; sourceTree = "<group>"; };
-		6E5F1C32117EB3E0004BEBA9 /* TTGlobalCoreLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCoreLocale.h; path = Three20/TTGlobalCoreLocale.h; sourceTree = "<group>"; };
-		6E5F1C33117EB3E0004BEBA9 /* TTGlobalCoreLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCoreLocale.m; sourceTree = "<group>"; };
-		6E5F1C34117EB3E0004BEBA9 /* TTGlobalCorePaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCorePaths.h; path = Three20/TTGlobalCorePaths.h; sourceTree = "<group>"; };
-		6E5F1C35117EB3E0004BEBA9 /* TTGlobalCorePaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCorePaths.m; sourceTree = "<group>"; };
-		6E5F1C36117EB3E0004BEBA9 /* TTDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebug.h; path = Three20/TTDebug.h; sourceTree = "<group>"; };
-		6E5F1C37117EB3E0004BEBA9 /* TTDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDebug.m; sourceTree = "<group>"; };
-		6E5F1C38117EB3E0004BEBA9 /* TTDebugFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebugFlags.h; path = Three20/TTDebugFlags.h; sourceTree = "<group>"; };
-		6E5F1C3B117EB3E0004BEBA9 /* TTMarkupStripper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMarkupStripper.h; path = Three20/TTMarkupStripper.h; sourceTree = "<group>"; };
-		6E5F1C3C117EB3E0004BEBA9 /* TTMarkupStripper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMarkupStripper.m; sourceTree = "<group>"; };
-		6E5F1C3D117EB3E0004BEBA9 /* NSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObjectAdditions.h; path = Three20/NSObjectAdditions.h; sourceTree = "<group>"; };
-		6E5F1C3E117EB3E0004BEBA9 /* NSObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectAdditions.m; sourceTree = "<group>"; };
-		6E5F1C3F117EB3E0004BEBA9 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataAdditions.h; path = Three20/NSDataAdditions.h; sourceTree = "<group>"; };
-		6E5F1C40117EB3E0004BEBA9 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
-		6E5F1C41117EB3E0004BEBA9 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringAdditions.h; path = Three20/NSStringAdditions.h; sourceTree = "<group>"; };
-		6E5F1C42117EB3E1004BEBA9 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
-		6E5F1C43117EB3E1004BEBA9 /* NSArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSArrayAdditions.h; path = Three20/NSArrayAdditions.h; sourceTree = "<group>"; };
-		6E5F1C44117EB3E1004BEBA9 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditions.m; sourceTree = "<group>"; };
-		6E5F1C45117EB3E1004BEBA9 /* NSMutableArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableArrayAdditions.h; path = Three20/NSMutableArrayAdditions.h; sourceTree = "<group>"; };
-		6E5F1C46117EB3E1004BEBA9 /* NSMutableArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableArrayAdditions.m; sourceTree = "<group>"; };
-		6E5F1C47117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableDictionaryAdditions.h; path = Three20/NSMutableDictionaryAdditions.h; sourceTree = "<group>"; };
-		6E5F1C48117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableDictionaryAdditions.m; sourceTree = "<group>"; };
-		6E5F1C49117EB3E1004BEBA9 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDateAdditions.h; path = Three20/NSDateAdditions.h; sourceTree = "<group>"; };
-		6E5F1C4A117EB3E1004BEBA9 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
-		6E5F1C4C117EB3E1004BEBA9 /* TTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTXMLParser.h; path = Three20/TTXMLParser.h; sourceTree = "<group>"; };
-		6E5F1C4D117EB3E1004BEBA9 /* TTXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTXMLParser.m; sourceTree = "<group>"; };
-		6E5F1C50117EB3E1004BEBA9 /* TTGlobalNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalNetwork.h; path = Three20/TTGlobalNetwork.h; sourceTree = "<group>"; };
-		6E5F1C51117EB3E1004BEBA9 /* TTGlobalNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalNetwork.m; sourceTree = "<group>"; };
-		6E5F1C52117EB3E1004BEBA9 /* TTURLRequestCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestCachePolicy.h; path = Three20/TTURLRequestCachePolicy.h; sourceTree = "<group>"; };
-		6E5F1C54117EB3E1004BEBA9 /* TTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModel.h; path = Three20/TTModel.h; sourceTree = "<group>"; };
-		6E5F1C55117EB3E1004BEBA9 /* TTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModel.m; sourceTree = "<group>"; };
-		6E5F1C56117EB3E1004BEBA9 /* TTModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModelDelegate.h; path = Three20/TTModelDelegate.h; sourceTree = "<group>"; };
-		6E5F1C57117EB3E1004BEBA9 /* TTURLRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestModel.h; path = Three20/TTURLRequestModel.h; sourceTree = "<group>"; };
-		6E5F1C58117EB3E1004BEBA9 /* TTURLRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestModel.m; sourceTree = "<group>"; };
-		6E5F1C5B117EB3E1004BEBA9 /* TTRequestLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRequestLoader.h; path = Three20/TTRequestLoader.h; sourceTree = "<group>"; };
-		6E5F1C5C117EB3E1004BEBA9 /* TTRequestLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRequestLoader.m; sourceTree = "<group>"; };
-		6E5F1C5E117EB3E1004BEBA9 /* TTURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequest.h; path = Three20/TTURLRequest.h; sourceTree = "<group>"; };
-		6E5F1C5F117EB3E1004BEBA9 /* TTURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequest.m; sourceTree = "<group>"; };
-		6E5F1C60117EB3E1004BEBA9 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
-		6E5F1C62117EB3E1004BEBA9 /* TTURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLResponse.h; path = Three20/TTURLResponse.h; sourceTree = "<group>"; };
-		6E5F1C63117EB3E1004BEBA9 /* TTURLDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLDataResponse.h; path = Three20/TTURLDataResponse.h; sourceTree = "<group>"; };
-		6E5F1C64117EB3E1004BEBA9 /* TTURLDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLDataResponse.m; sourceTree = "<group>"; };
-		6E5F1C65117EB3E1004BEBA9 /* TTURLImageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLImageResponse.h; path = Three20/TTURLImageResponse.h; sourceTree = "<group>"; };
-		6E5F1C66117EB3E1004BEBA9 /* TTURLImageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLImageResponse.m; sourceTree = "<group>"; };
-		6E5F1C67117EB3E1004BEBA9 /* TTURLXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLResponse.h; path = Three20/TTURLXMLResponse.h; sourceTree = "<group>"; };
-		6E5F1C68117EB3E1004BEBA9 /* TTURLXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLXMLResponse.m; sourceTree = "<group>"; };
-		6E5F1C69117EB3E1004BEBA9 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
-		6E5F1C6A117EB3E1004BEBA9 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
-		6E5F1C6B117EB3E1004BEBA9 /* TTURLRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestQueue.h; path = Three20/TTURLRequestQueue.h; sourceTree = "<group>"; };
-		6E5F1C6C117EB3E1004BEBA9 /* TTURLRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestQueue.m; sourceTree = "<group>"; };
-		6E5F1C6D117EB3E1004BEBA9 /* TTURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLCache.h; path = Three20/TTURLCache.h; sourceTree = "<group>"; };
-		6E5F1C6E117EB3E1004BEBA9 /* TTURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLCache.m; sourceTree = "<group>"; };
+		6E08B1D31182820700DA1579 /* TTCorePreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCorePreprocessorMacros.h; path = Three20/TTCorePreprocessorMacros.h; sourceTree = "<group>"; };
+		6E08B1D41182820700DA1579 /* TTGlobalCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCore.h; path = Three20/TTGlobalCore.h; sourceTree = "<group>"; };
+		6E08B1D51182820700DA1579 /* TTGlobalCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCore.m; sourceTree = "<group>"; };
+		6E08B1D61182820700DA1579 /* TTGlobalCoreLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCoreLocale.h; path = Three20/TTGlobalCoreLocale.h; sourceTree = "<group>"; };
+		6E08B1D71182820700DA1579 /* TTGlobalCoreLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCoreLocale.m; sourceTree = "<group>"; };
+		6E08B1D81182820700DA1579 /* TTGlobalCorePaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalCorePaths.h; path = Three20/TTGlobalCorePaths.h; sourceTree = "<group>"; };
+		6E08B1D91182820700DA1579 /* TTGlobalCorePaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalCorePaths.m; sourceTree = "<group>"; };
+		6E08B1DA1182820700DA1579 /* TTDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebug.h; path = Three20/TTDebug.h; sourceTree = "<group>"; };
+		6E08B1DB1182820700DA1579 /* TTDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDebug.m; sourceTree = "<group>"; };
+		6E08B1DC1182820700DA1579 /* TTDebugFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebugFlags.h; path = Three20/TTDebugFlags.h; sourceTree = "<group>"; };
+		6E08B1DE1182820700DA1579 /* NSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObjectAdditions.h; path = Three20/NSObjectAdditions.h; sourceTree = "<group>"; };
+		6E08B1DF1182820700DA1579 /* NSObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectAdditions.m; sourceTree = "<group>"; };
+		6E08B1E01182820700DA1579 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataAdditions.h; path = Three20/NSDataAdditions.h; sourceTree = "<group>"; };
+		6E08B1E11182820700DA1579 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
+		6E08B1E21182820700DA1579 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSStringAdditions.h; path = Three20/NSStringAdditions.h; sourceTree = "<group>"; };
+		6E08B1E31182820700DA1579 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
+		6E08B1E41182820700DA1579 /* NSArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSArrayAdditions.h; path = Three20/NSArrayAdditions.h; sourceTree = "<group>"; };
+		6E08B1E51182820700DA1579 /* NSArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayAdditions.m; sourceTree = "<group>"; };
+		6E08B1E61182820700DA1579 /* NSMutableArrayAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableArrayAdditions.h; path = Three20/NSMutableArrayAdditions.h; sourceTree = "<group>"; };
+		6E08B1E71182820700DA1579 /* NSMutableArrayAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableArrayAdditions.m; sourceTree = "<group>"; };
+		6E08B1E81182820700DA1579 /* NSMutableDictionaryAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSMutableDictionaryAdditions.h; path = Three20/NSMutableDictionaryAdditions.h; sourceTree = "<group>"; };
+		6E08B1E91182820700DA1579 /* NSMutableDictionaryAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableDictionaryAdditions.m; sourceTree = "<group>"; };
+		6E08B1EA1182820700DA1579 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDateAdditions.h; path = Three20/NSDateAdditions.h; sourceTree = "<group>"; };
+		6E08B1EB1182820700DA1579 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
+		6E08B1ED1182820700DA1579 /* TTMarkupStripper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMarkupStripper.h; path = Three20/TTMarkupStripper.h; sourceTree = "<group>"; };
+		6E08B1EE1182820700DA1579 /* TTMarkupStripper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMarkupStripper.m; sourceTree = "<group>"; };
+		6E08B1F01182820700DA1579 /* TTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTXMLParser.h; path = Three20/TTXMLParser.h; sourceTree = "<group>"; };
+		6E08B1F11182820700DA1579 /* TTXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTXMLParser.m; sourceTree = "<group>"; };
+		6E08B1F31182820700DA1579 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		6E08B1F41182820700DA1579 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		6E08B1F51182820700DA1579 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		6E08B1F61182820700DA1579 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		6E08B1F71182820700DA1579 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		6E08B1F81182820700DA1579 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		6E08B1F91182820700DA1579 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		6E08B1FA1182820700DA1579 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		6E08B1FB1182820700DA1579 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		6E08B1FC1182820700DA1579 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		6E08B1FD1182820700DA1579 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		6E08B1FE1182820700DA1579 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		6E08B1FF1182820700DA1579 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		6E08B2021182820700DA1579 /* TTGlobalNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalNetwork.h; path = Three20/TTGlobalNetwork.h; sourceTree = "<group>"; };
+		6E08B2031182820700DA1579 /* TTGlobalNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalNetwork.m; sourceTree = "<group>"; };
+		6E08B2041182820700DA1579 /* TTURLRequestCachePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestCachePolicy.h; path = Three20/TTURLRequestCachePolicy.h; sourceTree = "<group>"; };
+		6E08B2061182820700DA1579 /* TTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModel.h; path = Three20/TTModel.h; sourceTree = "<group>"; };
+		6E08B2071182820700DA1579 /* TTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModel.m; sourceTree = "<group>"; };
+		6E08B2081182820700DA1579 /* TTModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTModelDelegate.h; path = Three20/TTModelDelegate.h; sourceTree = "<group>"; };
+		6E08B2091182820700DA1579 /* TTURLRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestModel.h; path = Three20/TTURLRequestModel.h; sourceTree = "<group>"; };
+		6E08B20A1182820700DA1579 /* TTURLRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestModel.m; sourceTree = "<group>"; };
+		6E08B20D1182820700DA1579 /* TTRequestLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRequestLoader.h; path = Three20/TTRequestLoader.h; sourceTree = "<group>"; };
+		6E08B20E1182820700DA1579 /* TTRequestLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRequestLoader.m; sourceTree = "<group>"; };
+		6E08B2101182820700DA1579 /* TTURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequest.h; path = Three20/TTURLRequest.h; sourceTree = "<group>"; };
+		6E08B2111182820700DA1579 /* TTURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequest.m; sourceTree = "<group>"; };
+		6E08B2121182820700DA1579 /* TTURLRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestDelegate.h; path = Three20/TTURLRequestDelegate.h; sourceTree = "<group>"; };
+		6E08B2141182820700DA1579 /* TTURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLResponse.h; path = Three20/TTURLResponse.h; sourceTree = "<group>"; };
+		6E08B2151182820700DA1579 /* TTURLDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLDataResponse.h; path = Three20/TTURLDataResponse.h; sourceTree = "<group>"; };
+		6E08B2161182820700DA1579 /* TTURLDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLDataResponse.m; sourceTree = "<group>"; };
+		6E08B2171182820700DA1579 /* TTURLImageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLImageResponse.h; path = Three20/TTURLImageResponse.h; sourceTree = "<group>"; };
+		6E08B2181182820700DA1579 /* TTURLImageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLImageResponse.m; sourceTree = "<group>"; };
+		6E08B2191182820700DA1579 /* TTURLXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLResponse.h; path = Three20/TTURLXMLResponse.h; sourceTree = "<group>"; };
+		6E08B21A1182820700DA1579 /* TTURLXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLXMLResponse.m; sourceTree = "<group>"; };
+		6E08B21B1182820700DA1579 /* TTURLJSONResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLJSONResponse.h; path = Three20/TTURLJSONResponse.h; sourceTree = "<group>"; };
+		6E08B21C1182820700DA1579 /* TTURLJSONResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLJSONResponse.m; sourceTree = "<group>"; };
+		6E08B21D1182820700DA1579 /* TTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTUserInfo.h; path = Three20/TTUserInfo.h; sourceTree = "<group>"; };
+		6E08B21E1182820700DA1579 /* TTUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserInfo.m; sourceTree = "<group>"; };
+		6E08B21F1182820700DA1579 /* TTURLRequestQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestQueue.h; path = Three20/TTURLRequestQueue.h; sourceTree = "<group>"; };
+		6E08B2201182820700DA1579 /* TTURLRequestQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLRequestQueue.m; sourceTree = "<group>"; };
+		6E08B2211182820700DA1579 /* TTURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLCache.h; path = Three20/TTURLCache.h; sourceTree = "<group>"; };
+		6E08B2221182820700DA1579 /* TTURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTURLCache.m; sourceTree = "<group>"; };
+		6E08B276118282F700DA1579 /* testcase.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase.xml; path = tests/testcase.xml; sourceTree = "<group>"; };
+		6E08B278118282F700DA1579 /* CoreAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreAdditionTests.m; path = tests/CoreAdditionTests.m; sourceTree = "<group>"; };
+		6E08B279118282F700DA1579 /* CoreGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreGlobalTests.m; path = tests/CoreGlobalTests.m; sourceTree = "<group>"; };
+		6E08B27A118282F700DA1579 /* CoreXMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreXMLTests.m; path = tests/CoreXMLTests.m; sourceTree = "<group>"; };
+		6E08B27B118282F700DA1579 /* CoreJSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreJSONTests.m; path = tests/CoreJSONTests.m; sourceTree = "<group>"; };
+		6E08B27E118282F700DA1579 /* MockModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MockModelDelegate.h; path = tests/mocks/MockModelDelegate.h; sourceTree = "<group>"; };
+		6E08B27F118282F700DA1579 /* MockModelDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MockModelDelegate.m; path = tests/mocks/MockModelDelegate.m; sourceTree = "<group>"; };
+		6E08B280118282F700DA1579 /* NetworkModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkModelTests.m; path = tests/NetworkModelTests.m; sourceTree = "<group>"; };
+		6E08B284118282F700DA1579 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		6E08B2E81182839600DA1579 /* Three20Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Network.h; path = Three20/Three20Network.h; sourceTree = "<group>"; };
 		6EEFB80511627CC6009B479E /* Three20Network_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Three20Network_Prefix.pch; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20Network.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB9E6C6310B6A8F800DE563C /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
-		EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreAdditionTests.m; path = tests/CoreAdditionTests.m; sourceTree = "<group>"; };
-		EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreGlobalTests.m; path = tests/CoreGlobalTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,9 +233,10 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C2D117EB3E0004BEBA9 /* Core */,
-				6E5F1C4E117EB3E1004BEBA9 /* Network */,
-				EB9E6C7910B6A94700DE563C /* Tests */,
+				6E08B2E81182839600DA1579 /* Three20Network.h */,
+				6E08B1D11182820700DA1579 /* Core */,
+				6E08B2001182820700DA1579 /* Network */,
+				6E08B274118282F700DA1579 /* Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				6EEFB80511627CC6009B479E /* Three20Network_Prefix.pch */,
@@ -204,180 +251,223 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6E14D93910E0B99E00445222 /* Resources */ = {
+		6E08B1D11182820700DA1579 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				6E14D95710E0B9CB00445222 /* testcase.xml */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		6E5F1C2D117EB3E0004BEBA9 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				6E5F1C39117EB3E0004BEBA9 /* Additions */,
-				6E5F1C2E117EB3E0004BEBA9 /* Global */,
-				6E5F1C3A117EB3E0004BEBA9 /* Markup Stripper */,
-				6E5F1C4B117EB3E1004BEBA9 /* XML */,
+				6E08B1D21182820700DA1579 /* Global */,
+				6E08B1DD1182820700DA1579 /* Additions */,
+				6E08B1EC1182820700DA1579 /* Markup Stripper */,
+				6E08B1EF1182820700DA1579 /* XML */,
+				6E08B1F21182820700DA1579 /* JSON */,
 			);
 			name = Core;
 			sourceTree = "<group>";
 		};
-		6E5F1C2E117EB3E0004BEBA9 /* Global */ = {
+		6E08B1D21182820700DA1579 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C2F117EB3E0004BEBA9 /* TTCorePreprocessorMacros.h */,
-				6E5F1C30117EB3E0004BEBA9 /* TTGlobalCore.h */,
-				6E5F1C31117EB3E0004BEBA9 /* TTGlobalCore.m */,
-				6E5F1C32117EB3E0004BEBA9 /* TTGlobalCoreLocale.h */,
-				6E5F1C33117EB3E0004BEBA9 /* TTGlobalCoreLocale.m */,
-				6E5F1C34117EB3E0004BEBA9 /* TTGlobalCorePaths.h */,
-				6E5F1C35117EB3E0004BEBA9 /* TTGlobalCorePaths.m */,
-				6E5F1C36117EB3E0004BEBA9 /* TTDebug.h */,
-				6E5F1C37117EB3E0004BEBA9 /* TTDebug.m */,
-				6E5F1C38117EB3E0004BEBA9 /* TTDebugFlags.h */,
+				6E08B1D31182820700DA1579 /* TTCorePreprocessorMacros.h */,
+				6E08B1D41182820700DA1579 /* TTGlobalCore.h */,
+				6E08B1D51182820700DA1579 /* TTGlobalCore.m */,
+				6E08B1D61182820700DA1579 /* TTGlobalCoreLocale.h */,
+				6E08B1D71182820700DA1579 /* TTGlobalCoreLocale.m */,
+				6E08B1D81182820700DA1579 /* TTGlobalCorePaths.h */,
+				6E08B1D91182820700DA1579 /* TTGlobalCorePaths.m */,
+				6E08B1DA1182820700DA1579 /* TTDebug.h */,
+				6E08B1DB1182820700DA1579 /* TTDebug.m */,
+				6E08B1DC1182820700DA1579 /* TTDebugFlags.h */,
 			);
 			name = Global;
 			sourceTree = "<group>";
 		};
-		6E5F1C39117EB3E0004BEBA9 /* Additions */ = {
+		6E08B1DD1182820700DA1579 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C3D117EB3E0004BEBA9 /* NSObjectAdditions.h */,
-				6E5F1C3E117EB3E0004BEBA9 /* NSObjectAdditions.m */,
-				6E5F1C3F117EB3E0004BEBA9 /* NSDataAdditions.h */,
-				6E5F1C40117EB3E0004BEBA9 /* NSDataAdditions.m */,
-				6E5F1C41117EB3E0004BEBA9 /* NSStringAdditions.h */,
-				6E5F1C42117EB3E1004BEBA9 /* NSStringAdditions.m */,
-				6E5F1C43117EB3E1004BEBA9 /* NSArrayAdditions.h */,
-				6E5F1C44117EB3E1004BEBA9 /* NSArrayAdditions.m */,
-				6E5F1C45117EB3E1004BEBA9 /* NSMutableArrayAdditions.h */,
-				6E5F1C46117EB3E1004BEBA9 /* NSMutableArrayAdditions.m */,
-				6E5F1C47117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.h */,
-				6E5F1C48117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.m */,
-				6E5F1C49117EB3E1004BEBA9 /* NSDateAdditions.h */,
-				6E5F1C4A117EB3E1004BEBA9 /* NSDateAdditions.m */,
+				6E08B1DE1182820700DA1579 /* NSObjectAdditions.h */,
+				6E08B1DF1182820700DA1579 /* NSObjectAdditions.m */,
+				6E08B1E01182820700DA1579 /* NSDataAdditions.h */,
+				6E08B1E11182820700DA1579 /* NSDataAdditions.m */,
+				6E08B1E21182820700DA1579 /* NSStringAdditions.h */,
+				6E08B1E31182820700DA1579 /* NSStringAdditions.m */,
+				6E08B1E41182820700DA1579 /* NSArrayAdditions.h */,
+				6E08B1E51182820700DA1579 /* NSArrayAdditions.m */,
+				6E08B1E61182820700DA1579 /* NSMutableArrayAdditions.h */,
+				6E08B1E71182820700DA1579 /* NSMutableArrayAdditions.m */,
+				6E08B1E81182820700DA1579 /* NSMutableDictionaryAdditions.h */,
+				6E08B1E91182820700DA1579 /* NSMutableDictionaryAdditions.m */,
+				6E08B1EA1182820700DA1579 /* NSDateAdditions.h */,
+				6E08B1EB1182820700DA1579 /* NSDateAdditions.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
 		};
-		6E5F1C3A117EB3E0004BEBA9 /* Markup Stripper */ = {
+		6E08B1EC1182820700DA1579 /* Markup Stripper */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C3B117EB3E0004BEBA9 /* TTMarkupStripper.h */,
-				6E5F1C3C117EB3E0004BEBA9 /* TTMarkupStripper.m */,
+				6E08B1ED1182820700DA1579 /* TTMarkupStripper.h */,
+				6E08B1EE1182820700DA1579 /* TTMarkupStripper.m */,
 			);
 			name = "Markup Stripper";
 			sourceTree = "<group>";
 		};
-		6E5F1C4B117EB3E1004BEBA9 /* XML */ = {
+		6E08B1EF1182820700DA1579 /* XML */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C4C117EB3E1004BEBA9 /* TTXMLParser.h */,
-				6E5F1C4D117EB3E1004BEBA9 /* TTXMLParser.m */,
+				6E08B1F01182820700DA1579 /* TTXMLParser.h */,
+				6E08B1F11182820700DA1579 /* TTXMLParser.m */,
 			);
 			name = XML;
 			sourceTree = "<group>";
 		};
-		6E5F1C4E117EB3E1004BEBA9 /* Network */ = {
+		6E08B1F21182820700DA1579 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C4F117EB3E1004BEBA9 /* Global */,
-				6E5F1C53117EB3E1004BEBA9 /* Models */,
-				6E5F1C59117EB3E1004BEBA9 /* Network */,
+				6E08B1F31182820700DA1579 /* JSON.h */,
+				6E08B1F41182820700DA1579 /* NSObject+SBJSON.h */,
+				6E08B1F51182820700DA1579 /* NSObject+SBJSON.m */,
+				6E08B1F61182820700DA1579 /* NSString+SBJSON.h */,
+				6E08B1F71182820700DA1579 /* NSString+SBJSON.m */,
+				6E08B1F81182820700DA1579 /* SBJSON.h */,
+				6E08B1F91182820700DA1579 /* SBJSON.m */,
+				6E08B1FA1182820700DA1579 /* SBJsonBase.h */,
+				6E08B1FB1182820700DA1579 /* SBJsonBase.m */,
+				6E08B1FC1182820700DA1579 /* SBJsonParser.h */,
+				6E08B1FD1182820700DA1579 /* SBJsonParser.m */,
+				6E08B1FE1182820700DA1579 /* SBJsonWriter.h */,
+				6E08B1FF1182820700DA1579 /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		6E08B2001182820700DA1579 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B2011182820700DA1579 /* Global */,
+				6E08B2051182820700DA1579 /* Models */,
+				6E08B20B1182820700DA1579 /* Network */,
 			);
 			name = Network;
 			sourceTree = "<group>";
 		};
-		6E5F1C4F117EB3E1004BEBA9 /* Global */ = {
+		6E08B2011182820700DA1579 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C50117EB3E1004BEBA9 /* TTGlobalNetwork.h */,
-				6E5F1C51117EB3E1004BEBA9 /* TTGlobalNetwork.m */,
-				6E5F1C52117EB3E1004BEBA9 /* TTURLRequestCachePolicy.h */,
+				6E08B2021182820700DA1579 /* TTGlobalNetwork.h */,
+				6E08B2031182820700DA1579 /* TTGlobalNetwork.m */,
+				6E08B2041182820700DA1579 /* TTURLRequestCachePolicy.h */,
 			);
 			name = Global;
 			sourceTree = "<group>";
 		};
-		6E5F1C53117EB3E1004BEBA9 /* Models */ = {
+		6E08B2051182820700DA1579 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C54117EB3E1004BEBA9 /* TTModel.h */,
-				6E5F1C55117EB3E1004BEBA9 /* TTModel.m */,
-				6E5F1C56117EB3E1004BEBA9 /* TTModelDelegate.h */,
-				6E5F1C57117EB3E1004BEBA9 /* TTURLRequestModel.h */,
-				6E5F1C58117EB3E1004BEBA9 /* TTURLRequestModel.m */,
+				6E08B2061182820700DA1579 /* TTModel.h */,
+				6E08B2071182820700DA1579 /* TTModel.m */,
+				6E08B2081182820700DA1579 /* TTModelDelegate.h */,
+				6E08B2091182820700DA1579 /* TTURLRequestModel.h */,
+				6E08B20A1182820700DA1579 /* TTURLRequestModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
 		};
-		6E5F1C59117EB3E1004BEBA9 /* Network */ = {
+		6E08B20B1182820700DA1579 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C5A117EB3E1004BEBA9 /* Private */,
-				6E5F1C5D117EB3E1004BEBA9 /* Requests */,
-				6E5F1C61117EB3E1004BEBA9 /* Responses */,
-				6E5F1C69117EB3E1004BEBA9 /* TTUserInfo.h */,
-				6E5F1C6A117EB3E1004BEBA9 /* TTUserInfo.m */,
-				6E5F1C6B117EB3E1004BEBA9 /* TTURLRequestQueue.h */,
-				6E5F1C6C117EB3E1004BEBA9 /* TTURLRequestQueue.m */,
-				6E5F1C6D117EB3E1004BEBA9 /* TTURLCache.h */,
-				6E5F1C6E117EB3E1004BEBA9 /* TTURLCache.m */,
+				6E08B20C1182820700DA1579 /* Private */,
+				6E08B20F1182820700DA1579 /* Requests */,
+				6E08B2131182820700DA1579 /* Responses */,
+				6E08B21D1182820700DA1579 /* TTUserInfo.h */,
+				6E08B21E1182820700DA1579 /* TTUserInfo.m */,
+				6E08B21F1182820700DA1579 /* TTURLRequestQueue.h */,
+				6E08B2201182820700DA1579 /* TTURLRequestQueue.m */,
+				6E08B2211182820700DA1579 /* TTURLCache.h */,
+				6E08B2221182820700DA1579 /* TTURLCache.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
 		};
-		6E5F1C5A117EB3E1004BEBA9 /* Private */ = {
+		6E08B20C1182820700DA1579 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C5B117EB3E1004BEBA9 /* TTRequestLoader.h */,
-				6E5F1C5C117EB3E1004BEBA9 /* TTRequestLoader.m */,
+				6E08B20D1182820700DA1579 /* TTRequestLoader.h */,
+				6E08B20E1182820700DA1579 /* TTRequestLoader.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";
 		};
-		6E5F1C5D117EB3E1004BEBA9 /* Requests */ = {
+		6E08B20F1182820700DA1579 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C5E117EB3E1004BEBA9 /* TTURLRequest.h */,
-				6E5F1C5F117EB3E1004BEBA9 /* TTURLRequest.m */,
-				6E5F1C60117EB3E1004BEBA9 /* TTURLRequestDelegate.h */,
+				6E08B2101182820700DA1579 /* TTURLRequest.h */,
+				6E08B2111182820700DA1579 /* TTURLRequest.m */,
+				6E08B2121182820700DA1579 /* TTURLRequestDelegate.h */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
 		};
-		6E5F1C61117EB3E1004BEBA9 /* Responses */ = {
+		6E08B2131182820700DA1579 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				6E5F1C62117EB3E1004BEBA9 /* TTURLResponse.h */,
-				6E5F1C63117EB3E1004BEBA9 /* TTURLDataResponse.h */,
-				6E5F1C64117EB3E1004BEBA9 /* TTURLDataResponse.m */,
-				6E5F1C65117EB3E1004BEBA9 /* TTURLImageResponse.h */,
-				6E5F1C66117EB3E1004BEBA9 /* TTURLImageResponse.m */,
-				6E5F1C67117EB3E1004BEBA9 /* TTURLXMLResponse.h */,
-				6E5F1C68117EB3E1004BEBA9 /* TTURLXMLResponse.m */,
+				6E08B2141182820700DA1579 /* TTURLResponse.h */,
+				6E08B2151182820700DA1579 /* TTURLDataResponse.h */,
+				6E08B2161182820700DA1579 /* TTURLDataResponse.m */,
+				6E08B2171182820700DA1579 /* TTURLImageResponse.h */,
+				6E08B2181182820700DA1579 /* TTURLImageResponse.m */,
+				6E08B2191182820700DA1579 /* TTURLXMLResponse.h */,
+				6E08B21A1182820700DA1579 /* TTURLXMLResponse.m */,
+				6E08B21B1182820700DA1579 /* TTURLJSONResponse.h */,
+				6E08B21C1182820700DA1579 /* TTURLJSONResponse.m */,
 			);
 			name = Responses;
 			sourceTree = "<group>";
 		};
-		EB9E6C7910B6A94700DE563C /* Tests */ = {
+		6E08B274118282F700DA1579 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6E14D93910E0B99E00445222 /* Resources */,
-				EB9E6C7A10B6A96400DE563C /* Core */,
-				EB9E6C6310B6A8F800DE563C /* UnitTests-Info.plist */,
+				6E08B277118282F700DA1579 /* Core */,
+				6E08B27C118282F700DA1579 /* Network */,
+				6E08B275118282F700DA1579 /* Resources */,
+				6E08B284118282F700DA1579 /* UnitTests-Info.plist */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
 		};
-		EB9E6C7A10B6A96400DE563C /* Core */ = {
+		6E08B275118282F700DA1579 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EB9E6C7C10B6A98100DE563C /* CoreAdditionTests.m */,
-				EB9E6E8610B731F600DE563C /* CoreGlobalTests.m */,
-				6E14D93710E0B92900445222 /* CoreXMLTests.m */,
+				6E08B276118282F700DA1579 /* testcase.xml */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6E08B277118282F700DA1579 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B278118282F700DA1579 /* CoreAdditionTests.m */,
+				6E08B279118282F700DA1579 /* CoreGlobalTests.m */,
+				6E08B27A118282F700DA1579 /* CoreXMLTests.m */,
+				6E08B27B118282F700DA1579 /* CoreJSONTests.m */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		6E08B27C118282F700DA1579 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B27D118282F700DA1579 /* Mocks */,
+				6E08B280118282F700DA1579 /* NetworkModelTests.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		6E08B27D118282F700DA1579 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B27E118282F700DA1579 /* MockModelDelegate.h */,
+				6E08B27F118282F700DA1579 /* MockModelDelegate.m */,
+			);
+			name = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,36 +478,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EEFB80611627CC6009B479E /* Three20Network_Prefix.pch in Headers */,
-				6E5F1C6F117EB3E1004BEBA9 /* TTCorePreprocessorMacros.h in Headers */,
-				6E5F1C70117EB3E1004BEBA9 /* TTGlobalCore.h in Headers */,
-				6E5F1C72117EB3E1004BEBA9 /* TTGlobalCoreLocale.h in Headers */,
-				6E5F1C74117EB3E1004BEBA9 /* TTGlobalCorePaths.h in Headers */,
-				6E5F1C76117EB3E1004BEBA9 /* TTDebug.h in Headers */,
-				6E5F1C78117EB3E1004BEBA9 /* TTDebugFlags.h in Headers */,
-				6E5F1C79117EB3E1004BEBA9 /* TTMarkupStripper.h in Headers */,
-				6E5F1C7B117EB3E1004BEBA9 /* NSObjectAdditions.h in Headers */,
-				6E5F1C7D117EB3E1004BEBA9 /* NSDataAdditions.h in Headers */,
-				6E5F1C7F117EB3E1004BEBA9 /* NSStringAdditions.h in Headers */,
-				6E5F1C81117EB3E1004BEBA9 /* NSArrayAdditions.h in Headers */,
-				6E5F1C83117EB3E1004BEBA9 /* NSMutableArrayAdditions.h in Headers */,
-				6E5F1C85117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.h in Headers */,
-				6E5F1C87117EB3E1004BEBA9 /* NSDateAdditions.h in Headers */,
-				6E5F1C89117EB3E1004BEBA9 /* TTXMLParser.h in Headers */,
-				6E5F1C8B117EB3E1004BEBA9 /* TTGlobalNetwork.h in Headers */,
-				6E5F1C8D117EB3E1004BEBA9 /* TTURLRequestCachePolicy.h in Headers */,
-				6E5F1C8E117EB3E1004BEBA9 /* TTModel.h in Headers */,
-				6E5F1C90117EB3E1004BEBA9 /* TTModelDelegate.h in Headers */,
-				6E5F1C91117EB3E1004BEBA9 /* TTURLRequestModel.h in Headers */,
-				6E5F1C93117EB3E1004BEBA9 /* TTRequestLoader.h in Headers */,
-				6E5F1C95117EB3E1004BEBA9 /* TTURLRequest.h in Headers */,
-				6E5F1C97117EB3E1004BEBA9 /* TTURLRequestDelegate.h in Headers */,
-				6E5F1C98117EB3E1004BEBA9 /* TTURLResponse.h in Headers */,
-				6E5F1C99117EB3E1004BEBA9 /* TTURLDataResponse.h in Headers */,
-				6E5F1C9B117EB3E1004BEBA9 /* TTURLImageResponse.h in Headers */,
-				6E5F1C9D117EB3E1004BEBA9 /* TTURLXMLResponse.h in Headers */,
-				6E5F1C9F117EB3E1004BEBA9 /* TTUserInfo.h in Headers */,
-				6E5F1CA1117EB3E1004BEBA9 /* TTURLRequestQueue.h in Headers */,
-				6E5F1CA3117EB3E1004BEBA9 /* TTURLCache.h in Headers */,
+				6E08B2231182820700DA1579 /* TTCorePreprocessorMacros.h in Headers */,
+				6E08B2241182820700DA1579 /* TTGlobalCore.h in Headers */,
+				6E08B2261182820700DA1579 /* TTGlobalCoreLocale.h in Headers */,
+				6E08B2281182820700DA1579 /* TTGlobalCorePaths.h in Headers */,
+				6E08B22A1182820700DA1579 /* TTDebug.h in Headers */,
+				6E08B22C1182820700DA1579 /* TTDebugFlags.h in Headers */,
+				6E08B22D1182820700DA1579 /* NSObjectAdditions.h in Headers */,
+				6E08B22F1182820700DA1579 /* NSDataAdditions.h in Headers */,
+				6E08B2311182820700DA1579 /* NSStringAdditions.h in Headers */,
+				6E08B2331182820700DA1579 /* NSArrayAdditions.h in Headers */,
+				6E08B2351182820700DA1579 /* NSMutableArrayAdditions.h in Headers */,
+				6E08B2371182820700DA1579 /* NSMutableDictionaryAdditions.h in Headers */,
+				6E08B2391182820700DA1579 /* NSDateAdditions.h in Headers */,
+				6E08B23B1182820700DA1579 /* TTMarkupStripper.h in Headers */,
+				6E08B23D1182820700DA1579 /* TTXMLParser.h in Headers */,
+				6E08B23F1182820700DA1579 /* JSON.h in Headers */,
+				6E08B2401182820700DA1579 /* NSObject+SBJSON.h in Headers */,
+				6E08B2421182820700DA1579 /* NSString+SBJSON.h in Headers */,
+				6E08B2441182820700DA1579 /* SBJSON.h in Headers */,
+				6E08B2461182820700DA1579 /* SBJsonBase.h in Headers */,
+				6E08B2481182820700DA1579 /* SBJsonParser.h in Headers */,
+				6E08B24A1182820700DA1579 /* SBJsonWriter.h in Headers */,
+				6E08B24C1182820700DA1579 /* TTGlobalNetwork.h in Headers */,
+				6E08B24E1182820700DA1579 /* TTURLRequestCachePolicy.h in Headers */,
+				6E08B24F1182820700DA1579 /* TTModel.h in Headers */,
+				6E08B2511182820700DA1579 /* TTModelDelegate.h in Headers */,
+				6E08B2521182820700DA1579 /* TTURLRequestModel.h in Headers */,
+				6E08B2541182820700DA1579 /* TTRequestLoader.h in Headers */,
+				6E08B2561182820700DA1579 /* TTURLRequest.h in Headers */,
+				6E08B2581182820700DA1579 /* TTURLRequestDelegate.h in Headers */,
+				6E08B2591182820700DA1579 /* TTURLResponse.h in Headers */,
+				6E08B25A1182820700DA1579 /* TTURLDataResponse.h in Headers */,
+				6E08B25C1182820700DA1579 /* TTURLImageResponse.h in Headers */,
+				6E08B25E1182820700DA1579 /* TTURLXMLResponse.h in Headers */,
+				6E08B2601182820700DA1579 /* TTURLJSONResponse.h in Headers */,
+				6E08B2621182820700DA1579 /* TTUserInfo.h in Headers */,
+				6E08B2641182820700DA1579 /* TTURLRequestQueue.h in Headers */,
+				6E08B2661182820700DA1579 /* TTURLCache.h in Headers */,
+				6E08B2E91182839600DA1579 /* Three20Network.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +581,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E14D95810E0B9CB00445222 /* testcase.xml in Resources */,
+				6E08B2BD1182834F00DA1579 /* testcase.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,30 +608,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E5F1C71117EB3E1004BEBA9 /* TTGlobalCore.m in Sources */,
-				6E5F1C73117EB3E1004BEBA9 /* TTGlobalCoreLocale.m in Sources */,
-				6E5F1C75117EB3E1004BEBA9 /* TTGlobalCorePaths.m in Sources */,
-				6E5F1C77117EB3E1004BEBA9 /* TTDebug.m in Sources */,
-				6E5F1C7A117EB3E1004BEBA9 /* TTMarkupStripper.m in Sources */,
-				6E5F1C7C117EB3E1004BEBA9 /* NSObjectAdditions.m in Sources */,
-				6E5F1C7E117EB3E1004BEBA9 /* NSDataAdditions.m in Sources */,
-				6E5F1C80117EB3E1004BEBA9 /* NSStringAdditions.m in Sources */,
-				6E5F1C82117EB3E1004BEBA9 /* NSArrayAdditions.m in Sources */,
-				6E5F1C84117EB3E1004BEBA9 /* NSMutableArrayAdditions.m in Sources */,
-				6E5F1C86117EB3E1004BEBA9 /* NSMutableDictionaryAdditions.m in Sources */,
-				6E5F1C88117EB3E1004BEBA9 /* NSDateAdditions.m in Sources */,
-				6E5F1C8A117EB3E1004BEBA9 /* TTXMLParser.m in Sources */,
-				6E5F1C8C117EB3E1004BEBA9 /* TTGlobalNetwork.m in Sources */,
-				6E5F1C8F117EB3E1004BEBA9 /* TTModel.m in Sources */,
-				6E5F1C92117EB3E1004BEBA9 /* TTURLRequestModel.m in Sources */,
-				6E5F1C94117EB3E1004BEBA9 /* TTRequestLoader.m in Sources */,
-				6E5F1C96117EB3E1004BEBA9 /* TTURLRequest.m in Sources */,
-				6E5F1C9A117EB3E1004BEBA9 /* TTURLDataResponse.m in Sources */,
-				6E5F1C9C117EB3E1004BEBA9 /* TTURLImageResponse.m in Sources */,
-				6E5F1C9E117EB3E1004BEBA9 /* TTURLXMLResponse.m in Sources */,
-				6E5F1CA0117EB3E1004BEBA9 /* TTUserInfo.m in Sources */,
-				6E5F1CA2117EB3E1004BEBA9 /* TTURLRequestQueue.m in Sources */,
-				6E5F1CA4117EB3E1004BEBA9 /* TTURLCache.m in Sources */,
+				6E08B2251182820700DA1579 /* TTGlobalCore.m in Sources */,
+				6E08B2271182820700DA1579 /* TTGlobalCoreLocale.m in Sources */,
+				6E08B2291182820700DA1579 /* TTGlobalCorePaths.m in Sources */,
+				6E08B22B1182820700DA1579 /* TTDebug.m in Sources */,
+				6E08B22E1182820700DA1579 /* NSObjectAdditions.m in Sources */,
+				6E08B2301182820700DA1579 /* NSDataAdditions.m in Sources */,
+				6E08B2321182820700DA1579 /* NSStringAdditions.m in Sources */,
+				6E08B2341182820700DA1579 /* NSArrayAdditions.m in Sources */,
+				6E08B2361182820700DA1579 /* NSMutableArrayAdditions.m in Sources */,
+				6E08B2381182820700DA1579 /* NSMutableDictionaryAdditions.m in Sources */,
+				6E08B23A1182820700DA1579 /* NSDateAdditions.m in Sources */,
+				6E08B23C1182820700DA1579 /* TTMarkupStripper.m in Sources */,
+				6E08B23E1182820700DA1579 /* TTXMLParser.m in Sources */,
+				6E08B2411182820700DA1579 /* NSObject+SBJSON.m in Sources */,
+				6E08B2431182820700DA1579 /* NSString+SBJSON.m in Sources */,
+				6E08B2451182820700DA1579 /* SBJSON.m in Sources */,
+				6E08B2471182820700DA1579 /* SBJsonBase.m in Sources */,
+				6E08B2491182820700DA1579 /* SBJsonParser.m in Sources */,
+				6E08B24B1182820700DA1579 /* SBJsonWriter.m in Sources */,
+				6E08B24D1182820700DA1579 /* TTGlobalNetwork.m in Sources */,
+				6E08B2501182820700DA1579 /* TTModel.m in Sources */,
+				6E08B2531182820700DA1579 /* TTURLRequestModel.m in Sources */,
+				6E08B2551182820700DA1579 /* TTRequestLoader.m in Sources */,
+				6E08B2571182820700DA1579 /* TTURLRequest.m in Sources */,
+				6E08B25B1182820700DA1579 /* TTURLDataResponse.m in Sources */,
+				6E08B25D1182820700DA1579 /* TTURLImageResponse.m in Sources */,
+				6E08B25F1182820700DA1579 /* TTURLXMLResponse.m in Sources */,
+				6E08B2611182820700DA1579 /* TTURLJSONResponse.m in Sources */,
+				6E08B2631182820700DA1579 /* TTUserInfo.m in Sources */,
+				6E08B2651182820700DA1579 /* TTURLRequestQueue.m in Sources */,
+				6E08B2671182820700DA1579 /* TTURLCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,33 +646,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB9E6C7D10B6A98100DE563C /* CoreAdditionTests.m in Sources */,
-				EB9E6E8A10B7324900DE563C /* CoreGlobalTests.m in Sources */,
-				6E14D93810E0B92900445222 /* CoreXMLTests.m in Sources */,
-				6E5F1CB4117EB48F004BEBA9 /* NSArrayAdditions.m in Sources */,
-				6E5F1CB5117EB490004BEBA9 /* NSDataAdditions.m in Sources */,
-				6E5F1CB6117EB491004BEBA9 /* NSDateAdditions.m in Sources */,
-				6E5F1CB7117EB493004BEBA9 /* NSMutableArrayAdditions.m in Sources */,
-				6E5F1CB8117EB494004BEBA9 /* NSMutableDictionaryAdditions.m in Sources */,
-				6E5F1CB9117EB495004BEBA9 /* NSObjectAdditions.m in Sources */,
-				6E5F1CBA117EB496004BEBA9 /* NSStringAdditions.m in Sources */,
-				6E5F1CBB117EB49A004BEBA9 /* TTDebug.m in Sources */,
-				6E5F1CBC117EB49A004BEBA9 /* TTGlobalCore.m in Sources */,
-				6E5F1CBD117EB49B004BEBA9 /* TTGlobalCoreLocale.m in Sources */,
-				6E5F1CBE117EB49E004BEBA9 /* TTGlobalCorePaths.m in Sources */,
-				6E5F1CBF117EB49E004BEBA9 /* TTGlobalNetwork.m in Sources */,
-				6E5F1CC0117EB49F004BEBA9 /* TTMarkupStripper.m in Sources */,
-				6E5F1CC1117EB4A0004BEBA9 /* TTModel.m in Sources */,
-				6E5F1CC2117EB4A2004BEBA9 /* TTRequestLoader.m in Sources */,
-				6E5F1CC3117EB4A3004BEBA9 /* TTURLCache.m in Sources */,
-				6E5F1CC4117EB4A4004BEBA9 /* TTURLDataResponse.m in Sources */,
-				6E5F1CC5117EB4A5004BEBA9 /* TTURLImageResponse.m in Sources */,
-				6E5F1CC6117EB4A7004BEBA9 /* TTURLRequest.m in Sources */,
-				6E5F1CC7117EB4A9004BEBA9 /* TTURLRequestModel.m in Sources */,
-				6E5F1CC8117EB4AA004BEBA9 /* TTURLRequestQueue.m in Sources */,
-				6E5F1CC9117EB4AB004BEBA9 /* TTURLXMLResponse.m in Sources */,
-				6E5F1CCA117EB4AB004BEBA9 /* TTUserInfo.m in Sources */,
-				6E5F1CCB117EB4AC004BEBA9 /* TTXMLParser.m in Sources */,
+				6E08B2901182830E00DA1579 /* CoreAdditionTests.m in Sources */,
+				6E08B2911182830F00DA1579 /* CoreGlobalTests.m in Sources */,
+				6E08B2921182830F00DA1579 /* CoreJSONTests.m in Sources */,
+				6E08B2931182831000DA1579 /* CoreXMLTests.m in Sources */,
+				6E08B2941182831100DA1579 /* MockModelDelegate.m in Sources */,
+				6E08B2951182831200DA1579 /* NetworkModelTests.m in Sources */,
+				6E08B2971182831800DA1579 /* TTGlobalNetwork.m in Sources */,
+				6E08B2981182831800DA1579 /* TTModel.m in Sources */,
+				6E08B2991182831900DA1579 /* TTRequestLoader.m in Sources */,
+				6E08B29A1182831A00DA1579 /* TTURLCache.m in Sources */,
+				6E08B29B1182831D00DA1579 /* TTURLDataResponse.m in Sources */,
+				6E08B29C1182831D00DA1579 /* TTURLImageResponse.m in Sources */,
+				6E08B29D1182832000DA1579 /* TTURLJSONResponse.m in Sources */,
+				6E08B29E1182832100DA1579 /* TTURLRequest.m in Sources */,
+				6E08B29F1182832300DA1579 /* TTURLRequestModel.m in Sources */,
+				6E08B2A01182832300DA1579 /* TTURLRequestQueue.m in Sources */,
+				6E08B2A11182832400DA1579 /* TTURLXMLResponse.m in Sources */,
+				6E08B2A21182832600DA1579 /* TTUserInfo.m in Sources */,
+				6E08B2A31182832D00DA1579 /* NSObjectAdditions.m in Sources */,
+				6E08B2A41182832E00DA1579 /* NSArrayAdditions.m in Sources */,
+				6E08B2A51182832E00DA1579 /* SBJsonParser.m in Sources */,
+				6E08B2A61182832F00DA1579 /* NSObject+SBJSON.m in Sources */,
+				6E08B2A71182833000DA1579 /* NSDataAdditions.m in Sources */,
+				6E08B2A81182833000DA1579 /* TTGlobalCorePaths.m in Sources */,
+				6E08B2A91182833200DA1579 /* SBJSON.m in Sources */,
+				6E08B2AA1182833300DA1579 /* TTDebug.m in Sources */,
+				6E08B2AB1182833300DA1579 /* SBJsonWriter.m in Sources */,
+				6E08B2AC1182833500DA1579 /* TTGlobalCoreLocale.m in Sources */,
+				6E08B2AD1182833600DA1579 /* NSStringAdditions.m in Sources */,
+				6E08B2AE1182833600DA1579 /* TTGlobalCore.m in Sources */,
+				6E08B2AF1182833600DA1579 /* SBJsonBase.m in Sources */,
+				6E08B2B01182833700DA1579 /* TTMarkupStripper.m in Sources */,
+				6E08B2B11182833800DA1579 /* NSString+SBJSON.m in Sources */,
+				6E08B2B21182833900DA1579 /* TTXMLParser.m in Sources */,
+				6E08B2B31182833A00DA1579 /* NSMutableArrayAdditions.m in Sources */,
+				6E08B2B41182833A00DA1579 /* NSDateAdditions.m in Sources */,
+				6E08B2B51182833B00DA1579 /* NSMutableDictionaryAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
