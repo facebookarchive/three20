@@ -93,6 +93,8 @@
  *
  * @see TTURLDataResponse
  * @see TTURLImageResponse
+ * @see TTURLXMLResponse
+ * @see TTURLJSONResponse
  */
 @property (nonatomic, retain) id<TTURLResponse> response;
 
@@ -108,7 +110,7 @@
 /**
  * The content type of the data in the request.
  *
- * If not provided and httpMethod is POST/PUT, then contentType is multipart/form-data.
+ * If not provided and httpMethod is POST/PUT, then contentType is @"multipart/form-data".
  */
 @property (nonatomic, copy) NSString* contentType;
 

@@ -20,13 +20,19 @@
 @class TTURLRequest;
 
 @interface TTURLRequestQueue : NSObject {
+@private
   NSMutableDictionary*  _loaders;
+
   NSMutableArray*       _loaderQueue;
   NSTimer*              _loaderQueueTimer;
+
   NSInteger             _totalLoading;
+
   NSUInteger            _maxContentLength;
   NSString*             _userAgent;
+
   CGFloat               _imageCompressionQuality;
+
   BOOL                  _suspended;
 }
 
