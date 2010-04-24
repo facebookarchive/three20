@@ -1105,6 +1105,7 @@
 		6E14D8EA10E0B5F100445222 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				EBDC8EB510C5CCB000257247 /* TTDebugFlags.h */,
 				6E5CEE0B117D907C00798CF8 /* Global */,
 				6E5CEE0C117D908800798CF8 /* Additions */,
 				EB9E6CA810B6ADF300DE563C /* Markup Stripper */,
@@ -1287,7 +1288,6 @@
 				EB4CDA5510CADA3200A856E5 /* TTGlobalCorePaths.m */,
 				EBBB349610B36CCE00AD5BCF /* TTDebug.h */,
 				EB1F6C5D10B36C32003DAA1F /* TTDebug.m */,
-				EBDC8EB510C5CCB000257247 /* TTDebugFlags.h */,
 			);
 			name = Global;
 			sourceTree = "<group>";
