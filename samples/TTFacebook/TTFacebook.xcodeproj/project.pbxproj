@@ -1,0 +1,411 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		6E08B426118286D100DA1579 /* TTFacebookPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B425118286D100DA1579 /* TTFacebookPost.m */; };
+		6E08B429118286D900DA1579 /* TTFacebookSearchFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B428118286D900DA1579 /* TTFacebookSearchFeedDataSource.m */; };
+		6E08B42C118286DF00DA1579 /* TTFacebookSearchFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B42B118286DF00DA1579 /* TTFacebookSearchFeedModel.m */; };
+		6E08B42F118286E700DA1579 /* TTFacebookSearchFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B42E118286E700DA1579 /* TTFacebookSearchFeedViewController.m */; };
+		6E08B48E118288A300DA1579 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E08B48C118288A300DA1579 /* Default.png */; };
+		6E08B48F118288A300DA1579 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E08B48D118288A300DA1579 /* Icon.png */; };
+		6E5F1F2F117FB4D9004BEBA9 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E5F1F2E117FB4D9004BEBA9 /* Three20.bundle */; };
+		6E5F1F5C117FB53F004BEBA9 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5F1F55117FB4E5004BEBA9 /* libThree20.a */; };
+		6E5F1F8B117FBE4D004BEBA9 /* Atlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F1F8A117FBE4D004BEBA9 /* Atlas.m */; };
+		EB383B6510BBF62B0000B2D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6E5F1F54117FB4E5004BEBA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E5F1F4F117FB4E5004BEBA9 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20;
+		};
+		6E5F1F56117FB4E5004BEBA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E5F1F4F117FB4E5004BEBA9 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = UnitTests;
+		};
+		6E5F1F61117FB54F004BEBA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E5F1F4F117FB4E5004BEBA9 /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* TTFacebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTFacebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* TTFacebook_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebook_Prefix.pch; sourceTree = "<group>"; };
+		6E08B424118286D100DA1579 /* TTFacebookPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookPost.h; sourceTree = "<group>"; };
+		6E08B425118286D100DA1579 /* TTFacebookPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFacebookPost.m; sourceTree = "<group>"; };
+		6E08B427118286D900DA1579 /* TTFacebookSearchFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookSearchFeedDataSource.h; sourceTree = "<group>"; };
+		6E08B428118286D900DA1579 /* TTFacebookSearchFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFacebookSearchFeedDataSource.m; sourceTree = "<group>"; };
+		6E08B42A118286DF00DA1579 /* TTFacebookSearchFeedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookSearchFeedModel.h; sourceTree = "<group>"; };
+		6E08B42B118286DF00DA1579 /* TTFacebookSearchFeedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFacebookSearchFeedModel.m; sourceTree = "<group>"; };
+		6E08B42D118286E700DA1579 /* TTFacebookSearchFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookSearchFeedViewController.h; sourceTree = "<group>"; };
+		6E08B42E118286E700DA1579 /* TTFacebookSearchFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFacebookSearchFeedViewController.m; sourceTree = "<group>"; };
+		6E08B48C118288A300DA1579 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Resources/Default.png; sourceTree = SOURCE_ROOT; };
+		6E08B48D118288A300DA1579 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Resources/Icon.png; sourceTree = SOURCE_ROOT; };
+		6E5F1F2E117FB4D9004BEBA9 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../../src/Three20.bundle; sourceTree = SOURCE_ROOT; };
+		6E5F1F4F117FB4E5004BEBA9 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6E5F1F89117FBE4D004BEBA9 /* Atlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atlas.h; sourceTree = "<group>"; };
+		6E5F1F8A117FBE4D004BEBA9 /* Atlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Atlas.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* TTFacebook-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTFacebook-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				EB383B6510BBF62B0000B2D2 /* QuartzCore.framework in Frameworks */,
+				6E5F1F5C117FB53F004BEBA9 /* libThree20.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6E5F1FA7117FC590004BEBA9 /* Controllers */,
+				1D3623240D0F684500981E51 /* AppDelegate.h */,
+				1D3623250D0F684500981E51 /* AppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* TTFacebook.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				6E5F1F88117FBE46004BEBA9 /* Atlas */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* TTFacebook_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B48C118288A300DA1579 /* Default.png */,
+				6E08B48D118288A300DA1579 /* Icon.png */,
+				6E5F1F2E117FB4D9004BEBA9 /* Three20.bundle */,
+				8D1107310486CEB800E47090 /* TTFacebook-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E5F1F4F117FB4E5004BEBA9 /* Three20.xcodeproj */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6E08B4131182869700DA1579 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B42D118286E700DA1579 /* TTFacebookSearchFeedViewController.h */,
+				6E08B42E118286E700DA1579 /* TTFacebookSearchFeedViewController.m */,
+				6E08B4171182869700DA1579 /* Model */,
+				6E08B4141182869700DA1579 /* Data Source */,
+			);
+			name = Twitter;
+			sourceTree = "<group>";
+		};
+		6E08B4141182869700DA1579 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B427118286D900DA1579 /* TTFacebookSearchFeedDataSource.h */,
+				6E08B428118286D900DA1579 /* TTFacebookSearchFeedDataSource.m */,
+			);
+			name = "Data Source";
+			sourceTree = "<group>";
+		};
+		6E08B4171182869700DA1579 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B42A118286DF00DA1579 /* TTFacebookSearchFeedModel.h */,
+				6E08B42B118286DF00DA1579 /* TTFacebookSearchFeedModel.m */,
+				6E08B4181182869700DA1579 /* Objects */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6E08B4181182869700DA1579 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B424118286D100DA1579 /* TTFacebookPost.h */,
+				6E08B425118286D100DA1579 /* TTFacebookPost.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		6E5F1F50117FB4E5004BEBA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E5F1F55117FB4E5004BEBA9 /* libThree20.a */,
+				6E5F1F57117FB4E5004BEBA9 /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6E5F1F88117FBE46004BEBA9 /* Atlas */ = {
+			isa = PBXGroup;
+			children = (
+				6E5F1F89117FBE4D004BEBA9 /* Atlas.h */,
+				6E5F1F8A117FBE4D004BEBA9 /* Atlas.m */,
+			);
+			name = Atlas;
+			sourceTree = "<group>";
+		};
+		6E5F1FA7117FC590004BEBA9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6E08B4131182869700DA1579 /* Twitter */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* TTFacebook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTFacebook" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E5F1F62117FB54F004BEBA9 /* PBXTargetDependency */,
+			);
+			name = TTFacebook;
+			productName = TTFacebook;
+			productReference = 1D6058910D05DD3D006BFB54 /* TTFacebook.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTFacebook" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6E5F1F50117FB4E5004BEBA9 /* Products */;
+					ProjectRef = 6E5F1F4F117FB4E5004BEBA9 /* Three20.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* TTFacebook */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6E5F1F55117FB4E5004BEBA9 /* libThree20.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20.a;
+			remoteRef = 6E5F1F54117FB4E5004BEBA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6E5F1F57117FB4E5004BEBA9 /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = 6E5F1F56117FB4E5004BEBA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E5F1F2F117FB4D9004BEBA9 /* Three20.bundle in Resources */,
+				6E08B48E118288A300DA1579 /* Default.png in Resources */,
+				6E08B48F118288A300DA1579 /* Icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				6E5F1F8B117FBE4D004BEBA9 /* Atlas.m in Sources */,
+				6E08B426118286D100DA1579 /* TTFacebookPost.m in Sources */,
+				6E08B429118286D900DA1579 /* TTFacebookSearchFeedDataSource.m in Sources */,
+				6E08B42C118286DF00DA1579 /* TTFacebookSearchFeedModel.m in Sources */,
+				6E08B42F118286E700DA1579 /* TTFacebookSearchFeedViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E5F1F62117FB54F004BEBA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20;
+			targetProxy = 6E5F1F61117FB54F004BEBA9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TTFacebook_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				HEADER_SEARCH_PATHS = ../../src;
+				INFOPLIST_FILE = "TTFacebook-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = TTFacebook;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TTFacebook_Prefix.pch;
+				HEADER_SEARCH_PATHS = ../../src;
+				INFOPLIST_FILE = "TTFacebook-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = TTFacebook;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTFacebook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTFacebook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
