@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTGlobalStyle.h" // For TT_ROUNDED
+#import "Three20Style/TTGlobalStyle.h" // For TT_ROUNDED
 
 extern const CGFloat kArrowPointWidth;
 extern const CGFloat kArrowRadius;

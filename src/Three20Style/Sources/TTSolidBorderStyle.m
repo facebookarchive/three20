@@ -14,14 +14,14 @@
 // limitations under the License.
 //
 
-#import "Three20/TTSolidBorderStyle.h"
+#import "Three20Style/TTSolidBorderStyle.h"
 
 // Style
-#import "Three20/TTStyleContext.h"
-#import "Three20/TTShape.h"
+#import "Three20Style/TTStyleContext.h"
+#import "Three20Style/TTShape.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

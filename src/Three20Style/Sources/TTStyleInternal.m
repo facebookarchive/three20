@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyleInternal.h"
+#import "Three20Style/private/TTStyleInternal.h"
 
 const NSInteger kDefaultLightSource = 125;
 

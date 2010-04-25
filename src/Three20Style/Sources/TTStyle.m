@@ -14,13 +14,13 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyle.h"
+#import "Three20Style/TTStyle.h"
 
 // Style
-#import "Three20/TTPartStyle.h"
+#import "Three20Style/TTPartStyle.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 #define ZEROLIMIT(_VALUE) (_VALUE < 0 ? 0 : (_VALUE > 1 ? 1 : _VALUE))

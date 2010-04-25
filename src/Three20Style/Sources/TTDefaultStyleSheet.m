@@ -14,43 +14,41 @@
 // limitations under the License.
 //
 
-#import "Three20/TTDefaultStyleSheet.h"
-
-// UI
-#import "Three20/UIColorAdditions.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTStyle.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTStyle.h"
+#import "Three20Style/UIColorAdditions.h"
 
 // - Styles
-#import "Three20/TTInsetStyle.h"
-#import "Three20/TTShapeStyle.h"
-#import "Three20/TTSolidFillStyle.h"
-#import "Three20/TTTextStyle.h"
-#import "Three20/TTImageStyle.h"
-#import "Three20/TTSolidBorderStyle.h"
-#import "Three20/TTShadowStyle.h"
-#import "Three20/TTInnerShadowStyle.h"
-#import "Three20/TTBevelBorderStyle.h"
-#import "Three20/TTLinearGradientFillStyle.h"
-#import "Three20/TTFourBorderStyle.h"
-#import "Three20/TTLinearGradientBorderStyle.h"
-#import "Three20/TTReflectiveFillStyle.h"
-#import "Three20/TTBoxStyle.h"
-#import "Three20/TTPartStyle.h"
-#import "Three20/TTContentStyle.h"
-#import "Three20/TTBlendStyle.h"
+#import "Three20Style/TTInsetStyle.h"
+#import "Three20Style/TTShapeStyle.h"
+#import "Three20Style/TTSolidFillStyle.h"
+#import "Three20Style/TTTextStyle.h"
+#import "Three20Style/TTImageStyle.h"
+#import "Three20Style/TTSolidBorderStyle.h"
+#import "Three20Style/TTShadowStyle.h"
+#import "Three20Style/TTInnerShadowStyle.h"
+#import "Three20Style/TTBevelBorderStyle.h"
+#import "Three20Style/TTLinearGradientFillStyle.h"
+#import "Three20Style/TTFourBorderStyle.h"
+#import "Three20Style/TTLinearGradientBorderStyle.h"
+#import "Three20Style/TTReflectiveFillStyle.h"
+#import "Three20Style/TTBoxStyle.h"
+#import "Three20Style/TTPartStyle.h"
+#import "Three20Style/TTContentStyle.h"
+#import "Three20Style/TTBlendStyle.h"
 
 // - Shapes
-#import "Three20/TTRectangleShape.h"
-#import "Three20/TTRoundedRectangleShape.h"
-#import "Three20/TTRoundedLeftArrowShape.h"
-#import "Three20/TTRoundedRightArrowShape.h"
+#import "Three20Style/TTRectangleShape.h"
+#import "Three20Style/TTRoundedRectangleShape.h"
+#import "Three20Style/TTRoundedLeftArrowShape.h"
+#import "Three20Style/TTRoundedRightArrowShape.h"
 
 // Network
-#import "Three20/TTGlobalNetwork.h"
-#import "Three20/TTURLCache.h"
+#import "Three20Network/TTGlobalNetwork.h"
+#import "Three20Network/TTURLCache.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

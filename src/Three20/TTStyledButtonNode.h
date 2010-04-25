@@ -15,9 +15,9 @@
 //
 
 // Style
-#import "Three20/TTStyledInline.h"
+#import "Three20Style/TTStyledInlineBlock.h"
 
-@interface TTStyledLinkNode : TTStyledInline {
+@interface TTStyledButtonNode : TTStyledInlineBlock {
   NSString* _URL;
   BOOL      _highlighted;
 }

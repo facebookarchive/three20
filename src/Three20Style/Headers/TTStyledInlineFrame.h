@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTStyledBoxFrame.h"
+#import "Three20Style/TTStyledBoxFrame.h"
 
 @interface TTStyledInlineFrame : TTStyledBoxFrame {
   TTStyledInlineFrame* _inlinePreviousFrame;

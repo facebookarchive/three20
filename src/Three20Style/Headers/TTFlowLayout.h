@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTLayout.h"
+#import "Three20Style/TTLayout.h"
 
 @interface TTFlowLayout : TTLayout {
   CGFloat _padding;

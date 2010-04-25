@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTShape.h"
+#import "Three20Style/TTShape.h"
 
 @interface TTSpeechBubbleShape : TTShape {
   CGFloat _radius;

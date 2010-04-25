@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTStyledNode.h"
+#import "Three20Style/TTStyledNode.h"
 
 @interface TTStyledElement : TTStyledNode {
   TTStyledNode* _firstChild;

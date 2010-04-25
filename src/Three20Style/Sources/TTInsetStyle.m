@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/TTInsetStyle.h"
+#import "Three20Style/TTInsetStyle.h"
 
 // Style
-#import "Three20/TTStyleContext.h"
+#import "Three20Style/TTStyleContext.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

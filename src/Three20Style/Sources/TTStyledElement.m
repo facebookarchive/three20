@@ -14,16 +14,16 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyledElement.h"
+#import "Three20Style/TTStyledElement.h"
 
 // Style
-#import "Three20/TTStyledTextNode.h"
+#import "Three20Style/TTStyledTextNode.h"
 
 // Style (private)
-#import "Three20/TTStyledNodeInternal.h"
+#import "Three20Style/TTStyledNodeInternal.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

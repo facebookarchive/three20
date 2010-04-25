@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyledLineBreakNode.h"
+#import "Three20Style/TTStyledLineBreakNode.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

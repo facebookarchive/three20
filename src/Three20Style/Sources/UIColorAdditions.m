@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/UIColorAdditions.h"
+#import "Three20Style/UIColorAdditions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Color algorithms from http://www.cs.rit.edu/~ncs/color/t_convert.html

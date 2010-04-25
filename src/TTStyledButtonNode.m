@@ -14,13 +14,13 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyledButtonNode.h"
+#import "Three20Style/TTStyledButtonNode.h"
 
 // UI
-#import "Three20/TTNavigator.h"
+#import "Three20UI/TTNavigator.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

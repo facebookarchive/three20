@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/TTSpeechBubbleShape.h"
+#import "Three20Style/TTSpeechBubbleShape.h"
 
 // Style (private)
-#import "Three20/TTShapeInternal.h"
+#import "Three20Style/private/TTShapeInternal.h"
 
 static const CGFloat kInsetWidth = 5;
 

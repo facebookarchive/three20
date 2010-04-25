@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTStyle.h"
+#import "Three20Style/TTStyle.h"
 
 @class TTStyleContext;
 

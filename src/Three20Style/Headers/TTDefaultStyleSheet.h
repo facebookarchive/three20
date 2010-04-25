@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTStyleSheet.h"
+#import "Three20Style/TTStyleSheet.h"
 
 @class TTShape;
 

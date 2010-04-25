@@ -15,8 +15,8 @@
 //
 
 // Style
-#import "Three20/TTStyle.h"
-#import "Three20/TTPosition.h"
+#import "Three20Style/TTStyle.h"
+#import "Three20Style/TTPosition.h"
 
 @interface TTBoxStyle : TTStyle {
   UIEdgeInsets  _margin;

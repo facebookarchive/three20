@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTStyledElement.h"
+#import "Three20Style/TTStyledElement.h"
 
 @interface TTStyledImageNode : TTStyledElement {
   NSString* _URL;
