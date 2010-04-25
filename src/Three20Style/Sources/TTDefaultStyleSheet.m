@@ -194,10 +194,10 @@
 - (TTStyle*)searchBar {
   UIColor* color = TTSTYLEVAR(searchBarTintColor);
   UIColor* highlight = [color multiplyHue:0 saturation:0 value:1.2];
-  UIColor* shadow = [color multiplyHue:0 saturation:0 value:0.82];
+  UIColor* shadowColor = [color multiplyHue:0 saturation:0 value:0.82];
   return
     [TTLinearGradientFillStyle styleWithColor1:highlight color2:color next:
-    [TTFourBorderStyle styleWithTop:nil right:nil bottom:shadow left:nil width:1 next:nil]];
+    [TTFourBorderStyle styleWithTop:nil right:nil bottom:shadowColor left:nil width:1 next:nil]];
 }
 
 
@@ -205,10 +205,10 @@
 - (TTStyle*)searchBarBottom {
   UIColor* color = TTSTYLEVAR(searchBarTintColor);
   UIColor* highlight = [color multiplyHue:0 saturation:0 value:1.2];
-  UIColor* shadow = [color multiplyHue:0 saturation:0 value:0.82];
+  UIColor* shadowColor = [color multiplyHue:0 saturation:0 value:0.82];
   return
     [TTLinearGradientFillStyle styleWithColor1:highlight color2:color next:
-    [TTFourBorderStyle styleWithTop:shadow right:nil bottom:nil left:nil width:1 next:nil]];
+    [TTFourBorderStyle styleWithTop:shadowColor right:nil bottom:nil left:nil width:1 next:nil]];
 }
 
 
@@ -216,10 +216,10 @@
 - (TTStyle*)blackSearchBar {
   UIColor* highlight = [UIColor colorWithWhite:1 alpha:0.05];
   UIColor* mid = [UIColor colorWithWhite:0.4 alpha:0.6];
-  UIColor* shadow = [UIColor colorWithWhite:0 alpha:0.8];
+  UIColor* shadowColor = [UIColor colorWithWhite:0 alpha:0.8];
   return
-    [TTLinearGradientFillStyle styleWithColor1:mid color2:shadow next:
-    [TTFourBorderStyle styleWithTop:nil right:nil bottom:shadow left:nil width:1 next:
+    [TTLinearGradientFillStyle styleWithColor1:mid color2:shadowColor next:
+    [TTFourBorderStyle styleWithTop:nil right:nil bottom:shadowColor left:nil width:1 next:
     [TTFourBorderStyle styleWithTop:nil right:nil bottom:highlight left:nil width:1 next:nil]]];
 }
 
@@ -354,13 +354,13 @@
   UIColor* lighter = [color multiplyHue:1 saturation:0.9 value:1.1];
 
   UIColor* highlight = RGBACOLOR(255, 255, 255, 0.7);
-  UIColor* shadow = [color multiplyHue:1 saturation:1.1 value:0.86];
+  UIColor* shadowColor = [color multiplyHue:1 saturation:1.1 value:0.86];
   return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0,-1,-1,-2) next:
     [TTShadowStyle styleWithColor:highlight blur:1 offset:CGSizeMake(0, 1) next:
     [TTLinearGradientFillStyle styleWithColor1:lighter color2:color next:
-    [TTSolidBorderStyle styleWithColor:shadow width:1 next:nil]]]]];
+    [TTSolidBorderStyle styleWithColor:shadowColor width:1 next:nil]]]]];
 }
 
 
@@ -392,7 +392,7 @@
   }
 
   UIColor* highlight = RGBACOLOR(255, 255, 255, 0.7);
-  UIColor* shadow = [TTSTYLEVAR(tabTintColor) multiplyHue:1 saturation:1.1 value:0.88];
+  UIColor* shadowColor = [TTSTYLEVAR(tabTintColor) multiplyHue:1 saturation:1.1 value:0.88];
 
   if (state == UIControlStateSelected) {
     return
@@ -407,7 +407,7 @@
   } else {
     return
       [TTShapeStyle styleWithShape:shape next:
-      [TTBevelBorderStyle styleWithHighlight:highlight shadow:shadow width:1 lightSource:125 next:
+      [TTBevelBorderStyle styleWithHighlight:highlight shadow:shadowColor width:1 lightSource:125 next:
       [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
       [TTPartStyle styleWithName:@"image" style:[self tabGridTabImage:state] next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:11]  color:self.linkTextColor

@@ -409,17 +409,17 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index {
+- (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)insertIndex {
   if (!_rootNode) {
     self.rootNode = child;
-  } else if (index == 0) {
+  } else if (insertIndex == 0) {
     child.nextSibling = _rootNode;
     self.rootNode = child;
   } else {
     NSInteger i = 0;
     TTStyledNode* previousNode = _rootNode;
     TTStyledNode* node = _rootNode.nextSibling;
-    while (node && i != index) {
+    while (node && i != insertIndex) {
       ++i;
       previousNode = node;
       node = node.nextSibling;

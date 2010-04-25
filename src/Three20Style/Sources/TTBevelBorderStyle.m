@@ -73,11 +73,11 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (TTBevelBorderStyle*)styleWithHighlight:(UIColor*)highlight shadow:(UIColor*)shadow
++ (TTBevelBorderStyle*)styleWithHighlight:(UIColor*)highlight shadow:(UIColor*)shadowColor
                                     width:(CGFloat)width lightSource:(NSInteger)lightSource next:(TTStyle*)next {
   TTBevelBorderStyle* style = [[[TTBevelBorderStyle alloc] initWithNext:next] autorelease];
   style.highlight = highlight;
-  style.shadow = shadow;
+  style.shadow = shadowColor;
   style.width = width;
   style.lightSource = lightSource;
   return style;

@@ -649,13 +649,13 @@
 
   NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 
-  NSInteger index = 0;
+  NSInteger stringIndex = 0;
   NSInteger lineStartIndex = 0;
   CGFloat frameWidth = 0;
 
-  while (index < length) {
+  while (stringIndex < length) {
     // Search for the next whitespace character
-    NSRange searchRange = NSMakeRange(index, length - index);
+    NSRange searchRange = NSMakeRange(stringIndex, length - stringIndex);
     NSRange spaceRange = [text rangeOfCharacterFromSet:whitespace options:0 range:searchRange];
 
     // Get the word prior to the whitespace
@@ -676,7 +676,7 @@
         CGSize letterSize = [c sizeWithFont:_font];
 
         if (_lineWidth + letterSize.width > _width) {
-          NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
+          NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
           if (lineRange.length) {
             NSString* line = [text substringWithRange:lineRange];
             [self addFrameForText:line element:element node:textNode width:frameWidth
@@ -694,10 +694,10 @@
         frameWidth += letterSize.width;
         [self expandLineWidth:letterSize.width];
         [self inflateLineHeight:wordSize.height];
-        ++index;
+        ++stringIndex;
       }
 
-      NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
+      NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
       if (lineRange.length) {
         NSString* line = [text substringWithRange:lineRange];
         [self addFrameForText:line element:element node:textNode width:frameWidth
@@ -710,7 +710,7 @@
       if (_lineWidth + wordSize.width > _width) {
         // The word will be placed on the next line, so create a new frame for
         // the current line and mark it with a line break
-        NSRange lineRange = NSMakeRange(lineStartIndex, index - lineStartIndex);
+        NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
         if (lineRange.length) {
           NSString* line = [text substringWithRange:lineRange];
           [self addFrameForText:line element:element node:textNode width:frameWidth
@@ -743,8 +743,8 @@
       [self expandLineWidth:wordSize.width];
       [self inflateLineHeight:wordSize.height];
 
-      index = wordRange.location + wordRange.length;
-      if (index >= length) {
+      stringIndex = wordRange.location + wordRange.length;
+      if (stringIndex >= length) {
         // The current word was at the very end of the string
         NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
                                                         - lineStartIndex);
