@@ -19,17 +19,16 @@
 // Style
 #import "Three20Style/TTStyledElement.h"
 #import "Three20Style/TTStyledTextNode.h"
-#import "Three20Style/TTStyledLinkNode.h"
 #import "Three20Style/TTStyledInline.h"
 #import "Three20Style/TTStyledBlock.h"
 #import "Three20Style/TTStyledLineBreakNode.h"
 #import "Three20Style/TTStyledBoldNode.h"
-#import "Three20Style/TTStyledButtonNode.h"
 #import "Three20Style/TTStyledItalicNode.h"
 #import "Three20Style/TTStyledImageNode.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTDebug.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -134,19 +133,23 @@
       NSRange endRange = [string rangeOfString:@" " options:NSCaseInsensitiveSearch
                                  range:subSearchRange];
       if (endRange.location == NSNotFound) {
-        NSString* URL = [string substringWithRange:subSearchRange];
-        TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:URL] autorelease];
-        node.URL = URL;
-        [self addNode:node];
+        // TODO (jverkoey April 25, 2010: Add support for styled link nodes in again.
+        TTDASSERT(false);
+        //NSString* URL = [string substringWithRange:subSearchRange];
+        //TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:URL] autorelease];
+        //node.URL = URL;
+        //[self addNode:node];
         break;
 
       } else {
-        NSRange URLRange = NSMakeRange(startRange.location,
-                                             endRange.location - startRange.location);
-        NSString* URL = [string substringWithRange:URLRange];
-        TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:URL] autorelease];
-        node.URL = URL;
-        [self addNode:node];
+        // TODO (jverkoey April 25, 2010: Add support for styled link nodes in again.
+        TTDASSERT(false);
+        //NSRange URLRange = NSMakeRange(startRange.location,
+        //                                     endRange.location - startRange.location);
+        //NSString* URL = [string substringWithRange:URLRange];
+        //TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:URL] autorelease];
+        //node.URL = URL;
+        //[self addNode:node];
         stringIndex = endRange.location;
       }
     }
@@ -191,14 +194,17 @@
     [self pushNode:node];
 
   } else if ([tag isEqualToString:@"a"]) {
-    TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] init] autorelease];
-    node.URL =  [attributeDict objectForKey:@"href"];
-    [self pushNode:node];
+    // TODO (jverkoey April 25, 2010: Add support for styled link nodes in again.
+    TTDASSERT(false);
+    //TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] init] autorelease];
+    //node.URL =  [attributeDict objectForKey:@"href"];
+    //[self pushNode:node];
 
   } else if ([tag isEqualToString:@"button"]) {
-    TTStyledButtonNode* node = [[[TTStyledButtonNode alloc] init] autorelease];
-    node.URL =  [attributeDict objectForKey:@"href"];
-    [self pushNode:node];
+    // TODO (jverkoey April 25, 2010: Add support for styled link nodes in again.
+    //TTStyledButtonNode* node = [[[TTStyledButtonNode alloc] init] autorelease];
+    //node.URL =  [attributeDict objectForKey:@"href"];
+    //[self pushNode:node];
 
   } else if ([tag isEqualToString:@"img"]) {
     TTStyledImageNode* node = [[[TTStyledImageNode alloc] init] autorelease];

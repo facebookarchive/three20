@@ -10,9 +10,7 @@
 		6EE735F8118499D300A35176 /* Three20Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F7118499D300A35176 /* Three20Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FA118499FB00A35176 /* TTGlobalNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F9118499FB00A35176 /* TTGlobalNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FC11849A0C00A35176 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE735FB11849A0C00A35176 /* TTGlobalNetwork.m */; };
-		6EE735FD11849A0C00A35176 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE735FB11849A0C00A35176 /* TTGlobalNetwork.m */; };
 		6EE735FF11849A1600A35176 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE735FE11849A1600A35176 /* TTUserInfo.m */; };
-		6EE7360011849A1600A35176 /* TTUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE735FE11849A1600A35176 /* TTUserInfo.m */; };
 		6EE7360211849A1F00A35176 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360111849A1F00A35176 /* TTUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361411849A3500A35176 /* TTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360811849A3500A35176 /* TTModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361511849A3500A35176 /* TTModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360911849A3500A35176 /* TTModelDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,19 +32,11 @@
 		6EE7362D11849A4000A35176 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362511849A4000A35176 /* TTURLRequest.m */; };
 		6EE7362E11849A4000A35176 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362611849A4000A35176 /* TTURLRequestModel.m */; };
 		6EE7362F11849A4000A35176 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362711849A4000A35176 /* TTURLRequestQueue.m */; };
-		6EE7363011849A4000A35176 /* TTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362011849A4000A35176 /* TTModel.m */; };
-		6EE7363111849A4000A35176 /* TTRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362111849A4000A35176 /* TTRequestLoader.m */; };
-		6EE7363211849A4000A35176 /* TTURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362211849A4000A35176 /* TTURLCache.m */; };
-		6EE7363311849A4000A35176 /* TTURLDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362311849A4000A35176 /* TTURLDataResponse.m */; };
-		6EE7363411849A4000A35176 /* TTURLImageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362411849A4000A35176 /* TTURLImageResponse.m */; };
-		6EE7363511849A4000A35176 /* TTURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362511849A4000A35176 /* TTURLRequest.m */; };
-		6EE7363611849A4000A35176 /* TTURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362611849A4000A35176 /* TTURLRequestModel.m */; };
-		6EE7363711849A4000A35176 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362711849A4000A35176 /* TTURLRequestQueue.m */; };
 		6EE7363A11849A9800A35176 /* MockModelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7363911849A9800A35176 /* MockModelDelegate.m */; };
 		6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7363B11849AA100A35176 /* NetworkModelTests.m */; };
 		6EE7364911849B1D00A35176 /* Three20Network_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7364811849B1D00A35176 /* Three20Network_Prefix.pch */; };
-		6EE7366F11849C5D00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
+		6EE739CD1184BAF600A35176 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,7 +120,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE7366F11849C5D00A35176 /* libThree20Core.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */,
+				6EE739CD1184BAF600A35176 /* libThree20Network.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,16 +470,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE735FD11849A0C00A35176 /* TTGlobalNetwork.m in Sources */,
-				6EE7360011849A1600A35176 /* TTUserInfo.m in Sources */,
-				6EE7363011849A4000A35176 /* TTModel.m in Sources */,
-				6EE7363111849A4000A35176 /* TTRequestLoader.m in Sources */,
-				6EE7363211849A4000A35176 /* TTURLCache.m in Sources */,
-				6EE7363311849A4000A35176 /* TTURLDataResponse.m in Sources */,
-				6EE7363411849A4000A35176 /* TTURLImageResponse.m in Sources */,
-				6EE7363511849A4000A35176 /* TTURLRequest.m in Sources */,
-				6EE7363611849A4000A35176 /* TTURLRequestModel.m in Sources */,
-				6EE7363711849A4000A35176 /* TTURLRequestQueue.m in Sources */,
 				6EE7363A11849A9800A35176 /* MockModelDelegate.m in Sources */,
 				6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */,
 			);
