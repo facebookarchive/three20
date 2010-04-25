@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTModelDelegate.h"
+#import "Three20Network/TTModelDelegate.h"
 
 @interface MockModelDelegate : NSObject <TTModelDelegate> {
 @private

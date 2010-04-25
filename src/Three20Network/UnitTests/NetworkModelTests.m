@@ -25,12 +25,12 @@
 #import "mocks/MockModelDelegate.h"
 
 // Network
-#import "Three20/TTModel.h"
-#import "Three20/TTURLRequest.h"
-#import "Three20/TTURLRequestModel.h"
+#import "Three20Network/TTModel.h"
+#import "Three20Network/TTURLRequest.h"
+#import "Three20Network/TTURLRequestModel.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 /**
  * Unit tests for the Network model found within Three20. These tests are a part of

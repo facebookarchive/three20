@@ -44,9 +44,9 @@
 		6EE7363711849A4000A35176 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362711849A4000A35176 /* TTURLRequestQueue.m */; };
 		6EE7363A11849A9800A35176 /* MockModelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7363911849A9800A35176 /* MockModelDelegate.m */; };
 		6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7363B11849AA100A35176 /* NetworkModelTests.m */; };
-		6EE7363E11849AD500A35176 /* UnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EE7363D11849AD500A35176 /* UnitTests-Info.plist */; };
 		6EE7364911849B1D00A35176 /* Three20Network_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7364811849B1D00A35176 /* Three20Network_Prefix.pch */; };
 		6EE7366F11849C5D00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
+		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +70,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Core */;
 			remoteInfo = Three20Core;
+		};
+		6EE736C411849F9D00A35176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EB9E6C6110B6A8F800DE563C /* UnitTests */;
+			remoteInfo = UnitTests;
+		};
+		6EE736C611849FA000A35176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Network */;
+			remoteInfo = Three20Network;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -124,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +383,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				6EE736C511849F9D00A35176 /* PBXTargetDependency */,
+				6EE736C711849FA000A35176 /* PBXTargetDependency */,
 			);
 			name = UnitTests;
 			productName = CoreUnitTests;
@@ -420,7 +437,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE7363E11849AD500A35176 /* UnitTests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +503,16 @@
 			name = Three20Core;
 			targetProxy = 6EE7367011849C6300A35176 /* PBXContainerItemProxy */;
 		};
+		6EE736C511849F9D00A35176 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UnitTests;
+			targetProxy = 6EE736C411849F9D00A35176 /* PBXContainerItemProxy */;
+		};
+		6EE736C711849FA000A35176 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEF31F390F352DF5000DE5D2 /* Three20Network */;
+			targetProxy = 6EE736C611849FA000A35176 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -520,6 +546,7 @@
 		};
 		6E924941112C6F4000531F03 /* Internal */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -532,7 +559,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "UnitTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
@@ -601,6 +627,7 @@
 		};
 		EB9E6C6510B6A8F900DE563C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
@@ -613,7 +640,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "UnitTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
@@ -631,6 +657,7 @@
 		};
 		EB9E6C6610B6A8F900DE563C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
@@ -642,7 +669,6 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				HEADER_SEARCH_PATHS = .;
-				INFOPLIST_FILE = "UnitTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
