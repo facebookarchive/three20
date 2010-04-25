@@ -41,8 +41,8 @@
   NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
   formatter.dateFormat = @"yyyy-d-M";
 
-  NSString* time = [formatter stringFromDate:[NSDate date]];
-  NSDate* date = [formatter dateFromString:time];
+  NSString* formattedTime = [formatter stringFromDate:[NSDate date]];
+  NSDate* date = [formatter dateFromString:formattedTime];
   return date;
 }
 
@@ -58,8 +58,8 @@
   NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
   formatter.dateFormat = @"yyyy-d-M";
 
-  NSString* time = [formatter stringFromDate:self];
-  NSDate* date = [formatter dateFromString:time];
+  NSString* formattedTime = [formatter stringFromDate:self];
+  NSDate* date = [formatter dateFromString:formattedTime];
   return date;
 }
 

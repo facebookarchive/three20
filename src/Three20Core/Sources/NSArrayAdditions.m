@@ -29,7 +29,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector {
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; delegate = [e nextObject]; ) {
+  for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector];
     }
@@ -40,7 +40,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 {
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; delegate = [e nextObject]; ) {
+  for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
       NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];
       NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
@@ -56,7 +56,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 {
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; delegate = [e nextObject]; ) {
+  for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
       NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];
       NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
@@ -74,7 +74,7 @@
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2
     withObject:(id)p3 {
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; delegate = [e nextObject]; ) {
+  for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
       NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];
       NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];

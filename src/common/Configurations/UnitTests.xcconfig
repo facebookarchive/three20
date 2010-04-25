@@ -28,7 +28,7 @@ CURRENT_PROJECT_VERSION = $(BUILD_BUNDLE_VERSION)
 
 // Search Paths
 
-HEADER_SEARCH_PATHS   = $(STDLIB_HEADERS) /usr/local/include
+HEADER_SEARCH_PATHS   = $(STDLIB_HEADERS) /three20
 
 // Linker Flags
 
