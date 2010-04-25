@@ -14,12 +14,12 @@
 // limitations under the License.
 //
 
-#import "Three20/TTModel.h"
+#import "Three20Network/TTModel.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/NSArrayAdditions.h"
+#import "Three20Core/TTGlobalCore.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/NSArrayAdditions.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

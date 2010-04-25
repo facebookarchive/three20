@@ -14,19 +14,19 @@
 // limitations under the License.
 //
 
-#import "Three20/TTRequestLoader.h"
+#import "Three20Network/TTRequestLoader.h"
 
 // Network
-#import "Three20/TTGlobalNetwork.h"
-#import "Three20/TTURLRequest.h"
-#import "Three20/TTURLRequestDelegate.h"
-#import "Three20/TTURLRequestQueue.h"
-#import "Three20/TTURLResponse.h"
+#import "Three20Network/TTGlobalNetwork.h"
+#import "Three20Network/TTURLRequest.h"
+#import "Three20Network/TTURLRequestDelegate.h"
+#import "Three20Network/TTURLRequestQueue.h"
+#import "Three20Network/TTURLResponse.h"
 
 // Core
-#import "Three20/NSObjectAdditions.h"
-#import "Three20/TTDebug.h"
-#import "Three20/TTDebugFlags.h"
+#import "Three20Core/NSObjectAdditions.h"
+#import "Three20Core/TTDebug.h"
+#import "Three20Core/TTDebugFlags.h"
 
 static const NSInteger kLoadMaxRetries = 2;
 

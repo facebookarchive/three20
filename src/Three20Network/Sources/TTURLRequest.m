@@ -14,18 +14,18 @@
 // limitations under the License.
 //
 
-#import "Three20/TTURLRequest.h"
+#import "Three20Network/TTURLRequest.h"
 
 // Network
-#import "Three20/TTGlobalNetwork.h"
-#import "Three20/TTURLResponse.h"
-#import "Three20/TTURLRequestQueue.h"
+#import "Three20Network/TTGlobalNetwork.h"
+#import "Three20Network/TTURLResponse.h"
+#import "Three20Network/TTURLRequestQueue.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTDebug.h"
-#import "Three20/TTDebugFlags.h"
-#import "Three20/NSStringAdditions.h"
+#import "Three20Core/TTGlobalCore.h"
+#import "Three20Core/TTDebug.h"
+#import "Three20Core/TTDebugFlags.h"
+#import "Three20Core/NSStringAdditions.h"
 
 static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 

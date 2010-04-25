@@ -16,7 +16,7 @@
 		6EE7360211849A1F00A35176 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360111849A1F00A35176 /* TTUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361411849A3500A35176 /* TTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360811849A3500A35176 /* TTModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361511849A3500A35176 /* TTModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360911849A3500A35176 /* TTModelDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6EE7361611849A3500A35176 /* TTRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360A11849A3500A35176 /* TTRequestLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6EE7361611849A3500A35176 /* TTRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360A11849A3500A35176 /* TTRequestLoader.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6EE7361711849A3500A35176 /* TTURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360B11849A3500A35176 /* TTURLCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361811849A3500A35176 /* TTURLDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360C11849A3500A35176 /* TTURLDataResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361911849A3500A35176 /* TTURLImageResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360D11849A3500A35176 /* TTURLImageResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,7 +46,32 @@
 		6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7363B11849AA100A35176 /* NetworkModelTests.m */; };
 		6EE7363E11849AD500A35176 /* UnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EE7363D11849AD500A35176 /* UnitTests-Info.plist */; };
 		6EE7364911849B1D00A35176 /* Three20Network_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7364811849B1D00A35176 /* Three20Network_Prefix.pch */; };
+		6EE7366F11849C5D00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6EE7366B11849C5800A35176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */;
+			remoteInfo = Three20Core;
+		};
+		6EE7366D11849C5800A35176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */;
+			remoteInfo = UnitTests;
+		};
+		6EE7367011849C6300A35176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Core */;
+			remoteInfo = Three20Core;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6EE735F7118499D300A35176 /* Three20Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Network.h; path = Headers/Three20Network.h; sourceTree = "<group>"; };
@@ -81,6 +106,7 @@
 		6EE7364811849B1D00A35176 /* Three20Network_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Network_Prefix.pch; path = Headers/Three20Network_Prefix.pch; sourceTree = "<group>"; };
 		6EE7364B11849B3D00A35176 /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
+		6EE7366611849C5800A35176 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20Network.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EE7366F11849C5D00A35176 /* libThree20Core.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +175,7 @@
 		6E08B743118397FA00DA1579 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				6EE7366611849C5800A35176 /* Three20Core.xcodeproj */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -272,6 +300,15 @@
 			name = Configurations;
 			sourceTree = "<group>";
 		};
+		6EE7366711849C5800A35176 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6EE7366C11849C5800A35176 /* libThree20Core.a */,
+				6EE7366E11849C5800A35176 /* CoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -312,6 +349,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6EE7367111849C6300A35176 /* PBXTargetDependency */,
 			);
 			name = Three20Network;
 			productName = Three20;
@@ -346,6 +384,12 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6EE7366711849C5800A35176 /* Products */;
+					ProjectRef = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* Three20Network */,
@@ -353,6 +397,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6EE7366C11849C5800A35176 /* libThree20Core.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20Core.a;
+			remoteRef = 6EE7366B11849C5800A35176 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6EE7366E11849C5800A35176 /* CoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreUnitTests.octest;
+			remoteRef = 6EE7366D11849C5800A35176 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EB9E6C5D10B6A8F800DE563C /* Resources */ = {
@@ -419,6 +480,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6EE7367111849C6300A35176 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Core;
+			targetProxy = 6EE7367011849C6300A35176 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6E92493F112C6F4000531F03 /* Internal */ = {

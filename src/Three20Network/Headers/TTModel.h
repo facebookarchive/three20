@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 
 // Network
-#import "Three20/TTURLRequestCachePolicy.h"
+#import "Three20Network/TTURLRequestCachePolicy.h"
 
 /**
  * TTModel describes the state of an object that can be loaded from a remote source.
