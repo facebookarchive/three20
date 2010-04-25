@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-#import "Three20/NSDateAdditions.h"
+#import "Three20Core/NSDateAdditions.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCoreLocale.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

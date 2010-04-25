@@ -1,0 +1,91 @@
+//
+// Copyright 2009-2010 Facebook
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+#include "Paths.xcconfig"
+
+OBJC_LIBRARY      = -ObjC
+OBJC_ALLLOAD      = -all_load
+
+// stdlib / libSystem
+
+STDLIB_HEADERS    = /usr/include
+STDLIB_LIBRARY    = /usr/lib
+
+// ObjC Runtime
+
+OBJC_LIB          = -lobjc
+
+// Common build settings
+
+ALWAYS_SEARCH_USER_PATHS = NO
+
+//
+// Frameworks
+//
+
+AVFOUNDATION_FX         = -framework AVFoundation
+ADDRESSBOOK_FX          = -framework AddressBook
+ADDRESSBOOKUI_FX        = -framework AddressBookUI
+CFNETWORK_FX            = -framework CFNetwork
+COREDATA_FX             = -framework CoreData
+COREFOUNDATION_FX       = -framework CoreFoundation
+COREGRAPHICS_FX         = -framework CoreGraphics
+CORELOCATION_FX         = -framework CoreLocation
+FOUNDATION_FX           = -framework Foundation
+GAMEKIT_FX              = -framework GameKit
+MAPKIT_FX               = -framework MapKit
+MEDIAPLAYER_FX          = -framework MediaPlayer
+MESSAGEUI_FX            = -framework MessageUI
+MOBILECORESERVICES_FX   = -framework MobileCoreServices
+OPENGLES_FX             = -framework OpenGLES
+QUARTZCORE_FX           = -framework QuartzCore
+SECURITY_FX             = -framework Security
+STOREKIT_FX             = -framework StoreKit
+SYSTEMCONFIGURATION_FX  = -framework SystemConfiguration
+UIKIT_FX                = -framework UIKit
+
+// Unit Tests
+
+SENTESTINGKIT_FX        = -framework SenTestingKit
+
+//
+// Libraries
+//
+
+// Core
+
+TTCORE_HEADER_PATH        = $(ROOT_SOURCE_PATH)/Three20Core/Headers/
+TTCORE_LIBRARY_PATH       = $(ROOT_SOURCE_PATH)/Three20Core/
+TTCORE_LIBRARY_FLAG       = -lThree20Core
+
+// Network
+
+TTNETWORK_HEADER_PATH     = $(ROOT_SOURCE_PATH)/Three20Network/Headers/
+TTNETWORK_LIBRARY_PATH    = $(ROOT_SOURCE_PATH)/Three20Network/
+TTNETWORK_LIBRARY_FLAG    = -lThree20Network
+
+// Style
+
+TTSTYLE_HEADER_PATH       = $(ROOT_SOURCE_PATH)/Three20Style/Headers/
+TTSTYLE_LIBRARY_PATH      = $(ROOT_SOURCE_PATH)/Three20Style/
+TTSTYLE_LIBRARY_FLAG      = -lThree20Style
+
+// UI
+
+TTUI_HEADER_PATH          = $(ROOT_SOURCE_PATH)/Three20UI/Headers/
+TTUI_LIBRARY_PATH         = $(ROOT_SOURCE_PATH)/Three20UI/
+TTUI_LIBRARY_FLAG         = -lThree20UI
+TTUI_RESOURCE_BUNDLE_NAME = Three20.bundle

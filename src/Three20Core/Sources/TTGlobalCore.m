@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobalCore.h"
+#import "Three20Core/TTGlobalCore.h"
 
 #import <objc/runtime.h>
 

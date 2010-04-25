@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/TTMarkupStripper.h"
+#import "Three20Core/TTMarkupStripper.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

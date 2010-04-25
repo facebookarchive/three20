@@ -19,7 +19,9 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "Three20/Three20.h"
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCore.h"
 
 /**
  * Unit tests for the global methods found within Three20. These tests are a part of

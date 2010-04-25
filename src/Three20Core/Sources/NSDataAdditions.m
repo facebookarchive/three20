@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/NSDataAdditions.h"
+#import "Three20Core/NSDataAdditions.h"
 
 #import <CommonCrypto/CommonDigest.h>
 

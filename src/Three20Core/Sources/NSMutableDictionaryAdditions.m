@@ -14,9 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/NSMutableArrayAdditions.h"
+#import "Three20Core/NSMutableDictionaryAdditions.h"
 
-#import "Three20/TTGlobalCore.h"
+// Core
+#import "Three20Core/TTGlobalCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,13 +26,13 @@
 /**
  * Additions.
  */
-@implementation NSMutableArray (TTCategory)
+@implementation NSMutableDictionary (TTCategory)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) addNonEmptyString:(NSString*)string {
+- (void)setNonEmptyString:(NSString*)string forKey:(id)key {
   if (TTIsStringWithAnyText(string)) {
-    [self addObject:string];
+    [self setObject:string forKey:key];
   }
 }
 
