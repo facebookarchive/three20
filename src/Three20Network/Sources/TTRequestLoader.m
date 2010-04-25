@@ -167,8 +167,8 @@ static const NSInteger kLoadMaxRetries = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)cancel:(TTURLRequest*)request {
-  NSUInteger index = [_requests indexOfObject:request];
-  if (index != NSNotFound) {
+  NSUInteger requestIndex = [_requests indexOfObject:request];
+  if (requestIndex != NSNotFound) {
     request.isLoading = NO;
 
     for (id<TTURLRequestDelegate> delegate in request.delegates) {
@@ -177,7 +177,7 @@ static const NSInteger kLoadMaxRetries = 2;
       }
     }
 
-    [_requests removeObjectAtIndex:index];
+    [_requests removeObjectAtIndex:requestIndex];
   }
 
   if (![_requests count]) {

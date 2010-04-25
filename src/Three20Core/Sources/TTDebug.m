@@ -25,7 +25,6 @@
 
 // From: http://developer.apple.com/mac/library/qa/qa2004/qa1361.html
 int TTIsInDebugger(void) {
-  int                 junk;
   int                 mib[4];
   struct kinfo_proc   info;
   size_t              size;
@@ -46,7 +45,7 @@ int TTIsInDebugger(void) {
   // Call sysctl.
 
   size = sizeof(info);
-  junk = sysctl(mib, sizeof(mib) / sizeof(*mib), &info, &size, NULL, 0);
+  sysctl(mib, sizeof(mib) / sizeof(*mib), &info, &size, NULL, 0);
 
   // We're being debugged if the P_TRACED flag is set.
 
