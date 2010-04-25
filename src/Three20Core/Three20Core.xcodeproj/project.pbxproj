@@ -81,6 +81,7 @@
 		6E55A4981183C94F002768DE /* TTMarkupStripper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTMarkupStripper.m; path = Sources/TTMarkupStripper.m; sourceTree = "<group>"; };
 		6E55A49B1183C956002768DE /* TTMarkupStripper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMarkupStripper.h; path = Headers/TTMarkupStripper.h; sourceTree = "<group>"; };
 		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
+		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6EB4608E1183D14800685649 /* CoreAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreAdditionTests.m; path = UnitTests/CoreAdditionTests.m; sourceTree = "<group>"; };
 		6EB4608F1183D14800685649 /* CoreGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreGlobalTests.m; path = UnitTests/CoreGlobalTests.m; sourceTree = "<group>"; };
 		6EB460921183D16000685649 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -225,8 +226,9 @@
 		6ED118E41183C38A0096AEBF /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				6EB460A61183D2AC00685649 /* UnitTests.xcconfig */,
 				6E55A4B31183CA80002768DE /* Library.xcconfig */,
+				6E6454021184BDD500F08CB1 /* Project.xcconfig */,
+				6EB460A61183D2AC00685649 /* UnitTests.xcconfig */,
 			);
 			name = Configurations;
 			sourceTree = "<group>";
@@ -385,6 +387,7 @@
 /* Begin XCBuildConfiguration section */
 		6E92493F112C6F4000531F03 /* Internal */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -451,6 +454,7 @@
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -465,6 +469,7 @@
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;

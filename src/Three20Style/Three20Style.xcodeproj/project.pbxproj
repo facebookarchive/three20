@@ -172,33 +172,34 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20Network;
 		};
 		6EE738A41184ADB400A35176 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6EE738AA1184ADD000A35176 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Network */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Network;
 		};
 		6EE738AC1184ADE300A35176 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = EB9E6C6110B6A8F800DE563C /* UnitTests */;
+			remoteGlobalIDString = EB9E6C6110B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6EE7363D11849AD500A35176 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EE7364B11849B3D00A35176 /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
@@ -402,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				6EE7364B11849B3D00A35176 /* Library.xcconfig */,
+				6E64543D1184BE1B00F08CB1 /* Project.xcconfig */,
 				6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */,
 			);
 			name = Configurations;
@@ -1015,6 +1017,7 @@
 /* Begin XCBuildConfiguration section */
 		6E92493F112C6F4000531F03 /* Internal */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1088,6 +1091,7 @@
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1102,6 +1106,7 @@
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
