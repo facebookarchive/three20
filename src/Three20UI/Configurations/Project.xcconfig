@@ -1,5 +1,5 @@
 //
-// Copyright 2009 Facebook
+// Copyright 2009-2010 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,20 +14,4 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-// Core
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTGlobalCorePaths.h"
-
-// UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalUINavigator.h"
-
-// Network
-#import "Three20/TTGlobalNetwork.h"
-
-// Style
-#import "Three20/TTGlobalStyle.h"
+#include "../common/Configurations/Project.xcconfig"

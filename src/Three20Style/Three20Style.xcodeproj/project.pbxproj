@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E6454901184D3BC00F08CB1 /* Three20Style+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */; };
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE737441184A38F00A35176 /* TTBevelBorderStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737031184A38F00A35176 /* TTBevelBorderStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE737451184A38F00A35176 /* TTBlendStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737041184A38F00A35176 /* TTBlendStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -200,6 +201,7 @@
 
 /* Begin PBXFileReference section */
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
+		6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Style+Additions.h"; path = "Headers/Three20Style+Additions.h"; sourceTree = "<group>"; };
 		6EE7363D11849AD500A35176 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EE7364B11849B3D00A35176 /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				6EE738C11184AE4A00A35176 /* Three20Style.h */,
+				6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */,
 				6EE737001184A1D500A35176 /* Source */,
 				6E08B743118397FA00DA1579 /* Dependencies */,
 				6EE7364D11849B4200A35176 /* Configurations */,
@@ -779,6 +782,7 @@
 				6EE737831184A38F00A35176 /* UIFontAdditions.h in Headers */,
 				6EE737841184A38F00A35176 /* UIImageAdditions.h in Headers */,
 				6EE738C21184AE4A00A35176 /* Three20Style.h in Headers */,
+				6E6454901184D3BC00F08CB1 /* Three20Style+Additions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
