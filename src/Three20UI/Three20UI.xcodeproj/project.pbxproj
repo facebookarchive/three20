@@ -1892,8 +1892,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20UI" */;
 			buildPhases = (
-				6E6459E51187665F00F08CB1 /* Reset Headers */,
 				BEF31F360F352DF5000DE5D2 /* Headers */,
+				6E645F461187B01F00F08CB1 /* Protect Copied Headers */,
 				BEF31F370F352DF5000DE5D2 /* Sources */,
 				BEF31F380F352DF5000DE5D2 /* Frameworks */,
 			);
@@ -2019,19 +2019,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6E6459E51187665F00F08CB1 /* Reset Headers */ = {
+		6E645F461187B01F00F08CB1 /* Protect Copied Headers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Reset Headers";
+			name = "Protect Copied Headers";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf ${SYMROOT}${PUBLIC_HEADERS_FOLDER_PATH}";
+			shellScript = "chmod a-w ${CONFIGURATION_BUILD_DIR}${PUBLIC_HEADERS_FOLDER_PATH}/*.h";
 		};
 		EB9E6C6010B6A8F800DE563C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
