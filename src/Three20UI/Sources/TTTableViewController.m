@@ -14,31 +14,31 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableViewController.h"
+#import "Three20UI/TTTableViewController.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTActivityLabel.h"
-#import "Three20/TTErrorView.h"
-#import "Three20/TTListDataSource.h"
-#import "Three20/TTNavigator.h"
-#import "Three20/TTTableView.h"
-#import "Three20/TTTableViewDelegate.h"
-#import "Three20/TTTableViewVarHeightDelegate.h"
-#import "Three20/UIViewAdditions.h"
-#import "Three20/UIViewControllerAdditions.h"
-#import "Three20/UITableViewAdditions.h"
+#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTGlobalUINavigator.h"
+#import "Three20UI/TTActivityLabel.h"
+#import "Three20UI/TTErrorView.h"
+#import "Three20UI/TTListDataSource.h"
+#import "Three20UI/TTNavigator.h"
+#import "Three20UI/TTTableView.h"
+#import "Three20UI/TTTableViewDelegate.h"
+#import "Three20UI/TTTableViewVarHeightDelegate.h"
+#import "Three20UI/UIViewAdditions.h"
+#import "Three20UI/UIViewControllerAdditions.h"
+#import "Three20UI/UITableViewAdditions.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTDebug.h"
-#import "Three20/TTDebugFlags.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCoreLocale.h"
+#import "Three20Core/TTDebug.h"
+#import "Three20Core/TTDebugFlags.h"
 
 static const CGFloat kBannerViewHeight = 22;
 

@@ -14,15 +14,15 @@
 // limitations under the License.
 //
 
-#import "Three20/TTURLPattern.h"
+#import "Three20UI/TTURLPattern.h"
 
 // UI (Private)
-#import "Three20/TTURLWildcard.h"
-#import "Three20/TTURLLiteral.h"
+#import "Three20UI/TTURLWildcard.h"
+#import "Three20UI/TTURLLiteral.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/NSStringAdditions.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/NSStringAdditions.h"
 
 #import <objc/runtime.h>
 

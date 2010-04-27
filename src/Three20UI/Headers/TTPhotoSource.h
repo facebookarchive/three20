@@ -15,10 +15,10 @@
 //
 
 // UI
-#import "Three20/TTURLObject.h"
+#import "Three20UI/TTURLObject.h"
 
 // Network
-#import "Three20/TTModel.h"
+#import "Three20Network/TTModel.h"
 
 #define TT_NULL_PHOTO_INDEX NSIntegerMax
 

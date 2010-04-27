@@ -14,19 +14,19 @@
 // limitations under the License.
 //
 
-#import "Three20/UIViewControllerAdditions.h"
+#import "Three20UI/UIViewControllerAdditions.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTNavigator.h"
+#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTNavigator.h"
 
 // Network
-#import "Three20/TTURLMap.h"
+#import "Three20UI/TTURLMap.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTDebug.h"
-#import "Three20/TTDebugFlags.h"
+#import "Three20Core/TTGlobalCore.h"
+#import "Three20Core/TTDebug.h"
+#import "Three20Core/TTDebugFlags.h"
 
 static NSMutableDictionary* gNavigatorURLs = nil;
 static NSMutableDictionary* gSuperControllers = nil;

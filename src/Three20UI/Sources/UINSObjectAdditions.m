@@ -14,13 +14,13 @@
 // limitations under the License.
 //
 
-#import "Three20/UINSObjectAdditions.h"
+#import "Three20UI/UINSObjectAdditions.h"
 
 // UI
-#import "Three20/TTNavigator.h"
+#import "Three20UI/TTNavigator.h"
 
 // Network
-#import "Three20/TTURLMap.h"
+#import "Three20UI/TTURLMap.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

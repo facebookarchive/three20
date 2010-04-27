@@ -14,16 +14,16 @@
 // limitations under the License.
 //
 
-#import "Three20/TTLabel.h"
+#import "Three20UI/TTLabel.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTDefaultStyleSheet.h"
-#import "Three20/TTStyleContext.h"
-#import "Three20/TTStyle.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
+#import "Three20Style/TTStyleContext.h"
+#import "Three20Style/TTStyle.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

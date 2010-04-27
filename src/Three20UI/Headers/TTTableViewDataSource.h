@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 
 // Network
-#import "Three20/TTModel.h"
+#import "Three20Network/TTModel.h"
 
 @protocol TTTableViewDataSource <UITableViewDataSource, TTModel, UISearchDisplayDelegate>
 

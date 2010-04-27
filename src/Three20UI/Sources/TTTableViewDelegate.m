@@ -14,34 +14,34 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableViewDelegate.h"
+#import "Three20UI/TTTableViewDelegate.h"
 
 // UI
-#import "Three20/TTTableViewDataSource.h"
-#import "Three20/TTTableViewController.h"
-#import "Three20/TTTableHeaderView.h"
-#import "Three20/TTTableView.h"
-#import "Three20/TTStyledTextLabel.h"
-#import "Three20/TTNavigator.h"
+#import "Three20UI/TTTableViewDataSource.h"
+#import "Three20UI/TTTableViewController.h"
+#import "Three20UI/TTTableHeaderView.h"
+#import "Three20UI/TTTableView.h"
+#import "Three20UI/TTStyledTextLabel.h"
+#import "Three20UI/TTNavigator.h"
 
 // - Table Items
-#import "Three20/TTTableItem.h"
-#import "Three20/TTTableLinkedItem.h"
-#import "Three20/TTTableButton.h"
-#import "Three20/TTTableMoreButton.h"
+#import "Three20UI/TTTableItem.h"
+#import "Three20UI/TTTableLinkedItem.h"
+#import "Three20UI/TTTableButton.h"
+#import "Three20UI/TTTableMoreButton.h"
 
 // - Table Item Cells
-#import "Three20/TTTableMoreButtonCell.h"
+#import "Three20UI/TTTableMoreButtonCell.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
 
 // Network
-#import "Three20/TTURLRequestQueue.h"
+#import "Three20Network/TTURLRequestQueue.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTPopupViewController.h"
+#import "Three20UI/TTPopupViewController.h"
 
 @protocol TTActionSheetControllerDelegate;
 

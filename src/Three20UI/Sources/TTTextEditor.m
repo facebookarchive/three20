@@ -14,21 +14,21 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTextEditor.h"
+#import "Three20UI/TTTextEditor.h"
 
 // UI
-#import "Three20/TTTextView.h"
-#import "Three20/TTTextEditorInternal.h"
-#import "Three20/TTTextEditorDelegate.h"
-#import "Three20/UIViewAdditions.h"
-#import "Three20/UIFontAdditions.h"
+#import "Three20UI/TTTextView.h"
+#import "Three20UI/TTTextEditorInternal.h"
+#import "Three20UI/TTTextEditorDelegate.h"
+#import "Three20UI/UIViewAdditions.h"
+#import "Three20Style/UIFontAdditions.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 static const CGFloat kPaddingX = 8;
 static const CGFloat kPaddingY = 9;

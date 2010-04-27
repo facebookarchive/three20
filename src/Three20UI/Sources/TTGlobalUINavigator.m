@@ -14,14 +14,14 @@
 // limitations under the License.
 //
 
-#import "Three20/TTGlobalUINavigator.h"
+#import "Three20UI/TTGlobalUINavigator.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTNavigator.h"
+#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTNavigator.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
+#import "Three20Style/TTGlobalStyle.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

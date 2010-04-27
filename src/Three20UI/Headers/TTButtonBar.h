@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTView.h"
+#import "Three20UI/TTView.h"
 
 /**
  * A box containing buttons with a consistent style.

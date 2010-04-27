@@ -14,34 +14,34 @@
 // limitations under the License.
 //
 
-#import "Three20/TTPhotoViewController.h"
+#import "Three20UI/TTPhotoViewController.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTThumbsViewController.h"
-#import "Three20/TTPhotoSource.h"
-#import "Three20/TTPhoto.h"
-#import "Three20/TTURLMap.h"
-#import "Three20/TTPhotoView.h"
-#import "Three20/TTActivityLabel.h"
-#import "Three20/TTNavigator.h"
-#import "Three20/TTScrollView.h"
-#import "Three20/UIViewAdditions.h"
-#import "Three20/UIViewControllerAdditions.h"
-#import "Three20/UINavigationControllerAdditions.h"
-#import "Three20/UIToolbarAdditions.h"
+#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTThumbsViewController.h"
+#import "Three20UI/TTPhotoSource.h"
+#import "Three20UI/TTPhoto.h"
+#import "Three20UI/TTURLMap.h"
+#import "Three20UI/TTPhotoView.h"
+#import "Three20UI/TTActivityLabel.h"
+#import "Three20UI/TTNavigator.h"
+#import "Three20UI/TTScrollView.h"
+#import "Three20UI/UIViewAdditions.h"
+#import "Three20UI/UIViewControllerAdditions.h"
+#import "Three20UI/UINavigationControllerAdditions.h"
+#import "Three20UI/UIToolbarAdditions.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
 
 // Network
-#import "Three20/TTGlobalNetwork.h"
-#import "Three20/TTURLCache.h"
+#import "Three20Network/TTGlobalNetwork.h"
+#import "Three20Network/TTURLCache.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCoreLocale.h"
 
 static const NSTimeInterval kPhotoLoadLongDelay   = 0.5;
 static const NSTimeInterval kPhotoLoadShortDelay  = 0.25;

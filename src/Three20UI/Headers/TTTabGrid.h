@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTTabBar.h"
+#import "Three20UI/TTTabBar.h"
 
 @interface TTTabGrid : TTTabBar {
   NSInteger _columnCount;

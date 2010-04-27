@@ -14,14 +14,14 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableFlushViewCell.h"
+#import "Three20UI/TTTableFlushViewCell.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTTableViewItem.h"
+#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTTableViewItem.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

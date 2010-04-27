@@ -49,7 +49,7 @@
 #import "Three20UI/TTURLAction.h"
 #import "Three20UI/TTURLMap.h"
 #import "Three20UI/TTURLObject.h"
-#import "Three20UI/TTURLCache.h"
+#import "Three20Network/TTURLCache.h"
 
 // UI Views
 #import "Three20UI/TTView.h"

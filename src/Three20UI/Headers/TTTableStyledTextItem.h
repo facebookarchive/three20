@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTTableLinkedItem.h"
+#import "Three20UI/TTTableLinkedItem.h"
 
 @class TTStyledText;
 

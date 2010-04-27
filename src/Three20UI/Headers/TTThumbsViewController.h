@@ -15,8 +15,8 @@
 //
 
 // UI
-#import "Three20/TTTableViewController.h"
-#import "Three20/TTThumbsTableViewCellDelegate.h"
+#import "Three20UI/TTTableViewController.h"
+#import "Three20UI/TTThumbsTableViewCellDelegate.h"
 
 @protocol TTThumbsViewControllerDelegate;
 @protocol TTPhotoSource;

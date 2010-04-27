@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTTableViewDelegate.h"
+#import "Three20UI/TTTableViewDelegate.h"
 
 /**
  * The most basic delegate. No size calculations are made.

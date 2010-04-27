@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTabBarInternal.h"
+#import "Three20UI/TTTabBarInternal.h"
 
 // UI
-#import "Three20/TTTab.h"
-#import "Three20/UIViewAdditions.h"
+#import "Three20UI/TTTab.h"
+#import "Three20UI/UIViewAdditions.h"
 
         CGFloat   kTabMargin      = 10;
 const   NSInteger kMaxBadgeNumber = 99;

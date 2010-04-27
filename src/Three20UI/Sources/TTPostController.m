@@ -14,26 +14,26 @@
 // limitations under the License.
 //
 
-#import "Three20/TTPostController.h"
+#import "Three20UI/TTPostController.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTPostControllerDelegate.h"
-#import "Three20/TTNavigator.h"
-#import "Three20/TTActivityLabel.h"
-#import "Three20/TTView.h"
-#import "Three20/UIViewAdditions.h"
-#import "Three20/UIViewControllerAdditions.h"
+#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTGlobalUINavigator.h"
+#import "Three20UI/TTPostControllerDelegate.h"
+#import "Three20UI/TTNavigator.h"
+#import "Three20UI/TTActivityLabel.h"
+#import "Three20UI/TTView.h"
+#import "Three20UI/UIViewAdditions.h"
+#import "Three20UI/UIViewControllerAdditions.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTStyleSheet.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTStyleSheet.h"
 
 // Core
-#import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/NSStringAdditions.h"
+#import "Three20Core/TTGlobalCoreLocale.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/NSStringAdditions.h"
 
 static const CGFloat kMarginX = 5;
 static const CGFloat kMarginY = 6;

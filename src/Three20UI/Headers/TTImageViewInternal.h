@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTImageView.h"
+#import "Three20UI/TTImageView.h"
 
 @interface TTImageView (TTInternal)
 

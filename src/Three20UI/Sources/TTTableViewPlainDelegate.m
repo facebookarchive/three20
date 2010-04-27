@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableViewPlainDelegate.h"
+#import "Three20UI/TTTableViewPlainDelegate.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

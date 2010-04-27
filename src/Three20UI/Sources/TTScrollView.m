@@ -14,16 +14,16 @@
 // limitations under the License.
 //
 
-#import "Three20/TTScrollView.h"
+#import "Three20UI/TTScrollView.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTScrollViewDelegate.h"
-#import "Three20/TTScrollViewDataSource.h"
-#import "Three20/UIViewAdditions.h"
+#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTScrollViewDelegate.h"
+#import "Three20UI/TTScrollViewDataSource.h"
+#import "Three20UI/UIViewAdditions.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 static const NSInteger kOffscreenPages = 1;
 static const CGFloat kDefaultPageSpacing = 40.0;

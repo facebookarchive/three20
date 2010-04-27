@@ -14,15 +14,15 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableRightCaptionItemCell.h"
+#import "Three20UI/TTTableRightCaptionItemCell.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTTableCaptionItem.h"
+#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTTableCaptionItem.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTDefaultStyleSheet.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

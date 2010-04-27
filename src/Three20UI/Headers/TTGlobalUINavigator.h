@@ -18,8 +18,8 @@
 #import <UIKit/UIKit.h>
 
 // UI
-#import "Three20/UINSStringAdditions.h"
-#import "Three20/UINSObjectAdditions.h"
+#import "Three20UI/UINSStringAdditions.h"
+#import "Three20UI/UINSObjectAdditions.h"
 
 /**
  * @return the current orientation of the visible view controller.

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableViewGroupedVarHeightDelegate.h"
+#import "Three20UI/TTTableViewGroupedVarHeightDelegate.h"
 
 static const CGFloat kEmptyHeaderHeight = 1;
 static const CGFloat kSectionHeaderHeight = 35;

@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20/TTSearchTextFieldInternal.h"
+#import "Three20UI/TTSearchTextFieldInternal.h"
 
 // UI
-#import "Three20/TTSearchTextField.h"
+#import "Three20UI/TTSearchTextField.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

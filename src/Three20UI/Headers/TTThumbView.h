@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTButton.h"
+#import "Three20UI/TTButton.h"
 
 @interface TTThumbView : TTButton
 

@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTStyledTextDelegate.h"
+#import "Three20Style/TTStyledTextDelegate.h"
 
 @class TTStyledText;
 @class TTStyledElement;

@@ -14,19 +14,19 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTabGrid.h"
+#import "Three20UI/TTTabGrid.h"
 
 // UI
-#import "Three20/TTButton.h"
-#import "Three20/UIViewAdditions.h"
+#import "Three20UI/TTButton.h"
+#import "Three20UI/UIViewAdditions.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTStyleSheet.h"
-#import "Three20/TTGridLayout.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTStyleSheet.h"
+#import "Three20Style/TTGridLayout.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

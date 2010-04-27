@@ -14,32 +14,30 @@
 // limitations under the License.
 //
 
-#import "Three20/TTNavigator.h"
+#import "Three20UI/TTNavigator.h"
 
 // UI
-#import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTNavigatorDelegate.h"
-#import "Three20/UIViewControllerAdditions.h"
+#import "Three20UI/TTGlobalUINavigator.h"
+#import "Three20UI/TTNavigatorDelegate.h"
+#import "Three20UI/UIViewControllerAdditions.h"
+#import "Three20UI/TTURLAction.h"
+#import "Three20UI/TTURLMap.h"
+#import "Three20UI/TTURLNavigatorPattern.h"
 
 // - Controllers
-#import "Three20/TTPopupViewController.h"
-#import "Three20/TTSearchDisplayController.h"
-#import "Three20/TTTableViewController.h"
+#import "Three20UI/TTPopupViewController.h"
+#import "Three20UI/TTSearchDisplayController.h"
+#import "Three20UI/TTTableViewController.h"
 
 // UI (private)
-#import "Three20/TTNavigatorWindow.h"
-
-// Network
-#import "Three20/TTURLAction.h"
-#import "Three20/TTURLMap.h"
-#import "Three20/TTURLNavigatorPattern.h"
+#import "Three20UI/TTNavigatorWindow.h"
 
 // Core
-#import "Three20/TTGlobalCore.h"
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/TTDebug.h"
-#import "Three20/TTDebugFlags.h"
-#import "Three20/NSDateAdditions.h"
+#import "Three20Core/TTGlobalCore.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTDebug.h"
+#import "Three20Core/TTDebugFlags.h"
+#import "Three20Core/NSDateAdditions.h"
 
 static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";

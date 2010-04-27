@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-#import "Three20/UITableViewAdditions.h"
+#import "Three20UI/UITableViewAdditions.h"
 
 // UI
-#import "Three20/UIViewAdditions.h"
-#import "Three20/UIWindowAdditions.h"
+#import "Three20UI/UIViewAdditions.h"
+#import "Three20UI/UIWindowAdditions.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

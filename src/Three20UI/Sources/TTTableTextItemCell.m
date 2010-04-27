@@ -14,23 +14,23 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableTextItemCell.h"
+#import "Three20UI/TTTableTextItemCell.h"
 
 // UI
-#import "Three20/UIViewAdditions.h"
-#import "Three20/UITableViewAdditions.h"
+#import "Three20UI/UIViewAdditions.h"
+#import "Three20UI/UITableViewAdditions.h"
 
 // - Table items
-#import "Three20/TTTableTextItem.h"
-#import "Three20/TTTableLongTextItem.h"
-#import "Three20/TTTableGrayTextItem.h"
-#import "Three20/TTTableButton.h"
-#import "Three20/TTTableLink.h"
-#import "Three20/TTTableSummaryItem.h"
+#import "Three20UI/TTTableTextItem.h"
+#import "Three20UI/TTTableLongTextItem.h"
+#import "Three20UI/TTTableGrayTextItem.h"
+#import "Three20UI/TTTableButton.h"
+#import "Three20UI/TTTableLink.h"
+#import "Three20UI/TTTableSummaryItem.h"
 
 // Style
-#import "Three20/TTDefaultStyleSheet.h"
-#import "Three20/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
+#import "Three20Style/TTGlobalStyle.h"
 
 static const CGFloat kMaxLabelHeight = 2000;
 

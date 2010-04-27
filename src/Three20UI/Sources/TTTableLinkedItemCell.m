@@ -14,21 +14,19 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableLinkedItemCell.h"
+#import "Three20UI/TTTableLinkedItemCell.h"
 
 // UI
-#import "Three20/TTTableLinkedItem.h"
-#import "Three20/TTNavigator.h"
+#import "Three20UI/TTTableLinkedItem.h"
+#import "Three20UI/TTNavigator.h"
+#import "Three20UI/TTURLMap.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTDefaultStyleSheet.h"
-
-// Network
-#import "Three20/TTURLMap.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

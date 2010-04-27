@@ -15,8 +15,8 @@
 //
 
 // UI (private)
-#import "Three20/TTURLPatternText.h"
-#import "Three20/TTURLArgumentType.h"
+#import "Three20UI/TTURLPatternText.h"
+#import "Three20UI/TTURLArgumentType.h"
 
 @class TTURLSelector;
 

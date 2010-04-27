@@ -15,7 +15,7 @@
 //
 
 // Style
-#import "Three20/TTStyleDelegate.h"
+#import "Three20Style/TTStyleDelegate.h"
 
 @interface TTButton : UIControl <TTStyleDelegate> {
   NSMutableDictionary*  _content;

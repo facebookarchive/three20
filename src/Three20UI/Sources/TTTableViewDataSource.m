@@ -14,46 +14,46 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableViewDataSource.h"
+#import "Three20UI/TTTableViewDataSource.h"
 
 // UI
-#import "Three20/TTTextEditor.h"
+#import "Three20UI/TTTextEditor.h"
 
 // - Table Items
-#import "Three20/TTTableItem.h"
-#import "Three20/TTTableMoreButton.h"
-#import "Three20/TTTableSubtextItem.h"
-#import "Three20/TTTableRightCaptionItem.h"
-#import "Three20/TTTableCaptionItem.h"
-#import "Three20/TTTableSubtitleItem.h"
-#import "Three20/TTTableMessageItem.h"
-#import "Three20/TTTableImageItem.h"
-#import "Three20/TTTableStyledTextItem.h"
-#import "Three20/TTTableTextItem.h"
-#import "Three20/TTTableActivityItem.h"
-#import "Three20/TTTableControlItem.h"
+#import "Three20UI/TTTableItem.h"
+#import "Three20UI/TTTableMoreButton.h"
+#import "Three20UI/TTTableSubtextItem.h"
+#import "Three20UI/TTTableRightCaptionItem.h"
+#import "Three20UI/TTTableCaptionItem.h"
+#import "Three20UI/TTTableSubtitleItem.h"
+#import "Three20UI/TTTableMessageItem.h"
+#import "Three20UI/TTTableImageItem.h"
+#import "Three20UI/TTTableStyledTextItem.h"
+#import "Three20UI/TTTableTextItem.h"
+#import "Three20UI/TTTableActivityItem.h"
+#import "Three20UI/TTTableControlItem.h"
 
 // - Table Cells
-#import "Three20/TTTableMoreButtonCell.h"
-#import "Three20/TTTableSubtextItemCell.h"
-#import "Three20/TTTableRightCaptionItemCell.h"
-#import "Three20/TTTableCaptionItemCell.h"
-#import "Three20/TTTableSubtitleItemCell.h"
-#import "Three20/TTTableMessageItemCell.h"
-#import "Three20/TTTableImageItemCell.h"
-#import "Three20/TTStyledTextTableItemCell.h"
-#import "Three20/TTTableActivityItemCell.h"
-#import "Three20/TTTableControlCell.h"
-#import "Three20/TTTableTextItemCell.h"
-#import "Three20/TTStyledTextTableCell.h"
-#import "Three20/TTTableFlushViewCell.h"
+#import "Three20UI/TTTableMoreButtonCell.h"
+#import "Three20UI/TTTableSubtextItemCell.h"
+#import "Three20UI/TTTableRightCaptionItemCell.h"
+#import "Three20UI/TTTableCaptionItemCell.h"
+#import "Three20UI/TTTableSubtitleItemCell.h"
+#import "Three20UI/TTTableMessageItemCell.h"
+#import "Three20UI/TTTableImageItemCell.h"
+#import "Three20UI/TTStyledTextTableItemCell.h"
+#import "Three20UI/TTTableActivityItemCell.h"
+#import "Three20UI/TTTableControlCell.h"
+#import "Three20UI/TTTableTextItemCell.h"
+#import "Three20UI/TTStyledTextTableCell.h"
+#import "Three20UI/TTTableFlushViewCell.h"
 
 // Style
-#import "Three20/TTStyledText.h"
+#import "Three20Style/TTStyledText.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
-#import "Three20/TTGlobalCoreLocale.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCoreLocale.h"
 
 #import <objc/runtime.h>
 

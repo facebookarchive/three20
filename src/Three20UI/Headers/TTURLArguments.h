@@ -15,7 +15,7 @@
 //
 
 // UI (private)
-#import "Three20/TTURLArgumentType.h"
+#import "Three20UI/TTURLArgumentType.h"
 
 TTURLArgumentType TTConvertArgumentType(char argType);
 TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* propertyName);

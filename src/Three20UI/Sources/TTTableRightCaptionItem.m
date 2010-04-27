@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableRightCaptionItem.h"
+#import "Three20UI/TTTableRightCaptionItem.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

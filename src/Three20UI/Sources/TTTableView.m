@@ -14,17 +14,17 @@
 // limitations under the License.
 //
 
-#import "Three20/TTTableView.h"
+#import "Three20UI/TTTableView.h"
 
 // UI
-#import "Three20/TTStyledTextLabel.h"
-#import "Three20/UIViewAdditions.h"
+#import "Three20UI/TTStyledTextLabel.h"
+#import "Three20UI/UIViewAdditions.h"
 
 // Style
-#import "Three20/TTStyledNode.h"
+#import "Three20Style/TTStyledNode.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 static const CGFloat kShadowHeight        = 20.0;
 static const CGFloat kShadowInverseHeight = 10.0;

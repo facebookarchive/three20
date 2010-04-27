@@ -14,27 +14,27 @@
 // limitations under the License.
 //
 
-#import "Three20/TTThumbsViewController.h"
+#import "Three20UI/TTThumbsViewController.h"
 
 // UI
-#import "Three20/TTGlobalUI.h"
-#import "Three20/TTGlobalUINavigator.h"
-#import "Three20/TTNavigator.h"
-#import "Three20/TTThumbsDataSource.h"
-#import "Three20/TTThumbsTableViewCell.h"
-#import "Three20/TTPhoto.h"
-#import "Three20/TTPhotoSource.h"
-#import "Three20/TTPhotoViewController.h"
-#import "Three20/UIViewAdditions.h"
-#import "Three20/UIViewControllerAdditions.h"
+#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTGlobalUINavigator.h"
+#import "Three20UI/TTNavigator.h"
+#import "Three20UI/TTThumbsDataSource.h"
+#import "Three20UI/TTThumbsTableViewCell.h"
+#import "Three20UI/TTPhoto.h"
+#import "Three20UI/TTPhotoSource.h"
+#import "Three20UI/TTPhotoViewController.h"
+#import "Three20UI/UIViewAdditions.h"
+#import "Three20UI/UIViewControllerAdditions.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTStyleSheet.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTStyleSheet.h"
 
 // Core
-#import "Three20/TTGlobalCoreLocale.h"
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCoreLocale.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 static CGFloat kThumbnailRowHeight = 79;
 

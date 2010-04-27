@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTTableTextItem.h"
+#import "Three20UI/TTTableTextItem.h"
 
 @interface TTTableMessageItem : TTTableTextItem {
   NSString* _title;

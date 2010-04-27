@@ -12,14 +12,14 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-#import "Three20/UINSStringAdditions.h"
+#import "Three20UI/UINSStringAdditions.h"
 
 // UI
-#import "Three20/TTNavigator.h"
-#import "Three20/TTURLAction.h"
+#import "Three20UI/TTNavigator.h"
+#import "Three20UI/TTURLAction.h"
 
 // Network
-#import "Three20/TTURLMap.h"
+#import "Three20UI/TTURLMap.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

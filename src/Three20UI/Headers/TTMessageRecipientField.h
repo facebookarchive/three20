@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTMessageField.h"
+#import "Three20UI/TTMessageField.h"
 
 /**
  * A field for holding recipients, typically found in an address book.

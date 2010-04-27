@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20/TTView.h"
+#import "Three20UI/TTView.h"
 
 @interface TTPickerViewCell : TTView {
   id        _object;

@@ -15,7 +15,7 @@
 //
 
 // UI (private)
-#import "Three20/TTURLArgumentType.h"
+#import "Three20UI/TTURLArgumentType.h"
 
 @interface TTURLSelector : NSObject {
   NSString*       _name;

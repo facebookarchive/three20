@@ -14,27 +14,27 @@
 // limitations under the License.
 //
 
-#import "Three20/TTStyledTextLabel.h"
+#import "Three20UI/TTStyledTextLabel.h"
 
 // UI
-#import "Three20/TTTableView.h"
-#import "Three20/UIViewAdditions.h"
+#import "Three20UI/TTTableView.h"
+#import "Three20UI/UIViewAdditions.h"
 
 // Style
-#import "Three20/TTGlobalStyle.h"
-#import "Three20/TTStyledText.h"
-#import "Three20/TTStyledNode.h"
-#import "Three20/TTStyleSheet.h"
-#import "Three20/TTStyledElement.h"
-#import "Three20/TTStyledLinkNode.h"
-#import "Three20/TTStyledTextNode.h"
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTStyledText.h"
+#import "Three20Style/TTStyledNode.h"
+#import "Three20Style/TTStyleSheet.h"
+#import "Three20Style/TTStyledElement.h"
+//#import "Three20Style/TTStyledLinkNode.h"
+#import "Three20Style/TTStyledTextNode.h"
 
 // - Styled frames
-#import "Three20/TTStyledInlineFrame.h"
-#import "Three20/TTStyledTextFrame.h"
+#import "Three20Style/TTStyledInlineFrame.h"
+#import "Three20Style/TTStyledTextFrame.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 static const CGFloat kCancelHighlightThreshold = 4;
 
@@ -121,9 +121,11 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
     TTStyledBoxFrame* affectFrame = frame ? frame : _highlightedFrame;
     NSString* className = affectFrame.element.className;
-    if (!className && [affectFrame.element isKindOfClass:[TTStyledLinkNode class]]) {
-      className = @"linkText:";
-    }
+    // TODO (jverkoey April 27, 2010): Add back support for TTStyledLinkNode.
+    TTDASSERT(false);
+    //if (!className && [affectFrame.element isKindOfClass:[TTStyledLinkNode class]]) {
+    //  className = @"linkText:";
+    //}
 
     if (className && [className rangeOfString:@":"].location != NSNotFound) {
       if (frame) {
@@ -191,15 +193,17 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addAccessibilityElementsForNode:(TTStyledNode*)node {
-  if ([node isKindOfClass:[TTStyledLinkNode class]]) {
-    UIAccessibilityElement* acc = [[[UIAccessibilityElement alloc]
-                                  initWithAccessibilityContainer:self] autorelease];
-    TTStyledFrame* frame = [_text getFrameForNode:node];
-    acc.accessibilityFrame = CGRectOffset(frame.bounds, self.screenViewX, self.screenViewY);
-    acc.accessibilityTraits = UIAccessibilityTraitLink;
-    acc.accessibilityLabel = [node outerText];
-    [_accessibilityElements addObject:acc];
-  } else if ([node isKindOfClass:[TTStyledTextNode class]]) {
+  // TODO (jverkoey April 27, 2010): Add back support for TTStyledLinkNode.
+  //if ([node isKindOfClass:[TTStyledLinkNode class]]) {
+  //  UIAccessibilityElement* acc = [[[UIAccessibilityElement alloc]
+  //                                initWithAccessibilityContainer:self] autorelease];
+  //  TTStyledFrame* frame = [_text getFrameForNode:node];
+  //  acc.accessibilityFrame = CGRectOffset(frame.bounds, self.screenViewX, self.screenViewY);
+  //  acc.accessibilityTraits = UIAccessibilityTraitLink;
+  //  acc.accessibilityLabel = [node outerText];
+  //  [_accessibilityElements addObject:acc];
+  //} else if ([node isKindOfClass:[TTStyledTextNode class]]) {
+  if ([node isKindOfClass:[TTStyledTextNode class]]) {
     TTStyledTextFrame* startFrame = (TTStyledTextFrame*)[_text getFrameForNode:node];
     UIEdgeInsets edges = [self edgesForRect:startFrame.bounds];
 

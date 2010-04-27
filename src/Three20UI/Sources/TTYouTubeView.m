@@ -14,13 +14,13 @@
 // limitations under the License.
 //
 
-#import "Three20/TTYouTubeView.h"
+#import "Three20UI/TTYouTubeView.h"
 
 // UI
-#import "Three20/UIViewAdditions.h"
+#import "Three20UI/UIViewAdditions.h"
 
 // Core
-#import "Three20/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 static CGFloat kDefaultWidth = 140;
 static CGFloat kDefaultHeight = 105;
