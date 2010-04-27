@@ -14,25 +14,18 @@
 // limitations under the License.
 //
 
+// Three20, without additions.
 #import "Three20/Three20.h"
 
 // Core Additions
-#import "Three20/Three20Core+Additions.h"
+#import "Three20Core/Three20Core+Additions.h"
+
+// Network Additions
+// No additions for Network yet.
+#import "Three20Network/Three20Network+Additions.h"
 
 // Style Additions
-#import "Three20/UIColorAdditions.h"
-#import "Three20/UIFontAdditions.h"
-#import "Three20/UIImageAdditions.h"
+#import "Three20Style/Three20Style+Additions.h"
 
 // UI Additions
-#import "Three20/UIViewAdditions.h"
-#import "Three20/UIViewControllerAdditions.h"
-#import "Three20/UINavigationControllerAdditions.h"
-#import "Three20/UINavigationControllerAdditions.h"
-#import "Three20/UITabBarControllerAdditions.h"
-#import "Three20/UITableViewAdditions.h"
-#import "Three20/UIWebViewAdditions.h"
-#import "Three20/UIToolbarAdditions.h"
-#import "Three20/UIWindowAdditions.h"
-#import "Three20/UINSStringAdditions.h"
-#import "Three20/UINSObjectAdditions.h"
+#import "Three20UI/Three20UI+Additions.h"
