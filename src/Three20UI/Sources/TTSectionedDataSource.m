@@ -162,15 +162,15 @@
   if (_sections) {
     for (int i = 0; i < _items.count; ++i) {
       NSMutableArray* section = [_items objectAtIndex:i];
-      NSUInteger index = [section indexOfObject:object];
-      if (index != NSNotFound) {
-        return [NSIndexPath indexPathForRow:index inSection:i];
+      NSUInteger objectIndex = [section indexOfObject:object];
+      if (objectIndex != NSNotFound) {
+        return [NSIndexPath indexPathForRow:objectIndex inSection:i];
       }
     }
   } else {
-    NSUInteger index = [_items indexOfObject:object];
-    if (index != NSNotFound) {
-      return [NSIndexPath indexPathForRow:index inSection:0];
+    NSUInteger objectIndex = [_items indexOfObject:object];
+    if (objectIndex != NSNotFound) {
+      return [NSIndexPath indexPathForRow:objectIndex inSection:0];
     }
   }
 

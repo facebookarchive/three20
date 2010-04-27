@@ -195,9 +195,9 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 - (UIViewController*)ttPreviousViewController {
   NSArray* viewControllers = self.navigationController.viewControllers;
   if (viewControllers.count > 1) {
-    NSUInteger index = [viewControllers indexOfObject:self];
-    if (index != NSNotFound && index > 0) {
-      return [viewControllers objectAtIndex:index-1];
+    NSUInteger controllerIndex = [viewControllers indexOfObject:self];
+    if (controllerIndex != NSNotFound && controllerIndex > 0) {
+      return [viewControllers objectAtIndex:controllerIndex-1];
     }
   }
 
@@ -209,9 +209,9 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 - (UIViewController*)nextViewController {
   NSArray* viewControllers = self.navigationController.viewControllers;
   if (viewControllers.count > 1) {
-    NSUInteger index = [viewControllers indexOfObject:self];
-    if (index != NSNotFound && index+1 < viewControllers.count) {
-      return [viewControllers objectAtIndex:index+1];
+    NSUInteger controllerIndex = [viewControllers indexOfObject:self];
+    if (controllerIndex != NSNotFound && controllerIndex+1 < viewControllers.count) {
+      return [viewControllers objectAtIndex:controllerIndex+1];
     }
   }
   return nil;

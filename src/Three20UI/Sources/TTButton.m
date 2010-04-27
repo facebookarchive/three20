@@ -95,7 +95,7 @@ static const CGFloat kVPadding = 7;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)keyForState:(UIControlState)state {
-  static NSString* normal = @"normal";
+  static NSString* normalKey = @"normal";
   static NSString* highlighted = @"highlighted";
   static NSString* selected = @"selected";
   static NSString* disabled = @"disabled";
@@ -106,7 +106,7 @@ static const CGFloat kVPadding = 7;
   } else if (state & UIControlStateDisabled) {
     return disabled;
   } else {
-    return normal;
+    return normalKey;
   }
 }
 

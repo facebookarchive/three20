@@ -1266,8 +1266,8 @@ static const NSTimeInterval kOvershoot = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setCenterPageIndex:(NSInteger)index {
-  [self moveToPageAtIndex:index resetEdges:!_touchCount];
+- (void)setCenterPageIndex:(NSInteger)centerPageIndex {
+  [self moveToPageAtIndex:centerPageIndex resetEdges:!_touchCount];
 }
 
 

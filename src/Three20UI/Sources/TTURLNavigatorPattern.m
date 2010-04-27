@@ -238,39 +238,39 @@ static NSString* kUniversalURLPattern = @"*";
       forInvocation: (NSInvocation*)invocation {
   if ([patternText isKindOfClass:[TTURLWildcard class]]) {
     TTURLWildcard* wildcard = (TTURLWildcard*)patternText;
-    NSInteger index = wildcard.argIndex;
-    if (index != NSNotFound && index < _argumentCount) {
+    NSInteger argIndex = wildcard.argIndex;
+    if (argIndex != NSNotFound && argIndex < _argumentCount) {
       switch (wildcard.argType) {
         case TTURLArgumentTypeNone: {
           break;
         }
         case TTURLArgumentTypeInteger: {
           int val = [text intValue];
-          [invocation setArgument:&val atIndex:index+2];
+          [invocation setArgument:&val atIndex:argIndex+2];
           break;
         }
         case TTURLArgumentTypeLongLong: {
           long long val = [text longLongValue];
-          [invocation setArgument:&val atIndex:index+2];
+          [invocation setArgument:&val atIndex:argIndex+2];
           break;
         }
         case TTURLArgumentTypeFloat: {
           float val = [text floatValue];
-          [invocation setArgument:&val atIndex:index+2];
+          [invocation setArgument:&val atIndex:argIndex+2];
           break;
         }
         case TTURLArgumentTypeDouble: {
           double val = [text doubleValue];
-          [invocation setArgument:&val atIndex:index+2];
+          [invocation setArgument:&val atIndex:argIndex+2];
           break;
         }
         case TTURLArgumentTypeBool: {
           BOOL val = [text boolValue];
-          [invocation setArgument:&val atIndex:index+2];
+          [invocation setArgument:&val atIndex:argIndex+2];
           break;
         }
         default: {
-          [invocation setArgument:&text atIndex:index+2];
+          [invocation setArgument:&text atIndex:argIndex+2];
           break;
         }
       }

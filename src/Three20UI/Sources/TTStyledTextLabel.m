@@ -35,6 +35,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTDebug.h"
 
 static const CGFloat kCancelHighlightThreshold = 4;
 
@@ -374,8 +375,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)accessibilityElementAtIndex:(NSInteger)index {
-  return [[self accessibilityElements] objectAtIndex:index];
+- (id)accessibilityElementAtIndex:(NSInteger)elementIndex {
+  return [[self accessibilityElements] objectAtIndex:elementIndex];
 }
 
 

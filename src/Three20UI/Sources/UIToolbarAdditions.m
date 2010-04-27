@@ -39,15 +39,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)replaceItemWithTag:(NSInteger)tag withItem:(UIBarButtonItem*)item {
-  NSInteger index = 0;
+  NSInteger buttonIndex = 0;
   for (UIBarButtonItem* button in self.items) {
     if (button.tag == tag) {
       NSMutableArray* newItems = [NSMutableArray arrayWithArray:self.items];
-      [newItems replaceObjectAtIndex:index withObject:item];
+      [newItems replaceObjectAtIndex:buttonIndex withObject:item];
       self.items = newItems;
       break;
     }
-    ++index;
+    ++buttonIndex;
   }
 }
 

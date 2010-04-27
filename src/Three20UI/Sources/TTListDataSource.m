@@ -106,9 +106,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSIndexPath*)tableView:(UITableView*)tableView indexPathForObject:(id)object {
-  NSUInteger index = [_items indexOfObject:object];
-  if (index != NSNotFound) {
-    return [NSIndexPath indexPathForRow:index inSection:0];
+  NSUInteger objectIndex = [_items indexOfObject:object];
+  if (objectIndex != NSNotFound) {
+    return [NSIndexPath indexPathForRow:objectIndex inSection:0];
   }
   return nil;
 }

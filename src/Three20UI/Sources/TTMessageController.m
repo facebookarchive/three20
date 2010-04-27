@@ -250,12 +250,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)fieldIndexOfFirstResponder {
-  NSInteger index = 0;
+  NSInteger fieldIndex = 0;
   for (UIView* view in _fieldViews) {
     if ([view isFirstResponder]) {
-      return index;
+      return fieldIndex;
     }
-    ++index;
+    ++fieldIndex;
   }
 
   if (_textEditor.isFirstResponder) {
@@ -266,9 +266,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setFieldIndexOfFirstResponder:(NSInteger)index {
-  if (index < _fieldViews.count) {
-    UIView* view = [_fieldViews objectAtIndex:index];
+- (void)setFieldIndexOfFirstResponder:(NSInteger)fieldIndex {
+  if (fieldIndex < _fieldViews.count) {
+    UIView* view = [_fieldViews objectAtIndex:fieldIndex];
     [view becomeFirstResponder];
 
   } else {
@@ -465,13 +465,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)textField:(TTPickerTextField*)textField didAddCellAtIndex:(NSInteger)index {
+- (void)textField:(TTPickerTextField*)textField didAddCellAtIndex:(NSInteger)cellIndex {
   [self updateSendCommand];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)textField:(TTPickerTextField*)textField didRemoveCellAtIndex:(NSInteger)index {
+- (void)textField:(TTPickerTextField*)textField didRemoveCellAtIndex:(NSInteger)cellIndex {
   [self updateSendCommand];
 }
 

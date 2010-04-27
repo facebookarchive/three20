@@ -221,8 +221,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)buttonURLAtIndex:(NSInteger)index {
-  id URL = [_URLs objectAtIndex:index];
+- (NSString*)buttonURLAtIndex:(NSInteger)buttonIndex {
+  id URL = [_URLs objectAtIndex:buttonIndex];
   return URL != [NSNull null] ? URL : nil;
 }
 

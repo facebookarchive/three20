@@ -137,13 +137,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setSelectedTabIndex:(NSInteger)index {
-  if (index != _selectedTabIndex) {
+- (void)setSelectedTabIndex:(NSInteger)selectedTabIndex {
+  if (selectedTabIndex != _selectedTabIndex) {
     if (_selectedTabIndex != NSIntegerMax) {
       self.selectedTabView.selected = NO;
     }
 
-    _selectedTabIndex = index;
+    _selectedTabIndex = selectedTabIndex;
 
     if (_selectedTabIndex != NSIntegerMax) {
       self.selectedTabView.selected = YES;

@@ -233,9 +233,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)buttonURLAtIndex:(NSInteger)index {
-  if (index < _URLs.count) {
-    id URL = [_URLs objectAtIndex:index];
+- (NSString*)buttonURLAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex < _URLs.count) {
+    id URL = [_URLs objectAtIndex:buttonIndex];
     return URL != [NSNull null] ? URL : nil;
   } else {
     return nil;

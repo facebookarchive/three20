@@ -137,9 +137,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)keyForSubcontroller:(UIViewController*)controller {
-  NSInteger index = [self.viewControllers indexOfObject:controller];
-  if (index != NSNotFound) {
-    return [NSNumber numberWithInt:index].stringValue;
+  NSInteger controllerIndex = [self.viewControllers indexOfObject:controller];
+  if (controllerIndex != NSNotFound) {
+    return [NSNumber numberWithInt:controllerIndex].stringValue;
   } else {
     return nil;
   }
@@ -148,9 +148,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)subcontrollerForKey:(NSString*)key {
-  NSInteger index = key.intValue;
-  if (index < self.viewControllers.count) {
-    return [self.viewControllers objectAtIndex:index];
+  NSInteger controllerIndex = key.intValue;
+  if (controllerIndex < self.viewControllers.count) {
+    return [self.viewControllers objectAtIndex:controllerIndex];
   } else {
     return nil;
   }

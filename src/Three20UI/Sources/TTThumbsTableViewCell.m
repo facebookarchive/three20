@@ -73,8 +73,8 @@ static const CGFloat kDefaultThumbSize = 75;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)assignPhotoAtIndex:(int)index toView:(TTThumbView*)thumbView {
-  id<TTPhoto> photo = [_photo.photoSource photoAtIndex:index];
+- (void)assignPhotoAtIndex:(int)photoIndex toView:(TTThumbView*)thumbView {
+  id<TTPhoto> photo = [_photo.photoSource photoAtIndex:photoIndex];
   if (photo) {
     thumbView.thumbURL = [photo URLForVersion:TTPhotoVersionThumbnail];
     thumbView.hidden = NO;
@@ -88,9 +88,9 @@ static const CGFloat kDefaultThumbSize = 75;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)thumbTouched:(TTThumbView*)thumbView {
   NSUInteger thumbViewIndex = [_thumbViews indexOfObject:thumbView];
-  NSInteger index = _photo.index + thumbViewIndex;
+  NSInteger offsetIndex = _photo.index + thumbViewIndex;
 
-  id<TTPhoto> photo = [_photo.photoSource photoAtIndex:index];
+  id<TTPhoto> photo = [_photo.photoSource photoAtIndex:offsetIndex];
   [_delegate thumbsTableViewCell:self didSelectPhoto:photo];
 }
 

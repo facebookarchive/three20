@@ -148,9 +148,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)tableView:(UITableView*)tableView sectionForSectionIndexTitle:(NSString*)title
-            atIndex:(NSInteger)index {
+            atIndex:(NSInteger)sectionIndex {
   if (tableView.tableHeaderView) {
-    if (index == 0)  {
+    if (sectionIndex == 0)  {
       // This is a hack to get the table header to appear when the user touches the
       // first row in the section index.  By default, it shows the first row, which is
       // not usually what you want.
@@ -167,10 +167,10 @@
       return i;
     }
   }
-  if (index >= sectionCount) {
+  if (sectionIndex >= sectionCount) {
     return sectionCount-1;
   } else {
-    return index;
+    return sectionIndex;
   }
 }
 
