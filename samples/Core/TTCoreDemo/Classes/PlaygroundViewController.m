@@ -16,7 +16,7 @@
 
 #import "PlaygroundViewController.h"
 
-#import <Three20/NSDataAdditions.h>
+#import <Three20Core/NSDataAdditions.h>
 
 static const CGFloat kFramePadding    = 10;
 static const CGFloat kElementSpacing  = 5;
@@ -158,7 +158,11 @@ static const CGFloat kGroupSpacing    = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) debugTestAction {
-  NSLog(@"Three20 debug logging is currently...%@", ((DEBUG) ? @"ON" : @"OFF"));
+#ifdef DEBUG
+  NSLog(@"Three20 debug logging is currently...ON");
+#else
+  NSLog(@"Three20 debug logging is currently...OFF");
+#endif
 
   // This will print the current method name.
   TTDPRINTMETHODNAME();

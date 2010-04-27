@@ -14,13 +14,20 @@
 // limitations under the License.
 //
 
-#import "Three20Core/Three20Core.h"
+GCC_PRECOMPILE_PREFIX_HEADER  = YES
+GCC_PREFIX_HEADER             = $(SRCROOT)/Headers/$(PRODUCT_NAME)_Prefix.pch
+RUN_CLANG_STATIC_ANALYZER     = NO
 
-// Additions
-#import "Three20Core/NSObjectAdditions.h"
-#import "Three20Core/NSDataAdditions.h"
-#import "Three20Core/NSStringAdditions.h"
-#import "Three20Core/NSArrayAdditions.h"
-#import "Three20Core/NSMutableArrayAdditions.h"
-#import "Three20Core/NSMutableDictionaryAdditions.h"
-#import "Three20Core/NSDateAdditions.h"
+// Linker Flags
+
+OTHER_LDFLAGS           = $(OBJC_LIBRARY) $(OBJC_ALLLOAD)
+
+// Warning flags
+
+GCC_WARN_CHECK_SWITCH_STATEMENTS        = NO
+GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES
+GCC_WARN_SHADOW                         = YES
+GCC_WARN_ABOUT_MISSING_NEWLINE          = YES
+GCC_WARN_UNUSED_FUNCTION                = YES
+GCC_WARN_UNUSED_LABEL                   = YES
+
