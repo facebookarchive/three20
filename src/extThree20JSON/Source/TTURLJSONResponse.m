@@ -16,10 +16,16 @@
 
 #import "extThree20JSON/TTURLJSONResponse.h"
 
+// extJSON
+#ifdef EXTJSON_SBJSON
+#import "extThree20JSON/JSON.h"
+#elif defined(EXTJSON_YAJL)
+#import "extThree20JSON/NSObject+YAJL.h"
+#endif
+
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTDebug.h"
-#import "extThree20JSON/JSON.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,9 +59,13 @@
   TTDASSERT(nil == _rootObject);
 
   if ([data isKindOfClass:[NSData class]]) {
+#ifdef EXTJSON_SBJSON
     NSString* json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     _rootObject = [[json JSONValue] retain];
     TT_RELEASE_SAFELY(json);
+#elif defined(EXTJSON_YAJL)
+    _rootObject = [data yajl_JSON];
+#endif
   }
 
   return nil;

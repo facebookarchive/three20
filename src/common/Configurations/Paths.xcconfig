@@ -17,8 +17,8 @@
 REPO_ROOT_PATH    = $(SRCROOT)/../..
 ROOT_SOURCE_PATH  = $(REPO_ROOT_PATH)/src
 
-SYMROOT = $(REPO_ROOT_PATH)/Products
 OBJROOT = $(REPO_ROOT_PATH)/Build
+SYMROOT = $(OBJROOT)/Products
 
 // Search Paths
 

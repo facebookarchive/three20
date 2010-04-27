@@ -17,5 +17,9 @@
 #include "../common/Configurations/Library.xcconfig"
 #include "../common/Configurations/Libraries.xcconfig"
 
-PRODUCT_NAME            = extThree20JSON
+EXTENSION_NAME          = extThree20JSON
+PRODUCT_NAME            = $(EXTENSION_NAME)
 BUILD_LIBRARY_VERSION   = 1.0
+
+PRIVATE_HEADERS_FOLDER_PATH   = /three20/$(EXTENSION_NAME)/private
+PUBLIC_HEADERS_FOLDER_PATH    = /three20/$(EXTENSION_NAME)
