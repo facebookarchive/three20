@@ -1,0 +1,623 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6E645A1D11876C9800F08CB1 /* TTURLJSONResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A1A11876C9800F08CB1 /* TTURLJSONResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E645A1E11876C9800F08CB1 /* TTURLJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A1C11876C9800F08CB1 /* TTURLJSONResponse.m */; };
+		6E645A3011876CA800F08CB1 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2211876CA800F08CB1 /* JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E645A3111876CA800F08CB1 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2311876CA800F08CB1 /* NSObject+SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E645A3211876CA800F08CB1 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2411876CA800F08CB1 /* NSObject+SBJSON.m */; };
+		6E645A3311876CA800F08CB1 /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2511876CA800F08CB1 /* NSString+SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E645A3411876CA800F08CB1 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2611876CA800F08CB1 /* NSString+SBJSON.m */; };
+		6E645A3511876CA800F08CB1 /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2811876CA800F08CB1 /* SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E645A3611876CA800F08CB1 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2911876CA800F08CB1 /* SBJSON.m */; };
+		6E645A3711876CA800F08CB1 /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2A11876CA800F08CB1 /* SBJsonBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6E645A3811876CA800F08CB1 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2B11876CA800F08CB1 /* SBJsonBase.m */; };
+		6E645A3911876CA800F08CB1 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2C11876CA800F08CB1 /* SBJsonParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6E645A3A11876CA800F08CB1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2D11876CA800F08CB1 /* SBJsonParser.m */; };
+		6E645A3B11876CA800F08CB1 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2E11876CA800F08CB1 /* SBJsonWriter.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6E645A3C11876CA800F08CB1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2F11876CA800F08CB1 /* SBJsonWriter.m */; };
+		6E645A9A11876E0400F08CB1 /* CoreJSONTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A6511876D2900F08CB1 /* CoreJSONTests.m */; };
+		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
+		6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7911876D4600F08CB1 /* libThree20Network.a */; };
+		6EB460DA1183D8CB00685649 /* libextThree20JSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6E645A6F11876D3F00F08CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */;
+			remoteInfo = Three20Core;
+		};
+		6E645A7111876D3F00F08CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */;
+			remoteInfo = UnitTests;
+		};
+		6E645A7811876D4600F08CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */;
+			remoteInfo = Three20Network;
+		};
+		6E645A7A11876D4600F08CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteInfo = UnitTests;
+		};
+		6E645A7C11876D5800F08CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Core */;
+			remoteInfo = Three20Core;
+		};
+		6E645A7E11876D5800F08CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Network */;
+			remoteInfo = Three20Network;
+		};
+		6E645AA511876E3500F08CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EB9E6C6110B6A8F800DE563C /* UnitTests */;
+			remoteInfo = UnitTests;
+		};
+		6E645AA711876E3500F08CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EB9E6C6110B6A8F800DE563C /* UnitTests */;
+			remoteInfo = UnitTests;
+		};
+		6EB460DD1183D8D400685649 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = extThree20JSON;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
+		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
+		6E645A1A11876C9800F08CB1 /* TTURLJSONResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLJSONResponse.h; path = Headers/TTURLJSONResponse.h; sourceTree = "<group>"; };
+		6E645A1C11876C9800F08CB1 /* TTURLJSONResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLJSONResponse.m; path = Source/TTURLJSONResponse.m; sourceTree = "<group>"; };
+		6E645A2211876CA800F08CB1 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		6E645A2311876CA800F08CB1 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		6E645A2411876CA800F08CB1 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		6E645A2511876CA800F08CB1 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		6E645A2611876CA800F08CB1 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		6E645A2711876CA800F08CB1 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		6E645A2811876CA800F08CB1 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		6E645A2911876CA800F08CB1 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		6E645A2A11876CA800F08CB1 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		6E645A2B11876CA800F08CB1 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		6E645A2C11876CA800F08CB1 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		6E645A2D11876CA800F08CB1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		6E645A2E11876CA800F08CB1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		6E645A2F11876CA800F08CB1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		6E645A6511876D2900F08CB1 /* CoreJSONTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreJSONTests.m; path = UnitTests/CoreJSONTests.m; sourceTree = "<group>"; };
+		6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6EB460921183D16000685649 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
+		6EB460A61183D2AC00685649 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
+		BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20JSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB9E6C6210B6A8F800DE563C /* extJSONUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extJSONUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEF31F380F352DF5000DE5D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB9E6C5F10B6A8F800DE563C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EB460DA1183D8CB00685649 /* libextThree20JSON.a in Frameworks */,
+				6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */,
+				6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON.a */,
+				EB9E6C6210B6A8F800DE563C /* extJSONUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				6EB4609C1183D1E000685649 /* Source */,
+				6E645A4311876CFE00F08CB1 /* Dependencies */,
+				6ED118E41183C38A0096AEBF /* Configurations */,
+				6ED117ED1183BE770096AEBF /* Tests */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		6E645A1F11876CA800F08CB1 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				6E645A2011876CA800F08CB1 /* JSON */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		6E645A2011876CA800F08CB1 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				6E645A2711876CA800F08CB1 /* README */,
+				6E645A2211876CA800F08CB1 /* JSON.h */,
+				6E645A2311876CA800F08CB1 /* NSObject+SBJSON.h */,
+				6E645A2411876CA800F08CB1 /* NSObject+SBJSON.m */,
+				6E645A2511876CA800F08CB1 /* NSString+SBJSON.h */,
+				6E645A2611876CA800F08CB1 /* NSString+SBJSON.m */,
+				6E645A2811876CA800F08CB1 /* SBJSON.h */,
+				6E645A2911876CA800F08CB1 /* SBJSON.m */,
+				6E645A2A11876CA800F08CB1 /* SBJsonBase.h */,
+				6E645A2B11876CA800F08CB1 /* SBJsonBase.m */,
+				6E645A2C11876CA800F08CB1 /* SBJsonParser.h */,
+				6E645A2D11876CA800F08CB1 /* SBJsonParser.m */,
+				6E645A2E11876CA800F08CB1 /* SBJsonWriter.h */,
+				6E645A2F11876CA800F08CB1 /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		6E645A4311876CFE00F08CB1 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */,
+				6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		6E645A6B11876D3F00F08CB1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E645A7011876D3F00F08CB1 /* libThree20Core.a */,
+				6E645A7211876D3F00F08CB1 /* CoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6E645A7411876D4600F08CB1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E645A7911876D4600F08CB1 /* libThree20Network.a */,
+				6E645A7B11876D4600F08CB1 /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6EB4609C1183D1E000685649 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				6E645A1A11876C9800F08CB1 /* TTURLJSONResponse.h */,
+				6E645A1C11876C9800F08CB1 /* TTURLJSONResponse.m */,
+				6E645A1F11876CA800F08CB1 /* Vendors */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		6ED117E51183BE2A0096AEBF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6EB460921183D16000685649 /* UnitTests-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6ED117ED1183BE770096AEBF /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6ED117E51183BE2A0096AEBF /* Resources */,
+				6E645A6511876D2900F08CB1 /* CoreJSONTests.m */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		6ED118E41183C38A0096AEBF /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				6E55A4B31183CA80002768DE /* Library.xcconfig */,
+				6E6454021184BDD500F08CB1 /* Project.xcconfig */,
+				6EB460A61183D2AC00685649 /* UnitTests.xcconfig */,
+			);
+			name = Configurations;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BEF31F360F352DF5000DE5D2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E645A1D11876C9800F08CB1 /* TTURLJSONResponse.h in Headers */,
+				6E645A3011876CA800F08CB1 /* JSON.h in Headers */,
+				6E645A3111876CA800F08CB1 /* NSObject+SBJSON.h in Headers */,
+				6E645A3311876CA800F08CB1 /* NSString+SBJSON.h in Headers */,
+				6E645A3511876CA800F08CB1 /* SBJSON.h in Headers */,
+				6E645A3711876CA800F08CB1 /* SBJsonBase.h in Headers */,
+				6E645A3911876CA800F08CB1 /* SBJsonParser.h in Headers */,
+				6E645A3B11876CA800F08CB1 /* SBJsonWriter.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		BEF31F390F352DF5000DE5D2 /* extThree20JSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20JSON" */;
+			buildPhases = (
+				BEF31F360F352DF5000DE5D2 /* Headers */,
+				BEF31F370F352DF5000DE5D2 /* Sources */,
+				BEF31F380F352DF5000DE5D2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E645A7D11876D5800F08CB1 /* PBXTargetDependency */,
+				6E645A7F11876D5800F08CB1 /* PBXTargetDependency */,
+			);
+			name = extThree20JSON;
+			productName = Three20;
+			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		EB9E6C6110B6A8F800DE563C /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				EB9E6C5D10B6A8F800DE563C /* Resources */,
+				EB9E6C5E10B6A8F800DE563C /* Sources */,
+				EB9E6C5F10B6A8F800DE563C /* Frameworks */,
+				EB9E6C6010B6A8F800DE563C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E645AA611876E3500F08CB1 /* PBXTargetDependency */,
+				6E645AA811876E3500F08CB1 /* PBXTargetDependency */,
+				6EB460DE1183D8D400685649 /* PBXTargetDependency */,
+			);
+			name = UnitTests;
+			productName = CoreUnitTests;
+			productReference = EB9E6C6210B6A8F800DE563C /* extJSONUnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = NO;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "extThree20JSON" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6E645A6B11876D3F00F08CB1 /* Products */;
+					ProjectRef = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+				},
+				{
+					ProductGroup = 6E645A7411876D4600F08CB1 /* Products */;
+					ProjectRef = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				BEF31F390F352DF5000DE5D2 /* extThree20JSON */,
+				EB9E6C6110B6A8F800DE563C /* UnitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6E645A7011876D3F00F08CB1 /* libThree20Core.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20Core.a;
+			remoteRef = 6E645A6F11876D3F00F08CB1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6E645A7211876D3F00F08CB1 /* CoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreUnitTests.octest;
+			remoteRef = 6E645A7111876D3F00F08CB1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6E645A7911876D4600F08CB1 /* libThree20Network.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20Network.a;
+			remoteRef = 6E645A7811876D4600F08CB1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6E645A7B11876D4600F08CB1 /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = 6E645A7A11876D4600F08CB1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB9E6C5D10B6A8F800DE563C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EB9E6C6010B6A8F800DE563C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEF31F370F352DF5000DE5D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E645A1E11876C9800F08CB1 /* TTURLJSONResponse.m in Sources */,
+				6E645A3211876CA800F08CB1 /* NSObject+SBJSON.m in Sources */,
+				6E645A3411876CA800F08CB1 /* NSString+SBJSON.m in Sources */,
+				6E645A3611876CA800F08CB1 /* SBJSON.m in Sources */,
+				6E645A3811876CA800F08CB1 /* SBJsonBase.m in Sources */,
+				6E645A3A11876CA800F08CB1 /* SBJsonParser.m in Sources */,
+				6E645A3C11876CA800F08CB1 /* SBJsonWriter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB9E6C5E10B6A8F800DE563C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E645A9A11876E0400F08CB1 /* CoreJSONTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E645A7D11876D5800F08CB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Core;
+			targetProxy = 6E645A7C11876D5800F08CB1 /* PBXContainerItemProxy */;
+		};
+		6E645A7F11876D5800F08CB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Network;
+			targetProxy = 6E645A7E11876D5800F08CB1 /* PBXContainerItemProxy */;
+		};
+		6E645AA611876E3500F08CB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UnitTests;
+			targetProxy = 6E645AA511876E3500F08CB1 /* PBXContainerItemProxy */;
+		};
+		6E645AA811876E3500F08CB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UnitTests;
+			targetProxy = 6E645AA711876E3500F08CB1 /* PBXContainerItemProxy */;
+		};
+		6EB460DE1183D8D400685649 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEF31F390F352DF5000DE5D2 /* extThree20JSON */;
+			targetProxy = 6EB460DD1183D8D400685649 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6E92493F112C6F4000531F03 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Internal;
+		};
+		6E924940112C6F4000531F03 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+			};
+			name = Internal;
+		};
+		6E924941112C6F4000531F03 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+			};
+			name = Internal;
+		};
+		BEF31F3B0F352DF6000DE5D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+			};
+			name = Debug;
+		};
+		BEF31F3C0F352DF6000DE5D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphonesimulator3.0;
+			};
+			name = Release;
+		};
+		EB9E6C6510B6A8F900DE563C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+			};
+			name = Debug;
+		};
+		EB9E6C6610B6A8F900DE563C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PREBINDING = NO;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20JSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEF31F3B0F352DF6000DE5D2 /* Debug */,
+				6E924940112C6F4000531F03 /* Internal */,
+				BEF31F3C0F352DF6000DE5D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "extThree20JSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				6E92493F112C6F4000531F03 /* Internal */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9E6C6510B6A8F900DE563C /* Debug */,
+				6E924941112C6F4000531F03 /* Internal */,
+				EB9E6C6610B6A8F900DE563C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
