@@ -101,6 +101,13 @@
 			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Core;
 		};
+		6E64618E1187D1D600F08CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E6461801187D09F00F08CB1 /* CleanScript */;
+			remoteInfo = CleanScript;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +122,7 @@
 		6E645CF31187975400F08CB1 /* Three20+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20+Additions.h"; path = "Three20/Headers/Three20+Additions.h"; sourceTree = "<group>"; };
 		6E645CF9118797F400F08CB1 /* Three20.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Three20.m; path = Three20/Source/Three20.m; sourceTree = "<group>"; };
 		6E6460AE1187BB0500F08CB1 /* Three20_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20_Prefix.pch; path = Three20/Headers/Three20_Prefix.pch; sourceTree = "<group>"; };
+		6E6461931187D1FC00F08CB1 /* Clean.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Clean.command; path = scripts/Clean.command; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -157,6 +165,7 @@
 				6E645CF31187975400F08CB1 /* Three20+Additions.h */,
 				6E6460AE1187BB0500F08CB1 /* Three20_Prefix.pch */,
 				6E645CFB118797F900F08CB1 /* Source */,
+				6E6461941187D1FF00F08CB1 /* Scripts */,
 				6E645CA5118796BD00F08CB1 /* Dependencies */,
 				6E645C801187955A00F08CB1 /* Configurations */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -229,6 +238,14 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		6E6461941187D1FF00F08CB1 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				6E6461931187D1FC00F08CB1 /* Clean.command */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -243,6 +260,23 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		6E6461801187D09F00F08CB1 /* CleanScript */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "${PROJECT_DIR}/scripts/Clean.command";
+			buildConfigurationList = 6E6461851187D0C600F08CB1 /* Build configuration list for PBXLegacyTarget "CleanScript" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/sh;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = CleanScript;
+			passBuildSettingsInEnvironment = 1;
+			productName = CleanScript;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		BEF31F390F352DF5000DE5D2 /* Three20 */ = {
 			isa = PBXNativeTarget;
@@ -256,6 +290,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6E64618F1187D1D600F08CB1 /* PBXTargetDependency */,
 				6E645CE4118796EF00F08CB1 /* PBXTargetDependency */,
 				6E645CDE118796EF00F08CB1 /* PBXTargetDependency */,
 				6E645CE0118796EF00F08CB1 /* PBXTargetDependency */,
@@ -314,6 +349,7 @@
 			);
 			projectRoot = "";
 			targets = (
+				6E6461801187D09F00F08CB1 /* CleanScript */,
 				BEF31F390F352DF5000DE5D2 /* Three20 */,
 				EB9E6C6110B6A8F800DE563C /* UnitTests */,
 			);
@@ -458,9 +494,42 @@
 			name = Three20Core;
 			targetProxy = 6E645CE3118796EF00F08CB1 /* PBXContainerItemProxy */;
 		};
+		6E64618F1187D1D600F08CB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E6461801187D09F00F08CB1 /* CleanScript */;
+			targetProxy = 6E64618E1187D1D600F08CB1 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		6E6461811187D0A000F08CB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = CleanScript;
+			};
+			name = Debug;
+		};
+		6E6461821187D0A000F08CB1 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = CleanScript;
+			};
+			name = Internal;
+		};
+		6E6461831187D0A000F08CB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = CleanScript;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		6E92493F112C6F4000531F03 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E645C9B1187963800F08CB1 /* Project.xcconfig */;
@@ -635,6 +704,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6E6461851187D0C600F08CB1 /* Build configuration list for PBXLegacyTarget "CleanScript" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E6461811187D0A000F08CB1 /* Debug */,
+				6E6461821187D0A000F08CB1 /* Internal */,
+				6E6461831187D0A000F08CB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
