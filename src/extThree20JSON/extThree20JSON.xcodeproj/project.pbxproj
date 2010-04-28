@@ -54,7 +54,9 @@
 		6E645BD11187751200F08CB1 /* YAJLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645B7E1187744D00F08CB1 /* YAJLDocument.m */; };
 		6E645BD21187751200F08CB1 /* YAJLGen.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645B801187744D00F08CB1 /* YAJLGen.m */; };
 		6E645BD31187751200F08CB1 /* YAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645B821187744D00F08CB1 /* YAJLParser.m */; };
-		6EB460DA1183D8CB00685649 /* libextThree20JSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON.a */; };
+		6E6462121187DD2F00F08CB1 /* extThree20JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6462111187DD2A00F08CB1 /* extThree20JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6462131187DD3300F08CB1 /* extThree20JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6462111187DD2A00F08CB1 /* extThree20JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6EB460DA1183D8CB00685649 /* libextThree20JSON+SBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON+SBJSON.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,12 +193,13 @@
 		6E645B801187744D00F08CB1 /* YAJLGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAJLGen.m; sourceTree = "<group>"; };
 		6E645B811187744D00F08CB1 /* YAJLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAJLParser.h; sourceTree = "<group>"; };
 		6E645B821187744D00F08CB1 /* YAJLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAJLParser.m; sourceTree = "<group>"; };
-		6E645BD91187751200F08CB1 /* libextThree20JSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20JSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E645BD91187751200F08CB1 /* libextThree20JSON+YAJL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20JSON+YAJL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E645BF71187771D00F08CB1 /* extThree20JSON+SBJSON_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "extThree20JSON+SBJSON_Prefix.pch"; path = "Headers/extThree20JSON+SBJSON_Prefix.pch"; sourceTree = "<group>"; };
 		6E645BF81187771D00F08CB1 /* extThree20JSON+YAJL_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "extThree20JSON+YAJL_Prefix.pch"; path = "Headers/extThree20JSON+YAJL_Prefix.pch"; sourceTree = "<group>"; };
+		6E6462111187DD2A00F08CB1 /* extThree20JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20JSON.h; path = Headers/extThree20JSON.h; sourceTree = "<group>"; };
 		6EB460921183D16000685649 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EB460A61183D2AC00685649 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
-		BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20JSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON+SBJSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20JSON+SBJSON.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* extJSONUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extJSONUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -219,7 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EB460DA1183D8CB00685649 /* libextThree20JSON.a in Frameworks */,
+				6EB460DA1183D8CB00685649 /* libextThree20JSON+SBJSON.a in Frameworks */,
 				6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */,
 				6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */,
 			);
@@ -231,9 +234,9 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON.a */,
+				BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON+SBJSON.a */,
 				EB9E6C6210B6A8F800DE563C /* extJSONUnitTests.octest */,
-				6E645BD91187751200F08CB1 /* libextThree20JSON.a */,
+				6E645BD91187751200F08CB1 /* libextThree20JSON+YAJL.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				6E6462111187DD2A00F08CB1 /* extThree20JSON.h */,
 				6E645BF71187771D00F08CB1 /* extThree20JSON+SBJSON_Prefix.pch */,
 				6E645BF81187771D00F08CB1 /* extThree20JSON+YAJL_Prefix.pch */,
 				6EB4609C1183D1E000685649 /* Source */,
@@ -434,6 +438,7 @@
 				6E645BBD1187751200F08CB1 /* YAJLDocument.h in Headers */,
 				6E645BBE1187751200F08CB1 /* YAJLGen.h in Headers */,
 				6E645BBF1187751200F08CB1 /* YAJLParser.h in Headers */,
+				6E6462131187DD3300F08CB1 /* extThree20JSON.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +454,7 @@
 				6E645A3711876CA800F08CB1 /* SBJsonBase.h in Headers */,
 				6E645A3911876CA800F08CB1 /* SBJsonParser.h in Headers */,
 				6E645A3B11876CA800F08CB1 /* SBJsonWriter.h in Headers */,
+				6E6462121187DD2F00F08CB1 /* extThree20JSON.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +477,7 @@
 			);
 			name = "extThree20JSON+YAJL";
 			productName = Three20;
-			productReference = 6E645BD91187751200F08CB1 /* libextThree20JSON.a */;
+			productReference = 6E645BD91187751200F08CB1 /* libextThree20JSON+YAJL.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		BEF31F390F352DF5000DE5D2 /* extThree20JSON+SBJSON */ = {
@@ -490,7 +496,7 @@
 			);
 			name = "extThree20JSON+SBJSON";
 			productName = Three20;
-			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON.a */;
+			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON+SBJSON.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		EB9E6C6110B6A8F800DE563C /* UnitTestsSBJSON */ = {
@@ -699,6 +705,7 @@
 					EXTJSON_YAJL,
 				);
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(EXTENSION_NAME)+YAJL";
 			};
 			name = Debug;
 		};
@@ -715,6 +722,7 @@
 					DEBUG,
 				);
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(EXTENSION_NAME)+YAJL";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
 			name = Internal;
@@ -728,6 +736,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_YAJL;
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(EXTENSION_NAME)+YAJL";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -760,6 +769,7 @@
 					DEBUG,
 				);
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(EXTENSION_NAME)+SBJSON";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
 			name = Internal;
@@ -790,6 +800,7 @@
 					DEBUG,
 				);
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(EXTENSION_NAME)+SBJSON";
 			};
 			name = Debug;
 		};
@@ -802,6 +813,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_SBJSON;
 				PREBINDING = NO;
+				PRODUCT_NAME = "$(EXTENSION_NAME)+SBJSON";
 				ZERO_LINK = NO;
 			};
 			name = Release;
