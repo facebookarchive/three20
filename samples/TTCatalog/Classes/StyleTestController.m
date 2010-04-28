@@ -1,6 +1,6 @@
 #import "StyleTestController.h"
-#import <Three20/UIColorAdditions.h>
-#import <Three20/UIViewAdditions.h>
+#import <Three20Style/UIColorAdditions.h>
+#import <Three20UI/UIViewAdditions.h>
 
 @implementation StyleTestController
 

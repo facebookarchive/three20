@@ -1,6 +1,6 @@
 #import "MockPhotoSource.h"
 
-#import "Three20/NSArrayAdditions.h"
+#import "Three20Core/NSArrayAdditions.h"
 
 @implementation MockPhotoSource
 
