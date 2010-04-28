@@ -21,84 +21,84 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CA7118796CE00F08CB1 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20Core;
 		};
 		6E645CB1118796CE00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CA7118796CE00F08CB1 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E645CBC118796D600F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CB3118796D600F08CB1 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20Network;
 		};
 		6E645CBE118796D600F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CB3118796D600F08CB1 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E645CCA118796DD00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CC0118796DC00F08CB1 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Style.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20Style;
 		};
 		6E645CCC118796DD00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CC0118796DC00F08CB1 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E645CD9118796E400F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CCE118796E400F08CB1 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20UI.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20UI;
 		};
 		6E645CDB118796E400F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CCE118796E400F08CB1 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E645CDD118796EF00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CB3118796D600F08CB1 /* Three20Network.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Network */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Network;
 		};
 		6E645CDF118796EF00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CC0118796DC00F08CB1 /* Three20Style.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Style */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Style;
 		};
 		6E645CE1118796EF00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CCE118796E400F08CB1 /* Three20UI.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20UI */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20UI;
 		};
 		6E645CE3118796EF00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645CA7118796CE00F08CB1 /* Three20Core.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Core */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Core;
 		};
 /* End PBXContainerItemProxy section */
@@ -114,6 +114,7 @@
 		6E645CF21187975400F08CB1 /* Three20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20.h; path = Three20/Headers/Three20.h; sourceTree = "<group>"; };
 		6E645CF31187975400F08CB1 /* Three20+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20+Additions.h"; path = "Three20/Headers/Three20+Additions.h"; sourceTree = "<group>"; };
 		6E645CF9118797F400F08CB1 /* Three20.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Three20.m; path = Three20/Source/Three20.m; sourceTree = "<group>"; };
+		6E6460AE1187BB0500F08CB1 /* Three20_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20_Prefix.pch; path = Three20/Headers/Three20_Prefix.pch; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -154,6 +155,7 @@
 			children = (
 				6E645CF21187975400F08CB1 /* Three20.h */,
 				6E645CF31187975400F08CB1 /* Three20+Additions.h */,
+				6E6460AE1187BB0500F08CB1 /* Three20_Prefix.pch */,
 				6E645CFB118797F900F08CB1 /* Source */,
 				6E645CA5118796BD00F08CB1 /* Dependencies */,
 				6E645C801187955A00F08CB1 /* Configurations */,
@@ -247,6 +249,7 @@
 			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20" */;
 			buildPhases = (
 				BEF31F360F352DF5000DE5D2 /* Headers */,
+				6E6460DD1187BBC400F08CB1 /* Backwards compatibility script */,
 				BEF31F370F352DF5000DE5D2 /* Sources */,
 				BEF31F380F352DF5000DE5D2 /* Frameworks */,
 			);
@@ -387,6 +390,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6E6460DD1187BBC400F08CB1 /* Backwards compatibility script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Backwards compatibility script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# The purpose of this script is to allow projects that use the old,\n# single-project Three20 to still be able to compile. We do this\n# by copying all of the headers to where they _would_ have been in\n# the old project layout. This is definitely messy, but a price to\n# pay for using the old system.\n\nmkdir -p ${SRCROOT}/Three20\nmkdir -p ${SRCROOT}/Three20Core\nmkdir -p ${SRCROOT}/Three20Network\nmkdir -p ${SRCROOT}/Three20Style\nmkdir -p ${SRCROOT}/Three20UI\n\n# First make all of the Three20 headers writeable.\nchmod -f +w ${SRCROOT}/Three20/*.h\nchmod -f +w ${SRCROOT}/Three20Core/*.h\nchmod -f +w ${SRCROOT}/Three20Network/*.h\nchmod -f +w ${SRCROOT}/Three20Style/*.h\nchmod -f +w ${SRCROOT}/Three20UI/*.h\n\n# Copy the lib headers\ncp ${CONFIGURATION_BUILD_DIR}/three20/Three20Core/*.h ${SRCROOT}/Three20Core/\ncp ${CONFIGURATION_BUILD_DIR}/three20/Three20Network/*.h ${SRCROOT}/Three20Network/\ncp ${CONFIGURATION_BUILD_DIR}/three20/Three20Style/*.h ${SRCROOT}/Three20Style/\ncp ${CONFIGURATION_BUILD_DIR}/three20/Three20UI/*.h ${SRCROOT}/Three20UI/\ncp ${CONFIGURATION_BUILD_DIR}/three20/Three20/*.h ${SRCROOT}/Three20/\n\nchmod -f -w ${SRCROOT}/Three20/*.h\nchmod -f -w ${SRCROOT}/Three20Core/*.h\nchmod -f -w ${SRCROOT}/Three20Network/*.h\nchmod -f -w ${SRCROOT}/Three20Style/*.h\nchmod -f -w ${SRCROOT}/Three20UI/*.h";
+		};
 		EB9E6C6010B6A8F800DE563C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -468,7 +485,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -511,8 +527,6 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Three20_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 			};
@@ -525,8 +539,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Three20_Prefix.pch;
 				PREBINDING = NO;
 				ZERO_LINK = NO;
 			};
