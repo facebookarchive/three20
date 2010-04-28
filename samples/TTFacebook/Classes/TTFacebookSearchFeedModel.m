@@ -18,6 +18,8 @@
 
 #import "TTFacebookPost.h"
 
+#import <extThree20JSON/extThree20JSON.h>
+
 static NSString* kFacebookSearchFeedFormat = @"http://graph.facebook.com/search?q=%@&type=post";
 
 
@@ -71,7 +73,7 @@ static NSString* kFacebookSearchFeedFormat = @"http://graph.facebook.com/search?
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestDidFinishLoad:(TTURLRequest*)request {
-  TTURLXMLResponse* response = request.response;
+  TTURLJSONResponse* response = request.response;
   TTDASSERT([response.rootObject isKindOfClass:[NSDictionary class]]);
 
   NSDictionary* feed = response.rootObject;

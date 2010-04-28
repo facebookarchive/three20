@@ -14,5 +14,9 @@
 // limitations under the License.
 //
 
-#include "../../common/Configurations/Project.xcconfig"
+#include "../../common/Configurations/App.xcconfig"
+#include "../../common/Configurations/Libraries.xcconfig"
 #include "RelPath.xcconfig"
+
+PRODUCT_NAME            = TTFacebook
+BUILD_LIBRARY_VERSION   = 1.0

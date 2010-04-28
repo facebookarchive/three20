@@ -55,6 +55,7 @@
 		6E645DDE11879B3500F08CB1 /* App.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = App.xcconfig; path = Configurations/App.xcconfig; sourceTree = SOURCE_ROOT; };
 		6E645DED11879D5000F08CB1 /* TTCoreDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCoreDemo_Prefix.pch; path = Headers/TTCoreDemo_Prefix.pch; sourceTree = "<group>"; };
 		6E64601A1187B3CD00F08CB1 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../../../src/Three20.bundle; sourceTree = SOURCE_ROOT; };
+		6E6462311187DDDE00F08CB1 /* RelPath.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = RelPath.xcconfig; path = Configurations/RelPath.xcconfig; sourceTree = SOURCE_ROOT; };
 		6E94C678116D97FF0012B12C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../Resources/Default.png; sourceTree = SOURCE_ROOT; };
 		6E94C679116D97FF0012B12C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../Resources/Icon.png; sourceTree = SOURCE_ROOT; };
 		6EEFB94311627E29009B479E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -157,6 +158,7 @@
 			children = (
 				6E645DDE11879B3500F08CB1 /* App.xcconfig */,
 				6E645DCD11879B0400F08CB1 /* Project.xcconfig */,
+				6E6462311187DDDE00F08CB1 /* RelPath.xcconfig */,
 				6E645DCE11879B0400F08CB1 /* UnitTests.xcconfig */,
 			);
 			name = Configurations;
@@ -285,7 +287,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = "TTCoreDemo-Info.plist";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
@@ -295,7 +297,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				INFOPLIST_FILE = "TTCoreDemo-Info.plist";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
 		};

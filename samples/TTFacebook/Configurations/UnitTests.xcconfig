@@ -14,5 +14,9 @@
 // limitations under the License.
 //
 
-#include "../../common/Configurations/Project.xcconfig"
+#include "../../common/Configurations/UnitTests.xcconfig"
+#include "../../common/Configurations/Libraries.xcconfig"
 #include "RelPath.xcconfig"
+
+PRODUCT_NAME          = TTFacebookUnitTests
+BUILD_BUNDLE_VERSION  = 1.0
