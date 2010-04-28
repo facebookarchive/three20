@@ -17,11 +17,14 @@
 #import "Three20UI/TTTableView.h"
 
 // UI
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTStyledTextLabel.h"
 #import "Three20UI/UIViewAdditions.h"
 
 // Style
 #import "Three20Style/TTStyledNode.h"
+#import "Three20Style/TTStyledButtonNode.h"
+#import "Three20Style/TTStyledLinkNode.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -106,7 +109,19 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
   if (_highlightedLabel) {
     TTStyledElement* element = _highlightedLabel.highlightedNode;
-    [element performDefaultAction];
+    // This is a dirty hack to decouple the UI from Style. TTOpenURL was originally within
+    // the node implementation. One potential fix would be to provide some protocol for these
+    // nodes to converse with.
+    if ([element isKindOfClass:[TTStyledLinkNode class]]) {
+      TTOpenURL([(TTStyledLinkNode*)element URL]);
+
+    } else if ([element isKindOfClass:[TTStyledButtonNode class]]) {
+      TTOpenURL([(TTStyledButtonNode*)element URL]);
+
+
+    } else {
+      [element performDefaultAction];
+    }
   }
 }
 

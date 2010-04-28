@@ -17,6 +17,7 @@
 #import "Three20UI/TTStyledTextLabel.h"
 
 // UI
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTTableView.h"
 #import "Three20UI/UIViewAdditions.h"
 
@@ -26,7 +27,8 @@
 #import "Three20Style/TTStyledNode.h"
 #import "Three20Style/TTStyleSheet.h"
 #import "Three20Style/TTStyledElement.h"
-//#import "Three20Style/TTStyledLinkNode.h"
+#import "Three20Style/TTStyledLinkNode.h"
+#import "Three20Style/TTStyledButtonNode.h"
 #import "Three20Style/TTStyledTextNode.h"
 
 // - Styled frames
@@ -122,11 +124,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
     TTStyledBoxFrame* affectFrame = frame ? frame : _highlightedFrame;
     NSString* className = affectFrame.element.className;
-    // TODO (jverkoey April 27, 2010): Add back support for TTStyledLinkNode.
-    TTDASSERT(false);
-    //if (!className && [affectFrame.element isKindOfClass:[TTStyledLinkNode class]]) {
-    //  className = @"linkText:";
-    //}
+    if (!className && [affectFrame.element isKindOfClass:[TTStyledLinkNode class]]) {
+      className = @"linkText:";
+    }
 
     if (className && [className rangeOfString:@":"].location != NSNotFound) {
       if (frame) {
@@ -194,17 +194,15 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addAccessibilityElementsForNode:(TTStyledNode*)node {
-  // TODO (jverkoey April 27, 2010): Add back support for TTStyledLinkNode.
-  //if ([node isKindOfClass:[TTStyledLinkNode class]]) {
-  //  UIAccessibilityElement* acc = [[[UIAccessibilityElement alloc]
-  //                                initWithAccessibilityContainer:self] autorelease];
-  //  TTStyledFrame* frame = [_text getFrameForNode:node];
-  //  acc.accessibilityFrame = CGRectOffset(frame.bounds, self.screenViewX, self.screenViewY);
-  //  acc.accessibilityTraits = UIAccessibilityTraitLink;
-  //  acc.accessibilityLabel = [node outerText];
-  //  [_accessibilityElements addObject:acc];
-  //} else if ([node isKindOfClass:[TTStyledTextNode class]]) {
-  if ([node isKindOfClass:[TTStyledTextNode class]]) {
+  if ([node isKindOfClass:[TTStyledLinkNode class]]) {
+    UIAccessibilityElement* acc = [[[UIAccessibilityElement alloc]
+                                  initWithAccessibilityContainer:self] autorelease];
+    TTStyledFrame* frame = [_text getFrameForNode:node];
+    acc.accessibilityFrame = CGRectOffset(frame.bounds, self.screenViewX, self.screenViewY);
+    acc.accessibilityTraits = UIAccessibilityTraitLink;
+    acc.accessibilityLabel = [node outerText];
+    [_accessibilityElements addObject:acc];
+  } else if ([node isKindOfClass:[TTStyledTextNode class]]) {
     TTStyledTextFrame* startFrame = (TTStyledTextFrame*)[_text getFrameForNode:node];
     UIEdgeInsets edges = [self edgesForRect:startFrame.bounds];
 
@@ -310,7 +308,18 @@ static const CGFloat kCancelHighlightThreshold = 4;
   TTTableView* tableView = (TTTableView*)[self ancestorOrSelfWithClass:[TTTableView class]];
   if (!tableView) {
     if (_highlightedNode) {
-      [_highlightedNode performDefaultAction];
+      // This is a dirty hack to decouple the UI from Style. TTOpenURL was originally within
+      // the node implementation. One potential fix would be to provide some protocol for these
+      // nodes to converse with.
+      if ([_highlightedNode isKindOfClass:[TTStyledLinkNode class]]) {
+        TTOpenURL([(TTStyledLinkNode*)_highlightedNode URL]);
+
+      } else if ([_highlightedNode isKindOfClass:[TTStyledButtonNode class]]) {
+        TTOpenURL([(TTStyledButtonNode*)_highlightedNode URL]);
+
+      } else {
+        [_highlightedNode performDefaultAction];
+      }
       [self setHighlightedFrame:nil];
     }
   }

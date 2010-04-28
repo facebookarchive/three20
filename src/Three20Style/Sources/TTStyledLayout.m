@@ -32,6 +32,7 @@
 #import "Three20Style/TTStyledImageNode.h"
 #import "Three20Style/TTStyledBoldNode.h"
 #import "Three20Style/TTStyledItalicNode.h"
+#import "Three20Style/TTStyledLinkNode.h"
 #import "Three20Style/TTStyledBlock.h"
 #import "Three20Style/TTStyledLineBreakNode.h"
 #import "Three20Style/TTStyledTextNode.h"
@@ -384,10 +385,9 @@
       style = eltStyle;
     }
   }
-  // TODO (jverkoey April 25, 2010: Add support for styled link nodes in again.
-  //if (!style && [elt isKindOfClass:[TTStyledLinkNode class]]) {
-  //  style = self.linkStyle;
-  //}
+  if (!style && [elt isKindOfClass:[TTStyledLinkNode class]]) {
+    style = self.linkStyle;
+  }
 
   // Figure out which font to use for the node
   UIFont* font = nil;
@@ -399,10 +399,8 @@
     }
   }
   if (!font) {
-    // TODO (jverkoey April 25, 2010: Add support for styled link nodes in again.
-    //if ([elt isKindOfClass:[TTStyledLinkNode class]]
-    //    || [elt isKindOfClass:[TTStyledBoldNode class]]) {
-    if ([elt isKindOfClass:[TTStyledBoldNode class]]) {
+    if ([elt isKindOfClass:[TTStyledLinkNode class]]
+        || [elt isKindOfClass:[TTStyledBoldNode class]]) {
       font = self.boldFont;
     } else if ([elt isKindOfClass:[TTStyledItalicNode class]]) {
       font = self.italicFont;

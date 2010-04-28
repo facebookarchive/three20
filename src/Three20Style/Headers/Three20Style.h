@@ -73,9 +73,8 @@
 #import "Three20Style/TTStyledInlineBlock.h"
 #import "Three20Style/TTStyledBoldNode.h"
 #import "Three20Style/TTStyledItalicNode.h"
-// TODO (jverkoey April 27, 2010): Add these back in.
-//#import "Three20Style/TTStyledLinkNode.h"
-//#import "Three20Style/TTStyledButtonNode.h"
+#import "Three20Style/TTStyledLinkNode.h"
+#import "Three20Style/TTStyledButtonNode.h"
 #import "Three20Style/TTStyledImageNode.h"
 #import "Three20Style/TTStyledLineBreakNode.h"
 
