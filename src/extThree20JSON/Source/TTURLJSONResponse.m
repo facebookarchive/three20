@@ -64,7 +64,7 @@
     _rootObject = [[json JSONValue] retain];
     TT_RELEASE_SAFELY(json);
 #elif defined(EXTJSON_YAJL)
-    _rootObject = [data yajl_JSON];
+    _rootObject = [[data yajl_JSON] retain];
 #endif
   }
 
