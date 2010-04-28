@@ -14,31 +14,29 @@
 // limitations under the License.
 //
 
-// Core
-#import "Three20/Three20Core.h"
-
 // Network
 
 // - Global
-#import "Three20/TTGlobalNetwork.h"
-#import "Three20/TTURLRequestCachePolicy.h"
+#import "Three20Network/TTGlobalNetwork.h"
+#import "Three20Network/TTURLRequestCachePolicy.h"
 
 // - Models
-#import "Three20/TTModel.h"
-#import "Three20/TTModelDelegate.h"
-#import "Three20/TTURLRequestModel.h"
+#import "Three20Network/TTModel.h"
+#import "Three20Network/TTModelDelegate.h"
+#import "Three20Network/TTURLRequestModel.h"
 
 // - Requests
-#import "Three20/TTURLRequest.h"
-#import "Three20/TTURLRequestDelegate.h"
+#import "Three20Network/TTURLRequest.h"
+#import "Three20Network/TTURLRequestDelegate.h"
 
 // - Responses
-#import "Three20/TTURLResponse.h"
-#import "Three20/TTURLDataResponse.h"
-#import "Three20/TTURLImageResponse.h"
-#import "Three20/TTURLXMLResponse.h"
+#import "Three20Network/TTURLResponse.h"
+#import "Three20Network/TTURLDataResponse.h"
+#import "Three20Network/TTURLImageResponse.h"
+// TODO (jverkoey April 27, 2010: Add back support for XML.
+//#import "Three20Network/TTURLXMLResponse.h"
 
 // - Classes
-#import "Three20/TTUserInfo.h"
-#import "Three20/TTURLRequestQueue.h"
-#import "Three20/TTURLCache.h"
+#import "Three20Network/TTUserInfo.h"
+#import "Three20Network/TTURLRequestQueue.h"
+#import "Three20Network/TTURLCache.h"
