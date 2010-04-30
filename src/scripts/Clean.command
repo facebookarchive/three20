@@ -22,8 +22,6 @@ cleanAction () {
   rm -f ${SRCROOT}/Three20/*.h
 }
 
-echo "Running with ACTION=${ACTION}"
-
 case $ACTION in
     "clean")
         cleanAction
