@@ -17,7 +17,6 @@
 #import "Three20UI/TTStyledTextLabel.h"
 
 // UI
-#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTTableView.h"
 #import "Three20UI/UIViewAdditions.h"
 

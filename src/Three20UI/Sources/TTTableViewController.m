@@ -22,7 +22,6 @@
 #import "Three20UI/TTActivityLabel.h"
 #import "Three20UI/TTErrorView.h"
 #import "Three20UI/TTListDataSource.h"
-#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTTableView.h"
 #import "Three20UI/TTTableViewDelegate.h"
 #import "Three20UI/TTTableViewVarHeightDelegate.h"

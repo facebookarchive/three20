@@ -19,7 +19,6 @@
 // UI
 #import "Three20UI/TTGlobalUI.h"
 #import "Three20UI/TTGlobalUINavigator.h"
-#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTThumbsDataSource.h"
 #import "Three20UI/TTThumbsTableViewCell.h"
 #import "Three20UI/TTPhoto.h"

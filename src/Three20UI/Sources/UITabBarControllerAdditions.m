@@ -17,7 +17,6 @@
 #import "Three20UI/UITabBarControllerAdditions.h"
 
 // UI
-#import "Three20UI/TTNavigator.h"
 #import "Three20UI/UIViewControllerAdditions.h"
 
 

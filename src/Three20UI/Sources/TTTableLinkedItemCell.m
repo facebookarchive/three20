@@ -18,8 +18,6 @@
 
 // UI
 #import "Three20UI/TTTableLinkedItem.h"
-#import "Three20UI/TTNavigator.h"
-#import "Three20UI/TTURLMap.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

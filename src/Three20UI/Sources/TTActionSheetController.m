@@ -19,7 +19,6 @@
 // UI
 #import "Three20UI/TTActionSheetControllerDelegate.h"
 #import "Three20UI/TTActionSheet.h"
-#import "Three20UI/TTNavigator.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"

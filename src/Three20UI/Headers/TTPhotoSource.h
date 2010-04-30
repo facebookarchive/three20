@@ -14,9 +14,6 @@
 // limitations under the License.
 //
 
-// UI
-#import "Three20UI/TTURLObject.h"
-
 // Network
 #import "Three20Network/TTModel.h"
 

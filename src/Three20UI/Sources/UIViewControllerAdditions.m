@@ -18,10 +18,6 @@
 
 // UI
 #import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTNavigator.h"
-
-// Network
-#import "Three20UI/TTURLMap.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"

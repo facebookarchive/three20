@@ -22,7 +22,6 @@
 #import "Three20UI/TTTableHeaderView.h"
 #import "Three20UI/TTTableView.h"
 #import "Three20UI/TTStyledTextLabel.h"
-#import "Three20UI/TTNavigator.h"
 
 // - Table Items
 #import "Three20UI/TTTableItem.h"

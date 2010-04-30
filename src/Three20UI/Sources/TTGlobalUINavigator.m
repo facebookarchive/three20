@@ -18,7 +18,6 @@
 
 // UI
 #import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTNavigator.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

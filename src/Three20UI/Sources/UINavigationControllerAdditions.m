@@ -18,11 +18,9 @@
 
 // UI
 #import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTNavigator.h"
 #import "Three20UI/UIViewControllerAdditions.h"
 
 // Network
-#import "Three20UI/TTURLMap.h"
 #import "Three20Network/TTURLRequestQueue.h"
 
 

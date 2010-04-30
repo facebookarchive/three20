@@ -15,7 +15,6 @@
 //
 
 // UI
-#import "Three20UI/TTURLObject.h"
 #import "Three20UI/TTPhotoVersion.h"
 
 @protocol TTPhotoSource;
