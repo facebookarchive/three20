@@ -21,5 +21,7 @@ EXTENSION_NAME          = extThree20JSON
 PRODUCT_NAME            = $(EXTENSION_NAME)
 BUILD_LIBRARY_VERSION   = 1.0
 
+// We override these paths in order to copy the headers to the same directory,
+// regardless of target.
 PRIVATE_HEADERS_FOLDER_PATH   = /three20/$(EXTENSION_NAME)/private
 PUBLIC_HEADERS_FOLDER_PATH    = /three20/$(EXTENSION_NAME)
