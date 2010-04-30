@@ -191,6 +191,13 @@ UIViewController* TTOpenURL(NSString* URL) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Prepare the given controller's parent controller and return it. Ensures that the parent
+ * controller exists in the navigation hierarchy. If it doesn't exist, and the given controller
+ * isn't a container, then a UINavigationController will be made the root controller.
+ *
+ * @private
+ */
 - (UIViewController*)parentForController: (UIViewController*)controller
                              isContainer: (BOOL)isContainer
                            parentURLPath: (NSString*)parentURLPath {
@@ -200,16 +207,18 @@ UIViewController* TTOpenURL(NSString* URL) {
   } else {
     // If this is the first controller, and it is not a "container", forcibly put
     // a navigation controller at the root of the controller hierarchy.
-    if (!_rootViewController && !isContainer) {
+    if (nil == _rootViewController && !isContainer) {
       [self setRootViewController:[[[UINavigationController alloc] init] autorelease]];
     }
 
-    if (parentURLPath) {
-      return [self openURLAction:[TTURLAction actionWithURLPath: parentURLPath]];
+    if (nil != parentURLPath) {
+      return [self openURLAction:[TTURLAction actionWithURLPath:parentURLPath]];
+
     } else {
       UIViewController* parent = self.topViewController;
       if (parent != controller) {
         return parent;
+
       } else {
         return nil;
       }
