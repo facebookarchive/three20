@@ -192,6 +192,7 @@ UIViewController* TTOpenURL(NSString* URL) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)parentForController: (UIViewController*)controller
+                             isContainer: (BOOL)isContainer
                            parentURLPath: (NSString*)parentURLPath {
   if (controller == _rootViewController) {
     return nil;
@@ -199,7 +200,7 @@ UIViewController* TTOpenURL(NSString* URL) {
   } else {
     // If this is the first controller, and it is not a "container", forcibly put
     // a navigation controller at the root of the controller hierarchy.
-    if (!_rootViewController && ![controller canContainControllers]) {
+    if (!_rootViewController && !isContainer) {
       [self setRootViewController:[[[UINavigationController alloc] init] autorelease]];
     }
 
@@ -333,9 +334,12 @@ UIViewController* TTOpenURL(NSString* URL) {
     UIViewController* topViewController = self.topViewController;
 
     if (controller != topViewController) {
-      UIViewController* parentController = [self
-        parentForController: controller
-              parentURLPath: parentURLPath ? parentURLPath : pattern.parentURL];
+      UIViewController* parentController = [self parentForController: controller
+                                                         isContainer: [controller
+                                                                       canContainControllers]
+                                                       parentURLPath: parentURLPath
+                                                                      ? parentURLPath
+                                                                      : pattern.parentURL];
 
       if (nil != parentController && parentController != topViewController) {
         [self presentController: parentController
