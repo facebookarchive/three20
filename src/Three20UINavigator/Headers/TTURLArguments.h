@@ -14,20 +14,9 @@
 // limitations under the License.
 //
 
-// UI (private)
-#import "Three20UI/TTURLArgumentType.h"
+// UINavigator (private)
+#import "Three20UINavigator/private/TTURLArgumentType.h"
 
-@interface TTURLSelector : NSObject {
-  NSString*       _name;
-  SEL             _selector;
-  TTURLSelector*  _next;
-}
+TTURLArgumentType TTConvertArgumentType(char argType);
+TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* propertyName);
 
-@property (nonatomic, readonly) NSString*       name;
-@property (nonatomic, retain)   TTURLSelector*  next;
-
-- (id)initWithName:(NSString*)name;
-
-- (NSString*)perform:(id)object returnType:(TTURLArgumentType)returnType;
-
-@end

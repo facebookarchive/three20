@@ -14,23 +14,16 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTNavigator.h"
+#import "Three20UINavigator/TTNavigator.h"
 
-// UI
-#import "Three20UI/TTGlobalUINavigator.h"
-#import "Three20UI/TTNavigatorDelegate.h"
-#import "Three20UI/UIViewControllerAdditions.h"
-#import "Three20UI/TTURLAction.h"
-#import "Three20UI/TTURLMap.h"
-#import "Three20UI/TTURLNavigatorPattern.h"
+// UINavigator
+#import "Three20UINavigator/TTNavigatorDelegate.h"
+#import "Three20UINavigator/TTURLAction.h"
+#import "Three20UINavigator/TTURLMap.h"
+#import "Three20UINavigator/TTURLNavigatorPattern.h"
 
-// - Controllers
-#import "Three20UI/TTPopupViewController.h"
-#import "Three20UI/TTSearchDisplayController.h"
-#import "Three20UI/TTTableViewController.h"
-
-// UI (private)
-#import "Three20UI/TTNavigatorWindow.h"
+// UINavigator (private)
+#import "Three20UINavigator/private/TTNavigatorWindow.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"
@@ -202,6 +195,7 @@ UIViewController* TTOpenURL(NSString* URL) {
                            parentURLPath: (NSString*)parentURLPath {
   if (controller == _rootViewController) {
     return nil;
+
   } else {
     // If this is the first controller, and it is not a "container", forcibly put
     // a navigation controller at the root of the controller hierarchy.

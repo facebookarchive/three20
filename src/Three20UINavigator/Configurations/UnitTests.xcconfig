@@ -14,18 +14,10 @@
 // limitations under the License.
 //
 
-// UI
-#import "Three20UI/TTURLPattern.h"
+#include "../common/Configurations/UnitTests.xcconfig"
+#include "../common/Configurations/Libraries.xcconfig"
 
-@interface TTURLGeneratorPattern : TTURLPattern {
-  Class _targetClass;
-}
+PRODUCT_NAME          = UINavigatorUnitTests
+BUILD_BUNDLE_VERSION  = 1.0
 
-@property (nonatomic) Class targetClass;
-
-- (id)initWithTargetClass:(Class)targetClass;
-
-- (void)compile;
-- (NSString*)generateURLFromObject:(id)object;
-
-@end
+OTHER_LDFLAGS         = $(COMMON_LDFLAGS) $(UIKIT_FX)

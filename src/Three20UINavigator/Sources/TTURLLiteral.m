@@ -14,11 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTURLWildcard.h"
-
-// UI (private)
-#import "Three20UI/TTURLArguments.h"
-#import "Three20UI/TTURLSelector.h"
+#import "Three20UINavigator/TTURLLiteral.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -27,28 +23,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTURLWildcard
+@implementation TTURLLiteral
 
-@synthesize name      = _name;
-@synthesize argIndex  = _argIndex;
-@synthesize argType   = _argType;
-@synthesize selector  = _selector;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [super init]) {
-    _argIndex = NSNotFound;
-    _argType  = TTURLArgumentTypeNone;
-  }
-  return self;
-}
+@synthesize name = _name;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_name);
-  TT_RELEASE_SAFELY(_selector);
 
   [super dealloc];
 }
@@ -56,38 +38,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)match:(NSString*)text {
-  return YES;
+  return [text isEqualToString:_name];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)convertPropertyOfObject:(id)object {
-  if (_selector) {
-    return [_selector perform:object returnType:_argType];
-  } else {
-    return @"";
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)deduceSelectorForClass:(Class)cls {
-  NSArray* names = [_name componentsSeparatedByString:@"."];
-  if (names.count > 1) {
-    TTURLSelector* selector = nil;
-    for (NSString* name in names) {
-      TTURLSelector* newSelector = [[[TTURLSelector alloc] initWithName:name] autorelease];
-      if (selector) {
-        selector.next = newSelector;
-      } else {
-        self.selector = newSelector;
-      }
-      selector = newSelector;
-    }
-  } else {
-    self.argType = TTURLArgumentTypeForProperty(cls, _name);
-    self.selector = [[[TTURLSelector alloc] initWithName:_name] autorelease];
-  }
+  return _name;
 }
 
 

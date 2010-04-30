@@ -14,9 +14,16 @@
 // limitations under the License.
 //
 
-// UI (private)
-#import "Three20UI/TTURLArgumentType.h"
+#import "Three20UINavigator/TTNavigator.h"
+#import "Three20UINavigator/TTNavigatorDelegate.h"
 
-TTURLArgumentType TTConvertArgumentType(char argType);
-TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* propertyName);
+// URL Action
+#import "Three20UINavigator/TTURLAction.h"
 
+// URL Map
+#import "Three20UINavigator/TTURLMap.h"
+
+// URL Pattern
+#import "Three20UINavigator/TTURLPattern.h"
+#import "Three20UINavigator/TTURLGeneratorPattern.h"
+#import "Three20UINavigator/TTURLNavigatorPattern.h"

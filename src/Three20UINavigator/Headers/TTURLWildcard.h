@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-// UI (private)
-#import "Three20UI/TTURLPatternText.h"
-#import "Three20UI/TTURLArgumentType.h"
+// UINavigator (private)
+#import "Three20UINavigator/private/TTURLPatternText.h"
+#import "Three20UINavigator/private/TTURLArgumentType.h"
 
 @class TTURLSelector;
 
