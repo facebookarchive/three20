@@ -14,42 +14,33 @@
 // limitations under the License.
 //
 
-#import "Three20UI/UIWindowAdditions.h"
+#import "Three20/UIViewController+TTNavigator.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation UIViewController (TTNavigator)
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Additions.
+ * Swapped with dealloc by TTNavigator (only if you're using TTNavigator)
  */
-@implementation UIWindow (TTCategory)
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView *)findFirstResponder {
-  return [self findFirstResponderInView:self];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView *)findFirstResponderInView:(UIView*)topView {
-  if ([topView isFirstResponder]) {
-    return topView;
+- (void)ttdealloc {
+  NSString* URL = self.originalNavigatorURL;
+  if (URL) {
+    [[TTNavigator navigator].URLMap removeObjectForURL:URL];
+    self.originalNavigatorURL = nil;
   }
 
-  for (UIView *subView in topView.subviews) {
-    if ([subView isFirstResponder]) {
-      return subView;
-    }
+  self.superController = nil;
+  self.popupViewController = nil;
 
-    UIView *firstResponderCheck = [self findFirstResponderInView:subView];
-    if (nil != firstResponderCheck) {
-      return firstResponderCheck;
-    }
-  }
-  return nil;
+  // Calls the original dealloc, swizzled away
+  [self ttdealloc];
 }
 
 
 @end
+

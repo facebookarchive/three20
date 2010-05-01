@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20UI/UIViewControllerAdditions.h"
+#import "Three20UICommon/UIViewControllerAdditions.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
+#import "Three20UICommon/TTGlobalUI.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"
@@ -85,25 +85,6 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   }
 
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Swapped with dealloc by TTURLMap (only if you're using TTURLMap)
- */
-- (void)ttdealloc {
-  NSString* URL = self.originalNavigatorURL;
-  if (URL) {
-    [[TTNavigator navigator].URLMap removeObjectForURL:URL];
-    self.originalNavigatorURL = nil;
-  }
-
-  self.superController = nil;
-  self.popupViewController = nil;
-
-  // Calls the original dealloc, swizzled away
-  [self ttdealloc];
 }
 
 

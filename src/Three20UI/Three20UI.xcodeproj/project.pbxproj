@@ -21,7 +21,6 @@
 		6E6455661184D4C500F08CB1 /* TTButtonBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454C81184D4C500F08CB1 /* TTButtonBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6455671184D4C500F08CB1 /* TTButtonContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454C91184D4C500F08CB1 /* TTButtonContent.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E6455681184D4C500F08CB1 /* TTErrorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454CA1184D4C500F08CB1 /* TTErrorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E64556A1184D4C500F08CB1 /* TTGlobalUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454CC1184D4C500F08CB1 /* TTGlobalUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E64556B1184D4C500F08CB1 /* TTGlobalUINavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454CD1184D4C500F08CB1 /* TTGlobalUINavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E64556C1184D4C500F08CB1 /* TTImageLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454CE1184D4C500F08CB1 /* TTImageLayer.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E64556D1184D4C500F08CB1 /* TTImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454CF1184D4C500F08CB1 /* TTImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -143,9 +142,7 @@
 		6E6455F61184D4C500F08CB1 /* UITableViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6455581184D4C500F08CB1 /* UITableViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6455F71184D4C500F08CB1 /* UIToolbarAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6455591184D4C500F08CB1 /* UIToolbarAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6455F81184D4C500F08CB1 /* UIViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E64555A1184D4C500F08CB1 /* UIViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E6455F91184D4C500F08CB1 /* UIViewControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E64555B1184D4C500F08CB1 /* UIViewControllerAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6455FA1184D4C500F08CB1 /* UIWebViewAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E64555C1184D4C500F08CB1 /* UIWebViewAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E6455FB1184D4C500F08CB1 /* UIWindowAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E64555D1184D4C500F08CB1 /* UIWindowAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6456871184D4DA00F08CB1 /* TTActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6455FF1184D4DA00F08CB1 /* TTActionSheet.m */; };
 		6E6456881184D4DA00F08CB1 /* TTActionSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456001184D4DA00F08CB1 /* TTActionSheetController.m */; };
 		6E6456891184D4DA00F08CB1 /* TTActivityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456011184D4DA00F08CB1 /* TTActivityLabel.m */; };
@@ -155,7 +152,6 @@
 		6E64568D1184D4DA00F08CB1 /* TTButtonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456051184D4DA00F08CB1 /* TTButtonBar.m */; };
 		6E64568E1184D4DA00F08CB1 /* TTButtonContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456061184D4DA00F08CB1 /* TTButtonContent.m */; };
 		6E64568F1184D4DA00F08CB1 /* TTErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456071184D4DA00F08CB1 /* TTErrorView.m */; };
-		6E6456911184D4DA00F08CB1 /* TTGlobalUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456091184D4DA00F08CB1 /* TTGlobalUI.m */; };
 		6E6456921184D4DA00F08CB1 /* TTGlobalUINavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64560A1184D4DA00F08CB1 /* TTGlobalUINavigator.m */; };
 		6E6456931184D4DA00F08CB1 /* TTImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64560B1184D4DA00F08CB1 /* TTImageLayer.m */; };
 		6E6456941184D4DA00F08CB1 /* TTImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64560C1184D4DA00F08CB1 /* TTImageView.m */; };
@@ -261,9 +257,7 @@
 		6E6457091184D4DA00F08CB1 /* UITableViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456811184D4DA00F08CB1 /* UITableViewAdditions.m */; };
 		6E64570A1184D4DA00F08CB1 /* UIToolbarAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456821184D4DA00F08CB1 /* UIToolbarAdditions.m */; };
 		6E64570B1184D4DA00F08CB1 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456831184D4DA00F08CB1 /* UIViewAdditions.m */; };
-		6E64570C1184D4DA00F08CB1 /* UIViewControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456841184D4DA00F08CB1 /* UIViewControllerAdditions.m */; };
 		6E64570D1184D4DA00F08CB1 /* UIWebViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456851184D4DA00F08CB1 /* UIWebViewAdditions.m */; };
-		6E64570E1184D4DA00F08CB1 /* UIWindowAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456861184D4DA00F08CB1 /* UIWindowAdditions.m */; };
 		6E6459381187645D00F08CB1 /* UIGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6459371187645D00F08CB1 /* UIGlobalTests.m */; };
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE738A61184ADB800A35176 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE738A31184ADB400A35176 /* libThree20Network.a */; };
@@ -380,7 +374,6 @@
 		6E6454C81184D4C500F08CB1 /* TTButtonBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTButtonBar.h; path = Headers/TTButtonBar.h; sourceTree = "<group>"; };
 		6E6454C91184D4C500F08CB1 /* TTButtonContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTButtonContent.h; path = Headers/TTButtonContent.h; sourceTree = "<group>"; };
 		6E6454CA1184D4C500F08CB1 /* TTErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorView.h; path = Headers/TTErrorView.h; sourceTree = "<group>"; };
-		6E6454CC1184D4C500F08CB1 /* TTGlobalUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUI.h; path = Headers/TTGlobalUI.h; sourceTree = "<group>"; };
 		6E6454CD1184D4C500F08CB1 /* TTGlobalUINavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUINavigator.h; path = Headers/TTGlobalUINavigator.h; sourceTree = "<group>"; };
 		6E6454CE1184D4C500F08CB1 /* TTImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageLayer.h; path = Headers/TTImageLayer.h; sourceTree = "<group>"; };
 		6E6454CF1184D4C500F08CB1 /* TTImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageView.h; path = Headers/TTImageView.h; sourceTree = "<group>"; };
@@ -502,9 +495,7 @@
 		6E6455581184D4C500F08CB1 /* UITableViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITableViewAdditions.h; path = Headers/UITableViewAdditions.h; sourceTree = "<group>"; };
 		6E6455591184D4C500F08CB1 /* UIToolbarAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIToolbarAdditions.h; path = Headers/UIToolbarAdditions.h; sourceTree = "<group>"; };
 		6E64555A1184D4C500F08CB1 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewAdditions.h; path = Headers/UIViewAdditions.h; sourceTree = "<group>"; };
-		6E64555B1184D4C500F08CB1 /* UIViewControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewControllerAdditions.h; path = Headers/UIViewControllerAdditions.h; sourceTree = "<group>"; };
 		6E64555C1184D4C500F08CB1 /* UIWebViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWebViewAdditions.h; path = Headers/UIWebViewAdditions.h; sourceTree = "<group>"; };
-		6E64555D1184D4C500F08CB1 /* UIWindowAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWindowAdditions.h; path = Headers/UIWindowAdditions.h; sourceTree = "<group>"; };
 		6E6455FF1184D4DA00F08CB1 /* TTActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTActionSheet.m; path = Sources/TTActionSheet.m; sourceTree = "<group>"; };
 		6E6456001184D4DA00F08CB1 /* TTActionSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTActionSheetController.m; path = Sources/TTActionSheetController.m; sourceTree = "<group>"; };
 		6E6456011184D4DA00F08CB1 /* TTActivityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTActivityLabel.m; path = Sources/TTActivityLabel.m; sourceTree = "<group>"; };
@@ -514,7 +505,6 @@
 		6E6456051184D4DA00F08CB1 /* TTButtonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTButtonBar.m; path = Sources/TTButtonBar.m; sourceTree = "<group>"; };
 		6E6456061184D4DA00F08CB1 /* TTButtonContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTButtonContent.m; path = Sources/TTButtonContent.m; sourceTree = "<group>"; };
 		6E6456071184D4DA00F08CB1 /* TTErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorView.m; path = Sources/TTErrorView.m; sourceTree = "<group>"; };
-		6E6456091184D4DA00F08CB1 /* TTGlobalUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTGlobalUI.m; path = Sources/TTGlobalUI.m; sourceTree = "<group>"; };
 		6E64560A1184D4DA00F08CB1 /* TTGlobalUINavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTGlobalUINavigator.m; path = Sources/TTGlobalUINavigator.m; sourceTree = "<group>"; };
 		6E64560B1184D4DA00F08CB1 /* TTImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTImageLayer.m; path = Sources/TTImageLayer.m; sourceTree = "<group>"; };
 		6E64560C1184D4DA00F08CB1 /* TTImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTImageView.m; path = Sources/TTImageView.m; sourceTree = "<group>"; };
@@ -620,9 +610,7 @@
 		6E6456811184D4DA00F08CB1 /* UITableViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableViewAdditions.m; path = Sources/UITableViewAdditions.m; sourceTree = "<group>"; };
 		6E6456821184D4DA00F08CB1 /* UIToolbarAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIToolbarAdditions.m; path = Sources/UIToolbarAdditions.m; sourceTree = "<group>"; };
 		6E6456831184D4DA00F08CB1 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewAdditions.m; path = Sources/UIViewAdditions.m; sourceTree = "<group>"; };
-		6E6456841184D4DA00F08CB1 /* UIViewControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewControllerAdditions.m; path = Sources/UIViewControllerAdditions.m; sourceTree = "<group>"; };
 		6E6456851184D4DA00F08CB1 /* UIWebViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIWebViewAdditions.m; path = Sources/UIWebViewAdditions.m; sourceTree = "<group>"; };
-		6E6456861184D4DA00F08CB1 /* UIWindowAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIWindowAdditions.m; path = Sources/UIWindowAdditions.m; sourceTree = "<group>"; };
 		6E6458CB11875F8400F08CB1 /* Three20UI_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UI_Prefix.pch; path = Headers/Three20UI_Prefix.pch; sourceTree = "<group>"; };
 		6E6459371187645D00F08CB1 /* UIGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIGlobalTests.m; path = UnitTests/UIGlobalTests.m; sourceTree = "<group>"; };
 		6EE7363D11849AD500A35176 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -711,8 +699,6 @@
 		6E6457971184D52600F08CB1 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				6E6454CC1184D4C500F08CB1 /* TTGlobalUI.h */,
-				6E6456091184D4DA00F08CB1 /* TTGlobalUI.m */,
 				6E6454CD1184D4C500F08CB1 /* TTGlobalUINavigator.h */,
 				6E64560A1184D4DA00F08CB1 /* TTGlobalUINavigator.m */,
 			);
@@ -736,12 +722,8 @@
 				6E6456821184D4DA00F08CB1 /* UIToolbarAdditions.m */,
 				6E64555A1184D4C500F08CB1 /* UIViewAdditions.h */,
 				6E6456831184D4DA00F08CB1 /* UIViewAdditions.m */,
-				6E64555B1184D4C500F08CB1 /* UIViewControllerAdditions.h */,
-				6E6456841184D4DA00F08CB1 /* UIViewControllerAdditions.m */,
 				6E64555C1184D4C500F08CB1 /* UIWebViewAdditions.h */,
 				6E6456851184D4DA00F08CB1 /* UIWebViewAdditions.m */,
-				6E64555D1184D4C500F08CB1 /* UIWindowAdditions.h */,
-				6E6456861184D4DA00F08CB1 /* UIWindowAdditions.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -1601,7 +1583,6 @@
 				6E6455661184D4C500F08CB1 /* TTButtonBar.h in Headers */,
 				6E6455671184D4C500F08CB1 /* TTButtonContent.h in Headers */,
 				6E6455681184D4C500F08CB1 /* TTErrorView.h in Headers */,
-				6E64556A1184D4C500F08CB1 /* TTGlobalUI.h in Headers */,
 				6E64556B1184D4C500F08CB1 /* TTGlobalUINavigator.h in Headers */,
 				6E64556C1184D4C500F08CB1 /* TTImageLayer.h in Headers */,
 				6E64556D1184D4C500F08CB1 /* TTImageView.h in Headers */,
@@ -1723,9 +1704,7 @@
 				6E6455F61184D4C500F08CB1 /* UITableViewAdditions.h in Headers */,
 				6E6455F71184D4C500F08CB1 /* UIToolbarAdditions.h in Headers */,
 				6E6455F81184D4C500F08CB1 /* UIViewAdditions.h in Headers */,
-				6E6455F91184D4C500F08CB1 /* UIViewControllerAdditions.h in Headers */,
 				6E6455FA1184D4C500F08CB1 /* UIWebViewAdditions.h in Headers */,
-				6E6455FB1184D4C500F08CB1 /* UIWindowAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1906,7 +1885,6 @@
 				6E64568D1184D4DA00F08CB1 /* TTButtonBar.m in Sources */,
 				6E64568E1184D4DA00F08CB1 /* TTButtonContent.m in Sources */,
 				6E64568F1184D4DA00F08CB1 /* TTErrorView.m in Sources */,
-				6E6456911184D4DA00F08CB1 /* TTGlobalUI.m in Sources */,
 				6E6456921184D4DA00F08CB1 /* TTGlobalUINavigator.m in Sources */,
 				6E6456931184D4DA00F08CB1 /* TTImageLayer.m in Sources */,
 				6E6456941184D4DA00F08CB1 /* TTImageView.m in Sources */,
@@ -2012,9 +1990,7 @@
 				6E6457091184D4DA00F08CB1 /* UITableViewAdditions.m in Sources */,
 				6E64570A1184D4DA00F08CB1 /* UIToolbarAdditions.m in Sources */,
 				6E64570B1184D4DA00F08CB1 /* UIViewAdditions.m in Sources */,
-				6E64570C1184D4DA00F08CB1 /* UIViewControllerAdditions.m in Sources */,
 				6E64570D1184D4DA00F08CB1 /* UIWebViewAdditions.m in Sources */,
-				6E64570E1184D4DA00F08CB1 /* UIWindowAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

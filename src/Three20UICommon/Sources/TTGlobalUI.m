@@ -14,11 +14,13 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTGlobalUI.h"
+#import "Three20UICommon/TTGlobalUI.h"
+
+// UI
+#import "Three20UICommon/UIWindowAdditions.h"
 
 // Core
 #import "Three20Core/TTGlobalCoreLocale.h"
-#import "Three20UI/UIWindowAdditions.h"
 
 const CGFloat ttkDefaultRowHeight = 44;
 
