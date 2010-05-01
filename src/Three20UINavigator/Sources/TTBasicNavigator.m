@@ -114,8 +114,10 @@ UIViewController* TTOpenURL(NSString* URL) {
 + (UIViewController*)frontViewControllerForController:(UIViewController*)controller {
   if ([controller isKindOfClass:[UITabBarController class]]) {
     UITabBarController* tabBarController = (UITabBarController*)controller;
+
     if (tabBarController.selectedViewController) {
       controller = tabBarController.selectedViewController;
+
     } else {
       controller = [tabBarController.viewControllers objectAtIndex:0];
     }
@@ -127,6 +129,7 @@ UIViewController* TTOpenURL(NSString* URL) {
 
   if (controller.modalViewController) {
     return [TTNavigator frontViewControllerForController:controller.modalViewController];
+
   } else {
     return controller;
   }
@@ -146,8 +149,10 @@ UIViewController* TTOpenURL(NSString* URL) {
 - (UINavigationController*)frontNavigationController {
   if ([_rootViewController isKindOfClass:[UITabBarController class]]) {
     UITabBarController* tabBarController = (UITabBarController*)_rootViewController;
+
     if (tabBarController.selectedViewController) {
       return (UINavigationController*)tabBarController.selectedViewController;
+
     } else {
       return (UINavigationController*)[tabBarController.viewControllers objectAtIndex:0];
     }
@@ -166,6 +171,7 @@ UIViewController* TTOpenURL(NSString* URL) {
   UINavigationController* navController = self.frontNavigationController;
   if (navController) {
     return [TTNavigator frontViewControllerForController:navController];
+
   } else {
     return [TTNavigator frontViewControllerForController:_rootViewController];
   }
@@ -236,9 +242,11 @@ UIViewController* TTOpenURL(NSString* URL) {
                       animated: (BOOL)animated
                     transition: (NSInteger)transition {
   controller.modalTransitionStyle = transition;
+
   if ([controller isKindOfClass:[UINavigationController class]]) {
     [parentController presentModalViewController: controller
                                         animated: animated];
+
   } else {
     UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
     [navController pushViewController: controller
@@ -253,6 +261,7 @@ UIViewController* TTOpenURL(NSString* URL) {
 /**
  * @return NO if the controller already has a super controller and is simply made visible.
  *         YES if the controller is the new root or if it did not have a super controller.
+ *
  * @private
  */
 - (BOOL)presentController: (UIViewController*)controller
