@@ -14,14 +14,9 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTBasicNavigator.h"
+typedef enum {
+  TTNavigatorPersistenceModeNone,  // no persistence
+  TTNavigatorPersistenceModeTop,   // persists only the top-level controller
+  TTNavigatorPersistenceModeAll,   // persists all navigation paths
+} TTNavigatorPersistenceMode;
 
-/**
- * A URL-based navigation system with built-in persistence.
- */
-@interface TTNavigator : TTBasicNavigator {
-}
-
-+ (TTNavigator*)navigator;
-
-@end

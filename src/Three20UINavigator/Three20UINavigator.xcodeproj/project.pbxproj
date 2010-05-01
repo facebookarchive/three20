@@ -47,6 +47,10 @@
 		6E3C3672118B79B90079637E /* TTURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3671118B79B90079637E /* TTURLArguments.m */; };
 		6E3C3673118B79B90079637E /* TTURLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3671118B79B90079637E /* TTURLArguments.m */; };
 		6E3C36C8118B7E0C0079637E /* TTURLObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C36C7118B7E0C0079637E /* TTURLObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E3C3754118C8E180079637E /* TTBasicNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3753118C8E180079637E /* TTBasicNavigator.h */; };
+		6E3C3756118C8E210079637E /* TTBasicNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3755118C8E210079637E /* TTBasicNavigator.m */; };
+		6E3C3757118C8E210079637E /* TTBasicNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3755118C8E210079637E /* TTBasicNavigator.m */; };
+		6E3C3759118C8E490079637E /* TTNavigatorPersistenceMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3758118C8E490079637E /* TTNavigatorPersistenceMode.h */; };
 		6E6454741184D2CD00F08CB1 /* Three20UINavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UINavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6459381187645D00F08CB1 /* UIGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6459371187645D00F08CB1 /* UIGlobalTests.m */; };
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
@@ -120,6 +124,9 @@
 		6E3C3663118B798F0079637E /* TTURLWildcard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLWildcard.m; path = Sources/TTURLWildcard.m; sourceTree = "<group>"; };
 		6E3C3671118B79B90079637E /* TTURLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLArguments.m; path = Sources/TTURLArguments.m; sourceTree = "<group>"; };
 		6E3C36C7118B7E0C0079637E /* TTURLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLObject.h; path = Headers/TTURLObject.h; sourceTree = "<group>"; };
+		6E3C3753118C8E180079637E /* TTBasicNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTBasicNavigator.h; path = Headers/TTBasicNavigator.h; sourceTree = "<group>"; };
+		6E3C3755118C8E210079637E /* TTBasicNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTBasicNavigator.m; path = Sources/TTBasicNavigator.m; sourceTree = "<group>"; };
+		6E3C3758118C8E490079637E /* TTNavigatorPersistenceMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorPersistenceMode.h; path = Headers/TTNavigatorPersistenceMode.h; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E6454731184D2CD00F08CB1 /* Three20UINavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UINavigator.h; path = Headers/Three20UINavigator.h; sourceTree = "<group>"; };
 		6E6458CB11875F8400F08CB1 /* Three20UINavigator_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UINavigator_Prefix.pch; path = Headers/Three20UINavigator_Prefix.pch; sourceTree = "<group>"; };
@@ -306,6 +313,9 @@
 		6EE737001184A1D500A35176 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6E3C3758118C8E490079637E /* TTNavigatorPersistenceMode.h */,
+				6E3C3753118C8E180079637E /* TTBasicNavigator.h */,
+				6E3C3755118C8E210079637E /* TTBasicNavigator.m */,
 				6E3C35E9118B75800079637E /* TTNavigator.h */,
 				6E3C35EF118B75910079637E /* TTNavigator.m */,
 				6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */,
@@ -342,6 +352,8 @@
 				6E3C364A118B79140079637E /* TTURLSelector.h in Headers */,
 				6E3C364B118B79140079637E /* TTURLWildcard.h in Headers */,
 				6E3C36C8118B7E0C0079637E /* TTURLObject.h in Headers */,
+				6E3C3754118C8E180079637E /* TTBasicNavigator.h in Headers */,
+				6E3C3759118C8E490079637E /* TTNavigatorPersistenceMode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +497,7 @@
 				6E3C3666118B798F0079637E /* TTURLSelector.m in Sources */,
 				6E3C3667118B798F0079637E /* TTURLWildcard.m in Sources */,
 				6E3C3672118B79B90079637E /* TTURLArguments.m in Sources */,
+				6E3C3756118C8E210079637E /* TTBasicNavigator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +518,7 @@
 				6E3C366A118B798F0079637E /* TTURLSelector.m in Sources */,
 				6E3C366B118B798F0079637E /* TTURLWildcard.m in Sources */,
 				6E3C3673118B79B90079637E /* TTURLArguments.m in Sources */,
+				6E3C3757118C8E210079637E /* TTBasicNavigator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
