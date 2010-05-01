@@ -160,21 +160,25 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)superController {
   UIViewController* parent = self.parentViewController;
-  if (parent) {
+  if (nil != parent) {
     return parent;
+
   } else {
     NSString* key = [NSString stringWithFormat:@"%d", self.hash];
     return [gSuperControllers objectForKey:key];
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSuperController:(UIViewController*)viewController {
   NSString* key = [NSString stringWithFormat:@"%d", self.hash];
-  if (viewController) {
-    if (!gSuperControllers) {
+  if (nil != viewController) {
+    if (nil == gSuperControllers) {
       gSuperControllers = TTCreateNonRetainingDictionary();
     }
     [gSuperControllers setObject:viewController forKey:key];
+
   } else {
     [gSuperControllers removeObjectForKey:key];
   }

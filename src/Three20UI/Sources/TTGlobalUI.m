@@ -16,9 +16,6 @@
 
 #import "Three20UI/TTGlobalUI.h"
 
-// UI
-#import "Three20UI/TTGlobalUI.h"
-
 // Core
 #import "Three20Core/TTGlobalCoreLocale.h"
 #import "Three20UI/UIWindowAdditions.h"
