@@ -34,7 +34,7 @@ static NSMutableDictionary* gNavigatorURLs = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+  if (self = [self init]) {
   }
 
   return self;
