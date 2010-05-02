@@ -35,7 +35,6 @@
 		6E3C3756118C8E210079637E /* TTBaseNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3755118C8E210079637E /* TTBaseNavigator.m */; };
 		6E3C3759118C8E490079637E /* TTNavigatorPersistenceMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3758118C8E490079637E /* TTNavigatorPersistenceMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454741184D2CD00F08CB1 /* Three20UINavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UINavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E6459381187645D00F08CB1 /* UIGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6459371187645D00F08CB1 /* UIGlobalTests.m */; };
 		6E7F945E118E1B0E00443B46 /* UIViewControllerAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F945D118E1B0E00443B46 /* UIViewControllerAdditionTests.m */; };
 		6E86A98D118CF55D00662DA5 /* TTBaseNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E86A98C118CF55D00662DA5 /* TTBaseNavigatorInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6EDAE962118C99200008133C /* UIViewController+TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDAE961118C99200008133C /* UIViewController+TTNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -146,7 +145,6 @@
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E6454731184D2CD00F08CB1 /* Three20UINavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UINavigator.h; path = Headers/Three20UINavigator.h; sourceTree = "<group>"; };
 		6E6458CB11875F8400F08CB1 /* Three20UINavigator_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UINavigator_Prefix.pch; path = Headers/Three20UINavigator_Prefix.pch; sourceTree = "<group>"; };
-		6E6459371187645D00F08CB1 /* UIGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIGlobalTests.m; path = UnitTests/UIGlobalTests.m; sourceTree = "<group>"; };
 		6E7F945D118E1B0E00443B46 /* UIViewControllerAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewControllerAdditionTests.m; path = UnitTests/UIViewControllerAdditionTests.m; sourceTree = "<group>"; };
 		6E86A98C118CF55D00662DA5 /* TTBaseNavigatorInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTBaseNavigatorInternal.h; path = Headers/TTBaseNavigatorInternal.h; sourceTree = "<group>"; };
 		6EDAE961118C99200008133C /* UIViewController+TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+TTNavigator.h"; path = "Headers/UIViewController+TTNavigator.h"; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				6EE7364611849AF200A35176 /* Resources */,
-				6E6459371187645D00F08CB1 /* UIGlobalTests.m */,
 				6E7F945D118E1B0E00443B46 /* UIViewControllerAdditionTests.m */,
 			);
 			name = Tests;
@@ -580,7 +577,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E6459381187645D00F08CB1 /* UIGlobalTests.m in Sources */,
 				6E7F945E118E1B0E00443B46 /* UIViewControllerAdditionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
