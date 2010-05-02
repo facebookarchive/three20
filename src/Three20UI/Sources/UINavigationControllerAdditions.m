@@ -21,6 +21,7 @@
 
 // UINavigator
 #import "Three20UINavigator/TTURLMap.h"
+#import "Three20UINavigator/UIViewController+TTNavigator.h"
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
