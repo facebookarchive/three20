@@ -135,9 +135,6 @@
 - (id)objectForURL:(NSString*)URL query:(NSDictionary*)query
       pattern:(TTURLNavigatorPattern**)pattern;
 
-/**
- *
- */
 - (id)dispatchURL:(NSString*)URL toTarget:(id)target query:(NSDictionary*)query;
 
 /**
