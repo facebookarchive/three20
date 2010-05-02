@@ -27,7 +27,7 @@
 /**
  * A URL-based navigation system with built-in persistence.
  */
-@interface TTBasicNavigator : NSObject {
+@interface TTBaseNavigator : NSObject {
   TTURLMap*                   _URLMap;
 
   UIWindow*                   _window;
@@ -130,8 +130,8 @@
 @property (nonatomic, assign) id<TTNavigatorDelegate> delegate;
 
 
-+ (TTBasicNavigator*)globalNavigator;
-+ (void)setGlobalNavigator:(TTBasicNavigator*)navigator;
++ (TTBaseNavigator*)globalNavigator;
++ (void)setGlobalNavigator:(TTBaseNavigator*)navigator;
 
 /**
  * Load and display the view controller with a pattern that matches the URL.

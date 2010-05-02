@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTBasicNavigator.h"
+#import "Three20UINavigator/TTBaseNavigator.h"
 
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
@@ -24,7 +24,7 @@
 #import "Three20UINavigator/TTURLNavigatorPattern.h"
 
 // UINavigator (private)
-#import "Three20UINavigator/private/TTBasicNavigatorInternal.h"
+#import "Three20UINavigator/private/TTBaseNavigatorInternal.h"
 
 // UICommon
 #import "Three20UICommon/UIViewControllerAdditions.h"
@@ -36,7 +36,7 @@
 #import "Three20Core/TTDebugFlags.h"
 #import "Three20Core/NSDateAdditions.h"
 
-static TTBasicNavigator* gNavigator = nil;
+static TTBaseNavigator* gNavigator = nil;
 
 static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
@@ -46,7 +46,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTBasicNavigator
+@implementation TTBaseNavigator
 
 @synthesize delegate                  = _delegate;
 @synthesize URLMap                    = _URLMap;
@@ -96,13 +96,13 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (TTBasicNavigator*)globalNavigator {
++ (TTBaseNavigator*)globalNavigator {
   return gNavigator;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)setGlobalNavigator:(TTBasicNavigator*)navigator {
++ (void)setGlobalNavigator:(TTBaseNavigator*)navigator {
   if (gNavigator != navigator) {
     [gNavigator release];
     gNavigator = [navigator retain];
@@ -141,7 +141,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
   }
 
   if (controller.modalViewController) {
-    return [TTBasicNavigator frontViewControllerForController:controller.modalViewController];
+    return [TTBaseNavigator frontViewControllerForController:controller.modalViewController];
 
   } else {
     return controller;
@@ -183,10 +183,10 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 - (UIViewController*)frontViewController {
   UINavigationController* navController = self.frontNavigationController;
   if (navController) {
-    return [TTBasicNavigator frontViewControllerForController:navController];
+    return [TTBaseNavigator frontViewControllerForController:navController];
 
   } else {
-    return [TTBasicNavigator frontViewControllerForController:_rootViewController];
+    return [TTBaseNavigator frontViewControllerForController:_rootViewController];
   }
 }
 
@@ -821,7 +821,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTBasicNavigator (TTInternal)
+@implementation TTBaseNavigator (TTInternal)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

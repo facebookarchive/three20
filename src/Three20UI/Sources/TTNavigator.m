@@ -29,7 +29,7 @@
 #import "Three20UINavigator/TTURLAction.h"
 
 // UINavigator (private)
-#import "Three20UINavigator/private/TTBasicNavigatorInternal.h"
+#import "Three20UINavigator/private/TTBaseNavigatorInternal.h"
 
 // UICommon
 #import "Three20UICommon/UIViewControllerAdditions.h"
@@ -54,7 +54,7 @@ UIViewController* TTOpenURL(NSString* URL) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTNavigator*)navigator {
-  TTBasicNavigator* navigator = [TTBasicNavigator globalNavigator];
+  TTBaseNavigator* navigator = [TTBaseNavigator globalNavigator];
   if (nil == navigator) {
     navigator = [[TTNavigator alloc] init];
     // setNavigator: retains.

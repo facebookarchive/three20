@@ -17,7 +17,7 @@
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 
 // Navigator
-#import "Three20UINavigator/TTBasicNavigator.h"
+#import "Three20UINavigator/TTBaseNavigator.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
 
 #import "Three20UINavigator/TTURLObject.h"

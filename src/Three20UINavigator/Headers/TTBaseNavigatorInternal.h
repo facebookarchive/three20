@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTBasicNavigator.h"
+#import "Three20UINavigator/TTBaseNavigator.h"
 
-@interface TTBasicNavigator (TTInternal)
+@interface TTBaseNavigator (TTInternal)
 
 - (void)presentDependantController: (UIViewController*)controller
                   parentController: (UIViewController*)parentController

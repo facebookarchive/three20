@@ -17,7 +17,7 @@
 #import "Three20UINavigator/UIViewController+TTNavigator.h"
 
 // UINavigator
-#import "Three20UINavigator/TTBasicNavigator.h"
+#import "Three20UINavigator/TTBaseNavigator.h"
 #import "Three20UINavigator/TTURLMap.h"
 
 // UICommon
@@ -37,7 +37,7 @@
 - (void)ttdealloc {
   NSString* URL = self.originalNavigatorURL;
   if (URL) {
-    [[TTBasicNavigator globalNavigator].URLMap removeObjectForURL:URL];
+    [[TTBaseNavigator globalNavigator].URLMap removeObjectForURL:URL];
     self.originalNavigatorURL = nil;
   }
 

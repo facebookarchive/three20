@@ -17,7 +17,7 @@
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 
 // UINavigator
-#import "Three20UINavigator/TTBasicNavigator.h"
+#import "Three20UINavigator/TTBaseNavigator.h"
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
@@ -30,7 +30,7 @@
 UIInterfaceOrientation TTInterfaceOrientation() {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
   if (UIDeviceOrientationUnknown == orient) {
-    return [TTBasicNavigator globalNavigator].visibleViewController.interfaceOrientation;
+    return [TTBaseNavigator globalNavigator].visibleViewController.interfaceOrientation;
   } else {
     return orient;
   }

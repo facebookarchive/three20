@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTBasicNavigator.h"
+#import "Three20UINavigator/TTBaseNavigator.h"
 
 /**
  * Shortcut for calling [[TTNavigator navigator] openURL:]
@@ -25,7 +25,7 @@ UIViewController* TTOpenURL(NSString* URL);
  * A URL-based navigation system with built-in persistence.
  * Add support for model-based controllers and implement the legacy global instance accessor.
  */
-@interface TTNavigator : TTBasicNavigator {
+@interface TTNavigator : TTBaseNavigator {
 }
 
 + (TTNavigator*)navigator;
