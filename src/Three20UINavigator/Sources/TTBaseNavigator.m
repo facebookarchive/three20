@@ -22,6 +22,7 @@
 #import "Three20UINavigator/TTURLAction.h"
 #import "Three20UINavigator/TTURLMap.h"
 #import "Three20UINavigator/TTURLNavigatorPattern.h"
+#import "Three20UINavigator/UIViewController+TTNavigator.h"
 
 // UINavigator (private)
 #import "Three20UINavigator/private/TTBaseNavigatorInternal.h"
