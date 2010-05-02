@@ -83,6 +83,12 @@
 // Style Additions
 #import "Three20Style/Three20Style+Additions.h"
 
+// UICommon
+#import "Three20UICommon/Three20UICommon+Additions.h"
+
+// UINavigator
+#import "Three20UINavigator/Three20UINavigator+Additions.h"
+
 // UI Additions
 #import "Three20UI/Three20UI+Additions.h"
 
