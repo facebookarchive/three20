@@ -71,3 +71,24 @@
 
 // UI
 #import "Three20UI/Three20UI.h"
+
+// TODO (jverkoey April 27, 2010): Remove the additions from this file after May 20, 2010.
+// Core Additions
+#import "Three20Core/Three20Core+Additions.h"
+
+// Network Additions
+// No additions for Network yet.
+//#import "Three20Network/Three20Network+Additions.h"
+
+// Style Additions
+#import "Three20Style/Three20Style+Additions.h"
+
+// UICommon
+#import "Three20UICommon/Three20UICommon+Additions.h"
+
+// UINavigator
+#import "Three20UINavigator/Three20UINavigator+Additions.h"
+
+// UI Additions
+#import "Three20UI/Three20UI+Additions.h"
+

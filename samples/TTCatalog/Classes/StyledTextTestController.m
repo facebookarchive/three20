@@ -24,7 +24,7 @@
 }
 
 - (TTStyle*)blueBox {
-  return 
+  return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:6] next:
     [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, -5, -4, -6) next:
     [TTShadowStyle styleWithColor:[UIColor grayColor] blur:2 offset:CGSizeMake(1,1) next:
@@ -33,14 +33,14 @@
 }
 
 - (TTStyle*)inlineBox {
-  return 
+  return
     [TTSolidFillStyle styleWithColor:[UIColor blueColor] next:
     [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(5,13,5,13) next:
     [TTSolidBorderStyle styleWithColor:[UIColor blackColor] width:1 next:nil]]];
 }
 
 - (TTStyle*)inlineBox2 {
-  return 
+  return
     [TTSolidFillStyle styleWithColor:[UIColor cyanColor] next:
     [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(5,50,0,50)
                 padding:UIEdgeInsetsMake(0,13,0,13) next:nil]];
@@ -70,7 +70,7 @@
 
 - (void)loadView {
   [super loadView];
-  
+
 //  NSString* kText = @"\
 //<span>Thisisareallylongwordthatshouldwrapisareallylongwordthatshouldwrapisareallylongwordthatshould\
 //wrapisareallylongwordthatshouldwrapisareallylongwordthatshouldwrap</span>";
@@ -118,4 +118,3 @@ Both line break characters\n\nand HTML line breaks<br/>are respected.";
 }
 
 @end
-  

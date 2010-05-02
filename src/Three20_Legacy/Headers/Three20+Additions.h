@@ -22,7 +22,7 @@
 
 // Network Additions
 // No additions for Network yet.
-//#import "Three20Network/Three20Network+Additions.h"
+#import "Three20Network/Three20Network+Additions.h"
 
 // Style Additions
 #import "Three20Style/Three20Style+Additions.h"
