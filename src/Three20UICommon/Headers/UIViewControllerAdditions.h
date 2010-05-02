@@ -21,8 +21,19 @@
 
 /**
  * Determines whether a controller is primarily a container of other controllers.
+ *
+ * @default NO
  */
 @property (nonatomic, readonly) BOOL canContainControllers;
+
+/**
+ * Whether or not this controller should ever be counted as the "top" view controller. This is
+ * used for the purposes of determining which controllers should have modal controllers presented
+ * within them.
+ *
+ * @default YES; subclasses may override to NO if they so desire.
+ */
+@property (nonatomic, readonly) BOOL canBeTopViewController;
 
 /**
  * The view controller that contains this view controller.
@@ -137,12 +148,5 @@
  * Shortcut for its animated-optional cousin.
  */
 - (void)dismissModalViewController;
-
-/**
- * Whether or not this controller should ever be counted as the "top" view controller. That is
- * used for the purposes of determining which controllers should have modal controllers presented
- * within them. Defaults to YES; subclasses may override to NO if they so desire.
- */
-- (BOOL)canBeTopViewController;
 
 @end
