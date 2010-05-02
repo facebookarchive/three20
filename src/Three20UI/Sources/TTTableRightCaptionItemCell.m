@@ -17,8 +17,10 @@
 #import "Three20UI/TTTableRightCaptionItemCell.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
 #import "Three20UI/TTTableCaptionItem.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

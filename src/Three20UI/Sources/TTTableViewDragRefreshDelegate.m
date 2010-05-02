@@ -17,10 +17,12 @@
 #import "Three20UI/TTTableViewDragRefreshDelegate.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
 #import "Three20UI/TTTableHeaderDragRefreshView.h"
 #import "Three20UI/TTTableViewController.h"
 #import "Three20UI/UIViewAdditions.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

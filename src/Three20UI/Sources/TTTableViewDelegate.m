@@ -17,6 +17,7 @@
 #import "Three20UI/TTTableViewDelegate.h"
 
 // UI
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTTableViewDataSource.h"
 #import "Three20UI/TTTableViewController.h"
 #import "Three20UI/TTTableHeaderView.h"

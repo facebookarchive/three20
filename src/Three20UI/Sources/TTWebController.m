@@ -17,10 +17,16 @@
 #import "Three20UI/TTWebController.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTGlobalUINavigator.h"
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/UIViewAdditions.h"
 #import "Three20UI/UIToolbarAdditions.h"
+
+// UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
+#import "Three20UINavigator/TTURLMap.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

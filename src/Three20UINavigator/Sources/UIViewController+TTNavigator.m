@@ -14,7 +14,14 @@
 // limitations under the License.
 //
 
-#import "Three20/UIViewController+TTNavigator.h"
+#import "Three20UINavigator/UIViewController+TTNavigator.h"
+
+// UINavigator
+#import "Three20UINavigator/TTBasicNavigator.h"
+#import "Three20UINavigator/TTURLMap.h"
+
+// UICommon
+#import "Three20UICommon/UIViewControllerAdditions.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,12 +32,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Swapped with dealloc by TTNavigator (only if you're using TTNavigator)
+ * Swapped with dealloc by TTBasicNavigator (only if you're using TTBasicNavigator)
  */
 - (void)ttdealloc {
   NSString* URL = self.originalNavigatorURL;
   if (URL) {
-    [[TTNavigator navigator].URLMap removeObjectForURL:URL];
+    [[TTBasicNavigator globalNavigator].URLMap removeObjectForURL:URL];
     self.originalNavigatorURL = nil;
   }
 

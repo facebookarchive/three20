@@ -16,8 +16,8 @@
 
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
-// UI
-#import "Three20UICommon/TTGlobalUI.h"
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"

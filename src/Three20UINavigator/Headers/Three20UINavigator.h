@@ -14,8 +14,13 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTNavigator.h"
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
+
+// Navigator
+#import "Three20UINavigator/TTBasicNavigator.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
+
+#import "Three20UINavigator/TTURLObject.h"
 
 // URL Action
 #import "Three20UINavigator/TTURLAction.h"

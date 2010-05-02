@@ -17,8 +17,7 @@
 #import "Three20UI/TTSearchTextField.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTGlobalUINavigator.h"
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTView.h"
 #import "Three20UI/TTSearchTextFieldDelegate.h"
 #import "Three20UI/TTTableView.h"
@@ -28,6 +27,12 @@
 
 // UI (private)
 #import "Three20UI/TTSearchTextFieldInternal.h"
+
+// UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

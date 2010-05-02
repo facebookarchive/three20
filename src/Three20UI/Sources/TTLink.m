@@ -17,7 +17,11 @@
 #import "Three20UI/TTLink.h"
 
 // UI
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTView.h"
+
+// UINavigator
+#import "Three20UINavigator/TTURLAction.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

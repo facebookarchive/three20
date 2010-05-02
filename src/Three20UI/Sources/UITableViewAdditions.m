@@ -18,7 +18,9 @@
 
 // UI
 #import "Three20UI/UIViewAdditions.h"
-#import "Three20UI/UIWindowAdditions.h"
+
+// UICommon
+#import "Three20UICommon/UIWindowAdditions.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

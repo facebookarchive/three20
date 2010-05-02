@@ -14,20 +14,23 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTGlobalUINavigator.h"
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 
-// UI
-#import "Three20UI/TTGlobalUI.h"
+// UINavigator
+#import "Three20UINavigator/TTBasicNavigator.h"
 
-// Style
-#import "Three20Style/TTGlobalStyle.h"
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
+
+// Core
+#import "Three20Core/TTGlobalCoreRects.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 UIInterfaceOrientation TTInterfaceOrientation() {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
   if (UIDeviceOrientationUnknown == orient) {
-    return [TTNavigator navigator].visibleViewController.interfaceOrientation;
+    return [TTBasicNavigator globalNavigator].visibleViewController.interfaceOrientation;
   } else {
     return orient;
   }

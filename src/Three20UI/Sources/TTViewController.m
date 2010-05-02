@@ -17,13 +17,16 @@
 #import "Three20UI/TTViewController.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTGlobalUINavigator.h"
-#import "Three20UI/UIViewControllerAdditions.h"
-
-// - Controllers
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTTableViewController.h"
 #import "Three20UI/TTSearchDisplayController.h"
+
+// UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"
@@ -135,7 +138,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
   if (event.type == UIEventSubtypeMotionShake && [TTNavigator navigator].supportsShakeToReload) {
-    [[TTNavigator navigator] reload];
+    [(TTNavigator*)[TTNavigator navigator] reload];
   }
 }
 

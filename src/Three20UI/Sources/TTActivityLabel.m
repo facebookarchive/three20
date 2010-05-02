@@ -17,10 +17,12 @@
 #import "Three20UI/TTActivityLabel.h"
 
 // UI
-#import "Three20UI/TTGlobalUINavigator.h"
 #import "Three20UI/TTView.h"
 #import "Three20UI/TTButton.h"
 #import "Three20UI/UIViewAdditions.h"
+
+// UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

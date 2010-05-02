@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTNavigatorWindow.h"
+#import "Three20UI/TTNavigatorWindow.h"
 
 // UI
-#import "Three20UINavigator/TTNavigator.h"
+#import "Three20UI/TTNavigator.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,8 +28,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-  if (event.type == UIEventSubtypeMotionShake && [TTNavigator navigator].supportsShakeToReload) {
-    [[TTNavigator navigator] reload];
+  if (event.type == UIEventSubtypeMotionShake
+      && [TTNavigator navigator].supportsShakeToReload) {
+    [(TTNavigator*)[TTNavigator navigator] reload];
   }
 }
 

@@ -17,11 +17,13 @@
 #import "Three20UI/TTTableControlCell.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
 #import "Three20UI/TTTableControlItem.h"
 #import "Three20UI/TTTextEditor.h"
 #import "Three20UI/UIViewAdditions.h"
 #import "Three20Style/UIFontAdditions.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"

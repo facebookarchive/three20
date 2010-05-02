@@ -21,11 +21,8 @@
 #import "Three20Core/TTGlobalCore.h"
 #import "Three20Core/TTGlobalCoreLocale.h"
 #import "Three20Core/TTGlobalCorePaths.h"
+#import "Three20Core/TTGlobalCoreRects.h"
 #import "Three20Core/TTDebug.h"
-
-// - Classes
-// TODO (jverkoey April 27, 2010): Add back support for the XML parser.
-//#import "Three20Core/TTXMLParser.h"
 
 // - Additions
 // TODO (jverkoey): Remove these additions after May 20, 2010.

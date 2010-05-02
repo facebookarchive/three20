@@ -15,4 +15,4 @@
 //
 
 // Global
-#import "Three20UICommon/TTGlobalUI.h"
+#import "Three20UICommon/TTGlobalUICommon.h"

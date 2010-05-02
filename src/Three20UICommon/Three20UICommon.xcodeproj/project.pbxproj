@@ -7,14 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E3C377F118C94E50079637E /* TTGlobalUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C377E118C94E50079637E /* TTGlobalUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E3C3781118C94FC0079637E /* TTGlobalUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3780118C94FC0079637E /* TTGlobalUI.m */; };
-		6E3C3782118C94FC0079637E /* TTGlobalUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3780118C94FC0079637E /* TTGlobalUI.m */; };
+		6E3C377F118C94E50079637E /* TTGlobalUICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C377E118C94E50079637E /* TTGlobalUICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E3C3781118C94FC0079637E /* TTGlobalUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */; };
 		6E3C37A9118C96670079637E /* UIWindowAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C37A8118C96670079637E /* UIWindowAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C37AD118C96700079637E /* UIWindowAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C37AC118C96700079637E /* UIWindowAdditions.m */; };
-		6E3C37AE118C96700079637E /* UIWindowAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C37AC118C96700079637E /* UIWindowAdditions.m */; };
 		6E3C37D1118C96FA0079637E /* UIViewControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C37D0118C96FA0079637E /* UIViewControllerAdditions.m */; };
-		6E3C37D2118C96FA0079637E /* UIViewControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C37D0118C96FA0079637E /* UIViewControllerAdditions.m */; };
 		6E3C37D6118C97040079637E /* UIViewControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C37D5118C97040079637E /* UIViewControllerAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454741184D2CD00F08CB1 /* Three20UICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6459381187645D00F08CB1 /* UICommonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6459371187645D00F08CB1 /* UICommonTests.m */; };
@@ -62,8 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6E3C377E118C94E50079637E /* TTGlobalUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUI.h; path = Headers/TTGlobalUI.h; sourceTree = "<group>"; };
-		6E3C3780118C94FC0079637E /* TTGlobalUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTGlobalUI.m; path = Sources/TTGlobalUI.m; sourceTree = "<group>"; };
+		6E3C377E118C94E50079637E /* TTGlobalUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUICommon.h; path = Headers/TTGlobalUICommon.h; sourceTree = "<group>"; };
+		6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTGlobalUICommon.m; path = Sources/TTGlobalUICommon.m; sourceTree = "<group>"; };
 		6E3C37A8118C96670079637E /* UIWindowAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWindowAdditions.h; path = Headers/UIWindowAdditions.h; sourceTree = "<group>"; };
 		6E3C37AC118C96700079637E /* UIWindowAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIWindowAdditions.m; path = Sources/UIWindowAdditions.m; sourceTree = "<group>"; };
 		6E3C37D0118C96FA0079637E /* UIViewControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewControllerAdditions.m; path = Sources/UIViewControllerAdditions.m; sourceTree = "<group>"; };
@@ -183,8 +180,8 @@
 		6EE737001184A1D500A35176 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6E3C377E118C94E50079637E /* TTGlobalUI.h */,
-				6E3C3780118C94FC0079637E /* TTGlobalUI.m */,
+				6E3C377E118C94E50079637E /* TTGlobalUICommon.h */,
+				6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */,
 				6E3C37AF118C967B0079637E /* Additions */,
 			);
 			name = Source;
@@ -198,7 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E6454741184D2CD00F08CB1 /* Three20UICommon.h in Headers */,
-				6E3C377F118C94E50079637E /* TTGlobalUI.h in Headers */,
+				6E3C377F118C94E50079637E /* TTGlobalUICommon.h in Headers */,
 				6E3C37A9118C96670079637E /* UIWindowAdditions.h in Headers */,
 				6E3C37D6118C97040079637E /* UIViewControllerAdditions.h in Headers */,
 				6EDAE96A118C99580008133C /* Three20UICommon+Additions.h in Headers */,
@@ -333,7 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3C3781118C94FC0079637E /* TTGlobalUI.m in Sources */,
+				6E3C3781118C94FC0079637E /* TTGlobalUICommon.m in Sources */,
 				6E3C37AD118C96700079637E /* UIWindowAdditions.m in Sources */,
 				6E3C37D1118C96FA0079637E /* UIViewControllerAdditions.m in Sources */,
 			);
@@ -344,9 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E6459381187645D00F08CB1 /* UICommonTests.m in Sources */,
-				6E3C3782118C94FC0079637E /* TTGlobalUI.m in Sources */,
-				6E3C37AE118C96700079637E /* UIWindowAdditions.m in Sources */,
-				6E3C37D2118C96FA0079637E /* UIViewControllerAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

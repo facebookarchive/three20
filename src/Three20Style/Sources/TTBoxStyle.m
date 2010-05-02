@@ -17,8 +17,10 @@
 #import "Three20Style/TTBoxStyle.h"
 
 // Style
-#import "Three20Style/TTGlobalStyle.h"
 #import "Three20Style/TTStyleContext.h"
+
+// Core
+#import "Three20Core/TTGlobalCoreRects.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

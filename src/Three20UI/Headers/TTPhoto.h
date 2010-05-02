@@ -17,6 +17,9 @@
 // UI
 #import "Three20UI/TTPhotoVersion.h"
 
+// UINavigator
+#import "Three20UINavigator/TTURLObject.h"
+
 @protocol TTPhotoSource;
 
 @protocol TTPhoto <NSObject, TTURLObject>

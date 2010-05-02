@@ -14,6 +14,16 @@
 // limitations under the License.
 //
 
-#import "Three20Style/TTGlobalStyle.h"
+#import "Three20UINavigator/TTBasicNavigator.h"
 
-const CGFloat ttkRounded = -1;
+@interface TTBasicNavigator (TTInternal)
+
+- (void)presentDependantController: (UIViewController*)controller
+                  parentController: (UIViewController*)parentController
+                              mode: (TTNavigationMode)mode
+                          animated: (BOOL)animated
+                        transition: (NSInteger)transition;
+
+- (UIViewController*)getVisibleChildController:(UIViewController*)controller;
+
+@end

@@ -17,15 +17,20 @@
 #import "Three20UI/TTThumbsViewController.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTGlobalUINavigator.h"
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTThumbsDataSource.h"
 #import "Three20UI/TTThumbsTableViewCell.h"
 #import "Three20UI/TTPhoto.h"
 #import "Three20UI/TTPhotoSource.h"
 #import "Three20UI/TTPhotoViewController.h"
 #import "Three20UI/UIViewAdditions.h"
-#import "Three20UI/UIViewControllerAdditions.h"
+
+// UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"
@@ -33,6 +38,7 @@
 
 // Core
 #import "Three20Core/TTGlobalCoreLocale.h"
+#import "Three20Core/TTGlobalCoreRects.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
 static CGFloat kThumbnailRowHeight = 79;

@@ -17,12 +17,14 @@
 #import "Three20UI/TTPickerTextField.h"
 
 // UI
-#import "Three20UI/TTGlobalUINavigator.h"
 #import "Three20UI/TTPickerTextFieldDelegate.h"
 #import "Three20UI/TTTableViewDataSource.h"
 #import "Three20UI/TTPickerViewCell.h"
 #import "Three20UI/UIViewAdditions.h"
 #import "Three20Style/UIFontAdditions.h"
+
+// UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"

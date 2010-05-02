@@ -17,8 +17,6 @@
 #import "Three20UI/TTPhotoView.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTGlobalUINavigator.h"
 #import "Three20UI/TTPhoto.h"
 #import "Three20UI/TTPhotoSource.h"
 #import "Three20UI/TTLabel.h"
@@ -26,6 +24,12 @@
 
 // UI (private)
 #import "Three20UI/TTImageViewInternal.h"
+
+// UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

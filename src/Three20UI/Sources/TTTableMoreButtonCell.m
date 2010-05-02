@@ -17,9 +17,11 @@
 #import "Three20UI/TTTableMoreButtonCell.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
 #import "Three20UI/TTTableMoreButton.h"
 #import "Three20UI/UIViewAdditions.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

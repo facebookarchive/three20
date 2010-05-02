@@ -14,22 +14,8 @@
 // limitations under the License.
 //
 
-// Core
-#import "Three20Core/Three20Core.h"
-
-// Network
-#import "Three20Network/Three20Network.h"
-
-// Style
-#import "Three20Style/Three20Style.h"
-
-// UI
-#import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTGlobalUINavigator.h"
-
 // UI Controllers
 #import "Three20UI/TTNavigator.h"
-#import "Three20UI/TTNavigatorDelegate.h"
 #import "Three20UI/TTViewController.h"
 #import "Three20UI/TTWebController.h"
 #import "Three20UI/TTMessageController.h"
@@ -46,9 +32,6 @@
 #import "Three20UI/TTPostControllerDelegate.h"
 #import "Three20UI/TTTextBarController.h"
 #import "Three20UI/TTTextBarDelegate.h"
-#import "Three20UI/TTURLAction.h"
-#import "Three20UI/TTURLMap.h"
-#import "Three20UI/TTURLObject.h"
 #import "Three20Network/TTURLCache.h"
 
 // UI Views
@@ -159,13 +142,11 @@
 // Additions
 // TODO (jverkoey): Remove these additions after May 20, 2010.
 #import "Three20UI/UIViewAdditions.h"
-#import "Three20UI/UIViewControllerAdditions.h"
 #import "Three20UI/UINavigationControllerAdditions.h"
 #import "Three20UI/UINavigationControllerAdditions.h"
 #import "Three20UI/UITabBarControllerAdditions.h"
 #import "Three20UI/UITableViewAdditions.h"
 #import "Three20UI/UIWebViewAdditions.h"
 #import "Three20UI/UIToolbarAdditions.h"
-#import "Three20UI/UIWindowAdditions.h"
 #import "Three20UI/UINSStringAdditions.h"
 #import "Three20UI/UINSObjectAdditions.h"

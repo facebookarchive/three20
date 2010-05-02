@@ -17,7 +17,7 @@
 #import "Three20UI/TTPhotoViewController.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTThumbsViewController.h"
 #import "Three20UI/TTPhotoSource.h"
 #import "Three20UI/TTPhoto.h"
@@ -25,9 +25,16 @@
 #import "Three20UI/TTActivityLabel.h"
 #import "Three20UI/TTScrollView.h"
 #import "Three20UI/UIViewAdditions.h"
-#import "Three20UI/UIViewControllerAdditions.h"
 #import "Three20UI/UINavigationControllerAdditions.h"
 #import "Three20UI/UIToolbarAdditions.h"
+
+// UINavigator
+#import "Three20UINavigator/TTURLObject.h"
+#import "Three20UINavigator/TTURLMap.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

@@ -17,7 +17,10 @@
 #import "Three20UI/TTModelViewController.h"
 
 // UI
-#import "Three20UI/UIViewControllerAdditions.h"
+#import "Three20UI/TTNavigator.h"
+
+// UICommon
+#import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Network
 #import "Three20Network/TTModel.h"

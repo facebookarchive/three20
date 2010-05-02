@@ -19,9 +19,9 @@
 
 /**
  * This object bundles up a set of parameters and ships them off
- * to TTNavigator's openURLAction method. This object is designed with the chaining principle in
- * mind. Once you've created a TTURLAction object, you can apply any other property to the object
- * via the apply* methods. Each of these methods returns self, allowing you to chain them.
+ * to TTBasicNavigator's openURLAction method. This object is designed with the chaining principle
+ * in mind. Once you've created a TTURLAction object, you can apply any other property to the
+ * object via the apply* methods. Each of these methods returns self, allowing you to chain them.
  *
  * Example:
  * [[TTURLAction actionWithURLPath:@"tt://some/path"] applyAnimated:YES];

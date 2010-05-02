@@ -51,28 +51,28 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E6462811187DF2C00F08CB1 /* extThree20JSON.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON+SBJSON.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = "extThree20JSON+SBJSON";
 		};
 		6E6462891187DF2C00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E6462811187DF2C00F08CB1 /* extThree20JSON.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 6E645BD91187751200F08CB1 /* libextThree20JSON+YAJL.a */;
+			remoteGlobalIDString = 6E645BD91187751200F08CB1;
 			remoteInfo = "extThree20JSON+YAJL";
 		};
 		6E64628B1187DF2C00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E6462811187DF2C00F08CB1 /* extThree20JSON.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* extJSONUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTestsSBJSON;
 		};
 		6E64628E1187E0EC00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E6462811187DF2C00F08CB1 /* extThree20JSON.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 6E645BA31187751200F08CB1 /* extThree20JSON+YAJL */;
+			remoteGlobalIDString = 6E645BA31187751200F08CB1;
 			remoteInfo = "extThree20JSON+YAJL";
 		};
 /* End PBXContainerItemProxy section */

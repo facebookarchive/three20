@@ -17,11 +17,21 @@
 #import "Three20UINavigator/TTBasicNavigator.h"
 
 /**
+ * Shortcut for calling [[TTNavigator navigator] openURL:]
+ */
+UIViewController* TTOpenURL(NSString* URL);
+
+/**
  * A URL-based navigation system with built-in persistence.
  */
 @interface TTNavigator : TTBasicNavigator {
 }
 
 + (TTNavigator*)navigator;
+
+/**
+ * Reloads the content in the visible view controller.
+ */
+- (void)reload;
 
 @end

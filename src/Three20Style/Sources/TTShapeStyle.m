@@ -17,12 +17,12 @@
 #import "Three20Style/TTShapeStyle.h"
 
 // Style
-#import "Three20Style/TTGlobalStyle.h"
 #import "Three20Style/TTStyleContext.h"
 #import "Three20Style/TTShape.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCoreRects.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

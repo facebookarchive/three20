@@ -17,6 +17,7 @@
 #import "Three20UI/TTAlertViewController.h"
 
 // UI
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTAlertViewControllerDelegate.h"
 #import "Three20UI/TTAlertView.h"
 

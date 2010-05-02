@@ -17,8 +17,6 @@
 #import "Three20UI/TTMessageController.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/TTGlobalUINavigator.h"
 #import "Three20UI/TTMessageControllerDelegate.h"
 #import "Three20UI/TTMessageRecipientField.h"
 #import "Three20UI/TTMessageTextField.h"
@@ -28,7 +26,13 @@
 #import "Three20UI/TTTextEditor.h"
 #import "Three20UI/TTTableViewDataSource.h"
 #import "Three20UI/UIViewAdditions.h"
-#import "Three20UI/UIViewControllerAdditions.h"
+
+// UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"
@@ -37,6 +41,7 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTGlobalCoreLocale.h"
+#import "Three20Core/TTGlobalCoreRects.h"
 #import "Three20Core/NSStringAdditions.h"
 
 

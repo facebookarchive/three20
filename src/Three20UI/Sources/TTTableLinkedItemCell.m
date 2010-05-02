@@ -17,7 +17,11 @@
 #import "Three20UI/TTTableLinkedItemCell.h"
 
 // UI
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTTableLinkedItem.h"
+
+// UINavigator
+#import "Three20UINavigator/TTURLMap.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

@@ -16,8 +16,8 @@
 
 #import "Three20UI/TTTableViewCell.h"
 
-// UI
-#import "Three20UI/TTGlobalUI.h"
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 const CGFloat   kTableCellSmallMargin = 6;
 const CGFloat   kTableCellSpacing     = 8;

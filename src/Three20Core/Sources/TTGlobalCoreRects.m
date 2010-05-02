@@ -14,34 +14,24 @@
 // limitations under the License.
 //
 
-#import "Three20UI/UINSObjectAdditions.h"
-
-// UI
-#import "Three20UI/TTNavigator.h"
-
-// UINavigator
-#import "Three20UINavigator/TTURLMap.h"
+#import "Three20Core/TTGlobalCoreRects.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Additions.
- */
-@implementation NSObject (TTCategory)
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)URLValue {
-  return [[TTNavigator navigator].URLMap URLForObject:self];
+CGRect TTRectContract(CGRect rect, CGFloat dx, CGFloat dy) {
+  return CGRectMake(rect.origin.x, rect.origin.y, rect.size.width - dx, rect.size.height - dy);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)URLValueWithName:(NSString*)name {
-  return [[TTNavigator navigator].URLMap URLForObject:self withName:name];
+CGRect TTRectShift(CGRect rect, CGFloat dx, CGFloat dy) {
+  return CGRectOffset(TTRectContract(rect, dx, dy), dx, dy);
 }
 
 
-@end
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGRect TTRectInset(CGRect rect, UIEdgeInsets insets) {
+  return CGRectMake(rect.origin.x + insets.left, rect.origin.y + insets.top,
+                    rect.size.width - (insets.left + insets.right),
+                    rect.size.height - (insets.top + insets.bottom));
+}

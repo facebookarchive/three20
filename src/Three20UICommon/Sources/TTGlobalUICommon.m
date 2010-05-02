@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UICommon/TTGlobalUI.h"
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // UI
 #import "Three20UICommon/UIWindowAdditions.h"

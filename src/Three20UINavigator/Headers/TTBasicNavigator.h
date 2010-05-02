@@ -28,8 +28,6 @@
  * A URL-based navigation system with built-in persistence.
  */
 @interface TTBasicNavigator : NSObject {
-  id<TTNavigatorDelegate>     _delegate;
-
   TTURLMap*                   _URLMap;
 
   UIWindow*                   _window;
@@ -44,9 +42,9 @@
 
   BOOL                        _supportsShakeToReload;
   BOOL                        _opensExternalURLs;
-}
 
-@property (nonatomic, assign) id<TTNavigatorDelegate> delegate;
+  id<TTNavigatorDelegate>     _delegate;
+}
 
 /**
  * The URL map used to translate between URLs and view controllers.
@@ -129,6 +127,11 @@
  */
 @property (nonatomic, readonly) BOOL isDelayed;
 
+@property (nonatomic, assign) id<TTNavigatorDelegate> delegate;
+
+
++ (TTBasicNavigator*)globalNavigator;
++ (void)setGlobalNavigator:(TTBasicNavigator*)navigator;
 
 /**
  * Load and display the view controller with a pattern that matches the URL.
@@ -236,17 +239,4 @@
  */
 - (void)resetDefaults;
 
-/**
- * Reloads the content in the visible view controller.
- */
-- (void)reload;
-
 @end
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// global
-
-/**
- * Shortcut for calling [[TTNavigator navigator] openURL:]
- */
-UIViewController* TTOpenURL(NSString* URL);

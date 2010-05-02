@@ -14,16 +14,20 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTNavigator.h"
+#import "Three20UINavigator/TTBasicNavigator.h"
 
 // UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
 #import "Three20UINavigator/TTURLAction.h"
 #import "Three20UINavigator/TTURLMap.h"
 #import "Three20UINavigator/TTURLNavigatorPattern.h"
 
 // UINavigator (private)
-#import "Three20UINavigator/private/TTNavigatorWindow.h"
+#import "Three20UINavigator/private/TTBasicNavigatorInternal.h"
+
+// UICommon
+#import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"
@@ -32,17 +36,11 @@
 #import "Three20Core/TTDebugFlags.h"
 #import "Three20Core/NSDateAdditions.h"
 
+static TTBasicNavigator* gNavigator = nil;
+
 static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
 static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant";
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-UIViewController* TTOpenURL(NSString* URL) {
-  return [[TTNavigator navigator] openURLAction:
-          [[TTURLAction actionWithURLPath:URL]
-           applyAnimated:YES]];
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,6 +96,21 @@ UIViewController* TTOpenURL(NSString* URL) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (TTBasicNavigator*)globalNavigator {
+  return gNavigator;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)setGlobalNavigator:(TTBasicNavigator*)navigator {
+  if (gNavigator != navigator) {
+    [gNavigator release];
+    gNavigator = [navigator retain];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Private
@@ -128,7 +141,7 @@ UIViewController* TTOpenURL(NSString* URL) {
   }
 
   if (controller.modalViewController) {
-    return [TTNavigator frontViewControllerForController:controller.modalViewController];
+    return [TTBasicNavigator frontViewControllerForController:controller.modalViewController];
 
   } else {
     return controller;
@@ -170,10 +183,10 @@ UIViewController* TTOpenURL(NSString* URL) {
 - (UIViewController*)frontViewController {
   UINavigationController* navController = self.frontNavigationController;
   if (navController) {
-    return [TTNavigator frontViewControllerForController:navController];
+    return [TTBasicNavigator frontViewControllerForController:navController];
 
   } else {
-    return [TTNavigator frontViewControllerForController:_rootViewController];
+    return [TTBasicNavigator frontViewControllerForController:_rootViewController];
   }
 }
 
@@ -290,23 +303,11 @@ UIViewController* TTOpenURL(NSString* URL) {
       didPresentNewController = NO;
 
     } else if (nil != parentController) {
-      if ([controller isKindOfClass:[TTPopupViewController class]]) {
-        TTPopupViewController* popupViewController = (TTPopupViewController*)controller;
-        [self presentPopupController: popupViewController
-                    parentController: parentController
-                            animated: animated];
-
-      } else if (mode == TTNavigationModeModal) {
-        [self presentModalController: controller
-                    parentController: parentController
-                            animated: animated
-                          transition: transition];
-
-      } else {
-        [parentController addSubcontroller: controller
-                                  animated: animated
-                                transition: transition];
-      }
+      [self presentDependantController: controller
+                      parentController: parentController
+                                  mode: mode
+                              animated: animated
+                            transition: transition];
     }
   }
 
@@ -350,6 +351,15 @@ UIViewController* TTOpenURL(NSString* URL) {
     }
   }
   return didPresentNewController;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @protected
+ */
+- (void)didRestoreController:(UIViewController*)controller {
+  // Purposefully empty implementation. Meant to be overridden.
 }
 
 
@@ -411,10 +421,7 @@ UIViewController* TTOpenURL(NSString* URL) {
       [controller restoreView:action.state];
       controller.frozenState = action.state;
 
-      if ([controller isKindOfClass:[TTModelViewController class]]) {
-        TTModelViewController* modelViewController = (TTModelViewController*)controller;
-        modelViewController.model;
-      }
+      [self didRestoreController:controller];
     }
 
     if ([_delegate respondsToSelector:@selector(navigator:willOpenURL:inViewController:)]) {
@@ -449,6 +456,15 @@ UIViewController* TTOpenURL(NSString* URL) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @protected
+ */
+- (Class)windowClass {
+  return [UIWindow class];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark NSNotifications
@@ -476,7 +492,7 @@ UIViewController* TTOpenURL(NSString* URL) {
       _window = [keyWindow retain];
 
     } else {
-      _window = [[TTNavigatorWindow alloc] initWithFrame:TTScreenBounds()];
+      _window = [[[self windowClass] alloc] initWithFrame:TTScreenBounds()];
       [_window makeKeyAndVisible];
     }
   }
@@ -487,19 +503,16 @@ UIViewController* TTOpenURL(NSString* URL) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)visibleViewController {
   UIViewController* controller = _rootViewController;
-  while (controller) {
+  while (nil != controller) {
     UIViewController* child = controller.modalViewController;
-    if (!child) {
-      UISearchDisplayController* search = controller.searchDisplayController;
-      if (search && search.active && [search isKindOfClass:[TTSearchDisplayController class]]) {
-        TTSearchDisplayController* ttsearch = (TTSearchDisplayController*)search;
-        child = ttsearch.searchResultsViewController;
-      } else {
-        child = controller.topSubcontroller;
-      }
+
+    if (nil == child) {
+      child = [self getVisibleChildController:controller];
     }
-    if (child) {
+
+    if (nil != child) {
       controller = child;
+
     } else {
       return controller;
     }
@@ -802,13 +815,47 @@ UIViewController* TTOpenURL(NSString* URL) {
 }
 
 
+@end
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)reload {
-  UIViewController* controller = self.visibleViewController;
-  if ([controller isKindOfClass:[TTModelViewController class]]) {
-    TTModelViewController* ttcontroller = (TTModelViewController*)controller;
-    [ttcontroller reload];
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation TTBasicNavigator (TTInternal)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Present a view controller that strictly depends on the existence of the parent controller.
+ *
+ * @protected
+ */
+- (void)presentDependantController: (UIViewController*)controller
+                  parentController: (UIViewController*)parentController
+                              mode: (TTNavigationMode)mode
+                          animated: (BOOL)animated
+                        transition: (NSInteger)transition {
+
+  if (mode == TTNavigationModeModal) {
+    [self presentModalController: controller
+                parentController: parentController
+                        animated: animated
+                      transition: transition];
+
+  } else {
+    [parentController addSubcontroller: controller
+                              animated: animated
+                            transition: transition];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @protected
+ */
+- (UIViewController*)getVisibleChildController:(UIViewController*)controller {
+  return controller.topSubcontroller;
 }
 
 

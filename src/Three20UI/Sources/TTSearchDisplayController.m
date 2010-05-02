@@ -17,9 +17,11 @@
 #import "Three20UI/TTSearchDisplayController.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
 #import "Three20UI/TTTableViewController.h"
 #import "Three20UI/TTTableViewDataSource.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"

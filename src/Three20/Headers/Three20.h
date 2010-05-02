@@ -63,6 +63,12 @@
 // Style
 #import "Three20Style/Three20Style.h"
 
+// UICommon
+#import "Three20UICommon/Three20UICommon.h"
+
+// UINavigator
+#import "Three20UINavigator/Three20UINavigator.h"
+
 // UI
 #import "Three20UI/Three20UI.h"
 

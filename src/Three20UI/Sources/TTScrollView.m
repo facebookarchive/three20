@@ -17,10 +17,12 @@
 #import "Three20UI/TTScrollView.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
 #import "Three20UI/TTScrollViewDelegate.h"
 #import "Three20UI/TTScrollViewDataSource.h"
 #import "Three20UI/UIViewAdditions.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"

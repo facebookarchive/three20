@@ -17,8 +17,14 @@
 #import "Three20UI/UINavigationControllerAdditions.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
-#import "Three20UI/UIViewControllerAdditions.h"
+#import "Three20UI/TTNavigator.h"
+
+// UINavigator
+#import "Three20UINavigator/TTURLMap.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Network
 #import "Three20Network/TTURLRequestQueue.h"

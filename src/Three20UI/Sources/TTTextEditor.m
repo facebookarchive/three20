@@ -29,6 +29,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCoreRects.h"
 
 static const CGFloat kPaddingX = 8;
 static const CGFloat kPaddingY = 9;

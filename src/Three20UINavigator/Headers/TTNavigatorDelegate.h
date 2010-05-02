@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class TTNavigator;
+@class TTBasicNavigator;
 
 @protocol TTNavigatorDelegate <NSObject>
 @optional
@@ -26,7 +26,7 @@
  * Asks if the URL should be opened and allows the delegate to prevent it.
  * See -navigator:URLToOpen: for a superset of functionality
  */
-- (BOOL)navigator:(TTNavigator*)navigator shouldOpenURL:(NSURL*)URL;
+- (BOOL)navigator:(TTBasicNavigator*)navigator shouldOpenURL:(NSURL*)URL;
 
 /**
  * Asks if the URL should be opened and allows the delegate to return a different URL to open
@@ -35,14 +35,14 @@
  * This is a superset of the functionality of -navigator:shouldOpenURL:. Returning YES from that
  * method is equivalent to returning URL from this method.
  */
-- (NSURL*)navigator:(TTNavigator*)navigator URLToOpen:(NSURL*)URL;
+- (NSURL*)navigator:(TTBasicNavigator*)navigator URLToOpen:(NSURL*)URL;
 
 /**
  * The URL is about to be opened in a controller.
  *
  * If the controller argument is nil, the URL is going to be opened externally.
  */
-- (void)navigator:(TTNavigator*)navigator willOpenURL:(NSURL*)URL
+- (void)navigator:(TTBasicNavigator*)navigator willOpenURL:(NSURL*)URL
  inViewController:(UIViewController*)controller;
 
 @end

@@ -18,6 +18,8 @@ cleanAction () {
   rm -f ${SRCROOT}/Three20Core/*.h
   rm -f ${SRCROOT}/Three20Network/*.h
   rm -f ${SRCROOT}/Three20Style/*.h
+  rm -f ${SRCROOT}/Three20UICommon/*.h
+  rm -f ${SRCROOT}/Three20UINavigator/*.h
   rm -f ${SRCROOT}/Three20UI/*.h
   rm -f ${SRCROOT}/Three20/*.h
 }

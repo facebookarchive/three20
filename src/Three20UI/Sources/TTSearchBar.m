@@ -17,12 +17,14 @@
 #import "Three20UI/TTSearchBar.h"
 
 // UI
-#import "Three20UI/TTGlobalUI.h"
 #import "Three20UI/TTSearchTextField.h"
 #import "Three20UI/TTButton.h"
 #import "Three20UI/UIViewAdditions.h"
 #import "Three20UI/UITableViewAdditions.h"
 #import "Three20Style/UIFontAdditions.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

@@ -17,6 +17,7 @@
 #import "Three20UI/TTActionSheetController.h"
 
 // UI
+#import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTActionSheetControllerDelegate.h"
 #import "Three20UI/TTActionSheet.h"
 
