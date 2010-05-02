@@ -55,6 +55,8 @@
 
 /**
  * Initialize a TTURLAction object with a URL path. The path is required.
+ *
+ * Designated initializer.
  */
 - (id)initWithURLPath:(NSString*)urlPath;
 
