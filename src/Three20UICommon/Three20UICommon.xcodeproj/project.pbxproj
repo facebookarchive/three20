@@ -71,6 +71,7 @@
 		6E6458CB11875F8400F08CB1 /* Three20UICommon_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UICommon_Prefix.pch; path = Headers/Three20UICommon_Prefix.pch; sourceTree = "<group>"; };
 		6E6459371187645D00F08CB1 /* UICommonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICommonTests.m; path = UnitTests/UICommonTests.m; sourceTree = "<group>"; };
 		6E7F9475118E1DC600443B46 /* UIViewControllerAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewControllerAdditionTests.m; path = UnitTests/UIViewControllerAdditionTests.m; sourceTree = "<group>"; };
+		6E7F951C118E241E00443B46 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
 		6EDAE969118C99580008133C /* Three20UICommon+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20UICommon+Additions.h"; path = "Headers/Three20UICommon+Additions.h"; sourceTree = "<group>"; };
 		6EE7363D11849AD500A35176 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EE7364B11849B3D00A35176 /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
@@ -112,6 +113,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				6E7F951C118E241E00443B46 /* README.mdown */,
 				6E6454731184D2CD00F08CB1 /* Three20UICommon.h */,
 				6EDAE969118C99580008133C /* Three20UICommon+Additions.h */,
 				6E6458CB11875F8400F08CB1 /* Three20UICommon_Prefix.pch */,
