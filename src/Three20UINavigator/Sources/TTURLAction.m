@@ -17,6 +17,7 @@
 #import "Three20UINavigator/TTURLAction.h"
 
 // Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTDebug.h"
 
 
@@ -48,6 +49,15 @@
     self.animated = NO;
     self.withDelay = NO;
     self.transition = UIViewAnimationTransitionNone;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+  if (self = [self initWithURLPath:nil]) {
   }
 
   return self;
