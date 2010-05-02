@@ -17,16 +17,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "Three20UINavigator/TTNavigationMode.h"
+
 @class TTURLNavigatorPattern;
 @class TTURLGeneratorPattern;
-
-typedef enum {
-  TTNavigationModeNone,
-  TTNavigationModeCreate,            // a new view controller is created each time
-  TTNavigationModeShare,             // a new view controller is created, cached and re-used
-  TTNavigationModeModal,             // a new view controller is created and presented modally
-  TTNavigationModeExternal,          // an external app will be opened
-} TTNavigationMode;
 
 @interface TTURLMap : NSObject {
   NSMutableDictionary*    _objectMappings;

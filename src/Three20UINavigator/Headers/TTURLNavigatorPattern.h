@@ -16,7 +16,7 @@
 
 // UI
 #import "Three20UINavigator/TTURLPattern.h"
-#import "Three20UINavigator/TTURLMap.h" // For TTNavigationMode
+#import "Three20UINavigator/TTNavigationMode.h"
 
 @interface TTURLNavigatorPattern : TTURLPattern {
   Class             _targetClass;

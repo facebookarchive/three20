@@ -14,22 +14,10 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
-
-// Navigator
-#import "Three20UINavigator/TTBaseNavigator.h"
-#import "Three20UINavigator/TTNavigatorDelegate.h"
-
-#import "Three20UINavigator/TTURLObject.h"
-
-// URL Action
-#import "Three20UINavigator/TTURLAction.h"
-
-// URL Map
-#import "Three20UINavigator/TTURLMap.h"
-#import "Three20UINavigator/TTNavigationMode.h"
-
-// URL Pattern
-#import "Three20UINavigator/TTURLPattern.h"
-#import "Three20UINavigator/TTURLGeneratorPattern.h"
-#import "Three20UINavigator/TTURLNavigatorPattern.h"
+typedef enum {
+  TTNavigationModeNone,
+  TTNavigationModeCreate,            // a new view controller is created each time
+  TTNavigationModeShare,             // a new view controller is created, cached and re-used
+  TTNavigationModeModal,             // a new view controller is created and presented modally
+  TTNavigationModeExternal,          // an external app will be opened
+} TTNavigationMode;
