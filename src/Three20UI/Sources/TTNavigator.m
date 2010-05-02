@@ -61,6 +61,8 @@ UIViewController* TTOpenURL(NSString* URL) {
     [super setGlobalNavigator:navigator];
     [navigator release];
   }
+  // If this asserts, it's likely that you're attempting to use two different navigator
+  // implementations simultaneously. Be consistent!
   TTDASSERT([navigator isKindOfClass:[TTNavigator class]]);
   return (TTNavigator*)navigator;
 }

@@ -19,6 +19,9 @@
 // UI
 #import "Three20UI/TTNavigator.h"
 
+// Core
+#import "Three20Core/TTDebug.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,6 +33,9 @@
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
   if (event.type == UIEventSubtypeMotionShake
       && [TTNavigator navigator].supportsShakeToReload) {
+    // If you're going to use a custom navigator implementation, you need to ensure that you
+    // implement the reload method. If you're inheriting from TTNavigator, then you're fine.
+    TTDASSERT([[TTNavigator navigator] respondsToSelector:@selector(reload)]);
     [(TTNavigator*)[TTNavigator navigator] reload];
   }
 }
