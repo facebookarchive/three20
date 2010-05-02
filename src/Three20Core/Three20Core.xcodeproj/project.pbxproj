@@ -84,6 +84,7 @@
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E6454531184BE8600F08CB1 /* Three20Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core.h; path = Headers/Three20Core.h; sourceTree = "<group>"; };
 		6E6454541184BE8600F08CB1 /* Three20Core+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Core+Additions.h"; path = "Headers/Three20Core+Additions.h"; sourceTree = "<group>"; };
+		6E7F9310118E0DA800443B46 /* Protect.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Protect.command; path = ../scripts/Protect.command; sourceTree = SOURCE_ROOT; };
 		6EB4608E1183D14800685649 /* CoreAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreAdditionTests.m; path = UnitTests/CoreAdditionTests.m; sourceTree = "<group>"; };
 		6EB4608F1183D14800685649 /* CoreGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreGlobalTests.m; path = UnitTests/CoreGlobalTests.m; sourceTree = "<group>"; };
 		6EB460921183D16000685649 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -131,6 +132,7 @@
 				6E178E761183C8B6003B099E /* TTDebugFlags.h */,
 				6EB4609C1183D1E000685649 /* Source */,
 				6ED117ED1183BE770096AEBF /* Tests */,
+				6E7F930B118E0D9000443B46 /* Scripts */,
 				6ED118E41183C38A0096AEBF /* Configurations */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -143,6 +145,14 @@
 				6ED118421183C01F0096AEBF /* Markup Stripper */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		6E7F930B118E0D9000443B46 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				6E7F9310118E0DA800443B46 /* Protect.command */,
+			);
+			name = Scripts;
 			sourceTree = "<group>";
 		};
 		6EB4609C1183D1E000685649 /* Source */ = {
@@ -349,8 +359,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "chmod a-w ${CONFIGURATION_BUILD_DIR}${PUBLIC_HEADERS_FOLDER_PATH}/*.h";
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
 		};
 		EB9E6C6010B6A8F800DE563C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

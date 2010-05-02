@@ -925,8 +925,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "chmod a-w ${CONFIGURATION_BUILD_DIR}${PUBLIC_HEADERS_FOLDER_PATH}/*.h";
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
 		};
 		EB9E6C6010B6A8F800DE563C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

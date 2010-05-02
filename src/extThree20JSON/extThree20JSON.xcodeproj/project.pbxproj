@@ -466,6 +466,7 @@
 			buildConfigurationList = 6E645BD51187751200F08CB1 /* Build configuration list for PBXNativeTarget "extThree20JSON+YAJL" */;
 			buildPhases = (
 				6E645BA81187751200F08CB1 /* Headers */,
+				6E7F9372118E0EEB00443B46 /* Protect Copied Headers */,
 				6E645BC01187751200F08CB1 /* Sources */,
 				6E645BD41187751200F08CB1 /* Frameworks */,
 			);
@@ -606,8 +607,22 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "chmod a-w ${CONFIGURATION_BUILD_DIR}${PUBLIC_HEADERS_FOLDER_PATH}/*.h";
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
+		};
+		6E7F9372118E0EEB00443B46 /* Protect Copied Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Protect Copied Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
 		};
 		EB9E6C6010B6A8F800DE563C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
