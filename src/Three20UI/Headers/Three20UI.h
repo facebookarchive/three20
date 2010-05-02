@@ -138,15 +138,3 @@
 #import "Three20UI/TTThumbView.h"
 
 #import "Three20UI/TTRecursiveProgress.h"
-
-// Additions
-// TODO (jverkoey): Remove these additions after May 20, 2010.
-#import "Three20UI/UIViewAdditions.h"
-#import "Three20UI/UINavigationControllerAdditions.h"
-#import "Three20UI/UINavigationControllerAdditions.h"
-#import "Three20UI/UITabBarControllerAdditions.h"
-#import "Three20UI/UITableViewAdditions.h"
-#import "Three20UI/UIWebViewAdditions.h"
-#import "Three20UI/UIToolbarAdditions.h"
-#import "Three20UI/UINSStringAdditions.h"
-#import "Three20UI/UINSObjectAdditions.h"

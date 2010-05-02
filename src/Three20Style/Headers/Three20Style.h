@@ -86,9 +86,3 @@
 #import "Three20Style/TTStyledImageFrame.h"
 
 #import "Three20Style/TTStyledTextParser.h"
-
-// Additions
-// TODO (jverkoey): Remove these additions after May 20, 2010.
-#import "Three20Style/UIColorAdditions.h"
-#import "Three20Style/UIFontAdditions.h"
-#import "Three20Style/UIImageAdditions.h"
