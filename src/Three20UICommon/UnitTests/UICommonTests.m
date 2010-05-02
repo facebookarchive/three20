@@ -18,7 +18,9 @@
 // for unit test macros.
 
 #import <SenTestingKit/SenTestingKit.h>
-#import <UIKit/UIKit.h>
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 @interface UICommonTests : SenTestCase {
 }
@@ -33,8 +35,42 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testTruth {
-  STAssertTrue(true, @"True!");
+- (void)testTTOSVersionIsAtLeast {
+#ifdef __IPHONE_3_2
+  STAssertTrue(TTOSVersionIsAtLeast(3.2), @"Should be at least 3.2.");
+#else
+  STAssertTrue(!TTOSVersionIsAtLeast(3.2), @"Should be lower than 3.2.");
+#endif
+
+#ifdef __IPHONE_3_1
+  STAssertTrue(TTOSVersionIsAtLeast(3.1), @"Should be at least 3.1.");
+#else
+  STAssertTrue(!TTOSVersionIsAtLeast(3.1), @"Should be lower than 3.1.");
+#endif
+
+#ifdef __IPHONE_3_0
+  STAssertTrue(TTOSVersionIsAtLeast(3.0), @"Should be at least 3.0.");
+#else
+  STAssertTrue(!TTOSVersionIsAtLeast(3.0), @"Should be lower than 3.0.");
+#endif
+
+#ifdef __IPHONE_2_2
+  STAssertTrue(TTOSVersionIsAtLeast(2.2), @"Should be at least 2.2.");
+#else
+  STAssertTrue(!TTOSVersionIsAtLeast(2.2), @"Should be lower than 2.2.");
+#endif
+
+#ifdef __IPHONE_2_1
+  STAssertTrue(TTOSVersionIsAtLeast(2.1), @"Should be at least 2.1.");
+#else
+  STAssertTrue(!TTOSVersionIsAtLeast(2.1), @"Should be lower than 2.1.");
+#endif
+
+#ifdef __IPHONE_2_0
+  STAssertTrue(TTOSVersionIsAtLeast(2.0), @"Should be at least 2.0.");
+#else
+  STAssertTrue(!TTOSVersionIsAtLeast(2.0), @"Should be lower than 2.0.");
+#endif
 }
 
 
