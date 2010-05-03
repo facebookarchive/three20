@@ -21,8 +21,6 @@ extern NSString* kCommonXMLType_Unknown;
 /**
  * An implementation of the NSXMLParser object that turns XML into NSObjects.
  *
- * Sample projects: TTTwitter
- *
  * Uses a simple stack-based traversal of the XML document to recursively create the objects
  * at each level. Upon successful completion, rootObject will be an NSDictionary object.
  *
