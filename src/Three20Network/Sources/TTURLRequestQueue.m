@@ -542,15 +542,19 @@ static TTURLRequestQueue* gMainQueue = nil;
           // information to the etag, such as -gzip for a gzipped request. However, the etag
           // standard states that etags are defined as a quoted string, and that is all.
           NSRange firstQuote = [etag rangeOfString:@"\""];
-          NSRange lastQuote = [etag rangeOfString:@"\"" options:NSBackwardsSearch];
-          if (0 == firstQuote.length || 0 == lastQuote.length ||
-              firstQuote.location == lastQuote.location) {
+          NSRange secondQuote = [etag rangeOfString: @"\""
+                                            options: 0
+                                              range: NSMakeRange(firstQuote.location + 1,
+                                                                 etag.length
+                                                                 - (firstQuote.location + 1))];
+          if (0 == firstQuote.length || 0 == secondQuote.length ||
+              firstQuote.location == secondQuote.location) {
             TTDWARNING(@"Invalid etag format. Unable to find a quoted key.");
 
           } else {
             NSRange keyRange;
             keyRange.location = firstQuote.location;
-            keyRange.length = (lastQuote.location - firstQuote.location) + 1;
+            keyRange.length = (secondQuote.location - firstQuote.location) + 1;
             NSString* etagKey = [etag substringWithRange:keyRange];
             TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Response etag: %@", etagKey);
             [[TTURLCache sharedCache] storeEtag:etagKey forKey:loader.cacheKey];
