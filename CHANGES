@@ -1,3 +1,8 @@
+Changes since April 23, 2010
+
+- [NEW] Three20 has been split into modular libraries. Please read the
+        Articles/AboutModules.mdown file to learn more about the process.
+
 Changes since April 09, 2010
 
 - [NEW] New +Additions library header files.
