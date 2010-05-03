@@ -8,6 +8,8 @@ Changes since April 23, 2010
 - [NEW] Add Articles/ directory dedicated to in-depth discussions of Three20
         components.
 
+- [NEW] Etag support. See Articles/Network/Etag.mdown for more details.
+
 Changes since April 09, 2010
 
 - [NEW] New +Additions library header files.
