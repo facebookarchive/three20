@@ -190,7 +190,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6E08B4131182869700DA1579 /* Twitter */ = {
+		6E08B4131182869700DA1579 /* Search Feed Controller */ = {
 			isa = PBXGroup;
 			children = (
 				6E08B42D118286E700DA1579 /* TTFacebookSearchFeedViewController.h */,
@@ -198,7 +198,7 @@
 				6E08B4171182869700DA1579 /* Model */,
 				6E08B4141182869700DA1579 /* Data Source */,
 			);
-			name = Twitter;
+			name = "Search Feed Controller";
 			sourceTree = "<group>";
 		};
 		6E08B4141182869700DA1579 /* Data Source */ = {
@@ -241,7 +241,7 @@
 		6E5F1FA7117FC590004BEBA9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6E08B4131182869700DA1579 /* Twitter */,
+				6E08B4131182869700DA1579 /* Search Feed Controller */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
