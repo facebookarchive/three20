@@ -38,7 +38,7 @@
 }
 
 /**
- * Disables the disk cache. Does not disable etag disk caching.
+ * Disables the disk cache. Disables etag support as well.
  */
 @property (nonatomic) BOOL disableDiskCache;
 

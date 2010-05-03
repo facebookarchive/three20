@@ -17,7 +17,7 @@
 /**
  * Facts concerning cache policies:
  *
- * - Using NoCache will explicitly disable Etag support.
+ * - Using NoCache will also disable Etag support.
  */
 typedef enum {
   TTURLRequestCachePolicyNone    = 0,
