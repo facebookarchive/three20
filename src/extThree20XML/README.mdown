@@ -1,0 +1,28 @@
+
+extXML
+======
+
+This extension provides XML support.
+
+Dependencies
+------------
+
+* Core
+* Network
+
+Using it in your App
+--------------------
+
+Add the `extThree20XML.xcodeproj` file to your project. Add `libextThree20XML.a` to your
+"Link Binary With Libraries" phase, and add `extThree20XML` as a dependency.
+
+Import the following into your precompiled header or wherever you need access to
+`TTURLXMLResponse`.
+
+    #import "extThree20XML/extThree20XML.h"
+
+Breakdown
+---------
+
+Use `TTURLXMLResponse` to handle XML responses. You can also use the provided `TTXMLParser` to
+do on-the-fly XML parsing. Please read the `TTXMLParser` before using it for anything large.

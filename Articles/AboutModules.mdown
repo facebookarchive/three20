@@ -6,10 +6,10 @@ First, some history.
 
 Three20 was originally built by Joe Hewitt as part of the Facebook for iPhone app. Since
 then, the library has gone on to be used by countless developers in their efforts to
-create amazing apps for the App Store. The Three20 community itself has also blossomed to
+create amazing apps for the App Store. The Three20 community itself has blossomed to
 include more than 800 developers in the Google Group and more than 2000 watchers on GitHub.
 
-The library originally included a number of powerful features, including the style system,
+The library originally debuted with a number of powerful features, including the style system,
 rethought table controllers and data sources, and a navigator with persistence. As time
 progressed, more features were added to the library, and Three20 continued to prove to be a
 versatile tool in many iPhone developers' arsenals on the App Store battlefield. Debug
@@ -38,9 +38,8 @@ drawing lines in the sand in order to create a conceptual divide between the fou
 
 With the lines in the sand drawn, it became much easier to begin tearing apart
 interdependencies between the four components of Three20. Two new libraries for Core and Network
-were built separately from the rest of the source. For the
-first time since Three20 was introduced, it was possible to use aspects of Three20
-**without pulling in the entire library**.
+were then built separately from the rest of the source. For the first time since Three20
+was introduced, it was possible to use aspects of Three20 **without pulling in the entire library**.
 
 But a limitation with this system was quickly brought to light. If we were to
 continue building separate libraries for each subsection of Three20, then the libraries
@@ -60,8 +59,8 @@ Modular Three20
 ---------------
 
 Three20 is now split into a set of libraries that, brought together, compose the original
-Three20 library. The libraries are listed below for your information (and, realistically,
-won't be properly kept up-to-date here):
+Three20 library. The libraries are listed below for your information (kept up-to-date in the
+DependencyCharts.mdown article):
 
     ------------------------------------------
     |                    UI                  |
@@ -89,6 +88,7 @@ were structured like a building; the lowest levels are the foundation and
 the upper levels depend on the lower levels for support. Each "box" in the diagram
 is a library.
 
+
 What's Changed
 --------------
 
@@ -112,6 +112,7 @@ of Three20.
 
 #### The New
 
+    Articles/              <- Articles, such as this one, discussing Three20
     Build/                 <- All build output, including Products
     Build/Products/        <- The products of all libs and samples
     samples/               <- All sample code
@@ -139,10 +140,10 @@ use it by itself.
 
 Another notable change is the unification of the build output into a single
 directory. This was done because of the way that headers are now handled;
-all headers are copied into the `Build/Products/three20/` directory.
-This makes it possible to define the noted directory as the "header search path" for
-all libraries instead of adding each project's `Headers` directory to the header
-search path.
+all headers are copied into the `Build/Products/three20/` directory. Go check it out right now
+if you've already built any of the new libs. This makes it possible to define the
+noted directory as the "header search path" for all libraries instead of adding
+each project's `Headers` directory to the header search path.
 
 A nice side effect of having a unified build directory is that it makes it possible
 to delete all build output by deleting a single directory. When hacking on
@@ -153,7 +154,7 @@ that the library isn't being built with phantom files.
 ### Imports
 
 **Who does this impact?** Anyone who has imported headers other than
-`Three20/Three20.h`.
+`Three20/Three20.h` in their projects.
 
 When Three20 was built as a single library, all header files were in the src/Three20
 directory. This made importing files as simple as
@@ -164,7 +165,7 @@ Now that all headers are placed in their respective library's `Headers/` directo
 above import is no longer how you will import Three20 headers.
 
 Instead, you need to be aware of which library the header is in. In the above example,
-we were importing `TTNavigator.h` which resides in the `Three20UINavigator` library,
+we were importing `TTNavigator.h`, which resides in the `Three20UINavigator` library,
 so we'd now use
 
     #import "Three20UINavigator/TTNavigator.h"
@@ -172,7 +173,7 @@ so we'd now use
 This follows for every library in the new Three20.
 
 You will also need to update your header search path to use `Build/Products/three20` instead
-of `src/Three20`.
+of `src/Three20` (see ***Migrating to the New Three20***).
 
 
 Backwards-Compatibility
@@ -180,15 +181,17 @@ Backwards-Compatibility
 
 The new Three20 provides backwards-compatibility with projects that still use the
 single library design. This has been accomplished by maintaining the paths of the
-old project and bundle, and making the old Three20 project link to the
-new Three20 libs. A script has been added to the legacy lib that copies all headers
-into their old location in the event that a project directly references any headers.
+old project and bundle, and making the old Three20 project (referred to as the
+"legacy" project/lib) link to the new Three20 libs. A script has been added to the legacy
+lib that copies all headers into their old location in the event that a project
+directly references any headers.
 
 A fair effort has been placed in making it likely that when you pull the latest
 Three20, you'll still be able to build your project. However, no endeavor of this
 magnitude is likely to go off without a hiccup, so if you have any questions please
 feel free to email Jeff (jverkoey@gmail.com) or the Google news group
 (three20@googlegroups.com).
+
 
 Migrating to the New Three20
 ----------------------------
@@ -205,15 +208,18 @@ If you use the old Three20 library, migrating to the new one is a fairly simple 
         src/Three20/Three20.xcodeproj <- The new Three20 lib (about 90KB)
 3. Select the `Three20.xcodeproj` item in Xcode that you just created and look at
    the "Detail" tab.
-4. Ensure that the checkbox beside `libThree20.a` is checked. If not, check it.
+4. Ensure that the checkbox beside `libThree20.a` is checked. If not, check it.  
+   Alternatively, you can expand the Three20 project and drag libThree20.a to your
+   target's "Link Binary With Libraries" action.
 5. In Xcode's app menu, click `Project => Edit Active Target`.
 6. Click the "General" tab.
 7. Click the plus button below "Direct Dependencies" and add `Three20`.
 8. Click the "Build" tab.
 9. Add `../three20/Build/Products/three20` to "Header Search Paths" and remove
    `../three20/src/`  
-   **Note:** Change the relative path accordingly.
+   **Note:** Change the relative path (`../`) accordingly.
 10. Hit build. You will now be building your app with the new modular libs.
+
 
 Troubleshooting
 ---------------
