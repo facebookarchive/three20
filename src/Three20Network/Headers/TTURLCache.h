@@ -118,6 +118,16 @@
 - (BOOL)hasDataForURL:(NSString*)URL;
 
 /**
+ * Determines if there is a cache entry for a key.
+ */
+- (BOOL)hasDataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge;
+
+/**
+ * Determines if there is an image cache entry for a URL.
+ */
+- (BOOL)hasImageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk;
+
+/**
  * Gets the data for a URL from the cache if it exists.
  *
  * @return nil if the URL is not cached.

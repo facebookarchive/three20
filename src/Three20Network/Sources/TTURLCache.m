@@ -215,6 +215,23 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// TODO (jverkoey May 3, 2010): Clean up this redundant code.
+- (BOOL)imageExistsFromBundle:(NSString*)URL {
+  NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
+  NSFileManager* fm = [NSFileManager defaultManager];
+  return [fm fileExistsAtPath:path];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)imageExistsFromDocuments:(NSString*)URL {
+  NSString* path = TTPathForDocumentsResource([URL substringFromIndex:12]);
+  NSFileManager* fm = [NSFileManager defaultManager];
+  return [fm fileExistsAtPath:path];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImage*)loadImageFromBundle:(NSString*)URL {
   NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
   NSData* data = [NSData dataWithContentsOfFile:path];
@@ -331,6 +348,24 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasDataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge {
+  NSString* filePath = [self cachePathForKey:key];
+  NSFileManager* fm = [NSFileManager defaultManager];
+  if ([fm fileExistsAtPath:filePath]) {
+    NSDictionary* attrs = [fm attributesOfItemAtPath:filePath error:nil];
+    NSDate* modified = [attrs objectForKey:NSFileModificationDate];
+    if ([modified timeIntervalSinceNow] < -expirationAge) {
+      return NO;
+    }
+
+    return YES;
+  }
+
+  return NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)dataForKey:(NSString*)key expires:(NSTimeInterval)expirationAge
     timestamp:(NSDate**)timestamp {
   NSString* filePath = [self cachePathForKey:key];
@@ -349,6 +384,23 @@ static NSMutableDictionary* gNamedCaches = nil;
   }
 
   return nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)hasImageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
+  BOOL hasImage = (nil != [_imageCache objectForKey:URL]);
+
+  if (!hasImage && fromDisk) {
+    if (TTIsBundleURL(URL)) {
+      hasImage = [self imageExistsFromBundle:URL];
+
+    } else if (TTIsDocumentsURL(URL)) {
+      hasImage = [self imageExistsFromDocuments:URL];
+    }
+  }
+
+  return hasImage;
 }
 
 

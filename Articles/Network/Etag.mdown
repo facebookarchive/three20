@@ -30,9 +30,3 @@ The Three20 Etag procedure is as follows:
 * If we are, make the request and provide the cached Etag, if one exists.
 * Upon receipt of a 200 response, cache the Etag key if present.
 * Upon receipt of a 304 response, load the data from the cache.
-
-Known Issues
-============
-
-* May 3, 2010: If an Etag key exists, but the corresponding data cache has been removed,
-               Three20 will not correctly make the request again.

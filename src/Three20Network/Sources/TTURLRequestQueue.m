@@ -93,6 +93,23 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// TODO (jverkoey May 3, 2010): Clean up this redundant code.
+- (BOOL)dataExistsInBundle:(NSString*)URL {
+  NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
+  NSFileManager* fm = [NSFileManager defaultManager];
+  return [fm fileExistsAtPath:path];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)dataExistsInDocuments:(NSString*)URL {
+  NSString* path = TTPathForDocumentsResource([URL substringFromIndex:12]);
+  NSFileManager* fm = [NSFileManager defaultManager];
+  return [fm fileExistsAtPath:path];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)loadFromBundle:(NSString*)URL error:(NSError**)error {
   NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
   NSFileManager* fm = [NSFileManager defaultManager];
@@ -159,6 +176,29 @@ static TTURLRequestQueue* gMainQueue = nil;
   }
 
   return NO;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)cacheDataExists: (NSString*)URL
+               cacheKey: (NSString*)cacheKey
+                expires: (NSTimeInterval)expirationAge
+               fromDisk: (BOOL)fromDisk {
+  BOOL hasData = [[TTURLCache sharedCache] hasImageForURL:URL fromDisk:fromDisk];
+
+  if (!hasData && fromDisk) {
+    if (TTIsBundleURL(URL)) {
+      hasData = [self dataExistsInBundle:URL];
+
+    } else if (TTIsDocumentsURL(URL)) {
+      hasData = [self dataExistsInDocuments:URL];
+
+    } else {
+      hasData = [[TTURLCache sharedCache] hasDataForKey:cacheKey expires:expirationAge];
+    }
+  }
+
+  return hasData;
 }
 
 
@@ -481,7 +521,12 @@ static TTURLRequestQueue* gMainQueue = nil;
       NSString* etag = [[TTURLCache sharedCache] etagForKey:request.cacheKey];
       TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Etag: %@", etag);
 
-      if (TTIsStringWithAnyText(etag)) {
+      if (TTIsStringWithAnyText(etag)
+          && [self cacheDataExists: request.urlPath
+                          cacheKey: request.cacheKey
+                           expires: request.cacheExpirationAge
+                          fromDisk: !_suspended
+                                    && (request.cachePolicy & TTURLRequestCachePolicyDisk)]) {
         // By setting the etag here, we let the server know what the last "version" of the file
         // was that we saw. If the file has changed since this etag, we'll get data back in our
         // response. Otherwise we'll get a 304.
@@ -578,11 +623,6 @@ static TTURLRequestQueue* gMainQueue = nil;
   [loader retain];
   [self removeLoader:loader];
 
-  // The goal here is to load data from the cache if wasn't modified. We set the expiration date
-  // to never with hopes that the data will still be around.
-  // However, this doesn't account for cases where the data may have been removed.
-  // If the data has been removed, this request currently has undefined results.
-  // TODO (jverkoey April 22, 2010): Provide a solution for missing cache items.
   NSData* data = nil;
   NSError* error = nil;
   NSDate* timestamp = nil;
@@ -601,7 +641,6 @@ static TTURLRequestQueue* gMainQueue = nil;
       }
       [loader dispatchLoaded:[NSDate date]];
     }
-
   }
 
   if (nil != error) {
