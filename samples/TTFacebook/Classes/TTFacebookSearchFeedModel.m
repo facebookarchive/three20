@@ -59,7 +59,7 @@ static NSString* kFacebookSearchFeedFormat = @"http://graph.facebook.com/search?
                              requestWithURL: url
                              delegate: self];
 
-    request.cachePolicy = cachePolicy;
+    request.cachePolicy = cachePolicy | TTURLRequestCachePolicyEtag;
     request.cacheExpirationAge = TT_CACHE_EXPIRATION_AGE_NEVER;
 
     TTURLJSONResponse* response = [[TTURLJSONResponse alloc] init];
