@@ -1,7 +1,9 @@
 Three20
 =======
 
-Three20 is a collection of iPhone UI classes, like a photo viewer, and general utilities, like an HTTP disk cache.  Three20 is derived from the [Facebook iPhone app][], which is one of the most downloaded iPhone apps ever.  
+Three20 is a collection of iPhone UI classes, like a photo viewer, and general
+utilities, like an HTTP disk cache.  Three20 is derived from the
+[Facebook iPhone app][], which is one of the most downloaded iPhone apps ever.
 
 [![](http://farm4.static.flickr.com/3447/3378092101_40a62a04b2_m.jpg)](http://farm4.static.flickr.com/3447/3378092101_b064d8e339_o.jpg)
 [![](http://farm4.static.flickr.com/3432/3378117315_846547cfba_m.jpg)](http://farm4.static.flickr.com/3432/3378117315_3bf905bdb6_o.jpg) 
@@ -10,18 +12,30 @@ Three20 is a collection of iPhone UI classes, like a photo viewer, and general u
 [![](http://farm4.static.flickr.com/3552/3378940896_7b23cca98e_m.jpg)](http://farm4.static.flickr.com/3552/3378940896_8ccb5ea1c8_o.jpg)
 [![](http://farm4.static.flickr.com/3382/3425636810_483f1b65a6_m.jpg)](http://farm4.static.flickr.com/3382/3425636810_b0a578bb22_o.jpg)
 
+Community
+=========
+
+If you would like to ask any questions regarding Three20, please check out any of the following:
+
+* [Three20.info][]
+* [Three20 Mailing List][]
+* [Three20 Scope][]
+
 Adding Three20 to your project
 ==============================
 
-Three20 is compiled as a static library, and the easiest way to add it to your project is to use Xcode's "dependent project" facilities.  Here is how:
+Three20 is compiled as a static library, and the easiest way to add it to your
+project is to use Xcode's "dependent project" facilities.  Here is how:  
+**Estimated time:** 5 minutes.
 
 1. Clone the three20 git repository: `git clone git://github.com/facebook/three20.git`.  Make sure 
    you store the repository in a permanent place because Xcode will need to reference the files
    every time you compile your project.
 
-2. Locate the "Three20.xcodeproj" file under "three20/src".  Drag Three20.xcodeproj and drop it onto
-   the root of your Xcode project's "Groups and Files"  sidebar.  A dialog will appear -- make sure 
-   "Copy items" is unchecked and "Reference Type" is "Relative to Project" before clicking "Add".
+2. Locate the "Three20.xcodeproj" file under "three20/src/Three20".  Drag Three20.xcodeproj and
+   drop it onto the root of your Xcode project's "Groups and Files"  sidebar.  A dialog will
+   appear -- make sure "Copy items" is unchecked and "Reference Type" is "Relative to Project"
+   before clicking "Add".
 
 3. Now you need to link the Three20 static library to your project.  Click the "Three20.xcodeproj" 
    item that has just been added to the sidebar.  Under the "Details" table, you will see a single
@@ -51,57 +65,88 @@ Three20 is compiled as a static library, and the easiest way to add it to your p
 9. You're ready to go.  Just #import "Three20/Three20.h" anywhere you want to use Three20 classes
    in your project.
   
-What's in Three20?
-==================
+An Overview of Three20
+======================
                   
 Photo Viewer
 ------------
 
-[TTPhotoViewController][] emulates Apple's Photos app with all of its flick n' pinch delight.  You can supply your own "photo sources", which works similiarly to the data sources used by UITableView.  Unlike Apple's Photos app, it isn't limited to photos stored locally.  Your photos can be loaded from the network, and long lists of photos can be loaded incrementally.
+[TTPhotoViewController][] emulates Apple's Photos app with all of its flick n' pinch delight.
+You can supply your own "photo sources", which works similiarly to the data sources used by
+UITableView.  Unlike Apple's Photos app, it isn't limited to photos stored locally.  Your
+photos can be loaded from the network, and long lists of photos can be loaded incrementally.
 
 Message composer
 ----------------
 
-[TTMessageController][] emulates the message composer in Apple's Mail app.  You can customize it to send any kind of message you want. Include your own set of message fields, or use the standard "To:" and "Subject:".  Recipient names can be autocompleted from a data source that you provide.
+[TTMessageController][] emulates the message composer in Apple's Mail app.  You can customize it
+to send any kind of message you want. Include your own set of message fields, or use the
+standard "To:" and "Subject:".  Recipient names can be autocompleted from a data source that
+you provide.
 
 Web image views
 -----------------------
 
-[TTImageView][] makes it as easy to display an image as it is in HTML.  Just supply the URL of the image, and TTImageView loads it and displays it efficiently.  TTImageView also works with the HTTP cache described below to avoid hitting the network when possible.
+[TTImageView][] makes it as easy to display an image as it is in HTML.  Just supply the URL
+of the image, and TTImageView loads it and displays it efficiently.  TTImageView also works
+with the HTTP cache described below to avoid hitting the network when possible.
 
 Internet-aware table view controllers
 ---------------------------------------
 
-[TTTableViewController][] and [TTTableViewDataSource][] help you to build tables which load their content from the Internet.  Rather than just assuming you have all the data ready to go, like UITableView does by default, TTTableViewController lets you communicate when your data is loading, and when there is an error or nothing to display.  It also helps you to add a "More" button to load the next page of data, and optionally supports reloading the data by shaking the device.
+[TTTableViewController][] and [TTTableViewDataSource][] help you to build tables which load
+their content from the Internet.  Rather than just assuming you have all the data ready to go,
+like UITableView does by default, TTTableViewController lets you communicate when your data is
+loading, and when there is an error or nothing to display.  It also helps you to add a "More"
+button to load the next page of data, and optionally supports reloading the data by shaking the
+device.
 
 Better text fields
 ------------------
 
-[TTTextEditor][] is a UITextView which can grow in height automatically as you type.  I use this for entering messages in Facebook Chat, and it behaves similarly to the editor in Apple's SMS app.
+[TTTextEditor][] is a UITextView which can grow in height automatically as you type.  I use
+this for entering messages in Facebook Chat, and it behaves similarly to the editor in Apple's
+SMS app.
 
-[TTPickerTextField][] is a type-ahead UITextField.  As you type it searches a data source, and it adds bubbles into the flow of text when you choose a type-ahead option.  I use this in TTMessageController for selecting the names of message recipients.
+[TTPickerTextField][] is a type-ahead UITextField.  As you type it searches a data source, and
+it adds bubbles into the flow of text when you choose a type-ahead option.  I use this in
+TTMessageController for selecting the names of message recipients.
 
 HTTP disk cache
 --------------
 
-[TTURLRequest][] is a replacement for NSURLRequest which supports a disk cache (NSURLRequest can only cache in RAM).  It has some other nice features too.  HTTP posts are as easy as supplying a dictionary of parameters.  The TTURL loading system can also be suspended and resumed at any time, which is a great performance helper.  Network threads often fight with the UI thread, so you can suspend the network any time your app is momentarily graphically intensive.
+[TTURLRequest][] is a replacement for NSURLRequest which supports a disk cache (NSURLRequest
+can only cache in RAM).  It has some other nice features too.  HTTP posts are as easy as
+supplying a dictionary of parameters.  The TTURL loading system can also be suspended and
+resumed at any time, which is a great performance helper.  Network threads often fight with
+the UI thread, so you can suspend the network any time your app is momentarily graphically
+intensive.
 
 URL-based Navigation
 --------------------
 
-[TTNavigationCenter][] is for those grizzled old web developers like myself who want to organize their app by "pages" which can be displayed by visiting a URL.
+[TTNavigator][] is for those grizzled old web developers like myself who want to
+organize their app by "pages" which can be displayed by visiting a URL.
 
-Your view controllers can simply register URL patterns that they handle, and when those URLs are visited the controllers will be created and displayed.  You can also register generic actions that are called when a URL is visited.
+Your view controllers can simply register URL patterns that they handle, and when those URLs
+are visited the controllers will be created and displayed.  You can also register generic
+actions that are called when a URL is visited.
 
-TTNavigationCenter also persists and restores the full path of navigation controllers and modal view controllers, so your users can quite the app and come back exactly where they left off.
+TTNavigationCenter also persists and restores the full path of navigation controllers and modal
+view controllers, so your users can quite the app and come back exactly where they left off.
+
+Learn more at [Three20.info][]
 
 [Facebook iPhone app]: http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284882215&mt=8
-[TTPhotoViewController]: http://github.com/facebook/three20/blob/master/src/Three20/TTPhotoViewController.h
-[TTMessageController]: http://github.com/facebook/three20/blob/master/src/Three20/TTMessageController.h
-[TTImageView]: http://github.com/facebook/three20/blob/master/src/Three20/TTImageView.h
-[TTTableViewController]: http://github.com/facebook/three20/blob/master/src/Three20/TTTableViewController.h
-[TTTableViewDataSource]: http://github.com/facebook/three20/blob/master/src/Three20/TTTableViewDataSource.h
-[TTURLRequest]: http://github.com/facebook/three20/blob/master/src/Three20/TTURLRequest.h
-[TTTextEditor]: http://github.com/facebook/three20/blob/master/src/Three20/TTTextEditor.h
-[TTPickerTextField]: http://github.com/facebook/three20/blob/master/src/Three20/TTPickerTextField.h
-[TTNavigationCenter]: http://github.com/facebook/three20/blob/master/src/Three20/TTNavigationCenter.h
+[Three20.info]: http://Three20.info
+[Three20 Mailing List]: http://groups.google.com/group/three20/
+[Three20 Scope]: http://three20.stackexchange.com
+[TTPhotoViewController]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTPhotoViewController.h
+[TTMessageController]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTMessageController.h
+[TTImageView]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTImageView.h
+[TTTableViewController]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTTableViewController.h
+[TTTableViewDataSource]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTTableViewDataSource.h
+[TTURLRequest]: http://github.com/facebook/three20/blob/master/src/Three20Network/Headers/TTURLRequest.h
+[TTTextEditor]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTTextEditor.h
+[TTPickerTextField]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTPickerTextField.h
+[TTNavigator]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTNavigator.h
