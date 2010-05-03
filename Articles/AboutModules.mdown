@@ -263,3 +263,6 @@ Things to note: the new Three20 lib is actually a composite lib composed of `Cor
 `Network`, `Style`, `UICommon`, `UINavigator`, and `UI`. If you are linking to the
 Three20 lib, you don't need to link to any of the listed libs again. Notice that none
 of the extensions are included in the composite lib.
+
+This article written by:  
+-- Jeff Verkoeyen (@featherless) *Created on May 2, 2010.*
