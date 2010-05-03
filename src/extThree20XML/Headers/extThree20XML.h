@@ -14,4 +14,7 @@
 // limitations under the License.
 //
 
-#import "extThree20XML/
+#import "extThree20XML/TTURLXMLResponse.h"
+
+// Vendors
+#import "extThree20XML/TTXMLParser.h"

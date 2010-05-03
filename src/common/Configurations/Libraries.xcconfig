@@ -60,32 +60,3 @@ UIKIT_FX                = -framework UIKit
 // Unit Tests
 
 SENTESTINGKIT_FX        = -framework SenTestingKit
-
-//
-// Libraries
-//
-
-// Core
-
-TTCORE_HEADER_PATH        = $(ROOT_SOURCE_PATH)/Three20Core/Headers/
-TTCORE_LIBRARY_PATH       = $(ROOT_SOURCE_PATH)/Three20Core/
-TTCORE_LIBRARY_FLAG       = -lThree20Core
-
-// Network
-
-TTNETWORK_HEADER_PATH     = $(ROOT_SOURCE_PATH)/Three20Network/Headers/
-TTNETWORK_LIBRARY_PATH    = $(ROOT_SOURCE_PATH)/Three20Network/
-TTNETWORK_LIBRARY_FLAG    = -lThree20Network
-
-// Style
-
-TTSTYLE_HEADER_PATH       = $(ROOT_SOURCE_PATH)/Three20Style/Headers/
-TTSTYLE_LIBRARY_PATH      = $(ROOT_SOURCE_PATH)/Three20Style/
-TTSTYLE_LIBRARY_FLAG      = -lThree20Style
-
-// UI
-
-TTUI_HEADER_PATH          = $(ROOT_SOURCE_PATH)/Three20UI/Headers/
-TTUI_LIBRARY_PATH         = $(ROOT_SOURCE_PATH)/Three20UI/
-TTUI_LIBRARY_FLAG         = -lThree20UI
-TTUI_RESOURCE_BUNDLE_NAME = Three20.bundle
