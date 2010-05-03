@@ -1,0 +1,6 @@
+{
+	MainTemplateFile = "class.m";
+	CounterpartTemplateFile = "class.h";
+	Description = "An Objective-C class in the Three20 library directory structure.";
+}
+
