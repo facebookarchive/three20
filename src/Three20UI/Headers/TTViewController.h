@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UICommon/TTBaseViewController.h"
+#import "Three20UINavigator/TTNavigatorViewController.h"
 
 @class TTTableViewController;
 @class TTSearchDisplayController;
@@ -22,7 +22,7 @@
 /**
  * A view controller with some useful additions.
  */
-@interface TTViewController : TTBaseViewController {
+@interface TTViewController : TTNavigatorViewController {
 @protected
   TTSearchDisplayController* _searchController;
 }

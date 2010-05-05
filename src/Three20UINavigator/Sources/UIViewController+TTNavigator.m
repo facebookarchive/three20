@@ -20,6 +20,9 @@
 #import "Three20UINavigator/TTBaseNavigator.h"
 #import "Three20UINavigator/TTURLMap.h"
 
+// UINavigator (private)
+#import "Three20UINavigator/private/TTBaseViewControllerInternal.h"
+
 // UICommon
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
@@ -66,15 +69,9 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * What used to the "swizzled" deallocation of UIViewControllers is now accomplished here.
- * This garbage collection method is called on controllers that have been completely released.
- *
- * @private
- */
 - (void)unsetNavigatorProperties {
   TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION,
-                  @"Garbage collecting this controller: %X", self);
+                  @"Unsetting this controller's properties: %X", self);
 
   NSString* urlPath = self.originalNavigatorURL;
   if (nil != urlPath) {
@@ -131,6 +128,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
   }
 
   if ([controllers count] == 0) {
+    TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION, @"Killing the garbage collector.");
     [gsGarbageCollectorTimer invalidate];
     TT_RELEASE_SAFELY(gsGarbageCollectorTimer);
     TT_RELEASE_SAFELY(gsNavigatorControllers);
@@ -165,8 +163,9 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
       gNavigatorURLs = [[NSMutableDictionary alloc] init];
     }
 
-    // TODO (jverkoey May 5, 2010): Check the type of controller before adding it.
-    if (nil == [gNavigatorURLs objectForKey:key]) {
+    if (nil == [gNavigatorURLs objectForKey:key]
+        && ![self isKindOfClass:[TTNavigatorViewController class]]) {
+
       [[UIViewController globalNavigatorControllers] addObject:self];
 
       if (nil == gsGarbageCollectorTimer) {
@@ -177,6 +176,11 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
                                           userInfo: nil
                                            repeats: YES] retain];
       }
+#if TTDFLAG_NAVIGATORGARBAGECOLLECTION
+    } else if ([self isKindOfClass:[TTNavigatorViewController class]]) {
+      TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION,
+                      @"Not garbage collecting this Three20 view controller %X", self);
+#endif
     }
 
     [gNavigatorURLs setObject:URL forKey:key];
