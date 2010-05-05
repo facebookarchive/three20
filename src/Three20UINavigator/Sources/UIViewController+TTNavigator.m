@@ -23,7 +23,16 @@
 // UICommon
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
-static NSMutableDictionary* gNavigatorURLs = nil;
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTDebug.h"
+#import "Three20Core/TTDebugFlags.h"
+
+static NSMutableDictionary* gNavigatorURLs          = nil;
+static NSMutableArray*      gsNavigatorControllers  = nil;
+static NSTimer*             gsGarbageCollectorTimer = nil;
+
+static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,21 +51,90 @@ static NSMutableDictionary* gNavigatorURLs = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Garbage Collection
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSMutableArray*)globalNavigatorControllers {
+  if (nil == gsNavigatorControllers) {
+    gsNavigatorControllers = [[NSMutableArray alloc] init];
+  }
+  return gsNavigatorControllers;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Swapped with dealloc by TTBasicNavigator (only if you're using TTBasicNavigator)
+ * What used to the "swizzled" deallocation of UIViewControllers is now accomplished here.
+ * This garbage collection method is called on controllers that have been completely released.
+ *
+ * @private
  */
-- (void)ttdealloc {
-  NSString* URL = self.originalNavigatorURL;
-  if (URL) {
-    [[TTBaseNavigator globalNavigator].URLMap removeObjectForURL:URL];
+- (void)unsetNavigatorProperties {
+  TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION,
+                  @"Garbage collecting this controller: %X", self);
+
+  NSString* urlPath = self.originalNavigatorURL;
+  if (nil != urlPath) {
+    TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION,
+                    @"Removing this URL path: %@", urlPath);
+
+    [[TTBaseNavigator globalNavigator].URLMap removeObjectForURL:urlPath];
     self.originalNavigatorURL = nil;
   }
 
   self.superController = nil;
   self.popupViewController = nil;
+}
 
-  // Calls the original dealloc, swizzled away
-  [self ttdealloc];
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Three20 used to provide an overridden dealloc method that all UIViewControllers
+ * implementations would use to remove their originalNavigatorURLs and other properties.
+ * Apple has stated that using TTSwapMethod to swap dealloc with a custom implementation isn't
+ * ok, so now we do garbage collection.
+ *
+ * The basic idea.
+ * Whenever you set the original navigator URL path for a controller, we add the controller
+ * to a global navigator controllers list. We then run the following garbage collection every
+ * kGarbageCollectionInterval seconds. If any controllers have a retain count of 1, then
+ * we can safely say that nobody is using it anymore and release it.
+ */
++ (void)doNavigatorGarbageCollection {
+  NSMutableArray* controllers = [UIViewController globalNavigatorControllers];
+  if ([controllers count] > 0) {
+    TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION,
+                    @"Checking %d controllers for garbage.", [controllers count]);
+
+    NSArray* fullControllerList = [controllers copy];
+    for (UIViewController* controller in fullControllerList) {
+
+      // Subtract one from the retain count here due to the copied NSArray.
+      TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION,
+                      @"Retain count for %X is %d", controller, ([controller retainCount] - 1));
+
+      // We subtract 1 here because we've made a copy of the array, which increases the retain
+      // count by one.
+      if ([controller retainCount] - 1 == 1) {
+        [controller unsetNavigatorProperties];
+
+        // Retain count is now 1, and when we release the copied NSArray below the object will
+        // be completely released.
+        [controllers removeObject:controller];
+      }
+    }
+
+    TT_RELEASE_SAFELY(fullControllerList);
+  }
+
+  if ([controllers count] == 0) {
+    [gsGarbageCollectorTimer invalidate];
+    TT_RELEASE_SAFELY(gsGarbageCollectorTimer);
+    TT_RELEASE_SAFELY(gsNavigatorControllers);
+  }
 }
 
 
@@ -82,12 +160,32 @@ static NSMutableDictionary* gNavigatorURLs = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setOriginalNavigatorURL:(NSString*)URL {
   NSString* key = [NSString stringWithFormat:@"%d", self.hash];
-  if (URL) {
-    if (!gNavigatorURLs) {
+  if (nil != URL) {
+    if (nil == gNavigatorURLs) {
       gNavigatorURLs = [[NSMutableDictionary alloc] init];
     }
+
+    // TODO (jverkoey May 5, 2010): Check the type of controller before adding it.
+    if (nil == [gNavigatorURLs objectForKey:key]) {
+      [[UIViewController globalNavigatorControllers] addObject:self];
+
+      if (nil == gsGarbageCollectorTimer) {
+        gsGarbageCollectorTimer =
+          [[NSTimer scheduledTimerWithTimeInterval: 10
+                                            target: [UIViewController class]
+                                          selector: @selector(doNavigatorGarbageCollection)
+                                          userInfo: nil
+                                           repeats: YES] retain];
+      }
+    }
+
     [gNavigatorURLs setObject:URL forKey:key];
+
   } else {
+    if (nil != [gNavigatorURLs objectForKey:key]) {
+      [[UIViewController globalNavigatorControllers] removeObject:self];
+    }
+
     [gNavigatorURLs removeObjectForKey:key];
   }
 }
