@@ -32,7 +32,7 @@
 #import "Three20Core/TTDebugFlags.h"
 
 static NSMutableDictionary* gNavigatorURLs          = nil;
-static NSMutableArray*      gsNavigatorControllers  = nil;
+static NSMutableSet*        gsNavigatorControllers  = nil;
 static NSTimer*             gsGarbageCollectorTimer = nil;
 
 static const NSTimeInterval kGarbageCollectionInterval = 20;
@@ -60,9 +60,9 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NSMutableArray*)globalNavigatorControllers {
++ (NSMutableSet*)globalNavigatorControllers {
   if (nil == gsNavigatorControllers) {
-    gsNavigatorControllers = [[NSMutableArray alloc] init];
+    gsNavigatorControllers = [[NSMutableSet alloc] init];
   }
   return gsNavigatorControllers;
 }
@@ -101,24 +101,24 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
  * we can safely say that nobody is using it anymore and release it.
  */
 + (void)doNavigatorGarbageCollection {
-  NSMutableArray* controllers = [UIViewController globalNavigatorControllers];
+  NSMutableSet* controllers = [UIViewController globalNavigatorControllers];
   if ([controllers count] > 0) {
     TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION,
                     @"Checking %d controllers for garbage.", [controllers count]);
 
-    NSArray* fullControllerList = [controllers copy];
+    NSSet* fullControllerList = [controllers copy];
     for (UIViewController* controller in fullControllerList) {
 
       // Subtract one from the retain count here due to the copied NSArray.
       TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION,
                       @"Retain count for %X is %d", controller, ([controller retainCount] - 1));
 
-      // We subtract 1 here because we've made a copy of the array, which increases the retain
+      // We subtract 1 here because we've made a copy of the set, which increases the retain
       // count by one.
       if ([controller retainCount] - 1 == 1) {
         [controller unsetNavigatorProperties];
 
-        // Retain count is now 1, and when we release the copied NSArray below the object will
+        // Retain count is now 1 and when we release the copied set below, the object will
         // be completely released.
         [controllers removeObject:controller];
       }
