@@ -208,7 +208,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     request.cacheKey = [[TTURLCache sharedCache] keyForURL:request.urlPath];
   }
 
-  if (request.cachePolicy & TTURLRequestCachePolicyEtag) {
+  if (IS_MASK_SET(request.cachePolicy, TTURLRequestCachePolicyEtag)) {
     // Etags always make the request. The request headers will then include the etag.
     // - If there is new data, server returns 200 with data.
     // - Otherwise, returns a 304, with empty request body.
@@ -517,7 +517,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     }
 
     if (![[TTURLCache sharedCache] disableDiskCache]
-        && (request.cachePolicy & TTURLRequestCachePolicyEtag)) {
+        && IS_MASK_SET(request.cachePolicy, TTURLRequestCachePolicyEtag)) {
       NSString* etag = [[TTURLCache sharedCache] etagForKey:request.cacheKey];
       TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Etag: %@", etag);
 
@@ -564,7 +564,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 
       // Store the etag key if the etag cache policy has been requested.
       if (![[TTURLCache sharedCache] disableDiskCache]
-          && (loader.cachePolicy & TTURLRequestCachePolicyEtag)) {
+          && IS_MASK_SET(loader.cachePolicy, TTURLRequestCachePolicyEtag)) {
         NSDictionary* headers = [response allHeaderFields];
 
         // First, try to use the casing as defined by the standard for ETag headers.
