@@ -18,8 +18,13 @@
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UICommon/TTBaseViewController.h"
+
+// UICommon (private)
+#import "Three20UICommon/private/UIViewControllerAdditionsInternal.h"
 
 // Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTGlobalCore.h"
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
@@ -27,11 +32,67 @@
 static NSMutableDictionary* gSuperControllers = nil;
 static NSMutableDictionary* gPopupViewControllers = nil;
 
+// Garbage collection state
+static NSMutableSet*        gsCommonControllers     = nil;
+static NSTimer*             gsGarbageCollectorTimer = nil;
+
+static const NSTimeInterval kGarbageCollectionInterval = 20;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation UIViewController (TTCategory)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Garbage Collection
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSMutableSet*)commonControllers {
+  if (nil == gsCommonControllers) {
+    gsCommonControllers = [[NSMutableSet alloc] init];
+  }
+  return gsCommonControllers;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)doCommonGarbageCollection {
+  NSMutableSet* controllers = [UIViewController commonControllers];
+
+  [self doGarbageCollectionWithSelector: @selector(unsetCommonProperties)
+                          controllerSet: controllers];
+
+  if ([controllers count] == 0) {
+    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION, @"Killing the garbage collector.");
+    [gsGarbageCollectorTimer invalidate];
+    TT_RELEASE_SAFELY(gsGarbageCollectorTimer);
+    TT_RELEASE_SAFELY(gsCommonControllers);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)addCommonController:(UIViewController*)controller {
+
+  // TTBaseViewController calls unsetCommonProperties in its dealloc.
+  if (![controller isKindOfClass:[TTBaseViewController class]]) {
+    [[UIViewController commonControllers] addObject:controller];
+
+    if (nil == gsGarbageCollectorTimer) {
+      gsGarbageCollectorTimer =
+      [[NSTimer scheduledTimerWithTimeInterval: kGarbageCollectionInterval
+                                        target: [UIViewController class]
+                                      selector: @selector(doCommonGarbageCollection)
+                                      userInfo: nil
+                                       repeats: YES] retain];
+    }
+  }
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,6 +134,8 @@ static NSMutableDictionary* gPopupViewControllers = nil;
       gSuperControllers = TTCreateNonRetainingDictionary();
     }
     [gSuperControllers setObject:viewController forKey:key];
+
+    [UIViewController addCommonController:self];
 
   } else {
     [gSuperControllers removeObjectForKey:key];
@@ -128,6 +191,9 @@ static NSMutableDictionary* gPopupViewControllers = nil;
       gPopupViewControllers = TTCreateNonRetainingDictionary();
     }
     [gPopupViewControllers setObject:viewController forKey:key];
+
+    [UIViewController addCommonController:self];
+
   } else {
     [gPopupViewControllers removeObjectForKey:key];
   }
@@ -214,6 +280,71 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissModalViewController {
   [self dismissModalViewControllerAnimated:YES];
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation UIViewController (TTCategoryInternal)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Three20 used to provide an overridden dealloc method that all UIViewControllers
+ * implementations would use to remove their originalNavigatorURLs and other properties.
+ * Apple has stated that using TTSwapMethod to swap dealloc with a custom implementation isn't
+ * ok, so now we do garbage collection.
+ *
+ * The basic idea.
+ * Whenever you set the original navigator URL path for a controller, we add the controller
+ * to a global navigator controllers list. We then run the following garbage collection every
+ * kGarbageCollectionInterval seconds. If any controllers have a retain count of 1, then
+ * we can safely say that nobody is using it anymore and release it.
+ */
++ (void)doGarbageCollectionWithSelector:(SEL)selector controllerSet:(NSMutableSet*)controllers {
+  if ([controllers count] > 0) {
+    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                    @"Checking %d controllers for garbage.", [controllers count]);
+
+    NSSet* fullControllerList = [controllers copy];
+    for (UIViewController* controller in fullControllerList) {
+
+      // Subtract one from the retain count here due to the copied set.
+      NSInteger retainCount = [controller retainCount] - 1;
+
+      TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                      @"Retain count for %X is %d", controller, retainCount);
+
+      if (retainCount == 1) {
+        // If this fails, you've somehow added a controller that doesn't use
+        // the given selector. Check the controller type and the selector itself.
+        TTDASSERT([controller respondsToSelector:selector]);
+        if ([controller respondsToSelector:selector]) {
+          [controller performSelector:selector];
+        }
+
+        // The object's retain count is now 1, so when we release the copied set below,
+        // the object will be completely released.
+        [controllers removeObject:controller];
+      }
+    }
+
+    TT_RELEASE_SAFELY(fullControllerList);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)unsetCommonProperties {
+  TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                  @"Unsetting this controller's properties: %X", self);
+
+  self.superController = nil;
+  self.popupViewController = nil;
 }
 
 
