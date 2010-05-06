@@ -36,6 +36,11 @@
 
 static NSMutableDictionary* gNavigatorURLs          = nil;
 
+static NSMutableSet*        gsNavigatorControllers  = nil;
+static NSTimer*             gsGarbageCollectorTimer = nil;
+
+static const NSTimeInterval kGarbageCollectionInterval = 20;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,17 +64,55 @@ static NSMutableDictionary* gNavigatorURLs          = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)unsetNavigatorProperties {
-  TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
-                  @"Unsetting this controller's properties: %X", self);
++ (NSMutableSet*)navigatorControllers {
+  if (nil == gsNavigatorControllers) {
+    gsNavigatorControllers = [[NSMutableSet alloc] init];
+  }
+  return gsNavigatorControllers;
+}
 
-  NSString* urlPath = self.originalNavigatorURL;
-  if (nil != urlPath) {
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)doNavigatorGarbageCollection {
+  NSMutableSet* controllers = [UIViewController navigatorControllers];
+
+  [self doGarbageCollectionWithSelector: @selector(unsetNavigatorProperties)
+                          controllerSet: controllers];
+
+  if ([controllers count] == 0) {
     TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
-                    @"Removing this URL path: %@", urlPath);
+                    @"Killing the navigator garbage collector.");
+    [gsGarbageCollectorTimer invalidate];
+    TT_RELEASE_SAFELY(gsGarbageCollectorTimer);
+    TT_RELEASE_SAFELY(gsNavigatorControllers);
+  }
+}
 
-    [[TTBaseNavigator globalNavigator].URLMap removeObjectForURL:urlPath];
-    self.originalNavigatorURL = nil;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)addNavigatorController:(UIViewController*)controller {
+
+  // TTNavigatorViewController calls unsetNavigatorProperties in its dealloc.
+  if (![controller isKindOfClass:[TTNavigatorViewController class]]) {
+
+    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                    @"Adding a navigator controller.");
+
+    [[UIViewController navigatorControllers] addObject:controller];
+
+    if (nil == gsGarbageCollectorTimer) {
+      gsGarbageCollectorTimer =
+        [[NSTimer scheduledTimerWithTimeInterval: kGarbageCollectionInterval
+                                          target: [UIViewController class]
+                                        selector: @selector(doNavigatorGarbageCollection)
+                                        userInfo: nil
+                                         repeats: YES] retain];
+    }
+#if TTDFLAG_CONTROLLERGARBAGECOLLECTION
+  } else {
+    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                    @"Not adding a navigator controller.");
+#endif
   }
 }
 
@@ -100,20 +143,9 @@ static NSMutableDictionary* gNavigatorURLs          = nil;
     if (nil == gNavigatorURLs) {
       gNavigatorURLs = [[NSMutableDictionary alloc] init];
     }
-
-    if (nil == [gNavigatorURLs objectForKey:key]
-        && ![self isKindOfClass:[TTNavigatorViewController class]]) {
-
-      [UIViewController addGlobalController:self];
-
-#if TTDFLAG_NAVIGATORGARBAGECOLLECTION
-    } else if ([self isKindOfClass:[TTNavigatorViewController class]]) {
-      TTDCONDITIONLOG(TTDFLAG_NAVIGATORGARBAGECOLLECTION,
-                      @"Not garbage collecting this Three20 view controller %X", self);
-#endif
-    }
-
     [gNavigatorURLs setObject:URL forKey:key];
+
+    [UIViewController addNavigatorController:self];
 
   } else {
     [gNavigatorURLs removeObjectForKey:key];
@@ -129,6 +161,31 @@ static NSMutableDictionary* gNavigatorURLs          = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setFrozenState:(NSDictionary*)frozenState {
+}
+
+
+@end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation UIViewController (TTNavigatorInternal)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)unsetNavigatorProperties {
+  TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                  @"Unsetting this controller's properties: %X", self);
+
+  NSString* urlPath = self.originalNavigatorURL;
+  if (nil != urlPath) {
+    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                    @"Removing this URL path: %@", urlPath);
+
+    [[TTBaseNavigator globalNavigator].URLMap removeObjectForURL:urlPath];
+    self.originalNavigatorURL = nil;
+  }
 }
 
 

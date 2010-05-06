@@ -19,6 +19,8 @@
 
 @interface UIViewController (TTNavigatorInternal)
 
++ (void)addNavigatorController:(UIViewController*)controller;
+
 /**
  * What used to the "swizzled" deallocation of UIViewControllers is now accomplished here.
  * This garbage collection method is called on controllers that have been completely released.

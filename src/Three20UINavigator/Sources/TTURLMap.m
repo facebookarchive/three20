@@ -16,9 +16,12 @@
 
 #import "Three20UINavigator/TTURLMap.h"
 
-// UI
+// UINavigator
 #import "Three20UINavigator/TTURLNavigatorPattern.h"
 #import "Three20UINavigator/TTURLGeneratorPattern.h"
+
+// UINavigator (private)
+#import "Three20UINavigator/private/UIViewController+TTNavigatorInternal.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"
@@ -346,6 +349,10 @@
   }
   // XXXjoe Normalize the URL first
   [_objectMappings setObject:object forKey:URL];
+
+  if ([object isKindOfClass:[UIViewController class]]) {
+    [UIViewController addNavigatorController:object];
+  }
 }
 
 

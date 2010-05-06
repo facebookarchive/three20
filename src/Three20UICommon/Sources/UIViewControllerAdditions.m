@@ -68,7 +68,8 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
                           controllerSet: controllers];
 
   if ([controllers count] == 0) {
-    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION, @"Killing the garbage collector.");
+    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                    @"Killing the common garbage collector.");
     [gsGarbageCollectorTimer invalidate];
     TT_RELEASE_SAFELY(gsGarbageCollectorTimer);
     TT_RELEASE_SAFELY(gsCommonControllers);
@@ -83,6 +84,9 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
   if (![controller isKindOfClass:[TTBaseViewController class]]) {
     [[UIViewController commonControllers] addObject:controller];
 
+    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                    @"Adding a common controller.");
+
     if (nil == gsGarbageCollectorTimer) {
       gsGarbageCollectorTimer =
       [[NSTimer scheduledTimerWithTimeInterval: kGarbageCollectionInterval
@@ -91,6 +95,11 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
                                       userInfo: nil
                                        repeats: YES] retain];
     }
+#if TTDFLAG_CONTROLLERGARBAGECOLLECTION
+  } else {
+    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                    @"Not adding a common controller.");
+#endif
   }
 }
 
