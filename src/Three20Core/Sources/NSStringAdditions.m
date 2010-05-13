@@ -137,6 +137,9 @@
   return [[self dataUsingEncoding:NSUTF8StringEncoding] md5Hash];
 }
 
+- (NSString*)sha1Hash {
+  return [[self dataUsingEncoding:NSUTF8StringEncoding] sha1Hash];
+}
 
 @end
 
