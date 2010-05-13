@@ -174,8 +174,16 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
+  // -[UITableView reloadData] takes away first responder status if the first responder is a
+  // subview, so remember it and then restore it afterward to avoid awkward keyboard disappearance
+  UIResponder* firstResponder = [self.window findFirstResponderInView:self];
+
   CGFloat y = self.contentOffset.y;
   [super reloadData];
+
+  if (nil != firstResponder) {
+    [firstResponder becomeFirstResponder];
+  }
 
   if (_highlightedLabel) {
     self.highlightedLabel = nil;
