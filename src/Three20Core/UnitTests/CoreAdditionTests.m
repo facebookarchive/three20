@@ -72,6 +72,16 @@
   TT_RELEASE_SAFELY(data);
 }
 
+- (void)testNSData_sha1Hash {
+  const char* bytes = "three20";
+  NSData* data = [[NSData alloc] initWithBytes:bytes length:strlen(bytes)];
+
+  STAssertTrue([[data sha1Hash] isEqualToString:@"ca264456199abfcc3023a880b6e924026ca57164"],
+               @"SHA1 hashes don't match.");
+
+  TT_RELEASE_SAFELY(data);
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
