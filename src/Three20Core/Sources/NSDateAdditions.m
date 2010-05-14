@@ -100,7 +100,7 @@
   if (diff < TT_DAY) {
     return [self formatTime];
 
-  } else if (diff < TT_WEEK) {
+  } else if (diff < TT_5_DAYS) {
     static NSDateFormatter* formatter = nil;
     if (!formatter) {
       formatter = [[NSDateFormatter alloc] init];
@@ -127,7 +127,7 @@
   if (diff < TT_DAY) {
     return [self formatTime];
 
-  } else if (diff < TT_WEEK) {
+  } else if (diff < TT_5_DAYS) {
     static NSDateFormatter* formatter = nil;
     if (!formatter) {
       formatter = [[NSDateFormatter alloc] init];

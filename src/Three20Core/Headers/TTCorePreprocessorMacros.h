@@ -46,6 +46,7 @@
 #define TT_MINUTE 60
 #define TT_HOUR   (60 * TT_MINUTE)
 #define TT_DAY    (24 * TT_HOUR)
+#define TT_5_DAYS (5 * TT_DAY)
 #define TT_WEEK   (7 * TT_DAY)
 #define TT_MONTH  (30.5 * TT_DAY)
 #define TT_YEAR   (365 * TT_DAY)
