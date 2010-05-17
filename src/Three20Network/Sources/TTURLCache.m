@@ -511,18 +511,18 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL {
-  NSString* oldKey = [self keyForURL:oldURL];
-  NSString* newKey = [self keyForURL:newURL];
-  id image = [self imageForURL:oldKey];
+  id image = [self imageForURL:oldURL];
   if (image) {
-    [_imageSortedList removeObject:oldKey];
-    [_imageCache removeObjectForKey:oldKey];
-    [_imageSortedList addObject:newKey];
-    [_imageCache setObject:image forKey:newKey];
+    [_imageSortedList removeObject:oldURL];
+    [_imageCache removeObjectForKey:oldURL];
+    [_imageSortedList addObject:newURL];
+    [_imageCache setObject:image forKey:newURL];
   }
+  NSString* oldKey = [self keyForURL:oldURL];
   NSString* oldPath = [self cachePathForKey:oldKey];
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:oldPath]) {
+    NSString* newKey = [self keyForURL:newURL];
     NSString* newPath = [self cachePathForKey:newKey];
     [fm moveItemAtPath:oldPath toPath:newPath error:nil];
   }
@@ -550,11 +550,11 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
-  NSString*  key = [self keyForURL:URL];
-  [_imageSortedList removeObject:key];
-  [_imageCache removeObjectForKey:key];
+  [_imageSortedList removeObject:URL];
+  [_imageCache removeObjectForKey:URL];
 
   if (fromDisk) {
+    NSString* key = [self keyForURL:URL];
     NSString* filePath = [self cachePathForKey:key];
     NSFileManager* fm = [NSFileManager defaultManager];
     if (filePath && [fm fileExistsAtPath:filePath]) {
