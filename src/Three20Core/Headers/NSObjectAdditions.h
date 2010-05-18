@@ -31,4 +31,14 @@
 - (id)performSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
   withObject:(id)p4 withObject:(id)p5 withObject:(id)p6 withObject:(id)p7;
 
+/**
+ * Returns a Boolean value that indicates whether the given objects are equal.
+ * @param object1   The first object to compare.
+ * @param object2   The second object to compare.
+ * @return YES if the given objects are either reference-equal or object-equal, otherwise NO.
+ *
+ * Useful for performing equality checks on two objects where one or both might be nil.
+ */
++ (BOOL)value:(id)object1 isEqual:(id)object2;
+
 @end
