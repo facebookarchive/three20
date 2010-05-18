@@ -295,6 +295,11 @@ static TTURLRequestQueue* gMainQueue = nil;
 - (void)loadNextInQueue {
   _loaderQueueTimer = nil;
 
+  // Do not load next item if we are suspended.
+  if (_suspended) {
+      return;
+  }
+
   for (int i = 0;
        i < kMaxConcurrentLoads && _totalLoading < kMaxConcurrentLoads
        && _loaderQueue.count;
