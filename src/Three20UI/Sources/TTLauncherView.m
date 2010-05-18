@@ -115,6 +115,7 @@ static const NSInteger kDefaultColumnCount = 3;
   TT_RELEASE_SAFELY(_pages);
   TT_RELEASE_SAFELY(_buttons);
   TT_RELEASE_SAFELY(_scrollView);
+  [_pager removeTarget:self action:@selector(pageChanged) forControlEvents:UIControlEventValueChanged];
   TT_RELEASE_SAFELY(_pager);
 
   [super dealloc];
@@ -549,6 +550,14 @@ static const NSInteger kDefaultColumnCount = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)editHoldTimer:(NSTimer*)timer {
   _editHoldTimer = nil;
+
+  // cdonnelly 2010-02-11: allow chance to veto edit
+  if ([_delegate respondsToSelector:@selector(launcherViewShouldBeginEditing:)]) {
+    if (![_delegate launcherViewShouldBeginEditing:self]) {
+      return;
+    }
+  }
+
   [self beginEditing];
 
   TTUserInfo* info = timer.userInfo;

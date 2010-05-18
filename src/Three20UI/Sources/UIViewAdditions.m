@@ -536,4 +536,21 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIView*)popupTargetView {
+  // cdonnelly 2010-03-31: We assume the desired popup target view is the size of the full screen.
+  // iPad probably changes that, so if so, this is where to fix it.
+    
+  CGRect screenBounds = TTScreenBounds();
+  for (UIView* view = self; view; view = view.superview) {
+    if (CGRectEqualToRect(view.frame, screenBounds)) {
+      return view;
+    }
+  }
+    
+  // Nothing suitable.  Just return the window...
+  return self.window;
+}
+
+
 @end
