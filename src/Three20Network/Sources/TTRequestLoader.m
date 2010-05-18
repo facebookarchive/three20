@@ -259,6 +259,22 @@ static const NSInteger kLoadMaxRetries = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSURLRequest*)dispatchRedirectToRequest:(NSURLRequest*)redirectRequest {
+  for (TTURLRequest* request in [[_requests copy] autorelease]) {
+
+    for (id<TTURLRequestDelegate> delegate in request.delegates) {
+      if ([delegate respondsToSelector:@selector(request:shouldRedirectToRequest:)]) {
+        if (![delegate request:request shouldRedirectToRequest: redirectRequest])
+          return nil;
+      }
+    }
+  }
+
+  return redirectRequest;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cancel {
   NSArray* requestsToCancel = [_requests copy];
   for (id request in requestsToCancel) {
@@ -329,6 +345,9 @@ static const NSInteger kLoadMaxRetries = 2;
   if (_response.statusCode >= 200 && _response.statusCode < 300) {
     [_queue loader:self didLoadResponse:_response data:_responseData];
 
+  } else if (_response.statusCode == 301 || _response.statusCode == 302) {
+    [_queue loader:self didLoadResponse:_response data:_responseData];
+      
   } else if (_response.statusCode == 304) {
     [_queue loader:self didLoadUnmodifiedResponse:_response];
 
@@ -372,6 +391,17 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
   } else {
     [_queue loader:self didFailLoadWithError:error];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSURLRequest*)connection:(NSURLConnection*)connection 
+            willSendRequest:(NSURLRequest*)request 
+           redirectResponse:(NSURLResponse*)response {
+  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  WILL SEND REQUEST %@ REDIRECT RESPONSE %@",
+                  request, response);
+
+  return [_queue loader: self willSendRequest: request redirectResponse: response];
 }
 
 
