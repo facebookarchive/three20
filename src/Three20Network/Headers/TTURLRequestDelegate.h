@@ -50,6 +50,13 @@
   didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge;
 
 /**
+ * Allows delegate to handle any redirect responses.
+ * Return NO to cancel the redirect, YES to allow it (the default).
+ */
+- (BOOL)request: (TTURLRequest*)request 
+  shouldRedirectToRequest: (NSURLRequest*)redirectRequest;
+
+/**
  * The request failed to load.
  */
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error;
