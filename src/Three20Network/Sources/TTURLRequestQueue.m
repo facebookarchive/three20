@@ -681,4 +681,26 @@ static TTURLRequestQueue* gMainQueue = nil;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSURLRequest*)loader:(TTRequestLoader*)loader 
+        willSendRequest:(NSURLRequest*)request 
+       redirectResponse:(NSHTTPURLResponse*)response {
+    
+  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"WILL SEND REQUEST: %@ REDIRECT RESPONSE: %@", request, response);
+
+  if (response == nil) // not a redirect.
+    return request;
+    
+  // Process the response and give delegates a chance to flag the response as an error;
+  // if that happens, abort the redirect.
+  NSError* error = [loader processResponse:response data:nil];
+  if (error) {
+    [loader dispatchError:error];
+    return nil;
+  } else {
+    return [loader dispatchRedirectToRequest: request];
+  }
+}
+
+
 @end
