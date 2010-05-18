@@ -20,6 +20,7 @@
 #import "Three20UI/TTTableItem.h"
 
 // Core
+#import "Three20Core/NSObjectAdditions.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
 
@@ -71,7 +72,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (TTListDataSource*)dataSourceWithItems:(NSMutableArray*)items {
++ (TTListDataSource*)dataSourceWithItems:(NSArray*)items {
   return [[[self alloc] initWithItems:items] autorelease];
 }
 
@@ -133,7 +134,7 @@
 - (NSIndexPath*)indexPathOfItemWithUserInfo:(id)userInfo {
   for (NSInteger i = 0; i < _items.count; ++i) {
     TTTableItem* item = [_items objectAtIndex:i];
-    if (item.userInfo == userInfo) {
+    if ([NSObject value: item.userInfo isEqual:userInfo]) {
       return [NSIndexPath indexPathForRow:i inSection:0];
     }
   }
