@@ -177,4 +177,15 @@
  */
 - (UIViewController*)viewController;
 
+/**
+ * The view (ancestor or self) in which to open popup views (e.g. UIAlertView, UIActionSheet).
+ *
+ * This is to avoid problems like those found here, but in a way that respects rotation:
+ *  http://stackoverflow.com/questions/1197746/uiactionsheet-cancel-button-strange-behaviour
+ *  http://nerdhappy.blogspot.com/2009/12/uiactionsheet-vs-uitabbarcontroller.html
+ *
+ * On rotated screens, the window is NOT rotated, and so we cannot use -[UIView window] as the desired target.
+ */
+- (UIView*)popupTargetView;
+
 @end
