@@ -36,6 +36,7 @@
 // Network
 #import "Three20Network/TTGlobalNetwork.h"
 #import "Three20Network/TTURLCache.h"
+#import "Three20Network/TTURLRequest.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -54,8 +55,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
   if (self = [self init]) {
-    NSURLRequest* request = [query objectForKey:@"request"];
+    id request = [query objectForKey:@"request"];
     if (request) {
+      if ([request isKindOfClass: [TTURLRequest class]])
+        request = [(TTURLRequest*)request createNSURLRequest];
       [self openRequest:request];
     } else {
       [self openURL:URL];

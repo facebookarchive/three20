@@ -115,6 +115,7 @@ static const NSInteger kDefaultColumnCount = 3;
   TT_RELEASE_SAFELY(_pages);
   TT_RELEASE_SAFELY(_buttons);
   TT_RELEASE_SAFELY(_scrollView);
+  [_pager removeTarget:self action:@selector(pageChanged) forControlEvents:UIControlEventValueChanged];
   TT_RELEASE_SAFELY(_pager);
 
   [super dealloc];
