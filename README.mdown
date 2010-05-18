@@ -32,10 +32,13 @@ project is to use Xcode's "dependent project" facilities.  Here is how:
    you store the repository in a permanent place because Xcode will need to reference the files
    every time you compile your project.
 
-2. Locate the "Three20.xcodeproj" file under "three20/src/Three20".  Drag Three20.xcodeproj and
+2. Locate the "Three20.xcodeproj" file under "`three20/src/Three20/`". Drag Three20.xcodeproj and
    drop it onto the root of your Xcode project's "Groups and Files"  sidebar.  A dialog will
    appear -- make sure "Copy items" is unchecked and "Reference Type" is "Relative to Project"
-   before clicking "Add".
+   before clicking "Add".    
+   Note: Ensure that you are grabbing the correct Three20.xcodeproj! The one in `three20/src` is
+   the legacy project which is being phased out. The correct Three20.xcodeproj is in the
+   `three20/src/Three20/` subdirectory.
 
 3. Now you need to link the Three20 static library to your project.  Click the "Three20.xcodeproj" 
    item that has just been added to the sidebar.  Under the "Details" table, you will see a single
@@ -57,7 +60,8 @@ project is to use Xcode's "dependent project" facilities.  Here is how:
 
 7. Finally, we need to tell your project where to find the Three20 headers.  Open your
    "Project Settings" and go to the "Build" tab. Look for "Header Search Paths" and double-click
-   it.  Add the relative path from your project's directory to the "three20/src" directory.
+   it.  Add the relative path from your project's directory to the
+   "three20/Build/Products/three20" directory.
 
 8. While you are in Project Settings, go to "Other Linker Flags" under the "Linker" section, and
    add "-ObjC" and "-all_load" to the list of flags.
@@ -132,7 +136,7 @@ Your view controllers can simply register URL patterns that they handle, and whe
 are visited the controllers will be created and displayed.  You can also register generic
 actions that are called when a URL is visited.
 
-TTNavigationCenter also persists and restores the full path of navigation controllers and modal
+TTNavigator also persists and restores the full path of navigation controllers and modal
 view controllers, so your users can quite the app and come back exactly where they left off.
 
 Learn more at [Three20.info][]
