@@ -128,6 +128,7 @@
 - (void)dispatchError:(NSError*)error;
 - (void)dispatchLoaded:(NSDate*)timestamp;
 - (void)dispatchAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge;
+- (NSURLRequest*)dispatchRedirectToRequest:(NSURLRequest*)redirectRequest;
 - (void)cancel;
 
 @end
