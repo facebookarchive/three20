@@ -248,4 +248,7 @@
 
 - (NSURLRequest*)createNSURLRequest;
 
+- (NSData*)generatePostBody;
+- (NSString*)generateCacheKey;
+
 @end
