@@ -35,5 +35,8 @@
 
 - (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error;
 - (void)loaderDidCancel:(TTRequestLoader*)loader wasLoading:(BOOL)wasLoading;
-
+- (NSURLRequest*)loader:(TTRequestLoader*)loader 
+        willSendRequest:(NSURLRequest*)request 
+       redirectResponse:(NSURLResponse*)response;
+    
 @end

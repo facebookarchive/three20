@@ -550,6 +550,14 @@ static const NSInteger kDefaultColumnCount = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)editHoldTimer:(NSTimer*)timer {
   _editHoldTimer = nil;
+
+  // cdonnelly 2010-02-11: allow chance to veto edit
+  if ([_delegate respondsToSelector:@selector(launcherViewShouldBeginEditing:)]) {
+    if (![_delegate launcherViewShouldBeginEditing:self]) {
+      return;
+    }
+  }
+
   [self beginEditing];
 
   TTUserInfo* info = timer.userInfo;

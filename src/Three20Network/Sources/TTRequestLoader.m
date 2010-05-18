@@ -354,8 +354,11 @@ static const NSInteger kLoadMaxRetries = 2;
   } else {
     TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  FAILED LOADING (%d) %@",
                     _response.statusCode, _urlPath);
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                              _response, @"response", _responseData, @"responseData", nil];
+
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
-                                     userInfo:nil];
+                                     userInfo:userInfo];
     [_queue loader:self didFailLoadWithError:error];
   }
 
