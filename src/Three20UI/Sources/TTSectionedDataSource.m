@@ -21,7 +21,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
-
+#import "Three20Core/NSObjectAdditions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,7 +191,7 @@
       NSArray* items = [_items objectAtIndex:i];
       for (NSInteger j = 0; j < items.count; ++j) {
         TTTableItem* item = [items objectAtIndex:j];
-        if (item.userInfo == userInfo) {
+        if ([NSObject value: item.userInfo isEqual:userInfo]) {
           return [NSIndexPath indexPathForRow:j inSection:i];
         }
       }
@@ -199,7 +199,7 @@
   } else {
     for (NSInteger i = 0; i < _items.count; ++i) {
       TTTableItem* item = [_items objectAtIndex:i];
-      if (item.userInfo == userInfo) {
+      if ([NSObject value: item.userInfo isEqual:userInfo]) {
         return [NSIndexPath indexPathForRow:i inSection:0];
       }
     }
