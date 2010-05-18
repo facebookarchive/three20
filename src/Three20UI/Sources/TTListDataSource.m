@@ -71,7 +71,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (TTListDataSource*)dataSourceWithItems:(NSMutableArray*)items {
++ (TTListDataSource*)dataSourceWithItems:(NSArray*)items {
   return [[[self alloc] initWithItems:items] autorelease];
 }
 
