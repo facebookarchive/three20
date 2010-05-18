@@ -32,7 +32,7 @@
  *
  * Where item is generally a type of TTTableItem.
  */
-+ (TTSectionedDataSource*)dataSourceWithObjects:(id)object,...;
++ (TTSectionedDataSource*)dataSourceWithObjects:(id)object,... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  * Objects should be in this format:
@@ -41,7 +41,7 @@
  *
  * Where arrayOfItems is generally an array of items of type TTTableItem.
  */
-+ (TTSectionedDataSource*)dataSourceWithArrays:(id)object,...;
++ (TTSectionedDataSource*)dataSourceWithArrays:(id)object,... NS_REQUIRES_NIL_TERMINATION;
 
 /**
  *  @param items
