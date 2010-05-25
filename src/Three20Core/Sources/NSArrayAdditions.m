@@ -16,6 +16,8 @@
 
 #import "Three20Core/NSArrayAdditions.h"
 
+#import "Three20Core/NSObjectAdditions.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,8 +33,7 @@
 #if __IPHONE_2_0
   [self makeObjectsPerformSelector:selector];
 #else
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; (delegate = [e nextObject]); ) {
+  for (id delegate in self) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector];
     }
@@ -46,15 +47,9 @@
 #if __IPHONE_2_0
   [self makeObjectsPerformSelector:selector withObject:p1];
 #else
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; (delegate = [e nextObject]); ) {
+  for (id delegate in self) {
     if ([delegate respondsToSelector:selector]) {
-      NSMethodSignature* sig = [delegate methodSignatureForSelector:selector];
-      NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
-      [invo setTarget:delegate];
-      [invo setSelector:selector];
-      [invo setArgument:&p1 atIndex:2];
-      [invo invoke];
+      [delegate performSelector:selector withObject:p1];
     }
   }
 #endif
@@ -63,35 +58,19 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; (delegate = [e nextObject]); ) {
+  for (id delegate in self) {
     if ([delegate respondsToSelector:selector]) {
-      NSMethodSignature* sig = [delegate methodSignatureForSelector:selector];
-      NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
-      [invo setTarget:delegate];
-      [invo setSelector:selector];
-      [invo setArgument:&p1 atIndex:2];
-      [invo setArgument:&p2 atIndex:3];
-      [invo invoke];
+      [delegate performSelector:selector withObject:p1 withObject:p2];
     }
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2
-    withObject:(id)p3 {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; (delegate = [e nextObject]); ) {
+- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
+  for (id delegate in self) {
     if ([delegate respondsToSelector:selector]) {
-      NSMethodSignature* sig = [delegate methodSignatureForSelector:selector];
-      NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
-      [invo setTarget:delegate];
-      [invo setSelector:selector];
-      [invo setArgument:&p1 atIndex:2];
-      [invo setArgument:&p2 atIndex:3];
-      [invo setArgument:&p3 atIndex:4];
-      [invo invoke];
+      [delegate performSelector:selector withObject:p1 withObject:p2 withObject:p3];
     }
   }
 }
