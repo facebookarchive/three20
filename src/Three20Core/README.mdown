@@ -1,0 +1,12 @@
+
+Core
+====
+
+A set of utilities to improve the most basic aspects of Objective-C development. Included
+in this library are debugging macros, optional Foundation object additions, and global
+utility methods for localization, paths, and rects.
+
+Dependencies
+------------
+
+None.
