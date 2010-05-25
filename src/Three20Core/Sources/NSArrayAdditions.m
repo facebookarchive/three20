@@ -30,29 +30,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector {
-#if __IPHONE_2_0
   [self makeObjectsPerformSelector:selector];
-#else
-  for (id delegate in self) {
-    if ([delegate respondsToSelector:selector]) {
-      [delegate performSelector:selector];
-    }
-  }
-#endif
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 {
-#if __IPHONE_2_0
   [self makeObjectsPerformSelector:selector withObject:p1];
-#else
-  for (id delegate in self) {
-    if ([delegate respondsToSelector:selector]) {
-      [delegate performSelector:selector withObject:p1];
-    }
-  }
-#endif
 }
 
 
