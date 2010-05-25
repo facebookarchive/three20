@@ -27,7 +27,7 @@
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
 // UICommon (private)
-#import "Three20UICommon/private/UIViewControllerAdditionsInternal.h"
+#import "Three20UICommon/private/UIViewControllerGarbageCollection.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -93,6 +93,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 + (void)addNavigatorController:(UIViewController*)controller {
 
   // TTNavigatorViewController calls unsetNavigatorProperties in its dealloc.
+  // UICommon has its own garbage collector that will unset another set of properties.
   if (![controller isKindOfClass:[TTNavigatorViewController class]]) {
 
     TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,

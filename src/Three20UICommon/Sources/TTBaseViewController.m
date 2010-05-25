@@ -21,7 +21,7 @@
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
 // UICommon (Private)
-#import "Three20UICommon/private/UIViewControllerAdditionsInternal.h"
+#import "Three20UICommon/private/UIViewControllerGarbageCollection.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"

@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (TTCategoryInternal)
+@interface UIViewController (TTGarbageCollection)
 
 + (void)doGarbageCollectionWithSelector:(SEL)selector controllerSet:(NSMutableSet*)controllers;
 

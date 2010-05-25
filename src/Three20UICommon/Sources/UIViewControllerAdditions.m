@@ -21,7 +21,7 @@
 #import "Three20UICommon/TTBaseViewController.h"
 
 // UICommon (private)
-#import "Three20UICommon/private/UIViewControllerAdditionsInternal.h"
+#import "Three20UICommon/private/UIViewControllerGarbageCollection.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -49,20 +49,39 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Garbage Collection
+/**
+ * What's this for?
+ *
+ * When view controllers are deallocated, we need to remove them from a set of
+ * global data structures. These global data structures provide additional functionality on
+ * top of the UIViewController class, such as setting the super controller.
+ *
+ * Removal was previously accomplished by swizzling the dealloc method of UIViewController with a
+ * custom implementation. Apple has now stated that we can no longer due this.
+ *
+ * See TTGarbageCollection additions at the bottom of this file for more implementation details.
+ *
+ * TODO (jverkoey May 19, 2010): Consider phasing out the use of an addition entirely. Instead,
+ * place all functionality within the TTBaseViewController class.
+ */
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NSMutableSet*)commonControllers {
+/**
+ * Common used here in the name because this is the UICommon lib.
+ */
++ (NSMutableSet*)ttCommonControllers {
   if (nil == gsCommonControllers) {
     gsCommonControllers = [[NSMutableSet alloc] init];
   }
+
   return gsCommonControllers;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)doCommonGarbageCollection {
-  NSMutableSet* controllers = [UIViewController commonControllers];
++ (void)ttDoCommonGarbageCollection {
+  NSMutableSet* controllers = [UIViewController ttCommonControllers];
 
   [self doGarbageCollectionWithSelector: @selector(unsetCommonProperties)
                           controllerSet: controllers];
@@ -78,22 +97,23 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)addCommonController:(UIViewController*)controller {
++ (void)ttAddCommonController:(UIViewController*)controller {
 
-  // TTBaseViewController calls unsetCommonProperties in its dealloc.
+  // TTBaseViewController calls unsetCommonProperties in its dealloc, so we don't need
+  // to set up the garbage collector in that case.
   if (![controller isKindOfClass:[TTBaseViewController class]]) {
-    [[UIViewController commonControllers] addObject:controller];
+    [[UIViewController ttCommonControllers] addObject:controller];
 
     TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
                     @"Adding a common controller.");
 
     if (nil == gsGarbageCollectorTimer) {
       gsGarbageCollectorTimer =
-      [[NSTimer scheduledTimerWithTimeInterval: kGarbageCollectionInterval
-                                        target: [UIViewController class]
-                                      selector: @selector(doCommonGarbageCollection)
-                                      userInfo: nil
-                                       repeats: YES] retain];
+        [[NSTimer scheduledTimerWithTimeInterval: kGarbageCollectionInterval
+                                          target: [UIViewController class]
+                                        selector: @selector(ttDoCommonGarbageCollection)
+                                        userInfo: nil
+                                         repeats: YES] retain];
     }
 #if TTDFLAG_CONTROLLERGARBAGECOLLECTION
   } else {
@@ -144,7 +164,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
     }
     [gSuperControllers setObject:viewController forKey:key];
 
-    [UIViewController addCommonController:self];
+    [UIViewController ttAddCommonController:self];
 
   } else {
     [gSuperControllers removeObjectForKey:key];
@@ -201,7 +221,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
     }
     [gPopupViewControllers setObject:viewController forKey:key];
 
-    [UIViewController addCommonController:self];
+    [UIViewController ttAddCommonController:self];
 
   } else {
     [gPopupViewControllers removeObjectForKey:key];
@@ -298,16 +318,11 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation UIViewController (TTCategoryInternal)
+@implementation UIViewController (TTGarbageCollection)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Three20 used to provide an overridden dealloc method that all UIViewControllers
- * implementations would use to remove their originalNavigatorURLs and other properties.
- * Apple has stated that using TTSwapMethod to swap dealloc with a custom implementation isn't
- * ok, so now we do garbage collection.
- *
  * The basic idea.
  * Whenever you set the original navigator URL path for a controller, we add the controller
  * to a global navigator controllers list. We then run the following garbage collection every
