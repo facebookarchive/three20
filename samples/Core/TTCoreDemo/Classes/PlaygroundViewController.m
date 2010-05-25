@@ -177,9 +177,9 @@ static const CGFloat kGroupSpacing    = 10;
   TTDPRINT(@"");
   TTDPRINT(@"Showing TTDCONDITIONLOG.");
   TTDPRINT(@"------------------------");
-  TTDCONDITIONLOG(true, @"This will always display, because the condition is \"true\"");
-  TTDCONDITIONLOG(false, @"This will never display, because the condition is \"false\"");
-  TTDCONDITIONLOG(rand()%2, @"This will randomly display, because the condition is \"rand()%2\"");
+  TTDCONDITIONLOG(true, @"This will always display because the condition is \"true\"");
+  TTDCONDITIONLOG(false, @"This will never display because the condition is \"false\"");
+  TTDCONDITIONLOG(rand()%2, @"This will randomly display because the condition is \"rand()%2\"");
 
   TTDPRINT(@"");
   TTDPRINT(@"Showing TTDASSERT.");
@@ -191,8 +191,8 @@ static const CGFloat kGroupSpacing    = 10;
   // Note that this isn't a crash! Simply the equivalent of setting
   // a breakpoint in the debugger, but programmatically. These TTDASSERTs
   // will be completely stripped away from your final product, assuming
-  // you don't declare the DEBUG preprocessor macro (and you shouldn't
-  // be).
+  // you don't declare the DEBUG preprocessor macro (and you shouldn't in
+  // your final product).
   TTDASSERT(false);
 }
 
