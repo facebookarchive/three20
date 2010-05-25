@@ -28,21 +28,28 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector {
+#if __IPHONE_2_0
+  [self makeObjectsPerformSelector:selector];
+#else
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector];
     }
   }
+#endif
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 {
+#if __IPHONE_2_0
+  [self makeObjectsPerformSelector:selector withObject:p1];
+#else
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
-      NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];
+      NSMethodSignature* sig = [delegate methodSignatureForSelector:selector];
       NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
       [invo setTarget:delegate];
       [invo setSelector:selector];
@@ -50,6 +57,7 @@
       [invo invoke];
     }
   }
+#endif
 }
 
 
@@ -58,7 +66,7 @@
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
-      NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];
+      NSMethodSignature* sig = [delegate methodSignatureForSelector:selector];
       NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
       [invo setTarget:delegate];
       [invo setSelector:selector];
@@ -76,7 +84,7 @@
   NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
-      NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];
+      NSMethodSignature* sig = [delegate methodSignatureForSelector:selector];
       NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
       [invo setTarget:delegate];
       [invo setSelector:selector];
