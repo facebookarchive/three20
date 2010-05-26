@@ -38,6 +38,11 @@ BOOL TTIsKeyboardVisible();
 BOOL TTIsPhoneSupported();
 
 /**
+ * @return TRUE if the device is iPad.
+ */
+BOOL TTIsPad();
+
+/**
  * @return the current device orientation.
  */
 UIDeviceOrientation TTDeviceOrientation();

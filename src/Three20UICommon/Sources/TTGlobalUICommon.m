@@ -88,6 +88,15 @@ BOOL TTIsPhoneSupported() {
   return [deviceType isEqualToString:@"iPhone"];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTisPad() {
+#if __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+	return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+#else
+	return NO;
+#endif
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 UIDeviceOrientation TTDeviceOrientation() {
