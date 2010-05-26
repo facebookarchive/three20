@@ -91,9 +91,9 @@ BOOL TTIsPhoneSupported() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTisPad() {
 #if __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
-	return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+  return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
 #else
-	return NO;
+  return NO;
 #endif
 }
 
@@ -111,18 +111,18 @@ UIDeviceOrientation TTDeviceOrientation() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation) {
-	if (TTisPad() == YES) {
-		return YES;
-	} else {
-		switch (orientation) {
-			case UIInterfaceOrientationPortrait:
-			case UIInterfaceOrientationLandscapeLeft:
-			case UIInterfaceOrientationLandscapeRight:
-				return YES;
-			default:
-				return NO;
-		}
-	}
+  if (TTisPad() == YES) {
+    return YES;
+  } else {
+    switch (orientation) {
+      case UIInterfaceOrientationPortrait:
+      case UIInterfaceOrientationLandscapeLeft:
+      case UIInterfaceOrientationLandscapeRight:
+        return YES;
+      default:
+        return NO;
+    }
+  }
 }
 
 

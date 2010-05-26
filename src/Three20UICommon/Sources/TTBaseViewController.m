@@ -91,6 +91,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
+#if __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+  CGRect keyboardStart;
+  [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&keyboardStart];
+
+  CGRect keyboardEnd;
+  [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEnd];
+
+  CGRect keyboardBounds = CGRectMake(0, 0, keyboardEnd.size.width, keyboardEnd.size.height);
+
+  BOOL animated = keyboardStart.origin.y != keyboardEnd.origin.y;
+#else
   CGRect keyboardBounds;
   [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
 
@@ -101,6 +112,7 @@
   [[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
 
   BOOL animated = keyboardStart.y != keyboardEnd.y;
+#endif
   if (animated) {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_TRANSITION_DURATION];
@@ -190,12 +202,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  UIViewController* popup = [self popupViewController];
-  if (popup) {
-    return [popup shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-
+  if (TTIsPad()) {
+    return YES;
   } else {
-    return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+    UIViewController* popup = [self popupViewController];
+    if (popup) {
+      return [popup shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+
+    } else {
+      return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+    }
   }
 }
 
@@ -271,9 +287,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidShow:(NSNotification*)notification {
-  NSValue* value = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
+#if __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+  CGRect frameStart;
+  [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&frameStart];
+
+  CGRect keyboardBounds = CGRectMake(0, 0, frameStart.size.width, frameStart.size.height);
+#else
   CGRect keyboardBounds;
-  [value getValue:&keyboardBounds];
+  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
+#endif
 
   [self keyboardDidAppear:YES withBounds:keyboardBounds];
 }
@@ -289,9 +311,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillHide:(NSNotification*)notification {
-  NSValue* value = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
+#if __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+  CGRect frameEnd;
+  [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&frameEnd];
+
+  CGRect keyboardBounds = CGRectMake(0, 0, frameEnd.size.width, frameEnd.size.height);
+#else
   CGRect keyboardBounds;
-  [value getValue:&keyboardBounds];
+  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
+#endif
 
   [self keyboardWillDisappear:YES withBounds:keyboardBounds];
 }
