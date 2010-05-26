@@ -48,9 +48,12 @@ BOOL TTIsPad();
 UIDeviceOrientation TTDeviceOrientation();
 
 /**
+ * On iPhone/iPod touch
  * Checks if the orientation is portrait, landscape left, or landscape right.
- *
  * This helps to ignore upside down and flat orientations.
+ * 
+ * On iPad:
+ * Always returns Yes.
  */
 BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation);
 
@@ -62,7 +65,7 @@ CGAffineTransform TTRotateTransformForOrientation(UIInterfaceOrientation orienta
 /**
  * @return the application frame with no offset.
  *
- * From the apple docs:
+ * From the Apple docs:
  * Frame of application screen area in points (i.e. entire screen minus status bar if visible)
  */
 CGRect TTApplicationFrame();
