@@ -19,6 +19,9 @@
 		6E55A4971183C946002768DE /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E55A4951183C946002768DE /* TTDebug.m */; };
 		6E55A49A1183C94F002768DE /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E55A4981183C94F002768DE /* TTMarkupStripper.m */; };
 		6E55A49C1183C956002768DE /* TTMarkupStripper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E55A49B1183C956002768DE /* TTMarkupStripper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E607C6F11AF286B00C93CD4 /* CoreMarkupStripperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607C6E11AF286B00C93CD4 /* CoreMarkupStripperTests.m */; };
+		6E607CF111AF2FE400C93CD4 /* TTEntityTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607CEE11AF2FCB00C93CD4 /* TTEntityTables.m */; };
+		6E607CF211AF2FE400C93CD4 /* TTEntityTables.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E607CF011AF2FD800C93CD4 /* TTEntityTables.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454551184BE8600F08CB1 /* Three20Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454531184BE8600F08CB1 /* Three20Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454561184BE8600F08CB1 /* Three20Core+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454541184BE8600F08CB1 /* Three20Core+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB4605E1183CFB100685649 /* NSArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB01183C906003B099E /* NSArrayAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -81,6 +84,9 @@
 		6E55A4981183C94F002768DE /* TTMarkupStripper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTMarkupStripper.m; path = Sources/TTMarkupStripper.m; sourceTree = "<group>"; };
 		6E55A49B1183C956002768DE /* TTMarkupStripper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMarkupStripper.h; path = Headers/TTMarkupStripper.h; sourceTree = "<group>"; };
 		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
+		6E607C6E11AF286B00C93CD4 /* CoreMarkupStripperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreMarkupStripperTests.m; path = UnitTests/CoreMarkupStripperTests.m; sourceTree = "<group>"; };
+		6E607CEE11AF2FCB00C93CD4 /* TTEntityTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTEntityTables.m; path = Sources/TTEntityTables.m; sourceTree = "<group>"; };
+		6E607CF011AF2FD800C93CD4 /* TTEntityTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTEntityTables.h; path = Headers/TTEntityTables.h; sourceTree = "<group>"; };
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E6454531184BE8600F08CB1 /* Three20Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core.h; path = Headers/Three20Core.h; sourceTree = "<group>"; };
 		6E6454541184BE8600F08CB1 /* Three20Core+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Core+Additions.h"; path = "Headers/Three20Core+Additions.h"; sourceTree = "<group>"; };
@@ -141,6 +147,15 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
+		6E607CAE11AF2DE800C93CD4 /* Entity Tables */ = {
+			isa = PBXGroup;
+			children = (
+				6E607CF011AF2FD800C93CD4 /* TTEntityTables.h */,
+				6E607CEE11AF2FCB00C93CD4 /* TTEntityTables.m */,
+			);
+			name = "Entity Tables";
+			sourceTree = "<group>";
+		};
 		6E78061A1183BD810078A30B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +178,7 @@
 				6ED117D21183BDBF0096AEBF /* Global */,
 				6ED118141183BF9D0096AEBF /* Additions */,
 				6ED118C21183C2310096AEBF /* Debug */,
+				6E607CAE11AF2DE800C93CD4 /* Entity Tables */,
 				6E78061A1183BD810078A30B /* Classes */,
 			);
 			name = Source;
@@ -198,6 +214,7 @@
 				6ED117E51183BE2A0096AEBF /* Resources */,
 				6EB4608E1183D14800685649 /* CoreAdditionTests.m */,
 				6EB4608F1183D14800685649 /* CoreGlobalTests.m */,
+				6E607C6E11AF286B00C93CD4 /* CoreMarkupStripperTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -275,6 +292,7 @@
 				6E6454551184BE8600F08CB1 /* Three20Core.h in Headers */,
 				6E6454561184BE8600F08CB1 /* Three20Core+Additions.h in Headers */,
 				6EDAE9C7118CA1720008133C /* TTGlobalCoreRects.h in Headers */,
+				6E607CF211AF2FE400C93CD4 /* TTEntityTables.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +415,7 @@
 				6E55A49A1183C94F002768DE /* TTMarkupStripper.m in Sources */,
 				6EB460631183CFB900685649 /* NSMutableDictionaryAdditions.m in Sources */,
 				6EDAE9C9118CA1790008133C /* TTGlobalCoreRects.m in Sources */,
+				6E607CF111AF2FE400C93CD4 /* TTEntityTables.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +425,7 @@
 			files = (
 				6EB460901183D14800685649 /* CoreAdditionTests.m in Sources */,
 				6EB460911183D14800685649 /* CoreGlobalTests.m in Sources */,
+				6E607C6F11AF286B00C93CD4 /* CoreMarkupStripperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

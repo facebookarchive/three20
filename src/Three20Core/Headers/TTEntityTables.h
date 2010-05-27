@@ -15,18 +15,33 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface TTMarkupStripper : NSObject {
-@private
-  NSMutableArray* _strings;
+/**
+ * Standard entity tables for use with XML parsers.
+ *
+ * Supported entity tables: ISO 8859-1.
+ *
+ * Each table is a dictionary of entity names to NSData objects containing the character.
+ */
+@interface TTEntityTables : NSObject {
+  NSDictionary* _iso88591;
 }
 
 /**
- * Strips markup from the given string and returns the result.
+ * Entity table for ISO 8859-1.
  */
-- (NSString*)parse:(NSString*)string;
+@property (nonatomic, readonly) NSDictionary* iso88591;
+
+@end
+
+
+@interface TTEntityTables (TTSingleton)
+
+// Access the singleton instance: [[TTEntityTables sharedInstance] <methods>]
++ (TTEntityTables*)sharedInstance;
+
+// Release the shared instance.
++ (void)releaseSharedInstance;
 
 @end
