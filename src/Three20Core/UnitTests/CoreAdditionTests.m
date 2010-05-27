@@ -251,34 +251,11 @@
 
   NSArray* arrayWithObjects = [[NSArray alloc] initWithObjects:obj1, obj2, obj3, nil];
 
-  // No parameters
-
-  [arrayWithObjects perform:@selector(retain)];
-
-  for (id obj in arrayWithObjects) {
-    STAssertTrue([obj retainCount] == 3, @"Retain count wasn't modified, %d", [obj retainCount]);
-  }
-
-  [arrayWithObjects perform:@selector(release)];
-
-  for (id obj in arrayWithObjects) {
-    STAssertTrue([obj retainCount] == 2, @"Retain count wasn't modified, %d", [obj retainCount]);
-  }
-
-  // One parameter
-
-  NSMutableArray* obj4 = [[NSMutableArray alloc] init];
-  [arrayWithObjects perform:@selector(addObject:) withObject:obj4];
-
-  for (id obj in arrayWithObjects) {
-    STAssertTrue([obj count] == 1, @"The new object wasn't added, %d", [obj count]);
-  }
-
   // Two parameters
 
   NSMutableArray* obj5 = [[NSMutableArray alloc] init];
-  [arrayWithObjects perform:@selector(replaceObjectAtIndex:withObject:)
-    withObject:0 withObject:obj5];
+  [arrayWithObjects makeObjectsPerformSelector:@selector(insertObject:atIndex:)
+    withObject:obj5 withObject:0];
 
   for (id obj in arrayWithObjects) {
     STAssertTrue([obj count] == 1, @"The array should have the same count, %d", [obj count]);
@@ -289,7 +266,6 @@
   TT_RELEASE_SAFELY(obj1);
   TT_RELEASE_SAFELY(obj2);
   TT_RELEASE_SAFELY(obj3);
-  TT_RELEASE_SAFELY(obj4);
   TT_RELEASE_SAFELY(obj5);
 }
 

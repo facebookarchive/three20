@@ -16,15 +16,33 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Three20Core/TTCorePreprocessorMacros.h" // For __TTDEPRECATED_METHOD
+
 @interface NSArray (TTCategory)
 
 /**
  * Calls performSelector on all objects in the array.
+ *
+ * Deprecated May 25, 2010.
+ * Rationale: makeObjectsPerformSelector accomplishes the same thing and is actually part
+ * of the SDK, therefore it is likely more finely tuned.
+ * Use instead: makeObjectsPerformSelector (see below)
  */
-- (void)perform:(SEL)selector;
-- (void)perform:(SEL)selector withObject:(id)p1;
-- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2;
-- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3;
+- (void)perform:(SEL)selector __TTDEPRECATED_METHOD;
+- (void)perform:(SEL)selector withObject:(id)p1 __TTDEPRECATED_METHOD;
+- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 __TTDEPRECATED_METHOD;
+- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
+  __TTDEPRECATED_METHOD;
+
+/**
+ * Extensions to makeObjectsPerformSelector to provide support for more than one object
+ * parameter.
+ */
+- (void)makeObjectsPerformSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2;
+- (void)makeObjectsPerformSelector: (SEL)selector
+                        withObject: (id)p1
+                        withObject: (id)p2
+                        withObject: (id)p3;
 
 /**
  * @return nil or an object that matches value with isEqual:

@@ -29,19 +29,35 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated (May 25, 2010)
 - (void)perform:(SEL)selector {
   [self makeObjectsPerformSelector:selector];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated (May 25, 2010)
 - (void)perform:(SEL)selector withObject:(id)p1 {
   [self makeObjectsPerformSelector:selector withObject:p1];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated (May 25, 2010)
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 {
+  [self makeObjectsPerformSelector:selector withObject:p1 withObject:p2];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated (May 25, 2010)
+- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
+  [self makeObjectsPerformSelector:selector withObject:p1 withObject:p2 withObject:p3];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)makeObjectsPerformSelector:(SEL)selector withObject:(id)p1 withObject:(id)p2 {
   for (id delegate in self) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector withObject:p1 withObject:p2];
@@ -51,7 +67,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
+- (void)makeObjectsPerformSelector: (SEL)selector
+                        withObject: (id)p1
+                        withObject: (id)p2
+                        withObject: (id)p3 {
   for (id delegate in self) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector withObject:p1 withObject:p2 withObject:p3];
