@@ -1,3 +1,13 @@
+Changes since May 18, 2010
+
+- [NEW] TTEntityTables added to Core.
+
+- [DEPRECATED] NSArray perform:. You should now use makeObjectsPerformSelector.
+
+- [UNITTESTS] Added unit tests for the markup stripper.
+
+- [MINOR] Removed additions from Three20Core.h.
+
 Changes since April 23, 2010
 
 - [NEW] Three20 has been split into modular libraries. Please read the
