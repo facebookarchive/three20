@@ -3,6 +3,8 @@ Changes since May 28, 2010
 - [APPSTORE] Remove use of TTSwapMethods. See Articles/UI/GarbageCollection and
              eb45ca0a6336022367998ac41ced2df39af384d2.
 
+- [NEW] Add nib support again.
+
 - [FIXED] Issue #77. moveDataForURL and removeURL:fromDisk: have been fixed.
 
 Changes since May 18, 2010
