@@ -147,4 +147,11 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)doGarbageCollection {
+  [UIViewController doNavigatorGarbageCollection];
+  [UIViewController doCommonGarbageCollection];
+}
+
+
 @end

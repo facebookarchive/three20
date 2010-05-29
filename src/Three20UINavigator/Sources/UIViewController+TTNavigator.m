@@ -71,7 +71,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)ttDoNavigatorGarbageCollection {
++ (void)doNavigatorGarbageCollection {
   NSMutableSet* controllers = [UIViewController ttNavigatorControllers];
 
   [self doGarbageCollectionWithSelector: @selector(unsetNavigatorProperties)
@@ -103,7 +103,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
       gsGarbageCollectorTimer =
         [[NSTimer scheduledTimerWithTimeInterval: kGarbageCollectionInterval
                                           target: [UIViewController class]
-                                        selector: @selector(ttDoNavigatorGarbageCollection)
+                                        selector: @selector(doNavigatorGarbageCollection)
                                         userInfo: nil
                                          repeats: YES] retain];
     }

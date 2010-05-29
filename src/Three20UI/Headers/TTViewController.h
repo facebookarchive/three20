@@ -37,5 +37,12 @@
  */
 @property (nonatomic, retain) TTTableViewController* searchViewController;
 
+/**
+ * Forcefully initiates garbage collection. You may call this in your didReceiveMemoryWarning
+ * message if you are worried about garbage collection memory consumption.
+ *
+ * See Articles/UI/GarbageCollection.mdown for a more detailed discussion.
+ */
++ (void)doGarbageCollection;
 
 @end
