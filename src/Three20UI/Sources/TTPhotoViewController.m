@@ -19,6 +19,7 @@
 // UI
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTThumbsViewController.h"
+#import "Three20UI/TTNavigationController.h"
 #import "Three20UI/TTPhotoSource.h"
 #import "Three20UI/TTPhoto.h"
 #import "Three20UI/TTPhotoView.h"
@@ -31,6 +32,7 @@
 // UINavigator
 #import "Three20UINavigator/TTURLObject.h"
 #import "Three20UINavigator/TTURLMap.h"
+#import "Three20UINavigator/TTBaseNavigationController.h"
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
@@ -363,8 +365,14 @@ static const NSInteger kActivityLabelTag          = 96;
   if (URL) {
     TTOpenURL(URL);
   } else {
-    [self.navigationController pushViewController:_thumbsController
-                           animatedWithTransition:UIViewAnimationTransitionCurlDown];
+    if ([self.navigationController isKindOfClass:[TTNavigationController class]]) {
+      [(TTNavigationController*)self.navigationController
+           pushViewController: _thumbsController
+       animatedWithTransition: UIViewAnimationTransitionCurlDown];
+
+    } else {
+      [self.navigationController pushViewController:_thumbsController animated:YES];
+    }
   }
 }
 
@@ -839,8 +847,14 @@ static const NSInteger kActivityLabelTag          = 96;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)thumbsViewController:(TTThumbsViewController*)controller didSelectPhoto:(id<TTPhoto>)photo {
   self.centerPhoto = photo;
-  [self.navigationController
-   popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+
+  if ([self.navigationController isKindOfClass:[TTBaseNavigationController class]]) {
+    [(TTBaseNavigationController*)self.navigationController
+     popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+
+  } else {
+    [self.navigationController popViewControllerAnimated:YES];
+  }
 }
 
 

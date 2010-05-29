@@ -20,6 +20,7 @@
 #import "Three20UI/TTPopupViewController.h"
 #import "Three20UI/TTSearchDisplayController.h"
 #import "Three20UI/TTTableViewController.h"
+#import "Three20UI/TTNavigationController.h"
 
 // UI (private)
 #import "Three20UI/private/TTNavigatorWindow.h"
@@ -155,6 +156,12 @@ UIViewController* TTOpenURL(NSString* URL) {
     TTModelViewController* ttcontroller = (TTModelViewController*)controller;
     [ttcontroller reload];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)navigationControllerClass {
+  return [TTNavigationController class];
 }
 
 

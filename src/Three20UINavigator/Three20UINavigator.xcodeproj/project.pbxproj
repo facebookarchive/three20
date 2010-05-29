@@ -34,6 +34,8 @@
 		6E3C3754118C8E180079637E /* TTBaseNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3753118C8E180079637E /* TTBaseNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3756118C8E210079637E /* TTBaseNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3755118C8E210079637E /* TTBaseNavigator.m */; };
 		6E3C3759118C8E490079637E /* TTNavigatorPersistenceMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3758118C8E490079637E /* TTNavigatorPersistenceMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6081C011B0C08600C93CD4 /* TTBaseNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6081BF11B0C08600C93CD4 /* TTBaseNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6081C211B0C08D00C93CD4 /* TTBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6081C111B0C08D00C93CD4 /* TTBaseNavigationController.m */; };
 		6E6454741184D2CD00F08CB1 /* Three20UINavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UINavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E7B106811923A76001359FE /* TTNavigatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7B106611923A76001359FE /* TTNavigatorViewController.m */; };
 		6E7B106E11923A92001359FE /* TTNavigatorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7B106D11923A92001359FE /* TTNavigatorViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -147,6 +149,8 @@
 		6E3C3755118C8E210079637E /* TTBaseNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTBaseNavigator.m; path = Sources/TTBaseNavigator.m; sourceTree = "<group>"; };
 		6E3C3758118C8E490079637E /* TTNavigatorPersistenceMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorPersistenceMode.h; path = Headers/TTNavigatorPersistenceMode.h; sourceTree = "<group>"; };
 		6E3C37B4118C96A60079637E /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6E6081BF11B0C08600C93CD4 /* TTBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTBaseNavigationController.h; path = Headers/TTBaseNavigationController.h; sourceTree = "<group>"; };
+		6E6081C111B0C08D00C93CD4 /* TTBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTBaseNavigationController.m; path = Sources/TTBaseNavigationController.m; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E6454731184D2CD00F08CB1 /* Three20UINavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UINavigator.h; path = Headers/Three20UINavigator.h; sourceTree = "<group>"; };
 		6E6458CB11875F8400F08CB1 /* Three20UINavigator_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UINavigator_Prefix.pch; path = Headers/Three20UINavigator_Prefix.pch; sourceTree = "<group>"; };
@@ -321,13 +325,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6E7B106911923A7E001359FE /* Navigator View Controller */ = {
+		6E7B106911923A7E001359FE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				6E7B106D11923A92001359FE /* TTNavigatorViewController.h */,
 				6E7B106611923A76001359FE /* TTNavigatorViewController.m */,
+				6E6081BF11B0C08600C93CD4 /* TTBaseNavigationController.h */,
+				6E6081C111B0C08D00C93CD4 /* TTBaseNavigationController.m */,
 			);
-			name = "Navigator View Controller";
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		6E7B107111923AC5001359FE /* Private */ = {
@@ -405,7 +411,7 @@
 				6EDAE9E9118CA3610008133C /* TTGlobalNavigatorMetrics.h */,
 				6EDAE9EB118CA3680008133C /* TTGlobalNavigatorMetrics.m */,
 				6E3C36C7118B7E0C0079637E /* TTURLObject.h */,
-				6E7B106911923A7E001359FE /* Navigator View Controller */,
+				6E7B106911923A7E001359FE /* View Controllers */,
 				6EDAE9D8118CA25D0008133C /* Navigator */,
 			);
 			name = Source;
@@ -442,6 +448,7 @@
 				6E7F94C4118E22E400443B46 /* TTNavigationMode.h in Headers */,
 				6E7B106E11923A92001359FE /* TTNavigatorViewController.h in Headers */,
 				6E7B107011923AC1001359FE /* UIViewController+TTNavigatorGarbageCollection.h in Headers */,
+				6E6081C011B0C08600C93CD4 /* TTBaseNavigationController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +614,7 @@
 				6EDAE964118C99280008133C /* UIViewController+TTNavigator.m in Sources */,
 				6EDAE9EC118CA3680008133C /* TTGlobalNavigatorMetrics.m in Sources */,
 				6E7B106811923A76001359FE /* TTNavigatorViewController.m in Sources */,
+				6E6081C211B0C08D00C93CD4 /* TTBaseNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

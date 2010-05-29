@@ -17,6 +17,26 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface UINavigationController (TTCategory)
+/**
+ * The base navigation view controller that overrides popViewControllerAnimated and provides
+ * inverse animations when popping a view controller.
+ */
+@interface TTBaseNavigationController : UINavigationController {
+
+}
+
+/**
+ * TODO: Move this to a private category header.
+ */
+- (void)pushAnimationDidStop;
+
+- (void)pushViewController: (UIViewController*)controller
+    animatedWithTransition: (UIViewAnimationTransition)transition;
+
+/**
+ * Pops a view controller with a transition other than the standard sliding animation.
+ */
+- (UIViewController*)popViewControllerAnimatedWithTransition:(UIViewAnimationTransition)transition;
+
 
 @end

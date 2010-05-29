@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E60820111B0C31400C93CD4 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */; };
+		6E60820311B0C32600C93CD4 /* TTNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E60820211B0C32600C93CD4 /* TTNavigationController.h */; };
 		6E6454741184D2CD00F08CB1 /* Three20UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454931184D3ED00F08CB1 /* Three20UI+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454921184D3ED00F08CB1 /* Three20UI+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454AA1184D43100F08CB1 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6454A71184D42800F08CB1 /* libThree20Style.a */; };
@@ -419,6 +421,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigationController.m; path = Sources/TTNavigationController.m; sourceTree = "<group>"; };
+		6E60820211B0C32600C93CD4 /* TTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigationController.h; path = Headers/TTNavigationController.h; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E6454731184D2CD00F08CB1 /* Three20UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UI.h; path = Headers/Three20UI.h; sourceTree = "<group>"; };
 		6E6454921184D3ED00F08CB1 /* Three20UI+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20UI+Additions.h"; path = "Headers/Three20UI+Additions.h"; sourceTree = "<group>"; };
@@ -792,6 +796,8 @@
 			children = (
 				6E6455501184D4C500F08CB1 /* TTViewController.h */,
 				6E6456791184D4DA00F08CB1 /* TTViewController.m */,
+				6E60820211B0C32600C93CD4 /* TTNavigationController.h */,
+				6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */,
 				6E6457A81184D85D00F08CB1 /* Action Sheet Controller */,
 				6E6457A91184D86F00F08CB1 /* Alert Controller */,
 				6E6457A51184D80F00F08CB1 /* Message Controller */,
@@ -1802,6 +1808,7 @@
 				6E6455FA1184D4C500F08CB1 /* UIWebViewAdditions.h in Headers */,
 				6EDAE9F6118CA5810008133C /* TTNavigator.h in Headers */,
 				6E86A8DB118CBF7500662DA5 /* TTNavigatorWindow.h in Headers */,
+				6E60820311B0C32600C93CD4 /* TTNavigationController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2129,6 +2136,7 @@
 				6E64570D1184D4DA00F08CB1 /* UIWebViewAdditions.m in Sources */,
 				6EDAEA02118CA59C0008133C /* TTNavigator.m in Sources */,
 				6E86A8EC118CBF8E00662DA5 /* TTNavigatorWindow.m in Sources */,
+				6E60820111B0C31400C93CD4 /* TTNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

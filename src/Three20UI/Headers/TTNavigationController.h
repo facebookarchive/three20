@@ -14,9 +14,22 @@
 // limitations under the License.
 //
 
-// Global
-#import "Three20UICommon/TTGlobalUICommon.h"
+#import "Three20UINavigator/TTBaseNavigationController.h"
 
-// - Controllers
-#import "Three20UICommon/TTBaseViewController.h"
-#import "Three20UICommon/TTBaseNavigationController.h"
+@interface TTNavigationController : TTBaseNavigationController {
+
+}
+
+/**
+ * Pushes a view controller with a transition other than the standard sliding animation.
+ */
+- (void)pushViewController: (UIViewController*)controller
+    animatedWithTransition: (UIViewAnimationTransition)transition;
+
+/**
+ * Pops a view controller with a transition other than the standard sliding animation.
+ */
+- (UIViewController*)popViewControllerAnimatedWithTransition:(UIViewAnimationTransition)transition;
+
+
+@end
