@@ -261,6 +261,7 @@
         toSharedViewController:(id)target {
   TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
                                                                   mode:TTNavigationModeShare];
+  pattern.parentURL = parentURL;
   [self addObjectPattern:pattern forURL:URL];
   [pattern release];
 }
