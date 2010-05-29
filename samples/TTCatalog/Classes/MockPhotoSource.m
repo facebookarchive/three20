@@ -1,7 +1,5 @@
 #import "MockPhotoSource.h"
 
-#import "Three20Core/NSArrayAdditions.h"
-
 @implementation MockPhotoSource
 
 @synthesize title = _title;
