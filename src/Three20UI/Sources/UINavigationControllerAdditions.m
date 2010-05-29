@@ -80,7 +80,7 @@
 - (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
         transition:(UIViewAnimationTransition)transition {
   if (animated && transition) {
-    if ([self.navigationController isKindOfClass:[TTNavigationController class]]) {
+    if ([self isKindOfClass:[TTNavigationController class]]) {
       [(TTNavigationController*)self pushViewController: controller
                                  animatedWithTransition: transition];
     } else {
