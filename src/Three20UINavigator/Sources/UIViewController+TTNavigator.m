@@ -19,9 +19,7 @@
 // UINavigator
 #import "Three20UINavigator/TTBaseNavigator.h"
 #import "Three20UINavigator/TTURLMap.h"
-
-// UINavigator (private)
-#import "Three20UINavigator/private/TTBaseViewControllerInternal.h"
+#import "Three20UINavigator/TTNavigatorViewController.h"
 
 // UICommon
 #import "Three20UICommon/UIViewControllerAdditions.h"
@@ -64,7 +62,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NSMutableSet*)navigatorControllers {
++ (NSMutableSet*)ttNavigatorControllers {
   if (nil == gsNavigatorControllers) {
     gsNavigatorControllers = [[NSMutableSet alloc] init];
   }
@@ -73,8 +71,8 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)doNavigatorGarbageCollection {
-  NSMutableSet* controllers = [UIViewController navigatorControllers];
++ (void)ttDoNavigatorGarbageCollection {
+  NSMutableSet* controllers = [UIViewController ttNavigatorControllers];
 
   [self doGarbageCollectionWithSelector: @selector(unsetNavigatorProperties)
                           controllerSet: controllers];
@@ -90,7 +88,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)addNavigatorController:(UIViewController*)controller {
++ (void)ttAddNavigatorController:(UIViewController*)controller {
 
   // TTNavigatorViewController calls unsetNavigatorProperties in its dealloc.
   // UICommon has its own garbage collector that will unset another set of properties.
@@ -99,13 +97,13 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
     TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
                     @"Adding a navigator controller.");
 
-    [[UIViewController navigatorControllers] addObject:controller];
+    [[UIViewController ttNavigatorControllers] addObject:controller];
 
     if (nil == gsGarbageCollectorTimer) {
       gsGarbageCollectorTimer =
         [[NSTimer scheduledTimerWithTimeInterval: kGarbageCollectionInterval
                                           target: [UIViewController class]
-                                        selector: @selector(doNavigatorGarbageCollection)
+                                        selector: @selector(ttDoNavigatorGarbageCollection)
                                         userInfo: nil
                                          repeats: YES] retain];
     }
@@ -146,7 +144,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
     }
     [gNavigatorURLs setObject:URL forKey:key];
 
-    [UIViewController addNavigatorController:self];
+    [UIViewController ttAddNavigatorController:self];
 
   } else {
     [gNavigatorURLs removeObjectForKey:key];
@@ -171,7 +169,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation UIViewController (TTNavigatorInternal)
+@implementation UIViewController (TTNavigatorGarbageCollection)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

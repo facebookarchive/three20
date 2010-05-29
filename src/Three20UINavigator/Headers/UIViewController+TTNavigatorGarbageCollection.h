@@ -17,9 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (TTNavigatorInternal)
+@interface UIViewController (TTNavigatorGarbageCollection)
 
-+ (void)addNavigatorController:(UIViewController*)controller;
++ (void)ttAddNavigatorController:(UIViewController*)controller;
 
 /**
  * What used to the "swizzled" deallocation of UIViewControllers is now accomplished here.

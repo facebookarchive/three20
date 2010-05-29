@@ -37,7 +37,7 @@
 		6E6454741184D2CD00F08CB1 /* Three20UINavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UINavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E7B106811923A76001359FE /* TTNavigatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7B106611923A76001359FE /* TTNavigatorViewController.m */; };
 		6E7B106E11923A92001359FE /* TTNavigatorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7B106D11923A92001359FE /* TTNavigatorViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E7B107011923AC1001359FE /* UIViewController+TTNavigatorInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7B106F11923AC1001359FE /* UIViewController+TTNavigatorInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6E7B107011923AC1001359FE /* UIViewController+TTNavigatorGarbageCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7B106F11923AC1001359FE /* UIViewController+TTNavigatorGarbageCollection.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E7F945E118E1B0E00443B46 /* UIViewControllerAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F945D118E1B0E00443B46 /* UIViewControllerAdditionTests.m */; };
 		6E7F94B4118E210300443B46 /* TTURLActionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F94B3118E210300443B46 /* TTURLActionTests.m */; };
 		6E7F94C4118E22E400443B46 /* TTNavigationMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7F94C1118E22B200443B46 /* TTNavigationMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,7 +152,7 @@
 		6E6458CB11875F8400F08CB1 /* Three20UINavigator_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UINavigator_Prefix.pch; path = Headers/Three20UINavigator_Prefix.pch; sourceTree = "<group>"; };
 		6E7B106611923A76001359FE /* TTNavigatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigatorViewController.m; path = Sources/TTNavigatorViewController.m; sourceTree = "<group>"; };
 		6E7B106D11923A92001359FE /* TTNavigatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorViewController.h; path = Headers/TTNavigatorViewController.h; sourceTree = "<group>"; };
-		6E7B106F11923AC1001359FE /* UIViewController+TTNavigatorInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+TTNavigatorInternal.h"; path = "Headers/UIViewController+TTNavigatorInternal.h"; sourceTree = "<group>"; };
+		6E7B106F11923AC1001359FE /* UIViewController+TTNavigatorGarbageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+TTNavigatorGarbageCollection.h"; path = "Headers/UIViewController+TTNavigatorGarbageCollection.h"; sourceTree = "<group>"; };
 		6E7F945D118E1B0E00443B46 /* UIViewControllerAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewControllerAdditionTests.m; path = UnitTests/UIViewControllerAdditionTests.m; sourceTree = "<group>"; };
 		6E7F94B3118E210300443B46 /* TTURLActionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLActionTests.m; path = UnitTests/TTURLActionTests.m; sourceTree = "<group>"; };
 		6E7F94C1118E22B200443B46 /* TTNavigationMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigationMode.h; path = Headers/TTNavigationMode.h; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 		6E7B107111923AC5001359FE /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				6E7B106F11923AC1001359FE /* UIViewController+TTNavigatorInternal.h */,
+				6E7B106F11923AC1001359FE /* UIViewController+TTNavigatorGarbageCollection.h */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -441,7 +441,7 @@
 				6E86A98D118CF55D00662DA5 /* TTBaseNavigatorInternal.h in Headers */,
 				6E7F94C4118E22E400443B46 /* TTNavigationMode.h in Headers */,
 				6E7B106E11923A92001359FE /* TTNavigatorViewController.h in Headers */,
-				6E7B107011923AC1001359FE /* UIViewController+TTNavigatorInternal.h in Headers */,
+				6E7B107011923AC1001359FE /* UIViewController+TTNavigatorGarbageCollection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

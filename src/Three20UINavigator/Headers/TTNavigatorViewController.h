@@ -16,6 +16,10 @@
 
 #import "Three20UICommon/TTBaseViewController.h"
 
+/**
+ * Cleans up navigator properties when the controller is released. Used by the garbage
+ * collector found in UICommon's UIViewControllerAdditions.m.
+ */
 @interface TTNavigatorViewController : TTBaseViewController {
 
 }

@@ -21,7 +21,7 @@
 #import "Three20UINavigator/TTURLGeneratorPattern.h"
 
 // UINavigator (private)
-#import "Three20UINavigator/private/UIViewController+TTNavigatorInternal.h"
+#import "Three20UINavigator/private/UIViewController+TTNavigatorGarbageCollection.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"
@@ -351,7 +351,7 @@
   [_objectMappings setObject:object forKey:URL];
 
   if ([object isKindOfClass:[UIViewController class]]) {
-    [UIViewController addNavigatorController:object];
+    [UIViewController ttAddNavigatorController:object];
   }
 }
 

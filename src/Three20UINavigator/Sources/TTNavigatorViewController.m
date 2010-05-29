@@ -17,7 +17,7 @@
 #import "Three20UINavigator/TTNavigatorViewController.h"
 
 // UINavigator (private)
-#import "Three20UINavigator/private/UIViewController+TTNavigatorInternal.h"
+#import "Three20UINavigator/private/UIViewController+TTNavigatorGarbageCollection.h"
 
 // Core
 #import "Three20Core/TTDebug.h"
