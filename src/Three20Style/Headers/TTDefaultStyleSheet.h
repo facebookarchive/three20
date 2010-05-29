@@ -49,17 +49,6 @@
 @property (nonatomic, readonly) UIColor* searchTableBackgroundColor;
 @property (nonatomic, readonly) UIColor* searchTableSeparatorColor;
 
-// Table refresh header.
-// Used in TTTableViewDragRefreshDelegate.h/m
-@property (nonatomic, readonly) UIFont*  tableRefreshHeaderLastUpdatedFont;
-@property (nonatomic, readonly) UIFont*  tableRefreshHeaderStatusFont;
-@property (nonatomic, readonly) UIColor* tableRefreshHeaderBackgroundColor;
-@property (nonatomic, readonly) UIColor* tableRefreshHeaderTextColor;
-@property (nonatomic, readonly) UIColor* tableRefreshHeaderTextShadowColor;
-@property (nonatomic, readonly) CGSize   tableRefreshHeaderTextShadowOffset;
-@property (nonatomic, readonly) UIImage* tableRefreshHeaderArrowImage;
-
-
 @property (nonatomic, readonly) UIColor* tabTintColor;
 @property (nonatomic, readonly) UIColor* tabBarTintColor;
 
