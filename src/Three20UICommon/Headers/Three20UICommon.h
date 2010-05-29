@@ -19,4 +19,3 @@
 
 // - Controllers
 #import "Three20UICommon/TTBaseViewController.h"
-#import "Three20UICommon/TTBaseNavigationController.h"
