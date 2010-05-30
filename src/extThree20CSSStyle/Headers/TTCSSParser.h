@@ -18,7 +18,10 @@
 #import <UIKit/UIKit.h>
 
 @interface TTCSSParser : NSObject {
-
+@private
+  NSArray* _tokens;
 }
+
+- (NSDictionary*)parseFilename:(NSString*)filename;
 
 @end

@@ -1,0 +1,78 @@
+%option case-insensitive
+
+h         [0-9a-f]
+nonascii  [\200-\377]
+unicode   \\{h}{1,6}[ \t\r\n\f]?
+escape    {unicode}|\\[ -~\200-\377]
+nmstart   [a-z]|{nonascii}|{escape}
+nmchar    [a-z0-9-]|{nonascii}|{escape}
+string1   \"([\t !#$%&(-~]|\\{nl}|\'|{nonascii}|{escape})*\"
+string2   \'([\t !#$%&(-~]|\\{nl}|\"|{nonascii}|{escape})*\'
+
+ident     [-]?{nmstart}{nmchar}*
+name      {nmchar}+
+num       [0-9]+|[0-9]*"."[0-9]+
+string    {string1}|{string2}
+url       ([!#$%&*-~]|{nonascii}|{escape})*
+w         [ \t\r\n\f]*
+nl        \n|\r\n|\r|\f
+range     \?{1,6}|{h}(\?{0,5}|{h}(\?{0,4}|{h}(\?{0,3}|{h}(\?{0,2}|{h}(\??|{h})))))
+
+%%
+
+[ \t\r\n\f]+                    
+
+\/\*[^*]*\*+([^/][^*]*\*+)*\/   /* ignore comments */
+
+"<!--"                          
+"-->"                           
+"~="                            
+"|="                            
+                              
+{string}                        {cssConsume(yytext, STRING);}
+                              
+{ident}                         {cssConsume(yytext, IDENT);}
+                              
+"#"{name}                       {cssConsume(yytext, HASH);}
+                              
+"@import"                       
+"@page"                         
+"@media"                        
+"@font-face"                    
+"@charset"                      
+"@namespace"                    
+
+"!{w}important"                 
+
+{num}em                         {cssConsume(yytext, EMS);}
+{num}ex                         {cssConsume(yytext, EXS);}
+{num}px                         {cssConsume(yytext, LENGTH);}
+{num}cm                         {cssConsume(yytext, LENGTH);}
+{num}mm                         {cssConsume(yytext, LENGTH);}
+{num}in                         {cssConsume(yytext, LENGTH);}
+{num}pt                         {cssConsume(yytext, LENGTH);}
+{num}pc                         {cssConsume(yytext, LENGTH);}
+{num}deg                        {cssConsume(yytext, ANGLE);}
+{num}rad                        {cssConsume(yytext, ANGLE);}
+{num}grad                       {cssConsume(yytext, ANGLE);}
+{num}ms                         {cssConsume(yytext, TIME);}
+{num}s                          {cssConsume(yytext, TIME);}
+{num}Hz                         {cssConsume(yytext, FREQ);}
+{num}kHz                        {cssConsume(yytext, FREQ);}
+{num}{ident}                    {cssConsume(yytext, DIMEN);}
+{num}%                          {cssConsume(yytext, PERCENTAGE);}
+{num}                           {cssConsume(yytext, NUMBER);}
+
+"url("{w}{string}{w}")"         {cssConsume(yytext, URI);}
+"url("{w}{url}{w}")"            {cssConsume(yytext, URI);}
+{ident}"("                      {cssConsume(yytext, FUNCTION);}
+
+U\+{range}                      {cssConsume(yytext, UNICODERANGE);}
+U\+{h}{1,6}-{h}{1,6}            {cssConsume(yytext, UNICODERANGE);}
+
+.                               {cssConsume(yytext, UNKNOWN);}
+
+%%
+
+int csswrap(void){return 1;}
+

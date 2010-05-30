@@ -8,10 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		6E3C3470118806590079637E /* extThree20CSSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E3C34A3118807A70079637E /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E3C34A2118807A70079637E /* testcase.xml */; };
 		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
-		6E85145211B1B5200071A4FD /* TTCSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85145111B1B5200071A4FD /* TTCSSParser.m */; };
 		6E85145411B1B5390071A4FD /* TTCSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85145311B1B5390071A4FD /* TTCSSParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E8514DA11B2E31E0071A4FD /* CssTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8514D811B2E31E0071A4FD /* CssTokenizer.m */; };
+		6E8514DB11B2E31E0071A4FD /* CssTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8514D911B2E31E0071A4FD /* CssTokens.m */; };
+		6E8514ED11B2E3F30071A4FD /* CssTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8514DC11B2E3290071A4FD /* CssTokens.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6E85152611B2E7B80071A4FD /* CssParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85152511B2E7B80071A4FD /* CssParserTests.m */; };
+		6E85154011B2E8660071A4FD /* TTCSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85145111B1B5200071A4FD /* TTCSSParser.m */; };
+		6E85155611B2E94E0071A4FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E85155511B2E94E0071A4FD /* CoreGraphics.framework */; };
+		6EAE4E5611B2F0A7001073B4 /* testcase.css in Resources */ = {isa = PBXBuildFile; fileRef = 6EAE4E5511B2F0A7001073B4 /* testcase.css */; };
 		6EB460DA1183D8CB00685649 /* libextThree20CSSStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */; };
 /* End PBXBuildFile section */
 
@@ -54,13 +59,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6E3C34A2118807A70079637E /* testcase.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase.xml; path = UnitTests/Resources/XML/testcase.xml; sourceTree = "<group>"; };
 		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20CSSStyle.h; path = Headers/extThree20CSSStyle.h; sourceTree = "<group>"; };
 		6E85145111B1B5200071A4FD /* TTCSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTCSSParser.m; path = Sources/TTCSSParser.m; sourceTree = "<group>"; };
 		6E85145311B1B5390071A4FD /* TTCSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCSSParser.h; path = Headers/TTCSSParser.h; sourceTree = "<group>"; };
+		6E8514D811B2E31E0071A4FD /* CssTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CssTokenizer.m; path = Sources/CssTokenizer.m; sourceTree = "<group>"; };
+		6E8514D911B2E31E0071A4FD /* CssTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CssTokens.m; path = Sources/CssTokens.m; sourceTree = "<group>"; };
+		6E8514DC11B2E3290071A4FD /* CssTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CssTokens.h; path = Headers/CssTokens.h; sourceTree = "<group>"; };
+		6E85152511B2E7B80071A4FD /* CssParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CssParserTests.m; path = UnitTests/CssParserTests.m; sourceTree = "<group>"; };
+		6E85154F11B2E93E0071A4FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6E85155511B2E94E0071A4FD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6EAE4E5511B2F0A7001073B4 /* testcase.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = testcase.css; path = UnitTests/Resources/CSS/testcase.css; sourceTree = "<group>"; };
 		6EB460921183D16000685649 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EB460A61183D2AC00685649 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20CSSStyle.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +92,7 @@
 			files = (
 				6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */,
 				6EB460DA1183D8CB00685649 /* libextThree20CSSStyle.a in Frameworks */,
+				6E85155611B2E94E0071A4FD /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +117,8 @@
 				6ED118E41183C38A0096AEBF /* Configurations */,
 				6ED117ED1183BE770096AEBF /* Tests */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				6E85154F11B2E93E0071A4FD /* Foundation.framework */,
+				6E85155511B2E94E0071A4FD /* CoreGraphics.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -126,9 +140,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6E8514DD11B2E32E0071A4FD /* Tokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				6E8514DC11B2E3290071A4FD /* CssTokens.h */,
+				6E8514D811B2E31E0071A4FD /* CssTokenizer.m */,
+				6E8514D911B2E31E0071A4FD /* CssTokens.m */,
+			);
+			name = Tokenizer;
+			sourceTree = "<group>";
+		};
 		6EB4609C1183D1E000685649 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6E8514DD11B2E32E0071A4FD /* Tokenizer */,
 				6E85145311B1B5390071A4FD /* TTCSSParser.h */,
 				6E85145111B1B5200071A4FD /* TTCSSParser.m */,
 			);
@@ -138,8 +163,8 @@
 		6ED117E51183BE2A0096AEBF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6E3C34A2118807A70079637E /* testcase.xml */,
 				6EB460921183D16000685649 /* UnitTests-Info.plist */,
+				6EAE4E5511B2F0A7001073B4 /* testcase.css */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -148,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				6ED117E51183BE2A0096AEBF /* Resources */,
+				6E85152511B2E7B80071A4FD /* CssParserTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -171,6 +197,7 @@
 			files = (
 				6E3C3470118806590079637E /* extThree20CSSStyle.h in Headers */,
 				6E85145411B1B5390071A4FD /* TTCSSParser.h in Headers */,
+				6E8514ED11B2E3F30071A4FD /* CssTokens.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3C34A3118807A70079637E /* testcase.xml in Resources */,
+				6EAE4E5611B2F0A7001073B4 /* testcase.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +333,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E85154011B2E8660071A4FD /* TTCSSParser.m in Sources */,
+				6E8514DA11B2E31E0071A4FD /* CssTokenizer.m in Sources */,
+				6E8514DB11B2E31E0071A4FD /* CssTokens.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E85145211B1B5200071A4FD /* TTCSSParser.m in Sources */,
+				6E85152611B2E7B80071A4FD /* CssParserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +407,6 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
@@ -449,7 +478,6 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
@@ -463,7 +491,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				PREBINDING = NO;
 				ZERO_LINK = NO;
 			};
