@@ -90,4 +90,17 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testStylesheet_ColorCache {
+  UIColor* color = [_styleSheet colorWithCssSelector: @".long-hex-colors"
+                                            forState: UIControlStateNormal];
+
+  // Call it again now, this time ideally from the cache.
+  UIColor* cachedColor = [_styleSheet colorWithCssSelector: @".long-hex-colors"
+                                                  forState: UIControlStateNormal];
+
+  STAssertEquals(color, cachedColor, @"Should be the same object.");
+}
+
+
 @end
