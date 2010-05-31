@@ -170,16 +170,13 @@ NSString* kCssPropertyColor = @"color";
 
       // There actually are some values.
       if ([values count] > 0) {
+        TTDASSERT([values count] == 1); // Shouldn't be more than one value here!
         NSString* colorString = [values objectAtIndex:0];
+        color = [self colorFromCssString:colorString];
 
-        // There is a color value set for the given selector.
-        if (nil != colorString) {
-          color = [self colorFromCssString:colorString];
-
-          // And we can actually parse it.
-          if (nil != color) {
-            [self setObjectForCssSelector:selector propertyName:kCssPropertyColor object:color];
-          }
+        // And we can actually parse it.
+        if (nil != color) {
+          [self setObjectForCssSelector:selector propertyName:kCssPropertyColor object:color];
         }
       }
     }

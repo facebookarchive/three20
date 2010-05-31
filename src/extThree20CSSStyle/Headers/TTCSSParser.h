@@ -17,6 +17,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ * CSS Jargon:
+ *
+ * Rule Set: A selector and a set of property/value pairs.
+ * Selector: An identifier for a rule set. Example: "img"
+ * Property: A name for a set of values. Example: "color"
+ * Value:    A value for a property.
+ *
+ * img {                \
+ *   border-color: red; |  A single rule set.
+ * }                    /
+ */
 @interface TTCSSParser : NSObject {
 @private
   NSMutableDictionary*  _ruleSets;
