@@ -65,6 +65,10 @@
   headerLabel.textColor = [_styleSheet colorWithCssSelector:@"h1" forState:UIControlStateNormal];
   headerLabel.backgroundColor = [_styleSheet backgroundColorWithCssSelector: @"h1"
                                                                    forState: UIControlStateNormal];
+  headerLabel.shadowColor = [_styleSheet textShadowColorWithCssSelector: @"h1"
+                                                               forState: UIControlStateNormal];
+  headerLabel.shadowOffset = [_styleSheet textShadowOffsetWithCssSelector: @"h1"
+                                                                 forState: UIControlStateNormal];
   [headerLabel sizeToFit];
   [self.view addSubview:headerLabel];
   TT_RELEASE_SAFELY(headerLabel);

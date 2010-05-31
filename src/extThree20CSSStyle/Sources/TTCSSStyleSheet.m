@@ -33,6 +33,13 @@ NSString* kCssPropertyFont            = @"font";
 NSString* kCssPropertyFontSize        = @"font-size";
 NSString* kCssPropertyFontWeight      = @"font-weight";
 NSString* kCssPropertyFontFamily      = @"font-family";
+NSString* kCssPropertyTextShadow      = @"text-shadow";
+
+// Text shadow keys
+NSString* kKeyTextShadowHOffset = @"hoffset";
+NSString* kKeyTextShadowVOffset = @"voffset";
+NSString* kKeyTextShadowBlur    = @"blur";
+NSString* kKeyTextShadowColor   = @"color";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -315,6 +322,69 @@ NSString* kCssPropertyFontFamily      = @"font-family";
   }
 
   return font;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Text Shadows
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSDictionary*)textShadowWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  NSDictionary* textShadow = [self objectForCssSelector: selector
+                                           propertyName: kCssPropertyTextShadow];
+
+  // No cached value.
+  if (nil == textShadow) {
+    NSDictionary* ruleSet = [_cssStyles objectForKey:selector];
+
+    // The given selector actually exists in the CSS.
+    if (nil != ruleSet) {
+      NSArray* values = [ruleSet objectForKey:kCssPropertyTextShadow];
+      if ([values count] > 0) {
+        TTDASSERT([values count] == 4); // Should be exactly 4 values here!
+
+        NSNumber* horizOffset = [NSNumber numberWithFloat:[[values objectAtIndex:0] floatValue]];
+        NSNumber* vertOffset  = [NSNumber numberWithFloat:[[values objectAtIndex:1] floatValue]];
+        NSNumber* blurAmount  = [NSNumber numberWithFloat:[[values objectAtIndex:2] floatValue]];
+        UIColor* color        = [self colorFromCssString:[values objectAtIndex:3]];
+
+        textShadow = [[NSDictionary alloc] initWithObjectsAndKeys:
+                      horizOffset, kKeyTextShadowHOffset,
+                      vertOffset,  kKeyTextShadowVOffset,
+                      blurAmount,  kKeyTextShadowBlur,
+                      color,       kKeyTextShadowColor,
+                      nil];
+      }
+
+      if (nil != textShadow) {
+        [self setObjectForCssSelector: selector
+                         propertyName: kCssPropertyTextShadow
+                               object: textShadow];
+      }
+    }
+  }
+
+  return textShadow;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)textShadowColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  NSDictionary* textShadow = [self textShadowWithCssSelector: selector
+                                                    forState: state];
+  return [textShadow objectForKey:kKeyTextShadowColor];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGSize)textShadowOffsetWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  NSDictionary* textShadow = [self textShadowWithCssSelector: selector
+                                                    forState: state];
+  return CGSizeMake([[textShadow objectForKey:kKeyTextShadowHOffset] floatValue],
+                    [[textShadow objectForKey:kKeyTextShadowVOffset] floatValue]);
 }
 
 

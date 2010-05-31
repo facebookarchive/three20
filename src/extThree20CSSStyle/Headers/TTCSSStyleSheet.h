@@ -48,6 +48,16 @@
  */
 - (UIFont*)fontWithCssSelector:(NSString*)selector forState:(UIControlState)state;
 
+/**
+ * Get text shadow color from a specific rule set.
+ */
+- (UIColor*)textShadowColorWithCssSelector:(NSString*)selector forState:(UIControlState)state;
+
+/**
+ * Get text shadow offset from a specific rule set.
+ */
+- (CGSize)textShadowOffsetWithCssSelector:(NSString*)selector forState:(UIControlState)state;
+
 
 /**
  * Release all cached data.
