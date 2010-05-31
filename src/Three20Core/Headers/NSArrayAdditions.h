@@ -16,23 +16,18 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Three20Core/TTCorePreprocessorMacros.h" // For __TTDEPRECATED_METHOD
-
 @interface NSArray (TTCategory)
 
 /**
- * Calls performSelector on all objects in the array.
- *
- * Deprecated May 25, 2010.
- * Rationale: makeObjectsPerformSelector accomplishes the same thing and is actually part
- * of the SDK, therefore it is likely more finely tuned.
- * Use instead: makeObjectsPerformSelector (see below)
+ * Calls performSelector on all objects that can receive the selector in the array.
+ * Makes an iterable copy of the array, making it possible for the selector to modify
+ * the array. Contrast this with makeObjectsPerformSelector which does not allow side effects of
+ * modifying the array.
  */
-- (void)perform:(SEL)selector __TTDEPRECATED_METHOD;
-- (void)perform:(SEL)selector withObject:(id)p1 __TTDEPRECATED_METHOD;
-- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 __TTDEPRECATED_METHOD;
-- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3
-  __TTDEPRECATED_METHOD;
+- (void)perform:(SEL)selector;
+- (void)perform:(SEL)selector withObject:(id)p1;
+- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2;
+- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3;
 
 /**
  * Extensions to makeObjectsPerformSelector to provide support for more than one object
