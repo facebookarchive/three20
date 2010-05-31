@@ -43,6 +43,11 @@
  */
 - (UIColor*)backgroundColorWithCssSelector:(NSString*)selector forState:(UIControlState)state;
 
+/**
+ * Get font from a specific rule set.
+ */
+- (UIFont*)fontWithCssSelector:(NSString*)selector forState:(UIControlState)state;
+
 
 /**
  * Release all cached data.

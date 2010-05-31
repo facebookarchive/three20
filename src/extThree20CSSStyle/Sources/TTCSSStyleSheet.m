@@ -29,6 +29,10 @@
 
 NSString* kCssPropertyColor           = @"color";
 NSString* kCssPropertyBackgroundColor = @"background-color";
+NSString* kCssPropertyFont            = @"font";
+NSString* kCssPropertyFontSize        = @"font-size";
+NSString* kCssPropertyFontWeight      = @"font-weight";
+NSString* kCssPropertyFontFamily      = @"font-family";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -249,6 +253,67 @@ NSString* kCssPropertyBackgroundColor = @"background-color";
   return [self colorWithCssSelector: selector
                            forState: state
                        propertyName: kCssPropertyBackgroundColor];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Fonts
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIFont*)fontWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  UIFont* font = [self objectForCssSelector:selector propertyName:kCssPropertyFont];
+
+  // No cached value.
+  if (nil == font) {
+    NSDictionary* ruleSet = [_cssStyles objectForKey:selector];
+
+    // The given selector actually exists in the CSS.
+    if (nil != ruleSet) {
+      CGFloat fontSize = [UIFont systemFontSize];
+      BOOL isBold = NO;
+
+      NSArray* fontSizeValues = [ruleSet objectForKey:kCssPropertyFontSize];
+      if ([fontSizeValues count] > 0) {
+        TTDASSERT([fontSizeValues count] == 1); // Shouldn't be more than one value here!
+        fontSize = [[fontSizeValues objectAtIndex:0] floatValue];
+      }
+
+      NSArray* fontWeightValues = [ruleSet objectForKey:kCssPropertyFontWeight];
+      if ([fontWeightValues count] > 0) {
+        TTDASSERT([fontWeightValues count] == 1); // Shouldn't be more than one value here!
+        if ([[fontWeightValues objectAtIndex:0] isEqualToString:@"bold"]) {
+          isBold = YES;
+        }
+      }
+
+      NSArray* fontFamilyValues = [ruleSet objectForKey:kCssPropertyFontFamily];
+      if ([fontFamilyValues count] > 0) {
+        NSArray* systemFontFamilyNames = [UIFont familyNames];
+        NSLog(@"Font families: %@", systemFontFamilyNames);
+        for (NSString* fontName in fontFamilyValues) {
+        }
+        if ([[fontFamilyValues objectAtIndex:0] isEqualToString:@"bold"]) {
+          isBold = YES;
+        }
+      }
+
+      if (isBold) {
+        font = [UIFont boldSystemFontOfSize:fontSize];
+
+      } else {
+        font = [UIFont systemFontOfSize:fontSize];
+      }
+
+      if (nil != font) {
+        [self setObjectForCssSelector:selector propertyName:kCssPropertyFont object:font];
+      }
+    }
+  }
+
+  return font;
 }
 
 

@@ -12,6 +12,7 @@
 		6E036A3011B364CC0025E8EE /* TTCSSStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036A2E11B364CC0025E8EE /* TTCSSStyleSheet.m */; };
 		6E036A3211B364DF0025E8EE /* TTCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E036A3111B364DF0025E8EE /* TTCSSStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E036A7D11B371790025E8EE /* CssStyleSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036A7711B371150025E8EE /* CssStyleSheetTests.m */; };
+		6E036B6911B38DA30025E8EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E85155511B2E94E0071A4FD /* CoreGraphics.framework */; };
 		6E3C3470118806590079637E /* extThree20CSSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
 		6E85145411B1B5390071A4FD /* TTCSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85145311B1B5390071A4FD /* TTCSSParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -20,7 +21,6 @@
 		6E8514ED11B2E3F30071A4FD /* CssTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8514DC11B2E3290071A4FD /* CssTokens.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E85152611B2E7B80071A4FD /* CssParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85152511B2E7B80071A4FD /* CssParserTests.m */; };
 		6E85154011B2E8660071A4FD /* TTCSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85145111B1B5200071A4FD /* TTCSSParser.m */; };
-		6E85155611B2E94E0071A4FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E85155511B2E94E0071A4FD /* CoreGraphics.framework */; };
 		6EAE4E5611B2F0A7001073B4 /* testcase.css in Resources */ = {isa = PBXBuildFile; fileRef = 6EAE4E5511B2F0A7001073B4 /* testcase.css */; };
 		6EB460DA1183D8CB00685649 /* libextThree20CSSStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */; };
 /* End PBXBuildFile section */
@@ -111,6 +111,8 @@
 		6E036A2E11B364CC0025E8EE /* TTCSSStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTCSSStyleSheet.m; path = Sources/TTCSSStyleSheet.m; sourceTree = "<group>"; };
 		6E036A3111B364DF0025E8EE /* TTCSSStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCSSStyleSheet.h; path = Headers/TTCSSStyleSheet.h; sourceTree = "<group>"; };
 		6E036A7711B371150025E8EE /* CssStyleSheetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CssStyleSheetTests.m; path = UnitTests/CssStyleSheetTests.m; sourceTree = "<group>"; };
+		6E036B3611B38A420025E8EE /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
+		6E036B6111B38D1B0025E8EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -144,9 +146,9 @@
 			files = (
 				6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */,
 				6EB460DA1183D8CB00685649 /* libextThree20CSSStyle.a in Frameworks */,
-				6E85155611B2E94E0071A4FD /* CoreGraphics.framework in Frameworks */,
 				6E036A2011B364670025E8EE /* libThree20Network.a in Frameworks */,
 				6E036A2111B364670025E8EE /* libThree20Style.a in Frameworks */,
+				6E036B6911B38DA30025E8EE /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +167,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				6E036B3611B38A420025E8EE /* README.mdown */,
 				6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */,
 				6EB4609C1183D1E000685649 /* Source */,
 				6E645A4311876CFE00F08CB1 /* Dependencies */,
@@ -173,6 +176,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				6E85154F11B2E93E0071A4FD /* Foundation.framework */,
 				6E85155511B2E94E0071A4FD /* CoreGraphics.framework */,
+				6E036B6111B38D1B0025E8EE /* UIKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

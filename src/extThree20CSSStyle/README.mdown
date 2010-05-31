@@ -1,0 +1,38 @@
+
+extCSSStyle
+===========
+
+This extension provides support for style sheets read in from CSS files.
+
+Dependencies
+------------
+
+* Core
+* Network
+* Style
+
+Using it in your App
+--------------------
+
+Add the `extThree20CSSStyle.xcodeproj` file to your project. Add `extThree20CSSStyle.a` to your
+"Link Binary With Libraries" phase, and add `extThree20CSSStyle` as a dependency.
+
+Import the following into your precompiled header.
+
+    #import "extThree20CSSStyle/extThree20CSSStyle.h"
+
+Breakdown
+---------
+
+
+
+Known Limitations
+-----------------
+
+### Font Sizes
+
+Font-size is always interpreted in points, regardless of what you specify. This is due to
+the tricky nature of varying DPI on the various iPhone OS devices.
+
+Troubleshooting
+---------------
