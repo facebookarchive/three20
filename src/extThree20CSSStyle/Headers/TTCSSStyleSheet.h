@@ -20,7 +20,7 @@
 @private
   NSDictionary*         _cssStyles;
 
-  NSMutableDictionary*  _processedCssStyles;
+  NSMutableDictionary*  _cachedCssStyles;
 }
 
 /**
@@ -35,5 +35,12 @@
  * Get a color from a specific rule set.
  */
 - (UIColor*)colorWithCssSelector:(NSString*)selector forState:(UIControlState)state;
+
+
+/**
+ * Release all cached data.
+ */
+- (void)freeMemory;
+
 
 @end

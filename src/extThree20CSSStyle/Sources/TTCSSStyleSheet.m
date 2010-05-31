@@ -37,18 +37,48 @@ NSString* kCssPropertyColor = @"color";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_cssStyles);
-  TT_RELEASE_SAFELY(_processedCssStyles);
+- (id)init {
+  if (self = [super init]) {
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector(didReceiveMemoryWarning:)
+     name: UIApplicationDidReceiveMemoryWarningNotification
+     object: nil];
+  }
 
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter]
+   removeObserver: self
+   name: UIApplicationDidReceiveMemoryWarningNotification
+   object: nil];
+
+  TT_RELEASE_SAFELY(_cssStyles);
+  TT_RELEASE_SAFELY(_cachedCssStyles);
   [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSNotifications
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didReceiveMemoryWarning:(void*)object {
+  [self freeMemory];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)loadFromFilename:(NSString*)filename {
   TT_RELEASE_SAFELY(_cssStyles);
-  TT_RELEASE_SAFELY(_processedCssStyles);
+  TT_RELEASE_SAFELY(_cachedCssStyles);
 
   BOOL didLoadSuccessfully = NO;
 
@@ -59,7 +89,7 @@ NSString* kCssPropertyColor = @"color";
     TT_RELEASE_SAFELY(parser);
 
     _cssStyles = [results retain];
-    _processedCssStyles = [[NSMutableDictionary alloc] initWithCapacity:[_cssStyles count]];
+    _cachedCssStyles = [[NSMutableDictionary alloc] initWithCapacity:[_cssStyles count]];
 
     didLoadSuccessfully = YES;
   }
@@ -70,7 +100,7 @@ NSString* kCssPropertyColor = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectForCssSelector:(NSString*)selector propertyName:(NSString*)propertyName {
-  NSDictionary* ruleSet = [_processedCssStyles objectForKey:selector];
+  NSDictionary* ruleSet = [_cachedCssStyles objectForKey:selector];
   if (nil != ruleSet) {
     return [ruleSet objectForKey:propertyName];
   }
@@ -84,10 +114,10 @@ NSString* kCssPropertyColor = @"color";
                    propertyName: (NSString*)propertyName
                          object: (id)object {
   TTDASSERT(TTIsStringWithAnyText(selector));
-  NSMutableDictionary* ruleSet = [_processedCssStyles objectForKey:selector];
+  NSMutableDictionary* ruleSet = [_cachedCssStyles objectForKey:selector];
   if (nil == ruleSet) {
     ruleSet = [[NSMutableDictionary alloc] init];
-    [_processedCssStyles setObject:ruleSet forKey:selector];
+    [_cachedCssStyles setObject:ruleSet forKey:selector];
 
     // Can release here because it's now being retained by _processedCssStyles
     [ruleSet release];
@@ -156,6 +186,13 @@ NSString* kCssPropertyColor = @"color";
   }
 
   return color;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)freeMemory {
+  TT_RELEASE_SAFELY(_cachedCssStyles);
+  _cachedCssStyles = [[NSMutableDictionary alloc] initWithCapacity:[_cssStyles count]];
 }
 
 
