@@ -43,31 +43,61 @@
   NSBundle* testBundle = [NSBundle bundleWithIdentifier:@"com.facebook.three20.UnitTests"];
   STAssertTrue(nil != testBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
 
-  NSString* filename = [[testBundle bundlePath]
-                        stringByAppendingPathComponent:@"testcase.css"];
+  {
+    NSString* filename = [[testBundle bundlePath]
+                          stringByAppendingPathComponent:@"testcase.css"];
 
-  TTCSSParser* parser = [[TTCSSParser alloc] init];
+    TTCSSParser* parser = [[TTCSSParser alloc] init];
 
-  NSDictionary* results = [parser parseFilename:filename];
+    NSDictionary* results = [parser parseFilename:filename];
 
-  STAssertTrue([results isKindOfClass:[NSDictionary class]],
-               @"Should have received a dictionary.");
+    STAssertTrue([results isKindOfClass:[NSDictionary class]],
+                 @"Should have received a dictionary.");
 
-  NSDictionary* properties = [results objectForKey:@".classname"];
+    NSDictionary* properties = [results objectForKey:@".classname"];
 
-  STAssertTrue([properties isKindOfClass:[NSDictionary class]],
-               @".classname should be a dictionary.");
+    STAssertTrue([properties isKindOfClass:[NSDictionary class]],
+                 @".classname should be a dictionary.");
 
-  NSArray* values = [properties objectForKey:@"width"];
+    NSArray* values = [properties objectForKey:@"width"];
 
-  STAssertTrue([values isKindOfClass:[NSArray class]],
-               @"Values should be an array.");
+    STAssertTrue([values isKindOfClass:[NSArray class]],
+                 @"Values should be an array.");
 
-  // Test overriding.
-  STAssertTrue([[values objectAtIndex:0] isEqualToString:@"600px"],
-               @"Should be equal to 800px");
+    // Test overriding.
+    STAssertTrue([[values objectAtIndex:0] isEqualToString:@"600px"],
+                 @"Should be equal to 800px");
 
-  TT_RELEASE_SAFELY(parser);
+    TT_RELEASE_SAFELY(parser);
+  }
+
+  {
+    NSString* filename = [[testBundle bundlePath]
+                          stringByAppendingPathComponent:@"testcase.css"];
+
+    TTCSSParser* parser = [[TTCSSParser alloc] init];
+
+    NSDictionary* results = [parser parseFilename:filename];
+
+    STAssertTrue([results isKindOfClass:[NSDictionary class]],
+                 @"Should have received a dictionary.");
+
+    NSDictionary* properties = [results objectForKey:@".classname"];
+
+    STAssertTrue([properties isKindOfClass:[NSDictionary class]],
+                 @".classname should be a dictionary.");
+
+    NSArray* values = [properties objectForKey:@"width"];
+
+    STAssertTrue([values isKindOfClass:[NSArray class]],
+                 @"Values should be an array.");
+
+    // Test overriding.
+    STAssertTrue([[values objectAtIndex:0] isEqualToString:@"600px"],
+                 @"Should be equal to 800px");
+
+    TT_RELEASE_SAFELY(parser);
+  }
 }
 
 
