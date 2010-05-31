@@ -29,11 +29,11 @@ range     \?{1,6}|{h}(\?{0,5}|{h}(\?{0,4}|{h}(\?{0,3}|{h}(\?{0,2}|{h}(\??|{h})))
 "~="                            
 "|="                            
                               
-{string}                        {cssConsume(yytext, STRING);}
+{string}                        {cssConsume(yytext, CSSSTRING);}
                               
-{ident}                         {cssConsume(yytext, IDENT);}
+{ident}                         {cssConsume(yytext, CSSIDENT);}
                               
-"#"{name}                       {cssConsume(yytext, HASH);}
+"#"{name}                       {cssConsume(yytext, CSSHASH);}
                               
 "@import"                       
 "@page"                         
@@ -44,33 +44,33 @@ range     \?{1,6}|{h}(\?{0,5}|{h}(\?{0,4}|{h}(\?{0,3}|{h}(\?{0,2}|{h}(\??|{h})))
 
 "!{w}important"                 
 
-{num}em                         {cssConsume(yytext, EMS);}
-{num}ex                         {cssConsume(yytext, EXS);}
-{num}px                         {cssConsume(yytext, LENGTH);}
-{num}cm                         {cssConsume(yytext, LENGTH);}
-{num}mm                         {cssConsume(yytext, LENGTH);}
-{num}in                         {cssConsume(yytext, LENGTH);}
-{num}pt                         {cssConsume(yytext, LENGTH);}
-{num}pc                         {cssConsume(yytext, LENGTH);}
-{num}deg                        {cssConsume(yytext, ANGLE);}
-{num}rad                        {cssConsume(yytext, ANGLE);}
-{num}grad                       {cssConsume(yytext, ANGLE);}
-{num}ms                         {cssConsume(yytext, TIME);}
-{num}s                          {cssConsume(yytext, TIME);}
-{num}Hz                         {cssConsume(yytext, FREQ);}
-{num}kHz                        {cssConsume(yytext, FREQ);}
-{num}{ident}                    {cssConsume(yytext, DIMEN);}
-{num}%                          {cssConsume(yytext, PERCENTAGE);}
-{num}                           {cssConsume(yytext, NUMBER);}
+{num}em                         {cssConsume(yytext, CSSEMS);}
+{num}ex                         {cssConsume(yytext, CSSEXS);}
+{num}px                         {cssConsume(yytext, CSSLENGTH);}
+{num}cm                         {cssConsume(yytext, CSSLENGTH);}
+{num}mm                         {cssConsume(yytext, CSSLENGTH);}
+{num}in                         {cssConsume(yytext, CSSLENGTH);}
+{num}pt                         {cssConsume(yytext, CSSLENGTH);}
+{num}pc                         {cssConsume(yytext, CSSLENGTH);}
+{num}deg                        {cssConsume(yytext, CSSANGLE);}
+{num}rad                        {cssConsume(yytext, CSSANGLE);}
+{num}grad                       {cssConsume(yytext, CSSANGLE);}
+{num}ms                         {cssConsume(yytext, CSSTIME);}
+{num}s                          {cssConsume(yytext, CSSTIME);}
+{num}Hz                         {cssConsume(yytext, CSSFREQ);}
+{num}kHz                        {cssConsume(yytext, CSSFREQ);}
+{num}{ident}                    {cssConsume(yytext, CSSDIMEN);}
+{num}%                          {cssConsume(yytext, CSSPERCENTAGE);}
+{num}                           {cssConsume(yytext, CSSNUMBER);}
 
-"url("{w}{string}{w}")"         {cssConsume(yytext, URI);}
-"url("{w}{url}{w}")"            {cssConsume(yytext, URI);}
-{ident}"("                      {cssConsume(yytext, FUNCTION);}
+"url("{w}{string}{w}")"         {cssConsume(yytext, CSSURI);}
+"url("{w}{url}{w}")"            {cssConsume(yytext, CSSURI);}
+{ident}"("                      {cssConsume(yytext, CSSFUNCTION);}
 
-U\+{range}                      {cssConsume(yytext, UNICODERANGE);}
-U\+{h}{1,6}-{h}{1,6}            {cssConsume(yytext, UNICODERANGE);}
+U\+{range}                      {cssConsume(yytext, CSSUNICODERANGE);}
+U\+{h}{1,6}-{h}{1,6}            {cssConsume(yytext, CSSUNICODERANGE);}
 
-.                               {cssConsume(yytext, UNKNOWN);}
+.                               {cssConsume(yytext, CSSUNKNOWN);}
 
 %%
 

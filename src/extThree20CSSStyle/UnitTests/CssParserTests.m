@@ -48,7 +48,23 @@
 
   TTCSSParser* parser = [[TTCSSParser alloc] init];
 
-  [parser parseFilename:filename];
+  NSDictionary* results = [parser parseFilename:filename];
+
+  STAssertTrue([results isKindOfClass:[NSDictionary class]],
+               @"Should have received a dictionary.");
+
+  NSDictionary* properties = [results objectForKey:@".classname"];
+
+  STAssertTrue([properties isKindOfClass:[NSDictionary class]],
+               @".classname should be a dictionary.");
+
+  NSArray* values = [properties objectForKey:@"width"];
+
+  STAssertTrue([values isKindOfClass:[NSArray class]],
+               @"Values should be an array.");
+
+  STAssertTrue([[values objectAtIndex:0] isEqualToString:@"800px"],
+               @"Should be equal to 800px");
 
   TT_RELEASE_SAFELY(parser);
 }

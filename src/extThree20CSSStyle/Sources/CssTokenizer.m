@@ -1626,19 +1626,19 @@ case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
 #line 32 "css.grammar"
-{cssConsume(csstext, STRING);}
+{cssConsume(csstext, CSSSTRING);}
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
 #line 34 "css.grammar"
-{cssConsume(csstext, IDENT);}
+{cssConsume(csstext, CSSIDENT);}
 	YY_BREAK
 case 9:
 /* rule 9 can match eol */
 YY_RULE_SETUP
 #line 36 "css.grammar"
-{cssConsume(csstext, HASH);}
+{cssConsume(csstext, CSSHASH);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
@@ -1678,126 +1678,126 @@ YY_RULE_SETUP
 case 17:
 YY_RULE_SETUP
 #line 47 "css.grammar"
-{cssConsume(csstext, EMS);}
+{cssConsume(csstext, CSSEMS);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 48 "css.grammar"
-{cssConsume(csstext, EXS);}
+{cssConsume(csstext, CSSEXS);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 49 "css.grammar"
-{cssConsume(csstext, LENGTH);}
+{cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 50 "css.grammar"
-{cssConsume(csstext, LENGTH);}
+{cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 51 "css.grammar"
-{cssConsume(csstext, LENGTH);}
+{cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 52 "css.grammar"
-{cssConsume(csstext, LENGTH);}
+{cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 53 "css.grammar"
-{cssConsume(csstext, LENGTH);}
+{cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 54 "css.grammar"
-{cssConsume(csstext, LENGTH);}
+{cssConsume(csstext, CSSLENGTH);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 55 "css.grammar"
-{cssConsume(csstext, ANGLE);}
+{cssConsume(csstext, CSSANGLE);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 56 "css.grammar"
-{cssConsume(csstext, ANGLE);}
+{cssConsume(csstext, CSSANGLE);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 57 "css.grammar"
-{cssConsume(csstext, ANGLE);}
+{cssConsume(csstext, CSSANGLE);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 58 "css.grammar"
-{cssConsume(csstext, TIME);}
+{cssConsume(csstext, CSSTIME);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 59 "css.grammar"
-{cssConsume(csstext, TIME);}
+{cssConsume(csstext, CSSTIME);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 60 "css.grammar"
-{cssConsume(csstext, FREQ);}
+{cssConsume(csstext, CSSFREQ);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 61 "css.grammar"
-{cssConsume(csstext, FREQ);}
+{cssConsume(csstext, CSSFREQ);}
 	YY_BREAK
 case 32:
 /* rule 32 can match eol */
 YY_RULE_SETUP
 #line 62 "css.grammar"
-{cssConsume(csstext, DIMEN);}
+{cssConsume(csstext, CSSDIMEN);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 63 "css.grammar"
-{cssConsume(csstext, PERCENTAGE);}
+{cssConsume(csstext, CSSPERCENTAGE);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 64 "css.grammar"
-{cssConsume(csstext, NUMBER);}
+{cssConsume(csstext, CSSNUMBER);}
 	YY_BREAK
 case 35:
 /* rule 35 can match eol */
 YY_RULE_SETUP
 #line 66 "css.grammar"
-{cssConsume(csstext, URI);}
+{cssConsume(csstext, CSSURI);}
 	YY_BREAK
 case 36:
 /* rule 36 can match eol */
 YY_RULE_SETUP
 #line 67 "css.grammar"
-{cssConsume(csstext, URI);}
+{cssConsume(csstext, CSSURI);}
 	YY_BREAK
 case 37:
 /* rule 37 can match eol */
 YY_RULE_SETUP
 #line 68 "css.grammar"
-{cssConsume(csstext, FUNCTION);}
+{cssConsume(csstext, CSSFUNCTION);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 70 "css.grammar"
-{cssConsume(csstext, UNICODERANGE);}
+{cssConsume(csstext, CSSUNICODERANGE);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 71 "css.grammar"
-{cssConsume(csstext, UNICODERANGE);}
+{cssConsume(csstext, CSSUNICODERANGE);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 73 "css.grammar"
-{cssConsume(csstext, UNKNOWN);}
+{cssConsume(csstext, CSSUNKNOWN);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP

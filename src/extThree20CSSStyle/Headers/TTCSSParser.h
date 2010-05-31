@@ -19,7 +19,20 @@
 
 @interface TTCSSParser : NSObject {
 @private
-  NSArray* _tokens;
+  NSMutableDictionary*  _definitions;
+  NSMutableArray*       _activeNames;
+  NSMutableDictionary*  _activeProperties;
+  NSString*             _activePropertyName;
+
+  NSString*             _lastTokenText;
+  int                   _lastToken;
+
+  union {
+    struct {
+      int InsideDefinition : 1;
+    } Flags;
+    int _data;
+  } _state;
 }
 
 - (NSDictionary*)parseFilename:(NSString*)filename;

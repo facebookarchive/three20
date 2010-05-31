@@ -1,5 +1,5 @@
 
-const char* names[] = {
+const char* cssnames[] = {
   "STRING",
   "IDENT",
   "HASH",

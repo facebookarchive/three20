@@ -1,4 +1,11 @@
 
-classname {
+.classname,
+#identifier {
   width: 800px;
+  height: 2em
 }
+
+-three20-box {
+  font-family: "Times New Roman";
+}
+

@@ -2,27 +2,27 @@
 #include <stdio.h>
 
 typedef enum {
-  FIRST_TOKEN = 0x100,
-  STRING = FIRST_TOKEN,
-  IDENT,
-  HASH,
-  EMS,
-  EXS,
-  LENGTH,
-  ANGLE,
-  TIME,
-  FREQ,
-  DIMEN,
-  PERCENTAGE,
-  NUMBER,
-  URI,
-  FUNCTION,
-  UNICODERANGE,
-  UNKNOWN,
+  CSSFIRST_TOKEN = 0x100,
+  CSSSTRING = CSSFIRST_TOKEN,
+  CSSIDENT,
+  CSSHASH,
+  CSSEMS,
+  CSSEXS,
+  CSSLENGTH,
+  CSSANGLE,
+  CSSTIME,
+  CSSFREQ,
+  CSSDIMEN,
+  CSSPERCENTAGE,
+  CSSNUMBER,
+  CSSURI,
+  CSSFUNCTION,
+  CSSUNICODERANGE,
+  CSSUNKNOWN,
 
-} ParserCodes;
+} CssParserCodes;
 
-extern const char* names[];
+extern const char* cssnames[];
 
 #ifndef YY_TYPEDEF_YY_SCANNER_T
 #define YY_TYPEDEF_YY_SCANNER_T
