@@ -28,21 +28,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E036BC711B38E520025E8EE /* extThree20CSSStyle.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = extThree20CSSStyle;
 		};
 		6E036BCE11B38E520025E8EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E036BC711B38E520025E8EE /* extThree20CSSStyle.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* extCSSStyleUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E036BE311B38E5F0025E8EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E036BC711B38E520025E8EE /* extThree20CSSStyle.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* extThree20CSSStyle */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = extThree20CSSStyle;
 		};
 		6E850F8711B1762B0071A4FD /* PBXContainerItemProxy */ = {
@@ -351,11 +351,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E850F4811B175FD0071A4FD /* App.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = "TTCSSStyleSheets-Info.plist";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
@@ -364,8 +366,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E850F4811B175FD0071A4FD /* App.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				INFOPLIST_FILE = "TTCSSStyleSheets-Info.plist";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Release;

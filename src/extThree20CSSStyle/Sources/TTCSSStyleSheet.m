@@ -232,9 +232,10 @@ NSString* kKeyTextShadowColor   = @"color";
     if (nil != ruleSet) {
       NSArray* values = [ruleSet objectForKey:propertyName];
 
-      // There actually are some values.
-      if ([values count] > 0) {
-        TTDASSERT([values count] == 1); // Shouldn't be more than one value here!
+      // Anything more or less is unsupported, and therefore this property is ignored
+      // according to the W3C guidelines.
+      TTDASSERT([values count] == 1);
+      if ([values count] == 1) {
         NSString* colorString = [values objectAtIndex:0];
         color = [self colorFromCssString:colorString];
 
@@ -284,14 +285,17 @@ NSString* kKeyTextShadowColor   = @"color";
       BOOL isBold = NO;
 
       NSArray* fontSizeValues = [ruleSet objectForKey:kCssPropertyFontSize];
-      if ([fontSizeValues count] > 0) {
-        TTDASSERT([fontSizeValues count] == 1); // Shouldn't be more than one value here!
+      // Anything more or less is unsupported, and therefore this property is ignored
+      // according to the W3C guidelines.
+      TTDASSERT([values count] == 1);
+      if ([fontSizeValues count] == 1) {
         fontSize = [[fontSizeValues objectAtIndex:0] floatValue];
       }
 
       NSArray* fontWeightValues = [ruleSet objectForKey:kCssPropertyFontWeight];
-      if ([fontWeightValues count] > 0) {
-        TTDASSERT([fontWeightValues count] == 1); // Shouldn't be more than one value here!
+      // Anything more or less is unsupported, and therefore this property is ignored
+      // according to the W3C guidelines.
+      if ([fontWeightValues count] == 1) {
         if ([[fontWeightValues objectAtIndex:0] isEqualToString:@"bold"]) {
           isBold = YES;
         }
@@ -343,9 +347,10 @@ NSString* kKeyTextShadowColor   = @"color";
     // The given selector actually exists in the CSS.
     if (nil != ruleSet) {
       NSArray* values = [ruleSet objectForKey:kCssPropertyTextShadow];
-      if ([values count] > 0) {
-        TTDASSERT([values count] == 4); // Should be exactly 4 values here!
-
+      // Anything more or less is unsupported, and therefore this property is ignored
+      // according to the W3C guidelines.
+      TTDASSERT([values count] == 4);
+      if ([values count] == 4) {
         NSNumber* horizOffset = [NSNumber numberWithFloat:[[values objectAtIndex:0] floatValue]];
         NSNumber* vertOffset  = [NSNumber numberWithFloat:[[values objectAtIndex:1] floatValue]];
         NSNumber* blurAmount  = [NSNumber numberWithFloat:[[values objectAtIndex:2] floatValue]];

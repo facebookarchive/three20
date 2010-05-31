@@ -23,5 +23,5 @@ h1 {
   font-size: 50pt;
   color: #666;
   background-color: transparent;
-  text-shadow: 1px 1px 1px #999; /* blur amount (3rd value) is ignored */
+  text-shadow: 1px 1px 1px #999; /* blur amount (3rd value) doesn't do anything */
 }
