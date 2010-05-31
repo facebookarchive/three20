@@ -106,6 +106,14 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testStylesheet_NamedInvalidColors {
+  UIColor* color = [_styleSheet colorWithCssSelector: @".named-invalid-color"
+                                            forState: UIControlStateNormal];
+  STAssertNil(color, @"Color should not be set.");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testStylesheet_ColorCache {
   UIColor* color = [_styleSheet colorWithCssSelector: @".long-hex-colors"
                                             forState: UIControlStateNormal];
