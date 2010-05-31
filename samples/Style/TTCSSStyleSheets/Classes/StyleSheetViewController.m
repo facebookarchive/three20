@@ -56,6 +56,9 @@
 
   self.title = @"Three20 CSS extension";
 
+  self.view.backgroundColor = [_styleSheet backgroundColorWithCssSelector: @"body"
+                                                                 forState: UIControlStateNormal];
+
   UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   headerLabel.text = @"Header text";
   headerLabel.font = [_styleSheet fontWithCssSelector:@"h1" forState:UIControlStateNormal];

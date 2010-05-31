@@ -170,6 +170,7 @@ NSString* kCssPropertyFontFamily      = @"font-family";
                          RGBCOLOR(0x80, 0x00, 0x80), @"purple",
                          RGBCOLOR(0xC0, 0xC0, 0xC0), @"silver",
                          RGBCOLOR(0x00, 0x80, 0x80), @"teal",
+                         RGBACOLOR(0xFF, 0xFF, 0xFF, 0x00), @"transparent",
                          [UIColor whiteColor], @"white",
                          RGBCOLOR(0xFF, 0xFF, 0x00), @"yellow",
                          nil];

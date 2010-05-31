@@ -14,9 +14,13 @@
  * limitations under the License.
  */
 
+body {
+  background-color: #111;
+}
+
 h1 {
   font-weight: bold;
   font-size: 32pt;
-  color: blue;
-  background-color: #F0F;
+  color: #666;
+  background-color: transparent;
 }
