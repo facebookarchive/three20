@@ -92,7 +92,7 @@ int cssConsume(char* text, int token) {
       if (_state.Flags.InsideDefinition) {
 
         // If we're inside a definition then we ignore hashes.
-        if (CSSHASH != token) {
+        if (CSSHASH != token && !_state.Flags.InsideProperty) {
           TT_RELEASE_SAFELY(_activePropertyName);
           _activePropertyName = [string retain];
 
@@ -101,7 +101,7 @@ int cssConsume(char* text, int token) {
           TT_RELEASE_SAFELY(values);
 
         } else {
-          // This is a color value, so add it to the active property.
+          // This is a value, so add it to the active property.
           TTDASSERT(nil != _activePropertyName);
 
           if (nil != _activePropertyName) {
@@ -170,8 +170,24 @@ int cssConsume(char* text, int token) {
           TT_RELEASE_SAFELY(_activeRuleSet);
           [_activeCssSelectors removeAllObjects];
           _state.Flags.InsideDefinition = NO;
+          _state.Flags.InsideProperty = NO;
           break;
         }
+
+        case ':': {
+          if (_state.Flags.InsideDefinition) {
+            _state.Flags.InsideProperty = YES;
+          }
+          break;
+        }
+
+        case ';': {
+          if (_state.Flags.InsideDefinition) {
+            _state.Flags.InsideProperty = NO;
+          }
+          break;
+        }
+
       }
       break;
     }

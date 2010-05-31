@@ -59,6 +59,7 @@ NSString* kCssPropertyColor = @"color";
 
   TT_RELEASE_SAFELY(_cssStyles);
   TT_RELEASE_SAFELY(_cachedCssStyles);
+  TT_RELEASE_SAFELY(_colorLookupTable);
   [super dealloc];
 }
 
@@ -166,6 +167,17 @@ NSString* kCssPropertyColor = @"color";
     color = RGBCOLOR(((colorValue & 0xFF0000) >> 16),
                      ((colorValue & 0xFF00) >> 8),
                      (colorValue & 0xFF));
+  } else {
+    if (nil == _colorLookupTable) {
+      _colorLookupTable = [[NSDictionary alloc] initWithObjectsAndKeys:
+                           [UIColor redColor], @"red",
+                           [UIColor greenColor], @"green",
+                           [UIColor blueColor], @"blue",
+                           nil];
+    }
+
+    color = [_colorLookupTable objectForKey:cssString];
+
   }
 
   return color;
@@ -212,6 +224,7 @@ NSString* kCssPropertyColor = @"color";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)freeMemory {
   TT_RELEASE_SAFELY(_cachedCssStyles);
+  TT_RELEASE_SAFELY(_colorLookupTable);
   _cachedCssStyles = [[NSMutableDictionary alloc] initWithCapacity:[_cssStyles count]];
 }
 

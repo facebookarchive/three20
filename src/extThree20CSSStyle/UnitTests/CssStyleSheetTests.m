@@ -91,6 +91,21 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testStylesheet_NamedColors {
+  UIColor* color = [_styleSheet colorWithCssSelector: @".named-color"
+                                            forState: UIControlStateNormal];
+  STAssertNotNil(color, @"Color should be set.");
+
+  const CGFloat* components = CGColorGetComponents([color CGColor]);
+
+  // red
+  STAssertEqualsWithAccuracy(components[0], (CGFloat)1, 0.0001, @"Red should be full on");
+  STAssertEqualsWithAccuracy(components[1], (CGFloat)0, 0.0001, @"Green should be off");
+  STAssertEqualsWithAccuracy(components[2], (CGFloat)0, 0.0001, @"Blue should be off");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testStylesheet_ColorCache {
   UIColor* color = [_styleSheet colorWithCssSelector: @".long-hex-colors"
                                             forState: UIControlStateNormal];

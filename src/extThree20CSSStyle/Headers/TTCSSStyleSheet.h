@@ -21,6 +21,8 @@
   NSDictionary*         _cssStyles;
 
   NSMutableDictionary*  _cachedCssStyles;
+
+  NSDictionary*         _colorLookupTable;
 }
 
 /**
