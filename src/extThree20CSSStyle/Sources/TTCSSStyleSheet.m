@@ -146,6 +146,35 @@ NSString* kCssPropertyColor = @"color";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSDictionary*)colorLookupTable {
+  if (nil == _colorLookupTable) {
+    // From the W3C HTML4 spec for colors:
+    // http://www.w3.org/TR/css3-color/
+    _colorLookupTable = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         RGBCOLOR(0x00, 0xFF, 0xFF), @"aqua",
+                         [UIColor blackColor], @"black",
+                         RGBCOLOR(0x00, 0x00, 0xFF), @"blue",
+                         RGBCOLOR(0xFF, 0x00, 0xFF), @"fuschia",
+                         RGBCOLOR(0x80, 0x80, 0x80), @"gray",
+                         RGBCOLOR(0x00, 0x80, 0x00), @"green",
+                         RGBCOLOR(0x00, 0xFF, 0x00), @"lime",
+                         RGBCOLOR(0x80, 0x00, 0x00), @"maroon",
+                         RGBCOLOR(0x00, 0x00, 0x80), @"navy",
+                         RGBCOLOR(0x80, 0x80, 0x00), @"olive",
+                         RGBCOLOR(0xFF, 0x00, 0x00), @"red",
+                         RGBCOLOR(0x80, 0x00, 0x80), @"purple",
+                         RGBCOLOR(0xC0, 0xC0, 0xC0), @"silver",
+                         RGBCOLOR(0x00, 0x80, 0x80), @"teal",
+                         [UIColor whiteColor], @"white",
+                         RGBCOLOR(0xFF, 0xFF, 0x00), @"yellow",
+                         nil];
+  }
+
+  return _colorLookupTable;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)colorFromCssString:(NSString*)cssString {
   UIColor* color = nil;
 
@@ -168,15 +197,7 @@ NSString* kCssPropertyColor = @"color";
                      ((colorValue & 0xFF00) >> 8),
                      (colorValue & 0xFF));
   } else {
-    if (nil == _colorLookupTable) {
-      _colorLookupTable = [[NSDictionary alloc] initWithObjectsAndKeys:
-                           [UIColor redColor], @"red",
-                           [UIColor greenColor], @"green",
-                           [UIColor blueColor], @"blue",
-                           nil];
-    }
-
-    color = [_colorLookupTable objectForKey:cssString];
+    color = [[self colorLookupTable] objectForKey:cssString];
 
   }
 
