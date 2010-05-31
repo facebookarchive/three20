@@ -66,7 +66,7 @@
 
     // Test overriding.
     STAssertTrue([[values objectAtIndex:0] isEqualToString:@"600px"],
-                 @"Should be equal to 800px");
+                 @"Should be equal to 600px");
 
     TT_RELEASE_SAFELY(parser);
   }
@@ -94,7 +94,7 @@
 
     // Test overriding.
     STAssertTrue([[values objectAtIndex:0] isEqualToString:@"600px"],
-                 @"Should be equal to 800px");
+                 @"Should be equal to 600px");
 
     TT_RELEASE_SAFELY(parser);
   }

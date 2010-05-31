@@ -14,27 +14,26 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20Style/TTStyleSheet.h"
 
-@interface TTCSSParser : NSObject {
+@interface TTCSSStyleSheet : TTStyleSheet {
 @private
-  NSMutableDictionary*  _ruleSets;
-  NSMutableArray*       _activeCssSelectors;
-  NSMutableDictionary*  _activeRuleSet;
-  NSString*             _activePropertyName;
+  NSDictionary*         _cssStyles;
 
-  NSString*             _lastTokenText;
-  int                   _lastToken;
-
-  union {
-    struct {
-      int InsideDefinition : 1;
-    } Flags;
-    int _data;
-  } _state;
+  NSMutableDictionary*  _processedCssStyles;
 }
 
-- (NSDictionary*)parseFilename:(NSString*)filename;
+/**
+ * Load the style sheet into memory from disk.
+ *
+ * @return NO if the file does not exist.
+ */
+- (BOOL)loadFromFilename:(NSString*)filename;
+
+
+/**
+ * Get a color from a specific rule set.
+ */
+- (UIColor*)colorWithCssSelector:(NSString*)selector forState:(UIControlState)state;
 
 @end

@@ -10,7 +10,11 @@
 }
 
 .classname {
-  width: 600px;
+  width: 600px
+}
+
+.short-hex-colors {
+  color: #F73;
 }
 
 
