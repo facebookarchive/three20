@@ -75,4 +75,19 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testStylesheet_LongColors {
+  UIColor* color = [_styleSheet colorWithCssSelector: @".long-hex-colors"
+                                            forState: UIControlStateNormal];
+  STAssertNotNil(color, @"Color should be set.");
+
+  const CGFloat* components = CGColorGetComponents([color CGColor]);
+
+  // #FF7733
+  STAssertEqualsWithAccuracy(components[0], (CGFloat)1, 0.0001, @"Red should be full on");
+  STAssertEqualsWithAccuracy(components[1], (CGFloat)0.466667, 0.0001, @"Green should be half on");
+  STAssertEqualsWithAccuracy(components[2], (CGFloat)0.2, 0.0001, @"Blue should be quarter on");
+}
+
+
 @end
