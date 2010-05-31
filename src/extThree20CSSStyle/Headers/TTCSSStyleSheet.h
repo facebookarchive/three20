@@ -34,9 +34,14 @@
 
 
 /**
- * Get a color from a specific rule set.
+ * Get (text) color from a specific rule set.
  */
 - (UIColor*)colorWithCssSelector:(NSString*)selector forState:(UIControlState)state;
+
+/**
+ * Get background-color from a specific rule set.
+ */
+- (UIColor*)backgroundColorWithCssSelector:(NSString*)selector forState:(UIControlState)state;
 
 
 /**

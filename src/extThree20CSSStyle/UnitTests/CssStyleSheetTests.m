@@ -61,47 +61,39 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)testStylesheet_ShortColors {
-  UIColor* color = [_styleSheet colorWithCssSelector: @".short-hex-colors"
+- (void)checkColorsForSelector:(NSString*)selector equalToColor:(UIColor*)correctColor {
+  UIColor* color = [_styleSheet colorWithCssSelector: selector
                                             forState: UIControlStateNormal];
+  UIColor* bgColor = [_styleSheet backgroundColorWithCssSelector: selector
+                                                        forState: UIControlStateNormal];
   STAssertNotNil(color, @"Color should be set.");
+  STAssertNotNil(bgColor, @"Background color should be set.");
 
-  const CGFloat* components = CGColorGetComponents([color CGColor]);
+  STAssertTrue(CGColorEqualToColor([color CGColor], [correctColor CGColor]),
+               @"Colors should be equal");
+  STAssertTrue(CGColorEqualToColor([bgColor CGColor], [correctColor CGColor]),
+               @"Background colors should be equal");
+}
 
-  // #F73
-  STAssertEqualsWithAccuracy(components[0], (CGFloat)1, 0.0001, @"Red should be full on");
-  STAssertEqualsWithAccuracy(components[1], (CGFloat)0.466667, 0.0001, @"Green should be half on");
-  STAssertEqualsWithAccuracy(components[2], (CGFloat)0.2, 0.0001, @"Blue should be quarter on");
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testStylesheet_ShortColors {
+  [self checkColorsForSelector:@".short-hex-colors"
+                  equalToColor:[UIColor colorWithRed:1 green:0.466666666 blue:0.2 alpha:1.0]];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testStylesheet_LongColors {
-  UIColor* color = [_styleSheet colorWithCssSelector: @".long-hex-colors"
-                                            forState: UIControlStateNormal];
-  STAssertNotNil(color, @"Color should be set.");
-
-  const CGFloat* components = CGColorGetComponents([color CGColor]);
-
-  // #FF7733
-  STAssertEqualsWithAccuracy(components[0], (CGFloat)1, 0.0001, @"Red should be full on");
-  STAssertEqualsWithAccuracy(components[1], (CGFloat)0.466667, 0.0001, @"Green should be half on");
-  STAssertEqualsWithAccuracy(components[2], (CGFloat)0.2, 0.0001, @"Blue should be quarter on");
+  [self checkColorsForSelector:@".long-hex-colors"
+                  equalToColor:[UIColor colorWithRed:1 green:0.466666666 blue:0.2 alpha:1.0]];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testStylesheet_NamedColors {
-  UIColor* color = [_styleSheet colorWithCssSelector: @".named-color"
-                                            forState: UIControlStateNormal];
-  STAssertNotNil(color, @"Color should be set.");
-
-  const CGFloat* components = CGColorGetComponents([color CGColor]);
-
-  // red
-  STAssertEqualsWithAccuracy(components[0], (CGFloat)1, 0.0001, @"Red should be full on");
-  STAssertEqualsWithAccuracy(components[1], (CGFloat)0, 0.0001, @"Green should be off");
-  STAssertEqualsWithAccuracy(components[2], (CGFloat)0, 0.0001, @"Blue should be off");
+  [self checkColorsForSelector:@".named-color"
+                  equalToColor:[UIColor redColor]];
 }
 
 

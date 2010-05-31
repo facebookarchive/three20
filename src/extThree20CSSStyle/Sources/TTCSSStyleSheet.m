@@ -27,7 +27,8 @@
 #import "Three20Core/TTGlobalCore.h"
 #import "Three20Core/TTDebug.h"
 
-NSString* kCssPropertyColor = @"color";
+NSString* kCssPropertyColor           = @"color";
+NSString* kCssPropertyBackgroundColor = @"background-color";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,9 +207,10 @@ NSString* kCssPropertyColor = @"color";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIColor*)colorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
-  NSLog(@"%@", _cssStyles);
-  UIColor* color = [self objectForCssSelector:selector propertyName:kCssPropertyColor];
+- (UIColor*)colorWithCssSelector: (NSString*)selector
+                        forState: (UIControlState)state
+                    propertyName: (NSString*)propertyName {
+  UIColor* color = [self objectForCssSelector:selector propertyName:propertyName];
 
   // No cached value.
   if (nil == color) {
@@ -216,7 +218,7 @@ NSString* kCssPropertyColor = @"color";
 
     // The given selector actually exists in the CSS.
     if (nil != ruleSet) {
-      NSArray* values = [ruleSet objectForKey:kCssPropertyColor];
+      NSArray* values = [ruleSet objectForKey:propertyName];
 
       // There actually are some values.
       if ([values count] > 0) {
@@ -226,13 +228,27 @@ NSString* kCssPropertyColor = @"color";
 
         // And we can actually parse it.
         if (nil != color) {
-          [self setObjectForCssSelector:selector propertyName:kCssPropertyColor object:color];
+          [self setObjectForCssSelector:selector propertyName:propertyName object:color];
         }
       }
     }
   }
 
   return color;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)colorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  return [self colorWithCssSelector:selector forState:state propertyName:kCssPropertyColor];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)backgroundColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  return [self colorWithCssSelector: selector
+                           forState: state
+                       propertyName: kCssPropertyBackgroundColor];
 }
 
 

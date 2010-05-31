@@ -15,18 +15,22 @@
 
 .short-hex-colors {
   color: #F73;
+  background-color: #F73
 }
 
 .long-hex-colors {
   color: #FF7733;
+  background-color: #FF7733
 }
 
 .named-color {
   color: red;
+  background-color: red
 }
 
 .named-invalid-color {
   color: polkadot;
+  background-color: polkadot
 }
 
 
