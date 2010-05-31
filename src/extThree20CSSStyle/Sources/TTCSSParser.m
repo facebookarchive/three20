@@ -136,7 +136,19 @@ int cssConsume(char* text, int token) {
 
         case '}': {
           for (NSString* name in _activeNames) {
-            [_definitions setObject:_activeProperties forKey:name];
+            NSMutableDictionary* existingProperties = [_definitions objectForKey:name];
+            if (nil != existingProperties) {
+              // Overwrite the properties, instead!
+
+              NSDictionary* iteratorProperties = [_activeProperties copy];
+              for (NSString* key in iteratorProperties) {
+                [existingProperties setObject:[_activeProperties objectForKey:key] forKey:key];
+              }
+              TT_RELEASE_SAFELY(iteratorProperties);
+
+            } else {
+              [_definitions setObject:_activeProperties forKey:name];
+            }
           }
           [_activeNames removeAllObjects];
           _state.Flags.InsideDefinition = NO;

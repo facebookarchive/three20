@@ -63,7 +63,8 @@
   STAssertTrue([values isKindOfClass:[NSArray class]],
                @"Values should be an array.");
 
-  STAssertTrue([[values objectAtIndex:0] isEqualToString:@"800px"],
+  // Test overriding.
+  STAssertTrue([[values objectAtIndex:0] isEqualToString:@"600px"],
                @"Should be equal to 800px");
 
   TT_RELEASE_SAFELY(parser);
