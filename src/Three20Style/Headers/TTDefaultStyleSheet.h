@@ -23,7 +23,6 @@
 
 @property (nonatomic, readonly) UIColor* textColor;
 @property (nonatomic, readonly) UIColor* highlightedTextColor;
-@property (nonatomic, readonly) UIColor* placeholderTextColor;
 @property (nonatomic, readonly) UIColor* timestampTextColor;
 @property (nonatomic, readonly) UIColor* linkTextColor;
 @property (nonatomic, readonly) UIColor* moreLinkTextColor;
