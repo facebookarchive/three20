@@ -23,4 +23,6 @@
   TTCSSStyleSheet* _styleSheet;
 }
 
+- (BOOL)applyStyleSheetFromDisk:(NSString*)filename;
+
 @end

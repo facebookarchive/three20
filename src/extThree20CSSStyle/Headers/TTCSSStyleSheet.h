@@ -34,12 +34,20 @@
   NSDictionary*         _colorLookupTable;
 }
 
+@property (nonatomic, readonly) NSDictionary* cssStyles;
+
+
 /**
  * Load the style sheet into memory from disk.
  *
  * @return NO if the file does not exist.
  */
 - (BOOL)loadFromFilename:(NSString*)filename;
+
+/**
+ * Add a stylesheet to this one, overriding any properties as expected.
+ */
+- (void)addStyleSheet:(TTCSSStyleSheet*)styleSheet;
 
 
 /**

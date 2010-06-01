@@ -47,6 +47,8 @@ NSString* kKeyTextShadowColor   = @"color";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTCSSStyleSheet
 
+@synthesize cssStyles = _cssStyles;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
@@ -114,6 +116,43 @@ NSString* kKeyTextShadowColor   = @"color";
   }
 
   return didLoadSuccessfully;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addStyleSheet:(TTCSSStyleSheet*)styleSheet {
+  TTDASSERT(nil != styleSheet);
+  if (nil == styleSheet) {
+    return;
+  }
+
+  // Clear the cache first.
+  TT_RELEASE_SAFELY(_cachedCssStyles);
+  _cachedCssStyles = [[NSMutableDictionary alloc] initWithCapacity:[_cssStyles count]];
+
+  NSMutableDictionary* newStyles = [_cssStyles mutableCopy];
+
+  for (NSString* selector in styleSheet.cssStyles) {
+    NSDictionary* addingRuleSet   = [styleSheet.cssStyles objectForKey:selector];
+    NSDictionary* existingRuleSet = [_cssStyles objectForKey:selector];
+
+    if (nil == existingRuleSet) {
+      // Easiest case where the old style sheet doesn't have the rule set, we just add it.
+      [newStyles setObject:addingRuleSet forKey:selector];
+      continue;
+    }
+
+    if ([addingRuleSet count] > 0) {
+      NSMutableDictionary* newRuleSet = [existingRuleSet mutableCopy];
+      [newRuleSet addEntriesFromDictionary:addingRuleSet];
+
+      [newStyles setObject:newRuleSet forKey:selector];
+      TT_RELEASE_SAFELY(newRuleSet);
+    }
+  }
+
+  TT_RELEASE_SAFELY(_cssStyles);
+  _cssStyles = newStyles;
 }
 
 

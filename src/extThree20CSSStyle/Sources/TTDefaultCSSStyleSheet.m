@@ -60,6 +60,20 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)applyStyleSheetFromDisk:(NSString*)filename {
+  TTCSSStyleSheet* styleSheet = [[TTCSSStyleSheet alloc] init];
+
+  BOOL loadedSuccessfully = [styleSheet loadFromFilename:filename];
+
+  [_styleSheet addStyleSheet:styleSheet];
+
+  TT_RELEASE_SAFELY(styleSheet);
+
+  return loadedSuccessfully;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark DragRefreshHeader
