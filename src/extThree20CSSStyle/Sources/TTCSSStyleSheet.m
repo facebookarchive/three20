@@ -311,11 +311,13 @@ NSString* kKeyTextShadowColor   = @"color";
     if (nil != ruleSet) {
       NSArray* values = [ruleSet objectForKey:propertyName];
 
-      color = [self colorFromCssValues:values];
+      if (nil != values) {
+        color = [self colorFromCssValues:values];
 
-      // And we can actually parse it.
-      if (nil != color) {
-        [self setObjectForCssSelector:selector propertyName:propertyName object:color];
+        // And we can actually parse it.
+        if (nil != color) {
+          [self setObjectForCssSelector:selector propertyName:propertyName object:color];
+        }
       }
     }
   }

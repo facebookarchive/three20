@@ -27,6 +27,12 @@
 @property (nonatomic, readonly) UIColor* linkTextColor;
 @property (nonatomic, readonly) UIColor* moreLinkTextColor;
 
+// Table Headers
+@property (nonatomic, readonly) UIColor*  tableHeaderTextColor;
+@property (nonatomic, readonly) UIColor*  tableHeaderShadowColor;
+@property (nonatomic, readonly) CGSize    tableHeaderShadowOffset;
+@property (nonatomic, readonly) UIColor*  tableHeaderTintColor;
+
 // Photo Captions
 @property (nonatomic, readonly) UIColor*  photoCaptionTextColor;
 @property (nonatomic, readonly) UIColor*  photoCaptionTextShadowColor;
@@ -42,9 +48,6 @@
 @property (nonatomic, readonly) UIColor* tableErrorTextColor;
 @property (nonatomic, readonly) UIColor* tableSubTextColor;
 @property (nonatomic, readonly) UIColor* tableTitleTextColor;
-@property (nonatomic, readonly) UIColor* tableHeaderTextColor;
-@property (nonatomic, readonly) UIColor* tableHeaderShadowColor;
-@property (nonatomic, readonly) UIColor* tableHeaderTintColor;
 @property (nonatomic, readonly) UIColor* tableSeparatorColor;
 @property (nonatomic, readonly) UIColor* tablePlainBackgroundColor;
 @property (nonatomic, readonly) UIColor* tableGroupedBackgroundColor;

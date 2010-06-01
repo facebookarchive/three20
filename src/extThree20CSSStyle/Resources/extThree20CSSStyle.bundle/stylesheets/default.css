@@ -51,9 +51,18 @@ searchbar {
   color: #2470D8;
 }
 
-/* More button generally used at the bottom of a table. */
+/* More button, generally used at the bottom of a table. */
 .moreButton {
   color: #2470D8;
+}
+
+
+/**
+ * Table Headers
+ */
+.tableHeader {
+  color: #576B95;
+  text-shadow: 0px 1px 0px transparent;
 }
 
 
