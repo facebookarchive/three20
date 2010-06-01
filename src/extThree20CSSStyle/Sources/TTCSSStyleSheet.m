@@ -253,12 +253,16 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)colorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  selector = [selector lowercaseString];
+
   return [self colorWithCssSelector:selector forState:state propertyName:kCssPropertyColor];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)backgroundColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  selector = [selector lowercaseString];
+
   return [self colorWithCssSelector: selector
                            forState: state
                        propertyName: kCssPropertyBackgroundColor];
@@ -273,6 +277,8 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)fontWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  selector = [selector lowercaseString];
+
   UIFont* font = [self objectForCssSelector:selector propertyName:kCssPropertyFont];
 
   // No cached value.
@@ -378,6 +384,8 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)textShadowColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  selector = [selector lowercaseString];
+
   NSDictionary* textShadow = [self textShadowWithCssSelector: selector
                                                     forState: state];
   return [textShadow objectForKey:kKeyTextShadowColor];
@@ -386,6 +394,8 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)textShadowOffsetWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  selector = [selector lowercaseString];
+
   NSDictionary* textShadow = [self textShadowWithCssSelector: selector
                                                     forState: state];
   return CGSizeMake([[textShadow objectForKey:kKeyTextShadowHOffset] floatValue],

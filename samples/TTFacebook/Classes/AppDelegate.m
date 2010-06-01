@@ -27,6 +27,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+  [TTStyleSheet setGlobalStyleSheet:[[[TTDefaultCSSStyleSheet alloc] init] autorelease]];
+
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.persistenceMode = TTNavigatorPersistenceModeNone;
 

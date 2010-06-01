@@ -22,8 +22,9 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTDebug.h"
+#import "Three20Core/TTGlobalCorePaths.h"
 
-NSString* kDefaultCSSPath = @"bundle://extThree20CSSStyle.bundle/stylesheets/default.css";
+NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +38,8 @@ NSString* kDefaultCSSPath = @"bundle://extThree20CSSStyle.bundle/stylesheets/def
   if (self = [super init]) {
     _styleSheet = [[TTCSSStyleSheet alloc] init];
 
-    BOOL loadedSuccessfully = [_styleSheet loadFromFilename:kDefaultCSSPath];
+    BOOL loadedSuccessfully = [_styleSheet
+                               loadFromFilename:TTPathForBundleResource(kDefaultCSSPath)];
 
     TTDASSERT(loadedSuccessfully);
     if (!loadedSuccessfully) {

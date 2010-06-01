@@ -12,6 +12,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		6E08360311B4C60300B99C32 /* libextThree20CSSStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E08360011B4C5FF00B99C32 /* libextThree20CSSStyle.a */; };
+		6E08361111B4C63400B99C32 /* extThree20CSSStyle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E08361011B4C63400B99C32 /* extThree20CSSStyle.bundle */; };
 		6E08B426118286D100DA1579 /* TTFacebookPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B425118286D100DA1579 /* TTFacebookPost.m */; };
 		6E08B429118286D900DA1579 /* TTFacebookSearchFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B428118286D900DA1579 /* TTFacebookSearchFeedDataSource.m */; };
 		6E08B42C118286DF00DA1579 /* TTFacebookSearchFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B42B118286DF00DA1579 /* TTFacebookSearchFeedModel.m */; };
@@ -26,6 +28,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6E0835FF11B4C5FF00B99C32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */;
+			remoteInfo = extThree20CSSStyle;
+		};
+		6E08360111B4C5FF00B99C32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* extCSSStyleUnitTests.octest */;
+			remoteInfo = UnitTests;
+		};
+		6E08360C11B4C60B00B99C32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* extThree20CSSStyle */;
+			remoteInfo = extThree20CSSStyle;
+		};
 		6E6462871187DF2C00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E6462811187DF2C00F08CB1 /* extThree20JSON.xcodeproj */;
@@ -85,6 +108,8 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20CSSStyle.xcodeproj; path = ../../src/extThree20CSSStyle/extThree20CSSStyle.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6E08361011B4C63400B99C32 /* extThree20CSSStyle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = extThree20CSSStyle.bundle; path = ../../src/extThree20CSSStyle/Resources/extThree20CSSStyle.bundle; sourceTree = SOURCE_ROOT; };
 		6E08B424118286D100DA1579 /* TTFacebookPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookPost.h; sourceTree = "<group>"; };
 		6E08B425118286D100DA1579 /* TTFacebookPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFacebookPost.m; sourceTree = "<group>"; };
 		6E08B427118286D900DA1579 /* TTFacebookSearchFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookSearchFeedDataSource.h; sourceTree = "<group>"; };
@@ -120,6 +145,7 @@
 				EB383B6510BBF62B0000B2D2 /* QuartzCore.framework in Frameworks */,
 				6E64628D1187E0E600F08CB1 /* libextThree20JSON+YAJL.a in Frameworks */,
 				6E7F9827118E386E00443B46 /* libThree20.a in Frameworks */,
+				6E08360311B4C60300B99C32 /* libextThree20CSSStyle.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +200,7 @@
 				6E08B48C118288A300DA1579 /* Default.png */,
 				6E08B48D118288A300DA1579 /* Icon.png */,
 				6E5F1F2E117FB4D9004BEBA9 /* Three20.bundle */,
+				6E08361011B4C63400B99C32 /* extThree20CSSStyle.bundle */,
 				8D1107310486CEB800E47090 /* TTFacebook-Info.plist */,
 			);
 			name = Resources;
@@ -188,6 +215,15 @@
 				EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6E0835FB11B4C5FF00B99C32 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E08360011B4C5FF00B99C32 /* libextThree20CSSStyle.a */,
+				6E08360211B4C5FF00B99C32 /* extCSSStyleUnitTests.octest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		6E08B4131182869700DA1579 /* Search Feed Controller */ = {
@@ -262,6 +298,7 @@
 			children = (
 				6E7F97F5118E385E00443B46 /* Three20.xcodeproj */,
 				6E6462811187DF2C00F08CB1 /* extThree20JSON.xcodeproj */,
+				6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -301,6 +338,7 @@
 			dependencies = (
 				6E7F9826118E386800443B46 /* PBXTargetDependency */,
 				6E64628F1187E0EC00F08CB1 /* PBXTargetDependency */,
+				6E08360D11B4C60B00B99C32 /* PBXTargetDependency */,
 			);
 			name = TTFacebook;
 			productName = TTFacebook;
@@ -319,6 +357,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 6E0835FB11B4C5FF00B99C32 /* Products */;
+					ProjectRef = 6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */;
+				},
+				{
 					ProductGroup = 6E6462821187DF2C00F08CB1 /* Products */;
 					ProjectRef = 6E6462811187DF2C00F08CB1 /* extThree20JSON.xcodeproj */;
 				},
@@ -335,6 +377,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		6E08360011B4C5FF00B99C32 /* libextThree20CSSStyle.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libextThree20CSSStyle.a;
+			remoteRef = 6E0835FF11B4C5FF00B99C32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6E08360211B4C5FF00B99C32 /* extCSSStyleUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = extCSSStyleUnitTests.octest;
+			remoteRef = 6E08360111B4C5FF00B99C32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6E6462881187DF2C00F08CB1 /* libextThree20JSON+SBJSON.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -380,6 +436,7 @@
 				6E5F1F2F117FB4D9004BEBA9 /* Three20.bundle in Resources */,
 				6E08B48E118288A300DA1579 /* Default.png in Resources */,
 				6E08B48F118288A300DA1579 /* Icon.png in Resources */,
+				6E08361111B4C63400B99C32 /* extThree20CSSStyle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +460,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6E08360D11B4C60B00B99C32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = extThree20CSSStyle;
+			targetProxy = 6E08360C11B4C60B00B99C32 /* PBXContainerItemProxy */;
+		};
 		6E64628F1187E0EC00F08CB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "extThree20JSON+YAJL";
