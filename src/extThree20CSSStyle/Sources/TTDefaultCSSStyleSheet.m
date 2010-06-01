@@ -126,6 +126,13 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)searchBarTintColor {
+  return [_styleSheet backgroundColorWithCssSelector: @"searchbar"
+                                            forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)linkTextColor {
   return [_styleSheet colorWithCssSelector: @"a"
                                   forState: UIControlStateNormal];

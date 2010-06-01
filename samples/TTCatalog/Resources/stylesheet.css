@@ -27,7 +27,8 @@ body:hover {
 }
 
 navigationBar,
-toolbar {
+toolbar,
+searchbar {
   background-color: green;
 }
 
