@@ -117,6 +117,7 @@
 		6E036B6111B38D1B0025E8EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDefaultCSSStyleSheet.h; path = Sources/TTDefaultCSSStyleSheet.h; sourceTree = "<group>"; };
 		6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDefaultCSSStyleSheet.m; path = Sources/TTDefaultCSSStyleSheet.m; sourceTree = "<group>"; };
+		6E0835AB11B4C3A200B99C32 /* extThree20CSSStyle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = extThree20CSSStyle.bundle; path = Resources/extThree20CSSStyle.bundle; sourceTree = "<group>"; };
 		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -226,6 +227,7 @@
 		6E036D1F11B488690025E8EE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6E0835AB11B4C3A200B99C32 /* extThree20CSSStyle.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

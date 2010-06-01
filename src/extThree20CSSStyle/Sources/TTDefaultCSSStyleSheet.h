@@ -16,8 +16,11 @@
 
 #import "Three20Style/TTDefaultStyleSheet.h"
 
-@interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
+@class TTCSSStyleSheet;
 
+@interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
+@private
+  TTCSSStyleSheet* _styleSheet;
 }
 
 @end

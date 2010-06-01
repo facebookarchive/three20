@@ -14,7 +14,8 @@
 // limitations under the License.
 //
 
-#import "Three20Style/TTStyleSheet.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  * A general purpose CSS style sheet object for accessing a CSS style sheet's properties.
@@ -24,7 +25,7 @@
  *
  * Example apps: three20/samples/Style/TTCSSStyleSheets
  */
-@interface TTCSSStyleSheet : TTStyleSheet {
+@interface TTCSSStyleSheet : NSObject {
 @private
   NSDictionary*         _cssStyles;
 

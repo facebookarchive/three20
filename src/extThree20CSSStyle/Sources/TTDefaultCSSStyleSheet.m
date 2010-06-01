@@ -16,11 +16,94 @@
 
 #import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
 
+// extThree20CSSStyle
+#import "extThree20CSSStyle/TTCSSStyleSheet.h"
+
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTDebug.h"
+
+NSString* kDefaultCSSPath = @"bundle://extThree20CSSStyle.bundle/stylesheets/default.css";
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTDefaultCSSStyleSheet
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+  if (self = [super init]) {
+    _styleSheet = [[TTCSSStyleSheet alloc] init];
+
+    BOOL loadedSuccessfully = [_styleSheet loadFromFilename:kDefaultCSSPath];
+
+    TTDASSERT(loadedSuccessfully);
+    if (!loadedSuccessfully) {
+      // Bail out.
+    }
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_styleSheet);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark DragRefreshHeader
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIFont*)tableRefreshHeaderLastUpdatedFont {
+  return [_styleSheet fontWithCssSelector: @".dragRefreshHeaderLastUpdated"
+                                 forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIFont*)tableRefreshHeaderStatusFont {
+  return [_styleSheet fontWithCssSelector: @".dragRefreshHeaderStatusFont"
+                                 forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)tableRefreshHeaderBackgroundColor {
+  return [_styleSheet backgroundColorWithCssSelector: @".dragRefreshHeader"
+                                            forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)tableRefreshHeaderTextColor {
+  return [_styleSheet colorWithCssSelector: @".dragRefreshHeader"
+                                  forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)tableRefreshHeaderTextShadowColor {
+  return [_styleSheet textShadowColorWithCssSelector: @".dragRefreshHeader"
+                                            forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGSize)tableRefreshHeaderTextShadowOffset {
+  return [_styleSheet textShadowOffsetWithCssSelector: @".dragRefreshHeader"
+                                             forState: UIControlStateNormal];
+}
+
 
 @end
 

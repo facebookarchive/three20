@@ -15,6 +15,7 @@
 		6E036BD011B38E550025E8EE /* libextThree20CSSStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E036BCD11B38E520025E8EE /* libextThree20CSSStyle.a */; };
 		6E036BF511B38EDC0025E8EE /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 6E036BF411B38EDC0025E8EE /* stylesheet.css */; };
 		6E036BF811B38F3C0025E8EE /* StyleSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036BF711B38F3C0025E8EE /* StyleSheetViewController.m */; };
+		6E0835B411B4C42100B99C32 /* extThree20CSSStyle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E0835B311B4C42100B99C32 /* extThree20CSSStyle.bundle */; };
 		6E850F4F11B1761D0071A4FD /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E850F4E11B1761D0071A4FD /* Three20.bundle */; };
 		6E850F8B11B1762D0071A4FD /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E850F8811B1762B0071A4FD /* libThree20.a */; };
 		6E850FAE11B176F10071A4FD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E850FAC11B176F10071A4FD /* Default.png */; };
@@ -80,6 +81,7 @@
 		6E036BF411B38EDC0025E8EE /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = stylesheet.css; path = Resources/stylesheet.css; sourceTree = "<group>"; };
 		6E036BF611B38F3C0025E8EE /* StyleSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleSheetViewController.h; sourceTree = "<group>"; };
 		6E036BF711B38F3C0025E8EE /* StyleSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleSheetViewController.m; sourceTree = "<group>"; };
+		6E0835B311B4C42100B99C32 /* extThree20CSSStyle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = extThree20CSSStyle.bundle; path = ../../../src/extThree20CSSStyle/Resources/extThree20CSSStyle.bundle; sourceTree = SOURCE_ROOT; };
 		6E850F4811B175FD0071A4FD /* App.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = App.xcconfig; path = Configurations/App.xcconfig; sourceTree = "<group>"; };
 		6E850F4911B175FD0071A4FD /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E850F4A11B175FD0071A4FD /* RelPath.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = RelPath.xcconfig; path = Configurations/RelPath.xcconfig; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				6E850F4E11B1761D0071A4FD /* Three20.bundle */,
+				6E0835B311B4C42100B99C32 /* extThree20CSSStyle.bundle */,
 				6E8513D211B19B0E0071A4FD /* TTCSSStyleSheets-Info.plist */,
 				6E850FAC11B176F10071A4FD /* Default.png */,
 				6E850FAD11B176F10071A4FD /* Icon.png */,
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E850F4F11B1761D0071A4FD /* Three20.bundle in Resources */,
+				6E0835B411B4C42100B99C32 /* extThree20CSSStyle.bundle in Resources */,
 				6E850FAE11B176F10071A4FD /* Default.png in Resources */,
 				6E850FAF11B176F10071A4FD /* Icon.png in Resources */,
 				6E036BF511B38EDC0025E8EE /* stylesheet.css in Resources */,

@@ -21,6 +21,17 @@ Import the following into your precompiled header.
 
     #import "extThree20CSSStyle/extThree20CSSStyle.h"
 
+
+### If you want to use the CSS-powered default style sheet
+
+Drag extThree20CSSStyle.bundle from the `src/extThree20CSSStyle/Resources` directory into your
+project and ensure that "Create Folder References" is selected.
+
+Set the global stylesheet when your app launches.
+
+    [TTStyleSheet setGlobalStyleSheet:[[[TTDefaultCSSStyleSheet alloc] init] autorelease]];
+
+
 Breakdown
 ---------
 
