@@ -120,6 +120,18 @@ int cssConsume(char* text, int token) {
       break;
     }
 
+    case CSSFUNCTION: {
+      if (_state.Flags.InsideProperty) {
+        _state.Flags.InsideFunction = YES;
+
+        if (nil != _activePropertyName) {
+          NSMutableArray* values = [_activeRuleSet objectForKey:_activePropertyName];
+          [values addObject:string];
+        }
+      }
+      break;
+    }
+
     case CSSSTRING:
     case CSSEMS:
     case CSSEXS:
@@ -144,6 +156,7 @@ int cssConsume(char* text, int token) {
       switch (text[0]) {
         case '{': {
           _state.Flags.InsideDefinition = YES;
+          _state.Flags.InsideFunction = NO;
           TT_RELEASE_SAFELY(_activeRuleSet);
           _activeRuleSet = [[NSMutableDictionary alloc] init];
           break;
@@ -171,6 +184,7 @@ int cssConsume(char* text, int token) {
           [_activeCssSelectors removeAllObjects];
           _state.Flags.InsideDefinition = NO;
           _state.Flags.InsideProperty = NO;
+          _state.Flags.InsideFunction = NO;
           break;
         }
 
@@ -178,6 +192,15 @@ int cssConsume(char* text, int token) {
           if (_state.Flags.InsideDefinition) {
             _state.Flags.InsideProperty = YES;
           }
+          break;
+        }
+
+        case ')': {
+          if (_state.Flags.InsideFunction && nil != _activePropertyName) {
+            NSMutableArray* values = [_activeRuleSet objectForKey:_activePropertyName];
+            [values addObject:string];
+          }
+          _state.Flags.InsideFunction = NO;
           break;
         }
 

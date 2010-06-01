@@ -43,6 +43,7 @@
     struct {
       int InsideDefinition : 1;
       int InsideProperty : 1;
+      int InsideFunction : 1;
     } Flags;
     int _data;
   } _state;

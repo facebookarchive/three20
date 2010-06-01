@@ -106,6 +106,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testStylesheet_FunctionRgbColors {
+  [self checkColorsForSelector:@".fn-color-rgb"
+                  equalToColor:[UIColor colorWithRed:1 green:0 blue:1 alpha:1]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testStylesheet_FunctionRgbaColors {
+  [self checkColorsForSelector:@".fn-color-rgba"
+                  equalToColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testStylesheet_ColorCache {
   UIColor* color = [_styleSheet colorWithCssSelector: @".long-hex-colors"
                                             forState: UIControlStateNormal];

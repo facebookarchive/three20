@@ -552,11 +552,16 @@
     [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0 alpha:0.5] next:
     [TTFourBorderStyle styleWithTop:RGBACOLOR(0, 0, 0, 0.5) width:1 next:
     [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(8, 8, 8, 8) next:
-    [TTTextStyle styleWithFont:TTSTYLEVAR(photoCaptionFont) color:TTSTYLEVAR(photoCaptionTextColor)
-                 minimumFontSize:0 shadowColor:[UIColor colorWithWhite:0 alpha:0.9]
-                 shadowOffset:CGSizeMake(0, 1) textAlignment:UITextAlignmentCenter
-                 verticalAlignment:UIControlContentVerticalAlignmentCenter
-                 lineBreakMode:UILineBreakModeTailTruncation numberOfLines:6 next:nil]]]];
+    [TTTextStyle styleWithFont: TTSTYLEVAR(photoCaptionFont)
+                         color: TTSTYLEVAR(photoCaptionTextColor)
+               minimumFontSize: 0
+                   shadowColor: TTSTYLEVAR(photoCaptionTextShadowColor)
+                  shadowOffset: TTSTYLEVAR(photoCaptionTextShadowOffset)
+                 textAlignment: UITextAlignmentCenter
+             verticalAlignment: UIControlContentVerticalAlignmentCenter
+                 lineBreakMode: UILineBreakModeTailTruncation
+                 numberOfLines: 6
+                          next: nil]]]];
 }
 
 
@@ -731,9 +736,28 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Photo Captions
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)photoCaptionTextColor {
   return [UIColor whiteColor];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)photoCaptionTextShadowColor {
+  return [UIColor colorWithWhite:0 alpha:0.9];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGSize)photoCaptionTextShadowOffset {
+  return CGSizeMake(0, 1);
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

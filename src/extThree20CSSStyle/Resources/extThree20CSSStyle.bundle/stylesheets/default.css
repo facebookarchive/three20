@@ -47,6 +47,16 @@ a {
   color: #2470D8;
 }
 
+
+/**
+ * Photo Captions
+ */
+.photoCaption {
+  color: white;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9);
+}
+
+
 /**
  * Drag Refresh Headers
  */

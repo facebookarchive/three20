@@ -47,6 +47,15 @@ a {
   color: lime;
 }
 
+
+/**
+ * Photo Captions
+ */
+.photoCaption {
+  color: red;
+}
+
+
 /**
  * Drag Refresh Headers
  */

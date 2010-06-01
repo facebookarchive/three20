@@ -26,7 +26,11 @@
 @property (nonatomic, readonly) UIColor* timestampTextColor;
 @property (nonatomic, readonly) UIColor* linkTextColor;
 @property (nonatomic, readonly) UIColor* moreLinkTextColor;
-@property (nonatomic, readonly) UIColor* photoCaptionTextColor;
+
+// Photo Captions
+@property (nonatomic, readonly) UIColor*  photoCaptionTextColor;
+@property (nonatomic, readonly) UIColor*  photoCaptionTextShadowColor;
+@property (nonatomic, readonly) CGSize    photoCaptionTextShadowOffset;
 
 @property (nonatomic, readonly) UIColor* navigationBarTintColor;
 @property (nonatomic, readonly) UIColor* toolbarTintColor;

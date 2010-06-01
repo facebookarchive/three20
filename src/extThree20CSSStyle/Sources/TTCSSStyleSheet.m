@@ -245,30 +245,53 @@ NSString* kKeyTextShadowColor   = @"color";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIColor*)colorFromCssString:(NSString*)cssString {
+- (UIColor*)colorFromCssValues:(NSArray*)cssValues {
   UIColor* color = nil;
 
-  if ([cssString characterAtIndex:0] == '#') {
-    unsigned long colorValue = 0;
+  // Anything more or less is unsupported, and therefore this property is ignored
+  // according to the W3C guidelines.
+  TTDASSERT([cssValues count] == 1
+            || [cssValues count] == 5    // rgb( x x x )
+            || [cssValues count] == 6);  // rgba( x x x x )
 
-    // #FFF
-    if ([cssString length] == 4) {
-      colorValue = strtol([cssString UTF8String] + 1, nil, 16);
-      colorValue = ((colorValue & 0xF00) << 12) | ((colorValue & 0xF00) << 8)
-                   | ((colorValue & 0xF0) << 8) | ((colorValue & 0xF0) << 4)
-                   | ((colorValue & 0xF) << 4) | (colorValue & 0xF);
+  if ([cssValues count] == 1) {
+    NSString* cssString = [cssValues objectAtIndex:0];
 
-    // #FFFFFF
-    } else if ([cssString length] == 7) {
-      colorValue = strtol([cssString UTF8String] + 1, nil, 16);
+    if ([cssString characterAtIndex:0] == '#') {
+      unsigned long colorValue = 0;
+
+      // #FFF
+      if ([cssString length] == 4) {
+        colorValue = strtol([cssString UTF8String] + 1, nil, 16);
+        colorValue = ((colorValue & 0xF00) << 12) | ((colorValue & 0xF00) << 8)
+                     | ((colorValue & 0xF0) << 8) | ((colorValue & 0xF0) << 4)
+                     | ((colorValue & 0xF) << 4) | (colorValue & 0xF);
+
+      // #FFFFFF
+      } else if ([cssString length] == 7) {
+        colorValue = strtol([cssString UTF8String] + 1, nil, 16);
+      }
+
+      color = RGBCOLOR(((colorValue & 0xFF0000) >> 16),
+                       ((colorValue & 0xFF00) >> 8),
+                       (colorValue & 0xFF));
+    } else {
+      color = [[self colorLookupTable] objectForKey:cssString];
+
     }
 
-    color = RGBCOLOR(((colorValue & 0xFF0000) >> 16),
-                     ((colorValue & 0xFF00) >> 8),
-                     (colorValue & 0xFF));
-  } else {
-    color = [[self colorLookupTable] objectForKey:cssString];
+  } else if ([cssValues count] == 5 && [[cssValues objectAtIndex:0] isEqualToString:@"rgb("]) {
+     // rgb( x x x )
+    color = RGBCOLOR([[cssValues objectAtIndex:1] floatValue],
+                     [[cssValues objectAtIndex:2] floatValue],
+                     [[cssValues objectAtIndex:3] floatValue]);
 
+  } else if ([cssValues count] == 6 && [[cssValues objectAtIndex:0] isEqualToString:@"rgba("]) {
+    // rgba( x x x x )
+    color = RGBACOLOR([[cssValues objectAtIndex:1] floatValue],
+                      [[cssValues objectAtIndex:2] floatValue],
+                      [[cssValues objectAtIndex:3] floatValue],
+                      [[cssValues objectAtIndex:4] floatValue]);
   }
 
   return color;
@@ -277,7 +300,6 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)colorWithCssSelector: (NSString*)selector
-                        forState: (UIControlState)state
                     propertyName: (NSString*)propertyName {
   UIColor* color = [self objectForCssSelector:selector propertyName:propertyName];
 
@@ -289,17 +311,11 @@ NSString* kKeyTextShadowColor   = @"color";
     if (nil != ruleSet) {
       NSArray* values = [ruleSet objectForKey:propertyName];
 
-      // Anything more or less is unsupported, and therefore this property is ignored
-      // according to the W3C guidelines.
-      TTDASSERT([values count] == 1);
-      if ([values count] == 1) {
-        NSString* colorString = [values objectAtIndex:0];
-        color = [self colorFromCssString:colorString];
+      color = [self colorFromCssValues:values];
 
-        // And we can actually parse it.
-        if (nil != color) {
-          [self setObjectForCssSelector:selector propertyName:propertyName object:color];
-        }
+      // And we can actually parse it.
+      if (nil != color) {
+        [self setObjectForCssSelector:selector propertyName:propertyName object:color];
       }
     }
   }
@@ -312,7 +328,7 @@ NSString* kKeyTextShadowColor   = @"color";
 - (UIColor*)colorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
   selector = [self selector:selector forState:state];
 
-  return [self colorWithCssSelector:selector forState:state propertyName:kCssPropertyColor];
+  return [self colorWithCssSelector:selector propertyName:kCssPropertyColor];
 }
 
 
@@ -321,7 +337,6 @@ NSString* kKeyTextShadowColor   = @"color";
   selector = [self selector:selector forState:state];
 
   return [self colorWithCssSelector: selector
-                           forState: state
                        propertyName: kCssPropertyBackgroundColor];
 }
 
@@ -412,12 +427,14 @@ NSString* kKeyTextShadowColor   = @"color";
       NSArray* values = [ruleSet objectForKey:kCssPropertyTextShadow];
       // Anything more or less is unsupported, and therefore this property is ignored
       // according to the W3C guidelines.
-      TTDASSERT([values count] == 4);
-      if ([values count] == 4) {
+      TTDASSERT([values count] >= 4);
+      if ([values count] >= 4) {
         NSNumber* horizOffset = [NSNumber numberWithFloat:[[values objectAtIndex:0] floatValue]];
         NSNumber* vertOffset  = [NSNumber numberWithFloat:[[values objectAtIndex:1] floatValue]];
         NSNumber* blurAmount  = [NSNumber numberWithFloat:[[values objectAtIndex:2] floatValue]];
-        UIColor* color        = [self colorFromCssString:[values objectAtIndex:3]];
+        UIColor* color        = [self colorFromCssValues:
+                                 [values subarrayWithRange:
+                                  NSMakeRange(3, [values count] - 3)]];
 
         textShadow = [[NSDictionary alloc] initWithObjectsAndKeys:
                       horizOffset, kKeyTextShadowHOffset,
