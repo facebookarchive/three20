@@ -287,7 +287,7 @@ NSString* kKeyTextShadowColor   = @"color";
       NSArray* fontSizeValues = [ruleSet objectForKey:kCssPropertyFontSize];
       // Anything more or less is unsupported, and therefore this property is ignored
       // according to the W3C guidelines.
-      TTDASSERT([values count] == 1);
+      TTDASSERT([fontSizeValues count] == 1);
       if ([fontSizeValues count] == 1) {
         fontSize = [[fontSizeValues objectAtIndex:0] floatValue];
       }
