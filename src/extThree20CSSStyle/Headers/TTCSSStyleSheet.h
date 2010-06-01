@@ -16,6 +16,14 @@
 
 #import "Three20Style/TTStyleSheet.h"
 
+/**
+ * A general purpose CSS style sheet object for accessing a CSS style sheet's properties.
+ *
+ * This is useful if you want to use style sheets to manually customize certain aspects of
+ * your UI.
+ *
+ * Example apps: three20/samples/Style/TTCSSStyleSheets
+ */
 @interface TTCSSStyleSheet : TTStyleSheet {
 @private
   NSDictionary*         _cssStyles;

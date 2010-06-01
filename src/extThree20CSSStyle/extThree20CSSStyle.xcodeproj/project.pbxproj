@@ -13,6 +13,8 @@
 		6E036A3211B364DF0025E8EE /* TTCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E036A3111B364DF0025E8EE /* TTCSSStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E036A7D11B371790025E8EE /* CssStyleSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036A7711B371150025E8EE /* CssStyleSheetTests.m */; };
 		6E036B6911B38DA30025E8EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E85155511B2E94E0071A4FD /* CoreGraphics.framework */; };
+		6E036D1911B487CF0025E8EE /* TTDefaultCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */; };
+		6E036D1A11B487CF0025E8EE /* TTDefaultCSSStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */; };
 		6E3C3470118806590079637E /* extThree20CSSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
 		6E85145411B1B5390071A4FD /* TTCSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85145311B1B5390071A4FD /* TTCSSParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -113,6 +115,8 @@
 		6E036A7711B371150025E8EE /* CssStyleSheetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CssStyleSheetTests.m; path = UnitTests/CssStyleSheetTests.m; sourceTree = "<group>"; };
 		6E036B3611B38A420025E8EE /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
 		6E036B6111B38D1B0025E8EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDefaultCSSStyleSheet.h; path = Sources/TTDefaultCSSStyleSheet.h; sourceTree = "<group>"; };
+		6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDefaultCSSStyleSheet.m; path = Sources/TTDefaultCSSStyleSheet.m; sourceTree = "<group>"; };
 		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -170,13 +174,12 @@
 				6E036B3611B38A420025E8EE /* README.mdown */,
 				6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */,
 				6EB4609C1183D1E000685649 /* Source */,
-				6E645A4311876CFE00F08CB1 /* Dependencies */,
 				6ED118E41183C38A0096AEBF /* Configurations */,
+				6E645A4311876CFE00F08CB1 /* Dependencies */,
+				6E036DD511B488A00025E8EE /* Frameworks */,
+				6E036D1F11B488690025E8EE /* Resources */,
 				6ED117ED1183BE770096AEBF /* Tests */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				6E85154F11B2E93E0071A4FD /* Foundation.framework */,
-				6E85155511B2E94E0071A4FD /* CoreGraphics.framework */,
-				6E036B6111B38D1B0025E8EE /* UIKit.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -214,8 +217,27 @@
 			children = (
 				6E036A3111B364DF0025E8EE /* TTCSSStyleSheet.h */,
 				6E036A2E11B364CC0025E8EE /* TTCSSStyleSheet.m */,
+				6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */,
+				6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */,
 			);
 			name = "CSS Stylesheet";
+			sourceTree = "<group>";
+		};
+		6E036D1F11B488690025E8EE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6E036DD511B488A00025E8EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E85154F11B2E93E0071A4FD /* Foundation.framework */,
+				6E85155511B2E94E0071A4FD /* CoreGraphics.framework */,
+				6E036B6111B38D1B0025E8EE /* UIKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6E645A4311876CFE00F08CB1 /* Dependencies */ = {
@@ -296,6 +318,7 @@
 				6E85145411B1B5390071A4FD /* TTCSSParser.h in Headers */,
 				6E8514ED11B2E3F30071A4FD /* CssTokens.h in Headers */,
 				6E036A3211B364DF0025E8EE /* TTCSSStyleSheet.h in Headers */,
+				6E036D1911B487CF0025E8EE /* TTDefaultCSSStyleSheet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +496,7 @@
 				6E8514DA11B2E31E0071A4FD /* CssTokenizer.m in Sources */,
 				6E8514DB11B2E31E0071A4FD /* CssTokens.m in Sources */,
 				6E036A3011B364CC0025E8EE /* TTCSSStyleSheet.m in Sources */,
+				6E036D1A11B487CF0025E8EE /* TTDefaultCSSStyleSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
