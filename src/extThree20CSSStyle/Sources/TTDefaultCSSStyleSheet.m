@@ -41,6 +41,9 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
     BOOL loadedSuccessfully = [_styleSheet
                                loadFromFilename:TTPathForBundleResource(kDefaultCSSPath)];
 
+    // If this fails, it's very likely that you forgot to add the extThree20CSSStyle.bundle file
+    // to your project. If you didn't, ensure that it's being copied in the "Copy Bundle Resources"
+    // phase.
     TTDASSERT(loadedSuccessfully);
     if (!loadedSuccessfully) {
       // Bail out.
@@ -115,7 +118,7 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)timestampTextColor {
-  return [_styleSheet colorWithCssSelector: @".tableMessageItem"
+  return [_styleSheet colorWithCssSelector: @".tableItemTimestamp"
                                   forState: UIControlStateNormal];
 }
 

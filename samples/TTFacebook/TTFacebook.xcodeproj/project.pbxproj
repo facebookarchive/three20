@@ -33,21 +33,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = extThree20CSSStyle;
 		};
 		6E08360111B4C5FF00B99C32 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* extCSSStyleUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E08360C11B4C60B00B99C32 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* extThree20CSSStyle */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = extThree20CSSStyle;
 		};
 		6E6462871187DF2C00F08CB1 /* PBXContainerItemProxy */ = {

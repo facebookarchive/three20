@@ -19,7 +19,7 @@ Add the `extThree20CSSStyle.xcodeproj` file to your project. Add `extThree20CSSS
 
 Import the following into your precompiled header.
 
-    #import "extThree20CSSStyle/extThree20CSSStyle.h"
+    #import <extThree20CSSStyle/extThree20CSSStyle.h>
 
 
 ### If you want to use the CSS-powered default style sheet
