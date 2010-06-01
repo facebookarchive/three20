@@ -32,14 +32,14 @@ searchbar {
   background-color: green;
 }
 
-a {
-  color: fuschia;
-}
-
 
 /**
  * Table Items
  */
+.tableItemLink {
+  color: fuschia;
+}
+
 .tableItemTimestamp {
   color: purple;
 }

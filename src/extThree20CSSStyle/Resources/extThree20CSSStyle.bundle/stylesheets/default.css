@@ -38,14 +38,15 @@ searchbar {
   background-color: #C8C8C8;
 }
 
-a {
-  color: #576B95;
-}
-
 
 /**
  * Table Items
  */
+
+.tableItemLink {
+  color: #576B95;
+}
+
 .tableItemTimestamp {
   color: #2470D8;
 }
