@@ -20,7 +20,7 @@
 @class TTStyledNode;
 @class TTStyledElement;
 
-#if __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+#if __IPHONE_4_0 && __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
 @interface TTStyledTextParser : NSObject <NSXMLParserDelegate> {
 #else
 @interface TTStyledTextParser : NSObject {

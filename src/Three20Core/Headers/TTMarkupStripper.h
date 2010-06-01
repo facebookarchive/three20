@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+#if __IPHONE_4_0 && __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
 @interface TTMarkupStripper : NSObject <NSXMLParserDelegate> {
 #else
 @interface TTMarkupStripper : NSObject {

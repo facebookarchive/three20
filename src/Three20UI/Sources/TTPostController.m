@@ -141,7 +141,7 @@ static const CGFloat kMarginY = 6;
   _originalStatusBarStyle = app.statusBarStyle;
   _originalStatusBarHidden = app.statusBarHidden;
   if (!_originalStatusBarHidden) {
-#if __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
     [app setStatusBarHidden:NO withAnimation:YES];
 #else
 		[app setStatusBarHidden:NO animated:YES];
@@ -155,7 +155,7 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)hideKeyboard {
   UIApplication* app = [UIApplication sharedApplication];
-#if __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
 	[app setStatusBarHidden:_originalStatusBarHidden withAnimation:YES];
 #else
   [app setStatusBarHidden:_originalStatusBarHidden animated:YES];
