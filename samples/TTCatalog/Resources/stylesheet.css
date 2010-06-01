@@ -39,6 +39,18 @@ searchbar {
 
 
 /**
+ * Tables
+ */
+table {
+  background-color: #FF7733;
+}
+
+groupedTable {
+  background-color: groupTableViewBackgroundColor;
+}
+
+
+/**
  * Table Items
  */
 .tableItemLink {

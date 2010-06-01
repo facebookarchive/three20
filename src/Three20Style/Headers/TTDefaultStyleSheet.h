@@ -27,6 +27,10 @@
 @property (nonatomic, readonly) UIColor* linkTextColor;
 @property (nonatomic, readonly) UIColor* moreLinkTextColor;
 
+// Tables
+@property (nonatomic, readonly) UIColor*  tablePlainBackgroundColor;
+@property (nonatomic, readonly) UIColor*  tableGroupedBackgroundColor;
+
 // Table Headers
 @property (nonatomic, readonly) UIColor*  tableHeaderTextColor;
 @property (nonatomic, readonly) UIColor*  tableHeaderShadowColor;
@@ -48,8 +52,6 @@
 @property (nonatomic, readonly) UIColor* tableErrorTextColor;
 @property (nonatomic, readonly) UIColor* tableSubTextColor;
 @property (nonatomic, readonly) UIColor* tableTitleTextColor;
-@property (nonatomic, readonly) UIColor* tablePlainBackgroundColor;
-@property (nonatomic, readonly) UIColor* tableGroupedBackgroundColor;
 @property (nonatomic, readonly) UIColor* searchTableBackgroundColor;
 @property (nonatomic, readonly) UIColor* searchTableSeparatorColor;
 

@@ -237,6 +237,12 @@ NSString* kKeyTextShadowColor   = @"color";
                          RGBACOLOR(0xFF, 0xFF, 0xFF, 0x00), @"transparent",
                          [UIColor whiteColor], @"white",
                          RGBCOLOR(0xFF, 0xFF, 0x00), @"yellow",
+
+                         // System colors
+                         [UIColor lightTextColor],                @"lightTextColor",
+                         [UIColor darkTextColor],                 @"darkTextColor",
+                         [UIColor groupTableViewBackgroundColor], @"groupTableViewBackgroundColor",
+                         [UIColor viewFlipsideBackgroundColor],   @"viewFlipsideBackgroundColor",
                          nil];
   }
 
@@ -275,9 +281,12 @@ NSString* kKeyTextShadowColor   = @"color";
       color = RGBCOLOR(((colorValue & 0xFF0000) >> 16),
                        ((colorValue & 0xFF00) >> 8),
                        (colorValue & 0xFF));
+
+    } else if ([cssString isEqualToString:@"none"]) {
+      color = nil;
+
     } else {
       color = [[self colorLookupTable] objectForKey:cssString];
-
     }
 
   } else if ([cssValues count] == 5 && [[cssValues objectAtIndex:0] isEqualToString:@"rgb("]) {

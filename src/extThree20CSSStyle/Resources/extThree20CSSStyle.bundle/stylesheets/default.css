@@ -40,6 +40,18 @@ searchbar {
 
 
 /**
+ * Tables
+ */
+table {
+  background-color: none;
+}
+
+groupedTable {
+  background-color: groupTableViewBackgroundColor;
+}
+
+
+/**
  * Table Items
  */
 
