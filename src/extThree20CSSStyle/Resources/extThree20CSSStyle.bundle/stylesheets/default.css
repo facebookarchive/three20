@@ -32,6 +32,13 @@ navigationBar {
 
 
 /**
+ * Table Items
+ */
+.tableMessageItem {
+  color: #2470D8;
+}
+
+/**
  * Drag Refresh Headers
  */
 .dragRefreshHeaderLastUpdated {
