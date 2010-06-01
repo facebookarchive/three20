@@ -30,6 +30,10 @@ navigationBar {
   background-color: #778CA8;
 }
 
+toolbar {
+  background-color: #6D84A2;
+}
+
 a {
   color: #576B95;
 }

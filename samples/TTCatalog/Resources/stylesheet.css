@@ -26,8 +26,9 @@ body:hover {
   color: white;
 }
 
-navigationBar {
-  background-color: navy;
+navigationBar,
+toolbar {
+  background-color: green;
 }
 
 a {

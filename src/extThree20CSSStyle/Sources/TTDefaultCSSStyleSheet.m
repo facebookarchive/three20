@@ -119,6 +119,13 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)toolbarTintColor {
+  return [_styleSheet backgroundColorWithCssSelector: @"toolbar"
+                                            forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)linkTextColor {
   return [_styleSheet colorWithCssSelector: @"a"
                                   forState: UIControlStateNormal];
