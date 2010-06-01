@@ -14,6 +14,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		6E08360311B4C60300B99C32 /* libextThree20CSSStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E08360011B4C5FF00B99C32 /* libextThree20CSSStyle.a */; };
 		6E08361111B4C63400B99C32 /* extThree20CSSStyle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E08361011B4C63400B99C32 /* extThree20CSSStyle.bundle */; };
+		6E08373211B4D18D00B99C32 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 6E08373111B4D18D00B99C32 /* stylesheet.css */; };
 		6E08B426118286D100DA1579 /* TTFacebookPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B425118286D100DA1579 /* TTFacebookPost.m */; };
 		6E08B429118286D900DA1579 /* TTFacebookSearchFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B428118286D900DA1579 /* TTFacebookSearchFeedDataSource.m */; };
 		6E08B42C118286DF00DA1579 /* TTFacebookSearchFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E08B42B118286DF00DA1579 /* TTFacebookSearchFeedModel.m */; };
@@ -110,6 +111,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6E0835FA11B4C5FF00B99C32 /* extThree20CSSStyle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20CSSStyle.xcodeproj; path = ../../src/extThree20CSSStyle/extThree20CSSStyle.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E08361011B4C63400B99C32 /* extThree20CSSStyle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = extThree20CSSStyle.bundle; path = ../../src/extThree20CSSStyle/Resources/extThree20CSSStyle.bundle; sourceTree = SOURCE_ROOT; };
+		6E08373111B4D18D00B99C32 /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = stylesheet.css; path = Resources/stylesheet.css; sourceTree = "<group>"; };
 		6E08B424118286D100DA1579 /* TTFacebookPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookPost.h; sourceTree = "<group>"; };
 		6E08B425118286D100DA1579 /* TTFacebookPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFacebookPost.m; sourceTree = "<group>"; };
 		6E08B427118286D900DA1579 /* TTFacebookSearchFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFacebookSearchFeedDataSource.h; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				6E5F1F2E117FB4D9004BEBA9 /* Three20.bundle */,
 				6E08361011B4C63400B99C32 /* extThree20CSSStyle.bundle */,
 				8D1107310486CEB800E47090 /* TTFacebook-Info.plist */,
+				6E08373111B4D18D00B99C32 /* stylesheet.css */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				6E08B48E118288A300DA1579 /* Default.png in Resources */,
 				6E08B48F118288A300DA1579 /* Icon.png in Resources */,
 				6E08361111B4C63400B99C32 /* extThree20CSSStyle.bundle in Resources */,
+				6E08373211B4D18D00B99C32 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

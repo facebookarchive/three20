@@ -14,37 +14,20 @@
  * limitations under the License.
  */
 
-/**
- * iPhone OS styles
- */
-body {
-  background-color: white;
-  color: black;
-}
-
-body:hover {
-  color: white;
-}
-
-navigationBar {
-  background-color: #778CA8;
-}
-
-
-/**
- * Drag Refresh Headers
- */
+/*
 .dragRefreshHeaderLastUpdated {
-  font-size: 12pt;
-}
-
-.dragRefreshHeaderStatusFont {
-  font-size: 13pt;
   font-weight: bold;
 }
 
 .dragRefreshHeader {
-  background-color: #E2E7ED;
-  color: #576C89;
-  text-shadow: 0px 1px 0px #E6E6E6;
+  text-shadow: 0px 1px 0px red;
+}*/
+
+navigationBar {
+  background-color: #3B5998; /* Facebook blue */
 }
+
+body {
+  color: #111;
+}
+

@@ -9,6 +9,10 @@
   width: 600px
 }
 
+.classname:hover {
+  width: 800px;
+}
+
 .short-hex-colors {
   color: #F73;
   background-color: #F73

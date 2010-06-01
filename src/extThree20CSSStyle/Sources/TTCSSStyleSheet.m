@@ -192,6 +192,24 @@ NSString* kKeyTextShadowColor   = @"color";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)selector:(NSString*)selector forState:(UIControlState)state {
+  selector = [selector lowercaseString];
+  switch (state) {
+    default:
+    case UIControlStateNormal:
+      break;
+
+    case UIControlStateHighlighted: {
+      selector = [selector stringByAppendingString:@":hover"];
+      break;
+    }
+  }
+
+  return selector;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Colors
 
@@ -292,7 +310,7 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)colorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
-  selector = [selector lowercaseString];
+  selector = [self selector:selector forState:state];
 
   return [self colorWithCssSelector:selector forState:state propertyName:kCssPropertyColor];
 }
@@ -300,7 +318,7 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)backgroundColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
-  selector = [selector lowercaseString];
+  selector = [self selector:selector forState:state];
 
   return [self colorWithCssSelector: selector
                            forState: state
@@ -316,7 +334,7 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)fontWithCssSelector:(NSString*)selector forState:(UIControlState)state {
-  selector = [selector lowercaseString];
+  selector = [self selector:selector forState:state];
 
   UIFont* font = [self objectForCssSelector:selector propertyName:kCssPropertyFont];
 
@@ -423,7 +441,7 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)textShadowColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
-  selector = [selector lowercaseString];
+  selector = [self selector:selector forState:state];
 
   NSDictionary* textShadow = [self textShadowWithCssSelector: selector
                                                     forState: state];
@@ -433,7 +451,7 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)textShadowOffsetWithCssSelector:(NSString*)selector forState:(UIControlState)state {
-  selector = [selector lowercaseString];
+  selector = [self selector:selector forState:state];
 
   NSDictionary* textShadow = [self textShadowWithCssSelector: selector
                                                     forState: state];

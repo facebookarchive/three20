@@ -60,7 +60,7 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)applyStyleSheetFromDisk:(NSString*)filename {
+- (BOOL)addStyleSheetFromDisk:(NSString*)filename {
   TTCSSStyleSheet* styleSheet = [[TTCSSStyleSheet alloc] init];
 
   BOOL loadedSuccessfully = [styleSheet loadFromFilename:filename];
@@ -70,6 +70,40 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
   TT_RELEASE_SAFELY(styleSheet);
 
   return loadedSuccessfully;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark iPhone OS system styles
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)textColor {
+  return [_styleSheet colorWithCssSelector: @"body"
+                                  forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)highlightedTextColor {
+  return [_styleSheet colorWithCssSelector: @"body"
+                                  forState: UIControlStateHighlighted];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)backgroundColor {
+  return [_styleSheet backgroundColorWithCssSelector: @"body"
+                                            forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)navigationBarTintColor {
+  return [_styleSheet backgroundColorWithCssSelector: @"navigationBar"
+                                            forState: UIControlStateNormal];
 }
 
 

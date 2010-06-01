@@ -31,7 +31,7 @@ range     \?{1,6}|{h}(\?{0,5}|{h}(\?{0,4}|{h}(\?{0,3}|{h}(\?{0,2}|{h}(\??|{h})))
                               
 {string}                        {cssConsume(yytext, CSSSTRING);}
                               
-{ident}                         {cssConsume(yytext, CSSIDENT);}
+{ident}(:{ident})?              {cssConsume(yytext, CSSIDENT);}
                               
 "#"{name}                       {cssConsume(yytext, CSSHASH);}
                               
