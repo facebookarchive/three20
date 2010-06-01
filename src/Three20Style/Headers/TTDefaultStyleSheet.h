@@ -48,7 +48,6 @@
 @property (nonatomic, readonly) UIColor* tableErrorTextColor;
 @property (nonatomic, readonly) UIColor* tableSubTextColor;
 @property (nonatomic, readonly) UIColor* tableTitleTextColor;
-@property (nonatomic, readonly) UIColor* tableSeparatorColor;
 @property (nonatomic, readonly) UIColor* tablePlainBackgroundColor;
 @property (nonatomic, readonly) UIColor* tableGroupedBackgroundColor;
 @property (nonatomic, readonly) UIColor* searchTableBackgroundColor;
