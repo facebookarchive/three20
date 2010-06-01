@@ -63,6 +63,14 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)freeMemory {
+  [_styleSheet freeMemory];
+
+  [super freeMemory];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)addStyleSheetFromDisk:(NSString*)filename {
   TTCSSStyleSheet* styleSheet = [[TTCSSStyleSheet alloc] init];
 
@@ -111,6 +119,13 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)linkTextColor {
+  return [_styleSheet colorWithCssSelector: @"a"
+                                  forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Table Items
@@ -119,6 +134,13 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)timestampTextColor {
   return [_styleSheet colorWithCssSelector: @".tableItemTimestamp"
+                                  forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)moreLinkTextColor {
+  return [_styleSheet colorWithCssSelector: @".moreButton"
                                   forState: UIControlStateNormal];
 }
 

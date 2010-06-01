@@ -30,11 +30,20 @@ navigationBar {
   background-color: #778CA8;
 }
 
+a {
+  color: #576B95;
+}
+
 
 /**
  * Table Items
  */
 .tableItemTimestamp {
+  color: #2470D8;
+}
+
+/* More button generally used at the bottom of a table. */
+.moreButton {
   color: #2470D8;
 }
 

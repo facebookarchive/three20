@@ -30,10 +30,37 @@ navigationBar {
   background-color: navy;
 }
 
+a {
+  color: fuschia;
+}
+
 
 /**
  * Table Items
  */
 .tableItemTimestamp {
   color: purple;
+}
+
+/* More button generally used at the bottom of a table. */
+.moreButton {
+  color: lime;
+}
+
+/**
+ * Drag Refresh Headers
+ */
+.dragRefreshHeaderLastUpdated {
+  font-size: 12pt;
+}
+
+.dragRefreshHeaderStatusFont {
+  font-size: 13pt;
+  font-weight: bold;
+}
+
+.dragRefreshHeader {
+  background-color: #E2E7ED;
+  color: #576C89;
+  text-shadow: 0px 1px 0px #E6E6E6;
 }
