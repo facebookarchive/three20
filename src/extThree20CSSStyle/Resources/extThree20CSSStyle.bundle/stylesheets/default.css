@@ -50,6 +50,14 @@ groupedTable {
   background-color: groupTableViewBackgroundColor;
 }
 
+searchTable {
+  background-color: #EBEBEB;
+}
+
+searchTableSeparator {
+  background-color: #D9D9D9;
+}
+
 
 /**
  * Table Items

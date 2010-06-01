@@ -42,11 +42,19 @@ searchbar {
  * Tables
  */
 table {
-  background-color: #FF7733;
+  background-color: purple;
 }
 
 groupedTable {
-  background-color: groupTableViewBackgroundColor;
+  background-color: #FF7700;
+}
+
+searchTable {
+  background-color: red;
+}
+
+searchTableSeparator {
+  background-color: blue;
 }
 
 
