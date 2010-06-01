@@ -96,6 +96,7 @@ static NSString* kFacebookSearchFeedFormat = @"http://graph.facebook.com/search?
     post.postId = [NSNumber numberWithLongLong:
                      [[entry objectForKey:@"id"] longLongValue]];
     post.text = [entry objectForKey:@"message"];
+    post.name = [[entry objectForKey:@"from"] objectForKey:@"name"];
 
     [posts addObject:post];
     TT_RELEASE_SAFELY(post);
