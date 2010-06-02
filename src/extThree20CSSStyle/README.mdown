@@ -11,6 +11,7 @@ Dependencies
 * Network
 * Style
 
+
 Using it in your App
 --------------------
 
@@ -35,6 +36,13 @@ Set the global stylesheet when your app launches.
 Breakdown
 ---------
 
+The CSSStyle extension includes a CSS grammar, a tokenizer built from this grammar, and a
+couple stylesheet objects that provide the interface for grabbing properties from the
+stylesheet.
+
+### The Grammar
+
+You can find the grammar in
 
 
 Known Limitations
@@ -45,5 +53,7 @@ Known Limitations
 Font-size is always interpreted in points, regardless of what you specify. This is due to
 the tricky nature of varying DPI on the various iPhone OS devices.
 
-Troubleshooting
----------------
+### Text Shadows
+
+The "blur" property is always interpreted as "0". This is due to the technical limitations
+of specifying blur for text shadows for UILabels.

@@ -6,6 +6,20 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		6E083B2C11B6113900B99C32 /* Grammar */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 6E083B3411B6114E00B99C32 /* Build configuration list for PBXAggregateTarget "Grammar" */;
+			buildPhases = (
+				6E083B2B11B6113900B99C32 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Grammar;
+			productName = Grammar;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6E036A2011B364670025E8EE /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E036A1411B364530025E8EE /* libThree20Network.a */; };
 		6E036A2111B364670025E8EE /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E036A1D11B3645C0025E8EE /* libThree20Style.a */; };
@@ -118,6 +132,8 @@
 		6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDefaultCSSStyleSheet.h; path = Sources/TTDefaultCSSStyleSheet.h; sourceTree = "<group>"; };
 		6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDefaultCSSStyleSheet.m; path = Sources/TTDefaultCSSStyleSheet.m; sourceTree = "<group>"; };
 		6E0835AB11B4C3A200B99C32 /* extThree20CSSStyle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = extThree20CSSStyle.bundle; path = Resources/extThree20CSSStyle.bundle; sourceTree = "<group>"; };
+		6E083B5311B6122800B99C32 /* Build.Command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Build.Command; path = Grammars/Build.Command; sourceTree = "<group>"; };
+		6E083B5411B6122F00B99C32 /* css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css.grammar; path = Grammars/css.grammar; sourceTree = "<group>"; };
 		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -242,9 +258,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6E083B5111B6121B00B99C32 /* Grammar */ = {
+			isa = PBXGroup;
+			children = (
+				6E083B5311B6122800B99C32 /* Build.Command */,
+				6E083B5411B6122F00B99C32 /* css.grammar */,
+			);
+			name = Grammar;
+			sourceTree = "<group>";
+		};
 		6E645A4311876CFE00F08CB1 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				6E083B5111B6121B00B99C32 /* Grammar */,
 				6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */,
 				6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */,
 				6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */,
@@ -399,6 +425,7 @@
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* extThree20CSSStyle */,
 				EB9E6C6110B6A8F800DE563C /* UnitTests */,
+				6E083B2C11B6113900B99C32 /* Grammar */,
 			);
 		};
 /* End PBXProject section */
@@ -460,6 +487,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6E083B2B11B6113900B99C32 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd Grammars\nbash Build.Command";
+		};
 		6E3C34AD118807DC0079637E /* Protect Copied Headers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -542,6 +582,34 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		6E083B2D11B6113900B99C32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Grammar;
+			};
+			name = Debug;
+		};
+		6E083B2E11B6113900B99C32 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Grammar;
+			};
+			name = Internal;
+		};
+		6E083B2F11B6113900B99C32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Grammar;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		6E92493F112C6F4000531F03 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
@@ -673,6 +741,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6E083B3411B6114E00B99C32 /* Build configuration list for PBXAggregateTarget "Grammar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E083B2D11B6113900B99C32 /* Debug */,
+				6E083B2E11B6113900B99C32 /* Internal */,
+				6E083B2F11B6113900B99C32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20CSSStyle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

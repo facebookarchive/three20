@@ -5,6 +5,6 @@ cat lex.css.c >> CssTokenizer.cpp
 
 rm lex.css.c
 
-cp CssTokenizer.cpp ../Sources/CssTokenizer.m
+mv CssTokenizer.cpp ../Sources/CssTokenizer.m
 cp CssTokens.cpp ../Sources/CssTokens.m
 cp CssToken*.h ../Headers/
