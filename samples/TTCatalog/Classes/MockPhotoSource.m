@@ -11,7 +11,7 @@
   _fakeLoadTimer = nil;
 
   if (_type & MockPhotoSourceLoadError) {
-    [_delegates makeObjectsPerformSelector: @selector(model:didFailLoadWithError:)
+    [_delegates perform: @selector(model:didFailLoadWithError:)
                                 withObject: self
                                 withObject: nil];
   } else {
@@ -38,7 +38,7 @@
       }
     }
 
-    [_delegates makeObjectsPerformSelector:@selector(modelDidFinishLoad:) withObject:self];
+    [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
   }
 }
 
@@ -94,7 +94,7 @@
 
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
   if (cachePolicy & TTURLRequestCachePolicyNetwork) {
-    [_delegates makeObjectsPerformSelector:@selector(modelDidStartLoad:) withObject:self];
+    [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
 
     TT_RELEASE_SAFELY(_photos);
     _fakeLoadTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self

@@ -330,7 +330,7 @@
     }
   }
 
-  [_delegates makeObjectsPerformSelector:@selector(modelDidFinishLoad:) withObject:self];
+  [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
 }
 
 - (void)fakeSearchReady:(NSTimer*)timer {
@@ -401,7 +401,7 @@
 - (void)cancel {
   if (_fakeSearchTimer) {
     TT_INVALIDATE_TIMER(_fakeSearchTimer);
-    [_delegates makeObjectsPerformSelector:@selector(modelDidCancelLoad:) withObject:self];
+    [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];
   }
 }
 
@@ -421,14 +421,14 @@
       TT_INVALIDATE_TIMER(_fakeSearchTimer);
       _fakeSearchTimer = [NSTimer scheduledTimerWithTimeInterval:_fakeSearchDuration target:self
                                 selector:@selector(fakeSearchReady:) userInfo:text repeats:NO];
-      [_delegates makeObjectsPerformSelector:@selector(modelDidStartLoad:) withObject:self];
+      [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
     } else {
       [self fakeSearch:text];
-      [_delegates makeObjectsPerformSelector:@selector(modelDidFinishLoad:) withObject:self];
+      [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
     }
   } else {
     TT_RELEASE_SAFELY(_names);
-    [_delegates makeObjectsPerformSelector:@selector(modelDidChange:) withObject:self];
+    [_delegates perform:@selector(modelDidChange:) withObject:self];
   }
 }
 

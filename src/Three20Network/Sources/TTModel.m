@@ -98,71 +98,71 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didStartLoad {
-  [_delegates makeObjectsPerformSelector:@selector(modelDidStartLoad:) withObject:self];
+  [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFinishLoad {
-  [_delegates makeObjectsPerformSelector:@selector(modelDidFinishLoad:) withObject:self];
+  [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFailLoadWithError:(NSError*)error {
-  [_delegates makeObjectsPerformSelector:@selector(model:didFailLoadWithError:) withObject:self
+  [_delegates perform:@selector(model:didFailLoadWithError:) withObject:self
     withObject:error];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didCancelLoad {
-  [_delegates makeObjectsPerformSelector:@selector(modelDidCancelLoad:) withObject:self];
+  [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)beginUpdates {
-  [_delegates makeObjectsPerformSelector:@selector(modelDidBeginUpdates:) withObject:self];
+  [_delegates perform:@selector(modelDidBeginUpdates:) withObject:self];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)endUpdates {
-  [_delegates makeObjectsPerformSelector:@selector(modelDidEndUpdates:) withObject:self];
+  [_delegates perform:@selector(modelDidEndUpdates:) withObject:self];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
-  [_delegates makeObjectsPerformSelector: @selector(model:didUpdateObject:atIndexPath:)
-                              withObject: self
-                              withObject: object
-                              withObject: indexPath];
+  [_delegates perform: @selector(model:didUpdateObject:atIndexPath:)
+           withObject: self
+           withObject: object
+           withObject: indexPath];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
-  [_delegates makeObjectsPerformSelector: @selector(model:didInsertObject:atIndexPath:)
-                              withObject: self
-                              withObject: object
-                              withObject: indexPath];
+  [_delegates perform: @selector(model:didInsertObject:atIndexPath:)
+           withObject: self
+           withObject: object
+           withObject: indexPath];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
-  [_delegates makeObjectsPerformSelector: @selector(model:didDeleteObject:atIndexPath:)
-                              withObject: self
-                              withObject: object
-                              withObject: indexPath];
+  [_delegates perform: @selector(model:didDeleteObject:atIndexPath:)
+           withObject: self
+           withObject: object
+           withObject: indexPath];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didChange {
-  [_delegates makeObjectsPerformSelector:@selector(modelDidChange:) withObject:self];
+  [_delegates perform:@selector(modelDidChange:) withObject:self];
 }
 
 
