@@ -25,6 +25,7 @@
 body {
   background-color: red;
   color: green;
+  font-size: 20pt;
 }
 
 body:hover {
@@ -42,7 +43,7 @@ searchbar {
  * Tables
  */
 table {
-  background-color: purple;
+  background-color: red;
 }
 
 groupedTable {

@@ -15,11 +15,12 @@
  */
 
 /**
- * iPhone OS styles
+ * Common styles
  */
 body {
   background-color: white;
   color: black;
+  font-size: 14pt;
 }
 
 body:hover {

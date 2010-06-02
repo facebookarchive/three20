@@ -116,7 +116,7 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark iPhone OS system styles
+#pragma mark Common styles
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -130,6 +130,13 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 - (UIColor*)highlightedTextColor {
   return [_styleSheet colorWithCssSelector: @"body"
                                   forState: UIControlStateHighlighted];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIFont*)font {
+  return [_styleSheet fontWithCssSelector: @"body"
+                                 forState: UIControlStateHighlighted];
 }
 
 
