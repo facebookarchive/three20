@@ -23,6 +23,8 @@
   TTCSSStyleSheet* _styleSheet;
 }
 
+@property (nonatomic, readonly) TTCSSStyleSheet* styleSheet;
+
 - (BOOL)addStyleSheetFromDisk:(NSString*)filename;
 
 @end
