@@ -2,7 +2,11 @@
 extCSSStyle
 ===========
 
-This extension provides support for style sheets read in from CSS files.
+This extension provides support for reading style sheets from CSS files. CSS is parsed using a
+tokenizer generated using flex, and built upon the
+[W3C grammar](http://www.w3.org/TR/css3-syntax/#lexical) for CSS3. By adding this extension to
+any project, you can begin to customize your app with CSS by simply adding 3 lines of code.
+
 
 Dependencies
 ------------
@@ -92,3 +96,84 @@ the tricky nature of varying DPI on the various iPhone OS devices.
 
 The "blur" property is always interpreted as "0". This is due to the technical limitations
 of specifying blur for text shadows for UILabels.
+
+
+Supported CSS Properties and Values
+-----------------------------------
+
+### Definitions used below
+
+    Value           Example
+    ------------|  |-------------------
+    <color>         #FFF or #FF00FF or rgb(255, 0, 255)
+                    or rgba(0, 255, 255, 0.5) or <color-name>
+    
+    <color-name>    Any of the standard names found in the W3C for css3.
+                    http://www.w3.org/TR/css3-color/
+                    Also, iPhone OS standard colors:
+                    lightTextColor
+                    darkTextColor
+                    groupTableViewBackgroundColor
+                    viewFlipsideBackgroundColor
+    
+    <number>        [0-9.]+
+
+
+### Colors
+
+    color:            <color>
+                      colorWithCssSelector
+    background-color: <color>
+                      backgroundColorWithCssSelector
+
+`color` is used for text color.
+
+### Fonts
+
+    font-size:        <number>pt
+    font-weight:      (bold|normal)
+                      fontWithCssSelector
+
+Fonts are defined with a set of properties that collectively create the final UIFont* object.
+`fontWithCssSelector` reads each of these properties when building the font object.
+
+### Text Shadow
+
+    text-shadow:      <number>px <number>px <ignored> <color>
+                      textShadowColorWithCssSelector
+                      textShadowOffsetWithCssSelector
+
+The `text-shadow` property is defined in one chunk, but read using two distinct methods.
+
+The third parameter is ignored. See "Text Shadows" in the `Known Limitations` section for
+the technical reasons.
+
+
+Examples
+--------
+
+See `three20/samples/TTFacebook` for a working example.
+
+### How to use TTDefaultCSSStyleSheet
+
+Add `extThree20CSSStyle.bundle` to your project. Make sure that "Create Folder References" is
+selected.
+
+Create a file, let's call it "stylesheet.css", and add it to your project. Ensure that it's
+being copied in the "Copy Bundle Resources" phase.
+
+Add the following code in your app delegate's `applicationDidFinishLaunching`.
+
+    // TTDefaultCSSStyleSheet automatically reads default.css from extThree20CSSStyle.bundle
+    TTDefaultCSSStyleSheet* styleSheet = [[TTDefaultCSSStyleSheet alloc] init];
+    
+    [styleSheet addStyleSheetFromDisk:TTPathForBundleResource(@"stylesheet.css")];
+    
+    [TTStyleSheet setGlobalStyleSheet:styleSheet];
+    
+    TT_RELEASE_SAFELY(styleSheet);
+
+Now you can freely customize the styles of your app using `stylesheet.css`. You can freely
+add new styles to the CSS, but with the current design you will also need to add an accessor
+to a custom object that inherits from `TTDefaultCSSStyleSheet`. See the source for
+`TTDefaultCSSStyleSheet` for examples of how to interact with the style sheet object.
