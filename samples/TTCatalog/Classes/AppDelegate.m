@@ -26,10 +26,6 @@
 // UIApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(UIApplication*)application {
-  TTDefaultCSSStyleSheet* styleSheet = [[TTDefaultCSSStyleSheet alloc] init];
-  [styleSheet addStyleSheetFromDisk:TTPathForBundleResource(@"stylesheet.css")];
-  [TTStyleSheet setGlobalStyleSheet:[styleSheet autorelease]];
-
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.supportsShakeToReload = YES;
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
