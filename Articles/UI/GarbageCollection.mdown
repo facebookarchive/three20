@@ -50,7 +50,7 @@ have direct control over the garbage collector. If you are afraid of a view cont
 being released in a timely manner, or perhaps you've received a `didReceiveMemoryWarning`
 notification, then you simply need to call
 
-    [UIViewController doGarbageCollection]
+    [TTViewController doGarbageCollection]
 
 This will force both the UINavigator and UICommon components to initiate their garbage collection.
 
