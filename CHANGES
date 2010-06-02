@@ -1,3 +1,9 @@
+Changes since May 31, 2010
+
+- [NEW] CSSStyle extension. View the README in src/extThree20CSSStyle
+
+- [FIXED] Warnings related to OS 4.0 and 3.2.
+
 Changes since May 28, 2010
 
 - [APPSTORE] Remove use of TTSwapMethods. See Articles/UI/GarbageCollection and
