@@ -136,7 +136,7 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)font {
   return [_styleSheet fontWithCssSelector: @"body"
-                                 forState: UIControlStateHighlighted];
+                                 forState: UIControlStateNormal];
 }
 
 

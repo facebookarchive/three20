@@ -374,42 +374,45 @@ NSString* kKeyTextShadowColor   = @"color";
       BOOL isBold = NO;
 
       NSArray* fontSizeValues = [ruleSet objectForKey:kCssPropertyFontSize];
-      // Anything more or less is unsupported, and therefore this property is ignored
-      // according to the W3C guidelines.
-      TTDASSERT([fontSizeValues count] == 1);
-      if ([fontSizeValues count] == 1) {
-        fontSize = [[fontSizeValues objectAtIndex:0] floatValue];
-      }
 
-      NSArray* fontWeightValues = [ruleSet objectForKey:kCssPropertyFontWeight];
-      // Anything more or less is unsupported, and therefore this property is ignored
-      // according to the W3C guidelines.
-      if ([fontWeightValues count] == 1) {
-        if ([[fontWeightValues objectAtIndex:0] isEqualToString:@"bold"]) {
-          isBold = YES;
+      if (nil != fontSizeValues) {
+        // Anything more or less is unsupported, and therefore this property is ignored
+        // according to the W3C guidelines.
+        TTDASSERT([fontSizeValues count] == 1);
+        if ([fontSizeValues count] == 1) {
+          fontSize = [[fontSizeValues objectAtIndex:0] floatValue];
         }
-      }
 
-      NSArray* fontFamilyValues = [ruleSet objectForKey:kCssPropertyFontFamily];
-      if ([fontFamilyValues count] > 0) {
-        NSArray* systemFontFamilyNames = [UIFont familyNames];
-        NSLog(@"Font families: %@", systemFontFamilyNames);
-        for (NSString* fontName in fontFamilyValues) {
+        NSArray* fontWeightValues = [ruleSet objectForKey:kCssPropertyFontWeight];
+        // Anything more or less is unsupported, and therefore this property is ignored
+        // according to the W3C guidelines.
+        if ([fontWeightValues count] == 1) {
+          if ([[fontWeightValues objectAtIndex:0] isEqualToString:@"bold"]) {
+            isBold = YES;
+          }
         }
-        if ([[fontFamilyValues objectAtIndex:0] isEqualToString:@"bold"]) {
-          isBold = YES;
+
+        NSArray* fontFamilyValues = [ruleSet objectForKey:kCssPropertyFontFamily];
+        if ([fontFamilyValues count] > 0) {
+          NSArray* systemFontFamilyNames = [UIFont familyNames];
+          NSLog(@"Font families: %@", systemFontFamilyNames);
+          for (NSString* fontName in fontFamilyValues) {
+          }
+          if ([[fontFamilyValues objectAtIndex:0] isEqualToString:@"bold"]) {
+            isBold = YES;
+          }
         }
-      }
 
-      if (isBold) {
-        font = [UIFont boldSystemFontOfSize:fontSize];
+        if (isBold) {
+          font = [UIFont boldSystemFontOfSize:fontSize];
 
-      } else {
-        font = [UIFont systemFontOfSize:fontSize];
-      }
+        } else {
+          font = [UIFont systemFontOfSize:fontSize];
+        }
 
-      if (nil != font) {
-        [self setObjectForCssSelector:selector propertyName:kCssPropertyFont object:font];
+        if (nil != font) {
+          [self setObjectForCssSelector:selector propertyName:kCssPropertyFont object:font];
+        }
       }
     }
   }
