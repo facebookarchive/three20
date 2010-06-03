@@ -149,14 +149,10 @@ static NSMutableDictionary* gNamedCaches = nil;
 
   NSFileManager* fm = [NSFileManager defaultManager];
   if (![fm fileExistsAtPath:path]) {
-#if __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
     succeeded = [fm createDirectoryAtPath: path
               withIntermediateDirectories: YES
                                attributes: nil
                                     error: nil];
-#else
-    succeeded = [fm createDirectoryAtPath:path attributes:nil];
-#endif
   }
 
   return succeeded;
