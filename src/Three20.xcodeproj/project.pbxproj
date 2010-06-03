@@ -12,9 +12,8 @@
 		6E645CE7118796FE00F08CB1 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645CCB118796DD00F08CB1 /* libThree20Style.a */; };
 		6E645CE8118796FF00F08CB1 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645CDA118796E400F08CB1 /* libThree20UI.a */; };
 		6E7F9707118E367B00443B46 /* Three20.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F9706118E367B00443B46 /* Three20.m */; };
-		6E7F970E118E368F00443B46 /* Three20_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6E7F970B118E368F00443B46 /* Three20_Prefix.pch */; };
-		6E7F970F118E368F00443B46 /* Three20.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7F970C118E368F00443B46 /* Three20.h */; };
-		6E7F9710118E368F00443B46 /* Three20+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7F970D118E368F00443B46 /* Three20+Additions.h */; };
+		6E7F970F118E368F00443B46 /* Three20.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7F970C118E368F00443B46 /* Three20.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E7F9710118E368F00443B46 /* Three20+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7F970D118E368F00443B46 /* Three20+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E86AA7C118CFB8400662DA5 /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E86AA6F118CFB7100662DA5 /* libThree20UICommon.a */; };
 		6E86AA7D118CFB8700662DA5 /* libThree20UINavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E86AA79118CFB7D00662DA5 /* libThree20UINavigator.a */; };
 /* End PBXBuildFile section */
@@ -322,7 +321,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E7F970E118E368F00443B46 /* Three20_Prefix.pch in Headers */,
 				6E7F970F118E368F00443B46 /* Three20.h in Headers */,
 				6E7F9710118E368F00443B46 /* Three20+Additions.h in Headers */,
 			);
@@ -333,7 +331,7 @@
 /* Begin PBXLegacyTarget section */
 		6E6461801187D09F00F08CB1 /* CleanScript */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "${PROJECT_DIR}/scripts/Clean.command";
+			buildArgumentsString = "\"${PROJECT_DIR}/scripts/Clean.command\"";
 			buildConfigurationList = 6E6461851187D0C600F08CB1 /* Build configuration list for PBXLegacyTarget "CleanScript" */;
 			buildPhases = (
 			);
@@ -546,7 +544,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# The purpose of this script is to allow projects that use the old,\n# single-project Three20 to still be able to compile. We do this\n# by copying all of the headers to where they _would_ have been in\n# the old project layout. This is definitely messy, but a price to\n# pay for using the old system.\n\nmkdir -p ${SRCROOT}/Three20\nmkdir -p ${SRCROOT}/Three20Core\nmkdir -p ${SRCROOT}/Three20Network\nmkdir -p ${SRCROOT}/Three20Style\nmkdir -p ${SRCROOT}/Three20UICommon\nmkdir -p ${SRCROOT}/Three20UINavigator\nmkdir -p ${SRCROOT}/Three20UI\n\n# First make all of the Three20 headers writeable.\nchmod -f +w ${SRCROOT}/Three20/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20Core/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20Network/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20Style/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20UICommon/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20UINavigator/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20UI/*.h 2>> /dev/null\n\n# Copy the lib headers\n# -p preserves the source's modification date in the copy.\n# This properly creates cascading compilations when a library header file is\n# modified. Without -p, every time this script is run the destination files\n# will have a newer modified timestamp, causing projects to rebuild every time.\n\n# First copy the headers to their new Three20 lib relative paths, so that\n# the headers can refer to each other internally (e.g. \"Three20Core/TTDebug.h\").\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20Core/*.h ${SRCROOT}/Three20Core/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20Network/*.h ${SRCROOT}/Three20Network/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20Style/*.h ${SRCROOT}/Three20Style/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20UICommon/*.h ${SRCROOT}/Three20UICommon/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20UINavigator/*.h ${SRCROOT}/Three20UINavigator/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20UI/*.h ${SRCROOT}/Three20UI/\n\n# Next copy the headers to the old Three20 lib relative paths, so that existing\n# projects that refer to specific headers may still refer to them (e.g.\n# \"Three20/TTDebug.h\").\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20Core/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20Network/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20Style/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20UICommon/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20UINavigator/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20UI/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}/three20/Three20/*.h ${SRCROOT}/Three20/\n\nchmod -f -w ${SRCROOT}/Three20/*.h\nchmod -f -w ${SRCROOT}/Three20Core/*.h\nchmod -f -w ${SRCROOT}/Three20Network/*.h\nchmod -f -w ${SRCROOT}/Three20Style/*.h\nchmod -f -w ${SRCROOT}/Three20UICommon/*.h\nchmod -f -w ${SRCROOT}/Three20UINavigator/*.h\nchmod -f -w ${SRCROOT}/Three20UI/*.h";
+			shellScript = "# The purpose of this script is to allow projects that use the old,\n# single-project Three20 to still be able to compile. We do this\n# by copying all of the headers to where they _would_ have been in\n# the old project layout. This is definitely messy, but a price to\n# pay for using the old system.\n\n# Ignore whitespace characters in paths\nIFS=$'\\n'\n\nmkdir -p ${SRCROOT}/Three20\nmkdir -p ${SRCROOT}/Three20Core\nmkdir -p ${SRCROOT}/Three20Network\nmkdir -p ${SRCROOT}/Three20Style\nmkdir -p ${SRCROOT}/Three20UICommon\nmkdir -p ${SRCROOT}/Three20UINavigator\nmkdir -p ${SRCROOT}/Three20UI\n\n# First make all of the Three20 headers writeable.\nchmod -f +w ${SRCROOT}/Three20/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20Core/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20Network/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20Style/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20UICommon/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20UINavigator/*.h 2>> /dev/null\nchmod -f +w ${SRCROOT}/Three20UI/*.h 2>> /dev/null\n\n# Copy the lib headers\n# -p preserves the source's modification date in the copy.\n# This properly creates cascading compilations when a library header file is\n# modified. Without -p, every time this script is run the destination files\n# will have a newer modified timestamp, causing projects to rebuild every time.\n\n# First copy the headers to their new Three20 lib relative paths, so that\n# the headers can refer to each other internally (e.g. \"Three20Core/TTDebug.h\").\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20Core/*.h ${SRCROOT}/Three20Core/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20Network/*.h ${SRCROOT}/Three20Network/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20Style/*.h ${SRCROOT}/Three20Style/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20UICommon/*.h ${SRCROOT}/Three20UICommon/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20UINavigator/*.h ${SRCROOT}/Three20UINavigator/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20UI/*.h ${SRCROOT}/Three20UI/\n\n# Next copy the headers to the old Three20 lib relative paths, so that existing\n# projects that refer to specific headers may still refer to them (e.g.\n# \"Three20/TTDebug.h\").\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20Core/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20Network/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20Style/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20UICommon/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20UINavigator/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20UI/*.h ${SRCROOT}/Three20/\ncp -p ${CONFIGURATION_BUILD_DIR}${HEADERS_FOLDER_PATH}Three20/*.h ${SRCROOT}/Three20/\n\nchmod -f -w ${SRCROOT}/Three20/*.h\nchmod -f -w ${SRCROOT}/Three20Core/*.h\nchmod -f -w ${SRCROOT}/Three20Network/*.h\nchmod -f -w ${SRCROOT}/Three20Style/*.h\nchmod -f -w ${SRCROOT}/Three20UICommon/*.h\nchmod -f -w ${SRCROOT}/Three20UINavigator/*.h\nchmod -f -w ${SRCROOT}/Three20UI/*.h";
 		};
 		EB9E6C6010B6A8F800DE563C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -734,6 +732,7 @@
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E7F9701118E365C00443B46 /* Project.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -749,6 +748,7 @@
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E7F9701118E365C00443B46 /* Project.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
