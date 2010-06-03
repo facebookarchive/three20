@@ -549,6 +549,14 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSURLRequest*)loader: (TTRequestLoader*)loader
+        willSendRequest: (NSURLRequest*)request
+       redirectResponse: (NSURLResponse*)redirectResponse {
+  return [loader dispatchWillSendRequest:request redirectResponse:redirectResponse];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)     loader: (TTRequestLoader*)loader
     didLoadResponse: (NSHTTPURLResponse*)response
                data: (id)data {
