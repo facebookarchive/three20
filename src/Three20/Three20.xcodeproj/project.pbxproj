@@ -11,12 +11,6 @@
 		6E6454931184D3ED00F08CB1 /* Three20+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454921184D3ED00F08CB1 /* Three20+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454AA1184D43100F08CB1 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6454A71184D42800F08CB1 /* libThree20Style.a */; };
 		6E6459381187645D00F08CB1 /* UIGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6459371187645D00F08CB1 /* UIGlobalTests.m */; };
-		6E7F9688118E353C00443B46 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7F9685118E353800443B46 /* libThree20UI.a */; };
-		6E7F9689118E354300443B46 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
-		6E7F968A118E354700443B46 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6454A71184D42800F08CB1 /* libThree20Style.a */; };
-		6E7F968B118E354700443B46 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE738A31184ADB400A35176 /* libThree20Network.a */; };
-		6E7F968C118E354800443B46 /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDAEA09118CA5B50008133C /* libThree20UICommon.a */; };
-		6E7F968D118E354900443B46 /* libThree20UINavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDAEA12118CA5BE0008133C /* libThree20UINavigator.a */; };
 		6E7F96FB118E363500443B46 /* Three20.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F96FA118E363500443B46 /* Three20.m */; };
 		6EDAEA1D118CA5E20008133C /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDAEA09118CA5B50008133C /* libThree20UICommon.a */; };
 		6EDAEA1E118CA5E20008133C /* libThree20UINavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDAEA12118CA5BE0008133C /* libThree20UINavigator.a */; };
@@ -221,12 +215,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E7F9689118E354300443B46 /* libThree20Core.a in Frameworks */,
-				6E7F968B118E354700443B46 /* libThree20Network.a in Frameworks */,
-				6E7F968A118E354700443B46 /* libThree20Style.a in Frameworks */,
-				6E7F968C118E354800443B46 /* libThree20UICommon.a in Frameworks */,
-				6E7F968D118E354900443B46 /* libThree20UINavigator.a in Frameworks */,
-				6E7F9688118E353C00443B46 /* libThree20UI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
