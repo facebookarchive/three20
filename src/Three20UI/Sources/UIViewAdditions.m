@@ -451,13 +451,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDictionary *)userInfoForKeyboardNotification {
-	CGRect screenFrame = TTScreenBounds();
+  CGRect screenFrame = TTScreenBounds();
 #if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
-	CGSize keyboardSize = CGSizeMake(screenFrame.size.width, self.height);
-	CGRect frameBegin = CGRectMake(0, screenFrame.size.height + floor(self.height/2), keyboardSize.width, keyboardSize.height);
-	CGRect frameEnd = CGRectMake(0, screenFrame.size.height - floor(self.height/2), keyboardSize.width, keyboardSize.height);
+  CGSize keyboardSize = CGSizeMake(screenFrame.size.width, self.height);
+  CGRect frameBegin = CGRectMake(screenFrame.size.width - self.width,
+                                 screenFrame.size.height, 
+                                 keyboardSize.width, keyboardSize.height);
+  CGRect frameEnd = CGRectMake(screenFrame.size.width - self.width,
+                               screenFrame.size.height - self.height,
+                               keyboardSize.width, keyboardSize.height);
 
-	return [NSDictionary dictionaryWithObjectsAndKeys:
+  return [NSDictionary dictionaryWithObjectsAndKeys:
           [NSValue valueWithCGRect:frameBegin], UIKeyboardFrameBeginUserInfoKey,
           [NSValue valueWithCGRect:frameEnd], UIKeyboardFrameEndUserInfoKey,
           nil];
