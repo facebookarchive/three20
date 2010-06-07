@@ -50,12 +50,12 @@
 
 - (void)setPage:(MenuPage)page {
   _page = page;
-  
+
   self.title = [self nameForMenuPage:page];
 
   UIImage* image = [UIImage imageNamed:@"tab.png"];
   self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:self.title image:image tag:0] autorelease];
-  
+
   self.navigationItem.rightBarButtonItem =
     [[[UIBarButtonItem alloc] initWithTitle:@"Order" style:UIBarButtonItemStyleBordered
                               target:@"tt://order?waitress=Betty&ref=toolbar"
@@ -128,4 +128,3 @@
 }
 
 @end
- 

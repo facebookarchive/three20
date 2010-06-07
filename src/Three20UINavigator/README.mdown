@@ -1,0 +1,30 @@
+
+UINavigator
+===========
+
+This is the base Three20 navigator implementation. It provides the URL actions, maps,
+and patterns required by the navigator.
+
+Dependencies
+------------
+
+* Core
+* UICommon
+
+Breakdown
+---------
+
+Following is a logical breakdown of the components included in this library.
+
+### Global
+
+Metrics made available by the navigator.
+
+### TTBaseNavigator
+
+The base implementation of the navigator object that relies only on Core and UICommon. The
+fully-featured navigator is available in UI.
+
+### TTURLAction
+
+Action objects used to tell the navigator what to do.

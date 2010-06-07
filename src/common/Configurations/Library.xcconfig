@@ -1,0 +1,37 @@
+//
+// Copyright 2009-2010 Facebook
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+HEADERS_FOLDER_PATH           = /../three20/
+PRIVATE_HEADERS_FOLDER_PATH   = $(HEADERS_FOLDER_PATH)$(PRODUCT_NAME)/private
+PUBLIC_HEADERS_FOLDER_PATH    = $(HEADERS_FOLDER_PATH)$(PRODUCT_NAME)
+
+GCC_PRECOMPILE_PREFIX_HEADER  = YES
+GCC_PREFIX_HEADER             = $(SRCROOT)/Headers/$(PRODUCT_NAME)_Prefix.pch
+RUN_CLANG_STATIC_ANALYZER     = NO
+
+// Linker Flags
+
+OTHER_LDFLAGS           = $(OBJC_LIBRARY)
+
+// Warning flags
+
+GCC_WARN_CHECK_SWITCH_STATEMENTS        = NO
+GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES
+GCC_WARN_SHADOW                         = YES
+GCC_WARN_ABOUT_MISSING_NEWLINE          = YES
+GCC_WARN_UNUSED_FUNCTION                = YES
+GCC_WARN_UNUSED_LABEL                   = YES
+

@@ -1,3 +1,40 @@
+Changes since May 31, 2010
+
+- [NEW] CSSStyle extension. View the README in src/extThree20CSSStyle
+
+- [FIXED] Warnings related to OS 4.0 and 3.2.
+
+Changes since May 28, 2010
+
+- [APPSTORE] Remove use of TTSwapMethods. See Articles/UI/GarbageCollection and
+             eb45ca0a6336022367998ac41ced2df39af384d2.
+
+- [NEW] Add nib support again.
+
+- [FIXED] Issue #77. moveDataForURL and removeURL:fromDisk: have been fixed.
+
+Changes since May 18, 2010
+
+- [NEW] TTEntityTables added to Core.
+
+- [DEPRECATED] NSArray perform:. You should now use makeObjectsPerformSelector.
+
+- [UNITTESTS] Added unit tests for the markup stripper.
+
+- [MINOR] Removed additions from Three20Core.h.
+
+Changes since April 23, 2010
+
+- [NEW] Three20 has been split into modular libraries. Please read the
+        Articles/AboutModules.mdown file to learn more about the process.
+
+- [NEW] Add templates for Three20 projects and source files.
+
+- [NEW] Add Articles/ directory dedicated to in-depth discussions of Three20
+        components.
+
+- [NEW] Etag support. See Articles/Network/Etag.mdown for more details.
+
 Changes since April 09, 2010
 
 - [NEW] New +Additions library header files.

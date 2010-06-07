@@ -1,7 +1,5 @@
 #import "MockPhotoSource.h"
 
-#import "Three20/NSArrayAdditions.h"
-
 @implementation MockPhotoSource
 
 @synthesize title = _title;
@@ -13,7 +11,9 @@
   _fakeLoadTimer = nil;
 
   if (_type & MockPhotoSourceLoadError) {
-    [_delegates perform:@selector(model:didFailLoadWithError:) withObject:self withObject:nil];
+    [_delegates perform: @selector(model:didFailLoadWithError:)
+                                withObject: self
+                                withObject: nil];
   } else {
     NSMutableArray* newPhotos = [NSMutableArray array];
 
@@ -122,9 +122,9 @@
   return _photos.count-1;
 }
 
-- (id<TTPhoto>)photoAtIndex:(NSInteger)index {
-  if (index < _photos.count) {
-    id photo = [_photos objectAtIndex:index];
+- (id<TTPhoto>)photoAtIndex:(NSInteger)photoIndex {
+  if (photoIndex < _photos.count) {
+    id photo = [_photos objectAtIndex:photoIndex];
     if (photo == [NSNull null]) {
       return nil;
     } else {

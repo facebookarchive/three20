@@ -20,7 +20,7 @@
 #import "TTTwitterTweet.h"
 
 // Three20 Additions
-#import <Three20/NSDateAdditions.h>
+#import <Three20Core/NSDateAdditions.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

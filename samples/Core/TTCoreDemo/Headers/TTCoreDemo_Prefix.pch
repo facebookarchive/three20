@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'TTCoreDemo' target in the 'TTCoreDemo' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import <UIKit/UIKit.h>
+  #import <Three20Core/Three20Core.h>
+#endif

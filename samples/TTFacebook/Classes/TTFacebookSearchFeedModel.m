@@ -18,6 +18,8 @@
 
 #import "TTFacebookPost.h"
 
+#import <extThree20JSON/extThree20JSON.h>
+
 static NSString* kFacebookSearchFeedFormat = @"http://graph.facebook.com/search?q=%@&type=post";
 
 
@@ -57,7 +59,7 @@ static NSString* kFacebookSearchFeedFormat = @"http://graph.facebook.com/search?
                              requestWithURL: url
                              delegate: self];
 
-    request.cachePolicy = cachePolicy;
+    request.cachePolicy = cachePolicy | TTURLRequestCachePolicyEtag;
     request.cacheExpirationAge = TT_CACHE_EXPIRATION_AGE_NEVER;
 
     TTURLJSONResponse* response = [[TTURLJSONResponse alloc] init];
@@ -71,7 +73,7 @@ static NSString* kFacebookSearchFeedFormat = @"http://graph.facebook.com/search?
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)requestDidFinishLoad:(TTURLRequest*)request {
-  TTURLXMLResponse* response = request.response;
+  TTURLJSONResponse* response = request.response;
   TTDASSERT([response.rootObject isKindOfClass:[NSDictionary class]]);
 
   NSDictionary* feed = response.rootObject;
@@ -94,6 +96,7 @@ static NSString* kFacebookSearchFeedFormat = @"http://graph.facebook.com/search?
     post.postId = [NSNumber numberWithLongLong:
                      [[entry objectForKey:@"id"] longLongValue]];
     post.text = [entry objectForKey:@"message"];
+    post.name = [[entry objectForKey:@"from"] objectForKey:@"name"];
 
     [posts addObject:post];
     TT_RELEASE_SAFELY(post);

@@ -2,7 +2,7 @@
 #import "MessageTestController.h"
 #import "SearchTestController.h"
 #import "MockDataSource.h"
-#import <Three20/UIViewAdditions.h>
+#import <Three20UI/UIViewAdditions.h>
 
 @implementation MessageTestController
 

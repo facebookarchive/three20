@@ -1,0 +1,29 @@
+
+UICommon
+========
+
+These are the most basic parts required for all Three20UI components. This library acts
+as the UI's "core", and itself only depends upon Core.
+
+Dependencies
+------------
+
+* Core
+
+Breakdown
+---------
+
+Following is a logical breakdown of the components included in this library.
+
+### Global
+
+A set of global methods that provide support for various common rudimentary tasks, including:
+
+* Operating system version
+* Keyboard visibility
+* Standard alert dialogs
+* Common UI metrics
+
+### Additions
+
+Utilities for UIViewControllers and UIWindows. See the respective files for documentation.

@@ -1,5 +1,5 @@
 #import "TabBarTestController.h"
-#import <Three20/UIViewAdditions.h>
+#import <Three20UI/UIViewAdditions.h>
 
 @implementation TabBarTestController
 

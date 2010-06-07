@@ -20,7 +20,7 @@
 #import "TTFacebookPost.h"
 
 // Three20 Additions
-#import <Three20/NSDateAdditions.h>
+#import <Three20Core/NSDateAdditions.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,19 +58,11 @@
   NSMutableArray* items = [[NSMutableArray alloc] init];
 
   for (TTFacebookPost* post in _searchFeedModel.posts) {
-    //TTDPRINT(@"Response text: %@", response.text);
-    TTStyledText* styledText = [TTStyledText textFromXHTML:
-                                [NSString stringWithFormat:@"%@\n<b>%@</b>",
-                                 [[post.text stringByReplacingOccurrencesOfString:@"&"
-                                                                        withString:@"&amp;"]
-                                  stringByReplacingOccurrencesOfString:@"<"
-                                  withString:@"&lt;"],
-                                 [post.created formatRelativeTime]]
-                                                lineBreaks:YES URLs:YES];
-    // If this asserts, it's likely that the post.text contains an HTML character that caused
-    // the XML parser to fail.
-    TTDASSERT(nil != styledText);
-    [items addObject:[TTTableStyledTextItem itemWithText:styledText]];
+    [items addObject:[TTTableMessageItem itemWithTitle: post.name
+                                               caption: nil
+                                                  text: post.text
+                                             timestamp: post.created
+                                                   URL: nil]];
   }
 
   self.items = items;
