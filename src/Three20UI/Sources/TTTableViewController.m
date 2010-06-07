@@ -29,6 +29,7 @@
 
 // UINavigator
 #import "Three20UINavigator/TTURLObject.h"
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
@@ -331,7 +332,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds {
   [super keyboardDidAppear:animated withBounds:bounds];
-  self.tableView.frame = TTRectContract(self.tableView.frame, 0, bounds.size.height);
+  CGRect screenRectInTableSuperView = [self.tableView.superview convertRect:[UIScreen mainScreen].bounds 
+															  fromView:[UIApplication sharedApplication].keyWindow];
+  CGFloat bottomOffset = CGRectGetMaxY(screenRectInTableSuperView) - CGRectGetMaxY(self.tableView.frame);
+  self.tableView.frame = TTRectContract(self.tableView.frame, 0, bounds.size.height - bottomOffset);
   [self.tableView scrollFirstResponderIntoView];
   [self layoutOverlayView];
   [self layoutBannerView];
@@ -347,7 +351,7 @@
   // self.view, which will call -loadView, which often calls self.tableView, which initializes it.
   if (_tableView) {
     CGRect previousFrame = self.tableView.frame;
-    self.tableView.frame = TTRectContract(self.tableView.frame, 0, -bounds.size.height);
+    self.tableView.height = self.view.height;
 
     // There's any number of edge cases wherein a table view controller will get this callback but
     // it shouldn't resize itself -- e.g. when a controller has the keyboard up, and then drills
