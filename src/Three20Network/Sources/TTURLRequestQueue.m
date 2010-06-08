@@ -261,6 +261,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSError* error = nil;
 
   if ((loader.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory))
+	  && !IS_MASK_SET(loader.cachePolicy, TTURLRequestCachePolicyEtag)
       && [self loadFromCache:loader.urlPath cacheKey:loader.cacheKey
                expires:loader.cacheExpirationAge
                fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
