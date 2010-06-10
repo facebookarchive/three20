@@ -130,15 +130,11 @@
     _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
                                       cancelButtonTitle:TTLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil
                                       otherButtonTitles:TTLocalizedString(@"Open in Safari", @""), nil];
-#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
     if (TTIsPad()) {
       [_actionSheet showFromBarButtonItem:_actionButton animated:YES];
     }  else {
       [_actionSheet showInView: self.view];
     }
-#else
-      [_actionSheet showInView: self.view];
-#endif
   } else {
     [_actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
     TT_RELEASE_SAFELY(_actionSheet);
