@@ -17,14 +17,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class TTLauncherView;
+
 @interface TTLauncherHighlightView : UIView {
-  CGRect    _highlightRect;
-  CGFloat   _highlightScale;
-  UILabel*  _textLabel;
+  TTLauncherView* _parentView;
+  CGRect          _highlightRect;
+  CGFloat         _highlightScale;
+  UILabel*        _textLabel;
 }
 
-@property (nonatomic, assign) CGRect    highlightRect;
-@property (nonatomic, copy)   NSString* text;
+@property (nonatomic, assign) CGRect          highlightRect;
+@property (nonatomic, retain) TTLauncherView* parentView;
+@property (nonatomic, copy)   NSString*       text;
 
 - (void)appear:(BOOL)animated;
 

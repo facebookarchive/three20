@@ -965,14 +965,15 @@ static const NSInteger kDefaultColumnCount = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)beginHighlightItem:(TTLauncherItem*)item withText:(NSString*)text {
   if (nil == _highlightView) {
-    _highlightView = [[[TTLauncherHighlightView alloc] initWithFrame:self.bounds] autorelease];
-    self.clipsToBounds = YES;
-    [self addSubview:_highlightView];
+    _highlightView = [[TTLauncherHighlightView alloc] initWithFrame:self.window.bounds];
+    _highlightView.parentView = self;
+    [self.window addSubview:_highlightView];
   }
 
   TTLauncherButton* button = [self buttonForItem:item];
   _highlightView.text = text;
-  _highlightView.highlightRect = TTRectInset([self convertRect:button.frame fromView:_scrollView],
+  _highlightView.highlightRect = TTRectInset([self.window convertRect:button.frame
+                                                             fromView:_scrollView],
                                              UIEdgeInsetsMake(8.0, 2.0, -4.0, 2.0));
   [_highlightView setNeedsDisplay];
   [_highlightView appear:YES];
@@ -993,7 +994,7 @@ static const NSInteger kDefaultColumnCount = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)highlightEndDidFinish {
   [_highlightView removeFromSuperview];
-  _highlightView = nil;
+  TT_RELEASE_SAFELY(_highlightView);
 }
 
 

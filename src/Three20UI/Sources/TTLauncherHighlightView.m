@@ -37,6 +37,7 @@ static const CGFloat kHighlightTextPadding = 20.0f;
 @implementation TTLauncherHighlightView
 
 @synthesize highlightRect = _highlightRect;
+@synthesize parentView    = _parentView;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +63,7 @@ static const CGFloat kHighlightTextPadding = 20.0f;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_textLabel);
+  self.parentView = nil;
 
   [super dealloc];
 }
@@ -214,8 +216,7 @@ static const CGFloat kHighlightTextPadding = 20.0f;
   }
 
   // This will take care of removing the view
-  TTLauncherView* launcherView = (TTLauncherView *)self.superview;
-  [launcherView endHighlightItem:nil];
+  [_parentView endHighlightItem:nil];
 }
 
 
