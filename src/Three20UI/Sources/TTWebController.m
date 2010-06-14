@@ -67,6 +67,8 @@
   if (self = [self initWithNibName:nil bundle:nil]) {
     NSURLRequest* request = [query objectForKey:@"request"];
     if (nil != request) {
+      if ([request isKindOfClass: [TTURLRequest class]])
+        request = [(TTURLRequest*)request createNSURLRequest];
       [self openRequest:request];
     } else {
       [self openURL:URL];
