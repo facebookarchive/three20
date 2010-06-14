@@ -65,7 +65,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
   if (self = [self initWithNibName:nil bundle:nil]) {
-    id request = [query objectForKey:@"request"];
+    NSURLRequest* request = [query objectForKey:@"request"];
     if (nil != request) {
       if ([request isKindOfClass: [TTURLRequest class]])
         request = [(TTURLRequest*)request createNSURLRequest];
