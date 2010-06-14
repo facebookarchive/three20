@@ -53,10 +53,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    self.hidesBottomBarWhenPushed = YES;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
-  if (self = [self init]) {
+  if (self = [self initWithNibName:nil bundle:nil]) {
     id request = [query objectForKey:@"request"];
-    if (request) {
+    if (nil != request) {
       if ([request isKindOfClass: [TTURLRequest class]])
         request = [(TTURLRequest*)request createNSURLRequest];
       [self openRequest:request];
@@ -70,8 +80,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
-    self.hidesBottomBarWhenPushed = YES;
+  if (self = [self initWithNibName:nil bundle:nil]) {
   }
 
   return self;
