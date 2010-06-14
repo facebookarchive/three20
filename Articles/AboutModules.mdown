@@ -197,19 +197,24 @@ Migrating to the New Three20
 ----------------------------
 
 If you use the old Three20 library, migrating to the new one is a fairly simple process.  
-**Estimated time: 3 minutes.**
+**Estimated time: 5 minutes.**
 
 1. Delete the old `Three20.xcodeproj` reference from your project.
-2. Drag `Three20.xcodeproj` from `src/Three20/` into your project.  
-   **Note:** Ensure that you're grabbing the right one.
-   
-        src/Three20.xcodeproj <- The legacy project (the reference to
-                                 which you removed in Step 1) (about 270KB)
-        src/Three20/Three20.xcodeproj <- The new Three20 lib (about 90KB)
-3. Select the `Three20.xcodeproj` item in Xcode that you just created and look at
+2. Drag `Three20.xcodeproj` from `three20/src/Three20/` into your project.
+3. Open the Three20 Xcode Project that you just added to your app and expand the "Dependencies"
+   group. Select all of the projects listed there and drag them to your app as well. You should
+   now have the following list of Three20 projects added to your app:
+     * Three20Core
+     * Three20Network
+     * Three20Style
+     * Three20UICommon
+     * Three20UINavigator
+     * Three20UI
+     * Three20
+3. Select all of the `xcodeproj` items in Xcode that you just created and look at
    the "Detail" tab.
-4. Ensure that the checkbox beside `libThree20.a` is checked. If not, check it.  
-   Alternatively, you can expand the Three20 project and drag libThree20.a to your
+4. Ensure that the checkbox beside each `lib` file is checked. If not, check it.  
+   Alternatively, you can expand each Three20 project and drag the `.a` file to your
    target's "Link Binary With Libraries" action.
 5. In Xcode's app menu, click `Project => Edit Active Target`.
 6. Click the "General" tab.

@@ -1,0 +1,78 @@
+%option case-insensitive
+
+h         [0-9a-f]
+nonascii  [\200-\377]
+unicode   \\{h}{1,6}[ \t\r\n\f]?
+escape    {unicode}|\\[ -~\200-\377]
+nmstart   [a-z]|{nonascii}|{escape}
+nmchar    [a-z0-9-]|{nonascii}|{escape}
+string1   \"([\t !#$%&(-~]|\\{nl}|\'|{nonascii}|{escape})*\"
+string2   \'([\t !#$%&(-~]|\\{nl}|\"|{nonascii}|{escape})*\'
+
+ident     [-]?{nmstart}{nmchar}*
+name      {nmchar}+
+num       [-]?[0-9]+|[-]?[0-9]*"."[0-9]+
+string    {string1}|{string2}
+url       ([!#$%&*-~]|{nonascii}|{escape})*
+w         [ \t\r\n\f]*
+nl        \n|\r\n|\r|\f
+range     \?{1,6}|{h}(\?{0,5}|{h}(\?{0,4}|{h}(\?{0,3}|{h}(\?{0,2}|{h}(\??|{h})))))
+
+%%
+
+[ \t\r\n\f]+                    
+
+\/\*[^*]*\*+([^/][^*]*\*+)*\/   /* ignore comments */
+
+"<!--"                          
+"-->"                           
+"~="                            
+"|="                            
+                              
+{string}                        {cssConsume(yytext, CSSSTRING);}
+                              
+{ident}(:{ident})?              {cssConsume(yytext, CSSIDENT);}
+                              
+"#"{name}                       {cssConsume(yytext, CSSHASH);}
+                              
+"@import"                       
+"@page"                         
+"@media"                        
+"@font-face"                    
+"@charset"                      
+"@namespace"                    
+
+"!{w}important"                 
+
+{num}em                         {cssConsume(yytext, CSSEMS);}
+{num}ex                         {cssConsume(yytext, CSSEXS);}
+{num}px                         {cssConsume(yytext, CSSLENGTH);}
+{num}cm                         {cssConsume(yytext, CSSLENGTH);}
+{num}mm                         {cssConsume(yytext, CSSLENGTH);}
+{num}in                         {cssConsume(yytext, CSSLENGTH);}
+{num}pt                         {cssConsume(yytext, CSSLENGTH);}
+{num}pc                         {cssConsume(yytext, CSSLENGTH);}
+{num}deg                        {cssConsume(yytext, CSSANGLE);}
+{num}rad                        {cssConsume(yytext, CSSANGLE);}
+{num}grad                       {cssConsume(yytext, CSSANGLE);}
+{num}ms                         {cssConsume(yytext, CSSTIME);}
+{num}s                          {cssConsume(yytext, CSSTIME);}
+{num}Hz                         {cssConsume(yytext, CSSFREQ);}
+{num}kHz                        {cssConsume(yytext, CSSFREQ);}
+{num}{ident}                    {cssConsume(yytext, CSSDIMEN);}
+{num}%                          {cssConsume(yytext, CSSPERCENTAGE);}
+{num}                           {cssConsume(yytext, CSSNUMBER);}
+
+"url("{w}{string}{w}")"         {cssConsume(yytext, CSSURI);}
+"url("{w}{url}{w}")"            {cssConsume(yytext, CSSURI);}
+{ident}"("                      {cssConsume(yytext, CSSFUNCTION);}
+
+U\+{range}                      {cssConsume(yytext, CSSUNICODERANGE);}
+U\+{h}{1,6}-{h}{1,6}            {cssConsume(yytext, CSSUNICODERANGE);}
+
+.                               {cssConsume(yytext, CSSUNKNOWN);}
+
+%%
+
+int csswrap(void){return 1;}
+

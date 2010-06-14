@@ -1,0 +1,79 @@
+
+Three20 Core
+============
+
+A set of utilities to improve the most basic aspects of Objective-C development. Included
+in this library are debugging macros, optional Foundation object additions, and global
+utility methods for localization, paths, and rects.
+
+
+How to use it
+-------------
+
+* Add Three20Core.xcodeproj to your project.
+* In your project, select Three20Core.xcodeproj and click the checkbox next to libThree20Core.a.
+  This will link the Three20Core static library with your app.
+* In your target settings, under the "Build" tab, add the relative path to
+  `three20/Build/Products/three20` in the "Header Search Paths".
+* In your target settings, under the "General" tab, add Three20Core as a direct dependency.
+* Now #import "Three20Core/Three20Core.h" in your precompiled header (or wherever you choose).
+* Build and go!
+
+
+Example projects
+----------------
+
+three20/samples/Core/TTCoreDemo
+
+A dead-simple project that demos an iPhone app using only Three20Core.
+
+
+Breakdown
+---------
+
+Within Core you'll find the following tools.
+
+
+### Markup Stripper
+
+Fairly self-explanatory. Strips markup from an NSString using the native XML parser.
+
+
+### Entity Tables
+
+Some standard entity tables for use in decoding entities.
+
+
+### Debugging Tools
+
+A set of debugging and logging macros.
+
+
+### Global Utilities
+
+A diverse set of utility methods for localization, file system paths, and rects.
+
+
+### (Optional) Additions
+
+By including Three20Core+Additions, you'll have access to the library's Foundation additions,
+including helpful additions to NSArrays, NSDictionaries, and NSStrings.
+
+
+
+Hacking the Core
+================
+
+General information for when you're making modifications to the Core.
+
+
+Importing specific files
+------------------------
+
+    #import "Three20Core/<filename>.h"
+
+
+Dependencies
+------------
+
+None.

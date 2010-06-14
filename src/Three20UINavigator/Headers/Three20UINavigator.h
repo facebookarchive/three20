@@ -16,20 +16,27 @@
 
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 
-// Navigator
+#import "Three20UINavigator/TTURLObject.h"
+
+// - View Controllers
+#import "Three20UINavigator/TTNavigatorViewController.h"
+#import "Three20UINavigator/TTBaseNavigationController.h"
+
+// - Navigator
+#import "Three20UINavigator/TTNavigatorPersistenceMode.h"
 #import "Three20UINavigator/TTBaseNavigator.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
 
-#import "Three20UINavigator/TTURLObject.h"
-
-// URL Action
+// -- URL Action
 #import "Three20UINavigator/TTURLAction.h"
 
-// URL Map
+// -- URL Map
 #import "Three20UINavigator/TTURLMap.h"
 #import "Three20UINavigator/TTNavigationMode.h"
 
-// URL Pattern
+// -- URL Pattern
 #import "Three20UINavigator/TTURLPattern.h"
+
+// --- Patterns
 #import "Three20UINavigator/TTURLGeneratorPattern.h"
 #import "Three20UINavigator/TTURLNavigatorPattern.h"

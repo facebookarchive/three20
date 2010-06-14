@@ -17,6 +17,7 @@
 		6E1059AF112CCFAF00549F42 /* TTTwitterSearchFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1059AE112CCFAF00549F42 /* TTTwitterSearchFeedModel.m */; };
 		6E1059B3112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1059B2112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m */; };
 		6E105AD2112CDBCC00549F42 /* TTTwitterTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E105AD1112CDBCC00549F42 /* TTTwitterTweet.m */; };
+		6E3795F711B9B7B60011C497 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3795EC11B9B79C0011C497 /* libThree20.a */; };
 		6E6462EA1187E6D100F08CB1 /* libextThree20JSON+YAJL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6462E71187E6C800F08CB1 /* libextThree20JSON+YAJL.a */; };
 		6E6463341187E80200F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6463141187E7D500F08CB1 /* libThree20Core.a */; };
 		6E6463351187E80200F08CB1 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E64631D1187E7E800F08CB1 /* libThree20Network.a */; };
@@ -31,6 +32,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6E3795EB11B9B79C0011C497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3795E611B9B79C0011C497 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20.a */;
+			remoteInfo = Three20;
+		};
+		6E3795ED11B9B79C0011C497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3795E611B9B79C0011C497 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteInfo = UnitTests;
+		};
+		6E37960011B9B7BF0011C497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3795E611B9B79C0011C497 /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20 */;
+			remoteInfo = Three20;
+		};
 		6E6462E41187E6C800F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E6462DE1187E6C800F08CB1 /* extThree20JSON.xcodeproj */;
@@ -205,6 +227,7 @@
 		6E1059B2112CCFBB00549F42 /* TTTwitterSearchFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterSearchFeedDataSource.m; sourceTree = "<group>"; };
 		6E105AD0112CDBCC00549F42 /* TTTwitterTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTwitterTweet.h; sourceTree = "<group>"; };
 		6E105AD1112CDBCC00549F42 /* TTTwitterTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTwitterTweet.m; sourceTree = "<group>"; };
+		6E3795E611B9B79C0011C497 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E6462D91187E6A900F08CB1 /* App.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = App.xcconfig; path = Configurations/App.xcconfig; sourceTree = "<group>"; };
 		6E6462DA1187E6A900F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E6462DB1187E6A900F08CB1 /* RelPath.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = RelPath.xcconfig; path = Configurations/RelPath.xcconfig; sourceTree = "<group>"; };
@@ -241,6 +264,7 @@
 				6E877634118D0060001691E0 /* libThree20UINavigator.a in Frameworks */,
 				6E6463371187E80300F08CB1 /* libThree20UI.a in Frameworks */,
 				6E6462EA1187E6D100F08CB1 /* libextThree20JSON+YAJL.a in Frameworks */,
+				6E3795F711B9B7B60011C497 /* libThree20.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +384,37 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
+		6E3795E711B9B79C0011C497 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E3795EC11B9B79C0011C497 /* libThree20.a */,
+				6E3795EE11B9B79C0011C497 /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6E3795F011B9B79F0011C497 /* Three20 */ = {
+			isa = PBXGroup;
+			children = (
+				6E64630E1187E7D500F08CB1 /* Three20Core.xcodeproj */,
+				6E6463171187E7E800F08CB1 /* Three20Network.xcodeproj */,
+				6E6463201187E7F000F08CB1 /* Three20Style.xcodeproj */,
+				6E877621118D0052001691E0 /* Three20UICommon.xcodeproj */,
+				6E87762A118D005A001691E0 /* Three20UINavigator.xcodeproj */,
+				6E6463291187E7F600F08CB1 /* Three20UI.xcodeproj */,
+				6E3795E611B9B79C0011C497 /* Three20.xcodeproj */,
+			);
+			name = Three20;
+			sourceTree = "<group>";
+		};
+		6E3795F111B9B7AC0011C497 /* Three20 Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6E6462DE1187E6C800F08CB1 /* extThree20JSON.xcodeproj */,
+			);
+			name = "Three20 Extensions";
+			sourceTree = "<group>";
+		};
 		6E6462D61187E65F00F08CB1 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,13 +429,8 @@
 		6E6462D71187E66700F08CB1 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				6E64630E1187E7D500F08CB1 /* Three20Core.xcodeproj */,
-				6E6463171187E7E800F08CB1 /* Three20Network.xcodeproj */,
-				6E6463201187E7F000F08CB1 /* Three20Style.xcodeproj */,
-				6E877621118D0052001691E0 /* Three20UICommon.xcodeproj */,
-				6E87762A118D005A001691E0 /* Three20UINavigator.xcodeproj */,
-				6E6463291187E7F600F08CB1 /* Three20UI.xcodeproj */,
-				6E6462DE1187E6C800F08CB1 /* extThree20JSON.xcodeproj */,
+				6E3795F011B9B79F0011C497 /* Three20 */,
+				6E3795F111B9B7AC0011C497 /* Three20 Extensions */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -470,6 +520,7 @@
 				6E877648118D006B001691E0 /* PBXTargetDependency */,
 				6E64638B1187E88100F08CB1 /* PBXTargetDependency */,
 				6E6462EC1187E6E300F08CB1 /* PBXTargetDependency */,
+				6E37960111B9B7BF0011C497 /* PBXTargetDependency */,
 			);
 			name = TTTwitter;
 			productName = TTTwitter;
@@ -490,6 +541,10 @@
 				{
 					ProductGroup = 6E6462DF1187E6C800F08CB1 /* Products */;
 					ProjectRef = 6E6462DE1187E6C800F08CB1 /* extThree20JSON.xcodeproj */;
+				},
+				{
+					ProductGroup = 6E3795E711B9B79C0011C497 /* Products */;
+					ProjectRef = 6E3795E611B9B79C0011C497 /* Three20.xcodeproj */;
 				},
 				{
 					ProductGroup = 6E64630F1187E7D500F08CB1 /* Products */;
@@ -524,6 +579,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		6E3795EC11B9B79C0011C497 /* libThree20.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20.a;
+			remoteRef = 6E3795EB11B9B79C0011C497 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6E3795EE11B9B79C0011C497 /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = 6E3795ED11B9B79C0011C497 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6E6462E51187E6C800F08CB1 /* libextThree20JSON+SBJSON.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -662,6 +731,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6E37960111B9B7BF0011C497 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20;
+			targetProxy = 6E37960011B9B7BF0011C497 /* PBXContainerItemProxy */;
+		};
 		6E6462EC1187E6E300F08CB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "extThree20JSON+YAJL";
