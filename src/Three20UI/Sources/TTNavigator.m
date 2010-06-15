@@ -102,7 +102,8 @@ UIViewController* TTOpenURL(NSString* URL) {
                   parentController: (UIViewController*)parentController
                               mode: (TTNavigationMode)mode
                           animated: (BOOL)animated
-                        transition: (NSInteger)transition {
+                        transition: (NSInteger)transition 
+                            sender: (id)sender {
 
   if ([controller isKindOfClass:[TTPopupViewController class]]) {
     TTPopupViewController* popupViewController = (TTPopupViewController*)controller;
@@ -115,7 +116,8 @@ UIViewController* TTOpenURL(NSString* URL) {
                      parentController: parentController
                                  mode: mode
                              animated: animated
-                           transition: transition];
+                           transition: transition
+                               sender: sender];
   }
 }
 

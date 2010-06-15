@@ -26,6 +26,18 @@
 
 static NSMutableDictionary* gSuperControllers = nil;
 static NSMutableDictionary* gPopupViewControllers = nil;
+#ifdef __IPHONE_3_2
+static NSMutableDictionary* gPopoverControllers = nil;
+#endif
+<<<<<<< HEAD
+=======
+
+// Garbage collection state
+static NSMutableSet*        gsCommonControllers     = nil;
+static NSTimer*             gsGarbageCollectorTimer = nil;
+
+static const NSTimeInterval kGarbageCollectionInterval = 20;
+>>>>>>> 06631aa... Support for UIPopoverController items in TTNavigator
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,6 +145,30 @@ static NSMutableDictionary* gPopupViewControllers = nil;
   }
 }
 
+#ifdef __IPHONE_3_2
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)popoverController {
+    NSString* key = [NSString stringWithFormat:@"%d", self.hash];
+    return [gPopoverControllers objectForKey:key];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPopoverController:(id)viewController {
+    NSString* key = [NSString stringWithFormat:@"%d", self.hash];
+    if (viewController) {
+        if (!gPopoverControllers) {
+            // cdonnelly 2010-05-23: Has to be retaining for now, until I can find someone else to "retain" it.
+            gPopoverControllers = [[NSMutableDictionary alloc] init];
+        }
+        [gPopoverControllers setObject:viewController forKey:key];
+    } else {
+        [gPopoverControllers removeObjectForKey:key];
+    }
+}
+
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
@@ -218,3 +254,69 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 
 
 @end
+<<<<<<< HEAD
+=======
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation UIViewController (TTGarbageCollection)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * The basic idea.
+ * Whenever you set the original navigator URL path for a controller, we add the controller
+ * to a global navigator controllers list. We then run the following garbage collection every
+ * kGarbageCollectionInterval seconds. If any controllers have a retain count of 1, then
+ * we can safely say that nobody is using it anymore and release it.
+ */
++ (void)doGarbageCollectionWithSelector:(SEL)selector controllerSet:(NSMutableSet*)controllers {
+  if ([controllers count] > 0) {
+    TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                    @"Checking %d controllers for garbage.", [controllers count]);
+
+    NSSet* fullControllerList = [controllers copy];
+    for (UIViewController* controller in fullControllerList) {
+
+      // Subtract one from the retain count here due to the copied set.
+      NSInteger retainCount = [controller retainCount] - 1;
+
+      TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                      @"Retain count for %X is %d", controller, retainCount);
+
+      if (retainCount == 1) {
+        // If this fails, you've somehow added a controller that doesn't use
+        // the given selector. Check the controller type and the selector itself.
+        TTDASSERT([controller respondsToSelector:selector]);
+        if ([controller respondsToSelector:selector]) {
+          [controller performSelector:selector];
+        }
+
+        // The object's retain count is now 1, so when we release the copied set below,
+        // the object will be completely released.
+        [controllers removeObject:controller];
+      }
+    }
+
+    TT_RELEASE_SAFELY(fullControllerList);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)unsetCommonProperties {
+  TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
+                  @"Unsetting this controller's properties: %X", self);
+
+  self.superController = nil;
+  self.popupViewController = nil;
+#ifdef __IPHONE_3_2
+  self.popoverController = nil;
+#endif
+}
+
+
+@end
+>>>>>>> 72aa6b6... Support for UIPopoverController items in TTNavigator
