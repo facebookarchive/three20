@@ -30,7 +30,10 @@ static NSMutableDictionary* gPopupViewControllers = nil;
 static NSMutableDictionary* gPopoverControllers = nil;
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ddd9540... Exposed additional methods we need to override or reference in additions
 
 // Garbage collection state
 static NSMutableSet*        gsCommonControllers     = nil;
