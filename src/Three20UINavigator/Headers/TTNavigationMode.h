@@ -20,4 +20,5 @@ typedef enum {
   TTNavigationModeShare,             // a new view controller is created, cached and re-used
   TTNavigationModeModal,             // a new view controller is created and presented modally
   TTNavigationModeExternal,          // an external app will be opened
+  TTNavigationModePopover,           // a new view controller is created and presented in a popover on iPad, modally on iPhone.
 } TTNavigationMode;
