@@ -31,9 +31,12 @@ static NSMutableDictionary* gPopoverControllers = nil;
 #endif
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> ddd9540... Exposed additional methods we need to override or reference in additions
+=======
+>>>>>>> b29bb32... Renamed methods used by origin, size properties to avoid collisions with private/undocumented Apple methods.
 
 // Garbage collection state
 static NSMutableSet*        gsCommonControllers     = nil;
