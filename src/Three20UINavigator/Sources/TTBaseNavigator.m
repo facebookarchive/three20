@@ -293,7 +293,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
       if ([controller isKindOfClass:[UINavigationController class]]) {
         navController = (UINavigationController*)controller;
       } else {
-        UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
+        navController = [[[UINavigationController alloc] init] autorelease];
         [navController pushViewController: controller
                                  animated: NO];
       }
@@ -321,7 +321,8 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
     [self presentModalController: controller
                 parentController: parentController
                         animated: animated
-                      transition: transition];
+                      transition: transition
+                          sender: sender];
   }
 }
 
