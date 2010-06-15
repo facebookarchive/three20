@@ -17,7 +17,7 @@
 REPO_ROOT_PATH    = $(SRCROOT)/../..
 ROOT_SOURCE_PATH  = $(REPO_ROOT_PATH)/src
 
-OBJROOT = $(REPO_ROOT_PATH)/Build
+OBJROOT = $(REPO_ROOT_PATH)/../Three20.build
 SYMROOT = $(OBJROOT)/Products
 
 // Search Paths
