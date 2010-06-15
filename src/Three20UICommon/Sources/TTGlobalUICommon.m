@@ -99,6 +99,7 @@ UIDeviceOrientation TTDeviceOrientation() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation) {
+<<<<<<< HEAD
   switch (orientation) {
     case UIInterfaceOrientationPortrait:
     case UIInterfaceOrientationLandscapeLeft:
@@ -106,6 +107,22 @@ BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation) {
       return YES;
     default:
       return NO;
+=======
+  if (TTIsPad()) {
+    return YES;
+  } else {
+    switch (orientation) {
+      case UIInterfaceOrientationPortrait:
+      case UIInterfaceOrientationLandscapeLeft:
+      case UIInterfaceOrientationLandscapeRight:
+        return YES;
+      case UIInterfaceOrientationPortraitUpsideDown:
+        // cdonnelly 2010-05-22: Let the iPad rotate upside-down, but not the iPhone/iPod Touch.
+        return TTIsPad();
+      default:
+        return NO;
+    }
+>>>>>>> c939385... Some iPad fixes
   }
 }
 
