@@ -70,6 +70,15 @@
  */
 @property (nonatomic, retain) UIViewController* popupViewController;
 
+#if __IPHONE_3_2
+
+/**
+ * A popover controller that is presented on top of this view controller.
+ */
+@property (nonatomic, retain) id popoverController;
+
+#endif
+
 /**
  * Displays a controller inside this controller.
  *

@@ -33,6 +33,7 @@
 @synthesize animated      = _animated;
 @synthesize withDelay     = _withDelay;
 @synthesize transition    = _transition;
+@synthesize sender        = _sender;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +71,7 @@
   TT_RELEASE_SAFELY(_parentURLPath);
   TT_RELEASE_SAFELY(_query);
   TT_RELEASE_SAFELY(_state);
+  TT_RELEASE_SAFELY(_sender);
 
   [super dealloc];
 }
@@ -116,5 +118,10 @@
   return self;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applySender:(id)sender {
+  self.sender = sender;
+  return self;
+}
 
 @end

@@ -130,11 +130,10 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)rowHeight {
-//  if (UIInterfaceOrientationIsPortrait(TTInterfaceOrientation())) {
-    return 103;
-//  } else {
-//    return 74;
-//  }
+    static CGFloat const iPadValue   = 144;
+    static CGFloat const iPhoneValue = 103;
+
+    return TTIsPad() ? iPadValue : iPhoneValue;
 }
 
 
