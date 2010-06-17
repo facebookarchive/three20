@@ -163,4 +163,7 @@
 - (NSString*)URLForObject:(id)object;
 - (NSString*)URLForObject:(id)object withName:(NSString*)name;
 
+- (void)addObjectPattern: (TTURLNavigatorPattern*)pattern
+                  forURL: (NSString*)URL;
+
 @end

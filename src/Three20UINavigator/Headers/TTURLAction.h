@@ -38,6 +38,7 @@
   BOOL          _withDelay;
 
   UIViewAnimationTransition _transition;
+  id            _sender;
 }
 
 @property (nonatomic, copy)   NSString*     urlPath;
@@ -47,7 +48,7 @@
 @property (nonatomic, assign) BOOL          animated;
 @property (nonatomic, assign) BOOL          withDelay;
 @property (nonatomic, assign) UIViewAnimationTransition transition;
-
+@property (nonatomic, retain) id            sender;
 /**
  * Create an autoreleased TTURLAction object with a URL path. The path is required.
  */
@@ -89,6 +90,11 @@
  * @default UIViewAnimationTransitionNone
  */
 - (TTURLAction*)applyTransition:(UIViewAnimationTransition)transition;
+
+/**
+ * @default nil
+ */
+- (TTURLAction*)applySender:(id)sender;
 
 
 @end

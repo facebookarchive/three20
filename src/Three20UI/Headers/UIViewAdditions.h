@@ -103,12 +103,12 @@
 /**
  * Shortcut for frame.origin
  */
-@property (nonatomic) CGPoint origin;
+@property (nonatomic, getter = ttOrigin, setter = ttSetOrigin) CGPoint origin;
 
 /**
  * Shortcut for frame.size
  */
-@property (nonatomic) CGSize size;
+@property (nonatomic, getter = ttSize, setter = ttSetSize) CGSize size;
 
 /**
  * Return the width in portrait or the height in landscape.
