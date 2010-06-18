@@ -64,6 +64,7 @@ static const CGFloat kBannerViewHeight = 22;
 @synthesize tableViewStyle      = _tableViewStyle;
 @synthesize variableHeightRows  = _variableHeightRows;
 @synthesize showTableShadows    = _showTableShadows;
+@synthesize clearsSelectionOnViewWillAppear = _clearsSelectionOnViewWillAppear;
 @synthesize dataSource          = _dataSource;
 
 
@@ -71,6 +72,7 @@ static const CGFloat kBannerViewHeight = 22;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _lastInterfaceOrientation = self.interfaceOrientation;
+    _clearsSelectionOnViewWillAppear = YES;
   }
 
   return self;
@@ -268,7 +270,9 @@ static const CGFloat kBannerViewHeight = 22;
     tableView.showShadows = _showTableShadows;
   }
 
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];
+  if (_clearsSelectionOnViewWillAppear) {
+    [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];
+  }
 }
 
 
