@@ -18,6 +18,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTEntityTables.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,27 +42,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+- (void)parser:(NSXMLParser*)parser foundCharacters:(NSString*)string {
   [_strings addObject:string];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSData *)parser: (NSXMLParser *)parser
-    resolveExternalEntityName: (NSString *)entityName
-                     systemID: (NSString *)systemID {
-  static NSDictionary* entityTable = nil;
-  if (!entityTable) {
-    // XXXjoe Gotta get a more complete set of entities
-    entityTable = [[NSDictionary alloc] initWithObjectsAndKeys:
-      [NSData dataWithBytes:" " length:1], @"nbsp",
-      [NSData dataWithBytes:"&" length:1], @"amp",
-      [NSData dataWithBytes:"\"" length:1], @"quot",
-      [NSData dataWithBytes:"<" length:1], @"lt",
-      [NSData dataWithBytes:">" length:1], @"gt",
-      nil];
-  }
-  return [entityTable objectForKey:entityName];
+- (NSData*)             parser: (NSXMLParser*)parser
+     resolveExternalEntityName: (NSString*)entityName
+                      systemID: (NSString*)systemID {
+  return [[[TTEntityTables sharedInstance] iso88591] objectForKey:entityName];
 }
 
 
@@ -75,13 +65,17 @@
 - (NSString*)parse:(NSString*)text {
   _strings = [[NSMutableArray alloc] init];
 
-  NSString* document = [NSString stringWithFormat:@"<x>%@</x>", text];
-  NSData* data = [document dataUsingEncoding:text.fastestEncoding];
-  NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
+  NSString*     document  = [NSString stringWithFormat:@"<x>%@</x>", text];
+  NSData*       data      = [document dataUsingEncoding:text.fastestEncoding];
+  NSXMLParser*  parser    = [[NSXMLParser alloc] initWithData:data];
   parser.delegate = self;
   [parser parse];
+  TT_RELEASE_SAFELY(parser);
 
-  return [_strings componentsJoinedByString:@""];
+  NSString* result = [_strings componentsJoinedByString:@""];
+  TT_RELEASE_SAFELY(_strings);
+
+  return result;
 }
 
 

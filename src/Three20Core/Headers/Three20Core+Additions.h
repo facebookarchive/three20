@@ -17,10 +17,10 @@
 #import "Three20Core/Three20Core.h"
 
 // Additions
-#import "Three20Core/NSObjectAdditions.h"
-#import "Three20Core/NSDataAdditions.h"
-#import "Three20Core/NSStringAdditions.h"
 #import "Three20Core/NSArrayAdditions.h"
+#import "Three20Core/NSDataAdditions.h"
+#import "Three20Core/NSDateAdditions.h"
 #import "Three20Core/NSMutableArrayAdditions.h"
 #import "Three20Core/NSMutableDictionaryAdditions.h"
-#import "Three20Core/NSDateAdditions.h"
+#import "Three20Core/NSObjectAdditions.h"
+#import "Three20Core/NSStringAdditions.h"

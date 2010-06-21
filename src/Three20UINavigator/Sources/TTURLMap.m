@@ -16,9 +16,12 @@
 
 #import "Three20UINavigator/TTURLMap.h"
 
-// UI
+// UINavigator
 #import "Three20UINavigator/TTURLNavigatorPattern.h"
 #import "Three20UINavigator/TTURLGeneratorPattern.h"
+
+// UINavigator (private)
+#import "Three20UINavigator/private/UIViewController+TTNavigatorGarbageCollection.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"
@@ -258,6 +261,7 @@
         toSharedViewController:(id)target {
   TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
                                                                   mode:TTNavigationModeShare];
+  pattern.parentURL = parentURL;
   [self addObjectPattern:pattern forURL:URL];
   [pattern release];
 }
@@ -346,6 +350,10 @@
   }
   // XXXjoe Normalize the URL first
   [_objectMappings setObject:object forKey:URL];
+
+  if ([object isKindOfClass:[UIViewController class]]) {
+    [UIViewController ttAddNavigatorController:object];
+  }
 }
 
 

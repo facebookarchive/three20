@@ -221,6 +221,10 @@
 
   UIFont* font = _font ? _font : context.font;
 
+  if (nil == font) {
+    font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+  }
+
   if (_shadowColor) {
     CGSize offset = CGSizeMake(_shadowOffset.width, -_shadowOffset.height);
     CGContextSetShadowWithColor(ctx, offset, 0, _shadowColor.CGColor);

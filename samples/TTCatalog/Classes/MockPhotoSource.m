@@ -1,7 +1,5 @@
 #import "MockPhotoSource.h"
 
-#import "Three20Core/NSArrayAdditions.h"
-
 @implementation MockPhotoSource
 
 @synthesize title = _title;
@@ -13,7 +11,9 @@
   _fakeLoadTimer = nil;
 
   if (_type & MockPhotoSourceLoadError) {
-    [_delegates perform:@selector(model:didFailLoadWithError:) withObject:self withObject:nil];
+    [_delegates perform: @selector(model:didFailLoadWithError:)
+                                withObject: self
+                                withObject: nil];
   } else {
     NSMutableArray* newPhotos = [NSMutableArray array];
 

@@ -1,0 +1,17 @@
+
+NibDemo Example Project
+=======================
+
+Version: 1.0
+
+Created by: Skotch Vail (github.com/skotchvail) and Brian Chapados (http://github.com/chapados)
+
+Notes
+-----
+
+For some reason, Interface Builder seems to have trouble with headers in frameworks like three20.
+I was getting a warning like this:
+    The 'xxx' outlet of 'xxx' is connected to 'aaa' but 'yyy' is no longer defined on yyy.
+
+What I did was select "Read Class Files..." in the "File" menu of Interface Builder and read the
+header file for my framework class (e.g. three20). The solved the problem for me.

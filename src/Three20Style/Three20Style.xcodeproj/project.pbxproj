@@ -12,6 +12,7 @@
 		6E6464051187F5CB00F08CB1 /* TTStyledLinkNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6464031187F5CB00F08CB1 /* TTStyledLinkNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E64640C1187F5EC00F08CB1 /* TTStyledButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64640A1187F5EC00F08CB1 /* TTStyledButtonNode.m */; };
 		6E64640D1187F5EC00F08CB1 /* TTStyledLinkNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64640B1187F5EC00F08CB1 /* TTStyledLinkNode.m */; };
+		6E850F0911B0FE200071A4FD /* TTDefaultStyleSheet+DragRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E850F0711B0FE200071A4FD /* TTDefaultStyleSheet+DragRefreshHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE737441184A38F00A35176 /* TTBevelBorderStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737031184A38F00A35176 /* TTBevelBorderStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE737451184A38F00A35176 /* TTBlendStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737041184A38F00A35176 /* TTBlendStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -210,6 +211,7 @@
 		6E6464031187F5CB00F08CB1 /* TTStyledLinkNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledLinkNode.h; path = Headers/TTStyledLinkNode.h; sourceTree = "<group>"; };
 		6E64640A1187F5EC00F08CB1 /* TTStyledButtonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTStyledButtonNode.m; path = Sources/TTStyledButtonNode.m; sourceTree = "<group>"; };
 		6E64640B1187F5EC00F08CB1 /* TTStyledLinkNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTStyledLinkNode.m; path = Sources/TTStyledLinkNode.m; sourceTree = "<group>"; };
+		6E850F0711B0FE200071A4FD /* TTDefaultStyleSheet+DragRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TTDefaultStyleSheet+DragRefreshHeader.h"; path = "Headers/TTDefaultStyleSheet+DragRefreshHeader.h"; sourceTree = "<group>"; };
 		6EE7363D11849AD500A35176 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EE7364B11849B3D00A35176 /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				6EE737BE1184A39B00A35176 /* TTStyleSheet.m */,
 				6EE737071184A38F00A35176 /* TTDefaultStyleSheet.h */,
 				6EE737891184A39B00A35176 /* TTDefaultStyleSheet.m */,
+				6E850F0711B0FE200071A4FD /* TTDefaultStyleSheet+DragRefreshHeader.h */,
 			);
 			name = Stylesheet;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				6E6454901184D3BC00F08CB1 /* Three20Style+Additions.h in Headers */,
 				6E6464041187F5CB00F08CB1 /* TTStyledButtonNode.h in Headers */,
 				6E6464051187F5CB00F08CB1 /* TTStyledLinkNode.h in Headers */,
+				6E850F0911B0FE200071A4FD /* TTDefaultStyleSheet+DragRefreshHeader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

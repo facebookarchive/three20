@@ -54,8 +54,22 @@ static CGFloat kThumbnailRowHeight = 79;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    self.navigationBarStyle = UIBarStyleBlackTranslucent;
+    self.navigationBarTintColor = nil;
+    self.wantsFullScreenLayout = YES;
+    self.hidesBottomBarWhenPushed = YES;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithDelegate:(id<TTThumbsViewControllerDelegate>)delegate {
-  if (self = [self init]) {
+  if (self = [self initWithNibName:nil bundle:nil]) {
     self.delegate = delegate;
   }
 
@@ -66,11 +80,11 @@ static CGFloat kThumbnailRowHeight = 79;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithQuery:(NSDictionary*)query {
   id<TTThumbsViewControllerDelegate> delegate = [query objectForKey:@"delegate"];
-  if (delegate) {
+  if (nil != delegate) {
     self = [self initWithDelegate:delegate];
 
   } else {
-    self = [self init];
+    self = [self initWithNibName:nil bundle:nil];
   }
 
   return self;
@@ -79,12 +93,7 @@ static CGFloat kThumbnailRowHeight = 79;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
-    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
-    self.navigationBarStyle = UIBarStyleBlackTranslucent;
-    self.navigationBarTintColor = nil;
-    self.wantsFullScreenLayout = YES;
-    self.hidesBottomBarWhenPushed = YES;
+  if (self = [self initWithNibName:nil bundle:nil]) {
   }
 
   return self;

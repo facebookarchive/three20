@@ -14,14 +14,18 @@
 # limitations under the License.
 #
 
+# Ignore whitespace characters in paths
+IFS=$'\n'
+
 cleanAction () {
-  rm -f ${SRCROOT}/Three20Core/*.h
-  rm -f ${SRCROOT}/Three20Network/*.h
-  rm -f ${SRCROOT}/Three20Style/*.h
-  rm -f ${SRCROOT}/Three20UICommon/*.h
-  rm -f ${SRCROOT}/Three20UINavigator/*.h
-  rm -f ${SRCROOT}/Three20UI/*.h
-  rm -f ${SRCROOT}/Three20/*.h
+  cd ${SRCROOT}
+  rm -f Three20Core/*.h
+  rm -f Three20Network/*.h
+  rm -f Three20Style/*.h
+  rm -f Three20UICommon/*.h
+  rm -f Three20UINavigator/*.h
+  rm -f Three20UI/*.h
+  rm -f Three20/*.h
 }
 
 case $ACTION in

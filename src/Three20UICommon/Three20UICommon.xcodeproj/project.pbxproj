@@ -15,6 +15,9 @@
 		6E3C37D6118C97040079637E /* UIViewControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C37D5118C97040079637E /* UIViewControllerAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454741184D2CD00F08CB1 /* Three20UICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6459381187645D00F08CB1 /* UICommonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6459371187645D00F08CB1 /* UICommonTests.m */; };
+		6E7B1039119235BF001359FE /* TTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7B1037119235BF001359FE /* TTBaseViewController.m */; };
+		6E7B103B119235CF001359FE /* TTBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7B103A119235CF001359FE /* TTBaseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E7B116911924440001359FE /* UIViewControllerGarbageCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7B116811924440001359FE /* UIViewControllerGarbageCollection.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E7F9476118E1DC600443B46 /* UIViewControllerAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F9475118E1DC600443B46 /* UIViewControllerAdditionTests.m */; };
 		6EDAE96A118C99580008133C /* Three20UICommon+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDAE969118C99580008133C /* Three20UICommon+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
@@ -70,6 +73,9 @@
 		6E6454731184D2CD00F08CB1 /* Three20UICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UICommon.h; path = Headers/Three20UICommon.h; sourceTree = "<group>"; };
 		6E6458CB11875F8400F08CB1 /* Three20UICommon_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UICommon_Prefix.pch; path = Headers/Three20UICommon_Prefix.pch; sourceTree = "<group>"; };
 		6E6459371187645D00F08CB1 /* UICommonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICommonTests.m; path = UnitTests/UICommonTests.m; sourceTree = "<group>"; };
+		6E7B1037119235BF001359FE /* TTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTBaseViewController.m; path = Sources/TTBaseViewController.m; sourceTree = "<group>"; };
+		6E7B103A119235CF001359FE /* TTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTBaseViewController.h; path = Headers/TTBaseViewController.h; sourceTree = "<group>"; };
+		6E7B116811924440001359FE /* UIViewControllerGarbageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewControllerGarbageCollection.h; path = Headers/UIViewControllerGarbageCollection.h; sourceTree = "<group>"; };
 		6E7F9475118E1DC600443B46 /* UIViewControllerAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewControllerAdditionTests.m; path = UnitTests/UIViewControllerAdditionTests.m; sourceTree = "<group>"; };
 		6E7F951C118E241E00443B46 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
 		6EDAE969118C99580008133C /* Three20UICommon+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20UICommon+Additions.h"; path = "Headers/Three20UICommon+Additions.h"; sourceTree = "<group>"; };
@@ -149,10 +155,28 @@
 			children = (
 				6E3C37D5118C97040079637E /* UIViewControllerAdditions.h */,
 				6E3C37D0118C96FA0079637E /* UIViewControllerAdditions.m */,
+				6E7B116A11924443001359FE /* Private */,
 				6E3C37A8118C96670079637E /* UIWindowAdditions.h */,
 				6E3C37AC118C96700079637E /* UIWindowAdditions.m */,
 			);
 			name = Additions;
+			sourceTree = "<group>";
+		};
+		6E7B1035119235AA001359FE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6E7B103A119235CF001359FE /* TTBaseViewController.h */,
+				6E7B1037119235BF001359FE /* TTBaseViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6E7B116A11924443001359FE /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				6E7B116811924440001359FE /* UIViewControllerGarbageCollection.h */,
+			);
+			name = Private;
 			sourceTree = "<group>";
 		};
 		6EE7364611849AF200A35176 /* Resources */ = {
@@ -187,6 +211,7 @@
 			children = (
 				6E3C377E118C94E50079637E /* TTGlobalUICommon.h */,
 				6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */,
+				6E7B1035119235AA001359FE /* Controllers */,
 				6E3C37AF118C967B0079637E /* Additions */,
 			);
 			name = Source;
@@ -204,6 +229,8 @@
 				6E3C37A9118C96670079637E /* UIWindowAdditions.h in Headers */,
 				6E3C37D6118C97040079637E /* UIViewControllerAdditions.h in Headers */,
 				6EDAE96A118C99580008133C /* Three20UICommon+Additions.h in Headers */,
+				6E7B103B119235CF001359FE /* TTBaseViewController.h in Headers */,
+				6E7B116911924440001359FE /* UIViewControllerGarbageCollection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +365,7 @@
 				6E3C3781118C94FC0079637E /* TTGlobalUICommon.m in Sources */,
 				6E3C37AD118C96700079637E /* UIWindowAdditions.m in Sources */,
 				6E3C37D1118C96FA0079637E /* UIViewControllerAdditions.m in Sources */,
+				6E7B1039119235BF001359FE /* TTBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

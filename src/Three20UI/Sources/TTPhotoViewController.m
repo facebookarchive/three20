@@ -19,6 +19,7 @@
 // UI
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTThumbsViewController.h"
+#import "Three20UI/TTNavigationController.h"
 #import "Three20UI/TTPhotoSource.h"
 #import "Three20UI/TTPhoto.h"
 #import "Three20UI/TTPhotoView.h"
@@ -31,6 +32,7 @@
 // UINavigator
 #import "Three20UINavigator/TTURLObject.h"
 #import "Three20UINavigator/TTURLMap.h"
+#import "Three20UINavigator/TTBaseNavigationController.h"
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
@@ -67,8 +69,33 @@ static const NSInteger kActivityLabelTag          = 96;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    self.navigationItem.backBarButtonItem =
+      [[[UIBarButtonItem alloc]
+        initWithTitle:
+        TTLocalizedString(@"Photo",
+                          @"Title for back button that returns to photo browser")
+        style: UIBarButtonItemStylePlain
+        target: nil
+        action: nil] autorelease];
+
+    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    self.navigationBarStyle = UIBarStyleBlackTranslucent;
+    self.navigationBarTintColor = nil;
+    self.wantsFullScreenLayout = YES;
+    self.hidesBottomBarWhenPushed = YES;
+
+    self.defaultImage = TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithPhoto:(id<TTPhoto>)photo {
-  if (self = [self init]) {
+  if (self = [self initWithNibName:nil bundle:nil]) {
     self.centerPhoto = photo;
   }
 
@@ -78,7 +105,7 @@ static const NSInteger kActivityLabelTag          = 96;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithPhotoSource:(id<TTPhotoSource>)photoSource {
-  if (self = [self init]) {
+  if (self = [self initWithNibName:nil bundle:nil]) {
     self.photoSource = photoSource;
   }
 
@@ -88,23 +115,7 @@ static const NSInteger kActivityLabelTag          = 96;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
-    self.navigationItem.backBarButtonItem =
-    [[[UIBarButtonItem alloc]
-      initWithTitle:
-      TTLocalizedString(@"Photo",
-                        @"Title for back button that returns to photo browser")
-      style: UIBarButtonItemStylePlain
-      target: nil
-      action: nil] autorelease];
-
-    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
-    self.navigationBarStyle = UIBarStyleBlackTranslucent;
-    self.navigationBarTintColor = nil;
-    self.wantsFullScreenLayout = YES;
-    self.hidesBottomBarWhenPushed = YES;
-
-    self.defaultImage = TTIMAGE(@"bundle://Three20.bundle/images/photoDefault.png");
+  if (self = [self initWithNibName:nil bundle:nil]) {
   }
 
   return self;
@@ -363,8 +374,14 @@ static const NSInteger kActivityLabelTag          = 96;
   if (URL) {
     TTOpenURL(URL);
   } else {
-    [self.navigationController pushViewController:_thumbsController
-                           animatedWithTransition:UIViewAnimationTransitionCurlDown];
+    if ([self.navigationController isKindOfClass:[TTNavigationController class]]) {
+      [(TTNavigationController*)self.navigationController
+           pushViewController: _thumbsController
+       animatedWithTransition: UIViewAnimationTransitionCurlDown];
+
+    } else {
+      [self.navigationController pushViewController:_thumbsController animated:YES];
+    }
   }
 }
 
@@ -839,8 +856,14 @@ static const NSInteger kActivityLabelTag          = 96;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)thumbsViewController:(TTThumbsViewController*)controller didSelectPhoto:(id<TTPhoto>)photo {
   self.centerPhoto = photo;
-  [self.navigationController
-   popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+
+  if ([self.navigationController isKindOfClass:[TTBaseNavigationController class]]) {
+    [(TTBaseNavigationController*)self.navigationController
+     popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+
+  } else {
+    [self.navigationController popViewControllerAnimated:YES];
+  }
 }
 
 

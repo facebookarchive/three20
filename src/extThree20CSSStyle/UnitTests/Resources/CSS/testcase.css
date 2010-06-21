@@ -1,0 +1,50 @@
+
+.classname,
+#identifier {
+  width: 800px;
+  height: 2em
+}
+
+.classname {
+  width: 600px
+}
+
+.classname:hover {
+  width: 800px;
+}
+
+.short-hex-colors {
+  color: #F73;
+  background-color: #F73
+}
+
+.long-hex-colors {
+  color: #FF7733;
+  background-color: #FF7733
+}
+
+.named-color {
+  color: red;
+  background-color: red
+}
+
+.named-invalid-color {
+  color: polkadot;
+  background-color: polkadot
+}
+
+.fn-color-rgb {
+  color: rgb(255, 0, 255);
+  background-color: rgb(255, 0, 255);
+}
+
+.fn-color-rgba {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.font-props {
+  font-weight: bold;
+  font-size: 12pt;
+  font-style: italic;
+}

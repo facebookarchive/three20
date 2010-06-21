@@ -25,13 +25,15 @@
 @synthesize created = _created;
 @synthesize postId  = _postId;
 @synthesize text    = _text;
+@synthesize name    = _name;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void) dealloc {
+- (void)dealloc {
   TT_RELEASE_SAFELY(_created);
   TT_RELEASE_SAFELY(_postId);
   TT_RELEASE_SAFELY(_text);
+  TT_RELEASE_SAFELY(_name);
 
   [super dealloc];
 }

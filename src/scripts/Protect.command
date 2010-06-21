@@ -17,7 +17,12 @@
 # Protect the copied header files from being modified. This is done in an attempt to avoid
 # accidentally editing the copied headers.
 
-chmod a-w ${CONFIGURATION_BUILD_DIR}${PUBLIC_HEADERS_FOLDER_PATH}/*.h 2>> /dev/null
-chmod a-w ${CONFIGURATION_BUILD_DIR}${PUBLIC_HEADERS_FOLDER_PATH}/private/*.h 2>> /dev/null
+# Ignore whitespace characters in paths
+IFS=$'\n'
+
+cd ${CONFIGURATION_BUILD_DIR}${PUBLIC_HEADERS_FOLDER_PATH}
+
+chmod a-w *.h 2>> /dev/null
+chmod a-w private/*.h 2>> /dev/null
 
 exit 0
