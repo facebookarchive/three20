@@ -29,7 +29,7 @@
  *
  * For the default values, see the apply method documentation below.
  */
-@interface TTURLAction : NSObject {
+@interface TTURLAction : NSObject <NSCopying> {
   NSString*     _urlPath;
   NSString*     _parentURLPath;
   NSDictionary* _query;
@@ -64,37 +64,37 @@
 /**
  * @default nil
  */
-- (TTURLAction*)applyParentURLPath:(NSString*)parentURLPath;
+- (id)applyParentURLPath:(NSString*)parentURLPath;
 
 /**
  * @default nil
  */
-- (TTURLAction*)applyQuery:(NSDictionary*)query;
+- (id)applyQuery:(NSDictionary*)query;
 
 /**
  * @default nil
  */
-- (TTURLAction*)applyState:(NSDictionary*)state;
+- (id)applyState:(NSDictionary*)state;
 
 /**
  * @default NO
  */
-- (TTURLAction*)applyAnimated:(BOOL)animated;
+- (id)applyAnimated:(BOOL)animated;
 
 /**
  * @default NO
  */
-- (TTURLAction*)applyWithDelay:(BOOL)withDelay;
+- (id)applyWithDelay:(BOOL)withDelay;
 
 /**
  * @default UIViewAnimationTransitionNone
  */
-- (TTURLAction*)applyTransition:(UIViewAnimationTransition)transition;
+- (id)applyTransition:(UIViewAnimationTransition)transition;
 
 /**
  * @default nil
  */
-- (TTURLAction*)applySender:(id)sender;
+- (id)applySender:(id)sender;
 
 
 @end
