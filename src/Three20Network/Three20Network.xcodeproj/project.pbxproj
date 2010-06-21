@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3593600B11AD50A00060AB9F /* TTURLPlistResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 3593600911AD50A00060AB9F /* TTURLPlistResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3593600C11AD50A00060AB9F /* TTURLPlistResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3593600A11AD50A00060AB9F /* TTURLPlistResponse.m */; };
 		6EE735F8118499D300A35176 /* Three20Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F7118499D300A35176 /* Three20Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FA118499FB00A35176 /* TTGlobalNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F9118499FB00A35176 /* TTGlobalNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FC11849A0C00A35176 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE735FB11849A0C00A35176 /* TTGlobalNetwork.m */; };
@@ -79,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3593600911AD50A00060AB9F /* TTURLPlistResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLPlistResponse.h; path = Sources/TTURLPlistResponse.h; sourceTree = "<group>"; };
+		3593600A11AD50A00060AB9F /* TTURLPlistResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLPlistResponse.m; path = Sources/TTURLPlistResponse.m; sourceTree = "<group>"; };
 		6E64541F1184BDF900F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6EE735F7118499D300A35176 /* Three20Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Network.h; path = Headers/Three20Network.h; sourceTree = "<group>"; };
 		6EE735F9118499FB00A35176 /* TTGlobalNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalNetwork.h; path = Headers/TTGlobalNetwork.h; sourceTree = "<group>"; };
@@ -238,6 +242,8 @@
 				6EE7360D11849A3500A35176 /* TTURLImageResponse.h */,
 				6EE7362311849A4000A35176 /* TTURLDataResponse.m */,
 				6EE7362411849A4000A35176 /* TTURLImageResponse.m */,
+				3593600911AD50A00060AB9F /* TTURLPlistResponse.h */,
+				3593600A11AD50A00060AB9F /* TTURLPlistResponse.m */,
 			);
 			name = Responses;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				6EE7361F11849A3500A35176 /* TTURLResponse.h in Headers */,
 				6EE7364911849B1D00A35176 /* Three20Network_Prefix.pch in Headers */,
 				6EF96405118EFCF0003902E7 /* TTURLRequestQueueInternal.h in Headers */,
+				3593600B11AD50A00060AB9F /* TTURLPlistResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +499,7 @@
 				6EE7362D11849A4000A35176 /* TTURLRequest.m in Sources */,
 				6EE7362E11849A4000A35176 /* TTURLRequestModel.m in Sources */,
 				6EE7362F11849A4000A35176 /* TTURLRequestQueue.m in Sources */,
+				3593600C11AD50A00060AB9F /* TTURLPlistResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

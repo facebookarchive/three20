@@ -47,7 +47,7 @@ static CGFloat kProgressMargin  = 6;
 @synthesize style             = _style;
 @synthesize progress          = _progress;
 @synthesize smoothesProgress  = _smoothesProgress;
-
+@synthesize backgroundView    = _backgroundView;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text {
@@ -160,6 +160,7 @@ static CGFloat kProgressMargin  = 6;
 - (void)dealloc {
   TT_INVALIDATE_TIMER(_smoothTimer);
   TT_RELEASE_SAFELY(_bezelView);
+  TT_RELEASE_SAFELY(_backgroundView);
   TT_RELEASE_SAFELY(_progressView);
   TT_RELEASE_SAFELY(_activityIndicator);
   TT_RELEASE_SAFELY(_label);
@@ -343,5 +344,21 @@ static CGFloat kProgressMargin  = 6;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void) setBackgroundView:(UIView *) backgroundView {
+	
+	if(_backgroundView != backgroundView) {
+		
+		[_backgroundView removeFromSuperview];
+		TT_RELEASE_SAFELY(_backgroundView);
+		
+		if(backgroundView != nil) {	
+			_backgroundView = [backgroundView retain];
+			[self addSubview: _backgroundView];
+			[self sendSubviewToBack: _backgroundView];
+		}
+	}
+}
 
 @end

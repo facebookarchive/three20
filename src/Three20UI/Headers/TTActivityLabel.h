@@ -34,6 +34,7 @@ typedef enum {
   TTActivityLabelStyle      _style;
 
   TTView*                   _bezelView;
+  UIView*                   _backgroundView;
   UIProgressView*           _progressView;
   UIActivityIndicatorView*  _activityIndicator;
   UILabel*                  _label;
@@ -44,7 +45,7 @@ typedef enum {
 }
 
 @property (nonatomic, readonly) TTActivityLabelStyle style;
-
+@property (nonatomic, retain)   UIView*   backgroundView;
 @property (nonatomic, assign)   NSString* text;
 @property (nonatomic, assign)   UIFont*   font;
 

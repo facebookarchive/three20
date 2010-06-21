@@ -44,7 +44,8 @@
   NSString*               _cacheKey;
   TTURLRequestCachePolicy _cachePolicy;
   NSTimeInterval          _cacheExpirationAge;
-
+  NSUInteger			  _contentLength;
+	
   NSMutableArray*         _requests;
   NSURLConnection*        _connection;
 
@@ -128,6 +129,7 @@
 - (void)dispatchError:(NSError*)error;
 - (void)dispatchLoaded:(NSDate*)timestamp;
 - (void)dispatchAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge;
+- (void)dispatchDownloadedBytes:(NSUInteger)downloadedBytes ofTotalExpected:(NSUInteger) totalExpected;
 - (void)cancel;
 
 @end

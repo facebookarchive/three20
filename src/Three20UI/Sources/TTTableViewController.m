@@ -606,6 +606,8 @@ static const CGFloat kBannerViewHeight = 22;
       _tableView.backgroundColor = backgroundColor;
       self.view.backgroundColor = backgroundColor;
     }
+	_tableView.separatorStyle = TTSTYLEVAR(tableSeparatorStyle);
+	  
     [self.view addSubview:_tableView];
   }
   return _tableView;

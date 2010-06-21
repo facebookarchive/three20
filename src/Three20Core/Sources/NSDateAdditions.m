@@ -63,6 +63,106 @@
   return date;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSDate*)time {
+	
+	NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+	formatter.dateFormat = @"HH:mm";
+	
+	NSString* formattedTime = [formatter stringFromDate:self];
+	NSDate* date = [formatter dateFromString:formattedTime];
+	return date;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)year {
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *comps = [calendar components: NSYearCalendarUnit fromDate: self];
+	
+	return [comps year];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)month {
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *comps = [calendar components: NSMonthCalendarUnit fromDate: self];
+	
+	return [comps month];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)weekInYear {
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *comps = [calendar components: NSWeekCalendarUnit fromDate: self];
+	
+	return [comps week];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)dayInMonth {
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *comps = [calendar components: NSWeekdayOrdinalCalendarUnit fromDate: self];
+	
+	return [comps weekdayOrdinal];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)dayInWeek {
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *comps = [calendar components: NSWeekdayCalendarUnit fromDate: self];
+	
+	return [comps weekday];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)dayInYear {
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *comps = [calendar components: NSDayCalendarUnit fromDate: self];
+	
+	return [comps day];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)hour {
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *comps = [calendar components: NSHourCalendarUnit fromDate: self];
+	
+	return [comps hour];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)minute {
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *comps = [calendar components: NSMinuteCalendarUnit fromDate: self];
+	
+	return [comps minute];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)second {
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *comps = [calendar components: NSSecondCalendarUnit fromDate: self];
+	
+	return [comps second];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)formatTime {

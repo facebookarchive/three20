@@ -103,6 +103,11 @@
 - (void)didFinishLoad;
 
 /**
+ * Notifies delegates that download progress has changed
+ */
+- (void)didLoadBytes:(NSUInteger)bytesLoaded ofTotalSize:(NSUInteger)totalSize;
+
+/**
  * Notifies delegates that the model failed to load.
  */
 - (void)didFailLoadWithError:(NSError*)error;

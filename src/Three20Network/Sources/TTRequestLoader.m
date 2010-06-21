@@ -246,6 +246,18 @@ static const NSInteger kLoadMaxRetries = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dispatchDownloadedBytes:(NSUInteger)downloadedBytes ofTotalExpected:(NSUInteger) totalExpected {
+	for (TTURLRequest* request in [[_requests copy] autorelease]) {
+		
+		for (id<TTURLRequestDelegate> delegate in request.delegates) {
+			if ([delegate respondsToSelector:@selector(request:didLoadBytes:ofTotalExpected:)]) {
+				[delegate request:request didLoadBytes:downloadedBytes ofTotalExpected:totalExpected];
+			}
+		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dispatchAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge {
   for (TTURLRequest* request in [[_requests copy] autorelease]) {
 
@@ -278,28 +290,29 @@ static const NSInteger kLoadMaxRetries = 2;
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response {
   _response = [response retain];
   NSDictionary* headers = [response allHeaderFields];
-  int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
+  _contentLength = [[headers objectForKey:@"Content-Length"] integerValue];
 
   // If you hit this assertion it's because a massive file is about to be downloaded.
   // If you're sure you want to do this, add the following line to your app delegate startup
   // method. Setting the max content length to zero allows anything to go through. If you just
   // want to raise the limit, set it to any positive byte size.
   // [[TTURLRequestQueue mainQueue] setMaxContentLength:0]
-  TTDASSERT(0 == _queue.maxContentLength || contentLength <=_queue.maxContentLength);
+  TTDASSERT(0 == _queue.maxContentLength || _contentLength <=_queue.maxContentLength);
 
-  if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
+  if (_contentLength > _queue.maxContentLength && _queue.maxContentLength) {
     TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"MAX CONTENT LENGTH EXCEEDED (%d) %@",
-                    contentLength, _urlPath);
+                    _contentLength, _urlPath);
     [self cancel];
   }
 
-  _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
+  _responseData = [[NSMutableData alloc] initWithCapacity:_contentLength];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
   [_responseData appendData:data];
+  [self dispatchDownloadedBytes:[_responseData length] ofTotalExpected:_contentLength];
 }
 
 

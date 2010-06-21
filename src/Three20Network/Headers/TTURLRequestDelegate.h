@@ -44,6 +44,13 @@
 - (void)requestDidFinishLoad:(TTURLRequest*)request;
 
 /**
+ * The request has downloaded portion of data of total size expected according to server's response.
+ * 
+ * Allows delegates to handle download progress
+ */
+- (void)request:(TTURLRequest*)request didLoadBytes:(NSUInteger)bytesLoaded ofTotalExpected:(NSUInteger)totalExpected;
+
+/**
  * Allows delegate to handle any authentication challenges.
  */
 - (void)request:(TTURLRequest*)request

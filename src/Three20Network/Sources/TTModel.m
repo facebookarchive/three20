@@ -107,6 +107,11 @@
   [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didLoadBytes:(NSUInteger)bytesLoaded ofTotalSize:(NSUInteger)totalSize {
+	[_delegates perform:@selector(model:didLoadBytes:ofTotalSize:) withObject:self withObject:[NSNumber numberWithUnsignedInteger:bytesLoaded]
+			 withObject:[NSNumber numberWithUnsignedInteger:totalSize]];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFailLoadWithError:(NSError*)error {
