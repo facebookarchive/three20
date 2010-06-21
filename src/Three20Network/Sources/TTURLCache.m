@@ -224,37 +224,68 @@ static NSMutableDictionary* gNamedCaches = nil;
   }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TODO (jverkoey May 3, 2010): Clean up this redundant code.
-- (BOOL)imageExistsFromBundle:(NSString*)URL {
-  NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
-  NSFileManager* fm = [NSFileManager defaultManager];
-  return [fm fileExistsAtPath:path];
+- (NSString*) resolveImagePathFromURL: (NSString*) URL {
+    // Get the path for the URL
+    NSString* path;
+    if (TTIsBundleURL(URL))
+        path = TTPathForBundleResource([URL substringFromIndex:9]);
+    else if (TTIsDocumentsURL(URL))
+        path = TTPathForDocumentsResource([URL substringFromIndex:12]);
+    else
+        // LATER: support more schemas.
+        return nil;
+
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+    
+    // Next, find the best-fit image given scale and device.
+    // See "Supporting High-Resolution Screens" in iPhone OS Reference Library for more information.
+    static NSArray* modifiers = nil;
+    if (modifiers == nil) {
+        NSString* deviceModifier = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"~ipad" : @"~iphone";
+        UIScreen* screen = [UIScreen mainScreen];
+        if ([screen respondsToSelector: @selector(scale)]) {
+            // ASSUMPTION: scale > 0, is a whole number
+            CGFloat scale = [screen scale];
+            TTDASSERT(scale && scale == roundf(scale));
+            NSString* scaleModifier = [NSString stringWithFormat: @"@%ldx", (NSInteger)scale];
+
+            // Resolution order is just a guess here, but I would figure device trumps scale.
+            modifiers = [[NSArray alloc] initWithObjects:
+                         [scaleModifier stringByAppendingString: deviceModifier],
+                         deviceModifier,
+                         scaleModifier,
+                         nil];
+                         
+        } else {
+            modifiers = [[NSArray alloc] initWithObjects: deviceModifier, nil];
+        }
+    }
+    
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSString* pathWithoutExtension = [path stringByDeletingPathExtension];
+    NSString* extension = [path pathExtension];
+    for (NSString* modifier in modifiers) {
+        NSString* modifiedPath = [[pathWithoutExtension stringByAppendingString: modifier] stringByAppendingPathExtension: extension];
+        if ([fm fileExistsAtPath: modifiedPath])
+            return modifiedPath;
+    }
+
+    // Last-ditch: try the unmodified path.
+    return [fm fileExistsAtPath:path] ? path : nil;
+
+#else
+    // 3.1 and earlier: No scaling, just one device.
+    NSFileManager* fm = [NSFileManager defaultManager];
+    return [fm fileExistsAtPath:path] ? path : nil;
+#endif
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)imageExistsFromDocuments:(NSString*)URL {
-  NSString* path = TTPathForDocumentsResource([URL substringFromIndex:12]);
-  NSFileManager* fm = [NSFileManager defaultManager];
-  return [fm fileExistsAtPath:path];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIImage*)loadImageFromBundle:(NSString*)URL {
-  NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
-  NSData* data = [NSData dataWithContentsOfFile:path];
-  return [UIImage imageWithData:data];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIImage*)loadImageFromDocuments:(NSString*)URL {
-  NSString* path = TTPathForDocumentsResource([URL substringFromIndex:12]);
-  NSData* data = [NSData dataWithContentsOfFile:path];
-  return [UIImage imageWithData:data];
+- (UIImage*)loadImageFromURL:(NSString*)URL {
+  NSString* path = [self resolveImagePathFromURL: URL];    
+  return [UIImage imageWithContentsOfFile: path];
 }
 
 
@@ -403,12 +434,8 @@ static NSMutableDictionary* gNamedCaches = nil;
   BOOL hasImage = (nil != [_imageCache objectForKey:URL]);
 
   if (!hasImage && fromDisk) {
-    if (TTIsBundleURL(URL)) {
-      hasImage = [self imageExistsFromBundle:URL];
-
-    } else if (TTIsDocumentsURL(URL)) {
-      hasImage = [self imageExistsFromDocuments:URL];
-    }
+    NSString* path = [self resolveImagePathFromURL: URL];
+    hasImage = (nil != path);
   }
 
   return hasImage;
@@ -426,14 +453,8 @@ static NSMutableDictionary* gNamedCaches = nil;
   UIImage* image = [_imageCache objectForKey:URL];
 
   if (nil == image && fromDisk) {
-    if (TTIsBundleURL(URL)) {
-      image = [self loadImageFromBundle:URL];
-      [self storeImage:image forURL:URL];
-
-    } else if (TTIsDocumentsURL(URL)) {
-      image = [self loadImageFromDocuments:URL];
-      [self storeImage:image forURL:URL];
-    }
+    image = [self loadImageFromURL:URL];
+    [self storeImage:image forURL:URL];
   }
 
   return image;
