@@ -202,7 +202,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
  * controller exists in the navigation hierarchy. If it doesn't exist, and the given controller
  * isn't a container, then a UINavigationController will be made the root controller.
  *
- * @private
+ * @protected
  */
 - (UIViewController*)parentForController: (UIViewController*)controller
                              isContainer: (BOOL)isContainer
@@ -248,7 +248,8 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 - (void)presentModalController: (UIViewController*)controller
               parentController: (UIViewController*)parentController
                       animated: (BOOL)animated
-                    transition: (NSInteger)transition {
+                    transition: (NSInteger)transition 
+                        sender: (id)sender {
   controller.modalTransitionStyle = transition;
 
   if ([controller isKindOfClass:[UINavigationController class]]) {
@@ -264,6 +265,69 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
   }
 }
 
+#ifdef __IPHONE_3_2
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * A popover controller is a view controller added in iPad that is presented over another controller and hides
+ * the original controller only partially.
+ *
+ * If the controller that is being presented is not a UINavigationController, then a
+ * UINavigationController is created and the controller is pushed onto the navigation controller.
+ * The navigation controller is then displayed instead.
+ *
+ * @private
+ */
+- (void)presentPopoverController: (UIViewController*)controller
+                parentController: (UIViewController*)parentController
+                        animated: (BOOL)animated
+                      transition: (NSInteger)transition
+                          sender: (id)sender {
+  Class popoverClass = NSClassFromString(@"UIPopoverController");
+  if (popoverClass) {
+    UIPopoverController* popoverController;
+    if ([controller isKindOfClass: popoverClass]) {
+       popoverController = (UIPopoverController*)controller;
+    } else {
+      UINavigationController* navController;
+      if ([controller isKindOfClass:[UINavigationController class]]) {
+        navController = (UINavigationController*)controller;
+      } else {
+        navController = [[[UINavigationController alloc] init] autorelease];
+        [navController pushViewController: controller
+                                 animated: NO];
+        navController.superController = parentController;
+      }
+      popoverController = [[[popoverClass alloc] initWithContentViewController: navController] autorelease];
+    }
+
+    parentController.popoverController = popoverController;
+    if ([parentController conformsToProtocol: NSProtocolFromString(@"UIPopoverControllerDelegate")])
+      popoverController.delegate = (id<UIPopoverControllerDelegate>)parentController;
+        
+    // If there is a sender, have the popover spring from it.
+    if ([sender isKindOfClass: [UIBarButtonItem class]]) {
+      [popoverController presentPopoverFromBarButtonItem: (UIBarButtonItem*)sender
+                                permittedArrowDirections: UIPopoverArrowDirectionAny 
+                                                animated: animated];
+    } else {
+      CGRect rect = [sender isKindOfClass: [UIView class]] ? [(UIView*)sender frame] : parentController.view.frame;
+      [popoverController presentPopoverFromRect: rect
+                                         inView: parentController.view 
+                       permittedArrowDirections: UIPopoverArrowDirectionAny 
+                                       animated: animated];
+    }
+  } else {
+    // UIPopoverController doesn't exist (iPhone/iPod Touch).  Open as a modal controller
+    [self presentModalController: controller
+                parentController: parentController
+                        animated: animated
+                      transition: transition
+                          sender: sender];
+  }
+}
+
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -276,7 +340,8 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
          parentController: (UIViewController*)parentController
                      mode: (TTNavigationMode)mode
                  animated: (BOOL)animated
-               transition: (NSInteger)transition {
+               transition: (NSInteger)transition 
+                   sender: (id)sender {
   BOOL didPresentNewController = YES;
 
   if (nil == _rootViewController) {
@@ -302,7 +367,8 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
                       parentController: parentController
                                   mode: mode
                               animated: animated
-                            transition: transition];
+                            transition: transition
+                                sender: sender];
     }
   }
 
@@ -315,7 +381,8 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
             parentURLPath: (NSString*)parentURLPath
               withPattern: (TTURLNavigatorPattern*)pattern
                  animated: (BOOL)animated
-               transition: (NSInteger)transition {
+               transition: (NSInteger)transition 
+                   sender: (id)sender {
   BOOL didPresentNewController = NO;
 
   if (nil != controller) {
@@ -334,7 +401,8 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
                parentController: nil
                            mode: TTNavigationModeNone
                        animated: NO
-                     transition: 0];
+                     transition: 0
+                         sender: sender];
       }
 
       didPresentNewController = [self
@@ -342,7 +410,8 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
                                  parentController: parentController
                                  mode: pattern.navigationMode
                                  animated: animated
-                                 transition: transition];
+                                 transition: transition
+                                 sender: sender];
     }
   }
   return didPresentNewController;
@@ -430,7 +499,8 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
                               withPattern: pattern
                                  animated: action.animated
                                transition: action.transition ?
-                   action.transition : pattern.transition];
+                   action.transition : pattern.transition
+                                   sender: action.sender];
 
     if (action.withDelay && !wasNew) {
       [self cancelDelay];
@@ -810,6 +880,12 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)navigationControllerClass {
+    return [TTBaseNavigationController class];
+}
+
+
 @end
 
 
@@ -827,14 +903,31 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
                   parentController: (UIViewController*)parentController
                               mode: (TTNavigationMode)mode
                           animated: (BOOL)animated
-                        transition: (NSInteger)transition {
+                        transition: (NSInteger)transition
+                            sender: (id)sender {
 
   if (mode == TTNavigationModeModal) {
     [self presentModalController: controller
                 parentController: parentController
                         animated: animated
-                      transition: transition];
+                      transition: transition
+                          sender: sender];
 
+  } else if (mode == TTNavigationModePopover) {
+#ifdef __IPHONE_3_2
+    [self presentPopoverController: controller
+                  parentController: parentController
+                          animated: animated
+                        transition: transition
+                            sender: sender];
+#else
+    [self presentModalController: controller
+                parentController: parentController
+                        animated: animated
+                      transition: transition
+                          sender: sender];
+#endif
+          
   } else {
     [parentController addSubcontroller: controller
                               animated: animated
@@ -846,12 +939,6 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)getVisibleChildController:(UIViewController*)controller {
   return controller.topSubcontroller;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (Class)navigationControllerClass {
-  return [TTBaseNavigationController class];
 }
 
 

@@ -31,6 +31,9 @@
 
 static NSMutableDictionary* gSuperControllers = nil;
 static NSMutableDictionary* gPopupViewControllers = nil;
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+static NSMutableDictionary* gPopoverControllers = nil;
+#endif
 
 // Garbage collection state
 static NSMutableSet*        gsCommonControllers     = nil;
@@ -228,6 +231,30 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
   }
 }
 
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)popoverController {
+    NSString* key = [NSString stringWithFormat:@"%d", self.hash];
+    return [gPopoverControllers objectForKey:key];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setPopoverController:(id)viewController {
+    NSString* key = [NSString stringWithFormat:@"%d", self.hash];
+    if (viewController) {
+        if (!gPopoverControllers) {
+            // cdonnelly 2010-05-23: Has to be retaining for now, until I can find someone else to "retain" it.
+            gPopoverControllers = [[NSMutableDictionary alloc] init];
+        }
+        [gPopoverControllers setObject:viewController forKey:key];
+    } else {
+        [gPopoverControllers removeObjectForKey:key];
+    }
+}
+
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addSubcontroller:(UIViewController*)controller animated:(BOOL)animated
@@ -373,6 +400,9 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
   self.superController = nil;
   self.popupViewController = nil;
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+  self.popoverController = nil;
+#endif
 }
 
 

@@ -22,10 +22,9 @@
                   parentController: (UIViewController*)parentController
                               mode: (TTNavigationMode)mode
                           animated: (BOOL)animated
-                        transition: (NSInteger)transition;
+                        transition: (NSInteger)transition
+                            sender: (id)sender;
 
 - (UIViewController*)getVisibleChildController:(UIViewController*)controller;
-
-- (Class)navigationControllerClass;
 
 @end
