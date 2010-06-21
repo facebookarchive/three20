@@ -27,6 +27,4 @@
 
 - (UIViewController*)getVisibleChildController:(UIViewController*)controller;
 
-- (Class)navigationControllerClass;
-
 @end

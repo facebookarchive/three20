@@ -63,8 +63,10 @@
 
 /**
  * The controller that is at the root of the view controller hierarchy.
+ *
+ * @setter is @protected
  */
-@property (nonatomic, readonly) UIViewController* rootViewController;
+@property (nonatomic, assign) UIViewController* rootViewController;
 
 /**
  * The currently visible view controller.
@@ -238,5 +240,31 @@
  * Erases all data stored in user defaults.
  */
 - (void)resetDefaults;
+
+#pragma mark -
+#pragma mark Protected
+
+/**
+ * @protected
+ */
+- (Class)navigationControllerClass;
+
+/**
+ * Called when a controller is restored.  Base implementation does nothing.
+ *
+ * @protected
+ */
+- (void)didRestoreController:(UIViewController*)controller;
+
+/**
+ * Prepare the given controller's parent controller and return it. Ensures that the parent
+ * controller exists in the navigation hierarchy. If it doesn't exist, and the given controller
+ * isn't a container, then a UINavigationController will be made the root controller.
+ *
+ * @protected
+ */
+- (UIViewController*)parentForController: (UIViewController*)controller
+                             isContainer: (BOOL)isContainer
+                           parentURLPath: (NSString*)parentURLPath;
 
 @end

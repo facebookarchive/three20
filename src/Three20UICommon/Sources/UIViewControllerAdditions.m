@@ -31,7 +31,7 @@
 
 static NSMutableDictionary* gSuperControllers = nil;
 static NSMutableDictionary* gPopupViewControllers = nil;
-#ifdef __IPHONE_3_2
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
 static NSMutableDictionary* gPopoverControllers = nil;
 #endif
 
@@ -231,7 +231,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
   }
 }
 
-#ifdef __IPHONE_3_2
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)popoverController {
@@ -400,7 +400,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
   self.superController = nil;
   self.popupViewController = nil;
-#ifdef __IPHONE_3_2
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
   self.popoverController = nil;
 #endif
 }
