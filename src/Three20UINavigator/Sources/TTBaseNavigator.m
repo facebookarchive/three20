@@ -208,7 +208,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
  * controller exists in the navigation hierarchy. If it doesn't exist, and the given controller
  * isn't a container, then a UINavigationController will be made the root controller.
  *
- * @private
+ * @protected
  */
 - (UIViewController*)parentForController: (UIViewController*)controller
                              isContainer: (BOOL)isContainer
@@ -302,6 +302,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
         navController = [[[UINavigationController alloc] init] autorelease];
         [navController pushViewController: controller
                                  animated: NO];
+        navController.superController = parentController;
       }
       popoverController = [[[popoverClass alloc] initWithContentViewController: navController] autorelease];
     }
@@ -882,6 +883,12 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
   [defaults removeObjectForKey:kNavigatorHistoryTimeKey];
   [defaults removeObjectForKey:kNavigatorHistoryImportantKey];
   [defaults synchronize];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)navigationControllerClass {
+    return [TTBaseNavigationController class];
 }
 
 

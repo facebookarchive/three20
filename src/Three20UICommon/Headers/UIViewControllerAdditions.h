@@ -70,7 +70,7 @@
  */
 @property (nonatomic, retain) UIViewController* popupViewController;
 
-#if __IPHONE_3_2
+#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
 
 /**
  * A popover controller that is presented on top of this view controller.

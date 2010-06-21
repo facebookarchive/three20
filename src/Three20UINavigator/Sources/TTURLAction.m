@@ -78,50 +78,67 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTURLAction*)applyParentURLPath:(NSString*)parentURLPath {
+- (id)applyParentURLPath:(NSString*)parentURLPath {
   self.parentURLPath = parentURLPath;
   return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTURLAction*)applyQuery:(NSDictionary*)query {
+- (id)applyQuery:(NSDictionary*)query {
   self.query = query;
   return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTURLAction*)applyState:(NSDictionary*)state {
+- (id)applyState:(NSDictionary*)state {
   self.state = state;
   return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTURLAction*)applyAnimated:(BOOL)animated {
+- (id)applyAnimated:(BOOL)animated {
   self.animated = animated;
   return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTURLAction*)applyWithDelay:(BOOL)withDelay {
+- (id)applyWithDelay:(BOOL)withDelay {
   self.withDelay = withDelay;
   return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTURLAction*)applyTransition:(UIViewAnimationTransition)transition {
+- (id)applyTransition:(UIViewAnimationTransition)transition {
   self.transition = transition;
   return self;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTURLAction*)applySender:(id)sender {
+- (id)applySender:(id)sender {
   self.sender = sender;
   return self;
+}
+
+#pragma mark -
+#pragma mark NSCopying
+
+-(id) copyWithZone: (NSZone *)zone {
+    TTURLAction* copy = [[[self class] allocWithZone: zone] initWithURLPath: self.urlPath];
+    
+    copy.parentURLPath = _parentURLPath;
+    copy.query = [_query mutableCopyWithZone: zone];
+    copy.state = _state;
+    copy.animated = _animated;
+    copy.withDelay = _withDelay;
+    copy.transition = _transition;
+    copy.sender = _sender;
+    
+    return copy;
 }
 
 @end
