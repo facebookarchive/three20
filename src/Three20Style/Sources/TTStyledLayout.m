@@ -81,7 +81,7 @@
 - (void)dealloc {
   TT_RELEASE_SAFELY(_rootFrame);
   TT_RELEASE_SAFELY(_font);
-  TT_RELEASE_SAFELY(_boldFont);
+  TT_RELEASE_SAFELY(_boldStyle);
   TT_RELEASE_SAFELY(_italicFont);
   TT_RELEASE_SAFELY(_linkStyle);
   TT_RELEASE_SAFELY(_invalidImages);
@@ -127,11 +127,11 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIFont*)boldFont {
-  if (!_boldFont) {
-    _boldFont = [[self boldVersionOfFont:self.font] retain];
+- (TTStyle*)boldStyle {
+  if (!_boldStyle) {
+    _boldStyle = [TTSTYLE(boldText) retain];
   }
-  return _boldFont;
+  return _boldStyle;
 }
 
 
@@ -388,6 +388,9 @@
   if (!style && [elt isKindOfClass:[TTStyledLinkNode class]]) {
     style = self.linkStyle;
   }
+  if (!style && [elt isKindOfClass:[TTStyledBoldNode class]]) {
+	style = self.boldStyle;
+  }
 
   // Figure out which font to use for the node
   UIFont* font = nil;
@@ -401,7 +404,7 @@
   if (!font) {
     if ([elt isKindOfClass:[TTStyledLinkNode class]]
         || [elt isKindOfClass:[TTStyledBoldNode class]]) {
-      font = self.boldFont;
+      font = self.font;
     } else if ([elt isKindOfClass:[TTStyledItalicNode class]]) {
       font = self.italicFont;
     } else {
@@ -647,7 +650,8 @@
     return;
   }
 
-  NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+  NSMutableCharacterSet *separators = [NSMutableCharacterSet whitespaceAndNewlineCharacterSet];
+  [separators formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"-—"]];
 
   NSInteger stringIndex = 0;
   NSInteger lineStartIndex = 0;
@@ -655,8 +659,9 @@
 
   while (stringIndex < length) {
     // Search for the next whitespace character
+
     NSRange searchRange = NSMakeRange(stringIndex, length - stringIndex);
-    NSRange spaceRange = [text rangeOfCharacterFromSet:whitespace options:0 range:searchRange];
+    NSRange spaceRange = [text rangeOfCharacterFromSet:separators options:0 range:searchRange];
 
     // Get the word prior to the whitespace
     NSRange wordRange = spaceRange.location != NSNotFound
@@ -778,7 +783,7 @@
   if (font != _font) {
     [_font release];
     _font = [font retain];
-    TT_RELEASE_SAFELY(_boldFont);
+    TT_RELEASE_SAFELY(_boldStyle);
     TT_RELEASE_SAFELY(_italicFont);
   }
 }

@@ -77,6 +77,8 @@ static TTURLRequestQueue* gMainQueue = nil;
     _loaderQueue = [[NSMutableArray alloc] init];
     _maxContentLength = kDefaultMaxContentLength;
     _imageCompressionQuality = 0.75;
+    _userAgent = nil;
+    _suspended = NO;
   }
   return self;
 }

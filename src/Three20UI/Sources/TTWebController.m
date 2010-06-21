@@ -301,26 +301,35 @@
   _forwardButton.enabled = [_webView canGoForward];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)webViewDidStopLoading:(UIWebView*)webView {
+	TT_RELEASE_SAFELY(_loadingURL);
+	self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+	if (self.navigationItem.rightBarButtonItem == _activityItem) {
+		[self.navigationItem setRightBarButtonItem:nil animated:YES];
+	}
+	[_toolbar replaceItemWithTag:3 withItem:_refreshButton];
+	
+	_backButton.enabled = [_webView canGoBack];
+	_forwardButton.enabled = [_webView canGoForward]; 
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
-  TT_RELEASE_SAFELY(_loadingURL);
-
-  self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-  if (self.navigationItem.rightBarButtonItem == _activityItem) {
-    [self.navigationItem setRightBarButtonItem:nil animated:YES];
-  }
-  [_toolbar replaceItemWithTag:3 withItem:_refreshButton];
-
-  _backButton.enabled = [_webView canGoBack];
-  _forwardButton.enabled = [_webView canGoForward];
+  [self webViewDidStopLoading:webView]; 
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
   TT_RELEASE_SAFELY(_loadingURL);
-  [self webViewDidFinishLoad:webView];
+
+  // Do not call webViewDidFinishLoad: on a failure, because that method implies success.
+  // Calling it here makes it very difficult for a subclass to perform an action that 
+  // should only happen after a successful load.
+//  [self webViewDidFinishLoad:webView];
+	
+  [self webViewDidStopLoading:webView];
 }
 
 
