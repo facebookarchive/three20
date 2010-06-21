@@ -33,6 +33,7 @@ static NSMutableDictionary* gPopoverControllers = nil;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> ddd9540... Exposed additional methods we need to override or reference in additions
@@ -40,6 +41,8 @@ static NSMutableDictionary* gPopoverControllers = nil;
 >>>>>>> b29bb32... Renamed methods used by origin, size properties to avoid collisions with private/undocumented Apple methods.
 =======
 >>>>>>> d21265b... Three20 now builds correctly for Universal app
+=======
+>>>>>>> c70d6e9... Added high-res/device-specific image support to TTIMAGE
 
 // Garbage collection state
 static NSMutableSet*        gsCommonControllers     = nil;
