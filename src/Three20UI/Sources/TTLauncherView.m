@@ -667,16 +667,22 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent *)event {
-  [super touchesEnded:touches withEvent:event];
-
-  if (_dragTouch) {
-    for (UITouch* touch in touches) {
-      if (touch == _dragTouch) {
-        _dragTouch = nil;
-        break;
-      }
+    [super touchesEnded:touches withEvent:event];
+    
+    if (_dragTouch) {
+        for (UITouch* touch in touches) {
+            if (touch == _dragTouch) {
+                
+                // New delegate method
+                if ([_delegate respondsToSelector:@selector(launcherViewDidEndDragging:)]) {
+                    [_delegate launcherViewDidEndDragging:self];
+                }
+                
+                _dragTouch = nil;
+                break;
+            }
+        }
     }
-  }
 }
 
 
