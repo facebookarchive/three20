@@ -670,6 +670,12 @@ static const NSInteger kDefaultColumnCount = 3;
   if (_dragTouch) {
     for (UITouch* touch in touches) {
       if (touch == _dragTouch) {
+
+        // New delegate method
+        if ([_delegate respondsToSelector:@selector(launcherViewDidEndDragging:)]) {
+          [_delegate launcherViewDidEndDragging:self];
+        }
+
         _dragTouch = nil;
         break;
       }
