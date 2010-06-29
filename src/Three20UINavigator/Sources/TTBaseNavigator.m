@@ -66,9 +66,17 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
     _URLMap = [[TTURLMap alloc] init];
     _persistenceMode = TTNavigatorPersistenceModeNone;
 
+    NSString *notificationName = UIApplicationWillTerminateNotification;
+
+    UIDevice *device = [UIDevice currentDevice];
+    if ([device respondsToSelector:@selector(isMultitaskingSupported)] &&
+        [device isMultitaskingSupported]) {
+      notificationName = UIApplicationDidEnterBackgroundNotification;
+    }
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationWillTerminateNotification:)
-                                                 name:UIApplicationWillTerminateNotification
+                                                 name:notificationName
                                                object:nil];
   }
   return self;
