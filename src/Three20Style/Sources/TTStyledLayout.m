@@ -739,7 +739,9 @@
         break;
       }
 
-      frameWidth += wordSize.width;
+      // XXX: This +1 works around a truncation issue when laying out Chinese, Japanese, and
+      // Korean text; it's not clear why it's necessary.
+      frameWidth += wordSize.width + 1;
       [self expandLineWidth:wordSize.width];
       [self inflateLineHeight:wordSize.height];
 
