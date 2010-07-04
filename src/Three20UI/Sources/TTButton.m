@@ -72,7 +72,7 @@ static const CGFloat kVPadding = 7;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTButton*)buttonWithStyle:(NSString*)selector {
-  TTButton* button = [[[TTButton alloc] init] autorelease];
+  TTButton* button = [[[self alloc] init] autorelease];
   [button setStylesWithSelector:selector];
   return button;
 }
@@ -80,7 +80,7 @@ static const CGFloat kVPadding = 7;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTButton*)buttonWithStyle:(NSString*)selector title:(NSString*)title {
-  TTButton* button = [[[TTButton alloc] init] autorelease];
+  TTButton* button = [[[self alloc] init] autorelease];
   [button setTitle:title forState:UIControlStateNormal];
   [button setStylesWithSelector:selector];
   return button;
