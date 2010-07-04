@@ -27,12 +27,16 @@
 
 @synthesize URL           = _URL;
 @synthesize accessoryURL  = _accessoryURL;
+@synthesize delegate      = _delegate;
+@synthesize selector      = _selector;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_URL);
-  TT_RELEASE_SAFELY(_accessoryURL);
+  self.URL          = nil;
+  self.accessoryURL = nil;
+  self.delegate     = nil;
+  self.selector     = nil;
 
   [super dealloc];
 }
@@ -48,6 +52,7 @@
 - (id)initWithCoder:(NSCoder*)decoder {
   if (self = [super initWithCoder:decoder]) {
     self.URL = [decoder decodeObjectForKey:@"URL"];
+    self.accessoryURL = [decoder decodeObjectForKey:@"accessoryURL"];
   }
   return self;
 }
@@ -60,7 +65,7 @@
     [encoder encodeObject:self.URL forKey:@"URL"];
   }
   if (self.accessoryURL) {
-    [encoder encodeObject:self.accessoryURL forKey:@"URL"];
+    [encoder encodeObject:self.accessoryURL forKey:@"accessoryURL"];
   }
 }
 
