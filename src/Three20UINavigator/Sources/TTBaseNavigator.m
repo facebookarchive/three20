@@ -70,6 +70,12 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
                                              selector:@selector(applicationWillTerminateNotification:)
                                                  name:UIApplicationWillTerminateNotification
                                                object:nil];
+#if __IPHONE_4_0 && __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterBackgroundNotification:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+#endif
   }
   return self;
 }
@@ -80,6 +86,11 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:UIApplicationWillTerminateNotification
                                                 object:nil];
+#if __IPHONE_4_0 && __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:UIApplicationDidEnterBackgroundNotification
+                                                object:nil];
+#endif
   _delegate = nil;
   TT_RELEASE_SAFELY(_window);
   TT_RELEASE_SAFELY(_rootViewController);
@@ -537,6 +548,14 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applicationWillTerminateNotification:(void*)info {
+  if (_persistenceMode) {
+    [self persistViewControllers];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applicationDidEnterBackgroundNotification:(void*)info {
   if (_persistenceMode) {
     [self persistViewControllers];
   }
