@@ -19,6 +19,9 @@
 // UI (private)
 #import "Three20UI/TTButtonContent.h"
 
+// UI
+#import "Three20UI/TTImageViewDelegate.h"
+
 // Style
 #import "Three20Style/TTGlobalStyle.h"
 #import "Three20Style/TTDefaultStyleSheet.h"
@@ -43,6 +46,7 @@ static const CGFloat kVPadding = 7;
 
 @synthesize font        = _font;
 @synthesize isVertical  = _isVertical;
+@synthesize imageDelegate = _imageDelegate;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +63,7 @@ static const CGFloat kVPadding = 7;
 - (void)dealloc {
   TT_RELEASE_SAFELY(_content);
   TT_RELEASE_SAFELY(_font);
+  self.imageDelegate = nil;
 
   [super dealloc];
 }
@@ -327,6 +332,18 @@ static const CGFloat kVPadding = 7;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark TTImageViewDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)imageView:(TTImageView*)imageView didLoadImage:(UIImage*)image {
+
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 #pragma mark Public
 
 
@@ -372,6 +389,7 @@ static const CGFloat kVPadding = 7;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setImage:(NSString*)imageURL forState:(UIControlState)state {
   TTButtonContent* content = [self contentForState:state];
+  content.delegate = self.imageDelegate;
   content.imageURL = imageURL;
   [self setNeedsDisplay];
 }
