@@ -21,6 +21,12 @@
 
 + (void)doGarbageCollectionWithSelector:(SEL)selector controllerSet:(NSMutableSet*)controllers;
 
+/**
+ * Boolean method indicating whether a particular controller class calls -unsetCommonProperties in dealloc.
+ * Defaults to NO; subclasses may override to bypass garbage collection.
+ * This is on the honor system.
+ */
+- (BOOL)callsUnsetCommonPropertiesInDealloc;
 - (void)unsetCommonProperties;
 
 @end
