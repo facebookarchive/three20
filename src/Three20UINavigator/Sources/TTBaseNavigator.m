@@ -66,10 +66,16 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
     _URLMap = [[TTURLMap alloc] init];
     _persistenceMode = TTNavigatorPersistenceModeNone;
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillTerminateNotification:)
-                                                 name:UIApplicationWillTerminateNotification
-                                               object:nil];
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(applicationWillLeaveForeground:)
+                   name:UIApplicationWillTerminateNotification
+                 object:nil];
+    // XXX the notification name is a string because the symbol is unavailable pre-OS 4.0
+    [center addObserver:self
+               selector:@selector(applicationWillLeaveForeground:)
+                   name:@"UIApplicationDidEnterBackgroundNotification"
+                 object:nil];
   }
   return self;
 }
@@ -77,9 +83,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:UIApplicationWillTerminateNotification
-                                                object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   _delegate = nil;
   TT_RELEASE_SAFELY(_window);
   TT_RELEASE_SAFELY(_rootViewController);
@@ -466,7 +470,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applicationWillTerminateNotification:(void*)info {
+- (void)applicationWillLeaveForeground:(void *)ignored {
   if (_persistenceMode) {
     [self persistViewControllers];
   }
