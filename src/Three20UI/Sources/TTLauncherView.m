@@ -216,7 +216,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showPrompt {
-  CGRect boxFrame = CGRectMake(_scrollView.width, 0, _scrollView.width, _scrollView.height);
+  CGRect boxFrame = CGRectMake(_pages.count * _scrollView.width, 0, _scrollView.width, _scrollView.height);
   CGRect labelFrame = CGRectInset(boxFrame, kPromptMargin, kPromptMargin);
   UILabel* label = [[[UILabel alloc] initWithFrame:labelFrame] autorelease];
   label.tag = kPromptTag;
@@ -278,7 +278,7 @@ static const NSInteger kDefaultColumnCount = 3;
   }
 
   NSInteger numberOfPages = _pages.count;
-  if (numberOfPages == 1 && _prompt) {
+  if (_prompt) {
     [self showPrompt];
     ++numberOfPages;
   }
@@ -968,4 +968,10 @@ static const NSInteger kDefaultColumnCount = 3;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)reloadData {
+    TT_RELEASE_SAFELY(_pages);
+    _pages = [[NSMutableArray alloc] init];
+    [self recreateButtons];
+}
 @end

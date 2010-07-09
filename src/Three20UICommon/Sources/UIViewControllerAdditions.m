@@ -104,7 +104,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
   // TTBaseViewController calls unsetCommonProperties in its dealloc, so we don't need
   // to set up the garbage collector in that case.
-  if (![controller isKindOfClass:[TTBaseViewController class]]) {
+  if (![controller callsUnsetCommonPropertiesInDealloc]) {
     [[UIViewController ttCommonControllers] addObject:controller];
 
     TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
@@ -390,6 +390,12 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
     TT_RELEASE_SAFELY(fullControllerList);
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)callsUnsetCommonPropertiesInDealloc {
+  return NO;
 }
 
 

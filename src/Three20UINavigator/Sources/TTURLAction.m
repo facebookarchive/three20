@@ -131,7 +131,7 @@
     TTURLAction* copy = [[[self class] allocWithZone: zone] initWithURLPath: self.urlPath];
     
     copy.parentURLPath = _parentURLPath;
-    copy.query = [_query mutableCopyWithZone: zone];
+    copy->_query = [_query mutableCopyWithZone: zone]; // assign directly to keep retain count correct
     copy.state = _state;
     copy.animated = _animated;
     copy.withDelay = _withDelay;
