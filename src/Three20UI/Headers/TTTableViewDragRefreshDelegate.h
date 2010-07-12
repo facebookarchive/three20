@@ -24,7 +24,6 @@
  */
 @interface TTTableViewDragRefreshDelegate : TTTableViewVarHeightDelegate {
   TTTableHeaderDragRefreshView* _headerView;
-  BOOL                          _isDragging;
 }
 
 @property (nonatomic, retain) TTTableHeaderDragRefreshView* headerView;
