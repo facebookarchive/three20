@@ -78,4 +78,6 @@
 
 - (void)endEditing;
 
+- (void)reloadData;
+
 @end
