@@ -18,12 +18,14 @@
 #import "Three20UI/TTTableViewVarHeightDelegate.h"
 
 @class TTTableHeaderDragRefreshView;
+@protocol TTModel;
 
 /**
  * Pulled from the uprise78/three20-P31 fork with consent of uprise78.
  */
 @interface TTTableViewDragRefreshDelegate : TTTableViewVarHeightDelegate {
   TTTableHeaderDragRefreshView* _headerView;
+  id<TTModel>                   _model;
 }
 
 @property (nonatomic, retain) TTTableHeaderDragRefreshView* headerView;

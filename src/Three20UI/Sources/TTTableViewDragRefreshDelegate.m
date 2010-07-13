@@ -67,11 +67,12 @@ static const CGFloat kRefreshDeltaY = -65.0f;
     [_controller.tableView addSubview:_headerView];
 
     // Hook up to the model to listen for changes.
-    [controller.model.delegates addObject:self];
+    _model = [controller.model retain];
+    [_model.delegates addObject:self];
 
     // Grab the last refresh date if there is one.
-    if ([_controller.model respondsToSelector:@selector(loadedTime)]) {
-      NSDate* date = [_controller.model performSelector:@selector(loadedTime)];
+    if ([_model respondsToSelector:@selector(loadedTime)]) {
+      NSDate* date = [_model performSelector:@selector(loadedTime)];
 
       if (nil != date) {
         [_headerView setUpdateDate:date];
@@ -84,8 +85,9 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [_controller.model.delegates removeObject:self];
+  [_model.delegates removeObject:self];
   TT_RELEASE_SAFELY(_headerView);
+  TT_RELEASE_SAFELY(_model);
 
   [super dealloc];
 }
@@ -104,7 +106,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
   if (scrollView.dragging) {
     if (scrollView.contentOffset.y > kRefreshDeltaY
         && scrollView.contentOffset.y < 0.0f
-        && !_controller.model.isLoading) {
+        && !_model.isLoading) {
       [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
     } else if (scrollView.contentOffset.y < kRefreshDeltaY) {
@@ -120,10 +122,10 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
   // If dragging ends and we are far enough to be fully showing the header view trigger a
   // load as long as we arent loading already
-  if (scrollView.contentOffset.y <= kRefreshDeltaY && !_controller.model.isLoading) {
+  if (scrollView.contentOffset.y <= kRefreshDeltaY && !_model.isLoading) {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"DragRefreshTableReload" object:nil];
-    [_controller.model load:TTURLRequestCachePolicyNetwork more:NO];
+    [_model load:TTURLRequestCachePolicyNetwork more:NO];
   }
 }
 
