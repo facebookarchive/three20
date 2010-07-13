@@ -52,6 +52,7 @@
 @synthesize rootFrame     = _rootFrame;
 @synthesize font          = _font;
 @synthesize invalidImages = _invalidImages;
+@synthesize contentWidth  = _contentWidth;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -351,6 +352,10 @@
   _height += _lineHeight;
   [self checkFloats];
 
+  // Store the widest line number for future reference.
+  if (_contentWidth <= _lineWidth)
+      _contentWidth = _lineWidth;
+    
   _lineWidth = 0;
   _lineHeight = 0;
   _x = _minX;
@@ -805,6 +810,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layout:(TTStyledNode*)node {
+  _lineWidth = 0;
+  _contentWidth = 0;
   [self layout:node container:nil];
   if (_lineWidth) {
     [self breakLine];

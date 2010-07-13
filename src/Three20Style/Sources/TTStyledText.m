@@ -58,6 +58,7 @@
 @synthesize height        = _height;
 @synthesize invalidImages = _invalidImages;
 @synthesize delegate      = _delegate;
+@synthesize contentWidth  = _contentWidth;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -328,6 +329,7 @@
 
   [_rootFrame release];
   _rootFrame = [layout.rootFrame retain];
+  _contentWidth = ceil(layout.contentWidth);
   _height = ceil(layout.height);
   [_invalidImages release];
   _invalidImages = [layout.invalidImages retain];
@@ -348,6 +350,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setNeedsLayout {
   TT_RELEASE_SAFELY(_rootFrame);
+  _contentWidth = _width;
   _height = 0;
 }
 
