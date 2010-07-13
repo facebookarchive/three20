@@ -242,6 +242,7 @@ static NSMutableDictionary* gNamedCaches = nil;
     // See "Supporting High-Resolution Screens" in iPhone OS Reference Library for more information.
     static NSArray* modifiers = nil;
     if (modifiers == nil) {
+#if __IPHONE_4_0 && __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
         NSString* deviceModifier = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"~ipad" : @"~iphone";
         UIScreen* screen = [UIScreen mainScreen];
         if ([screen respondsToSelector: @selector(scale)]) {
@@ -260,6 +261,10 @@ static NSMutableDictionary* gNamedCaches = nil;
         } else {
             modifiers = [[NSArray alloc] initWithObjects: deviceModifier, nil];
         }
+#else
+        NSString* deviceModifier = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"~ipad" : @"~iphone";
+        modifiers = [[NSArray alloc] initWithObjects: deviceModifier, nil];
+#endif
     }
     
     NSFileManager* fm = [NSFileManager defaultManager];
