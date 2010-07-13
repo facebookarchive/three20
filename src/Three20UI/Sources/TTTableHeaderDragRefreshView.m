@@ -62,8 +62,8 @@
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultFastTransitionDuration];
   [_arrowImage layer].transform = (flipped ?
-                                   CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f) :
-                                   CATransform3DMakeRotation(M_PI * 2, 0.0f, 0.0f, 1.0f));
+                                   CATransform3DMakeRotation(M_PI * 2, 0.0f, 0.0f, 1.0f) :
+                                   CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f));
   [UIView commitAnimations];
 }
 
