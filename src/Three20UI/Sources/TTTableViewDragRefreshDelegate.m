@@ -103,10 +103,9 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView {
   [super scrollViewDidScroll:scrollView];
 
-  if (scrollView.dragging) {
+  if (scrollView.dragging && !_model.isLoading) {
     if (scrollView.contentOffset.y > kRefreshDeltaY
-        && scrollView.contentOffset.y < 0.0f
-        && !_model.isLoading) {
+        && scrollView.contentOffset.y < 0.0f) {
       [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
     } else if (scrollView.contentOffset.y < kRefreshDeltaY) {
