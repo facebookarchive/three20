@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#import "Three20UI/Three20UI+Additions.h"
+
 // UI Controllers
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTViewController.h"
