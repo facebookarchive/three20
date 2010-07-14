@@ -47,6 +47,17 @@
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _navigationBarStyle = UIBarStyleDefault;
     _statusBarStyle = UIStatusBarStyleDefault;
+	  
+	NSString *defaultStyle = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UIStatusBarStyle"]; 
+	  
+    if (defaultStyle) {
+      if ([defaultStyle isEqual:@"UIStatusBarStyleBlackOpaque"]) {
+        _statusBarStyle = UIStatusBarStyleBlackOpaque;
+      }
+      else if ([defaultStyle isEqual:@"UIStatusBarStyleBlackTranslucent"]) {
+        _statusBarStyle = UIStatusBarStyleBlackTranslucent;
+      }
+	}
   }
 
   return self;
