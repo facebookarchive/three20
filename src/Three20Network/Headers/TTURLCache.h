@@ -236,4 +236,12 @@
 
 - (void)logMemoryUsage;
 
+/**
+ * Resolves the specified resource URL, taking into account platform suffixes added in 4.0 and later.
+ * 
+ * Unlike Apple, we support the suffixes in all versions.
+ * For further information on suffixes, see "Supporting High-Resolution Screens" in iPhone OS Reference Library.
+ */
+- (NSString*) resolveResourcePathFromURL: (NSString*) URL;
+
 @end

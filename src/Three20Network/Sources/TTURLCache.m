@@ -225,7 +225,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*) resolveImagePathFromURL: (NSString*) URL {
+- (NSString*) resolveResourcePathFromURL: (NSString*) URL {
     // Get the path for the URL
     NSString* path;
     if (TTIsBundleURL(URL))
@@ -289,7 +289,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImage*)loadImageFromURL:(NSString*)URL {
-  NSString* path = [self resolveImagePathFromURL: URL];    
+  NSString* path = [self resolveResourcePathFromURL: URL];    
   return [UIImage imageWithContentsOfFile: path];
 }
 
@@ -439,7 +439,7 @@ static NSMutableDictionary* gNamedCaches = nil;
   BOOL hasImage = (nil != [_imageCache objectForKey:URL]);
 
   if (!hasImage && fromDisk) {
-    NSString* path = [self resolveImagePathFromURL: URL];
+    NSString* path = [self resolveResourcePathFromURL: URL];
     hasImage = (nil != path);
   }
 
