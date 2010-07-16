@@ -34,6 +34,7 @@
   CGFloat _floatLeftWidth;
   CGFloat _floatRightWidth;
   CGFloat _floatHeight;
+  CGFloat _contentWidth;
 
   TTStyledFrame*        _rootFrame;
   TTStyledFrame*        _lineFirstFrame;
@@ -57,6 +58,8 @@
 @property (nonatomic, retain)   UIFont*         font;
 @property (nonatomic, readonly) TTStyledFrame*  rootFrame;
 @property (nonatomic, retain)   NSMutableArray* invalidImages;
+
+@property (nonatomic, readonly) CGFloat         contentWidth;
 
 - (id)initWithRootNode:(TTStyledNode*)rootNode;
 - (id)initWithX:(CGFloat)x width:(CGFloat)width height:(CGFloat)height;

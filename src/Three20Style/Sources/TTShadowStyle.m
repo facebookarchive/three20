@@ -24,6 +24,9 @@
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTGlobalCoreRects.h"
 
+// LATER: would be nice to move TTOSVersion() coreward.
+#define TTOSVersion() ([[[UIDevice currentDevice] systemVersion] floatValue])
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +53,22 @@
   TT_RELEASE_SAFELY(_color);
 
   [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (CGFloat)shadowVerticalMultiplier {
+  // 3.2 and later: iOS inverted how the shadow is rendered.
+  // See http://petersteinberger.com/2010/06/the-facebook-app-situation/
+  // See http://stackoverflow.com/questions/2997501/cgcontextsetshadow-shadow-direction-reversed-between-ios-3-0-and-4-0
+    
+  return TTOSVersion() < 3.2f ? -1 : 1;
 }
 
 
@@ -102,8 +121,9 @@
   CGContextSaveGState(ctx);
 
   [context.shape addToPath:context.frame];
-  CGContextSetShadowWithColor(ctx, CGSizeMake(_offset.width, -_offset.height), _blur,
-                              _color.CGColor);
+  CGSize shadowOffset = CGSizeMake(_offset.width, 
+                                   [TTShadowStyle shadowVerticalMultiplier] * _offset.height);
+  CGContextSetShadowWithColor(ctx, shadowOffset, _blur, _color.CGColor);
   CGContextBeginTransparencyLayer(ctx, nil);
   [self.next draw:context];
   CGContextEndTransparencyLayer(ctx);

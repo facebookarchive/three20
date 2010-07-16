@@ -225,7 +225,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*) resolveImagePathFromURL: (NSString*) URL {
+- (NSString*) resolveResourcePathFromURL: (NSString*) URL {
     // Get the path for the URL
     NSString* path;
     if (TTIsBundleURL(URL))
@@ -242,6 +242,7 @@ static NSMutableDictionary* gNamedCaches = nil;
     // See "Supporting High-Resolution Screens" in iPhone OS Reference Library for more information.
     static NSArray* modifiers = nil;
     if (modifiers == nil) {
+#if __IPHONE_4_0 && __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
         NSString* deviceModifier = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"~ipad" : @"~iphone";
         UIScreen* screen = [UIScreen mainScreen];
         if ([screen respondsToSelector: @selector(scale)]) {
@@ -260,6 +261,10 @@ static NSMutableDictionary* gNamedCaches = nil;
         } else {
             modifiers = [[NSArray alloc] initWithObjects: deviceModifier, nil];
         }
+#else
+        NSString* deviceModifier = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"~ipad" : @"~iphone";
+        modifiers = [[NSArray alloc] initWithObjects: deviceModifier, nil];
+#endif
     }
     
     NSFileManager* fm = [NSFileManager defaultManager];
@@ -284,7 +289,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImage*)loadImageFromURL:(NSString*)URL {
-  NSString* path = [self resolveImagePathFromURL: URL];    
+  NSString* path = [self resolveResourcePathFromURL: URL];    
   return [UIImage imageWithContentsOfFile: path];
 }
 
@@ -434,7 +439,7 @@ static NSMutableDictionary* gNamedCaches = nil;
   BOOL hasImage = (nil != [_imageCache objectForKey:URL]);
 
   if (!hasImage && fromDisk) {
-    NSString* path = [self resolveImagePathFromURL: URL];
+    NSString* path = [self resolveResourcePathFromURL: URL];
     hasImage = (nil != path);
   }
 
