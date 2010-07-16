@@ -24,6 +24,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTDebug.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,6 +152,7 @@
     if (oldChild == _lastChild) {
       _lastChild = newChild;
     }
+    TTDASSERT(_firstChild != newChild);
     [_firstChild release];
     _firstChild = [newChild retain];
 
