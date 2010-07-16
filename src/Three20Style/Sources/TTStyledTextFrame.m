@@ -28,6 +28,7 @@
 @synthesize node = _node;
 @synthesize text = _text;
 @synthesize font = _font;
+@synthesize alignment = _alignment;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +36,7 @@
   if (self = [super initWithElement:element]) {
     _text = [text copy];
     _node = node;
+	_alignment = UITextAlignmentLeft;
   }
 
   return self;
@@ -58,7 +60,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawInRect:(CGRect)rect {
-  [_text drawInRect:rect withFont:_font];
+	if (_alignment != UITextAlignmentLeft) {
+		NSLog(@"here");
+	}
+	
+  [_text drawInRect:rect withFont:_font lineBreakMode:UILineBreakModeWordWrap alignment:_alignment];
 }
 
 

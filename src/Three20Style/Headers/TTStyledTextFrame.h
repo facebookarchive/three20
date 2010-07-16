@@ -23,6 +23,7 @@
   TTStyledTextNode* _node;
   NSString*         _text;
   UIFont*           _font;
+	UITextAlignment   _alignment;
 }
 
 /**
@@ -39,6 +40,8 @@
  * The font that is used to measure and display the text of this frame.
  */
 @property (nonatomic, retain) UIFont* font;
+
+@property (nonatomic) UITextAlignment alignment;
 
 - (id)initWithText:(NSString*)text element:(TTStyledElement*)element node:(TTStyledTextNode*)node;
 

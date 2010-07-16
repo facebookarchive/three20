@@ -27,7 +27,7 @@
 - (void)addActivityLabelWithStyle:(TTActivityLabelStyle)style progress:(BOOL)progress {
   TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:style] autorelease];
   UIView* lastView = [self.view.subviews lastObject];
-  label.text = @"Loading...";
+  label.text = @"Sending...";
   if (progress) {
     label.progress = 0.3;
   }

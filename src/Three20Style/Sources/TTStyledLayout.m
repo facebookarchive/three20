@@ -422,12 +422,20 @@
 
     if (elt.firstChild) {
       TTStyledNode* child = elt.firstChild;
+	  
+	  CGFloat remainingWidth = 75; // todo calculate
+		
       TTStyledLayout* layout = [[[TTStyledLayout alloc] initWithX:_minX
-                                                        width:0 height:_height] autorelease];
+                                                        width:remainingWidth height:_height] autorelease];
       layout.font = _font;
       layout.invalidImages = _invalidImages;
       [layout layout:child];
-      if (!_invalidImages && layout.invalidImages) {
+
+	  TTStyledTextFrame *textFrame = (TTStyledTextFrame*)layout.rootFrame;
+	  textFrame.alignment = textStyle.textAlignment;
+	  textFrame.width = remainingWidth;
+		
+	  if (!_invalidImages && layout.invalidImages) {
         _invalidImages = [layout.invalidImages retain];
       }
 
