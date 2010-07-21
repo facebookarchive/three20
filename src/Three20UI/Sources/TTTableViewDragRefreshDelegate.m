@@ -100,7 +100,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView {
   [super scrollViewDidScroll:scrollView];
 
-  if (_isDragging) {
+  if (_isDragging && _controller.supportsDragRefresh) {
     if (_headerView.isFlipped
         && scrollView.contentOffset.y > kRefreshDeltaY
         && scrollView.contentOffset.y < 0.0f
@@ -114,6 +114,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
       [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
     }
   }
+  _headerView.alpha = _controller.supportsDragRefresh?1:0;
 }
 
 
@@ -131,7 +132,9 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
   // If dragging ends and we are far enough to be fully showing the header view trigger a
   // load as long as we arent loading already
-  if (scrollView.contentOffset.y <= kRefreshDeltaY && !_controller.model.isLoading) {
+  if (scrollView.contentOffset.y <= kRefreshDeltaY && 
+	  !_controller.model.isLoading && 
+	  _controller.supportsDragRefresh) {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"DragRefreshTableReload" object:nil];
     [_controller.model load:TTURLRequestCachePolicyNetwork more:NO];

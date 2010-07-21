@@ -62,6 +62,8 @@
 
 @property (nonatomic, readonly) UIView* menuView;
 
+@property (nonatomic, readonly) BOOL supportsDragRefresh;
+
 /**
  * The data source used to populate the table view.
  *

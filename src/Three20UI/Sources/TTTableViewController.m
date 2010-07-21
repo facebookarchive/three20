@@ -882,5 +882,8 @@ static const CGFloat kBannerViewHeight = 22;
                     tableFrame.size.width, kBannerViewHeight);
 }
 
+- (BOOL) supportsDragRefresh {
+	return TRUE;
+}
 
 @end
