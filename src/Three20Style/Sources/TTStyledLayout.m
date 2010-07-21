@@ -21,6 +21,7 @@
 #import "Three20Style/TTStyledFrame.h"
 #import "Three20Style/TTStyleSheet.h"
 #import "Three20Style/TTBoxStyle.h"
+#import "Three20Style/TTImageStyle.h"
 #import "Three20Style/TTTextStyle.h"
 #import "Three20Style/TTStyledElement.h"
 #import "Three20Style/TTStyledInlineFrame.h"
@@ -423,7 +424,7 @@
     if (elt.firstChild) {
       TTStyledNode* child = elt.firstChild;
 	  
-	  CGFloat remainingWidth = 75; // todo calculate
+	  CGFloat remainingWidth = _width - _x - padding.margin.left; // get all the rest of the right side space
 		
       TTStyledLayout* layout = [[[TTStyledLayout alloc] initWithX:_minX
                                                         width:remainingWidth height:_height] autorelease];
@@ -576,7 +577,30 @@
   TTStyle* style = imageNode.className
     ? [[TTStyleSheet globalStyleSheet] styleWithSelector:imageNode.className] : nil;
   TTBoxStyle* padding = style ? [style firstStyleOfClass:[TTBoxStyle class]] : nil;
+	
+  TTImageStyle *imgStyle = style ? [style firstStyleOfClass:[TTImageStyle class]] : nil;
 
+	if (imgStyle) {
+		if (imgStyle.defaultImage && !imageNode.defaultImage) {
+			imageNode.defaultImage = imgStyle.defaultImage;
+			
+			if (!imageNode.width) {
+				imageNode.width = imageNode.defaultImage.size.width;
+			}
+			if (!imageNode.height) {
+				imageNode.height = imageNode.defaultImage.size.height;
+			}
+		}
+
+		if (imgStyle.size.width && !imageNode.width) {
+			imageNode.width = imgStyle.size.width;
+		}
+		
+		if (imgStyle.size.height && !imageNode.height) {
+			imageNode.height = imgStyle.size.height;
+		}
+	}
+	
   CGFloat imageWidth = imageNode.width ? imageNode.width : image.size.width;
   CGFloat imageHeight = imageNode.height ? imageNode.height : image.size.height;
   CGFloat contentWidth = imageWidth;

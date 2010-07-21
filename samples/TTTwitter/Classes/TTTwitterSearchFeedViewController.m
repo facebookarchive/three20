@@ -39,7 +39,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)createModel {
   self.dataSource = [[[TTTwitterSearchFeedDataSource alloc]
-                      initWithSearchQuery:@"three20"] autorelease];
+                      initWithSearchQuery:@"lodestone"] autorelease];
 }
 
 
