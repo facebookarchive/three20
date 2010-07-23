@@ -44,6 +44,9 @@ static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
 static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant";
 
+UIKIT_EXTERN NSString *const UIApplicationDidEnterBackgroundNotification __attribute__((weak_import));
+UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attribute__((weak_import));
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,10 +74,9 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
                selector:@selector(applicationWillLeaveForeground:)
                    name:UIApplicationWillTerminateNotification
                  object:nil];
-    // XXX the notification name is a string because the symbol is unavailable pre-OS 4.0
     [center addObserver:self
                selector:@selector(applicationWillLeaveForeground:)
-                   name:@"UIApplicationDidEnterBackgroundNotification"
+                   name:UIApplicationDidEnterBackgroundNotification
                  object:nil];
   }
   return self;
