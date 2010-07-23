@@ -16,6 +16,9 @@
 
 #import "Three20UI/TTTableHeaderDragRefreshView.h"
 
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
+
 // Style
 #import "Three20Style/TTGlobalStyle.h"
 #import "Three20Style/TTDefaultStyleSheet+DragRefreshHeader.h"
