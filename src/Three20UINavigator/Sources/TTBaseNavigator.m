@@ -74,10 +74,12 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
                selector:@selector(applicationWillLeaveForeground:)
                    name:UIApplicationWillTerminateNotification
                  object:nil];
-    [center addObserver:self
-               selector:@selector(applicationWillLeaveForeground:)
-                   name:UIApplicationDidEnterBackgroundNotification
-                 object:nil];
+    if (nil != &UIApplicationDidEnterBackgroundNotification) {
+      [center addObserver:self
+                 selector:@selector(applicationWillLeaveForeground:)
+                     name:UIApplicationDidEnterBackgroundNotification
+                   object:nil];
+    }
   }
   return self;
 }
