@@ -16,6 +16,7 @@
 		6E178E9E1183C8F6003B099E /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E901183C8F6003B099E /* NSMutableArrayAdditions.m */; };
 		6E178EA01183C8F6003B099E /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E921183C8F6003B099E /* NSObjectAdditions.m */; };
 		6E178EA11183C8F6003B099E /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E931183C8F6003B099E /* NSStringAdditions.m */; };
+		6E3680E311F9D4130029046C /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */; };
 		6E55A4971183C946002768DE /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E55A4951183C946002768DE /* TTDebug.m */; };
 		6E55A49A1183C94F002768DE /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E55A4981183C94F002768DE /* TTMarkupStripper.m */; };
 		6E55A49C1183C956002768DE /* TTMarkupStripper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E55A49B1183C956002768DE /* TTMarkupStripper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,7 +41,6 @@
 		6EB4606E1183CFD500685649 /* TTGlobalCorePaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E7A1183C8DA003B099E /* TTGlobalCorePaths.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB460901183D14800685649 /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608E1183D14800685649 /* CoreAdditionTests.m */; };
 		6EB460911183D14800685649 /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608F1183D14800685649 /* CoreGlobalTests.m */; };
-		6EB460DA1183D8CB00685649 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */; };
 		6EDAE9C7118CA1720008133C /* TTGlobalCoreRects.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDAE9C6118CA1720008133C /* TTGlobalCoreRects.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EDAE9C9118CA1790008133C /* TTGlobalCoreRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDAE9C8118CA1790008133C /* TTGlobalCoreRects.m */; };
 /* End PBXBuildFile section */
@@ -114,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EB460DA1183D8CB00685649 /* libThree20Core.a in Frameworks */,
+				6E3680E311F9D4130029046C /* libThree20Core.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +480,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
+				SDKROOT = iphonesimulator4.0;
 			};
 			name = Internal;
 		};
