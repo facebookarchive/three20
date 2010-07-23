@@ -54,8 +54,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _sendTimer = nil;
 
     [[TTNavigator navigator].URLMap from:@"tt://compose?to=(composeTo:)"

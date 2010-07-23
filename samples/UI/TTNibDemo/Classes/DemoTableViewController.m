@@ -49,19 +49,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Called for manual inits, but not NIB inits
- */
-- (id)init {
-  if (self = [self initWithNibName:nil bundle:nil]) {
-    self.tableViewStyle = UITableViewStyleGrouped;
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 -(void)dealloc {
   TT_RELEASE_SAFELY(_footerView);
   TT_RELEASE_SAFELY(_headerView);
