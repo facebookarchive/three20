@@ -24,6 +24,7 @@
   NSString*         _text;
   UIFont*           _font;
 	UITextAlignment   _alignment;
+	UILineBreakMode   _lineBreakMode;
 }
 
 /**
@@ -42,6 +43,7 @@
 @property (nonatomic, retain) UIFont* font;
 
 @property (nonatomic) UITextAlignment alignment;
+@property (nonatomic) UILineBreakMode lineBreakMode;
 
 - (id)initWithText:(NSString*)text element:(TTStyledElement*)element node:(TTStyledTextNode*)node;
 

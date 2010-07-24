@@ -514,7 +514,7 @@
     }
 
     if (elt.firstChild) {
-      [self layout:elt.firstChild container:elt];
+		[self layout:elt.firstChild container:elt style:textStyle];
     }
 
     if (isBlock) {
@@ -664,7 +664,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutText:(TTStyledTextNode*)textNode container:(TTStyledElement*)element {
+- (void)layoutText:(TTStyledTextNode*)textNode container:(TTStyledElement*)element style:(TTTextStyle*) style {
   NSString* text = textNode.text;
   NSUInteger length = text.length;
 
@@ -677,6 +677,22 @@
          height:textSize.height];
     _height += textSize.height;
     return;
+  }
+
+  if (style && style.numberOfLines == 1) {
+    CGFloat availWidth = _width ? _width : CGFLOAT_MAX;
+
+	CGSize linesSize = [text sizeWithFont:_font
+						constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
+							lineBreakMode:style.lineBreakMode];
+
+    [self expandLineWidth:linesSize.width];
+	[self inflateLineHeight:[_font ttLineHeight]];
+	  
+	TTStyledTextFrame *frame = (TTStyledTextFrame*)[self addFrameForText:text element:element node:textNode width:linesSize.width
+										  height:[_font ttLineHeight]];
+	frame.lineBreakMode = style.lineBreakMode;
+	return;
   }
 
   NSCharacterSet* whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
@@ -789,6 +805,9 @@
   }
 }
 
+- (void)layoutText:(TTStyledTextNode*)textNode container:(TTStyledElement*)element {
+	[self layoutText:textNode container:element style:nil];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -817,7 +836,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layout:(TTStyledNode*)node container:(TTStyledElement*)element {
+- (void)layout:(TTStyledNode*)node container:(TTStyledElement*)element style:(TTStyle*) style {
   while (node) {
     if ([node isKindOfClass:[TTStyledImageNode class]]) {
       TTStyledImageNode* imageNode = (TTStyledImageNode*)node;
@@ -827,11 +846,15 @@
       [self layoutElement:elt];
     } else if ([node isKindOfClass:[TTStyledTextNode class]]) {
       TTStyledTextNode* textNode = (TTStyledTextNode*)node;
-      [self layoutText:textNode container:element];
+	  [self layoutText:textNode container:element style:(TTTextStyle*)style];
     }
 
     node = node.nextSibling;
   }
+}
+
+- (void)layout:(TTStyledNode*)node container:(TTStyledElement*)element {
+	[self layout:node container:element style:nil];
 }
 
 

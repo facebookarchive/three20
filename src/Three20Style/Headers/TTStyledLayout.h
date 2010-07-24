@@ -63,5 +63,6 @@
 
 - (void)layout:(TTStyledNode*)node;
 - (void)layout:(TTStyledNode*)node container:(TTStyledElement*)element;
+- (void)layout:(TTStyledNode*)node container:(TTStyledElement*)element style:(TTStyle*) style;
 
 @end
