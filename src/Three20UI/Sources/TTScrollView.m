@@ -38,6 +38,7 @@ static const NSTimeInterval kBounceDuration = 0.3;
 static const NSTimeInterval kOvershoot = 2;
 static const CGFloat kIncreaseSpeed = 1.5;    // How much increase after release touch.
                                               // (Residual movement).
+static const CGFloat kFrameDuration = 1.0/40.0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -979,7 +980,7 @@ static const CGFloat kIncreaseSpeed = 1.5;    // How much increase after release
     _animateEdges = edges;
     _animationDuration = duration;
     _animationStartTime = [[NSDate date] retain];
-    _animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self
+    _animationTimer = [NSTimer scheduledTimerWithTimeInterval:kFrameDuration target:self
       selector:@selector(animator) userInfo:nil repeats:YES];
   }
 }
@@ -1444,7 +1445,7 @@ static const CGFloat kIncreaseSpeed = 1.5;    // How much increase after release
             _decelerating = YES;
 
             TT_INVALIDATE_TIMER(_tapTimer);
-            _animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self
+            _animationTimer = [NSTimer scheduledTimerWithTimeInterval:kFrameDuration target:self
                                      selector:@selector(inertiaAnimator) userInfo:nil repeats:YES];
           }
         }
