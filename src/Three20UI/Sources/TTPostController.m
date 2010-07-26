@@ -16,6 +16,10 @@
 
 #import "Three20UI/TTPostController.h"
 
+// Core
+#import "Three20Core/NSObjectAdditions.h"
+#import "Three20Core/TTDebug.h"
+
 // UI
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTPostControllerDelegate.h"
@@ -380,12 +384,17 @@ static const CGFloat kMarginY = 6;
   self.view.frame = [UIScreen mainScreen].applicationFrame;
   [window addSubview:self.view];
 
+    // cdonnelly 2010-07-26: Confused here.
+    // If defaultText has a value, we copy it to the textview and blast it, but if the textView has text, we set the defaultView?!
+    // Why? What is the difference?
   if (_defaultText) {
     _textView.text = _defaultText;
-    TT_RELEASE_SAFELY(_defaultText);
+//    TT_RELEASE_SAFELY(_defaultText);
   } else {
     _defaultText = [_textView.text retain];
   }
+    
+  TTDASSERT([_defaultText isEqualToString: _textView.text]);
 
   _innerView.frame = self.view.bounds;
   [_navigationBar sizeToFit];
@@ -500,7 +509,7 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)post {
   BOOL shouldDismiss = [self willPostText:_textView.text];
-  if ([_delegate respondsToSelector:@selector(postController:willPostText:)]) {
+  if (shouldDismiss && [_delegate respondsToSelector:@selector(postController:willPostText:)]) {
     shouldDismiss = [_delegate postController:self willPostText:_textView.text];
   }
 
@@ -514,8 +523,8 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cancel {
-  if (!_textView.text.isEmptyOrWhitespace
-      && !(_defaultText && [_defaultText isEqualToString:_textView.text])) {
+  // cdonnelly 2010-07-26: Prompt to cancel if the user changed the text at all, including if they blanked it out.
+  if (![NSObject value: _defaultText isEqual: _textView.text]) {
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
       TTLocalizedString(@"Cancel", @"")
       message:TTLocalizedString(@"Are you sure you want to cancel?", @"")

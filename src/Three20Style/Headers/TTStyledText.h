@@ -28,6 +28,7 @@
   TTStyledNode*   _rootNode;
   TTStyledFrame*  _rootFrame;
   UIFont*         _font;
+  CGFloat         _contentWidth;
   CGFloat         _width;
   CGFloat         _height;
   NSMutableArray* _invalidImages;
@@ -64,6 +65,11 @@
  * The height is automatically calculated based on the width and the size of word-wrapped text.
  */
 @property (nonatomic, readonly) CGFloat height;
+
+/**
+ * The actual width of the text content.
+ */
+@property (nonatomic) CGFloat contentWidth;
 
 /**
  * Indicates if the text needs layout to recalculate its size.
