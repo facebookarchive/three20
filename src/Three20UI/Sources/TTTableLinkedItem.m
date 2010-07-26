@@ -33,10 +33,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  self.URL          = nil;
-  self.accessoryURL = nil;
-  self.delegate     = nil;
-  self.selector     = nil;
+  TT_RELEASE_SAFELY(_URL);
+  TT_RELEASE_SAFELY(_accessoryURL);
+  _delegate = nil;
+  _selector = nil;
 
   [super dealloc];
 }
