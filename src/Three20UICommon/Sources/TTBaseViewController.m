@@ -96,6 +96,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
 	CGRect keyboardBounds;
 	[[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
@@ -122,6 +123,7 @@
     [UIView commitAnimations];
   }
 }
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -280,6 +282,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)keyboardDidShow:(NSNotification*)notification {
 #ifdef __IPHONE_3_21
   CGRect frameStart;
@@ -293,6 +296,7 @@
 
   [self keyboardDidAppear:YES withBounds:keyboardBounds];
 }
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -304,6 +308,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)keyboardWillHide:(NSNotification*)notification {
 #ifdef __IPHONE_3_21
   CGRect frameEnd;
@@ -317,6 +322,7 @@
 
   [self keyboardWillDisappear:YES withBounds:keyboardBounds];
 }
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
