@@ -131,6 +131,7 @@ static const CGFloat kMarginY = 6;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)showKeyboard {
   UIApplication* app = [UIApplication sharedApplication];
   _originalStatusBarStyle = app.statusBarStyle;
@@ -146,9 +147,11 @@ static const CGFloat kMarginY = 6;
   }
   [_textView becomeFirstResponder];
 }
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)hideKeyboard {
   UIApplication* app = [UIApplication sharedApplication];
 #ifdef __IPHONE_3_2
@@ -160,6 +163,7 @@ static const CGFloat kMarginY = 6;
   [app setStatusBarStyle:_originalStatusBarStyle animated:NO];
   [_textView resignFirstResponder];
 }
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

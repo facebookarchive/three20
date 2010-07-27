@@ -319,6 +319,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)showBars:(BOOL)show animated:(BOOL)animated {
 #ifdef __IPHONE_3_2
 	if ([[UIApplication sharedApplication] respondsToSelector:@selector(setStatusBarHidden:withAnimation:)])
@@ -336,6 +337,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
     [UIView commitAnimations];
   }
 }
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
