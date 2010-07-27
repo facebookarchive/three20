@@ -24,8 +24,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _styleSheet = [[TTCSSStyleSheet alloc] init];
 
     _loadedSuccessfully = [_styleSheet

@@ -20,7 +20,7 @@
 typedef enum {
   TTTableHeaderDragRefreshReleaseToReload,
   TTTableHeaderDragRefreshPullToReload,
-  TTTableHeaderDragRefreshLoadingStatus
+  TTTableHeaderDragRefreshLoading
 } TTTableHeaderDragRefreshStatus;
 
 /**
@@ -32,16 +32,10 @@ typedef enum {
   UILabel*                  _statusLabel;
   UIImageView*              _arrowImage;
   UIActivityIndicatorView*  _activityView;
-
-  BOOL                      _isFlipped;
 }
 
-@property (nonatomic) BOOL isFlipped;
-
-- (void)flipImageAnimated:(BOOL)animated;
 - (void)setCurrentDate;
 - (void)setUpdateDate:(NSDate*)date;
-- (void)showActivity:(BOOL)shouldShow;
 - (void)setStatus:(TTTableHeaderDragRefreshStatus)status;
 
 @end

@@ -1,0 +1,6 @@
+{
+	MainTemplateFile = "class.m";
+	CounterpartTemplateFile = "class.h";
+	Description = "An Objective-C class which is a subclass of TTDefaultStyleSheet.";
+}
+

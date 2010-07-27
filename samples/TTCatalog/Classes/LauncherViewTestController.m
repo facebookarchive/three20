@@ -7,8 +7,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Launcher";
   }
   return self;
@@ -23,7 +23,7 @@
 
 - (void)loadView {
   [super loadView];
-                                             
+
   _launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
   _launcherView.backgroundColor = [UIColor blackColor];
   _launcherView.delegate = self;
@@ -63,7 +63,7 @@
       nil
     ];
   [self.view addSubview:_launcherView];
-  
+
   TTLauncherItem* item = [_launcherView itemWithURL:@"fb://item3"];
   item.badgeNumber = 4;
 }
@@ -75,7 +75,7 @@
 }
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher {
-  [self.navigationItem setRightBarButtonItem:[[[UIBarButtonItem alloc] 
+  [self.navigationItem setRightBarButtonItem:[[[UIBarButtonItem alloc]
     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
     target:_launcherView action:@selector(endEditing)] autorelease] animated:YES];
 }

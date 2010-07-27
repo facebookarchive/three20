@@ -25,6 +25,7 @@
 
 // UI (private)
 #import "Three20UI/TTLauncherScrollView.h"
+#import "Three20UI/TTLauncherHighlightView.h"
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
@@ -39,6 +40,7 @@
 // Core
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
+#import "Three20Core/TTGlobalCoreRects.h"
 
 static const CGFloat kMargin = 0;
 static const CGFloat kPadding = 0;
@@ -969,9 +971,47 @@ static const NSInteger kDefaultColumnCount = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)beginHighlightItem:(TTLauncherItem*)item withText:(NSString*)text {
+  if (nil == _highlightView) {
+    _highlightView = [[TTLauncherHighlightView alloc] initWithFrame:self.window.bounds];
+    _highlightView.parentView = self;
+    [self.window addSubview:_highlightView];
+  }
+
+  TTLauncherButton* button = [self buttonForItem:item];
+  _highlightView.text = text;
+  _highlightView.highlightRect = TTRectInset([self.window convertRect:button.frame
+                                                             fromView:_scrollView],
+                                             UIEdgeInsetsMake(8.0, 2.0, -4.0, 2.0));
+  [_highlightView setNeedsDisplay];
+  [_highlightView appear:YES];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)endHighlightItem:(TTLauncherItem*)item {
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
+  [UIView setAnimationDelegate:self];
+  [UIView setAnimationDidStopSelector:@selector(highlightEndDidFinish)];
+  _highlightView.alpha = 0.0;
+  [UIView commitAnimations];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)highlightEndDidFinish {
+  [_highlightView removeFromSuperview];
+  TT_RELEASE_SAFELY(_highlightView);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
     TT_RELEASE_SAFELY(_pages);
     _pages = [[NSMutableArray alloc] init];
     [self recreateButtons];
 }
+
+
 @end

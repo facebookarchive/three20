@@ -111,8 +111,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _fontSize = 12;
 
     [TTStyleSheet setGlobalStyleSheet:[[[ButtonTestStyleSheet alloc] init] autorelease]];

@@ -48,7 +48,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
-  if (self = [self init]) {
+  if (self = [self initWithNibName:nil bundle:nil]) {
   }
 
   return self;

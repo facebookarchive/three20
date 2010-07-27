@@ -91,10 +91,10 @@ BOOL TTIsPhoneSupported() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsPad() {
-#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
-  return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+#ifdef __IPHONE_3_2
+		return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
 #else
-  return NO;
+		return NO;
 #endif
 }
 

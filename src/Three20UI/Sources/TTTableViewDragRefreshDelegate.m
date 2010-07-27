@@ -63,14 +63,16 @@ static const CGFloat kRefreshDeltaY = -65.0f;
                                                    _controller.tableView.bounds.size.height)];
     _headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _headerView.backgroundColor = TTSTYLEVAR(tableRefreshHeaderBackgroundColor);
+    [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
     [_controller.tableView addSubview:_headerView];
 
     // Hook up to the model to listen for changes.
-    [controller.model.delegates addObject:self];
+    _model = [controller.model retain];
+    [_model.delegates addObject:self];
 
     // Grab the last refresh date if there is one.
-    if ([_controller.model respondsToSelector:@selector(loadedTime)]) {
-      NSDate* date = [_controller.model performSelector:@selector(loadedTime)];
+    if ([_model respondsToSelector:@selector(loadedTime)]) {
+      NSDate* date = [_model performSelector:@selector(loadedTime)];
 
       if (nil != date) {
         [_headerView setUpdateDate:date];
@@ -83,8 +85,9 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [_controller.model.delegates removeObject:self];
+  [_model.delegates removeObject:self];
   TT_RELEASE_SAFELY(_headerView);
+  TT_RELEASE_SAFELY(_model);
 
   [super dealloc];
 }
@@ -100,28 +103,15 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView {
   [super scrollViewDidScroll:scrollView];
 
-  if (_isDragging) {
-    if (_headerView.isFlipped
-        && scrollView.contentOffset.y > kRefreshDeltaY
-        && scrollView.contentOffset.y < 0.0f
-        && !_controller.model.isLoading) {
-      [_headerView flipImageAnimated:YES];
+  if (scrollView.dragging && !_model.isLoading) {
+    if (scrollView.contentOffset.y > kRefreshDeltaY
+        && scrollView.contentOffset.y < 0.0f) {
       [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
-    } else if (!_headerView.isFlipped
-               && scrollView.contentOffset.y < kRefreshDeltaY) {
-      [_headerView flipImageAnimated:YES];
+    } else if (scrollView.contentOffset.y < kRefreshDeltaY) {
       [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
     }
   }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView {
-  [super scrollViewWillBeginDragging:scrollView];
-
-  _isDragging = YES;
 }
 
 
@@ -131,13 +121,11 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
   // If dragging ends and we are far enough to be fully showing the header view trigger a
   // load as long as we arent loading already
-  if (scrollView.contentOffset.y <= kRefreshDeltaY && !_controller.model.isLoading) {
+  if (scrollView.contentOffset.y <= kRefreshDeltaY && !_model.isLoading) {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"DragRefreshTableReload" object:nil];
-    [_controller.model load:TTURLRequestCachePolicyNetwork more:NO];
+    [_model load:TTURLRequestCachePolicyNetwork more:NO];
   }
-
-  _isDragging = NO;
 }
 
 
@@ -149,7 +137,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)modelDidStartLoad:(id<TTModel>)model {
-  [_headerView showActivity:YES];
+  [_headerView setStatus:TTTableHeaderDragRefreshLoading];
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultFastTransitionDuration];
@@ -160,9 +148,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)modelDidFinishLoad:(id<TTModel>)model {
-  [_headerView flipImageAnimated:NO];
-  [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
-  [_headerView showActivity:NO];
+  [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultTransitionDuration];
@@ -181,9 +167,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didFailLoadWithError:(NSError*)error {
-  [_headerView flipImageAnimated:NO];
-  [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
-  [_headerView showActivity:NO];
+  [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultTransitionDuration];
@@ -194,9 +178,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)modelDidCancelLoad:(id<TTModel>)model {
-  [_headerView flipImageAnimated:NO];
-  [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
-  [_headerView showActivity:NO];
+  [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultTransitionDuration];

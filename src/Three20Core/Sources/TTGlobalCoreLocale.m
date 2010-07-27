@@ -79,9 +79,8 @@ NSString* TTDescriptionForError(NSError* error) {
 NSString* TTFormatInteger(NSInteger num) {
   NSNumber* number = [NSNumber numberWithInt:num];
   NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
-  [formatter setNumberStyle:kCFNumberFormatterDecimalStyle];
-  [formatter setGroupingSeparator:@","];
-  NSString* formatted = [formatter stringForObjectValue:number];
+  [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+  NSString* formatted = [formatter stringFromNumber:number];
   [formatter release];
   return formatted;
 }

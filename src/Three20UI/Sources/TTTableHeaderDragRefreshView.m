@@ -16,6 +16,9 @@
 
 #import "Three20UI/TTTableHeaderDragRefreshView.h"
 
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
+
 // Style
 #import "Three20Style/TTGlobalStyle.h"
 #import "Three20Style/TTDefaultStyleSheet+DragRefreshHeader.h"
@@ -35,7 +38,37 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTTableHeaderDragRefreshView
 
-@synthesize isFlipped = _isFlipped;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showActivity:(BOOL)shouldShow animated:(BOOL)animated {
+  if (shouldShow) {
+    [_activityView startAnimating];
+  } else {
+    [_activityView stopAnimating];
+  }
+
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:(animated ? ttkDefaultFastTransitionDuration : 0.0)];
+  _arrowImage.alpha = (shouldShow ? 0.0 : 1.0);
+  [UIView commitAnimations];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setImageFlipped:(BOOL)flipped {
+  [UIView beginAnimations:nil context:NULL];
+  [UIView setAnimationDuration:ttkDefaultFastTransitionDuration];
+  [_arrowImage layer].transform = (flipped ?
+                                   CATransform3DMakeRotation(M_PI * 2, 0.0f, 0.0f, 1.0f) :
+                                   CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f));
+  [UIView commitAnimations];
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,11 +119,9 @@
 
     _activityView = [[UIActivityIndicatorView alloc]
                      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _activityView.frame = CGRectMake( 25.0f, frame.size.height - 38.0f, 20.0f, 20.0f );
+    _activityView.frame = CGRectMake( 30.0f, frame.size.height - 38.0f, 20.0f, 20.0f );
     _activityView.hidesWhenStopped  = YES;
     [self addSubview:_activityView];
-
-    _isFlipped = NO;
   }
   return self;
 }
@@ -110,19 +141,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)flipImageAnimated:(BOOL)animated {
-  [UIView beginAnimations:nil context:NULL];
-  [UIView setAnimationDuration:animated ? .18 : 0.0];
-  [_arrowImage layer].transform = _isFlipped ?
-    CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f) :
-    CATransform3DMakeRotation(M_PI * 2, 0.0f, 0.0f, 1.0f);
-  [UIView commitAnimations];
-
-  _isFlipped = !_isFlipped;
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,18 +179,24 @@
 - (void)setStatus:(TTTableHeaderDragRefreshStatus)status {
   switch (status) {
     case TTTableHeaderDragRefreshReleaseToReload: {
+      [self showActivity:NO animated:NO];
+      [self setImageFlipped:YES];
       _statusLabel.text = TTLocalizedString(@"Release to update...",
                                             @"Release the table view to update the contents.");
       break;
     }
 
     case TTTableHeaderDragRefreshPullToReload: {
+      [self showActivity:NO animated:NO];
+      [self setImageFlipped:NO];
       _statusLabel.text = TTLocalizedString(@"Pull down to update...",
                                             @"Drag the table view down to update the contents.");
       break;
     }
 
-    case TTTableHeaderDragRefreshLoadingStatus: {
+    case TTTableHeaderDragRefreshLoading: {
+      [self showActivity:YES animated:YES];
+      [self setImageFlipped:NO];
       _statusLabel.text = TTLocalizedString(@"Updating...",
                                             @"Updating the contents of a table view.");
       break;
@@ -183,21 +207,5 @@
     }
   }
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showActivity:(BOOL)shouldShow {
-  if (shouldShow) {
-    [_activityView startAnimating];
-    _arrowImage.hidden = YES;
-    [self setStatus:TTTableHeaderDragRefreshLoadingStatus];
-
-  } else {
-    [_activityView stopAnimating];
-    _arrowImage.hidden = NO;
-  }
-
-}
-
 
 @end

@@ -216,9 +216,12 @@
       @"three20", @"q",
       @"en",      @"hl",
       nil];
-  STAssertTrue([[baseUrl stringByAddingQueryDictionary:query]
-    isEqualToString:[baseUrl stringByAppendingString:@"?hl=en&q=three20"]],
-    @"Empty dictionary fail.");
+  NSString* baseUrlWithQuery = [baseUrl stringByAddingQueryDictionary:query];
+  STAssertTrue([baseUrlWithQuery isEqualToString:[baseUrl
+                                                  stringByAppendingString:@"?hl=en&q=three20"]]
+               || [baseUrlWithQuery isEqualToString:[baseUrl
+                                                     stringByAppendingString:@"?q=three20&hl=en"]],
+    @"Additional query parameters not correct. %@", [baseUrl stringByAddingQueryDictionary:query]);
 }
 
 

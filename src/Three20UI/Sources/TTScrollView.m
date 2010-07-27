@@ -36,7 +36,9 @@ static const NSInteger kInvalidIndex = -1;
 static const NSTimeInterval kFlickDuration = 0.4;
 static const NSTimeInterval kBounceDuration = 0.3;
 static const NSTimeInterval kOvershoot = 2;
-
+static const CGFloat kIncreaseSpeed = 1.5;    // How much increase after release touch.
+                                              // (Residual movement).
+static const CGFloat kFrameDuration = 1.0/40.0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,6 +57,13 @@ static const NSTimeInterval kOvershoot = 2;
 
 @synthesize holdsAfterTouchingForInterval = _holdsAfterTouchingForInterval;
 
+@synthesize decelerationRate = _decelerationRate;
+@synthesize decelerating     = _decelerating;
+
+@synthesize maximumZoomScale  = _maximumZoomScale;
+@synthesize zoomScale         = _zoomScale;
+@synthesize zooming           = _executingZoomGesture;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
@@ -72,6 +81,8 @@ static const NSTimeInterval kOvershoot = 2;
     _zoomEnabled = YES;
     _rotateEnabled = YES;
     _orientation = UIDeviceOrientationPortrait;
+    _decelerationRate = 0.9;      // Inertia, how faster slow the residual movement.
+    _maximumZoomScale = 4.0;      // Maximum zoom scale default value.
 
     for (NSInteger i = 0; i < _maxPages; ++i) {
       [_pages addObject:[NSNull null]];
@@ -194,11 +205,19 @@ static const NSTimeInterval kOvershoot = 2;
   return _pageEdges.left < 0 ? -_overshoot : _overshoot;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(CGFloat)stretchedWidth {
+  return -_pageEdges.left + self.pageWidth + _pageEdges.right;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(CGFloat)stretchedHeight {
+  return -_pageEdges.top + self.pageHeight + _pageEdges.bottom;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)zoomFactor {
-  CGFloat stretchedWidth = -_pageEdges.left + self.pageWidth + _pageEdges.right;
-  return stretchedWidth / self.pageWidth;
+  return self.stretchedWidth / self.pageWidth;
 }
 
 
@@ -262,9 +281,11 @@ static const NSTimeInterval kOvershoot = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)supportsOrientation:(UIInterfaceOrientation)orientation {
   return orientation == UIInterfaceOrientationLandscapeLeft
-          || orientation == UIInterfaceOrientationLandscapeRight
-          || orientation == UIInterfaceOrientationPortrait
-          || orientation == UIInterfaceOrientationPortraitUpsideDown;
+  || orientation == UIInterfaceOrientationLandscapeRight
+  || orientation == UIInterfaceOrientationPortrait
+  || orientation == UIInterfaceOrientationPortraitUpsideDown
+  || orientation == UIDeviceOrientationFaceDown
+  || orientation == UIDeviceOrientationFaceUp;
 }
 
 
@@ -272,8 +293,6 @@ static const NSTimeInterval kOvershoot = 2;
 /**
  * TODO: Candidate for a more general purpose location. Pull the orientation into the method
  * params and expose this method as a static method.
- *
- * @private
  */
 - (CGAffineTransform)rotateTransform:(CGAffineTransform)transform {
   if (_orientation == UIInterfaceOrientationLandscapeLeft) {
@@ -292,8 +311,6 @@ static const NSTimeInterval kOvershoot = 2;
 /**
  * Get the location of the touch by taking into account the orientation.
  * In landscape mode, the x and y values are flipped.
- *
- * @private
  */
 - (CGPoint)touchLocation:(UITouch*)touch {
   CGPoint point = [touch locationInView:self];
@@ -580,29 +597,40 @@ static const NSTimeInterval kOvershoot = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIEdgeInsets)squareTouchEdges:(UIEdgeInsets)edges {
-  if (_touchCount == 1) {
-    return edges;
-  } else {
-    CGFloat width = edges.right - edges.left;
-    CGFloat height = edges.bottom - edges.top;
-    CGFloat d = sqrt((width*width) + (height*height));
-    CGFloat midX = edges.left + (width/2);
-    CGFloat midY = edges.top + (height/2);
-
-    return UIEdgeInsetsMake(midY - d/2, midX - d/2, midY + d/2, midX + d/2);
-  }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIEdgeInsets)touchEdgesForPoint:(CGPoint)point {
   return [self stretchTouchEdges:UIEdgeInsetsZero toPoint:point];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIEdgeInsets)squareTouchEdges:(UIEdgeInsets)edges {
+  //if (_touchCount == 1) {
+    return edges;
+  //} else {
+  // ********
+  //
+  //    This math isn't used anymore since we rewrote the zoom engine.
+  //    Still here, for reference and nothing more.
+  //
+    /* CGFloat width = edges.right - edges.left;
+    CGFloat height = edges.bottom - edges.top;
+    CGFloat d = sqrt((width*width) + (height*height));
+    CGFloat midX = edges.left + (width/1.3);
+    CGFloat midY = edges.top + (height/1.3);
+
+    return UIEdgeInsetsMake(midY - d/2, midX - d/2, midY + d/2, midX + d/2);*/
+  //}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIEdgeInsets)zoomPageEdgesTo:(CGPoint)point {
+// ********
+//
+//    This math isn't used anymore since we rewrote the zoom engine.
+//    Still here, for reference and nothing more.
+/*
+
   UIEdgeInsets edges = _pageEdges;
 
   CGFloat zoom = kTapZoom * self.pageWidth;
@@ -631,8 +659,8 @@ static const NSTimeInterval kOvershoot = 2;
     edges.top += -edges.bottom;
     edges.bottom = 0;
   }
-
-  return edges;
+*/
+  return UIEdgeInsetsZero;
 }
 
 
@@ -771,17 +799,21 @@ static const NSTimeInterval kOvershoot = 2;
       CGRect frame = [self frameOfPageAtIndex:_centerPageIndex + (self.flipped ? -1 : 1)];
       CGFloat overflow = centerPageOverflow + [self overflowForFrame:frame];
       if (fabs(_pageStartEdges.left) >= fabs(_pageEdges.right)) {
-        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.right + _overshoot + overflow);
+        left = right = -((self.pageWidth + _pageSpacing)
+                         + _pageEdges.right + _overshoot + overflow);
       } else {
-        left = right = -((self.pageWidth + _pageSpacing) + _pageEdges.left + _overshoot + overflow);
+        left = right = -((self.pageWidth + _pageSpacing)
+                         + _pageEdges.left + _overshoot + overflow);
       }
     } else {
       CGRect frame = [self frameOfPageAtIndex:_centerPageIndex + (self.flipped ? 1 : -1)];
       CGFloat overflow = centerPageOverflow + [self overflowForFrame:frame];
       if (fabs(_pageEdges.left) >= fabs(_pageEdges.right)) {
-        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.right + _overshoot + overflow);
+        left = right = ((self.pageWidth + _pageSpacing)
+                        - _pageEdges.right + _overshoot + overflow);
       } else {
-        left = right = ((self.pageWidth + _pageSpacing) - _pageEdges.left + _overshoot + overflow);
+        left = right = ((self.pageWidth + _pageSpacing)
+                        - _pageEdges.left + _overshoot + overflow);
       }
     }
 
@@ -948,7 +980,7 @@ static const NSTimeInterval kOvershoot = 2;
     _animateEdges = edges;
     _animationDuration = duration;
     _animationStartTime = [[NSDate date] retain];
-    _animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.005 target:self
+    _animationTimer = [NSTimer scheduledTimerWithTimeInterval:kFrameDuration target:self
       selector:@selector(animator) userInfo:nil repeats:YES];
   }
 }
@@ -1043,6 +1075,164 @@ static const NSTimeInterval kOvershoot = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Animate deceleration.
+ */
+-(void)inertiaAnimator {
+  // Inertia, slowing the speed. If are pulled, double inertia (Slow MUCH faster).
+  _inertiaSpeed.x *= (self.pulled ? _decelerationRate / 2 : _decelerationRate);
+  _inertiaSpeed.y *= (self.pulled ? _decelerationRate / 2 : _decelerationRate);
+
+  // Calculate Edges based on Speed.
+  CGFloat top    = _pageEdges.top + _inertiaSpeed.y;
+  CGFloat left  = _pageEdges.left + _inertiaSpeed.x;
+  CGFloat right  = _pageEdges.right + _inertiaSpeed.x;
+  CGFloat bottom  = _pageEdges.bottom + _inertiaSpeed.y;
+
+  // Format New Edges.
+  UIEdgeInsets newEdges = UIEdgeInsetsMake(top, left, bottom, right);
+
+  // Update Zooming.
+  [self updateZooming:newEdges];
+
+  // Apply New Edges and Relayout.
+  _pageEdges = newEdges; [self setNeedsLayout];
+
+  // Neligible speed, stop.
+  if (abs(_inertiaSpeed.x) < 0.05 && abs(_inertiaSpeed.y) < 0.05) {
+    // Stop animator.
+    [self stopAnimation:NO];
+
+    // Reset.
+    _decelerating = NO;
+    _inertiaSpeed = CGPointZero;
+
+    // Warn delegate.
+    if ([_delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+      [_delegate scrollViewDidEndDecelerating:self];
+    }
+
+    // Return to NORMAL BOUNDS, animated.
+    if ((self.pinched || (_touchCount == 0 && self.pulled)) && self.scrollEnabled) {
+      UIEdgeInsets edges = [self pageEdgesForAnimation];
+      NSTimeInterval dur = self.flicked ? kFlickDuration : kBounceDuration;
+      [self startAnimationTo:edges duration:dur];
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(CGPoint)midpointBetweenPointA:(CGPoint)a andB:(CGPoint)b {
+    return CGPointMake((a.x + b.x) / 2.0,
+             (a.y + b.y) / 2.0);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(CGFloat)distanceBetweenPointA:(CGPoint)a andB:(CGPoint)b {
+  CGFloat deltaX = b.x - a.x;
+  CGFloat deltaY = b.y - a.y;
+  return sqrt(deltaX*deltaX + deltaY*deltaY );
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(CGFloat)calculateZoomScaleUsingFingerDistances {
+
+  // Distance Between Fingers.
+  distanceBetweenFingers = [self distanceBetweenPointA:[self touchLocation:_touch1]
+                          andB:[self touchLocation:_touch2]];
+
+  // If Actual distance is 0, assume current distance.
+  actualDistanceBetweenFingers = (actualDistanceBetweenFingers == 0.0 ?
+                  distanceBetweenFingers : actualDistanceBetweenFingers);
+
+  // Zoom Scale Speed and Direction.
+  // This math calculate the zoom speed based on how fast your fingers move.
+  CGFloat zoomScaleSpeed = ( distanceBetweenFingers / actualDistanceBetweenFingers );
+
+  // Increase/Decrease The Zoom Factor (Scale) Using Calculated Speed Rate.
+  CGFloat newScale = self.zoomFactor * zoomScaleSpeed;
+
+  // Save Actual Distance. So If the Fingers "change" direction or distance we'll know.
+  actualDistanceBetweenFingers = distanceBetweenFingers;
+
+  // Check Scale. If is bigger assume maximumScale.
+  newScale = ( newScale > _maximumZoomScale ? _maximumZoomScale : newScale );
+
+  // Return New Scale.
+  return newScale;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIEdgeInsets)squareEdgesUsingZoomScale:(CGFloat)newScale andAnchorPoint:(CGPoint)anchorPoint {
+  UIEdgeInsets edges = UIEdgeInsetsZero;
+
+  // Calc New Width and Height (Scaled by factor).
+  CGSize newStretched = CGSizeMake(floor(self.pageWidth * newScale),
+                   floor(self.pageHeight * newScale));
+
+  // We have TWO anchor points. One for the normal frame of the screen.
+  // And another to the BOUNDS of the scaled image, including "hided" parts.
+  // This two coordinates are crossed and aligned using % on both axis.
+
+  // Anchor Point at SCALED coordinates.
+  CGPoint scaledAnchorPoint = CGPointMake((-_pageEdges.left) + anchorPoint.x,
+                      (-_pageEdges.top) + anchorPoint.y);
+
+  // Equivalent to the % of the anchor point positon on his axis. (NOT SCALED)
+  CGPoint normalRanges = CGPointMake(anchorPoint.x / 1 / self.pageWidth,
+                     anchorPoint.y / 1 / self.pageHeight);
+
+  // Equivalent to the % of the anchor point positon on his axis. (SCALED)
+  CGPoint scaledRanges = CGPointMake(scaledAnchorPoint.x / 1 / self.stretchedWidth,
+                     scaledAnchorPoint.y / 1 / self.stretchedHeight);
+
+
+  //
+  // New Edges.
+  //
+  // We need to perfect align the two centers (scaled and not scaled). Them we have our
+  // left and top edges.
+  // This allows zoom in/out from a specific finger-point on every zoom level.
+  //
+  edges.left   = -((newStretched.width * scaledRanges.x) - (self.pageWidth * normalRanges.x));
+  edges.top    = -((newStretched.height * scaledRanges.y) - (self.pageHeight * normalRanges.y));
+
+  edges.right  = newStretched.width - (-edges.left + self.pageWidth);
+  edges.bottom = newStretched.height - (-edges.top + self.pageHeight);
+
+  /*** DEBUG *
+
+  NSLog( @"page-with: %f", self.pageWidth );
+  NSLog( @"resized-width: %f", newStretched.width);
+  NSLog( @"old-width: %f", self.stretchedWidth);
+  NSLog( @"actual left: %f", _pageEdges.left );
+  NSLog( @"actual right: %f", _pageEdges.right );
+  NSLog( @"touch: %f", anchorPoint.x);
+  NSLog( @"point: %f", anchorPoint.x);
+  NSLog( @"B: %f", scaledRanges.x);
+  NSLog( @"C: %f", normalRanges.x);
+  NSLog( @"left: %f", edges.left);
+  NSLog( @"right: %f", edges.right);
+  NSLog( @"/////////////////////////////////////////////////////////////////////////////////");
+
+  */
+
+  return edges;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIEdgeInsets)squareEdgesUsingFingerDistancesAndAnchorPoint:(CGPoint)anchorPoint {
+  return [self squareEdgesUsingZoomScale:[self calculateZoomScaleUsingFingerDistances]
+              andAnchorPoint:anchorPoint];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UIResponder
@@ -1051,6 +1241,9 @@ static const NSTimeInterval kOvershoot = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
+
+  NSLog( @"_touchCount: %i", _touchCount );
+  NSLog( @"touches count: %i", [touches count] );
 
   if (_touchCount < 2) {
     [self stopAnimation:NO];
@@ -1072,8 +1265,10 @@ static const NSTimeInterval kOvershoot = 2;
         if (_scrollEnabled && !_holding) {
           CGPoint pt = [self touchLocation:touch];
           _touchStartEdges = _touchEdges = [self touchEdgesForPoint:pt];
-          _pageStartEdges = _pageEdges;
+          _pageStartEdges  = _pageEdges;
+          _renewPosition   = CGPointMake(_touchStartEdges.left, _touchStartEdges.top);
         }
+
       } else if (_touchCount == 2) {
         if (_scrollEnabled && !_holding) {
           CGPoint pt = [self touchLocation:touch];
@@ -1086,6 +1281,15 @@ static const NSTimeInterval kOvershoot = 2;
       if (touch.tapCount == 2) {
         TT_INVALIDATE_TIMER(_tapTimer);
       }
+    }
+
+    // Reset Actual Distance.
+    actualDistanceBetweenFingers = 0.0;
+
+    // Store middle point between fingers.
+    if (_touchCount == 2) {
+      centerOfFingers = [self midpointBetweenPointA:[self touchLocation:_touch1]
+                           andB:[self touchLocation:_touch2]];
     }
   }
 }
@@ -1113,22 +1317,42 @@ static const NSTimeInterval kOvershoot = 2;
       }
     }
 
+    // Declare common.
+    UIEdgeInsets pageEdges;
+    UIEdgeInsets newEdges;
+
     UIEdgeInsets edges = [self squareTouchEdges:_touchEdges];
     CGFloat left = _pageStartEdges.left + (edges.left - _touchStartEdges.left);
     CGFloat right = _pageStartEdges.right + (edges.right - _touchStartEdges.right);
     CGFloat top = _pageEdges.top;
     CGFloat bottom = _pageEdges.bottom;
+
+    // Drag when is zoomed correct bottom and top.
     if ((_touchCount == 2 || self.zoomed) && _zoomEnabled && !_holding) {
-      // XXXjoe I am sure this "r" had a purpose at one point, but months after writing it I'll
-      // be damned if I remember.  It's causing the image to get out of sync with your finger
-      // while dragging, so disabling it for now.
-      CGFloat r = 1;//self.pageHeight / self.pageWidth;
-      top = _pageStartEdges.top + (edges.top - _touchStartEdges.top) * r;
-      bottom = _pageStartEdges.bottom + (edges.bottom - _touchStartEdges.bottom) * r;
+      top = _pageStartEdges.top + (edges.top - _touchStartEdges.top);
+      bottom = _pageStartEdges.bottom + (edges.bottom - _touchStartEdges.bottom);
     }
 
-    UIEdgeInsets newEdges = UIEdgeInsetsMake(top, left, bottom, right);
-    UIEdgeInsets pageEdges = [self resistPageEdges:newEdges];
+    // Zooming.
+    if (_touchCount == 2 && _zoomEnabled && !_holding) {
+      // Calc.
+      newEdges  = [self squareEdgesUsingFingerDistancesAndAnchorPoint:centerOfFingers];
+      pageEdges = [self resistPageEdges:newEdges];
+      _executingZoomGesture = YES;
+
+    // Dragging.
+    } else if ( _touchCount == 1 ) {
+      newEdges  = UIEdgeInsetsMake(top, left, bottom, right);
+      pageEdges = [self resistPageEdges:newEdges];
+      _executingZoomGesture = NO;
+    }
+
+    // Calculate distance. (Speed).
+    _inertiaSpeed = CGPointMake(_touchEdges.left - _renewPosition.x,
+                                _touchEdges.top - _renewPosition.y);
+
+    // Renew.
+    _renewPosition = CGPointMake(_touchEdges.left, _touchEdges.top);
 
     if (![self edgesAreZoomed:pageEdges] || self.canZoom) {
       _pageEdges = pageEdges;
@@ -1175,19 +1399,54 @@ static const NSTimeInterval kOvershoot = 2;
         CGPoint point = [self touchLocation:remainingTouch];
         _touchEdges = _touchStartEdges = [self touchEdgesForPoint:point];
         _pageStartEdges = _pageEdges;
+        _renewPosition = CGPointMake(_touchEdges.left, _touchEdges.top);
+        _executingZoomGesture = NO;
+
       } else if (_touchCount == 0) {
+
         if (touch.tapCount == 1 && !_dragging) {
+          _executingZoomGesture = NO;
           if ([_delegate respondsToSelector:@selector(scrollView:touchedUpInside:)]) {
-            [_delegate scrollView:self touchedUpInside:touch];
+              [_delegate scrollView:self touchedUpInside:touch];
           }
 
           [self startTapTimer:touch];
+
+        // Double tap, zoom out to fit or zoom in to the 1/3 of the maximum scale.
         } else if (touch.tapCount == 2 && self.canZoom) {
-          CGPoint pt = [self touchLocation:touch];
+          CGPoint pointToZoom = [self touchLocation:touch];
+
           if (self.zoomed) {
             [self zoomToFit];
+
           } else {
-            [self startAnimationTo:[self zoomPageEdgesTo:pt] duration:kFlickDuration];
+            [self setZoomScale:_maximumZoomScale / 1.3  withPoint:pointToZoom animated:YES];
+          }
+        }
+
+        // The scroll view will continue to move a short distance afterwards.
+        // If are zoomed, will still moving after stop drag. Short distance, doesn't animate.
+        if (_touchCount == 0 && self.scrollEnabled
+            && self.zoomed && abs(_inertiaSpeed.x) >= 1 && abs(_inertiaSpeed.y) >= 1) {
+          // Increase speed. (Longer residual movement).
+          _inertiaSpeed.x *= kIncreaseSpeed;
+          _inertiaSpeed.y *= kIncreaseSpeed;
+
+          // Store actual Page Edges.
+          _pageStartEdges = _pageEdges;
+
+          // Warn delegate.
+          if ([_delegate respondsToSelector:@selector(scrollViewWillBeginDecelerating:)]) {
+            [_delegate scrollViewWillBeginDecelerating:self];
+          }
+
+          // Start Animation Timer.
+          if (!_animationTimer) {
+            _decelerating = YES;
+
+            TT_INVALIDATE_TIMER(_tapTimer);
+            _animationTimer = [NSTimer scheduledTimerWithTimeInterval:kFrameDuration target:self
+                                     selector:@selector(inertiaAnimator) userInfo:nil repeats:YES];
           }
         }
 
@@ -1241,7 +1500,8 @@ static const NSTimeInterval kOvershoot = 2;
 - (void)deviceOrientationDidChange:(void*)object {
 //  UIInterfaceOrientation orientation = TTDeviceOrientation();
 //  if (_rotateEnabled && !_holding
-//      && (![_delegate respondsToSelector:@selector(scrollView:shouldAutorotateToInterfaceOrientation:)]
+//      && (![_delegate
+//            respondsToSelector:@selector(scrollView:shouldAutorotateToInterfaceOrientation:)]
 //      || [_delegate scrollView:self shouldAutorotateToInterfaceOrientation:orientation])) {
 //    self.orientation = orientation;
 //  }
@@ -1374,6 +1634,66 @@ static const NSTimeInterval kOvershoot = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView*)pageAtIndex:(NSInteger)pageIndex {
   return [self pageAtIndex:pageIndex create:NO];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// A floating-point value that specifies the current scale factor applied to the scroll
+// view's content.
+-(CGFloat)zoomScale {
+  return self.zoomFactor;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// A floating-point value that specifies the current zoom scale.
+-(void)setZoomScale:(CGFloat)scale {
+  [self setZoomScale:scale animated:YES];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * A floating-point value that specifies the current zoom scale.
+ */
+- (void)setZoomScale:(CGFloat)newScale animated:(BOOL)animated {
+  [self setZoomScale:newScale
+       withPoint:CGPointMake(self.pageWidth / 2, self.pageHeight / 2)
+        animated:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * A floating-point value that specifies the current zoom scale.
+ *
+ * Specify one touch point, the scale occurrs centering to him.
+ *
+ * YES to animate the transition to the new scale, NO to make the transition immediate.
+ */
+- (void)setZoomScale:(CGFloat)newScale withPoint:(CGPoint)withPoint animated:(BOOL)animated {
+
+  // If bigger than maximum scale or zoom disabled, do nothing.
+  if ( newScale > _maximumZoomScale || !self.zoomEnabled ) return;
+
+  // Square Edges to new scale, using specified anchor point.//
+  UIEdgeInsets zoomEdges = [self squareEdgesUsingZoomScale:newScale
+                        andAnchorPoint:withPoint];
+
+  // If animated.
+  if ( animated ) {
+    [self startAnimationTo:zoomEdges duration:kBounceDuration];
+  }
+
+  // Not animated, just apply.
+  else {
+    UIEdgeInsets pageEdges = [self resistPageEdges:zoomEdges];
+    if (![self edgesAreZoomed:pageEdges] || self.canZoom) {
+      _pageEdges = pageEdges;
+      [self updateZooming:pageEdges];
+      [self setNeedsLayout];
+    }
+  }
 }
 
 
