@@ -171,8 +171,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
   CGRect rect = CGRectMake(edges.left, edges.top,
                            edges.right-edges.left, edges.bottom-edges.top);
 
-  UIAccessibilityElement* acc = [[[UIAccessibilityElement alloc]
-                                initWithAccessibilityContainer:self] autorelease];
+  UIAccessibilityElement* acc = [[UIAccessibilityElement alloc]
+                                 initWithAccessibilityContainer:self];
   acc.accessibilityFrame = CGRectOffset(rect, self.screenViewX, self.screenViewY);
   acc.accessibilityTraits = UIAccessibilityTraitStaticText;
   if (fromFrame == toFrame) {
@@ -181,6 +181,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
     acc.accessibilityLabel = [self combineTextFromFrame:fromFrame toFrame:toFrame];
   }
   [_accessibilityElements addObject:acc];
+  TT_RELEASE_SAFELY(acc);
 }
 
 
@@ -195,13 +196,14 @@ static const CGFloat kCancelHighlightThreshold = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addAccessibilityElementsForNode:(TTStyledNode*)node {
   if ([node isKindOfClass:[TTStyledLinkNode class]]) {
-    UIAccessibilityElement* acc = [[[UIAccessibilityElement alloc]
-                                  initWithAccessibilityContainer:self] autorelease];
+    UIAccessibilityElement* acc = [[UIAccessibilityElement alloc]
+                                  initWithAccessibilityContainer:self];
     TTStyledFrame* frame = [_text getFrameForNode:node];
     acc.accessibilityFrame = CGRectOffset(frame.bounds, self.screenViewX, self.screenViewY);
     acc.accessibilityTraits = UIAccessibilityTraitLink;
     acc.accessibilityLabel = [node outerText];
     [_accessibilityElements addObject:acc];
+    TT_RELEASE_SAFELY(acc);
   } else if ([node isKindOfClass:[TTStyledTextNode class]]) {
     TTStyledTextFrame* startFrame = (TTStyledTextFrame*)[_text getFrameForNode:node];
     UIEdgeInsets edges = [self edgesForRect:startFrame.bounds];

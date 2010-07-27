@@ -81,6 +81,12 @@
  */
 - (BOOL)willPostText:(NSString*)text;
 
+/**
+ * Shows or hides an activity label in the text area.
+ * @protected
+ */
+- (void)showActivity:(NSString*)title;
+
 - (NSString*)titleForActivity;
 
 - (NSString*)titleForError:(NSError*)error;

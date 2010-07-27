@@ -38,6 +38,7 @@
 #import "Three20Style/TTStyledTextNode.h"
 
 // Core
+#import "Three20Core/TTDebug.h"
 #import "Three20Core/TTGlobalCore.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
@@ -52,6 +53,7 @@
 @synthesize rootFrame     = _rootFrame;
 @synthesize font          = _font;
 @synthesize invalidImages = _invalidImages;
+@synthesize contentWidth  = _contentWidth;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -163,16 +165,31 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)offsetFrame:(TTStyledFrame*)frame by:(CGFloat)y {
-   frame.y += y;
+- (void)offsetFrameVertically:(TTStyledFrame*)frame by:(CGFloat)y {
+  frame.y += y;
 
   if ([frame isKindOfClass:[TTStyledInlineFrame class]]) {
     TTStyledInlineFrame* inlineFrame = (TTStyledInlineFrame*)frame;
     TTStyledFrame* child = inlineFrame.firstChildFrame;
     while (child) {
-      [self offsetFrame:child by:y];
+      [self offsetFrameVertically:child by:y];
       child = child.nextFrame;
     }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)offsetFrameHorizontally:(TTStyledFrame*)frame by:(CGFloat)x {
+  frame.x += x;
+    
+  if ([frame isKindOfClass:[TTStyledInlineFrame class]]) {
+      TTStyledInlineFrame* inlineFrame = (TTStyledInlineFrame*)frame;
+      TTStyledFrame* child = inlineFrame.firstChildFrame;
+      while (child) {
+          [self offsetFrameHorizontally:child by:x];
+          child = child.nextFrame;
+      }
   }
 }
 
@@ -315,7 +332,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)breakLine {
+- (void)breakLine: (TTStyle*) style {
   if (_inlineFrame) {
     TTStyledInlineFrame* inlineFrame = _inlineFrame;
     while (inlineFrame) {
@@ -342,15 +359,50 @@
       // XXXjoe Support top, bottom, and center alignment also
       if (frame.height < _lineHeight) {
         UIFont* font = frame.font ? frame.font : _font;
-        [self offsetFrame:frame by:(_lineHeight - (frame.height - font.descender))];
+        [self offsetFrameVertically:frame by:(_lineHeight - (frame.height - font.descender))];
       }
       frame = frame.nextFrame;
     }
   }
 
+  // If there is horizontal padding, we will need to horizontally align the frames on the current line.
+  CGFloat emptyWidth = (_width - _lineWidth);
+  if (emptyWidth > 0) {
+      TTTextStyle* textStyle = [style firstStyleOfClass:[TTTextStyle class]];
+      CGFloat leftOffset;
+      switch (textStyle.textAlignment) {
+          case UITextAlignmentLeft:
+              leftOffset = 0;
+              break;
+          case UITextAlignmentCenter:
+              leftOffset = ceil(0.5 * emptyWidth); // equal on each side
+              break;
+          case UITextAlignmentRight:
+              leftOffset = emptyWidth;
+              break;
+          default:
+              // shouldn't happen, but complain (in debugger) if it does, and fallback to left
+              TTDASSERT(NO);
+              leftOffset = 0;
+              break;
+      }
+      
+      if (leftOffset) {
+          TTStyledFrame* frame = _lineFirstFrame;
+          while (frame) {
+              [self offsetFrameHorizontally:frame by:leftOffset];
+              frame = frame.nextFrame;
+          }
+      }
+  }
+    
   _height += _lineHeight;
   [self checkFloats];
 
+  // Store the widest line number for future reference.
+  if (_contentWidth <= _lineWidth)
+      _contentWidth = _lineWidth;
+    
   _lineWidth = 0;
   _lineHeight = 0;
   _x = _minX;
@@ -377,17 +429,23 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutElement:(TTStyledElement*)elt {
-  TTStyle* style = nil;
-  if (elt.className) {
-    TTStyle* eltStyle = [[TTStyleSheet globalStyleSheet] styleWithSelector:elt.className];
-    if (eltStyle) {
-      style = eltStyle;
+- (TTStyle*) findStyleForElement:(TTStyledElement*)elt {
+    if (elt.className) {
+        TTStyle* eltStyle = [[TTStyleSheet globalStyleSheet] styleWithSelector:elt.className];
+        if (eltStyle)
+            return eltStyle;
     }
-  }
-  if (!style && [elt isKindOfClass:[TTStyledLinkNode class]]) {
-    style = self.linkStyle;
-  }
+
+    if ([elt isKindOfClass:[TTStyledLinkNode class]]) {
+        return self.linkStyle;
+    }
+    
+    return nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)layoutElement:(TTStyledElement*)elt {
+  TTStyle* style = [self findStyleForElement: elt];
 
   // Figure out which font to use for the node
   UIFont* font = nil;
@@ -476,7 +534,7 @@
         if (!_lineHeight && [elt isKindOfClass:[TTStyledLineBreakNode class]]) {
           _lineHeight = [_font ttLineHeight];
         }
-        [self breakLine];
+          [self breakLine:textStyle];
       }
       if (style) {
         blockFrame = [self addBlockFrame:style element:elt width:_width height:_height];
@@ -511,7 +569,7 @@
     if (isBlock) {
       _minX = minX, _width = width, _floatLeftWidth = floatLeftWidth,
       _floatRightWidth = floatRightWidth, _floatHeight = floatHeight;
-      [self breakLine];
+      [self breakLine:textStyle];
 
       if (padding) {
         _height += padding.padding.bottom;
@@ -565,8 +623,7 @@
     [_invalidImages addObject:imageNode];
   }
 
-  TTStyle* style = imageNode.className
-    ? [[TTStyleSheet globalStyleSheet] styleWithSelector:imageNode.className] : nil;
+  TTStyle* style = [self findStyleForElement:imageNode];
   TTBoxStyle* padding = style ? [style firstStyleOfClass:[TTBoxStyle class]] : nil;
 
   CGFloat imageWidth = imageNode.width ? imageNode.width : image.size.width;
@@ -584,7 +641,7 @@
     if (_lineWidth) {
       // The image will be placed on the next line, so create a new frame for
       // the current line and mark it with a line break
-      [self breakLine];
+      [self breakLine:style];
     } else {
       _width = contentWidth;
     }
@@ -684,7 +741,8 @@
           }
 
           if (_lineWidth) {
-            [self breakLine];
+            TTStyle* style = [self findStyleForElement:element];
+            [self breakLine:style];
           }
 
           lineStartIndex = lineRange.location + lineRange.length;
@@ -718,7 +776,8 @@
         }
 
         if (_lineWidth) {
-          [self breakLine];
+          TTStyle* style = [self findStyleForElement:element];
+          [self breakLine:style];
         }
         lineStartIndex = lineRange.location + lineRange.length;
         frameWidth = 0;
@@ -805,9 +864,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layout:(TTStyledNode*)node {
+  _lineWidth = 0;
+  _contentWidth = 0;
   [self layout:node container:nil];
   if (_lineWidth) {
-    [self breakLine];
+    TTStyle* style = [node isKindOfClass:[TTStyledElement class]] ? [self findStyleForElement:(TTStyledElement*)node] : nil;
+    [self breakLine:style];
   }
 }
 
