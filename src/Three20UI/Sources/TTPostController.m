@@ -131,6 +131,7 @@ static const CGFloat kMarginY = 6;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)showKeyboard {
   UIApplication* app = [UIApplication sharedApplication];
   _originalStatusBarStyle = app.statusBarStyle;
@@ -146,9 +147,11 @@ static const CGFloat kMarginY = 6;
   }
   [_textView becomeFirstResponder];
 }
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void)hideKeyboard {
   UIApplication* app = [UIApplication sharedApplication];
 #ifdef __IPHONE_3_2
@@ -160,6 +163,7 @@ static const CGFloat kMarginY = 6;
   [app setStatusBarStyle:_originalStatusBarStyle animated:NO];
   [_textView resignFirstResponder];
 }
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -172,7 +176,7 @@ static const CGFloat kMarginY = 6;
 - (void)showActivity:(NSString*)activityText {
   if (nil == _activityView) {
     _activityView = [[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox];
-    [self.view addSubview:_activityView];
+    [_screenView addSubview:_activityView];
   }
 
   if (nil != activityText) {
@@ -187,20 +191,6 @@ static const CGFloat kMarginY = 6;
     _textView.hidden = NO;
     self.navigationItem.rightBarButtonItem.enabled = YES;
   }
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)layoutTextEditor {
-  CGFloat keyboard = TTKeyboardHeightForOrientation(TTInterfaceOrientation());
-  _screenView.frame = CGRectMake(0, _navigationBar.bottom,
-                                 self.view.orientationWidth,
-                                 self.view.orientationHeight - (keyboard+_navigationBar.height));
-
-  _textView.frame = CGRectMake(kMarginX, kMarginY+_navigationBar.height,
-                                 _screenView.width - kMarginX*2,
-                                 _screenView.height - kMarginY*2);
-  _textView.hidden = NO;
 }
 
 
@@ -286,7 +276,8 @@ static const CGFloat kMarginY = 6;
   _textView.contentInset = UIEdgeInsetsMake(0, 4, 0, 4);
   _textView.keyboardAppearance = UIKeyboardAppearanceAlert;
   _textView.backgroundColor = [UIColor clearColor];
-  [self.view addSubview:_textView];
+  _textView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+  [_screenView addSubview:_textView];
 
   _navigationBar = [[UINavigationBar alloc] init];
   _navigationBar.barStyle = UIBarStyleBlackOpaque;
@@ -306,11 +297,10 @@ static const CGFloat kMarginY = 6;
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
         duration:(NSTimeInterval)duration {
   [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+  [UIView setAnimationDuration:duration];
   self.view.transform = [self transformForOrientation];
   self.view.frame = [UIScreen mainScreen].applicationFrame;
   _innerView.frame = self.view.bounds;
-  [self layoutTextEditor];
   [UIView commitAnimations];
 }
 
@@ -365,6 +355,56 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark TTBaseViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)keyboardWillAppear:(BOOL)animated withBounds:(CGRect)bounds {
+ [super keyboardWillAppear: animated withBounds: bounds];
+ 
+  if ([self isViewLoaded]) {
+    CGRect screenViewFrame = CGRectMake(0, _navigationBar.bottom,
+                                        self.view.orientationWidth,
+                                        self.view.orientationHeight - (bounds.size.height + _navigationBar.height));
+  
+    if (animated) {
+      [UIView beginAnimations: nil context: nil];
+      [UIView setAnimationDelegate: self];
+      [UIView setAnimationDuration: TT_TRANSITION_DURATION];
+      
+      _screenView.frame = screenViewFrame;
+      [UIView commitAnimations];
+    } else {
+      _screenView.frame = screenViewFrame;
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)keyboardWillDisappear:(BOOL)animated withBounds:(CGRect)bounds {
+  [super keyboardWillDisappear: animated withBounds: bounds];
+  
+  if ([self isViewLoaded]) {
+    CGRect screenViewFrame = CGRectMake(0, _navigationBar.bottom,
+                                        self.view.orientationWidth,
+                                        self.view.orientationHeight - _navigationBar.height);
+    if (animated) {
+      [UIView beginAnimations: nil context: nil];
+      [UIView setAnimationDelegate: self];
+      [UIView setAnimationDuration: TT_TRANSITION_DURATION];
+      _screenView.frame = screenViewFrame;
+      [UIView commitAnimations];
+    } else {
+      _screenView.frame = screenViewFrame;
+    }
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 #pragma mark TTPopupViewController
 
 
@@ -406,9 +446,12 @@ static const CGFloat kMarginY = 6;
     if (!CGRectIsEmpty(originRect)) {
       _screenView.frame = CGRectOffset(originRect, 0, -TTStatusHeight());
     } else {
-      [self layoutTextEditor];
+      _screenView.frame = CGRectMake(0, _navigationBar.bottom,
+                                     self.view.orientationWidth,
+                                     self.view.orientationHeight - TTStatusHeight());
       _screenView.transform = CGAffineTransformMakeScale(0.00001, 0.00001);
     }
+    _textView.frame = CGRectInset(_screenView.bounds, kMarginX, kMarginY);
 
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_TRANSITION_DURATION];
@@ -419,7 +462,7 @@ static const CGFloat kMarginY = 6;
     _innerView.alpha = 1;
 
     if (originRect.size.width) {
-      [self layoutTextEditor];
+      _textView.hidden = NO;
     } else {
       _screenView.transform = CGAffineTransformIdentity;
     }
@@ -429,9 +472,12 @@ static const CGFloat kMarginY = 6;
   } else {
     _innerView.alpha = 1;
     _screenView.transform = CGAffineTransformIdentity;
-    [self layoutTextEditor];
+    _textView.hidden = NO;
     [self showAnimationDidStop];
   }
+
+  self.autoresizesForKeyboard = YES;
+
 
   [self showKeyboard];
 }
@@ -439,6 +485,7 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissPopupViewControllerAnimated:(BOOL)animated {
+  self.autoresizesForKeyboard = NO;
   if (animated) {
     [self fadeOut];
 
