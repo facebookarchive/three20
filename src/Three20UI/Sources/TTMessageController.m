@@ -50,11 +50,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTMessageController
 
-@synthesize fields                = _fields;
-@synthesize isModified            = _isModified;
-@synthesize showsRecipientPicker  = _showsRecipientPicker;
-@synthesize dataSource            = _dataSource;
-@synthesize delegate              = _delegate;
+@synthesize fields                      = _fields;
+@synthesize isModified                  = _isModified;
+@synthesize showsRecipientPicker        = _showsRecipientPicker;
+@synthesize requireNonEmptyMessageBody  = _requireNonEmptyMessageBody;
+@synthesize dataSource                  = _dataSource;
+@synthesize delegate                    = _delegate;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -201,7 +202,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasRequiredText {
-  BOOL compliant = YES;
+  if (_requireNonEmptyMessageBody && [_textEditor.text isWhitespaceAndNewlines]) {
+    return NO;
+  }
 
   for (int i = 0; i < _fields.count; ++i) {
     TTMessageField* field = [_fields objectAtIndex:i];
@@ -209,19 +212,19 @@
       if ([field isKindOfClass:[TTMessageRecipientField class]]) {
         TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
         if (!textField.cells.count) {
-          compliant = NO;
+          return NO;
         }
 
       } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
         if (textField.text.isEmptyOrWhitespace) {
-          compliant = NO;
+          return NO;
         }
       }
     }
   }
 
-  return compliant && _textEditor.text.length;
+  return YES;
 }
 
 

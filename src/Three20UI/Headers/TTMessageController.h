@@ -49,6 +49,7 @@
 
   BOOL _showsRecipientPicker;
   BOOL _isModified;
+  BOOL _requireNonEmptyMessageBody;
 
   id<TTTableViewDataSource>       _dataSource;
   id<TTMessageControllerDelegate> _delegate;
@@ -99,6 +100,13 @@
  */
 @property (nonatomic, readonly) BOOL isModified;
 
+/**
+ * Indicates if the user must enter text in the editor field to be allowed to
+ * send the message.
+ *
+ * @default NO
+ */
+@property(nonatomic) BOOL requireNonEmptyMessageBody;
 
 /**
  * Initializes the class with an array of recipients. These recipients will
