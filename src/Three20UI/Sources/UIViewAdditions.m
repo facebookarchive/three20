@@ -450,6 +450,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (NSDictionary *)userInfoForKeyboardNotification {
   CGRect screenFrame = TTScreenBounds();
   CGRect bounds = CGRectMake(0, 0, screenFrame.size.width, self.height);
@@ -464,6 +465,7 @@
           [NSValue valueWithCGPoint:centerEnd], UIKeyboardCenterEndUserInfoKey,
           nil];
 }
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
