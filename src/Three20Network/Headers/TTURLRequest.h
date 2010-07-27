@@ -54,6 +54,9 @@
 
   NSInteger             _totalBytesLoaded;
   NSInteger             _totalBytesExpected;
+    
+  NSInteger             _totalBytesDownloaded;
+  NSInteger             _totalContentLength;
 
   id    _userInfo;
 
@@ -179,6 +182,16 @@
  * The number of expected bytes from this request.
  */
 @property (nonatomic) NSInteger totalBytesExpected;
+
+/**
+ * The number of downloaded bytes from server.
+ */
+@property (nonatomic) NSInteger totalBytesDownloaded;
+
+/**
+ *  The number of content length of request.
+ */
+@property (nonatomic) NSInteger totalContentLength;
 
 /**
  * Whether or not the request was loaded from the cache.
