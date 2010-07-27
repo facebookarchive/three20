@@ -144,9 +144,11 @@ static const NSInteger kDefaultColumnCount = 3;
   NSIndexPath* path = [self indexPathOfItem:item];
   if (path) {
     NSInteger pageIndex = [path indexAtPosition:0];
+    TTDASSERT(0 <= pageIndex && pageIndex < _buttons.count);
     NSArray* buttonPage = [_buttons objectAtIndex:pageIndex];
 
     NSInteger itemIndex = [path indexAtPosition:1];
+    TTDASSERT(0 <= itemIndex && itemIndex < buttonPage.count);
     return [buttonPage objectAtIndex:itemIndex];
   } else {
     return nil;
@@ -307,6 +309,7 @@ static const NSInteger kDefaultColumnCount = 3;
     }
   }
 
+  TTDASSERT(_pages.count == _buttons.count);
   [self layoutButtons];
 }
 
@@ -339,6 +342,7 @@ static const NSInteger kDefaultColumnCount = 3;
       [itemsPage removeLastObject];
     }
 
+    TTDASSERT(_pages.count == _buttons.count);
     if (pageIndex+1 < _buttons.count) {
       [self checkButtonOverflow:pageIndex+1];
     }
@@ -924,6 +928,7 @@ static const NSInteger kDefaultColumnCount = 3;
   // Add a page at the end
   [_pages addObject:[NSMutableArray array]];
   [_buttons addObject:[NSMutableArray array]];
+  TTDASSERT(_pages.count == _buttons.count);
   [self updateContentSize:_pages.count];
 
   [self wobble];
@@ -961,6 +966,7 @@ static const NSInteger kDefaultColumnCount = 3;
       --i;
     }
   }
+  TTDASSERT(_pages.count == _buttons.count);
 
   [self layoutButtons];
 
