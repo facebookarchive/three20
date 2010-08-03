@@ -450,7 +450,7 @@ static NSString* kUniversalURLPattern = @"*";
 
   id returnValue = nil;
   if (_selector) {
-    returnValue = [self invoke:target withURL:URL query:query];
+    returnValue = [self invoke:target withURL:URL query:query] NS_RETURNS_RETAINED;
   } else if (self.instantiatesClass) {
     returnValue = [target init];
   }
