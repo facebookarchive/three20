@@ -52,6 +52,8 @@
 		6EDAE9EC118CA3680008133C /* TTGlobalNavigatorMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDAE9EB118CA3680008133C /* TTGlobalNavigatorMetrics.m */; };
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE739D01184BB0400A35176 /* libThree20UINavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20UINavigator.a */; };
+		867529A312086DBB003C9DD2 /* UIImagePickerController+TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 867529A212086DBB003C9DD2 /* UIImagePickerController+TTNavigator.h */; };
+		867529A512086DC3003C9DD2 /* UIImagePickerController+TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 867529A412086DC3003C9DD2 /* UIImagePickerController+TTNavigator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +173,8 @@
 		6EE7364B11849B3D00A35176 /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
 		6EE7366611849C5800A35176 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
+		867529A212086DBB003C9DD2 /* UIImagePickerController+TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImagePickerController+TTNavigator.h"; path = "Headers/UIImagePickerController+TTNavigator.h"; sourceTree = "<group>"; };
+		867529A412086DC3003C9DD2 /* UIImagePickerController+TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImagePickerController+TTNavigator.m"; path = "Sources/UIImagePickerController+TTNavigator.m"; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20UINavigator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20UINavigator.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -355,6 +359,8 @@
 		6EDAE95B118C98D20008133C /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				867529A412086DC3003C9DD2 /* UIImagePickerController+TTNavigator.m */,
+				867529A212086DBB003C9DD2 /* UIImagePickerController+TTNavigator.h */,
 				6EDAE961118C99200008133C /* UIViewController+TTNavigator.h */,
 				6EDAE963118C99280008133C /* UIViewController+TTNavigator.m */,
 				6E7B107111923AC5001359FE /* Private */,
@@ -449,6 +455,7 @@
 				6E7B106E11923A92001359FE /* TTNavigatorViewController.h in Headers */,
 				6E7B107011923AC1001359FE /* UIViewController+TTNavigatorGarbageCollection.h in Headers */,
 				6E6081C011B0C08600C93CD4 /* TTBaseNavigationController.h in Headers */,
+				867529A312086DBB003C9DD2 /* UIImagePickerController+TTNavigator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +622,7 @@
 				6EDAE9EC118CA3680008133C /* TTGlobalNavigatorMetrics.m in Sources */,
 				6E7B106811923A76001359FE /* TTNavigatorViewController.m in Sources */,
 				6E6081C211B0C08D00C93CD4 /* TTBaseNavigationController.m in Sources */,
+				867529A512086DC3003C9DD2 /* UIImagePickerController+TTNavigator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
