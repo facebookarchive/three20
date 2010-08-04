@@ -259,7 +259,6 @@ static NSMutableDictionary* gNamedCaches = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImage*)loadImageFromLibrary:(NSString*)URL {
 	NSString* path = TTPathForLibraryResource([URL substringFromIndex:10]);
-	NSLog(@"Data Path: %@", path);
 	NSData* data = [NSData dataWithContentsOfFile:path];
 	return [UIImage imageWithData:data];
 }
