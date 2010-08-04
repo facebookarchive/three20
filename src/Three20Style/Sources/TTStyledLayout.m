@@ -681,6 +681,8 @@
 
   if (style && style.numberOfLines == 1) {
     CGFloat availWidth = _width ? _width : CGFLOAT_MAX;
+	  
+	CGFloat maxRemaining = (_width ? _width : CGFLOAT_MAX) - _x;
 
 	CGSize linesSize = [text sizeWithFont:_font
 						constrainedToSize:CGSizeMake(availWidth, CGFLOAT_MAX)
@@ -689,9 +691,10 @@
     [self expandLineWidth:linesSize.width];
 	[self inflateLineHeight:[_font ttLineHeight]];
 	  
-	TTStyledTextFrame *frame = (TTStyledTextFrame*)[self addFrameForText:text element:element node:textNode width:linesSize.width
+	TTStyledTextFrame *frame = (TTStyledTextFrame*)[self addFrameForText:text element:element node:textNode width:fmin(linesSize.width, maxRemaining)
 										  height:[_font ttLineHeight]];
 	frame.lineBreakMode = style.lineBreakMode;
+
 	return;
   }
 

@@ -194,6 +194,11 @@
   } else if ([tag isEqualToString:@"a"]) {
     TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] init] autorelease];
     node.URL =  [attributeDict objectForKey:@"href"];
+	  
+	if ([attributeDict objectForKey:@"class"]) {
+	  node.className = [attributeDict objectForKey:@"class"];
+	}
+	  
     [self pushNode:node];
 
   } else if ([tag isEqualToString:@"button"]) {
