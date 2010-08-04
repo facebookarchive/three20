@@ -256,6 +256,13 @@ static NSMutableDictionary* gNamedCaches = nil;
   return [UIImage imageWithData:data];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIImage*)loadImageFromLibrary:(NSString*)URL {
+	NSString* path = TTPathForLibraryResource([URL substringFromIndex:10]);
+	NSLog(@"Data Path: %@", path);
+	NSData* data = [NSData dataWithContentsOfFile:path];
+	return [UIImage imageWithData:data];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)loadEtagFromCacheWithKey:(NSString*)key {
@@ -432,6 +439,10 @@ static NSMutableDictionary* gNamedCaches = nil;
     } else if (TTIsDocumentsURL(URL)) {
       image = [self loadImageFromDocuments:URL];
       [self storeImage:image forURL:URL];
+		
+    } else if (TTIsLibraryURL(URL)) {
+      image = [self loadImageFromLibrary:URL];
+      [self storeImage:image forURL:URL];	
     }
   }
 

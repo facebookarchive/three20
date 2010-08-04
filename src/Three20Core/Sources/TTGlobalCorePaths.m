@@ -28,6 +28,12 @@ BOOL TTIsDocumentsURL(NSString* URL) {
   return [URL hasPrefix:@"documents://"];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTIsLibraryURL(NSString* URL) {
+	return [URL hasPrefix:@"library://"];
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTPathForBundleResource(NSString* relativePath) {
@@ -45,4 +51,15 @@ NSString* TTPathForDocumentsResource(NSString* relativePath) {
     documentsPath = [[dirs objectAtIndex:0] retain];
   }
   return [documentsPath stringByAppendingPathComponent:relativePath];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSString* TTPathForLibraryResource(NSString* relativePath) {
+  static NSString* libraryPath = nil;
+  if (!libraryPath) {
+    NSArray* dirs = NSSearchPathForDirectoriesInDomains(
+      NSLibraryDirectory, NSUserDomainMask, YES);
+    libraryPath = [[dirs objectAtIndex:0] retain];
+  }
+  return [libraryPath stringByAppendingPathComponent:relativePath];
 }

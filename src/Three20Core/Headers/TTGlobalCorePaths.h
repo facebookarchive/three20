@@ -27,6 +27,12 @@ BOOL TTIsBundleURL(NSString* URL);
 BOOL TTIsDocumentsURL(NSString* URL);
 
 /**
+ * @return YES if the URL begins with "library://"
+ */
+BOOL TTIsLibraryURL(NSString* URL);
+
+
+/**
  * @return The main bundle path concatenated with the given relative path.
  */
 NSString* TTPathForBundleResource(NSString* relativePath);
@@ -35,3 +41,9 @@ NSString* TTPathForBundleResource(NSString* relativePath);
  * @return The documents path concatenated with the given relative path.
  */
 NSString* TTPathForDocumentsResource(NSString* relativePath);
+
+/**
+ * @return The library path concatenated with the given relative path.
+ */
+NSString* TTPathForLibraryResource(NSString* relativePath);
+
