@@ -337,6 +337,10 @@ static const NSInteger kLoadMaxRetries = 2;
                     _response.statusCode, _urlPath);
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
                                      userInfo:nil];
+    // WHEELY TEMP (begin)
+    for (TTURLRequest* request in _requests)
+      [request.response request:request processResponse:_response data:_responseData];
+    // WHEELY TEMP (end)
     [_queue loader:self didFailLoadWithError:error];
   }
 
