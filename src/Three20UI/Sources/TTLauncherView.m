@@ -131,11 +131,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)rowHeight {
-//  if (UIInterfaceOrientationIsPortrait(TTInterfaceOrientation())) {
-    return 103;
-//  } else {
-//    return 74;
-//  }
+  return round(_scrollView.height / 3);
 }
 
 
@@ -697,6 +693,7 @@ static const NSInteger kDefaultColumnCount = 3;
   if (!_buttons) {
     [self recreateButtons];
   }
+  [self layoutButtons];
 }
 
 
