@@ -962,7 +962,7 @@ static const NSInteger kDefaultColumnCount = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)beginHighlightItem:(TTLauncherItem*)item withText:(NSString*)text {
   if (nil == _highlightView) {
-    _highlightView = [[TTLauncherHighlightView alloc] initWithFrame:self.window.bounds];
+    _highlightView = [[TTLauncherHighlightView alloc] initWithFrame:CGRectZero];
     _highlightView.parentView = self;
     [self.window addSubview:_highlightView];
   }
