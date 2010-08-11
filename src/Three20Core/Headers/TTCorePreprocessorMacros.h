@@ -22,6 +22,20 @@
  */
 #define __TTDEPRECATED_METHOD __attribute__((deprecated))
 
+/**
+ * Borrowed from Apple's NSObjCRuntime.h header, iOS 4.0. There's no reason why we shouldn't be
+ * able to use this macro, as it's a clang-supported flag.
+ * Here's what we based it off of.
+ * NS_RETURNS_RETAINED __attribute__((ns_returns_retained))
+ */
+#ifdef NS_RETURNS_RETAINED  // iOS 4.0+: just use their definition.
+#define TT_RETURNS_RETAINED NS_RETURNS_RETAINED
+#elif defined(__clang__)
+#define TT_RETURNS_RETAINED __attribute__((ns_returns_retained))
+#else
+#define TT_RETURNS_RETAINED
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Errors
 
