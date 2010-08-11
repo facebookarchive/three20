@@ -20,6 +20,7 @@
 #import "Three20UI/UIViewAdditions.h"
 
 // UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 #import "Three20UICommon/UIWindowAdditions.h"
 
 
