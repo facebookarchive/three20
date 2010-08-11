@@ -48,7 +48,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tableCellMargin {
   if (self.style == UITableViewStyleGrouped) {
-    return 10;
+    // cdonnelly 2010-08-11: It's wider on iPad... table cells default to 678px wide in a 768px table.
+    return TTIsPad() ? 45 : 10;
   } else {
     return 0;
   }
