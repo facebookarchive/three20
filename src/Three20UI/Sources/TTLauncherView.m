@@ -685,6 +685,13 @@ static const NSInteger kDefaultColumnCount = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setFrame:(CGRect)newFrame {
+  [super setFrame:newFrame];
+  [self layoutButtons];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   [super layoutSubviews];
 
@@ -693,7 +700,6 @@ static const NSInteger kDefaultColumnCount = 3;
   if (!_buttons) {
     [self recreateButtons];
   }
-  [self layoutButtons];
 }
 
 
