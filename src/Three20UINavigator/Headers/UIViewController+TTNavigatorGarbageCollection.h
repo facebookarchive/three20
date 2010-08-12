@@ -22,6 +22,12 @@
 + (void)ttAddNavigatorController:(UIViewController*)controller;
 
 /**
+ * Boolean method indicating whether a particular controller class calls -unsetCommonProperties in dealloc.
+ * Defaults to NO; subclasses may override to bypass garbage collection.
+ * This is on the honor system.
+ */
+- (BOOL)callsUnsetNavigatorPropertiesInDealloc;
+/**
  * What used to the "swizzled" deallocation of UIViewControllers is now accomplished here.
  * This garbage collection method is called on controllers that have been completely released.
  *
