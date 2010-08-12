@@ -47,4 +47,6 @@
                     contentMode:(UIViewContentMode)contentMode
                            size:(CGSize)size next:(TTStyle*)next;
 
+- (UIImage*)imageForContext:(TTStyleContext*)context;
+
 @end
