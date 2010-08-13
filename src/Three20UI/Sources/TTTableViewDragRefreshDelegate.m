@@ -165,7 +165,9 @@ static const CGFloat kHeaderVisibleHeight = 60.0f;
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultFastTransitionDuration];
-  _controller.tableView.contentInset = UIEdgeInsetsMake(kHeaderVisibleHeight, 0.0f, 0.0f, 0.0f);
+  if (_controller.tableView.contentOffset.y < 0) {
+    _controller.tableView.contentInset = UIEdgeInsetsMake(kHeaderVisibleHeight, 0.0f, 0.0f, 0.0f);
+  }
   [UIView commitAnimations];
 }
 
