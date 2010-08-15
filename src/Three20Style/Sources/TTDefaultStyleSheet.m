@@ -1124,7 +1124,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)tableRefreshHeaderStatusFont {
-  return [UIFont boldSystemFontOfSize:13.0f];
+  return [UIFont boldSystemFontOfSize:14.0f];
 }
 
 
@@ -1136,13 +1136,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)tableRefreshHeaderTextColor {
-  return RGBCOLOR(87, 108, 137);
+  return RGBCOLOR(109, 128, 153);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)tableRefreshHeaderTextShadowColor {
-  return [UIColor colorWithWhite:0.9 alpha:1];
+  return [[UIColor whiteColor] colorWithAlphaComponent:0.9];
 }
 
 
