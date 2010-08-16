@@ -62,7 +62,7 @@
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   TTTableCaptionItem* item = object;
 
-  CGFloat width = tableView.width - kTableCellHPadding*2;
+  CGFloat width = tableView.width - kTableCellHPadding*2 - kTableCellMargin*2;
 
   CGSize detailTextSize = [item.text sizeWithFont:TTSTYLEVAR(tableFont)
                                 constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
@@ -87,9 +87,9 @@
   [super layoutSubviews];
 
   if (!self.textLabel.text.length) {
+    [self.detailTextLabel sizeToFit];
     CGFloat titleHeight = self.textLabel.height + self.detailTextLabel.height;
 
-    [self.detailTextLabel sizeToFit];
     self.detailTextLabel.top = floor(self.contentView.height/2 - titleHeight/2);
     self.detailTextLabel.left = self.detailTextLabel.top*2;
 
