@@ -891,6 +891,7 @@ static const NSInteger kDefaultColumnCount = 3;
     NSUInteger page = [path indexAtPosition:0];
     CGFloat x = page * _scrollView.width;
     [_scrollView setContentOffset:CGPointMake(x, 0) animated:animated];
+	  [self updatePagerWithContentOffset:CGPointMake(x, 0)];
   }
 }
 
