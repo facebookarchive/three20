@@ -245,8 +245,11 @@ static NSMutableDictionary* gNamedCaches = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImage*)loadImageFromBundle:(NSString*)URL {
   NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
-  NSData* data = [NSData dataWithContentsOfFile:path];
-  return [UIImage imageWithData:data];
+  // JE: Switched to use imageNamed for iPhone 4 @2x support.
+  //This simply strips out the "bundle://" Not sure of any other side effects this may have.
+  return [UIImage imageNamed:[URL substringFromIndex:9]];
+  //NSData* data = [NSData dataWithContentsOfFile:path];
+  //return [UIImage imageWithData:data];
 }
 
 

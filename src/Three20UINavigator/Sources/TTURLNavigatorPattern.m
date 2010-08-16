@@ -126,15 +126,17 @@ static NSString* kUniversalURLPattern = @"*";
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
       TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
       if (wildcard.name) {
+		//NSLog(@"Adding name: %@", wildcard.name);
         [parts addObject:wildcard.name];
       }
     }
   }
 
-  for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
+  for (id<TTURLPatternText> pattern in [_query objectEnumerator]) { // JE: objectEnumerator is not returning stuff in order.
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
       TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
       if (wildcard.name) {
+		//NSLog(@"Adding name: %@", wildcard.name);  
         [parts addObject:wildcard.name];
       }
     }
@@ -143,15 +145,29 @@ static NSString* kUniversalURLPattern = @"*";
   if ([_fragment isKindOfClass:[TTURLWildcard class]]) {
     TTURLWildcard* wildcard = (TTURLWildcard*)_fragment;
     if (wildcard.name) {
+	 // NSLog(@"Adding name: %@", wildcard.name);	
       [parts addObject:wildcard.name];
     }
   }
 
+  // JE: Debuggin
+ // NSLog(@"Path:");
+  for (id pattern in _path) {
+//	NSLog(@"  %@", [pattern name]);
+
+  }
+
+ // NSLog(@"Parts: %@", parts);
+	
   if (parts.count) {
     [self setSelectorWithNames:parts];
     if (!_selector) {
+	  //NSLog(@" Selector was not set without query!");	
       [parts addObject:@"query"];
-      [self setSelectorWithNames:parts];
+	  [self setSelectorWithNames:parts]; // JE: <- This doesn't work!!!!!!T&!^$%*!^%@$^%!@^*$%*^@!%#*@!T
+	  if (!_selector) {
+		//  NSLog(@" Selector was STILL not set with query!");
+	  }
     }
   } else {
     [self setSelectorIfPossible:@selector(initWithNavigatorURL:query:)];
@@ -358,11 +374,11 @@ static NSString* kUniversalURLPattern = @"*";
       [self deduceSelector];
     }
   } else {
-    [self compileURL];
+    [self compileURL]; // JE: This parses the order of the query wrong
 
     // XXXjoe Don't do this if the pattern is a URL generator
     if (!_selector) {
-      [self deduceSelector];
+      [self deduceSelector]; // All good in 4.0 until here...
     }
     if (_selector) {
       [self analyzeMethod];
@@ -413,7 +429,7 @@ static NSString* kUniversalURLPattern = @"*";
      withURL: (NSURL*)URL
        query: (NSDictionary*)query {
   id returnValue = nil;
-
+  //NSLog(@"Selector is: %@", self.selector); // JE: This log causes bad access sometimes
   NSMethodSignature *sig = [target methodSignatureForSelector:self.selector];
   if (sig) {
     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:sig];
@@ -427,7 +443,8 @@ static NSString* kUniversalURLPattern = @"*";
     } else {
       [self setArgumentsFromURL:URL forInvocation:invocation query:query];
     }
-    [invocation invoke];
+	  //NSLog(@"invocation = %@", invocation);
+	  [invocation invoke]; // JE: This calls initWithCat..
 
     if (sig.methodReturnLength) {
       [invocation getReturnValue:&returnValue];
@@ -449,10 +466,10 @@ static NSString* kUniversalURLPattern = @"*";
   }
 
   id returnValue = nil;
-  if (_selector) {
-    returnValue = [self invoke:target withURL:URL query:query];
+  if (_selector) { // _selector is nil in 4.0
+	returnValue = [self invoke:target withURL:URL query:query]; // This happens in 3.2....
   } else if (self.instantiatesClass) {
-    returnValue = [target init];
+    returnValue = [target init]; // This happens in 4.0. This is the issue.
   }
 
   [target autorelease];

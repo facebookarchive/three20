@@ -27,6 +27,7 @@
   id<TTURLPatternText>  _fragment;
   NSInteger             _specificity;
   SEL                   _selector;
+  NSArray *_queryKeyOrder; // JE:
 }
 
 @property (nonatomic, copy)     NSString* URL;
@@ -34,6 +35,7 @@
 @property (nonatomic, readonly) NSInteger specificity;
 @property (nonatomic, readonly) Class     classForInvocation;
 @property (nonatomic)           SEL       selector;
+@property (nonatomic, retain) NSArray *queryKeyOrder;
 
 - (void)setSelectorIfPossible:(SEL)selector;
 

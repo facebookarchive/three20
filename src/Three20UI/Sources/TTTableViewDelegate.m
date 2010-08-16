@@ -43,6 +43,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
+// UI
+#import "Three20UINavigator/TTURLAction.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,7 +119,10 @@
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
-    if (item.URL && [_controller shouldOpenURL:item.URL]) {
+      if (nil != item.URLAction && [_controller shouldOpenURL:item.URLAction.urlPath]) { // JE: URL Action Support	
+		  [[TTNavigator navigator] openURLAction:item.URLAction];
+		  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+	  }else if (item.URL && [_controller shouldOpenURL:item.URL]) {
       TTOpenURL(item.URL);
     }
 
@@ -154,7 +159,9 @@
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
-    if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
+	  if (nil != item.accessoryURLAction && [_controller shouldOpenURL:item.accessoryURLAction.urlPath]) { // JE: URL Action Support
+		  [[TTNavigator navigator] openURLAction:item.accessoryURLAction];
+	  }else if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
       TTOpenURL(item.accessoryURL);
     }
   }

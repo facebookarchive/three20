@@ -41,6 +41,10 @@
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
 
+// Where
+#import "Three20UINavigator/TTURLMap.h"
+#import "Three20UINavigator/TTURLAction.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +55,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	_statusBarStyle = UIStatusBarStyleBlackOpaque; //JE: Was: UIStatusBarStyleDefault;
     self.navigationBarTintColor = TTSTYLEVAR(navigationBarTintColor);
   }
 
@@ -165,5 +170,13 @@
   [UIViewController doCommonGarbageCollection];
 }
 
+#pragma mark -
+#pragma mark Where methods
+- (void) goToURL:(NSString *)url andQuery:(NSDictionary *)query{
+	TTURLAction *action = [TTURLAction actionWithURLPath:url];
+	[action applyAnimated:YES];
+	[action applyQuery:query];
+	[[TTNavigator navigator] openURLAction:action];
+}
 
 @end

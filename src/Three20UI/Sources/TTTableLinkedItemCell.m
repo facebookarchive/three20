@@ -22,6 +22,7 @@
 
 // UINavigator
 #import "Three20UINavigator/TTURLMap.h"
+#import "Three20UINavigator/TTURLAction.h" // JE
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"
@@ -65,10 +66,20 @@
 
     TTTableLinkedItem* item = object;
 
-    if (item.URL) {
-      TTNavigationMode navigationMode = [[TTNavigator navigator].URLMap
-                                         navigationModeForURL:item.URL];
-      if (item.accessoryURL) {
+	  // JE: Also use the URLAction's URL to decide what accessoryType this cell is	
+	  NSString *url = item.URL;	
+	  if (nil != item.URLAction) {	
+		  url = item.URLAction.urlPath;  	
+	  }
+	
+	  NSString *accessoryURL = item.accessoryURL;
+	  if (nil != item.accessoryURLAction) {	
+		  accessoryURL = item.accessoryURLAction.urlPath;  
+	  }	
+	if (url) {
+      TTNavigationMode navigationMode = [[TTNavigator navigator].URLMap										 
+                                         navigationModeForURL:url];
+	  if (accessoryURL) {
         self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 
       } else if (navigationMode == TTNavigationModeCreate ||
