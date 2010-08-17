@@ -38,7 +38,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)match:(NSString*)text {
-  NSLog(@"Url name = %@", _name);
+  //NSLog(@"Url name = %@", _name); // JE:
   return [text isEqualToString:_name];
 }
 
