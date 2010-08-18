@@ -163,4 +163,19 @@
 - (NSString*)URLForObject:(id)object;
 - (NSString*)URLForObject:(id)object withName:(NSString*)name;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Added Classes | 08/17/2010
+
+/**
+ * Return the Class of an Object for giving URL.
+ */
+- (id)classForObjectInURL:(NSString*)URL;
+
+/**
+ * Gets the object with a pattern that matches the URL.
+ *
+ * Only check the object mapping, if no object: return NIL.
+ */
+- (id)getObjectForURL:(NSString*)URL;
+	
 @end

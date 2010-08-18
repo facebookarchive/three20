@@ -371,22 +371,29 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)removeObject:(id)object {
-  // XXXjoe IMPLEMENT ME
+- (void)removeObject:(id)anObject {
+  // Retrieve all Keys (URL).
+  NSArray *keys = [_objectMappings allKeys];
+  // Loop seeking object. 
+  for ( id key in keys ) {
+	if ( [_objectMappings objectForKey:key] == anObject ) {
+		// Found !!
+		[self removeObjectForURL:key];
+		break;
+	}
+  }
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeObjectForURL:(NSString*)URL {
-  [_objectMappings removeObjectForKey:URL];
+  // Check if exist first.
+  if ( [_objectMappings objectForKey:URL] ) 
+	[_objectMappings removeObjectForKey:URL];
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllObjects {
   TT_RELEASE_SAFELY(_objectMappings);
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)objectForURL:(NSString*)URL {
@@ -507,6 +514,35 @@
   }
   return nil;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Added Methods | 08/17/2010
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)getObjectForURL:(NSString*)URL {
+	id object = nil;
+	if (_objectMappings) {
+		object = [_objectMappings objectForKey:URL];
+		if (object) {
+			return object;
+		}
+	}
+	/////   ///// ///// ///// ///// ///// 
+	// If doesn't found, return NIL.
+	return nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)classForObjectInURL:(NSString*)URL {
+	NSURL* theURL = [NSURL URLWithString:URL];
+	TTURLNavigatorPattern* pattern  = [self matchObjectPattern:theURL];
+	// 
+	if (!pattern) return nil;
+	//
+	return [pattern targetClass];
+}
+
+
 
 
 @end
