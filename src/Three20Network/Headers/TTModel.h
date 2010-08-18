@@ -89,6 +89,7 @@
  * A default implementation of TTModel does nothing other than appear to be loaded.
  */
 @interface TTModel : NSObject <TTModel> {
+  @private
   NSMutableArray* _delegates;
 }
 

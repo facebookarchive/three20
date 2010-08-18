@@ -17,6 +17,7 @@
 #import "Three20Core/NSArrayAdditions.h"
 
 #import "Three20Core/NSObjectAdditions.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,45 +31,49 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; (delegate = [e nextObject]); ) {
+  NSArray* copy = [self copy];
+  for (id delegate in copy) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector];
     }
   }
+  TT_RELEASE_SAFELY(copy);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; (delegate = [e nextObject]); ) {
+  NSArray* copy = [self copy];
+  for (id delegate in copy) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector withObject:p1];
     }
   }
+  TT_RELEASE_SAFELY(copy);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; (delegate = [e nextObject]); ) {
+  NSArray* copy = [self copy];
+  for (id delegate in copy) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector withObject:p1 withObject:p2];
     }
   }
+  TT_RELEASE_SAFELY(copy);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
-  for (id delegate; (delegate = [e nextObject]); ) {
+  NSArray* copy = [self copy];
+  for (id delegate in copy) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector withObject:p1 withObject:p2 withObject:p3];
     }
   }
+  TT_RELEASE_SAFELY(copy);
 }
 
 
