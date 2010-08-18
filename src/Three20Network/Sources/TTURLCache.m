@@ -226,36 +226,47 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TODO (jverkoey May 3, 2010): Clean up this redundant code.
-- (BOOL)imageExistsFromBundle:(NSString*)URL {
-  NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
-  NSFileManager* fm = [NSFileManager defaultManager];
-  return [fm fileExistsAtPath:path];
+#define kFromBundle 0
+#define kFromDocuments 1
+#define kFromTemporaryCache 2
+
+-(NSString*)pathForURL:(NSString*)URL from:(int)from {
+	// Conditional Path.
+	if ( from == kFromBundle ) {
+		return TTPathForBundleResource([URL substringFromIndex:9]);
+	}
+	
+	else if ( from == kFromDocuments ) {
+		return TTPathForDocumentsResource([URL substringFromIndex:12]);
+	}
+	
+	else if ( from == kFromTemporaryCache ) {
+		return [self cachePathForKey:[self keyForURL:URL]];
+	}
+	
+	// In case of from is NOT valid.
+	return @"";
+}
+
+///// ///// ///// ///// ///// ///// ///// ///// ///// 
+- (BOOL)imageExists:(NSString*)URL from:(int)from {
+	// File Manager.
+	NSFileManager* fm = [NSFileManager defaultManager];
+	NSString* path = [self pathForURL:URL from:from];
+	
+	// File exist? Return.
+	return [fm fileExistsAtPath:path];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)imageExistsFromDocuments:(NSString*)URL {
-  NSString* path = TTPathForDocumentsResource([URL substringFromIndex:12]);
-  NSFileManager* fm = [NSFileManager defaultManager];
-  return [fm fileExistsAtPath:path];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIImage*)loadImageFromBundle:(NSString*)URL {
-  NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
-  NSData* data = [NSData dataWithContentsOfFile:path];
-  return [UIImage imageWithData:data];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIImage*)loadImageFromDocuments:(NSString*)URL {
-  NSString* path = TTPathForDocumentsResource([URL substringFromIndex:12]);
-  NSData* data = [NSData dataWithContentsOfFile:path];
-  return [UIImage imageWithData:data];
-}
+- (UIImage*)loadImage:(NSString*)URL from:(int)from {
+	NSString* path = [self pathForURL:URL from:from];
+	
+	// Return data.
+	NSData* data = [NSData dataWithContentsOfFile:path];
+	return [UIImage imageWithData:data];
+}		
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -404,10 +415,10 @@ static NSMutableDictionary* gNamedCaches = nil;
 
   if (!hasImage && fromDisk) {
     if (TTIsBundleURL(URL)) {
-      hasImage = [self imageExistsFromBundle:URL];
+	   hasImage = [self imageExists:URL from:kFromBundle];
 
     } else if (TTIsDocumentsURL(URL)) {
-      hasImage = [self imageExistsFromDocuments:URL];
+      hasImage = [self imageExists:URL from:kFromDocuments];
     }
   }
 
@@ -426,14 +437,22 @@ static NSMutableDictionary* gNamedCaches = nil;
   UIImage* image = [_imageCache objectForKey:URL];
 
   if (nil == image && fromDisk) {
+	// URL from bundle.
     if (TTIsBundleURL(URL)) {
-      image = [self loadImageFromBundle:URL];
+	  image = [self loadImage:URL from:kFromBundle];
       [self storeImage:image forURL:URL];
 
+	// URL from document.
     } else if (TTIsDocumentsURL(URL)) {
-      image = [self loadImageFromDocuments:URL];
+	  image = [self loadImage:URL from:kFromDocuments]; 
       [self storeImage:image forURL:URL];
     }
+	  
+	// URL from temporary cache on disk. 
+	else if ( [URL hasPrefix:@"temp:"] ) {  // ** SHOULD CREATE A TTisTempURL() ?? **
+	  image = [self loadImage:URL from:kFromTemporaryCache]; 
+	  [self storeImage:image forURL:URL];
+	}
   }
 
   return image;
@@ -512,11 +531,16 @@ static NSMutableDictionary* gNamedCaches = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)storeTemporaryImage:(UIImage*)image toDisk:(BOOL)toDisk {
   NSString* URL = [self createUniqueTemporaryURL];
-  [self storeImage:image forURL:URL force:YES];
-
-  NSData* data = UIImagePNGRepresentation(image);
-  [self storeData:data forURL:URL];
-  return URL;
+	// Conditional save to DISK.
+	if ( toDisk ) {
+		NSData* data = UIImagePNGRepresentation(image);
+		[self storeData:data forURL:URL];
+	}
+	
+	// Actually store on DISK and MEMORY, if toDisk is specified.
+	[self storeImage:image forURL:URL force:YES];
+	
+	return URL;
 }
 
 
