@@ -40,7 +40,7 @@
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
 
-static const CGFloat kMargin = 0;
+static const CGFloat kMargin = 3;
 static const CGFloat kPadding = 0;
 static const CGFloat kPromptMargin = 40;
 static const CGFloat kPagerHeight = 20;
@@ -267,7 +267,7 @@ static const NSInteger kDefaultColumnCount = 3;
         button.frame = button == _dragButton ? [_scrollView convertRect:frame toView:self] : frame;
       }
       x += buttonWidth + kPadding;
-      if (x >= minX+pageWidth) {
+      if (x >= minX + pageWidth - (kMargin * 2)) {
         y += buttonHeight + kPadding;
         x = minX+kMargin;
       }
