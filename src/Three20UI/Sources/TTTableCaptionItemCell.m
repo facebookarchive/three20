@@ -78,8 +78,8 @@ static const CGFloat kKeyWidth = 75;
                                     lineBreakMode:UILineBreakModeWordWrap];
 
   CGSize captionTextSize = [item.caption sizeWithFont:TTSTYLEVAR(tableTitleFont)
-								constrainedToSize:CGSizeMake(kKeyWidth, CGFLOAT_MAX)
-									lineBreakMode:UILineBreakModeTailTruncation];
+                                constrainedToSize:CGSizeMake(kKeyWidth, CGFLOAT_MAX)
+                                    lineBreakMode:UILineBreakModeTailTruncation];
 	
   return MAX(detailTextSize.height + kTableCellVPadding*2, captionTextSize.height + kTableCellVPadding*2);
 }
