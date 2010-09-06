@@ -252,7 +252,10 @@ static const CGFloat kBannerViewHeight = 22;
 
   if (_lastInterfaceOrientation != self.interfaceOrientation) {
     _lastInterfaceOrientation = self.interfaceOrientation;
+	NSIndexPath *selectedRow = [[_tableView indexPathForSelectedRow] retain];
     [_tableView reloadData];
+	[_tableView selectRowAtIndexPath:selectedRow animated:NO scrollPosition:UITableViewScrollPositionNone];
+	[selectedRow release];
   } else if ([_tableView isKindOfClass:[TTTableView class]]) {
     TTTableView* tableView = (TTTableView*)_tableView;
     tableView.highlightedLabel = nil;
