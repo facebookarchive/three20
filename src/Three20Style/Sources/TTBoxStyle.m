@@ -114,6 +114,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
+  context.contentFrame = TTRectInset(context.contentFrame, _padding);
   size.width += _padding.left + _padding.right;
   size.height += _padding.top + _padding.bottom;
 
