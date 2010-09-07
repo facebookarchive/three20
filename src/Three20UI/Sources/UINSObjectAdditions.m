@@ -47,6 +47,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)URLAction {
 	TTURLAction *result = [TTURLAction actionWithURLPath:[[TTNavigator navigator].URLMap URLForObject:self]];
+	[result applyAnimated:YES];
 	[result applyQuery:[NSDictionary dictionaryWithObject:self forKey:@"object"]];
 	return result;
 }
@@ -55,6 +56,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)URLActionWithName:(NSString*)name {
 	TTURLAction *result = [TTURLAction actionWithURLPath:[[TTNavigator navigator].URLMap URLForObject:self withName:name]];
+	[result applyAnimated:YES];
 	[result applyQuery:[NSDictionary dictionaryWithObject:self forKey:@"object"]];
 	return result;
 }

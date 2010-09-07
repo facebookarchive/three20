@@ -17,6 +17,7 @@
 // UI
 #import "Three20UI/TTTableLinkedItem.h"
 
+@class TTURLAction;
 @interface TTTableTextItem : TTTableLinkedItem {
   NSString* _text;
 }
@@ -26,5 +27,8 @@
 + (id)itemWithText:(NSString*)text;
 + (id)itemWithText:(NSString*)text URL:(NSString*)URL;
 + (id)itemWithText:(NSString*)text URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL;
++ (id)itemWithText:(NSString*)text URLAction:(TTURLAction*)URLAction;
++ (id)itemWithText:(NSString*)text URLAction:(TTURLAction*)URLAction accessoryURL:(TTURLAction*)accessoryURLAction;
+
 
 @end
