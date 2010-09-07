@@ -21,6 +21,7 @@
 
 // UINavigator
 #import "Three20UINavigator/TTURLMap.h"
+#import "Three20UINavigator/TTURLAction.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,6 +42,21 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)URLValueWithName:(NSString*)name {
   return [[TTNavigator navigator].URLMap URLForObject:self withName:name];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)URLAction {
+	TTURLAction *result = [TTURLAction actionWithURLPath:[[TTNavigator navigator].URLMap URLForObject:self]];
+	[result applyQuery:[NSDictionary dictionaryWithObject:self forKey:@"object"]];
+	return result;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)URLActionWithName:(NSString*)name {
+	TTURLAction *result = [TTURLAction actionWithURLPath:[[TTNavigator navigator].URLMap URLForObject:self withName:name]];
+	[result applyQuery:[NSDictionary dictionaryWithObject:self forKey:@"object"]];
+	return result;
 }
 
 
