@@ -27,13 +27,15 @@
 
 @synthesize URL           = _URL;
 @synthesize accessoryURL  = _accessoryURL;
-
+@synthesize URLAction     = _URLAction;	
+@synthesize accessoryURLAction  = _accessoryURLAction;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_URL);
   TT_RELEASE_SAFELY(_accessoryURL);
-
+  TT_RELEASE_SAFELY(_URLAction);
+  TT_RELEASE_SAFELY(_accessoryURLAction);
   [super dealloc];
 }
 
@@ -62,6 +64,7 @@
   if (self.accessoryURL) {
     [encoder encodeObject:self.accessoryURL forKey:@"URL"];
   }
+  // TODO: JE: Encode the URLAction ad accessoryURLAction?
 }
 
 

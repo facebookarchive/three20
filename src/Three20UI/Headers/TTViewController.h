@@ -45,4 +45,11 @@
  */
 + (void)doGarbageCollection;
 
+
+// Where
+/**	
+ * Used for URL Based Navigation	
+ */
+- (void) goToURL:(NSString *)url andQuery:(NSDictionary *)query;
+
 @end

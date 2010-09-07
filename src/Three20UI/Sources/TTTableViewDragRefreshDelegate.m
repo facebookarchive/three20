@@ -134,7 +134,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
   if (scrollView.contentOffset.y <= kRefreshDeltaY && !_controller.model.isLoading) {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"DragRefreshTableReload" object:nil];
-    [_controller.model load:TTURLRequestCachePolicyNetwork more:NO];
+    //[_controller.model load:TTURLRequestCachePolicyNetwork more:NO]; // JE: Commented out this reload. I'm letting the TTModelViewController handle it
   }
 
   _isDragging = NO;

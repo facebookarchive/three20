@@ -198,6 +198,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reload {
   if (nil == _request && nil != _urlPath) {
+	//NSLog(@"IMAGE FOR URL: %@", _urlPath);
     UIImage* image = [[TTURLCache sharedCache] imageForURL:_urlPath];
 
     if (nil != image) {

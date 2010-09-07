@@ -35,6 +35,7 @@
 @synthesize scheme      = _scheme;
 @synthesize specificity = _specificity;
 @synthesize selector    = _selector;
+@synthesize queryKeyOrder = _queryKeyOrder;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,6 +54,7 @@
   TT_RELEASE_SAFELY(_path);
   TT_RELEASE_SAFELY(_query);
   TT_RELEASE_SAFELY(_fragment);
+  self.queryKeyOrder = nil; // JE
 
   [super dealloc];
 }
@@ -125,6 +127,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSelectorIfPossible:(SEL)selector {
   Class cls = [self classForInvocation];
+	// JE: Debugging
+//	NSLog(@"Class name: %@", NSStringFromClass(cls));
+//	if (class_respondsToSelector(cls, selector)) {
+//		NSLog(@"  It responds!");
+//	}
   if (nil == cls
       || class_respondsToSelector(cls, selector)
       || class_getClassMethod(cls, selector)) {
@@ -143,7 +150,7 @@
     if (URL.path) {
       for (NSString* name in URL.path.pathComponents) {
         if (![name isEqualToString:@"/"]) {
-          [self parsePathComponent:name];
+          [self parsePathComponent:name]; // Gets called for: search, but that's it. That makes sense I guess.
         }
       }
     }
@@ -151,9 +158,22 @@
 
   if (URL.query) {
     NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+
+	// JE:	
+	NSArray *queryComponents = [URL.query componentsSeparatedByString:@"&"];	
+	NSMutableArray *queryKeyOrder = [NSMutableArray array];
+
+	for (NSString *component in queryComponents) {	
+		NSArray *pair = [component componentsSeparatedByString:@"="];	
+		//NSLog(@"adding key: %@", [pair objectAtIndex:0]);
+		[queryKeyOrder addObject:[pair objectAtIndex:0]];
+	}
+
+	self.queryKeyOrder = queryKeyOrder;	
+	//NSLog(@"Query key order = %@", self.queryKeyOrder);
     for (NSString* name in [query keyEnumerator]) {
       NSString* value = [query objectForKey:name];
-      [self parseParameter:name value:value];
+      [self parseParameter:name value:value]; // JE: URL query params are added in the wrong order here
     }
   }
 

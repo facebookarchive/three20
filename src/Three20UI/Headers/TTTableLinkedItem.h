@@ -17,12 +17,18 @@
 // UI
 #import "Three20UI/TTTableItem.h"
 
+@class TTURLAction;
+
 @interface TTTableLinkedItem : TTTableItem {
   NSString* _URL;
   NSString* _accessoryURL;
+  TTURLAction* _URLAction;
+  TTURLAction* _accessoryURLAction;
 }
 
 @property (nonatomic, copy) NSString* URL;
 @property (nonatomic, copy) NSString* accessoryURL;
+@property (nonatomic, retain) TTURLAction* URLAction;
+@property (nonatomic, retain) TTURLAction* accessoryURLAction;
 
 @end

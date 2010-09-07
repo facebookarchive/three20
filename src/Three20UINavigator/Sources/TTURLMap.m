@@ -141,7 +141,7 @@
 
   for (TTURLNavigatorPattern* pattern in _objectPatterns) {
     if ([pattern matchURL:URL]) {
-      return pattern;
+      return pattern; // JE: I think this is the thing that should run
     }
   }
 
@@ -405,6 +405,7 @@
              query: (NSDictionary*)query
            pattern: (TTURLNavigatorPattern**)outPattern {
   id object = nil;
+  //NSLog(@"objectmappings: %@", _objectMappings); // JE
   if (_objectMappings) {
     object = [_objectMappings objectForKey:URL];
     if (object && !outPattern) {
@@ -416,7 +417,7 @@
   TTURLNavigatorPattern* pattern  = [self matchObjectPattern:theURL];
   if (pattern) {
     if (!object) {
-      object = [pattern createObjectFromURL:theURL query:query];
+      object = [pattern createObjectFromURL:theURL query:query]; // 3.2 goes here, so does 4.0
     }
     if (pattern.navigationMode == TTNavigationModeShare && object) {
       [self setObject:object forURL:URL];
