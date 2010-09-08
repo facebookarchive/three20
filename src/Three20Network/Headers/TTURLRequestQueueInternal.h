@@ -33,7 +33,10 @@
 - (void)               loader:(TTRequestLoader*)loader
     didLoadUnmodifiedResponse:(NSHTTPURLResponse*)response;
 
-- (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error;
+- (void)          loader: (TTRequestLoader*)loader
+    didFailLoadWithError: (NSError*)error
+                response: (NSHTTPURLResponse*)response
+                    data: (id)data;
 - (void)loaderDidCancel:(TTRequestLoader*)loader wasLoading:(BOOL)wasLoading;
 
 @end

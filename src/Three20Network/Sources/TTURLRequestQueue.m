@@ -662,10 +662,31 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loader:(TTRequestLoader*)loader didFailLoadWithError:(NSError*)error {
+- (void)           loader: (TTRequestLoader*)loader
+     didFailLoadWithError: (NSError*)error
+                 response: (NSHTTPURLResponse*)response
+                     data: (id)data {
   TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"ERROR: %@", error);
+  [loader retain];
   [self removeLoader:loader];
-  [loader dispatchError:error];
+  
+  NSError* errorToDispatch = error;
+  
+  if (response && data) {
+    NSError* responseProcessingError = [loader processResponse:response data:data];
+    if (responseProcessingError) {
+      NSMutableDictionary* userInfo = [[NSMutableDictionary alloc]
+                                       initWithCapacity:[[error userInfo] count]];
+      [userInfo addEntriesFromDictionary:[error userInfo]];
+      [userInfo setObject:responseProcessingError forKey:@"TTURLResponseProcessingError"];
+      errorToDispatch = [NSError errorWithDomain:[error domain] code:[error code]
+                                        userInfo:userInfo];
+      TT_RELEASE_SAFELY(userInfo);
+    }
+  }
+  
+  [loader dispatchError:errorToDispatch];
+  
   [self loadNextInQueue];
 }
 
