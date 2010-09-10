@@ -40,4 +40,5 @@
 // - Classes
 #import "Three20Network/TTUserInfo.h"
 #import "Three20Network/TTURLRequestQueue.h"
+#import "Three20Network/TTRequestLoader.h"
 #import "Three20Network/TTURLCache.h"

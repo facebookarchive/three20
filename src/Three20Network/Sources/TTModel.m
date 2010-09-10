@@ -108,9 +108,9 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didLoadBytes:(NSUInteger)bytesLoaded ofTotalSize:(NSUInteger)totalSize {
-	[_delegates perform:@selector(model:didLoadBytes:ofTotalSize:) withObject:self withObject:[NSNumber numberWithUnsignedInteger:bytesLoaded]
-			 withObject:[NSNumber numberWithUnsignedInteger:totalSize]];
+- (void)didLoadBytes:(float)bytesLoaded ofTotalSize:(float)totalSize {
+	[_delegates perform:@selector(model:didLoadBytes:ofTotalSize:) withObject:self withObject:[NSNumber numberWithFloat:bytesLoaded]
+			 withObject:[NSNumber numberWithFloat:totalSize]];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

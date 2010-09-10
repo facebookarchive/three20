@@ -105,7 +105,7 @@
 /**
  * Notifies delegates that download progress has changed
  */
-- (void)didLoadBytes:(NSUInteger)bytesLoaded ofTotalSize:(NSUInteger)totalSize;
+- (void)didLoadBytes:(float)bytesLoaded ofTotalSize:(float)totalSize;
 
 /**
  * Notifies delegates that the model failed to load.

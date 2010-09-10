@@ -25,7 +25,7 @@
 #import "Three20Network/TTURLCache.h"
 
 // Network (Private)
-#import "Three20Network/private/TTRequestLoader.h"
+#import "Three20Network/TTRequestLoader.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"

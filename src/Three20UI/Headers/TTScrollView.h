@@ -17,6 +17,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef enum {
+	TTScrollDirectionNone = 0,
+	TTScrollDirectionLeft = 1,
+	TTScrollDirectionRight = 2,
+	TTScrollDirectionUp = 4,
+	TTScrollDirectionDown = 8,
+	TTScrollDirectionHorizontal = (TTScrollDirectionLeft | TTScrollDirectionRight),
+	TTScrollDirectionVertical = (TTScrollDirectionUp | TTScrollDirectionDown)
+} TTScrollViewScrollDirection;
+
 @protocol TTScrollViewDelegate;
 @protocol TTScrollViewDataSource;
 
@@ -62,6 +72,10 @@
   // The second touch in this view.
   UITouch*        _touch2;
 
+  CGPoint         _motionOrigin;
+
+  TTScrollViewScrollDirection _scrollDirection;
+	
   BOOL            _dragging;
   BOOL            _zooming;
   BOOL            _holding;
@@ -78,6 +92,8 @@
 @property (nonatomic, readonly) BOOL zoomed;
 
 @property (nonatomic, readonly) BOOL holding;
+
+@property (nonatomic, readonly) BOOL dragging;
 
 /**
  * @default YES
@@ -119,6 +135,8 @@
  */
 @property (nonatomic, readonly) NSDictionary* visiblePages;
 
+@property (nonatomic, readonly) TTScrollViewScrollDirection scrollDirection;
+
 - (void)setOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated;
 
 /**
@@ -138,5 +156,7 @@
  * Cancels any active touches and resets everything to an untouched state.
  */
 - (void)cancelTouches;
+
+- (void)scrollToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
 
 @end

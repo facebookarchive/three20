@@ -89,8 +89,9 @@ static CGFloat kProgressMargin  = 6;
     _label = [[UILabel alloc] init];
     _label.text = text;
     _label.backgroundColor = [UIColor clearColor];
+	_label.numberOfLines = 0;
     _label.lineBreakMode = UILineBreakModeTailTruncation;
-
+	
     if (_style == TTActivityLabelStyleWhite) {
       _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
                                                             UIActivityIndicatorViewStyleWhite];

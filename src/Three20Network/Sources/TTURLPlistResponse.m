@@ -40,9 +40,9 @@
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
 			   data:(id)data {
 	
-	if ([data isKindOfClass:[NSData class]]) {
+	/*if ([data isKindOfClass:[NSData class]]) {
 		_data = [data retain];
-	}
+	}*/
 	
 	NSString *errorDescription = nil;
 	
@@ -52,7 +52,7 @@
 											  mutabilityOption: NSPropertyListImmutable 
 														format: &format 
 											  errorDescription: &errorDescription];
-	
+		
 	NSError *error = nil;
 	
 	if(errorDescription != nil) {

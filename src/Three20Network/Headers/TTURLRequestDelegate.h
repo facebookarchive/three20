@@ -48,7 +48,7 @@
  * 
  * Allows delegates to handle download progress
  */
-- (void)request:(TTURLRequest*)request didLoadBytes:(NSUInteger)bytesLoaded ofTotalExpected:(NSUInteger)totalExpected;
+- (void)request:(TTURLRequest*)request didLoadBytes:(float)bytesLoaded ofTotalExpected:(float)totalExpected;
 
 /**
  * Allows delegate to handle any authentication challenges.

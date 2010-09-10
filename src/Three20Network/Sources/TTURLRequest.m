@@ -73,7 +73,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate {
-  return [[[TTURLRequest alloc] initWithURL:URL delegate:delegate] autorelease];
+  //return [[[TTURLRequest alloc] initWithURL:URL delegate:delegate] autorelease];
+	return [[[[self class] alloc] initWithURL: URL delegate: delegate] autorelease];
 }
 
 
@@ -104,6 +105,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+
   TT_RELEASE_SAFELY(_urlPath);
   TT_RELEASE_SAFELY(_httpMethod);
   TT_RELEASE_SAFELY(_response);

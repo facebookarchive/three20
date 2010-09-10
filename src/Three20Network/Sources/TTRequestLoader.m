@@ -246,7 +246,7 @@ static const NSInteger kLoadMaxRetries = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dispatchDownloadedBytes:(NSUInteger)downloadedBytes ofTotalExpected:(NSUInteger) totalExpected {
+- (void)dispatchDownloadedBytes:(float)downloadedBytes ofTotalExpected:(float) totalExpected {
 	for (TTURLRequest* request in [[_requests copy] autorelease]) {
 		
 		for (id<TTURLRequestDelegate> delegate in request.delegates) {

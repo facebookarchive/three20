@@ -638,7 +638,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = Info.plist;
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
@@ -662,7 +662,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
@@ -677,7 +677,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
-				SDKROOT = iphonesimulator2.2;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Release;
 		};

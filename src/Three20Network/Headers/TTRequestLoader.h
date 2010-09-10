@@ -129,7 +129,7 @@
 - (void)dispatchError:(NSError*)error;
 - (void)dispatchLoaded:(NSDate*)timestamp;
 - (void)dispatchAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge;
-- (void)dispatchDownloadedBytes:(NSUInteger)downloadedBytes ofTotalExpected:(NSUInteger) totalExpected;
+- (void)dispatchDownloadedBytes:(float)downloadedBytes ofTotalExpected:(float)totalExpected;
 - (void)cancel;
 
 @end

@@ -34,6 +34,8 @@
 
 - (void)scrollViewWillBeginDragging:(TTScrollView*)scrollView;
 
+- (void)scrollViewDidScroll:(TTScrollView *)scrollView;
+
 - (void)scrollViewDidEndDragging:(TTScrollView*)scrollView willDecelerate:(BOOL)willDecelerate;
 
 - (void)scrollViewDidEndDecelerating:(TTScrollView*)scrollView;

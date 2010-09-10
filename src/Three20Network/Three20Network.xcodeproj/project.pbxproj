@@ -16,7 +16,7 @@
 		6EE7360211849A1F00A35176 /* TTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360111849A1F00A35176 /* TTUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361411849A3500A35176 /* TTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360811849A3500A35176 /* TTModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361511849A3500A35176 /* TTModelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360911849A3500A35176 /* TTModelDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6EE7361611849A3500A35176 /* TTRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360A11849A3500A35176 /* TTRequestLoader.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6EE7361611849A3500A35176 /* TTRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360A11849A3500A35176 /* TTRequestLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361711849A3500A35176 /* TTURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360B11849A3500A35176 /* TTURLCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361811849A3500A35176 /* TTURLDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360C11849A3500A35176 /* TTURLDataResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7361911849A3500A35176 /* TTURLImageResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7360D11849A3500A35176 /* TTURLImageResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -541,10 +541,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Internal;
 		};
@@ -608,10 +609,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6EE7364B11849B3D00A35176 /* Library.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PREBINDING = NO;
+				VALID_ARCHS = armv7;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -624,10 +627,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
@@ -639,9 +643,10 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Release;
 		};

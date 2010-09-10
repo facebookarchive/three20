@@ -27,16 +27,19 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
+#import "Three20Core/TTDebug.h"
+
 static const NSInteger kOffscreenPages = 1;
 static const CGFloat kDefaultPageSpacing = 40.0;
 static const CGFloat kFlickThreshold = 60.0;
 static const CGFloat kTapZoom = 0.75;
 static const CGFloat kResistance = 0.15;
+static const CGFloat kHorizontalSwipeDragOffset = 12.0;
+static const CGFloat kVerticalSwipeDragOffset = 6.0;
 static const NSInteger kInvalidIndex = -1;
 static const NSTimeInterval kFlickDuration = 0.4;
 static const NSTimeInterval kBounceDuration = 0.3;
 static const NSTimeInterval kOvershoot = 2;
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,6 +55,8 @@ static const NSTimeInterval kOvershoot = 2;
 @synthesize rotateEnabled   = _rotateEnabled;
 @synthesize orientation     = _orientation;
 @synthesize holding         = _holding;
+@synthesize dragging        = _dragging;
+@synthesize scrollDirection = _scrollDirection;
 
 @synthesize holdsAfterTouchingForInterval = _holdsAfterTouchingForInterval;
 
@@ -72,6 +77,8 @@ static const NSTimeInterval kOvershoot = 2;
     _zoomEnabled = YES;
     _rotateEnabled = YES;
     _orientation = UIDeviceOrientationPortrait;
+	_scrollDirection = TTScrollDirectionNone;
+	_motionOrigin = CGPointZero;
 
     for (NSInteger i = 0; i < _maxPages; ++i) {
       [_pages addObject:[NSNull null]];
@@ -97,6 +104,7 @@ static const NSTimeInterval kOvershoot = 2;
   TT_RELEASE_SAFELY(_animationStartTime);
   TT_RELEASE_SAFELY(_pages);
   TT_RELEASE_SAFELY(_pageQueue);
+  TT_RELEASE_SAFELY(_dataSource);
 
   [super dealloc];
 }
@@ -121,10 +129,10 @@ static const NSTimeInterval kOvershoot = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)draggingFromEdge {
+/*- (BOOL)draggingFromEdge {
   return (_pageEdges.left < 0 && [self isLastPage])
       || (_pageEdges.left > 0 && [self isFirstPage]);
-}
+}*/
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -890,7 +898,7 @@ static const NSTimeInterval kOvershoot = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)startTapTimer:(UITouch*)touch {
-  _tapTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(tapTimer:)
+  _tapTimer = [NSTimer scheduledTimerWithTimeInterval:0.15 target:self selector:@selector(tapTimer:)
     userInfo:touch repeats:NO];
 }
 
@@ -1041,17 +1049,34 @@ static const NSTimeInterval kOvershoot = 2;
   }
 }
 
+- (TTScrollViewScrollDirection) scrollDirectionWithTouch:(UITouch*)touch {
+	
+	CGPoint currentTouchLocation = [self touchLocation: touch];
+	
+	float xDelta = fabsf(_motionOrigin.x - currentTouchLocation.x);
+	float yDelta = fabsf(_motionOrigin.y - currentTouchLocation.y);
+	
+	if (xDelta >= kHorizontalSwipeDragOffset && yDelta <= kVerticalSwipeDragOffset) {
+		/// Moving horizontally
+		return (currentTouchLocation.x > _motionOrigin.x) ? TTScrollDirectionLeft: TTScrollDirectionRight;
+	}
+	else {
+		/// Moving vertically
+		return (currentTouchLocation.y > _motionOrigin.y) ? TTScrollDirectionDown: TTScrollDirectionUp;
+	}
+	
+	return TTScrollDirectionNone;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UIResponder
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
-
+	
   if (_touchCount < 2) {
     [self stopAnimation:NO];
 
@@ -1087,6 +1112,7 @@ static const NSTimeInterval kOvershoot = 2;
         TT_INVALIDATE_TIMER(_tapTimer);
       }
     }
+    _motionOrigin = [self touchLocation: _touch1];
   }
 }
 
@@ -1097,8 +1123,12 @@ static const NSTimeInterval kOvershoot = 2;
   TT_INVALIDATE_TIMER(_holdingTimer);
 
   if (_scrollEnabled && !_holding && _touchCount && !_animationTimer) {
+	  
+	  _scrollDirection = [self scrollDirectionWithTouch: [touches anyObject]];
+	  
     if (!_dragging) {
       _dragging = YES;
+
       TT_INVALIDATE_TIMER(_tapTimer);
 
       if ([_delegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
@@ -1135,6 +1165,10 @@ static const NSTimeInterval kOvershoot = 2;
       [self updateZooming:pageEdges];
       [self setNeedsLayout];
     }
+	
+	if([_delegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
+		[_delegate scrollViewDidScroll:self];
+	}
   }
 }
 
@@ -1143,6 +1177,8 @@ static const NSTimeInterval kOvershoot = 2;
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesCancelled:touches withEvent:event];
   TT_INVALIDATE_TIMER(_holdingTimer);
+  _scrollDirection = TTScrollDirectionNone;
+  _motionOrigin = CGPointZero;
 
   for (UITouch* touch in touches) {
     [self removeTouch:touch];
@@ -1163,6 +1199,9 @@ static const NSTimeInterval kOvershoot = 2;
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesEnded:touches withEvent:event];
   TT_INVALIDATE_TIMER(_holdingTimer);
+  _scrollDirection = TTScrollDirectionNone;
+  _motionOrigin = CGPointZero;
+
   if (_holding) {
     [self endHolding];
   }
@@ -1262,7 +1301,8 @@ static const NSTimeInterval kOvershoot = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setDataSource:(id<TTScrollViewDataSource>)dataSource {
-  _dataSource = dataSource;
+  TT_RELEASE_SAFELY(_dataSource);
+  _dataSource = [dataSource retain];
   [self reloadData];
 }
 
@@ -1376,6 +1416,18 @@ static const NSTimeInterval kOvershoot = 2;
   return [self pageAtIndex:pageIndex create:NO];
 }
 
+- (void)scrollToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated {
+	
+	if(animated) {
+		UIEdgeInsets edges = [self pageEdgesForAnimation];
+        NSTimeInterval dur = self.flicked ? kFlickDuration : kBounceDuration;
+		
+		[self startAnimationTo:edges duration:dur];
+	}
+	else {
+		[self moveToPageAtIndex:pageIndex resetEdges:YES];
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)zoomToFit {
