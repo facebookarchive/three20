@@ -451,4 +451,18 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)plainText
+{
+	NSMutableArray *t = [NSMutableArray arrayWithCapacity:32];
+	TTStyledNode* node = _rootNode;
+	while (node) {
+		NSString *nodeText = [node outerText];
+		if([nodeText length] > 0) [t addObject:nodeText];
+		node = node.nextSibling;
+	}
+	return [t componentsJoinedByString:@"\n"];
+}
+
+
 @end

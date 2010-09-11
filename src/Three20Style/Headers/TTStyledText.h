@@ -137,4 +137,9 @@
 
 - (TTStyledNode*)getElementByClassName:(NSString*)className;
 
+/**
+ * Returns a plain text version of the styled text.
+ */
+- (NSString*)plainText;
+
 @end

@@ -16,6 +16,9 @@
 
 #import "Three20UI/TTTableStyledTextItem.h"
 
+// Styles
+#import "Three20Style/TTStyledText.h"
+
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
@@ -118,5 +121,10 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)textForCopyingToPasteboard {
+	return [self.text plainText];
+}
 
 @end

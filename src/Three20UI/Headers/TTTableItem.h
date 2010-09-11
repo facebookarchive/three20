@@ -23,4 +23,9 @@
 
 @property (nonatomic, retain) id userInfo;
 
+/**
+ * Returns the text which should be copied to the pasteboard from this cell
+ */
+- (NSString*)textForCopyingToPasteboard;
+
 @end

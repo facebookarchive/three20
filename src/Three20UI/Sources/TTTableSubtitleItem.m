@@ -131,4 +131,9 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)textForCopyingToPasteboard {
+	return [NSString stringWithFormat:@"%@\n%@", self.text, self.subtitle];
+}
+
 @end

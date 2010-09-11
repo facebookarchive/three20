@@ -56,4 +56,15 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Support for TTTableViewCell's text copying
+
+- (NSString*)textForCopyingToPasteboard {
+	if([self respondsToSelector:@selector(text)])
+	{
+		return [(id)self text];
+	}
+	return nil;
+}
+
 @end

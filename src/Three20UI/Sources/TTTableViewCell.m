@@ -64,4 +64,39 @@ const NSInteger kTableMessageTextLineCount = 2;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//   Copy & Paste support 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Allow the cell to become a first responder so UIMenuController will ask it to perform the copy operation
+- (BOOL)canBecomeFirstResponder {
+	return YES;
+}
+
+// Get the text for the pasteboard copy, or nil
+- (NSString*)textForCopyingToPasteboard {
+	id obj = [self object];
+	if(obj != nil && [obj respondsToSelector:@selector(textForCopyingToPasteboard)])
+	{
+		return [obj textForCopyingToPasteboard];
+	}
+	return nil;
+}
+
+// This cell will allow copy operations if there's some text available
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+	return (action == @selector(copy:) && [self textForCopyingToPasteboard] != nil) || [super canPerformAction:action withSender:sender];
+}
+
+// Perform copy operations
+- (void)copy:(id)sender {
+	NSString *text = [self textForCopyingToPasteboard];
+	if(text != nil)
+	{
+		[[UIPasteboard generalPasteboard] setString:text];
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @end
