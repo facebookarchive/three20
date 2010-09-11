@@ -21,16 +21,19 @@
 
 @interface TTTableStyledTextItem : TTTableLinkedItem {
   TTStyledText* _text;
+  NSString*     _imageURL;
   UIEdgeInsets  _margin;
   UIEdgeInsets  _padding;
 }
 
 @property (nonatomic, retain) TTStyledText* text;
+@property (nonatomic,copy)    NSString*     imageURL;
 @property (nonatomic)         UIEdgeInsets  margin;
 @property (nonatomic)         UIEdgeInsets  padding;
 
 + (id)itemWithText:(TTStyledText*)text;
 + (id)itemWithText:(TTStyledText*)text URL:(NSString*)URL;
 + (id)itemWithText:(TTStyledText*)text URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL;
++ (id)itemWithText:(TTStyledText*)text imageURL:(NSString*)imageURL URL:(NSString*)URL accessoryURL:(NSString*)accessoryURL;
 
 @end
