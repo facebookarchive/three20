@@ -49,7 +49,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.textAlignment = UITextAlignmentLeft;
     self.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
-    self.textLabel.adjustsFontSizeToFitWidth = YES;
+    // self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.textLabel.contentMode = UIViewContentModeLeft;
 
     self.detailTextLabel.font = TTSTYLEVAR(font);

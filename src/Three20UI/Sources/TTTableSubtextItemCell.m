@@ -37,7 +37,7 @@
     self.detailTextLabel.font = TTSTYLEVAR(tableFont);
     self.detailTextLabel.textColor = TTSTYLEVAR(textColor);
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
-    self.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+    // self.detailTextLabel.adjustsFontSizeToFitWidth = YES;
 
     self.textLabel.font = TTSTYLEVAR(font);
     self.textLabel.textColor = TTSTYLEVAR(tableSubTextColor);

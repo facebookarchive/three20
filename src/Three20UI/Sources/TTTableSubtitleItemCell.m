@@ -49,7 +49,7 @@ static const CGFloat kDefaultImageSize = 50;
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.textAlignment = UITextAlignmentLeft;
     self.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
-    self.textLabel.adjustsFontSizeToFitWidth = YES;
+    // self.textLabel.adjustsFontSizeToFitWidth = YES;
 
     self.detailTextLabel.font = TTSTYLEVAR(font);
     self.detailTextLabel.textColor = TTSTYLEVAR(tableSubTextColor);

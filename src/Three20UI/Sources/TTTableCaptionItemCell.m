@@ -45,12 +45,12 @@ static const CGFloat kKeyWidth = 75;
     self.textLabel.textAlignment = UITextAlignmentRight;
     self.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
     self.textLabel.numberOfLines = 1;
-    self.textLabel.adjustsFontSizeToFitWidth = YES;
+    // self.textLabel.adjustsFontSizeToFitWidth = YES;
 
     self.detailTextLabel.font = TTSTYLEVAR(tableSmallFont);
     self.detailTextLabel.textColor = TTSTYLEVAR(textColor);
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
-    self.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+    // self.detailTextLabel.adjustsFontSizeToFitWidth = YES;
     self.detailTextLabel.minimumFontSize = 8;
     self.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
     self.detailTextLabel.numberOfLines = 0;
