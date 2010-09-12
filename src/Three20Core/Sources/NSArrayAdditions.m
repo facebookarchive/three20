@@ -30,45 +30,53 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+  NSArray *copy = [[NSArray alloc] initWithArray:self];
+  NSEnumerator* e = [copy objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector];
     }
   }
+  [copy release];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+  NSArray *copy = [[NSArray alloc] initWithArray:self];
+  NSEnumerator* e = [copy objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector withObject:p1];
     }
   }
+  [copy release];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+  NSArray *copy = [[NSArray alloc] initWithArray:self];
+  NSEnumerator* e = [copy objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector withObject:p1 withObject:p2];
     }
   }
+  [copy release];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3 {
-  NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+  NSArray *copy = [[NSArray alloc] initWithArray:self];
+  NSEnumerator* e = [copy objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
       [delegate performSelector:selector withObject:p1 withObject:p2 withObject:p3];
     }
   }
+  [copy release];
 }
 
 
