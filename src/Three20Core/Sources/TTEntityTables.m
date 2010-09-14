@@ -164,11 +164,11 @@ static TTEntityTables* sharedInstance = nil;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)sharedInstance {
-  @synchronized(self) {
+//  @synchronized(self) {
     if (nil == sharedInstance) {
       sharedInstance = [[self alloc] init];
     }
-  }
+//  }
   return sharedInstance;
 }
 
@@ -181,21 +181,21 @@ static TTEntityTables* sharedInstance = nil;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)releaseSharedInstance {
-  @synchronized(self) {
+//  @synchronized(self) {
     [sharedInstance superRelease];
     sharedInstance = nil;
-  }
+//  }
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Ensure that [TTEntityTables alloc] returns the singleton object.
 + (id)allocWithZone:(NSZone*)zone {
-  @synchronized(self) {
+//  @synchronized(self) {
     if (nil == sharedInstance) {
       sharedInstance = [super allocWithZone:zone];
     }
-  }
+//  }
 
   return sharedInstance;
 }
