@@ -335,6 +335,14 @@
     }
   }
 
+  CGFloat maxFont = 0;
+  TTStyledFrame* frame = _lineFirstFrame;
+  while (frame) {
+    UIFont* font = frame.font ? frame.font : _font;
+    maxFont = fmax(maxFont, font.ascender);
+    frame = frame.nextFrame;
+  }
+	
   // Vertically align all frames on the current line
   if (_lineFirstFrame.nextFrame) {
     TTStyledFrame* frame = _lineFirstFrame;
@@ -343,7 +351,7 @@
       // XXXjoe Support top, bottom, and center alignment also
       if (frame.height < _lineHeight) {
         UIFont* font = frame.font ? frame.font : _font;
-        [self offsetFrame:frame by:(_lineHeight - (frame.height - font.descender))];
+        [self offsetFrame:frame by:maxFont - font.ascender];
       }
       frame = frame.nextFrame;
     }
