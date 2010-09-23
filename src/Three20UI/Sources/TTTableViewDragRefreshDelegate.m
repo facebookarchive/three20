@@ -44,6 +44,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 @implementation TTTableViewDragRefreshDelegate
 
 @synthesize headerView = _headerView;
+@synthesize dragRefreshNotificationName;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,6 +86,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 - (void)dealloc {
   [_controller.model.delegates removeObject:self];
   TT_RELEASE_SAFELY(_headerView);
+  self.dragRefreshNotificationName = nil;
 
   [super dealloc];
 }
@@ -132,8 +134,9 @@ static const CGFloat kRefreshDeltaY = -65.0f;
   // If dragging ends and we are far enough to be fully showing the header view trigger a
   // load as long as we arent loading already
   if (scrollView.contentOffset.y <= kRefreshDeltaY && !_controller.model.isLoading) {
+	NSString *notificationToPost = (dragRefreshNotificationName != nil ? dragRefreshNotificationName : @"DragRefreshTableReload");
     [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"DragRefreshTableReload" object:nil];
+     postNotificationName:notificationToPost object:nil];
     //[_controller.model load:TTURLRequestCachePolicyNetwork more:NO]; // JE: Commented out this reload. I'm letting the TTModelViewController handle it
   }
 

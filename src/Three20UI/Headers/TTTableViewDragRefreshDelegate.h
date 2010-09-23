@@ -25,8 +25,9 @@
 @interface TTTableViewDragRefreshDelegate : TTTableViewVarHeightDelegate {
   TTTableHeaderDragRefreshView* _headerView;
   BOOL                          _isDragging;
+	NSString *dragRefreshNotificationName; // Identifies a unique notification to throw (JE:)
 }
 
 @property (nonatomic, retain) TTTableHeaderDragRefreshView* headerView;
-
+@property (nonatomic, retain) NSString *dragRefreshNotificationName;
 @end
