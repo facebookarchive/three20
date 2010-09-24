@@ -147,10 +147,30 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
-  if (self.touchInside) {
+  if (_numberOfPages > 1 && self.touchInside) {
     CGPoint point = [touch locationInView:self];
-    self.currentPage = round(point.x / self.width);
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+    TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
+    
+    CGSize dotSize = [self.normalDotStyle addToSize:CGSizeZero context:context];
+    
+    CGFloat dotWidth = dotSize.width + boxStyle.margin.left + boxStyle.margin.right;
+    CGFloat totalWidth = (dotWidth * _numberOfPages) - (boxStyle.margin.left + boxStyle.margin.right);
+    CGFloat lhs = self.width/2 - totalWidth/2;
+    CGFloat rhs = self.width/2 + totalWidth/2;
+    
+    NSInteger newPage = _currentPage;
+    if (point.x < lhs) {
+      newPage = newPage - 1 > -1 ? newPage - 1 : newPage;
+    }else if (point.x > rhs) {
+      newPage = newPage + 1 < _numberOfPages ? newPage + 1 : newPage;
+    }else {
+      newPage = round((point.x - lhs) / totalWidth * (_numberOfPages - 1));
+    }
+    if(newPage != _currentPage){
+      self.currentPage = newPage;
+      [self sendActionsForControlEvents:UIControlEventValueChanged];
+    }
   }
 }
 
