@@ -343,6 +343,8 @@
     frame = frame.nextFrame;
   }
 	
+  frame = _lineFirstFrame;
+	
   // Vertically align all frames on the current line
   if (_lineFirstFrame.nextFrame) {
     while (frame) {
@@ -350,6 +352,7 @@
       // XXXjoe Support top, bottom, and center alignment also
       if (frame.height < _lineHeight) {
         UIFont* font = frame.font ? frame.font : _font;
+		  NSLog(@"offsetting frame by %f", maxFont - font.ascender);
         [self offsetFrame:frame by:maxFont - font.ascender];
       }
       frame = frame.nextFrame;
