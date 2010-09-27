@@ -63,7 +63,12 @@ static CGFloat kProgressMargin  = 6;
       _bezelView.backgroundColor = [UIColor clearColor];
       _bezelView.style = TTSTYLE(blackBezel);
       self.backgroundColor = [UIColor clearColor];
-    } else if (_style == TTActivityLabelStyleWhiteBezel) {
+    } else if (_style == TTActivityLabelStyleDarkGrayBezel) {
+		_bezelView.backgroundColor = [UIColor clearColor];
+		_bezelView.style = TTSTYLE(darkGrayBezel);
+		self.backgroundColor = [UIColor clearColor];
+	}
+	else if (_style == TTActivityLabelStyleWhiteBezel) {
       _bezelView.backgroundColor = [UIColor clearColor];
       _bezelView.style = TTSTYLE(whiteBezel);
       self.backgroundColor = [UIColor clearColor];
@@ -103,7 +108,9 @@ static CGFloat kProgressMargin  = 6;
                                                             UIActivityIndicatorViewStyleGray];
       _label.font = TTSTYLEVAR(activityLabelFont);
       _label.textColor = TTSTYLEVAR(tableActivityTextColor);
-    } else if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleBlackBox) {
+    } else if (_style == TTActivityLabelStyleBlackBezel || 
+			   _style == TTActivityLabelStyleBlackBox || 
+			   _style == TTActivityLabelStyleDarkGrayBezel) {
       _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
                                                             UIActivityIndicatorViewStyleWhiteLarge];
       _activityIndicator.frame = CGRectMake(0, 0, 24, 24);
@@ -198,7 +205,9 @@ static CGFloat kProgressMargin  = 6;
   }
 
   CGFloat margin, padding, bezelWidth, bezelHeight;
-  if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleWhiteBezel) {
+  if (_style == TTActivityLabelStyleBlackBezel || 
+	  _style == TTActivityLabelStyleWhiteBezel || 
+	  _style == TTActivityLabelStyleDarkGrayBezel) {
     margin = kMargin;
     padding = kPadding;
     bezelWidth = contentWidth + padding*2;
@@ -248,7 +257,9 @@ static CGFloat kProgressMargin  = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)sizeThatFits:(CGSize)size {
   CGFloat padding;
-  if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleWhiteBezel) {
+  if (_style == TTActivityLabelStyleBlackBezel || 
+	  _style == TTActivityLabelStyleWhiteBezel || 
+	  _style == TTActivityLabelStyleDarkGrayBezel) {
     padding = kPadding;
   } else {
     padding = kBannerPadding;

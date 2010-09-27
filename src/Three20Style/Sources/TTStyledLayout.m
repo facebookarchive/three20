@@ -345,7 +345,6 @@
 	
   // Vertically align all frames on the current line
   if (_lineFirstFrame.nextFrame) {
-    TTStyledFrame* frame = _lineFirstFrame;
     while (frame) {
       // Align to the text baseline
       // XXXjoe Support top, bottom, and center alignment also

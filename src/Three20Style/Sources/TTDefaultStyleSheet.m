@@ -273,9 +273,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyle*)blackBezel {
-  return
+	return
     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:10] next:
-    [TTSolidFillStyle styleWithColor:RGBACOLOR(0, 0, 0, 0.7) next:nil]];
+	 [TTSolidFillStyle styleWithColor:RGBACOLOR(0, 0, 0, 0.7) next:nil]];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTStyle*)darkGrayBezel {
+	return
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:10] next:
+	 [TTSolidFillStyle styleWithColor:[UIColor darkGrayColor] next:nil]];
 }
 
 

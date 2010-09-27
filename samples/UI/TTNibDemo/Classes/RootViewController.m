@@ -56,7 +56,7 @@
 //    [TTTableTextItem itemWithText:@"TTPopupViewController" URL:@"tt://h"],
 //
 //    [TTTableTextItem itemWithText:@"TTPhotoViewController" URL:@"tt://i"],
-//    [TTTableTextItem itemWithText:@"TTAlertViewController" URL:@"tt://k"],
+    [TTTableTextItem itemWithText:@"TTAlertViewController" URL:@"tt://k"],
 //    [TTTableTextItem itemWithText:@"TTActionSheetController" URL:@"tt://viewController/TTActionSheetController"],
 
     nil];

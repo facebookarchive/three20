@@ -79,6 +79,8 @@
                                  message:@"Sure you want to order?"] autorelease];
   [alert addButtonWithTitle:@"Yes" URL:@"tt://order/send"];
   [alert addCancelButtonWithTitle:@"No" URL:nil];
+	
+	[alert.view addSubview:[[[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 100)]autorelease]];
   return alert;
 }
 
