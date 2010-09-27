@@ -40,6 +40,14 @@
 @property (nonatomic, copy) NSString* originalNavigatorURL;
 
 /**
+ * The query dictionary that was used to load this controller through TTNavigator.
+ *
+ * As with originalNavigatorURL, this value is automatically set by TTNavigator
+ * when the controller is created, and should never be changed.
+ */
+@property (nonatomic, assign) NSDictionary* originalQuery;
+
+/**
  * A temporary holding place for persisted view state waiting to be restored.
  *
  * While restoring controllers, TTURLMap will assign this the dictionary created by persistView.

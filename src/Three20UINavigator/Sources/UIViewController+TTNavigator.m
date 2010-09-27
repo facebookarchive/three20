@@ -33,6 +33,7 @@
 #import "Three20Core/TTDebugFlags.h"
 
 static NSMutableDictionary* gNavigatorURLs          = nil;
+static NSMutableDictionary* gQueryDictionaries      = nil;
 
 static NSMutableSet*        gsNavigatorControllers  = nil;
 static NSTimer*             gsGarbageCollectorTimer = nil;
@@ -134,7 +135,6 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
   return [gNavigatorURLs objectForKey:key];
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setOriginalNavigatorURL:(NSString*)URL {
   NSString* key = [NSString stringWithFormat:@"%d", self.hash];
@@ -151,6 +151,26 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSDictionary*)originalQuery {
+  NSString* key = [NSString stringWithFormat:@"%d", self.hash];
+  return [gQueryDictionaries objectForKey:key];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setOriginalQuery:(NSDictionary*)query {
+  NSString* key = [NSString stringWithFormat:@"%d", self.hash];
+  if (query) {
+    if (!gQueryDictionaries) {
+      gQueryDictionaries = [[NSMutableDictionary alloc] init];
+    }
+    [gQueryDictionaries setObject:query forKey:key];
+  } else {
+    [gQueryDictionaries removeObjectForKey:key];
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDictionary*)frozenState {
@@ -184,6 +204,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 
     [[TTBaseNavigator globalNavigator].URLMap removeObjectForURL:urlPath];
     self.originalNavigatorURL = nil;
+    self.originalQuery = nil;
   }
 }
 

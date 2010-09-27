@@ -623,6 +623,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   if (object) {
     UIViewController* controller = object;
     controller.originalNavigatorURL = URL;
+    controller.originalQuery = query;
 
     if (_delayCount) {
       if (!_delayedControllers) {
@@ -719,8 +720,9 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   BOOL passedContainer = NO;
   for (NSDictionary* state in path) {
     NSString* URL = [state objectForKey:@"__navigatorURL__"];
-    controller = [self openURLAction:[[TTURLAction actionWithURLPath: URL]
-                                      applyState: state]];
+    NSDictionary* query = [state objectForKey:@"__navigatorQuery__"];
+    controller = [self openURLAction:[[[TTURLAction actionWithURLPath: URL] 
+                                       applyQuery:query] applyState: state]];
 
     // Stop if we reach a model view controller whose model could not be synchronously loaded.
     // That is because the controller after it may depend on the data it could not load, so
@@ -753,6 +755,12 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
     // Let the controller persists its own arbitrary state
     NSMutableDictionary* state = [NSMutableDictionary dictionaryWithObject:URL
                                                                     forKey:@"__navigatorURL__"];
+    
+    NSDictionary* query = controller.originalQuery;
+    if (query) {
+      [state setObject:query forKey:@"__navigatorQuery__"];
+    }
+    
     if ([controller persistView:state]) {
       [path addObject:state];
     }
