@@ -108,7 +108,7 @@
     NSIndexPath* indexPath = [self indexPathForCell:cell];
     if (indexPath) {
       [self scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle
-            animated:YES];
+            animated:NO];
     }
   }
 }
