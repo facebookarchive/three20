@@ -22,6 +22,9 @@
 
 #import "Three20Style/TTGlobalStyle.h"
 
+// Core
+#import "Three20Core/TTGlobalCoreRects.h"
+
 @interface UIGlobalTests : SenTestCase {
 }
 

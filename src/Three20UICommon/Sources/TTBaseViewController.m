@@ -91,34 +91,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
-  CGRect keyboardBounds = CGRectZero;
-  BOOL animated = NO;
-#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
-  if (TTOSVersion() >= 3.2) { 
-    CGRect keyboardStart;
-    [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&keyboardStart];
+	CGRect keyboardBounds;
+	[[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
 
-    CGRect keyboardEnd;
-    [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEnd];
+	CGPoint keyboardStart;
+	[[notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey] getValue:&keyboardStart];
 
-    keyboardBounds = CGRectMake(0, 0, keyboardEnd.size.width, keyboardEnd.size.height);
+	CGPoint keyboardEnd;
+	[[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
 
-    animated = keyboardStart.origin.y != keyboardEnd.origin.y;
-  } 
-  else
-#endif
-  {
-    [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-
-    CGPoint keyboardStart;
-    [[notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey] getValue:&keyboardStart];
-
-    CGPoint keyboardEnd;
-    [[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
-
-    animated = keyboardStart.y != keyboardEnd.y;
-  }
-
+	BOOL animated = keyboardStart.y != keyboardEnd.y;
   if (animated) {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_TRANSITION_DURATION];
@@ -293,19 +275,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidShow:(NSNotification*)notification {
-  CGRect keyboardBounds;
-#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
-  if (TTOSVersion() >= 3.2) {
-    CGRect frameStart;
-    [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&frameStart];
+#ifdef __IPHONE_3_21
+  CGRect frameStart;
+  [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&frameStart];
 
-    keyboardBounds = CGRectMake(0, 0, frameStart.size.width, frameStart.size.height);
-  } 
-  else
+  CGRect keyboardBounds = CGRectMake(0, 0, frameStart.size.width, frameStart.size.height);
+#else
+  CGRect keyboardBounds;
+  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
 #endif
-  {
-    [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-  }
 
   [self keyboardDidAppear:YES withBounds:keyboardBounds];
 }
@@ -321,19 +299,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillHide:(NSNotification*)notification {
-  CGRect keyboardBounds;
-#if __IPHONE_3_2 && __IPHONE_3_2 <= __IPHONE_OS_VERSION_MAX_ALLOWED
-  if (TTOSVersion() >= 3.2) {
-    CGRect frameEnd;
-    [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&frameEnd];
+#ifdef __IPHONE_3_21
+  CGRect frameEnd;
+  [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&frameEnd];
 
-    keyboardBounds = CGRectMake(0, 0, frameEnd.size.width, frameEnd.size.height);
-  } 
-  else
+  CGRect keyboardBounds = CGRectMake(0, 0, frameEnd.size.width, frameEnd.size.height);
+#else
+  CGRect keyboardBounds;
+  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
 #endif
-  {
-    [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-  }
 
   [self keyboardWillDisappear:YES withBounds:keyboardBounds];
 }

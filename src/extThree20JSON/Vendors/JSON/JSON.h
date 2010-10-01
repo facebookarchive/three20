@@ -44,7 +44,7 @@
 
 */
 
-#import "SBJSON.h"
-#import "NSObject+SBJSON.h"
-#import "NSString+SBJSON.h"
+#import "extThree20JSON/SBJSON.h"
+#import "extThree20JSON/NSObject+SBJSON.h"
+#import "extThree20JSON/NSString+SBJSON.h"
 

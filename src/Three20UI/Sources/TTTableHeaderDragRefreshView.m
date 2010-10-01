@@ -1,20 +1,33 @@
 //
-// Copyright 2009-2010 Facebook
+//  Created by Devin Doty on 10/14/09.
+//  http://github.com/enormego/EGOTableViewPullRefresh
+//  Copyright 2009 enormego. All rights reserved.
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+//  Modifications copyright 2010 Facebook.
 //
-//    http://www.apache.org/licenses/LICENSE-2.0
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 #import "Three20UI/TTTableHeaderDragRefreshView.h"
+
+// UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"
@@ -35,7 +48,37 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTTableHeaderDragRefreshView
 
-@synthesize isFlipped = _isFlipped;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Private
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showActivity:(BOOL)shouldShow animated:(BOOL)animated {
+  if (shouldShow) {
+    [_activityView startAnimating];
+  } else {
+    [_activityView stopAnimating];
+  }
+
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:(animated ? ttkDefaultFastTransitionDuration : 0.0)];
+  _arrowImage.alpha = (shouldShow ? 0.0 : 1.0);
+  [UIView commitAnimations];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setImageFlipped:(BOOL)flipped {
+  [UIView beginAnimations:nil context:NULL];
+  [UIView setAnimationDuration:ttkDefaultFastTransitionDuration];
+  [_arrowImage layer].transform = (flipped ?
+                                   CATransform3DMakeRotation(M_PI * 2, 0.0f, 0.0f, 1.0f) :
+                                   CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f));
+  [UIView commitAnimations];
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,11 +129,9 @@
 
     _activityView = [[UIActivityIndicatorView alloc]
                      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _activityView.frame = CGRectMake( 25.0f, frame.size.height - 38.0f, 20.0f, 20.0f );
+    _activityView.frame = CGRectMake( 30.0f, frame.size.height - 38.0f, 20.0f, 20.0f );
     _activityView.hidesWhenStopped  = YES;
     [self addSubview:_activityView];
-
-    _isFlipped = NO;
   }
   return self;
 }
@@ -110,19 +151,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)flipImageAnimated:(BOOL)animated {
-  [UIView beginAnimations:nil context:NULL];
-  [UIView setAnimationDuration:animated ? .18 : 0.0];
-  [_arrowImage layer].transform = _isFlipped ?
-    CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f) :
-    CATransform3DMakeRotation(M_PI * 2, 0.0f, 0.0f, 1.0f);
-  [UIView commitAnimations];
-
-  _isFlipped = !_isFlipped;
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,18 +189,24 @@
 - (void)setStatus:(TTTableHeaderDragRefreshStatus)status {
   switch (status) {
     case TTTableHeaderDragRefreshReleaseToReload: {
+      [self showActivity:NO animated:NO];
+      [self setImageFlipped:YES];
       _statusLabel.text = TTLocalizedString(@"Release to update...",
                                             @"Release the table view to update the contents.");
       break;
     }
 
     case TTTableHeaderDragRefreshPullToReload: {
+      [self showActivity:NO animated:NO];
+      [self setImageFlipped:NO];
       _statusLabel.text = TTLocalizedString(@"Pull down to update...",
                                             @"Drag the table view down to update the contents.");
       break;
     }
 
-    case TTTableHeaderDragRefreshLoadingStatus: {
+    case TTTableHeaderDragRefreshLoading: {
+      [self showActivity:YES animated:YES];
+      [self setImageFlipped:NO];
       _statusLabel.text = TTLocalizedString(@"Updating...",
                                             @"Updating the contents of a table view.");
       break;
@@ -183,21 +217,5 @@
     }
   }
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showActivity:(BOOL)shouldShow {
-  if (shouldShow) {
-    [_activityView startAnimating];
-    _arrowImage.hidden = YES;
-    [self setStatus:TTTableHeaderDragRefreshLoadingStatus];
-
-  } else {
-    [_activityView stopAnimating];
-    _arrowImage.hidden = NO;
-  }
-
-}
-
 
 @end

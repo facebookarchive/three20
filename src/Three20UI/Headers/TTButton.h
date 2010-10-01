@@ -17,14 +17,21 @@
 // Style
 #import "Three20Style/TTStyleDelegate.h"
 
+@protocol TTImageViewDelegate;
+
 @interface TTButton : UIControl <TTStyleDelegate> {
   NSMutableDictionary*  _content;
   UIFont*               _font;
   BOOL                  _isVertical;
+
+  id<TTImageViewDelegate> _imageDelegate;
 }
 
 @property (nonatomic, retain) UIFont* font;
 @property (nonatomic)         BOOL    isVertical;
+
+// This must be set before you call setImage:
+@property (nonatomic, assign) id<TTImageViewDelegate> imageDelegate;
 
 + (TTButton*)buttonWithStyle:(NSString*)selector;
 + (TTButton*)buttonWithStyle:(NSString*)selector title:(NSString*)title;

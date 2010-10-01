@@ -702,6 +702,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
+				SDKROOT = iphonesimulator4.0;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Internal;

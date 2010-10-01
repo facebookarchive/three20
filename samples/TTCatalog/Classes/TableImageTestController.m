@@ -12,8 +12,8 @@
                               URL:nil accessoryURL:nil];
 }
 
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.dataSource = [TTListDataSource dataSourceWithObjects:
         [self itemForURL:@"http://farm3.static.flickr.com/2300/2179038972_65f1e5f8c4_s.jpg"],
         [self itemForURL:@"http://farm3.static.flickr.com/2266/2178246585_11d761324b_s.jpg"],

@@ -72,6 +72,7 @@ static const CGFloat kBannerViewHeight = 22;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _lastInterfaceOrientation = self.interfaceOrientation;
+    _tableViewStyle = UITableViewStylePlain;
     _clearsSelectionOnViewWillAppear = YES;
   }
 
@@ -83,15 +84,6 @@ static const CGFloat kBannerViewHeight = 22;
 - (id)initWithStyle:(UITableViewStyle)style {
   if (self = [self initWithNibName:nil bundle:nil]) {
     _tableViewStyle = style;
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [self initWithStyle:UITableViewStylePlain]) {
   }
 
   return self;

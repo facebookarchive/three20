@@ -116,6 +116,20 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIColor*)backgroundColorForCSSSelector:(NSString*)cssSelector {
+  return [_styleSheet backgroundColorWithCssSelector: cssSelector
+                                            forState: UIControlStateNormal];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (TTDefaultCSSStyleSheet*)globalCSSStyleSheet {
+  TTDASSERT([[TTStyleSheet globalStyleSheet] isKindOfClass:[TTDefaultStyleSheet class]]);
+  return (TTDefaultCSSStyleSheet*)[TTStyleSheet globalStyleSheet];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Common styles

@@ -5,12 +5,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.autoresizesForKeyboard = YES;
     self.variableHeightRows = YES;
 
-    // Uncomment this to see how the table cells look against a custom background color 
+    // Uncomment this to see how the table cells look against a custom background color
     //self.tableView.backgroundColor = [UIColor yellowColor];
 
     NSArray* strings = [NSArray arrayWithObjects:
@@ -29,7 +29,7 @@ Move along now. Nothing to see here. Goodbye now."],
     TTListDataSource* dataSource = [[[TTListDataSource alloc] init] autorelease];
     for (int i = 0; i < 50; ++i) {
       TTStyledText* text = [strings objectAtIndex:i % strings.count];
-      
+
       [dataSource.items addObject:[TTTableStyledTextItem itemWithText:text URL:nil]];
     }
     self.dataSource = dataSource;

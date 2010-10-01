@@ -24,7 +24,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id) init {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nil bundle:nil]) {
     self.title = @"Style Catalog";
     //self.variableHeightRows = YES;
