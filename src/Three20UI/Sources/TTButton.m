@@ -104,10 +104,19 @@ static const CGFloat kVPadding = 7;
   static NSString* highlighted = @"highlighted";
   static NSString* selected = @"selected";
   static NSString* disabled = @"disabled";
-  if (state & UIControlStateHighlighted) {
+  static NSString* selectedAndHighlighted = @"selectedAndHighlighted";
+  static NSString* selectedAndDisabled = @"selectedAndHighlighted";
+  
+  if (state & UIControlStateSelected) {
+    if (state & UIControlStateHighlighted)
+      return selectedAndHighlighted;
+    else if (state & UIControlStateDisabled) {
+      return selectedAndDisabled;
+    } else {
+      return selected;
+    }
+  } else if (state & UIControlStateHighlighted) {
     return highlighted;
-  } else if (state & UIControlStateSelected) {
-    return selected;
   } else if (state & UIControlStateDisabled) {
     return disabled;
   } else {
@@ -137,7 +146,13 @@ static const CGFloat kVPadding = 7;
 - (TTButtonContent*)contentForCurrentState {
   TTButtonContent* content = nil;
   if (self.selected) {
-    content = [self contentForState:UIControlStateSelected];
+    if (self.highlighted) {
+      content = [self contentForState:(UIControlStateSelected | UIControlStateHighlighted)];
+    } else if (!self.enabled) {
+      content = [self contentForState:(UIControlStateSelected | UIControlStateDisabled)];
+    } else {
+      content = [self contentForState:UIControlStateSelected];
+    }
   } else if (self.highlighted) {
     content = [self contentForState:UIControlStateHighlighted];
   } else if (!self.enabled) {
@@ -422,6 +437,15 @@ static const CGFloat kVPadding = 7;
   TTStyle* selectedStyle = [ss styleWithSelector:selector forState:UIControlStateSelected];
   [self setStyle:selectedStyle forState:UIControlStateSelected];
 
+  TTStyle* selectedDisabledStyle =
+    [ss styleWithSelector:selector forState:(UIControlStateSelected | UIControlStateDisabled)];
+  [self setStyle:selectedDisabledStyle forState:(UIControlStateSelected | UIControlStateDisabled)];
+  
+  TTStyle* selectedHighlightedStyle =
+    [ss styleWithSelector:selector forState:(UIControlStateSelected | UIControlStateHighlighted)];
+  [self setStyle:selectedHighlightedStyle
+        forState:(UIControlStateSelected | UIControlStateHighlighted)];
+  
   TTStyle* disabledStyle = [ss styleWithSelector:selector forState:UIControlStateDisabled];
   [self setStyle:disabledStyle forState:UIControlStateDisabled];
 }
