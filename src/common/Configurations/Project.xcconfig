@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-ARCHS = $(ARCHS_UNIVERSAL_IPHONE_OS)
+ARCHS = $(ARCHS_STANDARD_32_BIT)
 SDKROOT = iphoneos4.0
 
 #include "Paths.xcconfig"
