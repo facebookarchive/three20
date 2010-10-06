@@ -259,7 +259,7 @@ static const CGFloat kBannerViewHeight = 22;
     tableView.showShadows = _showTableShadows;
   }
 
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:NO];
+  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:animated];
 }
 
 
