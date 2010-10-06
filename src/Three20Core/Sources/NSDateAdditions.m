@@ -38,11 +38,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSDate*)dateWithToday {
-  NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
   formatter.dateFormat = @"yyyy-d-M";
 
   NSString* formattedTime = [formatter stringFromDate:[NSDate date]];
   NSDate* date = [formatter dateFromString:formattedTime];
+  TT_RELEASE_SAFELY(formatter);
+
   return date;
 }
 
@@ -55,11 +57,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDate*)dateAtMidnight {
-  NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
   formatter.dateFormat = @"yyyy-d-M";
 
   NSString* formattedTime = [formatter stringFromDate:self];
   NSDate* date = [formatter dateFromString:formattedTime];
+  TT_RELEASE_SAFELY(formatter);
+
   return date;
 }
 
@@ -192,9 +196,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)formatShortTime {
   NSTimeInterval diff = abs([self timeIntervalSinceNow]);
+
   if (diff < TT_DAY) {
     return [self formatTime];
-  } else if (diff < TT_WEEK) {
+
+  } else if (diff < TT_5_DAYS) {
     static NSDateFormatter* formatter = nil;
     if (!formatter) {
       formatter = [[NSDateFormatter alloc] init];
@@ -202,6 +208,7 @@
       formatter.locale = TTCurrentLocale();
     }
     return [formatter stringFromDate:self];
+
   } else {
     static NSDateFormatter* formatter = nil;
     if (!formatter) {
@@ -219,7 +226,8 @@
   NSTimeInterval diff = abs([self timeIntervalSinceNow]);
   if (diff < TT_DAY) {
     return [self formatTime];
-  } else if (diff < TT_WEEK) {
+
+  } else if (diff < TT_5_DAYS) {
     static NSDateFormatter* formatter = nil;
     if (!formatter) {
       formatter = [[NSDateFormatter alloc] init];
@@ -227,6 +235,7 @@
       formatter.locale = TTCurrentLocale();
     }
     return [formatter stringFromDate:self];
+
   } else {
     static NSDateFormatter* formatter = nil;
     if (!formatter) {
@@ -244,19 +253,25 @@
   NSTimeInterval elapsed = abs([self timeIntervalSinceNow]);
   if (elapsed <= 1) {
     return TTLocalizedString(@"just a moment ago", @"");
+
   } else if (elapsed < TT_MINUTE) {
     int seconds = (int)(elapsed);
     return [NSString stringWithFormat:TTLocalizedString(@"%d seconds ago", @""), seconds];
+
   } else if (elapsed < 2*TT_MINUTE) {
     return TTLocalizedString(@"about a minute ago", @"");
+
   } else if (elapsed < TT_HOUR) {
     int mins = (int)(elapsed/TT_MINUTE);
     return [NSString stringWithFormat:TTLocalizedString(@"%d minutes ago", @""), mins];
+
   } else if (elapsed < TT_HOUR*1.5) {
     return TTLocalizedString(@"about an hour ago", @"");
+
   } else if (elapsed < TT_DAY) {
     int hours = (int)((elapsed+TT_HOUR/2)/TT_HOUR);
     return [NSString stringWithFormat:TTLocalizedString(@"%d hours ago", @""), hours];
+
   } else {
     return [self formatDateTime];
   }

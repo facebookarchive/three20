@@ -66,10 +66,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_urlPath);
-  TT_RELEASE_SAFELY(_parentURLPath);
-  TT_RELEASE_SAFELY(_query);
-  TT_RELEASE_SAFELY(_state);
+  self.urlPath        = nil;
+  self.parentURLPath  = nil;
+  self.query          = nil;
+  self.state          = nil;
 
   [super dealloc];
 }

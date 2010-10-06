@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E60820111B0C31400C93CD4 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */; };
+		6E60820311B0C32600C93CD4 /* TTNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E60820211B0C32600C93CD4 /* TTNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454741184D2CD00F08CB1 /* Three20UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454931184D3ED00F08CB1 /* Three20UI+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454921184D3ED00F08CB1 /* Three20UI+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454AA1184D43100F08CB1 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6454A71184D42800F08CB1 /* libThree20Style.a */; };
@@ -259,6 +261,8 @@
 		6E6459381187645D00F08CB1 /* UIGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6459371187645D00F08CB1 /* UIGlobalTests.m */; };
 		6E86A8DB118CBF7500662DA5 /* TTNavigatorWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E86A8DA118CBF7500662DA5 /* TTNavigatorWindow.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E86A8EC118CBF8E00662DA5 /* TTNavigatorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E86A8EB118CBF8E00662DA5 /* TTNavigatorWindow.m */; };
+		6ECCA5FE11C0C0F6002296C7 /* TTLauncherHighlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCA5FC11C0C0F6002296C7 /* TTLauncherHighlightView.m */; };
+		6ECCA60011C0C105002296C7 /* TTLauncherHighlightView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECCA5FF11C0C105002296C7 /* TTLauncherHighlightView.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6EDAE9F6118CA5810008133C /* TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDAE9F5118CA5810008133C /* TTNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EDAEA02118CA59C0008133C /* TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDAEA01118CA59C0008133C /* TTNavigator.m */; };
 		6EDAEA1D118CA5E20008133C /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDAEA09118CA5B50008133C /* libThree20UICommon.a */; };
@@ -419,6 +423,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigationController.m; path = Sources/TTNavigationController.m; sourceTree = "<group>"; };
+		6E60820211B0C32600C93CD4 /* TTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigationController.h; path = Headers/TTNavigationController.h; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E6454731184D2CD00F08CB1 /* Three20UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20UI.h; path = Headers/Three20UI.h; sourceTree = "<group>"; };
 		6E6454921184D3ED00F08CB1 /* Three20UI+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20UI+Additions.h"; path = "Headers/Three20UI+Additions.h"; sourceTree = "<group>"; };
@@ -673,6 +679,8 @@
 		6E6459371187645D00F08CB1 /* UIGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIGlobalTests.m; path = UnitTests/UIGlobalTests.m; sourceTree = "<group>"; };
 		6E86A8DA118CBF7500662DA5 /* TTNavigatorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorWindow.h; path = Headers/TTNavigatorWindow.h; sourceTree = "<group>"; };
 		6E86A8EB118CBF8E00662DA5 /* TTNavigatorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigatorWindow.m; path = Sources/TTNavigatorWindow.m; sourceTree = "<group>"; };
+		6ECCA5FC11C0C0F6002296C7 /* TTLauncherHighlightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLauncherHighlightView.m; path = Sources/TTLauncherHighlightView.m; sourceTree = "<group>"; };
+		6ECCA5FF11C0C105002296C7 /* TTLauncherHighlightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherHighlightView.h; path = Headers/TTLauncherHighlightView.h; sourceTree = "<group>"; };
 		6EDAE9F5118CA5810008133C /* TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigator.h; path = Headers/TTNavigator.h; sourceTree = "<group>"; };
 		6EDAEA01118CA59C0008133C /* TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigator.m; path = Sources/TTNavigator.m; sourceTree = "<group>"; };
 		6EDAEA03118CA5B50008133C /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../Three20UICommon/Three20UICommon.xcodeproj; sourceTree = "<group>"; };
@@ -792,6 +800,8 @@
 			children = (
 				6E6455501184D4C500F08CB1 /* TTViewController.h */,
 				6E6456791184D4DA00F08CB1 /* TTViewController.m */,
+				6E60820211B0C32600C93CD4 /* TTNavigationController.h */,
+				6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */,
 				6E6457A81184D85D00F08CB1 /* Action Sheet Controller */,
 				6E6457A91184D86F00F08CB1 /* Alert Controller */,
 				6E6457A51184D80F00F08CB1 /* Message Controller */,
@@ -1546,6 +1556,8 @@
 			children = (
 				6E6454D51184D4C500F08CB1 /* TTLauncherScrollView.h */,
 				6E6456111184D4DA00F08CB1 /* TTLauncherScrollView.m */,
+				6ECCA5FF11C0C105002296C7 /* TTLauncherHighlightView.h */,
+				6ECCA5FC11C0C0F6002296C7 /* TTLauncherHighlightView.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -1802,6 +1814,8 @@
 				6E6455FA1184D4C500F08CB1 /* UIWebViewAdditions.h in Headers */,
 				6EDAE9F6118CA5810008133C /* TTNavigator.h in Headers */,
 				6E86A8DB118CBF7500662DA5 /* TTNavigatorWindow.h in Headers */,
+				6E60820311B0C32600C93CD4 /* TTNavigationController.h in Headers */,
+				6ECCA60011C0C105002296C7 /* TTLauncherHighlightView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1862,7 +1876,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Three20UI" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
@@ -2129,6 +2150,8 @@
 				6E64570D1184D4DA00F08CB1 /* UIWebViewAdditions.m in Sources */,
 				6EDAEA02118CA59C0008133C /* TTNavigator.m in Sources */,
 				6E86A8EC118CBF8E00662DA5 /* TTNavigatorWindow.m in Sources */,
+				6E60820111B0C31400C93CD4 /* TTNavigationController.m in Sources */,
+				6ECCA5FE11C0C0F6002296C7 /* TTLauncherHighlightView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2205,7 +2228,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -2213,7 +2236,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.0;
+				SDKROOT = iphonesimulator3.2;
 			};
 			name = Internal;
 		};
@@ -2248,6 +2271,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				PRODUCT_NAME = UnitTests;
+				SDKROOT = iphonesimulator4.0;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Internal;
@@ -2259,10 +2283,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					"TTMAXLOGLEVEL=TTLOGLEVEL_INFO",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
 			};
@@ -2287,7 +2308,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -2295,7 +2316,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.0;
+				SDKROOT = iphonesimulator3.2;
 			};
 			name = Debug;
 		};
@@ -2303,14 +2324,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.0;
+				SDKROOT = iphonesimulator3.2;
 			};
 			name = Release;
 		};

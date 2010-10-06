@@ -216,9 +216,12 @@
       @"three20", @"q",
       @"en",      @"hl",
       nil];
-  STAssertTrue([[baseUrl stringByAddingQueryDictionary:query]
-    isEqualToString:[baseUrl stringByAppendingString:@"?hl=en&q=three20"]],
-    @"Empty dictionary fail.");
+  NSString* baseUrlWithQuery = [baseUrl stringByAddingQueryDictionary:query];
+  STAssertTrue([baseUrlWithQuery isEqualToString:[baseUrl
+                                                  stringByAppendingString:@"?hl=en&q=three20"]]
+               || [baseUrlWithQuery isEqualToString:[baseUrl
+                                                     stringByAppendingString:@"?q=three20&hl=en"]],
+    @"Additional query parameters not correct. %@", [baseUrl stringByAddingQueryDictionary:query]);
 }
 
 
@@ -251,6 +254,10 @@
 
   NSArray* arrayWithObjects = [[NSArray alloc] initWithObjects:obj1, obj2, obj3, nil];
 
+  // Invalid selector
+
+  [arrayWithObjects perform:@selector(three20)];
+
   // No parameters
 
   [arrayWithObjects perform:@selector(retain)];
@@ -278,7 +285,7 @@
 
   NSMutableArray* obj5 = [[NSMutableArray alloc] init];
   [arrayWithObjects perform:@selector(replaceObjectAtIndex:withObject:)
-    withObject:0 withObject:obj5];
+                 withObject:0 withObject:obj5];
 
   for (id obj in arrayWithObjects) {
     STAssertTrue([obj count] == 1, @"The array should have the same count, %d", [obj count]);
@@ -290,6 +297,33 @@
   TT_RELEASE_SAFELY(obj2);
   TT_RELEASE_SAFELY(obj3);
   TT_RELEASE_SAFELY(obj4);
+  TT_RELEASE_SAFELY(obj5);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSArray_makeObjectsPerformSelector {
+  NSMutableArray* obj1 = [[NSMutableArray alloc] init];
+  NSMutableArray* obj2 = [[NSMutableArray alloc] init];
+  NSMutableArray* obj3 = [[NSMutableArray alloc] init];
+
+  NSArray* arrayWithObjects = [[NSArray alloc] initWithObjects:obj1, obj2, obj3, nil];
+
+  // Two parameters
+
+  NSMutableArray* obj5 = [[NSMutableArray alloc] init];
+  [arrayWithObjects makeObjectsPerformSelector:@selector(insertObject:atIndex:)
+    withObject:obj5 withObject:0];
+
+  for (id obj in arrayWithObjects) {
+    STAssertTrue([obj count] == 1, @"The array should have the same count, %d", [obj count]);
+    STAssertEquals([obj objectAtIndex:0], obj5, @"The new object should have been swapped");
+  }
+
+  TT_RELEASE_SAFELY(arrayWithObjects);
+  TT_RELEASE_SAFELY(obj1);
+  TT_RELEASE_SAFELY(obj2);
+  TT_RELEASE_SAFELY(obj3);
   TT_RELEASE_SAFELY(obj5);
 }
 

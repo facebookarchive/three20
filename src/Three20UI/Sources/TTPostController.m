@@ -56,8 +56,26 @@ static const CGFloat kMarginY = 6;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    self.navigationItem.leftBarButtonItem =
+      [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+                                                     target: self
+                                                     action: @selector(cancel)] autorelease];
+    self.navigationItem.rightBarButtonItem =
+      [[[UIBarButtonItem alloc] initWithTitle: TTLocalizedString(@"Done", @"")
+                                        style: UIBarButtonItemStyleDone
+                                       target: self
+                                       action: @selector(post)] autorelease];
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
-  if (self = [super init]) {
+  if (self = [self initWithNibName:nil bundle:nil]) {
     if (nil != query) {
       _delegate = [query objectForKey:@"delegate"];
       _defaultText = [[query objectForKey:@"text"] copy];
@@ -70,25 +88,6 @@ static const CGFloat kMarginY = 6;
         _originRect = [originRect CGRectValue];
       }
     }
-
-    self.navigationItem.leftBarButtonItem =
-    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
-                                                   target: self
-                                                   action: @selector(cancel)] autorelease];
-    self.navigationItem.rightBarButtonItem =
-    [[[UIBarButtonItem alloc] initWithTitle: TTLocalizedString(@"Done", @"")
-                                      style: UIBarButtonItemStyleDone
-                                     target: self
-                                     action: @selector(post)] autorelease];
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [self initWithNavigatorURL:nil query:nil]) {
   }
 
   return self;
@@ -133,6 +132,11 @@ static const CGFloat kMarginY = 6;
   _originalStatusBarStyle = app.statusBarStyle;
   _originalStatusBarHidden = app.statusBarHidden;
   if (!_originalStatusBarHidden) {
+#ifdef __IPHONE_3_2
+    if ([app respondsToSelector:@selector(setStatusBarHidden:withAnimation:)])
+      [app setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    else
+#endif
     [app setStatusBarHidden:NO animated:YES];
     [app setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
   }
@@ -143,6 +147,11 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)hideKeyboard {
   UIApplication* app = [UIApplication sharedApplication];
+#ifdef __IPHONE_3_2
+  if ([app respondsToSelector:@selector(setStatusBarHidden:withAnimation:)])
+    [app setStatusBarHidden:_originalStatusBarHidden withAnimation:UIStatusBarAnimationSlide];
+  else
+#endif
   [app setStatusBarHidden:_originalStatusBarHidden animated:YES];
   [app setStatusBarStyle:_originalStatusBarStyle animated:NO];
   [_textView resignFirstResponder];

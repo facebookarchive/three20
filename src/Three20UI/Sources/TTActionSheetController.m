@@ -35,15 +35,25 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTitle:(NSString*)title delegate:(id)delegate {
-  if (self = [super init]) {
-    _delegate = delegate;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _URLs = [[NSMutableArray alloc] init];
+  }
 
-    if (title) {
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithTitle:(NSString*)title delegate:(id)delegate {
+  if (self = [self initWithNibName:nil bundle:nil]) {
+    _delegate = delegate;
+
+    if (nil != title) {
       self.actionSheet.title = title;
     }
   }
+
   return self;
 }
 

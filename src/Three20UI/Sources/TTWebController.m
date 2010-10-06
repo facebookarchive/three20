@@ -52,10 +52,20 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    self.hidesBottomBarWhenPushed = YES;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
-  if (self = [self init]) {
+  if (self = [self initWithNibName:nil bundle:nil]) {
     NSURLRequest* request = [query objectForKey:@"request"];
-    if (request) {
+    if (nil != request) {
       [self openRequest:request];
     } else {
       [self openURL:URL];
@@ -67,8 +77,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
-    self.hidesBottomBarWhenPushed = YES;
+  if (self = [self initWithNibName:nil bundle:nil]) {
   }
 
   return self;
@@ -79,6 +88,7 @@
 - (void)dealloc {
   TT_RELEASE_SAFELY(_loadingURL);
   TT_RELEASE_SAFELY(_headerView);
+  TT_RELEASE_SAFELY(_actionSheet);
 
   [super dealloc];
 }
@@ -116,10 +126,20 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shareAction {
-  UIActionSheet* sheet = [[[UIActionSheet alloc] initWithTitle:@"" delegate:self
-                                             cancelButtonTitle:TTLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil
-                                             otherButtonTitles:TTLocalizedString(@"Open in Safari", @""), nil] autorelease];
-  [sheet showInView:self.view];
+  if (nil == _actionSheet) {
+    _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
+                                      cancelButtonTitle:TTLocalizedString(@"Cancel", @"") destructiveButtonTitle:nil
+                                      otherButtonTitles:TTLocalizedString(@"Open in Safari", @""), nil];
+    if (TTIsPad()) {
+      [_actionSheet showFromBarButtonItem:_actionButton animated:YES];
+    }  else {
+      [_actionSheet showInView: self.view];
+    }
+  } else {
+    [_actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+    TT_RELEASE_SAFELY(_actionSheet);
+  }
+
 }
 
 
@@ -169,8 +189,8 @@
   _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
                  UIBarButtonSystemItemStop target:self action:@selector(stopAction)];
   _stopButton.tag = 3;
-  UIBarButtonItem* actionButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                                    UIBarButtonSystemItemAction target:self action:@selector(shareAction)] autorelease];
+  _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
+                   UIBarButtonSystemItemAction target:self action:@selector(shareAction)];
 
   UIBarItem* space = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
                        UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
@@ -181,7 +201,7 @@
   UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
   _toolbar.tintColor = TTSTYLEVAR(toolbarTintColor);
   _toolbar.items = [NSArray arrayWithObjects:
-                    _backButton, space, _forwardButton, space, _refreshButton, space, actionButton, nil];
+                    _backButton, space, _forwardButton, space, _refreshButton, space, _actionButton, nil];
   [self.view addSubview:_toolbar];
 }
 
@@ -198,6 +218,7 @@
   TT_RELEASE_SAFELY(_forwardButton);
   TT_RELEASE_SAFELY(_refreshButton);
   TT_RELEASE_SAFELY(_stopButton);
+  TT_RELEASE_SAFELY(_actionButton);
   TT_RELEASE_SAFELY(_activityItem);
 }
 

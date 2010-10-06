@@ -72,14 +72,16 @@
 - (void)testNonRetainingArray {
   NSMutableArray* array = TTCreateNonRetainingArray();
   id testObject = [[NSArray alloc] init];
+  NSUInteger initialRetainCount = [testObject retainCount];
 
-  STAssertTrue([testObject retainCount] == 1, @"Improper initial retain count");
+  STAssertTrue(initialRetainCount > 0, @"Improper initial retain count");
 
   [array addObject:testObject];
-  STAssertTrue([testObject retainCount] == 1, @"Improper new retain count");
+  STAssertEquals([testObject retainCount], initialRetainCount, @"Improper new retain count");
 
   TT_RELEASE_SAFELY(array);
-  STAssertTrue([testObject retainCount] == 1, @"Improper retain count after release");
+  STAssertEquals([testObject retainCount], initialRetainCount,
+                 @"Improper retain count after release");
 
   TT_RELEASE_SAFELY(testObject);
 }
@@ -89,14 +91,16 @@
 - (void)testNonRetainingDictionary {
   NSMutableDictionary* dictionary = TTCreateNonRetainingDictionary();
   id testObject = [[NSArray alloc] init];
+  NSUInteger initialRetainCount = [testObject retainCount];
 
-  STAssertTrue([testObject retainCount] == 1, @"Improper initial retain count");
+  STAssertTrue(initialRetainCount > 0, @"Improper initial retain count");
 
   [dictionary setObject:testObject forKey:@"obj"];
-  STAssertTrue([testObject retainCount] == 1, @"Improper new retain count");
+  STAssertEquals([testObject retainCount], initialRetainCount, @"Improper new retain count");
 
   TT_RELEASE_SAFELY(dictionary);
-  STAssertTrue([testObject retainCount] == 1, @"Improper retain count after release");
+  STAssertEquals([testObject retainCount], initialRetainCount,
+                 @"Improper retain count after release");
 
   TT_RELEASE_SAFELY(testObject);
 }

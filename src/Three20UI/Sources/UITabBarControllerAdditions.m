@@ -18,6 +18,7 @@
 
 // UI
 #import "Three20UI/TTNavigator.h"
+#import "Three20UI/TTNavigationController.h"
 
 // UICommon
 #import "Three20UICommon/UIViewControllerAdditions.h"
@@ -43,7 +44,7 @@
   if ([controller canContainControllers]) {
     return controller;
   } else {
-    UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
+    TTNavigationController* navController = [[[TTNavigationController alloc] init] autorelease];
     [navController pushViewController:controller animated:NO];
     return navController;
   }

@@ -58,18 +58,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithRecipients:(NSArray*)recipients {
-  if (self = [self init]) {
-    _initialRecipients = [recipients retain];
-  }
-
-  return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _fields = [[NSArray alloc] initWithObjects:
                [[[TTMessageRecipientField alloc] initWithTitle: TTLocalizedString(@"To:", @"")
                                                       required: YES] autorelease],
@@ -90,6 +80,16 @@
                                                target: self
                                                action: @selector(send)] autorelease];
     self.navigationItem.rightBarButtonItem.enabled = NO;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithRecipients:(NSArray*)recipients {
+  if (self = [self initWithNibName:nil bundle:nil]) {
+    _initialRecipients = [recipients retain];
   }
 
   return self;

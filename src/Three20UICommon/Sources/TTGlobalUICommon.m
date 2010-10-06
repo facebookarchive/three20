@@ -48,6 +48,9 @@ BOOL TTOSVersionIsAtLeast(float version) {
   // Floating-point comparison is pretty bad, so let's cut it some slack with an epsilon.
   static const CGFloat kEpsilon = 0.0000001;
 
+  #ifdef __IPHONE_4_0
+    return 4.0 - version >= -kEpsilon;
+  #endif
   #ifdef __IPHONE_3_2
     return 3.2 - version >= -kEpsilon;
   #endif
@@ -87,6 +90,16 @@ BOOL TTIsPhoneSupported() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTIsPad() {
+#ifdef __IPHONE_3_2
+		return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+#else
+		return NO;
+#endif
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 UIDeviceOrientation TTDeviceOrientation() {
   UIDeviceOrientation orient = [UIDevice currentDevice].orientation;
   if (UIDeviceOrientationUnknown == orient) {
@@ -99,13 +112,17 @@ UIDeviceOrientation TTDeviceOrientation() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation) {
-  switch (orientation) {
-    case UIInterfaceOrientationPortrait:
-    case UIInterfaceOrientationLandscapeLeft:
-    case UIInterfaceOrientationLandscapeRight:
-      return YES;
-    default:
-      return NO;
+  if (TTIsPad()) {
+    return YES;
+  } else {
+    switch (orientation) {
+      case UIInterfaceOrientationPortrait:
+      case UIInterfaceOrientationLandscapeLeft:
+      case UIInterfaceOrientationLandscapeRight:
+        return YES;
+      default:
+        return NO;
+    }
   }
 }
 

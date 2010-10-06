@@ -44,6 +44,7 @@
 @synthesize image               = _image;
 @synthesize defaultImage        = _defaultImage;
 @synthesize autoresizesToImage  = _autoresizesToImage;
+@synthesize cachePolicy			= _cachePolicy;
 
 @synthesize delegate = _delegate;
 
@@ -52,6 +53,7 @@
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _autoresizesToImage = NO;
+	  _cachePolicy = TTURLRequestCachePolicyDefault;
   }
   return self;
 }
@@ -176,7 +178,6 @@
   }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -204,7 +205,9 @@
       self.image = image;
 
     } else {
+		
       TTURLRequest* request = [TTURLRequest requestWithURL:_urlPath delegate:self];
+	  request.cachePolicy = _cachePolicy;
       request.response = [[[TTURLImageResponse alloc] init] autorelease];
 
       if (![request send]) {

@@ -18,18 +18,17 @@
 
 // - Global
 #import "Three20Core/TTCorePreprocessorMacros.h"
+
 #import "Three20Core/TTGlobalCore.h"
 #import "Three20Core/TTGlobalCoreLocale.h"
 #import "Three20Core/TTGlobalCorePaths.h"
 #import "Three20Core/TTGlobalCoreRects.h"
+
+// - Debug
 #import "Three20Core/TTDebug.h"
 
-// - Additions
-// TODO (jverkoey): Remove these additions after May 20, 2010.
-#import "Three20Core/NSObjectAdditions.h"
-#import "Three20Core/NSDataAdditions.h"
-#import "Three20Core/NSStringAdditions.h"
-#import "Three20Core/NSArrayAdditions.h"
-#import "Three20Core/NSMutableArrayAdditions.h"
-#import "Three20Core/NSMutableDictionaryAdditions.h"
-#import "Three20Core/NSDateAdditions.h"
+// - Entity Tables
+#import "Three20Core/TTEntityTables.h"
+
+// - Classes
+#import "Three20Core/TTMarkupStripper.h"

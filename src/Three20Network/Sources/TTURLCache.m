@@ -144,21 +144,32 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)createPathIfNecessary:(NSString*)path {
+  BOOL succeeded = YES;
+
+  NSFileManager* fm = [NSFileManager defaultManager];
+  if (![fm fileExistsAtPath:path]) {
+    succeeded = [fm createDirectoryAtPath: path
+              withIntermediateDirectories: YES
+                               attributes: nil
+                                    error: nil];
+  }
+
+  return succeeded;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString*)cachePathWithName:(NSString*)name {
   NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
   NSString* cachesPath = [paths objectAtIndex:0];
   NSString* cachePath = [cachesPath stringByAppendingPathComponent:name];
   NSString* etagCachePath = [cachePath stringByAppendingPathComponent:kEtagCacheDirectoryName];
-  NSFileManager* fm = [NSFileManager defaultManager];
-  if (![fm fileExistsAtPath:cachesPath]) {
-    [fm createDirectoryAtPath:cachesPath attributes:nil];
-  }
-  if (![fm fileExistsAtPath:cachePath]) {
-    [fm createDirectoryAtPath:cachePath attributes:nil];
-  }
-  if (![fm fileExistsAtPath:etagCachePath]) {
-    [fm createDirectoryAtPath:etagCachePath attributes:nil];
-  }
+
+  [self createPathIfNecessary:cachesPath];
+  [self createPathIfNecessary:cachePath];
+  [self createPathIfNecessary:etagCachePath];
+
   return cachePath;
 }
 
@@ -233,9 +244,8 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImage*)loadImageFromBundle:(NSString*)URL {
-  NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
-  NSData* data = [NSData dataWithContentsOfFile:path];
-  return [UIImage imageWithData:data];
+  NSString* path = [URL substringFromIndex:9];
+  return [UIImage imageNamed:path];
 }
 
 
@@ -511,18 +521,18 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL {
-  NSString* oldKey = [self keyForURL:oldURL];
-  NSString* newKey = [self keyForURL:newURL];
-  id image = [self imageForURL:oldKey];
+  id image = [self imageForURL:oldURL];
   if (image) {
-    [_imageSortedList removeObject:oldKey];
-    [_imageCache removeObjectForKey:oldKey];
-    [_imageSortedList addObject:newKey];
-    [_imageCache setObject:image forKey:newKey];
+    [_imageSortedList removeObject:oldURL];
+    [_imageCache removeObjectForKey:oldURL];
+    [_imageSortedList addObject:newURL];
+    [_imageCache setObject:image forKey:newURL];
   }
+  NSString* oldKey = [self keyForURL:oldURL];
   NSString* oldPath = [self cachePathForKey:oldKey];
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:oldPath]) {
+    NSString* newKey = [self keyForURL:newURL];
     NSString* newPath = [self cachePathForKey:newKey];
     [fm moveItemAtPath:oldPath toPath:newPath error:nil];
   }
@@ -550,11 +560,11 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
-  NSString*  key = [self keyForURL:URL];
-  [_imageSortedList removeObject:key];
-  [_imageCache removeObjectForKey:key];
+  [_imageSortedList removeObject:URL];
+  [_imageCache removeObjectForKey:URL];
 
   if (fromDisk) {
+    NSString* key = [self keyForURL:URL];
     NSString* filePath = [self cachePathForKey:key];
     NSFileManager* fm = [NSFileManager defaultManager];
     if (filePath && [fm fileExistsAtPath:filePath]) {
@@ -583,7 +593,7 @@ static NSMutableDictionary* gNamedCaches = nil;
   if (fromDisk) {
     NSFileManager* fm = [NSFileManager defaultManager];
     [fm removeItemAtPath:_cachePath error:nil];
-    [fm createDirectoryAtPath:_cachePath attributes:nil];
+    [TTURLCache createPathIfNecessary:_cachePath];
   }
 }
 
@@ -604,7 +614,11 @@ static NSMutableDictionary* gNamedCaches = nil;
     NSDictionary* attrs = [NSDictionary dictionaryWithObject:invalidDate
       forKey:NSFileModificationDate];
 
+#if __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+    [fm setAttributes:attrs ofItemAtPath:filePath error:nil];
+#else
     [fm changeFileAttributes:attrs atPath:filePath];
+#endif
   }
 }
 
@@ -619,7 +633,11 @@ static NSMutableDictionary* gNamedCaches = nil;
   NSDirectoryEnumerator* e = [fm enumeratorAtPath:_cachePath];
   for (NSString* fileName; fileName = [e nextObject]; ) {
     NSString* filePath = [_cachePath stringByAppendingPathComponent:fileName];
+#if __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+    [fm setAttributes:attrs ofItemAtPath:filePath error:nil];
+#else
     [fm changeFileAttributes:attrs atPath:filePath];
+#endif
   }
 }
 

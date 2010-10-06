@@ -19,3 +19,4 @@
 // Additions
 #import "Three20UICommon/UIViewControllerAdditions.h"
 #import "Three20UICommon/UIWindowAdditions.h"
+#import "Three20UICommon/UIDeviceAdditions.h"

@@ -19,6 +19,7 @@
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
+#import "Three20UINavigator/TTBaseNavigationController.h"
 #import "Three20UINavigator/TTURLAction.h"
 #import "Three20UINavigator/TTURLMap.h"
 #import "Three20UINavigator/TTURLNavigatorPattern.h"
@@ -43,6 +44,9 @@ static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
 static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant";
 
+UIKIT_EXTERN NSString *const UIApplicationDidEnterBackgroundNotification __attribute__((weak_import));
+UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attribute__((weak_import));
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,17 +69,17 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
     _URLMap = [[TTURLMap alloc] init];
     _persistenceMode = TTNavigatorPersistenceModeNone;
 
-    // SwapMethods a new dealloc for UIViewController so it notifies us when it's going away.
-    // We need to remove dying controllers from our binding cache.
-    TTSwapMethods([UIViewController class], @selector(dealloc), @selector(ttdealloc));
-
-    TTSwapMethods([UINavigationController class], @selector(popViewControllerAnimated:),
-                  @selector(popViewControllerAnimated2:));
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillTerminateNotification:)
-                                                 name:UIApplicationWillTerminateNotification
-                                               object:nil];
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(applicationWillLeaveForeground:)
+                   name:UIApplicationWillTerminateNotification
+                 object:nil];
+    if (nil != &UIApplicationDidEnterBackgroundNotification) {
+      [center addObserver:self
+                 selector:@selector(applicationWillLeaveForeground:)
+                     name:UIApplicationDidEnterBackgroundNotification
+                   object:nil];
+    }
   }
   return self;
 }
@@ -83,9 +87,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:UIApplicationWillTerminateNotification
-                                                object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   _delegate = nil;
   TT_RELEASE_SAFELY(_window);
   TT_RELEASE_SAFELY(_rootViewController);
@@ -220,7 +222,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
     // If this is the first controller, and it is not a "container", forcibly put
     // a navigation controller at the root of the controller hierarchy.
     if (nil == _rootViewController && !isContainer) {
-      [self setRootViewController:[[[UINavigationController alloc] init] autorelease]];
+      [self setRootViewController:[[[[self navigationControllerClass] alloc] init] autorelease]];
     }
 
     if (nil != parentURLPath) {
@@ -262,7 +264,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
                                         animated: animated];
 
   } else {
-    UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
+    UINavigationController* navController = [[[[self navigationControllerClass] alloc] init] autorelease];
     [navController pushViewController: controller
                              animated: NO];
     [parentController presentModalViewController: navController
@@ -472,7 +474,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applicationWillTerminateNotification:(void*)info {
+- (void)applicationWillLeaveForeground:(void *)ignored {
   if (_persistenceMode) {
     [self persistViewControllers];
   }
@@ -828,8 +830,6 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Present a view controller that strictly depends on the existence of the parent controller.
- *
- * @protected
  */
 - (void)presentDependantController: (UIViewController*)controller
                   parentController: (UIViewController*)parentController
@@ -852,11 +852,14 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * @protected
- */
 - (UIViewController*)getVisibleChildController:(UIViewController*)controller {
   return controller.topSubcontroller;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (Class)navigationControllerClass {
+  return [TTBaseNavigationController class];
 }
 
 

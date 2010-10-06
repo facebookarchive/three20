@@ -140,22 +140,28 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
-  [_delegates perform:@selector(model:didUpdateObject:atIndexPath:) withObject:self
-              withObject:object withObject:indexPath];
+  [_delegates perform: @selector(model:didUpdateObject:atIndexPath:)
+           withObject: self
+           withObject: object
+           withObject: indexPath];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
-  [_delegates perform:@selector(model:didInsertObject:atIndexPath:) withObject:self
-              withObject:object withObject:indexPath];
+  [_delegates perform: @selector(model:didInsertObject:atIndexPath:)
+           withObject: self
+           withObject: object
+           withObject: indexPath];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
-  [_delegates perform:@selector(model:didDeleteObject:atIndexPath:) withObject:self
-              withObject:object withObject:indexPath];
+  [_delegates perform: @selector(model:didDeleteObject:atIndexPath:)
+           withObject: self
+           withObject: object
+           withObject: indexPath];
 }
 
 

@@ -16,21 +16,21 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Table Items";
     self.variableHeightRows = YES;
 
     // Uncomment this to see how the table looks with the grouped style
     //self.tableViewStyle = UITableViewStyleGrouped;
 
-    // Uncomment this to see how the table cells look against a custom background color 
+    // Uncomment this to see how the table cells look against a custom background color
     //self.tableView.backgroundColor = [UIColor yellowColor];
-      
+
     NSString* localImage = @"bundle://tableIcon.png";
     NSString* remoteImage = @"http://profile.ak.fbcdn.net/v223/35/117/q223792_6978.jpg";
     UIImage* defaultPerson = TTIMAGE(@"bundle://defaultPerson.png");
-    
+
     // This demonstrates how to create a table with standard table "fields".  Many of these
     // fields with URLs that will be visited when the row is selected
     self.dataSource = [TTSectionedDataSource dataSourceWithObjects:

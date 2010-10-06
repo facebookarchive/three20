@@ -18,6 +18,12 @@
 			<key>Title</key>
 			<string>TTTableViewController</string>
 		</dict>
+		<dict>
+			<key>Key</key>
+			<string>TTDefaultS</string>
+			<key>Title</key>
+			<string>TTDefaultStyleSheet</string>
+		</dict>
 	</array>
 	<key>TemplateSelection</key>
 	<dict>
@@ -27,6 +33,8 @@
 		<string>TTViewController subclass</string>
 		<key>TTTableViewC</key>
 		<string>TTTableViewController subclass</string>
+		<key>TTDefaultS</key>
+		<string>TTDefaultStyleSheet subclass</string>
 	</dict>
 </dict>
 </plist>
