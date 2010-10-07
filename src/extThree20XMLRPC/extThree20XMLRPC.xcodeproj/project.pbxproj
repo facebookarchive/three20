@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E3C34A3118807A70079637E /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E3C34A2118807A70079637E /* testcase.xml */; };
 		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
 		6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7911876D4600F08CB1 /* libThree20Network.a */; };
 		6EB460DA1183D8CB00685649 /* libextThree20XMLRPC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20XMLRPC.a */; };
@@ -26,6 +25,8 @@
 		85B22E9B125D44CC00F6AD0C /* XMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E72125D44CC00F6AD0C /* XMLRPCRequest.m */; };
 		85B22E9D125D44CC00F6AD0C /* XMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E74125D44CC00F6AD0C /* XMLRPCResponse.m */; };
 		85B23035125D477700F6AD0C /* extXMLRPCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22D72125D3C3D00F6AD0C /* extXMLRPCTests.m */; };
+		85B23244125D60C500F6AD0C /* testcase1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 85B23242125D60C500F6AD0C /* testcase1.xml */; };
+		85B23245125D60C500F6AD0C /* testcase2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 85B23243125D60C500F6AD0C /* testcase2.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +96,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6E3C34A2118807A70079637E /* testcase.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase.xml; path = UnitTests/Resources/XML/testcase.xml; sourceTree = "<group>"; };
 		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -130,6 +130,8 @@
 		85B22E73125D44CC00F6AD0C /* XMLRPCResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCResponse.h; sourceTree = "<group>"; };
 		85B22E74125D44CC00F6AD0C /* XMLRPCResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCResponse.m; sourceTree = "<group>"; };
 		85B2305D125D48B200F6AD0C /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
+		85B23242125D60C500F6AD0C /* testcase1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase1.xml; path = UnitTests/Resources/XML/testcase1.xml; sourceTree = "<group>"; };
+		85B23243125D60C500F6AD0C /* testcase2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase2.xml; path = UnitTests/Resources/XML/testcase2.xml; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libextThree20XMLRPC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20XMLRPC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* extXMLRPCUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extXMLRPCUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -220,7 +222,8 @@
 		6ED117E51183BE2A0096AEBF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6E3C34A2118807A70079637E /* testcase.xml */,
+				85B23242125D60C500F6AD0C /* testcase1.xml */,
+				85B23243125D60C500F6AD0C /* testcase2.xml */,
 				6EB460921183D16000685649 /* UnitTests-Info.plist */,
 			);
 			name = Resources;
@@ -412,7 +415,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3C34A3118807A70079637E /* testcase.xml in Resources */,
+				85B23244125D60C500F6AD0C /* testcase1.xml in Resources */,
+				85B23245125D60C500F6AD0C /* testcase2.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,11 +27,16 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
+#define kDummyString @"The quick brown fox jumps over the lazy dog. 0123456789<br />&&&&"
+
 /**
  * Unit tests for the Core XML parser. These tests are a part of the comprehensive test suite
  * for the Core functionality of the library.
  */
 @interface extXMLRPCUnitTests : SenTestCase
+
+- (NSData *)dataWithBundledXMLFileName:(NSString *)fileName;
+
 @end
 
 
@@ -45,10 +50,43 @@
 
 #pragma mark TODO:
 - (void)testRequestBody {
+	
+	TTURLXMLRPCRequest *req = [[TTURLXMLRPCRequest alloc] initWithURL:@"http://mydomain.tld/path/to/post" delegate:nil];
+	// method name only
+	[req setMethod:@"hoge.fuga.Piyo1"];
+	STAssertEqualObjects([req body],@"<?xml version=\"1.0\"?><methodCall><methodName>hoge.fuga.Piyo1</methodName><params></params></methodCall>",@"Check non parameters request body as string.");
+
+	// method with parameters
+	[req setMethod:@"hoge.fuga.Piyo2" withParameter:[NSDictionary dictionaryWithObjectsAndKeys:
+																									 [NSNumber numberWithInt:1],      @"aIntValue",
+																									 [NSNumber numberWithDouble:1.0], @"aDoubleValue",
+																									 [NSNumber numberWithBool:YES],   @"aBooleanValue",
+																									 kDummyString, @"aStringValue",
+																									 [NSArray arrayWithObjects:
+																										[NSNumber numberWithInt:1],
+																										[NSNumber numberWithDouble:1.0],
+																										[NSNumber numberWithBool:YES],
+																										kDummyString,
+																										nil], @"aArrayValue",
+																									 nil]];
+	STAssertEqualObjects([req body],@"<?xml version=\"1.0\"?><methodCall><methodName>hoge.fuga.Piyo2</methodName><params><param><value><struct><member><name>aBooleanValue</name><value><boolean>1</boolean></value></member><member><name>aDoubleValue</name><value><double>1</double></value></member><member><name>aIntValue</name><value><i4>1</i4></value></member><member><name>aStringValue</name><value><string>The quick brown fox jumps over the lazy dog. 0123456789&lt;br /&gt;&amp;&amp;&amp;&amp;</string></value></member><member><name>aArrayValue</name><value><array><data><value><i4>1</i4></value><value><double>1</double></value><value><boolean>1</boolean></value><value><string>The quick brown fox jumps over the lazy dog. 0123456789&lt;br /&gt;&amp;&amp;&amp;&amp;</string></value></data></array></value></member></struct></value></param></params></methodCall>",@"Check request body as string.");
+	
+	TT_RELEASE_SAFELY(req);
 }
 
 #pragma mark TODO:
 - (void)testResponseBody {
+}
+
+
+#pragma mark -
+- (NSData *)dataWithBundledXMLFileName:(NSString *)fileName {
+  NSBundle* testBundle = [NSBundle bundleWithIdentifier:@"com.facebook.three20.UnitTests"];
+	STAssertNotNil(testBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
+  NSString* xmlDataPath = [[testBundle bundlePath] stringByAppendingPathComponent:fileName];
+  NSData* xmlData = [[NSData alloc] initWithContentsOfFile:xmlDataPath];
+	STAssertNotNil(xmlData,@"Unable to find the xml test file in %@", xmlDataPath);
+	return xmlData;
 }
 
 
