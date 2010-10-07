@@ -10,6 +10,7 @@
 		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
 		6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7911876D4600F08CB1 /* libThree20Network.a */; };
 		6EB460DA1183D8CB00685649 /* libextThree20XMLRPC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20XMLRPC.a */; };
+		8563E617125DA624002D729F /* testcase3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8563E616125DA624002D729F /* testcase3.xml */; };
 		85B22D9A125D3CA800F6AD0C /* TTURLXMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22D98125D3CA800F6AD0C /* TTURLXMLRPCRequest.m */; };
 		85B22D9B125D3CA800F6AD0C /* TTURLXMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22D99125D3CA800F6AD0C /* TTURLXMLRPCResponse.m */; };
 		85B22DA6125D3CB100F6AD0C /* extThree20XMLRPC.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B22DA2125D3CB100F6AD0C /* extThree20XMLRPC.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -102,6 +103,7 @@
 		6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6EB460921183D16000685649 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EB460A61183D2AC00685649 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
+		8563E616125DA624002D729F /* testcase3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase3.xml; path = UnitTests/Resources/XML/testcase3.xml; sourceTree = "<group>"; };
 		85B22D72125D3C3D00F6AD0C /* extXMLRPCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = extXMLRPCTests.m; path = UnitTests/extXMLRPCTests.m; sourceTree = "<group>"; };
 		85B22D98125D3CA800F6AD0C /* TTURLXMLRPCRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLXMLRPCRequest.m; path = Source/TTURLXMLRPCRequest.m; sourceTree = "<group>"; };
 		85B22D99125D3CA800F6AD0C /* TTURLXMLRPCResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLXMLRPCResponse.m; path = Source/TTURLXMLRPCResponse.m; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			children = (
 				85B23242125D60C500F6AD0C /* testcase1.xml */,
 				85B23243125D60C500F6AD0C /* testcase2.xml */,
+				8563E616125DA624002D729F /* testcase3.xml */,
 				6EB460921183D16000685649 /* UnitTests-Info.plist */,
 			);
 			name = Resources;
@@ -417,6 +420,7 @@
 			files = (
 				85B23244125D60C500F6AD0C /* testcase1.xml in Resources */,
 				85B23245125D60C500F6AD0C /* testcase2.xml in Resources */,
+				8563E617125DA624002D729F /* testcase3.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
