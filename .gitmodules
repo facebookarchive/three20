@@ -1,0 +1,3 @@
+[submodule "src/extThree20XMLRPC/Vendors/xmlrpc"]
+	path = src/extThree20XMLRPC/Vendors/xmlrpc
+	url = git@github.com:ngs/xmlrpc.git
