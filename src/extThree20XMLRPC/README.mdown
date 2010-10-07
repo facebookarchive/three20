@@ -1,5 +1,5 @@
 
-extXML
+extXMLRPC
 ======
 
 This extension provides XML-RPC support.
