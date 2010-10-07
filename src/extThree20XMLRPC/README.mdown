@@ -9,6 +9,7 @@ Dependencies
 
 * Core
 * Network
+* [Cocoa XML-RPC framework](http://github.com/ngs/xmlrpc)
 
 Using it in your App
 --------------------
@@ -20,6 +21,11 @@ Import the following into your precompiled header or wherever you need access to
 `TTURLXMLRPCResponse`.
 
     #import "extThree20XMLRPC/extThree20XMLRPC.h"
+    
+    TTURLXMLRPCResponse *res = (TTURLXMLRPCResponse *) req.response;
+    
+
+    
 
 Breakdown
 ---------
