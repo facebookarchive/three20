@@ -7,16 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E3C3468118806430079637E /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3466118806430079637E /* TTURLXMLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E3C3469118806430079637E /* TTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3467118806430079637E /* TTXMLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E3C346C1188064F0079637E /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C346A1188064F0079637E /* TTURLXMLResponse.m */; };
-		6E3C346D1188064F0079637E /* TTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C346B1188064F0079637E /* TTXMLParser.m */; };
-		6E3C3470118806590079637E /* extThree20XML.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E646518118805EB00F08CB1 /* extThree20XML.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E3C3484118807050079637E /* extXMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3483118807050079637E /* extXMLTests.m */; };
 		6E3C34A3118807A70079637E /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E3C34A2118807A70079637E /* testcase.xml */; };
 		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
 		6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7911876D4600F08CB1 /* libThree20Network.a */; };
-		6EB460DA1183D8CB00685649 /* libextThree20XML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */; };
+		6EB460DA1183D8CB00685649 /* libextThree20XMLRPC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20XMLRPC.a */; };
+		85B22D9A125D3CA800F6AD0C /* TTURLXMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22D98125D3CA800F6AD0C /* TTURLXMLRPCRequest.m */; };
+		85B22D9B125D3CA800F6AD0C /* TTURLXMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22D99125D3CA800F6AD0C /* TTURLXMLRPCResponse.m */; };
+		85B22DA6125D3CB100F6AD0C /* extThree20XMLRPC.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B22DA2125D3CB100F6AD0C /* extThree20XMLRPC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		85B22DA7125D3CB100F6AD0C /* TTURLXMLRPCRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B22DA3125D3CB100F6AD0C /* TTURLXMLRPCRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		85B22DA8125D3CB100F6AD0C /* TTURLXMLRPCResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B22DA4125D3CB100F6AD0C /* TTURLXMLRPCResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		85B22E76125D44CC00F6AD0C /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E12125D44CC00F6AD0C /* NSDataAdditions.m */; };
+		85B22E78125D44CC00F6AD0C /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E14125D44CC00F6AD0C /* NSStringAdditions.m */; };
+		85B22E90125D44CC00F6AD0C /* XMLRPCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E67125D44CC00F6AD0C /* XMLRPCConnection.m */; };
+		85B22E93125D44CC00F6AD0C /* XMLRPCConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E6A125D44CC00F6AD0C /* XMLRPCConnectionManager.m */; };
+		85B22E95125D44CC00F6AD0C /* XMLRPCEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E6C125D44CC00F6AD0C /* XMLRPCEncoder.m */; };
+		85B22E97125D44CC00F6AD0C /* XMLRPCEventBasedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E6E125D44CC00F6AD0C /* XMLRPCEventBasedParser.m */; };
+		85B22E99125D44CC00F6AD0C /* XMLRPCEventBasedParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E70125D44CC00F6AD0C /* XMLRPCEventBasedParserDelegate.m */; };
+		85B22E9B125D44CC00F6AD0C /* XMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E72125D44CC00F6AD0C /* XMLRPCRequest.m */; };
+		85B22E9D125D44CC00F6AD0C /* XMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22E74125D44CC00F6AD0C /* XMLRPCResponse.m */; };
+		85B23035125D477700F6AD0C /* extXMLRPCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B22D72125D3C3D00F6AD0C /* extXMLRPCTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,21 +95,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6E3C3466118806430079637E /* TTURLXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLResponse.h; path = Headers/TTURLXMLResponse.h; sourceTree = "<group>"; };
-		6E3C3467118806430079637E /* TTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTXMLParser.h; path = Headers/TTXMLParser.h; sourceTree = "<group>"; };
-		6E3C346A1188064F0079637E /* TTURLXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLXMLResponse.m; path = Source/TTURLXMLResponse.m; sourceTree = "<group>"; };
-		6E3C346B1188064F0079637E /* TTXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTXMLParser.m; path = Source/TTXMLParser.m; sourceTree = "<group>"; };
-		6E3C3483118807050079637E /* extXMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = extXMLTests.m; path = UnitTests/extXMLTests.m; sourceTree = "<group>"; };
 		6E3C34A2118807A70079637E /* testcase.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase.xml; path = UnitTests/Resources/XML/testcase.xml; sourceTree = "<group>"; };
 		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
-		6E646518118805EB00F08CB1 /* extThree20XML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20XML.h; path = Headers/extThree20XML.h; sourceTree = "<group>"; };
 		6EB460921183D16000685649 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EB460A61183D2AC00685649 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
-		BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20XML.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB9E6C6210B6A8F800DE563C /* extXMLUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extXMLUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		85B22D72125D3C3D00F6AD0C /* extXMLRPCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = extXMLRPCTests.m; path = UnitTests/extXMLRPCTests.m; sourceTree = "<group>"; };
+		85B22D98125D3CA800F6AD0C /* TTURLXMLRPCRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLXMLRPCRequest.m; path = Source/TTURLXMLRPCRequest.m; sourceTree = "<group>"; };
+		85B22D99125D3CA800F6AD0C /* TTURLXMLRPCResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLXMLRPCResponse.m; path = Source/TTURLXMLRPCResponse.m; sourceTree = "<group>"; };
+		85B22DA2125D3CB100F6AD0C /* extThree20XMLRPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20XMLRPC.h; path = Headers/extThree20XMLRPC.h; sourceTree = "<group>"; };
+		85B22DA3125D3CB100F6AD0C /* TTURLXMLRPCRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLRPCRequest.h; path = Headers/TTURLXMLRPCRequest.h; sourceTree = "<group>"; };
+		85B22DA4125D3CB100F6AD0C /* TTURLXMLRPCResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLRPCResponse.h; path = Headers/TTURLXMLRPCResponse.h; sourceTree = "<group>"; };
+		85B22E11125D44CC00F6AD0C /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAdditions.h; sourceTree = "<group>"; };
+		85B22E12125D44CC00F6AD0C /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
+		85B22E13125D44CC00F6AD0C /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
+		85B22E14125D44CC00F6AD0C /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
+		85B22E61125D44CC00F6AD0C /* XMLRPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPC.h; sourceTree = "<group>"; };
+		85B22E62125D44CC00F6AD0C /* XMLRPC.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPC.pch; sourceTree = "<group>"; };
+		85B22E66125D44CC00F6AD0C /* XMLRPCConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCConnection.h; sourceTree = "<group>"; };
+		85B22E67125D44CC00F6AD0C /* XMLRPCConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCConnection.m; sourceTree = "<group>"; };
+		85B22E68125D44CC00F6AD0C /* XMLRPCConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCConnectionDelegate.h; sourceTree = "<group>"; };
+		85B22E69125D44CC00F6AD0C /* XMLRPCConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCConnectionManager.h; sourceTree = "<group>"; };
+		85B22E6A125D44CC00F6AD0C /* XMLRPCConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCConnectionManager.m; sourceTree = "<group>"; };
+		85B22E6B125D44CC00F6AD0C /* XMLRPCEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCEncoder.h; sourceTree = "<group>"; };
+		85B22E6C125D44CC00F6AD0C /* XMLRPCEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCEncoder.m; sourceTree = "<group>"; };
+		85B22E6D125D44CC00F6AD0C /* XMLRPCEventBasedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCEventBasedParser.h; sourceTree = "<group>"; };
+		85B22E6E125D44CC00F6AD0C /* XMLRPCEventBasedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCEventBasedParser.m; sourceTree = "<group>"; };
+		85B22E6F125D44CC00F6AD0C /* XMLRPCEventBasedParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCEventBasedParserDelegate.h; sourceTree = "<group>"; };
+		85B22E70125D44CC00F6AD0C /* XMLRPCEventBasedParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCEventBasedParserDelegate.m; sourceTree = "<group>"; };
+		85B22E71125D44CC00F6AD0C /* XMLRPCRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCRequest.h; sourceTree = "<group>"; };
+		85B22E72125D44CC00F6AD0C /* XMLRPCRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCRequest.m; sourceTree = "<group>"; };
+		85B22E73125D44CC00F6AD0C /* XMLRPCResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCResponse.h; sourceTree = "<group>"; };
+		85B22E74125D44CC00F6AD0C /* XMLRPCResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCResponse.m; sourceTree = "<group>"; };
+		85B2305D125D48B200F6AD0C /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
+		BEF31F3A0F352DF5000DE5D2 /* libextThree20XMLRPC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20XMLRPC.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB9E6C6210B6A8F800DE563C /* extXMLRPCUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extXMLRPCUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +148,7 @@
 			files = (
 				6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */,
 				6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */,
-				6EB460DA1183D8CB00685649 /* libextThree20XML.a in Frameworks */,
+				6EB460DA1183D8CB00685649 /* libextThree20XMLRPC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,8 +158,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */,
-				EB9E6C6210B6A8F800DE563C /* extXMLUnitTests.octest */,
+				BEF31F3A0F352DF5000DE5D2 /* libextThree20XMLRPC.a */,
+				EB9E6C6210B6A8F800DE563C /* extXMLRPCUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,7 +167,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				6E646518118805EB00F08CB1 /* extThree20XML.h */,
+				85B2305D125D48B200F6AD0C /* README.mdown */,
+				85B22DA2125D3CB100F6AD0C /* extThree20XMLRPC.h */,
 				6EB4609C1183D1E000685649 /* Source */,
 				6E645A4311876CFE00F08CB1 /* Dependencies */,
 				6ED118E41183C38A0096AEBF /* Configurations */,
@@ -144,23 +176,6 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
-			sourceTree = "<group>";
-		};
-		6E3C3472118806640079637E /* Vendors */ = {
-			isa = PBXGroup;
-			children = (
-				6E3C3473118806670079637E /* Three20 */,
-			);
-			name = Vendors;
-			sourceTree = "<group>";
-		};
-		6E3C3473118806670079637E /* Three20 */ = {
-			isa = PBXGroup;
-			children = (
-				6E3C3467118806430079637E /* TTXMLParser.h */,
-				6E3C346B1188064F0079637E /* TTXMLParser.m */,
-			);
-			name = Three20;
 			sourceTree = "<group>";
 		};
 		6E645A4311876CFE00F08CB1 /* Dependencies */ = {
@@ -193,9 +208,11 @@
 		6EB4609C1183D1E000685649 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6E3C3466118806430079637E /* TTURLXMLResponse.h */,
-				6E3C346A1188064F0079637E /* TTURLXMLResponse.m */,
-				6E3C3472118806640079637E /* Vendors */,
+				85B22DDB125D44CC00F6AD0C /* Vendors */,
+				85B22DA3125D3CB100F6AD0C /* TTURLXMLRPCRequest.h */,
+				85B22D98125D3CA800F6AD0C /* TTURLXMLRPCRequest.m */,
+				85B22DA4125D3CB100F6AD0C /* TTURLXMLRPCResponse.h */,
+				85B22D99125D3CA800F6AD0C /* TTURLXMLRPCResponse.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -212,8 +229,8 @@
 		6ED117ED1183BE770096AEBF /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				85B22D72125D3C3D00F6AD0C /* extXMLRPCTests.m */,
 				6ED117E51183BE2A0096AEBF /* Resources */,
-				6E3C3483118807050079637E /* extXMLTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -228,6 +245,42 @@
 			name = Configurations;
 			sourceTree = "<group>";
 		};
+		85B22DDB125D44CC00F6AD0C /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				85B22DDC125D44CC00F6AD0C /* xmlrpc */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		85B22DDC125D44CC00F6AD0C /* xmlrpc */ = {
+			isa = PBXGroup;
+			children = (
+				85B22E11125D44CC00F6AD0C /* NSDataAdditions.h */,
+				85B22E12125D44CC00F6AD0C /* NSDataAdditions.m */,
+				85B22E13125D44CC00F6AD0C /* NSStringAdditions.h */,
+				85B22E14125D44CC00F6AD0C /* NSStringAdditions.m */,
+				85B22E61125D44CC00F6AD0C /* XMLRPC.h */,
+				85B22E62125D44CC00F6AD0C /* XMLRPC.pch */,
+				85B22E66125D44CC00F6AD0C /* XMLRPCConnection.h */,
+				85B22E67125D44CC00F6AD0C /* XMLRPCConnection.m */,
+				85B22E68125D44CC00F6AD0C /* XMLRPCConnectionDelegate.h */,
+				85B22E69125D44CC00F6AD0C /* XMLRPCConnectionManager.h */,
+				85B22E6A125D44CC00F6AD0C /* XMLRPCConnectionManager.m */,
+				85B22E6B125D44CC00F6AD0C /* XMLRPCEncoder.h */,
+				85B22E6C125D44CC00F6AD0C /* XMLRPCEncoder.m */,
+				85B22E6D125D44CC00F6AD0C /* XMLRPCEventBasedParser.h */,
+				85B22E6E125D44CC00F6AD0C /* XMLRPCEventBasedParser.m */,
+				85B22E6F125D44CC00F6AD0C /* XMLRPCEventBasedParserDelegate.h */,
+				85B22E70125D44CC00F6AD0C /* XMLRPCEventBasedParserDelegate.m */,
+				85B22E71125D44CC00F6AD0C /* XMLRPCRequest.h */,
+				85B22E72125D44CC00F6AD0C /* XMLRPCRequest.m */,
+				85B22E73125D44CC00F6AD0C /* XMLRPCResponse.h */,
+				85B22E74125D44CC00F6AD0C /* XMLRPCResponse.m */,
+			);
+			path = xmlrpc;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -235,18 +288,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3C3468118806430079637E /* TTURLXMLResponse.h in Headers */,
-				6E3C3469118806430079637E /* TTXMLParser.h in Headers */,
-				6E3C3470118806590079637E /* extThree20XML.h in Headers */,
+				85B22DA6125D3CB100F6AD0C /* extThree20XMLRPC.h in Headers */,
+				85B22DA7125D3CB100F6AD0C /* TTURLXMLRPCRequest.h in Headers */,
+				85B22DA8125D3CB100F6AD0C /* TTURLXMLRPCResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BEF31F390F352DF5000DE5D2 /* extThree20XML */ = {
+		BEF31F390F352DF5000DE5D2 /* extThree20XMLRPC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20XML" */;
+			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20XMLRPC" */;
 			buildPhases = (
 				BEF31F360F352DF5000DE5D2 /* Headers */,
 				6E3C34AD118807DC0079637E /* Protect Copied Headers */,
@@ -259,9 +312,9 @@
 				6E645A7D11876D5800F08CB1 /* PBXTargetDependency */,
 				6E645A7F11876D5800F08CB1 /* PBXTargetDependency */,
 			);
-			name = extThree20XML;
+			name = extThree20XMLRPC;
 			productName = Three20;
-			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */;
+			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20XMLRPC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		EB9E6C6110B6A8F800DE563C /* UnitTests */ = {
@@ -282,7 +335,7 @@
 			);
 			name = UnitTests;
 			productName = CoreUnitTests;
-			productReference = EB9E6C6210B6A8F800DE563C /* extXMLUnitTests.octest */;
+			productReference = EB9E6C6210B6A8F800DE563C /* extXMLRPCUnitTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -293,7 +346,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = NO;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "extThree20XML" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "extThree20XMLRPC" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -317,7 +370,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				BEF31F390F352DF5000DE5D2 /* extThree20XML */,
+				BEF31F390F352DF5000DE5D2 /* extThree20XMLRPC */,
 				EB9E6C6110B6A8F800DE563C /* UnitTests */,
 			);
 		};
@@ -391,7 +444,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\" 1> /tmp/RunUnitTests.out\n";
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\" 1> /tmp/RunUnitTests.out";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -400,8 +453,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3C346C1188064F0079637E /* TTURLXMLResponse.m in Sources */,
-				6E3C346D1188064F0079637E /* TTXMLParser.m in Sources */,
+				85B22D9A125D3CA800F6AD0C /* TTURLXMLRPCRequest.m in Sources */,
+				85B22D9B125D3CA800F6AD0C /* TTURLXMLRPCResponse.m in Sources */,
+				85B22E76125D44CC00F6AD0C /* NSDataAdditions.m in Sources */,
+				85B22E78125D44CC00F6AD0C /* NSStringAdditions.m in Sources */,
+				85B22E90125D44CC00F6AD0C /* XMLRPCConnection.m in Sources */,
+				85B22E93125D44CC00F6AD0C /* XMLRPCConnectionManager.m in Sources */,
+				85B22E95125D44CC00F6AD0C /* XMLRPCEncoder.m in Sources */,
+				85B22E97125D44CC00F6AD0C /* XMLRPCEventBasedParser.m in Sources */,
+				85B22E99125D44CC00F6AD0C /* XMLRPCEventBasedParserDelegate.m in Sources */,
+				85B22E9B125D44CC00F6AD0C /* XMLRPCRequest.m in Sources */,
+				85B22E9D125D44CC00F6AD0C /* XMLRPCResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,7 +471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3C3484118807050079637E /* extXMLTests.m in Sources */,
+				85B23035125D477700F6AD0C /* extXMLRPCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +500,7 @@
 		};
 		6EB460DE1183D8D400685649 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BEF31F390F352DF5000DE5D2 /* extThree20XML */;
+			target = BEF31F390F352DF5000DE5D2 /* extThree20XMLRPC */;
 			targetProxy = 6EB460DD1183D8D400685649 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -473,6 +535,7 @@
 				);
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphonesimulator4.1;
 			};
 			name = Internal;
 		};
@@ -486,9 +549,8 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.1;
+				SDKROOT = iphonesimulator3.2;
 			};
 			name = Internal;
 		};
@@ -504,6 +566,7 @@
 					DEBUG,
 				);
 				PREBINDING = NO;
+				SDKROOT = iphonesimulator4.1;
 			};
 			name = Debug;
 		};
@@ -516,6 +579,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_SBJSON;
 				PREBINDING = NO;
+				SDKROOT = iphonesimulator4.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -560,9 +624,8 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.1;
+				SDKROOT = iphonesimulator3.2;
 			};
 			name = Debug;
 		};
@@ -574,9 +637,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.1;
+				SDKROOT = iphonesimulator3.2;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -584,7 +646,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20XML" */ = {
+		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20XMLRPC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BEF31F3B0F352DF6000DE5D2 /* Debug */,
@@ -594,7 +656,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "extThree20XML" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "extThree20XMLRPC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
