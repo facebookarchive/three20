@@ -106,6 +106,7 @@ static const CGFloat kMaxLabelHeight = 2000;
 
   self.textLabel.frame = CGRectInset(self.contentView.bounds,
                                      kTableCellHPadding, kTableCellVPadding);
+	self.backgroundColor = TTSTYLEVAR(tableViewCellBackgroundColor);
 }
 
 

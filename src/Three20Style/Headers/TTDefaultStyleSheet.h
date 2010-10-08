@@ -35,6 +35,7 @@
 @property (nonatomic, readonly) UIColor*  tableGroupedBackgroundColor;
 @property (nonatomic, readonly) UIColor*  searchTableBackgroundColor;
 @property (nonatomic, readonly) UIColor*  searchTableSeparatorColor;
+@property (nonatomic, readonly) UIColor*  tableViewCellBackgroundColor;
 
 // Table Headers
 @property (nonatomic, readonly) UIColor*  tableHeaderTextColor;
