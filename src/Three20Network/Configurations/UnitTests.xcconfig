@@ -17,5 +17,5 @@
 #include "../common/Configurations/UnitTests.xcconfig"
 #include "../common/Configurations/Libraries.xcconfig"
 
-PRODUCT_NAME          = NetworkUnitTests
+BASE_PRODUCT_NAME     = NetworkUnitTests
 BUILD_BUNDLE_VERSION  = 1.0

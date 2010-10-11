@@ -866,7 +866,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "CoreUnitTests-Xcode3.2.5";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -882,7 +882,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "CoreUnitTests-Xcode3.2.5";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 			};
 			name = Internal;
@@ -896,7 +896,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				PREBINDING = NO;
-				PRODUCT_NAME = "CoreUnitTests-Xcode3.2.5";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
@@ -1001,7 +1001,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "CoreUnitTests-Xcode3.2.2";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
 			};
 			name = Debug;
@@ -1017,7 +1017,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "CoreUnitTests-Xcode3.2.2";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
 			};
 			name = Internal;
@@ -1031,7 +1031,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				PREBINDING = NO;
-				PRODUCT_NAME = "CoreUnitTests-Xcode3.2.2";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
 				ZERO_LINK = NO;
 			};
@@ -1078,7 +1078,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "CoreUnitTests-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
 				SDKROOT = iphoneos4.1;
 			};
 			name = Internal;
@@ -1151,7 +1151,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "CoreUnitTests-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
 				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
@@ -1165,7 +1165,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				PREBINDING = NO;
-				PRODUCT_NAME = "CoreUnitTests-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
 				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;
 			};
