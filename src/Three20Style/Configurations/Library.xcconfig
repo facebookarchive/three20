@@ -17,5 +17,5 @@
 #include "../common/Configurations/Library.xcconfig"
 #include "../common/Configurations/Libraries.xcconfig"
 
-PRODUCT_NAME            = Three20Style
+BASE_PRODUCT_NAME       = Three20Style
 BUILD_LIBRARY_VERSION   = 1.0
