@@ -10,6 +10,28 @@
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		667F83E01262FE21008ADC61 /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C2E1101262F7BF006DF55A /* libThree20Core-Xcode3.2.5.a */; };
+		667F83E11262FE27008ADC61 /* libThree20Core-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C2E1121262F7BF006DF55A /* libThree20Core-Xcode3.2.2.a */; };
+		668DCFEB1262FA51004C9828 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 668DCFEA1262FA51004C9828 /* Default@2x.png */; };
+		66A05B111262FB5B00CE83EF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C678116D97FF0012B12C /* Default.png */; };
+		66A05B121262FB5B00CE83EF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C679116D97FF0012B12C /* Icon.png */; };
+		66A05B131262FB5B00CE83EF /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E64601A1187B3CD00F08CB1 /* Three20.bundle */; };
+		66A05B141262FB5B00CE83EF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 668DCFEA1262FA51004C9828 /* Default@2x.png */; };
+		66A05B161262FB5B00CE83EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		66A05B171262FB5B00CE83EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		66A05B181262FB5B00CE83EF /* PlaygroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFBBAA1162829A009B479E /* PlaygroundViewController.m */; };
+		66A05B1A1262FB5B00CE83EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		66A05B1B1262FB5B00CE83EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EEFB94311627E29009B479E /* UIKit.framework */; };
+		66A05B1C1262FB5B00CE83EF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EEFBAEB11627F2E009B479E /* CoreGraphics.framework */; };
+		66C2E1971262FAA0006DF55A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C678116D97FF0012B12C /* Default.png */; };
+		66C2E1981262FAA0006DF55A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C679116D97FF0012B12C /* Icon.png */; };
+		66C2E1991262FAA0006DF55A /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E64601A1187B3CD00F08CB1 /* Three20.bundle */; };
+		66C2E19C1262FAA0006DF55A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		66C2E19D1262FAA0006DF55A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		66C2E19E1262FAA0006DF55A /* PlaygroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFBBAA1162829A009B479E /* PlaygroundViewController.m */; };
+		66C2E1A01262FAA0006DF55A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		66C2E1A11262FAA0006DF55A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EEFB94311627E29009B479E /* UIKit.framework */; };
+		66C2E1A21262FAA0006DF55A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EEFBAEB11627F2E009B479E /* CoreGraphics.framework */; };
 		6E645D6E1187999F00F08CB1 /* libThree20Core-Xcode3.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645D6B1187999700F08CB1 /* libThree20Core-Xcode3.2.4.a */; };
 		6E64601B1187B3CD00F08CB1 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E64601A1187B3CD00F08CB1 /* Three20.bundle */; };
 		6E94C67A116D97FF0012B12C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C678116D97FF0012B12C /* Default.png */; };
@@ -20,18 +42,32 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		66785E741262FD340076FFD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645D621187999700F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6650CA791262F6E2003FF804;
+			remoteInfo = "Three20Core-Xcode3.2.5";
+		};
+		66785E781262FD400076FFD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645D621187999700F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C2E0D11262F748006DF55A;
+			remoteInfo = "Three20Core-Xcode3.2.2";
+		};
 		66C2E10F1262F7BF006DF55A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645D621187999700F08CB1 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.4.a */;
+			remoteGlobalIDString = 6650CAA21262F6E2003FF804;
 			remoteInfo = "Three20Core-Xcode3.2.5";
 		};
 		66C2E1111262F7BF006DF55A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645D621187999700F08CB1 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.4.a */;
+			remoteGlobalIDString = 66C2E0FC1262F748006DF55A;
 			remoteInfo = "Three20Core-Xcode3.2.2";
 		};
 		66CFC0F71262F50D00E57607 /* PBXContainerItemProxy */ = {
@@ -75,8 +111,13 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* TTCoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTCoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* TTCoreDemo-Xcode3.2.4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TTCoreDemo-Xcode3.2.4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		668DCFEA1262FA51004C9828 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Resources/Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		66A05B211262FB5B00CE83EF /* TTCoreDemo-Xcode3.2.5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TTCoreDemo-Xcode3.2.5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66A05B231262FB5B00CE83EF /* TTCoreDemo-Info copy 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TTCoreDemo-Info copy 2.plist"; sourceTree = "<group>"; };
+		66C2E1A71262FAA0006DF55A /* TTCoreDemo-Xcode3.2.2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TTCoreDemo-Xcode3.2.2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66C2E1A91262FAA0006DF55A /* TTCoreDemo-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TTCoreDemo-Info copy.plist"; sourceTree = "<group>"; };
 		6E645D621187999700F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../../../src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E645DCD11879B0400F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = ../Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E645DCE11879B0400F08CB1 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = ../Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
@@ -106,6 +147,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66A05B191262FB5B00CE83EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66A05B1A1262FB5B00CE83EF /* Foundation.framework in Frameworks */,
+				66A05B1B1262FB5B00CE83EF /* UIKit.framework in Frameworks */,
+				66A05B1C1262FB5B00CE83EF /* CoreGraphics.framework in Frameworks */,
+				667F83E01262FE21008ADC61 /* libThree20Core-Xcode3.2.5.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C2E19F1262FAA0006DF55A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C2E1A01262FAA0006DF55A /* Foundation.framework in Frameworks */,
+				66C2E1A11262FAA0006DF55A /* UIKit.framework in Frameworks */,
+				66C2E1A21262FAA0006DF55A /* CoreGraphics.framework in Frameworks */,
+				667F83E11262FE27008ADC61 /* libThree20Core-Xcode3.2.2.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -122,7 +185,9 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* TTCoreDemo.app */,
+				1D6058910D05DD3D006BFB54 /* TTCoreDemo-Xcode3.2.4.app */,
+				66C2E1A71262FAA0006DF55A /* TTCoreDemo-Xcode3.2.2.app */,
+				66A05B211262FB5B00CE83EF /* TTCoreDemo-Xcode3.2.5.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,8 +221,11 @@
 			children = (
 				6E64601A1187B3CD00F08CB1 /* Three20.bundle */,
 				6E94C678116D97FF0012B12C /* Default.png */,
+				668DCFEA1262FA51004C9828 /* Default@2x.png */,
 				6E94C679116D97FF0012B12C /* Icon.png */,
 				8D1107310486CEB800E47090 /* TTCoreDemo-Info.plist */,
+				66C2E1A91262FAA0006DF55A /* TTCoreDemo-Info copy.plist */,
+				66A05B231262FB5B00CE83EF /* TTCoreDemo-Info copy 2.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -175,11 +243,11 @@
 		6E645D631187999700F08CB1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66C2E1101262F7BF006DF55A /* libThree20Core-Xcode3.2.4.a */,
 				6E645D6B1187999700F08CB1 /* libThree20Core-Xcode3.2.4.a */,
-				66C2E1121262F7BF006DF55A /* libThree20Core-Xcode3.2.4.a */,
-				66CFC0F81262F50D00E57607 /* CoreUnitTests-Xcode3.2.5.octest */,
+				66C2E1101262F7BF006DF55A /* libThree20Core-Xcode3.2.5.a */,
+				66C2E1121262F7BF006DF55A /* libThree20Core-Xcode3.2.2.a */,
 				6E645D6D1187999700F08CB1 /* CoreUnitTests-Xcode3.2.4.octest */,
+				66CFC0F81262F50D00E57607 /* CoreUnitTests-Xcode3.2.5.octest */,
 				66CFC0FA1262F50D00E57607 /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
@@ -217,9 +285,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* TTCoreDemo */ = {
+		1D6058900D05DD3D006BFB54 /* TTCoreDemo-Xcode3.2.4 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTCoreDemo" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTCoreDemo-Xcode3.2.4" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -230,9 +298,45 @@
 			dependencies = (
 				6E645D70118799A600F08CB1 /* PBXTargetDependency */,
 			);
-			name = TTCoreDemo;
+			name = "TTCoreDemo-Xcode3.2.4";
 			productName = TTCoreDemo;
-			productReference = 1D6058910D05DD3D006BFB54 /* TTCoreDemo.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* TTCoreDemo-Xcode3.2.4.app */;
+			productType = "com.apple.product-type.application";
+		};
+		66A05B0D1262FB5B00CE83EF /* TTCoreDemo-Xcode3.2.5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66A05B1E1262FB5B00CE83EF /* Build configuration list for PBXNativeTarget "TTCoreDemo-Xcode3.2.5" */;
+			buildPhases = (
+				66A05B101262FB5B00CE83EF /* Resources */,
+				66A05B151262FB5B00CE83EF /* Sources */,
+				66A05B191262FB5B00CE83EF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66785E751262FD340076FFD2 /* PBXTargetDependency */,
+			);
+			name = "TTCoreDemo-Xcode3.2.5";
+			productName = TTCoreDemo;
+			productReference = 66A05B211262FB5B00CE83EF /* TTCoreDemo-Xcode3.2.5.app */;
+			productType = "com.apple.product-type.application";
+		};
+		66C2E1931262FAA0006DF55A /* TTCoreDemo-Xcode3.2.2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66C2E1A41262FAA0006DF55A /* Build configuration list for PBXNativeTarget "TTCoreDemo-Xcode3.2.2" */;
+			buildPhases = (
+				66C2E1961262FAA0006DF55A /* Resources */,
+				66C2E19B1262FAA0006DF55A /* Sources */,
+				66C2E19F1262FAA0006DF55A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66785E791262FD400076FFD2 /* PBXTargetDependency */,
+			);
+			name = "TTCoreDemo-Xcode3.2.2";
+			productName = TTCoreDemo;
+			productReference = 66C2E1A71262FAA0006DF55A /* TTCoreDemo-Xcode3.2.2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -242,6 +346,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTCoreDemo" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -259,23 +364,25 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* TTCoreDemo */,
+				1D6058900D05DD3D006BFB54 /* TTCoreDemo-Xcode3.2.4 */,
+				66A05B0D1262FB5B00CE83EF /* TTCoreDemo-Xcode3.2.5 */,
+				66C2E1931262FAA0006DF55A /* TTCoreDemo-Xcode3.2.2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		66C2E1101262F7BF006DF55A /* libThree20Core-Xcode3.2.4.a */ = {
+		66C2E1101262F7BF006DF55A /* libThree20Core-Xcode3.2.5.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libThree20Core-Xcode3.2.4.a";
+			path = "libThree20Core-Xcode3.2.5.a";
 			remoteRef = 66C2E10F1262F7BF006DF55A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		66C2E1121262F7BF006DF55A /* libThree20Core-Xcode3.2.4.a */ = {
+		66C2E1121262F7BF006DF55A /* libThree20Core-Xcode3.2.2.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libThree20Core-Xcode3.2.4.a";
+			path = "libThree20Core-Xcode3.2.2.a";
 			remoteRef = 66C2E1111262F7BF006DF55A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -317,6 +424,28 @@
 				6E94C67A116D97FF0012B12C /* Default.png in Resources */,
 				6E94C67B116D97FF0012B12C /* Icon.png in Resources */,
 				6E64601B1187B3CD00F08CB1 /* Three20.bundle in Resources */,
+				668DCFEB1262FA51004C9828 /* Default@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66A05B101262FB5B00CE83EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66A05B111262FB5B00CE83EF /* Default.png in Resources */,
+				66A05B121262FB5B00CE83EF /* Icon.png in Resources */,
+				66A05B131262FB5B00CE83EF /* Three20.bundle in Resources */,
+				66A05B141262FB5B00CE83EF /* Default@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C2E1961262FAA0006DF55A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C2E1971262FAA0006DF55A /* Default.png in Resources */,
+				66C2E1981262FAA0006DF55A /* Icon.png in Resources */,
+				66C2E1991262FAA0006DF55A /* Three20.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,9 +462,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66A05B151262FB5B00CE83EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66A05B161262FB5B00CE83EF /* main.m in Sources */,
+				66A05B171262FB5B00CE83EF /* AppDelegate.m in Sources */,
+				66A05B181262FB5B00CE83EF /* PlaygroundViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C2E19B1262FAA0006DF55A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C2E19C1262FAA0006DF55A /* main.m in Sources */,
+				66C2E19D1262FAA0006DF55A /* AppDelegate.m in Sources */,
+				66C2E19E1262FAA0006DF55A /* PlaygroundViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		66785E751262FD340076FFD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Core-Xcode3.2.5";
+			targetProxy = 66785E741262FD340076FFD2 /* PBXContainerItemProxy */;
+		};
+		66785E791262FD400076FFD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Core-Xcode3.2.2";
+			targetProxy = 66785E781262FD400076FFD2 /* PBXContainerItemProxy */;
+		};
 		6E645D70118799A600F08CB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Three20Core;
@@ -352,7 +511,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "TTCoreDemo-Info.plist";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
 				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
@@ -362,8 +521,54 @@
 			baseConfigurationReference = 6E645DDE11879B3500F08CB1 /* App.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				INFOPLIST_FILE = "TTCoreDemo-Info.plist";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
 				SDKROOT = iphoneos4.1;
+			};
+			name = Release;
+		};
+		66A05B1F1262FB5B00CE83EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E645DDE11879B3500F08CB1 /* App.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		66A05B201262FB5B00CE83EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E645DDE11879B3500F08CB1 /* App.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		66C2E1A51262FAA0006DF55A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E645DDE11879B3500F08CB1 /* App.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Debug;
+		};
+		66C2E1A61262FAA0006DF55A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E645DDE11879B3500F08CB1 /* App.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
 			};
 			name = Release;
 		};
@@ -398,11 +603,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTCoreDemo" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTCoreDemo-Xcode3.2.4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66A05B1E1262FB5B00CE83EF /* Build configuration list for PBXNativeTarget "TTCoreDemo-Xcode3.2.5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66A05B1F1262FB5B00CE83EF /* Debug */,
+				66A05B201262FB5B00CE83EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66C2E1A41262FAA0006DF55A /* Build configuration list for PBXNativeTarget "TTCoreDemo-Xcode3.2.2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66C2E1A51262FAA0006DF55A /* Debug */,
+				66C2E1A61262FAA0006DF55A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
