@@ -11,7 +11,6 @@
 		664961591262EE5000C2C80E /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608E1183D14800685649 /* CoreAdditionTests.m */; };
 		6649615A1262EE5000C2C80E /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608F1183D14800685649 /* CoreGlobalTests.m */; };
 		6649615B1262EE5000C2C80E /* CoreMarkupStripperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607C6E11AF286B00C93CD4 /* CoreMarkupStripperTests.m */; };
-		6649615C1262EE5000C2C80E /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663EE60B1262E3DA00CFDEA9 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		6650CA7B1262F6E2003FF804 /* TTMarkupStripper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E55A49B1183C956002768DE /* TTMarkupStripper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6650CA7C1262F6E2003FF804 /* NSArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB01183C906003B099E /* NSArrayAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6650CA7D1262F6E2003FF804 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB11183C906003B099E /* NSDataAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -81,7 +80,6 @@
 		66F9A6311262ED9F0059C2AE /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608E1183D14800685649 /* CoreAdditionTests.m */; };
 		66F9A6321262ED9F0059C2AE /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608F1183D14800685649 /* CoreGlobalTests.m */; };
 		66F9A6331262ED9F0059C2AE /* CoreMarkupStripperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607C6E11AF286B00C93CD4 /* CoreMarkupStripperTests.m */; };
-		66F9A6341262ED9F0059C2AE /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663EE60B1262E3DA00CFDEA9 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		6E178E811183C8E5003B099E /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7B1183C8E5003B099E /* TTGlobalCore.m */; };
 		6E178E821183C8E5003B099E /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7C1183C8E5003B099E /* TTGlobalCoreLocale.m */; };
 		6E178E831183C8E5003B099E /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7D1183C8E5003B099E /* TTGlobalCorePaths.m */; };
@@ -125,14 +123,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6650CA791262F6E2003FF804 /* Three20Core-Xcode3.2.5 */;
+			remoteGlobalIDString = 6650CA791262F6E2003FF804;
 			remoteInfo = "Three20Core-Xcode3.2.5";
 		};
 		66D1E1611262FDBA00BFDAF5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 66C2E0D11262F748006DF55A /* Three20Core-Xcode3.2.2 */;
+			remoteGlobalIDString = 66C2E0D11262F748006DF55A;
 			remoteInfo = "Three20Core-Xcode3.2.2";
 		};
 		6EB460DD1183D8D400685649 /* PBXContainerItemProxy */ = {
@@ -611,6 +609,7 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Three20Core" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -748,7 +747,6 @@
 				664961591262EE5000C2C80E /* CoreAdditionTests.m in Sources */,
 				6649615A1262EE5000C2C80E /* CoreGlobalTests.m in Sources */,
 				6649615B1262EE5000C2C80E /* CoreMarkupStripperTests.m in Sources */,
-				6649615C1262EE5000C2C80E /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,7 +799,6 @@
 				66F9A6311262ED9F0059C2AE /* CoreAdditionTests.m in Sources */,
 				66F9A6321262ED9F0059C2AE /* CoreGlobalTests.m in Sources */,
 				66F9A6331262ED9F0059C2AE /* CoreMarkupStripperTests.m in Sources */,
-				66F9A6341262ED9F0059C2AE /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
