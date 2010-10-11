@@ -1,7 +1,7 @@
 //
 //  Xcode324iOS41TestSuiteWorkaround.m
 //
-//  This source file provides a work-around to enable running unit tests 
+//  This source file provides a work-around to enable running unit tests
 //  against the iPhone Simulator in Xcode 3.2.4 with iOS SDK 4.1.
 //
 //  This work-around is only needed when using Xcode 3.2.4 to target iOS 4.1.
@@ -10,25 +10,25 @@
 //
 
 /*  Instructions:
- 
+
  To use this workaround, add this source file to the Compile Sources
  build phase of your unit test bundle target.  It will be applied
  automatically before your tests are run.
- 
+
  This is a workaround for an Xcode internal error that will be reported in
  the build log when attempting to run unit tests against the iPhone Simulator
  for iOS 4.1. This is due to a mismatch between what Xcode expects the date
  format in "Test Suite 'name' started at date" and "Test Suite 'name'
  finished at date." messages to look like, and how iOS 4.1
  implements  -[NSDate descriptionWithLocale:].
- 
+
  The workaround works by exchanging the implementations of the
  -[SenTestRun startDate] and -[SenTestRun stopDate] methods for versions
  which return an NSDate subclass whose -descriptionWithLocale: method
  prints in a format compatible with what Xcode 3.2.4 expects.
 */
 
-/* 
+/*
  IMPORTANT:  The following Apple material is supplied to you by Apple Inc.
  (“Apple”) in consideration of your agreement to the following terms.  If you
  do not agree with these terms, do not use the Apple material.  In consideration
@@ -82,13 +82,13 @@
     if (self) {
         _wrappedDate = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:seconds];
     }
-    
+
     return self;
 }
 
 - (void)dealloc {
     [_wrappedDate release];
-    
+
     [super dealloc];
 }
 
@@ -117,12 +117,12 @@
 
 + (void)load {
     Class senTestRunClass = objc_getClass("SenTestRun");
-    
+
     // Exchange the implementations of -[SenTestRun startDate] and -[SenTestRun workaround_startDate].
     Method originalStartDate = class_getInstanceMethod(senTestRunClass, @selector(startDate));
     Method workaroundStartDate = class_getInstanceMethod(senTestRunClass, @selector(workaround_startDate));
     method_exchangeImplementations(originalStartDate, workaroundStartDate);
-    
+
     // Exchange the implementations of -[SenTestRun stopDate] and -[SenTestRun workaround_stopDate].
     Method originalStopDate = class_getInstanceMethod(senTestRunClass, @selector(stopDate));
     Method workaroundStopDate = class_getInstanceMethod(senTestRunClass, @selector(workaround_stopDate));
