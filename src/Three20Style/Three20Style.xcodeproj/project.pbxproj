@@ -595,7 +595,7 @@
 		66846C9612639F29001D2CF9 /* StyleUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StyleUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66846C9712639F29001D2CF9 /* UnitTests-Info copy 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy 2.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist"; sourceTree = "<group>"; };
 		66C16BE912639E2700A7825A /* libThree20Style-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Style-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.4.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StyleUnitTests-Xcode3.2.4.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StyleUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C16C0212639E4500A7825A /* UnitTests-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy.plist"; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Style+Additions.h"; path = "Headers/Three20Style+Additions.h"; sourceTree = "<group>"; };
@@ -792,10 +792,10 @@
 			isa = PBXGroup;
 			children = (
 				BEF31F3A0F352DF5000DE5D2 /* libThree20Style-Xcode3.2.4.a */,
-				EB9E6C6210B6A8F800DE563C /* StyleUnitTests-Xcode3.2.4.octest */,
 				66C16BE912639E2700A7825A /* libThree20Style-Xcode3.2.5.a */,
-				66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.4.octest */,
 				66846C7812639EE5001D2CF9 /* libThree20Style-Xcode3.2.2.a */,
+				EB9E6C6210B6A8F800DE563C /* StyleUnitTests-Xcode3.2.4.octest */,
+				66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.5.octest */,
 				66846C9612639F29001D2CF9 /* StyleUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
@@ -1479,7 +1479,7 @@
 			);
 			name = "UnitTests-Xcode3.2.5";
 			productName = CoreUnitTests;
-			productReference = 66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.4.octest */;
+			productReference = 66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.5.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		BEF31F390F352DF5000DE5D2 /* Three20Style-Xcode3.2.4 */ = {
@@ -2119,7 +2119,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
@@ -2137,7 +2136,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
@@ -2153,7 +2151,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
@@ -2217,7 +2214,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -2234,7 +2231,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -2249,7 +2246,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;

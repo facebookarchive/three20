@@ -314,11 +314,11 @@
 			isa = PBXGroup;
 			children = (
 				BEF31F3A0F352DF5000DE5D2 /* libThree20Network-Xcode3.2.4.a */,
+				662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */,
+				662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */,
 				EB9E6C6210B6A8F800DE563C /* NetworkUnitTests-Xcode3.2.4.octest */,
 				662D81B2126304EB005851C2 /* NetworkUnitTests-Xcode3.2.5.octest */,
 				662D81C7126304F3005851C2 /* NetworkUnitTests-Xcode3.2.2.octest */,
-				662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */,
-				662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";

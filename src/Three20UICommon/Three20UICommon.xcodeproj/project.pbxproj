@@ -251,10 +251,10 @@
 			isa = PBXGroup;
 			children = (
 				BEF31F3A0F352DF5000DE5D2 /* libThree20UICommon-Xcode3.2.4.a */,
-				EB9E6C6210B6A8F800DE563C /* UICommonUnitTests-Xcode3.2.4.octest */,
 				665A53761264D54B0032D0BE /* libThree20UICommon-Xcode3.2.5.a */,
-				665A53891264D54B0032D0BE /* UICommonUnitTests-Xcode3.2.5.octest */,
 				665A53E61264D6550032D0BE /* libThree20UICommon-Xcode3.2.2.a */,
+				EB9E6C6210B6A8F800DE563C /* UICommonUnitTests-Xcode3.2.4.octest */,
+				665A53891264D54B0032D0BE /* UICommonUnitTests-Xcode3.2.5.octest */,
 				665A53F81264D6550032D0BE /* UICommonUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;

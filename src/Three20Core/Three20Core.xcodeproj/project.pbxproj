@@ -249,11 +249,11 @@
 			isa = PBXGroup;
 			children = (
 				BEF31F3A0F352DF5000DE5D2 /* libThree20Core-Xcode3.2.4.a */,
-				EB9E6C6210B6A8F800DE563C /* CoreUnitTests-Xcode3.2.4.octest */,
-				66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */,
-				664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */,
 				6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */,
 				66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */,
+				EB9E6C6210B6A8F800DE563C /* CoreUnitTests-Xcode3.2.4.octest */,
+				664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */,
+				66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -609,6 +609,7 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Three20Core" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
