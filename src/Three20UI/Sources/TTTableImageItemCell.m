@@ -120,23 +120,36 @@ static const CGFloat kDefaultImageSize = 50;
   if (!image) {
     image = item.defaultImage;
   }
+	
+	CGFloat iconWidth = image
+	? image.size.width
+	: (item.imageURL ? kDefaultImageSize : 0);
+	CGFloat iconHeight = image
+	? image.size.height
+	: (item.imageURL ? kDefaultImageSize : 0);
+
+	TTImageStyle* style = [item.imageStyle firstStyleOfClass:[TTImageStyle class]];
+	if (style) {
+		_imageView2.contentMode = style.contentMode;
+		_imageView2.clipsToBounds = YES;
+		_imageView2.backgroundColor = [UIColor clearColor];
+		if (style.size.width) {
+			iconWidth = style.size.width;
+		}
+		if (style.size.height) {
+			iconHeight = style.size.height;
+		}
+	}
 
   if ([_item isKindOfClass:[TTTableRightImageItem class]]) {
-    CGFloat imageWidth = image
-    ? image.size.width
-    : (item.imageURL ? kDefaultImageSize : 0);
-    CGFloat imageHeight = image
-    ? image.size.height
-    : (item.imageURL ? kDefaultImageSize : 0);
-
     if (_imageView2.urlPath) {
-      CGFloat innerWidth = self.contentView.width - (kTableCellHPadding*2 + imageWidth + kKeySpacing);
+      CGFloat innerWidth = self.contentView.width - (kTableCellHPadding*2 + iconWidth + kKeySpacing);
       CGFloat innerHeight = self.contentView.height - kTableCellVPadding*2;
       self.textLabel.frame = CGRectMake(kTableCellHPadding, kTableCellVPadding, innerWidth, innerHeight);
 
       _imageView2.frame = CGRectMake(self.textLabel.right + kKeySpacing,
-                                     floor(self.height/2 - imageHeight/2),
-                                     imageWidth, imageHeight);
+                                     floor(self.height/2 - iconHeight/2),
+                                     iconWidth, iconHeight);
 
     } else {
       self.textLabel.frame = CGRectInset(self.contentView.bounds, kTableCellHPadding, kTableCellVPadding);
@@ -144,27 +157,7 @@ static const CGFloat kDefaultImageSize = 50;
     }
 
   } else {
-    if (_imageView2.urlPath) {
-      CGFloat iconWidth = image
-      ? image.size.width
-      : (item.imageURL ? kDefaultImageSize : 0);
-      CGFloat iconHeight = image
-      ? image.size.height
-      : (item.imageURL ? kDefaultImageSize : 0);
-
-      TTImageStyle* style = [item.imageStyle firstStyleOfClass:[TTImageStyle class]];
-      if (style) {
-        _imageView2.contentMode = style.contentMode;
-        _imageView2.clipsToBounds = YES;
-        _imageView2.backgroundColor = [UIColor clearColor];
-        if (style.size.width) {
-          iconWidth = style.size.width;
-        }
-        if (style.size.height) {
-          iconHeight = style.size.height;
-        }
-      }
-
+	if (_imageView2.urlPath) {
       _imageView2.frame = CGRectMake(kTableCellHPadding, floor(self.height/2 - iconHeight/2),
                                      iconWidth, iconHeight);
 
