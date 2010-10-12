@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTButtonContent.h"
+#import "Three20UI/private/TTButtonContent.h"
 
 // UI
 #import "Three20UI/TTImageViewDelegate.h"

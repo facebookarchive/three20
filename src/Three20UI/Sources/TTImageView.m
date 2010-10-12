@@ -18,10 +18,10 @@
 
 // UI
 #import "Three20UI/TTImageViewDelegate.h"
-#import "Three20UI/TTImageLayer.h"
 
 // UI (private)
-#import "Three20UI/TTImageViewInternal.h"
+#import "Three20UI/private/TTImageLayer.h"
+#import "Three20UI/private/TTImageViewInternal.h"
 
 // Style
 #import "Three20Style/TTShape.h"

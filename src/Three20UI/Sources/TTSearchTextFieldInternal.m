@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTSearchTextFieldInternal.h"
+#import "Three20UI/private/TTSearchTextFieldInternal.h"
 
 // UI
 #import "Three20UI/TTSearchTextField.h"
