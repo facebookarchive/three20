@@ -42,6 +42,24 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testTTOSVersionIsAtLeast {
+#ifdef __IPHONE_4_2
+  STAssertTrue(TTOSVersionIsAtLeast(4.2), @"Should be at least 4.2.");
+#else
+  STAssertTrue(!TTOSVersionIsAtLeast(4.2), @"Should be lower than 4.2.");
+#endif
+
+#ifdef __IPHONE_4_1
+  STAssertTrue(TTOSVersionIsAtLeast(4.1), @"Should be at least 4.1.");
+#else
+  STAssertTrue(!TTOSVersionIsAtLeast(4.1), @"Should be lower than 4.1.");
+#endif
+
+#ifdef __IPHONE_4_0
+  STAssertTrue(TTOSVersionIsAtLeast(4.0), @"Should be at least 4.0.");
+#else
+  STAssertTrue(!TTOSVersionIsAtLeast(4.0), @"Should be lower than 4.0.");
+#endif
+
 #ifdef __IPHONE_3_2
   STAssertTrue(TTOSVersionIsAtLeast(3.2), @"Should be at least 3.2.");
 #else

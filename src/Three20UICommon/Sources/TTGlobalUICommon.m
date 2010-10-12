@@ -48,27 +48,33 @@ BOOL TTOSVersionIsAtLeast(float version) {
   // Floating-point comparison is pretty bad, so let's cut it some slack with an epsilon.
   static const CGFloat kEpsilon = 0.0000001;
 
-  #ifdef __IPHONE_4_0
-    return 4.0 - version >= -kEpsilon;
-  #endif
-  #ifdef __IPHONE_3_2
-    return 3.2 - version >= -kEpsilon;
-  #endif
-  #ifdef __IPHONE_3_1
-    return 3.1 - version >= -kEpsilon;
-  #endif
-  #ifdef __IPHONE_3_0
-    return 3.0 - version >= -kEpsilon;
-  #endif
-  #ifdef __IPHONE_2_2
-    return 2.2 - version >= -kEpsilon;
-  #endif
-  #ifdef __IPHONE_2_1
-    return 2.1 - version >= -kEpsilon;
-  #endif
-  #ifdef __IPHONE_2_0
-    return 2.0 - version >= -kEpsilon;
-  #endif
+#ifdef __IPHONE_4_2
+  return 4.2 - version >= -kEpsilon;
+#endif
+#ifdef __IPHONE_4_1
+  return 4.1 - version >= -kEpsilon;
+#endif
+#ifdef __IPHONE_4_0
+  return 4.0 - version >= -kEpsilon;
+#endif
+#ifdef __IPHONE_3_2
+  return 3.2 - version >= -kEpsilon;
+#endif
+#ifdef __IPHONE_3_1
+  return 3.1 - version >= -kEpsilon;
+#endif
+#ifdef __IPHONE_3_0
+  return 3.0 - version >= -kEpsilon;
+#endif
+#ifdef __IPHONE_2_2
+  return 2.2 - version >= -kEpsilon;
+#endif
+#ifdef __IPHONE_2_1
+  return 2.1 - version >= -kEpsilon;
+#endif
+#ifdef __IPHONE_2_0
+  return 2.0 - version >= -kEpsilon;
+#endif
   return NO;
 }
 
