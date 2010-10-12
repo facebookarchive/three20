@@ -28,6 +28,9 @@ CURRENT_PROJECT_VERSION = $(BUILD_BUNDLE_VERSION)
 
 FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/Developer/Library/Frameworks"
 IPHONEOS_DEPLOYMENT_TARGET = 3.0
+SDKROOT = iphoneos4.1
+// Required for older iOS devices (iPhone 3G)
+ARCHS = $(ARCHS_STANDARD_32_BIT)
 
 // Linker Flags
 

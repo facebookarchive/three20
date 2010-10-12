@@ -1,0 +1,17 @@
+// This workaround fixes the static analyzer for Xcode 3.2.4 Internal Simulator
+// builds.
+//
+// See https://devforums.apple.com/thread/66169?start=25&tstart=0 for details.
+//
+
+#import <TargetConditionals.h>
+#if TARGET_IPHONE_SIMULATOR
+#ifndef __IPHONE_OS_VERSION_MIN_REQUIRED
+#define __IPHONE_OS_VERSION_MIN_REQUIRED 040100
+#endif
+#endif
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED != __IPHONE_4_1
+#error Remove above workaround, it was to allow the static analyzer to parse things correctly.
+#endif
+

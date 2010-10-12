@@ -503,13 +503,6 @@
 			remoteGlobalIDString = 66F9A62C1262ED9F0059C2AE;
 			remoteInfo = "UnitTests-Xcode3.2.2";
 		};
-		66C16BEA12639E2C00A7825A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66C16B6012639E2700A7825A;
-			remoteInfo = "Three20Style-Xcode3.2.5";
-		};
 		66C16C2312639E7400A7825A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -1501,7 +1494,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				66C16BEB12639E2C00A7825A /* PBXTargetDependency */,
 				6EE7367111849C6300A35176 /* PBXTargetDependency */,
 				6EE738AB1184ADD000A35176 /* PBXTargetDependency */,
 			);
@@ -2030,11 +2022,6 @@
 			name = "UnitTests-Xcode3.2.2";
 			targetProxy = 66846C9C12639F38001D2CF9 /* PBXContainerItemProxy */;
 		};
-		66C16BEB12639E2C00A7825A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66C16B6012639E2700A7825A /* Three20Style-Xcode3.2.5 */;
-			targetProxy = 66C16BEA12639E2C00A7825A /* PBXContainerItemProxy */;
-		};
 		66C16C2412639E7400A7825A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 66C16B6012639E2700A7825A /* Three20Style-Xcode3.2.5 */;
@@ -2273,13 +2260,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.2;
 			};
 			name = Internal;
 		};
@@ -2290,7 +2275,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
@@ -2313,6 +2298,8 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
@@ -2353,13 +2340,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.2;
 			};
 			name = Debug;
 		};
@@ -2367,13 +2352,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.2;
 			};
 			name = Release;
 		};
