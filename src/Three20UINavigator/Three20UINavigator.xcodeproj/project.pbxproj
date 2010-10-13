@@ -1554,7 +1554,6 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.1;
 			};
@@ -1573,7 +1572,6 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1588,7 +1586,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
@@ -1601,7 +1598,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;
 			};
@@ -1644,7 +1640,6 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1661,7 +1656,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;

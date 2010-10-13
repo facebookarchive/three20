@@ -655,7 +655,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
@@ -665,7 +664,6 @@
 			baseConfigurationReference = 6E645FC01187B30100F08CB1 /* App.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 			};
 			name = Release;

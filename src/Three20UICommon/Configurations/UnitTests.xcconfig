@@ -17,7 +17,8 @@
 #include "../common/Configurations/UnitTests.xcconfig"
 #include "../common/Configurations/Libraries.xcconfig"
 
-BASE_PRODUCT_NAME     = UICommonUnitTests
-BUILD_BUNDLE_VERSION  = 1.0
+BASE_PRODUCT_NAME       = UICommonUnitTests
+PRODUCT_NAME            = $(BASE_PRODUCT_NAME)
+BUILD_BUNDLE_VERSION    = 1.0
 
-OTHER_LDFLAGS         = $(COMMON_LDFLAGS) $(UIKIT_FX) $(COREGRAPHICS_FX)
+OTHER_LDFLAGS           = $(COMMON_LDFLAGS) $(UIKIT_FX) $(COREGRAPHICS_FX)
