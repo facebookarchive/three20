@@ -28,126 +28,126 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796A111B9BD630011C497 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20Core;
 		};
 		6E3796B711B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796A111B9BD630011C497 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E3796BB11B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796A411B9BD630011C497 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20Network;
 		};
 		6E3796BD11B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796A411B9BD630011C497 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E3796C111B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796A711B9BD630011C497 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Style.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20Style;
 		};
 		6E3796C311B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796A711B9BD630011C497 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E3796C711B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796AA11B9BD630011C497 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20UICommon.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20UICommon;
 		};
 		6E3796C911B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796AA11B9BD630011C497 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E3796CD11B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796AD11B9BD630011C497 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20UINavigator.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20UINavigator;
 		};
 		6E3796CF11B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796AD11B9BD630011C497 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E3796D311B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796B011B9BD630011C497 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20UI.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20UI;
 		};
 		6E3796D511B9BD630011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796B011B9BD630011C497 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		6E3796E811B9BD800011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796A411B9BD630011C497 /* Three20Network.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Network */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Network;
 		};
 		6E3796EA11B9BD800011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796AD11B9BD630011C497 /* Three20UINavigator.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20UINavigator */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20UINavigator;
 		};
 		6E3796EC11B9BD800011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796A111B9BD630011C497 /* Three20Core.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Core */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Core;
 		};
 		6E3796EE11B9BD800011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796A711B9BD630011C497 /* Three20Style.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Style */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Style;
 		};
 		6E3796F011B9BD800011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796AA11B9BD630011C497 /* Three20UICommon.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20UICommon */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20UICommon;
 		};
 		6E3796F211B9BD800011C497 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E3796B011B9BD630011C497 /* Three20UI.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20UI */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20UI;
 		};
 		6EF962B6118E9553003902E7 /* PBXContainerItemProxy */ = {
@@ -402,7 +402,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "___PROJECTNAME___" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
@@ -617,11 +624,13 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
 				INFOPLIST_FILE = "___PROJECTNAMEASIDENTIFIER___-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "___PROJECTNAME___";
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -634,37 +643,35 @@
 				GCC_PREFIX_HEADER = "___PROJECTNAMEASIDENTIFIER____Prefix.pch";
 				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
 				INFOPLIST_FILE = "___PROJECTNAMEASIDENTIFIER___-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "___PROJECTNAME___";
+				SDKROOT = iphoneos4.1;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
 			};
 			name = Release;
 		};
