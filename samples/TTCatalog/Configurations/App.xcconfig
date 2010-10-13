@@ -18,5 +18,6 @@
 #include "../../common/Configurations/Libraries.xcconfig"
 #include "RelPath.xcconfig"
 
-PRODUCT_NAME            = TTCatalog
+BASE_PRODUCT_NAME       = TTCatalog
+PRODUCT_NAME            = $(BASE_PRODUCT_NAME)
 BUILD_LIBRARY_VERSION   = 1.0
