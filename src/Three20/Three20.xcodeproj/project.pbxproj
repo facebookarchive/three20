@@ -726,7 +726,7 @@
 				6E6454A71184D42800F08CB1 /* libThree20Style.a */,
 				66FC2D351265204700F56B19 /* libThree20Style-Xcode3.2.5.a */,
 				66FC2D371265204700F56B19 /* libThree20Style-Xcode3.2.2.a */,
-				6E6454A91184D42800F08CB1 /* StyleUnitTests-Xcode3.2.4.octest */,
+				6E6454A91184D42800F08CB1 /* StyleUnitTests.octest */,
 				66FC2D391265204700F56B19 /* StyleUnitTests-Xcode3.2.5.octest */,
 				66FC2D3B1265204700F56B19 /* StyleUnitTests-Xcode3.2.2.octest */,
 			);
@@ -736,10 +736,10 @@
 		6E7F9678118E353800443B46 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6E7F9685118E353800443B46 /* libThree20UI-Xcode3.2.4.a */,
+				6E7F9685118E353800443B46 /* libThree20UI.a */,
 				66FC2D5C1265204700F56B19 /* libThree20UI-Xcode3.2.5.a */,
 				66FC2D5E1265204700F56B19 /* libThree20UI-Xcode3.2.2.a */,
-				6E7F9687118E353800443B46 /* UIUnitTests-Xcode3.2.4.octest */,
+				6E7F9687118E353800443B46 /* UIUnitTests.octest */,
 				66FC2D601265204700F56B19 /* UIUnitTests-Xcode3.2.5.octest */,
 				66FC2D621265204700F56B19 /* UIUnitTests-Xcode3.2.2.octest */,
 			);
@@ -760,7 +760,7 @@
 				6EDAEA09118CA5B50008133C /* libThree20UICommon.a */,
 				66FC2D421265204700F56B19 /* libThree20UICommon-Xcode3.2.5.a */,
 				66FC2D441265204700F56B19 /* libThree20UICommon-Xcode3.2.2.a */,
-				6EDAEA0B118CA5B50008133C /* UICommonUnitTests-Xcode3.2.4.octest */,
+				6EDAEA0B118CA5B50008133C /* UICommonUnitTests.octest */,
 				66FC2D461265204700F56B19 /* UICommonUnitTests-Xcode3.2.5.octest */,
 				66FC2D481265204700F56B19 /* UICommonUnitTests-Xcode3.2.2.octest */,
 			);
@@ -773,7 +773,7 @@
 				6EDAEA12118CA5BE0008133C /* libThree20UINavigator.a */,
 				66FC2D4F1265204700F56B19 /* libThree20UINavigator-Xcode3.2.5.a */,
 				66FC2D511265204700F56B19 /* libThree20UINavigator-Xcode3.2.2.a */,
-				6EDAEA14118CA5BE0008133C /* UINavigatorUnitTests-Xcode3.2.4.octest */,
+				6EDAEA14118CA5BE0008133C /* UINavigatorUnitTests.octest */,
 				66FC2D531265204700F56B19 /* UINavigatorUnitTests-Xcode3.2.5.octest */,
 				66FC2D551265204700F56B19 /* UINavigatorUnitTests-Xcode3.2.2.octest */,
 			);
@@ -804,7 +804,7 @@
 				6EE7366C11849C5800A35176 /* libThree20Core.a */,
 				66FC2D1D1265204700F56B19 /* libThree20Core-Xcode3.2.5.a */,
 				66FC2D1F1265204700F56B19 /* libThree20Core-Xcode3.2.2.a */,
-				6EE7366E11849C5800A35176 /* CoreUnitTests-Xcode3.2.4.octest */,
+				6EE7366E11849C5800A35176 /* CoreUnitTests.octest */,
 				66FC2D211265204700F56B19 /* CoreUnitTests-Xcode3.2.5.octest */,
 				66FC2D231265204700F56B19 /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
@@ -817,7 +817,7 @@
 				6EE738A31184ADB400A35176 /* libThree20Network.a */,
 				66FC2D291265204700F56B19 /* libThree20Network-Xcode3.2.5.a */,
 				66FC2D2B1265204700F56B19 /* libThree20Network-Xcode3.2.2.a */,
-				6EE738A51184ADB400A35176 /* NetworkUnitTests-Xcode3.2.4.octest */,
+				6EE738A51184ADB400A35176 /* NetworkUnitTests.octest */,
 				66FC2D2D1265204700F56B19 /* NetworkUnitTests-Xcode3.2.5.octest */,
 				66FC2D2F1265204700F56B19 /* NetworkUnitTests-Xcode3.2.2.octest */,
 			);
@@ -1238,21 +1238,21 @@
 			remoteRef = 6E6454A61184D42800F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E6454A91184D42800F08CB1 /* StyleUnitTests-Xcode3.2.4.octest */ = {
+		6E6454A91184D42800F08CB1 /* StyleUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = StyleUnitTests.octest;
 			remoteRef = 6E6454A81184D42800F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E7F9685118E353800443B46 /* libThree20UI-Xcode3.2.4.a */ = {
+		6E7F9685118E353800443B46 /* libThree20UI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libThree20UI.a;
 			remoteRef = 6E7F9684118E353800443B46 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E7F9687118E353800443B46 /* UIUnitTests-Xcode3.2.4.octest */ = {
+		6E7F9687118E353800443B46 /* UIUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UIUnitTests.octest;
@@ -1266,7 +1266,7 @@
 			remoteRef = 6EDAEA08118CA5B50008133C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6EDAEA0B118CA5B50008133C /* UICommonUnitTests-Xcode3.2.4.octest */ = {
+		6EDAEA0B118CA5B50008133C /* UICommonUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UICommonUnitTests.octest;
@@ -1280,7 +1280,7 @@
 			remoteRef = 6EDAEA11118CA5BE0008133C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6EDAEA14118CA5BE0008133C /* UINavigatorUnitTests-Xcode3.2.4.octest */ = {
+		6EDAEA14118CA5BE0008133C /* UINavigatorUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = UINavigatorUnitTests.octest;
@@ -1294,7 +1294,7 @@
 			remoteRef = 6EE7366B11849C5800A35176 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6EE7366E11849C5800A35176 /* CoreUnitTests-Xcode3.2.4.octest */ = {
+		6EE7366E11849C5800A35176 /* CoreUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CoreUnitTests.octest;
@@ -1308,7 +1308,7 @@
 			remoteRef = 6EE738A21184ADB400A35176 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6EE738A51184ADB400A35176 /* NetworkUnitTests-Xcode3.2.4.octest */ = {
+		6EE738A51184ADB400A35176 /* NetworkUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = NetworkUnitTests.octest;
