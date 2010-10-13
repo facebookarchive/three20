@@ -17,7 +17,7 @@
 # Installs the project and source file templates. Overwrites any existing files.
 
 mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Project\ Templates/Three20\ Application
-cp -r projects/ ~/Library/Application\ Support/Developer/Shared/Xcode/Project\ Templates/Three20\ Application
+cp -r projects3.2.4/ ~/Library/Application\ Support/Developer/Shared/Xcode/Project\ Templates/Three20\ Application
 
 mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/File\ Templates
 cp -r source/ ~/Library/Application\ Support/Developer/Shared/Xcode/File\ Templates
