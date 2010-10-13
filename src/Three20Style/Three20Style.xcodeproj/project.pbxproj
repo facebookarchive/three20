@@ -394,7 +394,7 @@
 		6EE738C21184AE4A00A35176 /* Three20Style.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE738C11184AE4A00A35176 /* Three20Style.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE7399A1184B9CE00A35176 /* StyleAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE739981184B9CE00A35176 /* StyleAdditionTests.m */; };
 		6EE7399B1184B9CE00A35176 /* StyleGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE739991184B9CE00A35176 /* StyleGlobalTests.m */; };
-		6EE739D01184BB0400A35176 /* libThree20Style-Xcode3.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Style-Xcode3.2.4.a */; };
+		6EE739D01184BB0400A35176 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Style.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -727,8 +727,8 @@
 		6EE738C11184AE4A00A35176 /* Three20Style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Style.h; path = Headers/Three20Style.h; sourceTree = "<group>"; };
 		6EE739981184B9CE00A35176 /* StyleAdditionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleAdditionTests.m; path = UnitTests/StyleAdditionTests.m; sourceTree = "<group>"; };
 		6EE739991184B9CE00A35176 /* StyleGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleGlobalTests.m; path = UnitTests/StyleGlobalTests.m; sourceTree = "<group>"; };
-		BEF31F3A0F352DF5000DE5D2 /* libThree20Style-Xcode3.2.4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Style-Xcode3.2.4.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB9E6C6210B6A8F800DE563C /* StyleUnitTests-Xcode3.2.4.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StyleUnitTests-Xcode3.2.4.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEF31F3A0F352DF5000DE5D2 /* libThree20Style.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20Style.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB9E6C6210B6A8F800DE563C /* StyleUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StyleUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -779,7 +779,7 @@
 			files = (
 				6EE736C811849FAB00A35176 /* libThree20Core-Xcode3.2.4.a in Frameworks */,
 				6EE738A61184ADB800A35176 /* libThree20Network-Xcode3.2.4.a in Frameworks */,
-				6EE739D01184BB0400A35176 /* libThree20Style-Xcode3.2.4.a in Frameworks */,
+				6EE739D01184BB0400A35176 /* libThree20Style.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,10 +789,10 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BEF31F3A0F352DF5000DE5D2 /* libThree20Style-Xcode3.2.4.a */,
+				BEF31F3A0F352DF5000DE5D2 /* libThree20Style.a */,
 				66C16BE912639E2700A7825A /* libThree20Style-Xcode3.2.5.a */,
 				66846C7812639EE5001D2CF9 /* libThree20Style-Xcode3.2.2.a */,
-				EB9E6C6210B6A8F800DE563C /* StyleUnitTests-Xcode3.2.4.octest */,
+				EB9E6C6210B6A8F800DE563C /* StyleUnitTests.octest */,
 				66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.5.octest */,
 				66846C9612639F29001D2CF9 /* StyleUnitTests-Xcode3.2.2.octest */,
 			);
@@ -1416,9 +1416,9 @@
 			productReference = 66846C7812639EE5001D2CF9 /* libThree20Style-Xcode3.2.2.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		66846C8112639F29001D2CF9 /* UnitTests-Xcode3.2.2 */ = {
+		66846C8112639F29001D2CF9 /* Three20StyleUnitTests-Xcode3.2.2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66846C9212639F29001D2CF9 /* Build configuration list for PBXNativeTarget "UnitTests-Xcode3.2.2" */;
+			buildConfigurationList = 66846C9212639F29001D2CF9 /* Build configuration list for PBXNativeTarget "Three20StyleUnitTests-Xcode3.2.2" */;
 			buildPhases = (
 				66846C8812639F29001D2CF9 /* Resources */,
 				66846C8912639F29001D2CF9 /* Sources */,
@@ -1432,7 +1432,7 @@
 				66846C9B12639F38001D2CF9 /* PBXTargetDependency */,
 				66846C9912639F38001D2CF9 /* PBXTargetDependency */,
 			);
-			name = "UnitTests-Xcode3.2.2";
+			name = "Three20StyleUnitTests-Xcode3.2.2";
 			productName = CoreUnitTests;
 			productReference = 66846C9612639F29001D2CF9 /* StyleUnitTests-Xcode3.2.2.octest */;
 			productType = "com.apple.product-type.bundle";
@@ -1457,9 +1457,9 @@
 			productReference = 66C16BE912639E2700A7825A /* libThree20Style-Xcode3.2.5.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		66C16BEC12639E4500A7825A /* UnitTests-Xcode3.2.5 */ = {
+		66C16BEC12639E4500A7825A /* Three20StyleUnitTests-Xcode3.2.5 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66C16BFD12639E4500A7825A /* Build configuration list for PBXNativeTarget "UnitTests-Xcode3.2.5" */;
+			buildConfigurationList = 66C16BFD12639E4500A7825A /* Build configuration list for PBXNativeTarget "Three20StyleUnitTests-Xcode3.2.5" */;
 			buildPhases = (
 				66C16BF312639E4500A7825A /* Resources */,
 				66C16BF412639E4500A7825A /* Sources */,
@@ -1473,14 +1473,14 @@
 				66C16C2612639E7400A7825A /* PBXTargetDependency */,
 				66C16C2412639E7400A7825A /* PBXTargetDependency */,
 			);
-			name = "UnitTests-Xcode3.2.5";
+			name = "Three20StyleUnitTests-Xcode3.2.5";
 			productName = CoreUnitTests;
 			productReference = 66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.5.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		BEF31F390F352DF5000DE5D2 /* Three20Style-Xcode3.2.4 */ = {
+		BEF31F390F352DF5000DE5D2 /* Three20Style */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20Style-Xcode3.2.4" */;
+			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20Style" */;
 			buildPhases = (
 				BEF31F360F352DF5000DE5D2 /* Headers */,
 				6E645F2C1187AFFE00F08CB1 /* Protect Copied Headers */,
@@ -1493,14 +1493,14 @@
 				6EE7367111849C6300A35176 /* PBXTargetDependency */,
 				6EE738AB1184ADD000A35176 /* PBXTargetDependency */,
 			);
-			name = "Three20Style-Xcode3.2.4";
+			name = Three20Style;
 			productName = Three20;
-			productReference = BEF31F3A0F352DF5000DE5D2 /* libThree20Style-Xcode3.2.4.a */;
+			productReference = BEF31F3A0F352DF5000DE5D2 /* libThree20Style.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* UnitTests-Xcode3.2.4 */ = {
+		EB9E6C6110B6A8F800DE563C /* Three20StyleUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "UnitTests-Xcode3.2.4" */;
+			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "Three20StyleUnitTests" */;
 			buildPhases = (
 				EB9E6C5D10B6A8F800DE563C /* Resources */,
 				EB9E6C5E10B6A8F800DE563C /* Sources */,
@@ -1514,9 +1514,9 @@
 				6EE738AD1184ADE300A35176 /* PBXTargetDependency */,
 				6EE736C711849FA000A35176 /* PBXTargetDependency */,
 			);
-			name = "UnitTests-Xcode3.2.4";
+			name = Three20StyleUnitTests;
 			productName = CoreUnitTests;
-			productReference = EB9E6C6210B6A8F800DE563C /* StyleUnitTests-Xcode3.2.4.octest */;
+			productReference = EB9E6C6210B6A8F800DE563C /* StyleUnitTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -1548,12 +1548,12 @@
 			);
 			projectRoot = "";
 			targets = (
-				BEF31F390F352DF5000DE5D2 /* Three20Style-Xcode3.2.4 */,
+				BEF31F390F352DF5000DE5D2 /* Three20Style */,
 				66C16B6012639E2700A7825A /* Three20Style-Xcode3.2.5 */,
 				66846BED12639EE5001D2CF9 /* Three20Style-Xcode3.2.2 */,
-				EB9E6C6110B6A8F800DE563C /* UnitTests-Xcode3.2.4 */,
-				66C16BEC12639E4500A7825A /* UnitTests-Xcode3.2.5 */,
-				66846C8112639F29001D2CF9 /* UnitTests-Xcode3.2.2 */,
+				EB9E6C6110B6A8F800DE563C /* Three20StyleUnitTests */,
+				66C16BEC12639E4500A7825A /* Three20StyleUnitTests-Xcode3.2.5 */,
+				66846C8112639F29001D2CF9 /* Three20StyleUnitTests-Xcode3.2.2 */,
 			);
 		};
 /* End PBXProject section */
@@ -1625,7 +1625,7 @@
 		6EE7366E11849C5800A35176 /* CoreUnitTests-Xcode3.2.4.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "CoreUnitTests-Xcode3.2.4.octest";
+			path = CoreUnitTests.octest;
 			remoteRef = 6EE7366D11849C5800A35176 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1639,7 +1639,7 @@
 		6EE738A51184ADB400A35176 /* NetworkUnitTests-Xcode3.2.4.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "NetworkUnitTests-Xcode3.2.4.octest";
+			path = NetworkUnitTests.octest;
 			remoteRef = 6EE738A41184ADB400A35176 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2045,7 +2045,7 @@
 		};
 		6EE736C711849FA000A35176 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BEF31F390F352DF5000DE5D2 /* Three20Style-Xcode3.2.4 */;
+			target = BEF31F390F352DF5000DE5D2 /* Three20Style */;
 			targetProxy = 6EE736C611849FA000A35176 /* PBXContainerItemProxy */;
 		};
 		6EE738AB1184ADD000A35176 /* PBXTargetDependency */ = {
@@ -2271,7 +2271,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.1;
 			};
@@ -2295,7 +2295,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -2310,7 +2310,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
@@ -2323,7 +2323,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;
 			};
@@ -2371,7 +2371,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -2394,7 +2394,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				HEADER_SEARCH_PATHS = .;
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos4.1;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
@@ -2414,7 +2414,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66846C9212639F29001D2CF9 /* Build configuration list for PBXNativeTarget "UnitTests-Xcode3.2.2" */ = {
+		66846C9212639F29001D2CF9 /* Build configuration list for PBXNativeTarget "Three20StyleUnitTests-Xcode3.2.2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66846C9312639F29001D2CF9 /* Debug */,
@@ -2434,7 +2434,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66C16BFD12639E4500A7825A /* Build configuration list for PBXNativeTarget "UnitTests-Xcode3.2.5" */ = {
+		66C16BFD12639E4500A7825A /* Build configuration list for PBXNativeTarget "Three20StyleUnitTests-Xcode3.2.5" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66C16BFE12639E4500A7825A /* Debug */,
@@ -2444,7 +2444,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20Style-Xcode3.2.4" */ = {
+		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20Style" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BEF31F3B0F352DF6000DE5D2 /* Debug */,
@@ -2464,7 +2464,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "UnitTests-Xcode3.2.4" */ = {
+		EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "Three20StyleUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB9E6C6510B6A8F900DE563C /* Debug */,
