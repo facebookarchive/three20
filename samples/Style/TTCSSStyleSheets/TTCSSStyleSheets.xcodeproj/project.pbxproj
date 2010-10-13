@@ -13,6 +13,49 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		663DB50E1266288E00CF8CEA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663DB50D1266288E00CF8CEA /* Default@2x.png */; };
+		66C34D8212662A2C00489E9A /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E850F4E11B1761D0071A4FD /* Three20.bundle */; };
+		66C34D8312662A2C00489E9A /* extThree20CSSStyle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E0835B311B4C42100B99C32 /* extThree20CSSStyle.bundle */; };
+		66C34D8412662A2C00489E9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E850FAC11B176F10071A4FD /* Default.png */; };
+		66C34D8512662A2C00489E9A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E850FAD11B176F10071A4FD /* Icon.png */; };
+		66C34D8612662A2C00489E9A /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 6E036BF411B38EDC0025E8EE /* stylesheet.css */; };
+		66C34D8712662A2C00489E9A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663DB50D1266288E00CF8CEA /* Default@2x.png */; };
+		66C34D8912662A2C00489E9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		66C34D8A12662A2C00489E9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		66C34D8B12662A2C00489E9A /* Atlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E850FB711B1795F0071A4FD /* Atlas.m */; };
+		66C34D8C12662A2C00489E9A /* StyleSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036BF711B38F3C0025E8EE /* StyleSheetViewController.m */; };
+		66C34D8E12662A2C00489E9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		66C34D8F12662A2C00489E9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		66C34D9012662A2C00489E9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		66C34D9112662A2C00489E9A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */; };
+		66C34DD912662A8000489E9A /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAEC0126619D000CF8CEA /* libThree20Core-Xcode3.2.5.a */; };
+		66C34DDA12662A8000489E9A /* libThree20Network-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAECD126619D000CF8CEA /* libThree20Network-Xcode3.2.5.a */; };
+		66C34DDB12662A8000489E9A /* libThree20Style-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAEDA126619D000CF8CEA /* libThree20Style-Xcode3.2.5.a */; };
+		66C34DDC12662A8000489E9A /* libThree20UICommon-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAEE7126619D000CF8CEA /* libThree20UICommon-Xcode3.2.5.a */; };
+		66C34DDD12662A8000489E9A /* libThree20UINavigator-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAEF4126619D000CF8CEA /* libThree20UINavigator-Xcode3.2.5.a */; };
+		66C34DDE12662A8000489E9A /* libThree20UI-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF01126619D000CF8CEA /* libThree20UI-Xcode3.2.5.a */; };
+		66C34DDF12662A8000489E9A /* libThree20-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF0E126619D000CF8CEA /* libThree20-Xcode3.2.5.a */; };
+		66C34DE012662A8000489E9A /* libextThree20CSSStyle-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DB2CF1266278800CF8CEA /* libextThree20CSSStyle-Xcode3.2.5.a */; };
+		66D4357712662B56004C5F38 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E850F4E11B1761D0071A4FD /* Three20.bundle */; };
+		66D4357812662B56004C5F38 /* extThree20CSSStyle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E0835B311B4C42100B99C32 /* extThree20CSSStyle.bundle */; };
+		66D4357912662B56004C5F38 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E850FAC11B176F10071A4FD /* Default.png */; };
+		66D4357A12662B56004C5F38 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E850FAD11B176F10071A4FD /* Icon.png */; };
+		66D4357B12662B56004C5F38 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 6E036BF411B38EDC0025E8EE /* stylesheet.css */; };
+		66D4357E12662B56004C5F38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		66D4357F12662B56004C5F38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		66D4358012662B56004C5F38 /* Atlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E850FB711B1795F0071A4FD /* Atlas.m */; };
+		66D4358112662B56004C5F38 /* StyleSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036BF711B38F3C0025E8EE /* StyleSheetViewController.m */; };
+		66D4358B12662B56004C5F38 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		66D4358C12662B56004C5F38 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		66D4358D12662B56004C5F38 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		66D4358E12662B56004C5F38 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */; };
+		66D435C612662BAA004C5F38 /* libThree20Core-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAEC2126619D000CF8CEA /* libThree20Core-Xcode3.2.2.a */; };
+		66D435C712662BAA004C5F38 /* libThree20Network-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAECF126619D000CF8CEA /* libThree20Network-Xcode3.2.2.a */; };
+		66D435C812662BAA004C5F38 /* libThree20Style-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAEDC126619D000CF8CEA /* libThree20Style-Xcode3.2.2.a */; };
+		66D435C912662BAA004C5F38 /* libThree20UICommon-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAEE9126619D000CF8CEA /* libThree20UICommon-Xcode3.2.2.a */; };
+		66D435CA12662BAA004C5F38 /* libThree20UINavigator-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAEF6126619D000CF8CEA /* libThree20UINavigator-Xcode3.2.2.a */; };
+		66D435CB12662BAA004C5F38 /* libThree20UI-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF03126619D000CF8CEA /* libThree20UI-Xcode3.2.2.a */; };
+		66D435CC12662BAA004C5F38 /* libThree20-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF10126619D000CF8CEA /* libThree20-Xcode3.2.2.a */; };
+		66D435CD12662BAA004C5F38 /* libextThree20CSSStyle-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DB2D11266278800CF8CEA /* libextThree20CSSStyle-Xcode3.2.2.a */; };
 		6E036BD011B38E550025E8EE /* libextThree20CSSStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E036BCD11B38E520025E8EE /* libextThree20CSSStyle.a */; };
 		6E036BF511B38EDC0025E8EE /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 6E036BF411B38EDC0025E8EE /* stylesheet.css */; };
 		6E036BF811B38F3C0025E8EE /* StyleSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036BF711B38F3C0025E8EE /* StyleSheetViewController.m */; };
@@ -256,6 +299,118 @@
 			remoteGlobalIDString = 66D90E9812661CBB009AFDE6;
 			remoteInfo = "extThree20CSSStyleUnitTests-Xcode3.2.2";
 		};
+		66C34DC912662A5300489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036BC711B38E520025E8EE /* extThree20CSSStyle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C34B0412661C0500489E9A;
+			remoteInfo = "extThree20CSSStyle-Xcode3.2.5";
+		};
+		66C34DCB12662A5300489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793DD11B9B59D0011C497 /* Three20UICommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 665A53601264D54B0032D0BE;
+			remoteInfo = "Three20UICommon-Xcode3.2.5";
+		};
+		66C34DCD12662A5300489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793DA11B9B59D0011C497 /* Three20Style.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C16B6012639E2700A7825A;
+			remoteInfo = "Three20Style-Xcode3.2.5";
+		};
+		66C34DCF12662A5300489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793E311B9B59D0011C497 /* Three20UI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66FC2AB51264E3A400F56B19;
+			remoteInfo = "Three20UI-Xcode3.2.5";
+		};
+		66C34DD112662A5300489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E850F7911B1762B0071A4FD /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 665A55C6126521740032D0BE;
+			remoteInfo = "Three20-Xcode3.2.5";
+		};
+		66C34DD312662A5300489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793D411B9B59D0011C497 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6650CA791262F6E2003FF804;
+			remoteInfo = "Three20Core-Xcode3.2.5";
+		};
+		66C34DD512662A5300489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793D711B9B59D0011C497 /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 662D81C912630516005851C2;
+			remoteInfo = "Three20Network-Xcode3.2.5";
+		};
+		66C34DD712662A5300489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793E011B9B59D0011C497 /* Three20UINavigator.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 665A541D1264DAF70032D0BE;
+			remoteInfo = "Three20UINavigator-Xcode3.2.5";
+		};
+		66D435B612662B88004C5F38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036BC711B38E520025E8EE /* extThree20CSSStyle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66D90E6612661CBB009AFDE6;
+			remoteInfo = "extThree20CSSStyle-Xcode3.2.2";
+		};
+		66D435B812662B88004C5F38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793DD11B9B59D0011C497 /* Three20UICommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 665A53D01264D6550032D0BE;
+			remoteInfo = "Three20UICommon-Xcode3.2.2";
+		};
+		66D435BA12662B88004C5F38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793DA11B9B59D0011C497 /* Three20Style.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66846BED12639EE5001D2CF9;
+			remoteInfo = "Three20Style-Xcode3.2.2";
+		};
+		66D435BC12662B88004C5F38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793E311B9B59D0011C497 /* Three20UI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66FE8CCB1264E960001E0674;
+			remoteInfo = "Three20UI-Xcode3.2.2";
+		};
+		66D435BE12662B88004C5F38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E850F7911B1762B0071A4FD /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66FE8EFF1265E968001E0674;
+			remoteInfo = "Three20-Xcode3.2.2";
+		};
+		66D435C012662B88004C5F38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793D411B9B59D0011C497 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C2E0D11262F748006DF55A;
+			remoteInfo = "Three20Core-Xcode3.2.2";
+		};
+		66D435C212662B88004C5F38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793D711B9B59D0011C497 /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 662D81F012630527005851C2;
+			remoteInfo = "Three20Network-Xcode3.2.2";
+		};
+		66D435C412662B88004C5F38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793E011B9B59D0011C497 /* Three20UINavigator.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66FE8BC51264DBC3001E0674;
+			remoteInfo = "Three20UINavigator-Xcode3.2.2";
+		};
 		6E036BCC11B38E520025E8EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E036BC711B38E520025E8EE /* extThree20CSSStyle.xcodeproj */;
@@ -435,6 +590,8 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		663DB50D1266288E00CF8CEA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Resources/Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		66C34D9D12662A2C00489E9A /* TTCSSStyleSheets-Xcode3.2.5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TTCSSStyleSheets-Xcode3.2.5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66D4359212662B56004C5F38 /* TTCSSStyleSheets-Xcode3.2.2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TTCSSStyleSheets-Xcode3.2.2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E036BC711B38E520025E8EE /* extThree20CSSStyle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20CSSStyle.xcodeproj; path = ../../../src/extThree20CSSStyle/extThree20CSSStyle.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E036BF411B38EDC0025E8EE /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = stylesheet.css; path = Resources/stylesheet.css; sourceTree = "<group>"; };
 		6E036BF611B38F3C0025E8EE /* StyleSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleSheetViewController.h; sourceTree = "<group>"; };
@@ -481,6 +638,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66C34D8D12662A2C00489E9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C34DD912662A8000489E9A /* libThree20Core-Xcode3.2.5.a in Frameworks */,
+				66C34DDA12662A8000489E9A /* libThree20Network-Xcode3.2.5.a in Frameworks */,
+				66C34DDB12662A8000489E9A /* libThree20Style-Xcode3.2.5.a in Frameworks */,
+				66C34DDC12662A8000489E9A /* libThree20UICommon-Xcode3.2.5.a in Frameworks */,
+				66C34DDD12662A8000489E9A /* libThree20UINavigator-Xcode3.2.5.a in Frameworks */,
+				66C34DDE12662A8000489E9A /* libThree20UI-Xcode3.2.5.a in Frameworks */,
+				66C34DDF12662A8000489E9A /* libThree20-Xcode3.2.5.a in Frameworks */,
+				66C34DE012662A8000489E9A /* libextThree20CSSStyle-Xcode3.2.5.a in Frameworks */,
+				66C34D8E12662A2C00489E9A /* Foundation.framework in Frameworks */,
+				66C34D8F12662A2C00489E9A /* UIKit.framework in Frameworks */,
+				66C34D9012662A2C00489E9A /* CoreGraphics.framework in Frameworks */,
+				66C34D9112662A2C00489E9A /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D4358212662B56004C5F38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D435C612662BAA004C5F38 /* libThree20Core-Xcode3.2.2.a in Frameworks */,
+				66D435C712662BAA004C5F38 /* libThree20Network-Xcode3.2.2.a in Frameworks */,
+				66D435C812662BAA004C5F38 /* libThree20Style-Xcode3.2.2.a in Frameworks */,
+				66D435C912662BAA004C5F38 /* libThree20UICommon-Xcode3.2.2.a in Frameworks */,
+				66D435CA12662BAA004C5F38 /* libThree20UINavigator-Xcode3.2.2.a in Frameworks */,
+				66D435CB12662BAA004C5F38 /* libThree20UI-Xcode3.2.2.a in Frameworks */,
+				66D435CC12662BAA004C5F38 /* libThree20-Xcode3.2.2.a in Frameworks */,
+				66D435CD12662BAA004C5F38 /* libextThree20CSSStyle-Xcode3.2.2.a in Frameworks */,
+				66D4358B12662B56004C5F38 /* Foundation.framework in Frameworks */,
+				66D4358C12662B56004C5F38 /* UIKit.framework in Frameworks */,
+				66D4358D12662B56004C5F38 /* CoreGraphics.framework in Frameworks */,
+				66D4358E12662B56004C5F38 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -500,6 +695,8 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* TTCSSStyleSheets.app */,
+				66C34D9D12662A2C00489E9A /* TTCSSStyleSheets-Xcode3.2.5.app */,
+				66D4359212662B56004C5F38 /* TTCSSStyleSheets-Xcode3.2.2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -735,6 +932,56 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* TTCSSStyleSheets.app */;
 			productType = "com.apple.product-type.application";
 		};
+		66C34D7012662A2C00489E9A /* TTCSSStyleSheets-Xcode3.2.5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66C34D9A12662A2C00489E9A /* Build configuration list for PBXNativeTarget "TTCSSStyleSheets-Xcode3.2.5" */;
+			buildPhases = (
+				66C34D8112662A2C00489E9A /* Resources */,
+				66C34D8812662A2C00489E9A /* Sources */,
+				66C34D8D12662A2C00489E9A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66C34DD412662A5300489E9A /* PBXTargetDependency */,
+				66C34DD612662A5300489E9A /* PBXTargetDependency */,
+				66C34DCE12662A5300489E9A /* PBXTargetDependency */,
+				66C34DCC12662A5300489E9A /* PBXTargetDependency */,
+				66C34DD812662A5300489E9A /* PBXTargetDependency */,
+				66C34DD012662A5300489E9A /* PBXTargetDependency */,
+				66C34DD212662A5300489E9A /* PBXTargetDependency */,
+				66C34DCA12662A5300489E9A /* PBXTargetDependency */,
+			);
+			name = "TTCSSStyleSheets-Xcode3.2.5";
+			productName = TTStylePreview;
+			productReference = 66C34D9D12662A2C00489E9A /* TTCSSStyleSheets-Xcode3.2.5.app */;
+			productType = "com.apple.product-type.application";
+		};
+		66D4356512662B56004C5F38 /* TTCSSStyleSheets-Xcode3.2.2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66D4358F12662B56004C5F38 /* Build configuration list for PBXNativeTarget "TTCSSStyleSheets-Xcode3.2.2" */;
+			buildPhases = (
+				66D4357612662B56004C5F38 /* Resources */,
+				66D4357D12662B56004C5F38 /* Sources */,
+				66D4358212662B56004C5F38 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66D435C112662B88004C5F38 /* PBXTargetDependency */,
+				66D435C312662B88004C5F38 /* PBXTargetDependency */,
+				66D435BB12662B88004C5F38 /* PBXTargetDependency */,
+				66D435B912662B88004C5F38 /* PBXTargetDependency */,
+				66D435C512662B88004C5F38 /* PBXTargetDependency */,
+				66D435BD12662B88004C5F38 /* PBXTargetDependency */,
+				66D435BF12662B88004C5F38 /* PBXTargetDependency */,
+				66D435B712662B88004C5F38 /* PBXTargetDependency */,
+			);
+			name = "TTCSSStyleSheets-Xcode3.2.2";
+			productName = TTStylePreview;
+			productReference = 66D4359212662B56004C5F38 /* TTCSSStyleSheets-Xcode3.2.2.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -745,7 +992,6 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTCSSStyleSheets" */;
 			compatibilityVersion = "Xcode 3.1";
-			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -792,6 +1038,8 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* TTCSSStyleSheets */,
+				66C34D7012662A2C00489E9A /* TTCSSStyleSheets-Xcode3.2.5 */,
+				66D4356512662B56004C5F38 /* TTCSSStyleSheets-Xcode3.2.2 */,
 			);
 		};
 /* End PBXProject section */
@@ -1149,6 +1397,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66C34D8112662A2C00489E9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C34D8212662A2C00489E9A /* Three20.bundle in Resources */,
+				66C34D8312662A2C00489E9A /* extThree20CSSStyle.bundle in Resources */,
+				66C34D8412662A2C00489E9A /* Default.png in Resources */,
+				66C34D8512662A2C00489E9A /* Icon.png in Resources */,
+				66C34D8612662A2C00489E9A /* stylesheet.css in Resources */,
+				66C34D8712662A2C00489E9A /* Default@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D4357612662B56004C5F38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D4357712662B56004C5F38 /* Three20.bundle in Resources */,
+				66D4357812662B56004C5F38 /* extThree20CSSStyle.bundle in Resources */,
+				66D4357912662B56004C5F38 /* Default.png in Resources */,
+				66D4357A12662B56004C5F38 /* Icon.png in Resources */,
+				66D4357B12662B56004C5F38 /* stylesheet.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1163,9 +1436,111 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66C34D8812662A2C00489E9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C34D8912662A2C00489E9A /* main.m in Sources */,
+				66C34D8A12662A2C00489E9A /* AppDelegate.m in Sources */,
+				66C34D8B12662A2C00489E9A /* Atlas.m in Sources */,
+				66C34D8C12662A2C00489E9A /* StyleSheetViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D4357D12662B56004C5F38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D4357E12662B56004C5F38 /* main.m in Sources */,
+				66D4357F12662B56004C5F38 /* AppDelegate.m in Sources */,
+				66D4358012662B56004C5F38 /* Atlas.m in Sources */,
+				66D4358112662B56004C5F38 /* StyleSheetViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		66C34DCA12662A5300489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "extThree20CSSStyle-Xcode3.2.5";
+			targetProxy = 66C34DC912662A5300489E9A /* PBXContainerItemProxy */;
+		};
+		66C34DCC12662A5300489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20UICommon-Xcode3.2.5";
+			targetProxy = 66C34DCB12662A5300489E9A /* PBXContainerItemProxy */;
+		};
+		66C34DCE12662A5300489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Style-Xcode3.2.5";
+			targetProxy = 66C34DCD12662A5300489E9A /* PBXContainerItemProxy */;
+		};
+		66C34DD012662A5300489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20UI-Xcode3.2.5";
+			targetProxy = 66C34DCF12662A5300489E9A /* PBXContainerItemProxy */;
+		};
+		66C34DD212662A5300489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20-Xcode3.2.5";
+			targetProxy = 66C34DD112662A5300489E9A /* PBXContainerItemProxy */;
+		};
+		66C34DD412662A5300489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Core-Xcode3.2.5";
+			targetProxy = 66C34DD312662A5300489E9A /* PBXContainerItemProxy */;
+		};
+		66C34DD612662A5300489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Network-Xcode3.2.5";
+			targetProxy = 66C34DD512662A5300489E9A /* PBXContainerItemProxy */;
+		};
+		66C34DD812662A5300489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20UINavigator-Xcode3.2.5";
+			targetProxy = 66C34DD712662A5300489E9A /* PBXContainerItemProxy */;
+		};
+		66D435B712662B88004C5F38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "extThree20CSSStyle-Xcode3.2.2";
+			targetProxy = 66D435B612662B88004C5F38 /* PBXContainerItemProxy */;
+		};
+		66D435B912662B88004C5F38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20UICommon-Xcode3.2.2";
+			targetProxy = 66D435B812662B88004C5F38 /* PBXContainerItemProxy */;
+		};
+		66D435BB12662B88004C5F38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Style-Xcode3.2.2";
+			targetProxy = 66D435BA12662B88004C5F38 /* PBXContainerItemProxy */;
+		};
+		66D435BD12662B88004C5F38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20UI-Xcode3.2.2";
+			targetProxy = 66D435BC12662B88004C5F38 /* PBXContainerItemProxy */;
+		};
+		66D435BF12662B88004C5F38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20-Xcode3.2.2";
+			targetProxy = 66D435BE12662B88004C5F38 /* PBXContainerItemProxy */;
+		};
+		66D435C112662B88004C5F38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Core-Xcode3.2.2";
+			targetProxy = 66D435C012662B88004C5F38 /* PBXContainerItemProxy */;
+		};
+		66D435C312662B88004C5F38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Network-Xcode3.2.2";
+			targetProxy = 66D435C212662B88004C5F38 /* PBXContainerItemProxy */;
+		};
+		66D435C512662B88004C5F38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20UINavigator-Xcode3.2.2";
+			targetProxy = 66D435C412662B88004C5F38 /* PBXContainerItemProxy */;
+		};
 		6E036BE411B38E5F0025E8EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = extThree20CSSStyle;
@@ -1236,17 +1611,69 @@
 			};
 			name = Release;
 		};
+		66C34D9B12662A2C00489E9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E850F4811B175FD0071A4FD /* App.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		66C34D9C12662A2C00489E9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E850F4811B175FD0071A4FD /* App.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		66D4359012662B56004C5F38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E850F4811B175FD0071A4FD /* App.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Debug;
+		};
+		66D4359112662B56004C5F38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E850F4811B175FD0071A4FD /* App.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Release;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E850F4911B175FD0071A4FD /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
 			};
 			name = Debug;
 		};
@@ -1254,13 +1681,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E850F4911B175FD0071A4FD /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
 			};
 			name = Release;
 		};
@@ -1272,6 +1697,24 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66C34D9A12662A2C00489E9A /* Build configuration list for PBXNativeTarget "TTCSSStyleSheets-Xcode3.2.5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66C34D9B12662A2C00489E9A /* Debug */,
+				66C34D9C12662A2C00489E9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66D4358F12662B56004C5F38 /* Build configuration list for PBXNativeTarget "TTCSSStyleSheets-Xcode3.2.2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66D4359012662B56004C5F38 /* Debug */,
+				66D4359112662B56004C5F38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
