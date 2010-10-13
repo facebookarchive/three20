@@ -70,6 +70,18 @@
 		662D82531263082D005851C2 /* libThree20Network-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */; };
 		66C16B1C1263059A00A7825A /* libThree20Network-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */; };
 		66C16B21126305AB00A7825A /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C16AC31263027400A7825A /* libThree20Core-Xcode3.2.5.a */; };
+		66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */; };
+		66F955B1126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */; };
+		66F955B2126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */; };
+		66F955BA1266647A00BEF6F0 /* both.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B71266647A00BEF6F0 /* both.png */; };
+		66F955BB1266647A00BEF6F0 /* both@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B81266647A00BEF6F0 /* both@2x.png */; };
+		66F955BC1266647A00BEF6F0 /* only@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B91266647A00BEF6F0 /* only@2x.png */; };
+		66F955BD1266647A00BEF6F0 /* both.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B71266647A00BEF6F0 /* both.png */; };
+		66F955BE1266647A00BEF6F0 /* both@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B81266647A00BEF6F0 /* both@2x.png */; };
+		66F955BF1266647A00BEF6F0 /* only@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B91266647A00BEF6F0 /* only@2x.png */; };
+		66F955C01266647A00BEF6F0 /* both.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B71266647A00BEF6F0 /* both.png */; };
+		66F955C11266647A00BEF6F0 /* both@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B81266647A00BEF6F0 /* both@2x.png */; };
+		66F955C21266647A00BEF6F0 /* only@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B91266647A00BEF6F0 /* only@2x.png */; };
 		6EE735F8118499D300A35176 /* Three20Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F7118499D300A35176 /* Three20Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FA118499FB00A35176 /* TTGlobalNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F9118499FB00A35176 /* TTGlobalNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FC11849A0C00A35176 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE735FB11849A0C00A35176 /* TTGlobalNetwork.m */; };
@@ -217,6 +229,10 @@
 		662D81C7126304F3005851C2 /* NetworkUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NetworkUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Network-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Network-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkURLCacheTests.m; path = UnitTests/NetworkURLCacheTests.m; sourceTree = "<group>"; };
+		66F955B71266647A00BEF6F0 /* both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = both.png; path = UnitTests/Resources/both.png; sourceTree = "<group>"; };
+		66F955B81266647A00BEF6F0 /* both@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "both@2x.png"; path = "UnitTests/Resources/both@2x.png"; sourceTree = "<group>"; };
+		66F955B91266647A00BEF6F0 /* only@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "only@2x.png"; path = "UnitTests/Resources/only@2x.png"; sourceTree = "<group>"; };
 		6E64541F1184BDF900F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6EE735F7118499D300A35176 /* Three20Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Network.h; path = Headers/Three20Network.h; sourceTree = "<group>"; };
 		6EE735F9118499FB00A35176 /* TTGlobalNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalNetwork.h; path = Headers/TTGlobalNetwork.h; sourceTree = "<group>"; };
@@ -350,6 +366,7 @@
 				6E08B27D118282F700DA1579 /* Mocks */,
 				662D819B126304DE005851C2 /* Xcode 3.2.4 Workaround */,
 				6EE7363B11849AA100A35176 /* NetworkModelTests.m */,
+				66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -478,6 +495,9 @@
 		6EE7364611849AF200A35176 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66F955B71266647A00BEF6F0 /* both.png */,
+				66F955B81266647A00BEF6F0 /* both@2x.png */,
+				66F955B91266647A00BEF6F0 /* only@2x.png */,
 				6EE7363D11849AD500A35176 /* UnitTests-Info.plist */,
 			);
 			name = Resources;
@@ -797,6 +817,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66F955BD1266647A00BEF6F0 /* both.png in Resources */,
+				66F955BE1266647A00BEF6F0 /* both@2x.png in Resources */,
+				66F955BF1266647A00BEF6F0 /* only@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +827,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66F955C01266647A00BEF6F0 /* both.png in Resources */,
+				66F955C11266647A00BEF6F0 /* both@2x.png in Resources */,
+				66F955C21266647A00BEF6F0 /* only@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +837,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66F955BA1266647A00BEF6F0 /* both.png in Resources */,
+				66F955BB1266647A00BEF6F0 /* both@2x.png in Resources */,
+				66F955BC1266647A00BEF6F0 /* only@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -907,6 +936,7 @@
 			files = (
 				662D81A7126304EB005851C2 /* MockModelDelegate.m in Sources */,
 				662D81A8126304EB005851C2 /* NetworkModelTests.m in Sources */,
+				66F955B1126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,6 +946,7 @@
 			files = (
 				662D81BC126304F3005851C2 /* MockModelDelegate.m in Sources */,
 				662D81BD126304F3005851C2 /* NetworkModelTests.m in Sources */,
+				66F955B2126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,6 +1008,7 @@
 				6EE7363A11849A9800A35176 /* MockModelDelegate.m in Sources */,
 				6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */,
 				662D819D126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
+				66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
