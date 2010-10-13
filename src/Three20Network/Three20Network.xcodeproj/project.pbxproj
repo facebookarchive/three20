@@ -98,7 +98,7 @@
 		6EE7363A11849A9800A35176 /* MockModelDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7363911849A9800A35176 /* MockModelDelegate.m */; };
 		6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7363B11849AA100A35176 /* NetworkModelTests.m */; };
 		6EE7364911849B1D00A35176 /* Three20Network_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7364811849B1D00A35176 /* Three20Network_Prefix.pch */; };
-		6EE736C811849FAB00A35176 /* libThree20Core-Xcode3.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core-Xcode3.2.4.a */; };
+		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE739CD1184BAF600A35176 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */; };
 		6EF96405118EFCF0003902E7 /* TTURLRequestQueueInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF96404118EFCF0003902E7 /* TTURLRequestQueueInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
@@ -300,7 +300,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EE736C811849FAB00A35176 /* libThree20Core-Xcode3.2.4.a in Frameworks */,
+				6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */,
 				6EE739CD1184BAF600A35176 /* libThree20Network.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,10 +496,10 @@
 		6EE7366711849C5800A35176 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6EE7366C11849C5800A35176 /* libThree20Core-Xcode3.2.4.a */,
+				6EE7366C11849C5800A35176 /* libThree20Core.a */,
 				66C16AC31263027400A7825A /* libThree20Core-Xcode3.2.5.a */,
 				66C16AC51263027400A7825A /* libThree20Core-Xcode3.2.2.a */,
-				6EE7366E11849C5800A35176 /* CoreUnitTests-Xcode3.2.4.octest */,
+				6EE7366E11849C5800A35176 /* CoreUnitTests.octest */,
 				66C16AC71263027400A7825A /* CoreUnitTests-Xcode3.2.5.octest */,
 				66C16AC91263027400A7825A /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
@@ -714,6 +714,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Three20Network" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -773,14 +776,14 @@
 			remoteRef = 66C16AC81263027400A7825A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6EE7366C11849C5800A35176 /* libThree20Core-Xcode3.2.4.a */ = {
+		6EE7366C11849C5800A35176 /* libThree20Core.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libThree20Core-Xcode3.2.4.a";
+			path = libThree20Core.a;
 			remoteRef = 6EE7366B11849C5800A35176 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6EE7366E11849C5800A35176 /* CoreUnitTests-Xcode3.2.4.octest */ = {
+		6EE7366E11849C5800A35176 /* CoreUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CoreUnitTests.octest;

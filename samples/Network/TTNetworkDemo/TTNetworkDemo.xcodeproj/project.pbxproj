@@ -26,7 +26,6 @@
 		66D90D261266194B009AFDE6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C678116D97FF0012B12C /* Default.png */; };
 		66D90D271266194B009AFDE6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C679116D97FF0012B12C /* Icon.png */; };
 		66D90D281266194B009AFDE6 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E645FEF1187B3C300F08CB1 /* Three20.bundle */; };
-		66D90D291266194B009AFDE6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663DAE781266189B00CF8CEA /* Default@2x.png */; };
 		66D90D2B1266194B009AFDE6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		66D90D2C1266194B009AFDE6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		66D90D2D1266194B009AFDE6 /* PlaygroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EEFBBAA1162829A009B479E /* PlaygroundViewController.m */; };
@@ -425,8 +424,12 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTNetworkDemo" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -572,7 +575,6 @@
 				66D90D261266194B009AFDE6 /* Default.png in Resources */,
 				66D90D271266194B009AFDE6 /* Icon.png in Resources */,
 				66D90D281266194B009AFDE6 /* Three20.bundle in Resources */,
-				66D90D291266194B009AFDE6 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
