@@ -145,11 +145,9 @@
 /* Begin PBXFileReference section */
 		663EE60B1262E3DA00CFDEA9 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CoreUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		664961651262EE5000C2C80E /* UnitTests-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy.plist"; sourceTree = "<group>"; };
 		6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Core-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Core-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CoreUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66F9A63D1262ED9F0059C2AE /* UnitTests-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy.plist"; sourceTree = "<group>"; };
 		6E178E751183C8AE003B099E /* Three20Core_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core_Prefix.pch; path = Headers/Three20Core_Prefix.pch; sourceTree = "<group>"; };
 		6E178E761183C8B6003B099E /* TTDebugFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebugFlags.h; path = Headers/TTDebugFlags.h; sourceTree = "<group>"; };
 		6E178E771183C8D3003B099E /* TTCorePreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCorePreprocessorMacros.h; path = Headers/TTCorePreprocessorMacros.h; sourceTree = "<group>"; };
@@ -340,8 +338,6 @@
 			isa = PBXGroup;
 			children = (
 				6EB460921183D16000685649 /* UnitTests-Info.plist */,
-				66F9A63D1262ED9F0059C2AE /* UnitTests-Info copy.plist */,
-				664961651262EE5000C2C80E /* UnitTests-Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1061,6 +1057,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Internal;
 		};
@@ -1092,6 +1089,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -1104,6 +1102,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.4";
+				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;

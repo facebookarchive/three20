@@ -340,11 +340,9 @@
 /* Begin PBXFileReference section */
 		665A54521264DAF70032D0BE /* libThree20UINavigator-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UINavigator-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		665A54681264DAF70032D0BE /* UINavigatorUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UINavigatorUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		665A54691264DAF70032D0BE /* UnitTests-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy.plist"; sourceTree = "<group>"; };
 		66FC299E1264D93900F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66FE8BFA1264DBC3001E0674 /* libThree20UINavigator-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UINavigator-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FE8C0F1264DBC3001E0674 /* UINavigatorUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UINavigatorUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66FE8C101264DBC3001E0674 /* UnitTests-Info copy 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy 2.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist"; sourceTree = "<group>"; };
 		6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorDelegate.h; path = Headers/TTNavigatorDelegate.h; sourceTree = "<group>"; };
 		6E3C3610118B77F70079637E /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLAction.m; path = Sources/TTURLAction.m; sourceTree = "<group>"; };
 		6E3C3613118B77FE0079637E /* TTURLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLAction.h; path = Headers/TTURLAction.h; sourceTree = "<group>"; };
@@ -657,8 +655,6 @@
 			isa = PBXGroup;
 			children = (
 				6EE7363D11849AD500A35176 /* UnitTests-Info.plist */,
-				665A54691264DAF70032D0BE /* UnitTests-Info copy.plist */,
-				66FE8C101264DBC3001E0674 /* UnitTests-Info copy 2.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1481,7 +1477,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist";
 				OTHER_LDFLAGS = (
 					"$(COMMON_LDFLAGS)",
 					"$(COREGRAPHICS_FX)",
@@ -1503,7 +1498,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist";
 				OTHER_LDFLAGS = (
 					"$(COMMON_LDFLAGS)",
 					"$(COREGRAPHICS_FX)",
@@ -1523,7 +1517,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist";
 				OTHER_LDFLAGS = (
 					"$(COMMON_LDFLAGS)",
 					"$(COREGRAPHICS_FX)",

@@ -214,9 +214,7 @@
 /* Begin PBXFileReference section */
 		662D819C126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		662D81B2126304EB005851C2 /* NetworkUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NetworkUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		662D81B3126304EB005851C2 /* UnitTests-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy.plist"; sourceTree = "<group>"; };
 		662D81C7126304F3005851C2 /* NetworkUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NetworkUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		662D81C8126304F3005851C2 /* UnitTests-Info copy 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy 2.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist"; sourceTree = "<group>"; };
 		662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Network-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Network-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E64541F1184BDF900F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
@@ -481,8 +479,6 @@
 			isa = PBXGroup;
 			children = (
 				6EE7363D11849AD500A35176 /* UnitTests-Info.plist */,
-				662D81B3126304EB005851C2 /* UnitTests-Info copy.plist */,
-				662D81C8126304F3005851C2 /* UnitTests-Info copy 2.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

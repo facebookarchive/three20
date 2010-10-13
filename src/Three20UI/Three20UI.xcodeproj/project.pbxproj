@@ -1247,10 +1247,8 @@
 		66FC2AA71264E2DA00F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66FC2BC81264E3A400F56B19 /* libThree20UI-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UI-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FC2BE61264E3A500F56B19 /* UIUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UIUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66FC2BE71264E3A500F56B19 /* UnitTests-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy.plist"; sourceTree = "<group>"; };
 		66FE8DDE1264E960001E0674 /* libThree20UI-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UI-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FE8DFB1264E960001E0674 /* UIUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UIUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66FE8DFC1264E961001E0674 /* UnitTests-Info copy 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy 2.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist"; sourceTree = "<group>"; };
 		6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigationController.m; path = Sources/TTNavigationController.m; sourceTree = "<group>"; };
 		6E60820211B0C32600C93CD4 /* TTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigationController.h; path = Headers/TTNavigationController.h; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
@@ -1651,7 +1649,7 @@
 				66FC2A681264E1FA00F56B19 /* libThree20Style-Xcode3.2.5.a */,
 				66FC2A6A1264E1FA00F56B19 /* libThree20Style-Xcode3.2.2.a */,
 				6E6454A91184D42800F08CB1 /* StyleUnitTests-Xcode3.2.4.octest */,
-				66FC2A6C1264E1FA00F56B19 /* StyleUnitTests-Xcode3.2.4.octest */,
+				66FC2A6C1264E1FA00F56B19 /* StyleUnitTests-Xcode3.2.5.octest */,
 				66FC2A6E1264E1FA00F56B19 /* StyleUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
@@ -2514,8 +2512,6 @@
 			isa = PBXGroup;
 			children = (
 				6EE7363D11849AD500A35176 /* UnitTests-Info.plist */,
-				66FC2BE71264E3A500F56B19 /* UnitTests-Info copy.plist */,
-				66FE8DFC1264E961001E0674 /* UnitTests-Info copy 2.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3278,10 +3274,10 @@
 			remoteRef = 66FC2A691264E1FA00F56B19 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		66FC2A6C1264E1FA00F56B19 /* StyleUnitTests-Xcode3.2.4.octest */ = {
+		66FC2A6C1264E1FA00F56B19 /* StyleUnitTests-Xcode3.2.5.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "StyleUnitTests-Xcode3.2.4.octest";
+			path = "StyleUnitTests-Xcode3.2.5.octest";
 			remoteRef = 66FC2A6B1264E1FA00F56B19 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

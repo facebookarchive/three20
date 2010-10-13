@@ -167,10 +167,8 @@
 		662D83461264CD94005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		665A53761264D54B0032D0BE /* libThree20UICommon-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UICommon-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		665A53891264D54B0032D0BE /* UICommonUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UICommonUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		665A538A1264D54B0032D0BE /* UnitTests-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy.plist"; sourceTree = "<group>"; };
 		665A53E61264D6550032D0BE /* libThree20UICommon-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UICommon-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		665A53F81264D6550032D0BE /* UICommonUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UICommonUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		665A53F91264D6550032D0BE /* UnitTests-Info copy 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "UnitTests-Info copy 2.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info copy 2.plist"; sourceTree = "<group>"; };
 		6E3C377E118C94E50079637E /* TTGlobalUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUICommon.h; path = Headers/TTGlobalUICommon.h; sourceTree = "<group>"; };
 		6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTGlobalUICommon.m; path = Sources/TTGlobalUICommon.m; sourceTree = "<group>"; };
 		6E3C37A8118C96670079637E /* UIWindowAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWindowAdditions.h; path = Headers/UIWindowAdditions.h; sourceTree = "<group>"; };
@@ -336,8 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				6EE7363D11849AD500A35176 /* UnitTests-Info.plist */,
-				665A538A1264D54B0032D0BE /* UnitTests-Info copy.plist */,
-				665A53F91264D6550032D0BE /* UnitTests-Info copy 2.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
