@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the '___PROJECTNAME___' target in the '___PROJECTNAME___' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import <UIKit/UIKit.h>
+  #import "Three20/Three20.h"
+#endif
