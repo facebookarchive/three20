@@ -346,7 +346,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
       NSInteger retainCount = [controller retainCount] - 1;
 
       TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
-                      @"Retain count for %X is %d", controller, retainCount);
+                      @"Retain count for %X is %d", (unsigned int)controller, retainCount);
 
       if (retainCount == 1) {
         // If this fails, you've somehow added a controller that doesn't use
@@ -370,7 +370,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unsetCommonProperties {
   TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
-                  @"Unsetting this controller's properties: %X", self);
+                  @"Unsetting this controller's properties: %X", (unsigned int)self);
 
   self.superController = nil;
   self.popupViewController = nil;
