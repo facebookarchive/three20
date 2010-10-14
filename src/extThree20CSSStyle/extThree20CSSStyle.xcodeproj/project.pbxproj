@@ -339,6 +339,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66313D671267BFCF00C09C9F /* extThree20CSSStyle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20CSSStyle_Prefix.pch; path = Headers/extThree20CSSStyle_Prefix.pch; sourceTree = "<group>"; };
 		663DB00712661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66C34B1D12661C0600489E9A /* libextThree20CSSStyle-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20CSSStyle-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C34B3312661C0600489E9A /* extCSSStyleUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "extCSSStyleUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -452,6 +453,7 @@
 			children = (
 				6E036B3611B38A420025E8EE /* README.mdown */,
 				6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */,
+				66313D671267BFCF00C09C9F /* extThree20CSSStyle_Prefix.pch */,
 				6EB4609C1183D1E000685649 /* Source */,
 				6ED118E41183C38A0096AEBF /* Configurations */,
 				6E645A4311876CFE00F08CB1 /* Dependencies */,
@@ -1490,7 +1492,6 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					EXTJSON_SBJSON,
 					DEBUG,
@@ -1510,7 +1511,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
+				GCC_PREFIX_HEADER = ../common/Xcode324iOS41Fix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
@@ -1581,7 +1582,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
+				GCC_PREFIX_HEADER = ../common/Xcode324iOS41Fix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
@@ -1596,7 +1597,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../Analyzer/Xcode324SimulatorWorkaround.pch";
+				GCC_PREFIX_HEADER = ../common/Xcode324iOS41Fix.pch;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;

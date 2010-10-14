@@ -22,6 +22,13 @@ GCC_PRECOMPILE_PREFIX_HEADER  = YES
 GCC_PREFIX_HEADER             = $(SRCROOT)/Headers/$(BASE_PRODUCT_NAME)_Prefix.pch
 RUN_CLANG_STATIC_ANALYZER     = NO
 
+// Uncomment this flags to build the modules with LLVM compiler 1.5
+//GCC_VERSION = com.apple.compilers.llvm.clang.1_0
+
+// We frequently use self.view; in Three20UI and LLVM compiler 1.5 raises warnings.
+// This flag turns them off.
+//WARNING_CFLAGS = -Wno-unused-value
+
 FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/Developer/Library/Frameworks"
 IPHONEOS_DEPLOYMENT_TARGET = 3.0
 SDKROOT = iphoneos4.1
