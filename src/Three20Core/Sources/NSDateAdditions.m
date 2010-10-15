@@ -150,30 +150,59 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)formatRelativeTime {
-  NSTimeInterval elapsed = abs([self timeIntervalSinceNow]);
-  if (elapsed <= 1) {
-    return TTLocalizedString(@"just a moment ago", @"");
-
-  } else if (elapsed < TT_MINUTE) {
-    int seconds = (int)(elapsed);
-    return [NSString stringWithFormat:TTLocalizedString(@"%d seconds ago", @""), seconds];
-
-  } else if (elapsed < 2*TT_MINUTE) {
-    return TTLocalizedString(@"about a minute ago", @"");
-
-  } else if (elapsed < TT_HOUR) {
-    int mins = (int)(elapsed/TT_MINUTE);
-    return [NSString stringWithFormat:TTLocalizedString(@"%d minutes ago", @""), mins];
-
-  } else if (elapsed < TT_HOUR*1.5) {
-    return TTLocalizedString(@"about an hour ago", @"");
-
-  } else if (elapsed < TT_DAY) {
-    int hours = (int)((elapsed+TT_HOUR/2)/TT_HOUR);
-    return [NSString stringWithFormat:TTLocalizedString(@"%d hours ago", @""), hours];
-
+  NSTimeInterval elapsed = [self timeIntervalSinceNow];
+  if (elapsed > 0) {
+    if (elapsed <= 1) {
+      return TTLocalizedString(@"just a moment", @"");
+      
+    } else if (elapsed < TT_MINUTE) {
+      int seconds = (int)(elapsed);
+      return [NSString stringWithFormat:TTLocalizedString(@"%d seconds", @""), seconds];
+      
+    } else if (elapsed < 2*TT_MINUTE) {
+      return TTLocalizedString(@"about a minute", @"");
+      
+    } else if (elapsed < TT_HOUR) {
+      int mins = (int)(elapsed/TT_MINUTE);
+      return [NSString stringWithFormat:TTLocalizedString(@"%d minutes", @""), mins];
+      
+    } else if (elapsed < TT_HOUR*1.5) {
+      return TTLocalizedString(@"about an hour", @"");
+      
+    } else if (elapsed < TT_DAY) {
+      int hours = (int)((elapsed+TT_HOUR/2)/TT_HOUR);
+      return [NSString stringWithFormat:TTLocalizedString(@"%d hours", @""), hours];
+      
+    } else {
+      return [self formatDateTime];
+    }    
   } else {
-    return [self formatDateTime];
+    elapsed = -elapsed;
+    
+    if (elapsed <= 1) {
+      return TTLocalizedString(@"just a moment ago", @"");
+
+    } else if (elapsed < TT_MINUTE) {
+      int seconds = (int)(elapsed);
+      return [NSString stringWithFormat:TTLocalizedString(@"%d seconds ago", @""), seconds];
+
+    } else if (elapsed < 2*TT_MINUTE) {
+      return TTLocalizedString(@"about a minute ago", @"");
+
+    } else if (elapsed < TT_HOUR) {
+      int mins = (int)(elapsed/TT_MINUTE);
+      return [NSString stringWithFormat:TTLocalizedString(@"%d minutes ago", @""), mins];
+
+    } else if (elapsed < TT_HOUR*1.5) {
+      return TTLocalizedString(@"about an hour ago", @"");
+
+    } else if (elapsed < TT_DAY) {
+      int hours = (int)((elapsed+TT_HOUR/2)/TT_HOUR);
+      return [NSString stringWithFormat:TTLocalizedString(@"%d hours ago", @""), hours];
+
+    } else {
+      return [self formatDateTime];
+    }
   }
 }
 
@@ -183,19 +212,19 @@
   NSTimeInterval elapsed = abs([self timeIntervalSinceNow]);
 
   if (elapsed < TT_MINUTE) {
-    return TTLocalizedString(@"<1m", @"Date format: less than one minute ago");
+    return TTLocalizedString(@"< 1 m", @"Date format: less than one minute");
 
   } else if (elapsed < TT_HOUR) {
     int mins = (int)(elapsed / TT_MINUTE);
-    return [NSString stringWithFormat:TTLocalizedString(@"%dm", @"Date format: 50m"), mins];
+    return [NSString stringWithFormat:TTLocalizedString(@"%d m", @"Date format: 50 m"), mins];
 
   } else if (elapsed < TT_DAY) {
     int hours = (int)((elapsed + TT_HOUR / 2) / TT_HOUR);
-    return [NSString stringWithFormat:TTLocalizedString(@"%dh", @"Date format: 3h"), hours];
+    return [NSString stringWithFormat:TTLocalizedString(@"%d h", @"Date format: 3 h"), hours];
 
   } else if (elapsed < TT_WEEK) {
     int day = (int)((elapsed + TT_DAY / 2) / TT_DAY);
-    return [NSString stringWithFormat:TTLocalizedString(@"%dd", @"Date format: 3d"), day];
+    return [NSString stringWithFormat:TTLocalizedString(@"%d d", @"Date format: 3 d"), day];
 
   } else {
     return [self formatShortTime];
