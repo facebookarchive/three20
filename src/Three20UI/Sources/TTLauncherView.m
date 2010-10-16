@@ -24,8 +24,8 @@
 #import "Three20UI/UIViewAdditions.h"
 
 // UI (private)
-#import "Three20UI/TTLauncherScrollView.h"
-#import "Three20UI/TTLauncherHighlightView.h"
+#import "Three20UI/private/TTLauncherScrollView.h"
+#import "Three20UI/private/TTLauncherHighlightView.h"
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"

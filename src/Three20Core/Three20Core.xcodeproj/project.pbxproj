@@ -7,6 +7,79 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		663EE60C1262E3DA00CFDEA9 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663EE60B1262E3DA00CFDEA9 /* Xcode324iOS41TestSuiteWorkaround.m */; };
+		664961591262EE5000C2C80E /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608E1183D14800685649 /* CoreAdditionTests.m */; };
+		6649615A1262EE5000C2C80E /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608F1183D14800685649 /* CoreGlobalTests.m */; };
+		6649615B1262EE5000C2C80E /* CoreMarkupStripperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607C6E11AF286B00C93CD4 /* CoreMarkupStripperTests.m */; };
+		6650CA7B1262F6E2003FF804 /* TTMarkupStripper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E55A49B1183C956002768DE /* TTMarkupStripper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA7C1262F6E2003FF804 /* NSArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB01183C906003B099E /* NSArrayAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA7D1262F6E2003FF804 /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB11183C906003B099E /* NSDataAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA7E1262F6E2003FF804 /* NSDateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB21183C906003B099E /* NSDateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA7F1262F6E2003FF804 /* NSMutableArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB31183C906003B099E /* NSMutableArrayAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA801262F6E2003FF804 /* NSMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB41183C906003B099E /* NSMutableDictionaryAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA811262F6E2003FF804 /* NSObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB51183C906003B099E /* NSObjectAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA821262F6E2003FF804 /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB61183C906003B099E /* NSStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA831262F6E2003FF804 /* TTCorePreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E771183C8D3003B099E /* TTCorePreprocessorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA841262F6E2003FF804 /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E55A4941183C93F002768DE /* TTDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA851262F6E2003FF804 /* TTDebugFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E761183C8B6003B099E /* TTDebugFlags.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA861262F6E2003FF804 /* TTGlobalCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E781183C8DA003B099E /* TTGlobalCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA871262F6E2003FF804 /* TTGlobalCoreLocale.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E791183C8DA003B099E /* TTGlobalCoreLocale.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA881262F6E2003FF804 /* TTGlobalCorePaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E7A1183C8DA003B099E /* TTGlobalCorePaths.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA891262F6E2003FF804 /* Three20Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454531184BE8600F08CB1 /* Three20Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA8A1262F6E2003FF804 /* Three20Core+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454541184BE8600F08CB1 /* Three20Core+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA8B1262F6E2003FF804 /* TTGlobalCoreRects.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDAE9C6118CA1720008133C /* TTGlobalCoreRects.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA8C1262F6E2003FF804 /* TTEntityTables.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E607CF011AF2FD800C93CD4 /* TTEntityTables.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6650CA8F1262F6E2003FF804 /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7B1183C8E5003B099E /* TTGlobalCore.m */; };
+		6650CA901262F6E2003FF804 /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7C1183C8E5003B099E /* TTGlobalCoreLocale.m */; };
+		6650CA911262F6E2003FF804 /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7D1183C8E5003B099E /* TTGlobalCorePaths.m */; };
+		6650CA921262F6E2003FF804 /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E8D1183C8F6003B099E /* NSArrayAdditions.m */; };
+		6650CA931262F6E2003FF804 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E8E1183C8F6003B099E /* NSDataAdditions.m */; };
+		6650CA941262F6E2003FF804 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E8F1183C8F6003B099E /* NSDateAdditions.m */; };
+		6650CA951262F6E2003FF804 /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E901183C8F6003B099E /* NSMutableArrayAdditions.m */; };
+		6650CA961262F6E2003FF804 /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E921183C8F6003B099E /* NSObjectAdditions.m */; };
+		6650CA971262F6E2003FF804 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E931183C8F6003B099E /* NSStringAdditions.m */; };
+		6650CA981262F6E2003FF804 /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E55A4951183C946002768DE /* TTDebug.m */; };
+		6650CA991262F6E2003FF804 /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E55A4981183C94F002768DE /* TTMarkupStripper.m */; };
+		6650CA9A1262F6E2003FF804 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E911183C8F6003B099E /* NSMutableDictionaryAdditions.m */; };
+		6650CA9B1262F6E2003FF804 /* TTGlobalCoreRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDAE9C8118CA1790008133C /* TTGlobalCoreRects.m */; };
+		6650CA9C1262F6E2003FF804 /* TTEntityTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607CEE11AF2FCB00C93CD4 /* TTEntityTables.m */; };
+		66C2E0D51262F748006DF55A /* TTMarkupStripper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E55A49B1183C956002768DE /* TTMarkupStripper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0D61262F748006DF55A /* NSArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB01183C906003B099E /* NSArrayAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0D71262F748006DF55A /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB11183C906003B099E /* NSDataAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0D81262F748006DF55A /* NSDateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB21183C906003B099E /* NSDateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0D91262F748006DF55A /* NSMutableArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB31183C906003B099E /* NSMutableArrayAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0DA1262F748006DF55A /* NSMutableDictionaryAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB41183C906003B099E /* NSMutableDictionaryAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0DB1262F748006DF55A /* NSObjectAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB51183C906003B099E /* NSObjectAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0DC1262F748006DF55A /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB61183C906003B099E /* NSStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0DD1262F748006DF55A /* TTCorePreprocessorMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E771183C8D3003B099E /* TTCorePreprocessorMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0DE1262F748006DF55A /* TTDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E55A4941183C93F002768DE /* TTDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0DF1262F748006DF55A /* TTDebugFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E761183C8B6003B099E /* TTDebugFlags.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0E01262F748006DF55A /* TTGlobalCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E781183C8DA003B099E /* TTGlobalCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0E11262F748006DF55A /* TTGlobalCoreLocale.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E791183C8DA003B099E /* TTGlobalCoreLocale.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0E21262F748006DF55A /* TTGlobalCorePaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178E7A1183C8DA003B099E /* TTGlobalCorePaths.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0E31262F748006DF55A /* Three20Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454531184BE8600F08CB1 /* Three20Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0E41262F748006DF55A /* Three20Core+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454541184BE8600F08CB1 /* Three20Core+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0E51262F748006DF55A /* TTGlobalCoreRects.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDAE9C6118CA1720008133C /* TTGlobalCoreRects.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0E61262F748006DF55A /* TTEntityTables.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E607CF011AF2FD800C93CD4 /* TTEntityTables.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C2E0E91262F748006DF55A /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7B1183C8E5003B099E /* TTGlobalCore.m */; };
+		66C2E0EA1262F748006DF55A /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7C1183C8E5003B099E /* TTGlobalCoreLocale.m */; };
+		66C2E0EB1262F748006DF55A /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7D1183C8E5003B099E /* TTGlobalCorePaths.m */; };
+		66C2E0EC1262F748006DF55A /* NSArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E8D1183C8F6003B099E /* NSArrayAdditions.m */; };
+		66C2E0ED1262F748006DF55A /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E8E1183C8F6003B099E /* NSDataAdditions.m */; };
+		66C2E0EE1262F748006DF55A /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E8F1183C8F6003B099E /* NSDateAdditions.m */; };
+		66C2E0EF1262F748006DF55A /* NSMutableArrayAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E901183C8F6003B099E /* NSMutableArrayAdditions.m */; };
+		66C2E0F01262F748006DF55A /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E921183C8F6003B099E /* NSObjectAdditions.m */; };
+		66C2E0F11262F748006DF55A /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E931183C8F6003B099E /* NSStringAdditions.m */; };
+		66C2E0F21262F748006DF55A /* TTDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E55A4951183C946002768DE /* TTDebug.m */; };
+		66C2E0F31262F748006DF55A /* TTMarkupStripper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E55A4981183C94F002768DE /* TTMarkupStripper.m */; };
+		66C2E0F41262F748006DF55A /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E911183C8F6003B099E /* NSMutableDictionaryAdditions.m */; };
+		66C2E0F51262F748006DF55A /* TTGlobalCoreRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDAE9C8118CA1790008133C /* TTGlobalCoreRects.m */; };
+		66C2E0F61262F748006DF55A /* TTEntityTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607CEE11AF2FCB00C93CD4 /* TTEntityTables.m */; };
+		66D1E1631262FDC500BFDAF5 /* libThree20Core-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */; };
+		66D1E1641262FDCE00BFDAF5 /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */; };
+		66F9A6311262ED9F0059C2AE /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608E1183D14800685649 /* CoreAdditionTests.m */; };
+		66F9A6321262ED9F0059C2AE /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608F1183D14800685649 /* CoreGlobalTests.m */; };
+		66F9A6331262ED9F0059C2AE /* CoreMarkupStripperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607C6E11AF286B00C93CD4 /* CoreMarkupStripperTests.m */; };
 		6E178E811183C8E5003B099E /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7B1183C8E5003B099E /* TTGlobalCore.m */; };
 		6E178E821183C8E5003B099E /* TTGlobalCoreLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7C1183C8E5003B099E /* TTGlobalCoreLocale.m */; };
 		6E178E831183C8E5003B099E /* TTGlobalCorePaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7D1183C8E5003B099E /* TTGlobalCorePaths.m */; };
@@ -46,6 +119,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		66D1E15F1262FDAE00BFDAF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6650CA791262F6E2003FF804;
+			remoteInfo = "Three20Core-Xcode3.2.5";
+		};
+		66D1E1611262FDBA00BFDAF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C2E0D11262F748006DF55A;
+			remoteInfo = "Three20Core-Xcode3.2.2";
+		};
 		6EB460DD1183D8D400685649 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -56,6 +143,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		663EE60B1262E3DA00CFDEA9 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
+		664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CoreUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Core-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Core-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CoreUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E178E751183C8AE003B099E /* Three20Core_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core_Prefix.pch; path = Headers/Three20Core_Prefix.pch; sourceTree = "<group>"; };
 		6E178E761183C8B6003B099E /* TTDebugFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebugFlags.h; path = Headers/TTDebugFlags.h; sourceTree = "<group>"; };
 		6E178E771183C8D3003B099E /* TTCorePreprocessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCorePreprocessorMacros.h; path = Headers/TTCorePreprocessorMacros.h; sourceTree = "<group>"; };
@@ -103,6 +195,36 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6649615D1262EE5000C2C80E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D1E1641262FDCE00BFDAF5 /* libThree20Core-Xcode3.2.5.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6650CA9D1262F6E2003FF804 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C2E0F71262F748006DF55A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66F9A6351262ED9F0059C2AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D1E1631262FDC500BFDAF5 /* libThree20Core-Xcode3.2.2.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEF31F380F352DF5000DE5D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -125,7 +247,11 @@
 			isa = PBXGroup;
 			children = (
 				BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */,
+				6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */,
+				66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */,
 				EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */,
+				664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */,
+				66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,6 +271,14 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		663EE60E1262E3DC00CFDEA9 /* Xcode 3.2.4 Workaround */ = {
+			isa = PBXGroup;
+			children = (
+				663EE60B1262E3DA00CFDEA9 /* Xcode324iOS41TestSuiteWorkaround.m */,
+			);
+			name = "Xcode 3.2.4 Workaround";
 			sourceTree = "<group>";
 		};
 		6E607CAE11AF2DE800C93CD4 /* Entity Tables */ = {
@@ -212,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				6ED117E51183BE2A0096AEBF /* Resources */,
+				663EE60E1262E3DC00CFDEA9 /* Xcode 3.2.4 Workaround */,
 				6EB4608E1183D14800685649 /* CoreAdditionTests.m */,
 				6EB4608F1183D14800685649 /* CoreGlobalTests.m */,
 				6E607C6E11AF286B00C93CD4 /* CoreMarkupStripperTests.m */,
@@ -271,6 +406,56 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		6650CA7A1262F6E2003FF804 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6650CA7B1262F6E2003FF804 /* TTMarkupStripper.h in Headers */,
+				6650CA7C1262F6E2003FF804 /* NSArrayAdditions.h in Headers */,
+				6650CA7D1262F6E2003FF804 /* NSDataAdditions.h in Headers */,
+				6650CA7E1262F6E2003FF804 /* NSDateAdditions.h in Headers */,
+				6650CA7F1262F6E2003FF804 /* NSMutableArrayAdditions.h in Headers */,
+				6650CA801262F6E2003FF804 /* NSMutableDictionaryAdditions.h in Headers */,
+				6650CA811262F6E2003FF804 /* NSObjectAdditions.h in Headers */,
+				6650CA821262F6E2003FF804 /* NSStringAdditions.h in Headers */,
+				6650CA831262F6E2003FF804 /* TTCorePreprocessorMacros.h in Headers */,
+				6650CA841262F6E2003FF804 /* TTDebug.h in Headers */,
+				6650CA851262F6E2003FF804 /* TTDebugFlags.h in Headers */,
+				6650CA861262F6E2003FF804 /* TTGlobalCore.h in Headers */,
+				6650CA871262F6E2003FF804 /* TTGlobalCoreLocale.h in Headers */,
+				6650CA881262F6E2003FF804 /* TTGlobalCorePaths.h in Headers */,
+				6650CA891262F6E2003FF804 /* Three20Core.h in Headers */,
+				6650CA8A1262F6E2003FF804 /* Three20Core+Additions.h in Headers */,
+				6650CA8B1262F6E2003FF804 /* TTGlobalCoreRects.h in Headers */,
+				6650CA8C1262F6E2003FF804 /* TTEntityTables.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C2E0D41262F748006DF55A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C2E0D51262F748006DF55A /* TTMarkupStripper.h in Headers */,
+				66C2E0D61262F748006DF55A /* NSArrayAdditions.h in Headers */,
+				66C2E0D71262F748006DF55A /* NSDataAdditions.h in Headers */,
+				66C2E0D81262F748006DF55A /* NSDateAdditions.h in Headers */,
+				66C2E0D91262F748006DF55A /* NSMutableArrayAdditions.h in Headers */,
+				66C2E0DA1262F748006DF55A /* NSMutableDictionaryAdditions.h in Headers */,
+				66C2E0DB1262F748006DF55A /* NSObjectAdditions.h in Headers */,
+				66C2E0DC1262F748006DF55A /* NSStringAdditions.h in Headers */,
+				66C2E0DD1262F748006DF55A /* TTCorePreprocessorMacros.h in Headers */,
+				66C2E0DE1262F748006DF55A /* TTDebug.h in Headers */,
+				66C2E0DF1262F748006DF55A /* TTDebugFlags.h in Headers */,
+				66C2E0E01262F748006DF55A /* TTGlobalCore.h in Headers */,
+				66C2E0E11262F748006DF55A /* TTGlobalCoreLocale.h in Headers */,
+				66C2E0E21262F748006DF55A /* TTGlobalCorePaths.h in Headers */,
+				66C2E0E31262F748006DF55A /* Three20Core.h in Headers */,
+				66C2E0E41262F748006DF55A /* Three20Core+Additions.h in Headers */,
+				66C2E0E51262F748006DF55A /* TTGlobalCoreRects.h in Headers */,
+				66C2E0E61262F748006DF55A /* TTEntityTables.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEF31F360F352DF5000DE5D2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,6 +484,80 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		664961541262EE5000C2C80E /* Three20CoreUnitTests-Xcode3.2.5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 664961601262EE5000C2C80E /* Build configuration list for PBXNativeTarget "Three20CoreUnitTests-Xcode3.2.5" */;
+			buildPhases = (
+				664961571262EE5000C2C80E /* Resources */,
+				664961581262EE5000C2C80E /* Sources */,
+				6649615D1262EE5000C2C80E /* Frameworks */,
+				6649615F1262EE5000C2C80E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66D1E1601262FDAE00BFDAF5 /* PBXTargetDependency */,
+			);
+			name = "Three20CoreUnitTests-Xcode3.2.5";
+			productName = CoreUnitTests;
+			productReference = 664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		6650CA791262F6E2003FF804 /* Three20Core-Xcode3.2.5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6650CA9E1262F6E2003FF804 /* Build configuration list for PBXNativeTarget "Three20Core-Xcode3.2.5" */;
+			buildPhases = (
+				6650CA7A1262F6E2003FF804 /* Headers */,
+				6650CA8D1262F6E2003FF804 /* Protect Copied Headers */,
+				6650CA8E1262F6E2003FF804 /* Sources */,
+				6650CA9D1262F6E2003FF804 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Three20Core-Xcode3.2.5";
+			productName = Three20;
+			productReference = 6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		66C2E0D11262F748006DF55A /* Three20Core-Xcode3.2.2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66C2E0F81262F748006DF55A /* Build configuration list for PBXNativeTarget "Three20Core-Xcode3.2.2" */;
+			buildPhases = (
+				66C2E0D41262F748006DF55A /* Headers */,
+				66C2E0E71262F748006DF55A /* Protect Copied Headers */,
+				66C2E0E81262F748006DF55A /* Sources */,
+				66C2E0F71262F748006DF55A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Three20Core-Xcode3.2.2";
+			productName = Three20;
+			productReference = 66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		66F9A62C1262ED9F0059C2AE /* Three20CoreUnitTests-Xcode3.2.2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66F9A6381262ED9F0059C2AE /* Build configuration list for PBXNativeTarget "Three20CoreUnitTests-Xcode3.2.2" */;
+			buildPhases = (
+				66F9A62F1262ED9F0059C2AE /* Resources */,
+				66F9A6301262ED9F0059C2AE /* Sources */,
+				66F9A6351262ED9F0059C2AE /* Frameworks */,
+				66F9A6371262ED9F0059C2AE /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66D1E1621262FDBA00BFDAF5 /* PBXTargetDependency */,
+			);
+			name = "Three20CoreUnitTests-Xcode3.2.2";
+			productName = CoreUnitTests;
+			productReference = 66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		BEF31F390F352DF5000DE5D2 /* Three20Core */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20Core" */;
@@ -317,9 +576,9 @@
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* UnitTests */ = {
+		EB9E6C6110B6A8F800DE563C /* Three20CoreUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "Three20CoreUnitTests" */;
 			buildPhases = (
 				EB9E6C5D10B6A8F800DE563C /* Resources */,
 				EB9E6C5E10B6A8F800DE563C /* Sources */,
@@ -331,7 +590,7 @@
 			dependencies = (
 				6EB460DE1183D8D400685649 /* PBXTargetDependency */,
 			);
-			name = UnitTests;
+			name = Three20CoreUnitTests;
 			productName = CoreUnitTests;
 			productReference = EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */;
 			productType = "com.apple.product-type.bundle";
@@ -342,7 +601,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = NO;
+				BuildIndependentTargetsInParallel = YES;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Three20Core" */;
 			compatibilityVersion = "Xcode 3.1";
@@ -359,12 +618,30 @@
 			projectRoot = "";
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* Three20Core */,
-				EB9E6C6110B6A8F800DE563C /* UnitTests */,
+				6650CA791262F6E2003FF804 /* Three20Core-Xcode3.2.5 */,
+				66C2E0D11262F748006DF55A /* Three20Core-Xcode3.2.2 */,
+				EB9E6C6110B6A8F800DE563C /* Three20CoreUnitTests */,
+				664961541262EE5000C2C80E /* Three20CoreUnitTests-Xcode3.2.5 */,
+				66F9A62C1262ED9F0059C2AE /* Three20CoreUnitTests-Xcode3.2.2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		664961571262EE5000C2C80E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66F9A62F1262ED9F0059C2AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EB9E6C5D10B6A8F800DE563C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -375,6 +652,60 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6649615F1262EE5000C2C80E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		6650CA8D1262F6E2003FF804 /* Protect Copied Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Protect Copied Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
+		};
+		66C2E0E71262F748006DF55A /* Protect Copied Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Protect Copied Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
+		};
+		66F9A6371262ED9F0059C2AE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		6E645EC91187AB0500F08CB1 /* Protect Copied Headers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -405,6 +736,68 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		664961581262EE5000C2C80E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				664961591262EE5000C2C80E /* CoreAdditionTests.m in Sources */,
+				6649615A1262EE5000C2C80E /* CoreGlobalTests.m in Sources */,
+				6649615B1262EE5000C2C80E /* CoreMarkupStripperTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6650CA8E1262F6E2003FF804 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6650CA8F1262F6E2003FF804 /* TTGlobalCore.m in Sources */,
+				6650CA901262F6E2003FF804 /* TTGlobalCoreLocale.m in Sources */,
+				6650CA911262F6E2003FF804 /* TTGlobalCorePaths.m in Sources */,
+				6650CA921262F6E2003FF804 /* NSArrayAdditions.m in Sources */,
+				6650CA931262F6E2003FF804 /* NSDataAdditions.m in Sources */,
+				6650CA941262F6E2003FF804 /* NSDateAdditions.m in Sources */,
+				6650CA951262F6E2003FF804 /* NSMutableArrayAdditions.m in Sources */,
+				6650CA961262F6E2003FF804 /* NSObjectAdditions.m in Sources */,
+				6650CA971262F6E2003FF804 /* NSStringAdditions.m in Sources */,
+				6650CA981262F6E2003FF804 /* TTDebug.m in Sources */,
+				6650CA991262F6E2003FF804 /* TTMarkupStripper.m in Sources */,
+				6650CA9A1262F6E2003FF804 /* NSMutableDictionaryAdditions.m in Sources */,
+				6650CA9B1262F6E2003FF804 /* TTGlobalCoreRects.m in Sources */,
+				6650CA9C1262F6E2003FF804 /* TTEntityTables.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C2E0E81262F748006DF55A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C2E0E91262F748006DF55A /* TTGlobalCore.m in Sources */,
+				66C2E0EA1262F748006DF55A /* TTGlobalCoreLocale.m in Sources */,
+				66C2E0EB1262F748006DF55A /* TTGlobalCorePaths.m in Sources */,
+				66C2E0EC1262F748006DF55A /* NSArrayAdditions.m in Sources */,
+				66C2E0ED1262F748006DF55A /* NSDataAdditions.m in Sources */,
+				66C2E0EE1262F748006DF55A /* NSDateAdditions.m in Sources */,
+				66C2E0EF1262F748006DF55A /* NSMutableArrayAdditions.m in Sources */,
+				66C2E0F01262F748006DF55A /* NSObjectAdditions.m in Sources */,
+				66C2E0F11262F748006DF55A /* NSStringAdditions.m in Sources */,
+				66C2E0F21262F748006DF55A /* TTDebug.m in Sources */,
+				66C2E0F31262F748006DF55A /* TTMarkupStripper.m in Sources */,
+				66C2E0F41262F748006DF55A /* NSMutableDictionaryAdditions.m in Sources */,
+				66C2E0F51262F748006DF55A /* TTGlobalCoreRects.m in Sources */,
+				66C2E0F61262F748006DF55A /* TTEntityTables.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66F9A6301262ED9F0059C2AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66F9A6311262ED9F0059C2AE /* CoreAdditionTests.m in Sources */,
+				66F9A6321262ED9F0059C2AE /* CoreGlobalTests.m in Sources */,
+				66F9A6331262ED9F0059C2AE /* CoreMarkupStripperTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEF31F370F352DF5000DE5D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,12 +826,23 @@
 				6EB460901183D14800685649 /* CoreAdditionTests.m in Sources */,
 				6EB460911183D14800685649 /* CoreGlobalTests.m in Sources */,
 				6E607C6F11AF286B00C93CD4 /* CoreMarkupStripperTests.m in Sources */,
+				663EE60C1262E3DA00CFDEA9 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		66D1E1601262FDAE00BFDAF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6650CA791262F6E2003FF804 /* Three20Core-Xcode3.2.5 */;
+			targetProxy = 66D1E15F1262FDAE00BFDAF5 /* PBXContainerItemProxy */;
+		};
+		66D1E1621262FDBA00BFDAF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66C2E0D11262F748006DF55A /* Three20Core-Xcode3.2.2 */;
+			targetProxy = 66D1E1611262FDBA00BFDAF5 /* PBXContainerItemProxy */;
+		};
 		6EB460DE1183D8D400685649 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BEF31F390F352DF5000DE5D2 /* Three20Core */;
@@ -447,18 +851,197 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		664961611262EE5000C2C80E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		664961621262EE5000C2C80E /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+			};
+			name = Internal;
+		};
+		664961631262EE5000C2C80E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		6650CA9F1262F6E2003FF804 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6650CAA01262F6E2003FF804 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Internal;
+		};
+		6650CAA11262F6E2003FF804 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		66C2E0F91262F748006DF55A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Debug;
+		};
+		66C2E0FA1262F748006DF55A /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Internal;
+		};
+		66C2E0FB1262F748006DF55A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		66F9A6391262ED9F0059C2AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Debug;
+		};
+		66F9A63A1262ED9F0059C2AE /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Internal;
+		};
+		66F9A63B1262ED9F0059C2AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		6E92493F112C6F4000531F03 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.2;
 			};
 			name = Internal;
 		};
@@ -469,10 +1052,11 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Internal;
 		};
@@ -485,9 +1069,11 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.0;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Internal;
 		};
@@ -500,6 +1086,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -511,6 +1098,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -519,14 +1107,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.2;
 			};
 			name = Debug;
 		};
@@ -534,14 +1119,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.2;
 			};
 			name = Release;
 		};
@@ -554,8 +1137,11 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -567,7 +1153,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -575,6 +1164,46 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		664961601262EE5000C2C80E /* Build configuration list for PBXNativeTarget "Three20CoreUnitTests-Xcode3.2.5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				664961611262EE5000C2C80E /* Debug */,
+				664961621262EE5000C2C80E /* Internal */,
+				664961631262EE5000C2C80E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6650CA9E1262F6E2003FF804 /* Build configuration list for PBXNativeTarget "Three20Core-Xcode3.2.5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6650CA9F1262F6E2003FF804 /* Debug */,
+				6650CAA01262F6E2003FF804 /* Internal */,
+				6650CAA11262F6E2003FF804 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66C2E0F81262F748006DF55A /* Build configuration list for PBXNativeTarget "Three20Core-Xcode3.2.2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66C2E0F91262F748006DF55A /* Debug */,
+				66C2E0FA1262F748006DF55A /* Internal */,
+				66C2E0FB1262F748006DF55A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66F9A6381262ED9F0059C2AE /* Build configuration list for PBXNativeTarget "Three20CoreUnitTests-Xcode3.2.2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66F9A6391262ED9F0059C2AE /* Debug */,
+				66F9A63A1262ED9F0059C2AE /* Internal */,
+				66F9A63B1262ED9F0059C2AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "Three20Core" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -595,7 +1224,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+		EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "Three20CoreUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB9E6C6510B6A8F900DE563C /* Debug */,

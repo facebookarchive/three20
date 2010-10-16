@@ -244,8 +244,8 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImage*)loadImageFromBundle:(NSString*)URL {
-  NSString* path = [URL substringFromIndex:9];
-  return [UIImage imageNamed:path];
+  NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
+  return [UIImage imageWithContentsOfFile:path];
 }
 
 
@@ -398,15 +398,53 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This method needs to handle urlPaths with and without extensions.
+ * So @"path.png" will resolve to @"path@2x.png" and
+ *    @"path" will resolve to @"path@2x"
+ *
+ * Paths beginning with @"." will not be changed.
+ */
++ (NSString*)doubleImageURLPath:(NSString*)urlPath {
+  if ([[urlPath substringToIndex:1] isEqualToString:@"."]) {
+    return urlPath;
+  }
+
+  // We'd ideally use stringByAppendingPathExtension: in this method, but it seems
+  // to wreck bundle:// urls by replacing them with bundle:/ prefixes. Strange.
+  NSString* pathExtension = [urlPath pathExtension];
+
+  NSString* urlPathWithNoExtension = [urlPath substringToIndex:
+                                      [urlPath length] - [pathExtension length]
+                                      - (([pathExtension length] > 0) ? 1 : 0)];
+
+  urlPath = [urlPathWithNoExtension stringByAppendingString:@"@2x"];
+
+  if ([pathExtension length] > 0) {
+    urlPath = [urlPath stringByAppendingFormat:@".%@", pathExtension];
+  }
+
+  return urlPath;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)hasImageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
   BOOL hasImage = (nil != [_imageCache objectForKey:URL]);
 
   if (!hasImage && fromDisk) {
     if (TTIsBundleURL(URL)) {
       hasImage = [self imageExistsFromBundle:URL];
+      if (!hasImage) {
+        hasImage = [self imageExistsFromBundle:[TTURLCache doubleImageURLPath:URL]];
+      }
 
     } else if (TTIsDocumentsURL(URL)) {
       hasImage = [self imageExistsFromDocuments:URL];
+      if (!hasImage) {
+        hasImage = [self imageExistsFromDocuments:[TTURLCache doubleImageURLPath:URL]];
+      }
+
     }
   }
 

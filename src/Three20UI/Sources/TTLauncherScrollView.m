@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTLauncherScrollView.h"
+#import "Three20UI/private/TTLauncherScrollView.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

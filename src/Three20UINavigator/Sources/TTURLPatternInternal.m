@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTURLPatternInternal.h"
+#import "Three20UINavigator/private/TTURLPatternInternal.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
