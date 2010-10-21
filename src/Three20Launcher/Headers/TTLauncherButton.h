@@ -34,6 +34,7 @@
 @property (nonatomic)           BOOL            dragging;
 @property (nonatomic)           BOOL            editing;
 
+// Designated initializer.
 - (id)initWithItem:(TTLauncherItem*)item;
 
 @end

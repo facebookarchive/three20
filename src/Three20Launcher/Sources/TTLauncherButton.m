@@ -56,10 +56,10 @@ static const NSInteger kMaxBadgeNumber = 99;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithItem:(TTLauncherItem*)item {
-  if (self = [self init]) {
+  if (self = [self initWithFrame:CGRectZero]) {
     _item = [item retain];
 
-    NSString* title =  [[NSBundle mainBundle] localizedStringForKey:item.title value:nil table:nil];
+    NSString* title = [[NSBundle mainBundle] localizedStringForKey:item.title value:nil table:nil];
     [self setTitle:title forState:UIControlStateNormal];
     [self setImage:item.image forState:UIControlStateNormal];
 
@@ -105,7 +105,7 @@ static const NSInteger kMaxBadgeNumber = 99;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateBadge {
-  if (!_badge && _item.badgeNumber) {
+  if (nil == _badge && _item.badgeNumber > 0) {
     _badge = [[TTLabel alloc] init];
     _badge.style = TTSTYLE(largeBadge);
     _badge.backgroundColor = [UIColor clearColor];
@@ -132,6 +132,9 @@ static const NSInteger kMaxBadgeNumber = 99;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UIResponder
+
+// Forward all touch events so that the launcher view receives them. This makes it possible for
+// the launcher view to handle the dragging logic.
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,16 +184,16 @@ static const NSInteger kMaxBadgeNumber = 99;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
-  if (_badge || _closeButton) {
+  if (nil != _badge || nil != _closeButton) {
     CGRect imageRect = [self rectForImage];
-    if (_badge) {
-      _badge.origin = CGPointMake((imageRect.origin.x + imageRect.size.width) - (floor(_badge.width*0.7)),
-                                  imageRect.origin.y - (floor(_badge.height*0.25)));
+    if (nil != _badge) {
+      _badge.origin = CGPointMake(CGRectGetMaxX(imageRect) - floor(_badge.width * 0.7),
+                                  imageRect.origin.y - floor(_badge.height * 0.25));
     }
 
-    if (_closeButton) {
-      _closeButton.origin = CGPointMake(imageRect.origin.x - (floor(_closeButton.width*0.4)),
-                                        imageRect.origin.y - (floor(_closeButton.height*0.4)));
+    if (nil != _closeButton) {
+      _closeButton.origin = CGPointMake(imageRect.origin.x - floor(_closeButton.width * 0.4),
+                                        imageRect.origin.y - floor(_closeButton.height * 0.4));
     }
   }
 }
@@ -204,7 +207,7 @@ static const NSInteger kMaxBadgeNumber = 99;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTButton*)closeButton {
-  if (!_closeButton && _item.canDelete) {
+  if (nil == _closeButton && _item.canDelete) {
     _closeButton = [[TTButton buttonWithStyle:@"launcherCloseButton:"] retain];
     [_closeButton setImage:@"bundle://Three20.bundle/images/closeButton.png"
                   forState:UIControlStateNormal];
@@ -224,6 +227,7 @@ static const NSInteger kMaxBadgeNumber = 99;
     if (dragging) {
       self.transform = CGAffineTransformMakeScale(1.4, 1.4);
       self.alpha = 0.7;
+
     } else {
       self.transform = CGAffineTransformIdentity;
       self.alpha = 1;
