@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the '___PROJECTNAME___' target in the '___PROJECTNAME___' project
+//
+
+#import "../../common/Xcode324iOS41Fix.pch"
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import <UIKit/UIKit.h>
+#endif
+
