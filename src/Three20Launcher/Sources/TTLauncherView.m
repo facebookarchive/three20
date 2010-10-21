@@ -14,18 +14,20 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTLauncherView.h"
+#import "Three20Launcher/TTLauncherView.h"
+
+// Launcher
+#import "Three20Launcher/TTLauncherButton.h"
+#import "Three20Launcher/TTLauncherItem.h"
+#import "Three20Launcher/TTLauncherViewDelegate.h"
+
+// Launcher (private)
+#import "Three20Launcher/private/TTLauncherScrollView.h"
+#import "Three20Launcher/private/TTLauncherHighlightView.h"
 
 // UI
-#import "Three20UI/TTLauncherButton.h"
-#import "Three20UI/TTLauncherItem.h"
-#import "Three20UI/TTLauncherViewDelegate.h"
 #import "Three20UI/TTPageControl.h"
 #import "Three20UI/UIViewAdditions.h"
-
-// UI (private)
-#import "Three20UI/private/TTLauncherScrollView.h"
-#import "Three20UI/private/TTLauncherHighlightView.h"
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
