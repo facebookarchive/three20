@@ -14,10 +14,21 @@
 // limitations under the License.
 //
 
-// Controller
-#import "Three20Launcher/TTLauncherViewController.h"
-
-// View
-#import "Three20Launcher/TTLauncherView.h"
+// Launcher
 #import "Three20Launcher/TTLauncherViewDelegate.h"
-#import "Three20Launcher/TTLauncherItem.h"
+
+// UI
+#import "Three20UI/TTViewController.h"
+
+@class TTLauncherView;
+
+@interface TTLauncherViewController : TTViewController <
+  TTLauncherViewDelegate
+> {
+@private
+  TTLauncherView* _launcherView;
+}
+
+@property (nonatomic, retain) TTLauncherView* launcherView;
+
+@end

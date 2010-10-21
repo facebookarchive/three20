@@ -62,6 +62,9 @@
 
 @property (nonatomic, copy) NSArray* pages;
 
+/**
+ * @default 4 columns.
+ */
 @property (nonatomic) NSInteger columnCount;
 
 @property (nonatomic, readonly) NSInteger rowCount;
