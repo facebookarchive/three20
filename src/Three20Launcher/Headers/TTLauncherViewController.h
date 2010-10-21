@@ -22,6 +22,13 @@
 
 @class TTLauncherView;
 
+/**
+ * A dead simple view controller with a launcher view covering the entire view.
+ *
+ * Displays and hides a "Done" button in the top-right corner when editing the launcher view.
+ *
+ * Default background color is black.
+ */
 @interface TTLauncherViewController : TTViewController <
   TTLauncherViewDelegate
 > {

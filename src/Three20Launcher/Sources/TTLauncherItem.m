@@ -17,7 +17,7 @@
 #import "Three20Launcher/TTLauncherItem.h"
 
 // Launcher
-#import "Three20Launcher/TTLauncherItemDelegate.h"
+#import "Three20Launcher/private/TTLauncherItemDelegate.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"

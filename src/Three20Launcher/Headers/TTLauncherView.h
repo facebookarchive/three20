@@ -17,7 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "Three20Launcher/TTLauncherItemDelegate.h"
+// Launcher (Private)
+#import "Three20Launcher/private/TTLauncherItemDelegate.h"
 
 @protocol TTLauncherViewDelegate;
 @class TTPageControl;
@@ -25,6 +26,11 @@
 @class TTLauncherItem;
 @class TTLauncherHighlightView;
 
+/**
+ * A view that mimics the functionality of the App Launcher found on all iOS devices.
+ *
+ * Implements tap-and-hold reordering, deleting icons, and icon badges.
+ */
 @interface TTLauncherView : UIView <
   UIScrollViewDelegate,
   TTLauncherItemDelegate

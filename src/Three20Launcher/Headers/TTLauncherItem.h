@@ -19,6 +19,11 @@
 
 @protocol TTLauncherItemDelegate;
 
+/**
+ * A simple data object for the launcher view.
+ *
+ * Defines the basic components used to create a TTLauncherButton.
+ */
 @interface TTLauncherItem : NSObject <NSCoding> {
   NSString*       _title;
   NSString*       _image;
@@ -32,15 +37,6 @@
   id<TTLauncherItemDelegate> _delegate;
 }
 
-@property (nonatomic, copy)   NSString*       title;
-@property (nonatomic, copy)   NSString*       image;
-@property (nonatomic, copy)   NSString*       URL;
-@property (nonatomic, copy)   NSString*       style;
-@property (nonatomic)         NSInteger       badgeNumber;
-@property (nonatomic)         BOOL            canDelete;
-
-@property (nonatomic, assign) id<TTLauncherItemDelegate> delegate;
-
 // Designated initializer.
 - (id)initWithTitle: (NSString*)title
               image: (NSString*)image
@@ -50,5 +46,49 @@
 - (id)initWithTitle: (NSString*)title
               image: (NSString*)image
                 URL: (NSString*)URL;
+
+
+/**
+ * The text shown directly below the icon.
+ */
+@property (nonatomic, copy)   NSString*       title;
+
+/**
+ * A URLPath to the image.
+ *
+ * TODO(jverkoey, Oct 21, 2010): This should be imageURLPath.
+ */
+@property (nonatomic, copy)   NSString*       image;
+
+/**
+ * The URLPath to execute when this item is tapped.
+ *
+ * TODO(jverkoey, Oct 21, 2010): This should be urlPath.
+ */
+@property (nonatomic, copy)   NSString*       URL;
+
+/**
+ * The TTStyle to use for the TTLauncherButton.
+ *
+ * @default If none is set, TTLauncherButton uses @"launcherButton:".
+ */
+@property (nonatomic, copy)   NSString*       style;
+
+/**
+ * The number shown in a badge in the corner of the button.
+ *
+ * Max value: 99
+ */
+@property (nonatomic)         NSInteger       badgeNumber;
+
+/**
+ * Whether or not to show the delete button in editing mode.
+ *
+ * TODO(jverkoey, Oct 21, 2010): This should be canShowDeleteButton.
+ */
+@property (nonatomic)         BOOL            canDelete;
+
+@property (nonatomic, assign) id<TTLauncherItemDelegate> delegate;
+
 
 @end
