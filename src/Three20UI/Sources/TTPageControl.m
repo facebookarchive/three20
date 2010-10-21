@@ -25,6 +25,7 @@
 #import "Three20Style/TTBoxStyle.h"
 
 // Core
+#import "Three20Core/TTDebug.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
 
@@ -149,7 +150,14 @@
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
   if (self.touchInside) {
     CGPoint point = [touch locationInView:self];
-    self.currentPage = round(point.x / self.width);
+
+    if (point.x < self.width / 2) {
+      self.currentPage = self.currentPage - 1;
+
+    } else {
+      self.currentPage = self.currentPage + 1;
+    }
+
     [self sendActionsForControlEvents:UIControlEventValueChanged];
   }
 }
@@ -164,7 +172,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setNumberOfPages:(NSInteger)numberOfPages {
   if (numberOfPages != _numberOfPages) {
-    _numberOfPages = numberOfPages;
+    TTDASSERT(numberOfPages >= 0);
+
+    _numberOfPages = MAX(0, numberOfPages);
     [self setNeedsDisplay];
   }
 }
@@ -173,7 +183,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCurrentPage:(NSInteger)currentPage {
   if (currentPage != _currentPage) {
-    _currentPage = currentPage;
+    _currentPage = MAX(0, MIN(_numberOfPages - 1,currentPage));
     [self setNeedsDisplay];
   }
 }
