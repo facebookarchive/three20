@@ -16,6 +16,9 @@
 
 #import "Three20Launcher/TTLauncherItem.h"
 
+// Launcher
+#import "Three20Launcher/TTLauncherItemDelegate.h"
+
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
@@ -25,13 +28,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTLauncherItem
 
-@synthesize launcher    = _launcher;
 @synthesize title       = _title;
 @synthesize image       = _image;
 @synthesize URL         = _URL;
 @synthesize style       = _style;
 @synthesize badgeNumber = _badgeNumber;
 @synthesize canDelete   = _canDelete;
+@synthesize delegate    = _delegate;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,7 +118,9 @@
 - (void)setBadgeNumber:(NSInteger)badgeNumber {
   _badgeNumber = badgeNumber;
 
-  [_launcher performSelector:@selector(updateItemBadge:) withObject:self];
+  if ([_delegate respondsToSelector:@selector(launcherItem:didChangeBadgeNumber:)]) {
+    [_delegate launcherItem:self didChangeBadgeNumber:badgeNumber];
+  }
 }
 
 

@@ -17,13 +17,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "Three20Launcher/TTLauncherItemDelegate.h"
+
 @protocol TTLauncherViewDelegate;
 @class TTPageControl;
 @class TTLauncherButton;
 @class TTLauncherItem;
 @class TTLauncherHighlightView;
 
-@interface TTLauncherView : UIView <UIScrollViewDelegate> {
+@interface TTLauncherView : UIView <
+  UIScrollViewDelegate,
+  TTLauncherItemDelegate
+> {
   NSMutableArray* _pages;
 
   NSInteger       _columnCount;

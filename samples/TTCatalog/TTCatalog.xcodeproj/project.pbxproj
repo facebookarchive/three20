@@ -243,280 +243,280 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A53761264D54B0032D0BE /* libThree20UICommon-Xcode3.2.5.a */;
+			remoteGlobalIDString = 665A53761264D54B0032D0BE;
 			remoteInfo = "Three20UICommon-Xcode3.2.5";
 		};
 		668CD221126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A53E61264D6550032D0BE /* libThree20UICommon-Xcode3.2.2.a */;
+			remoteGlobalIDString = 665A53E61264D6550032D0BE;
 			remoteInfo = "Three20UICommon-Xcode3.2.2";
 		};
 		668CD223126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UICommonUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20UICommonUnitTests;
 		};
 		668CD225126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A53891264D54B0032D0BE /* UICommonUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 665A53891264D54B0032D0BE;
 			remoteInfo = "Three20UICommonUnitTests-Xcode3.2.5";
 		};
 		668CD227126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A53F81264D6550032D0BE /* UICommonUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 665A53F81264D6550032D0BE;
 			remoteInfo = "Three20UICommonUnitTests-Xcode3.2.2";
 		};
 		668CD22E126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A55DE126521740032D0BE /* libThree20-Xcode3.2.5.a */;
+			remoteGlobalIDString = 665A55DE126521740032D0BE;
 			remoteInfo = "Three20-Xcode3.2.5";
 		};
 		668CD230126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8F171265E968001E0674 /* libThree20-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66FE8F171265E968001E0674;
 			remoteInfo = "Three20-Xcode3.2.2";
 		};
 		668CD232126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* Three20UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20UnitTests;
 		};
 		668CD234126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A55FB126521740032D0BE /* Three20UnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 665A55FB126521740032D0BE;
 			remoteInfo = "Three20UnitTests-Xcode3.2.5";
 		};
 		668CD236126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8F371265E968001E0674 /* Three20UnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66FE8F371265E968001E0674;
 			remoteInfo = "Three20UnitTests-Xcode3.2.2";
 		};
 		668CD23D126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A54521264DAF70032D0BE /* libThree20UINavigator-Xcode3.2.5.a */;
+			remoteGlobalIDString = 665A54521264DAF70032D0BE;
 			remoteInfo = "Three20UINavigator-Xcode3.2.5";
 		};
 		668CD23F126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8BFA1264DBC3001E0674 /* libThree20UINavigator-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66FE8BFA1264DBC3001E0674;
 			remoteInfo = "Three20UINavigator-Xcode3.2.2";
 		};
 		668CD241126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UINavigatorUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20UINavigatorUnitTests;
 		};
 		668CD243126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A54681264DAF70032D0BE /* UINavigatorUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 665A54681264DAF70032D0BE;
 			remoteInfo = "Three20UINavigatorUnitTests-Xcode3.2.5";
 		};
 		668CD245126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8C0F1264DBC3001E0674 /* UINavigatorUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66FE8C0F1264DBC3001E0674;
 			remoteInfo = "Three20UINavigatorUnitTests-Xcode3.2.2";
 		};
 		668CD24C126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */;
+			remoteGlobalIDString = 6650CAA21262F6E2003FF804;
 			remoteInfo = "Three20Core-Xcode3.2.5";
 		};
 		668CD24E126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66C2E0FC1262F748006DF55A;
 			remoteInfo = "Three20Core-Xcode3.2.2";
 		};
 		668CD250126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20CoreUnitTests;
 		};
 		668CD252126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 664961641262EE5000C2C80E;
 			remoteInfo = "Three20CoreUnitTests-Xcode3.2.5";
 		};
 		668CD254126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66F9A63C1262ED9F0059C2AE;
 			remoteInfo = "Three20CoreUnitTests-Xcode3.2.2";
 		};
 		668CD25B126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FC2BC81264E3A400F56B19 /* libThree20UI-Xcode3.2.5.a */;
+			remoteGlobalIDString = 66FC2BC81264E3A400F56B19;
 			remoteInfo = "Three20UI-Xcode3.2.5";
 		};
 		668CD25D126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8DDE1264E960001E0674 /* libThree20UI-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66FE8DDE1264E960001E0674;
 			remoteInfo = "Three20UI-Xcode3.2.2";
 		};
 		668CD25F126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UIUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20UIUnitTests;
 		};
 		668CD261126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FC2BE61264E3A500F56B19 /* UIUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 66FC2BE61264E3A500F56B19;
 			remoteInfo = "Three20UIUnitTests-Xcode3.2.5";
 		};
 		668CD263126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8DFB1264E960001E0674 /* UIUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66FE8DFB1264E960001E0674;
 			remoteInfo = "Three20UIUnitTests-Xcode3.2.2";
 		};
 		668CD26C126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */;
+			remoteGlobalIDString = 662D81EF12630516005851C2;
 			remoteInfo = "Three20Network-Xcode3.2.5";
 		};
 		668CD26E126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */;
+			remoteGlobalIDString = 662D821612630527005851C2;
 			remoteInfo = "Three20Network-Xcode3.2.2";
 		};
 		668CD270126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* NetworkUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20NetworkUnitTests;
 		};
 		668CD272126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 662D81B2126304EB005851C2 /* NetworkUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 662D81B2126304EB005851C2;
 			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
 		};
 		668CD274126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 662D81C7126304F3005851C2 /* NetworkUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 662D81C7126304F3005851C2;
 			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.2";
 		};
 		668CD27B126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66C16BE912639E2700A7825A /* libThree20Style-Xcode3.2.5.a */;
+			remoteGlobalIDString = 66C16BE912639E2700A7825A;
 			remoteInfo = "Three20Style-Xcode3.2.5";
 		};
 		668CD27D126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66846C7812639EE5001D2CF9 /* libThree20Style-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66846C7812639EE5001D2CF9;
 			remoteInfo = "Three20Style-Xcode3.2.2";
 		};
 		668CD27F126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* StyleUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20StyleUnitTests;
 		};
 		668CD281126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 66C16C0112639E4500A7825A;
 			remoteInfo = "Three20StyleUnitTests-Xcode3.2.5";
 		};
 		668CD283126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66846C9612639F29001D2CF9 /* StyleUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66846C9612639F29001D2CF9;
 			remoteInfo = "Three20StyleUnitTests-Xcode3.2.2";
 		};
 		668CD28A126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320879E1EF88FF5C8A27DB10 /* Three20Launcher.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FC2BC81264E3A400F56B19 /* libThree20Launcher-Xcode3.2.5.a */;
+			remoteGlobalIDString = 66FC2BC81264E3A400F56B19;
 			remoteInfo = "Three20UI-Xcode3.2.5";
 		};
 		668CD28C126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320879E1EF88FF5C8A27DB10 /* Three20Launcher.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8DDE1264E960001E0674 /* libThree20Launcher-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66FE8DDE1264E960001E0674;
 			remoteInfo = "Three20UI-Xcode3.2.2";
 		};
 		668CD28E126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320879E1EF88FF5C8A27DB10 /* Three20Launcher.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* Three20LauncherUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20UIUnitTests;
 		};
 		668CD290126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320879E1EF88FF5C8A27DB10 /* Three20Launcher.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FC2BE61264E3A500F56B19 /* Three20LauncherUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 66FC2BE61264E3A500F56B19;
 			remoteInfo = "Three20UIUnitTests-Xcode3.2.5";
 		};
 		668CD292126FF9CB00607FD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320879E1EF88FF5C8A27DB10 /* Three20Launcher.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8DFB1264E960001E0674 /* Three20LauncherUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66FE8DFB1264E960001E0674;
 			remoteInfo = "Three20UIUnitTests-Xcode3.2.2";
 		};
 /* End PBXContainerItemProxy section */

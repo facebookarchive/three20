@@ -89,11 +89,12 @@ static const NSInteger kDefaultColumnCount = 3;
 
     _pager = [[TTPageControl alloc] init];
     _pager.dotStyle = @"launcherPageDot:";
-    _pager.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
-    |UIViewAutoresizingFlexibleRightMargin
-    |UIViewAutoresizingFlexibleBottomMargin;
-    [_pager addTarget:self action:@selector(pageChanged)
-     forControlEvents:UIControlEventValueChanged];
+    _pager.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin
+                               | UIViewAutoresizingFlexibleRightMargin
+                               | UIViewAutoresizingFlexibleBottomMargin);
+    [_pager addTarget: self
+               action: @selector(pageChanged)
+     forControlEvents: UIControlEventValueChanged];
     [self addSubview:_pager];
 
     self.autoresizesSubviews = YES;
@@ -108,7 +109,7 @@ static const NSInteger kDefaultColumnCount = 3;
 - (void)dealloc {
   for (NSArray* page in _pages) {
     for (TTLauncherItem* item in page) {
-      item.launcher = nil;
+      item.delegate = nil;
     }
   }
 
@@ -196,7 +197,12 @@ static const NSInteger kDefaultColumnCount = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateItemBadge:(TTLauncherItem*)item {
+#pragma mark -
+#pragma mark TTLauncherItemDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)launcherItem:(TTLauncherItem*)item didChangeBadgeNumber:(NSInteger)badgeNumber {
   TTLauncherButton* button = [self buttonForItem:item];
   [button performSelector:@selector(updateBadge)];
 }
@@ -748,7 +754,7 @@ static const NSInteger kDefaultColumnCount = 3;
 - (void)setPages:(NSArray*)pages {
   for (NSArray* page in _pages) {
     for (TTLauncherItem* item in page) {
-      item.launcher = nil;
+      item.delegate = nil;
     }
   }
 
@@ -759,7 +765,7 @@ static const NSInteger kDefaultColumnCount = 3;
     NSMutableArray* pageCopy = [page mutableCopy];
     [_pages addObject:pageCopy];
     for (TTLauncherItem* item in pageCopy) {
-      item.launcher = self;
+      item.delegate = self;
     }
     [pageCopy release];
   }
@@ -804,7 +810,7 @@ static const NSInteger kDefaultColumnCount = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addItem:(TTLauncherItem*)item animated:(BOOL)animated {
   if (![self itemWithURL:item.URL]) {
-    item.launcher = self;
+    item.delegate = self;
 
     if (!_pages) {
       _pages = [[NSMutableArray arrayWithObject:[NSMutableArray arrayWithObject:item]] retain];
@@ -833,7 +839,7 @@ static const NSInteger kDefaultColumnCount = 3;
     TTLauncherButton* button = [self buttonForItem:item];
     NSMutableArray* buttonPage = [self pageWithButton:button];
 
-    item.launcher = nil;
+    item.delegate = nil;
     [itemPage removeObject:button.item];
 
     if (buttonPage) {
