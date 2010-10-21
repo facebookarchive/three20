@@ -33,7 +33,10 @@
   TTLauncherViewDelegate
 > {
 @private
-  TTLauncherView* _launcherView;
+  TTLauncherView*   _launcherView;
+
+  // Stored while editing.
+  UIBarButtonItem*  _oldRightBarButtonItem;
 }
 
 @property (nonatomic, retain) TTLauncherView* launcherView;
