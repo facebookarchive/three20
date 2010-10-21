@@ -41,6 +41,9 @@
 		668CC6D3126FE46500607FD1 /* TTLauncherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 668CC6C4126FE46500607FD1 /* TTLauncherItem.m */; };
 		668CC6D4126FE46500607FD1 /* TTLauncherScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668CC6C5126FE46500607FD1 /* TTLauncherScrollView.m */; };
 		668CC6D5126FE46500607FD1 /* TTLauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668CC6C6126FE46500607FD1 /* TTLauncherView.m */; };
+		668CD331127001DA00607FD1 /* TTLauncherItemDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 668CD330127001DA00607FD1 /* TTLauncherItemDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		668CD332127001DA00607FD1 /* TTLauncherItemDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 668CD330127001DA00607FD1 /* TTLauncherItemDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		668CD333127001DA00607FD1 /* TTLauncherItemDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 668CD330127001DA00607FD1 /* TTLauncherItemDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66FC2AA81264E2DA00F56B19 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FC2AA71264E2DA00F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		66FC2AC11264E3A400F56B19 /* Three20Launcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20Launcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66FC2AC21264E3A400F56B19 /* Three20Launcher+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454921184D3ED00F08CB1 /* Three20Launcher+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -598,6 +601,7 @@
 		668CC6C4126FE46500607FD1 /* TTLauncherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLauncherItem.m; path = Sources/TTLauncherItem.m; sourceTree = "<group>"; };
 		668CC6C5126FE46500607FD1 /* TTLauncherScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLauncherScrollView.m; path = Sources/TTLauncherScrollView.m; sourceTree = "<group>"; };
 		668CC6C6126FE46500607FD1 /* TTLauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLauncherView.m; path = Sources/TTLauncherView.m; sourceTree = "<group>"; };
+		668CD330127001DA00607FD1 /* TTLauncherItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherItemDelegate.h; path = Headers/TTLauncherItemDelegate.h; sourceTree = "<group>"; };
 		66FC2AA71264E2DA00F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66FC2BC81264E3A400F56B19 /* libThree20Launcher-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Launcher-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FC2BE61264E3A500F56B19 /* Three20LauncherUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Three20LauncherUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -808,6 +812,7 @@
 			children = (
 				668CC6AC126FE45D00607FD1 /* TTLauncherItem.h */,
 				668CC6C4126FE46500607FD1 /* TTLauncherItem.m */,
+				668CD330127001DA00607FD1 /* TTLauncherItemDelegate.h */,
 			);
 			name = "Launcher Item";
 			sourceTree = "<group>";
@@ -890,6 +895,7 @@
 				668CC6B9126FE45D00607FD1 /* TTLauncherScrollView.h in Headers */,
 				668CC6BA126FE45D00607FD1 /* TTLauncherView.h in Headers */,
 				668CC6BB126FE45D00607FD1 /* TTLauncherViewDelegate.h in Headers */,
+				668CD331127001DA00607FD1 /* TTLauncherItemDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,6 +911,7 @@
 				668CC6BF126FE45D00607FD1 /* TTLauncherScrollView.h in Headers */,
 				668CC6C0126FE45D00607FD1 /* TTLauncherView.h in Headers */,
 				668CC6C1126FE45D00607FD1 /* TTLauncherViewDelegate.h in Headers */,
+				668CD332127001DA00607FD1 /* TTLauncherItemDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,6 +927,7 @@
 				668CC6B3126FE45D00607FD1 /* TTLauncherScrollView.h in Headers */,
 				668CC6B4126FE45D00607FD1 /* TTLauncherView.h in Headers */,
 				668CC6B5126FE45D00607FD1 /* TTLauncherViewDelegate.h in Headers */,
+				668CD333127001DA00607FD1 /* TTLauncherItemDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

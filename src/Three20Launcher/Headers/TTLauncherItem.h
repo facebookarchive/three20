@@ -17,11 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class TTLauncherView;
+@protocol TTLauncherItemDelegate;
 
 @interface TTLauncherItem : NSObject <NSCoding> {
-  TTLauncherView* _launcher;
-
   NSString*       _title;
   NSString*       _image;
   NSString*       _URL;
@@ -30,9 +28,10 @@
   NSInteger       _badgeNumber;
 
   BOOL            _canDelete;
+
+  id<TTLauncherItemDelegate> _delegate;
 }
 
-@property (nonatomic, assign) TTLauncherView* launcher;
 @property (nonatomic, copy)   NSString*       title;
 @property (nonatomic, copy)   NSString*       image;
 @property (nonatomic, copy)   NSString*       URL;
@@ -40,8 +39,16 @@
 @property (nonatomic)         NSInteger       badgeNumber;
 @property (nonatomic)         BOOL            canDelete;
 
-- (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL;
-- (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL
-      canDelete:(BOOL)canDelete;
+@property (nonatomic, assign) id<TTLauncherItemDelegate> delegate;
+
+// Designated initializer.
+- (id)initWithTitle: (NSString*)title
+              image: (NSString*)image
+                URL: (NSString*)URL
+          canDelete: (BOOL)canDelete;
+
+- (id)initWithTitle: (NSString*)title
+              image: (NSString*)image
+                URL: (NSString*)URL;
 
 @end
