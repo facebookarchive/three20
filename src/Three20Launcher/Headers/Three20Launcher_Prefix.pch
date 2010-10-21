@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'Three20Launcher' target in the 'Three20Launcher' project
+//
+
+#import "../../common/Xcode324iOS41Fix.pch"
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import <UIKit/UIKit.h>
+#endif
+
