@@ -220,6 +220,7 @@ static const NSInteger kDefaultColumnCount = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updatePagerWithContentOffset:(CGPoint)contentOffset {
   CGFloat pageWidth = _scrollView.width;
+  _pager.numberOfPages = [self.pages count];
   _pager.currentPage = floor((contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 }
 
