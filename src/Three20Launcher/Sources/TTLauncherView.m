@@ -735,7 +735,8 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)pageChanged {
-  _scrollView.contentOffset = CGPointMake(_pager.currentPage * _scrollView.width, 0);
+  [_scrollView setContentOffset: CGPointMake(_pager.currentPage * _scrollView.width, 0)
+                       animated: YES];
 }
 
 
