@@ -44,10 +44,6 @@
 #import "Three20UI/TTScrollViewDelegate.h"
 #import "Three20UI/TTScrollViewDataSource.h"
 
-#import "Three20UI/TTLauncherView.h"
-#import "Three20UI/TTLauncherViewDelegate.h"
-#import "Three20UI/TTLauncherItem.h"
-
 #import "Three20UI/TTLabel.h"
 #import "Three20UI/TTStyledTextLabel.h"
 #import "Three20UI/TTActivityLabel.h"
