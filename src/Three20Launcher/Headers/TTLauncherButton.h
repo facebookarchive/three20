@@ -20,6 +20,9 @@
 @class TTLauncherItem;
 @class TTLabel;
 
+/**
+ * A button defined created using a TTLauncherItem's data.
+ */
 @interface TTLauncherButton : TTButton {
   TTLauncherItem* _item;
   TTLabel*        _badge;
