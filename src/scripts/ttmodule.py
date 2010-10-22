@@ -78,6 +78,8 @@ def add_modules_to_project(module_names, project, configs):
 	for k,v in modules.items():
 		if v.name == 'Three20UI':
 			project.add_framework('QuartzCore.framework')
+		if v.name == 'Three20Core':
+			project.add_bundle()
 
 		if not project.add_dependency(v):
 			failed.append(k)
