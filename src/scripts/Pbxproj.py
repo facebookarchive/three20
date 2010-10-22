@@ -310,12 +310,17 @@ class Pbxproj(object):
 
 		return True
 
+	def get_rel_path_to_products_dir(self):
+		project_path = os.path.dirname(os.path.abspath(self.xcodeprojpath()))
+		build_path = os.path.join(os.path.join(os.path.dirname(Paths.src_dir), 'Build'), 'Products')
+		return relpath(project_path, build_path)
+
 	def add_header_search_path(self, configuration):
 		project_path = os.path.dirname(os.path.abspath(self.xcodeprojpath()))
 		build_path = os.path.join(os.path.join(os.path.join(os.path.dirname(Paths.src_dir), 'Build'), 'Products'), 'three20')
 		rel_path = relpath(project_path, build_path)
 
-		return self.add_build_setting(configuration, 'HEADER_SEARCH_PATHS', rel_path)
+		return self.add_build_setting(configuration, 'HEADER_SEARCH_PATHS', '"'+rel_path+'"')
 	
 	def add_build_setting(self, configuration, setting_name, value):
 		project_data = self.get_project_data()
@@ -333,7 +338,7 @@ class Pbxproj(object):
 		match = re.search(re.escape(setting_name)+' = ((?:.|\n)+?);', build_settings)
 
 		if not match:
-			settingtext = '\t\t\t\t'+setting_name+' = "'+value+'";\n'
+			settingtext = '\t\t\t\t'+setting_name+' = '+value+';\n'
 
 			project_data = project_data[:settings_start] + settingtext + project_data[settings_start:]
 		else:
@@ -343,12 +348,12 @@ class Pbxproj(object):
 				if not match:
 					match = re.search(re.escape(setting_name)+' = \(\n', build_settings)
 
-					build_settings = build_settings[:match.end()] + '\t\t\t\t\t"'+value+'",\n' + build_settings[match.end():]
+					build_settings = build_settings[:match.end()] + '\t\t\t\t\t'+value+',\n' + build_settings[match.end():]
 					project_data = project_data[:settings_start] + build_settings + project_data[settings_end:]
 			else:
 				if search_paths != value:
 					existing_path = search_paths
-					path_set = '(\n\t\t\t\t\t"'+value+'",\n\t\t\t\t\t'+existing_path+'\n\t\t\t\t)'
+					path_set = '(\n\t\t\t\t\t'+value+',\n\t\t\t\t\t'+existing_path+'\n\t\t\t\t)'
 					build_settings = build_settings[:match.start(1)] + path_set + build_settings[match.end(1):]
 					project_data = project_data[:settings_start] + build_settings + project_data[settings_end:]
 
