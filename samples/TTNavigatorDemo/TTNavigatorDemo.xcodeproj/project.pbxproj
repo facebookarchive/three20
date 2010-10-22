@@ -504,11 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37958511B9B7560011C497 /* libThree20Core.a */,
-				66D12A801274CB1D00E567B4 /* libThree20Core-Xcode3.2.5.a */,
-				66D12A821274CB1D00E567B4 /* libThree20Core-Xcode3.2.2.a */,
 				6E37958711B9B7560011C497 /* CoreUnitTests.octest */,
-				66D12A841274CB1D00E567B4 /* CoreUnitTests-Xcode3.2.5.octest */,
-				66D12A861274CB1D00E567B4 /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -517,11 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37958B11B9B7560011C497 /* libThree20Network.a */,
-				66D12A8D1274CB1D00E567B4 /* libThree20Network-Xcode3.2.5.a */,
-				66D12A8F1274CB1D00E567B4 /* libThree20Network-Xcode3.2.2.a */,
-				6E37958D11B9B7560011C497 /* NetworkUnitTests.octest */,
-				66D12A911274CB1D00E567B4 /* NetworkUnitTests-Xcode3.2.5.octest */,
-				66D12A931274CB1D00E567B4 /* NetworkUnitTests-Xcode3.2.2.octest */,
+				6E37958D11B9B7560011C497 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -530,11 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37959111B9B7560011C497 /* libThree20Style.a */,
-				66D12A9A1274CB1D00E567B4 /* libThree20Style-Xcode3.2.5.a */,
-				66D12A9C1274CB1D00E567B4 /* libThree20Style-Xcode3.2.2.a */,
-				6E37959311B9B7560011C497 /* StyleUnitTests.octest */,
-				66D12A9E1274CB1D00E567B4 /* StyleUnitTests-Xcode3.2.5.octest */,
-				66D12AA01274CB1D00E567B4 /* StyleUnitTests-Xcode3.2.2.octest */,
+				6E37959311B9B7560011C497 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -543,11 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37959711B9B7560011C497 /* libThree20UICommon.a */,
-				66D12AA71274CB1D00E567B4 /* libThree20UICommon-Xcode3.2.5.a */,
-				66D12AA91274CB1D00E567B4 /* libThree20UICommon-Xcode3.2.2.a */,
-				6E37959911B9B7560011C497 /* UICommonUnitTests.octest */,
-				66D12AAB1274CB1D00E567B4 /* UICommonUnitTests-Xcode3.2.5.octest */,
-				66D12AAD1274CB1D00E567B4 /* UICommonUnitTests-Xcode3.2.2.octest */,
+				6E37959911B9B7560011C497 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -556,11 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37959D11B9B7560011C497 /* libThree20UINavigator.a */,
-				66D12AB41274CB1D00E567B4 /* libThree20UINavigator-Xcode3.2.5.a */,
-				66D12AB61274CB1D00E567B4 /* libThree20UINavigator-Xcode3.2.2.a */,
-				6E37959F11B9B7560011C497 /* UINavigatorUnitTests.octest */,
-				66D12AB81274CB1D00E567B4 /* UINavigatorUnitTests-Xcode3.2.5.octest */,
-				66D12ABA1274CB1D00E567B4 /* UINavigatorUnitTests-Xcode3.2.2.octest */,
+				6E37959F11B9B7560011C497 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -569,11 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				6E3795A311B9B7560011C497 /* libThree20UI.a */,
-				66D12AC11274CB1D00E567B4 /* libThree20UI-Xcode3.2.5.a */,
-				66D12AC31274CB1D00E567B4 /* libThree20UI-Xcode3.2.2.a */,
-				6E3795A511B9B7560011C497 /* UIUnitTests.octest */,
-				66D12AC51274CB1D00E567B4 /* UIUnitTests-Xcode3.2.5.octest */,
-				66D12AC71274CB1D00E567B4 /* UIUnitTests-Xcode3.2.2.octest */,
+				6E3795A511B9B7560011C497 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -607,11 +583,7 @@
 			isa = PBXGroup;
 			children = (
 				6E7F9906118E396F00443B46 /* libThree20.a */,
-				66D12ACE1274CB1D00E567B4 /* libThree20-Xcode3.2.5.a */,
-				66D12AD01274CB1D00E567B4 /* libThree20-Xcode3.2.2.a */,
-				6E7F9908118E396F00443B46 /* Three20UnitTests.octest */,
-				66D12AD21274CB1D00E567B4 /* Three20UnitTests-Xcode3.2.5.octest */,
-				66D12AD41274CB1D00E567B4 /* Three20UnitTests-Xcode3.2.2.octest */,
+				6E7F9908118E396F00443B46 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -699,202 +671,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		66D12A801274CB1D00E567B4 /* libThree20Core-Xcode3.2.5.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Core-Xcode3.2.5.a";
-			remoteRef = 66D12A7F1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A821274CB1D00E567B4 /* libThree20Core-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Core-Xcode3.2.2.a";
-			remoteRef = 66D12A811274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A841274CB1D00E567B4 /* CoreUnitTests-Xcode3.2.5.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "CoreUnitTests-Xcode3.2.5.octest";
-			remoteRef = 66D12A831274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A861274CB1D00E567B4 /* CoreUnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "CoreUnitTests-Xcode3.2.2.octest";
-			remoteRef = 66D12A851274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A8D1274CB1D00E567B4 /* libThree20Network-Xcode3.2.5.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Network-Xcode3.2.5.a";
-			remoteRef = 66D12A8C1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A8F1274CB1D00E567B4 /* libThree20Network-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Network-Xcode3.2.2.a";
-			remoteRef = 66D12A8E1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A911274CB1D00E567B4 /* NetworkUnitTests-Xcode3.2.5.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "NetworkUnitTests-Xcode3.2.5.octest";
-			remoteRef = 66D12A901274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A931274CB1D00E567B4 /* NetworkUnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "NetworkUnitTests-Xcode3.2.2.octest";
-			remoteRef = 66D12A921274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A9A1274CB1D00E567B4 /* libThree20Style-Xcode3.2.5.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Style-Xcode3.2.5.a";
-			remoteRef = 66D12A991274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A9C1274CB1D00E567B4 /* libThree20Style-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Style-Xcode3.2.2.a";
-			remoteRef = 66D12A9B1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12A9E1274CB1D00E567B4 /* StyleUnitTests-Xcode3.2.5.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "StyleUnitTests-Xcode3.2.5.octest";
-			remoteRef = 66D12A9D1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AA01274CB1D00E567B4 /* StyleUnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "StyleUnitTests-Xcode3.2.2.octest";
-			remoteRef = 66D12A9F1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AA71274CB1D00E567B4 /* libThree20UICommon-Xcode3.2.5.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20UICommon-Xcode3.2.5.a";
-			remoteRef = 66D12AA61274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AA91274CB1D00E567B4 /* libThree20UICommon-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20UICommon-Xcode3.2.2.a";
-			remoteRef = 66D12AA81274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AAB1274CB1D00E567B4 /* UICommonUnitTests-Xcode3.2.5.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "UICommonUnitTests-Xcode3.2.5.octest";
-			remoteRef = 66D12AAA1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AAD1274CB1D00E567B4 /* UICommonUnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "UICommonUnitTests-Xcode3.2.2.octest";
-			remoteRef = 66D12AAC1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AB41274CB1D00E567B4 /* libThree20UINavigator-Xcode3.2.5.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20UINavigator-Xcode3.2.5.a";
-			remoteRef = 66D12AB31274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AB61274CB1D00E567B4 /* libThree20UINavigator-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20UINavigator-Xcode3.2.2.a";
-			remoteRef = 66D12AB51274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AB81274CB1D00E567B4 /* UINavigatorUnitTests-Xcode3.2.5.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "UINavigatorUnitTests-Xcode3.2.5.octest";
-			remoteRef = 66D12AB71274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12ABA1274CB1D00E567B4 /* UINavigatorUnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "UINavigatorUnitTests-Xcode3.2.2.octest";
-			remoteRef = 66D12AB91274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AC11274CB1D00E567B4 /* libThree20UI-Xcode3.2.5.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20UI-Xcode3.2.5.a";
-			remoteRef = 66D12AC01274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AC31274CB1D00E567B4 /* libThree20UI-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20UI-Xcode3.2.2.a";
-			remoteRef = 66D12AC21274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AC51274CB1D00E567B4 /* UIUnitTests-Xcode3.2.5.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "UIUnitTests-Xcode3.2.5.octest";
-			remoteRef = 66D12AC41274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AC71274CB1D00E567B4 /* UIUnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "UIUnitTests-Xcode3.2.2.octest";
-			remoteRef = 66D12AC61274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12ACE1274CB1D00E567B4 /* libThree20-Xcode3.2.5.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20-Xcode3.2.5.a";
-			remoteRef = 66D12ACD1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AD01274CB1D00E567B4 /* libThree20-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20-Xcode3.2.2.a";
-			remoteRef = 66D12ACF1274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AD21274CB1D00E567B4 /* Three20UnitTests-Xcode3.2.5.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Three20UnitTests-Xcode3.2.5.octest";
-			remoteRef = 66D12AD11274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66D12AD41274CB1D00E567B4 /* Three20UnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Three20UnitTests-Xcode3.2.2.octest";
-			remoteRef = 66D12AD31274CB1D00E567B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		6E37958511B9B7560011C497 /* libThree20Core.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -916,10 +692,10 @@
 			remoteRef = 6E37958A11B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37958D11B9B7560011C497 /* NetworkUnitTests.octest */ = {
+		6E37958D11B9B7560011C497 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = NetworkUnitTests.octest;
+			path = UnitTests.octest;
 			remoteRef = 6E37958C11B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -930,10 +706,10 @@
 			remoteRef = 6E37959011B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37959311B9B7560011C497 /* StyleUnitTests.octest */ = {
+		6E37959311B9B7560011C497 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = StyleUnitTests.octest;
+			path = UnitTests.octest;
 			remoteRef = 6E37959211B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -944,10 +720,10 @@
 			remoteRef = 6E37959611B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37959911B9B7560011C497 /* UICommonUnitTests.octest */ = {
+		6E37959911B9B7560011C497 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UICommonUnitTests.octest;
+			path = UnitTests.octest;
 			remoteRef = 6E37959811B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -958,10 +734,10 @@
 			remoteRef = 6E37959C11B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37959F11B9B7560011C497 /* UINavigatorUnitTests.octest */ = {
+		6E37959F11B9B7560011C497 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UINavigatorUnitTests.octest;
+			path = UnitTests.octest;
 			remoteRef = 6E37959E11B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -972,10 +748,10 @@
 			remoteRef = 6E3795A211B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E3795A511B9B7560011C497 /* UIUnitTests.octest */ = {
+		6E3795A511B9B7560011C497 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UIUnitTests.octest;
+			path = UnitTests.octest;
 			remoteRef = 6E3795A411B9B7560011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -986,10 +762,10 @@
 			remoteRef = 6E7F9905118E396F00443B46 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E7F9908118E396F00443B46 /* Three20UnitTests.octest */ = {
+		6E7F9908118E396F00443B46 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = Three20UnitTests.octest;
+			path = UnitTests.octest;
 			remoteRef = 6E7F9907118E396F00443B46 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1072,7 +848,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = Info.plist;
-				SDKROOT = iphoneos4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				SDKROOT = iphonesimulator4.0;
 			};
 			name = Debug;
 		};
@@ -1082,7 +859,8 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				INFOPLIST_FILE = Info.plist;
-				SDKROOT = iphoneos4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				SDKROOT = iphonesimulator4.0;
 			};
 			name = Release;
 		};
@@ -1090,11 +868,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E7F9923118E39B500443B46 /* Project.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
@@ -1102,12 +883,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E7F9923118E39B500443B46 /* Project.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = DefaultProfileUuid;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
 		};
