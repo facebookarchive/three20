@@ -373,19 +373,28 @@ class Pbxproj(object):
 		match = re.search(re.escape(setting_name)+' = ((?:.|\n)+?);', build_settings)
 
 		if not match:
+			# Add a brand new build setting. No checking for existing settings necessary.
 			settingtext = '\t\t\t\t'+setting_name+' = '+value+';\n'
 
 			project_data = project_data[:settings_start] + settingtext + project_data[settings_start:]
 		else:
+			# Build settings already exist. Is there one or many?
 			(search_paths,) = match.groups()
 			if re.search('\(\n', search_paths):
+				# Many
 				match = re.search(re.escape(value), search_paths)
 				if not match:
-					match = re.search(re.escape(setting_name)+' = \(\n', build_settings)
+					# If value has any spaces in it, Xcode will split it up into
+					# multiple entries.
+					escaped_value = re.escape(value).replace(' ', '",\n[ \t]+"')
+					match = re.search(escaped_value, search_paths)
+					if not match:
+						match = re.search(re.escape(setting_name)+' = \(\n', build_settings)
 
-					build_settings = build_settings[:match.end()] + '\t\t\t\t\t'+value+',\n' + build_settings[match.end():]
-					project_data = project_data[:settings_start] + build_settings + project_data[settings_end:]
+						build_settings = build_settings[:match.end()] + '\t\t\t\t\t'+value+',\n' + build_settings[match.end():]
+						project_data = project_data[:settings_start] + build_settings + project_data[settings_end:]
 			else:
+				# One
 				if search_paths != value:
 					existing_path = search_paths
 					path_set = '(\n\t\t\t\t\t'+value+',\n\t\t\t\t\t'+existing_path+'\n\t\t\t\t)'
@@ -649,9 +658,9 @@ class Pbxproj(object):
 		if match:
 			logging.info("This product group already exists.")
 			(children, ) = match.groups()
-			match = re.search('([A-Z0-9]+) \/\* '+dep._product_name+' \*\/', children)
+			match = re.search('([A-Z0-9]+) \/\* '+re.escape(dep._product_name)+' \*\/', children)
 			if not match:
-				logging.error("No product found.")
+				logging.error("No product found")
 				return False
 				# TODO: Add this product.
 			else:
@@ -727,7 +736,7 @@ class Pbxproj(object):
 		if not referenceExists:
 			match = re.search('\/\* Begin PBXReferenceProxy section \*\/\n', project_data)
 
-			referenceproxytext = "\t\t"+lib_hash+" /* "+dep._product_name+" */ = {\n\t\t\tisa = PBXReferenceProxy;\n\t\t\tfileType = archive.ar;\n\t\t\tpath = "+dep._product_name+";\n\t\t\tremoteRef = "+targetproduct_hash+" /* PBXContainerItemProxy */;\n\t\t\tsourceTree = BUILT_PRODUCTS_DIR;\n\t\t};\n"
+			referenceproxytext = "\t\t"+lib_hash+" /* "+dep._product_name+" */ = {\n\t\t\tisa = PBXReferenceProxy;\n\t\t\tfileType = archive.ar;\n\t\t\tpath = \""+dep._product_name+"\";\n\t\t\tremoteRef = "+targetproduct_hash+" /* PBXContainerItemProxy */;\n\t\t\tsourceTree = BUILT_PRODUCTS_DIR;\n\t\t};\n"
 			project_data = project_data[:match.end()] + referenceproxytext + project_data[match.end():]
 
 		logging.info("Done: Created reference proxy.")
