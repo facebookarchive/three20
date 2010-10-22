@@ -934,7 +934,7 @@
 			productReference = 66FC2BC81264E3A400F56B19 /* libThree20Launcher-Xcode3.2.5.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		66FC2BC91264E3A500F56B19 /* Three20UIUnitTests-Xcode3.2.5 */ = {
+		66FC2BC91264E3A500F56B19 /* Three20LauncherUnitTests-Xcode3.2.5 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66FC2BE21264E3A500F56B19 /* Build configuration list for PBXNativeTarget "Three20LauncherUnitTests-Xcode3.2.5" */;
 			buildPhases = (
@@ -978,7 +978,7 @@
 			productReference = 66FE8DDE1264E960001E0674 /* libThree20Launcher-Xcode3.2.2.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		66FE8DDF1264E960001E0674 /* Three20UIUnitTests-Xcode3.2.2 */ = {
+		66FE8DDF1264E960001E0674 /* Three20LauncherUnitTests-Xcode3.2.2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66FE8DF71264E960001E0674 /* Build configuration list for PBXNativeTarget "Three20LauncherUnitTests-Xcode3.2.2" */;
 			buildPhases = (
@@ -1022,7 +1022,7 @@
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libThree20Launcher.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* Three20UnitTests */ = {
+		EB9E6C6110B6A8F800DE563C /* Three20LauncherUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "Three20LauncherUnitTests" */;
 			buildPhases = (
@@ -1096,9 +1096,9 @@
 				BEF31F390F352DF5000DE5D2 /* Three20Launcher */,
 				66FC2AB51264E3A400F56B19 /* Three20Launcher-Xcode3.2.5 */,
 				66FE8CCB1264E960001E0674 /* Three20Launcher-Xcode3.2.2 */,
-				EB9E6C6110B6A8F800DE563C /* Three20UnitTests */,
-				66FC2BC91264E3A500F56B19 /* Three20UIUnitTests-Xcode3.2.5 */,
-				66FE8DDF1264E960001E0674 /* Three20UIUnitTests-Xcode3.2.2 */,
+				EB9E6C6110B6A8F800DE563C /* Three20LauncherUnitTests */,
+				66FC2BC91264E3A500F56B19 /* Three20LauncherUnitTests-Xcode3.2.5 */,
+				66FE8DDF1264E960001E0674 /* Three20LauncherUnitTests-Xcode3.2.2 */,
 			);
 		};
 /* End PBXProject section */
