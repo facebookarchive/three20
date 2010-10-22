@@ -33,6 +33,27 @@ OBJC_LIB          = -lobjc
 ALWAYS_SEARCH_USER_PATHS = NO
 
 //
+// Three20 Modules
+//
+
+THREE20CORE_LIB         = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Core.a"
+THREE20NETWORK_LIB      = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Network.a"
+THREE20STYLE_LIB        = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Style.a"
+THREE20UICOMMON_LIB     = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UICommon.a"
+THREE20UINAVIGATOR_LIB  = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UINavigator.a"
+THREE20UI_LIB           = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UI.a"
+THREE20_LIB             = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20.a"
+
+//
+// Three20 Extensions
+//
+
+EXTTHREE20CSSSTYLE_LIB    = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20CSSStyle.a"
+EXTTHREE20XML_LIB         = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20XML.a"
+EXTTHREE20JSONSBJSON_LIB  = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20JSON+SBJSON.a"
+EXTTHREE20JSONYAJL_LIB    = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20JSON+YAJL.a"
+
+//
 // Frameworks
 //
 
