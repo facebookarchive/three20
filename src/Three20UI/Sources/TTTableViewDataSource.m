@@ -136,10 +136,10 @@
       cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
                                reuseIdentifier:identifier] autorelease];
     }
-      
-    if ([cell isKindOfClass:[TTTableViewCell class]]) {
-      [(TTTableViewCell*)cell setObject:object];
-    }
+  }
+    
+  if ([cell isKindOfClass:[TTTableViewCell class]]) {
+    [(TTTableViewCell*)cell setObject:object];
   }
  
   [self tableView:tableView cell:cell willAppearAtIndexPath:indexPath];
