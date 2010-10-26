@@ -333,6 +333,9 @@ static const NSInteger kLoadMaxRetries = 2;
     [_queue loader:self didLoadUnmodifiedResponse:_response];
 
   } else {
+    // Process the response incase the data contains error messages
+    [self processResponse:_response data:_responseData];
+       
     TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  FAILED LOADING (%d) %@",
                     _response.statusCode, _urlPath);
     NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
@@ -342,6 +345,12 @@ static const NSInteger kLoadMaxRetries = 2;
 
   TT_RELEASE_SAFELY(_responseData);
   TT_RELEASE_SAFELY(_connection);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return YES;
 }
 
 

@@ -27,7 +27,7 @@
 #define TTDFLAG_NAVIGATOR                   0
 #define TTDFLAG_TABLEVIEWMODIFICATIONS      0
 #define TTDFLAG_LAUNCHERVIEW                0
-#define TTDFLAG_URLREQUEST                  0
-#define TTDFLAG_URLCACHE                    0
+#define TTDFLAG_URLREQUEST                  1
+#define TTDFLAG_URLCACHE                    1
 #define TTDFLAG_XMLPARSER                   0
-#define TTDFLAG_ETAGS                       0
+#define TTDFLAG_ETAGS                       1
