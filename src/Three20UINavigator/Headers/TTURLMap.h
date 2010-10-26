@@ -158,6 +158,11 @@
 - (BOOL)isAppURL:(NSURL*)URL;
 
 /**
+ * Returns YES if the URL is for email
+ */
+- (BOOL)isMailURL:(NSURL*)URL;
+
+/**
  * Gets a URL that has been mapped to the object.
  */
 - (NSString*)URLForObject:(id)object;
