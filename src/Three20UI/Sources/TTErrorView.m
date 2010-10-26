@@ -39,7 +39,7 @@ static const CGFloat kHPadding  = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image {
-  if (self = [self init]) {
+  if (self = [self initWithFrame:CGRectZero]) {
     self.title = title;
     self.subtitle = subtitle;
     self.image = image;
@@ -61,6 +61,7 @@ static const CGFloat kHPadding  = 10;
     _titleView.textColor = TTSTYLEVAR(tableErrorTextColor);
     _titleView.font = TTSTYLEVAR(errorTitleFont);
     _titleView.textAlignment = UITextAlignmentCenter;
+    _titleView.adjustsFontSizeToFitWidth = YES;
     [self addSubview:_titleView];
 
     _subtitleView = [[UILabel alloc] init];
