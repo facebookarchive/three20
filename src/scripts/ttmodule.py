@@ -60,7 +60,7 @@ def add_modules_to_project(module_names, project, configs):
 	logging.info(project)
 	logging.info("Checking dependencies...")
 	if project.dependencies() is None:
-		logging.error("Failed to get dependencies; it's possible that the given target doesn't exist.")
+		logging.error("Failed to get dependencies. Check the error logs for more details.")
 		sys.exit(0)
 	if len(project.dependencies()) == 0:
 		logging.info("\tNo dependencies.")
