@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#import "Three20Core/Three20Core.h"
+
 // Network
 
 // - Global

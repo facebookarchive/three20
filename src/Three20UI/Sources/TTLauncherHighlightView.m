@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTLauncherHighlightView.h"
+#import "Three20UI/private/TTLauncherHighlightView.h"
 
 // UI
 #import "Three20UI/TTLauncherButton.h"

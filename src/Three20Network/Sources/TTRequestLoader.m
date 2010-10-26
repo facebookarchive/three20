@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20Network/TTRequestLoader.h"
+#import "Three20Network/private/TTRequestLoader.h"
 
 // Network
 #import "Three20Network/TTGlobalNetwork.h"
