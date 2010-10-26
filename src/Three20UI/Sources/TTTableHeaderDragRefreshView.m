@@ -143,6 +143,8 @@
   TT_RELEASE_SAFELY(_statusLabel);
   TT_RELEASE_SAFELY(_arrowImage);
   TT_RELEASE_SAFELY(_lastUpdatedLabel);
+  TT_RELEASE_SAFELY(_lastUpdatedDate);
+
   [super dealloc];
 }
 
