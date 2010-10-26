@@ -71,6 +71,16 @@
 @property (nonatomic, copy) NSString* urlPath;
 
 /**
+ * Returns the URL encoded parameters
+ */
+@property (nonatomic, readonly) NSString* URLParameters;
+
+/**
+ * The full URL with parameters
+ */
+@property (nonatomic, readonly) NSString* URLWithParameters;
+
+/**
  * The URL path to be loaded by the request.
  *
  * Deprecated due to name ambiguity. Use urlPath instead.
