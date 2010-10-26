@@ -56,6 +56,8 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 @implementation TTBaseNavigator
 
 @synthesize delegate                  = _delegate;
+@synthesize mailDelegate              = _mailDelegate;
+@synthesize messageDelegate           = _messageDelegate;
 @synthesize URLMap                    = _URLMap;
 @synthesize window                    = _window;
 @synthesize rootViewController        = _rootViewController;
@@ -273,6 +275,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
                              animated: NO];
     [parentController presentModalViewController: navController
                                         animated: animated];
+    TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"TTDINFO URL %@", navController);
   }
 }
 
@@ -380,11 +383,25 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   NSString* urlPath = action.urlPath;
 
   NSURL* theURL = [NSURL URLWithString:urlPath];
+    if ([_URLMap isMailURL:theURL] && _mailDelegate) {
+        MFMailComposeViewController *mailCompose= [[[MFMailComposeViewController alloc] init] autorelease];
+        mailCompose.mailComposeDelegate = _mailDelegate;
+        NSDictionary *params = [theURL.resourceSpecifier queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+        NSArray *recipients = [[params objectForKey:@"to"] componentsSeparatedByString:@","];
+        [mailCompose setToRecipients:recipients];
+        [mailCompose setSubject:[params objectForKey:@"subject"]];
+        NSString *mailBody = [params objectForKey:@"body"];
+        // TODO: Detect if mailBody has HTML tags and set isHTML if so
+        [mailCompose setMessageBody:mailBody isHTML:NO];
+        [self.topViewController presentModalViewController:mailCompose animated:YES];
+        return nil;
+    }
+    
   if ([_URLMap isAppURL:theURL]) {
     [[UIApplication sharedApplication] openURL:theURL];
     return nil;
   }
-
+    
   if (nil == theURL.scheme) {
     if (nil != theURL.fragment) {
       urlPath = [self.URL stringByAppendingString:urlPath];
