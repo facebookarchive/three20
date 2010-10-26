@@ -82,13 +82,15 @@ class Pbxproj(object):
 
 		parts = name.split(':')
 		self.name = parts[0]
+
 		if len(parts) > 1:
 			self.target = parts[1]
 		else:
-			if re.match('^[a-zA-Z0-9\.\-:+"]+$', self.name):
+			valid_file_chars = '[a-zA-Z0-9\.\-:+ "\'!@#$%^&*\(\)]';
+			if re.match('^'+valid_file_chars+'+$', self.name):
 				self.target = self.name
 			else:
-				result = re.search('([a-zA-Z0-9\.\-+"]+)\.xcodeproj', self.name)
+				result = re.search('('+valid_file_chars+'+)\.xcodeproj', self.name)
 				if not result:
 					self.target = self.name
 				else:
