@@ -209,6 +209,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addItem:(TTTableItem *)item atIndexPath:(NSIndexPath*)indexPath {
+  NSMutableArray* items = [_items objectAtIndex:indexPath.section];
+  [items addObject:item];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeItemAtIndexPath:(NSIndexPath*)indexPath {
   [self removeItemAtIndexPath:indexPath andSectionIfEmpty:NO];
 }
@@ -219,7 +226,7 @@
   if (_sections.count) {
     NSMutableArray* items = [_items objectAtIndex:indexPath.section];
     [items removeObjectAtIndex:indexPath.row];
-    if (!items.count) {
+    if (!items.count && andSection) {
       [_sections removeObjectAtIndex:indexPath.section];
       [_items removeObjectAtIndex:indexPath.section];
       return YES;
