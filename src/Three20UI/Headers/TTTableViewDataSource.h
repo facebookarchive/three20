@@ -81,6 +81,10 @@
   id<TTModel> _model;
 }
 
+- (void)addItem:(id)item atIndexPath:(NSIndexPath*)indexPath;
+
+- (void)removeItemAtIndexPath:(NSIndexPath*)indexPath;
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
