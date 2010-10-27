@@ -27,7 +27,7 @@
   NSMutableArray*       _loaderQueue;
   NSTimer*              _loaderQueueTimer;
 
-  NSTimeInterval*		_requestTimeout;
+  NSTimeInterval		_requestTimeout;
 	
   NSInteger             _totalLoading;
 
