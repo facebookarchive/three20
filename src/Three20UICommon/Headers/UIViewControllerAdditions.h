@@ -96,6 +96,11 @@
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated;
 
 /**
+ * Determines if controller's view is currently visible or in active navigation stack
+ */
+- (BOOL) isVisibleViewController: (UIViewController *) viewController;
+
+/**
  * Gets a key that can be used to identify a subcontroller in subcontrollerForKey.
  */
 - (NSString*)keyForSubcontroller:(UIViewController*)controller;

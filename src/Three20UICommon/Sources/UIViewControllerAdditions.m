@@ -141,6 +141,37 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
   return YES;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL) isVisibleViewController: (UIViewController *) viewController {
+	
+	BOOL returnValue;
+	
+	if(self.tabBarController) {
+		
+		/// If there is a tabbar interface
+		NSInteger selectedIndex = self.tabBarController.selectedIndex;
+		
+		UIViewController *visibleViewController = nil;
+		
+		if(selectedIndex < 4) {
+			visibleViewController = ((UINavigationController *)self.tabBarController.selectedViewController).visibleViewController;
+		}
+		else {
+			visibleViewController = self.tabBarController.moreNavigationController.visibleViewController;
+		}
+		
+		returnValue = (visibleViewController == viewController);
+	}
+	else if(self.navigationController) {
+		/// No tabbar, but navigation controller
+		returnValue = (self.navigationController.visibleViewController == viewController);
+	}
+	else {
+		returnValue = (viewController.view.superview != nil);
+	}
+	
+	return returnValue;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)superController {
