@@ -47,6 +47,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 @implementation TTURLRequestQueue
 
 @synthesize maxContentLength        = _maxContentLength;
+@synthesize requestTimeout			= _requestTimeout;
 @synthesize userAgent               = _userAgent;
 @synthesize suspended               = _suspended;
 @synthesize imageCompressionQuality = _imageCompressionQuality;
@@ -76,6 +77,7 @@ static TTURLRequestQueue* gMainQueue = nil;
     _loaders = [[NSMutableDictionary alloc] init];
     _loaderQueue = [[NSMutableArray alloc] init];
     _maxContentLength = kDefaultMaxContentLength;
+    _requestTimeout = kTimeout;
     _imageCompressionQuality = 0.75;
   }
   return self;
@@ -487,7 +489,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 
   NSMutableURLRequest* URLRequest = [NSMutableURLRequest requestWithURL:URL
                                     cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                    timeoutInterval:kTimeout];
+                                    timeoutInterval: _requestTimeout];
 
   if (self.userAgent) {
       [URLRequest setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];

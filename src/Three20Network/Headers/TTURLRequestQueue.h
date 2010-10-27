@@ -27,6 +27,8 @@
   NSMutableArray*       _loaderQueue;
   NSTimer*              _loaderQueueTimer;
 
+  NSTimeInterval*		_requestTimeout;
+	
   NSInteger             _totalLoading;
 
   NSUInteger            _maxContentLength;
@@ -56,6 +58,13 @@
  * @default 150000 bytes
  */
 @property (nonatomic) NSUInteger maxContentLength;
+
+/**
+ * Global request timeout for all requests. If not set, default timeout is used
+ *
+ * @default 300 seconds
+ */
+@property (nonatomic) NSTimeInterval requestTimeout;
 
 /**
  * The user-agent string that is sent with all HTTP requests.
