@@ -37,6 +37,7 @@
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
 #import "Three20Core/NSDateAdditions.h"
+#import "Three20Core/NSStringAdditions.h"
 
 static TTBaseNavigator* gNavigator = nil;
 
