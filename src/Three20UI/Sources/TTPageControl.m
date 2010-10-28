@@ -95,7 +95,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawRect:(CGRect)rect {
-  if (_numberOfPages > 1 || _hidesForSinglePage) {
+  if (_numberOfPages > 1 || !_hidesForSinglePage) {
     TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
     TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
 
