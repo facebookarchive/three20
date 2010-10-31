@@ -204,6 +204,9 @@ static NSMutableDictionary* gNamedCaches = nil;
     int pixelCount = image.size.width * image.size.height;
 
     if (force || pixelCount < kLargeImageSize) {
+      if ([_imageCache objectForKey:URL]) {
+        [self removeURL:URL fromDisk:NO];
+      }
       _totalPixelCount += pixelCount;
 
       if (_totalPixelCount > _maxPixelCount && _maxPixelCount) {
@@ -563,6 +566,7 @@ static NSMutableDictionary* gNamedCaches = nil;
   if (image) {
     [_imageSortedList removeObject:oldURL];
     [_imageCache removeObjectForKey:oldURL];
+    [self removeURL:newURL fromDisk:NO];
     [_imageSortedList addObject:newURL];
     [_imageCache setObject:image forKey:newURL];
   }
@@ -598,6 +602,10 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
+  UIImage* existingImage = [_imageCache objectForKey:URL];
+  if (existingImage) {
+    _totalPixelCount -= existingImage.size.width * existingImage.size.height;
+  }
   [_imageSortedList removeObject:URL];
   [_imageCache removeObjectForKey:URL];
 
