@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Three20Core/TTCorePreprocessorMacros.h" // For __TTDEPRECATED_METHOD
 
 /**
  * Doxygen does not handle categories very well, so please refer to the .m file in general
@@ -35,7 +36,12 @@
 /**
  * Parses a URL query string into a dictionary.
  */
-- (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding;
+- (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding __TTDEPRECATED_METHOD;
+
+/**
+ * Parses a URL query string into a dictionary where the values are arrays.
+ */
+- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
 
 /**
  * Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.
