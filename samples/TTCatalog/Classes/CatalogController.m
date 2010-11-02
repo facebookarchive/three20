@@ -40,6 +40,7 @@
     [TTTableTextItem itemWithText:@"Table Controls" URL:@"tt://tableControlsTest"],
     [TTTableTextItem itemWithText:@"Styled Labels in Table" URL:@"tt://styledTextTableTest"],
     [TTTableTextItem itemWithText:@"Web Images in Table" URL:@"tt://imageTest2"],
+    [TTTableTextItem itemWithText:@"Table With Banner" URL:@"tt://tableWithBanner"],
     [TTTableTextItem itemWithText:@"Table With Shadow" URL:@"tt://tableWithShadow"],
 
     @"Models",
