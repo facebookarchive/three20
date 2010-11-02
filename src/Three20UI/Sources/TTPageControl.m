@@ -45,6 +45,7 @@
   if (self = [super initWithFrame:frame]) {
     self.backgroundColor = [UIColor clearColor];
     self.dotStyle = @"pageDot:";
+    self.hidesForSinglePage = NO;
   }
 
   return self;
