@@ -21,6 +21,9 @@
 #import "Three20UI/TTStyledTextLabel.h"
 #import "Three20UI/UIViewAdditions.h"
 
+// UICommon
+#import "Three20UICommon/UIWindowAdditions.h"
+
 // Style
 #import "Three20Style/TTStyledNode.h"
 #import "Three20Style/TTStyledButtonNode.h"
