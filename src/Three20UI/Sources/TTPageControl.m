@@ -46,6 +46,7 @@
     self.backgroundColor = [UIColor clearColor];
     self.dotStyle = @"pageDot:";
     self.hidesForSinglePage = NO;
+    self.contentMode = UIViewContentModeRedraw;
   }
 
   return self;
