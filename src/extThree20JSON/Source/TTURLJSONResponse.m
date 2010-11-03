@@ -57,18 +57,28 @@
   // mistake.
   TTDASSERT([data isKindOfClass:[NSData class]]);
   TTDASSERT(nil == _rootObject);
-
+  NSError* err = nil;
   if ([data isKindOfClass:[NSData class]]) {
 #ifdef EXTJSON_SBJSON
     NSString* json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     _rootObject = [[json JSONValue] retain];
     TT_RELEASE_SAFELY(json);
+    if (!_rootObject) {
+      err = [NSError errorWithDomain:TT_ERROR_DOMAIN code:TT_EC_INVALID_JSON userInfo:nil];
+    }
 #elif defined(EXTJSON_YAJL)
-    _rootObject = [[data yajl_JSON] retain];
+    @try {
+      _rootObject = [[data yajl_JSON] retain];
+    }
+    @catch (NSException* exception) {
+      err = [NSError errorWithDomain:TT_ERROR_DOMAIN 
+                                code:TT_EC_INVALID_JSON 
+                            userInfo:[exception userInfo]];
+    }
 #endif
   }
 
-  return nil;
+  return err;
 }
 
 
