@@ -48,7 +48,7 @@
   [self.view addSubview:_pageControl];
 
   _scrollView = [[TTScrollView alloc] initWithFrame:CGRectMake(0,_pageControl.bottom, self.view.bounds.size.width, self.view.bounds.size.height - _pageControl.height - 5.f)];
-  _pageControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+  _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   _scrollView.dataSource = self;
   _scrollView.delegate = self;
   _scrollView.backgroundColor = [UIColor whiteColor];
