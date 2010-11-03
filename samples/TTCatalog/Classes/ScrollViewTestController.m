@@ -40,6 +40,7 @@
   self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
 
   _pageControl = [[TTPageControl alloc] initWithFrame:CGRectMake(0,0, self.view.width, 20)];
+  _pageControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   _pageControl.backgroundColor = [UIColor grayColor];
   _pageControl.currentPage = 0;
   _pageControl.numberOfPages = [_colors count];
@@ -47,6 +48,7 @@
   [self.view addSubview:_pageControl];
 
   _scrollView = [[TTScrollView alloc] initWithFrame:CGRectMake(0,_pageControl.bottom, self.view.bounds.size.width, self.view.bounds.size.height - _pageControl.height - 5.f)];
+  _pageControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   _scrollView.dataSource = self;
   _scrollView.delegate = self;
   _scrollView.backgroundColor = [UIColor whiteColor];
@@ -91,6 +93,16 @@
 
 - (void)scrollView:(TTScrollView*)scrollView didMoveToPageAtIndex:(NSInteger)pageIndex {
   _pageControl.currentPage = pageIndex;
+}
+
+#pragma mark -
+#pragma mark UIViewController overrides
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+  return YES;
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+  [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
 #pragma mark -
