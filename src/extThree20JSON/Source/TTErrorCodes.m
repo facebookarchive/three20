@@ -14,5 +14,6 @@
 // limitations under the License.
 //
 
-#import "extThree20JSON/TTErrorCodes.h"
-#import "extThree20JSON/TTURLJSONResponse.h"
+NSString* const kTTExtJSONErrorDomain = @"three20.ext.json";
+NSInteger const kTTExtJSONErrorCodeInvalidJSON = 100;
+

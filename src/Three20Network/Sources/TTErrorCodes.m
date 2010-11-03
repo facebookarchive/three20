@@ -14,5 +14,6 @@
 // limitations under the License.
 //
 
-#import "extThree20JSON/TTErrorCodes.h"
-#import "extThree20JSON/TTURLJSONResponse.h"
+NSString* const kTTNetworkErrorDomain = @"three20.network";
+NSInteger const kTTNetworkErrorCodeInvalidImage = 100;
+

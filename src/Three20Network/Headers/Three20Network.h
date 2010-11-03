@@ -21,6 +21,7 @@
 // - Global
 #import "Three20Network/TTGlobalNetwork.h"
 #import "Three20Network/TTURLRequestCachePolicy.h"
+#import "Three20Network/TTErrorCodes.h"
 
 // - Models
 #import "Three20Network/TTModel.h"

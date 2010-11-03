@@ -17,6 +17,7 @@
 #import "extThree20JSON/TTURLJSONResponse.h"
 
 // extJSON
+#import "extThree20JSON/TTErrorCodes.h"
 #ifdef EXTJSON_SBJSON
 #import "extThree20JSON/JSON.h"
 #elif defined(EXTJSON_YAJL)
@@ -64,15 +65,17 @@
     _rootObject = [[json JSONValue] retain];
     TT_RELEASE_SAFELY(json);
     if (!_rootObject) {
-      err = [NSError errorWithDomain:TT_ERROR_DOMAIN code:TT_EC_INVALID_JSON userInfo:nil];
+      err = [NSError errorWithDomain:kTTExtJSONErrorDomain
+                                code:kTTExtJSONErrorCodeInvalidJSON
+                            userInfo:nil];
     }
 #elif defined(EXTJSON_YAJL)
     @try {
       _rootObject = [[data yajl_JSON] retain];
     }
     @catch (NSException* exception) {
-      err = [NSError errorWithDomain:TT_ERROR_DOMAIN 
-                                code:TT_EC_INVALID_JSON 
+      err = [NSError errorWithDomain:kTTExtJSONErrorDomain
+                                code:kTTExtJSONErrorCodeInvalidJSON
                             userInfo:[exception userInfo]];
     }
 #endif
