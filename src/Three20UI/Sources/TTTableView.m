@@ -116,10 +116,10 @@ static const CGFloat kCancelHighlightThreshold = 4;
     // the node implementation. One potential fix would be to provide some protocol for these
     // nodes to converse with.
     if ([element isKindOfClass:[TTStyledLinkNode class]]) {
-      TTOpenURL([(TTStyledLinkNode*)element URL]);
+      TTOpenURLFromView([(TTStyledLinkNode*)element URL], self);
 
     } else if ([element isKindOfClass:[TTStyledButtonNode class]]) {
-      TTOpenURL([(TTStyledButtonNode*)element URL]);
+      TTOpenURLFromView([(TTStyledButtonNode*)element URL], self);
 
 
     } else {

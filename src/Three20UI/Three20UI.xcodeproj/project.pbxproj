@@ -13,6 +13,10 @@
 		665A553F1264E4310032D0BE /* libThree20UICommon-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FC2A751264E1FA00F56B19 /* libThree20UICommon-Xcode3.2.5.a */; };
 		665A55401264E4310032D0BE /* libThree20UINavigator-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FC2A821264E1FA00F56B19 /* libThree20UINavigator-Xcode3.2.5.a */; };
 		665A55411264E4310032D0BE /* libThree20UI-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FC2BC81264E3A400F56B19 /* libThree20UI-Xcode3.2.5.a */; };
+		666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E18E712945430001C1D97 /* TTSplitViewController.m */; };
+		666E18EB12945430001C1D97 /* TTSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E18E712945430001C1D97 /* TTSplitViewController.m */; };
+		666E18F51294543F001C1D97 /* TTSplitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E18F41294543F001C1D97 /* TTSplitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		666E18F61294543F001C1D97 /* TTSplitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E18F41294543F001C1D97 /* TTSplitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADC8C71290AC0200855386 /* TTExtensionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC8C61290AC0200855386 /* TTExtensionsController.m */; };
 		66ADC8C91290AC0200855386 /* TTExtensionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC8C61290AC0200855386 /* TTExtensionsController.m */; };
 		66ADC8CD1290AC1200855386 /* TTExtensionsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADC8CC1290AC1200855386 /* TTExtensionsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -842,6 +846,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		666E18E712945430001C1D97 /* TTSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTSplitViewController.m; path = Sources/TTSplitViewController.m; sourceTree = "<group>"; };
+		666E18F41294543F001C1D97 /* TTSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSplitViewController.h; path = Headers/TTSplitViewController.h; sourceTree = "<group>"; };
 		66ADC8C61290AC0200855386 /* TTExtensionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionsController.m; path = Sources/TTExtensionsController.m; sourceTree = "<group>"; };
 		66ADC8CC1290AC1200855386 /* TTExtensionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionsController.h; path = Headers/TTExtensionsController.h; sourceTree = "<group>"; };
 		66ADCD9B1291AA7100855386 /* TTExtensionInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionInfoController.m; path = Sources/TTExtensionInfoController.m; sourceTree = "<group>"; };
@@ -1270,6 +1276,8 @@
 			children = (
 				6E6455501184D4C500F08CB1 /* TTViewController.h */,
 				6E6456791184D4DA00F08CB1 /* TTViewController.m */,
+				666E18F41294543F001C1D97 /* TTSplitViewController.h */,
+				666E18E712945430001C1D97 /* TTSplitViewController.m */,
 				6E60820211B0C32600C93CD4 /* TTNavigationController.h */,
 				6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */,
 				6E6457A81184D85D00F08CB1 /* Action Sheet Controller */,
@@ -2297,6 +2305,7 @@
 				66FC2B4A1264E3A400F56B19 /* TTLauncherHighlightView.h in Headers */,
 				66ADC8CD1290AC1200855386 /* TTExtensionsController.h in Headers */,
 				66ADCDA51291AA7E00855386 /* TTExtensionInfoController.h in Headers */,
+				666E18F61294543F001C1D97 /* TTSplitViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2444,6 +2453,7 @@
 				6ECCA60011C0C105002296C7 /* TTLauncherHighlightView.h in Headers */,
 				66ADC8CF1290AC1200855386 /* TTExtensionsController.h in Headers */,
 				66ADCDA31291AA7E00855386 /* TTExtensionInfoController.h in Headers */,
+				666E18F51294543F001C1D97 /* TTSplitViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2520,7 +2530,7 @@
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libThree20UI.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* Three20UICommonUnitTests */ = {
+		EB9E6C6110B6A8F800DE563C /* Three20UIUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "Three20UIUnitTests" */;
 			buildPhases = (
@@ -2590,7 +2600,7 @@
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* Three20UI */,
 				66FC2AB51264E3A400F56B19 /* Three20UI-Xcode3.2.5 */,
-				EB9E6C6110B6A8F800DE563C /* Three20UICommonUnitTests */,
+				EB9E6C6110B6A8F800DE563C /* Three20UIUnitTests */,
 				66FC2BC91264E3A500F56B19 /* Three20UIUnitTests-Xcode3.2.5 */,
 			);
 		};
@@ -2938,6 +2948,7 @@
 				66FC2BC21264E3A400F56B19 /* TTLauncherHighlightView.m in Sources */,
 				66ADC8C71290AC0200855386 /* TTExtensionsController.m in Sources */,
 				66ADCDA11291AA7100855386 /* TTExtensionInfoController.m in Sources */,
+				666E18EB12945430001C1D97 /* TTSplitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3073,6 +3084,7 @@
 				6ECCA5FE11C0C0F6002296C7 /* TTLauncherHighlightView.m in Sources */,
 				66ADC8C91290AC0200855386 /* TTExtensionsController.m in Sources */,
 				66ADCD9D1291AA7100855386 /* TTExtensionInfoController.m in Sources */,
+				666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

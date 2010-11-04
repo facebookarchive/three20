@@ -14,10 +14,17 @@
 // limitations under the License.
 //
 
-#import "Three20UICommon/Three20UICommon.h"
+#import <UIKit/UIKit.h>
 
-// Additions
-#import "Three20UICommon/UIView+TTUICommon.h"
-#import "Three20UICommon/UIViewControllerAdditions.h"
-#import "Three20UICommon/UISplitViewController+TTNavigator.h"
-#import "Three20UICommon/UIWindowAdditions.h"
+@class TTBaseNavigator;
+
+@protocol TTNavigatorRootContainer
+
+@required
+
+- (void)navigator:(TTBaseNavigator*)navigator setRootViewController:(UIViewController*)controller;
+
+- (TTBaseNavigator*)getNavigatorForController:(UIViewController*)controller;
+
+@end
+

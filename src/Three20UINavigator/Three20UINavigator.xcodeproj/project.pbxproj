@@ -52,6 +52,8 @@
 		665A547C1264DB7A0032D0BE /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FC29491264D78D00F56B19 /* libThree20Core-Xcode3.2.5.a */; };
 		665A547D1264DB7A0032D0BE /* libThree20UICommon-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66FC29551264D78D00F56B19 /* libThree20UICommon-Xcode3.2.5.a */; };
 		665A547E1264DB7A0032D0BE /* libThree20UINavigator-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 665A54521264DAF70032D0BE /* libThree20UINavigator-Xcode3.2.5.a */; };
+		666E16DD12944999001C1D97 /* TTNavigatorRootContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16DC12944999001C1D97 /* TTNavigatorRootContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		666E16DE12944999001C1D97 /* TTNavigatorRootContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16DC12944999001C1D97 /* TTNavigatorRootContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66FC299F1264D93900F56B19 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FC299E1264D93900F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		6E3C35ED118B75800079637E /* TTNavigatorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3611118B77F70079637E /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3610118B77F70079637E /* TTURLAction.m */; };
@@ -232,6 +234,7 @@
 /* Begin PBXFileReference section */
 		665A54521264DAF70032D0BE /* libThree20UINavigator-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UINavigator-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		665A54681264DAF70032D0BE /* UINavigatorUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UINavigatorUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		666E16DC12944999001C1D97 /* TTNavigatorRootContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorRootContainer.h; path = Headers/TTNavigatorRootContainer.h; sourceTree = "<group>"; };
 		66FC299E1264D93900F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorDelegate.h; path = Headers/TTNavigatorDelegate.h; sourceTree = "<group>"; };
 		6E3C3610118B77F70079637E /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLAction.m; path = Sources/TTURLAction.m; sourceTree = "<group>"; };
@@ -508,6 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				6E3C3758118C8E490079637E /* TTNavigatorPersistenceMode.h */,
+				666E16DC12944999001C1D97 /* TTNavigatorRootContainer.h */,
 				6E3C3753118C8E180079637E /* TTBaseNavigator.h */,
 				6E3C3755118C8E210079637E /* TTBaseNavigator.m */,
 				6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */,
@@ -593,6 +597,7 @@
 				665A54391264DAF70032D0BE /* TTNavigatorViewController.h in Headers */,
 				665A543A1264DAF70032D0BE /* UIViewController+TTNavigatorGarbageCollection.h in Headers */,
 				665A543B1264DAF70032D0BE /* TTBaseNavigationController.h in Headers */,
+				666E16DE12944999001C1D97 /* TTNavigatorRootContainer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +630,7 @@
 				6E7B106E11923A92001359FE /* TTNavigatorViewController.h in Headers */,
 				6E7B107011923AC1001359FE /* UIViewController+TTNavigatorGarbageCollection.h in Headers */,
 				6E6081C011B0C08600C93CD4 /* TTBaseNavigationController.h in Headers */,
+				666E16DD12944999001C1D97 /* TTNavigatorRootContainer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

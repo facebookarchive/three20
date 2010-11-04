@@ -20,6 +20,7 @@
 #import "Three20UINavigator/TTNavigatorPersistenceMode.h"
 
 @protocol TTNavigatorDelegate;
+@protocol TTNavigatorRootContainer;
 @class TTURLAction;
 @class TTURLMap;
 @class TTURLPattern;
@@ -43,7 +44,8 @@
   BOOL                        _supportsShakeToReload;
   BOOL                        _opensExternalURLs;
 
-  id<TTNavigatorDelegate>     _delegate;
+  id<TTNavigatorDelegate>       _delegate;
+  id<TTNavigatorRootContainer>  _rootContainer;
 }
 
 /**
@@ -60,6 +62,15 @@
  * TTNavigatorWindow.
  */
 @property (nonatomic, retain) UIWindow* window;
+
+/**
+ * A container that holds the root view controller.
+ *
+ * If nil, the window is treated as the root container.
+ *
+ * @default nil
+ */
+@property (nonatomic, assign) id<TTNavigatorRootContainer> rootContainer;
 
 /**
  * The controller that is at the root of the view controller hierarchy.
@@ -129,6 +140,16 @@
 
 @property (nonatomic, assign) id<TTNavigatorDelegate> delegate;
 
+/**
+ * Determines the navigator that contains this view.
+ *
+ * Traverse the view hierarchy until the root view container is reached. If this root container
+ * conforms to the TTNavigatorRootContainer protocol, we call getNavigatorForController:
+ * with the top-most controller that contains this view that /isn't/ the container.
+ * If getNavigatorForController: returns a navigator, this navigator is returned.
+ * Otherwise, the global navigator is returned.
+ */
++ (TTBaseNavigator*)navigatorForView:(UIView*)view;
 
 + (TTBaseNavigator*)globalNavigator;
 + (void)setGlobalNavigator:(TTBaseNavigator*)navigator;

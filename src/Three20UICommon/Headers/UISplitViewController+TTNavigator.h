@@ -14,10 +14,9 @@
 // limitations under the License.
 //
 
-#import "Three20UICommon/Three20UICommon.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-// Additions
-#import "Three20UICommon/UIView+TTUICommon.h"
-#import "Three20UICommon/UIViewControllerAdditions.h"
-#import "Three20UICommon/UISplitViewController+TTNavigator.h"
-#import "Three20UICommon/UIWindowAdditions.h"
+@interface UISplitViewController (TTNavigator)
+
+@end

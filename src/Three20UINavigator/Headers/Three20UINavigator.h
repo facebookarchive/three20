@@ -26,6 +26,7 @@
 #import "Three20UINavigator/TTNavigatorPersistenceMode.h"
 #import "Three20UINavigator/TTBaseNavigator.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
+#import "Three20UINavigator/TTNavigatorRootContainer.h"
 
 // -- URL Action
 #import "Three20UINavigator/TTURLAction.h"

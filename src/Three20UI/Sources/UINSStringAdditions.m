@@ -48,9 +48,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openURLFromButton:(UIView*)button {
   NSDictionary* query = [NSDictionary dictionaryWithObjectsAndKeys:button, @"__target__", nil];
-  [[TTNavigator navigator] openURLAction:[[[TTURLAction actionWithURLPath: self]
-                                                               applyQuery: query]
-                                                            applyAnimated: YES]];
+  [[TTBaseNavigator navigatorForView:button]
+    openURLAction:[[[TTURLAction actionWithURLPath: self]
+                    applyQuery: query]
+                   applyAnimated: YES]];
 }
 
 
