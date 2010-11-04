@@ -1,4 +1,4 @@
-//
+  //
 // Copyright 2009-2010 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -109,6 +109,9 @@ static const CGFloat kFrameDuration = 1.0/40.0;
   TT_RELEASE_SAFELY(_pages);
   TT_RELEASE_SAFELY(_pageQueue);
 
+  TT_RELEASE_SAFELY(_touch1);
+  TT_RELEASE_SAFELY(_touch2);
+  
   [super dealloc];
 }
 
@@ -838,10 +841,10 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)acquireTouch:(UITouch*)touch {
   if (nil == _touch1) {
-    _touch1 = touch;
+    _touch1 = [touch retain];
     ++_touchCount;
   } else if (nil == _touch2) {
-    _touch2 = touch;
+    _touch2 = [touch retain];
     ++_touchCount;
   }
 }
@@ -850,12 +853,12 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITouch*)removeTouch:(UITouch*)touch {
   if (touch == _touch1) {
-    _touch1 = nil;
+    TT_RELEASE_SAFELY(_touch1);
     --_touchCount;
     return _touch2;
 
   } else if (touch == _touch2) {
-    _touch2 = nil;
+    TT_RELEASE_SAFELY(_touch2);
     --_touchCount;
     return _touch1;
 
@@ -1231,6 +1234,18 @@ static const CGFloat kFrameDuration = 1.0/40.0;
               andAnchorPoint:anchorPoint];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Solution for the issue discussed here: http://discussions.apple.com/message.jspa?messageID=7139722
+- (void) ensureTouches {
+  if (_touch1.phase == UITouchPhaseEnded) {
+    [self removeTouch: _touch1];
+  }
+  if (_touch2.phase == UITouchPhaseEnded) {
+    [self removeTouch: _touch2];
+  }
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1242,6 +1257,7 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
 
+  [super ensureTouches];
   NSLog( @"_touchCount: %i", _touchCount );
   NSLog( @"touches count: %i", [touches count] );
 
@@ -1715,8 +1731,8 @@ static const CGFloat kFrameDuration = 1.0/40.0;
   [self stopAnimation:YES];
   [self stopDragging:NO];
   [self updateZooming:UIEdgeInsetsZero];
-  _touch1 = nil;
-  _touch2 = nil;
+  TT_RELEASE_SAFELY(_touch1);
+  TT_RELEASE_SAFELY(_touch2);
   _touchCount = 0;
 }
 
