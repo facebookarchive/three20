@@ -423,7 +423,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E6462DE1187E6C800F08CB1 /* extThree20JSON.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 66D90F0F12662330009AFDE6 /* extThree20JSON+YAJL-Xcode3.2.2 */;
+			remoteGlobalIDString = 66D90F0F12662330009AFDE6;
 			remoteInfo = "extThree20JSON+YAJL-Xcode3.2.2";
 		};
 		6E3795EB11B9B79C0011C497 /* PBXContainerItemProxy */ = {
@@ -1054,6 +1054,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTTwitter" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -1697,6 +1698,16 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE325_LIB)",
+					"$(THREE20NETWORK325_LIB)",
+					"$(THREE20STYLE325_LIB)",
+					"$(THREE20UICOMMON325_LIB)",
+					"$(THREE20UINAVIGATOR325_LIB)",
+					"$(THREE20UI325_LIB)",
+					"$(THREE20325_LIB)",
+					"$(EXTTHREE20JSONYAJL325_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 			};
@@ -1707,6 +1718,16 @@
 			baseConfigurationReference = 6E6462D91187E6A900F08CB1 /* App.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE325_LIB)",
+					"$(THREE20NETWORK325_LIB)",
+					"$(THREE20STYLE325_LIB)",
+					"$(THREE20UICOMMON325_LIB)",
+					"$(THREE20UINAVIGATOR325_LIB)",
+					"$(THREE20UI325_LIB)",
+					"$(THREE20325_LIB)",
+					"$(EXTTHREE20JSONYAJL325_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 			};
@@ -1720,6 +1741,16 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE322_LIB)",
+					"$(THREE20NETWORK322_LIB)",
+					"$(THREE20STYLE322_LIB)",
+					"$(THREE20UICOMMON322_LIB)",
+					"$(THREE20UINAVIGATOR322_LIB)",
+					"$(THREE20UI322_LIB)",
+					"$(THREE20322_LIB)",
+					"$(EXTTHREE20JSONYAJL322_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
 			};
@@ -1730,6 +1761,16 @@
 			baseConfigurationReference = 6E6462D91187E6A900F08CB1 /* App.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE322_LIB)",
+					"$(THREE20NETWORK322_LIB)",
+					"$(THREE20STYLE322_LIB)",
+					"$(THREE20UICOMMON322_LIB)",
+					"$(THREE20UINAVIGATOR322_LIB)",
+					"$(THREE20UI322_LIB)",
+					"$(THREE20322_LIB)",
+					"$(EXTTHREE20JSONYAJL322_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
 			};

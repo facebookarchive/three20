@@ -992,6 +992,7 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTCSSStyleSheets" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -1620,6 +1621,16 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE325_LIB)",
+					"$(THREE20NETWORK325_LIB)",
+					"$(THREE20STYLE325_LIB)",
+					"$(THREE20UICOMMON325_LIB)",
+					"$(THREE20UINAVIGATOR325_LIB)",
+					"$(THREE20UI325_LIB)",
+					"$(THREE20325_LIB)",
+					"$(EXTTHREE20CSSSTYLE325_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1632,6 +1643,16 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE325_LIB)",
+					"$(THREE20NETWORK325_LIB)",
+					"$(THREE20STYLE325_LIB)",
+					"$(THREE20UICOMMON325_LIB)",
+					"$(THREE20UINAVIGATOR325_LIB)",
+					"$(THREE20UI325_LIB)",
+					"$(THREE20325_LIB)",
+					"$(EXTTHREE20CSSSTYLE325_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1647,6 +1668,16 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE322_LIB)",
+					"$(THREE20NETWORK322_LIB)",
+					"$(THREE20STYLE322_LIB)",
+					"$(THREE20UICOMMON322_LIB)",
+					"$(THREE20UINAVIGATOR322_LIB)",
+					"$(THREE20UI322_LIB)",
+					"$(THREE20322_LIB)",
+					"$(EXTTHREE20CSSSTYLE322_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1.3;
@@ -1659,6 +1690,16 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE322_LIB)",
+					"$(THREE20NETWORK322_LIB)",
+					"$(THREE20STYLE322_LIB)",
+					"$(THREE20UICOMMON322_LIB)",
+					"$(THREE20UINAVIGATOR322_LIB)",
+					"$(THREE20UI322_LIB)",
+					"$(THREE20322_LIB)",
+					"$(EXTTHREE20CSSSTYLE322_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1.3;

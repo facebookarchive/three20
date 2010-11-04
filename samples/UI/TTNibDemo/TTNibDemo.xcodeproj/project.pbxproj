@@ -1007,6 +1007,7 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTNibDemo" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -1594,6 +1595,15 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE322_LIB)",
+					"$(THREE20NETWORK322_LIB)",
+					"$(THREE20STYLE322_LIB)",
+					"$(THREE20UICOMMON322_LIB)",
+					"$(THREE20UINAVIGATOR322_LIB)",
+					"$(THREE20UI322_LIB)",
+					"$(THREE20322_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
 			};
@@ -1604,6 +1614,15 @@
 			baseConfigurationReference = 6E6084F311B0DEA600C93CD4 /* App.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE322_LIB)",
+					"$(THREE20NETWORK322_LIB)",
+					"$(THREE20STYLE322_LIB)",
+					"$(THREE20UICOMMON322_LIB)",
+					"$(THREE20UINAVIGATOR322_LIB)",
+					"$(THREE20UI322_LIB)",
+					"$(THREE20322_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
 				SDKROOT = iphoneos3.1.3;
 			};
@@ -1616,6 +1635,15 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE325_LIB)",
+					"$(THREE20NETWORK325_LIB)",
+					"$(THREE20STYLE325_LIB)",
+					"$(THREE20UICOMMON325_LIB)",
+					"$(THREE20UINAVIGATOR325_LIB)",
+					"$(THREE20UI325_LIB)",
+					"$(THREE20325_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 			};
@@ -1626,6 +1654,15 @@
 			baseConfigurationReference = 6E6084F311B0DEA600C93CD4 /* App.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				OTHER_LDFLAGS = (
+					"$(THREE20CORE325_LIB)",
+					"$(THREE20NETWORK325_LIB)",
+					"$(THREE20STYLE325_LIB)",
+					"$(THREE20UICOMMON325_LIB)",
+					"$(THREE20UINAVIGATOR325_LIB)",
+					"$(THREE20UI325_LIB)",
+					"$(THREE20325_LIB)",
+				);
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
 				SDKROOT = iphoneos;
 			};
