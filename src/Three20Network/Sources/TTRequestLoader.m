@@ -294,12 +294,20 @@ static const NSInteger kLoadMaxRetries = 2;
   }
 
   _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
+    
+    for (TTURLRequest* request in [[_requests copy] autorelease]) {
+        request.totalContentLength = contentLength;
+    }
+    
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
   [_responseData appendData:data];
+    for (TTURLRequest* request in [[_requests copy] autorelease]) {
+        request.totalBytesDownloaded += [data length];
+    }
 }
 
 
