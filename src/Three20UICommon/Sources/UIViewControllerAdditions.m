@@ -141,37 +141,6 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
   return YES;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL) isVisibleViewController: (UIViewController *) viewController {
-	
-	BOOL returnValue;
-	
-	if(self.tabBarController) {
-		
-		/// If there is a tabbar interface
-		NSInteger selectedIndex = self.tabBarController.selectedIndex;
-		
-		UIViewController *visibleViewController = nil;
-		
-		if(selectedIndex < 4) {
-			visibleViewController = ((UINavigationController *)self.tabBarController.selectedViewController).visibleViewController;
-		}
-		else {
-			visibleViewController = self.tabBarController.moreNavigationController.visibleViewController;
-		}
-		
-		returnValue = (visibleViewController == viewController);
-	}
-	else if(self.navigationController) {
-		/// No tabbar, but navigation controller
-		returnValue = (self.navigationController.visibleViewController == viewController);
-	}
-	else {
-		returnValue = (viewController.view.superview != nil);
-	}
-	
-	return returnValue;
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)superController {
@@ -288,6 +257,37 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL) isVisibleViewController: (UIViewController *) viewController {
+	
+	BOOL returnValue;
+	
+	if(self.tabBarController) {
+		
+		/// If there is a tabbar interface
+		NSInteger selectedIndex = self.tabBarController.selectedIndex;
+		
+		UIViewController *visibleViewController = nil;
+		
+		if(selectedIndex < 4) {
+			visibleViewController = ((UINavigationController *)self.tabBarController.selectedViewController).visibleViewController;
+		}
+		else {
+			visibleViewController = self.tabBarController.moreNavigationController.visibleViewController;
+		}
+		
+		returnValue = (visibleViewController == viewController);
+	}
+	else if(self.navigationController) {
+		/// No tabbar, but navigation controller
+		returnValue = (self.navigationController.visibleViewController == viewController);
+	}
+	else {
+		returnValue = (viewController.view.superview != nil);
+	}
+	
+	return returnValue;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)keyForSubcontroller:(UIViewController*)controller {
@@ -377,7 +377,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
       NSInteger retainCount = [controller retainCount] - 1;
 
       TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
-                      @"Retain count for %X is %d", controller, retainCount);
+                      @"Retain count for %X is %d", (unsigned int)controller, retainCount);
 
       if (retainCount == 1) {
         // If this fails, you've somehow added a controller that doesn't use
@@ -401,7 +401,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unsetCommonProperties {
   TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
-                  @"Unsetting this controller's properties: %X", self);
+                  @"Unsetting this controller's properties: %X", (unsigned int)self);
 
   self.superController = nil;
   self.popupViewController = nil;

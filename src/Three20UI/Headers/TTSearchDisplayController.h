@@ -30,15 +30,17 @@ extern const int kTTSearchBarBackgroundTag;
  * about the status of the remote search using TTModel's loading interface, and
  * TTTableViewController's status views.
  */
-@interface TTSearchDisplayController : UISearchDisplayController <UISearchDisplayDelegate> {
+@interface TTSearchDisplayController : UISearchDisplayController <UISearchDisplayDelegate, UISearchBarDelegate> {
   TTTableViewController*  _searchResultsViewController;
   NSTimer*                _pauseTimer;
   BOOL                    _pausesBeforeSearching;
+  BOOL					  _searchAutomatically;
 
   id<UITableViewDelegate> _searchResultsDelegate2;
 }
 
 @property (nonatomic, retain) TTTableViewController* searchResultsViewController;
 @property (nonatomic)         BOOL                   pausesBeforeSearching;
+@property (nonatomic)         BOOL                   searchAutomatically;
 
 @end

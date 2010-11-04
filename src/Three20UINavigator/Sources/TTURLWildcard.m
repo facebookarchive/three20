@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTURLWildcard.h"
+#import "Three20UINavigator/private/TTURLWildcard.h"
 
 // UINavigator (private)
 #import "Three20UINavigator/private/TTURLArguments.h"

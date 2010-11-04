@@ -16,41 +16,7 @@
 
 /*! \mainpage Three20 API Documentation
  *
- * \section intro_sec Introduction
- *
- * All of the API documentation you see here has been generated from the Three20 source.
- *
- * Get the source: http://github.com/facebook/three20
- *
- * Three20 is a rather large iPhone development library. It is composed of a stack of four
- * components:
- *
- * <center>
- *   <a href="#UI" style="display:block;width:200px;font-size:1.5em">UI</a>
- *   <a href="#Style" style="display:block;width:200px;font-size:1.5em">Style</a>
- *   <a href="#Network" style="display:block;width:200px;font-size:1.5em">Network</a>
- *   <a href="#Core" style="display:block;width:200px;font-size:1.5em">Core</a>
- * </center>
- *
- * \section Core
- *
- * Three20's foundation includes debugging utilities and a plethora of useful additions to common
- * objects.
- *
- * \section Network
- *
- * A full network+cache implementation has been built around NSURLRequests with support for
- * disc and memory caching.
- *
- * \section Style
- *
- * A robust style framework that makes it easy to create gradients, shadows, and rounded borders.
- *
- * \section UI
- *
- * Three20 includes a growing set of common controls. Photo browsers, table view cells, and
- * springboard implementations are just a few. The UI component includes the TTNavigator object
- * that makes building persistent applications easy.
+ * Generated from Three20 Cut <a href="http://three20.info/roadmap/v1.0a1">v1.0a1</a>.
  *
  */
 

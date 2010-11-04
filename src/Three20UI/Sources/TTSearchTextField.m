@@ -26,7 +26,7 @@
 #import "Three20UI/UIViewAdditions.h"
 
 // UI (private)
-#import "Three20UI/TTSearchTextFieldInternal.h"
+#import "Three20UI/private/TTSearchTextFieldInternal.h"
 
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"

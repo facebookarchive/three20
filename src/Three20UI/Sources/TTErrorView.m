@@ -61,7 +61,7 @@ static const CGFloat kHPadding  = 10;
     _titleView.textColor = TTSTYLEVAR(tableErrorTextColor);
     _titleView.font = TTSTYLEVAR(errorTitleFont);
     _titleView.textAlignment = UITextAlignmentCenter;
-    _titleView.numberOfLines = 0;
+	_titleView.numberOfLines = 0;
     _titleView.lineBreakMode = UILineBreakModeWordWrap;
     [self addSubview:_titleView];
 
@@ -71,7 +71,7 @@ static const CGFloat kHPadding  = 10;
     _subtitleView.font = TTSTYLEVAR(errorSubtitleFont);
     _subtitleView.textAlignment = UITextAlignmentCenter;
     _subtitleView.numberOfLines = 0;
-    _subtitleView.lineBreakMode = UILineBreakModeWordWrap;
+	_subtitleView.lineBreakMode = UILineBreakModeWordWrap;
     [self addSubview:_subtitleView];
   }
 
@@ -99,12 +99,11 @@ static const CGFloat kHPadding  = 10;
 - (void)layoutSubviews {
   _subtitleView.size = [_subtitleView sizeThatFits:CGSizeMake(self.width - kHPadding*2, 0)];
   [_titleView sizeToFit];
-	
+  [_imageView sizeToFit];
+
   _titleView.width = self.width;
   _titleView.height = self.height;
 	
-  [_imageView sizeToFit];
-
   CGFloat maxHeight = _imageView.height + _titleView.height + _subtitleView.height
                       + kVPadding1 + kVPadding2;
   BOOL canShowImage = _imageView.image && self.height > maxHeight;

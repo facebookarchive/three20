@@ -17,16 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef enum {
-	TTScrollDirectionNone = 0,
-	TTScrollDirectionLeft = 1,
-	TTScrollDirectionRight = 2,
-	TTScrollDirectionUp = 4,
-	TTScrollDirectionDown = 8,
-	TTScrollDirectionHorizontal = (TTScrollDirectionLeft | TTScrollDirectionRight),
-	TTScrollDirectionVertical = (TTScrollDirectionUp | TTScrollDirectionDown)
-} TTScrollViewScrollDirection;
-
 @protocol TTScrollViewDelegate;
 @protocol TTScrollViewDataSource;
 
@@ -93,10 +83,6 @@ typedef enum {
   // The second touch in this view.
   UITouch*        _touch2;
 
-  CGPoint         _motionOrigin;
-
-  TTScrollViewScrollDirection _scrollDirection;
-	
   BOOL            _dragging;
   BOOL            _decelerating;
   BOOL            _zooming;
@@ -124,8 +110,6 @@ typedef enum {
 @property (nonatomic, readonly) BOOL zooming;
 
 @property (nonatomic, readonly) BOOL holding;
-
-@property (nonatomic, readonly) BOOL dragging;
 
 /**
  * Returns whether the content is moving in the scroll view after the user lifted their
@@ -199,8 +183,6 @@ typedef enum {
  */
 @property (nonatomic, readonly) NSDictionary* visiblePages;
 
-@property (nonatomic, readonly) TTScrollViewScrollDirection scrollDirection;
-
 - (void)setOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated;
 
 /**
@@ -237,6 +219,11 @@ typedef enum {
  */
 - (void)cancelTouches;
 
+/**
+ * Jump to page given by pageIndex
+ * 
+ * YES to animate transition, NO to immediately skip to required page
+ */
 - (void)scrollToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
 
 @end

@@ -244,7 +244,6 @@ static const NSInteger kLoadMaxRetries = 2;
   }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dispatchDownloadedBytes:(float)downloadedBytes ofTotalExpected:(float) totalExpected {
 	for (TTURLRequest* request in [[_requests copy] autorelease]) {
@@ -305,7 +304,7 @@ static const NSInteger kLoadMaxRetries = 2;
     [self cancel];
   }
 
-  _responseData = [[NSMutableData alloc] initWithCapacity:_contentLength];
+  _responseData = [[NSMutableData alloc] initWithCapacity: _contentLength];
 }
 
 

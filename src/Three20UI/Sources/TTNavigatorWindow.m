@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTNavigatorWindow.h"
+#import "Three20UI/private/TTNavigatorWindow.h"
 
 // UI
 #import "Three20UI/TTNavigator.h"

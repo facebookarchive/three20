@@ -45,6 +45,7 @@ typedef enum {
 }
 
 @property (nonatomic, readonly) TTActivityLabelStyle style;
+
 @property (nonatomic, retain)   UIView*   backgroundView;
 @property (nonatomic, assign)   NSString* text;
 @property (nonatomic, assign)   UIFont*   font;

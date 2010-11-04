@@ -27,12 +27,12 @@
   NSInteger         _argumentCount;
 }
 
-@property (nonatomic)           Class             targetClass;
+@property (nonatomic, assign)   Class             targetClass;
 @property (nonatomic, assign)   id                targetObject;
 @property (nonatomic, readonly) TTNavigationMode  navigationMode;
 @property (nonatomic, copy)     NSString*         parentURL;
-@property (nonatomic)           NSInteger         transition;
-@property (nonatomic)           NSInteger         argumentCount;
+@property (nonatomic, assign)   NSInteger         transition;
+@property (nonatomic, assign)   NSInteger         argumentCount;
 @property (nonatomic, readonly) BOOL              isUniversal;
 @property (nonatomic, readonly) BOOL              isFragment;
 

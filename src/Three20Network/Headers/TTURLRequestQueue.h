@@ -20,7 +20,6 @@
 @class TTURLRequest;
 
 @interface TTURLRequestQueue : NSObject {
-
 @protected
   NSMutableDictionary*  _loaders;
 

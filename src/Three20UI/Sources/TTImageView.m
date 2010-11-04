@@ -18,10 +18,10 @@
 
 // UI
 #import "Three20UI/TTImageViewDelegate.h"
-#import "Three20UI/TTImageLayer.h"
 
 // UI (private)
-#import "Three20UI/TTImageViewInternal.h"
+#import "Three20UI/private/TTImageLayer.h"
+#import "Three20UI/private/TTImageViewInternal.h"
 
 // Style
 #import "Three20Style/TTShape.h"
@@ -53,7 +53,7 @@
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _autoresizesToImage = NO;
-	  _cachePolicy = TTURLRequestCachePolicyDefault;
+	_cachePolicy = TTURLRequestCachePolicyDefault;
   }
   return self;
 }
@@ -178,6 +178,7 @@
   }
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -205,7 +206,6 @@
       self.image = image;
 
     } else {
-		
       TTURLRequest* request = [TTURLRequest requestWithURL:_urlPath delegate:self];
 	  request.cachePolicy = _cachePolicy;
       request.response = [[[TTURLImageResponse alloc] init] autorelease];

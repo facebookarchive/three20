@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#import "Three20Core/Three20Core.h"
+
 // Network
 
 // - Global
@@ -27,6 +29,7 @@
 
 // - Requests
 #import "Three20Network/TTURLRequest.h"
+#import "Three20Network/TTDownloadRequest.h"
 #import "Three20Network/TTURLRequestDelegate.h"
 
 // - Responses
@@ -34,11 +37,12 @@
 #import "Three20Network/TTURLDataResponse.h"
 #import "Three20Network/TTURLImageResponse.h"
 #import "Three20Network/TTURLPlistResponse.h"
+
 // TODO (jverkoey April 27, 2010: Add back support for XML.
 //#import "Three20Network/TTURLXMLResponse.h"
 
 // - Classes
 #import "Three20Network/TTUserInfo.h"
 #import "Three20Network/TTURLRequestQueue.h"
-#import "Three20Network/TTRequestLoader.h"
+#import "Three20Network/TTDownloadQueue.h"
 #import "Three20Network/TTURLCache.h"

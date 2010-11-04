@@ -22,7 +22,7 @@
 #import "Three20UI/UIViewAdditions.h"
 
 // UI (private)
-#import "Three20UI/TTTabBarInternal.h"
+#import "Three20UI/private/TTTabBarInternal.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

@@ -44,10 +44,11 @@ static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
 static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant";
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > 302000
+#ifdef __IPHONE_4_0
 UIKIT_EXTERN NSString *const UIApplicationDidEnterBackgroundNotification __attribute__((weak_import));
 UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attribute__((weak_import));
 #endif
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,7 +76,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
                selector:@selector(applicationWillLeaveForeground:)
                    name:UIApplicationWillTerminateNotification
                  object:nil];
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > 30200
+#ifdef __IPHONE_4_0
     if (nil != &UIApplicationDidEnterBackgroundNotification) {
       [center addObserver:self
                  selector:@selector(applicationWillLeaveForeground:)
@@ -83,7 +84,6 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
                    object:nil];
     }
 #endif
-	  
   }
   return self;
 }
