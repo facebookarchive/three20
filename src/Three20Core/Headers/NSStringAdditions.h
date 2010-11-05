@@ -35,6 +35,8 @@
 
 /**
  * Parses a URL query string into a dictionary.
+ *
+ * @deprecated Use queryContentsUsingEncoding: instead.
  */
 - (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding __TTDEPRECATED_METHOD;
 
