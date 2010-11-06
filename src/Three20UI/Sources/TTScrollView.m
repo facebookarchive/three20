@@ -841,9 +841,12 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)acquireTouch:(UITouch*)touch {
   if (nil == _touch1) {
+    TT_RELEASE_SAFELY(_touch1);
     _touch1 = [touch retain];
     ++_touchCount;
+
   } else if (nil == _touch2) {
+    TT_RELEASE_SAFELY(_touch2);
     _touch2 = [touch retain];
     ++_touchCount;
   }
@@ -1257,7 +1260,7 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
 
-  [super ensureTouches];
+  [self ensureTouches];
   NSLog( @"_touchCount: %i", _touchCount );
   NSLog( @"touches count: %i", [touches count] );
 
