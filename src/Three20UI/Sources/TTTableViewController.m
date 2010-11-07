@@ -415,7 +415,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didShowModel:(BOOL)firstTime {
   [super didShowModel:firstTime];
-  if (firstTime) {
   if (![self isViewAppearing] && firstTime) {
     [_tableView flashScrollIndicators];
   }
