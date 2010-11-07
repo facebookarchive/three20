@@ -270,6 +270,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  if (_flags.isShowingModel) {
+    [_tableView flashScrollIndicators];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   [self hideMenu:YES];
@@ -407,6 +416,7 @@
 - (void)didShowModel:(BOOL)firstTime {
   [super didShowModel:firstTime];
   if (firstTime) {
+  if (![self isViewAppearing] && firstTime) {
     [_tableView flashScrollIndicators];
   }
 }
