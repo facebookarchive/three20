@@ -69,6 +69,7 @@
 #import "Three20UI/TTSearchTextField.h"
 #import "Three20UI/TTSearchTextFieldDelegate.h"
 #import "Three20UI/TTPickerTextField.h"
+#import "Three20UI/TTPickerTextFieldDelegate.h"
 #import "Three20UI/TTSearchBar.h"
 
 #import "Three20UI/TTTableViewController.h"
