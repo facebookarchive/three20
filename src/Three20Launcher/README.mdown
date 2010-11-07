@@ -1,0 +1,41 @@
+
+Three20 Launcher
+================
+
+Mimics the App Launcher view found on all iOS devices. Complete with tap-and-hold to
+reorder elements and notification badges.
+
+
+How to add it
+-------------
+
+Via the python module script:
+
+> python src/scripts/ttmodule.py -p path/to/YourApp.xcodeproj Three20Launcher -c Debug -c Release
+
+Add the following import to your project:
+
+#import <Three20Launcher/Three20Launcher.h>
+
+
+Example projects
+----------------
+
+http://github.com/Three20/Samples/LauncherCatalog
+
+A run-through of the various means of creating and interacting with a TTLauncherView and
+TTLauncherViewController.
+
+
+Breakdown
+---------
+
+
+Importing specific files
+------------------------
+
+You should only do this within Three20 modules. Your app should only import the
+library header Three20Launcher/Three20Launcher.h.
+
+    // Launcher
+    #import "Three20Launcher/<filename>.h"

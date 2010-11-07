@@ -14,18 +14,20 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTLauncherView.h"
+#import "Three20Launcher/TTLauncherView.h"
+
+// Launcher
+#import "Three20Launcher/TTLauncherButton.h"
+#import "Three20Launcher/TTLauncherItem.h"
+#import "Three20Launcher/TTLauncherViewDelegate.h"
+
+// Launcher (private)
+#import "Three20Launcher/private/TTLauncherScrollView.h"
+#import "Three20Launcher/private/TTLauncherHighlightView.h"
 
 // UI
-#import "Three20UI/TTLauncherButton.h"
-#import "Three20UI/TTLauncherItem.h"
-#import "Three20UI/TTLauncherViewDelegate.h"
 #import "Three20UI/TTPageControl.h"
 #import "Three20UI/UIViewAdditions.h"
-
-// UI (private)
-#import "Three20UI/private/TTLauncherScrollView.h"
-#import "Three20UI/private/TTLauncherHighlightView.h"
 
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
@@ -87,11 +89,12 @@ static const NSInteger kDefaultColumnCount = 3;
 
     _pager = [[TTPageControl alloc] init];
     _pager.dotStyle = @"launcherPageDot:";
-    _pager.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
-    |UIViewAutoresizingFlexibleRightMargin
-    |UIViewAutoresizingFlexibleBottomMargin;
-    [_pager addTarget:self action:@selector(pageChanged)
-     forControlEvents:UIControlEventValueChanged];
+    _pager.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin
+                               | UIViewAutoresizingFlexibleRightMargin
+                               | UIViewAutoresizingFlexibleBottomMargin);
+    [_pager addTarget: self
+               action: @selector(pageChanged)
+     forControlEvents: UIControlEventValueChanged];
     [self addSubview:_pager];
 
     self.autoresizesSubviews = YES;
@@ -106,7 +109,7 @@ static const NSInteger kDefaultColumnCount = 3;
 - (void)dealloc {
   for (NSArray* page in _pages) {
     for (TTLauncherItem* item in page) {
-      item.launcher = nil;
+      item.delegate = nil;
     }
   }
 
@@ -194,7 +197,12 @@ static const NSInteger kDefaultColumnCount = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateItemBadge:(TTLauncherItem*)item {
+#pragma mark -
+#pragma mark TTLauncherItemDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)launcherItem:(TTLauncherItem*)item didChangeBadgeNumber:(NSInteger)badgeNumber {
   TTLauncherButton* button = [self buttonForItem:item];
   [button performSelector:@selector(updateBadge)];
 }
@@ -212,6 +220,7 @@ static const NSInteger kDefaultColumnCount = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updatePagerWithContentOffset:(CGPoint)contentOffset {
   CGFloat pageWidth = _scrollView.width;
+  _pager.numberOfPages = [self.pages count];
   _pager.currentPage = floor((contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 }
 
@@ -726,7 +735,8 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)pageChanged {
-  _scrollView.contentOffset = CGPointMake(_pager.currentPage * _scrollView.width, 0);
+  [_scrollView setContentOffset: CGPointMake(_pager.currentPage * _scrollView.width, 0)
+                       animated: YES];
 }
 
 
@@ -746,7 +756,7 @@ static const NSInteger kDefaultColumnCount = 3;
 - (void)setPages:(NSArray*)pages {
   for (NSArray* page in _pages) {
     for (TTLauncherItem* item in page) {
-      item.launcher = nil;
+      item.delegate = nil;
     }
   }
 
@@ -757,7 +767,7 @@ static const NSInteger kDefaultColumnCount = 3;
     NSMutableArray* pageCopy = [page mutableCopy];
     [_pages addObject:pageCopy];
     for (TTLauncherItem* item in pageCopy) {
-      item.launcher = self;
+      item.delegate = self;
     }
     [pageCopy release];
   }
@@ -802,7 +812,7 @@ static const NSInteger kDefaultColumnCount = 3;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addItem:(TTLauncherItem*)item animated:(BOOL)animated {
   if (![self itemWithURL:item.URL]) {
-    item.launcher = self;
+    item.delegate = self;
 
     if (!_pages) {
       _pages = [[NSMutableArray arrayWithObject:[NSMutableArray arrayWithObject:item]] retain];
@@ -831,7 +841,7 @@ static const NSInteger kDefaultColumnCount = 3;
     TTLauncherButton* button = [self buttonForItem:item];
     NSMutableArray* buttonPage = [self pageWithButton:button];
 
-    item.launcher = nil;
+    item.delegate = nil;
     [itemPage removeObject:button.item];
 
     if (buttonPage) {
@@ -893,6 +903,10 @@ static const NSInteger kDefaultColumnCount = 3;
     NSUInteger page = [path indexAtPosition:0];
     CGFloat x = page * _scrollView.width;
     [_scrollView setContentOffset:CGPointMake(x, 0) animated:animated];
+
+    if (!animated) {
+      [self updatePagerWithContentOffset:_scrollView.contentOffset];
+    }
   }
 }
 

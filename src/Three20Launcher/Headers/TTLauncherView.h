@@ -17,13 +17,24 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+// Launcher (Private)
+#import "Three20Launcher/private/TTLauncherItemDelegate.h"
+
 @protocol TTLauncherViewDelegate;
 @class TTPageControl;
 @class TTLauncherButton;
 @class TTLauncherItem;
 @class TTLauncherHighlightView;
 
-@interface TTLauncherView : UIView <UIScrollViewDelegate> {
+/**
+ * A view that mimics the functionality of the App Launcher found on all iOS devices.
+ *
+ * Implements tap-and-hold reordering, deleting icons, and icon badges.
+ */
+@interface TTLauncherView : UIView <
+  UIScrollViewDelegate,
+  TTLauncherItemDelegate
+> {
   NSMutableArray* _pages;
 
   NSInteger       _columnCount;
@@ -57,6 +68,9 @@
 
 @property (nonatomic, copy) NSArray* pages;
 
+/**
+ * @default 4 columns.
+ */
 @property (nonatomic) NSInteger columnCount;
 
 @property (nonatomic, readonly) NSInteger rowCount;

@@ -14,26 +14,11 @@
 // limitations under the License.
 //
 
-// UI
-#import "Three20UI/TTButton.h"
+#include "../common/Configurations/UnitTests.xcconfig"
+#include "../common/Configurations/Libraries.xcconfig"
 
-@class TTLauncherItem;
-@class TTLabel;
+BASE_PRODUCT_NAME       = ___PROJECTNAME___UnitTests
+PRODUCT_NAME            = $(BASE_PRODUCT_NAME)
+BUILD_BUNDLE_VERSION    = 1.0
 
-@interface TTLauncherButton : TTButton {
-  TTLauncherItem* _item;
-  TTLabel*        _badge;
-  TTButton*       _closeButton;
-
-  BOOL _dragging;
-  BOOL _editing;
-}
-
-@property (nonatomic, readonly) TTLauncherItem* item;
-@property (nonatomic, readonly) TTButton*       closeButton;
-@property (nonatomic)           BOOL            dragging;
-@property (nonatomic)           BOOL            editing;
-
-- (id)initWithItem:(TTLauncherItem*)item;
-
-@end
+OTHER_LDFLAGS           = $(COMMON_LDFLAGS) $(UIKIT_FX) $(COREGRAPHICS_FX) $(QUARTZCORE_FX)
