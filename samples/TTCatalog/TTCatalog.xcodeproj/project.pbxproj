@@ -111,6 +111,12 @@
 		6E7F97A9118E37C700443B46 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7F977E118E37BB00443B46 /* libThree20.a */; };
 		6E94C6AD116D98220012B12C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C6AB116D98220012B12C /* Default.png */; };
 		6E94C6AE116D98220012B12C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C6AC116D98220012B12C /* Icon.png */; };
+		B9FE39C11287F768004875A3 /* DownloadProgressTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE39C01287F768004875A3 /* DownloadProgressTestController.m */; };
+		B9FE39C21287F768004875A3 /* DownloadProgressTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE39C01287F768004875A3 /* DownloadProgressTestController.m */; };
+		B9FE39C31287F768004875A3 /* DownloadProgressTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE39C01287F768004875A3 /* DownloadProgressTestController.m */; };
+		B9FE39C81287F84E004875A3 /* DownloadTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE39C71287F84E004875A3 /* DownloadTestModel.m */; };
+		B9FE39C91287F84E004875A3 /* DownloadTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE39C71287F84E004875A3 /* DownloadTestModel.m */; };
+		B9FE39CA1287F84E004875A3 /* DownloadTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE39C71287F84E004875A3 /* DownloadTestModel.m */; };
 		BE1288310F8973CD00F65EA2 /* StyleTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288300F8973CD00F65EA2 /* StyleTestController.m */; };
 		BE1289C20F91811E00F65EA2 /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1289C10F91811E00F65EA2 /* mask.png */; };
 		BE1D843A0F8D104B00EC8BB8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1D84390F8D104B00EC8BB8 /* QuartzCore.framework */; };
@@ -614,6 +620,10 @@
 		6E7F9964118E3A7600443B46 /* TTCatalog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCatalog_Prefix.pch; path = Headers/TTCatalog_Prefix.pch; sourceTree = "<group>"; };
 		6E94C6AB116D98220012B12C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Resources/Default.png; sourceTree = SOURCE_ROOT; };
 		6E94C6AC116D98220012B12C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Resources/Icon.png; sourceTree = SOURCE_ROOT; };
+		B9FE39BF1287F768004875A3 /* DownloadProgressTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadProgressTestController.h; sourceTree = "<group>"; };
+		B9FE39C01287F768004875A3 /* DownloadProgressTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadProgressTestController.m; sourceTree = "<group>"; };
+		B9FE39C61287F84E004875A3 /* DownloadTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadTestModel.h; sourceTree = "<group>"; };
+		B9FE39C71287F84E004875A3 /* DownloadTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadTestModel.m; sourceTree = "<group>"; };
 		BE12882F0F8973CD00F65EA2 /* StyleTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleTestController.h; sourceTree = "<group>"; };
 		BE1288300F8973CD00F65EA2 /* StyleTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleTestController.m; sourceTree = "<group>"; };
 		BE1289C10F91811E00F65EA2 /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
@@ -934,6 +944,17 @@
 			name = Configurations;
 			sourceTree = "<group>";
 		};
+		B9FE39B81287F681004875A3 /* Download Progress */ = {
+			isa = PBXGroup;
+			children = (
+				B9FE39BF1287F768004875A3 /* DownloadProgressTestController.h */,
+				B9FE39C01287F768004875A3 /* DownloadProgressTestController.m */,
+				B9FE39C61287F84E004875A3 /* DownloadTestModel.h */,
+				B9FE39C71287F84E004875A3 /* DownloadTestModel.m */,
+			);
+			name = "Download Progress";
+			sourceTree = "<group>";
+		};
 		BEC7875C1040A405005C00CF /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -1068,6 +1089,7 @@
 		EA108141101B39510098AAC2 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				B9FE39B81287F681004875A3 /* Download Progress */,
 				EA108148101B39660098AAC2 /* Web Image */,
 				EA108149101B396A0098AAC2 /* YouTube Player */,
 				EA10814F101B398C0098AAC2 /* Activity Labels */,
@@ -1672,6 +1694,8 @@
 				BE20A49C0FF418B2008791F4 /* TableControlsTestController.m in Sources */,
 				BEC787631040A430005C00CF /* LauncherViewTestController.m in Sources */,
 				6E002567116A6D1A00D1F0CB /* TableWithShadowController.m in Sources */,
+				B9FE39C11287F768004875A3 /* DownloadProgressTestController.m in Sources */,
+				B9FE39CA1287F84E004875A3 /* DownloadTestModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1703,6 +1727,8 @@
 				664DFEE012663122004C20C2 /* TableControlsTestController.m in Sources */,
 				664DFEE112663122004C20C2 /* LauncherViewTestController.m in Sources */,
 				664DFEE212663122004C20C2 /* TableWithShadowController.m in Sources */,
+				B9FE39C21287F768004875A3 /* DownloadProgressTestController.m in Sources */,
+				B9FE39C81287F84E004875A3 /* DownloadTestModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1734,6 +1760,8 @@
 				66D43805126634F9004C5F38 /* TableControlsTestController.m in Sources */,
 				66D43806126634F9004C5F38 /* LauncherViewTestController.m in Sources */,
 				66D43807126634F9004C5F38 /* TableWithShadowController.m in Sources */,
+				B9FE39C31287F768004875A3 /* DownloadProgressTestController.m in Sources */,
+				B9FE39C91287F84E004875A3 /* DownloadTestModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

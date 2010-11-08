@@ -19,6 +19,7 @@
 #import "StyleTestController.h"
 #import "ButtonTestController.h"
 #import "TabBarTestController.h"
+#import "DownloadProgressTestController.h"
 
 @implementation AppDelegate
 
@@ -52,6 +53,7 @@
   [map from:@"tt://imageTest2" toViewController:[TableImageTestController class]];
   [map from:@"tt://scrollViewTest" toViewController:[ScrollViewTestController class]];
   [map from:@"tt://launcherTest" toViewController:[LauncherViewTestController class]];
+  [map from:@"tt://dlprogress" toViewController: [DownloadProgressTestController class]];
 
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://catalog"]];
