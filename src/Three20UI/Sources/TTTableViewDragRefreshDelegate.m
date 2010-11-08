@@ -46,6 +46,7 @@
 
 // The number of pixels the table needs to be pulled down by in order to initiate the refresh.
 static const CGFloat kRefreshDeltaY = -65.0f;
+static const CGFloat kRefreshViewHeight = 60.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -121,6 +122,11 @@ static const CGFloat kRefreshDeltaY = -65.0f;
     } else if (scrollView.contentOffset.y < kRefreshDeltaY) {
       [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
     }
+  } else if (_model.isLoading) {
+    if (scrollView.contentOffset.y > 0)
+      _controller.tableView.contentInset = UIEdgeInsetsZero;
+    else if (scrollView.contentOffset.y >= -kRefreshViewHeight)
+      _controller.tableView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
   }
 }
 
@@ -151,7 +157,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultFastTransitionDuration];
-  _controller.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 00.0f, 0.0f);
+  _controller.tableView.contentInset = UIEdgeInsetsMake(kRefreshViewHeight, 0.0f, 00.0f, 0.0f);
   [UIView commitAnimations];
 }
 
