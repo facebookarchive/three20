@@ -14,23 +14,31 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+// Launcher
+#import "Three20Launcher/TTLauncherViewDelegate.h"
+
+// UI
+#import "Three20UI/TTViewController.h"
 
 @class TTLauncherView;
 
-@interface TTLauncherHighlightView : UIView {
-  TTLauncherView* _parentView;
-  CGRect          _highlightRect;
-  CGFloat         _highlightScale;
-  UIWindow*       _statusBarCover;
-  UILabel*        _textLabel;
+/**
+ * A dead simple view controller with a launcher view covering the entire view.
+ *
+ * Displays and hides a "Done" button in the top-right corner when editing the launcher view.
+ *
+ * Default background color is black.
+ */
+@interface TTLauncherViewController : TTViewController <
+  TTLauncherViewDelegate
+> {
+@private
+  TTLauncherView*   _launcherView;
+
+  // Stored while editing.
+  UIBarButtonItem*  _oldRightBarButtonItem;
 }
 
-@property (nonatomic, assign) CGRect          highlightRect;
-@property (nonatomic, retain) TTLauncherView* parentView;
-@property (nonatomic, copy)   NSString*       text;
-
-- (void)appear:(BOOL)animated;
+@property (nonatomic, retain) TTLauncherView* launcherView;
 
 @end
