@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		663DB07912661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663DB07812661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */; };
+		664B29E912848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664B29EA12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664B29EB12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664B29EC12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664B29ED12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664B29EE12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664B29F012848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
+		664B29F112848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
+		664B29F212848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
+		664B29F312848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
+		664B29F412848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
+		664B29F512848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
 		66C34BA11266200500489E9A /* TTURLJSONResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A1A11876C9800F08CB1 /* TTURLJSONResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66C34BA21266200500489E9A /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2211876CA800F08CB1 /* JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66C34BA31266200500489E9A /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2311876CA800F08CB1 /* NSObject+SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -404,6 +416,8 @@
 /* Begin PBXFileReference section */
 		663DB06D12661EE900CF8CEA /* Library+YAJL.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Library+YAJL.xcconfig"; path = "Configurations/Library+YAJL.xcconfig"; sourceTree = "<group>"; };
 		663DB07812661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
+		664B29E812848B1A0008D569 /* TTErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorCodes.h; path = Headers/TTErrorCodes.h; sourceTree = "<group>"; };
+		664B29EF12848B270008D569 /* TTErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorCodes.m; path = Source/TTErrorCodes.m; sourceTree = "<group>"; };
 		66C34BB81266200600489E9A /* libextThree20JSON+SBJSON-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20JSON+SBJSON-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C34BE41266200600489E9A /* libextThree20JSON+YAJL-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20JSON+YAJL-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C34BF91266200600489E9A /* extJSONUnitTests+SBJSON-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "extJSONUnitTests+SBJSON-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -723,6 +737,8 @@
 			children = (
 				6E645A1A11876C9800F08CB1 /* TTURLJSONResponse.h */,
 				6E645A1C11876C9800F08CB1 /* TTURLJSONResponse.m */,
+				664B29E812848B1A0008D569 /* TTErrorCodes.h */,
+				664B29EF12848B270008D569 /* TTErrorCodes.m */,
 				6E645A1F11876CA800F08CB1 /* Vendors */,
 			);
 			name = Source;
@@ -773,6 +789,7 @@
 				66C34BA71266200500489E9A /* SBJsonParser.h in Headers */,
 				66C34BA81266200500489E9A /* SBJsonWriter.h in Headers */,
 				66C34BA91266200500489E9A /* extThree20JSON.h in Headers */,
+				664B29EA12848B1A0008D569 /* TTErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +814,7 @@
 				66C34BCD1266200600489E9A /* YAJLGen.h in Headers */,
 				66C34BCE1266200600489E9A /* YAJLParser.h in Headers */,
 				66C34BCF1266200600489E9A /* extThree20JSON.h in Headers */,
+				664B29ED12848B1A0008D569 /* TTErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +831,7 @@
 				66D90EFD12662330009AFDE6 /* SBJsonParser.h in Headers */,
 				66D90EFE12662330009AFDE6 /* SBJsonWriter.h in Headers */,
 				66D90EFF12662330009AFDE6 /* extThree20JSON.h in Headers */,
+				664B29EB12848B1A0008D569 /* TTErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,6 +856,7 @@
 				66D90F2312662330009AFDE6 /* YAJLGen.h in Headers */,
 				66D90F2412662330009AFDE6 /* YAJLParser.h in Headers */,
 				66D90F2512662330009AFDE6 /* extThree20JSON.h in Headers */,
+				664B29EE12848B1A0008D569 /* TTErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,6 +881,7 @@
 				6E645BBE1187751200F08CB1 /* YAJLGen.h in Headers */,
 				6E645BBF1187751200F08CB1 /* YAJLParser.h in Headers */,
 				6E6462131187DD3300F08CB1 /* extThree20JSON.h in Headers */,
+				664B29EC12848B1A0008D569 /* TTErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,6 +898,7 @@
 				6E645A3911876CA800F08CB1 /* SBJsonParser.h in Headers */,
 				6E645A3B11876CA800F08CB1 /* SBJsonWriter.h in Headers */,
 				6E6462121187DD2F00F08CB1 /* extThree20JSON.h in Headers */,
+				664B29E912848B1A0008D569 /* TTErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1361,6 +1383,7 @@
 				66C34BB01266200500489E9A /* SBJsonBase.m in Sources */,
 				66C34BB11266200500489E9A /* SBJsonParser.m in Sources */,
 				66C34BB21266200500489E9A /* SBJsonWriter.m in Sources */,
+				664B29F112848B270008D569 /* TTErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1381,6 +1404,7 @@
 				66C34BDC1266200600489E9A /* YAJLDocument.m in Sources */,
 				66C34BDD1266200600489E9A /* YAJLGen.m in Sources */,
 				66C34BDE1266200600489E9A /* YAJLParser.m in Sources */,
+				664B29F412848B270008D569 /* TTErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1403,6 +1427,7 @@
 				66D90F0612662330009AFDE6 /* SBJsonBase.m in Sources */,
 				66D90F0712662330009AFDE6 /* SBJsonParser.m in Sources */,
 				66D90F0812662330009AFDE6 /* SBJsonWriter.m in Sources */,
+				664B29F212848B270008D569 /* TTErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1423,6 +1448,7 @@
 				66D90F3212662330009AFDE6 /* YAJLDocument.m in Sources */,
 				66D90F3312662330009AFDE6 /* YAJLGen.m in Sources */,
 				66D90F3412662330009AFDE6 /* YAJLParser.m in Sources */,
+				664B29F512848B270008D569 /* TTErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1451,6 +1477,7 @@
 				6E645BD11187751200F08CB1 /* YAJLDocument.m in Sources */,
 				6E645BD21187751200F08CB1 /* YAJLGen.m in Sources */,
 				6E645BD31187751200F08CB1 /* YAJLParser.m in Sources */,
+				664B29F312848B270008D569 /* TTErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1465,6 +1492,7 @@
 				6E645A3811876CA800F08CB1 /* SBJsonBase.m in Sources */,
 				6E645A3A11876CA800F08CB1 /* SBJsonParser.m in Sources */,
 				6E645A3C11876CA800F08CB1 /* SBJsonWriter.m in Sources */,
+				664B29F012848B270008D569 /* TTErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

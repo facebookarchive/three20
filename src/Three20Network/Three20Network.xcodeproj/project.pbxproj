@@ -68,6 +68,12 @@
 		662D821012630527005851C2 /* TTURLRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7362711849A4000A35176 /* TTURLRequestQueue.m */; };
 		662D82521263082D005851C2 /* libThree20Core-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C16AC51263027400A7825A /* libThree20Core-Xcode3.2.2.a */; };
 		662D82531263082D005851C2 /* libThree20Network-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */; };
+		664B29BD12848AA50008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29BC12848AA50008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664B29BE12848AA50008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29BC12848AA50008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664B29BF12848AA50008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29BC12848AA50008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664B29C112848AAD0008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29C012848AAD0008D569 /* TTErrorCodes.m */; };
+		664B29C212848AAD0008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29C012848AAD0008D569 /* TTErrorCodes.m */; };
+		664B29C312848AAD0008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29C012848AAD0008D569 /* TTErrorCodes.m */; };
 		66C16B1C1263059A00A7825A /* libThree20Network-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */; };
 		66C16B21126305AB00A7825A /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C16AC31263027400A7825A /* libThree20Core-Xcode3.2.5.a */; };
 		66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */; };
@@ -229,6 +235,8 @@
 		662D81C7126304F3005851C2 /* NetworkUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NetworkUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Network-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Network-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		664B29BC12848AA50008D569 /* TTErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorCodes.h; path = Headers/TTErrorCodes.h; sourceTree = "<group>"; };
+		664B29C012848AAD0008D569 /* TTErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorCodes.m; path = Sources/TTErrorCodes.m; sourceTree = "<group>"; };
 		66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkURLCacheTests.m; path = UnitTests/NetworkURLCacheTests.m; sourceTree = "<group>"; };
 		66F955B71266647A00BEF6F0 /* both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = both.png; path = UnitTests/Resources/both.png; sourceTree = "<group>"; };
 		66F955B81266647A00BEF6F0 /* both@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "both@2x.png"; path = "UnitTests/Resources/both@2x.png"; sourceTree = "<group>"; };
@@ -394,6 +402,8 @@
 				6E08B86E1183B38400DA1579 /* Global */,
 				6EE7360111849A1F00A35176 /* TTUserInfo.h */,
 				6EE735FE11849A1600A35176 /* TTUserInfo.m */,
+				664B29BC12848AA50008D569 /* TTErrorCodes.h */,
+				664B29C012848AAD0008D569 /* TTErrorCodes.m */,
 				6E08B8091183B28A00DA1579 /* Model */,
 				6E08B8101183B28A00DA1579 /* Response */,
 				6E08B8191183B28A00DA1579 /* Request */,
@@ -558,6 +568,7 @@
 				662D81DB12630516005851C2 /* TTURLResponse.h in Headers */,
 				662D81DC12630516005851C2 /* Three20Network_Prefix.pch in Headers */,
 				662D81DD12630516005851C2 /* TTURLRequestQueueInternal.h in Headers */,
+				664B29BE12848AA50008D569 /* TTErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +593,7 @@
 				662D820212630527005851C2 /* TTURLResponse.h in Headers */,
 				662D820312630527005851C2 /* Three20Network_Prefix.pch in Headers */,
 				662D820412630527005851C2 /* TTURLRequestQueueInternal.h in Headers */,
+				664B29BD12848AA50008D569 /* TTErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +618,7 @@
 				6EE7361F11849A3500A35176 /* TTURLResponse.h in Headers */,
 				6EE7364911849B1D00A35176 /* Three20Network_Prefix.pch in Headers */,
 				6EF96405118EFCF0003902E7 /* TTURLRequestQueueInternal.h in Headers */,
+				664B29BF12848AA50008D569 /* TTErrorCodes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +977,7 @@
 				662D81E712630516005851C2 /* TTURLRequest.m in Sources */,
 				662D81E812630516005851C2 /* TTURLRequestModel.m in Sources */,
 				662D81E912630516005851C2 /* TTURLRequestQueue.m in Sources */,
+				664B29C212848AAD0008D569 /* TTErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -981,6 +995,7 @@
 				662D820E12630527005851C2 /* TTURLRequest.m in Sources */,
 				662D820F12630527005851C2 /* TTURLRequestModel.m in Sources */,
 				662D821012630527005851C2 /* TTURLRequestQueue.m in Sources */,
+				664B29C112848AAD0008D569 /* TTErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1013,7 @@
 				6EE7362D11849A4000A35176 /* TTURLRequest.m in Sources */,
 				6EE7362E11849A4000A35176 /* TTURLRequestModel.m in Sources */,
 				6EE7362F11849A4000A35176 /* TTURLRequestQueue.m in Sources */,
+				664B29C312848AAD0008D569 /* TTErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

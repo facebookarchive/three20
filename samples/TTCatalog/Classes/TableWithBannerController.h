@@ -14,23 +14,13 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import <Three20/Three20.h>
 
-@class TTLauncherView;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface TableWithBannerController : TTTableViewController {
 
-@interface TTLauncherHighlightView : UIView {
-  TTLauncherView* _parentView;
-  CGRect          _highlightRect;
-  CGFloat         _highlightScale;
-  UIWindow*       _statusBarCover;
-  UILabel*        _textLabel;
 }
-
-@property (nonatomic, assign) CGRect          highlightRect;
-@property (nonatomic, retain) TTLauncherView* parentView;
-@property (nonatomic, copy)   NSString*       text;
-
-- (void)appear:(BOOL)animated;
 
 @end

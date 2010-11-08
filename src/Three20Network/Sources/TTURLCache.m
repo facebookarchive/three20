@@ -204,6 +204,11 @@ static NSMutableDictionary* gNamedCaches = nil;
     int pixelCount = image.size.width * image.size.height;
 
     if (force || pixelCount < kLargeImageSize) {
+      UIImage* existingImage = [_imageCache objectForKey:URL];
+      if (nil != existingImage) {
+        _totalPixelCount -= existingImage.size.width * existingImage.size.height;
+        [_imageSortedList removeObject:URL];
+      }
       _totalPixelCount += pixelCount;
 
       if (_totalPixelCount > _maxPixelCount && _maxPixelCount) {

@@ -253,6 +253,19 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setDefaultImage:(UIImage*)theDefaultImage {
+  if (_defaultImage != theDefaultImage) {
+    [_defaultImage release];
+    _defaultImage = [theDefaultImage retain];
+  }
+  if (nil == _urlPath || 0 == _urlPath.length) {
+    //no url path set yet, so use it as the current image
+    self.image = _defaultImage;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUrlPath:(NSString*)urlPath {
   // Check for no changes.
   if (nil != _image && nil != _urlPath && [urlPath isEqualToString:_urlPath]) {

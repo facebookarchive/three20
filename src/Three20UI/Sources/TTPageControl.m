@@ -45,6 +45,8 @@
   if (self = [super initWithFrame:frame]) {
     self.backgroundColor = [UIColor clearColor];
     self.dotStyle = @"pageDot:";
+    self.hidesForSinglePage = NO;
+    self.contentMode = UIViewContentModeRedraw;
   }
 
   return self;
@@ -95,31 +97,33 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawRect:(CGRect)rect {
-  if (_numberOfPages > 1 || _hidesForSinglePage) {
-    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-    TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
+  if(_numberOfPages <= 1 && _hidesForSinglePage) {
+    return;
+  }
 
-    CGSize dotSize = [self.normalDotStyle addToSize:CGSizeZero context:context];
+  TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+  TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
 
-    CGFloat dotWidth = dotSize.width + boxStyle.margin.left + boxStyle.margin.right;
-    CGFloat totalWidth = (dotWidth * _numberOfPages) - (boxStyle.margin.left + boxStyle.margin.right);
-    CGRect contentRect = CGRectMake(round(self.width/2 - totalWidth/2),
-                                    round(self.height/2 - dotSize.height/2),
-                                    dotSize.width, dotSize.height);
+  CGSize dotSize = [self.normalDotStyle addToSize:CGSizeZero context:context];
 
-    for (NSInteger i = 0; i < _numberOfPages; ++i) {
-      contentRect.origin.x += boxStyle.margin.left;
+  CGFloat dotWidth = dotSize.width + boxStyle.margin.left + boxStyle.margin.right;
+  CGFloat totalWidth = (dotWidth * _numberOfPages) - (boxStyle.margin.left + boxStyle.margin.right);
+  CGRect contentRect = CGRectMake(round(self.width/2 - totalWidth/2),
+                                  round(self.height/2 - dotSize.height/2),
+                                  dotSize.width, dotSize.height);
 
-      context.frame = contentRect;
-      context.contentFrame = contentRect;
+  for (NSInteger i = 0; i < _numberOfPages; ++i) {
+    contentRect.origin.x += boxStyle.margin.left;
 
-      if (i == _currentPage) {
-        [self.currentDotStyle draw:context];
-      } else {
-        [self.normalDotStyle draw:context];
-      }
-      contentRect.origin.x += dotSize.width + boxStyle.margin.right;
+    context.frame = contentRect;
+    context.contentFrame = contentRect;
+
+    if (i == _currentPage) {
+      [self.currentDotStyle draw:context];
+    } else {
+      [self.normalDotStyle draw:context];
     }
+    contentRect.origin.x += dotSize.width + boxStyle.margin.right;
   }
 }
 

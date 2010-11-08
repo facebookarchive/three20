@@ -21,7 +21,10 @@
 }
 
 - (UIViewController*)post:(NSDictionary*)query {
-  TTPostController* controller = [[[TTPostController alloc] init] autorelease];
+  TTPostController* controller = [[[TTPostController alloc] initWithNavigatorURL:nil
+																		   query:
+								   [NSDictionary dictionaryWithObjectsAndKeys:@"Default Text", @"text", nil]]
+								   autorelease];
   controller.originView = [query objectForKey:@"__target__"];
   return controller;
 }
