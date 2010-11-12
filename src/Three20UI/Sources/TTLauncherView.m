@@ -64,6 +64,7 @@ static const NSInteger kDefaultColumnCount = 3;
 @implementation TTLauncherView
 
 @synthesize columnCount = _columnCount;
+@synthesize pager       = _pager;
 @synthesize prompt      = _prompt;
 @synthesize editing     = _editing;
 @synthesize delegate    = _delegate;

@@ -61,6 +61,8 @@
 
 @property (nonatomic, readonly) NSInteger rowCount;
 
+@property (nonatomic, readonly) TTPageControl* pager;
+
 @property (nonatomic) NSInteger currentPageIndex;
 
 @property (nonatomic, copy) NSString* prompt;
