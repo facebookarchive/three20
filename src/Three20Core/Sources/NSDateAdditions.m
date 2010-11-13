@@ -153,25 +153,25 @@
   NSTimeInterval elapsed = [self timeIntervalSinceNow];
   if (elapsed > 0) {
     if (elapsed <= 1) {
-      return TTLocalizedString(@"just a moment", @"");
+      return TTLocalizedString(@"in just a moment", @"");
       
     } else if (elapsed < TT_MINUTE) {
       int seconds = (int)(elapsed);
-      return [NSString stringWithFormat:TTLocalizedString(@"%d seconds", @""), seconds];
+      return [NSString stringWithFormat:TTLocalizedString(@"in %d seconds", @""), seconds];
       
     } else if (elapsed < 2*TT_MINUTE) {
-      return TTLocalizedString(@"about a minute", @"");
+      return TTLocalizedString(@"in about a minute", @"");
       
     } else if (elapsed < TT_HOUR) {
       int mins = (int)(elapsed/TT_MINUTE);
-      return [NSString stringWithFormat:TTLocalizedString(@"%d minutes", @""), mins];
+      return [NSString stringWithFormat:TTLocalizedString(@"in %d minutes", @""), mins];
       
     } else if (elapsed < TT_HOUR*1.5) {
-      return TTLocalizedString(@"about an hour", @"");
+      return TTLocalizedString(@"in about an hour", @"");
       
     } else if (elapsed < TT_DAY) {
       int hours = (int)((elapsed+TT_HOUR/2)/TT_HOUR);
-      return [NSString stringWithFormat:TTLocalizedString(@"%d hours", @""), hours];
+      return [NSString stringWithFormat:TTLocalizedString(@"in %d hours", @""), hours];
       
     } else {
       return [self formatDateTime];
