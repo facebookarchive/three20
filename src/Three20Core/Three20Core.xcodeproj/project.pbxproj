@@ -43,6 +43,21 @@
 		6650CA9A1262F6E2003FF804 /* NSMutableDictionaryAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E911183C8F6003B099E /* NSMutableDictionaryAdditions.m */; };
 		6650CA9B1262F6E2003FF804 /* TTGlobalCoreRects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDAE9C8118CA1790008133C /* TTGlobalCoreRects.m */; };
 		6650CA9C1262F6E2003FF804 /* TTEntityTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607CEE11AF2FCB00C93CD4 /* TTEntityTables.m */; };
+		66ADC9091290B23A00855386 /* TTExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC9071290B23A00855386 /* TTExtensionInfo.m */; };
+		66ADC90B1290B23A00855386 /* TTExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC9071290B23A00855386 /* TTExtensionInfo.m */; };
+		66ADC90D1290B23A00855386 /* TTExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC9071290B23A00855386 /* TTExtensionInfo.m */; };
+		66ADC90F1290B24D00855386 /* TTExtensionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADC90E1290B24D00855386 /* TTExtensionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66ADC9101290B24D00855386 /* TTExtensionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADC90E1290B24D00855386 /* TTExtensionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66ADC9111290B24D00855386 /* TTExtensionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADC90E1290B24D00855386 /* TTExtensionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66ADCE671291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		66ADCE681291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		66ADCE691291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		66ADCE831291BEAE00855386 /* TTExtensionAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADCE811291BEAE00855386 /* TTExtensionAuthor.m */; };
+		66ADCE851291BEAE00855386 /* TTExtensionAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADCE811291BEAE00855386 /* TTExtensionAuthor.m */; };
+		66ADCE871291BEAE00855386 /* TTExtensionAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADCE811291BEAE00855386 /* TTExtensionAuthor.m */; };
+		66ADCE891291BEBB00855386 /* TTExtensionAuthor.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66ADCE8A1291BEBB00855386 /* TTExtensionAuthor.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66ADCE8B1291BEBB00855386 /* TTExtensionAuthor.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66C2E0D51262F748006DF55A /* TTMarkupStripper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E55A49B1183C956002768DE /* TTMarkupStripper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66C2E0D61262F748006DF55A /* NSArrayAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB01183C906003B099E /* NSArrayAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66C2E0D71262F748006DF55A /* NSDataAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E178EB11183C906003B099E /* NSDataAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -77,6 +92,12 @@
 		66C2E0F61262F748006DF55A /* TTEntityTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607CEE11AF2FCB00C93CD4 /* TTEntityTables.m */; };
 		66D1E1631262FDC500BFDAF5 /* libThree20Core-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */; };
 		66D1E1641262FDCE00BFDAF5 /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */; };
+		66ECA253128DFE28006C78C2 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */; };
+		66ECA255128DFE28006C78C2 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */; };
+		66ECA257128DFE28006C78C2 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */; };
+		66ECA259128DFE34006C78C2 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ECA258128DFE34006C78C2 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66ECA25A128DFE34006C78C2 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ECA258128DFE34006C78C2 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66ECA25B128DFE34006C78C2 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ECA258128DFE34006C78C2 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66F9A6311262ED9F0059C2AE /* CoreAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608E1183D14800685649 /* CoreAdditionTests.m */; };
 		66F9A6321262ED9F0059C2AE /* CoreGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB4608F1183D14800685649 /* CoreGlobalTests.m */; };
 		66F9A6331262ED9F0059C2AE /* CoreMarkupStripperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E607C6E11AF286B00C93CD4 /* CoreMarkupStripperTests.m */; };
@@ -146,7 +167,14 @@
 		663EE60B1262E3DA00CFDEA9 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CoreUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Core-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66ADC9071290B23A00855386 /* TTExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionInfo.m; path = Sources/TTExtensionInfo.m; sourceTree = "<group>"; };
+		66ADC90E1290B24D00855386 /* TTExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionInfo.h; path = Headers/TTExtensionInfo.h; sourceTree = "<group>"; };
+		66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionInfoPrivate.h; path = Headers/TTExtensionInfoPrivate.h; sourceTree = "<group>"; };
+		66ADCE811291BEAE00855386 /* TTExtensionAuthor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionAuthor.m; path = Sources/TTExtensionAuthor.m; sourceTree = "<group>"; };
+		66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionAuthor.h; path = Headers/TTExtensionAuthor.h; sourceTree = "<group>"; };
 		66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Core-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Sources/TTExtensionLoader.m; sourceTree = "<group>"; };
+		66ECA258128DFE34006C78C2 /* TTExtensionLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionLoader.h; path = Headers/TTExtensionLoader.h; sourceTree = "<group>"; };
 		66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CoreUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E178E751183C8AE003B099E /* Three20Core_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core_Prefix.pch; path = Headers/Three20Core_Prefix.pch; sourceTree = "<group>"; };
 		6E178E761183C8B6003B099E /* TTDebugFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDebugFlags.h; path = Headers/TTDebugFlags.h; sourceTree = "<group>"; };
@@ -281,6 +309,28 @@
 			name = "Xcode 3.2.4 Workaround";
 			sourceTree = "<group>";
 		};
+		6664448A129386CB0045A174 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
+		66ECA24F128DFE10006C78C2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				66ECA258128DFE34006C78C2 /* TTExtensionLoader.h */,
+				66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */,
+				66ADC90E1290B24D00855386 /* TTExtensionInfo.h */,
+				66ADC9071290B23A00855386 /* TTExtensionInfo.m */,
+				6664448A129386CB0045A174 /* Private */,
+				66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */,
+				66ADCE811291BEAE00855386 /* TTExtensionAuthor.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		6E607CAE11AF2DE800C93CD4 /* Entity Tables */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +362,7 @@
 				6ED117D21183BDBF0096AEBF /* Global */,
 				6ED118141183BF9D0096AEBF /* Additions */,
 				6ED118C21183C2310096AEBF /* Debug */,
+				66ECA24F128DFE10006C78C2 /* Extensions */,
 				6E607CAE11AF2DE800C93CD4 /* Entity Tables */,
 				6E78061A1183BD810078A30B /* Classes */,
 			);
@@ -428,6 +479,10 @@
 				6650CA8A1262F6E2003FF804 /* Three20Core+Additions.h in Headers */,
 				6650CA8B1262F6E2003FF804 /* TTGlobalCoreRects.h in Headers */,
 				6650CA8C1262F6E2003FF804 /* TTEntityTables.h in Headers */,
+				66ECA25A128DFE34006C78C2 /* TTExtensionLoader.h in Headers */,
+				66ADC9111290B24D00855386 /* TTExtensionInfo.h in Headers */,
+				66ADCE671291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */,
+				66ADCE8A1291BEBB00855386 /* TTExtensionAuthor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +508,10 @@
 				66C2E0E41262F748006DF55A /* Three20Core+Additions.h in Headers */,
 				66C2E0E51262F748006DF55A /* TTGlobalCoreRects.h in Headers */,
 				66C2E0E61262F748006DF55A /* TTEntityTables.h in Headers */,
+				66ECA259128DFE34006C78C2 /* TTExtensionLoader.h in Headers */,
+				66ADC9101290B24D00855386 /* TTExtensionInfo.h in Headers */,
+				66ADCE691291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */,
+				66ADCE891291BEBB00855386 /* TTExtensionAuthor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +537,10 @@
 				6E6454561184BE8600F08CB1 /* Three20Core+Additions.h in Headers */,
 				6EDAE9C7118CA1720008133C /* TTGlobalCoreRects.h in Headers */,
 				6E607CF211AF2FE400C93CD4 /* TTEntityTables.h in Headers */,
+				66ECA25B128DFE34006C78C2 /* TTExtensionLoader.h in Headers */,
+				66ADC90F1290B24D00855386 /* TTExtensionInfo.h in Headers */,
+				66ADCE681291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */,
+				66ADCE8B1291BEBB00855386 /* TTExtensionAuthor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +827,9 @@
 				6650CA9A1262F6E2003FF804 /* NSMutableDictionaryAdditions.m in Sources */,
 				6650CA9B1262F6E2003FF804 /* TTGlobalCoreRects.m in Sources */,
 				6650CA9C1262F6E2003FF804 /* TTEntityTables.m in Sources */,
+				66ECA255128DFE28006C78C2 /* TTExtensionLoader.m in Sources */,
+				66ADC90D1290B23A00855386 /* TTExtensionInfo.m in Sources */,
+				66ADCE851291BEAE00855386 /* TTExtensionAuthor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,6 +851,9 @@
 				66C2E0F41262F748006DF55A /* NSMutableDictionaryAdditions.m in Sources */,
 				66C2E0F51262F748006DF55A /* TTGlobalCoreRects.m in Sources */,
 				66C2E0F61262F748006DF55A /* TTEntityTables.m in Sources */,
+				66ECA253128DFE28006C78C2 /* TTExtensionLoader.m in Sources */,
+				66ADC90B1290B23A00855386 /* TTExtensionInfo.m in Sources */,
+				66ADCE831291BEAE00855386 /* TTExtensionAuthor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +885,9 @@
 				6EB460631183CFB900685649 /* NSMutableDictionaryAdditions.m in Sources */,
 				6EDAE9C9118CA1790008133C /* TTGlobalCoreRects.m in Sources */,
 				6E607CF111AF2FE400C93CD4 /* TTEntityTables.m in Sources */,
+				66ECA257128DFE28006C78C2 /* TTExtensionLoader.m in Sources */,
+				66ADC9091290B23A00855386 /* TTExtensionInfo.m in Sources */,
+				66ADCE871291BEAE00855386 /* TTExtensionAuthor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
