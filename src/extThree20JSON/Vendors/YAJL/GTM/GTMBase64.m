@@ -6,9 +6,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License"); you may not
 //  use this file except in compliance with the License.  You may obtain a copy
 //  of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 //  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
@@ -16,7 +16,7 @@
 //  the License.
 //
 
-#import "YAJL_GTMBase64.h"
+#import "extThree20JSON/private/GTMBase64.h"
 
 static const char *kBase64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 static const char *kWebSafeBase64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
@@ -493,10 +493,10 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
   if (!srcLen || !destLen || !srcBytes || !destBytes) {
     return 0;
   }
-  
+
   char *curDest = destBytes;
   const unsigned char *curSrc = (const unsigned char *)(srcBytes);
-  
+
   // Three bytes of data encodes to four characters of cyphertext.
   // So we can pump through three-byte chunks atomically.
   while (srcLen > 2) {
@@ -506,13 +506,13 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     curDest[1] = charset[((curSrc[0] & 0x03) << 4) + (curSrc[1] >> 4)];
     curDest[2] = charset[((curSrc[1] & 0x0f) << 2) + (curSrc[2] >> 6)];
     curDest[3] = charset[curSrc[2] & 0x3f];
-    
+
     curDest += 4;
     curSrc += 3;
     srcLen -= 3;
     destLen -= 4;
   }
-  
+
   // now deal with the tail (<=2 bytes)
   switch (srcLen) {
     case 0:
@@ -572,7 +572,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
   if (!srcLen || !destLen || !srcBytes || !destBytes) {
     return 0;
   }
-  
+
   int decode;
   NSUInteger destIndex = 0;
   int state = 0;
@@ -580,14 +580,14 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
   while (srcLen-- && (ch = *srcBytes++) != 0)  {
     if (IsSpace(ch))  // Skip whitespace
       continue;
-    
+
     if (ch == kBase64PaddingChar)
       break;
-    
+
     decode = charset[(unsigned int)ch];
     if (decode == kBase64InvalidChar)
       return 0;
-    
+
     // Four cyphertext characters decode to three bytes.
     // Therefore we can be in one of four states.
     switch (state) {
@@ -633,7 +633,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
         break;
     }
   }
-  
+
   // We are done decoding Base-64 chars.  Let's see if we ended
   //      on a byte boundary, and/or with erroneous trailing characters.
   if (ch == kBase64PaddingChar) {               // We got a pad char
@@ -664,7 +664,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     }
   } else {
     // We ended by seeing the end of the string.
-    
+
     if (requirePadding) {
       // If we require padding, then anything but state 0 is an error.
       if (state != 0) {
@@ -678,7 +678,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
       }
     }
   }
-  
+
   // If then next piece of output was valid and got written to it means we got a
   // very carefully crafted input that appeared valid but contains some trailing
   // bits past the real length, so just toss the thing.
@@ -686,7 +686,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
       (destBytes[destIndex] != 0)) {
     return 0;
   }
-  
+
   return destIndex;
 }
 
