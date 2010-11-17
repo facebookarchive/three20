@@ -98,15 +98,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)boldVersionOfFont:(UIFont*)font {
-  // XXXjoe Clearly this doesn't work if your font is not the system font
-  return [UIFont boldSystemFontOfSize:font.pointSize];
+  return [font ttBoldVersion];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)italicVersionOfFont:(UIFont*)font {
-  // XXXjoe Clearly this doesn't work if your font is not the system font
-  return [UIFont italicSystemFontOfSize:font.pointSize];
+  return [font ttItalicVersion];
 }
 
 

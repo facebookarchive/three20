@@ -30,4 +30,22 @@
  */
 - (CGFloat)ttLineHeight;
 
+/**
+ * Returns the bold version of this font, or the same font
+ * if no bold version is available.
+ */
+- (UIFont *)ttBoldVersion;
+
+/**
+ * Returns the italic version of this font, or the same font
+ * if no italic version is available.
+ */
+- (UIFont *)ttItalicVersion;
+
+/**
+ * Returns the normal version of this font.
+ */
+- (UIFont *)ttNormalVersion;
+
+
 @end
