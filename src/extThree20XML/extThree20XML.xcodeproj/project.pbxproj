@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660997C4129396F0007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 660997C2129396F0007B1E07 /* TTExtensionLoader.m */; };
+		660997C6129396F0007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 660997C2129396F0007B1E07 /* TTExtensionLoader.m */; };
+		660997C812939700007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 660997C712939700007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		660997C912939700007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 660997C712939700007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		663DB1A6126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663DB1A5126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		66C34C8D126625E000489E9A /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3466118806430079637E /* TTURLXMLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66C34C8E126625E000489E9A /* TTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3467118806430079637E /* TTXMLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -160,6 +164,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		660997C2129396F0007B1E07 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Source/TTExtensionLoader.m; sourceTree = "<group>"; };
+		660997C712939700007B1E07 /* TTExtensionLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionLoader.h; path = Headers/TTExtensionLoader.h; sourceTree = "<group>"; };
 		66313DC61267C0CB00C09C9F /* extThree20XML_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20XML_Prefix.pch; path = Headers/extThree20XML_Prefix.pch; sourceTree = "<group>"; };
 		663DB1A5126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66C34C99126625E000489E9A /* libextThree20XML-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20XML-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +241,8 @@
 			children = (
 				6E646518118805EB00F08CB1 /* extThree20XML.h */,
 				66313DC61267C0CB00C09C9F /* extThree20XML_Prefix.pch */,
+				660997C712939700007B1E07 /* TTExtensionLoader.h */,
+				660997C2129396F0007B1E07 /* TTExtensionLoader.m */,
 				6EB4609C1183D1E000685649 /* Source */,
 				6E645A4311876CFE00F08CB1 /* Dependencies */,
 				6ED118E41183C38A0096AEBF /* Configurations */,
@@ -349,6 +357,7 @@
 				66C34C8D126625E000489E9A /* TTURLXMLResponse.h in Headers */,
 				66C34C8E126625E000489E9A /* TTXMLParser.h in Headers */,
 				66C34C8F126625E000489E9A /* extThree20XML.h in Headers */,
+				660997C812939700007B1E07 /* TTExtensionLoader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +368,7 @@
 				6E3C3468118806430079637E /* TTURLXMLResponse.h in Headers */,
 				6E3C3469118806430079637E /* TTXMLParser.h in Headers */,
 				6E3C3470118806590079637E /* extThree20XML.h in Headers */,
+				660997C912939700007B1E07 /* TTExtensionLoader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +639,7 @@
 			files = (
 				66C34C92126625E000489E9A /* TTURLXMLResponse.m in Sources */,
 				66C34C93126625E000489E9A /* TTXMLParser.m in Sources */,
+				660997C4129396F0007B1E07 /* TTExtensionLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +657,7 @@
 			files = (
 				6E3C346C1188064F0079637E /* TTURLXMLResponse.m in Sources */,
 				6E3C346D1188064F0079637E /* TTXMLParser.m in Sources */,
+				660997C6129396F0007B1E07 /* TTExtensionLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
