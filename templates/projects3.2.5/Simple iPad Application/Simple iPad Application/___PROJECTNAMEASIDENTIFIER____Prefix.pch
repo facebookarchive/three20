@@ -1,0 +1,15 @@
+//
+// Prefix header for all source files of the '___PROJECTNAME___' target in the '___PROJECTNAME___' project
+//
+#import <Availability.h>
+
+#ifndef __IPHONE_3_2
+#warning "This project uses features only available in iPhone SDK 3.2 and later."
+#endif
+
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import <UIKit/UIKit.h>
+  #import "Three20/Three20.h"
+#endif

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTTextView.h"
+#import "Three20UI/private/TTTextView.h"
 
 // UI
 #import "Three20UI/UIViewAdditions.h"

@@ -27,6 +27,24 @@ BOOL TTIsBundleURL(NSString* URL);
 BOOL TTIsDocumentsURL(NSString* URL);
 
 /**
+ * Used by TTPathForBundleResource to construct the bundle path.
+ *
+ * Retains the given bundle.
+ *
+ * @default nil (See TTGetDefaultBundle for what this means)
+ */
+void TTSetDefaultBundle(NSBundle* bundle);
+
+/**
+ * Retrieves the default bundle.
+ *
+ * If the default bundle is nil, returns [NSBundle mainBundle].
+ *
+ * @see TTSetDefaultBundle
+ */
+NSBundle* TTGetDefaultBundle();
+
+/**
  * @return The main bundle path concatenated with the given relative path.
  */
 NSString* TTPathForBundleResource(NSString* relativePath);

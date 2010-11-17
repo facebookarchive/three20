@@ -23,7 +23,7 @@
 #import "Three20UI/UIViewAdditions.h"
 
 // UI (private)
-#import "Three20UI/TTImageViewInternal.h"
+#import "Three20UI/private/TTImageViewInternal.h"
 
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"

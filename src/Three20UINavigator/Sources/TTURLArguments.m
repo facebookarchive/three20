@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTURLArguments.h"
+#import "Three20UINavigator/private/TTURLArguments.h"
 
 #import <objc/runtime.h>
 

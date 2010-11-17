@@ -119,11 +119,11 @@
     [self setStatus:TTTableHeaderDragRefreshPullToReload];
     [self addSubview:_statusLabel];
 
+    UIImage* arrowImage = TTSTYLEVAR(tableRefreshHeaderArrowImage);
     _arrowImage = [[UIImageView alloc]
-                   initWithFrame:CGRectMake(25.0f, frame.size.height - 65.0f,
-                                            30.0f, 55.0f)];
-    _arrowImage.contentMode       = UIViewContentModeScaleAspectFit;
-    _arrowImage.image             = TTSTYLEVAR(tableRefreshHeaderArrowImage);
+                   initWithFrame:CGRectMake(25.0f, frame.size.height - 60.0f,
+                                            arrowImage.size.width, arrowImage.size.height)];
+    _arrowImage.image             = arrowImage;
     [_arrowImage layer].transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     [self addSubview:_arrowImage];
 
@@ -143,6 +143,8 @@
   TT_RELEASE_SAFELY(_statusLabel);
   TT_RELEASE_SAFELY(_arrowImage);
   TT_RELEASE_SAFELY(_lastUpdatedLabel);
+  TT_RELEASE_SAFELY(_lastUpdatedDate);
+
   [super dealloc];
 }
 

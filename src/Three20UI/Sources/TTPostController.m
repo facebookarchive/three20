@@ -375,7 +375,6 @@ static const CGFloat kMarginY = 6;
 
   if (_defaultText) {
     _textView.text = _defaultText;
-    TT_RELEASE_SAFELY(_defaultText);
   } else {
     _defaultText = [_textView.text retain];
   }

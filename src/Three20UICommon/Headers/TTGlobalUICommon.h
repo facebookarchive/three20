@@ -87,6 +87,11 @@ CGFloat TTKeyboardHeightForOrientation(UIInterfaceOrientation orientation);
  */
 void TTAlert(NSString* message);
 
+/**
+ * Same as TTAlert but the alert view has no title.
+ */
+void TTAlertNoTitle(NSString* message);
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Debug logging helpers
