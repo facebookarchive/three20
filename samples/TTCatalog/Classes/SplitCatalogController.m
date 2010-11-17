@@ -1,0 +1,89 @@
+#import "SplitCatalogController.h"
+
+#import "CatalogController.h"
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface SplitCatalogController()
+
+- (void)setupURLRouting;
+
+@end
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation SplitCatalogController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    [self setupURLRouting];
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+
+  [self.leftNavigator openURLs:@"tt://catalog", nil];
+  [self.rightNavigator openURLs:@"http://three20.info/", nil];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)willOpenUrlPath:(NSURL*)url {
+  [self.rightNavigator openURLAction:[TTURLAction actionWithURLPath:[url absoluteString]]];
+
+  [self.popoverSplitController dismissPopoverAnimated:YES];
+
+  // We need to do this because the right navigator clobbered the right navigation controller
+  // and our button along with it.
+  [self updateSplitViewButton];
+
+  // Don't create a view controller here; we're forwarding the URL routing.
+  return nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)routeLeftNavigator {
+  TTURLMap* map = self.leftNavigator.URLMap;
+
+  // Forward all unhandled URL actions to the right navigator.
+  [map                    from: @"*"
+                      toObject: self
+                      selector: @selector(willOpenUrlPath:)];
+
+  [map                    from: @"tt://catalog"
+              toViewController: [CatalogController class]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)routeRightNavigator {
+  TTURLMap* map = self.rightNavigator.URLMap;
+
+
+  [map                    from: @"*"
+              toViewController: [TTWebController class]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setupURLRouting {
+  [self routeLeftNavigator];
+  [self routeRightNavigator];
+}
+
+
+@end
+
