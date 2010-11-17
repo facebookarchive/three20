@@ -297,11 +297,11 @@ static NSString* kUniversalURLPattern = @"*";
     }
   }
 
-  NSDictionary* URLQuery = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+  NSDictionary* URLQuery = [URL.query queryContentsUsingEncoding:NSUTF8StringEncoding];
   if (URLQuery.count) {
     for (NSString* name in [URLQuery keyEnumerator]) {
       id<TTURLPatternText> patternText = [_query objectForKey:name];
-      NSString* text = [URLQuery objectForKey:name];
+      NSString* text = [[URLQuery objectForKey:name] objectAtIndex:0];
       if (patternText) {
         if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
           --remainingArgs;
