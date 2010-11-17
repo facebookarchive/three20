@@ -29,7 +29,9 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 SET (SRCS yajl.c yajl_lex.c yajl_parser.c yajl_buf.c
-          yajl_encode.c yajl_gen.c yajl_alloc.c)
+          yajl_encode.c yajl_gen.c yajl_alloc.c
+          yajl_version.c
+)
 SET (HDRS yajl_parser.h yajl_lex.h yajl_buf.h yajl_encode.h yajl_alloc.h)
 SET (PUB_HDRS api/yajl_parse.h api/yajl_gen.h api/yajl_common.h)
 
@@ -64,6 +66,9 @@ SET_TARGET_PROPERTIES(yajl PROPERTIES
 FILE(MAKE_DIRECTORY ${libDir})
 FILE(MAKE_DIRECTORY ${incDir})
 
+# generate build-time source
+CONFIGURE_FILE(api/yajl_version.h.cmake ${incDir}/yajl_version.h)
+
 # copy public headers to output directory
 FOREACH (header ${PUB_HDRS})
   SET (header ${CMAKE_CURRENT_SOURCE_DIR}/${header})
@@ -77,7 +82,9 @@ ENDFOREACH (header ${PUB_HDRS})
 INCLUDE_DIRECTORIES(${incDir}/..)
 
 IF(NOT WIN32)
-  INSTALL(TARGETS yajl LIBRARY DESTINATION lib)
-  INSTALL(TARGETS yajl_s ARCHIVE DESTINATION lib)
+  # at build time you may specify the cmake variable LIB_SUFFIX to handle
+  # 64-bit systems which use 'lib64'
+  INSTALL(TARGETS yajl LIBRARY DESTINATION lib${LIB_SUFFIX})
+  INSTALL(TARGETS yajl_s ARCHIVE DESTINATION lib${LIB_SUFFIX})
   INSTALL(DIRECTORY api/ DESTINATION include/yajl)
 ENDIF()

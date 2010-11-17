@@ -1,22 +1,22 @@
 /*
  * Copyright 2010, Lloyd Hilaiel.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  *  1. Redistributions of source code must retain the above copyright
  *     notice, this list of conditions and the following disclaimer.
- * 
+ *
  *  2. Redistributions in binary form must reproduce the above copyright
  *     notice, this list of conditions and the following disclaimer in
  *     the documentation and/or other materials provided with the
  *     distribution.
- * 
+ *
  *  3. Neither the name of Lloyd Hilaiel nor the names of its
  *     contributors may be used to endorse or promote products derived
  *     from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -28,29 +28,29 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- */ 
+ */
 
 #ifndef __YAJL_LEX_H__
 #define __YAJL_LEX_H__
 
-#include "api/yajl_common.h"
+#include "extThree20JSON/yajl_common.h"
 
 typedef enum {
-    yajl_tok_bool,         
+    yajl_tok_bool,
     yajl_tok_colon,
-    yajl_tok_comma,     
+    yajl_tok_comma,
     yajl_tok_eof,
     yajl_tok_error,
-    yajl_tok_left_brace,     
+    yajl_tok_left_brace,
     yajl_tok_left_bracket,
-    yajl_tok_null,         
-    yajl_tok_right_brace,     
+    yajl_tok_null,
+    yajl_tok_right_brace,
     yajl_tok_right_bracket,
 
     /* we differentiate between integers and doubles to allow the
      * parser to interpret the number without re-scanning */
-    yajl_tok_integer, 
-    yajl_tok_double, 
+    yajl_tok_integer,
+    yajl_tok_double,
 
     /* we differentiate between strings which require further processing,
      * and strings that do not */
@@ -81,7 +81,7 @@ n * error messages.
  *
  * When you pass the next chunk of data, context should be reinitialized
  * to zero.
- * 
+ *
  * Finally, the output buffer is usually just a pointer into the jsonText,
  * however in cases where the entity being lexed spans multiple chunks,
  * the lexer will buffer the entity and the data returned will be

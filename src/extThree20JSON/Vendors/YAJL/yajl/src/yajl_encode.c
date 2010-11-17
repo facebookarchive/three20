@@ -1,22 +1,22 @@
 /*
  * Copyright 2010, Lloyd Hilaiel.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
- * 
+ *
  *  1. Redistributions of source code must retain the above copyright
  *     notice, this list of conditions and the following disclaimer.
- * 
+ *
  *  2. Redistributions in binary form must reproduce the above copyright
  *     notice, this list of conditions and the following disclaimer in
  *     the documentation and/or other materials provided with the
  *     distribution.
- * 
+ *
  *  3. Neither the name of Lloyd Hilaiel nor the names of its
  *     contributors may be used to endorse or promote products derived
  *     from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -28,9 +28,9 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- */ 
+ */
 
-#include "yajl_encode.h"
+#include "extThree20JSON/private/yajl_encode.h"
 
 #include <assert.h>
 #include <stdlib.h>
@@ -58,7 +58,7 @@ yajl_string_encode2(const yajl_print_t print,
                     unsigned int len)
 {
     unsigned int beg = 0;
-    unsigned int end = 0;    
+    unsigned int end = 0;
     char hexBuf[7];
     hexBuf[0] = '\\'; hexBuf[1] = 'u'; hexBuf[2] = '0'; hexBuf[3] = '0';
     hexBuf[6] = 0;
@@ -104,7 +104,7 @@ static void hexToDigit(unsigned int * val, const unsigned char * hex)
     }
 }
 
-static void Utf32toUtf8(unsigned int codepoint, char * utf8Buf) 
+static void Utf32toUtf8(unsigned int codepoint, char * utf8Buf)
 {
     if (codepoint < 0x80) {
         utf8Buf[0] = (char) codepoint;
@@ -134,7 +134,7 @@ void yajl_string_decode(yajl_buf buf, const unsigned char * str,
                         unsigned int len)
 {
     unsigned int beg = 0;
-    unsigned int end = 0;    
+    unsigned int end = 0;
 
     while (end < len) {
         if (str[end] == '\\') {
@@ -161,8 +161,8 @@ void yajl_string_decode(yajl_buf buf, const unsigned char * str,
                             unsigned int surrogate = 0;
                             hexToDigit(&surrogate, str + end + 2);
                             codepoint =
-                                (((codepoint & 0x3F) << 10) | 
-                                 ((((codepoint >> 6) & 0xF) + 1) << 16) | 
+                                (((codepoint & 0x3F) << 10) |
+                                 ((((codepoint >> 6) & 0xF) + 1) << 16) |
                                  (surrogate & 0x3FF));
                             end += 5;
                         } else {
@@ -170,7 +170,7 @@ void yajl_string_decode(yajl_buf buf, const unsigned char * str,
                             break;
                         }
                     }
-                    
+
                     Utf32toUtf8(codepoint, utf8Buf);
                     unescaped = utf8Buf;
                     break;

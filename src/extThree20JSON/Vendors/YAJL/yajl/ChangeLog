@@ -1,3 +1,15 @@
+1.0.11
+     * lth remove -Wno-missing-field-initializers for greater gcc compat (3.4.6)
+	
+1.0.10
+     * Brian Maher - yajl is now buildable without a c++ compiler present
+     * Brian Maher - fix header installation on OSX with cmake 2.8.0 installed
+     * lth & vitali - allow builder to specify alternate lib directory
+	for installation (i.e. lib64) 
+     * Vitali Lovich - yajl version number now programatically accessible
+     * lth - prevent cmake from embedding rpaths in binaries.  Static linking
+	makes this unneccesary.
+
 1.0.9
      * lth - fix inverted logic causing yajl_gen_double() to always fail on
 	win32 (thanks to Fredrik Kihlander for the report) 

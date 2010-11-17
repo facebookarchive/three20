@@ -15,5 +15,9 @@ OR, attain CMake and build by hand:
 4. make 
 5. build output left in yajl-X.Y.Z
 
+NOTE: for 64-bit systems where lib64 is used you can pass the cmake
+      variable LIB_SUFFIX to cause installation into the system's 'lib64'
+      directory.
+
 best,
 lloyd

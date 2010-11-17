@@ -34,15 +34,20 @@ PROJECT(YetAnotherJSONParser C)
 
 SET (YAJL_MAJOR 1)
 SET (YAJL_MINOR 0)
-SET (YAJL_MICRO 10)
+SET (YAJL_MICRO 11)
 
 SET (YAJL_DIST_NAME "yajl-${YAJL_MAJOR}.${YAJL_MINOR}.${YAJL_MICRO}")
+
+# RPATH handling -- given we statically link, we'll turn off
+# unnec. rpath embedding
+SET(CMAKE_SKIP_RPATH  TRUE)
 
 IF (NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE "Release")
 ENDIF (NOT CMAKE_BUILD_TYPE)
 
-SET(CMAKE_C_FLAGS "-Wall")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+
 IF (WIN32) 
   ADD_DEFINITIONS(-DWIN32)
   SET(linkFlags "/PDB:NONE /INCREMENTAL:NO /OPT:NOREF /OPT:NOICF")
@@ -62,7 +67,7 @@ IF (WIN32)
   SET(CMAKE_C_FLAGS_RELEASE "/D NDEBUG /O2")
 ELSE (WIN32)
   SET(CMAKE_C_FLAGS
-      "${CMAKE_C_FLAGS} -fPIC -ansi -pedantic -Wpointer-arith -Wno-format-y2k -Wstrict-prototypes -Wmissing-declarations -Wnested-externs -Wextra	-Wundef -Wwrite-strings -Wold-style-definition -Wno-missing-field-initializers -Wredundant-decls -Wno-unused-parameter -Wno-sign-compare -Wmissing-prototypes")
+      "${CMAKE_C_FLAGS} -fPIC -std=c99 -pedantic -Wpointer-arith -Wno-format-y2k -Wstrict-prototypes -Wmissing-declarations -Wnested-externs -Wextra	-Wundef -Wwrite-strings -Wold-style-definition -Wredundant-decls -Wno-unused-parameter -Wno-sign-compare -Wmissing-prototypes")
 
   SET(CMAKE_C_FLAGS_DEBUG "-DDEBUG -g")
   SET(CMAKE_C_FLAGS_RELEASE "-DNDEBUG -O2 -Wuninitialized")
