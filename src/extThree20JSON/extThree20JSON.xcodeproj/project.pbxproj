@@ -278,13 +278,6 @@
 			remoteGlobalIDString = 662D81A0126304EB005851C2;
 			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
 		};
-		66D90F5512662343009AFDE6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66D90F0F12662330009AFDE6;
-			remoteInfo = "extThree20JSON+YAJL-Xcode3.2.2";
-		};
 		66D90F571266237E009AFDE6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
@@ -937,7 +930,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				66D90F5612662343009AFDE6 /* PBXTargetDependency */,
 				66C34C081266205300489E9A /* PBXTargetDependency */,
 				66C34C0A1266205300489E9A /* PBXTargetDependency */,
 			);
@@ -1542,11 +1534,6 @@
 			isa = PBXTargetDependency;
 			name = "Three20NetworkUnitTests-Xcode3.2.5";
 			targetProxy = 66C34C0F1266205C00489E9A /* PBXContainerItemProxy */;
-		};
-		66D90F5612662343009AFDE6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66D90F0F12662330009AFDE6 /* extThree20JSON+YAJL-Xcode3.2.2 */;
-			targetProxy = 66D90F5512662343009AFDE6 /* PBXContainerItemProxy */;
 		};
 		66D90F581266237E009AFDE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
