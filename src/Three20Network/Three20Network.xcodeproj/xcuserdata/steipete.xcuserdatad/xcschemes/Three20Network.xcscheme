@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.1">
+   <BuildAction
+      parallelizeBuildables = "NO"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BEF31F390F352DF5000DE5D2"
+               BuildableName = "libThree20Network.a"
+               BlueprintName = "Three20Network"
+               ReferencedContainer = "container:Three20Network.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug">
+      <Testables>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      loadSymbolsForSpecifiedModules = "NO"
+      displayScaleIsEnabled = "NO"
+      displayScale = "1.00"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      displayScaleIsEnabled = "NO"
+      displayScale = "1.00"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
+   </ProfileAction>
+   <ArchiveAction
+      buildConfiguration = "Release">
+   </ArchiveAction>
+</Scheme>
