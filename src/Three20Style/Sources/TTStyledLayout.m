@@ -740,7 +740,7 @@
                                   lineBreakMode:UILineBreakModeWordWrap];
 
         [self addFrameForText:lines element:element node:textNode width:linesSize.width
-             height:linesSize.height];
+             height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
         _height += linesSize.height;
         break;
       }
@@ -757,7 +757,7 @@
         frameWidth = [[text substringWithRange:NSMakeRange(frameStart, stringIndex - frameStart)]
                       sizeWithFont:_font].width;
         [self addFrameForText:line element:element node:textNode width:frameWidth
-              height:[_font ttLineHeight]];
+              height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
         frameWidth = 0;
       }
     }
