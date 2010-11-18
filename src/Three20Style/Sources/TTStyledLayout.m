@@ -740,7 +740,7 @@
                                   lineBreakMode:UILineBreakModeWordWrap];
 
         [self addFrameForText:lines element:element node:textNode width:linesSize.width
-             height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
+             height:linesSize.height];
         _height += linesSize.height;
         break;
       }
