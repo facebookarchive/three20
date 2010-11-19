@@ -1242,8 +1242,8 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
   [super touchesBegan:touches withEvent:event];
 
-  NSLog( @"_touchCount: %i", _touchCount );
-  NSLog( @"touches count: %i", [touches count] );
+  //NSLog( @"_touchCount: %i", _touchCount );
+  //NSLog( @"touches count: %i", [touches count] );
 
   if (_touchCount < 2) {
     [self stopAnimation:NO];
