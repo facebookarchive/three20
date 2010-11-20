@@ -94,6 +94,62 @@
 			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = extThree20XML;
 		};
+		85676B2F12986910001BDA01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */;
+			remoteInfo = "Three20Core-Xcode3.2.5";
+		};
+		85676B3112986910001BDA01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */;
+			remoteInfo = "Three20Core-Xcode3.2.2";
+		};
+		85676B3312986910001BDA01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */;
+			remoteInfo = "Three20CoreUnitTests-Xcode3.2.5";
+		};
+		85676B3512986910001BDA01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */;
+			remoteInfo = "Three20CoreUnitTests-Xcode3.2.2";
+		};
+		85676B3B12986910001BDA01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */;
+			remoteInfo = "Three20Network-Xcode3.2.5";
+		};
+		85676B3D12986910001BDA01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */;
+			remoteInfo = "Three20Network-Xcode3.2.2";
+		};
+		85676B3F12986910001BDA01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81B2126304EB005851C2 /* NetworkUnitTests-Xcode3.2.5.octest */;
+			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
+		};
+		85676B4112986910001BDA01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81C7126304F3005851C2 /* NetworkUnitTests-Xcode3.2.2.octest */;
+			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.2";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -195,7 +251,11 @@
 			isa = PBXGroup;
 			children = (
 				6E645A7011876D3F00F08CB1 /* libThree20Core.a */,
+				85676B3012986910001BDA01 /* libThree20Core-Xcode3.2.5.a */,
+				85676B3212986910001BDA01 /* libThree20Core-Xcode3.2.2.a */,
 				6E645A7211876D3F00F08CB1 /* CoreUnitTests.octest */,
+				85676B3412986910001BDA01 /* CoreUnitTests-Xcode3.2.5.octest */,
+				85676B3612986910001BDA01 /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,7 +264,11 @@
 			isa = PBXGroup;
 			children = (
 				6E645A7911876D4600F08CB1 /* libThree20Network.a */,
-				6E645A7B11876D4600F08CB1 /* UnitTests.octest */,
+				85676B3C12986910001BDA01 /* libThree20Network-Xcode3.2.5.a */,
+				85676B3E12986910001BDA01 /* libThree20Network-Xcode3.2.2.a */,
+				6E645A7B11876D4600F08CB1 /* NetworkUnitTests.octest */,
+				85676B4012986910001BDA01 /* NetworkUnitTests-Xcode3.2.5.octest */,
+				85676B4212986910001BDA01 /* NetworkUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -404,11 +468,67 @@
 			remoteRef = 6E645A7811876D4600F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E645A7B11876D4600F08CB1 /* UnitTests.octest */ = {
+		6E645A7B11876D4600F08CB1 /* NetworkUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = NetworkUnitTests.octest;
 			remoteRef = 6E645A7A11876D4600F08CB1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85676B3012986910001BDA01 /* libThree20Core-Xcode3.2.5.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Core-Xcode3.2.5.a";
+			remoteRef = 85676B2F12986910001BDA01 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85676B3212986910001BDA01 /* libThree20Core-Xcode3.2.2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Core-Xcode3.2.2.a";
+			remoteRef = 85676B3112986910001BDA01 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85676B3412986910001BDA01 /* CoreUnitTests-Xcode3.2.5.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "CoreUnitTests-Xcode3.2.5.octest";
+			remoteRef = 85676B3312986910001BDA01 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85676B3612986910001BDA01 /* CoreUnitTests-Xcode3.2.2.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "CoreUnitTests-Xcode3.2.2.octest";
+			remoteRef = 85676B3512986910001BDA01 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85676B3C12986910001BDA01 /* libThree20Network-Xcode3.2.5.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Network-Xcode3.2.5.a";
+			remoteRef = 85676B3B12986910001BDA01 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85676B3E12986910001BDA01 /* libThree20Network-Xcode3.2.2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Network-Xcode3.2.2.a";
+			remoteRef = 85676B3D12986910001BDA01 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85676B4012986910001BDA01 /* NetworkUnitTests-Xcode3.2.5.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NetworkUnitTests-Xcode3.2.5.octest";
+			remoteRef = 85676B3F12986910001BDA01 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		85676B4212986910001BDA01 /* NetworkUnitTests-Xcode3.2.2.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NetworkUnitTests-Xcode3.2.2.octest";
+			remoteRef = 85676B4112986910001BDA01 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
