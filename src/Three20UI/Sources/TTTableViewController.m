@@ -140,7 +140,7 @@
     _tableOverlayView = [[UIView alloc] initWithFrame:frame];
     _tableOverlayView.autoresizesSubviews = YES;
     _tableOverlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-    | UIViewAutoresizingFlexibleBottomMargin;
+    | UIViewAutoresizingFlexibleHeight;
     NSInteger tableIndex = [_tableView.superview.subviews indexOfObject:_tableView];
     if (tableIndex != NSNotFound) {
       [_tableView.superview addSubview:_tableOverlayView];
