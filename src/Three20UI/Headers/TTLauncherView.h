@@ -21,6 +21,7 @@
 @class TTPageControl;
 @class TTLauncherButton;
 @class TTLauncherItem;
+@class TTLauncherHighlightView;
 
 @interface TTLauncherView : UIView <UIScrollViewDelegate> {
   NSMutableArray* _pages;
@@ -43,6 +44,8 @@
   NSInteger         _positionOrigin;
   CGPoint           _dragOrigin;
   CGPoint           _touchOrigin;
+
+  TTLauncherHighlightView* _highlightView;
 
   BOOL _editing;
   BOOL _springing;
@@ -77,5 +80,19 @@
 - (void)beginEditing;
 
 - (void)endEditing;
+
+/**
+ * Dims the launcher view except for a transparent circle around the given item. The given text
+ * will also be shown center-aligned below or above the circle, as appropriate. The item can be
+ * tapped while the overlay is up; tapping anywhere else on the overlay simply dismisses the
+ * overlay and does not pass the event through.
+ */
+- (void)beginHighlightItem:(TTLauncherItem*)item withText:(NSString*)text;
+
+/**
+ * Removes the highlighting overlay introduced by -beginHighlightItem:withText:. This will be done
+ * automatically if the user taps anywhere on the overlay except the transparent circle.
+ */
+- (void)endHighlightItem:(TTLauncherItem*)item;
 
 @end

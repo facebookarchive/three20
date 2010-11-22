@@ -91,17 +91,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
-  CGRect keyboardBounds;
-  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-	
-  CGPoint keyboardStart;
-  [[notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey] getValue:&keyboardStart];
+	CGRect keyboardBounds;
+	[[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
 
-  CGPoint keyboardEnd;
-  [[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
-	
-  BOOL animated = keyboardStart.y != keyboardEnd.y;
-	
+	CGPoint keyboardStart;
+	[[notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey] getValue:&keyboardStart];
+
+	CGPoint keyboardEnd;
+	[[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
+
+	BOOL animated = keyboardStart.y != keyboardEnd.y;
   if (animated) {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_TRANSITION_DURATION];

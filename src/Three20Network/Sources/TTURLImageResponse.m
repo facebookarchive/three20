@@ -17,6 +17,7 @@
 #import "Three20Network/TTURLImageResponse.h"
 
 // Network
+#import "Three20Network/TTErrorCodes.h"
 #import "Three20Network/TTURLRequest.h"
 #import "Three20Network/TTURLCache.h"
 
@@ -81,8 +82,9 @@
       _image = [image retain];
 
     } else {
-      return [NSError errorWithDomain:TT_ERROR_DOMAIN code:TT_EC_INVALID_IMAGE
-                      userInfo:nil];
+      return [NSError errorWithDomain:kTTNetworkErrorDomain
+                                 code:kTTNetworkErrorCodeInvalidImage
+                             userInfo:nil];
     }
   }
 

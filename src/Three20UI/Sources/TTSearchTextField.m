@@ -26,7 +26,7 @@
 #import "Three20UI/UIViewAdditions.h"
 
 // UI (private)
-#import "Three20UI/TTSearchTextFieldInternal.h"
+#import "Three20UI/private/TTSearchTextFieldInternal.h"
 
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
@@ -155,7 +155,7 @@ static const CGFloat kDesiredTableHeight = 150;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)autoSearch {
-  if (_searchesAutomatically || !self.text.length) {
+  if (_searchesAutomatically && self.text.length) {
     [self search];
   }
 }

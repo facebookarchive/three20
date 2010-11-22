@@ -18,5 +18,6 @@
 #include "../../common/Configurations/Libraries.xcconfig"
 #include "RelPath.xcconfig"
 
-PRODUCT_NAME          = TTCSSStyleSheetsUnitTests
+BASE_PRODUCT_NAME     = TTCSSStyleSheetsUnitTests
+PRODUCT_NAME            = $(BASE_PRODUCT_NAME)
 BUILD_BUNDLE_VERSION  = 1.0

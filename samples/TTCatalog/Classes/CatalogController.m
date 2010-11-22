@@ -5,8 +5,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Three20 Catalog";
     self.navigationItem.backBarButtonItem =
       [[[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStyleBordered
@@ -40,6 +40,7 @@
     [TTTableTextItem itemWithText:@"Table Controls" URL:@"tt://tableControlsTest"],
     [TTTableTextItem itemWithText:@"Styled Labels in Table" URL:@"tt://styledTextTableTest"],
     [TTTableTextItem itemWithText:@"Web Images in Table" URL:@"tt://imageTest2"],
+    [TTTableTextItem itemWithText:@"Table With Banner" URL:@"tt://tableWithBanner"],
     [TTTableTextItem itemWithText:@"Table With Shadow" URL:@"tt://tableWithShadow"],
 
     @"Models",

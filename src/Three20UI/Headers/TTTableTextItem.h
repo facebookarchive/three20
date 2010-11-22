@@ -31,4 +31,6 @@
 + (id)itemWithText:(NSString*)text URLAction:(TTURLAction*)URLAction accessoryURL:(TTURLAction*)accessoryURLAction;
 
 
++ (id)itemWithText:(NSString*)text delegate:(id)delegate selector:(SEL)selector;
+
 @end

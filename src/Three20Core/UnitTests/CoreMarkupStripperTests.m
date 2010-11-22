@@ -44,7 +44,8 @@
 - (void)testIsMaskSet {
   TTMarkupStripper* stripper = [[TTMarkupStripper alloc] init];
 
-  STAssertTrue([[stripper parse:nil] isEqualToString:@""],
+  STAssertTrue([[stripper parse:nil] isEqualToString:@"(null)"]
+               || [[stripper parse:nil] isEqualToString:@""],
                @"Nil returns an empty string.");
 
   STAssertTrue([[stripper parse:@""] isEqualToString:@""],

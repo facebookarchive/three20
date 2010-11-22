@@ -652,6 +652,7 @@
   NSInteger stringIndex = 0;
   NSInteger lineStartIndex = 0;
   CGFloat frameWidth = 0;
+  NSInteger frameStart = 0;
 
   while (stringIndex < length) {
     // Search for the next whitespace character
@@ -679,6 +680,8 @@
           NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
           if (lineRange.length) {
             NSString* line = [text substringWithRange:lineRange];
+            frameWidth = [[text substringWithRange:NSMakeRange(frameStart, stringIndex - frameStart)]
+                          sizeWithFont:_font].width;
             [self addFrameForText:line element:element node:textNode width:frameWidth
                   height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
           }
@@ -688,10 +691,9 @@
           }
 
           lineStartIndex = lineRange.location + lineRange.length;
-          frameWidth = 0;
+          frameStart = stringIndex;
         }
 
-        frameWidth += letterSize.width;
         [self expandLineWidth:letterSize.width];
         [self inflateLineHeight:wordSize.height];
         ++stringIndex;
@@ -700,11 +702,13 @@
       NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
       if (lineRange.length) {
         NSString* line = [text substringWithRange:lineRange];
+        frameWidth = [[text substringWithRange:NSMakeRange(frameStart, stringIndex - frameStart)]
+                      sizeWithFont:_font].width;
         [self addFrameForText:line element:element node:textNode width:frameWidth
               height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
 
         lineStartIndex = lineRange.location + lineRange.length;
-        frameWidth = 0;
+        frameStart = stringIndex;
       }
     } else {
       if (_lineWidth + wordSize.width > _width) {
@@ -713,6 +717,8 @@
         NSRange lineRange = NSMakeRange(lineStartIndex, stringIndex - lineStartIndex);
         if (lineRange.length) {
           NSString* line = [text substringWithRange:lineRange];
+          frameWidth = [[text substringWithRange:NSMakeRange(frameStart, stringIndex - frameStart)]
+                        sizeWithFont:_font].width;
           [self addFrameForText:line element:element node:textNode width:frameWidth
                 height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
         }
@@ -721,7 +727,7 @@
           [self breakLine];
         }
         lineStartIndex = lineRange.location + lineRange.length;
-        frameWidth = 0;
+        frameStart = stringIndex;
       }
 
       if (!_lineWidth && textNode == _lastNode) {
@@ -739,7 +745,6 @@
         break;
       }
 
-      frameWidth += wordSize.width;
       [self expandLineWidth:wordSize.width];
       [self inflateLineHeight:wordSize.height];
 
@@ -749,6 +754,8 @@
         NSRange lineRange = NSMakeRange(lineStartIndex, (wordRange.location + wordRange.length)
                                                         - lineStartIndex);
         NSString* line = !_lineWidth ? word : [text substringWithRange:lineRange];
+        frameWidth = [[text substringWithRange:NSMakeRange(frameStart, stringIndex - frameStart)]
+                      sizeWithFont:_font].width;
         [self addFrameForText:line element:element node:textNode width:frameWidth
               height:[_font ttLineHeight]];
         frameWidth = 0;

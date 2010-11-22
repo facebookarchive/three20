@@ -17,6 +17,9 @@
 #import "Three20Core/TTGlobalCorePaths.h"
 
 
+static NSBundle* globalBundle = nil;
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsBundleURL(NSString* URL) {
   return [URL hasPrefix:@"bundle://"];
@@ -30,8 +33,22 @@ BOOL TTIsDocumentsURL(NSString* URL) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+void TTSetDefaultBundle(NSBundle* bundle) {
+  [bundle retain];
+  [globalBundle release];
+  globalBundle = bundle;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSBundle* TTGetDefaultBundle() {
+  return (nil != globalBundle) ? globalBundle : [NSBundle mainBundle];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTPathForBundleResource(NSString* relativePath) {
-  NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+  NSString* resourcePath = [TTGetDefaultBundle() resourcePath];
   return [resourcePath stringByAppendingPathComponent:relativePath];
 }
 

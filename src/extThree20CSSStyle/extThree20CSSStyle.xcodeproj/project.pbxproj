@@ -21,6 +21,41 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		663DB00812661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663DB00712661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */; };
+		66C34B0C12661C0500489E9A /* extThree20CSSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C34B0D12661C0500489E9A /* TTCSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85145311B1B5390071A4FD /* TTCSSParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C34B0E12661C0500489E9A /* CssTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8514DC11B2E3290071A4FD /* CssTokens.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		66C34B0F12661C0500489E9A /* TTCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E036A3111B364DF0025E8EE /* TTCSSStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C34B1012661C0500489E9A /* TTDefaultCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C34B1312661C0500489E9A /* TTCSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85145111B1B5200071A4FD /* TTCSSParser.m */; };
+		66C34B1412661C0500489E9A /* CssTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8514D811B2E31E0071A4FD /* CssTokenizer.m */; };
+		66C34B1512661C0500489E9A /* CssTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8514D911B2E31E0071A4FD /* CssTokens.m */; };
+		66C34B1612661C0500489E9A /* TTCSSStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036A2E11B364CC0025E8EE /* TTCSSStyleSheet.m */; };
+		66C34B1712661C0500489E9A /* TTDefaultCSSStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */; };
+		66C34B2412661C0600489E9A /* testcase.css in Resources */ = {isa = PBXBuildFile; fileRef = 6EAE4E5511B2F0A7001073B4 /* testcase.css */; };
+		66C34B2612661C0600489E9A /* CssStyleSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036A7711B371150025E8EE /* CssStyleSheetTests.m */; };
+		66C34B2712661C0600489E9A /* CssParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85152511B2E7B80071A4FD /* CssParserTests.m */; };
+		66C34B7B12661C9000489E9A /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF40126619DB00CF8CEA /* libThree20Core-Xcode3.2.5.a */; };
+		66C34B7C12661C9000489E9A /* libThree20Network-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF4D126619DB00CF8CEA /* libThree20Network-Xcode3.2.5.a */; };
+		66C34B7D12661C9000489E9A /* libThree20Style-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF5A126619DB00CF8CEA /* libThree20Style-Xcode3.2.5.a */; };
+		66C34B8012661C9700489E9A /* libextThree20CSSStyle-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C34B1D12661C0600489E9A /* libextThree20CSSStyle-Xcode3.2.5.a */; };
+		66D90E6E12661CBB009AFDE6 /* extThree20CSSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66D90E6F12661CBB009AFDE6 /* TTCSSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85145311B1B5390071A4FD /* TTCSSParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66D90E7012661CBB009AFDE6 /* CssTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8514DC11B2E3290071A4FD /* CssTokens.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		66D90E7112661CBB009AFDE6 /* TTCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E036A3111B364DF0025E8EE /* TTCSSStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66D90E7212661CBB009AFDE6 /* TTDefaultCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66D90E7512661CBB009AFDE6 /* TTCSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85145111B1B5200071A4FD /* TTCSSParser.m */; };
+		66D90E7612661CBB009AFDE6 /* CssTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8514D811B2E31E0071A4FD /* CssTokenizer.m */; };
+		66D90E7712661CBB009AFDE6 /* CssTokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8514D911B2E31E0071A4FD /* CssTokens.m */; };
+		66D90E7812661CBB009AFDE6 /* TTCSSStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036A2E11B364CC0025E8EE /* TTCSSStyleSheet.m */; };
+		66D90E7912661CBB009AFDE6 /* TTDefaultCSSStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */; };
+		66D90E8A12661CBB009AFDE6 /* testcase.css in Resources */ = {isa = PBXBuildFile; fileRef = 6EAE4E5511B2F0A7001073B4 /* testcase.css */; };
+		66D90E8C12661CBB009AFDE6 /* CssStyleSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036A7711B371150025E8EE /* CssStyleSheetTests.m */; };
+		66D90E8D12661CBB009AFDE6 /* CssParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85152511B2E7B80071A4FD /* CssParserTests.m */; };
+		66D90EA912661D1B009AFDE6 /* libThree20Core-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF42126619DB00CF8CEA /* libThree20Core-Xcode3.2.2.a */; };
+		66D90EAA12661D1B009AFDE6 /* libThree20Network-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF4F126619DB00CF8CEA /* libThree20Network-Xcode3.2.2.a */; };
+		66D90EAB12661D1B009AFDE6 /* libThree20Style-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DAF5C126619DB00CF8CEA /* libThree20Style-Xcode3.2.2.a */; };
+		66D90EAC12661D1B009AFDE6 /* libextThree20CSSStyle-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D90E7F12661CBB009AFDE6 /* libextThree20CSSStyle-Xcode3.2.2.a */; };
 		6E036A2011B364670025E8EE /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E036A1411B364530025E8EE /* libThree20Network.a */; };
 		6E036A2111B364670025E8EE /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E036A1D11B3645C0025E8EE /* libThree20Style.a */; };
 		6E036A3011B364CC0025E8EE /* TTCSSStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036A2E11B364CC0025E8EE /* TTCSSStyleSheet.m */; };
@@ -42,6 +77,188 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		663DAF3F126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6650CAA21262F6E2003FF804;
+			remoteInfo = "Three20Core-Xcode3.2.5";
+		};
+		663DAF41126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66C2E0FC1262F748006DF55A;
+			remoteInfo = "Three20Core-Xcode3.2.2";
+		};
+		663DAF43126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 664961641262EE5000C2C80E;
+			remoteInfo = "Three20CoreUnitTests-Xcode3.2.5";
+		};
+		663DAF45126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66F9A63C1262ED9F0059C2AE;
+			remoteInfo = "Three20CoreUnitTests-Xcode3.2.2";
+		};
+		663DAF4C126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81EF12630516005851C2;
+			remoteInfo = "Three20Network-Xcode3.2.5";
+		};
+		663DAF4E126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D821612630527005851C2;
+			remoteInfo = "Three20Network-Xcode3.2.2";
+		};
+		663DAF50126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81B2126304EB005851C2;
+			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
+		};
+		663DAF52126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81C7126304F3005851C2;
+			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.2";
+		};
+		663DAF59126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66C16BE912639E2700A7825A;
+			remoteInfo = "Three20Style-Xcode3.2.5";
+		};
+		663DAF5B126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66846C7812639EE5001D2CF9;
+			remoteInfo = "Three20Style-Xcode3.2.2";
+		};
+		663DAF5D126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66C16C0112639E4500A7825A;
+			remoteInfo = "Three20StyleUnitTests-Xcode3.2.5";
+		};
+		663DAF5F126619DB00CF8CEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 66846C9612639F29001D2CF9;
+			remoteInfo = "Three20StyleUnitTests-Xcode3.2.2";
+		};
+		664DFCC712662B05004C20C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C16B6012639E2700A7825A;
+			remoteInfo = "Three20Style-Xcode3.2.5";
+		};
+		664DFCC912662B05004C20C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6650CA791262F6E2003FF804;
+			remoteInfo = "Three20Core-Xcode3.2.5";
+		};
+		664DFCCB12662B05004C20C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 662D81C912630516005851C2;
+			remoteInfo = "Three20Network-Xcode3.2.5";
+		};
+		66C34B6512661C6700489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C34B0412661C0500489E9A;
+			remoteInfo = "extThree20CSSStyle-Xcode3.2.5";
+		};
+		66C34B6712661C6700489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C16BEC12639E4500A7825A;
+			remoteInfo = "Three20StyleUnitTests-Xcode3.2.5";
+		};
+		66C34B6912661C6700489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 664961541262EE5000C2C80E;
+			remoteInfo = "Three20CoreUnitTests-Xcode3.2.5";
+		};
+		66C34B6B12661C6700489E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 662D81A0126304EB005851C2;
+			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
+		};
+		66D90E9A12661CDC009AFDE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66846BED12639EE5001D2CF9;
+			remoteInfo = "Three20Style-Xcode3.2.2";
+		};
+		66D90E9C12661CDC009AFDE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66C2E0D11262F748006DF55A;
+			remoteInfo = "Three20Core-Xcode3.2.2";
+		};
+		66D90E9E12661CDC009AFDE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 662D81F012630527005851C2;
+			remoteInfo = "Three20Network-Xcode3.2.2";
+		};
+		66D90EA012661D0B009AFDE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66D90E6612661CBB009AFDE6;
+			remoteInfo = "extThree20CSSStyle-Xcode3.2.2";
+		};
+		66D90EA212661D0B009AFDE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66846C8112639F29001D2CF9;
+			remoteInfo = "Three20StyleUnitTests-Xcode3.2.2";
+		};
+		66D90EA412661D0B009AFDE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 66F9A62C1262ED9F0059C2AE;
+			remoteInfo = "Three20CoreUnitTests-Xcode3.2.2";
+		};
+		66D90EA612661D0B009AFDE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 662D81B5126304F3005851C2;
+			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.2";
+		};
 		6E036A1311B364530025E8EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */;
@@ -122,6 +339,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66313D671267BFCF00C09C9F /* extThree20CSSStyle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20CSSStyle_Prefix.pch; path = Headers/extThree20CSSStyle_Prefix.pch; sourceTree = "<group>"; };
+		663DB00712661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
+		66C34B1D12661C0600489E9A /* libextThree20CSSStyle-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20CSSStyle-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66C34B3312661C0600489E9A /* extCSSStyleUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "extCSSStyleUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66D90E7F12661CBB009AFDE6 /* libextThree20CSSStyle-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20CSSStyle-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66D90E9812661CBB009AFDE6 /* extCSSStyleUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "extCSSStyleUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E036A1711B3645C0025E8EE /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E036A2E11B364CC0025E8EE /* TTCSSStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTCSSStyleSheet.m; path = Sources/TTCSSStyleSheet.m; sourceTree = "<group>"; };
@@ -154,6 +377,42 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		66C34B1812661C0500489E9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C34B2812661C0600489E9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C34B7B12661C9000489E9A /* libThree20Core-Xcode3.2.5.a in Frameworks */,
+				66C34B7C12661C9000489E9A /* libThree20Network-Xcode3.2.5.a in Frameworks */,
+				66C34B7D12661C9000489E9A /* libThree20Style-Xcode3.2.5.a in Frameworks */,
+				66C34B8012661C9700489E9A /* libextThree20CSSStyle-Xcode3.2.5.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D90E7A12661CBB009AFDE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D90E8E12661CBB009AFDE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D90EA912661D1B009AFDE6 /* libThree20Core-Xcode3.2.2.a in Frameworks */,
+				66D90EAA12661D1B009AFDE6 /* libThree20Network-Xcode3.2.2.a in Frameworks */,
+				66D90EAB12661D1B009AFDE6 /* libThree20Style-Xcode3.2.2.a in Frameworks */,
+				66D90EAC12661D1B009AFDE6 /* libextThree20CSSStyle-Xcode3.2.2.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEF31F380F352DF5000DE5D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -180,7 +439,11 @@
 			isa = PBXGroup;
 			children = (
 				BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */,
+				66C34B1D12661C0600489E9A /* libextThree20CSSStyle-Xcode3.2.5.a */,
+				66D90E7F12661CBB009AFDE6 /* libextThree20CSSStyle-Xcode3.2.2.a */,
 				EB9E6C6210B6A8F800DE563C /* extCSSStyleUnitTests.octest */,
+				66C34B3312661C0600489E9A /* extCSSStyleUnitTests-Xcode3.2.5.octest */,
+				66D90E9812661CBB009AFDE6 /* extCSSStyleUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,6 +453,7 @@
 			children = (
 				6E036B3611B38A420025E8EE /* README.mdown */,
 				6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */,
+				66313D671267BFCF00C09C9F /* extThree20CSSStyle_Prefix.pch */,
 				6EB4609C1183D1E000685649 /* Source */,
 				6ED118E41183C38A0096AEBF /* Configurations */,
 				6E645A4311876CFE00F08CB1 /* Dependencies */,
@@ -201,11 +465,23 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
+		663DB00612661D6F00CF8CEA /* Xcode 3.2.4 Workaround */ = {
+			isa = PBXGroup;
+			children = (
+				663DB00712661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */,
+			);
+			name = "Xcode 3.2.4 Workaround";
+			sourceTree = "<group>";
+		};
 		6E036A0F11B364530025E8EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				6E036A1411B364530025E8EE /* libThree20Network.a */,
-				6E036A1611B364530025E8EE /* UnitTests.octest */,
+				663DAF4D126619DB00CF8CEA /* libThree20Network-Xcode3.2.5.a */,
+				663DAF4F126619DB00CF8CEA /* libThree20Network-Xcode3.2.2.a */,
+				6E036A1611B364530025E8EE /* NetworkUnitTests.octest */,
+				663DAF51126619DB00CF8CEA /* NetworkUnitTests-Xcode3.2.5.octest */,
+				663DAF53126619DB00CF8CEA /* NetworkUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,7 +490,11 @@
 			isa = PBXGroup;
 			children = (
 				6E036A1D11B3645C0025E8EE /* libThree20Style.a */,
-				6E036A1F11B3645C0025E8EE /* UnitTests.octest */,
+				663DAF5A126619DB00CF8CEA /* libThree20Style-Xcode3.2.5.a */,
+				663DAF5C126619DB00CF8CEA /* libThree20Style-Xcode3.2.2.a */,
+				6E036A1F11B3645C0025E8EE /* StyleUnitTests.octest */,
+				663DAF5E126619DB00CF8CEA /* StyleUnitTests-Xcode3.2.5.octest */,
+				663DAF60126619DB00CF8CEA /* StyleUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -282,7 +562,11 @@
 			isa = PBXGroup;
 			children = (
 				6E645A7011876D3F00F08CB1 /* libThree20Core.a */,
+				663DAF40126619DB00CF8CEA /* libThree20Core-Xcode3.2.5.a */,
+				663DAF42126619DB00CF8CEA /* libThree20Core-Xcode3.2.2.a */,
 				6E645A7211876D3F00F08CB1 /* CoreUnitTests.octest */,
+				663DAF44126619DB00CF8CEA /* CoreUnitTests-Xcode3.2.5.octest */,
+				663DAF46126619DB00CF8CEA /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -319,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				6ED117E51183BE2A0096AEBF /* Resources */,
+				663DB00612661D6F00CF8CEA /* Xcode 3.2.4 Workaround */,
 				6E85152511B2E7B80071A4FD /* CssParserTests.m */,
 				6E036A7711B371150025E8EE /* CssStyleSheetTests.m */,
 			);
@@ -338,6 +623,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		66C34B0B12661C0500489E9A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C34B0C12661C0500489E9A /* extThree20CSSStyle.h in Headers */,
+				66C34B0D12661C0500489E9A /* TTCSSParser.h in Headers */,
+				66C34B0E12661C0500489E9A /* CssTokens.h in Headers */,
+				66C34B0F12661C0500489E9A /* TTCSSStyleSheet.h in Headers */,
+				66C34B1012661C0500489E9A /* TTDefaultCSSStyleSheet.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D90E6D12661CBB009AFDE6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D90E6E12661CBB009AFDE6 /* extThree20CSSStyle.h in Headers */,
+				66D90E6F12661CBB009AFDE6 /* TTCSSParser.h in Headers */,
+				66D90E7012661CBB009AFDE6 /* CssTokens.h in Headers */,
+				66D90E7112661CBB009AFDE6 /* TTCSSStyleSheet.h in Headers */,
+				66D90E7212661CBB009AFDE6 /* TTDefaultCSSStyleSheet.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEF31F360F352DF5000DE5D2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -353,6 +662,92 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		66C34B0412661C0500489E9A /* extThree20CSSStyle-Xcode3.2.5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66C34B1912661C0500489E9A /* Build configuration list for PBXNativeTarget "extThree20CSSStyle-Xcode3.2.5" */;
+			buildPhases = (
+				66C34B0B12661C0500489E9A /* Headers */,
+				66C34B1112661C0500489E9A /* Protect Copied Headers */,
+				66C34B1212661C0500489E9A /* Sources */,
+				66C34B1812661C0500489E9A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				664DFCCA12662B05004C20C2 /* PBXTargetDependency */,
+				664DFCCC12662B05004C20C2 /* PBXTargetDependency */,
+				664DFCC812662B05004C20C2 /* PBXTargetDependency */,
+			);
+			name = "extThree20CSSStyle-Xcode3.2.5";
+			productName = Three20;
+			productReference = 66C34B1D12661C0600489E9A /* libextThree20CSSStyle-Xcode3.2.5.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		66C34B1E12661C0600489E9A /* extThree20CSSStyleUnitTests-Xcode3.2.5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66C34B2F12661C0600489E9A /* Build configuration list for PBXNativeTarget "extThree20CSSStyleUnitTests-Xcode3.2.5" */;
+			buildPhases = (
+				66C34B2312661C0600489E9A /* Resources */,
+				66C34B2512661C0600489E9A /* Sources */,
+				66C34B2812661C0600489E9A /* Frameworks */,
+				66C34B2E12661C0600489E9A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66C34B6812661C6700489E9A /* PBXTargetDependency */,
+				66C34B6A12661C6700489E9A /* PBXTargetDependency */,
+				66C34B6C12661C6700489E9A /* PBXTargetDependency */,
+				66C34B6612661C6700489E9A /* PBXTargetDependency */,
+			);
+			name = "extThree20CSSStyleUnitTests-Xcode3.2.5";
+			productName = CoreUnitTests;
+			productReference = 66C34B3312661C0600489E9A /* extCSSStyleUnitTests-Xcode3.2.5.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		66D90E6612661CBB009AFDE6 /* extThree20CSSStyle-Xcode3.2.2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66D90E7B12661CBB009AFDE6 /* Build configuration list for PBXNativeTarget "extThree20CSSStyle-Xcode3.2.2" */;
+			buildPhases = (
+				66D90E6D12661CBB009AFDE6 /* Headers */,
+				66D90E7312661CBB009AFDE6 /* Protect Copied Headers */,
+				66D90E7412661CBB009AFDE6 /* Sources */,
+				66D90E7A12661CBB009AFDE6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66D90E9D12661CDC009AFDE6 /* PBXTargetDependency */,
+				66D90E9B12661CDC009AFDE6 /* PBXTargetDependency */,
+				66D90E9F12661CDC009AFDE6 /* PBXTargetDependency */,
+			);
+			name = "extThree20CSSStyle-Xcode3.2.2";
+			productName = Three20;
+			productReference = 66D90E7F12661CBB009AFDE6 /* libextThree20CSSStyle-Xcode3.2.2.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		66D90E8012661CBB009AFDE6 /* extThree20CSSStyleUnitTests-Xcode3.2.2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66D90E9412661CBB009AFDE6 /* Build configuration list for PBXNativeTarget "extThree20CSSStyleUnitTests-Xcode3.2.2" */;
+			buildPhases = (
+				66D90E8912661CBB009AFDE6 /* Resources */,
+				66D90E8B12661CBB009AFDE6 /* Sources */,
+				66D90E8E12661CBB009AFDE6 /* Frameworks */,
+				66D90E9312661CBB009AFDE6 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				66D90EA512661D0B009AFDE6 /* PBXTargetDependency */,
+				66D90EA312661D0B009AFDE6 /* PBXTargetDependency */,
+				66D90EA712661D0B009AFDE6 /* PBXTargetDependency */,
+				66D90EA112661D0B009AFDE6 /* PBXTargetDependency */,
+			);
+			name = "extThree20CSSStyleUnitTests-Xcode3.2.2";
+			productName = CoreUnitTests;
+			productReference = 66D90E9812661CBB009AFDE6 /* extCSSStyleUnitTests-Xcode3.2.2.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		BEF31F390F352DF5000DE5D2 /* extThree20CSSStyle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20CSSStyle" */;
@@ -374,9 +769,9 @@
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* UnitTests */ = {
+		EB9E6C6110B6A8F800DE563C /* extThree20CSSStyleUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "extThree20CSSStyleUnitTests" */;
 			buildPhases = (
 				EB9E6C5D10B6A8F800DE563C /* Resources */,
 				EB9E6C5E10B6A8F800DE563C /* Sources */,
@@ -389,7 +784,7 @@
 				6E645AA611876E3500F08CB1 /* PBXTargetDependency */,
 				6EB460DE1183D8D400685649 /* PBXTargetDependency */,
 			);
-			name = UnitTests;
+			name = extThree20CSSStyleUnitTests;
 			productName = CoreUnitTests;
 			productReference = EB9E6C6210B6A8F800DE563C /* extCSSStyleUnitTests.octest */;
 			productType = "com.apple.product-type.bundle";
@@ -400,11 +795,18 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = NO;
+				BuildIndependentTargetsInParallel = YES;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "extThree20CSSStyle" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
@@ -424,13 +826,101 @@
 			projectRoot = "";
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* extThree20CSSStyle */,
-				EB9E6C6110B6A8F800DE563C /* UnitTests */,
+				66C34B0412661C0500489E9A /* extThree20CSSStyle-Xcode3.2.5 */,
+				66D90E6612661CBB009AFDE6 /* extThree20CSSStyle-Xcode3.2.2 */,
+				EB9E6C6110B6A8F800DE563C /* extThree20CSSStyleUnitTests */,
+				66C34B1E12661C0600489E9A /* extThree20CSSStyleUnitTests-Xcode3.2.5 */,
+				66D90E8012661CBB009AFDE6 /* extThree20CSSStyleUnitTests-Xcode3.2.2 */,
 				6E083B2C11B6113900B99C32 /* Grammar */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		663DAF40126619DB00CF8CEA /* libThree20Core-Xcode3.2.5.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Core-Xcode3.2.5.a";
+			remoteRef = 663DAF3F126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF42126619DB00CF8CEA /* libThree20Core-Xcode3.2.2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Core-Xcode3.2.2.a";
+			remoteRef = 663DAF41126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF44126619DB00CF8CEA /* CoreUnitTests-Xcode3.2.5.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "CoreUnitTests-Xcode3.2.5.octest";
+			remoteRef = 663DAF43126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF46126619DB00CF8CEA /* CoreUnitTests-Xcode3.2.2.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "CoreUnitTests-Xcode3.2.2.octest";
+			remoteRef = 663DAF45126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF4D126619DB00CF8CEA /* libThree20Network-Xcode3.2.5.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Network-Xcode3.2.5.a";
+			remoteRef = 663DAF4C126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF4F126619DB00CF8CEA /* libThree20Network-Xcode3.2.2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Network-Xcode3.2.2.a";
+			remoteRef = 663DAF4E126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF51126619DB00CF8CEA /* NetworkUnitTests-Xcode3.2.5.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NetworkUnitTests-Xcode3.2.5.octest";
+			remoteRef = 663DAF50126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF53126619DB00CF8CEA /* NetworkUnitTests-Xcode3.2.2.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NetworkUnitTests-Xcode3.2.2.octest";
+			remoteRef = 663DAF52126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF5A126619DB00CF8CEA /* libThree20Style-Xcode3.2.5.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Style-Xcode3.2.5.a";
+			remoteRef = 663DAF59126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF5C126619DB00CF8CEA /* libThree20Style-Xcode3.2.2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Style-Xcode3.2.2.a";
+			remoteRef = 663DAF5B126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF5E126619DB00CF8CEA /* StyleUnitTests-Xcode3.2.5.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "StyleUnitTests-Xcode3.2.5.octest";
+			remoteRef = 663DAF5D126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		663DAF60126619DB00CF8CEA /* StyleUnitTests-Xcode3.2.2.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "StyleUnitTests-Xcode3.2.2.octest";
+			remoteRef = 663DAF5F126619DB00CF8CEA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6E036A1411B364530025E8EE /* libThree20Network.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -438,10 +928,10 @@
 			remoteRef = 6E036A1311B364530025E8EE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E036A1611B364530025E8EE /* UnitTests.octest */ = {
+		6E036A1611B364530025E8EE /* NetworkUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = NetworkUnitTests.octest;
 			remoteRef = 6E036A1511B364530025E8EE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -452,10 +942,10 @@
 			remoteRef = 6E036A1C11B3645C0025E8EE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E036A1F11B3645C0025E8EE /* UnitTests.octest */ = {
+		6E036A1F11B3645C0025E8EE /* StyleUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = StyleUnitTests.octest;
 			remoteRef = 6E036A1E11B3645C0025E8EE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -476,6 +966,22 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		66C34B2312661C0600489E9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C34B2412661C0600489E9A /* testcase.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D90E8912661CBB009AFDE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D90E8A12661CBB009AFDE6 /* testcase.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EB9E6C5D10B6A8F800DE563C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,6 +993,60 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		66C34B1112661C0500489E9A /* Protect Copied Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Protect Copied Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
+		};
+		66C34B2E12661C0600489E9A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		66D90E7312661CBB009AFDE6 /* Protect Copied Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Protect Copied Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
+		};
+		66D90E9312661CBB009AFDE6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		6E083B2B11B6113900B99C32 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -530,6 +1090,48 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		66C34B1212661C0500489E9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C34B1312661C0500489E9A /* TTCSSParser.m in Sources */,
+				66C34B1412661C0500489E9A /* CssTokenizer.m in Sources */,
+				66C34B1512661C0500489E9A /* CssTokens.m in Sources */,
+				66C34B1612661C0500489E9A /* TTCSSStyleSheet.m in Sources */,
+				66C34B1712661C0500489E9A /* TTDefaultCSSStyleSheet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66C34B2512661C0600489E9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66C34B2612661C0600489E9A /* CssStyleSheetTests.m in Sources */,
+				66C34B2712661C0600489E9A /* CssParserTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D90E7412661CBB009AFDE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D90E7512661CBB009AFDE6 /* TTCSSParser.m in Sources */,
+				66D90E7612661CBB009AFDE6 /* CssTokenizer.m in Sources */,
+				66D90E7712661CBB009AFDE6 /* CssTokens.m in Sources */,
+				66D90E7812661CBB009AFDE6 /* TTCSSStyleSheet.m in Sources */,
+				66D90E7912661CBB009AFDE6 /* TTDefaultCSSStyleSheet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D90E8B12661CBB009AFDE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66D90E8C12661CBB009AFDE6 /* CssStyleSheetTests.m in Sources */,
+				66D90E8D12661CBB009AFDE6 /* CssParserTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEF31F370F352DF5000DE5D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -548,12 +1150,83 @@
 			files = (
 				6E036A7D11B371790025E8EE /* CssStyleSheetTests.m in Sources */,
 				6E85152611B2E7B80071A4FD /* CssParserTests.m in Sources */,
+				663DB00812661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		664DFCC812662B05004C20C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Style-Xcode3.2.5";
+			targetProxy = 664DFCC712662B05004C20C2 /* PBXContainerItemProxy */;
+		};
+		664DFCCA12662B05004C20C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Core-Xcode3.2.5";
+			targetProxy = 664DFCC912662B05004C20C2 /* PBXContainerItemProxy */;
+		};
+		664DFCCC12662B05004C20C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Network-Xcode3.2.5";
+			targetProxy = 664DFCCB12662B05004C20C2 /* PBXContainerItemProxy */;
+		};
+		66C34B6612661C6700489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66C34B0412661C0500489E9A /* extThree20CSSStyle-Xcode3.2.5 */;
+			targetProxy = 66C34B6512661C6700489E9A /* PBXContainerItemProxy */;
+		};
+		66C34B6812661C6700489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20StyleUnitTests-Xcode3.2.5";
+			targetProxy = 66C34B6712661C6700489E9A /* PBXContainerItemProxy */;
+		};
+		66C34B6A12661C6700489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20CoreUnitTests-Xcode3.2.5";
+			targetProxy = 66C34B6912661C6700489E9A /* PBXContainerItemProxy */;
+		};
+		66C34B6C12661C6700489E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20NetworkUnitTests-Xcode3.2.5";
+			targetProxy = 66C34B6B12661C6700489E9A /* PBXContainerItemProxy */;
+		};
+		66D90E9B12661CDC009AFDE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Style-Xcode3.2.2";
+			targetProxy = 66D90E9A12661CDC009AFDE6 /* PBXContainerItemProxy */;
+		};
+		66D90E9D12661CDC009AFDE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Core-Xcode3.2.2";
+			targetProxy = 66D90E9C12661CDC009AFDE6 /* PBXContainerItemProxy */;
+		};
+		66D90E9F12661CDC009AFDE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20Network-Xcode3.2.2";
+			targetProxy = 66D90E9E12661CDC009AFDE6 /* PBXContainerItemProxy */;
+		};
+		66D90EA112661D0B009AFDE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66D90E6612661CBB009AFDE6 /* extThree20CSSStyle-Xcode3.2.2 */;
+			targetProxy = 66D90EA012661D0B009AFDE6 /* PBXContainerItemProxy */;
+		};
+		66D90EA312661D0B009AFDE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20StyleUnitTests-Xcode3.2.2";
+			targetProxy = 66D90EA212661D0B009AFDE6 /* PBXContainerItemProxy */;
+		};
+		66D90EA512661D0B009AFDE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20CoreUnitTests-Xcode3.2.2";
+			targetProxy = 66D90EA412661D0B009AFDE6 /* PBXContainerItemProxy */;
+		};
+		66D90EA712661D0B009AFDE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Three20NetworkUnitTests-Xcode3.2.2";
+			targetProxy = 66D90EA612661D0B009AFDE6 /* PBXContainerItemProxy */;
+		};
 		6E036A2311B3646F0025E8EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Three20Style;
@@ -582,6 +1255,196 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		66C34B1A12661C0500489E9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EXTJSON_SBJSON,
+					DEBUG,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		66C34B1B12661C0500489E9A /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EXTJSON_SBJSON,
+					DEBUG,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Internal;
+		};
+		66C34B1C12661C0500489E9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_SBJSON;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		66C34B3012661C0600489E9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		66C34B3112661C0600489E9A /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+			};
+			name = Internal;
+		};
+		66C34B3212661C0600489E9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.5";
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		66D90E7C12661CBB009AFDE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EXTJSON_SBJSON,
+					DEBUG,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Debug;
+		};
+		66D90E7D12661CBB009AFDE6 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EXTJSON_SBJSON,
+					DEBUG,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Internal;
+		};
+		66D90E7E12661CBB009AFDE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_SBJSON;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		66D90E9512661CBB009AFDE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Debug;
+		};
+		66D90E9612661CBB009AFDE6 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+			};
+			name = Internal;
+		};
+		66D90E9712661CBB009AFDE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
+				SDKROOT = iphoneos3.1.3;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		6E083B2D11B6113900B99C32 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -614,14 +1477,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.0;
 			};
 			name = Internal;
 		};
@@ -632,13 +1492,13 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					EXTJSON_SBJSON,
 					DEBUG,
 				);
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Internal;
 		};
@@ -650,8 +1510,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../common/Xcode324iOS41Fix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Internal;
 		};
@@ -667,6 +1530,7 @@
 					DEBUG,
 				);
 				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -679,6 +1543,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_SBJSON;
 				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -687,14 +1552,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
@@ -702,14 +1564,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
 		};
@@ -721,8 +1581,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../common/Xcode324iOS41Fix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -733,7 +1596,10 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../common/Xcode324iOS41Fix.pch;
 				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -741,6 +1607,46 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		66C34B1912661C0500489E9A /* Build configuration list for PBXNativeTarget "extThree20CSSStyle-Xcode3.2.5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66C34B1A12661C0500489E9A /* Debug */,
+				66C34B1B12661C0500489E9A /* Internal */,
+				66C34B1C12661C0500489E9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66C34B2F12661C0600489E9A /* Build configuration list for PBXNativeTarget "extThree20CSSStyleUnitTests-Xcode3.2.5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66C34B3012661C0600489E9A /* Debug */,
+				66C34B3112661C0600489E9A /* Internal */,
+				66C34B3212661C0600489E9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66D90E7B12661CBB009AFDE6 /* Build configuration list for PBXNativeTarget "extThree20CSSStyle-Xcode3.2.2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66D90E7C12661CBB009AFDE6 /* Debug */,
+				66D90E7D12661CBB009AFDE6 /* Internal */,
+				66D90E7E12661CBB009AFDE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66D90E9412661CBB009AFDE6 /* Build configuration list for PBXNativeTarget "extThree20CSSStyleUnitTests-Xcode3.2.2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66D90E9512661CBB009AFDE6 /* Debug */,
+				66D90E9612661CBB009AFDE6 /* Internal */,
+				66D90E9712661CBB009AFDE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6E083B3411B6114E00B99C32 /* Build configuration list for PBXAggregateTarget "Grammar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -771,7 +1677,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+		EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "extThree20CSSStyleUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB9E6C6510B6A8F900DE563C /* Debug */,

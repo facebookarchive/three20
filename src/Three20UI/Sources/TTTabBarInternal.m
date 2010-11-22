@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTTabBarInternal.h"
+#import "Three20UI/private/TTTabBarInternal.h"
 
 // UI
 #import "Three20UI/TTTab.h"
