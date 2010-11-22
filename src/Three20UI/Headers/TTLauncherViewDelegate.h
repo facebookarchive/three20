@@ -31,6 +31,8 @@
 
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item;
 
+- (void)launcherViewDidEndDragging:(TTLauncherView*)launcher;
+
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher;
 
 - (void)launcherViewDidEndEditing:(TTLauncherView*)launcher;

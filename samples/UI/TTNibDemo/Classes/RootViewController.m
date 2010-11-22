@@ -24,8 +24,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)init {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+-(id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
+  if (self = [super initWithNibName:nibName bundle:bundle]) {
     self.title = @"Three20 NIB Demo";
     self.navigationItem.backBarButtonItem =
     [[[UIBarButtonItem alloc] initWithTitle: @"Root"

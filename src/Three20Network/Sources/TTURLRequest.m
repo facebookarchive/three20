@@ -149,7 +149,28 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)appendImageData:(NSData*)data
+               withName:(NSString*)name
+                 toBody:(NSMutableData*)body {
+  NSString *beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
+
+  [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:
+                     @"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n",
+                     name]
+                     dataUsingEncoding:_charsetForMultipart]];
+  [body appendData:[[NSString
+                      stringWithFormat:@"Content-Length: %d\r\n", data.length]
+                     dataUsingEncoding:_charsetForMultipart]];
+  [body appendData:[[NSString
+                      stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
+                     dataUsingEncoding:_charsetForMultipart]];
+  [body appendData:data];
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)generatePostBody {
   NSMutableData* body = [NSMutableData data];
   NSString* beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
@@ -159,7 +180,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
   for (id key in [_parameters keyEnumerator]) {
     NSString* value = [_parameters valueForKey:key];
-    if (![value isKindOfClass:[UIImage class]]) {
+    // Really, this can only be an NSString. We're cheating here.
+    if (![value isKindOfClass:[UIImage class]] &&
+        ![value isKindOfClass:[NSData class]]) {
       [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
       [body appendData:[[NSString
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
@@ -175,18 +198,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       CGFloat quality = [TTURLRequestQueue mainQueue].imageCompressionQuality;
       NSData* data = UIImageJPEGRepresentation(image, quality);
 
-      [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
-      [body appendData:[[NSString stringWithFormat:
-                       @"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n",
-                       key]
-          dataUsingEncoding:_charsetForMultipart]];
-      [body appendData:[[NSString
-        stringWithFormat:@"Content-Length: %d\r\n", data.length]
-          dataUsingEncoding:_charsetForMultipart]];
-      [body appendData:[[NSString
-        stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
-          dataUsingEncoding:_charsetForMultipart]];
-      [body appendData:data];
+      [self appendImageData:data withName:key toBody:body];
+      imageKey = key;
+    } else if ([[_parameters objectForKey:key] isKindOfClass:[NSData class]]) {
+      NSData* data = [_parameters objectForKey:key];
+      [self appendImageData:data withName:key toBody:body];
       imageKey = key;
     }
   }

@@ -14,6 +14,9 @@
 // limitations under the License.
 //
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Code Management
+
 /**
  * Borrowed from Apple's AvailabiltyInternal.h header. There's no reason why we shouldn't be
  * able to use this macro, as it's a gcc-supported flag.
@@ -21,13 +24,6 @@
  * __AVAILABILITY_INTERNAL_DEPRECATED         __attribute__((deprecated))
  */
 #define __TTDEPRECATED_METHOD __attribute__((deprecated))
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Errors
-
-#define TT_ERROR_DOMAIN @"three20.net"
-
-#define TT_EC_INVALID_IMAGE 101
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +42,7 @@
 #define TT_MINUTE 60
 #define TT_HOUR   (60 * TT_MINUTE)
 #define TT_DAY    (24 * TT_HOUR)
+#define TT_5_DAYS (5 * TT_DAY)
 #define TT_WEEK   (7 * TT_DAY)
 #define TT_MONTH  (30.5 * TT_DAY)
 #define TT_YEAR   (365 * TT_DAY)

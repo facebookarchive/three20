@@ -17,8 +17,8 @@
 #import "Three20UINavigator/TTURLPattern.h"
 
 // UINavigator (Private)
-#import "Three20UINavigator/TTURLWildcard.h"
-#import "Three20UINavigator/TTURLLiteral.h"
+#import "Three20UINavigator/private/TTURLWildcard.h"
+#import "Three20UINavigator/private/TTURLLiteral.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"

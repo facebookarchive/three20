@@ -45,6 +45,27 @@
   NSTimeInterval  _animationDuration;
   UIEdgeInsets    _animateEdges;
 
+  // Speed for Inertia.
+  CGPoint      _inertiaSpeed;
+  CGPoint      _renewPosition;
+
+  // A floating-point value that specifies the maximum scale factor that can be applied to
+  // the scroll view's content.
+  CGFloat _maximumZoomScale;
+  CGFloat _zoomScale;
+
+  // Middle point bewteen fingers, is used to zoom using fingers positon and not the center
+  // of the image.
+  CGPoint centerOfFingers;
+
+  // Distance between fingers, used to calculate zoom scale and zoom speed rate.
+  CGFloat actualDistanceBetweenFingers;
+  CGFloat distanceBetweenFingers;
+
+  // A floating-point value that determines the rate of deceleration after the user lifts
+  // their finger.
+  CGFloat _decelerationRate;
+
   // The offset of the page edges from the edge of the screen.
   UIEdgeInsets    _pageEdges;
 
@@ -63,7 +84,9 @@
   UITouch*        _touch2;
 
   BOOL            _dragging;
+  BOOL            _decelerating;
   BOOL            _zooming;
+  BOOL            _executingZoomGesture;
   BOOL            _holding;
 }
 
@@ -77,7 +100,22 @@
  */
 @property (nonatomic, readonly) BOOL zoomed;
 
+/**
+ * A Boolean value that indicates whether the content view is currently zooming in or
+ * out. (read-only)
+ *
+ * The value of this property is YES if user is making a zoom gesture, otherwise it is NO
+ *
+ */
+@property (nonatomic, readonly) BOOL zooming;
+
 @property (nonatomic, readonly) BOOL holding;
+
+/**
+ * Returns whether the content is moving in the scroll view after the user lifted their
+ * finger. (read-only)
+ */
+@property(nonatomic,readonly,getter=isDecelerating) BOOL decelerating;
 
 /**
  * @default YES
@@ -110,6 +148,32 @@
  */
 @property (nonatomic) NSTimeInterval holdsAfterTouchingForInterval;
 
+/**
+ * A floating-point value that determines the rate of deceleration after the user lifts
+ * their finger.
+ *
+ * @default 0.9
+ */
+@property CGFloat decelerationRate;
+
+/**
+ * A floating-point value that specifies the current scale factor applied to the scroll
+ * view's content.
+ *
+ * The scale is animated by Default, use setZoomScale:animated: to control when is
+ * animated or not.
+ *
+ * @default 1.0
+ */
+@property(nonatomic,assign) CGFloat zoomScale;
+
+/**
+ * A floating-point value that specifies the maximum scale factor that
+ * can be applied to the scroll view's content.
+ *
+ * @default 4.0
+ */
+@property(nonatomic) CGFloat maximumZoomScale;
 
 @property (nonatomic, assign) id<TTScrollViewDelegate>    delegate;
 @property (nonatomic, assign) id<TTScrollViewDataSource>  dataSource;
@@ -120,6 +184,22 @@
 @property (nonatomic, readonly) NSDictionary* visiblePages;
 
 - (void)setOrientation:(UIInterfaceOrientation)orientation animated:(BOOL)animated;
+
+/**
+ * A floating-point value that specifies the current zoom scale.
+ *
+ * YES to animate the transition to the new scale, NO to make the transition immediate.
+ */
+- (void)setZoomScale:(CGFloat)newScale animated:(BOOL)animated;
+
+/**
+ * A floating-point value that specifies the current zoom scale.
+ *
+ * Specify one point to scale centering to him.
+ *
+ * YES to animate the transition to the new scale, NO to make the transition immediate.
+ */
+- (void)setZoomScale:(CGFloat)newScale withPoint:(CGPoint)withPoint animated:(BOOL)animated;
 
 /**
  * Gets a previously created page view that has been moved off screen and recycled.

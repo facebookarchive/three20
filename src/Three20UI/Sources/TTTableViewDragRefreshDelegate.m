@@ -1,17 +1,27 @@
 //
-// Copyright 2009-2010 Facebook
+//  Created by Devin Doty on 10/14/09.
+//  http://github.com/enormego/EGOTableViewPullRefresh
+//  Copyright 2009 enormego. All rights reserved.
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+//  Modifications copyright 2010 Facebook.
 //
-//    http://www.apache.org/licenses/LICENSE-2.0
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 #import "Three20UI/TTTableViewDragRefreshDelegate.h"
@@ -36,6 +46,9 @@
 
 // The number of pixels the table needs to be pulled down by in order to initiate the refresh.
 static const CGFloat kRefreshDeltaY = -65.0f;
+
+// The height of the refresh header when it is in its "loading" state.
+static const CGFloat kHeaderVisibleHeight = 60.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,14 +76,16 @@ static const CGFloat kRefreshDeltaY = -65.0f;
                                                    _controller.tableView.bounds.size.height)];
     _headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _headerView.backgroundColor = TTSTYLEVAR(tableRefreshHeaderBackgroundColor);
+    [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
     [_controller.tableView addSubview:_headerView];
 
     // Hook up to the model to listen for changes.
-    [controller.model.delegates addObject:self];
+    _model = [controller.model retain];
+    [_model.delegates addObject:self];
 
     // Grab the last refresh date if there is one.
-    if ([_controller.model respondsToSelector:@selector(loadedTime)]) {
-      NSDate* date = [_controller.model performSelector:@selector(loadedTime)];
+    if ([_model respondsToSelector:@selector(loadedTime)]) {
+      NSDate* date = [_model performSelector:@selector(loadedTime)];
 
       if (nil != date) {
         [_headerView setUpdateDate:date];
@@ -83,8 +98,9 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [_controller.model.delegates removeObject:self];
+  [_model.delegates removeObject:self];
   TT_RELEASE_SAFELY(_headerView);
+  TT_RELEASE_SAFELY(_model);
 
   [super dealloc];
 }
@@ -100,28 +116,26 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView {
   [super scrollViewDidScroll:scrollView];
 
-  if (_isDragging) {
-    if (_headerView.isFlipped
-        && scrollView.contentOffset.y > kRefreshDeltaY
-        && scrollView.contentOffset.y < 0.0f
-        && !_controller.model.isLoading) {
-      [_headerView flipImageAnimated:YES];
+  if (scrollView.dragging && !_model.isLoading) {
+    if (scrollView.contentOffset.y > kRefreshDeltaY
+        && scrollView.contentOffset.y < 0.0f) {
       [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
-    } else if (!_headerView.isFlipped
-               && scrollView.contentOffset.y < kRefreshDeltaY) {
-      [_headerView flipImageAnimated:YES];
+    } else if (scrollView.contentOffset.y < kRefreshDeltaY) {
       [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
     }
   }
-}
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)scrollViewWillBeginDragging:(UIScrollView*)scrollView {
-  [super scrollViewWillBeginDragging:scrollView];
-
-  _isDragging = YES;
+  // This is to prevent odd behavior with plain table section headers. They are affected by the
+  // content inset, so if the table is scrolled such that there might be a section header abutting
+  // the top, we need to clear the content inset.
+  if (_model.isLoading) {
+    if (scrollView.contentOffset.y >= 0) {
+      _controller.tableView.contentInset = UIEdgeInsetsZero;
+    } else if (scrollView.contentOffset.y < 0) {
+      _controller.tableView.contentInset = UIEdgeInsetsMake(kHeaderVisibleHeight, 0, 0, 0);
+    }
+  }
 }
 
 
@@ -131,13 +145,11 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
   // If dragging ends and we are far enough to be fully showing the header view trigger a
   // load as long as we arent loading already
-  if (scrollView.contentOffset.y <= kRefreshDeltaY && !_controller.model.isLoading) {
+  if (scrollView.contentOffset.y <= kRefreshDeltaY && !_model.isLoading) {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"DragRefreshTableReload" object:nil];
     //[_controller.model load:TTURLRequestCachePolicyNetwork more:NO]; // JE: Commented out this reload. I'm letting the TTModelViewController handle it
   }
-
-  _isDragging = NO;
 }
 
 
@@ -149,20 +161,20 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)modelDidStartLoad:(id<TTModel>)model {
-  [_headerView showActivity:YES];
+  [_headerView setStatus:TTTableHeaderDragRefreshLoading];
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultFastTransitionDuration];
-  _controller.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 00.0f, 0.0f);
+  if (_controller.tableView.contentOffset.y < 0) {
+    _controller.tableView.contentInset = UIEdgeInsetsMake(kHeaderVisibleHeight, 0.0f, 0.0f, 0.0f);
+  }
   [UIView commitAnimations];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)modelDidFinishLoad:(id<TTModel>)model {
-  [_headerView flipImageAnimated:NO];
-  [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
-  [_headerView showActivity:NO];
+  [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultTransitionDuration];
@@ -181,9 +193,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didFailLoadWithError:(NSError*)error {
-  [_headerView flipImageAnimated:NO];
-  [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
-  [_headerView showActivity:NO];
+  [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultTransitionDuration];
@@ -194,9 +204,7 @@ static const CGFloat kRefreshDeltaY = -65.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)modelDidCancelLoad:(id<TTModel>)model {
-  [_headerView flipImageAnimated:NO];
-  [_headerView setStatus:TTTableHeaderDragRefreshReleaseToReload];
-  [_headerView showActivity:NO];
+  [_headerView setStatus:TTTableHeaderDragRefreshPullToReload];
 
   [UIView beginAnimations:nil context:NULL];
   [UIView setAnimationDuration:ttkDefaultTransitionDuration];

@@ -17,7 +17,8 @@
 #include "../common/Configurations/UnitTests.xcconfig"
 #include "../common/Configurations/Libraries.xcconfig"
 
-PRODUCT_NAME          = extCSSStyleUnitTests
+BASE_PRODUCT_NAME     = extCSSStyleUnitTests
+PRODUCT_NAME          = $(BASE_PRODUCT_NAME)
 BUILD_BUNDLE_VERSION  = 1.0
 
 OTHER_LDFLAGS         = $(COMMON_LDFLAGS) $(UIKIT_FX)

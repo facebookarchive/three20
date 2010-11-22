@@ -18,10 +18,10 @@
 
 // UI
 #import "Three20UI/TTImageViewDelegate.h"
-#import "Three20UI/TTImageLayer.h"
 
 // UI (private)
-#import "Three20UI/TTImageViewInternal.h"
+#import "Three20UI/private/TTImageLayer.h"
+#import "Three20UI/private/TTImageViewInternal.h"
 
 // Style
 #import "Three20Style/TTShape.h"
@@ -250,6 +250,19 @@
 - (void)unsetImage {
   [self stopLoading];
   self.image = nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setDefaultImage:(UIImage*)theDefaultImage {
+  if (_defaultImage != theDefaultImage) {
+    [_defaultImage release];
+    _defaultImage = [theDefaultImage retain];
+  }
+  if (nil == _urlPath || 0 == _urlPath.length) {
+    //no url path set yet, so use it as the current image
+    self.image = _defaultImage;
+  }
 }
 
 

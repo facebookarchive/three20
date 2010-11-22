@@ -124,6 +124,9 @@
 		  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	  }else if (item.URL && [_controller shouldOpenURL:item.URL]) {
       TTOpenURL(item.URL);
+
+    } else if (item.delegate && item.selector) {
+      [item.delegate performSelector:item.selector withObject:object];
     }
 
     if ([object isKindOfClass:[TTTableButton class]]) {
