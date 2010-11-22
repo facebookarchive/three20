@@ -24,25 +24,18 @@
   // be invoked.
   NSString* _URL;
   NSString* _accessoryURL;
-<<<<<<< HEAD
   TTURLAction* _URLAction;
   TTURLAction* _accessoryURLAction;
+  id        _delegate;
+  SEL       _selector;
 }
 
 @property (nonatomic, copy) NSString* URL;
 @property (nonatomic, copy) NSString* accessoryURL;
 @property (nonatomic, retain) TTURLAction* URLAction;
 @property (nonatomic, retain) TTURLAction* accessoryURLAction;
-=======
-
-  id        _delegate;
-  SEL       _selector;
-}
-
-@property (nonatomic, copy) 	NSString* URL;
-@property (nonatomic, copy)   NSString* accessoryURL;
 @property (nonatomic, assign) id        delegate;
 @property (nonatomic, assign) SEL       selector;
->>>>>>> tags/v1.0a2
+
 
 @end
