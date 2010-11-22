@@ -327,7 +327,8 @@
 - (void)restoreView:(NSDictionary*)state {
   CGFloat scrollY = [[state objectForKey:@"scrollOffsetY"] floatValue];
   if (scrollY) {
-    CGFloat maxY = _tableView.contentSize.height - _tableView.height;
+    //set to 0 if contentSize is smaller than the tableView.height
+    CGFloat maxY = MAX(0, _tableView.contentSize.height - _tableView.height);
     if (scrollY <= maxY) {
       _tableView.contentOffset = CGPointMake(0, scrollY);
 
