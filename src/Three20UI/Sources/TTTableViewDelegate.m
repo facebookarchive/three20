@@ -121,6 +121,7 @@
       TTOpenURL(item.URL);
 
     } else if (item.delegate && item.selector) {
+      [tableView deselectRowAtIndexPath:indexPath animated:YES];
       [item.delegate performSelector:item.selector withObject:object];
     }
 

@@ -81,6 +81,10 @@
 
       self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
 
+    } else if (item.delegate && item.selector) {
+      self.accessoryType = UITableViewCellAccessoryNone;
+      self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
+
     } else {
       self.accessoryType = UITableViewCellAccessoryNone;
       self.selectionStyle = UITableViewCellSelectionStyleNone;
