@@ -83,6 +83,11 @@ CGFloat TTToolbarHeightForOrientation(UIInterfaceOrientation orientation);
 CGFloat TTKeyboardHeightForOrientation(UIInterfaceOrientation orientation);
 
 /**
+ * @return the space between the edge of the screen and a grouped table cell. Larger on iPad.
+ */
+CGFloat TTGroupedTableCellInset();
+
+/**
  * A convenient way to show a UIAlertView with a message.
  */
 void TTAlert(NSString* message);

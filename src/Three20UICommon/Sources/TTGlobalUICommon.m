@@ -32,7 +32,8 @@ const CGFloat ttkDefaultLandscapeKeyboardHeight     = 160;
 const CGFloat ttkDefaultPadPortraitKeyboardHeight   = 264;
 const CGFloat ttkDefaultPadLandscapeKeyboardHeight  = 352;
 
-const CGFloat ttkGroupedTableCellInset = 10.0;
+const CGFloat ttkGroupedTableCellInset = 9;
+const CGFloat ttkGroupedPadTableCellInset = 42;
 
 const CGFloat ttkDefaultTransitionDuration      = 0.3;
 const CGFloat ttkDefaultFastTransitionDuration  = 0.2;
@@ -177,6 +178,11 @@ CGFloat TTKeyboardHeightForOrientation(UIInterfaceOrientation orientation) {
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+CGFloat TTGroupedTableCellInset() {
+  return TTIsPad() ? ttkGroupedPadTableCellInset : ttkGroupedTableCellInset;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void TTAlert(NSString* message) {
