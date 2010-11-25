@@ -17,11 +17,13 @@
 #import "Three20UI/TTTextEditor.h"
 
 // UI
-#import "Three20UI/TTTextView.h"
-#import "Three20UI/TTTextEditorInternal.h"
 #import "Three20UI/TTTextEditorDelegate.h"
 #import "Three20UI/UIViewAdditions.h"
 #import "Three20Style/UIFontAdditions.h"
+
+// UI (private)
+#import "Three20UI/private/TTTextView.h"
+#import "Three20UI/private/TTTextEditorInternal.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

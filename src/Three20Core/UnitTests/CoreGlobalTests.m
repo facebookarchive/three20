@@ -21,6 +21,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCorePaths.h"
 #import "Three20Core/TTGlobalCore.h"
 
 /**
@@ -65,6 +66,37 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark Bundles
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testDefaultBundles {
+  STAssertEquals([NSBundle mainBundle], TTGetDefaultBundle(),
+                 @"Default bundle should be mainBundle");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testSettingDefaultBundles {
+  NSBundle* testBundle = [NSBundle bundleWithIdentifier:@"com.facebook.three20.UnitTests"];
+  STAssertTrue(nil != testBundle, @"Unable to find the bundle %@", [NSBundle allBundles]);
+
+  TTSetDefaultBundle(testBundle);
+
+  STAssertEquals(testBundle, TTGetDefaultBundle(),
+                 @"Default bundle should be set to the unit test bundle");
+
+  TTSetDefaultBundle(nil);
+
+  STAssertEquals([NSBundle mainBundle], TTGetDefaultBundle(),
+                 @"Default bundle should be back to mainBundle");
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 #pragma mark Non Retaining Objects
 
 
@@ -72,14 +104,16 @@
 - (void)testNonRetainingArray {
   NSMutableArray* array = TTCreateNonRetainingArray();
   id testObject = [[NSArray alloc] init];
+  NSUInteger initialRetainCount = [testObject retainCount];
 
-  STAssertTrue([testObject retainCount] == 1, @"Improper initial retain count");
+  STAssertTrue(initialRetainCount > 0, @"Improper initial retain count");
 
   [array addObject:testObject];
-  STAssertTrue([testObject retainCount] == 1, @"Improper new retain count");
+  STAssertEquals([testObject retainCount], initialRetainCount, @"Improper new retain count");
 
   TT_RELEASE_SAFELY(array);
-  STAssertTrue([testObject retainCount] == 1, @"Improper retain count after release");
+  STAssertEquals([testObject retainCount], initialRetainCount,
+                 @"Improper retain count after release");
 
   TT_RELEASE_SAFELY(testObject);
 }
@@ -89,14 +123,16 @@
 - (void)testNonRetainingDictionary {
   NSMutableDictionary* dictionary = TTCreateNonRetainingDictionary();
   id testObject = [[NSArray alloc] init];
+  NSUInteger initialRetainCount = [testObject retainCount];
 
-  STAssertTrue([testObject retainCount] == 1, @"Improper initial retain count");
+  STAssertTrue(initialRetainCount > 0, @"Improper initial retain count");
 
   [dictionary setObject:testObject forKey:@"obj"];
-  STAssertTrue([testObject retainCount] == 1, @"Improper new retain count");
+  STAssertEquals([testObject retainCount], initialRetainCount, @"Improper new retain count");
 
   TT_RELEASE_SAFELY(dictionary);
-  STAssertTrue([testObject retainCount] == 1, @"Improper retain count after release");
+  STAssertEquals([testObject retainCount], initialRetainCount,
+                 @"Improper retain count after release");
 
   TT_RELEASE_SAFELY(testObject);
 }

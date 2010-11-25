@@ -29,6 +29,8 @@
 @synthesize accessoryURL  = _accessoryURL;
 @synthesize URLAction     = _URLAction;	
 @synthesize accessoryURLAction  = _accessoryURLAction;
+@synthesize delegate      = _delegate;
+@synthesize selector      = _selector;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
@@ -36,6 +38,9 @@
   TT_RELEASE_SAFELY(_accessoryURL);
   TT_RELEASE_SAFELY(_URLAction);
   TT_RELEASE_SAFELY(_accessoryURLAction);
+  _delegate = nil;
+  _selector = nil;
+
   [super dealloc];
 }
 
@@ -50,6 +55,7 @@
 - (id)initWithCoder:(NSCoder*)decoder {
   if (self = [super initWithCoder:decoder]) {
     self.URL = [decoder decodeObjectForKey:@"URL"];
+    self.accessoryURL = [decoder decodeObjectForKey:@"accessoryURL"];
   }
   return self;
 }
@@ -62,7 +68,7 @@
     [encoder encodeObject:self.URL forKey:@"URL"];
   }
   if (self.accessoryURL) {
-    [encoder encodeObject:self.accessoryURL forKey:@"URL"];
+    [encoder encodeObject:self.accessoryURL forKey:@"accessoryURL"];
   }
   // TODO: JE: Encode the URLAction ad accessoryURLAction?
 }

@@ -58,7 +58,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawInRect:(CGRect)rect {
-  [_text drawInRect:rect withFont:_font];
+  [_text drawInRect:rect withFont:_font lineBreakMode:UILineBreakModeClip];
 }
 
 

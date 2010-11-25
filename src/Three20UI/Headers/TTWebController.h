@@ -31,9 +31,12 @@
   UIBarButtonItem*  _forwardButton;
   UIBarButtonItem*  _refreshButton;
   UIBarButtonItem*  _stopButton;
+  UIBarButtonItem*  _actionButton;
   UIBarButtonItem*  _activityItem;
 
   NSURL*            _loadingURL;
+  
+  UIActionSheet*    _actionSheet;
 
   id<TTWebControllerDelegate> _delegate;
 }

@@ -21,7 +21,10 @@
 }
 
 - (UIViewController*)post:(NSDictionary*)query {
-  TTPostController* controller = [[[TTPostController alloc] init] autorelease];
+  TTPostController* controller = [[[TTPostController alloc] initWithNavigatorURL:nil
+																		   query:
+								   [NSDictionary dictionaryWithObjectsAndKeys:@"Default Text", @"text", nil]]
+								   autorelease];
   controller.originView = [query objectForKey:@"__target__"];
   return controller;
 }
@@ -54,8 +57,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _sendTimer = nil;
 
     [[TTNavigator navigator].URLMap from:@"tt://compose?to=(composeTo:)"
@@ -86,14 +89,14 @@
   [button setTitle:@"Show TTMessageController" forState:UIControlStateNormal];
   [button addTarget:@"tt://compose?to=Alan%20Jones" action:@selector(openURL)
           forControlEvents:UIControlEventTouchUpInside];
-  button.frame = CGRectMake(20, 20, 280, 50);
+  button.frame = CGRectMake(20, 20, appFrame.size.width - 40, 50);
   [self.view addSubview:button];
 
   UIButton* button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [button2 setTitle:@"Show TTPostController" forState:UIControlStateNormal];
   [button2 addTarget:@"tt://post" action:@selector(openURLFromButton:)
           forControlEvents:UIControlEventTouchUpInside];
-  button2.frame = CGRectMake(20, button.bottom + 20, 280, 50);
+  button2.frame = CGRectMake(20, button.bottom + 20, appFrame.size.width - 40, 50);
   [self.view addSubview:button2];
 }
 

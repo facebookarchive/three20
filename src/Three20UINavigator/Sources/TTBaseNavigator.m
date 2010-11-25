@@ -44,6 +44,11 @@ static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
 static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant";
 
+#ifdef __IPHONE_4_0
+UIKIT_EXTERN NSString *const UIApplicationDidEnterBackgroundNotification __attribute__((weak_import));
+UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attribute__((weak_import));
+#endif
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,10 +71,19 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
     _URLMap = [[TTURLMap alloc] init];
     _persistenceMode = TTNavigatorPersistenceModeNone;
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillTerminateNotification:)
-                                                 name:UIApplicationWillTerminateNotification
-                                               object:nil];
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(applicationWillLeaveForeground:)
+                   name:UIApplicationWillTerminateNotification
+                 object:nil];
+#ifdef __IPHONE_4_0
+    if (nil != &UIApplicationDidEnterBackgroundNotification) {
+      [center addObserver:self
+                 selector:@selector(applicationWillLeaveForeground:)
+                     name:UIApplicationDidEnterBackgroundNotification
+                   object:nil];
+    }
+#endif
   }
   return self;
 }
@@ -77,9 +91,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:UIApplicationWillTerminateNotification
-                                                object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   _delegate = nil;
   TT_RELEASE_SAFELY(_window);
   TT_RELEASE_SAFELY(_rootViewController);
@@ -466,7 +478,7 @@ static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)applicationWillTerminateNotification:(void*)info {
+- (void)applicationWillLeaveForeground:(void *)ignored {
   if (_persistenceMode) {
     [self persistViewControllers];
   }
