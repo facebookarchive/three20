@@ -121,13 +121,14 @@
   
   UITableViewCell* cell;
   
-  if ([object isKindOfClass:[TTTableItem class]]) {
+  if ([object conformsToProtocol:@protocol(TTTableItemCellMapping)]) {
     cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:[object cellIdentifier]];
     if (cell == nil) {
       cell = [[object newCell] autorelease];
     }
   } else {
-    // Non-TTTableItem table view items are handled as a special-case
+    // items that don't implement the TTTableItemCellMapping protocol
+    // are handled as a special-case
     Class cellClass = [self tableView:tableView cellClassForObject:object];
     NSString* identifier = [NSString stringWithCString:class_getName(cellClass) encoding:NSASCIIStringEncoding];
     
@@ -255,7 +256,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
-  if ([object isKindOfClass:[TTTableItem class]]) {
+  if ([object conformsToProtocol:@protocol(TTTableItemCellMapping)]) {
     return [object cellClass];
   } else if ([object isKindOfClass:[TTStyledText class]]) {
     return [TTStyledTextTableCell class];
