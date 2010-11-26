@@ -45,8 +45,7 @@
 
 /**
  *
- * Returns an newly-allocated TTTableViewCell appropriate for this TTTableItem. This method calls
- * [TTableViewCell setObject:] before returning.
+ * Returns an newly-allocated TTTableViewCell appropriate for this TTTableItem.
  *
  * Override for dynamic association between TTTableItems and TTTableViewCells based on a TTTableItem's properties
  *

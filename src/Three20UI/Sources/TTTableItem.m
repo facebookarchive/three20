@@ -74,8 +74,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTTableViewCell*)newCell {
   TTTableViewCell *cell = [[[self cellClass] alloc] initWithStyle:UITableViewCellStyleDefault
-                                 reuseIdentifier:[self cellIdentifier]]; 
-  [cell setObject:self];
+                                 reuseIdentifier:[self cellIdentifier]];
   return cell;
 }
 
