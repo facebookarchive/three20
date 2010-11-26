@@ -32,5 +32,7 @@
 
 - (void)showInView:(UIView*)view animated:(BOOL)animated;
 - (void)dismissPopupViewControllerAnimated:(BOOL)animated;
+- (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated;
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated;
 
 @end
