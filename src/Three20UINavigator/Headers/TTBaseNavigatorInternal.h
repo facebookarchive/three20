@@ -21,8 +21,7 @@
 - (void)presentDependantController: (UIViewController*)controller
                   parentController: (UIViewController*)parentController
                               mode: (TTNavigationMode)mode
-                          animated: (BOOL)animated
-                        transition: (NSInteger)transition;
+                            action: (TTURLAction*)action;
 
 - (UIViewController*)getVisibleChildController:(UIViewController*)controller;
 

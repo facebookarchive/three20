@@ -44,7 +44,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURLPath:(NSString*)urlPath {
   if (self = [super init]) {
-    TTDASSERT(nil != urlPath);
     self.urlPath = urlPath;
     self.animated = NO;
     self.withDelay = NO;

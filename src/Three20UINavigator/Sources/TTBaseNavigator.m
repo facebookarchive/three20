@@ -322,8 +322,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 - (BOOL)presentController: (UIViewController*)controller
          parentController: (UIViewController*)parentController
                      mode: (TTNavigationMode)mode
-                 animated: (BOOL)animated
-               transition: (NSInteger)transition {
+                   action: (TTURLAction*)action {
   BOOL didPresentNewController = YES;
 
   if (nil == _rootViewController) {
@@ -348,8 +347,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
       [self presentDependantController: controller
                       parentController: parentController
                                   mode: mode
-                              animated: animated
-                            transition: transition];
+                                action: action];
     }
   }
 
@@ -361,8 +359,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 - (BOOL)presentController: (UIViewController*)controller
             parentURLPath: (NSString*)parentURLPath
               withPattern: (TTURLNavigatorPattern*)pattern
-                 animated: (BOOL)animated
-               transition: (NSInteger)transition {
+                   action: (TTURLAction*)action {
   BOOL didPresentNewController = NO;
 
   if (nil != controller) {
@@ -380,16 +377,14 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
         [self presentController: parentController
                parentController: nil
                            mode: TTNavigationModeNone
-                       animated: NO
-                     transition: 0];
+                         action: [TTURLAction actionWithURLPath:nil]];
       }
 
       didPresentNewController = [self
                                  presentController: controller
                                  parentController: parentController
                                  mode: pattern.navigationMode
-                                 animated: animated
-                                 transition: transition];
+                                 action: action];
     }
   }
   return didPresentNewController;
@@ -472,12 +467,12 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
           inViewController: controller];
     }
 
+    action.transition = action.transition ? action.transition : pattern.transition;
+
     BOOL wasNew = [self presentController: controller
                             parentURLPath: action.parentURLPath
                               withPattern: pattern
-                                 animated: action.animated
-                               transition: action.transition ?
-                   action.transition : pattern.transition];
+                                   action: action];
 
     if (action.withDelay && !wasNew) {
       [self cancelDelay];
@@ -873,25 +868,24 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 - (void)presentDependantController: (UIViewController*)controller
                   parentController: (UIViewController*)parentController
                               mode: (TTNavigationMode)mode
-                          animated: (BOOL)animated
-                        transition: (NSInteger)transition {
+                            action: (TTURLAction*)action {
 
   if (mode == TTNavigationModeModal) {
     [self presentModalController: controller
                 parentController: parentController
-                        animated: animated
-                      transition: transition];
+                        animated: action.animated
+                      transition: action.transition];
 
   } else if (mode == TTNavigationModePopover) {
     [self presentModalController: controller
                 parentController: parentController
-                        animated: animated
-                      transition: transition];
+                        animated: action.animated
+                      transition: action.transition];
 
   } else {
     [parentController addSubcontroller: controller
-                              animated: animated
-                            transition: transition];
+                              animated: action.animated
+                            transition: action.transition];
   }
 }
 
