@@ -98,6 +98,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   _delegate = nil;
   TT_RELEASE_SAFELY(_window);
   TT_RELEASE_SAFELY(_rootViewController);
+  TT_RELEASE_SAFELY(_popoverController);
   TT_RELEASE_SAFELY(_delayedControllers);
   TT_RELEASE_SAFELY(_URLMap);
 
@@ -309,6 +310,30 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
     [parentController presentModalViewController: navController
                                         animated: animated];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)presentPopoverController: (UIViewController*)controller
+                      sourceView: (UIView*)sourceView
+                      sourceRect: (CGRect)sourceRect
+                        animated: (BOOL)animated {
+  TTDASSERT(nil != sourceView);
+
+  if (nil == sourceView) {
+    return;
+  }
+
+  if (nil != _popoverController) {
+    [_popoverController dismissPopoverAnimated:animated];
+    TT_RELEASE_SAFELY(_popoverController);
+  }
+
+  _popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+  [_popoverController presentPopoverFromRect: sourceRect
+                                      inView: sourceView
+                    permittedArrowDirections: UIPopoverArrowDirectionAny
+                                    animated: animated];
 }
 
 
@@ -877,10 +902,10 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
                       transition: action.transition];
 
   } else if (mode == TTNavigationModePopover) {
-    [self presentModalController: controller
-                parentController: parentController
-                        animated: action.animated
-                      transition: action.transition];
+    [self presentPopoverController: controller
+                        sourceView: action.sourceView
+                        sourceRect: action.sourceRect
+                          animated: action.animated];
 
   } else {
     [parentController addSubcontroller: controller

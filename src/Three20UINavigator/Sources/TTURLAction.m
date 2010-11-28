@@ -119,14 +119,14 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTURLAction*)applyWithSourceRect:(CGRect)sourceRect {
+- (TTURLAction*)applySourceRect:(CGRect)sourceRect {
   self.sourceRect = sourceRect;
   return self;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTURLAction*)applyWithSourceView:(UIView*)sourceView {
+- (TTURLAction*)applySourceView:(UIView*)sourceView {
   self.sourceView = sourceView;
   return self;
 }

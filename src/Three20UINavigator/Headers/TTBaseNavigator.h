@@ -35,6 +35,7 @@
 
   UIViewController*           _rootViewController;
   NSMutableArray*             _delayedControllers;
+  UIPopoverController*        _popoverController;
 
   TTNavigatorPersistenceMode  _persistenceMode;
   NSTimeInterval              _persistenceExpirationAge;

@@ -100,12 +100,12 @@
 /**
  * @default CGRectZero
  */
-- (TTURLAction*)applyWithSourceRect:(CGRect)sourceRect;
+- (TTURLAction*)applySourceRect:(CGRect)sourceRect;
 
 /**
  * @default nil
  */
-- (TTURLAction*)applyWithSourceView:(UIView*)sourceView;
+- (TTURLAction*)applySourceView:(UIView*)sourceView;
 
 /**
  * @default UIViewAnimationTransitionNone
