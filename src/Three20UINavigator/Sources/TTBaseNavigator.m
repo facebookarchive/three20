@@ -330,6 +330,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   }
 
   _popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+  _popoverController.delegate = self;
   [_popoverController presentPopoverFromRect: sourceRect
                                       inView: sourceView
                     permittedArrowDirections: UIPopoverArrowDirectionAny
@@ -875,6 +876,21 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   [defaults removeObjectForKey:kNavigatorHistoryImportantKey];
   [defaults synchronize];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIPopoverControllerDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+  if (popoverController == _popoverController) {
+    TT_RELEASE_SAFELY(_popoverController);
+  }
+}
+
 
 
 @end

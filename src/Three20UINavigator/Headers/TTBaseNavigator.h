@@ -28,7 +28,9 @@
 /**
  * A URL-based navigation system with built-in persistence.
  */
-@interface TTBaseNavigator : NSObject {
+@interface TTBaseNavigator : NSObject <
+  UIPopoverControllerDelegate
+> {
   TTURLMap*                   _URLMap;
 
   UIWindow*                   _window;
