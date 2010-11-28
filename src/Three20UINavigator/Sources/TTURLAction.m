@@ -32,7 +32,15 @@
 @synthesize state         = _state;
 @synthesize animated      = _animated;
 @synthesize withDelay     = _withDelay;
+@synthesize sourceRect    = _sourceRect;
+@synthesize sourceView    = _sourceView;
 @synthesize transition    = _transition;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)action {
+  return [[[self alloc] init] autorelease];
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +77,7 @@
   TT_RELEASE_SAFELY(_parentURLPath);
   TT_RELEASE_SAFELY(_query);
   TT_RELEASE_SAFELY(_state);
+  TT_RELEASE_SAFELY(_sourceView);
 
   [super dealloc];
 }
@@ -105,6 +114,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)applyWithDelay:(BOOL)withDelay {
   self.withDelay = withDelay;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applyWithSourceRect:(CGRect)sourceRect {
+  self.sourceRect = sourceRect;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applyWithSourceView:(UIView*)sourceView {
+  self.sourceView = sourceView;
   return self;
 }
 

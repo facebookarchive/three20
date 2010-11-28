@@ -37,6 +37,9 @@
   BOOL          _animated;
   BOOL          _withDelay;
 
+  CGRect        _sourceRect;
+  UIView*       _sourceView;
+
   UIViewAnimationTransition _transition;
 }
 
@@ -46,19 +49,28 @@
 @property (nonatomic, retain) NSDictionary* state;
 @property (nonatomic, assign) BOOL          animated;
 @property (nonatomic, assign) BOOL          withDelay;
+@property (nonatomic, assign) CGRect        sourceRect;
+@property (nonatomic, retain) UIView*       sourceView;
 @property (nonatomic, assign) UIViewAnimationTransition transition;
 
 /**
- * Create an autoreleased TTURLAction object with a URL path. The path is required.
+ * Create an autoreleased TTURLAction object.
+ */
++ (id)action;
+
+/**
+ * Create an autoreleased TTURLAction object with a URL path.
  */
 + (id)actionWithURLPath:(NSString*)urlPath;
 
 /**
- * Initialize a TTURLAction object with a URL path. The path is required.
+ * Initialize a TTURLAction object with a URL path.
  *
  * Designated initializer.
  */
 - (id)initWithURLPath:(NSString*)urlPath;
+
+- (id)init;
 
 /**
  * @default nil
@@ -84,6 +96,16 @@
  * @default NO
  */
 - (TTURLAction*)applyWithDelay:(BOOL)withDelay;
+
+/**
+ * @default CGRectZero
+ */
+- (TTURLAction*)applyWithSourceRect:(CGRect)sourceRect;
+
+/**
+ * @default nil
+ */
+- (TTURLAction*)applyWithSourceView:(UIView*)sourceView;
 
 /**
  * @default UIViewAnimationTransitionNone
