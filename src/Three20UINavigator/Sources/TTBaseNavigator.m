@@ -882,6 +882,12 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
                         animated: animated
                       transition: transition];
 
+  } else if (mode == TTNavigationModePopover) {
+    [self presentModalController: controller
+                parentController: parentController
+                        animated: animated
+                      transition: transition];
+
   } else {
     [parentController addSubcontroller: controller
                               animated: animated
