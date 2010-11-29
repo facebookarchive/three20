@@ -34,6 +34,7 @@
 @synthesize withDelay     = _withDelay;
 @synthesize sourceRect    = _sourceRect;
 @synthesize sourceView    = _sourceView;
+@synthesize sourceButton  = _sourceButton;
 @synthesize transition    = _transition;
 
 
@@ -78,6 +79,7 @@
   TT_RELEASE_SAFELY(_query);
   TT_RELEASE_SAFELY(_state);
   TT_RELEASE_SAFELY(_sourceView);
+  TT_RELEASE_SAFELY(_sourceButton);
 
   [super dealloc];
 }
@@ -128,6 +130,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)applySourceView:(UIView*)sourceView {
   self.sourceView = sourceView;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applySourceButton:(UIBarButtonItem*)sourceButton {
+  self.sourceButton = sourceButton;
   return self;
 }
 

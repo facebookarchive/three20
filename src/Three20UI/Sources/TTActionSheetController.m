@@ -127,6 +127,7 @@
   [self viewDidAppear:animated];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated {
   [self viewWillAppear:animated];
@@ -134,12 +135,14 @@
   [self viewDidAppear:animated];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated {
   [self viewWillAppear:animated];
   [self.actionSheet showFromRect:rect inView:view animated:animated];
   [self viewDidAppear:animated];
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissPopupViewControllerAnimated:(BOOL)animated {

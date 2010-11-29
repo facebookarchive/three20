@@ -93,11 +93,17 @@ UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
  */
 - (void)presentPopupController: (TTPopupViewController*)controller
               parentController: (UIViewController*)parentController
-                      animated: (BOOL)animated {
-  parentController.popupViewController = controller;
-  controller.superController = parentController;
-  [controller showInView: parentController.view
-                animated: animated];
+                        action: (TTURLAction*)action {
+  if (nil != action.sourceButton) {
+    [controller showFromBarButtonItem: action.sourceButton
+                             animated: action.animated];
+
+  } else {
+    parentController.popupViewController = controller;
+    controller.superController = parentController;
+    [controller showInView: parentController.view
+                  animated: action.animated];
+  }
 }
 
 
@@ -116,7 +122,7 @@ UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
     TTPopupViewController* popupViewController = (TTPopupViewController*)controller;
     [self presentPopupController: popupViewController
                 parentController: parentController
-                        animated: action.animated];
+                          action: action];
 
   } else {
     [super presentDependantController: controller

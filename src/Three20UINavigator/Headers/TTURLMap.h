@@ -83,6 +83,7 @@
         toModalViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition;
 
 - (void)from:(NSString*)URL toPopoverViewController:(id)target;
+- (void)from:(NSString*)URL toPopoverViewController:(id)target selector:(SEL)selector;
 
 /**
  * Adds a mapping from a class to a generated URL.

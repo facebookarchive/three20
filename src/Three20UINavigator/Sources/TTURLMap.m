@@ -331,6 +331,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)from:(NSString*)URL toPopoverViewController:(id)target selector:(SEL)selector {
+  TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
+                                                                            mode:TTNavigationModePopover];
+  pattern.selector = selector;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)from:(Class)cls toURL:(NSString*)URL {
   TTURLGeneratorPattern* pattern = [[TTURLGeneratorPattern alloc] initWithTargetClass:cls];
   [self addStringPattern:pattern forURL:URL withName:nil];

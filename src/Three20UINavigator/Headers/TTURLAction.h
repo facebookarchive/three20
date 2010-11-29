@@ -39,6 +39,7 @@
 
   CGRect        _sourceRect;
   UIView*       _sourceView;
+  UIBarButtonItem* _sourceButton;
 
   UIViewAnimationTransition _transition;
 }
@@ -51,6 +52,7 @@
 @property (nonatomic, assign) BOOL          withDelay;
 @property (nonatomic, assign) CGRect        sourceRect;
 @property (nonatomic, retain) UIView*       sourceView;
+@property (nonatomic, retain) UIBarButtonItem* sourceButton;
 @property (nonatomic, assign) UIViewAnimationTransition transition;
 
 /**
@@ -106,6 +108,11 @@
  * @default nil
  */
 - (TTURLAction*)applySourceView:(UIView*)sourceView;
+
+/**
+ * @default nil
+ */
+- (TTURLAction*)applySourceButton:(UIBarButtonItem*)sourceButton;
 
 /**
  * @default UIViewAnimationTransitionNone

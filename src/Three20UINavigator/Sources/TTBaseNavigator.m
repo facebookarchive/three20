@@ -315,12 +315,13 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)presentPopoverController: (UIViewController*)controller
+                    sourceButton: (UIBarButtonItem*)sourceButton
                       sourceView: (UIView*)sourceView
                       sourceRect: (CGRect)sourceRect
                         animated: (BOOL)animated {
-  TTDASSERT(nil != sourceView);
+  TTDASSERT(nil != sourceButton || nil != sourceView);
 
-  if (nil == sourceView) {
+  if (nil == sourceButton && nil == sourceView) {
     return;
   }
 
@@ -331,10 +332,17 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 
   _popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
   _popoverController.delegate = self;
-  [_popoverController presentPopoverFromRect: sourceRect
-                                      inView: sourceView
-                    permittedArrowDirections: UIPopoverArrowDirectionAny
-                                    animated: animated];
+  if (nil != sourceButton) {
+    [_popoverController presentPopoverFromBarButtonItem: sourceButton
+                               permittedArrowDirections: UIPopoverArrowDirectionAny
+                                               animated: animated];
+
+  } else {
+    [_popoverController presentPopoverFromRect: sourceRect
+                                        inView: sourceView
+                      permittedArrowDirections: UIPopoverArrowDirectionAny
+                                      animated: animated];
+  }
 }
 
 
@@ -919,6 +927,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 
   } else if (mode == TTNavigationModePopover) {
     [self presentPopoverController: controller
+                      sourceButton: action.sourceButton
                         sourceView: action.sourceView
                         sourceRect: action.sourceRect
                           animated: action.animated];
