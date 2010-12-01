@@ -132,6 +132,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_FAST_TRANSITION_DURATION];
     backgroundView.alpha = 1;
+    _searchResultsViewController.tableOverlayView.alpha = 0;
     [UIView commitAnimations];
   }
 
