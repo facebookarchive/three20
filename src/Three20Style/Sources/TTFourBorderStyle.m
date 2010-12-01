@@ -25,6 +25,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCoreRects.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,7 +125,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)draw:(TTStyleContext*)context {
   CGRect rect = context.frame;
-  CGRect strokeRect = CGRectInset(rect, _width/2, _width/2);
+  UIEdgeInsets insets = UIEdgeInsetsMake(_top ? _width/2. : 0,
+                                         _left ? _width/2 : 0,
+                                         _bottom ? _width/2 : 0,
+                                         _right ? _width/2 : 0);
+  CGRect strokeRect = TTRectInset(rect, insets);
   [context.shape openPath:strokeRect];
 
   CGContextRef ctx = UIGraphicsGetCurrentContext();
