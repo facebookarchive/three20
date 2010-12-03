@@ -39,6 +39,7 @@
   NSMutableArray*             _delayedControllers;
   UIPopoverController*        _popoverController;
 
+  NSString*                   _persistenceKey;
   TTNavigatorPersistenceMode  _persistenceMode;
   NSTimeInterval              _persistenceExpirationAge;
 
@@ -99,6 +100,18 @@
  * Setting this property will open a new URL.
  */
 @property (nonatomic, copy) NSString* URL;
+
+/**
+ * The key to use for storing persistence information.
+ *
+ * Three bits of information are stored for persistence.
+ * If a key name is given, these values will first be stored within a dictionary and
+ * then persisted with the given key name.
+ * If a key name is not given, the values are stored individually.
+ *
+ * @default nil
+ */
+@property (nonatomic, copy) NSString* persistenceKey;
 
 /**
  * How view controllers are automatically persisted on termination and restored on launch.

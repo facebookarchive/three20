@@ -61,6 +61,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 @synthesize URLMap                    = _URLMap;
 @synthesize window                    = _window;
 @synthesize rootViewController        = _rootViewController;
+@synthesize persistenceKey            = _persistenceKey;
 @synthesize persistenceExpirationAge  = _persistenceExpirationAge;
 @synthesize persistenceMode           = _persistenceMode;
 @synthesize supportsShakeToReload     = _supportsShakeToReload;
@@ -101,6 +102,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   TT_RELEASE_SAFELY(_popoverController);
   TT_RELEASE_SAFELY(_delayedControllers);
   TT_RELEASE_SAFELY(_URLMap);
+  TT_RELEASE_SAFELY(_persistenceKey);
 
   [super dealloc];
 }
@@ -756,24 +758,50 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   if (path.count) {
-    [defaults setObject:path forKey:kNavigatorHistoryKey];
-    [defaults setObject:[NSDate date] forKey:kNavigatorHistoryTimeKey];
-    [defaults setObject:[NSNumber numberWithInt:important] forKey:kNavigatorHistoryImportantKey];
+    NSDate* historyTime = [NSDate date];
+    NSNumber* historyImportant = [NSNumber numberWithInt:important];
+
+    if (TTIsStringWithAnyText(_persistenceKey)) {
+      NSDictionary* persistedValues = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       path, kNavigatorHistoryKey,
+                                       historyTime, kNavigatorHistoryTimeKey,
+                                       historyImportant, kNavigatorHistoryImportantKey,
+                                       nil];
+      [defaults setObject:persistedValues forKey:_persistenceKey];
+
+    } else {
+      [defaults setObject:path forKey:kNavigatorHistoryKey];
+      [defaults setObject:historyTime forKey:kNavigatorHistoryTimeKey];
+      [defaults setObject:historyImportant forKey:kNavigatorHistoryImportantKey];
+    }
+
+    [defaults synchronize];
+
   } else {
-    [defaults removeObjectForKey:kNavigatorHistoryKey];
-    [defaults removeObjectForKey:kNavigatorHistoryTimeKey];
-    [defaults removeObjectForKey:kNavigatorHistoryImportantKey];
+    [self resetDefaults];
   }
-  [defaults synchronize];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)restoreViewControllers {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  NSDate* timestamp = [defaults objectForKey:kNavigatorHistoryTimeKey];
-  NSArray* path = [defaults objectForKey:kNavigatorHistoryKey];
-  BOOL important = [[defaults objectForKey:kNavigatorHistoryImportantKey] boolValue];
+  NSDate* timestamp = nil;
+  NSArray* path = nil;
+  BOOL important = NO;
+
+  if (TTIsStringWithAnyText(_persistenceKey)) {
+    NSDictionary* persistedValues = [defaults objectForKey:_persistenceKey];
+
+    timestamp = [persistedValues objectForKey:kNavigatorHistoryTimeKey];
+    path = [persistedValues objectForKey:kNavigatorHistoryKey];
+    important = [[persistedValues objectForKey:kNavigatorHistoryImportantKey] boolValue];
+
+  } else {
+    timestamp = [defaults objectForKey:kNavigatorHistoryTimeKey];
+    path = [defaults objectForKey:kNavigatorHistoryKey];
+    important = [[defaults objectForKey:kNavigatorHistoryImportantKey] boolValue];
+  }
   TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"DEBUG RESTORE %@ FROM %@",
                   path, [timestamp formatRelativeTime]);
 
@@ -879,9 +907,16 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetDefaults {
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults removeObjectForKey:kNavigatorHistoryKey];
-  [defaults removeObjectForKey:kNavigatorHistoryTimeKey];
-  [defaults removeObjectForKey:kNavigatorHistoryImportantKey];
+
+  if (TTIsStringWithAnyText(_persistenceKey)) {
+    [defaults removeObjectForKey:_persistenceKey];
+
+  } else {
+    [defaults removeObjectForKey:kNavigatorHistoryKey];
+    [defaults removeObjectForKey:kNavigatorHistoryTimeKey];
+    [defaults removeObjectForKey:kNavigatorHistoryImportantKey];
+  }
+
   [defaults synchronize];
 }
 

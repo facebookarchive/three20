@@ -49,9 +49,11 @@
 
     _leftNavigator = [[TTNavigator alloc] init];
     _leftNavigator.rootContainer = self;
+    _leftNavigator.persistenceKey = @"splitNavPersistenceLeft";
 
     _rightNavigator = [[TTNavigator alloc] init];
     _rightNavigator.rootContainer = self;
+    _rightNavigator.persistenceKey = @"splitNavPersistenceRight";
   }
 
   return self;
