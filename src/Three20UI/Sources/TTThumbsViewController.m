@@ -280,7 +280,7 @@ static CGFloat kThumbnailRowHeight = 79;
   if (shouldNavigate) {
     NSString* URL = [self URLForPhoto:photo];
     if (URL) {
-      TTOpenURL(URL);
+      TTOpenURLFromView(URL, self.view);
     } else {
       TTPhotoViewController* controller = [self createPhotoViewController];
       controller.centerPhoto = photo;
