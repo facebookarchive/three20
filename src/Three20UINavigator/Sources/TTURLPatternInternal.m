@@ -38,46 +38,7 @@
 	//	SEL aselector = NSSelectorFromString(aselectorName);
 	//	[self setSelectorIfPossible:aselector];	
 	//	return;
-	
-	//NSLog(@"    SelectorName: %@", selectorName);
-	
-	//// !!! Gigantic hack time !!!
-	//// Thar be dragons!
-	/*
-	 // Calculate the factorial, the number of possibilities of orders
-	 int countDown = [names count];
-	 int totalPossibleValues = 1;
-	 while (countDown != 0) {
-	 totalPossibleValues *= countDown;
-	 countDown--;
-	 }
-	 // Try all the possible values, until one works or we hit totalPossibleValues
-	 NSMutableArray *indexes = [NSMutableArray array];
-	 //  Creates an array like 0,1,2,3
-	 for (int i = 0; i < [names count]; i++) {
-	 [indexes addObject:[NSNumber numberWithInt:i]];
-	 }
 
-	 for (int i = 0; i < totalPossibleValues; i++) {
-	 NSMutableArray *allParts = [NSMutableArray array];
-
-	 for (NSNumber *num in indexes) {
-	 [allParts addObject:[names objectAtIndex:[num intValue]]];
-	 }
-	 NSString* selectorName = [[allParts componentsJoinedByString:@":"] stringByAppendingString:@":"];
-	 NSLog(@"  Trying selector: %@", totalPossibleValues);
-	 SEL selector = NSSelectorFromString(selectorName);
-	 [self setSelectorIfPossible:selector];
-	 if (_selector) {
-	 NSLog(@"    It worked!");
-	 break;
-	 }else {
-	 NSLog(@"    Didn't work...");
-	 }
-
-	 // We didn't get a match, so let's alter the indexes...
-	 }
-	 */	
 	NSMutableArray *orderedNames = [NSMutableArray array];
 	//NSLog(@"queryKeyOrder: %@", self.queryKeyOrder);	
 	for (NSString *orderedQueryKey in self.queryKeyOrder) {	
@@ -106,7 +67,7 @@
 
 	[self setSelectorIfPossible:selector];
 	if (!_selector) {
-		NSLog(@"  COULD NOT SET SELECTOR - !!!!!!!!!!!!!!!");
+		//NSLog(@"  COULD NOT SET SELECTOR - !!!!!!!!!!!!!!!");
 		// This is still happening sometimes, I'm not sure why. Everything seems fine.
 		//NSLog(@"  COULD NOT SET SELECTOR - !!!!!!!!!!!!!!!");
 		//NSLog(@"  !!!!! selector: %@", NSStringFromSelector(selector)); // It's out of order!!!
