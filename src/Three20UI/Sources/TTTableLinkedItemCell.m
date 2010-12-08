@@ -93,8 +93,14 @@
       self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
 
     } else {
-      self.accessoryType = UITableViewCellAccessoryNone;
-      self.selectionStyle = UITableViewCellSelectionStyleNone;
+		// JR added this so we can have a disclosure indicator when we only have a selector
+		if (item.selector != nil) {
+			self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
+		} else {
+			self.accessoryType = UITableViewCellAccessoryNone;
+			self.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
     }
   }
 }
