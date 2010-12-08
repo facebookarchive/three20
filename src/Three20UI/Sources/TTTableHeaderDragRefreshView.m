@@ -155,6 +155,7 @@
 #pragma mark Public
 
 
+static NSDateFormatter *dragFormatter_ = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setUpdateDate:(NSDate*)newDate {
   if (newDate) {
@@ -164,15 +165,16 @@
 
     _lastUpdatedDate = [newDate retain];
 
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterShortStyle];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    if (!dragFormatter_) {
+      dragFormatter_ = [[NSDateFormatter alloc] init];
+      [dragFormatter_ setDateStyle:NSDateFormatterShortStyle];
+      [dragFormatter_ setTimeStyle:NSDateFormatterShortStyle];
+    }
+
     _lastUpdatedLabel.text = [NSString stringWithFormat:
                               TTLocalizedString(@"Last updated: %@",
                                                 @"The last time the table view was updated."),
-                              [formatter stringFromDate:_lastUpdatedDate]];
-    [formatter release];
-
+                              [dragFormatter_ stringFromDate:_lastUpdatedDate]];
   } else {
     _lastUpdatedDate = nil;
     _lastUpdatedLabel.text = TTLocalizedString(@"Last updated: never",
