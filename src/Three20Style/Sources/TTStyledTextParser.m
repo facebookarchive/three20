@@ -254,6 +254,17 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)parseText:(NSString*)string URLs:(BOOL)URLs {
+  if (URLs) {
+    [self parseURLs:string];
+  } else {
+    TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:string] autorelease];
+    [self addNode:node];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public
@@ -275,7 +286,7 @@
     NSCharacterSet* newLines = [NSCharacterSet newlineCharacterSet];
     NSInteger stringIndex = 0;
     NSInteger length = string.length;
-
+    
     while (1) {
       NSRange searchRange = NSMakeRange(stringIndex, length - stringIndex);
       NSRange range = [string rangeOfCharacterFromSet:newLines options:0 range:searchRange];
@@ -283,28 +294,24 @@
         // Find all text before the line break and parse it
         NSRange textRange = NSMakeRange(stringIndex, range.location - stringIndex);
         NSString* substr = [string substringWithRange:textRange];
-        [self parseURLs:substr];
-
+        [self parseText:substr URLs:_parseURLs];
+        
         // Add a line break node after the text
         TTStyledLineBreakNode* br = [[[TTStyledLineBreakNode alloc] init] autorelease];
         [self addNode:br];
-
+        
         stringIndex = stringIndex + substr.length + 1;
-
+        
       } else {
         // Find all text until the end of hte string and parse it
         NSString* substr = [string substringFromIndex:stringIndex];
-        [self parseURLs:substr];
+        [self parseText:substr URLs:_parseURLs];
         break;
       }
     }
-
-  } else if (_parseURLs) {
-    [self parseURLs:string];
-
+    
   } else {
-    TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:string] autorelease];
-    [self addNode:node];
+    [self parseText:string URLs:_parseURLs];
   }
 }
 
