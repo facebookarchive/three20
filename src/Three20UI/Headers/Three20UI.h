@@ -83,10 +83,12 @@
 #import "Three20UI/TTTableViewPlainDelegate.h"
 #import "Three20UI/TTTableViewPlainVarHeightDelegate.h"
 #import "Three20UI/TTTableViewDragRefreshDelegate.h"
+#import "Three20UI/TTTableViewNetworkEnabledDelegate.h"
 
 #import "Three20UI/TTListDataSource.h"
 #import "Three20UI/TTSectionedDataSource.h"
 #import "Three20UI/TTTableHeaderView.h"
+#import "Three20UI/TTTableFooterInfiniteScrollView.h"
 #import "Three20UI/TTTableViewCell.h"
 
 // Table Items

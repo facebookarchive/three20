@@ -25,6 +25,14 @@
 		66ADCDA11291AA7100855386 /* TTExtensionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADCD9B1291AA7100855386 /* TTExtensionInfoController.m */; };
 		66ADCDA31291AA7E00855386 /* TTExtensionInfoController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCDA21291AA7E00855386 /* TTExtensionInfoController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADCDA51291AA7E00855386 /* TTExtensionInfoController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCDA21291AA7E00855386 /* TTExtensionInfoController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66F2E85312D426A5006FB485 /* TTTableFooterInfiniteScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F2E85212D426A5006FB485 /* TTTableFooterInfiniteScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66F2E85412D426A5006FB485 /* TTTableFooterInfiniteScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F2E85212D426A5006FB485 /* TTTableFooterInfiniteScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66F2E85612D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */; };
+		66F2E85712D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */; };
+		66F2E85E12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66F2E85F12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66F2E86412D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */; };
+		66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */; };
 		66FC2AA81264E2DA00F56B19 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FC2AA71264E2DA00F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		66FC2AC11264E3A400F56B19 /* Three20UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66FC2AC21264E3A400F56B19 /* Three20UI+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454921184D3ED00F08CB1 /* Three20UI+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -852,6 +860,10 @@
 		66ADC8CC1290AC1200855386 /* TTExtensionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionsController.h; path = Headers/TTExtensionsController.h; sourceTree = "<group>"; };
 		66ADCD9B1291AA7100855386 /* TTExtensionInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionInfoController.m; path = Sources/TTExtensionInfoController.m; sourceTree = "<group>"; };
 		66ADCDA21291AA7E00855386 /* TTExtensionInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionInfoController.h; path = Headers/TTExtensionInfoController.h; sourceTree = "<group>"; };
+		66F2E85212D426A5006FB485 /* TTTableFooterInfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableFooterInfiniteScrollView.h; path = Headers/TTTableFooterInfiniteScrollView.h; sourceTree = "<group>"; };
+		66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableFooterInfiniteScrollView.m; path = Sources/TTTableFooterInfiniteScrollView.m; sourceTree = "<group>"; };
+		66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewNetworkEnabledDelegate.h; path = Headers/TTTableViewNetworkEnabledDelegate.h; sourceTree = "<group>"; };
+		66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableViewNetworkEnabledDelegate.m; path = Sources/TTTableViewNetworkEnabledDelegate.m; sourceTree = "<group>"; };
 		66FC2AA71264E2DA00F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66FC2BC81264E3A400F56B19 /* libThree20UI-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UI-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66FC2BE61264E3A500F56B19 /* UIUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UIUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1767,6 +1779,8 @@
 				6E64565C1184D4DA00F08CB1 /* TTTableViewDragRefreshDelegate.m */,
 				6E64552D1184D4C500F08CB1 /* TTTableViewGroupedVarHeightDelegate.h */,
 				6E64565D1184D4DA00F08CB1 /* TTTableViewGroupedVarHeightDelegate.m */,
+				66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */,
+				66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */,
 				6E64552F1184D4C500F08CB1 /* TTTableViewPlainDelegate.h */,
 				6E64565F1184D4DA00F08CB1 /* TTTableViewPlainDelegate.m */,
 				6E6455301184D4C500F08CB1 /* TTTableViewPlainVarHeightDelegate.h */,
@@ -1822,6 +1836,8 @@
 			children = (
 				6E6455101184D4C500F08CB1 /* TTTableHeaderView.h */,
 				6E6456401184D4DA00F08CB1 /* TTTableHeaderView.m */,
+				66F2E85212D426A5006FB485 /* TTTableFooterInfiniteScrollView.h */,
+				66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */,
 				6E64550F1184D4C500F08CB1 /* TTTableHeaderDragRefreshView.h */,
 				6E64563F1184D4DA00F08CB1 /* TTTableHeaderDragRefreshView.m */,
 			);
@@ -2306,6 +2322,8 @@
 				66ADC8CD1290AC1200855386 /* TTExtensionsController.h in Headers */,
 				66ADCDA51291AA7E00855386 /* TTExtensionInfoController.h in Headers */,
 				666E18F61294543F001C1D97 /* TTSplitViewController.h in Headers */,
+				66F2E85312D426A5006FB485 /* TTTableFooterInfiniteScrollView.h in Headers */,
+				66F2E85E12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2454,6 +2472,8 @@
 				66ADC8CF1290AC1200855386 /* TTExtensionsController.h in Headers */,
 				66ADCDA31291AA7E00855386 /* TTExtensionInfoController.h in Headers */,
 				666E18F51294543F001C1D97 /* TTSplitViewController.h in Headers */,
+				66F2E85412D426A5006FB485 /* TTTableFooterInfiniteScrollView.h in Headers */,
+				66F2E85F12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2530,7 +2550,7 @@
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libThree20UI.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* Three20UIUnitTests */ = {
+		EB9E6C6110B6A8F800DE563C /* Three20UICommonUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "Three20UIUnitTests" */;
 			buildPhases = (
@@ -2600,7 +2620,7 @@
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* Three20UI */,
 				66FC2AB51264E3A400F56B19 /* Three20UI-Xcode3.2.5 */,
-				EB9E6C6110B6A8F800DE563C /* Three20UIUnitTests */,
+				EB9E6C6110B6A8F800DE563C /* Three20UICommonUnitTests */,
 				66FC2BC91264E3A500F56B19 /* Three20UIUnitTests-Xcode3.2.5 */,
 			);
 		};
@@ -2949,6 +2969,8 @@
 				66ADC8C71290AC0200855386 /* TTExtensionsController.m in Sources */,
 				66ADCDA11291AA7100855386 /* TTExtensionInfoController.m in Sources */,
 				666E18EB12945430001C1D97 /* TTSplitViewController.m in Sources */,
+				66F2E85612D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */,
+				66F2E86412D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3085,6 +3107,8 @@
 				66ADC8C91290AC0200855386 /* TTExtensionsController.m in Sources */,
 				66ADCD9D1291AA7100855386 /* TTExtensionInfoController.m in Sources */,
 				666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */,
+				66F2E85712D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */,
+				66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
