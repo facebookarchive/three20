@@ -118,6 +118,7 @@ static const CGFloat kMoreButtonMargin = 40;
 
     self.textLabel.textColor = TTSTYLEVAR(moreLinkTextColor);
     self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
+    self.accessoryType = UITableViewCellAccessoryNone;
   }
 }
 
