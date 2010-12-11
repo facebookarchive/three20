@@ -30,6 +30,12 @@
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Facebook feed";
     self.variableHeightRows = YES;
+
+    self.navigationItem.rightBarButtonItem =
+      [[[UIBarButtonItem alloc] initWithTitle: @"Extensions"
+                                        style: UIBarButtonItemStyleBordered
+                                       target: @"tt://extensions"
+                                       action: @selector(openURLFromButton:)] autorelease];
   }
 
   return self;

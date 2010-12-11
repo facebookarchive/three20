@@ -27,6 +27,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+  [TTExtensionLoader loadAllExtensions];
+
   TTDefaultCSSStyleSheet* styleSheet = [[TTDefaultCSSStyleSheet alloc] init];
   [styleSheet addStyleSheetFromDisk:TTPathForBundleResource(@"stylesheet.css")];
   [TTStyleSheet setGlobalStyleSheet:styleSheet];
@@ -39,6 +41,9 @@
 
   [map from:@"*" toViewController:[TTWebController class]];
   [map from:kAppRootURLPath toViewController:[TTFacebookSearchFeedViewController class]];
+
+  [TTExtensionsController registerUrlPathsWithNavigator: navigator
+                                                 prefix: kAppPrefixURLPath];
 
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:kAppRootURLPath]];
