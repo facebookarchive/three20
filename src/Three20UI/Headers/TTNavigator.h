@@ -22,6 +22,11 @@
 UIViewController* TTOpenURL(NSString* URL);
 
 /**
+ * Shortcut for calling [[TTBaseNavigator navigatorForView:view] openURL:]
+ */
+UIViewController* TTOpenURLFromView(NSString* URL, UIView* view);
+
+/**
  * A URL-based navigation system with built-in persistence.
  * Add support for model-based controllers and implement the legacy global instance accessor.
  */

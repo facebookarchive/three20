@@ -16,4 +16,5 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString* kAppPrefixURLPath;
 extern NSString* kAppRootURLPath;

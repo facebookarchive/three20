@@ -1,0 +1,5 @@
+
+@interface SplitCatalogController : TTSplitViewController {
+}
+
+@end

@@ -19,6 +19,7 @@
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
+#import "Three20UINavigator/TTNavigatorRootContainer.h"
 #import "Three20UINavigator/TTBaseNavigationController.h"
 #import "Three20UINavigator/TTURLAction.h"
 #import "Three20UINavigator/TTURLMap.h"
@@ -29,6 +30,7 @@
 #import "Three20UINavigator/private/TTBaseNavigatorInternal.h"
 
 // UICommon
+#import "Three20UICommon/UIView+TTUICommon.h"
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Core
@@ -63,6 +65,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 @synthesize persistenceMode           = _persistenceMode;
 @synthesize supportsShakeToReload     = _supportsShakeToReload;
 @synthesize opensExternalURLs         = _opensExternalURLs;
+@synthesize rootContainer             = _rootContainer;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,6 +117,32 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
     [gNavigator release];
     gNavigator = [navigator retain];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (TTBaseNavigator*)navigatorForView:(UIView*)view {
+  id<TTNavigatorRootContainer>  container = nil;
+  UIViewController*             controller = nil;      // The iterator.
+  UIViewController*             childController = nil; // The last iterated controller.
+
+  for (controller = view.viewController;
+       nil != controller;
+       controller = controller.parentViewController) {
+    if ([controller conformsToProtocol:@protocol(TTNavigatorRootContainer)]) {
+      container = (id<TTNavigatorRootContainer>)controller;
+      break;
+    }
+
+    childController = controller;
+  }
+
+  TTBaseNavigator* navigator = [container getNavigatorForController:childController];
+  if (nil == navigator) {
+    navigator = [TTBaseNavigator globalNavigator];
+  }
+
+  return navigator;
 }
 
 
@@ -203,7 +232,13 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   if (controller != _rootViewController) {
     [_rootViewController release];
     _rootViewController = [controller retain];
-    [self.window addSubview:_rootViewController.view];
+
+    if (nil != _rootContainer) {
+      [_rootContainer navigator:self setRootViewController:_rootViewController];
+
+    } else {
+      [self.window addSubview:_rootViewController.view];
+    }
   }
 }
 

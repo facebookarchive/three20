@@ -29,6 +29,7 @@
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
 #import "Three20UICommon/UIViewControllerAdditions.h"
+#import "Three20UICommon/UIView+TTUICommon.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"

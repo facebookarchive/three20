@@ -265,7 +265,7 @@
     tableView.showShadows = _showTableShadows;
   }
 
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
+  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:animated];
 }
 
 
@@ -861,7 +861,7 @@
   if ([object respondsToSelector:@selector(URLValue)]) {
     NSString* URL = [object URLValue];
     if (URL) {
-      TTOpenURL(URL);
+      TTOpenURLFromView(URL, self.view);
     }
   }
 }

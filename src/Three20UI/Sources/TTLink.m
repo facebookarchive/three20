@@ -69,7 +69,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)linkTouched {
-  [[TTNavigator navigator] openURLAction:_URLAction];
+  [[TTBaseNavigator navigatorForView:self] openURLAction:_URLAction];
 }
 
 
