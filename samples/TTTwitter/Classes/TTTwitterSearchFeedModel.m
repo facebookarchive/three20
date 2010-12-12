@@ -20,8 +20,10 @@
 
 #import <extThree20JSON/extThree20JSON.h>
 
-// Twitter search API documented here: http://apiwiki.twitter.com/w/page/22554756/Twitter-Search-API-Method:-search
-static NSString* kTwitterSearchFeedFormat = @"http://search.twitter.com/search.json?q=%@&rpp=%u&page=%u";
+// Twitter search API documented here:
+// http://apiwiki.twitter.com/w/page/22554756/Twitter-Search-API-Method:-search
+static NSString* kTwitterSearchFeedFormat =
+  @"http://search.twitter.com/search.json?q=%@&rpp=%u&page=%u";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,16 +31,16 @@ static NSString* kTwitterSearchFeedFormat = @"http://search.twitter.com/search.j
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTTwitterSearchFeedModel
 
-@synthesize searchQuery = _searchQuery;
-@synthesize tweets      = _tweets;
-@synthesize rpp         = _rpp;
-@synthesize finished    = _finished;
+@synthesize searchQuery     = _searchQuery;
+@synthesize tweets          = _tweets;
+@synthesize resultsPerPage  = _resultsPerPage;
+@synthesize finished        = _finished;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithSearchQuery:(NSString*)searchQuery {
   if (self = [super init]) {
     self.searchQuery = searchQuery;
-    _rpp = 10;
+    _resultsPerPage = 10;
     _page = 1;
     _tweets = [[NSMutableArray array] retain];
   }
@@ -66,8 +68,8 @@ static NSString* kTwitterSearchFeedFormat = @"http://search.twitter.com/search.j
       _finished = NO;
       [_tweets removeAllObjects];
     }
-    
-    NSString* url = [NSString stringWithFormat:kTwitterSearchFeedFormat, _searchQuery, _rpp, _page];
+
+    NSString* url = [NSString stringWithFormat:kTwitterSearchFeedFormat, _searchQuery, _resultsPerPage, _page];
 
     TTURLRequest* request = [TTURLRequest
                              requestWithURL: url
@@ -114,7 +116,7 @@ static NSString* kTwitterSearchFeedFormat = @"http://search.twitter.com/search.j
     [tweets addObject:tweet];
     TT_RELEASE_SAFELY(tweet);
   }
-  _finished = tweets.count < _rpp;
+  _finished = tweets.count < _resultsPerPage;
   [_tweets addObjectsFromArray: tweets];
 
   TT_RELEASE_SAFELY(dateFormatter);
