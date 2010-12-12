@@ -72,6 +72,10 @@
     TTDASSERT(nil != styledText);
     [items addObject:[TTTableStyledTextItem itemWithText:styledText]];
   }
+  
+  if (!_searchFeedModel.finished) {
+    [items addObject:[TTTableMoreButton itemWithText:@"more…"]];
+  }
 
   self.items = items;
   TT_RELEASE_SAFELY(items);
