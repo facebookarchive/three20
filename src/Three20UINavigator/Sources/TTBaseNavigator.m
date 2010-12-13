@@ -894,6 +894,16 @@ __attribute__((weak_import));
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dismissPopoverAnimated:(BOOL)isAnimated {
+  [_popoverController dismissPopoverAnimated:isAnimated];
+
+  // popoverControllerDidDismissPopover: is not called when we programmatically dismiss a popover,
+  // so we must be sure to release the popover ourselves.
+  TT_RELEASE_SAFELY(_popoverController);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)pathForObject:(id)object {
   if ([object isKindOfClass:[UIViewController class]]) {
     NSMutableArray* paths = [NSMutableArray array];

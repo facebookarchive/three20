@@ -268,6 +268,11 @@
 - (void)removeAllViewControllers;
 
 /**
+ * Dismiss this navigator's popover controller.
+ */
+- (void)dismissPopoverAnimated:(BOOL)isAnimated;
+
+/**
  * Gets a navigation path which can be used to locate an object.
  */
 - (NSString*)pathForObject:(id)object;
