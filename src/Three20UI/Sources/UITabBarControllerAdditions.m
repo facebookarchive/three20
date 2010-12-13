@@ -65,7 +65,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)topSubcontroller {
-  return self.selectedViewController;
+  if (self.tabBar.selectedItem == self.moreNavigationController.tabBarItem) {
+    return self.moreNavigationController;
+  }
+  else {
+    return self.selectedViewController;
+  }
 }
 
 
