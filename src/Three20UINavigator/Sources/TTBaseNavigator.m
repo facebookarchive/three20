@@ -341,7 +341,10 @@ __attribute__((weak_import));
     TT_RELEASE_SAFELY(_popoverController);
   }
 
-  _popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+  UINavigationController* navController = [[[[self navigationControllerClass] alloc]
+                                            initWithRootViewController:controller]
+                                           autorelease];
+  _popoverController = [[UIPopoverController alloc] initWithContentViewController:navController];
   _popoverController.delegate = self;
   if (nil != sourceButton) {
     [_popoverController presentPopoverFromBarButtonItem: sourceButton
