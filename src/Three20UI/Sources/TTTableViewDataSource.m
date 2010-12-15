@@ -18,6 +18,7 @@
 
 // UI
 #import "Three20UI/TTTextEditor.h"
+#import "Three20UI/TTNavigator.h"
 
 // - Table Items
 #import "Three20UI/TTTableItem.h"
@@ -47,6 +48,9 @@
 #import "Three20UI/TTTableTextItemCell.h"
 #import "Three20UI/TTStyledTextTableCell.h"
 #import "Three20UI/TTTableFlushViewCell.h"
+
+// UINavigator
+#import "Three20UINavigator/TTBaseNavigator.h"
 
 // Style
 #import "Three20Style/TTStyledText.h"
@@ -132,6 +136,9 @@
   [identifier release];
 
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
+    if ([cell isKindOfClass:[TTTableLinkedItemCell class]]) {
+      [(TTTableLinkedItemCell*)cell setNavigator:[TTBaseNavigator navigatorForView:tableView]];
+    }
     [(TTTableViewCell*)cell setObject:object];
   }
 

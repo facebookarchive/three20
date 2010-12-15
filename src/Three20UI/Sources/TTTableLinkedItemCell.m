@@ -36,9 +36,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTTableLinkedItemCell
 
+@synthesize navigator = _navigator;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+  TT_RELEASE_SAFELY(_navigator);
   TT_RELEASE_SAFELY(_item);
 
   [super dealloc];
@@ -66,7 +69,7 @@
     TTTableLinkedItem* item = object;
 
     if (item.URL) {
-      TTNavigationMode navigationMode = [[TTNavigator navigator].URLMap
+      TTNavigationMode navigationMode = [self.navigator.URLMap
                                          navigationModeForURL:item.URL];
       if (item.accessoryURL) {
         self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -90,6 +93,22 @@
       self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Properties
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTBaseNavigator*)navigator {
+  if (nil == _navigator) {
+    self.navigator = [TTNavigator navigator];
+  }
+
+  return _navigator;
 }
 
 
