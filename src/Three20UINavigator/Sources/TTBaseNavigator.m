@@ -341,10 +341,21 @@ __attribute__((weak_import));
     TT_RELEASE_SAFELY(_popoverController);
   }
 
-  UINavigationController* navController = [[[[self navigationControllerClass] alloc]
-                                            initWithRootViewController:controller]
-                                           autorelease];
-  _popoverController = [[UIPopoverController alloc] initWithContentViewController:navController];
+  UIViewController* contentController = nil;
+
+  if ([controller canContainControllers]
+      || [controller isKindOfClass:[UIImagePickerController class]]) {
+    // Some view controllers can't be placed inside of navigation controllers.
+    contentController = controller;
+
+  } else {
+    contentController = [[[[self navigationControllerClass] alloc]
+                          initWithRootViewController:controller]
+                         autorelease];
+  }
+
+  _popoverController = [[UIPopoverController alloc]
+                        initWithContentViewController:contentController];
   _popoverController.delegate = self;
   if (nil != sourceButton) {
     [_popoverController presentPopoverFromBarButtonItem: sourceButton
