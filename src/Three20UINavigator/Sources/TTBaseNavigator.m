@@ -329,8 +329,9 @@ __attribute__((weak_import));
                     sourceButton: (UIBarButtonItem*)sourceButton
                       sourceView: (UIView*)sourceView
                       sourceRect: (CGRect)sourceRect
-                        animated: (BOOL)animated {
-  TTDASSERT(nil != sourceButton || nil != sourceView);
+                        animated: (BOOL)animated
+                         isModal: (BOOL)isModal {
+  TTDASSERT((isModal && nil != _popoverController) || nil != sourceButton || nil != sourceView);
 
   // When using popover controllers you need to provide either a source button or a
   // source view + source rect in the TTURLAction. We don't know what to do without it here,
@@ -349,17 +350,19 @@ __attribute__((weak_import));
   // objects and implement -tableView:didSelectRowAtIndexPath:.
   // You'll then implement the -createDelegate method in your table view controller and return
   // an autoreleased object of the delegate.
-  if (nil == sourceButton && nil == sourceView) {
+  if (nil == sourceButton && nil == sourceView && (!isModal || nil == _popoverController)) {
     return;
   }
 
-  if (nil != _popoverController) {
-    // We only allow one popover to be /knowingly/ displayed at a time.
-    // Knowingly, in the sense that if you create a popover controller outside of the
-    // TTNavigator - a totally legitimate thing to do - the navigator in its current design
-    // has no idea that you did so.
+  // We only allow one popover to be /knowingly/ displayed at a time.
+  // Knowingly, in the sense that if you create a popover controller outside of the
+  // TTNavigator - a totally legitimate thing to do - the navigator in its current design
+  // has no idea that you did so.
+
+  if (nil != _popoverController && !isModal) {
     // TODO (jverkoey Dec. 15, 2010): Consider using some form of global notification that we
-    // want to hide all popovers if something like this doesn't already exist.
+    // want to hide /all/ popovers (including ones not owned by Three20) if something like this
+    // doesn't already exist.
     [_popoverController dismissPopoverAnimated:animated];
     TT_RELEASE_SAFELY(_popoverController);
   }
@@ -369,7 +372,6 @@ __attribute__((weak_import));
   // We place the given controller within a navigation controller, unless it's a container
   // controller or an image picker controller (which hates being in a nav controller and will,
   // in fact, crash if you try otherwise).
-
   if ([controller canContainControllers]
       || [controller isKindOfClass:[UIImagePickerController class]]) {
     contentController = controller;
@@ -378,6 +380,14 @@ __attribute__((weak_import));
     contentController = [[[[self navigationControllerClass] alloc]
                           initWithRootViewController:controller]
                          autorelease];
+  }
+
+  if (nil != _popoverController && isModal) {
+    // Present the content controller on this popover and bail out immediately.
+    contentController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [_popoverController.contentViewController presentModalViewController: contentController
+                                                                animated: animated];
+    return;
   }
 
   _popoverController = [[UIPopoverController alloc]
@@ -1032,18 +1042,20 @@ __attribute__((weak_import));
                               mode: (TTNavigationMode)mode
                             action: (TTURLAction*)action {
 
-  if (mode == TTNavigationModeModal) {
-    [self presentModalController: controller
-                parentController: parentController
-                        animated: action.animated
-                      transition: action.transition];
-
-  } else if (mode == TTNavigationModePopover) {
+  if (nil != action.sourceButton
+      || nil != action.sourceView) {
     [self presentPopoverController: controller
                       sourceButton: action.sourceButton
                         sourceView: action.sourceView
                         sourceRect: action.sourceRect
-                          animated: action.animated];
+                          animated: action.animated
+                           isModal: (mode == TTNavigationModeModal)];
+
+  } else if (mode == TTNavigationModeModal) {
+    [self presentModalController: controller
+                parentController: parentController
+                        animated: action.animated
+                      transition: action.transition];
 
   } else {
     [parentController addSubcontroller: controller
