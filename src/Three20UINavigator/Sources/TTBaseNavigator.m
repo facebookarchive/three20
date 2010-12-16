@@ -332,20 +332,46 @@ __attribute__((weak_import));
                         animated: (BOOL)animated {
   TTDASSERT(nil != sourceButton || nil != sourceView);
 
+  // When using popover controllers you need to provide either a source button or a
+  // source view + source rect in the TTURLAction. We don't know what to do without it here,
+  // so we're just going to bail out. Come back when you're ready.
+  //
+  // Oh. While you're here, you may as well check the stack trace from this breakpoint and
+  // figure out where you're opening this URL from. The TTURLAction that you're passing to
+  // the TTNavigator system has three properties (mentioned above) that you can provide.
+  // Set them before you pass the TTURLAction object into the TTNavigator and you should be
+  // good from there.
+  //
+  // If the TTURLAction is coming from within Three20 you'll have to work a bit harder.
+  //
+  // For table views, it's debatable whether you should be using a popover controller here in
+  // the first place. If you really are intending to do this, subclass one of the table delegate
+  // objects and implement -tableView:didSelectRowAtIndexPath:.
+  // You'll then implement the -createDelegate method in your table view controller and return
+  // an autoreleased object of the delegate.
   if (nil == sourceButton && nil == sourceView) {
     return;
   }
 
   if (nil != _popoverController) {
+    // We only allow one popover to be /knowingly/ displayed at a time.
+    // Knowingly, in the sense that if you create a popover controller outside of the
+    // TTNavigator - a totally legitimate thing to do - the navigator in its current design
+    // has no idea that you did so.
+    // TODO (jverkoey Dec. 15, 2010): Consider using some form of global notification that we
+    // want to hide all popovers if something like this doesn't already exist.
     [_popoverController dismissPopoverAnimated:animated];
     TT_RELEASE_SAFELY(_popoverController);
   }
 
   UIViewController* contentController = nil;
 
+  // We place the given controller within a navigation controller, unless it's a container
+  // controller or an image picker controller (which hates being in a nav controller and will,
+  // in fact, crash if you try otherwise).
+
   if ([controller canContainControllers]
       || [controller isKindOfClass:[UIImagePickerController class]]) {
-    // Some view controllers can't be placed inside of navigation controllers.
     contentController = controller;
 
   } else {
@@ -356,7 +382,14 @@ __attribute__((weak_import));
 
   _popoverController = [[UIPopoverController alloc]
                         initWithContentViewController:contentController];
+
+  // We want to receive notifications when this popover is dismissed so that we can properly
+  // release it.
+
   _popoverController.delegate = self;
+
+  // TODO (jverkoey Dec. 15, 2010): Debatable what order of priority these should be in.
+  // Perhaps we should simply TTDASSERT that only one or the other is provided?
   if (nil != sourceButton) {
     [_popoverController presentPopoverFromBarButtonItem: sourceButton
                                permittedArrowDirections: UIPopoverArrowDirectionAny
