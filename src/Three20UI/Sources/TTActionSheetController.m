@@ -21,6 +21,9 @@
 #import "Three20UI/TTActionSheetControllerDelegate.h"
 #import "Three20UI/TTActionSheet.h"
 
+// UINavigator
+#import "Three20UINavigator/TTURLAction.h"
+
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
@@ -30,8 +33,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTActionSheetController
 
-@synthesize delegate = _delegate;
-@synthesize userInfo = _userInfo;
+@synthesize delegate  = _delegate;
+@synthesize userInfo  = _userInfo;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -212,7 +215,9 @@
   }
 
   if (URL && canOpenURL) {
-    TTOpenURL(URL);
+    [self.navigator openURLAction:
+     [[TTURLAction actionWithURLPath:URL]
+      applyAnimated:YES]];
   }
 
   if ([_delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {

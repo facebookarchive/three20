@@ -30,6 +30,7 @@
 #import "Three20UI/UIToolbarAdditions.h"
 
 // UINavigator
+#import "Three20UINavigator/TTURLAction.h"
 #import "Three20UINavigator/TTURLObject.h"
 #import "Three20UINavigator/TTURLMap.h"
 #import "Three20UINavigator/TTBaseNavigationController.h"
@@ -378,9 +379,8 @@ static const NSInteger kActivityLabelTag          = 96;
     if (URL) {
       // The photo source has a URL mapping in TTURLMap, so we use that to show the thumbs
       NSDictionary* query = [NSDictionary dictionaryWithObject:self forKey:@"delegate"];
-      TTBaseNavigator* navigator = [TTBaseNavigator navigatorForView:self.view];
-      _thumbsController = [[navigator viewControllerForURL:URL query:query] retain];
-      [navigator.URLMap setObject:_thumbsController forURL:URL];
+      _thumbsController = [[self.navigator viewControllerForURL:URL query:query] retain];
+      [self.navigator.URLMap setObject:_thumbsController forURL:URL];
 
     } else {
       // The photo source had no URL mapping in TTURLMap, so we let the subclass show the thumbs
@@ -390,7 +390,8 @@ static const NSInteger kActivityLabelTag          = 96;
   }
 
   if (URL) {
-    TTOpenURLFromView(URL, self.view);
+    [self.navigator openURLAction:[[TTURLAction actionWithURLPath:URL]
+                                   applyAnimated:YES]];
 
   } else {
     if ([self.navigationController isKindOfClass:[TTNavigationController class]]) {
