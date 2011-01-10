@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6651B75412DB6E9D00E05202 /* TTNavigatorPopoverProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6651B75212DB6E9D00E05202 /* TTNavigatorPopoverProtocol.h */; };
 		666E16DD12944999001C1D97 /* TTNavigatorRootContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16DC12944999001C1D97 /* TTNavigatorRootContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C35ED118B75800079637E /* TTNavigatorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3611118B77F70079637E /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3610118B77F70079637E /* TTURLAction.m */; };
@@ -122,6 +123,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6651B75212DB6E9D00E05202 /* TTNavigatorPopoverProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorPopoverProtocol.h; path = Headers/TTNavigatorPopoverProtocol.h; sourceTree = "<group>"; };
 		666E16DC12944999001C1D97 /* TTNavigatorRootContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorRootContainer.h; path = Headers/TTNavigatorRootContainer.h; sourceTree = "<group>"; };
 		6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorDelegate.h; path = Headers/TTNavigatorDelegate.h; sourceTree = "<group>"; };
 		6E3C3610118B77F70079637E /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLAction.m; path = Sources/TTURLAction.m; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				6E3C3753118C8E180079637E /* TTBaseNavigator.h */,
 				6E3C3755118C8E210079637E /* TTBaseNavigator.m */,
 				6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */,
+				6651B75212DB6E9D00E05202 /* TTNavigatorPopoverProtocol.h */,
 				6E86A98B118CF54900662DA5 /* Private */,
 				6EDAE95B118C98D20008133C /* Additions */,
 				6E3C3615118B78010079637E /* URL Action */,
@@ -453,6 +456,7 @@
 				6E7B107011923AC1001359FE /* UIViewController+TTNavigatorGarbageCollection.h in Headers */,
 				6E6081C011B0C08600C93CD4 /* TTBaseNavigationController.h in Headers */,
 				666E16DD12944999001C1D97 /* TTNavigatorRootContainer.h in Headers */,
+				6651B75412DB6E9D00E05202 /* TTNavigatorPopoverProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

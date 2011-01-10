@@ -19,6 +19,7 @@
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
+#import "Three20UINavigator/TTNavigatorPopoverProtocol.h"
 #import "Three20UINavigator/TTNavigatorRootContainer.h"
 #import "Three20UINavigator/TTBaseNavigationController.h"
 #import "Three20UINavigator/TTURLAction.h"
@@ -397,6 +398,11 @@ __attribute__((weak_import));
   // release it.
 
   _popoverController.delegate = self;
+
+  // Inform the controller that it is being displayed within a popover controller.
+  if ([controller conformsToProtocol:@protocol(TTNavigatorPopoverProtocol)]) {
+    [(id<TTNavigatorPopoverProtocol>)controller viewWillAppearInPopover:_popoverController];
+  }
 
   // TODO (jverkoey Dec. 15, 2010): Debatable what order of priority these should be in.
   // Perhaps we should simply TTDASSERT that only one or the other is provided?
