@@ -10,13 +10,14 @@ This object provides a couple basic features for parsing pbxproj files:
 * Getting a dependency list
 * Adding one pbxproj to another pbxproj as a dependency
 
-Version 1.0.
+Version 1.1.
 
 History:
 1.0 - October 20, 2010: Initial hacked-together version finished. It is alive!
+1.1 - January 11, 2011: Add configuration settings to all configurations by default.
 
 Created by Jeff Verkoeyen on 2010-10-18.
-Copyright 2009-2010 Facebook
+Copyright 2009-2011 Facebook
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -163,6 +164,28 @@ class Pbxproj(object):
 			logging.error("Unable to open the project file at this path (is it readable?): "+self.path())
 			return None
 
+
+		# Get configuration list guid
+
+		result = re.search('[A-Z0-9]+ \/\* '+re.escape(self.target)+' \*\/ = {\n[ \t]+isa = PBXNativeTarget;(?:.|\n)+?buildConfigurationList = ([A-Z0-9]+) \/\* Build configuration list for PBXNativeTarget "'+re.escape(self.target)+'" \*\/;',
+		                   project_data)
+
+		if result:
+			(self.configurationListGuid, ) = result.groups()
+		else:
+			self.configurationListGuid = None
+
+
+		# Get configuration list
+		
+		if self.configurationListGuid:
+			match = re.search(re.escape(self.configurationListGuid)+' \/\* Build configuration list for PBXNativeTarget "'+re.escape(self.target)+'" \*\/ = \{\n[ \t]+isa = XCConfigurationList;\n[ \t]+buildConfigurations = \(\n((?:.|\n)+?)\);', project_data)
+			if not match:
+				logging.error("Couldn't find the configuration list.")
+				return False
+
+			(configurationList,) = match.groups()
+			self.configurations = re.findall('[ \t]+([A-Z0-9]+) \/\* (.+) \*\/,\n', configurationList)
 
 		# Get build phases
 
