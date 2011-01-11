@@ -1,13 +1,26 @@
-.DS_Store
-build
-Build
-Products
+# Xcode
+build/*
 *.pbxuser
-*.perspectivev3
+!default.pbxuser
 *.mode1v3
 *.xcworkspace
 xcuserdata
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+*.xcscheme
+*.xcuserdata
+
+# osx noise
 .DS_Store
+
 config
 src/Three20/*.h
 src/Three20Core/*.h
@@ -19,3 +32,7 @@ src/Three20UI/*.h
 extensions/
 
 *.pyc
+profile
+
+Development
+Build
