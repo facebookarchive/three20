@@ -96,7 +96,7 @@ class Pbxproj(object):
 				else:
 					(self.target, ) = result.groups()
 
-		match = re.search('([a-zA-Z0-9\.\-+"]+)\.xcodeproj', self.name)
+		match = re.search('([^/\\\\]+)\.xcodeproj', self.name)
 		if not match:
 			self._project_name = self.name
 		else:
