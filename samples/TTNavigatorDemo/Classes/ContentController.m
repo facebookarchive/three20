@@ -69,7 +69,7 @@
 
 - (id)initWithAbout:(NSString*)about {
   if (self = [super init]) {
-    _contentType = ContentTypeNutrition;
+    _contentType = ContentTypeAbout;
     self.content = about;
     self.text = [NSString stringWithFormat:@"<b>%@</b> is the name of this page.  Exciting.", about];
 
@@ -113,6 +113,9 @@
     self.view.backgroundColor = [UIColor grayColor];
     label.backgroundColor = self.view.backgroundColor;
     self.hidesBottomBarWhenPushed = YES;
+  } else if (_contentType == ContentTypeAbout) {
+	  self.view.backgroundColor = [UIColor grayColor];
+	  label.backgroundColor = self.view.backgroundColor;
   } else if (_contentType == ContentTypeOrder) {
     UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:@"What do you want to eat?" forState:UIControlStateNormal];
