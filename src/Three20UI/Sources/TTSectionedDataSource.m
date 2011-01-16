@@ -219,7 +219,7 @@
   if (_sections.count) {
     NSMutableArray* items = [_items objectAtIndex:indexPath.section];
     [items removeObjectAtIndex:indexPath.row];
-    if (!items.count) {
+    if (andSection && !items.count) {
       [_sections removeObjectAtIndex:indexPath.section];
       [_items removeObjectAtIndex:indexPath.section];
       return YES;
