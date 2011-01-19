@@ -23,6 +23,7 @@
   TTLauncherView* _parentView;
   CGRect          _highlightRect;
   CGFloat         _highlightScale;
+  UIWindow*       _statusBarCover;
   UILabel*        _textLabel;
 }
 

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20Style/TTStyledNodeInternal.h"
+#import "Three20Style/private/TTStyledNodeInternal.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -175,7 +175,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)unsetNavigatorProperties {
   TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
-                  @"Unsetting this controller's properties: %X", self);
+                  @"Unsetting this controller's properties: %X", (unsigned int)self);
 
   NSString* urlPath = self.originalNavigatorURL;
   if (nil != urlPath) {
