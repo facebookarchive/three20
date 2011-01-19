@@ -22,6 +22,10 @@
 #import "Three20UI/UIViewAdditions.h"
 #import "Three20Style/UIFontAdditions.h"
 
+// Style
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
+
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
 
@@ -173,6 +177,7 @@ static const CGFloat kControlPadding = 8;
     _control.frame = CGRectMake(minX, floor(self.contentView.height/2 - _control.height/2),
                                 contentWidth, _control.height);
   }
+	self.backgroundColor = TTSTYLEVAR(tableViewCellBackgroundColor);
 }
 
 

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<methodResponse>
+  <params>
+    <param>
+      <value>
+        <struct>
+					<member>
+          	<name>aNullValue</name>
+          </member>
+					<member>
+          	<name>aBooleanValue</name>
+            <value><boolean>1</boolean></value>
+          </member>
+					<member>
+          	<name>aDoubleValue</name>
+            <value><double>12.64</double></value>
+          </member>
+					<member>
+          	<name>aIntValue</name>
+            <value><i4>135</i4></value>
+          </member>
+					<member>
+          	<name>aStringValue</name>
+          	<value><string>The quick brown fox jumps over the lazy dog. 0123456789&lt;br /&gt;&amp;&amp;&amp;&amp;</string></value>
+          </member>
+					<member>
+          	<name>anArrayValue</name>
+            <value>
+            	<array>
+              	<data>
+                	<value><i4>246</i4></value>
+                  <value><double>21.7</double></value>
+                  <value><boolean>0</boolean></value>
+                	<value><string>The quick brown fox jumps over the lazy dog. 0123456789&lt;br /&gt;&amp;&amp;&amp;&amp;</string></value>
+              	</data>
+            	</array>
+            </value>
+          </member>
+        </struct>
+      </value>
+    </param>
+  </params>
+</methodResponse>

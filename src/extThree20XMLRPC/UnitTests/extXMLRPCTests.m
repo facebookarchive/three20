@@ -27,7 +27,30 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
+@interface MockNSHTTPURLResponse : NSHTTPURLResponse {
+	NSInteger _mockStatusCode;
+}
+- (id)initWithStatusCode:(NSInteger)statusCode;
+@end
+
+@implementation MockNSHTTPURLResponse
+
+- (id)initWithStatusCode:(NSInteger)statusCode {
+	if(self=[super init]) {
+  	_mockStatusCode = statusCode;
+  }
+  return self;
+}
+
+- (NSInteger)statusCode { return _mockStatusCode; }
+
+@end
+
+
+
+
 #define kDummyString @"The quick brown fox jumps over the lazy dog. 0123456789<br />&&&&"
+#define kDummyStringXMLEscaped @"The quick brown fox jumps over the lazy dog. 0123456789&lt;br /&gt;&amp;&amp;&amp;&amp;"
 
 /**
  * Unit tests for the Core XML parser. These tests are a part of the comprehensive test suite
@@ -48,34 +71,131 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma mark TODO:
 - (void)testRequestBody {
 	
 	TTURLXMLRPCRequest *req = [[TTURLXMLRPCRequest alloc] initWithURL:@"http://mydomain.tld/path/to/post" delegate:nil];
+  
+  NSMutableString *str = nil;
 	// method name only
+  
+  str = [NSMutableString stringWithString:@"<?xml version=\"1.0\"?>"];
+  [str appendString:@"<methodCall>"];
+    [str appendString:@"<methodName>hoge.fuga.Piyo1</methodName>"];
+    [str appendString:@"<params></params>"];
+  [str appendString:@"</methodCall>"];
+
 	[req setMethod:@"hoge.fuga.Piyo1"];
-	STAssertEqualObjects([req body],@"<?xml version=\"1.0\"?><methodCall><methodName>hoge.fuga.Piyo1</methodName><params></params></methodCall>",@"Check non parameters request body as string.");
+	STAssertEqualObjects([req body],str,@"Check non parameters request body as string.");
 
 	// method with parameters
 	[req setMethod:@"hoge.fuga.Piyo2" withParameter:[NSDictionary dictionaryWithObjectsAndKeys:
-																									 [NSNumber numberWithInt:1],      @"aIntValue",
-																									 [NSNumber numberWithDouble:1.0], @"aDoubleValue",
-																									 [NSNumber numberWithBool:YES],   @"aBooleanValue",
+																									 [NSNumber numberWithInt:135],      @"aIntValue",
+																									 [NSNumber numberWithDouble:12.64], @"aDoubleValue",
+																									 [NSNumber numberWithBool:YES],     @"aBooleanValue",
+																									 [NSNull null],                     @"aNullValue",
 																									 kDummyString, @"aStringValue",
 																									 [NSArray arrayWithObjects:
-																										[NSNumber numberWithInt:1],
-																										[NSNumber numberWithDouble:1.0],
-																										[NSNumber numberWithBool:YES],
+																										[NSNumber numberWithInt:246],
+																										[NSNumber numberWithDouble:21.7],
+																										[NSNumber numberWithBool:NO],
 																										kDummyString,
-																										nil], @"aArrayValue",
+																										nil], @"anArrayValue",
 																									 nil]];
-	STAssertEqualObjects([req body],@"<?xml version=\"1.0\"?><methodCall><methodName>hoge.fuga.Piyo2</methodName><params><param><value><struct><member><name>aBooleanValue</name><value><boolean>1</boolean></value></member><member><name>aDoubleValue</name><value><double>1</double></value></member><member><name>aIntValue</name><value><i4>1</i4></value></member><member><name>aStringValue</name><value><string>The quick brown fox jumps over the lazy dog. 0123456789&lt;br /&gt;&amp;&amp;&amp;&amp;</string></value></member><member><name>aArrayValue</name><value><array><data><value><i4>1</i4></value><value><double>1</double></value><value><boolean>1</boolean></value><value><string>The quick brown fox jumps over the lazy dog. 0123456789&lt;br /&gt;&amp;&amp;&amp;&amp;</string></value></data></array></value></member></struct></value></param></params></methodCall>",@"Check request body as string.");
+                                                   
+  str = [NSMutableString stringWithString:@"<?xml version=\"1.0\"?>"];
+  [str appendString:@"<methodCall>"];
+    [str appendString:@"<methodName>hoge.fuga.Piyo2</methodName>"];
+    [str appendString:@"<params>"];
+      [str appendString:@"<param><value>"];
+        [str appendString:@"<struct>"];
+
+          [str appendString:@"<member>"];
+            [str appendString:@"<name>aNullValue</name>"];
+          [str appendString:@"</member>"];
+
+          [str appendString:@"<member>"];
+            [str appendString:@"<name>aBooleanValue</name>"];
+            [str appendString:@"<value><boolean>1</boolean></value>"];
+          [str appendString:@"</member>"];
+
+          [str appendString:@"<member>"];
+            [str appendString:@"<name>aDoubleValue</name>"];
+            [str appendString:@"<value><double>12.64</double></value>"];
+          [str appendString:@"</member>"];
+
+          [str appendString:@"<member>"];
+            [str appendString:@"<name>aIntValue</name>"];
+            [str appendString:@"<value><i4>135</i4></value>"];
+          [str appendString:@"</member>"];
+
+          [str appendString:@"<member>"];
+            [str appendString:@"<name>aStringValue</name>"];
+            [str appendFormat:@"<value><string>%@</string></value>",kDummyStringXMLEscaped];
+          [str appendString:@"</member>"];
+
+          [str appendString:@"<member>"];
+            [str appendString:@"<name>anArrayValue</name>"];
+            [str appendString:@"<value><array><data>"];
+              [str appendString:@"<value><i4>246</i4></value>"];
+              [str appendString:@"<value><double>21.7</double></value>"];
+              [str appendString:@"<value><boolean>0</boolean></value>"];
+              [str appendFormat:@"<value><string>%@</string></value>",kDummyStringXMLEscaped];
+            [str appendString:@"</data></array></value>"];
+          [str appendString:@"</member>"];
+          
+        [str appendString:@"</struct>"];
+    
+      [str appendString:@"</value></param>"];
+    [str appendString:@"</params>"];
+  [str appendString:@"</methodCall>"];        
+                                                   
+	STAssertEqualObjects([req body],str,@"Check request body as string.");
 	
 	TT_RELEASE_SAFELY(req);
 }
 
-#pragma mark TODO:
 - (void)testResponseBody {
+  MockNSHTTPURLResponse *mockResponse = [[MockNSHTTPURLResponse alloc] initWithStatusCode:200];
+  TTURLXMLRPCRequest *mockRequest = [[TTURLXMLRPCRequest alloc] initWithURL:@"http://www.mydomain.com/path/to/post" method:@"hoge.fuga.Piyo3" delegate:nil];
+	TTURLXMLRPCResponse *res = [[TTURLXMLRPCResponse alloc] init];
+  NSError *error = nil; NSDictionary *dic = nil;
+
+	//
+  error = [res request:mockRequest processResponse:mockResponse data:[self dataWithBundledXMLFileName:@"testcase1.xml"]];
+  STAssertEqualObjects([res object],@"South Dakota",@"String response");
+  STAssertNil(error,@"Response should be nil");
+  
+  //
+  error = [res request:mockRequest processResponse:mockResponse data:[self dataWithBundledXMLFileName:@"testcase2.xml"]];
+
+  dic = [NSDictionary dictionaryWithObjectsAndKeys:
+    [NSNumber numberWithInt:4], @"faultCode",
+    @"Too many parameters.", @"faultString",
+    nil];
+  STAssertEqualObjects([res object],dic,@"Check error object structure.");
+  
+  dic = [NSDictionary dictionaryWithObject:@"Too many parameters." forKey:@"fault"];
+	STAssertEqualObjects([error userInfo],dic,@"Check error userInfo");
+  STAssertEquals([error code],4,@"Check error code");
+  
+  //
+  error = [res request:mockRequest processResponse:mockResponse data:[self dataWithBundledXMLFileName:@"testcase3.xml"]];
+  dic = [NSDictionary dictionaryWithObjectsAndKeys:
+																									 [NSNumber numberWithInt:135],      @"aIntValue",
+																									 [NSNumber numberWithDouble:12.64], @"aDoubleValue",
+																									 [NSNumber numberWithBool:YES],     @"aBooleanValue",
+																									 @"",                     @"aNullValue",
+																									 kDummyString, @"aStringValue",
+																									 [NSArray arrayWithObjects:
+																										[NSNumber numberWithInt:246],
+																										[NSNumber numberWithDouble:21.7],
+																										[NSNumber numberWithBool:NO],
+																										kDummyString,
+																										nil], @"anArrayValue",
+																									 nil];
+	STAssertEqualObjects([res object],dic,@"Check error userInfo");
+  
+  TT_RELEASE_SAFELY(res);
 }
 
 

@@ -97,6 +97,7 @@ static const CGFloat kDisclosureIndicatorWidth = 23;
 
   TTTableStyledTextItem* item = self.object;
   _label.frame = CGRectOffset(self.contentView.bounds, item.margin.left, item.margin.top);
+	self.backgroundColor = TTSTYLEVAR(tableViewCellBackgroundColor);
 }
 
 

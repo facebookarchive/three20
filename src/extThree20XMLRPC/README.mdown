@@ -1,5 +1,5 @@
 
-extXML
+extXMLRPC
 ======
 
 This extension provides XML-RPC support.
@@ -9,6 +9,7 @@ Dependencies
 
 * Core
 * Network
+* [Cocoa XML-RPC framework](http://github.com/ngs/xmlrpc)
 
 Using it in your App
 --------------------
@@ -20,9 +21,9 @@ Import the following into your precompiled header or wherever you need access to
 `TTURLXMLRPCResponse`.
 
     #import "extThree20XMLRPC/extThree20XMLRPC.h"
-
-Breakdown
----------
-
-Use `TTURLXMLRPCResponse` to handle XMLRPC responses.
-`TTURLXMLRPCResponse` object property will be NSDictionary, which is parsed by Cocoa XML-RPC framework.
+    
+    ...
+    
+    TTURLXMLRPCResponse *res = (TTURLXMLRPCResponse *) req.response;
+    NSDictionary *tree = res.object;
+    // this will be NSDictionary tree parsed by Cocoa XML-RPC framework.
