@@ -451,21 +451,31 @@ static NSString* kUniversalURLPattern = @"*";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)createObjectFromURL: (NSURL*)URL
                     query: (NSDictionary*)query {
-  id target = nil;
-  if (self.instantiatesClass) {
-    target = [_targetClass alloc];
-  } else {
-    target = [_targetObject retain];
-  }
-
   id returnValue = nil;
-  if (_selector) {
-    returnValue = [self invoke:target withURL:URL query:query];
-  } else if (self.instantiatesClass) {
-    returnValue = [target init];
-  }
 
-  [target autorelease];
+  if (self.instantiatesClass) {
+    //suppress static analyzer warning for this part
+    // - invoke:withURL:query actually calls an - init method
+    // which returns either a new object with retain count of +1
+    // or returnValue (which already has +1 retain count)
+#ifndef __clang_analyzer__
+    returnValue = [_targetClass alloc];
+    if (_selector) {
+      returnValue = [self invoke:returnValue withURL:URL query:query];
+    } else {
+      returnValue = [returnValue init];
+    }
+    [returnValue autorelease];
+#endif
+  } else {
+    id target = [_targetObject retain];
+    if (_selector) {
+      returnValue = [self invoke:target withURL:URL query:query];
+    } else {
+      TTDWARNING(@"No object created from URL:'%@' URL");
+    }
+    [target release];
+  }
   return returnValue;
 }
 
