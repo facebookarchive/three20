@@ -44,6 +44,12 @@
 - (BOOL)matchURL:(NSURL*)URL;
 
 - (id)invoke:(id)target withURL:(NSURL*)URL query:(NSDictionary*)query;
+
+/**
+ * either instantiates an object or delegates object creation
+ * depending on current configuration
+ * @return the newly created object or nil if something went wrong
+ */
 - (id)createObjectFromURL:(NSURL*)URL query:(NSDictionary*)query;
 
 @end
