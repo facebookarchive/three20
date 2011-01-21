@@ -148,7 +148,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
     _timestampLabel.top = _titleLabel.top;
     _titleLabel.width -= _timestampLabel.width + kTableCellSmallMargin*2;
   } else {
-    _titleLabel.frame = CGRectZero;
+    _timestampLabel.frame = CGRectZero;
   }
 }
 
