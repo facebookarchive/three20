@@ -42,6 +42,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isEmptyOrWhitespace {
+  // A nil or NULL string is not the same as an empty string
+  if (self == nil)
+    return NO;
+  
   return !self.length ||
          ![self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length;
 }
