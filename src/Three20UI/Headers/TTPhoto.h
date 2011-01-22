@@ -30,7 +30,7 @@
 @property (nonatomic, assign) id<TTPhotoSource> photoSource;
 
 /**
- * The index of the photo within its photo source.
+ * The size of the photo.
  */
 @property (nonatomic) CGSize size;
 
