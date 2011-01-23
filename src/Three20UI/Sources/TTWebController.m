@@ -269,7 +269,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)persistView:(NSMutableDictionary*)state {
   NSString* URL = self.URL.absoluteString;
-  if (URL.length) {
+  if (URL.length && ![URL isEqualToString:@"about:blank"]) {
     [state setObject:URL forKey:@"URL"];
     return YES;
   } else {
