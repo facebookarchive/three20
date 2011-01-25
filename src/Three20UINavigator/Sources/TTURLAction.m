@@ -39,18 +39,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)action {
-  return [[[self alloc] init] autorelease];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)actionWithURLPath:(NSString*)urlPath {
-  return [[[self alloc] initWithURLPath:urlPath] autorelease];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURLPath:(NSString*)urlPath {
   if (self = [super init]) {
     self.urlPath = urlPath;
@@ -65,10 +53,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithURLPath:nil]) {
-  }
-
-  return self;
+  return [self initWithURLPath:nil];
 }
 
 
@@ -82,6 +67,48 @@
   TT_RELEASE_SAFELY(_sourceButton);
 
   [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)description {
+  return [NSString stringWithFormat:
+          @"<TTURLAction: %p"
+          @"; urlPath = %@"
+          @"; parentUrlPath = %@"
+          @"; query = %@"
+          @"; state = %@"
+          @"; animated = %d"
+          @"; withDelay = %d"
+          @"; sourceRect = %@"
+          @"; sourceView = %@"
+          @"; sourceButton = %@"
+          @"; transition = %d"   // TODO (jverkoey Jan 25, 2011): Make a utility method for this.
+          @">",
+          self,
+          self.urlPath,
+          self.parentURLPath,
+          self.query,
+          self.state,
+          self.animated,
+          self.withDelay,
+          NSStringFromCGRect(self.sourceRect),
+          self.sourceView,
+          self.sourceButton,
+          self.transition];
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)action {
+  return [[[self alloc] init] autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)actionWithURLPath:(NSString*)urlPath {
+  return [[[self alloc] initWithURLPath:urlPath] autorelease];
 }
 
 
