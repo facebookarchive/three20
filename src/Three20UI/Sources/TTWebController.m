@@ -65,6 +65,7 @@
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
   if (self = [self initWithNibName:nil bundle:nil]) {
     NSURLRequest* request = [query objectForKey:@"request"];
+
     if (nil != request) {
       [self openRequest:request];
 
@@ -78,10 +79,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithNibName:nil bundle:nil]) {
-  }
-
-  return self;
+  return [self initWithNibName:nil bundle:nil];
 }
 
 
@@ -128,12 +126,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shareAction {
   if (nil == _actionSheet) {
-    _actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                               delegate:self
-                                      cancelButtonTitle:TTLocalizedString(@"Cancel", @"")
-                                 destructiveButtonTitle:nil
-                                      otherButtonTitles:TTLocalizedString(@"Open in Safari", @""),
-                                                        nil];
+    _actionSheet = [[UIActionSheet alloc] initWithTitle: nil
+                                               delegate: self
+                                      cancelButtonTitle: TTLocalizedString(@"Cancel", @"")
+                                 destructiveButtonTitle: nil
+                                      otherButtonTitles: TTLocalizedString(@"Open in Safari",
+                                                                           @""),
+                                                         nil];
     if (TTIsPad()) {
       [_actionSheet showFromBarButtonItem:_actionButton animated:YES];
 
@@ -169,49 +168,56 @@
 
   _webView = [[UIWebView alloc] initWithFrame:TTToolbarNavigationFrame()];
   _webView.delegate = self;
-  _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-  | UIViewAutoresizingFlexibleHeight;
+  _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                               | UIViewAutoresizingFlexibleHeight);
   _webView.scalesPageToFit = YES;
   [self.view addSubview:_webView];
 
   UIActivityIndicatorView* spinner =
-    [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-      UIActivityIndicatorViewStyleWhite] autorelease];
+    [[[UIActivityIndicatorView alloc]
+      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]
+     autorelease];
   [spinner startAnimating];
   _activityItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 
-  _backButton =
-    [[UIBarButtonItem alloc] initWithImage:TTIMAGE(@"bundle://Three20.bundle/images/backIcon.png")
-                                     style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(backAction)];
+  _backButton = [[UIBarButtonItem alloc] initWithImage:
+                 TTIMAGE(@"bundle://Three20.bundle/images/backIcon.png")
+                                                 style: UIBarButtonItemStylePlain
+                                                target: self
+                                                action: @selector(backAction)];
   _backButton.tag = 2;
   _backButton.enabled = NO;
-  _forwardButton =
-    [[UIBarButtonItem alloc] initWithImage:
-     TTIMAGE(@"bundle://Three20.bundle/images/forwardIcon.png")
-                                     style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(forwardAction)];
+  _forwardButton = [[UIBarButtonItem alloc] initWithImage:
+                    TTIMAGE(@"bundle://Three20.bundle/images/forwardIcon.png")
+                                                    style: UIBarButtonItemStylePlain
+                                                   target: self
+                                                   action: @selector(forwardAction)];
   _forwardButton.tag = 1;
   _forwardButton.enabled = NO;
-  _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                    UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction)];
+  _refreshButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh
+                                                  target: self
+                                                  action: @selector(refreshAction)];
   _refreshButton.tag = 3;
-  _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                 UIBarButtonSystemItemStop target:self action:@selector(stopAction)];
+  _stopButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemStop
+                                                  target: self
+                                                  action: @selector(stopAction)];
   _stopButton.tag = 3;
-  _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                   UIBarButtonSystemItemAction target:self action:@selector(shareAction)];
+  _actionButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAction
+                                                  target: self
+                                                  action: @selector(shareAction)];
 
-  UIBarItem* space = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                       UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+  UIBarItem* space =
+    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
+                                                   target: nil
+                                                   action: nil] autorelease];
 
-  _toolbar = [[UIToolbar alloc] initWithFrame:
-              CGRectMake(0, self.view.height - TTToolbarHeight(),
-                         self.view.width, TTToolbarHeight())];
-  _toolbar.autoresizingMask =
-  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+  _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.height - TTToolbarHeight(),
+                                                         self.view.width, TTToolbarHeight())];
+  _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
+                               | UIViewAutoresizingFlexibleWidth);
   _toolbar.tintColor = TTSTYLEVAR(toolbarTintColor);
   _toolbar.items = [NSArray arrayWithObjects:
                     _backButton,
