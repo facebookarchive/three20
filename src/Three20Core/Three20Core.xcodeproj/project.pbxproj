@@ -53,6 +53,10 @@
 		66ADCE871291BEAE00855386 /* TTExtensionAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADCE811291BEAE00855386 /* TTExtensionAuthor.m */; };
 		66ADCE8A1291BEBB00855386 /* TTExtensionAuthor.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADCE8B1291BEBB00855386 /* TTExtensionAuthor.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C374DB12F051D600411196 /* TTCoreFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C374D912F051D600411196 /* TTCoreFormat.m */; };
+		66C374DD12F051D600411196 /* TTCoreFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C374D912F051D600411196 /* TTCoreFormat.m */; };
+		66C374DF12F051EC00411196 /* TTCoreFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C374DE12F051EC00411196 /* TTCoreFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66C374E012F051EC00411196 /* TTCoreFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 66C374DE12F051EC00411196 /* TTCoreFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66D1E1641262FDCE00BFDAF5 /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */; };
 		66ECA255128DFE28006C78C2 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */; };
 		66ECA257128DFE28006C78C2 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */; };
@@ -122,6 +126,8 @@
 		66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionInfoPrivate.h; path = Headers/TTExtensionInfoPrivate.h; sourceTree = "<group>"; };
 		66ADCE811291BEAE00855386 /* TTExtensionAuthor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionAuthor.m; path = Sources/TTExtensionAuthor.m; sourceTree = "<group>"; };
 		66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionAuthor.h; path = Headers/TTExtensionAuthor.h; sourceTree = "<group>"; };
+		66C374D912F051D600411196 /* TTCoreFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTCoreFormat.m; path = Sources/TTCoreFormat.m; sourceTree = "<group>"; };
+		66C374DE12F051EC00411196 /* TTCoreFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCoreFormat.h; path = Headers/TTCoreFormat.h; sourceTree = "<group>"; };
 		66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Sources/TTExtensionLoader.m; sourceTree = "<group>"; };
 		66ECA258128DFE34006C78C2 /* TTExtensionLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionLoader.h; path = Headers/TTExtensionLoader.h; sourceTree = "<group>"; };
 		6E178E751183C8AE003B099E /* Three20Core_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core_Prefix.pch; path = Headers/Three20Core_Prefix.pch; sourceTree = "<group>"; };
@@ -306,6 +312,8 @@
 				6E178E771183C8D3003B099E /* TTCorePreprocessorMacros.h */,
 				6E178E781183C8DA003B099E /* TTGlobalCore.h */,
 				6E178E7B1183C8E5003B099E /* TTGlobalCore.m */,
+				66C374DE12F051EC00411196 /* TTCoreFormat.h */,
+				66C374D912F051D600411196 /* TTCoreFormat.m */,
 				6E178E791183C8DA003B099E /* TTGlobalCoreLocale.h */,
 				6E178E7C1183C8E5003B099E /* TTGlobalCoreLocale.m */,
 				6E178E7A1183C8DA003B099E /* TTGlobalCorePaths.h */,
@@ -414,6 +422,7 @@
 				66ADC9111290B24D00855386 /* TTExtensionInfo.h in Headers */,
 				66ADCE671291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */,
 				66ADCE8A1291BEBB00855386 /* TTExtensionAuthor.h in Headers */,
+				66C374DF12F051EC00411196 /* TTCoreFormat.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +452,7 @@
 				66ADC90F1290B24D00855386 /* TTExtensionInfo.h in Headers */,
 				66ADCE681291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */,
 				66ADCE8B1291BEBB00855386 /* TTExtensionAuthor.h in Headers */,
+				66C374E012F051EC00411196 /* TTCoreFormat.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +669,7 @@
 				66ECA255128DFE28006C78C2 /* TTExtensionLoader.m in Sources */,
 				66ADC90D1290B23A00855386 /* TTExtensionInfo.m in Sources */,
 				66ADCE851291BEAE00855386 /* TTExtensionAuthor.m in Sources */,
+				66C374DB12F051D600411196 /* TTCoreFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +694,7 @@
 				66ECA257128DFE28006C78C2 /* TTExtensionLoader.m in Sources */,
 				66ADC9091290B23A00855386 /* TTExtensionInfo.m in Sources */,
 				66ADCE871291BEAE00855386 /* TTExtensionAuthor.m in Sources */,
+				66C374DD12F051D600411196 /* TTCoreFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,7 @@
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
 #import "Three20Core/TTGlobalCore.h"
+#import "Three20Core/TTCoreFormat.h"
 #import "Three20Core/TTGlobalCoreLocale.h"
 #import "Three20Core/TTGlobalCorePaths.h"
 #import "Three20Core/TTGlobalCoreRects.h"

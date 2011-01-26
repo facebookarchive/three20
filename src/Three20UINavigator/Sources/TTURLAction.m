@@ -19,6 +19,7 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTDebug.h"
+#import "Three20Core/TTCoreFormat.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +81,7 @@
           @"; state = %@"
           @"; animated = %d"
           @"; withDelay = %d"
-          //@"; sourceRect = %@" // TODO (jverkoey Jan 25, 2011): Make a utility method for this.
+          @"; sourceRect = %@"
           @"; sourceView = %@"
           @"; sourceButton = %@"
           @"; transition = %d"   // TODO (jverkoey Jan 25, 2011): Make a utility method for this.
@@ -92,7 +93,7 @@
           self.state,
           self.animated,
           self.withDelay,
-          //self.sourceRect,
+          TTFormatCGRect(self.sourceRect),
           self.sourceView,
           self.sourceButton,
           self.transition];
