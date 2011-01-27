@@ -23,16 +23,20 @@
 @protected
   UIWebView*        _webView;
 
-  UIToolbar*        _toolbar;
-
   UIView*           _headerView;
 
+  // Phone controls
   UIBarButtonItem*  _backButton;
   UIBarButtonItem*  _forwardButton;
   UIBarButtonItem*  _refreshButton;
   UIBarButtonItem*  _stopButton;
   UIBarButtonItem*  _actionButton;
   UIBarButtonItem*  _activityItem;
+
+  // Pad controls
+  UITextField*      _addressText;
+
+  UIView*           _toolbar;
 
   NSURL*            _loadingURL;
 

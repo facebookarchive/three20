@@ -19,6 +19,8 @@
 // UI
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/UIViewAdditions.h"
+#import "Three20UI/TTView.h"
+#import "Three20UI/TTButton.h"
 #import "Three20UI/UIToolbarAdditions.h"
 
 // UINavigator
@@ -40,6 +42,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTGlobalCoreLocale.h"
+
+static const CGFloat kAddressBarButtonsWidth = 190;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -153,6 +157,7 @@
   _toolbar.height = TTToolbarHeight();
   _webView.height = self.view.height - _toolbar.height;
   _toolbar.top = self.view.height - _toolbar.height;
+  _addressText.width = _toolbar.width - kAddressBarButtonsWidth;
 }
 
 
@@ -163,20 +168,11 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loadView {
-  [super loadView];
-
-  _webView = [[UIWebView alloc] initWithFrame:TTToolbarNavigationFrame()];
-  _webView.delegate = self;
-  _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-                               | UIViewAutoresizingFlexibleHeight);
-  _webView.scalesPageToFit = YES;
-  [self.view addSubview:_webView];
-
+- (UIView*)createPhoneToolbar {
   UIActivityIndicatorView* spinner =
-    [[[UIActivityIndicatorView alloc]
-      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]
-     autorelease];
+  [[[UIActivityIndicatorView alloc]
+    initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]
+   autorelease];
   [spinner startAnimating];
   _activityItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 
@@ -195,39 +191,131 @@
   _forwardButton.tag = 1;
   _forwardButton.enabled = NO;
   _refreshButton =
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh
-                                                  target: self
-                                                  action: @selector(refreshAction)];
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh
+                                                target: self
+                                                action: @selector(refreshAction)];
   _refreshButton.tag = 3;
   _stopButton =
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemStop
-                                                  target: self
-                                                  action: @selector(stopAction)];
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemStop
+                                                target: self
+                                                action: @selector(stopAction)];
   _stopButton.tag = 3;
   _actionButton =
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAction
-                                                  target: self
-                                                  action: @selector(shareAction)];
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAction
+                                                target: self
+                                                action: @selector(shareAction)];
+
+  // Create the toolbar view.
 
   UIBarItem* space =
-    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
-                                                   target: nil
-                                                   action: nil] autorelease];
+  [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace
+                                                 target: nil
+                                                 action: nil] autorelease];
 
-  _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.height - TTToolbarHeight(),
-                                                         self.view.width, TTToolbarHeight())];
-  _toolbar.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
-                               | UIViewAutoresizingFlexibleWidth);
-  _toolbar.tintColor = TTSTYLEVAR(toolbarTintColor);
-  _toolbar.items = [NSArray arrayWithObjects:
-                    _backButton,
-                    space,
-                    _forwardButton,
-                    space,
-                    _refreshButton,
-                    space,
-                    _actionButton,
-                    nil];
+  CGRect toolbarFrame = CGRectMake(0, self.view.height - TTToolbarHeight(),
+                                   self.view.width, TTToolbarHeight());
+
+  UIToolbar* toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
+  toolbar.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
+                              | UIViewAutoresizingFlexibleWidth);
+  toolbar.tintColor = TTSTYLEVAR(toolbarTintColor);
+
+  toolbar.items = [NSArray arrayWithObjects:
+                   _backButton,
+                   space,
+                   _forwardButton,
+                   space,
+                   _refreshButton,
+                   space,
+                   _actionButton,
+                   nil];
+  return toolbar;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UIView*)createPadToolbar {
+  CGRect toolbarFrame = CGRectMake(0, self.view.height - TTToolbarHeight(),
+                                   self.view.width, TTToolbarHeight());
+
+  TTView* toolbarView = [[TTView alloc] initWithFrame:toolbarFrame];
+  toolbarView.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
+                                  | UIViewAutoresizingFlexibleWidth);
+  toolbarView.style = TTSTYLE(webViewToolbar);
+
+  _backButton =
+  [[UIBarButtonItem alloc] initWithImage:TTIMAGE(@"bundle://Three20.bundle/images/backIcon.png")
+                                   style:UIBarButtonItemStylePlain
+                                  target:self
+                                  action:@selector(backAction)];
+
+  _forwardButton =
+  [[UIBarButtonItem alloc] initWithImage:TTIMAGE(@"bundle://Three20.bundle/images/forwardIcon.png")
+                                   style:UIBarButtonItemStylePlain
+                                  target:self
+                                  action:@selector(forwardAction)];
+
+  _addressText = [[UITextField alloc] initWithFrame:CGRectZero];
+  _addressText.borderStyle = UITextBorderStyleRoundedRect;
+  _addressText.text = [self.URL absoluteString];
+  _addressText.height = 24;
+  _addressText.width = toolbarFrame.size.width - kAddressBarButtonsWidth;
+  _addressText.textColor = [UIColor grayColor];
+  _addressText.font = [UIFont systemFontOfSize:14];
+  _addressText.enabled = NO;
+
+  _actionButton =
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAction
+                                                target: self
+                                                action: @selector(shareAction)];
+
+  UIBarButtonItem* fixedWidth =
+  [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                 target:nil
+                                                 action:nil] autorelease];
+  fixedWidth.width = 20;
+
+  UIToolbar* buttonToolbar = [[[UIToolbar alloc] initWithFrame:CGRectZero] autorelease];
+  buttonToolbar.barStyle = -1;
+  buttonToolbar.items = [NSArray arrayWithObjects:
+                         fixedWidth,
+                         _backButton,
+                         fixedWidth,
+                         _forwardButton,
+                         fixedWidth,
+                         _actionButton,
+                         fixedWidth,
+                         [[[UIBarButtonItem alloc] initWithCustomView:_addressText] autorelease],
+                         nil];
+  buttonToolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
+  buttonToolbar.clipsToBounds = YES;
+  buttonToolbar.width = toolbarView.width;
+  buttonToolbar.height = toolbarView.height;
+
+  [toolbarView addSubview:buttonToolbar];
+
+  return toolbarView;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)loadView {
+  [super loadView];
+
+  _webView = [[UIWebView alloc] initWithFrame:TTToolbarNavigationFrame()];
+  _webView.delegate = self;
+  _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                               | UIViewAutoresizingFlexibleHeight);
+  _webView.scalesPageToFit = YES;
+  [self.view addSubview:_webView];
+
+  if (TTIsPad()) {
+    _toolbar = [self createPadToolbar];
+
+  } else {
+    _toolbar = [self createPhoneToolbar];
+  }
+
   [self.view addSubview:_toolbar];
 }
 
@@ -246,6 +334,7 @@
   TT_RELEASE_SAFELY(_stopButton);
   TT_RELEASE_SAFELY(_actionButton);
   TT_RELEASE_SAFELY(_activityItem);
+  TT_RELEASE_SAFELY(_addressText);
 }
 
 
@@ -321,14 +410,17 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
- navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)                webView: (UIWebView*)webView
+     shouldStartLoadWithRequest: (NSURLRequest*)request
+                 navigationType: (UIWebViewNavigationType)navigationType {
   if ([[TTNavigator navigator].URLMap isAppURL:request.URL]) {
     [_loadingURL release];
     _loadingURL = [[NSURL URLWithString:@"about:blank"] retain];
     [[UIApplication sharedApplication] openURL:request.URL];
     return NO;
   }
+
+  _addressText.text = [request.URL absoluteString];
 
   [_loadingURL release];
   _loadingURL = [request.URL retain];
@@ -344,7 +436,10 @@
   if (!self.navigationItem.rightBarButtonItem) {
     [self.navigationItem setRightBarButtonItem:_activityItem animated:YES];
   }
-  [_toolbar replaceItemWithTag:3 withItem:_stopButton];
+
+  if (!TTIsPad()) {
+    [(UIToolbar*)_toolbar replaceItemWithTag:3 withItem:_stopButton];
+  }
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
 }
@@ -357,7 +452,9 @@
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
   }
-  [_toolbar replaceItemWithTag:3 withItem:_refreshButton];
+  if (!TTIsPad()) {
+    [(UIToolbar*)_toolbar replaceItemWithTag:3 withItem:_refreshButton];
+  }
 
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
@@ -423,6 +520,7 @@
 - (void)openURL:(NSURL*)URL {
   NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
   [self openRequest:request];
+  _addressText.text = [URL absoluteString];
 }
 
 
@@ -430,6 +528,7 @@
 - (void)openRequest:(NSURLRequest*)request {
   self.view;
   [_webView loadRequest:request];
+  _addressText.text = [request.URL absoluteString];
 }
 
 

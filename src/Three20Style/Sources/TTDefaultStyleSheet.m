@@ -1189,3 +1189,31 @@
 
 
 @end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation TTDefaultStyleSheet (TTWebViewController)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTStyle*)webViewToolbar {
+  UIColor* highlightColor = [UIColor lightGrayColor];
+  UIColor* shadowColor = [UIColor grayColor];
+  return
+  [TTFourBorderStyle styleWithTop:[UIColor lightGrayColor]
+                            right:nil
+                           bottom:[UIColor blackColor]
+                             left:nil
+                            width:1 next:
+   [TTFourBorderStyle styleWithTop:[UIColor colorWithWhite:0.75 alpha:1]
+                             right:nil
+                            bottom:nil
+                              left:nil
+                             width:1 next:
+    [TTLinearGradientFillStyle styleWithColor1:highlightColor color2:shadowColor next:nil]]];
+}
+
+
+@end
