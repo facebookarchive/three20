@@ -20,6 +20,7 @@
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
 #import "Three20UINavigator/TTNavigatorPopoverProtocol.h"
+#import "Three20UINavigator/TTNavigatorDisplayProtocol.h"
 #import "Three20UINavigator/TTNavigatorRootContainer.h"
 #import "Three20UINavigator/TTBaseNavigationController.h"
 #import "Three20UINavigator/TTURLAction.h"
@@ -680,10 +681,20 @@ __attribute__((weak_import));
       [TTBaseNavigator dismissPopoverAnimated:YES];
 
     } else if (nil != parentController) {
-      [self presentDependantController: controller
-                      parentController: parentController
-                                  mode: mode
-                                action: action];
+      BOOL didPresent = NO;
+      if ([controller respondsToSelector:
+           @selector(navigator:presentController:parentController:action:)]) {
+        didPresent = [(id)controller navigator: self
+                             presentController: controller
+                              parentController: parentController
+                                        action: action];
+      }
+      if (!didPresent) {
+        [self presentDependantController: controller
+                        parentController: parentController
+                                    mode: mode
+                                  action: action];
+      }
     }
   }
 
@@ -706,8 +717,7 @@ __attribute__((weak_import));
                                                          isContainer: [controller
                                                                        canContainControllers]
                                                        parentURLPath: parentURLPath
-                                            ? parentURLPath
-                                                                    : pattern.parentURL];
+                                            ? parentURLPath : pattern.parentURL];
 
       if (nil != parentController && parentController != topViewController) {
         [self presentController: parentController
@@ -716,11 +726,10 @@ __attribute__((weak_import));
                          action: [TTURLAction actionWithURLPath:nil]];
       }
 
-      didPresentNewController = [self
-                                 presentController: controller
-                                 parentController: parentController
-                                 mode: pattern.navigationMode
-                                 action: action];
+      didPresentNewController = [self presentController: controller
+                                       parentController: parentController
+                                                   mode: pattern.navigationMode
+                                                 action: action];
     }
   }
   return didPresentNewController;

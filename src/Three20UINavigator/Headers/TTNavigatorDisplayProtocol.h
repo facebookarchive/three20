@@ -17,22 +17,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/**
- * This protocol provides information to controllers that are being displayed in a popover.
- * Only the initial content controller will receive these notifications.
- */
-@protocol TTNavigatorPopoverProtocol <NSObject>
+@class TTBaseNavigator;
+@class TTURLAction;
 
-@optional
+@protocol TTNavigatorDisplayProtocol <NSObject>
 
-/**
- * Sent immediately before viewWillAppear: to notify the controller that it is being displayed
- * within a popover.
- */
-- (void)viewWillAppearInPopover:(UIPopoverController*)popoverController;
+@required
 
-// Sent when the popover is about to be dismissed. Returning NO will stop the popover from being
-// dismissed.
-- (BOOL)shouldDismissPopover:(UIPopoverController*)popoverController;
+- (BOOL)  navigator: (TTBaseNavigator*)navigator
+  presentController: (UIViewController*)controller
+   parentController: (UIViewController*)parentController
+             action: (TTURLAction*)action;
 
 @end

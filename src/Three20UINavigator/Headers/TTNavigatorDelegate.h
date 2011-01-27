@@ -45,4 +45,10 @@
 - (void)navigator:(TTBaseNavigator*)navigator willOpenURL:(NSURL*)URL
  inViewController:(UIViewController*)controller;
 
+/**
+ * Asks if the URL should be opened and allows the delegate to prevent it.
+ * See -navigator:URLToOpen: for a superset of functionality
+ */
+- (BOOL)navigator:(TTBaseNavigator*)navigator presentController:(UIViewController*)URL;
+
 @end
