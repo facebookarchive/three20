@@ -1287,7 +1287,9 @@ __attribute__((weak_import));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)getVisibleChildController:(UIViewController*)controller {
-  return controller.topSubcontroller;
+  return (nil != controller.popupViewController)
+    ? controller.popupViewController
+    : controller.topSubcontroller;
 }
 
 
