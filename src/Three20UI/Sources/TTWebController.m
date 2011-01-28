@@ -321,6 +321,10 @@
   [_toolbar replaceItemWithTag:3 withItem:_stopButton];
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
+
+  if ([_delegate respondsToSelector:@selector(webViewDidStartLoad:)]) {
+    [_delegate webViewDidStartLoad:webView];
+  }
 }
 
 
@@ -336,6 +340,10 @@
 
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
+
+  if ([_delegate respondsToSelector:@selector(webViewDidFinishLoad:)]) {
+    [_delegate webViewDidFinishLoad:webView];
+  }
 }
 
 

@@ -53,7 +53,7 @@
 @property (nonatomic, retain)   UIView* headerView;
 
 /**
- * The web controller delegate, currently does nothing.
+ * The web controller delegate, similar to UIWebViewDelegate.
  */
 @property (nonatomic, assign)   id<TTWebControllerDelegate> delegate;
 
@@ -76,5 +76,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @protocol TTWebControllerDelegate <NSObject>
-// XXXjoe Need to make this similar to UIWebViewDelegate
+@optional
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
+- (void)webViewDidStartLoad:(UIWebView *)webView;
 @end
