@@ -488,6 +488,8 @@ __attribute__((weak_import));
       }
       didPresentNewController = NO;
 
+      [TTBaseNavigator dismissPopoverAnimated:YES];
+
     } else if (nil != parentController) {
       [self presentDependantController: controller
                       parentController: parentController
@@ -1099,10 +1101,14 @@ __attribute__((weak_import));
                         animated: action.animated
                       transition: action.transition];
 
+    [TTBaseNavigator dismissPopoverAnimated:YES];
+
   } else {
     [parentController addSubcontroller: controller
                               animated: action.animated
                             transition: action.transition];
+
+    [TTBaseNavigator dismissPopoverAnimated:YES];
   }
 }
 
