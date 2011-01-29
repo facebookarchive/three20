@@ -28,16 +28,13 @@
 /**
  * A URL-based navigation system with built-in persistence.
  */
-@interface TTBaseNavigator : NSObject <
-  UIPopoverControllerDelegate
-> {
+@interface TTBaseNavigator : NSObject {
   TTURLMap*                   _URLMap;
 
   UIWindow*                   _window;
 
   UIViewController*           _rootViewController;
   NSMutableArray*             _delayedControllers;
-  UIPopoverController*        _popoverController;
 
   NSString*                   _persistenceKey;
   TTNavigatorPersistenceMode  _persistenceMode;
@@ -181,6 +178,21 @@
 + (void)setGlobalNavigator:(TTBaseNavigator*)navigator;
 
 /**
+ * The popover controller is a globally active object.
+ */
++ (UIPopoverController*)popoverController;
+
+/**
+ * Set the active popover controller.
+ */
++ (void)setPopoverController:(UIPopoverController*)popoverController;
+
+/**
+ * Dismiss this active popover controller.
+ */
++ (void)dismissPopoverAnimated:(BOOL)isAnimated;
+
+/**
  * Load and display the view controller with a pattern that matches the URL.
  *
  * This method replaces all other openURL methods by using the chainable TTURLAction object.
@@ -270,11 +282,6 @@
  * Removes all view controllers from the window and releases them.
  */
 - (void)removeAllViewControllers;
-
-/**
- * Dismiss this navigator's popover controller.
- */
-- (void)dismissPopoverAnimated:(BOOL)isAnimated;
 
 /**
  * Gets a navigation path which can be used to locate an object.
