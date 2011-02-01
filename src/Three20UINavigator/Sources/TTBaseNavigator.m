@@ -48,6 +48,9 @@ static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
 static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant";
 
+NSString* TTBaseNavigatorWillShowPopoverNotification =
+  @"TTBaseNavigatorWillShowPopoverNotification";
+
 #ifdef __IPHONE_4_0
 UIKIT_EXTERN NSString *const UIApplicationDidEnterBackgroundNotification
 __attribute__((weak_import));
@@ -440,6 +443,10 @@ __attribute__((weak_import));
     [(id<TTNavigatorPopoverProtocol>)controller viewWillAppearInPopover:
      [TTBaseNavigator popoverController]];
   }
+
+  [[NSNotificationCenter defaultCenter]
+    postNotificationName: TTBaseNavigatorWillShowPopoverNotification
+                  object: nil];
 
   // TODO (jverkoey Dec. 15, 2010): Debatable what order of priority these should be in.
   // Perhaps we should simply TTDASSERT that only one or the other is provided?

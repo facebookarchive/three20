@@ -25,6 +25,8 @@
 @class TTURLMap;
 @class TTURLPattern;
 
+extern NSString* TTBaseNavigatorWillShowPopoverNotification;
+
 /**
  * A URL-based navigation system with built-in persistence.
  */
