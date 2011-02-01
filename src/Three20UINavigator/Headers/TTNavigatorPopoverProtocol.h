@@ -31,4 +31,8 @@
  */
 - (void)viewWillAppearInPopover:(UIPopoverController*)popoverController;
 
+// Sent when the popover is about to be dismissed. Returning NO will stop the popover from being
+// dismissed.
+- (BOOL)shouldDismissPopover:(UIPopoverController*)popoverController;
+
 @end

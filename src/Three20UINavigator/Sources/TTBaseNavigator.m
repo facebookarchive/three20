@@ -1056,6 +1056,20 @@ __attribute__((weak_import));
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+  if (popoverController == [TTBaseNavigator popoverController]) {
+    if ([[[TTBaseNavigator popoverController] contentViewController]
+         respondsToSelector:@selector(shouldDismissPopover:)]) {
+      return [(id)[[TTBaseNavigator popoverController] contentViewController]
+              shouldDismissPopover:popoverController];
+    }
+  }
+
+  return YES;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
   // If we're getting this notification but the popover controller differs, it means at least
   // one of the following:
