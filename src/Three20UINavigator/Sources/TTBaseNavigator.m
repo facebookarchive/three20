@@ -393,12 +393,10 @@ __attribute__((weak_import));
   // We only allow one popover to be /knowingly/ displayed at a time.
   // Knowingly, in the sense that if you create a popover controller outside of the
   // TTNavigator - a totally legitimate thing to do - the navigator in its current design
-  // has no idea that you did so.
+  // has no idea that you did so. To let the navigator that you did this, please kindly set
+  // the navigator by calling [TTBaseNavigator setPopoverController:].
 
   if (nil != [TTBaseNavigator popoverController] && !isModal) {
-    // TODO (jverkoey Dec. 15, 2010): Consider using some form of global notification that we
-    // want to hide /all/ popovers (including ones not owned by Three20) if something like this
-    // doesn't already exist.
     [TTBaseNavigator dismissPopoverAnimated:animated];
 
     // Don't show the new popover; tapping anywhere else on the screen should hide the previous
