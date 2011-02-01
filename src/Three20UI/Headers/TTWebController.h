@@ -36,7 +36,8 @@
   // Pad controls
   UITextField*      _addressText;
 
-  UIView*           _toolbar;
+  UIView*           _bottomView;
+  UIToolbar*        _toolbar;
 
   NSURL*            _loadingURL;
 

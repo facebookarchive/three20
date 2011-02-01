@@ -43,7 +43,7 @@
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTGlobalCoreLocale.h"
 
-static const CGFloat kAddressBarButtonsWidth = 190;
+static const CGFloat kAddressBarButtonsWidth = 240;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,10 +154,10 @@ static const CGFloat kAddressBarButtonsWidth = 190;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  _toolbar.height = TTToolbarHeight();
-  _webView.height = self.view.height - _toolbar.height;
-  _toolbar.top = self.view.height - _toolbar.height;
-  _addressText.width = _toolbar.width - kAddressBarButtonsWidth;
+  _bottomView.height = TTToolbarHeight();
+  _webView.height = self.view.height - _bottomView.height;
+  _bottomView.top = self.view.height - _bottomView.height;
+  _addressText.width = _bottomView.width - kAddressBarButtonsWidth;
 }
 
 
@@ -168,7 +168,7 @@ static const CGFloat kAddressBarButtonsWidth = 190;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView*)createPhoneToolbar {
+- (UIView*)createPhoneBottomView {
   UIActivityIndicatorView* spinner =
   [[[UIActivityIndicatorView alloc]
     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite]
@@ -229,12 +229,13 @@ static const CGFloat kAddressBarButtonsWidth = 190;
                    space,
                    _actionButton,
                    nil];
+  _toolbar = [toolbar retain];
   return toolbar;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIView*)createPadToolbar {
+- (UIView*)createPadBottomView {
   CGRect toolbarFrame = CGRectMake(0, self.view.height - TTToolbarHeight(),
                                    self.view.width, TTToolbarHeight());
 
@@ -254,6 +255,17 @@ static const CGFloat kAddressBarButtonsWidth = 190;
                                    style:UIBarButtonItemStylePlain
                                   target:self
                                   action:@selector(forwardAction)];
+
+  _refreshButton =
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh
+                                                target: self
+                                                action: @selector(refreshAction)];
+  _refreshButton.tag = 3;
+  _stopButton =
+  [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemStop
+                                                target: self
+                                                action: @selector(stopAction)];
+  _stopButton.tag = 3;
 
   _addressText = [[UITextField alloc] initWithFrame:CGRectZero];
   _addressText.borderStyle = UITextBorderStyleRoundedRect;
@@ -283,6 +295,8 @@ static const CGFloat kAddressBarButtonsWidth = 190;
                          fixedWidth,
                          _forwardButton,
                          fixedWidth,
+                         _refreshButton,
+                         fixedWidth,
                          _actionButton,
                          fixedWidth,
                          [[[UIBarButtonItem alloc] initWithCustomView:_addressText] autorelease],
@@ -293,6 +307,8 @@ static const CGFloat kAddressBarButtonsWidth = 190;
   buttonToolbar.height = toolbarView.height;
 
   [toolbarView addSubview:buttonToolbar];
+
+  _toolbar = [buttonToolbar retain];
 
   return toolbarView;
 }
@@ -310,13 +326,13 @@ static const CGFloat kAddressBarButtonsWidth = 190;
   [self.view addSubview:_webView];
 
   if (TTIsPad()) {
-    _toolbar = [self createPadToolbar];
+    _bottomView = [self createPadBottomView];
 
   } else {
-    _toolbar = [self createPhoneToolbar];
+    _bottomView = [self createPhoneBottomView];
   }
 
-  [self.view addSubview:_toolbar];
+  [self.view addSubview:_bottomView];
 }
 
 
@@ -328,6 +344,7 @@ static const CGFloat kAddressBarButtonsWidth = 190;
 
   TT_RELEASE_SAFELY(_webView);
   TT_RELEASE_SAFELY(_toolbar);
+  TT_RELEASE_SAFELY(_bottomView);
   TT_RELEASE_SAFELY(_backButton);
   TT_RELEASE_SAFELY(_forwardButton);
   TT_RELEASE_SAFELY(_refreshButton);
@@ -371,7 +388,7 @@ static const CGFloat kAddressBarButtonsWidth = 190;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView*)rotatingFooterView {
-  return _toolbar;
+  return _bottomView;
 }
 
 
