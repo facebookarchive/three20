@@ -119,6 +119,7 @@ UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
 
   if ([controller isKindOfClass:[TTPopupViewController class]]) {
     TTPopupViewController* popupViewController = (TTPopupViewController*)controller;
+    parentController.popupViewController = popupViewController;
     [self presentPopupController: popupViewController
                 parentController: parentController
                           action: action];
