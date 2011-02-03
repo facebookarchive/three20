@@ -43,6 +43,7 @@
 
 static TTBaseNavigator* gNavigator = nil;
 static UIPopoverController* gPopoverController = nil;
+static TTURLAction*         gPopoverAction = nil;
 
 static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
@@ -123,6 +124,13 @@ __attribute__((weak_import));
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)setGlobalNavigator:(TTBaseNavigator*)navigator {
   if (gNavigator != navigator) {
+    [[NSNotificationCenter defaultCenter] removeObserver: gNavigator
+                                                    name: UIDeviceOrientationDidChangeNotification
+                                                  object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: navigator
+                                             selector: @selector(orientationChanged:)
+                                                 name: UIDeviceOrientationDidChangeNotification
+                                               object: nil];
     [gNavigator release];
     gNavigator = [navigator retain];
   }
@@ -188,6 +196,48 @@ __attribute__((weak_import));
   // popoverControllerDidDismissPopover: is not called when we programmatically dismiss a popover,
   // so we must be sure to release the popover ourselves.
   TT_RELEASE_SAFELY(gPopoverController);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)presentPopoverController:(UIPopoverController*)controller fromAction:(TTURLAction*)action {
+  // TODO (jverkoey Dec. 15, 2010): Debatable what order of priority these should be in.
+  // Perhaps we should simply TTDASSERT that only one or the other is provided?
+  if (nil != action.sourceButton) {
+    [controller presentPopoverFromBarButtonItem: action.sourceButton
+                       permittedArrowDirections: UIPopoverArrowDirectionAny
+                                       animated: NO];
+
+  } else {
+    CGRect sourceRect = action.sourceRect;
+    if (CGRectIsEmpty(action.sourceRect)) {
+      sourceRect = action.sourceView.frame;
+    }
+    [controller presentPopoverFromRect: sourceRect
+                                inView: action.sourceView.superview
+              permittedArrowDirections: UIPopoverArrowDirectionAny
+                              animated: NO];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)updatePopoverForNewOrientation {
+  [self presentPopoverController: [TTBaseNavigator popoverController]
+                      fromAction: gPopoverAction];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)orientationChanged:(NSNotification*)notification {
+  if (nil != [TTBaseNavigator popoverController]) {
+    // We need to update the popover orientation after this run loop has finished so that
+    // we give the iPad time to change its orientation - and subsequently the location
+    // of the source view or button.
+    [self performSelector: @selector(updatePopoverForNewOrientation)
+               withObject: nil
+               afterDelay: 0];
+  }
 }
 
 
@@ -360,14 +410,14 @@ __attribute__((weak_import));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)presentPopoverController: (UIViewController*)controller
-                    sourceButton: (UIBarButtonItem*)sourceButton
-                      sourceView: (UIView*)sourceView
-                      sourceRect: (CGRect)sourceRect
-                        animated: (BOOL)animated
-                         isModal: (BOOL)isModal {
-  TTDASSERT((isModal && nil != [TTBaseNavigator popoverController])
-            || nil != sourceButton || nil != sourceView);
+                          action: (TTURLAction*)action
+                            mode: (TTNavigationMode)mode {
+  BOOL isModal = (mode == TTNavigationModeModal);
 
+  TTDASSERT((isModal && nil != [TTBaseNavigator popoverController])
+            || nil != action.sourceButton || nil != action.sourceView);
+
+  // Note for the above assertion:
   // When using popover controllers you need to provide either a source button or a
   // source view + source rect in the TTURLAction. We don't know what to do without it here,
   // so we're just going to bail out. Come back when you're ready.
@@ -385,7 +435,8 @@ __attribute__((weak_import));
   // objects and implement -tableView:didSelectRowAtIndexPath:.
   // You'll then implement the -createDelegate method in your table view controller and return
   // an autoreleased object of the delegate.
-  if (nil == sourceButton && nil == sourceView
+
+  if (nil == action.sourceButton && nil == action.sourceView
       && (!isModal || nil == [TTBaseNavigator popoverController])) {
     return;
   }
@@ -396,8 +447,8 @@ __attribute__((weak_import));
   // has no idea that you did so. To let the navigator that you did this, please kindly set
   // the navigator by calling [TTBaseNavigator setPopoverController:].
 
-  if (nil != [TTBaseNavigator popoverController] && !isModal) {
-    [TTBaseNavigator dismissPopoverAnimated:animated];
+  if (nil != [TTBaseNavigator popoverController] && !action.transition) {
+    [TTBaseNavigator dismissPopoverAnimated:NO];
 
     // Don't show the new popover; tapping anywhere else on the screen should hide the previous
     // popover.
@@ -422,13 +473,18 @@ __attribute__((weak_import));
   if (nil != [TTBaseNavigator popoverController] && isModal) {
     // Present the content controller on this popover and bail out immediately.
     contentController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [[[TTBaseNavigator popoverController]
-      contentViewController] presentModalViewController: contentController animated: animated];
+    [[TTBaseNavigator popoverController].contentViewController
+     presentModalViewController:contentController
+     animated:action.animated];
     return;
   }
 
+  [TTBaseNavigator dismissPopoverAnimated:action.animated];
+
   [TTBaseNavigator setPopoverController:[[UIPopoverController alloc]
                                          initWithContentViewController:contentController]];
+  TT_RELEASE_SAFELY(gPopoverAction);
+  gPopoverAction = [action retain];
 
   // We want to receive notifications when this popover is dismissed so that we can properly
   // release it.
@@ -446,19 +502,7 @@ __attribute__((weak_import));
     postNotificationName: TTBaseNavigatorWillShowPopoverNotification
                   object: nil];
 
-  // TODO (jverkoey Dec. 15, 2010): Debatable what order of priority these should be in.
-  // Perhaps we should simply TTDASSERT that only one or the other is provided?
-  if (nil != sourceButton) {
-    [[TTBaseNavigator popoverController] presentPopoverFromBarButtonItem: sourceButton
-                                            permittedArrowDirections: UIPopoverArrowDirectionAny
-                                                            animated: animated];
-
-  } else {
-    [[TTBaseNavigator popoverController] presentPopoverFromRect: sourceRect
-                                                     inView: sourceView
-                                   permittedArrowDirections: UIPopoverArrowDirectionAny
-                                                   animated: animated];
-  }
+  [self presentPopoverController:[TTBaseNavigator popoverController] fromAction:action];
 }
 
 
@@ -1108,11 +1152,8 @@ __attribute__((weak_import));
   if (nil != action.sourceButton
       || nil != action.sourceView) {
     [self presentPopoverController: controller
-                      sourceButton: action.sourceButton
-                        sourceView: action.sourceView
-                        sourceRect: action.sourceRect
-                          animated: action.animated
-                           isModal: (mode == TTNavigationModeModal)];
+                            action: action
+                              mode: mode];
 
   } else if (mode == TTNavigationModeModal) {
     [self presentModalController: controller
