@@ -39,6 +39,8 @@ const CGFloat ttkDefaultTransitionDuration      = 0.3;
 const CGFloat ttkDefaultFastTransitionDuration  = 0.2;
 const CGFloat ttkDefaultFlipTransitionDuration  = 0.7;
 
+const UIStatusBarStyle TTStatusBarStylePopover = 3;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 float TTOSVersion() {
