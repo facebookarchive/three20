@@ -447,7 +447,7 @@ __attribute__((weak_import));
   // has no idea that you did so. To let the navigator that you did this, please kindly set
   // the navigator by calling [TTBaseNavigator setPopoverController:].
 
-  if (nil != [TTBaseNavigator popoverController] && !action.transition) {
+  if (nil != [TTBaseNavigator popoverController] && !isModal) {
     [TTBaseNavigator dismissPopoverAnimated:NO];
 
     // Don't show the new popover; tapping anywhere else on the screen should hide the previous
