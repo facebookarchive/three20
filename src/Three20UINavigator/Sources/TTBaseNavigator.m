@@ -495,7 +495,7 @@ __attribute__((weak_import));
   // in fact, crash if you try otherwise).
   // Target popover controllers are a special case where we assume that the popover has a
   // navigation controller within it that we can push the controller onto.
-  if (nil != action.targetPopoverController
+  if ((nil != action.targetPopoverController && !isModal)
       || [controller canContainControllers]
       || [controller isKindOfClass:[UIImagePickerController class]]) {
     contentController = controller;
