@@ -41,6 +41,11 @@
   UIView*       _sourceView;
   UIBarButtonItem* _sourceButton;
 
+  // TODO: Is it beneficial to provide a UIViewController here instead?
+  // When provided, will force the navigator to push this action onto the popover controller's
+  // stack instead of the navigator's current view.
+  UIPopoverController* _targetPopoverController;
+
   UIViewAnimationTransition _transition;
 }
 
@@ -53,6 +58,7 @@
 @property (nonatomic, assign) CGRect        sourceRect;
 @property (nonatomic, retain) UIView*       sourceView;
 @property (nonatomic, retain) UIBarButtonItem* sourceButton;
+@property (nonatomic, retain) UIPopoverController* targetPopoverController;
 @property (nonatomic, assign) UIViewAnimationTransition transition;
 
 /**
@@ -113,6 +119,11 @@
  * @default nil
  */
 - (TTURLAction*)applySourceButton:(UIBarButtonItem*)sourceButton;
+
+/**
+ * @default nil
+ */
+- (TTURLAction*)applyTargetPopoverController:(UIPopoverController*)targetPopoverController;
 
 /**
  * @default UIViewAnimationTransitionNone

@@ -36,14 +36,13 @@
 @synthesize sourceView    = _sourceView;
 @synthesize sourceButton  = _sourceButton;
 @synthesize transition    = _transition;
+@synthesize targetPopoverController = _targetPopoverController;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURLPath:(NSString*)urlPath {
   if (self = [super init]) {
     self.urlPath = urlPath;
-    self.animated = NO;
-    self.withDelay = NO;
     self.transition = UIViewAnimationTransitionNone;
   }
 
@@ -65,6 +64,7 @@
   TT_RELEASE_SAFELY(_state);
   TT_RELEASE_SAFELY(_sourceView);
   TT_RELEASE_SAFELY(_sourceButton);
+  TT_RELEASE_SAFELY(_targetPopoverController);
 
   [super dealloc];
 }
@@ -164,6 +164,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)applySourceButton:(UIBarButtonItem*)sourceButton {
   self.sourceButton = sourceButton;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applyTargetPopoverController:(UIPopoverController*)targetPopoverController {
+  self.targetPopoverController = targetPopoverController;
   return self;
 }
 

@@ -200,6 +200,35 @@ __attribute__((weak_import));
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIPopoverController*)popoverControllerForView:(UIView*)view {
+  if (nil == [self popoverController] || ![view isKindOfClass:[UIView class]]) {
+    // Bail out early, there's no known popover or it's not a view.
+    return nil;
+  }
+
+  UIViewController* controller = nil;      // The iterator.
+  UIViewController* childController = nil; // The last iterated controller.
+
+  for (controller = view.viewController;
+       nil != controller;
+       controller = controller.parentViewController) {
+    if (controller == gPopoverController.contentViewController) {
+      break;
+    }
+
+    childController = controller;
+  }
+
+  if (nil != controller) {
+    return [self popoverController];
+
+  } else {
+    return nil;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)presentPopoverController:(UIPopoverController*)controller fromAction:(TTURLAction*)action {
   // TODO (jverkoey Dec. 15, 2010): Debatable what order of priority these should be in.
   // Perhaps we should simply TTDASSERT that only one or the other is provided?
@@ -415,7 +444,8 @@ __attribute__((weak_import));
   BOOL isModal = (mode == TTNavigationModeModal);
 
   TTDASSERT((isModal && nil != [TTBaseNavigator popoverController])
-            || nil != action.sourceButton || nil != action.sourceView);
+            || nil != action.sourceButton || nil != action.sourceView
+            || nil != action.targetPopoverController);
 
   // Note for the above assertion:
   // When using popover controllers you need to provide either a source button or a
@@ -436,7 +466,9 @@ __attribute__((weak_import));
   // You'll then implement the -createDelegate method in your table view controller and return
   // an autoreleased object of the delegate.
 
-  if (nil == action.sourceButton && nil == action.sourceView
+  if (nil == action.sourceButton
+      && nil == action.sourceView
+      && nil == action.targetPopoverController
       && (!isModal || nil == [TTBaseNavigator popoverController])) {
     return;
   }
@@ -447,7 +479,8 @@ __attribute__((weak_import));
   // has no idea that you did so. To let the navigator that you did this, please kindly set
   // the navigator by calling [TTBaseNavigator setPopoverController:].
 
-  if (nil != [TTBaseNavigator popoverController] && !isModal) {
+  if (nil != [TTBaseNavigator popoverController] && !isModal
+      && nil == action.targetPopoverController) {
     [TTBaseNavigator dismissPopoverAnimated:NO];
 
     // Don't show the new popover; tapping anywhere else on the screen should hide the previous
@@ -460,7 +493,10 @@ __attribute__((weak_import));
   // We place the given controller within a navigation controller, unless it's a container
   // controller or an image picker controller (which hates being in a nav controller and will,
   // in fact, crash if you try otherwise).
-  if ([controller canContainControllers]
+  // Target popover controllers are a special case where we assume that the popover has a
+  // navigation controller within it that we can push the controller onto.
+  if (nil != action.targetPopoverController
+      || [controller canContainControllers]
       || [controller isKindOfClass:[UIImagePickerController class]]) {
     contentController = controller;
 
@@ -477,6 +513,29 @@ __attribute__((weak_import));
      presentModalViewController:contentController
      animated:action.animated];
     return;
+  }
+
+  if (nil != action.targetPopoverController) {
+    id popoverContentController = [action.targetPopoverController
+                                                  contentViewController];
+    if ([popoverContentController isKindOfClass:[UINavigationController class]]) {
+      UINavigationController* navController = popoverContentController;
+
+      // Inform the controller that it is being displayed within a popover controller.
+      if ([controller conformsToProtocol:@protocol(TTNavigatorPopoverProtocol)]) {
+        [(id<TTNavigatorPopoverProtocol>)controller
+         viewWillAppearInPopover:action.targetPopoverController];
+      }
+
+      [navController pushViewController: contentController
+                               animated: action.animated];
+      return;
+
+    } else {
+      // This is an unhandled type of controller.
+      TTDASSERT(NO);
+      return;
+    }
   }
 
   [TTBaseNavigator dismissPopoverAnimated:action.animated];
@@ -1150,7 +1209,8 @@ __attribute__((weak_import));
                             action: (TTURLAction*)action {
 
   if (nil != action.sourceButton
-      || nil != action.sourceView) {
+      || nil != action.sourceView
+      || nil != action.targetPopoverController) {
     [self presentPopoverController: controller
                             action: action
                               mode: mode];

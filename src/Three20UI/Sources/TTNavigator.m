@@ -50,8 +50,9 @@ UIViewController* TTOpenURL(NSString* URL) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
   return [[TTBaseNavigator navigatorForView:view] openURLAction:
-          [[TTURLAction actionWithURLPath:URL]
-           applyAnimated:YES]];
+          [[[TTURLAction actionWithURLPath:URL]
+            applyAnimated:YES]
+           applyTargetPopoverController:[TTBaseNavigator popoverControllerForView:view]]];
 }
 
 

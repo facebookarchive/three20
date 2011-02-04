@@ -176,6 +176,13 @@ extern NSString* TTBaseNavigatorWillShowPopoverNotification;
  */
 + (TTBaseNavigator*)navigatorForView:(UIView*)view;
 
+/**
+ * Return the popover controller containing this view, if it is within one. Nil otherwise.
+ *
+ * Useful for routing navigation from Three20 elements through a popover controller.
+ */
++ (UIPopoverController*)popoverControllerForView:(UIView*)view;
+
 + (TTBaseNavigator*)globalNavigator;
 + (void)setGlobalNavigator:(TTBaseNavigator*)navigator;
 
