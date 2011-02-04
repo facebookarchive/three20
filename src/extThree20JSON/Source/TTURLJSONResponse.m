@@ -55,6 +55,10 @@
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
                data:(id)data {
   TTDINFO(@"response headers: %@", [response allHeaderFields]);
+
+  // Return if no content  
+  if ([response statusCode] == 204) return nil;
+    
   // Check the response content-type, don't attempt to parse if its not application/json, utf8 encoded
   if ([[[response allHeaderFields] objectForKey:@"Content-Type"] isEqualToString:@"application/json; charset=utf-8"] == NO) {
 #ifdef DEBUG
