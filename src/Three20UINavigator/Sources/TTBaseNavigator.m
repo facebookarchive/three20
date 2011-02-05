@@ -207,7 +207,6 @@ __attribute__((weak_import));
   }
 
   UIViewController* controller = nil;      // The iterator.
-  UIViewController* childController = nil; // The last iterated controller.
 
   for (controller = view.viewController;
        nil != controller;
@@ -215,8 +214,6 @@ __attribute__((weak_import));
     if (controller == gPopoverController.contentViewController) {
       break;
     }
-
-    childController = controller;
   }
 
   if (nil != controller) {
