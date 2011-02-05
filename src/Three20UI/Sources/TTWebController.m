@@ -40,6 +40,7 @@
 #import "Three20Network/TTURLCache.h"
 
 // Core
+#import "Three20Core/TTDebug.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTGlobalCoreLocale.h"
 
@@ -68,6 +69,10 @@ static const CGFloat kAddressBarButtonsWidth = 240;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
   if (self = [self initWithNibName:nil bundle:nil]) {
+    // You're doing something wrong if this fails. Check your call stack for where
+    // you're calling openURLAction or TTOpenURL.
+    TTDASSERT(nil == query || [query isKindOfClass:[NSDictionary class]]);
+
     NSURLRequest* request = [query objectForKey:@"request"];
 
     if (nil != request) {
