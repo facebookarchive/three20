@@ -165,7 +165,7 @@ static const CGFloat kInfiniteScrollThreshold = 0.5;
     scrollRatio = MAX(MIN(scrollRatio, 1),0);
     BOOL shouldLoad;
     if ([_controller respondsToSelector:@selector(shouldLoadAtScrollRatio:)]) {
-      shouldLoad = [(<TTTableNetworkEnabledTableViewController>)_controller shouldLoadAtScrollRatio:scrollRatio];
+      shouldLoad = [(id <TTTableNetworkEnabledTableViewController>)_controller shouldLoadAtScrollRatio:scrollRatio];
     } else {
       shouldLoad = scrollRatio > kInfiniteScrollThreshold;
     }

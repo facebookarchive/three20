@@ -1011,7 +1011,8 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tween:(NSTimeInterval)t b:(NSTimeInterval)b c:(NSTimeInterval)c d:(NSTimeInterval)d {
-  return c*((t=t/d-1)*t*t + 1) + b;
+  t = t/d-1;
+  return c*(t*t*t + 1) + b;
 }
 
 
@@ -1335,8 +1336,8 @@ static const CGFloat kFrameDuration = 1.0/40.0;
     }
 
     // Declare common.
-    UIEdgeInsets pageEdges;
-    UIEdgeInsets newEdges;
+    UIEdgeInsets pageEdges = UIEdgeInsetsZero;
+    UIEdgeInsets newEdges = UIEdgeInsetsZero;
 
     UIEdgeInsets edges = [self squareTouchEdges:_touchEdges];
     CGFloat left = _pageStartEdges.left + (edges.left - _touchStartEdges.left);
