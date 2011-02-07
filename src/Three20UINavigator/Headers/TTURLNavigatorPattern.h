@@ -27,7 +27,7 @@
   NSInteger         _argumentCount;
 }
 
-@property (nonatomic)           Class             targetClass;
+@property (nonatomic, assign)   Class             targetClass;
 @property (nonatomic, assign)   id                targetObject;
 @property (nonatomic, readonly) TTNavigationMode  navigationMode;
 @property (nonatomic, copy)     NSString*         parentURL;

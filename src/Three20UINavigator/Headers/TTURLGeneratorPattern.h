@@ -21,7 +21,7 @@
   Class _targetClass;
 }
 
-@property (nonatomic) Class targetClass;
+@property (nonatomic, assign) Class targetClass;
 
 - (id)initWithTargetClass:(Class)targetClass;
 
