@@ -31,6 +31,7 @@
 #import "Three20UINavigator/private/TTBaseNavigatorInternal.h"
 
 // UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 #import "Three20UICommon/UIView+TTUICommon.h"
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
@@ -1205,9 +1206,9 @@ __attribute__((weak_import));
                               mode: (TTNavigationMode)mode
                             action: (TTURLAction*)action {
 
-  if (nil != action.sourceButton
-      || nil != action.sourceView
-      || nil != action.targetPopoverController) {
+  if (TTIsPad() && (nil != action.sourceButton
+                    || nil != action.sourceView
+                    || nil != action.targetPopoverController)) {
     [self presentPopoverController: controller
                             action: action
                               mode: mode];
