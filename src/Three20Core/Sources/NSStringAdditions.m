@@ -108,13 +108,20 @@
   return [NSDictionary dictionaryWithDictionary:pairs];
 }
 
+- (NSString*)stringByEncodingAsURL
+{
+    CFStringRef str = CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef) self, NULL,
+                        CFSTR("=,!$&'()*+;@?\n\"<>#\t :/"), kCFStringEncodingUTF8);
+    return [((NSString *) str) autorelease];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query {
   NSMutableArray* pairs = [NSMutableArray array];
   for (NSString* key in [query keyEnumerator]) {
     NSString* value = [query objectForKey:key];
-    value = [value stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
-    value = [value stringByReplacingOccurrencesOfString:@"=" withString:@"%3D"];
+    key = [key stringByEncodingAsURL];
+    value = [value stringByEncodingAsURL];
     NSString* pair = [NSString stringWithFormat:@"%@=%@", key, value];
     [pairs addObject:pair];
   }

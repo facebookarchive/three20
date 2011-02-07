@@ -46,7 +46,16 @@
 - (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
 
 /**
- * Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.
+ * Returns a string will all non-ASCII characters, reserved characters for URIs (;/?:@&=+$,),
+ * and a few other trouble characters (!'()*\n\"<># \t) replaced with escape sequences using
+ * percent encoding. Strings returned by this method should be safe to be used as any URI
+ * component, including query parameters.
+ */
+- (NSString*)stringByEncodingAsURL;
+
+/**
+ * Parses a URL, adds query parameters to its query, and re-encodes it as a new URL. Both
+ * keys and values in the query dictionary are encoded using -stringByEncodingAsURL.
  */
 - (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query;
 
