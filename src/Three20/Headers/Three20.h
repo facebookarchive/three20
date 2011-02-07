@@ -16,7 +16,7 @@
 
 /*! \mainpage Three20 API Documentation
  *
- * Generated from Three20 Cut <a href="http://three20.info/roadmap/v1.0a2">v1.0a2</a>.
+ * Generated from Three20 Release <a href="http://three20.info/roadmap/v1.0.3">v1.0.3</a>.
  *
  */
 
