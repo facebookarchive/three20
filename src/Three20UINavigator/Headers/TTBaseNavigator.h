@@ -197,6 +197,16 @@ extern NSString* TTBaseNavigatorWillShowPopoverNotification;
 + (void)setPopoverController:(UIPopoverController*)popoverController;
 
 /**
+ * The action used to open the popover.
+ */
++ (TTURLAction*)popoverAction;
+
+/**
+ * Set the action used to open the active popover.
+ */
++ (void)setPopoverAction:(TTURLAction*)action;
+
+/**
  * Dismiss this active popover controller.
  */
 + (void)dismissPopoverAnimated:(BOOL)isAnimated;

@@ -191,6 +191,25 @@ __attribute__((weak_import));
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (TTURLAction*)popoverAction {
+  return gPopoverAction;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)setPopoverAction:(TTURLAction*)action {
+  if (gPopoverAction != action) {
+    [gPopoverAction release];
+    gPopoverAction = [action retain];
+
+    // We should never be setting the popover action without an active popover.
+    TTDASSERT(nil == gPopoverAction
+              || nil != gPopoverController);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)dismissPopoverAnimated:(BOOL)isAnimated {
   [[self popoverController] dismissPopoverAnimated:isAnimated];
 
@@ -228,6 +247,11 @@ __attribute__((weak_import));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)presentPopoverController:(UIPopoverController*)controller fromAction:(TTURLAction*)action {
+  TTDASSERT(nil != action);
+  if (nil == action) {
+    return;
+  }
+
   // TODO (jverkoey Dec. 15, 2010): Debatable what order of priority these should be in.
   // Perhaps we should simply TTDASSERT that only one or the other is provided?
   if (nil != action.sourceButton) {
@@ -250,8 +274,10 @@ __attribute__((weak_import));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updatePopoverForNewOrientation {
-  [self presentPopoverController: [TTBaseNavigator popoverController]
-                      fromAction: gPopoverAction];
+  if (nil != [TTBaseNavigator popoverController] && nil != [TTBaseNavigator popoverAction]) {
+    [self presentPopoverController: [TTBaseNavigator popoverController]
+                        fromAction: [TTBaseNavigator popoverAction]];
+  }
 }
 
 
@@ -540,8 +566,7 @@ __attribute__((weak_import));
 
   [TTBaseNavigator setPopoverController:[[UIPopoverController alloc]
                                          initWithContentViewController:contentController]];
-  TT_RELEASE_SAFELY(gPopoverAction);
-  gPopoverAction = [action retain];
+  [TTBaseNavigator setPopoverAction:action];
 
   // We want to receive notifications when this popover is dismissed so that we can properly
   // release it.
