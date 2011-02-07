@@ -114,4 +114,6 @@
  */
 - (void)showActivity:(NSString*)title;
 
+- (void)updateChrome;
+
 @end
