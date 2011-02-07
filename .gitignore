@@ -5,6 +5,8 @@ Products
 *.pbxuser
 *.perspectivev3
 *.mode1v3
+*.xcworkspace
+xcuserdata
 .DS_Store
 src/Three20/*.h
 src/Three20Core/*.h
