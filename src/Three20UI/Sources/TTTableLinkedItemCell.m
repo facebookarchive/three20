@@ -83,7 +83,9 @@
         self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 
       } else if (navigationMode == TTNavigationModeCreate ||
-                 navigationMode == TTNavigationModeShare) {
+                 navigationMode == TTNavigationModeShare ||
+				 navigationMode == TTNavigationModeModal // JE: Added disclosure indicator for Modals.
+				 ) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
       } else {
