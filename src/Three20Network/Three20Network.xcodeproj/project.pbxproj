@@ -82,6 +82,8 @@
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE739CD1184BAF600A35176 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */; };
 		6EF96405118EFCF0003902E7 /* TTURLRequestQueueInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF96404118EFCF0003902E7 /* TTURLRequestQueueInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E1F076A1130521F7007CA6F1 /* NetworkRequestTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */; };
+		E1F076A2130521F7007CA6F1 /* NetworkRequestTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +205,7 @@
 		6EE7366611849C5800A35176 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6EF96404118EFCF0003902E7 /* TTURLRequestQueueInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestQueueInternal.h; path = Headers/TTURLRequestQueueInternal.h; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20Network.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequestTimeoutTests.m; sourceTree = "<group>"; };
 		EB9E6C6210B6A8F800DE563C /* NetworkUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -283,6 +286,7 @@
 				662D819B126304DE005851C2 /* Xcode 3.2.4 Workaround */,
 				6EE7363B11849AA100A35176 /* NetworkModelTests.m */,
 				66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */,
+				E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -739,6 +743,7 @@
 				662D81A7126304EB005851C2 /* MockModelDelegate.m in Sources */,
 				662D81A8126304EB005851C2 /* NetworkModelTests.m in Sources */,
 				66F955B1126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */,
+				E1F076A2130521F7007CA6F1 /* NetworkRequestTimeoutTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,6 +791,7 @@
 				6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */,
 				662D819D126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 				66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */,
+				E1F076A1130521F7007CA6F1 /* NetworkRequestTimeoutTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
