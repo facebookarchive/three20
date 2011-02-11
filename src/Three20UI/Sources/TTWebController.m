@@ -442,10 +442,12 @@ static const CGFloat kAddressBarButtonsWidth = 240;
     return NO;
   }
 
-  _addressText.text = [request.URL absoluteString];
+  if (UIWebViewNavigationTypeLinkClicked == navigationType) {
+    _addressText.text = [request.URL absoluteString];
+    [_loadingURL release];
+    _loadingURL = [request.URL retain];
+  }
 
-  [_loadingURL release];
-  _loadingURL = [request.URL retain];
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
   return YES;
