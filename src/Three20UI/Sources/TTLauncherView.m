@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -64,6 +64,7 @@ static const NSInteger kDefaultColumnCount = 3;
 @implementation TTLauncherView
 
 @synthesize columnCount = _columnCount;
+@synthesize pager       = _pager;
 @synthesize prompt      = _prompt;
 @synthesize editing     = _editing;
 @synthesize delegate    = _delegate;

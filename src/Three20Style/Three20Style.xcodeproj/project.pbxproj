@@ -8,135 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		662D82C612639CE4005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 662D82C412639CDE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */; };
-		66846BF512639EE5001D2CF9 /* TTBevelBorderStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737031184A38F00A35176 /* TTBevelBorderStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BF612639EE5001D2CF9 /* TTBlendStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737041184A38F00A35176 /* TTBlendStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BF712639EE5001D2CF9 /* TTBoxStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737051184A38F00A35176 /* TTBoxStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BF812639EE5001D2CF9 /* TTContentStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737061184A38F00A35176 /* TTContentStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BF912639EE5001D2CF9 /* TTDefaultStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737071184A38F00A35176 /* TTDefaultStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BFA12639EE5001D2CF9 /* TTFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737081184A38F00A35176 /* TTFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BFB12639EE5001D2CF9 /* TTFourBorderStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737091184A38F00A35176 /* TTFourBorderStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BFC12639EE5001D2CF9 /* TTGlobalStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7370A1184A38F00A35176 /* TTGlobalStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BFD12639EE5001D2CF9 /* TTGridLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7370B1184A38F00A35176 /* TTGridLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BFE12639EE5001D2CF9 /* TTHighlightBorderStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7370C1184A38F00A35176 /* TTHighlightBorderStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846BFF12639EE5001D2CF9 /* TTImageStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7370D1184A38F00A35176 /* TTImageStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0012639EE5001D2CF9 /* TTInnerShadowStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7370E1184A38F00A35176 /* TTInnerShadowStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0112639EE5001D2CF9 /* TTInsetStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7370F1184A38F00A35176 /* TTInsetStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0212639EE5001D2CF9 /* TTLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737101184A38F00A35176 /* TTLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0312639EE5001D2CF9 /* TTLinearGradientBorderStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737111184A38F00A35176 /* TTLinearGradientBorderStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0412639EE5001D2CF9 /* TTLinearGradientFillStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737121184A38F00A35176 /* TTLinearGradientFillStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0512639EE5001D2CF9 /* TTMaskStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737131184A38F00A35176 /* TTMaskStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0612639EE5001D2CF9 /* TTPartStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737141184A38F00A35176 /* TTPartStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0712639EE5001D2CF9 /* TTPosition.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737151184A38F00A35176 /* TTPosition.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0812639EE5001D2CF9 /* TTRectangleShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737161184A38F00A35176 /* TTRectangleShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0912639EE5001D2CF9 /* TTReflectiveFillStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737171184A38F00A35176 /* TTReflectiveFillStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0A12639EE5001D2CF9 /* TTRoundedLeftArrowShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737181184A38F00A35176 /* TTRoundedLeftArrowShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0B12639EE5001D2CF9 /* TTRoundedRectangleShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737191184A38F00A35176 /* TTRoundedRectangleShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0C12639EE5001D2CF9 /* TTRoundedRightArrowShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7371A1184A38F00A35176 /* TTRoundedRightArrowShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0D12639EE5001D2CF9 /* TTShadowStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7371B1184A38F00A35176 /* TTShadowStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0E12639EE5001D2CF9 /* TTShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7371C1184A38F00A35176 /* TTShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C0F12639EE5001D2CF9 /* TTShapeInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7371D1184A38F00A35176 /* TTShapeInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66846C1012639EE5001D2CF9 /* TTShapeStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7371E1184A38F00A35176 /* TTShapeStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1112639EE5001D2CF9 /* TTSolidBorderStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7371F1184A38F00A35176 /* TTSolidBorderStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1212639EE5001D2CF9 /* TTSolidFillStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737201184A38F00A35176 /* TTSolidFillStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1312639EE5001D2CF9 /* TTSpeechBubbleShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737211184A38F00A35176 /* TTSpeechBubbleShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1412639EE5001D2CF9 /* TTStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737221184A38F00A35176 /* TTStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1512639EE5001D2CF9 /* TTStyleContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737231184A38F00A35176 /* TTStyleContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1612639EE5001D2CF9 /* TTStyledBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737241184A38F00A35176 /* TTStyledBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1712639EE5001D2CF9 /* TTStyledBoldNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737251184A38F00A35176 /* TTStyledBoldNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1812639EE5001D2CF9 /* TTStyledBoxFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737261184A38F00A35176 /* TTStyledBoxFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1912639EE5001D2CF9 /* TTStyleDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737281184A38F00A35176 /* TTStyleDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1A12639EE5001D2CF9 /* TTStyledElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737291184A38F00A35176 /* TTStyledElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1B12639EE5001D2CF9 /* TTStyledFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7372A1184A38F00A35176 /* TTStyledFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1C12639EE5001D2CF9 /* TTStyledImageFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7372B1184A38F00A35176 /* TTStyledImageFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1D12639EE5001D2CF9 /* TTStyledImageNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7372C1184A38F00A35176 /* TTStyledImageNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1E12639EE5001D2CF9 /* TTStyledInline.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7372D1184A38F00A35176 /* TTStyledInline.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C1F12639EE5001D2CF9 /* TTStyledInlineBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7372E1184A38F00A35176 /* TTStyledInlineBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2012639EE5001D2CF9 /* TTStyledInlineFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7372F1184A38F00A35176 /* TTStyledInlineFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2112639EE5001D2CF9 /* TTStyledItalicNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737301184A38F00A35176 /* TTStyledItalicNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2212639EE5001D2CF9 /* TTStyledLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737311184A38F00A35176 /* TTStyledLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2312639EE5001D2CF9 /* TTStyledLineBreakNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737321184A38F00A35176 /* TTStyledLineBreakNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2412639EE5001D2CF9 /* TTStyledNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737341184A38F00A35176 /* TTStyledNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2512639EE5001D2CF9 /* TTStyledNodeInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737351184A38F00A35176 /* TTStyledNodeInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66846C2612639EE5001D2CF9 /* TTStyledText.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737361184A38F00A35176 /* TTStyledText.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2712639EE5001D2CF9 /* TTStyledTextDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737371184A38F00A35176 /* TTStyledTextDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2812639EE5001D2CF9 /* TTStyledTextFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737381184A38F00A35176 /* TTStyledTextFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2912639EE5001D2CF9 /* TTStyledTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7373A1184A38F00A35176 /* TTStyledTextNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2A12639EE5001D2CF9 /* TTStyledTextParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7373B1184A38F00A35176 /* TTStyledTextParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2B12639EE5001D2CF9 /* TTStyleInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7373E1184A38F00A35176 /* TTStyleInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66846C2C12639EE5001D2CF9 /* TTStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE7373F1184A38F00A35176 /* TTStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2D12639EE5001D2CF9 /* TTTextStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737401184A38F00A35176 /* TTTextStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2E12639EE5001D2CF9 /* UIColorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737411184A38F00A35176 /* UIColorAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C2F12639EE5001D2CF9 /* UIFontAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737421184A38F00A35176 /* UIFontAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C3012639EE5001D2CF9 /* UIImageAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737431184A38F00A35176 /* UIImageAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C3112639EE5001D2CF9 /* Three20Style.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE738C11184AE4A00A35176 /* Three20Style.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C3212639EE5001D2CF9 /* Three20Style+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C3312639EE5001D2CF9 /* TTStyledButtonNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6464021187F5CB00F08CB1 /* TTStyledButtonNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C3412639EE5001D2CF9 /* TTStyledLinkNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6464031187F5CB00F08CB1 /* TTStyledLinkNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C3512639EE5001D2CF9 /* TTDefaultStyleSheet+DragRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E850F0711B0FE200071A4FD /* TTDefaultStyleSheet+DragRefreshHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66846C3812639EE5001D2CF9 /* TTBevelBorderStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737851184A39B00A35176 /* TTBevelBorderStyle.m */; };
-		66846C3912639EE5001D2CF9 /* TTBlendStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737861184A39B00A35176 /* TTBlendStyle.m */; };
-		66846C3A12639EE5001D2CF9 /* TTBoxStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737871184A39B00A35176 /* TTBoxStyle.m */; };
-		66846C3B12639EE5001D2CF9 /* TTContentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737881184A39B00A35176 /* TTContentStyle.m */; };
-		66846C3C12639EE5001D2CF9 /* TTDefaultStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737891184A39B00A35176 /* TTDefaultStyleSheet.m */; };
-		66846C3D12639EE5001D2CF9 /* TTFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7378A1184A39B00A35176 /* TTFlowLayout.m */; };
-		66846C3E12639EE5001D2CF9 /* TTFourBorderStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7378B1184A39B00A35176 /* TTFourBorderStyle.m */; };
-		66846C3F12639EE5001D2CF9 /* TTGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7378C1184A39B00A35176 /* TTGlobalStyle.m */; };
-		66846C4012639EE5001D2CF9 /* TTGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7378D1184A39B00A35176 /* TTGridLayout.m */; };
-		66846C4112639EE5001D2CF9 /* TTHighlightBorderStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7378E1184A39B00A35176 /* TTHighlightBorderStyle.m */; };
-		66846C4212639EE5001D2CF9 /* TTImageStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7378F1184A39B00A35176 /* TTImageStyle.m */; };
-		66846C4312639EE5001D2CF9 /* TTInnerShadowStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737901184A39B00A35176 /* TTInnerShadowStyle.m */; };
-		66846C4412639EE5001D2CF9 /* TTInsetStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737911184A39B00A35176 /* TTInsetStyle.m */; };
-		66846C4512639EE5001D2CF9 /* TTLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737921184A39B00A35176 /* TTLayout.m */; };
-		66846C4612639EE5001D2CF9 /* TTLinearGradientBorderStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737931184A39B00A35176 /* TTLinearGradientBorderStyle.m */; };
-		66846C4712639EE5001D2CF9 /* TTLinearGradientFillStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737941184A39B00A35176 /* TTLinearGradientFillStyle.m */; };
-		66846C4812639EE5001D2CF9 /* TTMaskStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737951184A39B00A35176 /* TTMaskStyle.m */; };
-		66846C4912639EE5001D2CF9 /* TTPartStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737961184A39B00A35176 /* TTPartStyle.m */; };
-		66846C4A12639EE5001D2CF9 /* TTRectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737971184A39B00A35176 /* TTRectangleShape.m */; };
-		66846C4B12639EE5001D2CF9 /* TTReflectiveFillStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737981184A39B00A35176 /* TTReflectiveFillStyle.m */; };
-		66846C4C12639EE5001D2CF9 /* TTRoundedLeftArrowShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737991184A39B00A35176 /* TTRoundedLeftArrowShape.m */; };
-		66846C4D12639EE5001D2CF9 /* TTRoundedRectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7379A1184A39B00A35176 /* TTRoundedRectangleShape.m */; };
-		66846C4E12639EE5001D2CF9 /* TTRoundedRightArrowShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7379B1184A39B00A35176 /* TTRoundedRightArrowShape.m */; };
-		66846C4F12639EE5001D2CF9 /* TTShadowStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7379C1184A39B00A35176 /* TTShadowStyle.m */; };
-		66846C5012639EE5001D2CF9 /* TTShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7379D1184A39B00A35176 /* TTShape.m */; };
-		66846C5112639EE5001D2CF9 /* TTShapeInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7379E1184A39B00A35176 /* TTShapeInternal.m */; };
-		66846C5212639EE5001D2CF9 /* TTShapeStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7379F1184A39B00A35176 /* TTShapeStyle.m */; };
-		66846C5312639EE5001D2CF9 /* TTSolidBorderStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737A01184A39B00A35176 /* TTSolidBorderStyle.m */; };
-		66846C5412639EE5001D2CF9 /* TTSolidFillStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737A11184A39B00A35176 /* TTSolidFillStyle.m */; };
-		66846C5512639EE5001D2CF9 /* TTSpeechBubbleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737A21184A39B00A35176 /* TTSpeechBubbleShape.m */; };
-		66846C5612639EE5001D2CF9 /* TTStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737A31184A39B00A35176 /* TTStyle.m */; };
-		66846C5712639EE5001D2CF9 /* TTStyleContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737A41184A39B00A35176 /* TTStyleContext.m */; };
-		66846C5812639EE5001D2CF9 /* TTStyledBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737A51184A39B00A35176 /* TTStyledBlock.m */; };
-		66846C5912639EE5001D2CF9 /* TTStyledBoldNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737A61184A39B00A35176 /* TTStyledBoldNode.m */; };
-		66846C5A12639EE5001D2CF9 /* TTStyledBoxFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737A71184A39B00A35176 /* TTStyledBoxFrame.m */; };
-		66846C5B12639EE5001D2CF9 /* TTStyledElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737A91184A39B00A35176 /* TTStyledElement.m */; };
-		66846C5C12639EE5001D2CF9 /* TTStyledFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737AA1184A39B00A35176 /* TTStyledFrame.m */; };
-		66846C5D12639EE5001D2CF9 /* TTStyledImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737AB1184A39B00A35176 /* TTStyledImageFrame.m */; };
-		66846C5E12639EE5001D2CF9 /* TTStyledImageNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737AC1184A39B00A35176 /* TTStyledImageNode.m */; };
-		66846C5F12639EE5001D2CF9 /* TTStyledInline.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737AD1184A39B00A35176 /* TTStyledInline.m */; };
-		66846C6012639EE5001D2CF9 /* TTStyledInlineBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737AE1184A39B00A35176 /* TTStyledInlineBlock.m */; };
-		66846C6112639EE5001D2CF9 /* TTStyledInlineFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737AF1184A39B00A35176 /* TTStyledInlineFrame.m */; };
-		66846C6212639EE5001D2CF9 /* TTStyledItalicNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737B01184A39B00A35176 /* TTStyledItalicNode.m */; };
-		66846C6312639EE5001D2CF9 /* TTStyledLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737B11184A39B00A35176 /* TTStyledLayout.m */; };
-		66846C6412639EE5001D2CF9 /* TTStyledLineBreakNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737B21184A39B00A35176 /* TTStyledLineBreakNode.m */; };
-		66846C6512639EE5001D2CF9 /* TTStyledNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737B41184A39B00A35176 /* TTStyledNode.m */; };
-		66846C6612639EE5001D2CF9 /* TTStyledNodeInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737B51184A39B00A35176 /* TTStyledNodeInternal.m */; };
-		66846C6712639EE5001D2CF9 /* TTStyledText.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737B61184A39B00A35176 /* TTStyledText.m */; };
-		66846C6812639EE5001D2CF9 /* TTStyledTextFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737B71184A39B00A35176 /* TTStyledTextFrame.m */; };
-		66846C6912639EE5001D2CF9 /* TTStyledTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737B91184A39B00A35176 /* TTStyledTextNode.m */; };
-		66846C6A12639EE5001D2CF9 /* TTStyledTextParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737BA1184A39B00A35176 /* TTStyledTextParser.m */; };
-		66846C6B12639EE5001D2CF9 /* TTStyleInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737BD1184A39B00A35176 /* TTStyleInternal.m */; };
-		66846C6C12639EE5001D2CF9 /* TTStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737BE1184A39B00A35176 /* TTStyleSheet.m */; };
-		66846C6D12639EE5001D2CF9 /* TTTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737BF1184A39B00A35176 /* TTTextStyle.m */; };
-		66846C6E12639EE5001D2CF9 /* UIColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737C01184A39B00A35176 /* UIColorAdditions.m */; };
-		66846C6F12639EE5001D2CF9 /* UIFontAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737C11184A39B00A35176 /* UIFontAdditions.m */; };
-		66846C7012639EE5001D2CF9 /* UIImageAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE737C21184A39B00A35176 /* UIImageAdditions.m */; };
-		66846C7112639EE5001D2CF9 /* TTStyledButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64640A1187F5EC00F08CB1 /* TTStyledButtonNode.m */; };
-		66846C7212639EE5001D2CF9 /* TTStyledLinkNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64640B1187F5EC00F08CB1 /* TTStyledLinkNode.m */; };
-		66846C8A12639F29001D2CF9 /* StyleAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE739981184B9CE00A35176 /* StyleAdditionTests.m */; };
-		66846C8B12639F29001D2CF9 /* StyleGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE739991184B9CE00A35176 /* StyleGlobalTests.m */; };
-		66846C9F12639F4B001D2CF9 /* libThree20Core-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662D829B12639CA0005851C2 /* libThree20Core-Xcode3.2.2.a */; };
-		66846CA012639F4B001D2CF9 /* libThree20Network-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662D82A712639CA0005851C2 /* libThree20Network-Xcode3.2.2.a */; };
-		66846CA112639F4B001D2CF9 /* libThree20Style-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66846C7812639EE5001D2CF9 /* libThree20Style-Xcode3.2.2.a */; };
 		66C16B6612639E2700A7825A /* TTBevelBorderStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737031184A38F00A35176 /* TTBevelBorderStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66C16B6712639E2700A7825A /* TTBlendStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737041184A38F00A35176 /* TTBlendStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66C16B6812639E2700A7825A /* TTBoxStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE737051184A38F00A35176 /* TTBoxStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -405,26 +276,12 @@
 			remoteGlobalIDString = 6650CAA21262F6E2003FF804;
 			remoteInfo = "Three20Core-Xcode3.2.5";
 		};
-		662D829A12639CA0005851C2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 66C2E0FC1262F748006DF55A;
-			remoteInfo = "Three20Core-Xcode3.2.2";
-		};
 		662D829C12639CA0005851C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 664961641262EE5000C2C80E;
 			remoteInfo = "UnitTests-Xcode3.2.5";
-		};
-		662D829E12639CA0005851C2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 66F9A63C1262ED9F0059C2AE;
-			remoteInfo = "UnitTests-Xcode3.2.2";
 		};
 		662D82A412639CA0005851C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -433,40 +290,12 @@
 			remoteGlobalIDString = 662D81EF12630516005851C2;
 			remoteInfo = "Three20Network-Xcode3.2.5";
 		};
-		662D82A612639CA0005851C2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 662D821612630527005851C2;
-			remoteInfo = "Three20Network-Xcode3.2.2";
-		};
 		662D82A812639CA0005851C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 662D81B2126304EB005851C2;
 			remoteInfo = "UnitTests-Xcode3.2.5";
-		};
-		662D82AA12639CA0005851C2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 662D81C7126304F3005851C2;
-			remoteInfo = "UnitTests-Xcode3.2.2";
-		};
-		66846C7912639F07001D2CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 662D81F012630527005851C2;
-			remoteInfo = "Three20Network-Xcode3.2.2";
-		};
-		66846C7B12639F07001D2CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 66C2E0D11262F748006DF55A;
-			remoteInfo = "Three20Core-Xcode3.2.2";
 		};
 		66846C7D12639F1D001D2CF9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -481,27 +310,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6650CA791262F6E2003FF804;
 			remoteInfo = "Three20Core-Xcode3.2.5";
-		};
-		66846C9812639F38001D2CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66846BED12639EE5001D2CF9;
-			remoteInfo = "Three20Style-Xcode3.2.2";
-		};
-		66846C9A12639F38001D2CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 662D81B5126304F3005851C2;
-			remoteInfo = "UnitTests-Xcode3.2.2";
-		};
-		66846C9C12639F38001D2CF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 66F9A62C1262ED9F0059C2AE;
-			remoteInfo = "UnitTests-Xcode3.2.2";
 		};
 		66C16C2312639E7400A7825A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -592,8 +400,6 @@
 /* Begin PBXFileReference section */
 		662D82C412639CDE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66313A7D1267B4E800C09C9F /* Three20Style_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Style_Prefix.pch; path = Headers/Three20Style_Prefix.pch; sourceTree = "<group>"; };
-		66846C7812639EE5001D2CF9 /* libThree20Style-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Style-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66846C9612639F29001D2CF9 /* StyleUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StyleUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C16BE912639E2700A7825A /* libThree20Style-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20Style-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StyleUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
@@ -733,23 +539,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		66846C7312639EE5001D2CF9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66846C8D12639F29001D2CF9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66846C9F12639F4B001D2CF9 /* libThree20Core-Xcode3.2.2.a in Frameworks */,
-				66846CA012639F4B001D2CF9 /* libThree20Network-Xcode3.2.2.a in Frameworks */,
-				66846CA112639F4B001D2CF9 /* libThree20Style-Xcode3.2.2.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		66C16BE412639E2700A7825A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -792,10 +581,8 @@
 			children = (
 				BEF31F3A0F352DF5000DE5D2 /* libThree20Style.a */,
 				66C16BE912639E2700A7825A /* libThree20Style-Xcode3.2.5.a */,
-				66846C7812639EE5001D2CF9 /* libThree20Style-Xcode3.2.2.a */,
 				EB9E6C6210B6A8F800DE563C /* StyleUnitTests.octest */,
 				66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.5.octest */,
-				66846C9612639F29001D2CF9 /* StyleUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -866,10 +653,8 @@
 			children = (
 				6EE7366C11849C5800A35176 /* libThree20Core.a */,
 				662D829912639CA0005851C2 /* libThree20Core-Xcode3.2.5.a */,
-				662D829B12639CA0005851C2 /* libThree20Core-Xcode3.2.2.a */,
 				6EE7366E11849C5800A35176 /* CoreUnitTests.octest */,
 				662D829D12639CA0005851C2 /* CoreUnitTests-Xcode3.2.5.octest */,
-				662D829F12639CA0005851C2 /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1168,10 +953,8 @@
 			children = (
 				6EE738A31184ADB400A35176 /* libThree20Network.a */,
 				662D82A512639CA0005851C2 /* libThree20Network-Xcode3.2.5.a */,
-				662D82A712639CA0005851C2 /* libThree20Network-Xcode3.2.2.a */,
 				6EE738A51184ADB400A35176 /* NetworkUnitTests.octest */,
 				662D82A912639CA0005851C2 /* NetworkUnitTests-Xcode3.2.5.octest */,
-				662D82AB12639CA0005851C2 /* NetworkUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1179,78 +962,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		66846BF412639EE5001D2CF9 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66846BF512639EE5001D2CF9 /* TTBevelBorderStyle.h in Headers */,
-				66846BF612639EE5001D2CF9 /* TTBlendStyle.h in Headers */,
-				66846BF712639EE5001D2CF9 /* TTBoxStyle.h in Headers */,
-				66846BF812639EE5001D2CF9 /* TTContentStyle.h in Headers */,
-				66846BF912639EE5001D2CF9 /* TTDefaultStyleSheet.h in Headers */,
-				66846BFA12639EE5001D2CF9 /* TTFlowLayout.h in Headers */,
-				66846BFB12639EE5001D2CF9 /* TTFourBorderStyle.h in Headers */,
-				66846BFC12639EE5001D2CF9 /* TTGlobalStyle.h in Headers */,
-				66846BFD12639EE5001D2CF9 /* TTGridLayout.h in Headers */,
-				66846BFE12639EE5001D2CF9 /* TTHighlightBorderStyle.h in Headers */,
-				66846BFF12639EE5001D2CF9 /* TTImageStyle.h in Headers */,
-				66846C0012639EE5001D2CF9 /* TTInnerShadowStyle.h in Headers */,
-				66846C0112639EE5001D2CF9 /* TTInsetStyle.h in Headers */,
-				66846C0212639EE5001D2CF9 /* TTLayout.h in Headers */,
-				66846C0312639EE5001D2CF9 /* TTLinearGradientBorderStyle.h in Headers */,
-				66846C0412639EE5001D2CF9 /* TTLinearGradientFillStyle.h in Headers */,
-				66846C0512639EE5001D2CF9 /* TTMaskStyle.h in Headers */,
-				66846C0612639EE5001D2CF9 /* TTPartStyle.h in Headers */,
-				66846C0712639EE5001D2CF9 /* TTPosition.h in Headers */,
-				66846C0812639EE5001D2CF9 /* TTRectangleShape.h in Headers */,
-				66846C0912639EE5001D2CF9 /* TTReflectiveFillStyle.h in Headers */,
-				66846C0A12639EE5001D2CF9 /* TTRoundedLeftArrowShape.h in Headers */,
-				66846C0B12639EE5001D2CF9 /* TTRoundedRectangleShape.h in Headers */,
-				66846C0C12639EE5001D2CF9 /* TTRoundedRightArrowShape.h in Headers */,
-				66846C0D12639EE5001D2CF9 /* TTShadowStyle.h in Headers */,
-				66846C0E12639EE5001D2CF9 /* TTShape.h in Headers */,
-				66846C0F12639EE5001D2CF9 /* TTShapeInternal.h in Headers */,
-				66846C1012639EE5001D2CF9 /* TTShapeStyle.h in Headers */,
-				66846C1112639EE5001D2CF9 /* TTSolidBorderStyle.h in Headers */,
-				66846C1212639EE5001D2CF9 /* TTSolidFillStyle.h in Headers */,
-				66846C1312639EE5001D2CF9 /* TTSpeechBubbleShape.h in Headers */,
-				66846C1412639EE5001D2CF9 /* TTStyle.h in Headers */,
-				66846C1512639EE5001D2CF9 /* TTStyleContext.h in Headers */,
-				66846C1612639EE5001D2CF9 /* TTStyledBlock.h in Headers */,
-				66846C1712639EE5001D2CF9 /* TTStyledBoldNode.h in Headers */,
-				66846C1812639EE5001D2CF9 /* TTStyledBoxFrame.h in Headers */,
-				66846C1912639EE5001D2CF9 /* TTStyleDelegate.h in Headers */,
-				66846C1A12639EE5001D2CF9 /* TTStyledElement.h in Headers */,
-				66846C1B12639EE5001D2CF9 /* TTStyledFrame.h in Headers */,
-				66846C1C12639EE5001D2CF9 /* TTStyledImageFrame.h in Headers */,
-				66846C1D12639EE5001D2CF9 /* TTStyledImageNode.h in Headers */,
-				66846C1E12639EE5001D2CF9 /* TTStyledInline.h in Headers */,
-				66846C1F12639EE5001D2CF9 /* TTStyledInlineBlock.h in Headers */,
-				66846C2012639EE5001D2CF9 /* TTStyledInlineFrame.h in Headers */,
-				66846C2112639EE5001D2CF9 /* TTStyledItalicNode.h in Headers */,
-				66846C2212639EE5001D2CF9 /* TTStyledLayout.h in Headers */,
-				66846C2312639EE5001D2CF9 /* TTStyledLineBreakNode.h in Headers */,
-				66846C2412639EE5001D2CF9 /* TTStyledNode.h in Headers */,
-				66846C2512639EE5001D2CF9 /* TTStyledNodeInternal.h in Headers */,
-				66846C2612639EE5001D2CF9 /* TTStyledText.h in Headers */,
-				66846C2712639EE5001D2CF9 /* TTStyledTextDelegate.h in Headers */,
-				66846C2812639EE5001D2CF9 /* TTStyledTextFrame.h in Headers */,
-				66846C2912639EE5001D2CF9 /* TTStyledTextNode.h in Headers */,
-				66846C2A12639EE5001D2CF9 /* TTStyledTextParser.h in Headers */,
-				66846C2B12639EE5001D2CF9 /* TTStyleInternal.h in Headers */,
-				66846C2C12639EE5001D2CF9 /* TTStyleSheet.h in Headers */,
-				66846C2D12639EE5001D2CF9 /* TTTextStyle.h in Headers */,
-				66846C2E12639EE5001D2CF9 /* UIColorAdditions.h in Headers */,
-				66846C2F12639EE5001D2CF9 /* UIFontAdditions.h in Headers */,
-				66846C3012639EE5001D2CF9 /* UIImageAdditions.h in Headers */,
-				66846C3112639EE5001D2CF9 /* Three20Style.h in Headers */,
-				66846C3212639EE5001D2CF9 /* Three20Style+Additions.h in Headers */,
-				66846C3312639EE5001D2CF9 /* TTStyledButtonNode.h in Headers */,
-				66846C3412639EE5001D2CF9 /* TTStyledLinkNode.h in Headers */,
-				66846C3512639EE5001D2CF9 /* TTDefaultStyleSheet+DragRefreshHeader.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		66C16B6512639E2700A7825A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1398,47 +1109,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		66846BED12639EE5001D2CF9 /* Three20Style-Xcode3.2.2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66846C7412639EE5001D2CF9 /* Build configuration list for PBXNativeTarget "Three20Style-Xcode3.2.2" */;
-			buildPhases = (
-				66846BF412639EE5001D2CF9 /* Headers */,
-				66846C3612639EE5001D2CF9 /* Protect Copied Headers */,
-				66846C3712639EE5001D2CF9 /* Sources */,
-				66846C7312639EE5001D2CF9 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66846C7C12639F07001D2CF9 /* PBXTargetDependency */,
-				66846C7A12639F07001D2CF9 /* PBXTargetDependency */,
-			);
-			name = "Three20Style-Xcode3.2.2";
-			productName = Three20;
-			productReference = 66846C7812639EE5001D2CF9 /* libThree20Style-Xcode3.2.2.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		66846C8112639F29001D2CF9 /* Three20StyleUnitTests-Xcode3.2.2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66846C9212639F29001D2CF9 /* Build configuration list for PBXNativeTarget "Three20StyleUnitTests-Xcode3.2.2" */;
-			buildPhases = (
-				66846C8812639F29001D2CF9 /* Resources */,
-				66846C8912639F29001D2CF9 /* Sources */,
-				66846C8D12639F29001D2CF9 /* Frameworks */,
-				66846C9112639F29001D2CF9 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66846C9D12639F38001D2CF9 /* PBXTargetDependency */,
-				66846C9B12639F38001D2CF9 /* PBXTargetDependency */,
-				66846C9912639F38001D2CF9 /* PBXTargetDependency */,
-			);
-			name = "Three20StyleUnitTests-Xcode3.2.2";
-			productName = CoreUnitTests;
-			productReference = 66846C9612639F29001D2CF9 /* StyleUnitTests-Xcode3.2.2.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 		66C16B6012639E2700A7825A /* Three20Style-Xcode3.2.5 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66C16BE512639E2700A7825A /* Build configuration list for PBXNativeTarget "Three20Style-Xcode3.2.5" */;
@@ -1555,10 +1225,8 @@
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* Three20Style */,
 				66C16B6012639E2700A7825A /* Three20Style-Xcode3.2.5 */,
-				66846BED12639EE5001D2CF9 /* Three20Style-Xcode3.2.2 */,
 				EB9E6C6110B6A8F800DE563C /* Three20StyleUnitTests */,
 				66C16BEC12639E4500A7825A /* Three20StyleUnitTests-Xcode3.2.5 */,
-				66846C8112639F29001D2CF9 /* Three20StyleUnitTests-Xcode3.2.2 */,
 			);
 		};
 /* End PBXProject section */
@@ -1571,25 +1239,11 @@
 			remoteRef = 662D829812639CA0005851C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		662D829B12639CA0005851C2 /* libThree20Core-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Core-Xcode3.2.2.a";
-			remoteRef = 662D829A12639CA0005851C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		662D829D12639CA0005851C2 /* CoreUnitTests-Xcode3.2.5.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "CoreUnitTests-Xcode3.2.5.octest";
 			remoteRef = 662D829C12639CA0005851C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		662D829F12639CA0005851C2 /* CoreUnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "CoreUnitTests-Xcode3.2.2.octest";
-			remoteRef = 662D829E12639CA0005851C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		662D82A512639CA0005851C2 /* libThree20Network-Xcode3.2.5.a */ = {
@@ -1599,25 +1253,11 @@
 			remoteRef = 662D82A412639CA0005851C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		662D82A712639CA0005851C2 /* libThree20Network-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Network-Xcode3.2.2.a";
-			remoteRef = 662D82A612639CA0005851C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		662D82A912639CA0005851C2 /* NetworkUnitTests-Xcode3.2.5.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "NetworkUnitTests-Xcode3.2.5.octest";
 			remoteRef = 662D82A812639CA0005851C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		662D82AB12639CA0005851C2 /* NetworkUnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "NetworkUnitTests-Xcode3.2.2.octest";
-			remoteRef = 662D82AA12639CA0005851C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		6EE7366C11849C5800A35176 /* libThree20Core.a */ = {
@@ -1651,13 +1291,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		66846C8812639F29001D2CF9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		66C16BF312639E4500A7825A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1675,33 +1308,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		66846C3612639EE5001D2CF9 /* Protect Copied Headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Protect Copied Headers";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/Protect.command";
-			shellScript = "";
-		};
-		66846C9112639F29001D2CF9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		66C16BA712639E2700A7825A /* Protect Copied Headers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1759,81 +1365,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		66846C3712639EE5001D2CF9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66846C3812639EE5001D2CF9 /* TTBevelBorderStyle.m in Sources */,
-				66846C3912639EE5001D2CF9 /* TTBlendStyle.m in Sources */,
-				66846C3A12639EE5001D2CF9 /* TTBoxStyle.m in Sources */,
-				66846C3B12639EE5001D2CF9 /* TTContentStyle.m in Sources */,
-				66846C3C12639EE5001D2CF9 /* TTDefaultStyleSheet.m in Sources */,
-				66846C3D12639EE5001D2CF9 /* TTFlowLayout.m in Sources */,
-				66846C3E12639EE5001D2CF9 /* TTFourBorderStyle.m in Sources */,
-				66846C3F12639EE5001D2CF9 /* TTGlobalStyle.m in Sources */,
-				66846C4012639EE5001D2CF9 /* TTGridLayout.m in Sources */,
-				66846C4112639EE5001D2CF9 /* TTHighlightBorderStyle.m in Sources */,
-				66846C4212639EE5001D2CF9 /* TTImageStyle.m in Sources */,
-				66846C4312639EE5001D2CF9 /* TTInnerShadowStyle.m in Sources */,
-				66846C4412639EE5001D2CF9 /* TTInsetStyle.m in Sources */,
-				66846C4512639EE5001D2CF9 /* TTLayout.m in Sources */,
-				66846C4612639EE5001D2CF9 /* TTLinearGradientBorderStyle.m in Sources */,
-				66846C4712639EE5001D2CF9 /* TTLinearGradientFillStyle.m in Sources */,
-				66846C4812639EE5001D2CF9 /* TTMaskStyle.m in Sources */,
-				66846C4912639EE5001D2CF9 /* TTPartStyle.m in Sources */,
-				66846C4A12639EE5001D2CF9 /* TTRectangleShape.m in Sources */,
-				66846C4B12639EE5001D2CF9 /* TTReflectiveFillStyle.m in Sources */,
-				66846C4C12639EE5001D2CF9 /* TTRoundedLeftArrowShape.m in Sources */,
-				66846C4D12639EE5001D2CF9 /* TTRoundedRectangleShape.m in Sources */,
-				66846C4E12639EE5001D2CF9 /* TTRoundedRightArrowShape.m in Sources */,
-				66846C4F12639EE5001D2CF9 /* TTShadowStyle.m in Sources */,
-				66846C5012639EE5001D2CF9 /* TTShape.m in Sources */,
-				66846C5112639EE5001D2CF9 /* TTShapeInternal.m in Sources */,
-				66846C5212639EE5001D2CF9 /* TTShapeStyle.m in Sources */,
-				66846C5312639EE5001D2CF9 /* TTSolidBorderStyle.m in Sources */,
-				66846C5412639EE5001D2CF9 /* TTSolidFillStyle.m in Sources */,
-				66846C5512639EE5001D2CF9 /* TTSpeechBubbleShape.m in Sources */,
-				66846C5612639EE5001D2CF9 /* TTStyle.m in Sources */,
-				66846C5712639EE5001D2CF9 /* TTStyleContext.m in Sources */,
-				66846C5812639EE5001D2CF9 /* TTStyledBlock.m in Sources */,
-				66846C5912639EE5001D2CF9 /* TTStyledBoldNode.m in Sources */,
-				66846C5A12639EE5001D2CF9 /* TTStyledBoxFrame.m in Sources */,
-				66846C5B12639EE5001D2CF9 /* TTStyledElement.m in Sources */,
-				66846C5C12639EE5001D2CF9 /* TTStyledFrame.m in Sources */,
-				66846C5D12639EE5001D2CF9 /* TTStyledImageFrame.m in Sources */,
-				66846C5E12639EE5001D2CF9 /* TTStyledImageNode.m in Sources */,
-				66846C5F12639EE5001D2CF9 /* TTStyledInline.m in Sources */,
-				66846C6012639EE5001D2CF9 /* TTStyledInlineBlock.m in Sources */,
-				66846C6112639EE5001D2CF9 /* TTStyledInlineFrame.m in Sources */,
-				66846C6212639EE5001D2CF9 /* TTStyledItalicNode.m in Sources */,
-				66846C6312639EE5001D2CF9 /* TTStyledLayout.m in Sources */,
-				66846C6412639EE5001D2CF9 /* TTStyledLineBreakNode.m in Sources */,
-				66846C6512639EE5001D2CF9 /* TTStyledNode.m in Sources */,
-				66846C6612639EE5001D2CF9 /* TTStyledNodeInternal.m in Sources */,
-				66846C6712639EE5001D2CF9 /* TTStyledText.m in Sources */,
-				66846C6812639EE5001D2CF9 /* TTStyledTextFrame.m in Sources */,
-				66846C6912639EE5001D2CF9 /* TTStyledTextNode.m in Sources */,
-				66846C6A12639EE5001D2CF9 /* TTStyledTextParser.m in Sources */,
-				66846C6B12639EE5001D2CF9 /* TTStyleInternal.m in Sources */,
-				66846C6C12639EE5001D2CF9 /* TTStyleSheet.m in Sources */,
-				66846C6D12639EE5001D2CF9 /* TTTextStyle.m in Sources */,
-				66846C6E12639EE5001D2CF9 /* UIColorAdditions.m in Sources */,
-				66846C6F12639EE5001D2CF9 /* UIFontAdditions.m in Sources */,
-				66846C7012639EE5001D2CF9 /* UIImageAdditions.m in Sources */,
-				66846C7112639EE5001D2CF9 /* TTStyledButtonNode.m in Sources */,
-				66846C7212639EE5001D2CF9 /* TTStyledLinkNode.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66846C8912639F29001D2CF9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66846C8A12639F29001D2CF9 /* StyleAdditionTests.m in Sources */,
-				66846C8B12639F29001D2CF9 /* StyleGlobalTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		66C16BA812639E2700A7825A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1988,16 +1519,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		66846C7A12639F07001D2CF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Three20Network-Xcode3.2.2";
-			targetProxy = 66846C7912639F07001D2CF9 /* PBXContainerItemProxy */;
-		};
-		66846C7C12639F07001D2CF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Three20Core-Xcode3.2.2";
-			targetProxy = 66846C7B12639F07001D2CF9 /* PBXContainerItemProxy */;
-		};
 		66846C7E12639F1D001D2CF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Three20Network-Xcode3.2.5";
@@ -2007,21 +1528,6 @@
 			isa = PBXTargetDependency;
 			name = "Three20Core-Xcode3.2.5";
 			targetProxy = 66846C7F12639F1D001D2CF9 /* PBXContainerItemProxy */;
-		};
-		66846C9912639F38001D2CF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66846BED12639EE5001D2CF9 /* Three20Style-Xcode3.2.2 */;
-			targetProxy = 66846C9812639F38001D2CF9 /* PBXContainerItemProxy */;
-		};
-		66846C9B12639F38001D2CF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "UnitTests-Xcode3.2.2";
-			targetProxy = 66846C9A12639F38001D2CF9 /* PBXContainerItemProxy */;
-		};
-		66846C9D12639F38001D2CF9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "UnitTests-Xcode3.2.2";
-			targetProxy = 66846C9C12639F38001D2CF9 /* PBXContainerItemProxy */;
 		};
 		66C16C2412639E7400A7825A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2066,100 +1572,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		66846C7512639EE5001D2CF9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364B11849B3D00A35176 /* Library.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-			};
-			name = Debug;
-		};
-		66846C7612639EE5001D2CF9 /* Internal */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364B11849B3D00A35176 /* Library.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos3.1.3;
-			};
-			name = Internal;
-		};
-		66846C7712639EE5001D2CF9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364B11849B3D00A35176 /* Library.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		66846C9312639F29001D2CF9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		66846C9412639F29001D2CF9 /* Internal */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Internal;
-		};
-		66846C9512639F29001D2CF9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		66C16BE612639E2700A7825A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6EE7364B11849B3D00A35176 /* Library.xcconfig */;
@@ -2263,6 +1675,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				SDKROOT = iphoneos;
 			};
 			name = Internal;
 		};
@@ -2277,7 +1690,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = Internal;
 		};
@@ -2299,7 +1712,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Internal;
@@ -2313,7 +1726,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -2325,7 +1738,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2339,6 +1752,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -2351,6 +1765,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -2372,7 +1787,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -2394,7 +1809,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				HEADER_SEARCH_PATHS = .;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -2403,26 +1818,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		66846C7412639EE5001D2CF9 /* Build configuration list for PBXNativeTarget "Three20Style-Xcode3.2.2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66846C7512639EE5001D2CF9 /* Debug */,
-				66846C7612639EE5001D2CF9 /* Internal */,
-				66846C7712639EE5001D2CF9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66846C9212639F29001D2CF9 /* Build configuration list for PBXNativeTarget "Three20StyleUnitTests-Xcode3.2.2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66846C9312639F29001D2CF9 /* Debug */,
-				66846C9412639F29001D2CF9 /* Internal */,
-				66846C9512639F29001D2CF9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		66C16BE512639E2700A7825A /* Build configuration list for PBXNativeTarget "Three20Style-Xcode3.2.5" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

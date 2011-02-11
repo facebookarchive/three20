@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -48,6 +48,14 @@ UIViewController* TTOpenURL(NSString* URL) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
+  return [[TTBaseNavigator navigatorForView:view] openURLAction:
+          [[TTURLAction actionWithURLPath:URL]
+           applyAnimated:YES]];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTNavigator
@@ -57,10 +65,9 @@ UIViewController* TTOpenURL(NSString* URL) {
 + (TTNavigator*)navigator {
   TTBaseNavigator* navigator = [TTBaseNavigator globalNavigator];
   if (nil == navigator) {
-    navigator = [[TTNavigator alloc] init];
+    navigator = [[[TTNavigator alloc] init] autorelease];
     // setNavigator: retains.
     [super setGlobalNavigator:navigator];
-    [navigator release];
   }
   // If this asserts, it's likely that you're attempting to use two different navigator
   // implementations simultaneously. Be consistent!
@@ -85,11 +92,17 @@ UIViewController* TTOpenURL(NSString* URL) {
  */
 - (void)presentPopupController: (TTPopupViewController*)controller
               parentController: (UIViewController*)parentController
-                      animated: (BOOL)animated {
-  parentController.popupViewController = controller;
-  controller.superController = parentController;
-  [controller showInView: parentController.view
-                animated: animated];
+                        action: (TTURLAction*)action {
+  if (nil != action.sourceButton) {
+    [controller showFromBarButtonItem: action.sourceButton
+                             animated: action.animated];
+
+  } else {
+    parentController.popupViewController = controller;
+    controller.superController = parentController;
+    [controller showInView: parentController.view
+                  animated: action.animated];
+  }
 }
 
 
@@ -102,21 +115,19 @@ UIViewController* TTOpenURL(NSString* URL) {
 - (void)presentDependantController: (UIViewController*)controller
                   parentController: (UIViewController*)parentController
                               mode: (TTNavigationMode)mode
-                          animated: (BOOL)animated
-                        transition: (NSInteger)transition {
+                            action: (TTURLAction*)action {
 
   if ([controller isKindOfClass:[TTPopupViewController class]]) {
     TTPopupViewController* popupViewController = (TTPopupViewController*)controller;
     [self presentPopupController: popupViewController
                 parentController: parentController
-                        animated: animated];
+                          action: action];
 
   } else {
     [super presentDependantController: controller
                      parentController: parentController
                                  mode: mode
-                             animated: animated
-                           transition: transition];
+                               action: action];
   }
 }
 

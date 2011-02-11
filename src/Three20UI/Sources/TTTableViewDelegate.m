@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -118,7 +118,7 @@
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
     if (item.URL && [_controller shouldOpenURL:item.URL]) {
-      TTOpenURL(item.URL);
+      TTOpenURLFromView(item.URL, tableView);
 
     } else if (item.delegate && item.selector) {
       [item.delegate performSelector:item.selector withObject:object];
@@ -158,7 +158,7 @@
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
     if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
-      TTOpenURL(item.accessoryURL);
+      TTOpenURLFromView(item.accessoryURL, tableView);
     }
   }
 }

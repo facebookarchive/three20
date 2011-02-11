@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -74,6 +74,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addTab:(TTTab*)tab {
   [_scrollView addSubview:tab];
+  _contentSizeCached = NO;
 }
 
 
@@ -113,12 +114,19 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)layoutTabs {
+  if (_contentSizeCached) {
+    return _contentSize;
+  }
+
   CGSize size = [super layoutTabs];
 
   CGPoint contentOffset = _scrollView.contentOffset;
   _scrollView.frame = self.bounds;
   _scrollView.contentSize = CGSizeMake(size.width + kTabMargin, self.height);
   _scrollView.contentOffset = contentOffset;
+
+  _contentSize = size;
+  _contentSizeCached = YES;
 
   return size;
 }
@@ -146,6 +154,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTabItems:(NSArray*)tabItems {
   [super setTabItems:tabItems];
+  _contentSizeCached = NO;
   [self updateOverflow];
 }
 

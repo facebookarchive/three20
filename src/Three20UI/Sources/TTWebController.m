@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -269,7 +269,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)persistView:(NSMutableDictionary*)state {
   NSString* URL = self.URL.absoluteString;
-  if (URL.length) {
+  if (URL.length && ![URL isEqualToString:@"about:blank"]) {
     [state setObject:URL forKey:@"URL"];
     return YES;
   } else {
@@ -317,7 +317,7 @@
   if (!self.navigationItem.rightBarButtonItem) {
     [self.navigationItem setRightBarButtonItem:_activityItem animated:YES];
   }
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+  TTNetworkRequestStarted();
   [_toolbar replaceItemWithTag:3 withItem:_stopButton];
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
@@ -327,7 +327,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
   TT_RELEASE_SAFELY(_loadingURL);
-  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+  TTNetworkRequestStopped();
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
     [self.navigationItem setRightBarButtonItem:nil animated:YES];

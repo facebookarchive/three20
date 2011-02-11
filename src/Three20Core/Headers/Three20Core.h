@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,6 +26,11 @@
 
 // - Debug
 #import "Three20Core/TTDebug.h"
+
+// - Extensions
+#import "Three20Core/TTExtensionInfo.h"
+#import "Three20Core/TTExtensionAuthor.h"
+#import "Three20Core/TTExtensionLoader.h"
 
 // - Entity Tables
 #import "Three20Core/TTEntityTables.h"

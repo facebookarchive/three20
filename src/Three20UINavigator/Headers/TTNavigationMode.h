@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,5 +19,6 @@ typedef enum {
   TTNavigationModeCreate,            // a new view controller is created each time
   TTNavigationModeShare,             // a new view controller is created, cached and re-used
   TTNavigationModeModal,             // a new view controller is created and presented modally
+  TTNavigationModePopover,           // a new view controller is created and presented in a popover
   TTNavigationModeExternal,          // an external app will be opened
 } TTNavigationMode;

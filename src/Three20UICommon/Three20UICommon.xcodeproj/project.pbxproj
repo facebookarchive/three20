@@ -23,21 +23,14 @@
 		665A537F1264D54B0032D0BE /* UIViewControllerAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F9475118E1DC600443B46 /* UIViewControllerAdditionTests.m */; };
 		665A53B01264D5EC0032D0BE /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662D83241264CCF3005851C2 /* libThree20Core-Xcode3.2.5.a */; };
 		665A53B41264D5EF0032D0BE /* libThree20UICommon-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 665A53761264D54B0032D0BE /* libThree20UICommon-Xcode3.2.5.a */; };
-		665A53D41264D6550032D0BE /* Three20UICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		665A53D51264D6550032D0BE /* TTGlobalUICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C377E118C94E50079637E /* TTGlobalUICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		665A53D61264D6550032D0BE /* UIWindowAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C37A8118C96670079637E /* UIWindowAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		665A53D71264D6550032D0BE /* UIViewControllerAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C37D5118C97040079637E /* UIViewControllerAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		665A53D81264D6550032D0BE /* Three20UICommon+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDAE969118C99580008133C /* Three20UICommon+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		665A53D91264D6550032D0BE /* TTBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7B103A119235CF001359FE /* TTBaseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		665A53DA1264D6550032D0BE /* UIViewControllerGarbageCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E7B116811924440001359FE /* UIViewControllerGarbageCollection.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		665A53DD1264D6550032D0BE /* TTGlobalUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */; };
-		665A53DE1264D6550032D0BE /* UIWindowAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C37AC118C96700079637E /* UIWindowAdditions.m */; };
-		665A53DF1264D6550032D0BE /* UIViewControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C37D0118C96FA0079637E /* UIViewControllerAdditions.m */; };
-		665A53E01264D6550032D0BE /* TTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7B1037119235BF001359FE /* TTBaseViewController.m */; };
-		665A53EE1264D6550032D0BE /* UICommonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6459371187645D00F08CB1 /* UICommonTests.m */; };
-		665A53EF1264D6550032D0BE /* UIViewControllerAdditionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F9475118E1DC600443B46 /* UIViewControllerAdditionTests.m */; };
-		66FE8B9E1264D6B4001E0674 /* libThree20Core-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662D83261264CCF3005851C2 /* libThree20Core-Xcode3.2.2.a */; };
-		66FE8BA01264D6BC001E0674 /* libThree20UICommon-Xcode3.2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 665A53E61264D6550032D0BE /* libThree20UICommon-Xcode3.2.2.a */; };
+		666E16BD12944956001C1D97 /* UISplitViewController+TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16BB12944956001C1D97 /* UISplitViewController+TTNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		666E16BE12944956001C1D97 /* UIView+TTUICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16BC12944956001C1D97 /* UIView+TTUICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		666E16BF12944956001C1D97 /* UISplitViewController+TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16BB12944956001C1D97 /* UISplitViewController+TTNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		666E16C012944956001C1D97 /* UIView+TTUICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16BC12944956001C1D97 /* UIView+TTUICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		666E16C312944961001C1D97 /* UISplitViewController+TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E16C112944961001C1D97 /* UISplitViewController+TTNavigator.m */; };
+		666E16C412944961001C1D97 /* UIView+TTUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E16C212944961001C1D97 /* UIView+TTUICommon.m */; };
+		666E16C512944961001C1D97 /* UISplitViewController+TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E16C112944961001C1D97 /* UISplitViewController+TTNavigator.m */; };
+		666E16C612944961001C1D97 /* UIView+TTUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E16C212944961001C1D97 /* UIView+TTUICommon.m */; };
 		6E3C377F118C94E50079637E /* TTGlobalUICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C377E118C94E50079637E /* TTGlobalUICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3781118C94FC0079637E /* TTGlobalUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */; };
 		6E3C37A9118C96670079637E /* UIWindowAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C37A8118C96670079637E /* UIWindowAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -63,26 +56,12 @@
 			remoteGlobalIDString = 6650CAA21262F6E2003FF804;
 			remoteInfo = "Three20Core-Xcode3.2.5";
 		};
-		662D83251264CCF3005851C2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 66C2E0FC1262F748006DF55A;
-			remoteInfo = "Three20Core-Xcode3.2.2";
-		};
 		662D83271264CCF3005851C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 664961641262EE5000C2C80E;
 			remoteInfo = "UnitTests-Xcode3.2.5";
-		};
-		662D83291264CCF3005851C2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 66F9A63C1262ED9F0059C2AE;
-			remoteInfo = "UnitTests-Xcode3.2.2";
 		};
 		665A53A21264D5D80032D0BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -104,27 +83,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 664961541262EE5000C2C80E;
 			remoteInfo = "UnitTests-Xcode3.2.5";
-		};
-		66FE8B951264D6A3001E0674 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 665A53D01264D6550032D0BE;
-			remoteInfo = "Three20UICommon-Xcode3.2.2";
-		};
-		66FE8B971264D6A3001E0674 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 66F9A62C1262ED9F0059C2AE;
-			remoteInfo = "UnitTests-Xcode3.2.2";
-		};
-		66FE8BA11264D6C7001E0674 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EE7366611849C5800A35176 /* Three20Core.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 66C2E0D11262F748006DF55A;
-			remoteInfo = "Three20Core-Xcode3.2.2";
 		};
 		6EE7366B11849C5800A35176 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -167,8 +125,10 @@
 		662D83461264CD94005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		665A53761264D54B0032D0BE /* libThree20UICommon-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UICommon-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		665A53891264D54B0032D0BE /* UICommonUnitTests-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UICommonUnitTests-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		665A53E61264D6550032D0BE /* libThree20UICommon-Xcode3.2.2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libThree20UICommon-Xcode3.2.2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		665A53F81264D6550032D0BE /* UICommonUnitTests-Xcode3.2.2.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UICommonUnitTests-Xcode3.2.2.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		666E16BB12944956001C1D97 /* UISplitViewController+TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISplitViewController+TTNavigator.h"; path = "Headers/UISplitViewController+TTNavigator.h"; sourceTree = "<group>"; };
+		666E16BC12944956001C1D97 /* UIView+TTUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+TTUICommon.h"; path = "Headers/UIView+TTUICommon.h"; sourceTree = "<group>"; };
+		666E16C112944961001C1D97 /* UISplitViewController+TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISplitViewController+TTNavigator.m"; path = "Sources/UISplitViewController+TTNavigator.m"; sourceTree = "<group>"; };
+		666E16C212944961001C1D97 /* UIView+TTUICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+TTUICommon.m"; path = "Sources/UIView+TTUICommon.m"; sourceTree = "<group>"; };
 		6E3C377E118C94E50079637E /* TTGlobalUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUICommon.h; path = Headers/TTGlobalUICommon.h; sourceTree = "<group>"; };
 		6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTGlobalUICommon.m; path = Sources/TTGlobalUICommon.m; sourceTree = "<group>"; };
 		6E3C37A8118C96670079637E /* UIWindowAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWindowAdditions.h; path = Headers/UIWindowAdditions.h; sourceTree = "<group>"; };
@@ -210,22 +170,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		665A53E11264D6550032D0BE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		665A53F01264D6550032D0BE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66FE8B9E1264D6B4001E0674 /* libThree20Core-Xcode3.2.2.a in Frameworks */,
-				66FE8BA01264D6BC001E0674 /* libThree20UICommon-Xcode3.2.2.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BEF31F380F352DF5000DE5D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -250,10 +194,8 @@
 			children = (
 				BEF31F3A0F352DF5000DE5D2 /* libThree20UICommon.a */,
 				665A53761264D54B0032D0BE /* libThree20UICommon-Xcode3.2.5.a */,
-				665A53E61264D6550032D0BE /* libThree20UICommon-Xcode3.2.2.a */,
 				EB9E6C6210B6A8F800DE563C /* UICommonUnitTests.octest */,
 				665A53891264D54B0032D0BE /* UICommonUnitTests-Xcode3.2.5.octest */,
-				665A53F81264D6550032D0BE /* UICommonUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -304,6 +246,10 @@
 		6E3C37AF118C967B0079637E /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				666E16BB12944956001C1D97 /* UISplitViewController+TTNavigator.h */,
+				666E16C112944961001C1D97 /* UISplitViewController+TTNavigator.m */,
+				666E16BC12944956001C1D97 /* UIView+TTUICommon.h */,
+				666E16C212944961001C1D97 /* UIView+TTUICommon.m */,
 				6E3C37D5118C97040079637E /* UIViewControllerAdditions.h */,
 				6E3C37D0118C96FA0079637E /* UIViewControllerAdditions.m */,
 				6E7B116A11924443001359FE /* Private */,
@@ -353,10 +299,8 @@
 			children = (
 				6EE7366C11849C5800A35176 /* libThree20Core.a */,
 				662D83241264CCF3005851C2 /* libThree20Core-Xcode3.2.5.a */,
-				662D83261264CCF3005851C2 /* libThree20Core-Xcode3.2.2.a */,
 				6EE7366E11849C5800A35176 /* CoreUnitTests.octest */,
 				662D83281264CCF3005851C2 /* CoreUnitTests-Xcode3.2.5.octest */,
-				662D832A1264CCF3005851C2 /* CoreUnitTests-Xcode3.2.2.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -386,20 +330,8 @@
 				665A53681264D54B0032D0BE /* Three20UICommon+Additions.h in Headers */,
 				665A53691264D54B0032D0BE /* TTBaseViewController.h in Headers */,
 				665A536A1264D54B0032D0BE /* UIViewControllerGarbageCollection.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		665A53D31264D6550032D0BE /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				665A53D41264D6550032D0BE /* Three20UICommon.h in Headers */,
-				665A53D51264D6550032D0BE /* TTGlobalUICommon.h in Headers */,
-				665A53D61264D6550032D0BE /* UIWindowAdditions.h in Headers */,
-				665A53D71264D6550032D0BE /* UIViewControllerAdditions.h in Headers */,
-				665A53D81264D6550032D0BE /* Three20UICommon+Additions.h in Headers */,
-				665A53D91264D6550032D0BE /* TTBaseViewController.h in Headers */,
-				665A53DA1264D6550032D0BE /* UIViewControllerGarbageCollection.h in Headers */,
+				666E16BD12944956001C1D97 /* UISplitViewController+TTNavigator.h in Headers */,
+				666E16BE12944956001C1D97 /* UIView+TTUICommon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +346,8 @@
 				6EDAE96A118C99580008133C /* Three20UICommon+Additions.h in Headers */,
 				6E7B103B119235CF001359FE /* TTBaseViewController.h in Headers */,
 				6E7B116911924440001359FE /* UIViewControllerGarbageCollection.h in Headers */,
+				666E16BF12944956001C1D97 /* UISplitViewController+TTNavigator.h in Headers */,
+				666E16C012944956001C1D97 /* UIView+TTUICommon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,45 +391,6 @@
 			name = "Three20UICommonUnitTests-Xcode3.2.5";
 			productName = CoreUnitTests;
 			productReference = 665A53891264D54B0032D0BE /* UICommonUnitTests-Xcode3.2.5.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
-		665A53D01264D6550032D0BE /* Three20UICommon-Xcode3.2.2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 665A53E21264D6550032D0BE /* Build configuration list for PBXNativeTarget "Three20UICommon-Xcode3.2.2" */;
-			buildPhases = (
-				665A53D31264D6550032D0BE /* Headers */,
-				665A53DB1264D6550032D0BE /* Protect Copied Headers */,
-				665A53DC1264D6550032D0BE /* Sources */,
-				665A53E11264D6550032D0BE /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66FE8BA21264D6C7001E0674 /* PBXTargetDependency */,
-			);
-			name = "Three20UICommon-Xcode3.2.2";
-			productName = Three20;
-			productReference = 665A53E61264D6550032D0BE /* libThree20UICommon-Xcode3.2.2.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		665A53E71264D6550032D0BE /* Three20UICommonUnitTests-Xcode3.2.2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 665A53F41264D6550032D0BE /* Build configuration list for PBXNativeTarget "Three20UICommonUnitTests-Xcode3.2.2" */;
-			buildPhases = (
-				665A53EC1264D6550032D0BE /* Resources */,
-				665A53ED1264D6550032D0BE /* Sources */,
-				665A53F01264D6550032D0BE /* Frameworks */,
-				665A53F31264D6550032D0BE /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66FE8B981264D6A3001E0674 /* PBXTargetDependency */,
-				66FE8B961264D6A3001E0674 /* PBXTargetDependency */,
-			);
-			name = "Three20UICommonUnitTests-Xcode3.2.2";
-			productName = CoreUnitTests;
-			productReference = 665A53F81264D6550032D0BE /* UICommonUnitTests-Xcode3.2.2.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		BEF31F390F352DF5000DE5D2 /* Three20UICommon */ = {
@@ -567,10 +462,8 @@
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* Three20UICommon */,
 				665A53601264D54B0032D0BE /* Three20UICommon-Xcode3.2.5 */,
-				665A53D01264D6550032D0BE /* Three20UICommon-Xcode3.2.2 */,
 				EB9E6C6110B6A8F800DE563C /* Three20UICommonUnitTests */,
 				665A53771264D54B0032D0BE /* Three20UICommonUnitTests-Xcode3.2.5 */,
-				665A53E71264D6550032D0BE /* Three20UICommonUnitTests-Xcode3.2.2 */,
 			);
 		};
 /* End PBXProject section */
@@ -583,25 +476,11 @@
 			remoteRef = 662D83231264CCF3005851C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		662D83261264CCF3005851C2 /* libThree20Core-Xcode3.2.2.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Core-Xcode3.2.2.a";
-			remoteRef = 662D83251264CCF3005851C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		662D83281264CCF3005851C2 /* CoreUnitTests-Xcode3.2.5.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "CoreUnitTests-Xcode3.2.5.octest";
 			remoteRef = 662D83271264CCF3005851C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		662D832A1264CCF3005851C2 /* CoreUnitTests-Xcode3.2.2.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "CoreUnitTests-Xcode3.2.2.octest";
-			remoteRef = 662D83291264CCF3005851C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		6EE7366C11849C5800A35176 /* libThree20Core.a */ = {
@@ -622,13 +501,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		665A537C1264D54B0032D0BE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		665A53EC1264D6550032D0BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -660,33 +532,6 @@
 			shellScript = "";
 		};
 		665A53841264D54B0032D0BE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		665A53DB1264D6550032D0BE /* Protect Copied Headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Protect Copied Headers";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/Protect.command";
-			shellScript = "";
-		};
-		665A53F31264D6550032D0BE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -737,6 +582,8 @@
 				665A536E1264D54B0032D0BE /* UIWindowAdditions.m in Sources */,
 				665A536F1264D54B0032D0BE /* UIViewControllerAdditions.m in Sources */,
 				665A53701264D54B0032D0BE /* TTBaseViewController.m in Sources */,
+				666E16C312944961001C1D97 /* UISplitViewController+TTNavigator.m in Sources */,
+				666E16C412944961001C1D97 /* UIView+TTUICommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,26 +596,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		665A53DC1264D6550032D0BE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				665A53DD1264D6550032D0BE /* TTGlobalUICommon.m in Sources */,
-				665A53DE1264D6550032D0BE /* UIWindowAdditions.m in Sources */,
-				665A53DF1264D6550032D0BE /* UIViewControllerAdditions.m in Sources */,
-				665A53E01264D6550032D0BE /* TTBaseViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		665A53ED1264D6550032D0BE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				665A53EE1264D6550032D0BE /* UICommonTests.m in Sources */,
-				665A53EF1264D6550032D0BE /* UIViewControllerAdditionTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BEF31F370F352DF5000DE5D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -777,6 +604,8 @@
 				6E3C37AD118C96700079637E /* UIWindowAdditions.m in Sources */,
 				6E3C37D1118C96FA0079637E /* UIViewControllerAdditions.m in Sources */,
 				6E7B1039119235BF001359FE /* TTBaseViewController.m in Sources */,
+				666E16C512944961001C1D97 /* UISplitViewController+TTNavigator.m in Sources */,
+				666E16C612944961001C1D97 /* UIView+TTUICommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,21 +636,6 @@
 			isa = PBXTargetDependency;
 			name = "UnitTests-Xcode3.2.5";
 			targetProxy = 665A53C91264D63D0032D0BE /* PBXContainerItemProxy */;
-		};
-		66FE8B961264D6A3001E0674 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 665A53D01264D6550032D0BE /* Three20UICommon-Xcode3.2.2 */;
-			targetProxy = 66FE8B951264D6A3001E0674 /* PBXContainerItemProxy */;
-		};
-		66FE8B981264D6A3001E0674 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "UnitTests-Xcode3.2.2";
-			targetProxy = 66FE8B971264D6A3001E0674 /* PBXContainerItemProxy */;
-		};
-		66FE8BA21264D6C7001E0674 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Three20Core-Xcode3.2.2";
-			targetProxy = 66FE8BA11264D6C7001E0674 /* PBXContainerItemProxy */;
 		};
 		6EE7367111849C6300A35176 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -936,101 +750,6 @@
 			};
 			name = Release;
 		};
-		665A53E31264D6550032D0BE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364B11849B3D00A35176 /* Library.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-			};
-			name = Debug;
-		};
-		665A53E41264D6550032D0BE /* Internal */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364B11849B3D00A35176 /* Library.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos3.1.3;
-			};
-			name = Internal;
-		};
-		665A53E51264D6550032D0BE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364B11849B3D00A35176 /* Library.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		665A53F51264D6550032D0BE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		665A53F61264D6550032D0BE /* Internal */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Internal;
-		};
-		665A53F71264D6550032D0BE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EE7364C11849B3D00A35176 /* UnitTests.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-Xcode3.2.2";
-				SDKROOT = iphoneos3.1.3;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		6E92493F112C6F4000531F03 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
@@ -1040,6 +759,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				SDKROOT = iphoneos;
 			};
 			name = Internal;
 		};
@@ -1054,7 +774,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = Internal;
 		};
@@ -1071,7 +791,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Internal;
@@ -1085,7 +805,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1097,7 +817,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1111,6 +831,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1123,6 +844,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -1139,7 +861,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1155,7 +877,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1180,26 +902,6 @@
 				665A53861264D54B0032D0BE /* Debug */,
 				665A53871264D54B0032D0BE /* Internal */,
 				665A53881264D54B0032D0BE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		665A53E21264D6550032D0BE /* Build configuration list for PBXNativeTarget "Three20UICommon-Xcode3.2.2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				665A53E31264D6550032D0BE /* Debug */,
-				665A53E41264D6550032D0BE /* Internal */,
-				665A53E51264D6550032D0BE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		665A53F41264D6550032D0BE /* Build configuration list for PBXNativeTarget "Three20UICommonUnitTests-Xcode3.2.2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				665A53F51264D6550032D0BE /* Debug */,
-				665A53F61264D6550032D0BE /* Internal */,
-				665A53F71264D6550032D0BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

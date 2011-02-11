@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -362,8 +362,9 @@ static const NSInteger kActivityLabelTag          = 96;
     if (URL) {
       // The photo source has a URL mapping in TTURLMap, so we use that to show the thumbs
       NSDictionary* query = [NSDictionary dictionaryWithObject:self forKey:@"delegate"];
-      _thumbsController = [[[TTNavigator navigator] viewControllerForURL:URL query:query] retain];
-      [[TTNavigator navigator].URLMap setObject:_thumbsController forURL:URL];
+      TTBaseNavigator* navigator = [TTBaseNavigator navigatorForView:self.view];
+      _thumbsController = [[navigator viewControllerForURL:URL query:query] retain];
+      [navigator.URLMap setObject:_thumbsController forURL:URL];
     } else {
       // The photo source had no URL mapping in TTURLMap, so we let the subclass show the thumbs
       _thumbsController = [[self createThumbsViewController] retain];
@@ -372,7 +373,7 @@ static const NSInteger kActivityLabelTag          = 96;
   }
 
   if (URL) {
-    TTOpenURL(URL);
+    TTOpenURLFromView(URL, self.view);
   } else {
     if ([self.navigationController isKindOfClass:[TTNavigationController class]]) {
       [(TTNavigationController*)self.navigationController
