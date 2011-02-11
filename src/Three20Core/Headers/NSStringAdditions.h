@@ -51,6 +51,11 @@
 - (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query;
 
 /**
+ * Returns a URL Encoded String
+ */
+- (NSString*)urlEncoded;
+
+/**
  * Returns a string with all HTML tags removed.
  */
 - (NSString*)stringByRemovingHTMLTags;
