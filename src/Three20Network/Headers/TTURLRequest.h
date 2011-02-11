@@ -28,7 +28,7 @@
  *
  * @see timeoutInterval
  */
-extern const NSTimeInterval TTURLRequestUseDefaultTimeout;
+extern const NSTimeInterval TTURLRequestUseQueueTimeout;
 
 @protocol TTURLRequestDelegate;
 @protocol TTURLResponse;
@@ -197,10 +197,10 @@ extern const NSTimeInterval TTURLRequestUseDefaultTimeout;
  * the defaultTimeout of the TTURLRequestQueue. <b>This differs from behaviour of
  * NSURLRequest.</b> Given a negative timeoutInterval NSURLRequest always fails.
  *
- * You should use the TTURLRequestUseDefaultTimeout constant to improve
+ * You should use the TTURLRequestUseQueueTimeout constant to improve
  * code readabillity, instead of negative numbers.
  *
- * The default value is TTURLRequestUseDefaultTimeout
+ * The default value is TTURLRequestUseQueueTimeout
  *
  * @par from NSURLRequest.h:
  *
