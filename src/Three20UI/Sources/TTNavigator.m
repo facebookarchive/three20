@@ -139,7 +139,7 @@ UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
   if ([controller isKindOfClass:[TTModelViewController class]]) {
     TTModelViewController* modelViewController = (TTModelViewController*)controller;
    
-    id<TTModel> *aModel = modelViewController.model;;
+    id<TTModel> aModel = modelViewController.model;;
 #pragma unused(aModel)
   }
 }
