@@ -1,6 +1,10 @@
 
 #import "MockDataSource.h"
 
+@interface MockAddressBook ()
+- (void) loadNames;
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation MockAddressBook

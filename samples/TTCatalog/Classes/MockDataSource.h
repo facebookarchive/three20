@@ -1,5 +1,9 @@
 #import <Three20/Three20.h>
 
+/*
+ * a searchable model which can be configured with a 
+ * loading and/or search time
+ */
 @interface MockAddressBook : NSObject <TTModel> {
   NSMutableArray* _delegates;
   NSMutableArray* _names;
@@ -18,7 +22,7 @@
 
 - (id)initWithNames:(NSArray*)names;
 
-- (void)loadNames;
+
 - (void)search:(NSString*)text;
 
 @end
