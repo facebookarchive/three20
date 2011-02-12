@@ -38,7 +38,6 @@
 // Core
 #import "Three20Core/TTDebug.h"
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 UIViewController* TTOpenURL(NSString* URL) {
   return [[TTNavigator navigator] openURLAction:
@@ -139,7 +138,9 @@ UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
 - (void)didRestoreController:(UIViewController*)controller {
   if ([controller isKindOfClass:[TTModelViewController class]]) {
     TTModelViewController* modelViewController = (TTModelViewController*)controller;
-    modelViewController.model;
+   
+    id<TTModel> *aModel = modelViewController.model;;
+#pragma unused(aModel)
   }
 }
 

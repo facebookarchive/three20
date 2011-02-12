@@ -417,7 +417,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)restoreView:(NSDictionary*)state {
-  self.view;
+  UIView *aView = self.view;
+  #pragma unused(aView)
   TT_RELEASE_SAFELY(_initialRecipients);
   NSMutableArray* fields = [state objectForKey:@"fields"];
   for (NSInteger i = 0; i < fields.count; ++i) {
@@ -534,7 +535,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)subject {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
   for (int i = 0; i < _fields.count; ++i) {
     id field = [_fields objectAtIndex:i];
     if ([field isKindOfClass:[TTMessageSubjectField class]]) {
@@ -548,7 +550,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSubject:(NSString*)subject {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
   for (int i = 0; i < _fields.count; ++i) {
     id field = [_fields objectAtIndex:i];
     if ([field isKindOfClass:[TTMessageSubjectField class]]) {
@@ -568,7 +571,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setBody:(NSString*)body {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
   _textEditor.text = body;
 }
 
@@ -604,7 +608,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addRecipient:(id)recipient forFieldAtIndex:(NSUInteger)fieldIndex {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
   TTPickerTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
   if ([textField isKindOfClass:[TTPickerTextField class]]) {
     NSString* label = [_dataSource tableView:textField.tableView labelForObject:recipient];
@@ -617,7 +622,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)textForFieldAtIndex:(NSUInteger)fieldIndex {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
 
   NSString* text = nil;
   if (fieldIndex == _fieldViews.count) {
@@ -636,7 +642,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setText:(NSString*)text forFieldAtIndex:(NSUInteger)fieldIndex {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
+
   if (fieldIndex == _fieldViews.count) {
     _textEditor.text = text;
   } else {
@@ -650,7 +658,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)fieldHasValueAtIndex:(NSUInteger)fieldIndex {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
 
   if (fieldIndex == _fieldViews.count) {
     return _textEditor.text.length > 0;
@@ -669,7 +678,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIView*)viewForFieldAtIndex:(NSUInteger)fieldIndex {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
 
   if (fieldIndex == _fieldViews.count) {
     return _textEditor;
