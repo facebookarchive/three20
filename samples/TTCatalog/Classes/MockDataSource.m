@@ -393,6 +393,9 @@
 }
 
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
+  [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
+  [self loadNames];
+  [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
 }
 
 - (void)invalidate:(BOOL)erase {
@@ -416,6 +419,7 @@
 - (void)search:(NSString*)text {
   [self cancel];
 
+  TT_RELEASE_SAFELY(_names);
   if (text.length) {
     if (_fakeSearchDuration) {
       TT_INVALIDATE_TIMER(_fakeSearchTimer);
@@ -427,7 +431,6 @@
       [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
     }
   } else {
-    TT_RELEASE_SAFELY(_names);
     [_delegates perform:@selector(modelDidChange:) withObject:self];
   }
 }
@@ -446,7 +449,6 @@
 - (id)init {
   if (self = [super init]) {
     _addressBook = [[MockAddressBook alloc] initWithNames:[MockAddressBook fakeNames]];
-    [_addressBook loadNames];
     self.model = _addressBook;
   }
   return self;
