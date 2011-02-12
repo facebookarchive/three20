@@ -107,6 +107,8 @@
 		BEF199230F818E720010D36E /* StyledTextTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF199210F818E720010D36E /* StyledTextTestController.m */; };
 		BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */; };
 		E46662FE127F91A4001A0F20 /* TableWithBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46662FD127F91A4001A0F20 /* TableWithBannerController.m */; };
+		E4D1D1D61306D2670090AE0C /* TableDragRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D1D1D51306D2670090AE0C /* TableDragRefreshController.m */; };
+		E4D1D1D71306D2670090AE0C /* TableDragRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D1D1D51306D2670090AE0C /* TableDragRefreshController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -490,6 +492,8 @@
 		BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewTestController.m; sourceTree = "<group>"; };
 		E46662FC127F91A4001A0F20 /* TableWithBannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableWithBannerController.h; sourceTree = "<group>"; };
 		E46662FD127F91A4001A0F20 /* TableWithBannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableWithBannerController.m; sourceTree = "<group>"; };
+		E4D1D1D41306D2670090AE0C /* TableDragRefreshController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableDragRefreshController.h; sourceTree = "<group>"; };
+		E4D1D1D51306D2670090AE0C /* TableDragRefreshController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableDragRefreshController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -753,6 +757,15 @@
 			name = "Table with Banner";
 			sourceTree = "<group>";
 		};
+		E4D1D1C41306D12D0090AE0C /* Table Drag Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				E4D1D1D41306D2670090AE0C /* TableDragRefreshController.h */,
+				E4D1D1D51306D2670090AE0C /* TableDragRefreshController.m */,
+			);
+			name = "Table Drag Refresh";
+			sourceTree = "<group>";
+		};
 		EA1080F1101B37E90098AAC2 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
@@ -931,6 +944,7 @@
 				EA108169101B3A3A0098AAC2 /* Web Images in Table */,
 				E46662F9127F916C001A0F20 /* Table with Banner */,
 				6E002564116A6CF900D1F0CB /* Table With Shadow */,
+				E4D1D1C41306D12D0090AE0C /* Table Drag Refresh */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -1354,6 +1368,7 @@
 				6E002567116A6D1A00D1F0CB /* TableWithShadowController.m in Sources */,
 				E46662FE127F91A4001A0F20 /* TableWithBannerController.m in Sources */,
 				666E183012944D23001C1D97 /* SplitCatalogController.m in Sources */,
+				E4D1D1D61306D2670090AE0C /* TableDragRefreshController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1387,6 +1402,7 @@
 				664DFEE212663122004C20C2 /* TableWithShadowController.m in Sources */,
 				664B27F612846A220008D569 /* TableWithBannerController.m in Sources */,
 				666E183112944D23001C1D97 /* SplitCatalogController.m in Sources */,
+				E4D1D1D71306D2670090AE0C /* TableDragRefreshController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
