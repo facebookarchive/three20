@@ -249,6 +249,10 @@ __attribute__((weak_import));
 
     } else {
       [self.window addSubview:_rootViewController.view];
+
+      // HACK added by PS
+      // set window's rootViewController to current set one
+      self.window.rootViewController = controller;
     }
   }
 }
