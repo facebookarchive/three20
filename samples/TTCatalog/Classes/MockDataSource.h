@@ -6,10 +6,13 @@
   NSArray* _allNames;
   NSTimer* _fakeSearchTimer;
   NSTimeInterval _fakeSearchDuration;
+  NSTimer* _fakeLoadingTimer;
+  NSTimeInterval _fakeLoadingDuration;
 }
 
 @property(nonatomic,retain) NSArray* names;
 @property(nonatomic) NSTimeInterval fakeSearchDuration;
+@property(nonatomic) NSTimeInterval fakeLoadingDuration;
 
 + (NSMutableArray*)fakeNames;
 
