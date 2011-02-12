@@ -224,7 +224,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
-  self.tableView;
+  UITableView *aTableView = self.tableView;
+#pragma unused (aTableView)
 }
 
 

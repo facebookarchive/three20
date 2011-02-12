@@ -396,7 +396,9 @@
     _headerView = [headerView retain];
     _headerView.frame = CGRectMake(0, 0, _webView.width, _headerView.height);
 
-    self.view;
+    UIView *aView = self.view;
+#pragma unused(aView)
+
     UIView* scroller = [_webView descendantOrSelfWithClass:NSClassFromString(@"UIScroller")];
     UIView* docView = [scroller descendantOrSelfWithClass:NSClassFromString(@"UIWebDocumentView")];
     [scroller addSubview:_headerView];
@@ -422,7 +424,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openRequest:(NSURLRequest*)request {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
   [_webView loadRequest:request];
 }
 

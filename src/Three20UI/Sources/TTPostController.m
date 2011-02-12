@@ -476,7 +476,8 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITextView*)textView {
-  self.view;
+  UIView *aView = self.view;
+#pragma unused(aView)
   return _textView;
 }
 
@@ -484,7 +485,8 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UINavigationBar*)navigatorBar {
   if (!_navigationBar) {
-    self.view;
+    UIView *aView = self.view;
+#pragma unused(aView)
   }
   return _navigationBar;
 }
