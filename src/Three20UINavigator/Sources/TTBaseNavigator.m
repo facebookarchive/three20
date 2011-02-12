@@ -241,6 +241,10 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 
     } else {
       [self.window addSubview:_rootViewController.view];
+
+      // HACK added by PS
+      // set window's rootViewController to current set one
+      self.window.rootViewController = controller;
     }
   }
 }
