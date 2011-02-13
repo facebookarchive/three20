@@ -30,6 +30,8 @@
 
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath;
 
+- (void)setCellClass:(NSString*)cellClass forItemClass:(NSString*)itemClass;
+
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object;
 
 - (NSString*)tableView:(UITableView*)tableView labelForObject:(id)object;
@@ -79,6 +81,7 @@
 
 @interface TTTableViewDataSource : NSObject <TTTableViewDataSource> {
   id<TTModel> _model;
+  NSMutableDictionary * _itemCellClassMapping;
 }
 
 @end
