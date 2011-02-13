@@ -42,6 +42,7 @@
     [TTTableTextItem itemWithText:@"Web Images in Table" URL:@"tt://imageTest2"],
     [TTTableTextItem itemWithText:@"Table With Banner" URL:@"tt://tableWithBanner"],
     [TTTableTextItem itemWithText:@"Table With Shadow" URL:@"tt://tableWithShadow"],
+    [TTTableTextItem itemWithText:@"Table With Drag Refresh" URL:@"tt://tableDragRefresh"],
 
     @"Models",
     [TTTableTextItem itemWithText:@"Model Search" URL:@"tt://searchTest"],

@@ -11,6 +11,7 @@
 #import "TableTestController.h"
 #import "TableWithBannerController.h"
 #import "TableWithShadowController.h"
+#import "TableDragRefreshController.h"
 #import "SearchTestController.h"
 #import "MessageTestController.h"
 #import "ActivityTestController.h"
@@ -100,6 +101,12 @@
   [map            from: @"tt://tableWithBanner"
                 parent: @"tt://catalog"
       toViewController: [TableWithBannerController class]
+              selector: nil
+            transition: 0];
+
+  [map            from: @"tt://tableDragRefresh"
+                parent: @"tt://catalog"
+      toViewController: [TableDragRefreshController class]
               selector: nil
             transition: 0];
 
