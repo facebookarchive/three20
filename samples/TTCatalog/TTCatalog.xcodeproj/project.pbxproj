@@ -78,6 +78,9 @@
 		6E7F97A9118E37C700443B46 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7F977E118E37BB00443B46 /* libThree20.a */; };
 		6E94C6AD116D98220012B12C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C6AB116D98220012B12C /* Default.png */; };
 		6E94C6AE116D98220012B12C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C6AC116D98220012B12C /* Icon.png */; };
+		A97DA4FA130631E4006847D1 /* IconsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97DA4F9130631E4006847D1 /* IconsViewController.m */; };
+		A97DA4FB130631E4006847D1 /* IconsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97DA4F9130631E4006847D1 /* IconsViewController.m */; };
+		A97DA4FC130631E4006847D1 /* IconsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A97DA4F9130631E4006847D1 /* IconsViewController.m */; };
 		BE1288310F8973CD00F65EA2 /* StyleTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288300F8973CD00F65EA2 /* StyleTestController.m */; };
 		BE1289C20F91811E00F65EA2 /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1289C10F91811E00F65EA2 /* mask.png */; };
 		BE1D843A0F8D104B00EC8BB8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1D84390F8D104B00EC8BB8 /* QuartzCore.framework */; };
@@ -440,6 +443,8 @@
 		6E7F9964118E3A7600443B46 /* TTCatalog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCatalog_Prefix.pch; path = Headers/TTCatalog_Prefix.pch; sourceTree = "<group>"; };
 		6E94C6AB116D98220012B12C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Resources/Default.png; sourceTree = SOURCE_ROOT; };
 		6E94C6AC116D98220012B12C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Resources/Icon.png; sourceTree = SOURCE_ROOT; };
+		A97DA4F8130631E4006847D1 /* IconsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconsViewController.h; sourceTree = "<group>"; };
+		A97DA4F9130631E4006847D1 /* IconsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconsViewController.m; sourceTree = "<group>"; };
 		BE12882F0F8973CD00F65EA2 /* StyleTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleTestController.h; sourceTree = "<group>"; };
 		BE1288300F8973CD00F65EA2 /* StyleTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleTestController.m; sourceTree = "<group>"; };
 		BE1289C10F91811E00F65EA2 /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
@@ -535,6 +540,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A97DA4F613061619006847D1 /* Icons */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				666E182E12944D23001C1D97 /* SplitCatalogController.h */,
@@ -733,6 +739,15 @@
 				6E7F9963118E3A6000443B46 /* UnitTests.xcconfig */,
 			);
 			name = Configurations;
+			sourceTree = "<group>";
+		};
+		A97DA4F613061619006847D1 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				A97DA4F8130631E4006847D1 /* IconsViewController.h */,
+				A97DA4F9130631E4006847D1 /* IconsViewController.m */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		BEC7875C1040A405005C00CF /* Launcher */ = {
@@ -1354,6 +1369,7 @@
 				6E002567116A6D1A00D1F0CB /* TableWithShadowController.m in Sources */,
 				E46662FE127F91A4001A0F20 /* TableWithBannerController.m in Sources */,
 				666E183012944D23001C1D97 /* SplitCatalogController.m in Sources */,
+				A97DA4FB130631E4006847D1 /* IconsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1387,6 +1403,40 @@
 				664DFEE212663122004C20C2 /* TableWithShadowController.m in Sources */,
 				664B27F612846A220008D569 /* TableWithBannerController.m in Sources */,
 				666E183112944D23001C1D97 /* SplitCatalogController.m in Sources */,
+				A97DA4FA130631E4006847D1 /* IconsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D437EF126634F9004C5F38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				664B27F712846A2B0008D569 /* TableWithBannerController.m in Sources */,
+				66D437F0126634F9004C5F38 /* main.m in Sources */,
+				66D437F1126634F9004C5F38 /* AppDelegate.m in Sources */,
+				66D437F2126634F9004C5F38 /* CatalogController.m in Sources */,
+				66D437F3126634F9004C5F38 /* MockPhotoSource.m in Sources */,
+				66D437F4126634F9004C5F38 /* TableImageTestController.m in Sources */,
+				66D437F5126634F9004C5F38 /* ImageTest1Controller.m in Sources */,
+				66D437F6126634F9004C5F38 /* ActivityTestController.m in Sources */,
+				66D437F7126634F9004C5F38 /* PhotoTest1Controller.m in Sources */,
+				66D437F8126634F9004C5F38 /* PhotoTest2Controller.m in Sources */,
+				66D437F9126634F9004C5F38 /* YouTubeTestController.m in Sources */,
+				66D437FA126634F9004C5F38 /* ScrollViewTestController.m in Sources */,
+				66D437FB126634F9004C5F38 /* TabBarTestController.m in Sources */,
+				66D437FC126634F9004C5F38 /* TableItemTestController.m in Sources */,
+				66D437FD126634F9004C5F38 /* MessageTestController.m in Sources */,
+				66D437FE126634F9004C5F38 /* SearchTestController.m in Sources */,
+				66D437FF126634F9004C5F38 /* MockDataSource.m in Sources */,
+				66D43800126634F9004C5F38 /* TableTestController.m in Sources */,
+				66D43801126634F9004C5F38 /* StyledTextTableTestController.m in Sources */,
+				66D43802126634F9004C5F38 /* StyledTextTestController.m in Sources */,
+				66D43803126634F9004C5F38 /* StyleTestController.m in Sources */,
+				66D43804126634F9004C5F38 /* ButtonTestController.m in Sources */,
+				66D43805126634F9004C5F38 /* TableControlsTestController.m in Sources */,
+				66D43806126634F9004C5F38 /* LauncherViewTestController.m in Sources */,
+				66D43807126634F9004C5F38 /* TableWithShadowController.m in Sources */,
+				A97DA4FC130631E4006847D1 /* IconsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

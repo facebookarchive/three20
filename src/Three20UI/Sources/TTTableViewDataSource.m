@@ -69,6 +69,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_model);
+  TT_RELEASE_SAFELY(_itemCellClassMapping);
 
   [super dealloc];
 }
@@ -243,10 +244,22 @@
   return nil;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCellClass:(NSString*)cellClass forItemClass:(NSString*)itemClass {
+  if(!_itemCellClassMapping) {
+    _itemCellClassMapping = [[NSMutableDictionary alloc] init];
+  }
+  [_itemCellClassMapping setObject:cellClass forKey:itemClass];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
-  if ([object isKindOfClass:[TTTableItem class]]) {
+  if ([object respondsToSelector:@selector(cellClass)])
+    return [object cellClass];
+  else if(_itemCellClassMapping && [_itemCellClassMapping objectForKey:NSStringFromClass([object class])]) {
+    return NSClassFromString([_itemCellClassMapping objectForKey:NSStringFromClass([object class])]);
+  }
+  else if ([object isKindOfClass:[TTTableItem class]]) {
     if ([object isKindOfClass:[TTTableMoreButton class]]) {
       return [TTTableMoreButtonCell class];
     } else if ([object isKindOfClass:[TTTableSubtextItem class]]) {

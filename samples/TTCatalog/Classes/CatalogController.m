@@ -25,6 +25,7 @@
     @"Photos",
     [TTTableTextItem itemWithText:@"Photo Browser" URL:@"tt://photoTest1"],
     [TTTableTextItem itemWithText:@"Photo Thumbnails" URL:@"tt://photoTest2"],
+    [TTTableTextItem itemWithText:@"Photo Thumbnails" URL:@"tt://iconTest"],
 
     @"Styles",
     [TTTableTextItem itemWithText:@"Styled Views" URL:@"tt://styleTest"],
