@@ -210,3 +210,6 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v ) {
 
 
 @end
+
+#import "Three20Core/TTCorePreprocessorMacros.h"
+TT_FIX_CATEGORY_BUG(UIColorAdditions)
