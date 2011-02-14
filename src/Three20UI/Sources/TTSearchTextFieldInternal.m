@@ -129,3 +129,6 @@
 
 
 @end
+
+#import "Three20Core/TTCorePreprocessorMacros.h"
+TT_FIX_CATEGORY_BUG(TTSearchTextFieldInternal)
