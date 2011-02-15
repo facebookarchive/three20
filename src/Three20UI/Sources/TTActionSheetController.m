@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -124,6 +124,22 @@
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
   [self viewWillAppear:animated];
   [self.actionSheet showInView:view.window];
+  [self viewDidAppear:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated {
+  [self viewWillAppear:animated];
+  [self.actionSheet showFromBarButtonItem:item animated:animated];
+  [self viewDidAppear:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated {
+  [self viewWillAppear:animated];
+  [self.actionSheet showFromRect:rect inView:view animated:animated];
   [self viewDidAppear:animated];
 }
 

@@ -28,7 +28,7 @@
 //
 
 
-#import "YAJLDocument.h"
+#import "extThree20JSON/YAJLDocument.h"
 
 @interface YAJLDocument ()
 - (void)_pop;
@@ -48,7 +48,7 @@ NSInteger YAJLDocumentStackCapacity = 20;
 - (id)initWithParserOptions:(YAJLParserOptions)parserOptions {
   if ((self = [super init])) {
     stack_ = [[NSMutableArray alloc] initWithCapacity:YAJLDocumentStackCapacity];
-    keyStack_ = [[NSMutableArray alloc] initWithCapacity:YAJLDocumentStackCapacity];    
+    keyStack_ = [[NSMutableArray alloc] initWithCapacity:YAJLDocumentStackCapacity];
     parserStatus_ = YAJLParserStatusNone;
     parser_ = [[YAJLParser alloc] initWithParserOptions:parserOptions];
     parser_.delegate = self;
@@ -57,7 +57,7 @@ NSInteger YAJLDocumentStackCapacity = 20;
 }
 
 - (id)initWithData:(NSData *)data parserOptions:(YAJLParserOptions)parserOptions error:(NSError **)error {
-  if ((self = [self initWithParserOptions:parserOptions])) {    
+  if ((self = [self initWithParserOptions:parserOptions])) {
     [self parse:data error:error];
   }
   return self;
@@ -67,7 +67,7 @@ NSInteger YAJLDocumentStackCapacity = 20;
   [stack_ release];
   [keyStack_ release];
   parser_.delegate = nil;
-  [parser_ release];  
+  [parser_ release];
   [root_ release];
   [super dealloc];
 }
@@ -94,7 +94,7 @@ NSInteger YAJLDocumentStackCapacity = 20;
         [delegate_ document:self didSetObject:value forKey:key_ inDictionary:dict_];
       [self _popKey];
       break;
-  } 
+  }
 }
 
 - (void)parser:(YAJLParser *)parser didMapKey:(NSString *)key {
@@ -104,9 +104,9 @@ NSInteger YAJLDocumentStackCapacity = 20;
 
 - (void)_popKey {
   key_ = nil;
-  [keyStack_ removeLastObject]; // Pop  
-  if ([keyStack_ count] > 0) 
-    key_ = [keyStack_ objectAtIndex:[keyStack_ count]-1]; 
+  [keyStack_ removeLastObject]; // Pop
+  if ([keyStack_ count] > 0)
+    key_ = [keyStack_ objectAtIndex:[keyStack_ count]-1];
 }
 
 - (void)parserDidStartDictionary:(YAJLParser *)parser {
@@ -115,7 +115,7 @@ NSInteger YAJLDocumentStackCapacity = 20;
   [stack_ addObject:dict]; // Push
   [dict release];
   dict_ = dict;
-  currentType_ = YAJLDecoderCurrentTypeDict;  
+  currentType_ = YAJLDecoderCurrentTypeDict;
 }
 
 - (void)parserDidEndDictionary:(YAJLParser *)parser {
@@ -140,7 +140,7 @@ NSInteger YAJLDocumentStackCapacity = 20;
 - (void)parserDidEndArray:(YAJLParser *)parser {
   id value = [[stack_ objectAtIndex:[stack_ count]-1] retain];
   NSArray *array = array_;
-  [self _pop];  
+  [self _pop];
   [self parser:parser didAdd:value];
   [value release];
   if ([delegate_ respondsToSelector:@selector(document:didAddArray:)])
@@ -155,10 +155,10 @@ NSInteger YAJLDocumentStackCapacity = 20;
 
   id value = nil;
   if ([stack_ count] > 0) value = [stack_ objectAtIndex:[stack_ count]-1];
-  if ([value isKindOfClass:[NSArray class]]) {    
+  if ([value isKindOfClass:[NSArray class]]) {
     array_ = (NSMutableArray *)value;
     currentType_ = YAJLDecoderCurrentTypeArray;
-  } else if ([value isKindOfClass:[NSDictionary class]]) {    
+  } else if ([value isKindOfClass:[NSDictionary class]]) {
     dict_ = (NSMutableDictionary *)value;
     currentType_ = YAJLDecoderCurrentTypeDict;
   }

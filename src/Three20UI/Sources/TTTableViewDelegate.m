@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -119,11 +119,11 @@
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
-      if (nil != item.URLAction && [_controller shouldOpenURL:item.URLAction.urlPath]) { // JE: URL Action Support	
-		  [[TTNavigator navigator] openURLAction:item.URLAction];
-		  [tableView deselectRowAtIndexPath:indexPath animated:YES];
-	  }else if (item.URL && [_controller shouldOpenURL:item.URL]) {
-      TTOpenURL(item.URL);
+	if (nil != item.URLAction && [_controller shouldOpenURL:item.URLAction.urlPath]) { // JE: URL Action Support	
+	  [[TTNavigator navigator] openURLAction:item.URLAction];
+	  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+	}else if (item.URL && [_controller shouldOpenURL:item.URL]) {
+      TTOpenURLFromView(item.URL, tableView);
 
     } else if (item.delegate && item.selector) {
       [item.delegate performSelector:item.selector withObject:object];
@@ -162,10 +162,15 @@
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
+<<<<<<< HEAD
 	  if (nil != item.accessoryURLAction && [_controller shouldOpenURL:item.accessoryURLAction.urlPath]) { // JE: URL Action Support
 		  [[TTNavigator navigator] openURLAction:item.accessoryURLAction];
 	  }else if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
       TTOpenURL(item.accessoryURL);
+=======
+    if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
+      TTOpenURLFromView(item.accessoryURL, tableView);
+>>>>>>> upstream/master
     }
   }
 }

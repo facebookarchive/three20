@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -148,7 +148,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
     _timestampLabel.top = _titleLabel.top;
     _titleLabel.width -= _timestampLabel.width + kTableCellSmallMargin*2;
   } else {
-    _titleLabel.frame = CGRectZero;
+    _timestampLabel.frame = CGRectZero;
   }
 }
 

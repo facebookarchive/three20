@@ -473,7 +473,7 @@
 
   NSMutableDictionary* groups = [NSMutableDictionary dictionary];
   for (NSString* name in _addressBook.names) {
-    NSString* letter = [NSString stringWithFormat:@"%c", [name characterAtIndex:0]];
+    NSString* letter = [NSString stringWithFormat:@"%C", [name characterAtIndex:0]];
     NSMutableArray* section = [groups objectForKey:letter];
     if (!section) {
       section = [NSMutableArray array];

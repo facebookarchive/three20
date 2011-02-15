@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -161,12 +161,10 @@ static const CGFloat kDefaultThumbSize = 75;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setColumnCount:(NSInteger)columnCount {
   if (_columnCount != columnCount) {
-    if (columnCount > _columnCount) {
-      for (TTThumbView* thumbView in _thumbViews) {
-        [thumbView removeFromSuperview];
-      }
-      [_thumbViews removeAllObjects];
+    for (TTThumbView* thumbView in _thumbViews) {
+      [thumbView removeFromSuperview];
     }
+    [_thumbViews removeAllObjects];
 
     _columnCount = columnCount;
 

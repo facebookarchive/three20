@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -316,6 +316,25 @@
   pattern.parentURL = parentURL;
   pattern.selector = selector;
   pattern.transition = transition;
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)from:(NSString*)URL toPopoverViewController:(id)target {
+  TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
+                                                                            mode:TTNavigationModePopover];
+  [self addObjectPattern:pattern forURL:URL];
+  [pattern release];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)from:(NSString*)URL toPopoverViewController:(id)target selector:(SEL)selector {
+  TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
+                                                                            mode:TTNavigationModePopover];
+  pattern.selector = selector;
   [self addObjectPattern:pattern forURL:URL];
   [pattern release];
 }

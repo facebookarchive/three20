@@ -30,6 +30,7 @@ from optparse import OptionParser
 import Paths
 from Pbxproj import Pbxproj
 
+# Print the given project's dependencies to stdout.
 def print_dependencies(name):
 	pbxproj = Pbxproj.get_pbxproj_by_name(name)
 	print str(pbxproj)+"..."
@@ -90,6 +91,12 @@ def add_modules_to_project(module_names, project, configs):
 
 			for k,v in modules.items():
 				project.add_build_setting(config, 'OTHER_LDFLAGS', '"-force_load '+project.get_rel_path_to_products_dir()+'/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/'+v._product_name+'"')
+	else:
+		for configuration in project.configurations:
+			project.add_header_search_path(configuration[1])
+
+			for k,v in modules.items():
+				project.add_build_setting(configuration[1], 'OTHER_LDFLAGS', '"-force_load '+project.get_rel_path_to_products_dir()+'/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/'+v._product_name+'"')
 
 	if len(failed) > 0:
 		logging.error("Some dependencies failed to be added:")
@@ -107,13 +114,17 @@ module-target defaults to module-name if it is not specified
 module-name may be a path to a .pbxproj file.
 
 Examples:
+  Most common use case:
+  > %prog -p path/to/myApp/myApp.xcodeproj Three20
+
   Print all dependencies for the Three20UI module
   > %prog -d Three20UI
 
   Print all dependencies for the Three20 module's Three20-Xcode3.2.5 target.
   > %prog -d Three20:Three20-Xcode3.2.5
 
-  Add the Three20 project settings to the Debug and Release configurations.
+  Add the Three20 project settings specifically to the Debug and Release configurations.
+  By default, all Three20 settings are added to all project configurations.
   This includes adding the header search path and linker flags.
   > %prog -p path/to/myApp.xcodeproj -c Debug -c Release
 
@@ -132,7 +143,7 @@ Examples:
 	parser.add_option("-p", "--project", dest="projects",
 	                  help="Add the given modules to this project", action="append")
 	parser.add_option("-c", "--config", dest="configs",
-	                  help="The configurations to add Three20 settings to (example: Debug)", action="append")
+	                  help="Explicit configurations to add Three20 settings to (example: Debug). By default, ttmodule will add configuration settings to every configuration for the given target", action="append")
 
 	(options, args) = parser.parse_args()
 

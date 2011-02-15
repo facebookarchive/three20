@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -84,6 +84,16 @@ static NSString* kUniversalURLPattern = @"*";
   TT_RELEASE_SAFELY(_parentURL);
 
   [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)description {
+  if (nil != _targetClass) {
+    return [NSString stringWithFormat:@"%@ => %@", _URL, _targetClass];
+  } else {
+    return [NSString stringWithFormat:@"%@ => %@", _URL, _targetObject];
+  }
 }
 
 
@@ -313,11 +323,11 @@ static NSString* kUniversalURLPattern = @"*";
     }
   }
 
-  NSDictionary* URLQuery = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+  NSDictionary* URLQuery = [URL.query queryContentsUsingEncoding:NSUTF8StringEncoding];
   if (URLQuery.count) {
     for (NSString* name in [URLQuery keyEnumerator]) {
       id<TTURLPatternText> patternText = [_query objectForKey:name];
-      NSString* text = [URLQuery objectForKey:name];
+      NSString* text = [[URLQuery objectForKey:name] objectAtIndex:0];
       if (patternText) {
         if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
           --remainingArgs;
@@ -458,21 +468,31 @@ static NSString* kUniversalURLPattern = @"*";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)createObjectFromURL: (NSURL*)URL
                     query: (NSDictionary*)query {
-  id target = nil;
-  if (self.instantiatesClass) {
-    target = [_targetClass alloc];
-  } else {
-    target = [_targetObject retain];
-  }
-
   id returnValue = nil;
-  if (_selector) { // _selector is nil in 4.0
-	returnValue = [self invoke:target withURL:URL query:query]; // This happens in 3.2....
-  } else if (self.instantiatesClass) {
-    returnValue = [target init]; // This happens in 4.0. This is the issue.
-  }
 
-  [target autorelease];
+  if (self.instantiatesClass) {
+    //suppress static analyzer warning for this part
+    // - invoke:withURL:query actually calls an - init method
+    // which returns either a new object with retain count of +1
+    // or returnValue (which already has +1 retain count)
+#ifndef __clang_analyzer__
+    returnValue = [_targetClass alloc];
+    if (_selector) {
+      returnValue = [self invoke:returnValue withURL:URL query:query];
+    } else {
+      returnValue = [returnValue init];
+    }
+    [returnValue autorelease];
+#endif
+  } else {
+    id target = [_targetObject retain];
+    if (_selector) {
+      returnValue = [self invoke:target withURL:URL query:query];
+    } else {
+      TTDWARNING(@"No object created from URL:'%@' URL");
+    }
+    [target release];
+  }
   return returnValue;
 }
 

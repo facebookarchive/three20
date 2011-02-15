@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -219,7 +219,7 @@
   if (_sections.count) {
     NSMutableArray* items = [_items objectAtIndex:indexPath.section];
     [items removeObjectAtIndex:indexPath.row];
-    if (!items.count) {
+    if (andSection && !items.count) {
       [_sections removeObjectAtIndex:indexPath.section];
       [_items removeObjectAtIndex:indexPath.section];
       return YES;

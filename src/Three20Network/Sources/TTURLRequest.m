@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -67,13 +67,13 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTURLRequest*)request {
-  return [[[TTURLRequest alloc] init] autorelease];
+  return [[[self alloc] init] autorelease];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate {
-  return [[[TTURLRequest alloc] initWithURL:URL delegate:delegate] autorelease];
+  return [[[self alloc] initWithURL:URL delegate:delegate] autorelease];
 }
 
 
@@ -123,7 +123,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)description {
-  return [NSString stringWithFormat:@"<TTURLRequest %@>", _urlPath];
+  return [NSString stringWithFormat:@"<%@ %@>", [super description], _urlPath];
 }
 
 
