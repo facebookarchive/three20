@@ -162,15 +162,10 @@
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
-<<<<<<< HEAD
-	  if (nil != item.accessoryURLAction && [_controller shouldOpenURL:item.accessoryURLAction.urlPath]) { // JE: URL Action Support
-		  [[TTNavigator navigator] openURLAction:item.accessoryURLAction];
-	  }else if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
-      TTOpenURL(item.accessoryURL);
-=======
-    if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
+	if (nil != item.accessoryURLAction && [_controller shouldOpenURL:item.accessoryURLAction.urlPath]) { // JE: URL Action Support
+	  [[TTNavigator navigator] openURLAction:item.accessoryURLAction];
+	}else if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
       TTOpenURLFromView(item.accessoryURL, tableView);
->>>>>>> upstream/master
     }
   }
 }
