@@ -38,6 +38,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _URLs = [[NSMutableArray alloc] init];
+	_targets = [[NSMutableArray alloc] init];
+	_selectors = [[NSMutableArray alloc] init];
   }
 
   return self;
@@ -79,6 +81,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_URLs);
+  TT_RELEASE_SAFELY(_targets);
+  TT_RELEASE_SAFELY(_selectors);	
   TT_RELEASE_SAFELY(_userInfo);
 
   [super dealloc];
@@ -193,6 +197,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)actionSheet:(UIActionSheet*)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+  NSObject* target = [self targetAtIndex:buttonIndex];
+  NSString* selectorAsString = [self selectorAtIndex:buttonIndex];
+  if (target && selectorAsString) {
+    [target performSelector:NSSelectorFromString(selectorAsString)];
+  }
+  
   if ([_delegate respondsToSelector:@selector(actionSheet:willDismissWithButtonIndex:)]) {
     [_delegate actionSheet:actionSheet willDismissWithButtonIndex:buttonIndex];
   }
@@ -234,15 +244,37 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector {
   if (URL) {
     [_URLs addObject:URL];
   } else {
     [_URLs addObject:[NSNull null]];
   }
+  
+  if (target) {
+    [_targets addObject:target];
+  } else {
+    [_targets addObject:[NSNull null]];
+  }
+  
+  if (selector) {
+    [_selectors addObject:NSStringFromSelector(selector)];
+  } else {
+    [_selectors addObject:[NSNull null]];
+  }
+  
   return [self.actionSheet addButtonWithTitle:title];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+  return [self addButtonWithTitle:title URL:URL target:nil selector:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)addButtonWithTitle:(NSString*)title target:(NSObject *)target selector:(SEL)selector {
+  return [self addButtonWithTitle:title URL:nil target:target selector:selector];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL {
@@ -258,11 +290,33 @@
 }
 
 
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)buttonURLAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex < _URLs.count) {
     id URL = [_URLs objectAtIndex:buttonIndex];
     return URL != [NSNull null] ? URL : nil;
+  } else {
+    return nil;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSObject*)targetAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex < _targets.count) {
+    id target = [_targets objectAtIndex:buttonIndex];
+    return target != [NSNull null] ? target : nil;
+  } else {
+    return nil;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)selectorAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex < _selectors.count) {
+    id selector = [_selectors objectAtIndex:buttonIndex];
+    return selector != [NSNull null] ? selector : nil;
   } else {
     return nil;
   }

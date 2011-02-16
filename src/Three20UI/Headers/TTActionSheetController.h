@@ -31,6 +31,8 @@
 @protected
   id              _userInfo;
   NSMutableArray* _URLs;
+  NSMutableArray* _targets;
+  NSMutableArray* _selectors;
 
   id<TTActionSheetControllerDelegate> _delegate;
 }
@@ -54,6 +56,29 @@
  * @param delegate  A delegate that implements the TTActionSheetControllerDelegate protocol.
  */
 - (id)initWithTitle:(NSString*)title delegate:(id)delegate;
+
+/**
+ * Append a button with the given title, TTNavigator URL, target and selector.
+ *
+ * @param title The title of the new button.
+ * @param URL       The TTNavigator url.
+ * @param target    The target.
+ * @param selector  The selector that will be called on the target.
+ * @return The index of the new button. Button indices start at 0 and increase in the order they
+ *         are added.
+ */
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector;
+
+/**
+ * Append a button with the given title, target and selector.
+ *
+ * @param title The title of the new button.
+ * @param target    The target.
+ * @param selector  The selector that will be called on the target.
+ * @return The index of the new button. Button indices start at 0 and increase in the order they
+ *         are added.
+ */
+- (NSInteger)addButtonWithTitle:(NSString*)title target:(NSObject *)target selector:(SEL)selector;
 
 /**
  * Append a button with the given title and TTNavigator URL.
@@ -96,5 +121,21 @@
  * @return nil if index is out of range. Otherwise returns the button's URL at index.
  */
 - (NSString*)buttonURLAtIndex:(NSInteger)index;
+
+/**
+ * Retrieve the button's target at the given index.
+ *
+ * @param index The index of the button in question
+ * @return nil if index is out of range. Otherwise returns the button's target at index.
+ */
+- (NSObject*)targetAtIndex:(NSInteger)buttonIndex;
+
+/**
+ * Retrieve the button's selector at the given index.
+ *
+ * @param index The index of the button in question
+ * @return nil if index is out of range. Otherwise returns the button's selector at index as a string.
+ */
+- (NSString*)selectorAtIndex:(NSInteger)buttonIndex;
 
 @end
