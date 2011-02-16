@@ -17,6 +17,7 @@
 #import "Three20UI/TTNavigator.h"
 
 // UI
+#import "Three20UI/TTAlertViewController.h"
 #import "Three20UI/TTPopupViewController.h"
 #import "Three20UI/TTSearchDisplayController.h"
 #import "Three20UI/TTTableViewController.h"
@@ -121,13 +122,17 @@ UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
 
   if ([controller isKindOfClass:[TTPopupViewController class]]) {
     TTPopupViewController* popupViewController = (TTPopupViewController*)controller;
+
+    BOOL didDismiss = NO;
     if (nil != parentController.popupViewController
         && [parentController.popupViewController isKindOfClass:[TTPopupViewController class]]) {
       [(TTPopupViewController*)parentController.popupViewController
        dismissPopupViewControllerAnimated:YES];
       parentController.popupViewController = nil;
+      didDismiss = YES;
+    }
 
-    } else {
+    if (!didDismiss || [controller isKindOfClass:[TTAlertViewController class]]) {
       parentController.popupViewController = popupViewController;
       [self presentPopupController: popupViewController
                   parentController: parentController
