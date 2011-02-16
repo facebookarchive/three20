@@ -30,7 +30,7 @@
 
 /**
  * Determines if the string is empty or contains only whitespace.
- * @deprecated Use TTIsStringWithAnyText: instead.
+ * @deprecated Use TTIsStringWithAnyText() instead.
  */
 - (BOOL)isEmptyOrWhitespace __TTDEPRECATED_METHOD;
 
