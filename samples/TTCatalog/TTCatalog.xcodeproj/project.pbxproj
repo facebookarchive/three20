@@ -13,54 +13,11 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* CatalogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* CatalogController.m */; };
-		664B27F612846A220008D569 /* TableWithBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46662FD127F91A4001A0F20 /* TableWithBannerController.m */; };
-		664DFEC112663122004C20C2 /* tableIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE6E4DBF0F46A352001CE9B4 /* tableIcon.png */; };
-		664DFEC212663122004C20C2 /* person.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BECB1CC10F46AE9600AE5B52 /* person.jpg */; };
-		664DFEC312663122004C20C2 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEDCFBB30F4FFF820060B7D1 /* Three20.bundle */; };
-		664DFEC412663122004C20C2 /* smiley.png in Resources */ = {isa = PBXBuildFile; fileRef = BE3188A00F822E2C00E3067D /* smiley.png */; };
-		664DFEC512663122004C20C2 /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1289C10F91811E00F65EA2 /* mask.png */; };
-		664DFEC612663122004C20C2 /* defaultPerson.png in Resources */ = {isa = PBXBuildFile; fileRef = BEA6BA7E101431DA00B83B3A /* defaultPerson.png */; };
-		664DFEC712663122004C20C2 /* defaultMusic.png in Resources */ = {isa = PBXBuildFile; fileRef = BEA6BAAC101436AC00B83B3A /* defaultMusic.png */; };
-		664DFEC812663122004C20C2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C6AB116D98220012B12C /* Default.png */; };
-		664DFEC912663122004C20C2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E94C6AC116D98220012B12C /* Icon.png */; };
-		664DFECB12663122004C20C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		664DFECC12663122004C20C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
-		664DFECD12663122004C20C2 /* CatalogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* CatalogController.m */; };
-		664DFECE12663122004C20C2 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E2490EAEFF6100743358 /* MockPhotoSource.m */; };
-		664DFECF12663122004C20C2 /* TableImageTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3700EAF0F3000743358 /* TableImageTestController.m */; };
-		664DFED012663122004C20C2 /* ImageTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80E3A60EAF108500743358 /* ImageTest1Controller.m */; };
-		664DFED112663122004C20C2 /* ActivityTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE38E800EB288BA00189902 /* ActivityTestController.m */; };
-		664DFED212663122004C20C2 /* PhotoTest1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0FDDA0EB2A6850052C05F /* PhotoTest1Controller.m */; };
-		664DFED312663122004C20C2 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5F25910EBA5F0400FD59A6 /* PhotoTest2Controller.m */; };
-		664DFED412663122004C20C2 /* YouTubeTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8C0F7C0F2018C600EB0E98 /* YouTubeTestController.m */; };
-		664DFED512663122004C20C2 /* ScrollViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */; };
-		664DFED612663122004C20C2 /* TabBarTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E46EB0F4578BA001CE9B4 /* TabBarTestController.m */; };
-		664DFED712663122004C20C2 /* TableItemTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6E4AA40F4655A4001CE9B4 /* TableItemTestController.m */; };
-		664DFED812663122004C20C2 /* MessageTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE341B30F480C76008C826E /* MessageTestController.m */; };
-		664DFED912663122004C20C2 /* SearchTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE346BB0F48F15C008C826E /* SearchTestController.m */; };
-		664DFEDA12663122004C20C2 /* MockDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE348AB0F490F43008C826E /* MockDataSource.m */; };
-		664DFEDB12663122004C20C2 /* TableTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE69B7580F62874900C02928 /* TableTestController.m */; };
-		664DFEDC12663122004C20C2 /* StyledTextTableTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF1991F0F818E720010D36E /* StyledTextTableTestController.m */; };
-		664DFEDD12663122004C20C2 /* StyledTextTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF199210F818E720010D36E /* StyledTextTestController.m */; };
-		664DFEDE12663122004C20C2 /* StyleTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE1288300F8973CD00F65EA2 /* StyleTestController.m */; };
-		664DFEDF12663122004C20C2 /* ButtonTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC5EC670F8C307E007622CD /* ButtonTestController.m */; };
-		664DFEE012663122004C20C2 /* TableControlsTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE20A49B0FF418B2008791F4 /* TableControlsTestController.m */; };
-		664DFEE112663122004C20C2 /* LauncherViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC787621040A430005C00CF /* LauncherViewTestController.m */; };
-		664DFEE212663122004C20C2 /* TableWithShadowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E002566116A6D1A00D1F0CB /* TableWithShadowController.m */; };
-		664DFEE412663122004C20C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		664DFEE512663122004C20C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		664DFEE612663122004C20C2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		664DFEE712663122004C20C2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1D84390F8D104B00EC8BB8 /* QuartzCore.framework */; };
 		666E183012944D23001C1D97 /* SplitCatalogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E182F12944D23001C1D97 /* SplitCatalogController.m */; };
-		666E183112944D23001C1D97 /* SplitCatalogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E182F12944D23001C1D97 /* SplitCatalogController.m */; };
 		6675F5F412945622008DE0A6 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F012945622008DE0A6 /* Default-Landscape.png */; };
 		6675F5F512945622008DE0A6 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F112945622008DE0A6 /* Default-Portrait.png */; };
 		6675F5F612945622008DE0A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F212945622008DE0A6 /* Default@2x.png */; };
 		6675F5F712945622008DE0A6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F312945622008DE0A6 /* Icon@2x.png */; };
-		6675F5F812945622008DE0A6 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F012945622008DE0A6 /* Default-Landscape.png */; };
-		6675F5F912945622008DE0A6 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F112945622008DE0A6 /* Default-Portrait.png */; };
-		6675F5FA12945622008DE0A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F212945622008DE0A6 /* Default@2x.png */; };
-		6675F5FB12945622008DE0A6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F312945622008DE0A6 /* Icon@2x.png */; };
 		6E002567116A6D1A00D1F0CB /* TableWithShadowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E002566116A6D1A00D1F0CB /* TableWithShadowController.m */; };
 		6E3794F511B9B6DB0011C497 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3794D411B9B6D70011C497 /* libThree20Core.a */; };
 		6E3794F611B9B6DC0011C497 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3794DA11B9B6D70011C497 /* libThree20Network.a */; };
@@ -103,7 +60,6 @@
 		BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */; };
 		E46662FE127F91A4001A0F20 /* TableWithBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46662FD127F91A4001A0F20 /* TableWithBannerController.m */; };
 		E4D1D1D61306D2670090AE0C /* TableDragRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D1D1D51306D2670090AE0C /* TableDragRefreshController.m */; };
-		E4D1D1D71306D2670090AE0C /* TableDragRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D1D1D51306D2670090AE0C /* TableDragRefreshController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,7 +222,6 @@
 		28C286DF0D94DF7D0034E888 /* CatalogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalogController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* CatalogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalogController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		664DFEF212663122004C20C2 /* TTCatalog-v3.2.5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TTCatalog-v3.2.5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		665E998712662FFA0025FA42 /* TTCatalog-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTCatalog-Info.plist"; sourceTree = "<group>"; };
 		666E182E12944D23001C1D97 /* SplitCatalogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitCatalogController.h; sourceTree = "<group>"; };
 		666E182F12944D23001C1D97 /* SplitCatalogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitCatalogController.m; sourceTree = "<group>"; };
@@ -367,17 +322,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		664DFEE312663122004C20C2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				664DFEE412663122004C20C2 /* Foundation.framework in Frameworks */,
-				664DFEE512663122004C20C2 /* UIKit.framework in Frameworks */,
-				664DFEE612663122004C20C2 /* CoreGraphics.framework in Frameworks */,
-				664DFEE712663122004C20C2 /* QuartzCore.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -405,7 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* TTCatalog.app */,
-				664DFEF212663122004C20C2 /* TTCatalog-v3.2.5.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -855,23 +798,6 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* TTCatalog.app */;
 			productType = "com.apple.product-type.application";
 		};
-		664DFEB112663122004C20C2 /* TTCatalog-Xcode3.2.5 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 664DFEEF12663122004C20C2 /* Build configuration list for PBXNativeTarget "TTCatalog-Xcode3.2.5" */;
-			buildPhases = (
-				664DFEC012663122004C20C2 /* Resources */,
-				664DFECA12663122004C20C2 /* Sources */,
-				664DFEE312663122004C20C2 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "TTCatalog-Xcode3.2.5";
-			productName = PhotoBrowser;
-			productReference = 664DFEF212663122004C20C2 /* TTCatalog-v3.2.5.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -926,7 +852,6 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* TTCatalog */,
-				664DFEB112663122004C20C2 /* TTCatalog-Xcode3.2.5 */,
 			);
 		};
 /* End PBXProject section */
@@ -1053,26 +978,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		664DFEC012663122004C20C2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				664DFEC112663122004C20C2 /* tableIcon.png in Resources */,
-				664DFEC212663122004C20C2 /* person.jpg in Resources */,
-				664DFEC312663122004C20C2 /* Three20.bundle in Resources */,
-				664DFEC412663122004C20C2 /* smiley.png in Resources */,
-				664DFEC512663122004C20C2 /* mask.png in Resources */,
-				664DFEC612663122004C20C2 /* defaultPerson.png in Resources */,
-				664DFEC712663122004C20C2 /* defaultMusic.png in Resources */,
-				664DFEC812663122004C20C2 /* Default.png in Resources */,
-				664DFEC912663122004C20C2 /* Icon.png in Resources */,
-				6675F5F812945622008DE0A6 /* Default-Landscape.png in Resources */,
-				6675F5F912945622008DE0A6 /* Default-Portrait.png in Resources */,
-				6675F5FA12945622008DE0A6 /* Default@2x.png in Resources */,
-				6675F5FB12945622008DE0A6 /* Icon@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1109,40 +1014,6 @@
 				E4D1D1D61306D2670090AE0C /* TableDragRefreshController.m in Sources */,
 				7000C4C0130CCAE3006D7ADE /* DownloadTestModel.m in Sources */,
 				7000C4C1130CCAE3006D7ADE /* DownloadProgressTestController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		664DFECA12663122004C20C2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				664DFECB12663122004C20C2 /* main.m in Sources */,
-				664DFECC12663122004C20C2 /* AppDelegate.m in Sources */,
-				664DFECD12663122004C20C2 /* CatalogController.m in Sources */,
-				664DFECE12663122004C20C2 /* MockPhotoSource.m in Sources */,
-				664DFECF12663122004C20C2 /* TableImageTestController.m in Sources */,
-				664DFED012663122004C20C2 /* ImageTest1Controller.m in Sources */,
-				664DFED112663122004C20C2 /* ActivityTestController.m in Sources */,
-				664DFED212663122004C20C2 /* PhotoTest1Controller.m in Sources */,
-				664DFED312663122004C20C2 /* PhotoTest2Controller.m in Sources */,
-				664DFED412663122004C20C2 /* YouTubeTestController.m in Sources */,
-				664DFED512663122004C20C2 /* ScrollViewTestController.m in Sources */,
-				664DFED612663122004C20C2 /* TabBarTestController.m in Sources */,
-				664DFED712663122004C20C2 /* TableItemTestController.m in Sources */,
-				664DFED812663122004C20C2 /* MessageTestController.m in Sources */,
-				664DFED912663122004C20C2 /* SearchTestController.m in Sources */,
-				664DFEDA12663122004C20C2 /* MockDataSource.m in Sources */,
-				664DFEDB12663122004C20C2 /* TableTestController.m in Sources */,
-				664DFEDC12663122004C20C2 /* StyledTextTableTestController.m in Sources */,
-				664DFEDD12663122004C20C2 /* StyledTextTestController.m in Sources */,
-				664DFEDE12663122004C20C2 /* StyleTestController.m in Sources */,
-				664DFEDF12663122004C20C2 /* ButtonTestController.m in Sources */,
-				664DFEE012663122004C20C2 /* TableControlsTestController.m in Sources */,
-				664DFEE112663122004C20C2 /* LauncherViewTestController.m in Sources */,
-				664DFEE212663122004C20C2 /* TableWithShadowController.m in Sources */,
-				664B27F612846A220008D569 /* TableWithBannerController.m in Sources */,
-				666E183112944D23001C1D97 /* SplitCatalogController.m in Sources */,
-				E4D1D1D71306D2670090AE0C /* TableDragRefreshController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1218,57 +1089,6 @@
 			};
 			name = Release;
 		};
-		664DFEF012663122004C20C2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E7F9960118E3A6000443B46 /* App.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				BUILD_STYLE = Debug;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				OTHER_LDFLAGS = (
-					"$(THREE20CORE325_LIB)",
-					"$(THREE20NETWORK325_LIB)",
-					"$(THREE20STYLE325_LIB)",
-					"$(THREE20UICOMMON325_LIB)",
-					"$(THREE20UINAVIGATOR325_LIB)",
-					"$(THREE20UI325_LIB)",
-					"$(THREE20325_LIB)",
-				);
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-v3.2.5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		664DFEF112663122004C20C2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E7F9960118E3A6000443B46 /* App.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				BUILD_STYLE = Release;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				OTHER_LDFLAGS = (
-					"$(THREE20CORE325_LIB)",
-					"$(THREE20NETWORK325_LIB)",
-					"$(THREE20STYLE325_LIB)",
-					"$(THREE20UICOMMON325_LIB)",
-					"$(THREE20UINAVIGATOR325_LIB)",
-					"$(THREE20UI325_LIB)",
-					"$(THREE20325_LIB)",
-				);
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)-v3.2.5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E7F9961118E3A6000443B46 /* Project.xcconfig */;
@@ -1308,15 +1128,6 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		664DFEEF12663122004C20C2 /* Build configuration list for PBXNativeTarget "TTCatalog-Xcode3.2.5" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				664DFEF012663122004C20C2 /* Debug */,
-				664DFEF112663122004C20C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
