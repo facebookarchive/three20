@@ -425,9 +425,10 @@ static const CGFloat kMinCursorWidth  = 50;
   for (int i = 0; i < _cellViews.count; ++i) {
     TTPickerViewCell* cell = [_cellViews objectAtIndex:i];
     if (cell.object == object) {
-      [_cellViews removeObjectAtIndex:i];
+	  if ([_selectedCell isEqual:cell]) _selectedCell = nil;
+	  [_cellViews removeObjectAtIndex:i];
       [cell removeFromSuperview];
-
+		
       SEL sel = @selector(textField:didRemoveCellAtIndex:);
       if ([self.delegate respondsToSelector:sel]) {
         [self.delegate performSelector:sel withObject:self withObject:(id)i];
@@ -490,7 +491,8 @@ static const CGFloat kMinCursorWidth  = 50;
 - (void)scrollToVisibleLine:(BOOL)animated {
   if (self.editing) {
     UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
-    if (scrollView) {
+	  NSLog(@"scrollEnabled %d", scrollView.scrollEnabled);
+	  if (scrollView) {
       [scrollView setContentOffset:CGPointMake(0, self.top) animated:animated];
     }
   }
@@ -500,6 +502,7 @@ static const CGFloat kMinCursorWidth  = 50;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollToEditingLine:(BOOL)animated {
   UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
+	NSLog(@"scrollEnabled %d", scrollView.scrollEnabled);
   if (scrollView) {
     CGFloat offset = _lineCount == 1 ? 0 : [self topOfLine:_lineCount-1];
     [scrollView setContentOffset:CGPointMake(0, self.top+offset) animated:animated];
