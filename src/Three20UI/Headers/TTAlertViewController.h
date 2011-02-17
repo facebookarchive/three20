@@ -29,6 +29,8 @@
 @protected
   id              _userInfo;
   NSMutableArray* _URLs;
+  NSMutableArray* _targets;
+  NSMutableArray* _selectors;
 
   id<TTAlertViewControllerDelegate> _delegate;
 }
@@ -42,9 +44,16 @@
 - (id)initWithTitle:(NSString*)title message:(NSString*)message;
 - (id)initWithTitle:(NSString*)title message:(NSString*)message delegate:(id)delegate;
 
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector;
 - (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL;
+- (NSInteger)addButtonWithTitle:(NSString*)title target:(NSObject *)target selector:(SEL)selector;
+
+- (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector;
 - (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL;
+- (NSInteger)addCancelButtonWithTitle:(NSString*)title target:(NSObject *)target selector:(SEL)selector;
 
 - (NSString*)buttonURLAtIndex:(NSInteger)index;
+- (NSObject*)targetAtIndex:(NSInteger)buttonIndex;
+- (NSString*)selectorAtIndex:(NSInteger)buttonIndex;
 
 @end

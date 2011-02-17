@@ -23,6 +23,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +39,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _URLs = [[NSMutableArray alloc] init];
-	_targets = [[NSMutableArray alloc] init];
+	_targets = TTCreateNonRetainingArray();
 	_selectors = [[NSMutableArray alloc] init];
   }
 

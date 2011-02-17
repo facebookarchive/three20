@@ -23,6 +23,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,6 +39,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _URLs = [[NSMutableArray alloc] init];
+    _targets = TTCreateNonRetainingArray();
+	_selectors = [[NSMutableArray alloc] init];
   }
 
   return self;
@@ -85,6 +88,8 @@
   [(UIAlertView*)self.view setDelegate:nil];
   TT_RELEASE_SAFELY(_URLs);
   TT_RELEASE_SAFELY(_userInfo);
+  TT_RELEASE_SAFELY(_targets);
+  TT_RELEASE_SAFELY(_selectors);
 
   [super dealloc];
 }
@@ -180,6 +185,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)alertView:(UIAlertView*)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+  NSObject* target = [self targetAtIndex:buttonIndex];
+  NSString* selectorAsString = [self selectorAtIndex:buttonIndex];
+  if (target && selectorAsString) {
+    [target performSelector:NSSelectorFromString(selectorAsString)];
+  }
+  
   if ([_delegate respondsToSelector:@selector(alertView:willDismissWithButtonIndex:)]) {
     [_delegate alertView:alertView willDismissWithButtonIndex:buttonIndex];
   }
@@ -213,29 +224,80 @@
   return (UIAlertView*)self.view;
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector {
   if (URL) {
     [_URLs addObject:URL];
   } else {
     [_URLs addObject:[NSNull null]];
   }
+  
+  if (target) {
+    [_targets addObject:target];
+  } else {
+    [_targets addObject:[NSNull null]];
+  }
+  
+  if (selector) {
+    [_selectors addObject:NSStringFromSelector(selector)];
+  } else {
+    [_selectors addObject:[NSNull null]];
+  }
+  
   return [self.alertView addButtonWithTitle:title];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+  return [self addButtonWithTitle:title URL:URL target:nil selector:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)addButtonWithTitle:(NSString*)title target:(NSObject *)target selector:(SEL)selector {
+  return [self addButtonWithTitle:title URL:nil target:target selector:selector];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL {
-  self.alertView.cancelButtonIndex = [self addButtonWithTitle:title URL:URL];
+- (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector {
+  self.alertView.cancelButtonIndex = [self addButtonWithTitle:title URL:URL target:target selector:selector];
   return self.alertView.cancelButtonIndex;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL {
+  return [self addCancelButtonWithTitle:title URL:URL target:nil selector:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)addCancelButtonWithTitle:(NSString*)title target:(NSObject *)target selector:(SEL)selector {
+  return [self addCancelButtonWithTitle:title URL:nil target:target selector:selector];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)buttonURLAtIndex:(NSInteger)buttonIndex {
   id URL = [_URLs objectAtIndex:buttonIndex];
   return URL != [NSNull null] ? URL : nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSObject*)targetAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex < _targets.count) {
+    id target = [_targets objectAtIndex:buttonIndex];
+    return target != [NSNull null] ? target : nil;
+  } else {
+    return nil;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)selectorAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex < _selectors.count) {
+    id selector = [_selectors objectAtIndex:buttonIndex];
+    return selector != [NSNull null] ? selector : nil;
+  } else {
+    return nil;
+  }
 }
 
 
