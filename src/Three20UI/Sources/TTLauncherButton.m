@@ -111,17 +111,21 @@ static const NSInteger kMaxBadgeNumber = 99;
     [self addSubview:_badge];
   }
 
-  NSInteger badgeNumber = _item.badgeNumber;
+  NSString *badgeText = nil;
+  NSString *badgeValue = _item.badgeValue;
   
-  if (badgeNumber == NSNotFound) {
-      _badge.text = @"!";
-  } else if (badgeNumber > kMaxBadgeNumber) {
-    _badge.text = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
-  } else {
-    _badge.text = _item.badgeValue;
+  if (badgeValue != nil) {
+    NSRange range = [badgeValue rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
+    
+    if (range.location == NSNotFound && _item.badgeNumber > kMaxBadgeNumber) {
+      badgeText = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
+    } else {
+      badgeText = badgeValue;
+    }
   }
-
-  _badge.hidden = _item.badgeValue == nil;
+  
+  _badge.text = badgeText;
+  _badge.hidden = badgeValue == nil;
   [_badge sizeToFit];
   [self setNeedsLayout];
 }

@@ -71,7 +71,7 @@
   item.badgeNumber = 0;
 
   item = [_launcherView itemWithURL:@"fb://item5"];
-  item.badgeNumber = NSNotFound;
+  item.badgeValue = @"100!";
 
   item = [_launcherView itemWithURL:@"fb://item6"];
   item.badgeValue = @"Off";
