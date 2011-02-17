@@ -230,7 +230,7 @@ __attribute__((weak_import));
 
   for (controller = view.viewController;
        nil != controller;
-       controller = controller.parentViewController) {
+       controller = controller.superController) {
     if (controller == gPopoverController.contentViewController) {
       break;
     }
