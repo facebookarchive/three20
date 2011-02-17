@@ -103,7 +103,7 @@ static const NSInteger kMaxBadgeNumber = 99;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateBadge {
-  if (!_badge && _item.badgeNumber) {
+  if (_badge == nil && _item.badgeValue != nil) {
     _badge = [[TTLabel alloc] init];
     _badge.style = TTSTYLE(largeBadge);
     _badge.backgroundColor = [UIColor clearColor];
@@ -111,18 +111,17 @@ static const NSInteger kMaxBadgeNumber = 99;
     [self addSubview:_badge];
   }
 
-  if (_item.badgeNumber == NSNotFound) {
+  NSInteger badgeNumber = _item.badgeNumber;
+  
+  if (badgeNumber == NSNotFound) {
       _badge.text = @"!";
-  } else if (_item.badgeNumber > 0) {
-    if (_item.badgeNumber <= kMaxBadgeNumber) {
-      _badge.text = [NSString stringWithFormat:@"%d", _item.badgeNumber];
-
-    } else {
-      _badge.text = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
-    }
+  } else if (badgeNumber > kMaxBadgeNumber) {
+    _badge.text = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
+  } else {
+    _badge.text = _item.badgeValue;
   }
 
-  _badge.hidden = _item.badgeNumber <= 0;
+  _badge.hidden = _item.badgeValue == nil;
   [_badge sizeToFit];
   [self setNeedsLayout];
 }

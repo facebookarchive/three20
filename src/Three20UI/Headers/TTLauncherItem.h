@@ -27,7 +27,7 @@
   NSString*       _URL;
 
   NSString*       _style;
-  NSInteger       _badgeNumber;
+  NSString*       _badgeValue;
 
   BOOL            _canDelete;
 }
@@ -38,6 +38,7 @@
 @property (nonatomic, copy)   NSString*       URL;
 @property (nonatomic, copy)   NSString*       style;
 @property (nonatomic)         NSInteger       badgeNumber;
+@property (nonatomic, copy)   NSString*       badgeValue;
 @property (nonatomic)         BOOL            canDelete;
 
 - (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL;
