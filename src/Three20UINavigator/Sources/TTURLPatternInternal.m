@@ -29,6 +29,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// 
+//- (void)setSelectorWithNames:(NSArray*)names {
+//  NSString* selectorName = [[names componentsJoinedByString:@":"] stringByAppendingString:@":"];
+//  SEL selector = NSSelectorFromString(selectorName);
+//  [self setSelectorIfPossible:selector];
+//}
+
 - (void)setSelectorWithNames:(NSArray*)names {
 //	NSLog(@"    Names: %@", names);
 //	NSLog(@"    Names components joined by string: %@", [names componentsJoinedByString:@":"]);
@@ -73,6 +80,7 @@
 		//NSLog(@"  !!!!! selector: %@", NSStringFromSelector(selector)); // It's out of order!!!
 	}
 }
+
 
 
 @end

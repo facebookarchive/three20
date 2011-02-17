@@ -157,8 +157,8 @@
   }
 
   if (URL.query) {
-	/* From JE: I'm not sure if this is necessary any more
-    NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+	// From JE: I'm not sure if this is necessary any more
+    NSDictionary* query = [URL.query queryContentsUsingEncoding:NSUTF8StringEncoding];
 
 	// JE:	
 	NSArray *queryComponents = [URL.query componentsSeparatedByString:@"&"];	
@@ -173,13 +173,8 @@
 	self.queryKeyOrder = queryKeyOrder;	
 	//NSLog(@"Query key order = %@", self.queryKeyOrder);
     for (NSString* name in [query keyEnumerator]) {
-      NSString* value = [query objectForKey:name];
-      [self parseParameter:name value:value]; // JE: URL query params are added in the wrong order here
-	 */
-    NSDictionary* query = [URL.query queryContentsUsingEncoding:NSUTF8StringEncoding];
-    for (NSString* name in [query keyEnumerator]) {
       NSString* value = [[query objectForKey:name] objectAtIndex:0];
-      [self parseParameter:name value:value];
+      [self parseParameter:name value:value]; // JE: URL query params are added in the wrong order here
     }
   }
 
