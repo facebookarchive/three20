@@ -60,7 +60,8 @@ static const CGFloat kUITextViewVerticalPadding = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _internal = [[TTTextEditorInternal alloc] initWithTextEditor:self];
     _autoresizesToText = YES;
 

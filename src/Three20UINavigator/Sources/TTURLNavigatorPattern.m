@@ -47,7 +47,8 @@ static NSString* kUniversalURLPattern = @"*";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTarget: (id)target
                 mode: (TTNavigationMode)navigationMode {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _navigationMode = navigationMode;
 
     if ([target class] == target && navigationMode) {
@@ -63,7 +64,8 @@ static NSString* kUniversalURLPattern = @"*";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTarget:(id)target {
-  if (self = [self initWithTarget:target mode:TTNavigationModeNone]) {
+	self = [self initWithTarget:target mode:TTNavigationModeNone];
+  if (self) {
   }
 
   return self;
@@ -72,7 +74,8 @@ static NSString* kUniversalURLPattern = @"*";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithTarget:nil]) {
+	self = [self initWithTarget:nil];
+  if (self) {
   }
 
   return self;

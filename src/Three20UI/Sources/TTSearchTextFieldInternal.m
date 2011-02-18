@@ -30,7 +30,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTextField:(TTSearchTextField*)textField {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _textField = textField;
   }
 

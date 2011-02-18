@@ -39,7 +39,8 @@ static CGFloat kButtonMaxWidth  = 120;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _buttons = [[NSMutableArray alloc] init];
 
     self.buttonStyle = @"toolbarButton:";

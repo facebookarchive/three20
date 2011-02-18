@@ -51,7 +51,8 @@ static const CGFloat kVPadding = 7;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     self.backgroundColor = [UIColor clearColor];
     self.contentMode = UIViewContentModeRedraw;
   }

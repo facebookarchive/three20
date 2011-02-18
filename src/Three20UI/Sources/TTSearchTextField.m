@@ -59,7 +59,8 @@ static const CGFloat kDesiredTableHeight = 150;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _internal = [[TTSearchTextFieldInternal alloc] initWithTextField:self];
 
     self.autocorrectionType = UITextAutocorrectionTypeNo;

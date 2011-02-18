@@ -32,7 +32,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithElement:(TTStyledElement*)element {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _element = element;
     _bounds = CGRectZero;
   }

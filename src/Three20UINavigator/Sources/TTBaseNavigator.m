@@ -71,7 +71,8 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _URLMap = [[TTURLMap alloc] init];
     _persistenceMode = TTNavigatorPersistenceModeNone;
 

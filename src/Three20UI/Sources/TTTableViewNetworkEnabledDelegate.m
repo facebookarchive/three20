@@ -68,7 +68,8 @@ static const CGFloat kInfiniteScrollThreshold = 0.5;
 - (id)initWithController:(TTTableViewController*)controller
          withDragRefresh:(BOOL)enableDragRefresh
       withInfiniteScroll:(BOOL)enableInfiniteScroll {
-  if (self = [super initWithController:controller]) {
+	self = [super initWithController:controller];
+  if (self) {
     _dragRefreshEnabled = enableDragRefresh;
     _infiniteScrollEnabled = enableInfiniteScroll;
 

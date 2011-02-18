@@ -42,7 +42,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL {
-  if (self = [self initWithTitle:title image:image URL:URL canDelete:NO]) {
+	self = [self initWithTitle:title image:image URL:URL canDelete:NO];
+  if (self) {
   }
 
   return self;
@@ -52,7 +53,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL
       canDelete:(BOOL)canDelete {
-  if (self = [super init]) {
+	self = [super init]
+  if (self) {
     _canDelete = canDelete;
 
     self.title = title;
@@ -83,7 +85,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder*)decoder {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     self.title = [decoder decodeObjectForKey:@"title"];
     self.image = [decoder decodeObjectForKey:@"image"];
     self.URL = [decoder decodeObjectForKey:@"URL"];

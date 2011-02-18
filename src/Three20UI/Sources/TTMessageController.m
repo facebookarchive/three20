@@ -61,7 +61,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
     _fields = [[NSArray alloc] initWithObjects:
                [[[TTMessageRecipientField alloc] initWithTitle: TTLocalizedString(@"To:", @"")
                                                       required: YES] autorelease],
@@ -90,7 +91,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithRecipients:(NSArray*)recipients {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+	self = [self initWithNibName:nil bundle:nil];
+  if (self) {
     _initialRecipients = [recipients retain];
   }
 

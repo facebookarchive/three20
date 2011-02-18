@@ -31,7 +31,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTextEditor:(TTTextEditor*)textEditor {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _textEditor = textEditor;
   }
 

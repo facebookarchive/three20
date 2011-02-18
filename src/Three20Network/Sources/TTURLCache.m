@@ -59,7 +59,8 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithName:(NSString*)name {
-  if (self == [super init]) {
+	self == [super init];
+  if (self) {
     _name             = [name copy];
     _cachePath        = [[TTURLCache cachePathWithName:name] retain];
     _invalidationAge  = TT_DEFAULT_CACHE_INVALIDATION_AGE;
@@ -82,7 +83,8 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithName:kDefaultCacheName]) {
+	self = [self initWithName:kDefaultCacheName];
+  if (self) {
   }
 
   return self;

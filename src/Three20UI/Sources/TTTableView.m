@@ -50,7 +50,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-  if (self = [super initWithFrame:frame style:style]) {
+	self = [super initWithFrame:frame style:style];
+  if (self) {
     _highlightStartPoint = CGPointZero;
   }
 
