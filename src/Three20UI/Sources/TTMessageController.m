@@ -190,7 +190,8 @@
 
       } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
-          if (!TTIsStringWithAnyText(textField.text)) {
+				if (TTIsStringWithAnyText(textField.text)
+						&& !textField.text.isWhitespaceAndNewlines) {
           return YES;
         }
       }
@@ -218,7 +219,7 @@
 
       } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
-        if (TTIsStringWithAnyText(textField.text)) {
+        if (0 == textField.text.length || textField.text.isWhitespaceAndNewlines) {
           return NO;
         }
       }
@@ -659,10 +660,13 @@
     TTMessageField* field = [_fields objectAtIndex:fieldIndex];
     if ([field isKindOfClass:[TTMessageRecipientField class]]) {
       TTPickerTextField* pickerTextField = [_fieldViews objectAtIndex:fieldIndex];
-      return !TTIsStringWithAnyText(pickerTextField.text) || pickerTextField.cellViews.count > 0;
+      return (TTIsStringWithAnyText(pickerTextField.text)
+							&& !pickerTextField.text.isWhitespaceAndNewlines) 
+							|| pickerTextField.cellViews.count > 0;
     } else {
       UITextField* textField = [_fieldViews objectAtIndex:fieldIndex];
-      return !TTIsStringWithAnyText(textField.text);
+      return (TTIsStringWithAnyText(textField.text)
+							&& !textField.text.isWhitespaceAndNewlines);
     }
   }
 }

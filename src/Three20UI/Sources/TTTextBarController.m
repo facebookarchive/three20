@@ -412,6 +412,7 @@ static CGFloat kPadding = 5;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cancel {
   if (!TTIsStringWithAnyText(_textEditor.text)
+			&& !_textEditor.text.isWhitespaceAndNewlines
       && !(_defaultText && [_defaultText isEqualToString:_textEditor.text])) {
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
       TTLocalizedString(@"Cancel", @"")
