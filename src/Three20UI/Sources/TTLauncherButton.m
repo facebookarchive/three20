@@ -111,7 +111,9 @@ static const NSInteger kMaxBadgeNumber = 99;
     [self addSubview:_badge];
   }
 
-  if (_item.badgeNumber > 0) {
+  if (_item.badgeNumber == NSNotFound) {
+      _badge.text = @"!";
+  } else if (_item.badgeNumber > 0) {
     if (_item.badgeNumber <= kMaxBadgeNumber) {
       _badge.text = [NSString stringWithFormat:@"%d", _item.badgeNumber];
 

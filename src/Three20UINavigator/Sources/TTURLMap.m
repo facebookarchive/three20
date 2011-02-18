@@ -156,7 +156,8 @@
   || [URL.scheme caseInsensitiveCompare:@"https"] == NSOrderedSame
   || [URL.scheme caseInsensitiveCompare:@"ftp"] == NSOrderedSame
   || [URL.scheme caseInsensitiveCompare:@"ftps"] == NSOrderedSame
-  || [URL.scheme caseInsensitiveCompare:@"data"] == NSOrderedSame;
+  || [URL.scheme caseInsensitiveCompare:@"data"] == NSOrderedSame
+  || [URL.scheme caseInsensitiveCompare:@"file"] == NSOrderedSame;
 }
 
 

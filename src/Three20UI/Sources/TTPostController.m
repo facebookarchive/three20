@@ -367,6 +367,7 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
   [self retain];
+  [self.superController viewWillDisappear:animated];
   UIWindow* window = view.window ? view.window : [UIApplication sharedApplication].keyWindow;
 
   self.view.transform = [self transformForOrientation];
@@ -422,7 +423,7 @@ static const CGFloat kMarginY = 6;
     [self layoutTextEditor];
     [self showAnimationDidStop];
   }
-
+  [self.superController viewDidDisappear:animated];
   [self showKeyboard];
 }
 
