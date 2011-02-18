@@ -209,7 +209,7 @@
 
       if (![request send]) {
         // Put the default image in place while waiting for the request to load
-        if (_defaultImage && self.image != _defaultImage) {
+        if (_defaultImage && nil == self.image) {
           self.image = _defaultImage;
         }
       }
