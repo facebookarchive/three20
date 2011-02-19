@@ -72,7 +72,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-	self == [super init];
+	self = [super init];
   if (self) {
     _loaders = [[NSMutableDictionary alloc] init];
     _loaderQueue = [[NSMutableArray alloc] init];

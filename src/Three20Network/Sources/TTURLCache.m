@@ -59,7 +59,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithName:(NSString*)name {
-	self == [super init];
+	self = [super init];
   if (self) {
     _name             = [name copy];
     _cachePath        = [[TTURLCache cachePathWithName:name] retain];
