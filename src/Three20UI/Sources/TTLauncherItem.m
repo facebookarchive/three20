@@ -53,7 +53,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL
       canDelete:(BOOL)canDelete {
-	self = [super init]
+	self = [super init];
   if (self) {
     _canDelete = canDelete;
 
