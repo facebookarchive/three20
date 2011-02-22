@@ -92,7 +92,12 @@
       NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
       if (title.length > 0) {
         TTTableHeaderView* header = [_headers objectForKey:title];
-        if (nil == header) {
+        // If retrieved from cache, prepare for reuse:
+        // We reset the the opacity to 1, UITableView could set this property to 0 after remove it.
+        if (header) {
+          header.alpha = 1;
+        }
+        else if (nil == header) {
           if (nil == _headers) {
             _headers = [[NSMutableDictionary alloc] init];
           }

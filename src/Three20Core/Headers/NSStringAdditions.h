@@ -30,8 +30,9 @@
 
 /**
  * Determines if the string is empty or contains only whitespace.
+ * @deprecated Use TTIsStringWithAnyText() instead.
  */
-- (BOOL)isEmptyOrWhitespace;
+- (BOOL)isEmptyOrWhitespace __TTDEPRECATED_METHOD;
 
 /**
  * Parses a URL query string into a dictionary.

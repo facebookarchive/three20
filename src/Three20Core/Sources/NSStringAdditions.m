@@ -41,6 +41,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Deprecated - https://github.com/facebook/three20/issues/367
 - (BOOL)isEmptyOrWhitespace {
   // A nil or NULL string is not the same as an empty string
   return !self.length ||

@@ -38,7 +38,7 @@
 #import "Three20Core/TTGlobalCoreLocale.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/NSStringAdditions.h"
-
+#import "Three20Core/TTGlobalCore.h"
 static const CGFloat kMarginX = 5;
 static const CGFloat kMarginY = 6;
 
@@ -506,7 +506,8 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cancel {
-  if (!_textView.text.isEmptyOrWhitespace
+  if (!TTIsStringWithAnyText(_textView.text)
+			&& !_textView.text.isWhitespaceAndNewlines
       && !(_defaultText && [_defaultText isEqualToString:_textView.text])) {
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
       TTLocalizedString(@"Cancel", @"")

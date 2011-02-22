@@ -112,7 +112,7 @@ static const NSInteger kMaxBadgeNumber = 99;
   }
 
   if (_item.badgeNumber > 0) {
-    if (_item.badgeNumber <= kMaxBadgeNumber) {
+		if (_item.badgeNumber <= kMaxBadgeNumber) {
       _badge.text = [NSString stringWithFormat:@"%d", _item.badgeNumber];
 
     } else {

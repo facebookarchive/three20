@@ -55,6 +55,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 @synthesize totalBytesLoaded      = _totalBytesLoaded;
 @synthesize totalBytesExpected    = _totalBytesExpected;
 
+@synthesize totalBytesDownloaded  = _totalBytesDownloaded;
+@synthesize totalContentLength    = _totalContentLength;
+
 @synthesize userInfo              = _userInfo;
 @synthesize isLoading             = _isLoading;
 
@@ -320,7 +323,6 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   }
   return [[TTURLRequestQueue mainQueue] sendRequest:self];
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)sendSynchronously {
