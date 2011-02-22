@@ -16,6 +16,9 @@
 
 #import "Three20UI/private/TTTabBarInternal.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/TTTab.h"
 #import "Three20UI/UIViewAdditions.h"
@@ -28,6 +31,8 @@ static  CGFloat   kPadding        = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+TT_FIX_CATEGORY_BUG(TTTabBarInternal)
+
 @implementation TTTabBar (TTInternal)
 
 
@@ -88,6 +93,3 @@ static  CGFloat   kPadding        = 10;
 
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(TTTabBarInternal)

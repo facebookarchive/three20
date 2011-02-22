@@ -27,6 +27,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(NSDateAdditions)
+
 @implementation NSDate (TTCategory)
 
 
@@ -252,6 +254,3 @@
 
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(NSDateAdditions)

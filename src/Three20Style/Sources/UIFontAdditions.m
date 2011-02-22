@@ -16,6 +16,9 @@
 
 #import "Three20Style/UIFontAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,6 +26,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UIFontAdditions)
+
 @implementation UIFont (TTCategory)
 
 
@@ -32,6 +37,3 @@
 }
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(UIFontAdditions)
