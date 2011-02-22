@@ -16,6 +16,9 @@
 
 #import "Three20Style/UIImageAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,6 +26,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UIImageAdditions)
+
 @implementation UIImage (TTCategory)
 
 
@@ -229,6 +234,3 @@
 
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(UIImageAdditions)

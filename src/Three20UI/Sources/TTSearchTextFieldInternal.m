@@ -16,6 +16,9 @@
 
 #import "Three20UI/private/TTSearchTextFieldInternal.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/TTSearchTextField.h"
 
@@ -23,6 +26,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+TT_FIX_CATEGORY_BUG(TTSearchTextFieldInternal)
+
 @implementation TTSearchTextFieldInternal
 
 @synthesize delegate = _delegate;
@@ -129,6 +134,3 @@
 
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(TTSearchTextFieldInternal)

@@ -31,6 +31,12 @@
 #import "extThree20JSON/YAJLGen.h"
 #import "extThree20JSON/YAJLDocument.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
+
+TT_FIX_CATEGORY_BUG(NSObject_JAJL)
+
 @implementation NSObject(YAJL)
 
 #pragma mark Gen
@@ -77,6 +83,3 @@
 }
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(NSObject_JAJL)

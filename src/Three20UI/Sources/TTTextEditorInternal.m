@@ -16,6 +16,9 @@
 
 #import "Three20UI/private/TTTextEditorInternal.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/TTTextEditorDelegate.h"
 
@@ -23,6 +26,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+TT_FIX_CATEGORY_BUG(TTTextEditorInternal)
+
 @implementation TTTextEditorInternal
 
 @synthesize ignoreBeginAndEnd = _ignoreBeginAndEnd;
@@ -213,6 +218,3 @@
 
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(TTTextEditorInternal)

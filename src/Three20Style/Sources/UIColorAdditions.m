@@ -16,6 +16,10 @@
 
 #import "Three20Style/UIColorAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Color algorithms from http://www.cs.rit.edu/~ncs/color/t_convert.html
 
@@ -106,6 +110,8 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v ) {
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UIColorAdditions)
+
 @implementation UIColor (TTCategory)
 
 
@@ -210,6 +216,3 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v ) {
 
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(UIColorAdditions)

@@ -16,6 +16,9 @@
 
 #import "Three20UI/UINavigationControllerAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTNavigationController.h"
@@ -38,6 +41,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
+
 @implementation UINavigationController (TTCategory)
 
 
@@ -132,7 +137,3 @@
 
 
 @end
-
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
