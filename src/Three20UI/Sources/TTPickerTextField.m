@@ -425,7 +425,7 @@ static const CGFloat kMinCursorWidth  = 50;
   for (int i = 0; i < _cellViews.count; ++i) {
     TTPickerViewCell* cell = [_cellViews objectAtIndex:i];
     if (cell.object == object) {
-	  if ([_selectedCell isEqual:cell]) _selectedCell = nil;
+      if ([_selectedCell isEqual:cell]) _selectedCell = nil; self.text = nil;
 	  [_cellViews removeObjectAtIndex:i];
 	  [cell removeFromSuperview];
 		
