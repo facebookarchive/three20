@@ -427,7 +427,7 @@ static const CGFloat kMinCursorWidth  = 50;
     if (cell.object == object) {
 	  if ([_selectedCell isEqual:cell]) _selectedCell = nil;
 	  [_cellViews removeObjectAtIndex:i];
-      [cell removeFromSuperview];
+	  [cell removeFromSuperview];
 		
       SEL sel = @selector(textField:didRemoveCellAtIndex:);
       if ([self.delegate respondsToSelector:sel]) {
