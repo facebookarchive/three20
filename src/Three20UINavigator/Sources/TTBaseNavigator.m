@@ -304,6 +304,9 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 
   } else {
     UINavigationController* navController = [[[[self navigationControllerClass] alloc] init] autorelease];
+    navController.modalTransitionStyle = transition;
+    navController.modalPresentationStyle = controller.modalPresentationStyle;
+    
     [navController pushViewController: controller
                              animated: NO];
     [parentController presentModalViewController: navController
