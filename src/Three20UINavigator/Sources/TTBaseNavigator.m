@@ -455,6 +455,7 @@ __attribute__((weak_import));
                                              autorelease];
     [navController pushViewController: controller
                              animated: NO];
+    navController.modalPresentationStyle = controller.modalPresentationStyle;
     [parentController presentModalViewController: navController
                                         animated: animated];
   }
