@@ -40,7 +40,8 @@
   for (UIView* subview in subviews) {
     if (x > _padding && x + subview.frame.size.width > maxWidth) {
       x = _padding;
-      y += subview.frame.size.height + _spacing;
+      y += rowHeight + _spacing;
+      rowHeight = 0;
     }
     subview.frame = CGRectMake(x, y, subview.frame.size.width, subview.frame.size.height);
     x += subview.frame.size.width + _spacing;
