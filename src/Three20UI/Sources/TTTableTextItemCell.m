@@ -82,6 +82,12 @@ static const CGFloat kMaxLabelHeight = 2000;
   TTTableTextItem* item = object;
 
   CGFloat width = tableView.width - (kTableCellHPadding*2 + [tableView tableCellMargin]*2);
+  
+  if([tableView.dataSource respondsToSelector:@selector(sectionIndexTitlesForTableView:)] &&
+     nil != [tableView.dataSource sectionIndexTitlesForTableView:tableView]) {
+    width -= 10.f;
+  }
+
   UIFont* font = [self textFontForItem:item];
   CGSize size = [item.text sizeWithFont:font
                       constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
