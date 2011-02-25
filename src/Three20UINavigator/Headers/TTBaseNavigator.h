@@ -207,7 +207,18 @@ extern NSString* TTBaseNavigatorWillShowPopoverNotification;
 + (void)setPopoverAction:(TTURLAction*)action;
 
 /**
- * Dismiss this active popover controller.
+ * Dismiss this navigator's popover controller.
+ *
+ * @param forced NO  will call popoverControllerShouldDismissPopover: on the popover
+ *                   before attempting to dismiss it.
+ *               YES will dismiss the popover no matter what.
+ */
++ (BOOL)dismissPopoverAnimated:(BOOL)isAnimated forced:(BOOL)isForced;
+
+/**
+ * Dismiss this navigator's popover controller.
+ *
+ * Implied forced. See comment above.
  */
 + (void)dismissPopoverAnimated:(BOOL)isAnimated;
 

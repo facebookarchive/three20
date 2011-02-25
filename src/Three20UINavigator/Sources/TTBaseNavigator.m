@@ -171,6 +171,53 @@ __attribute__((weak_import));
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIPopoverControllerDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+  if (popoverController == [TTBaseNavigator popoverController]) {
+    id visibleViewController = [[TTBaseNavigator popoverController] contentViewController];
+    if ([visibleViewController isKindOfClass:[UINavigationController class]]) {
+      visibleViewController = [visibleViewController visibleViewController];
+    }
+    if ([visibleViewController
+         respondsToSelector:@selector(shouldDismissPopover:)]) {
+      return [visibleViewController shouldDismissPopover:popoverController];
+    }
+  }
+
+  return YES;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+  // If we're getting this notification but the popover controller differs, it means at least
+  // one of the following:
+  // - TTBaseNavigator wasn't made aware of the popover controller that is being dismissed, but for
+  //   some reason its delegate was set to [TTBaseNavigator class]
+  // - TTBaseNavigator was assigned a new popover controller before this message was received.
+  //
+  // Either way, if you've hit this assertion you need to determine why the popover controller
+  // isn't stored in TTBaseNavigator.
+  TTDASSERT(popoverController == [TTBaseNavigator popoverController]);
+
+  if (popoverController == [TTBaseNavigator popoverController]) {
+    [TTBaseNavigator setPopoverController:nil];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Popover Support
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (UIPopoverController*)popoverController {
   return gPopoverController;
 }
@@ -210,12 +257,26 @@ __attribute__((weak_import));
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)dismissPopoverAnimated:(BOOL)isAnimated {
-  [[self popoverController] dismissPopoverAnimated:isAnimated];
++ (BOOL)dismissPopoverAnimated:(BOOL)isAnimated forced:(BOOL)isForced {
+  if (isForced || [self popoverControllerShouldDismissPopover:[self popoverController]]) {
+    // Don't use self dismissPopoverAnimated: here because that will cause an infinite loop.
+    [[self popoverController] dismissPopoverAnimated:isAnimated];
 
-  // popoverControllerDidDismissPopover: is not called when we programmatically dismiss a popover,
-  // so we must be sure to release the popover ourselves.
-  TT_RELEASE_SAFELY(gPopoverController);
+    // popoverControllerDidDismissPopover: is not called when we programmatically dismiss a popover,
+    // so we must be sure to release the popover ourselves.
+    TT_RELEASE_SAFELY(gPopoverController);
+    TT_RELEASE_SAFELY(gPopoverAction);
+    return YES;
+
+  } else {
+    return NO;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)dismissPopoverAnimated:(BOOL)isAnimated {
+  [self dismissPopoverAnimated:isAnimated forced:YES];
 }
 
 
@@ -500,18 +561,12 @@ __attribute__((weak_import));
     return;
   }
 
-  // We only allow one popover to be /knowingly/ displayed at a time.
-  // Knowingly, in the sense that if you create a popover controller outside of the
-  // TTNavigator - a totally legitimate thing to do - the navigator in its current design
-  // has no idea that you did so. To let the navigator that you did this, please kindly set
-  // the navigator by calling [TTBaseNavigator setPopoverController:].
-
-  if (nil != [TTBaseNavigator popoverController] && !isModal
-      && nil == action.targetPopoverController) {
-    [TTBaseNavigator dismissPopoverAnimated:NO];
-
-    // Don't show the new popover; tapping anywhere else on the screen should hide the previous
-    // popover.
+  // If there is an active popover and we're not targetting it, see if we are allowed to dismiss
+  // it. If not, we bail out early.
+  if (nil != [TTBaseNavigator popoverController]
+      && [TTBaseNavigator popoverController] != action.targetPopoverController
+      && ![TTBaseNavigator dismissPopoverAnimated:action.animated forced:NO]) {
+    // Not allowed to dismiss the active popover.
     return;
   }
 
@@ -1175,47 +1230,6 @@ __attribute__((weak_import));
   }
 
   [defaults synchronize];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIPopoverControllerDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
-  if (popoverController == [TTBaseNavigator popoverController]) {
-    id visibleViewController = [[TTBaseNavigator popoverController] contentViewController];
-    if ([visibleViewController isKindOfClass:[UINavigationController class]]) {
-      visibleViewController = [visibleViewController visibleViewController];
-    }
-    if ([visibleViewController
-         respondsToSelector:@selector(shouldDismissPopover:)]) {
-      return [visibleViewController shouldDismissPopover:popoverController];
-    }
-  }
-
-  return YES;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
-  // If we're getting this notification but the popover controller differs, it means at least
-  // one of the following:
-  // - TTBaseNavigator wasn't made aware of the popover controller that is being dismissed, but for
-  //   some reason its delegate was set to [TTBaseNavigator class]
-  // - TTBaseNavigator was assigned a new popover controller before this message was received.
-  //
-  // Either way, if you've hit this assertion you need to determine why the popover controller
-  // isn't stored in TTBaseNavigator.
-  TTDASSERT(popoverController == [TTBaseNavigator popoverController]);
-
-  if (popoverController == [TTBaseNavigator popoverController]) {
-    [TTBaseNavigator setPopoverController:nil];
-  }
 }
 
 
