@@ -25,7 +25,7 @@ INFOPLIST_FILE = $(BASE_PRODUCT_NAME)-Info.plist
 
 // Linker Flags
 
-OTHER_LDFLAGS           = $(OBJC_LIBRARY) $(OBJC_ALLLOAD)
+OTHER_LDFLAGS           = $(OBJC_LIBRARY)
 
 // Warning flags
 
