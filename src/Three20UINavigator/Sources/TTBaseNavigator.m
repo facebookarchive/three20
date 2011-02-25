@@ -1185,10 +1185,13 @@ __attribute__((weak_import));
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
   if (popoverController == [TTBaseNavigator popoverController]) {
-    if ([[[TTBaseNavigator popoverController] contentViewController]
+    id visibleViewController = [[TTBaseNavigator popoverController] contentViewController];
+    if ([visibleViewController isKindOfClass:[UINavigationController class]]) {
+      visibleViewController = [visibleViewController visibleViewController];
+    }
+    if ([visibleViewController
          respondsToSelector:@selector(shouldDismissPopover:)]) {
-      return [(id)[[TTBaseNavigator popoverController] contentViewController]
-              shouldDismissPopover:popoverController];
+      return [visibleViewController shouldDismissPopover:popoverController];
     }
   }
 
