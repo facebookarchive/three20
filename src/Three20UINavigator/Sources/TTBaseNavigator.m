@@ -252,6 +252,8 @@ __attribute__((weak_import));
     return;
   }
 
+  controller.passthroughViews = action.passthroughViews;
+
   // TODO (jverkoey Dec. 15, 2010): Debatable what order of priority these should be in.
   // Perhaps we should simply TTDASSERT that only one or the other is provided?
   if (nil != action.sourceButton) {

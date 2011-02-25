@@ -35,6 +35,7 @@
 @synthesize sourceRect    = _sourceRect;
 @synthesize sourceView    = _sourceView;
 @synthesize sourceButton  = _sourceButton;
+@synthesize passthroughViews = _passthroughViews;
 @synthesize transition    = _transition;
 @synthesize targetPopoverController = _targetPopoverController;
 
@@ -64,6 +65,7 @@
   TT_RELEASE_SAFELY(_state);
   TT_RELEASE_SAFELY(_sourceView);
   TT_RELEASE_SAFELY(_sourceButton);
+  TT_RELEASE_SAFELY(_passthroughViews);
   TT_RELEASE_SAFELY(_targetPopoverController);
 
   [super dealloc];
@@ -83,6 +85,7 @@
           @"; sourceRect = %@"
           @"; sourceView = %@"
           @"; sourceButton = %@"
+          @"; passthroughViews = %@"
           @"; transition = %d"   // TODO (jverkoey Jan 25, 2011): Make a utility method for this.
           @">",
           self,
@@ -95,6 +98,7 @@
           NSStringFromCGRect(self.sourceRect),
           self.sourceView,
           self.sourceButton,
+          self.passthroughViews,
           self.transition];
 }
 
@@ -164,6 +168,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)applySourceButton:(UIBarButtonItem*)sourceButton {
   self.sourceButton = sourceButton;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applyPassthroughViews:(NSArray*)passthroughViews {
+  self.passthroughViews = passthroughViews;
   return self;
 }
 
