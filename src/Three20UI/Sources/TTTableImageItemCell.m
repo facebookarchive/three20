@@ -63,6 +63,16 @@ static const CGFloat kDefaultImageSize = 50;
   [super dealloc];
 }
 
+#pragma mark -
+#pragma mark private helpers
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIFont*) fontForImageItem:(id) imageItem {
+  if ([imageItem isKindOfClass:[TTTableRightImageItem class]]) {
+    return TTSTYLEVAR(tableSmallFont);
+  } else {
+    return TTSTYLEVAR(tableFont);
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +106,7 @@ static const CGFloat kDefaultImageSize = 50;
 
   CGFloat maxWidth = tableView.width - (imageWidth + kTableCellHPadding*2 + kTableCellMargin*2);
 
-  CGSize textSize = [imageItem.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
+  CGSize textSize = [imageItem.text sizeWithFont:[self fontForImageItem:imageItem]
                                constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
                                    lineBreakMode:UILineBreakModeTailTruncation];
 
@@ -206,12 +216,12 @@ static const CGFloat kDefaultImageSize = 50;
     _imageView2.defaultImage = item.defaultImage;
     _imageView2.urlPath = item.imageURL;
 
+    self.textLabel.font = [[self class] fontForImageItem:item];
+
     if ([_item isKindOfClass:[TTTableRightImageItem class]]) {
-      self.textLabel.font = TTSTYLEVAR(tableSmallFont);
       self.textLabel.textAlignment = UITextAlignmentCenter;
       self.accessoryType = UITableViewCellAccessoryNone;
     } else {
-      self.textLabel.font = TTSTYLEVAR(tableFont);
       self.textLabel.textAlignment = UITextAlignmentLeft;
     }
   }
