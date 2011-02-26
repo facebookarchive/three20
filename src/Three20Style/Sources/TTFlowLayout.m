@@ -35,22 +35,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)layoutSubviews:(NSArray*)subviews forView:(UIView*)view {
   CGFloat x = _padding, y = _padding;
-  CGFloat maxX = 0, lastHeight = 0;
+  CGFloat maxX = 0, rowHeight = 0;
   CGFloat maxWidth = view.frame.size.width - _padding*2;
   for (UIView* subview in subviews) {
-    if (x + subview.frame.size.width > maxWidth) {
+    if (x > _padding && x + subview.frame.size.width > maxWidth) {
       x = _padding;
-      y += subview.frame.size.height + _spacing;
+      y += rowHeight + _spacing;
+      rowHeight = 0;
     }
     subview.frame = CGRectMake(x, y, subview.frame.size.width, subview.frame.size.height);
     x += subview.frame.size.width + _spacing;
     if (x > maxX) {
       maxX = x;
     }
-    lastHeight = subview.frame.size.height;
+    if (subview.frame.size.height > rowHeight) {
+      rowHeight = subview.frame.size.height;
+    }
   }
 
-  return CGSizeMake(maxX+_padding, y+lastHeight+_padding);
+  return CGSizeMake(maxX+_padding, y+rowHeight+_padding);
 }
 
 

@@ -30,8 +30,26 @@
 
 /**
  * Determines if the string is empty or contains only whitespace.
+ * @deprecated Use TTIsStringWithAnyText() instead. Updating your use of
+ * this method is non-trivial. See the note below.
+ *
+ * Notes for updating your use of isEmptyOrWhitespace:
+ *
+ * if (!textField.text.isEmptyOrWhitespace) {
+ *
+ * becomes
+ *
+ * if (TTIsStringWithAnyText(textField.text) && !textField.text.isWhitespaceAndNewlines) {
+ *
+ * and
+ *
+ * if (textField.text.isEmptyOrWhitespace) {
+ *
+ * becomes
+ *
+ * if (0 == textField.text.length || textField.text.isWhitespaceAndNewlines) {
  */
-- (BOOL)isEmptyOrWhitespace;
+- (BOOL)isEmptyOrWhitespace __TTDEPRECATED_METHOD;
 
 /**
  * Parses a URL query string into a dictionary.

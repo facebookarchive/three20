@@ -158,5 +158,15 @@
   [self didCancelLoad];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (float)downloadProgress {
+  if ([self isLoading]) {
+    if (!_loadingRequest.totalContentLength) {
+      return 0;
+    }
+    return (float)_loadingRequest.totalBytesDownloaded / (float)_loadingRequest.totalContentLength;
+  }
+  return 0.0f;
+}
 
 @end

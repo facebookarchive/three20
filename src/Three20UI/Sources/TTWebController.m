@@ -317,7 +317,6 @@
   if (!self.navigationItem.rightBarButtonItem) {
     [self.navigationItem setRightBarButtonItem:_activityItem animated:YES];
   }
-  TTNetworkRequestStarted();
   [_toolbar replaceItemWithTag:3 withItem:_stopButton];
   _backButton.enabled = [_webView canGoBack];
   _forwardButton.enabled = [_webView canGoForward];
@@ -327,7 +326,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
   TT_RELEASE_SAFELY(_loadingURL);
-  TTNetworkRequestStopped();
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
     [self.navigationItem setRightBarButtonItem:nil animated:YES];

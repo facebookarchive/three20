@@ -1,11 +1,15 @@
 
 #import "MockDataSource.h"
 
+@interface MockAddressBook ()
+- (void) loadNames;
+@end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation MockAddressBook
 
-@synthesize names = _names, fakeSearchDuration = _fakeSearchDuration;
+@synthesize names = _names, fakeSearchDuration = _fakeSearchDuration, fakeLoadingDuration = _fakeLoadingDuration;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // class public
@@ -356,6 +360,7 @@
 
 - (void)dealloc {
   TT_INVALIDATE_TIMER(_fakeSearchTimer);
+  TT_INVALIDATE_TIMER(_fakeLoadingTimer)
   TT_RELEASE_SAFELY(_delegates);
   TT_RELEASE_SAFELY(_allNames);
   TT_RELEASE_SAFELY(_names);
@@ -385,14 +390,32 @@
 }
 
 - (BOOL)isLoading {
-  return !!_fakeSearchTimer;
+  return !!_fakeSearchTimer || !!_fakeLoadingTimer;
 }
 
 - (BOOL)isEmpty {
   return !_names.count;
 }
 
+- (void) fakeLoadingReady {
+  _fakeLoadingTimer = nil;
+    
+  [self loadNames];
+
+  [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
+}
+
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
+  [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
+  if (_fakeLoadingDuration) {
+    TT_INVALIDATE_TIMER(_fakeLoadingTimer);
+    _fakeLoadingTimer = [NSTimer scheduledTimerWithTimeInterval:_fakeLoadingDuration target:self
+                                                       selector:@selector(fakeLoadingReady) userInfo:nil repeats:NO];
+    [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
+  } else {
+    [self loadNames];
+    [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
+  }
 }
 
 - (void)invalidate:(BOOL)erase {
@@ -402,6 +425,9 @@
   if (_fakeSearchTimer) {
     TT_INVALIDATE_TIMER(_fakeSearchTimer);
     [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];
+  } else if(_fakeLoadingTimer) {
+    TT_INVALIDATE_TIMER(_fakeLoadingTimer);
+    [_delegates perform:@selector(modelDidCancelLoad:) withObject:self];    
   }
 }
 
@@ -416,6 +442,7 @@
 - (void)search:(NSString*)text {
   [self cancel];
 
+  TT_RELEASE_SAFELY(_names);
   if (text.length) {
     if (_fakeSearchDuration) {
       TT_INVALIDATE_TIMER(_fakeSearchTimer);
@@ -427,7 +454,6 @@
       [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
     }
   } else {
-    TT_RELEASE_SAFELY(_names);
     [_delegates perform:@selector(modelDidChange:) withObject:self];
   }
 }
@@ -446,7 +472,6 @@
 - (id)init {
   if (self = [super init]) {
     _addressBook = [[MockAddressBook alloc] initWithNames:[MockAddressBook fakeNames]];
-    [_addressBook loadNames];
     self.model = _addressBook;
   }
   return self;
@@ -490,6 +515,10 @@
     [_sections addObject:letter];
     [_items addObject:items];
   }
+}
+
+- (id<TTModel>)model {
+  return _addressBook;
 }
 
 @end
