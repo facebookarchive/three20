@@ -61,7 +61,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_highlightedLabel);
-
+  TT_RELEASE_SAFELY(_bottomShadow);
+  TT_RELEASE_SAFELY(_topShadow);
   [super dealloc];
 }
 
