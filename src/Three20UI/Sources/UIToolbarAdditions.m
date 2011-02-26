@@ -16,6 +16,9 @@
 
 #import "Three20UI/UIToolbarAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,6 +26,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UIToolbarAdditions)
+
 @implementation UIToolbar (TTCategory)
 
 
@@ -53,6 +58,3 @@
 
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(UIToolbarAdditions)

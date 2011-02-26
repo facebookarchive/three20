@@ -17,6 +17,7 @@
 #import "Three20Core/NSStringAdditions.h"
 
 // Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTMarkupStripper.h"
 #import "Three20Core/NSDataAdditions.h"
 
@@ -24,6 +25,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Additions.
+ */
+TT_FIX_CATEGORY_BUG(NSStringAdditions)
+
 @implementation NSString (TTAdditions)
 
 
@@ -174,6 +180,3 @@
 }
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(NSStringAdditions)

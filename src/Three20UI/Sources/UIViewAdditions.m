@@ -16,6 +16,9 @@
 
 #import "Three20UI/UIViewAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 
@@ -158,6 +161,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Additions.
+ */
+TT_FIX_CATEGORY_BUG(UIViewAdditions)
+
 @implementation UIView (TTCategory)
 
 
@@ -525,6 +533,3 @@
 
 
 @end
-
-#import "Three20Core/TTCorePreprocessorMacros.h"
-TT_FIX_CATEGORY_BUG(UIViewAdditions)
