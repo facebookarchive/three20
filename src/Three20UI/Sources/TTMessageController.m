@@ -43,7 +43,6 @@
 #import "Three20Core/TTGlobalCoreLocale.h"
 #import "Three20Core/TTGlobalCoreRects.h"
 #import "Three20Core/NSStringAdditions.h"
-#import "Three20Core/TTGlobalCore.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -190,8 +189,7 @@
 
       } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
-				if (TTIsStringWithAnyText(textField.text)
-						&& !textField.text.isWhitespaceAndNewlines) {
+        if (!textField.text.isEmptyOrWhitespace) {
           return YES;
         }
       }
@@ -219,7 +217,7 @@
 
       } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
-        if (0 == textField.text.length || textField.text.isWhitespaceAndNewlines) {
+        if (textField.text.isEmptyOrWhitespace) {
           return NO;
         }
       }
@@ -660,13 +658,10 @@
     TTMessageField* field = [_fields objectAtIndex:fieldIndex];
     if ([field isKindOfClass:[TTMessageRecipientField class]]) {
       TTPickerTextField* pickerTextField = [_fieldViews objectAtIndex:fieldIndex];
-      return (TTIsStringWithAnyText(pickerTextField.text)
-							&& !pickerTextField.text.isWhitespaceAndNewlines) 
-							|| pickerTextField.cellViews.count > 0;
+      return !pickerTextField.text.isEmptyOrWhitespace || pickerTextField.cellViews.count > 0;
     } else {
       UITextField* textField = [_fieldViews objectAtIndex:fieldIndex];
-      return (TTIsStringWithAnyText(textField.text)
-							&& !textField.text.isWhitespaceAndNewlines);
+      return !textField.text.isEmptyOrWhitespace;
     }
   }
 }
