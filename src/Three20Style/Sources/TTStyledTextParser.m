@@ -183,11 +183,11 @@
     node.className =  [attributeDict objectForKey:@"class"];
     [self pushNode:node];
 
-  } else if ([tag isEqualToString:@"b"]) {
+  } else if ([tag isEqualToString:@"b"] || [tag isEqualToString:@"strong"]) {
     TTStyledBoldNode* node = [[[TTStyledBoldNode alloc] init] autorelease];
     [self pushNode:node];
 
-  } else if ([tag isEqualToString:@"i"]) {
+  } else if ([tag isEqualToString:@"i"] || [tag isEqualToString:@"em"]) {
     TTStyledItalicNode* node = [[[TTStyledItalicNode alloc] init] autorelease];
     [self pushNode:node];
 
