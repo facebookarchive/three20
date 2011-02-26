@@ -89,14 +89,13 @@ def add_modules_to_project(module_names, project, configs):
 		for config in configs:
 			project.add_header_search_path(config)
 
-			for k,v in modules.items():
-				project.add_build_setting(config, 'OTHER_LDFLAGS', '"-force_load '+project.get_rel_path_to_products_dir()+'/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/'+v._product_name+'"')
+			project.add_build_setting(config, 'OTHER_LDFLAGS', '-ObjC')
 	else:
 		for configuration in project.configurations:
 			project.add_header_search_path(configuration[1])
 
 			for k,v in modules.items():
-				project.add_build_setting(configuration[1], 'OTHER_LDFLAGS', '"-force_load '+project.get_rel_path_to_products_dir()+'/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/'+v._product_name+'"')
+				project.add_build_setting(configuration[1], 'OTHER_LDFLAGS', '-ObjC')
 
 	if len(failed) > 0:
 		logging.error("Some dependencies failed to be added:")
