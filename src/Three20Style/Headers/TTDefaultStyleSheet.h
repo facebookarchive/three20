@@ -41,6 +41,7 @@
 @property (nonatomic, readonly) UIColor*  tableHeaderShadowColor;
 @property (nonatomic, readonly) CGSize    tableHeaderShadowOffset;
 @property (nonatomic, readonly) UIColor*  tableHeaderTintColor;
+@property (nonatomic, readonly) TTStyle*  tableHeaderGrouped;
 
 // Photo Captions
 @property (nonatomic, readonly) UIColor*  photoCaptionTextColor;
