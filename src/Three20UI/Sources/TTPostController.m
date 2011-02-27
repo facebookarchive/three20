@@ -203,9 +203,18 @@ static const CGFloat kMarginY = 6;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showInViewDidFinishAnimated:(BOOL)animated {
+- (void)showInViewDidFinish:(BOOL)animated {
   [self.superController viewDidDisappear:animated];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dismissViewDidFinish:(BOOL)animated {
+  [self.view removeFromSuperview];
+  [self.superController viewDidAppear:animated];
+  [self release];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showAnimationDidStop {
@@ -252,7 +261,10 @@ static const CGFloat kMarginY = 6;
     [_delegate postControllerDidCancel:self];
   }
 
-  [self dismissPopupViewControllerAnimated:YES];
+  BOOL animated = YES;
+  
+  [self.superController viewWillAppear:animated];
+  [self dismissPopupViewControllerAnimated:animated];
 }
 
 
@@ -375,7 +387,15 @@ static const CGFloat kMarginY = 6;
 - (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds {
   [super keyboardDidAppear:animated withBounds:bounds];
   
-  [self showInViewDidFinishAnimated:animated];
+  [self showInViewDidFinish:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)keyboardDidDisappear:(BOOL)animated withBounds:(CGRect)bounds {
+  [super keyboardDidDisappear:animated withBounds:bounds];
+  
+  [self dismissViewDidFinish:animated];
 }
 
 
@@ -455,14 +475,6 @@ static const CGFloat kMarginY = 6;
 - (void)dismissPopupViewControllerAnimated:(BOOL)animated {
   if (animated) {
     [self fadeOut];
-
-  } else {
-    UIViewController* superController = self.superController;
-    [self.view removeFromSuperview];
-    [self release];
-    superController.popupViewController = nil;
-    [superController viewWillAppear:animated];
-    [superController viewDidAppear:animated];
   }
 }
 
@@ -550,6 +562,8 @@ static const CGFloat kMarginY = 6;
   [_result release];
   _result = [result retain];
 
+  [self.superController viewWillAppear:animated];
+  
   if (animated) {
     if ([_delegate respondsToSelector:@selector(postController:willAnimateTowards:)]) {
       CGRect rect = [_delegate postController:self willAnimateTowards:_originRect];
