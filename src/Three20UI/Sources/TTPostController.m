@@ -68,6 +68,7 @@ static const CGFloat kMarginY = 6;
                                         style: UIBarButtonItemStyleDone
                                        target: self
                                        action: @selector(post)] autorelease];
+    self.autoresizesForKeyboard = YES;
   }
 
   return self;
@@ -200,6 +201,11 @@ static const CGFloat kMarginY = 6;
   _textView.hidden = NO;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showInViewDidFinishAnimated:(BOOL)animated {
+  [self.superController viewDidDisappear:animated];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showAnimationDidStop {
@@ -362,12 +368,29 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark TTBaseViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)keyboardDidAppear:(BOOL)animated withBounds:(CGRect)bounds {
+  [super keyboardDidAppear:animated withBounds:bounds];
+  
+  [self showInViewDidFinishAnimated:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
 #pragma mark TTPopupViewController
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
   [self retain];
+  
+  [self.superController viewWillDisappear:animated];
+  
   UIWindow* window = view.window ? view.window : [UIApplication sharedApplication].keyWindow;
 
   self.view.transform = [self transformForOrientation];
