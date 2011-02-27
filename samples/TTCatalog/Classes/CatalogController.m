@@ -37,6 +37,7 @@
 
     @"Tables",
     [TTTableTextItem itemWithText:@"Table Items" URL:@"tt://tableItemTest"],
+	[TTTableTextItem itemWithText:@"Table Items Grouped" URL:@"tt://tableItemGroupedTest"],
     [TTTableTextItem itemWithText:@"Table Controls" URL:@"tt://tableControlsTest"],
     [TTTableTextItem itemWithText:@"Styled Labels in Table" URL:@"tt://styledTextTableTest"],
     [TTTableTextItem itemWithText:@"Web Images in Table" URL:@"tt://imageTest2"],

@@ -7,6 +7,7 @@
 #import "TableImageTestController.h"
 #import "YouTubeTestController.h"
 #import "TableItemTestController.h"
+#import "TableItemGroupedTestController.h"
 #import "TableControlsTestController.h"
 #import "TableTestController.h"
 #import "TableWithBannerController.h"
@@ -76,6 +77,12 @@
   [map            from: @"tt://tableItemTest"
                 parent: @"tt://catalog"
       toViewController: [TableItemTestController class]
+              selector: nil
+            transition: 0];
+
+  [map            from: @"tt://tableItemGroupedTest"
+                parent: @"tt://catalog"
+      toViewController: [TableItemGroupedTestController class]
               selector: nil
             transition: 0];
 

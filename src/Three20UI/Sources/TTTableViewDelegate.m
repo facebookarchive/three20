@@ -23,6 +23,7 @@
 #import "Three20UI/TTTableHeaderView.h"
 #import "Three20UI/TTTableView.h"
 #import "Three20UI/TTStyledTextLabel.h"
+#import "Three20UI/TTLabel.h"
 
 // - Table Items
 #import "Three20UI/TTTableItem.h"
@@ -36,6 +37,8 @@
 // Style
 #import "Three20Style/TTGlobalStyle.h"
 #import "Three20Style/TTDefaultStyleSheet.h"
+#import "Three20Style/TTStyleContext.h"
+#import "Three20Style/TTStyle.h"
 
 // Network
 #import "Three20Network/TTURLRequestQueue.h"
@@ -86,19 +89,51 @@
  * (i.e. not a grouped one), then we create header view objects for each header and handle the
  * drawing ourselves.
  */
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+  TTView * header = (TTView*)[self tableView:tableView viewForHeaderInSection:section];
+  if(header) {
+    //! Is it a bug in -TTView sizeThatFits: that it ignores the size argument? -- sia 20110226
+    // return [header sizeThatFits:CGSizeMake(320,[tableView sectionHeaderHeight])].height;
+    TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
+    context.delegate = header;
+    context.font = nil;
+    CGSize size = [header.style addToSize:CGSizeMake(0, [tableView sectionHeaderHeight]) context:context];
+    return size.height;
+  } else {
+    CGFloat height = [tableView sectionHeaderHeight];
+    //! For some reason, [tableView sectionHeaderHeight] returns (clearly wrong) 10 for grouped tables. Bug?  Work around -- sic 20110227
+    if([tableView style] == UITableViewStyleGrouped) {
+      height = 36;
+    }
+    return height;
+  }
+}
+
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  if (tableView.style == UITableViewStylePlain && TTSTYLEVAR(tableHeaderTintColor)) {
-    if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
-      NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-      if (title.length > 0) {
-        TTTableHeaderView* header = [_headers objectForKey:title];
-        if (nil == header) {
-          if (nil == _headers) {
-            _headers = [[NSMutableDictionary alloc] init];
-          }
-          header = [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
-          [_headers setObject:header forKey:title];
-        }
+  if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
+    NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+    if (title.length > 0) {
+      TTView* header = [_headers objectForKey:title];
+      if(header) {
+        return header;
+      }
+
+      if (nil == _headers) {
+        _headers = [[NSMutableDictionary alloc] init];
+      }
+
+      if (tableView.style == UITableViewStylePlain && TTSTYLEVAR(tableHeaderTintColor)) {
+        header = [[[TTTableHeaderView alloc] initWithTitle:title] autorelease];
+      } else if (tableView.style == UITableViewStyleGrouped && TTSTYLEVAR(tableHeaderGrouped)) {
+        TTLabel * label = [[[TTLabel alloc] initWithText:title] autorelease];
+        label.style = TTSTYLE(tableHeaderGrouped);
+        label.backgroundColor = [UIColor clearColor];
+        header = label;
+        [_headers setObject:header forKey:[NSNumber numberWithInteger:section]];
+      }
+
+      if(header) {
+        [_headers setObject:header forKey:title];
         return header;
       }
     }
