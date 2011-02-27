@@ -93,6 +93,7 @@
 
     _screenView.frame = self.bounds;
     _screenView.hidden = NO;
+
   } else {
     _screenView.hidden = YES;
   }

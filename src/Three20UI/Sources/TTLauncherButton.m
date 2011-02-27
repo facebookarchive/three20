@@ -36,6 +36,9 @@ static const NSInteger kMaxBadgeNumber = 99;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface TTLauncherButton()
 
+/**
+ * Adds the badge view to this button and sets its display values.
+ */
 - (void)updateBadge;
 
 @end
@@ -113,17 +116,19 @@ static const NSInteger kMaxBadgeNumber = 99;
 
   NSString *badgeText = nil;
   NSString *badgeValue = _item.badgeValue;
-  
+
   if (badgeValue != nil) {
-    NSRange range = [badgeValue rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];
-    
+    NSRange range = [badgeValue rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet]
+                                                         invertedSet]];
+
     if (range.location == NSNotFound && _item.badgeNumber > kMaxBadgeNumber) {
       badgeText = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
+
     } else {
       badgeText = badgeValue;
     }
   }
-  
+
   _badge.text = badgeText;
   _badge.hidden = badgeValue == nil;
   [_badge sizeToFit];
@@ -187,7 +192,9 @@ static const NSInteger kMaxBadgeNumber = 99;
   if (_badge || _closeButton) {
     CGRect imageRect = [self rectForImage];
     if (_badge) {
-      _badge.origin = CGPointMake((imageRect.origin.x + imageRect.size.width) - (floor(_badge.width*0.7)),
+      _badge.origin = CGPointMake((imageRect.origin.x
+                                   + imageRect.size.width)
+                                  - (floor(_badge.width*0.7)),
                                   imageRect.origin.y - (floor(_badge.height*0.25)));
     }
 
@@ -227,6 +234,7 @@ static const NSInteger kMaxBadgeNumber = 99;
     if (dragging) {
       self.transform = CGAffineTransformMakeScale(1.4, 1.4);
       self.alpha = 0.7;
+
     } else {
       self.transform = CGAffineTransformIdentity;
       self.alpha = 1;

@@ -146,13 +146,14 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     }
 
     return [joined md5Hash];
+
   } else {
     return [self.urlPath md5Hash];
   }
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)appendImageData:(NSData*)data
                withName:(NSString*)name
                  toBody:(NSMutableData*)body {
@@ -173,7 +174,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)generatePostBody {
   NSMutableData* body = [NSMutableData data];
   NSString* beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
@@ -203,6 +204,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
       [self appendImageData:data withName:key toBody:body];
       imageKey = key;
+
     } else if ([[_parameters objectForKey:key] isKindOfClass:[NSData class]]) {
       NSData* data = [_parameters objectForKey:key];
       [self appendImageData:data withName:key toBody:body];
@@ -254,9 +256,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (NSData*)httpBody {
   if (_httpBody) {
     return _httpBody;
+
   } else if ([[_httpMethod uppercaseString] isEqualToString:@"POST"]
              || [[_httpMethod uppercaseString] isEqualToString:@"PUT"]) {
     return [self generatePostBody];
+
   } else {
     return nil;
   }
@@ -267,9 +271,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (NSString*)contentType {
   if (_contentType) {
     return _contentType;
+
   } else if ([_httpMethod isEqualToString:@"POST"]
              || [_httpMethod isEqualToString:@"PUT"]) {
     return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", kStringBoundary];
+
   } else {
     return nil;
   }
@@ -348,7 +354,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated
+/**
+ * Deprecated
+ */
 - (void)setURL:(NSString*)urlPath {
   NSString* aUrlPath = [urlPath copy];
   [_urlPath release];
@@ -357,7 +365,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated
+/**
+ * Deprecated
+ */
 - (NSString*)URL {
   return _urlPath;
 }

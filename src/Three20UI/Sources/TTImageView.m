@@ -99,6 +99,7 @@
 - (void)drawContent:(CGRect)rect {
   if (nil != _image) {
     [_image drawInRect:rect contentMode:self.contentMode];
+
   } else {
     [_defaultImage drawInRect:rect contentMode:self.contentMode];
   }

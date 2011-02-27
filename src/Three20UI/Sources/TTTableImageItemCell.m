@@ -102,6 +102,7 @@ static const CGFloat kDefaultImageSize = 50;
   if (style && !CGSizeEqualToSize(style.size, CGSizeZero)) {
     imageWidth = style.size.width + kKeySpacing;
     imageHeight = style.size.height;
+
   } else {
     imageWidth = image
     ? image.size.width + kKeySpacing
@@ -147,16 +148,19 @@ static const CGFloat kDefaultImageSize = 50;
     : (item.imageURL ? kDefaultImageSize : 0);
 
     if (_imageView2.urlPath) {
-      CGFloat innerWidth = self.contentView.width - (kTableCellHPadding*2 + imageWidth + kKeySpacing);
+      CGFloat innerWidth = self.contentView.width - (kTableCellHPadding*2
+                                                     + imageWidth + kKeySpacing);
       CGFloat innerHeight = self.contentView.height - kTableCellVPadding*2;
-      self.textLabel.frame = CGRectMake(kTableCellHPadding, kTableCellVPadding, innerWidth, innerHeight);
+      self.textLabel.frame = CGRectMake(kTableCellHPadding, kTableCellVPadding,
+                                        innerWidth, innerHeight);
 
       _imageView2.frame = CGRectMake(self.textLabel.right + kKeySpacing,
                                      floor(self.height/2 - imageHeight/2),
                                      imageWidth, imageHeight);
 
     } else {
-      self.textLabel.frame = CGRectInset(self.contentView.bounds, kTableCellHPadding, kTableCellVPadding);
+      self.textLabel.frame = CGRectInset(self.contentView.bounds,
+                                         kTableCellHPadding, kTableCellVPadding);
       _imageView2.frame = CGRectZero;
     }
 
@@ -185,12 +189,16 @@ static const CGFloat kDefaultImageSize = 50;
       _imageView2.frame = CGRectMake(kTableCellHPadding, floor(self.height/2 - iconHeight/2),
                                      iconWidth, iconHeight);
 
-      CGFloat innerWidth = self.contentView.width - (kTableCellHPadding*2 + iconWidth + kKeySpacing);
+      CGFloat innerWidth = self.contentView.width - (kTableCellHPadding*2
+                                                     + iconWidth + kKeySpacing);
       CGFloat innerHeight = self.contentView.height - kTableCellVPadding*2;
-      self.textLabel.frame = CGRectMake(kTableCellHPadding + iconWidth + kKeySpacing, kTableCellVPadding,
+      self.textLabel.frame = CGRectMake(kTableCellHPadding + iconWidth + kKeySpacing,
+                                        kTableCellVPadding,
                                         innerWidth, innerHeight);
+
     } else {
-      self.textLabel.frame = CGRectInset(self.contentView.bounds, kTableCellHPadding, kTableCellVPadding);
+      self.textLabel.frame = CGRectInset(self.contentView.bounds,
+                                         kTableCellHPadding, kTableCellVPadding);
       _imageView2.frame = CGRectZero;
     }
   }
@@ -228,6 +236,7 @@ static const CGFloat kDefaultImageSize = 50;
     if ([_item isKindOfClass:[TTTableRightImageItem class]]) {
       self.textLabel.textAlignment = UITextAlignmentCenter;
       self.accessoryType = UITableViewCellAccessoryNone;
+
     } else {
       self.textLabel.textAlignment = UITextAlignmentLeft;
     }

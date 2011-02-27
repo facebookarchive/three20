@@ -46,8 +46,8 @@
 
 @property (nonatomic, copy)   NSString*     urlPath;
 @property (nonatomic, copy)   NSString*     parentURLPath;
-@property (nonatomic, retain) NSDictionary* query;
-@property (nonatomic, retain) NSDictionary* state;
+@property (nonatomic, copy)   NSDictionary* query;
+@property (nonatomic, copy)   NSDictionary* state;
 @property (nonatomic, assign) BOOL          animated;
 @property (nonatomic, assign) BOOL          withDelay;
 @property (nonatomic, assign) CGRect        sourceRect;

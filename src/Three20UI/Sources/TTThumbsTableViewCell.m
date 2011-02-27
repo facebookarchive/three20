@@ -78,6 +78,7 @@ static const CGFloat kDefaultThumbSize = 75;
   if (photo) {
     thumbView.thumbURL = [photo URLForVersion:TTPhotoVersionThumbnail];
     thumbView.hidden = NO;
+
   } else {
     thumbView.thumbURL = nil;
     thumbView.hidden = YES;

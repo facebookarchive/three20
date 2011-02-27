@@ -14,10 +14,8 @@
 // limitations under the License.
 //
 
-// See: http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/905-A-Unit-Test_Result_Macro_Reference/unit-test_results.html#//apple_ref/doc/uid/TP40007959-CH21-SW2
-// for unit test macros.
-
-// See Also: http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/135-Unit_Testing_Applications/unit_testing_applications.html
+// See: http://bit.ly/hS5nNh for unit test macros.
+// See Also: http://bit.ly/hgpqd2
 
 #import <SenTestingKit/SenTestingKit.h>
 
@@ -29,7 +27,9 @@
 
 @interface TTURLCache()
 
-// Reveal these private methods for testing.
+/**
+ * Reveal these private methods for testing.
+ */
 + (NSString*)doubleImageURLPath:(NSString*)urlPath;
 
 @end

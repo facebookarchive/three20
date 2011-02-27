@@ -85,6 +85,7 @@
   CGFloat mappedProgress = [self percentWidth] * percent + _firstPercent;
   if (nil == _parent) {
     [_delegate didSetProgress:mappedProgress];
+
   } else {
     [_parent setPercent:mappedProgress];
   }

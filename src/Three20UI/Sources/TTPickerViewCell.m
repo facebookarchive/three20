@@ -88,6 +88,7 @@ static const CGFloat kMaxWidth = 250;
 - (TTStyle*)style {
   if (self.selected) {
     return TTSTYLESTATE(pickerCell:, UIControlStateSelected);
+
   } else {
     return TTSTYLESTATE(pickerCell:, UIControlStateNormal);
   }

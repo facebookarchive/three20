@@ -64,6 +64,7 @@
 - (NSString*)convertPropertyOfObject:(id)object {
   if (_selector) {
     return [_selector perform:object returnType:_argType];
+
   } else {
     return @"";
   }
@@ -79,11 +80,13 @@
       TTURLSelector* newSelector = [[[TTURLSelector alloc] initWithName:name] autorelease];
       if (selector) {
         selector.next = newSelector;
+
       } else {
         self.selector = newSelector;
       }
       selector = newSelector;
     }
+
   } else {
     self.argType = TTURLArgumentTypeForProperty(cls, _name);
     self.selector = [[[TTURLSelector alloc] initWithName:_name] autorelease];

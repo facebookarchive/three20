@@ -63,8 +63,10 @@ static const UILineBreakMode kLineBreakMode = UILineBreakModeWordWrap;
 + (UIFont*)textFontForItem:(TTTableTextItem*)item {
   if ([item isKindOfClass:[TTTableLongTextItem class]]) {
     return TTSTYLEVAR(font);
+
   } else if ([item isKindOfClass:[TTTableGrayTextItem class]]) {
     return TTSTYLEVAR(font);
+
   } else {
     return TTSTYLEVAR(tableFont);
   }

@@ -136,7 +136,7 @@ static const NSInteger kLoadMaxRetries = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)load:(NSURL*)URL {
-  if (!_connection) {
+  if (nil == _connection) {
     [self connectToURL:URL];
   }
 }
@@ -165,6 +165,7 @@ static const NSInteger kLoadMaxRetries = 2;
     TT_RELEASE_SAFELY(_connection);
 
     [_queue loader:self didFailLoadWithError:error];
+
   } else {
     [self connection:nil didReceiveResponse:(NSHTTPURLResponse*)response];
     [self connection:nil didReceiveData:data];
@@ -294,11 +295,11 @@ static const NSInteger kLoadMaxRetries = 2;
   }
 
   _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
-    
+
     for (TTURLRequest* request in [[_requests copy] autorelease]) {
         request.totalContentLength = contentLength;
     }
-    
+
 }
 
 
@@ -396,7 +397,9 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated
+/**
+ * Deprecated
+ */
 - (NSString*)URL {
   return _urlPath;
 }

@@ -14,10 +14,8 @@
 // limitations under the License.
 //
 
-// See: http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/905-A-Unit-Test_Result_Macro_Reference/unit-test_results.html#//apple_ref/doc/uid/TP40007959-CH21-SW2
-// for unit test macros.
-
-// See Also: http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/135-Unit_Testing_Applications/unit_testing_applications.html
+// See: http://bit.ly/hS5nNh for unit test macros.
+// See Also: http://bit.ly/hgpqd2
 
 #import <SenTestingKit/SenTestingKit.h>
 
@@ -38,8 +36,7 @@
  * NSDateAdditions cannot be easily tested from a library unit test due to their dependence upon
  * TTLocalizedString. This is because the Three20.bundle file needs to be loaded for
  * TTLocalizedString to work, but the octest framework does not play well with bundles.
- * It tries to load the bundle from
- * /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/Developer/usr/bin
+ * It tries to load the bundle from the simulator's /bin directory
  * which is not a place we can normally copy to from the Xcode project settings.
  */
 
@@ -72,6 +69,8 @@
   TT_RELEASE_SAFELY(data);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNSData_sha1Hash {
   const char* bytes = "three20";
   NSData* data = [[NSData alloc] initWithBytes:bytes length:strlen(bytes)];
@@ -103,7 +102,8 @@
   // Unicode whitespace
   for (int unicode = 0x000A; unicode <= 0x000D; ++unicode) {
     NSString* str = [NSString stringWithFormat:@"%C", unicode];
-    STAssertTrue([str isWhitespaceAndNewlines], @"Unicode string #%X should be whitespace.", unicode);
+    STAssertTrue([str isWhitespaceAndNewlines],
+                 @"Unicode string #%X should be whitespace.", unicode);
   }
 
   NSString* str = [NSString stringWithFormat:@"%C", 0x0085];
@@ -215,32 +215,43 @@
 	STAssertTrue([query count] == 0, @"Query: %@", query);
 
 	query = [@"q" queryContentsUsingEncoding:NSUTF8StringEncoding];
-	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:[NSNull null]]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:[NSNull null]]],
+               @"Query: %@", query);
 
 	query = [@"q=" queryContentsUsingEncoding:NSUTF8StringEncoding];
-	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@""]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@""]],
+               @"Query: %@", query);
 
 	query = [@"q=three20" queryContentsUsingEncoding:NSUTF8StringEncoding];
-	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20"]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20"]],
+               @"Query: %@", query);
 
 	query = [@"q=three20%20github" queryContentsUsingEncoding:NSUTF8StringEncoding];
-	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20 github"]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20 github"]],
+               @"Query: %@", query);
 
 	query = [@"q=three20&hl=en" queryContentsUsingEncoding:NSUTF8StringEncoding];
-	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20"]], @"Query: %@", query);
-	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20"]],
+               @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
+               @"Query: %@", query);
 
 	query = [@"q=three20&hl=" queryContentsUsingEncoding:NSUTF8StringEncoding];
-	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20"]], @"Query: %@", query);
-	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@""]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@"three20"]],
+               @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@""]],
+               @"Query: %@", query);
 
 	query = [@"q=&&hl=" queryContentsUsingEncoding:NSUTF8StringEncoding];
-	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@""]], @"Query: %@", query);
-	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@""]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"q"] isEqual:[NSArray arrayWithObject:@""]],
+               @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@""]],
+               @"Query: %@", query);
 
 	query = [@"q=three20=repo&hl=en" queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertNil([query objectForKey:@"q"], @"Query: %@", query);
-	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
+               @"Query: %@", query);
 
 	query = [@"&&" queryContentsUsingEncoding:NSUTF8StringEncoding];
 	STAssertTrue([query count] == 0, @"Query: %@", query);
@@ -252,18 +263,22 @@
 	query = [@"q=foo&q=three20&hl=en" queryContentsUsingEncoding:NSUTF8StringEncoding];
 	qArr = [NSArray arrayWithObjects:@"foo", @"three20", nil];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:qArr], @"Query: %@", query);
-	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
+               @"Query: %@", query);
 
 	query = [@"q=foo&q=three20&hl=en&g" queryContentsUsingEncoding:NSUTF8StringEncoding];
 	qArr = [NSArray arrayWithObjects:@"foo", @"three20", nil];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:qArr], @"Query: %@", query);
-	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]], @"Query: %@", query);
-	STAssertTrue([[query objectForKey:@"g"] isEqual:[NSArray arrayWithObject:[NSNull null]]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
+               @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"g"] isEqual:[NSArray arrayWithObject:[NSNull null]]],
+               @"Query: %@", query);
 
 	query = [@"q&q=three20&hl=en&g" queryContentsUsingEncoding:NSUTF8StringEncoding];
 	qArr = [NSArray arrayWithObjects:[NSNull null], @"three20", nil];
 	STAssertTrue([[query objectForKey:@"q"] isEqual:qArr], @"Query: %@", query);
-	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]], @"Query: %@", query);
+	STAssertTrue([[query objectForKey:@"hl"] isEqual:[NSArray arrayWithObject:@"en"]],
+               @"Query: %@", query);
 }
 
 

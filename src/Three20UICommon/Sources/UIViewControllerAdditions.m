@@ -121,6 +121,7 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
                                          repeats: YES] retain];
     }
 #if TTDFLAG_CONTROLLERGARBAGECOLLECTION
+
   } else {
     TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
                     @"Not adding a common controller.");
@@ -299,8 +300,12 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showBars:(BOOL)show animated:(BOOL)animated {
 #ifdef __IPHONE_3_2
-	if ([[UIApplication sharedApplication] respondsToSelector:@selector(setStatusBarHidden:withAnimation:)])
-		[[UIApplication sharedApplication] setStatusBarHidden:!show withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
+	if ([[UIApplication sharedApplication]
+       respondsToSelector:@selector(setStatusBarHidden:withAnimation:)])
+		[[UIApplication sharedApplication] setStatusBarHidden:!show
+                                            withAnimation:(animated
+                                                           ? UIStatusBarAnimationFade
+                                                           : UIStatusBarAnimationNone)];
 	else
 #endif
 		[[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];

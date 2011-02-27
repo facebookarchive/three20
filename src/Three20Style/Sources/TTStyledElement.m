@@ -95,6 +95,7 @@
       [strings addObject:node.outerText];
     }
     return [strings componentsJoinedByString:@""];
+
   } else {
     return [super outerText];
   }
@@ -106,11 +107,13 @@
   NSString* html = nil;
   if (_firstChild) {
     html = [NSString stringWithFormat:@"<div>%@</div>", _firstChild.outerHTML];
+
   } else {
     html = @"<div/>";
   }
   if (_nextSibling) {
     return [NSString stringWithFormat:@"%@%@", html, _nextSibling.outerHTML];
+
   } else {
     return html;
   }
@@ -128,6 +131,7 @@
   if (!_firstChild) {
     _firstChild = [child retain];
     _lastChild = [self findLastSibling:child];
+
   } else {
     _lastChild.nextSibling = child;
     _lastChild = [self findLastSibling:child];
@@ -162,6 +166,7 @@
         if (newChild) {
           newChild.nextSibling = oldChild.nextSibling;
           node.nextSibling = newChild;
+
         } else {
           node.nextSibling = oldChild.nextSibling;
         }

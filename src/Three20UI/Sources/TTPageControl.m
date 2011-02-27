@@ -97,7 +97,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawRect:(CGRect)rect {
-  if(_numberOfPages <= 1 && _hidesForSinglePage) {
+  if (_numberOfPages <= 1 && _hidesForSinglePage) {
     return;
   }
 
@@ -120,6 +120,7 @@
 
     if (i == _currentPage) {
       [self.currentDotStyle draw:context];
+
     } else {
       [self.normalDotStyle draw:context];
     }

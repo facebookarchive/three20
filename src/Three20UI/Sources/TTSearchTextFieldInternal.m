@@ -53,6 +53,7 @@ TT_FIX_CATEGORY_BUG(TTSearchTextFieldInternal)
 - (BOOL)textFieldShouldBeginEditing:(UITextField*)textField {
   if ([_delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)]) {
     return [_delegate textFieldShouldBeginEditing:textField];
+
   } else {
     return YES;
   }
@@ -71,6 +72,7 @@ TT_FIX_CATEGORY_BUG(TTSearchTextFieldInternal)
 - (BOOL)textFieldShouldEndEditing:(UITextField*)textField {
   if ([_delegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {
     return [_delegate textFieldShouldEndEditing:textField];
+
   } else {
     return YES;
   }
@@ -97,6 +99,7 @@ TT_FIX_CATEGORY_BUG(TTSearchTextFieldInternal)
   if ([_delegate respondsToSelector:sel]) {
     return [_delegate textField:textField shouldChangeCharactersInRange:range
               replacementString:string];
+
   } else {
     return YES;
   }
@@ -109,6 +112,7 @@ TT_FIX_CATEGORY_BUG(TTSearchTextFieldInternal)
 
   if ([_delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
     return [_delegate textFieldShouldClear:textField];
+
   } else {
     return YES;
   }
@@ -125,6 +129,7 @@ TT_FIX_CATEGORY_BUG(TTSearchTextFieldInternal)
   if (shouldReturn) {
     if (!_textField.searchesAutomatically) {
       [_textField search];
+
     } else {
       [_textField performSelector:@selector(doneAction)];
     }

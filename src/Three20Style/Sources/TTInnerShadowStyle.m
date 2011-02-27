@@ -69,6 +69,7 @@
 - (CGSize)addToSize:(CGSize)size context:(TTStyleContext*)context {
   if (_next) {
     return [self.next addToSize:size context:context];
+
   } else {
     return size;
   }

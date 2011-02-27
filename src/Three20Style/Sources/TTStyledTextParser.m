@@ -131,7 +131,8 @@
         [self addNode:node];
       }
 
-      NSRange subSearchRange = NSMakeRange(startRange.location, string.length - startRange.location);
+      NSRange subSearchRange = NSMakeRange(startRange.location,
+                                           string.length - startRange.location);
       NSRange endRange = [string rangeOfString:@" " options:NSCaseInsensitiveSearch
                                  range:subSearchRange];
       if (endRange.location == NSNotFound) {
@@ -238,7 +239,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSData *)parser:(NSXMLParser *)parser resolveExternalEntityName:(NSString *)entityName systemID:(NSString *)systemID {
+- (NSData *)          parser:(NSXMLParser *)parser
+   resolveExternalEntityName:(NSString *)entityName
+                    systemID:(NSString *)systemID {
   static NSDictionary* entityTable = nil;
   if (!entityTable) {
     entityTable = [[NSDictionary alloc] initWithObjectsAndKeys:

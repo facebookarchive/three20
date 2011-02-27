@@ -32,6 +32,7 @@
 - (void)display {
   if (nil != _override) {
     self.contents = (id)_override.image.CGImage;
+
   } else {
     return [super display];
   }

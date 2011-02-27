@@ -160,8 +160,11 @@ static const NSInteger kActivityLabelTag          = 96;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)startImageLoadTimer:(NSTimeInterval)delay {
   [_loadTimer invalidate];
-  _loadTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self
-                                              selector:@selector(loadImageDelayed) userInfo:nil repeats:NO];
+  _loadTimer = [NSTimer scheduledTimerWithTimeInterval:delay
+                                                target:self
+                                              selector:@selector(loadImageDelayed)
+                                              userInfo:nil
+                                               repeats:NO];
 }
 
 
@@ -178,6 +181,7 @@ static const NSInteger kActivityLabelTag          = 96;
   for (TTPhotoView* photoView in _scrollView.visiblePages.objectEnumerator) {
     if (photoView == centerPhotoView) {
       [photoView loadPreview:NO];
+
     } else {
       [photoView loadPreview:YES];
     }
@@ -186,6 +190,7 @@ static const NSInteger kActivityLabelTag          = 96;
   if (_delayLoad) {
     _delayLoad = NO;
     [self startImageLoadTimer:kPhotoLoadLongDelay];
+
   } else {
     [centerPhotoView loadImage];
   }
@@ -196,6 +201,7 @@ static const NSInteger kActivityLabelTag          = 96;
 - (void)updateChrome {
   if (_photoSource.numberOfPhotos < 2) {
     self.title = _photoSource.title;
+
   } else {
     self.title = [NSString stringWithFormat:
                   TTLocalizedString(@"%d of %d", @"Current page in photo browser (1 of 10)"),
@@ -204,12 +210,18 @@ static const NSInteger kActivityLabelTag          = 96;
 
   if (![self.ttPreviousViewController isKindOfClass:[TTThumbsViewController class]]) {
     if (_photoSource.numberOfPhotos > 1) {
-      self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-                                                initWithTitle:TTLocalizedString(@"See All", @"See all photo thumbnails")
-                                                style:UIBarButtonItemStyleBordered target:self action:@selector(showThumbnails)] autorelease];
+      self.navigationItem.rightBarButtonItem =
+      [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"See All",
+                                                                @"See all photo thumbnails")
+                                        style:UIBarButtonItemStyleBordered
+                                       target:self
+                                       action:@selector(showThumbnails)]
+       autorelease];
+
     } else {
       self.navigationItem.rightBarButtonItem = nil;
     }
+
   } else {
     self.navigationItem.rightBarButtonItem = nil;
   }
@@ -225,6 +237,7 @@ static const NSInteger kActivityLabelTag          = 96;
 - (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
   if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
     _toolbar.height = TT_TOOLBAR_HEIGHT;
+
   } else {
     _toolbar.height = TT_LANDSCAPE_TOOLBAR_HEIGHT+1;
   }
@@ -316,6 +329,7 @@ static const NSInteger kActivityLabelTag          = 96;
   if ((self.hasViewAppeared || self.isViewAppearing) && progress >= 0 && !self.centerPhotoView) {
     [self.statusView showProgress:progress];
     self.statusView.hidden = NO;
+
   } else {
     _photoStatusView.hidden = YES;
   }
@@ -330,6 +344,7 @@ static const NSInteger kActivityLabelTag          = 96;
   if ((self.hasViewAppeared || self.isViewAppearing) && status && !self.centerPhotoView) {
     [self.statusView showStatus:status];
     self.statusView.hidden = NO;
+
   } else {
     _photoStatusView.hidden = YES;
   }
@@ -349,6 +364,7 @@ static const NSInteger kActivityLabelTag          = 96;
   if ([self.photoSource respondsToSelector:@selector(URLValueWithName:)]) {
     return [self.photoSource performSelector:@selector(URLValueWithName:)
                                   withObject:@"TTThumbsViewController"];
+
   } else {
     return nil;
   }
@@ -365,6 +381,7 @@ static const NSInteger kActivityLabelTag          = 96;
       TTBaseNavigator* navigator = [TTBaseNavigator navigatorForView:self.view];
       _thumbsController = [[navigator viewControllerForURL:URL query:query] retain];
       [navigator.URLMap setObject:_thumbsController forURL:URL];
+
     } else {
       // The photo source had no URL mapping in TTURLMap, so we let the subclass show the thumbs
       _thumbsController = [[self createThumbsViewController] retain];
@@ -374,6 +391,7 @@ static const NSInteger kActivityLabelTag          = 96;
 
   if (URL) {
     TTOpenURLFromView(URL, self.view);
+
   } else {
     if ([self.navigationController isKindOfClass:[TTNavigationController class]]) {
       [(TTNavigationController*)self.navigationController
@@ -391,6 +409,7 @@ static const NSInteger kActivityLabelTag          = 96;
 - (void)slideshowTimer {
   if (_centerPhotoIndex == _photoSource.numberOfPhotos-1) {
     _scrollView.centerPageIndex = 0;
+
   } else {
     _scrollView.centerPageIndex = _centerPhotoIndex+1;
   }
@@ -400,14 +419,20 @@ static const NSInteger kActivityLabelTag          = 96;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)playAction {
   if (!_slideshowTimer) {
-    UIBarButtonItem* pauseButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                                     UIBarButtonSystemItemPause target:self action:@selector(pauseAction)] autorelease];
+    UIBarButtonItem* pauseButton =
+      [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemPause
+                                                     target: self
+                                                     action: @selector(pauseAction)]
+       autorelease];
     pauseButton.tag = 1;
 
     [_toolbar replaceItemWithTag:1 withItem:pauseButton];
 
     _slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:kSlideshowInterval
-                                                       target:self selector:@selector(slideshowTimer) userInfo:nil repeats:YES];
+                                                       target:self
+                                                     selector:@selector(slideshowTimer)
+                                                     userInfo:nil
+                                                      repeats:YES];
   }
 }
 
@@ -415,8 +440,11 @@ static const NSInteger kActivityLabelTag          = 96;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)pauseAction {
   if (_slideshowTimer) {
-    UIBarButtonItem* playButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                                    UIBarButtonSystemItemPlay target:self action:@selector(playAction)] autorelease];
+    UIBarButtonItem* playButton =
+      [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                     target:self
+                                                     action:@selector(playAction)]
+       autorelease];
     playButton.tag = 1;
 
     [_toolbar replaceItemWithTag:1 withItem:playButton];
@@ -482,15 +510,23 @@ static const NSInteger kActivityLabelTag          = 96;
   _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   [_innerView addSubview:_scrollView];
 
-  _nextButton = [[UIBarButtonItem alloc] initWithImage:
-                 TTIMAGE(@"bundle://Three20.bundle/images/nextIcon.png")
-                                                 style:UIBarButtonItemStylePlain target:self action:@selector(nextAction)];
-  _previousButton = [[UIBarButtonItem alloc] initWithImage:
-                     TTIMAGE(@"bundle://Three20.bundle/images/previousIcon.png")
-                                                     style:UIBarButtonItemStylePlain target:self action:@selector(previousAction)];
+  _nextButton =
+    [[UIBarButtonItem alloc] initWithImage:TTIMAGE(@"bundle://Three20.bundle/images/nextIcon.png")
+                                     style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(nextAction)];
+  _previousButton =
+    [[UIBarButtonItem alloc] initWithImage:
+     TTIMAGE(@"bundle://Three20.bundle/images/previousIcon.png")
+                                     style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(previousAction)];
 
-  UIBarButtonItem* playButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
-                                  UIBarButtonSystemItemPlay target:self action:@selector(playAction)] autorelease];
+  UIBarButtonItem* playButton =
+    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                   target:self
+                                                   action:@selector(playAction)]
+     autorelease];
   playButton.tag = 1;
 
   UIBarItem* space = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:
@@ -584,12 +620,15 @@ static const NSInteger kActivityLabelTag          = 96;
     [UIView setAnimationDelegate:self];
     if (show) {
       [UIView setAnimationDidStopSelector:@selector(showBarsAnimationDidStop)];
+
     } else {
       [UIView setAnimationDidStopSelector:@selector(hideBarsAnimationDidStop)];
     }
+
   } else {
     if (show) {
       [self showBarsAnimationDidStop];
+
     } else {
       [self hideBarsAnimationDidStop];
     }
@@ -656,6 +695,7 @@ static const NSInteger kActivityLabelTag          = 96;
   if (show) {
     [_scrollView reloadData];
     [self showStatus:TTLocalizedString(@"This photo set contains no photos.", @"")];
+
   } else {
     [self showStatus:nil];
   }
@@ -666,6 +706,7 @@ static const NSInteger kActivityLabelTag          = 96;
 - (void)showError:(BOOL)show {
   if (show) {
     [self showStatus:TTDescriptionForError(_modelError)];
+
   } else {
     [self showStatus:nil];
   }
@@ -677,6 +718,7 @@ static const NSInteger kActivityLabelTag          = 96;
   if (_centerPhotoIndex >= _photoSource.numberOfPhotos) {
     // We were positioned at an index that is past the end, so move to the last photo
     [self moveToPhotoAtIndex:_photoSource.numberOfPhotos - 1 withDelay:NO];
+
   } else {
     [self moveToPhotoAtIndex:_centerPhotoIndex withDelay:NO];
   }
@@ -696,6 +738,7 @@ static const NSInteger kActivityLabelTag          = 96;
       [self moveToNextValidPhoto];
       [_scrollView reloadData];
       [self resetVisiblePhotoViews];
+
     } else {
       [self updateVisiblePhotoViews];
     }
@@ -807,6 +850,7 @@ static const NSInteger kActivityLabelTag          = 96;
 - (void)scrollView:(TTScrollView*)scrollView tapped:(UITouch*)touch {
   if ([self isShowingChrome]) {
     [self showBars:NO animated:YES];
+
   } else {
     [self showBars:YES animated:NO];
   }
@@ -903,6 +947,7 @@ static const NSInteger kActivityLabelTag          = 96;
 
       [self moveToPhotoAtIndex:photo.index withDelay:NO];
       self.model = _photoSource;
+
     } else {
       [self moveToPhotoAtIndex:photo.index withDelay:NO];
       [self refresh];
@@ -939,6 +984,7 @@ static const NSInteger kActivityLabelTag          = 96;
     [_innerView addSubview:label];
 
     _scrollView.scrollEnabled = NO;
+
   } else {
     UIView* label = [_innerView viewWithTag:kActivityLabelTag];
     if (label) {

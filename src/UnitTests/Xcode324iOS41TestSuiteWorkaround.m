@@ -59,12 +59,15 @@
 #if TARGET_OS_IPHONE && (__IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_4_1)
 
 
-// An NSDate subclass whose -descriptionWithLocale: is compatible with Xcode 3.2.4's unit test message parser.
+// An NSDate subclass whose -descriptionWithLocale: is compatible with Xcode 3.2.4's
+// unit test message parser.
 @interface Xcode324iOS41TestSuiteWorkaroundDate : NSDate {
 @private
     NSDate *_wrappedDate;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)workaroundDateWrappingDate:(NSDate *)wrappedDate;
 
 @end
@@ -72,10 +75,16 @@
 
 @implementation Xcode324iOS41TestSuiteWorkaroundDate
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)workaroundDateWrappingDate:(NSDate *)wrappedDate {
-    return [[[self alloc] initWithTimeIntervalSinceReferenceDate:[wrappedDate timeIntervalSinceReferenceDate]] autorelease];
+    return [[[self alloc] initWithTimeIntervalSinceReferenceDate:
+             [wrappedDate timeIntervalSinceReferenceDate]]
+            autorelease];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTimeIntervalSinceReferenceDate:(NSTimeInterval)seconds {
     // required override (NSDate is a class cluster)
     self = [super init];
@@ -86,19 +95,26 @@
     return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
     [_wrappedDate release];
 
     [super dealloc];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSTimeInterval)timeIntervalSinceReferenceDate {
     // required override (NSDate is a class cluster)
     return [_wrappedDate timeIntervalSinceReferenceDate];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)descriptionWithLocale:(id)locale {
-    // append 4 digits to the result of -descriptionWithLocale: for Xcode's unit test message parser
+    // append 4 digits to the result of -descriptionWithLocale: for Xcode's unit test message
+    // parser
     NSString *originalDescription = [_wrappedDate descriptionWithLocale:locale];
     return [originalDescription stringByAppendingString:@" 0000"];
 }
@@ -106,37 +122,58 @@
 @end
 
 
-// Methods added to SenTestRun that are swizzled in place of the existing methods to return instances of Xcode324iOS41TestSuiteWorkaroundDate instead of NSDate, so Xcode's unit test message parser gets output in the format it expects.
+// Methods added to SenTestRun that are swizzled in place of the existing methods to
+// return instances of Xcode324iOS41TestSuiteWorkaroundDate instead of NSDate, so Xcode's
+// unit test message parser gets output in the format it expects.
 @interface SenTestRun (Xcode324iOS41TestSuiteWorkaroundMethods)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDate *)workaround_startDate;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDate *)workaround_stopDate;
+
 @end
 
 
 @implementation SenTestRun (Xcode324iOS41TestSuiteWorkaroundMethods)
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)load {
     Class senTestRunClass = objc_getClass("SenTestRun");
 
-    // Exchange the implementations of -[SenTestRun startDate] and -[SenTestRun workaround_startDate].
+    // Exchange the implementations of -[SenTestRun startDate]
+    // and -[SenTestRun workaround_startDate].
     Method originalStartDate = class_getInstanceMethod(senTestRunClass, @selector(startDate));
-    Method workaroundStartDate = class_getInstanceMethod(senTestRunClass, @selector(workaround_startDate));
+    Method workaroundStartDate = class_getInstanceMethod(senTestRunClass,
+                                                         @selector(workaround_startDate));
     method_exchangeImplementations(originalStartDate, workaroundStartDate);
 
-    // Exchange the implementations of -[SenTestRun stopDate] and -[SenTestRun workaround_stopDate].
+    // Exchange the implementations of -[SenTestRun stopDate]
+    // and -[SenTestRun workaround_stopDate].
     Method originalStopDate = class_getInstanceMethod(senTestRunClass, @selector(stopDate));
-    Method workaroundStopDate = class_getInstanceMethod(senTestRunClass, @selector(workaround_stopDate));
+    Method workaroundStopDate = class_getInstanceMethod(senTestRunClass,
+                                                        @selector(workaround_stopDate));
     method_exchangeImplementations(originalStopDate, workaroundStopDate);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDate *)workaround_startDate {
-    // The below invokes the original -startDate due to the use of method_exchangeImplementatons in our +load.
-    return [Xcode324iOS41TestSuiteWorkaroundDate workaroundDateWrappingDate:[self workaround_startDate]];
+    // The below invokes the original -startDate due to the use of method_exchangeImplementatons
+    // in our +load.
+    return [Xcode324iOS41TestSuiteWorkaroundDate workaroundDateWrappingDate:
+            [self workaround_startDate]];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDate *)workaround_stopDate {
-    // The below invokes the original -stopDate due to the use of method_exchangeImplementatons in our +load.
-    return [Xcode324iOS41TestSuiteWorkaroundDate workaroundDateWrappingDate:[self workaround_stopDate]];
+    // The below invokes the original -stopDate due to the use of method_exchangeImplementatons
+    // in our +load.
+    return [Xcode324iOS41TestSuiteWorkaroundDate workaroundDateWrappingDate:
+            [self workaround_stopDate]];
 }
 
 @end

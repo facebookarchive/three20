@@ -72,11 +72,13 @@ TT_FIX_CATEGORY_BUG(TTImageViewInternal)
 
       // If a width was specified, but no height, then resize the image with the correct aspect
       // ratio.
+
       } else if (frame.size.width && !frame.size.height) {
         self.height = floor((image.size.height/image.size.width) * frame.size.width);
 
       // If a height was specified, but no width, then resize the image with the correct aspect
       // ratio.
+
       } else if (frame.size.height && !frame.size.width) {
         self.width = floor((image.size.width/image.size.height) * frame.size.height);
       }

@@ -56,7 +56,7 @@ NSString* TTPathForBundleResource(NSString* relativePath) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTPathForDocumentsResource(NSString* relativePath) {
   static NSString* documentsPath = nil;
-  if (!documentsPath) {
+  if (nil == documentsPath) {
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(
       NSDocumentDirectory, NSUserDomainMask, YES);
     documentsPath = [[dirs objectAtIndex:0] retain];

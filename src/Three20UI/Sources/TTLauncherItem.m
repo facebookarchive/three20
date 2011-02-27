@@ -121,6 +121,7 @@
 - (void)setBadgeNumber:(NSInteger)badgeNumber {
   if (badgeNumber == 0) {
     [self setBadgeValue:nil];
+
   } else {
     [self setBadgeValue:[NSString stringWithFormat:@"%d",badgeNumber]];
   }
@@ -133,7 +134,7 @@
     [_badgeValue release];
     _badgeValue = [badgeValue copy];
   }
-  
+
   [_launcher performSelector:@selector(updateItemBadge:) withObject:self];
 }
 

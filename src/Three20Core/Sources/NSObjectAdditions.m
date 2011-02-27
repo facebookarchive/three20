@@ -46,9 +46,11 @@ TT_FIX_CATEGORY_BUG(NSObjectAdditions)
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }
@@ -72,9 +74,11 @@ TT_FIX_CATEGORY_BUG(NSObjectAdditions)
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }
@@ -99,9 +103,11 @@ TT_FIX_CATEGORY_BUG(NSObjectAdditions)
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }
@@ -127,9 +133,11 @@ TT_FIX_CATEGORY_BUG(NSObjectAdditions)
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }
@@ -156,9 +164,11 @@ TT_FIX_CATEGORY_BUG(NSObjectAdditions)
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }

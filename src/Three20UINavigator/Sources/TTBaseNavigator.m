@@ -47,8 +47,10 @@ static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
 static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant";
 
 #ifdef __IPHONE_4_0
-UIKIT_EXTERN NSString *const UIApplicationDidEnterBackgroundNotification __attribute__((weak_import));
-UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attribute__((weak_import));
+UIKIT_EXTERN NSString *const UIApplicationDidEnterBackgroundNotification
+__attribute__((weak_import));
+UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification
+__attribute__((weak_import));
 #endif
 
 
@@ -306,7 +308,8 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
                                         animated: animated];
 
   } else {
-    UINavigationController* navController = [[[[self navigationControllerClass] alloc] init] autorelease];
+    UINavigationController* navController = [[[[self navigationControllerClass] alloc] init]
+                                             autorelease];
     [navController pushViewController: controller
                              animated: NO];
     [parentController presentModalViewController: navController
@@ -454,6 +457,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   if (nil == theURL.scheme) {
     if (nil != theURL.fragment) {
       urlPath = [self.URL stringByAppendingString:urlPath];
+
     } else {
       urlPath = [@"http://" stringByAppendingString:urlPath];
     }
@@ -473,6 +477,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
     NSURL *newURL = [_delegate navigator:self URLToOpen:theURL];
     if (!newURL) {
       return nil;
+
     } else {
       theURL = newURL;
       urlPath = newURL.absoluteString;
@@ -608,9 +613,11 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
     if (child) {
       if (child == _rootViewController) {
         return child;
+
       } else {
         controller = child;
       }
+
     } else {
       return controller;
     }
@@ -671,18 +678,22 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
       id result = [_URLMap dispatchURL:URL toTarget:controller query:query];
       if ([result isKindOfClass:[UIViewController class]]) {
         return result;
+
       } else {
         return controller;
       }
+
     } else {
       id object = [_URLMap objectForURL:baseURL query:nil pattern:pattern];
       if (object) {
         id result = [_URLMap dispatchURL:URL toTarget:object query:query];
         if ([result isKindOfClass:[UIViewController class]]) {
           return result;
+
         } else {
           return object;
         }
+
       } else {
         return nil;
       }
@@ -697,12 +708,14 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
     if (_delayCount) {
       if (!_delayedControllers) {
         _delayedControllers = [[NSMutableArray alloc] initWithObjects:controller,nil];
+
       } else {
         [_delayedControllers addObject:controller];
       }
     }
 
     return controller;
+
   } else {
     return nil;
   }
@@ -858,6 +871,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   if (controller.modalViewController
       && controller.modalViewController.parentViewController == controller) {
     [self persistController:controller.modalViewController path:path];
+
   } else if (controller.popupViewController
              && controller.popupViewController.superController == controller) {
     [self persistController:controller.popupViewController path:path];
@@ -887,6 +901,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
     }
 
     return [paths componentsJoinedByString:@"/"];
+
   } else {
     return nil;
   }

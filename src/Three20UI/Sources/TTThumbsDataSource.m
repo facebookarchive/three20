@@ -99,9 +99,11 @@ static CGFloat kThumbSpacing = 4;
     NSInteger count =  ceil((maxIndex / columnCount) + (maxIndex % columnCount ? 1 : 0));
     if (self.hasMoreToLoad) {
       return count + 1;
+
     } else {
       return count;
     }
+
   } else {
     return 0;
   }
@@ -128,6 +130,7 @@ static CGFloat kThumbSpacing = 4;
     if (_photoSource.numberOfPhotos == -1) {
       caption = [NSString stringWithFormat:TTLocalizedString(@"Showing %@ Photos", @""),
                  TTFormatInteger(_photoSource.maxPhotoIndex+1)];
+
     } else {
       caption = [NSString stringWithFormat:TTLocalizedString(@"Showing %@ of %@ Photos", @""),
                  TTFormatInteger(_photoSource.maxPhotoIndex+1),
@@ -135,6 +138,7 @@ static CGFloat kThumbSpacing = 4;
     }
 
     return [TTTableMoreButton itemWithText:text subtitle:caption];
+
   } else {
     NSInteger columnCount = [self columnCountForView:tableView];
     return [_photoSource photoAtIndex:indexPath.row * columnCount];
@@ -146,6 +150,7 @@ static CGFloat kThumbSpacing = 4;
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
   if ([object conformsToProtocol:@protocol(TTPhoto)]) {
     return [TTThumbsTableViewCell class];
+
   } else {
     return [super tableView:tableView cellClassForObject:object];
   }

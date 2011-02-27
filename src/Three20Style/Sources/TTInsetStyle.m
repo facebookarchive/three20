@@ -76,6 +76,7 @@
   insets.left += _inset.left;
   if (self.next) {
     return [self.next addToInsets:insets forSize:size];
+
   } else {
     return insets;
   }

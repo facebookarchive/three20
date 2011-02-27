@@ -72,6 +72,7 @@
     }
     if (_tabItem.badgeNumber <= kMaxBadgeNumber) {
       _badge.text = [NSString stringWithFormat:@"%d", _tabItem.badgeNumber];
+
     } else {
       _badge.text = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
     }
@@ -79,6 +80,7 @@
 
     _badge.frame = CGRectMake(self.width - _badge.width-1, 1, _badge.width, _badge.height);
     _badge.hidden = NO;
+
   } else {
     _badge.hidden = YES;
   }

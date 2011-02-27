@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@
   BOOL                             _infiniteScrollEnabled;
 }
 
-@property(nonatomic, retain) TTTableHeaderDragRefreshView* headerView;
-@property(nonatomic, retain) TTTableFooterInfiniteScrollView* footerView;
-@property(readonly) BOOL dragRefreshEnabled;
-@property(readonly) BOOL infiniteScrollEnabled;
+@property (nonatomic, retain) TTTableHeaderDragRefreshView* headerView;
+@property (nonatomic, retain) TTTableFooterInfiniteScrollView* footerView;
+@property (readonly) BOOL dragRefreshEnabled;
+@property (readonly) BOOL infiniteScrollEnabled;
 
 - (id)initWithController:(TTTableViewController*)controller
          withDragRefresh:(BOOL)enableDragRefresh

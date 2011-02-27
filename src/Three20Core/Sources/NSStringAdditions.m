@@ -47,10 +47,12 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated - https://github.com/facebook/three20/issues/367
+/**
+ * Deprecated - https://github.com/facebook/three20/issues/367
+ */
 - (BOOL)isEmptyOrWhitespace {
   // A nil or NULL string is not the same as an empty string
-  return !self.length ||
+  return 0 == self.length ||
          ![self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length;
 }
 
@@ -63,8 +65,10 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Copied and pasted from http://www.mail-archive.com/cocoa-dev@lists.apple.com/msg28175.html
-// Deprecated
+/**
+ * Copied and pasted from http://www.mail-archive.com/cocoa-dev@lists.apple.com/msg28175.html
+ * Deprecated
+ */
 - (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding {
   NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
   NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
@@ -97,17 +101,18 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
     [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
     NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
     if (kvPair.count == 1 || kvPair.count == 2) {
-      NSString* key = [[kvPair objectAtIndex:0] 
+      NSString* key = [[kvPair objectAtIndex:0]
                        stringByReplacingPercentEscapesUsingEncoding:encoding];
       NSMutableArray* values = [pairs objectForKey:key];
-      if (!values) {
+      if (nil == values) {
         values = [NSMutableArray array];
         [pairs setObject:values forKey:key];
       }
       if (kvPair.count == 1) {
         [values addObject:[NSNull null]];
+
       } else if (kvPair.count == 2) {
-        NSString* value = [[kvPair objectAtIndex:1] 
+        NSString* value = [[kvPair objectAtIndex:1]
                            stringByReplacingPercentEscapesUsingEncoding:encoding];
         [values addObject:value];
       }
@@ -130,6 +135,7 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
   NSString* params = [pairs componentsJoinedByString:@"&"];
   if ([self rangeOfString:@"?"].location == NSNotFound) {
     return [self stringByAppendingFormat:@"?%@", params];
+
   } else {
     return [self stringByAppendingFormat:@"&%@", params];
   }
@@ -155,8 +161,10 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
   // If one has an alpha part and the other doesn't, the one without is newer
   if ([oneComponents count] < [twoComponents count]) {
     return NSOrderedDescending;
+
   } else if ([oneComponents count] > [twoComponents count]) {
     return NSOrderedAscending;
+
   } else if ([oneComponents count] == 1) {
     // Neither has an alpha part, and we know the main parts are the same
     return NSOrderedSame;
@@ -175,6 +183,8 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
   return [[self dataUsingEncoding:NSUTF8StringEncoding] md5Hash];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)sha1Hash {
   return [[self dataUsingEncoding:NSUTF8StringEncoding] sha1Hash];
 }

@@ -63,6 +63,7 @@ TT_FIX_CATEGORY_BUG(TTTabBarInternal)
         tab.frame = CGRectMake(x, 0, ceil(textWidth * shrinkFactor) + kPadding*2 , self.height);
         x += tab.width;
       }
+
     } else {
       CGFloat averageTabWidth = ceil((self.width - kTabMargin*2)/_tabViews.count);
       if (maxTabWidth > averageTabWidth && self.width - totalTabWidth < kTabMargin) {
@@ -71,6 +72,7 @@ TT_FIX_CATEGORY_BUG(TTTabBarInternal)
           tab.frame = CGRectMake(x, 0, tab.width, self.height);
           x += tab.width;
         }
+
       } else {
         for (int i = 0; i < _tabViews.count; ++i) {
           TTTab* tab = [_tabViews objectAtIndex:i];
@@ -79,6 +81,7 @@ TT_FIX_CATEGORY_BUG(TTTabBarInternal)
         }
       }
     }
+
   } else {
     for (int i = 0; i < _tabViews.count; ++i) {
       TTTab* tab = [_tabViews objectAtIndex:i];
