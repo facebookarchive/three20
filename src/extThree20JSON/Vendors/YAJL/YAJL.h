@@ -34,7 +34,7 @@
 #import "extThree20JSON/NSBundle+YAJL.h"
 
 /*!
- @mainpage YAJL
+ YAJL
 
  The YAJL framework is an Objective-C wrapper around the http://lloyd.github.com/yajl/ SAX-style JSON parser.
 
