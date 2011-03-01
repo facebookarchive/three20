@@ -507,7 +507,6 @@
 				6E645BA81187751200F08CB1 /* Headers */,
 				6E7F9372118E0EEB00443B46 /* Protect Copied Headers */,
 				6E645BC01187751200F08CB1 /* Sources */,
-				668E669F131AE02600ACE4AB /* Lint */,
 				6E645BD41187751200F08CB1 /* Frameworks */,
 			);
 			buildRules = (
@@ -528,7 +527,6 @@
 				BEF31F360F352DF5000DE5D2 /* Headers */,
 				6E3C34C3118807EF0079637E /* Protect Copied Headers */,
 				BEF31F370F352DF5000DE5D2 /* Sources */,
-				668E669D131AE01D00ACE4AB /* Lint */,
 				BEF31F380F352DF5000DE5D2 /* Frameworks */,
 			);
 			buildRules = (
@@ -644,36 +642,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		668E669D131AE01D00ACE4AB /* Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Lint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/usr/bin/env python ../scripts/lint";
-			shellScript = "";
-			showEnvVarsInLog = 0;
-		};
-		668E669F131AE02600ACE4AB /* Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Lint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/usr/bin/env python ../scripts/lint";
-			shellScript = "";
-			showEnvVarsInLog = 0;
-		};
 		6E3C34C3118807EF0079637E /* Protect Copied Headers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

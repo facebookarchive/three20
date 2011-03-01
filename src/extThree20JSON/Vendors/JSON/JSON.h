@@ -28,7 +28,7 @@
  */
 
 /**
- @mainpage A strict JSON parser and generator for Objective-C
+ A strict JSON parser and generator for Objective-C
 
  JSON (JavaScript Object Notation) is a lightweight data-interchange
  format. This framework provides two apis for parsing and generating
