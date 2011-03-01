@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-lint.py
+lint
 
 Validate style guidelines for a given source file.
 
@@ -29,6 +29,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import ConfigParser
 import logging
 import os
 import Paths
@@ -61,9 +62,20 @@ Verify Three20 style guidelines for source code.'''
 	if len(args) == 0:
 		parser.print_help()
 
+	enabled_for_projects = True
+	
+	# Allow third-party developers to disable the linter entirely. See config.template for
+	# more information in the "lint" section.
+	configpath = os.path.join(os.path.dirname(Paths.src_dir), 'config')
+	if os.path.exists(configpath):
+		config = ConfigParser.ConfigParser()
+		config.read(configpath)
+		enabled_for_projects = config.getboolean('lint', 'enabled_for_projects')
+
 	# If we're running the linter from Xcode, let's just process the project.
 	if 'PROJECT_FILE_PATH' in os.environ:
-		lint_project(os.environ['PROJECT_FILE_PATH'], options)
+		if enabled_for_projects:
+			lint_project(os.environ['PROJECT_FILE_PATH'], options)
 	else:
 		for filename in args:
 			lint(filename, options)
@@ -146,8 +158,10 @@ def lint_project(project_path, options):
 		if lint(filename, options):
 			# Only update the last known modification time if there weren't any errors.
 			mtimes[filename] = mtime
-		elif filename in mtimes:
-			del mtimes[filename]
+		else:
+			print "If you would like to disable the lint tool, please read the instructions in config.template in the root of the Three20 project"
+			if filename in mtimes:
+				del mtimes[filename]
 	
 	# Write out the lint data once we're done with this project. Thanks, pickle!
 	if tempdir:
@@ -167,7 +181,7 @@ def lint(filename, options):
 	if 'PROJECT_FILE_PATH' in os.environ:
 		formatter = logging.Formatter(filename+":%(linenumber)s: warning: "+relpath(os.getcwd(), filename)+":%(linenumber)s: %(message)s")
 	else:
-		formatter = logging.Formatter("warning: "+filename+":%(linenumber)s: %(message)s")
+		formatter = logging.Formatter(filename+":%(linenumber)s: %(message)s")
 	ch.setFormatter(formatter)
 	logger.addHandler(ch)
 
