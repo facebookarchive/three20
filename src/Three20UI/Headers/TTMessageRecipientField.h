@@ -26,6 +26,6 @@
   NSArray* _recipients;
 }
 
-@property (nonatomic, retain) NSArray* recipients;
+@property (nonatomic, copy) NSArray* recipients;
 
 @end

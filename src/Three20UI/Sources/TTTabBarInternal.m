@@ -16,6 +16,9 @@
 
 #import "Three20UI/private/TTTabBarInternal.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/TTTab.h"
 #import "Three20UI/UIViewAdditions.h"
@@ -28,6 +31,8 @@ static  CGFloat   kPadding        = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+TT_FIX_CATEGORY_BUG(TTTabBarInternal)
+
 @implementation TTTabBar (TTInternal)
 
 
@@ -58,6 +63,7 @@ static  CGFloat   kPadding        = 10;
         tab.frame = CGRectMake(x, 0, ceil(textWidth * shrinkFactor) + kPadding*2 , self.height);
         x += tab.width;
       }
+
     } else {
       CGFloat averageTabWidth = ceil((self.width - kTabMargin*2)/_tabViews.count);
       if (maxTabWidth > averageTabWidth && self.width - totalTabWidth < kTabMargin) {
@@ -66,6 +72,7 @@ static  CGFloat   kPadding        = 10;
           tab.frame = CGRectMake(x, 0, tab.width, self.height);
           x += tab.width;
         }
+
       } else {
         for (int i = 0; i < _tabViews.count; ++i) {
           TTTab* tab = [_tabViews objectAtIndex:i];
@@ -74,6 +81,7 @@ static  CGFloat   kPadding        = 10;
         }
       }
     }
+
   } else {
     for (int i = 0; i < _tabViews.count; ++i) {
       TTTab* tab = [_tabViews objectAtIndex:i];

@@ -89,14 +89,17 @@ static const CGFloat kMoreButtonMargin = 40;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  _activityIndicatorView.left = kMoreButtonMargin - (_activityIndicatorView.width + kTableCellSmallMargin);
+  _activityIndicatorView.left = kMoreButtonMargin - (_activityIndicatorView.width
+                                                     + kTableCellSmallMargin);
   _activityIndicatorView.top = floor(self.contentView.height/2 - _activityIndicatorView.height/2);
 
   self.textLabel.frame = CGRectMake(kMoreButtonMargin, self.textLabel.top,
-                                    self.contentView.width - (kMoreButtonMargin + kTableCellSmallMargin),
+                                    self.contentView.width - (kMoreButtonMargin
+                                                              + kTableCellSmallMargin),
                                     self.textLabel.height);
   self.detailTextLabel.frame = CGRectMake(kMoreButtonMargin, self.detailTextLabel.top,
-                                          self.contentView.width - (kMoreButtonMargin + kTableCellSmallMargin),
+                                          self.contentView.width - (kMoreButtonMargin
+                                                                    + kTableCellSmallMargin),
                                           self.detailTextLabel.height);
 
 }

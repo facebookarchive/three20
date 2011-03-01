@@ -81,6 +81,7 @@
 
   if (lightSource >= 0 && lightSource <= 90) {
     CGContextMoveToPoint(context, radius, 0);
+
   } else {
     CGContextMoveToPoint(context, 0, radius);
     CGContextAddArcToPoint(context, 0, 0, radius, 0, radius);

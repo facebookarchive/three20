@@ -96,8 +96,9 @@
   UIColor* clearColor = [UIColor colorWithWhite:1.0 alpha:0.0];
 
   UIColor* botEndHighlight;
-  if( _withBottomHighlight ) {
+  if ( _withBottomHighlight ) {
     botEndHighlight = [UIColor colorWithWhite:1.0 alpha:0.27];
+
   } else {
     botEndHighlight = clearColor;
   }

@@ -156,7 +156,8 @@
   || [URL.scheme caseInsensitiveCompare:@"https"] == NSOrderedSame
   || [URL.scheme caseInsensitiveCompare:@"ftp"] == NSOrderedSame
   || [URL.scheme caseInsensitiveCompare:@"ftps"] == NSOrderedSame
-  || [URL.scheme caseInsensitiveCompare:@"data"] == NSOrderedSame;
+  || [URL.scheme caseInsensitiveCompare:@"data"] == NSOrderedSame
+  || [URL.scheme caseInsensitiveCompare:@"file"] == NSOrderedSame;
 }
 
 
@@ -166,6 +167,7 @@
       || [URL.host isEqualToString:@"itunes.apple.com"]
       || [URL.host isEqualToString:@"phobos.apple.com"]) {
     return YES;
+
   } else {
     return NO;
   }
@@ -323,8 +325,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)from:(NSString*)URL toPopoverViewController:(id)target {
-  TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                            mode:TTNavigationModePopover];
+  TTURLNavigatorPattern* pattern =
+    [[TTURLNavigatorPattern alloc] initWithTarget: target
+                                             mode: TTNavigationModePopover];
   [self addObjectPattern:pattern forURL:URL];
   [pattern release];
 }
@@ -332,8 +335,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)from:(NSString*)URL toPopoverViewController:(id)target selector:(SEL)selector {
-  TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
-                                                                            mode:TTNavigationModePopover];
+  TTURLNavigatorPattern* pattern =
+    [[TTURLNavigatorPattern alloc] initWithTarget:target
+                                             mode:TTNavigationModePopover];
   pattern.selector = selector;
   [self addObjectPattern:pattern forURL:URL];
   [pattern release];
@@ -444,6 +448,7 @@
       *outPattern = pattern;
     }
     return object;
+
   } else {
     return nil;
   }
@@ -520,6 +525,7 @@
     TTURLGeneratorPattern* pattern = [_stringPatterns objectForKey:key];
     if (pattern) {
       return [pattern generateURLFromObject:object];
+
     } else {
       cls = class_getSuperclass(cls);
     }

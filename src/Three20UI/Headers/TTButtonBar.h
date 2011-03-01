@@ -25,8 +25,8 @@
   NSString*       _buttonStyle;
 }
 
-@property (nonatomic, retain) NSArray*  buttons;
-@property (nonatomic, copy)   NSString* buttonStyle;
+@property (nonatomic, copy) NSArray*  buttons;
+@property (nonatomic, copy) NSString* buttonStyle;
 
 - (void)addButton:(NSString*)title target:(id)target action:(SEL)selector;
 - (void)removeButtons;

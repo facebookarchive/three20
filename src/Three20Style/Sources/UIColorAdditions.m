@@ -16,6 +16,10 @@
 
 #import "Three20Style/UIColorAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Color algorithms from http://www.cs.rit.edu/~ncs/color/t_convert.html
 
@@ -30,7 +34,7 @@ void RGBtoHSV(float r, float g, float b, float* h, float* s, float* v) {
   max = MAX3(r, g, b);
   *v = max;        // v
   delta = max - min;
-  if( max != 0 )
+  if ( max != 0 )
     *s = delta / max;    // s
   else {
     // r = g = b = 0    // s = 0, v is undefined
@@ -38,14 +42,14 @@ void RGBtoHSV(float r, float g, float b, float* h, float* s, float* v) {
     *h = -1;
     return;
   }
-  if( r == max )
+  if ( r == max )
     *h = ( g - b ) / delta;    // between yellow & magenta
-  else if( g == max )
+  else if ( g == max )
     *h = 2 + ( b - r ) / delta;  // between cyan & yellow
   else
     *h = 4 + ( r - g ) / delta;  // between magenta & cyan
   *h *= 60;        // degrees
-  if( *h < 0 )
+  if ( *h < 0 )
     *h += 360;
 }
 
@@ -54,7 +58,7 @@ void RGBtoHSV(float r, float g, float b, float* h, float* s, float* v) {
 void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v ) {
   int i;
   float f, p, q, t;
-  if( s == 0 ) {
+  if ( s == 0 ) {
     // achromatic (grey)
     *r = *g = *b = v;
     return;
@@ -106,6 +110,8 @@ void HSVtoRGB( float *r, float *g, float *b, float h, float s, float v ) {
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UIColorAdditions)
+
 @implementation UIColor (TTCategory)
 
 

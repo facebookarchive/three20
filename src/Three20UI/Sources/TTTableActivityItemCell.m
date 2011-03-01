@@ -67,6 +67,7 @@
   UITableView* tableView = (UITableView*)self.superview;
   if (tableView.style == UITableViewStylePlain) {
     _activityLabel.frame = self.contentView.bounds;
+
   } else {
     _activityLabel.frame = CGRectInset(self.contentView.bounds, -1, -1);
   }

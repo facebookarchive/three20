@@ -128,6 +128,7 @@ static const CGFloat kControlPadding = 8;
 
   if (height < TT_ROW_HEIGHT) {
     return TT_ROW_HEIGHT;
+
   } else {
     return height;
   }

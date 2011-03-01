@@ -113,6 +113,7 @@ UIDeviceOrientation TTDeviceOrientation() {
   UIDeviceOrientation orient = [UIDevice currentDevice].orientation;
   if (UIDeviceOrientationUnknown == orient) {
     return UIDeviceOrientationPortrait;
+
   } else {
     return orient;
   }
@@ -123,6 +124,7 @@ UIDeviceOrientation TTDeviceOrientation() {
 BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation) {
   if (TTIsPad()) {
     return YES;
+
   } else {
     switch (orientation) {
       case UIInterfaceOrientationPortrait:
@@ -140,10 +142,13 @@ BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation) {
 CGAffineTransform TTRotateTransformForOrientation(UIInterfaceOrientation orientation) {
   if (orientation == UIInterfaceOrientationLandscapeLeft) {
     return CGAffineTransformMakeRotation(M_PI*1.5);
+
   } else if (orientation == UIInterfaceOrientationLandscapeRight) {
     return CGAffineTransformMakeRotation(M_PI/2);
+
   } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
     return CGAffineTransformMakeRotation(-M_PI);
+
   } else {
     return CGAffineTransformIdentity;
   }
@@ -161,6 +166,7 @@ CGRect TTApplicationFrame() {
 CGFloat TTToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
   if (UIInterfaceOrientationIsPortrait(orientation) || TTIsPad()) {
     return TT_ROW_HEIGHT;
+
   } else {
     return TT_LANDSCAPE_TOOLBAR_HEIGHT;
   }
@@ -172,6 +178,7 @@ CGFloat TTKeyboardHeightForOrientation(UIInterfaceOrientation orientation) {
   if (TTIsPad()) {
     return UIInterfaceOrientationIsPortrait(orientation) ? TT_IPAD_KEYBOARD_HEIGHT
                                                          : TT_IPAD_LANDSCAPE_KEYBOARD_HEIGHT;
+
   } else {
     return UIInterfaceOrientationIsPortrait(orientation) ? TT_KEYBOARD_HEIGHT
                                                          : TT_LANDSCAPE_KEYBOARD_HEIGHT;

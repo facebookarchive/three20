@@ -31,6 +31,7 @@ static const CGFloat kSectionHeaderHeight = 35;
   NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
   if (!title.length) {
     return kEmptyHeaderHeight;
+
   } else {
     return kSectionHeaderHeight;
   }

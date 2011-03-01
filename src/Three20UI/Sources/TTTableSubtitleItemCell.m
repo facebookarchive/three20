@@ -103,6 +103,7 @@
   if (_imageView2) {
     _imageView2.frame = CGRectMake(0, 0, height, height);
     left = _imageView2.right + kTableCellSmallMargin;
+
   } else {
     left = kTableCellHPadding;
   }

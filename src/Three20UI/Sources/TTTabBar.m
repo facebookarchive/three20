@@ -176,7 +176,9 @@
     TTTabItem* tabItem = [_tabItems objectAtIndex:i];
     TTTab* tab = [[[TTTab alloc] initWithItem:tabItem tabBar:self] autorelease];
     [tab setStylesWithSelector:self.tabStyle];
-    [tab addTarget:self action:@selector(tabTouchedUp:) forControlEvents:UIControlEventTouchUpInside];
+    [tab        addTarget: self
+                   action: @selector(tabTouchedUp:)
+         forControlEvents: UIControlEventTouchUpInside];
     [self addTab:tab];
     [_tabViews addObject:tab];
     if (i == _selectedTabIndex) {

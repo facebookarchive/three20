@@ -113,6 +113,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
     _imageView2.frame = CGRectMake(kTableCellSmallMargin, kTableCellSmallMargin,
                                    kDefaultMessageImageWidth, kDefaultMessageImageHeight);
     left += kTableCellSmallMargin + kDefaultMessageImageHeight + kTableCellSmallMargin;
+
   } else {
     left = kTableCellMargin;
   }
@@ -123,6 +124,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
   if (_titleLabel.text.length) {
     _titleLabel.frame = CGRectMake(left, top, width, _titleLabel.font.ttLineHeight);
     top += _titleLabel.height;
+
   } else {
     _titleLabel.frame = CGRectZero;
   }
@@ -130,6 +132,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
   if (self.captionLabel.text.length) {
     self.captionLabel.frame = CGRectMake(left, top, width, self.captionLabel.font.ttLineHeight);
     top += self.captionLabel.height;
+
   } else {
     self.captionLabel.frame = CGRectZero;
   }
@@ -137,6 +140,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
   if (self.detailTextLabel.text.length) {
     CGFloat textHeight = self.detailTextLabel.font.ttLineHeight * kMessageTextLineCount;
     self.detailTextLabel.frame = CGRectMake(left, top, width, textHeight);
+
   } else {
     self.detailTextLabel.frame = CGRectZero;
   }
@@ -147,6 +151,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
     _timestampLabel.left = self.contentView.width - (_timestampLabel.width + kTableCellSmallMargin);
     _timestampLabel.top = _titleLabel.top;
     _titleLabel.width -= _timestampLabel.width + kTableCellSmallMargin*2;
+
   } else {
     _timestampLabel.frame = CGRectZero;
   }

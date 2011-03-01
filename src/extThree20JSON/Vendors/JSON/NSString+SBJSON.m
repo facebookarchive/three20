@@ -30,6 +30,12 @@
 #import "extThree20JSON/NSString+SBJSON.h"
 #import "extThree20JSON/SBJsonParser.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
+
+TT_FIX_CATEGORY_BUG(NSString_SBJSON)
+
 @implementation NSString (NSString_SBJSON)
 
 - (id)JSONValue

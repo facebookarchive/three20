@@ -38,6 +38,7 @@
 #import "Three20Core/TTGlobalCoreLocale.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/NSStringAdditions.h"
+#import "Three20Core/TTGlobalCore.h"
 
 static const CGFloat kMarginX = 5;
 static const CGFloat kMarginY = 6;
@@ -375,6 +376,7 @@ static const CGFloat kMarginY = 6;
 
   if (_defaultText) {
     _textView.text = _defaultText;
+
   } else {
     _defaultText = [_textView.text retain];
   }
@@ -395,6 +397,7 @@ static const CGFloat kMarginY = 6;
 
     if (!CGRectIsEmpty(originRect)) {
       _screenView.frame = CGRectOffset(originRect, 0, -TTStatusHeight());
+
     } else {
       [self layoutTextEditor];
       _screenView.transform = CGAffineTransformMakeScale(0.00001, 0.00001);
@@ -410,6 +413,7 @@ static const CGFloat kMarginY = 6;
 
     if (originRect.size.width) {
       [self layoutTextEditor];
+
     } else {
       _screenView.transform = CGAffineTransformIdentity;
     }
@@ -498,6 +502,7 @@ static const CGFloat kMarginY = 6;
 
   if (shouldDismiss) {
     [self dismissWithResult:nil animated:YES];
+
   } else {
     [self showActivity:[self titleForActivity]];
   }
@@ -506,7 +511,8 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cancel {
-  if (!_textView.text.isEmptyOrWhitespace
+  if (!TTIsStringWithAnyText(_textView.text)
+      && !_textView.text.isWhitespaceAndNewlines
       && !(_defaultText && [_defaultText isEqualToString:_textView.text])) {
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
       TTLocalizedString(@"Cancel", @"")
@@ -514,6 +520,7 @@ static const CGFloat kMarginY = 6;
       delegate:self cancelButtonTitle:TTLocalizedString(@"Yes", @"")
       otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
     [cancelAlertView show];
+
   } else {
     [self dismissWithCancel];
   }
@@ -550,6 +557,7 @@ static const CGFloat kMarginY = 6;
 
     if (!CGRectIsEmpty(originRect)) {
       _screenView.frame = CGRectOffset(originRect, 0, -TTStatusHeight());
+
     } else {
       _screenView.transform = CGAffineTransformMakeScale(0.00001, 0.00001);
     }

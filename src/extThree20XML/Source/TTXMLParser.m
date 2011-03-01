@@ -135,6 +135,7 @@ static NSString* kInternalKey_Array         = @"___Array___";
           // Collision, check if it's already an array.
           if (TTIsArrayWithItems(entityObject)) {
             [entityObject addObject:childObject];
+
           } else {
             NSMutableArray* array = [[NSMutableArray alloc] init];
             [array addObject:entityObject];
@@ -302,6 +303,7 @@ static NSString* kInternalKey_Array         = @"___Array___";
 - (id)objectForXMLNode {
   if ([[self typeForXMLNode] isEqualToString:kCommonXMLType_Array]) {
     return [self objectForKey:kInternalKey_Array];
+
   } else {
     return [self objectForKey:kInternalKey_EntityValue];
   }

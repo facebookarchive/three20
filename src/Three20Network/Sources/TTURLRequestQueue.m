@@ -93,7 +93,9 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TODO (jverkoey May 3, 2010): Clean up this redundant code.
+/**
+ * TODO (jverkoey May 3, 2010): Clean up this redundant code.
+ */
 - (BOOL)dataExistsInBundle:(NSString*)URL {
   NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
   NSFileManager* fm = [NSFileManager defaultManager];
@@ -115,6 +117,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:path]) {
     return [NSData dataWithContentsOfFile:path];
+
   } else if (error) {
     *error = [NSError errorWithDomain:NSCocoaErrorDomain
                       code:NSFileReadNoSuchFileError userInfo:nil];
@@ -129,6 +132,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:path]) {
     return [NSData dataWithContentsOfFile:path];
+
   } else if (error) {
     *error = [NSError errorWithDomain:NSCocoaErrorDomain
                       code:NSFileReadNoSuchFileError userInfo:nil];
@@ -235,6 +239,7 @@ static TTURLRequestQueue* gMainQueue = nil;
             [delegate request:request didFailLoadWithError:error];
           }
         }
+
       } else {
         request.timestamp = timestamp ? timestamp : [NSDate date];
         request.respondedFromCache = YES;
@@ -272,9 +277,11 @@ static TTURLRequestQueue* gMainQueue = nil;
     }
     if (error) {
       [loader dispatchError:error];
+
     } else {
       [loader dispatchLoaded:timestamp];
     }
+
   } else {
     ++_totalLoading;
     [loader load:[NSURL URLWithString:loader.urlPath]];
@@ -325,6 +332,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 
   if (!_suspended) {
     [self loadNextInQueue];
+
   } else if (_loaderQueueTimer) {
     [_loaderQueueTimer invalidate];
     _loaderQueueTimer = nil;
@@ -375,6 +383,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   [_loaders setObject:loader forKey:request.cacheKey];
   if (_suspended || _totalLoading == kMaxConcurrentLoads) {
     [_loaderQueue addObject:loader];
+
   } else {
     ++_totalLoading;
     [loader load:[NSURL URLWithString:request.urlPath]];
@@ -675,6 +684,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   if (wasLoading) {
     [self removeLoader:loader];
     [self loadNextInQueue];
+
   } else {
     [_loaders removeObjectForKey:loader.cacheKey];
   }

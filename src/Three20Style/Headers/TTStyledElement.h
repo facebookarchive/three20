@@ -25,7 +25,7 @@
 
 @property (nonatomic, readonly) TTStyledNode* firstChild;
 @property (nonatomic, readonly) TTStyledNode* lastChild;
-@property (nonatomic, retain)   NSString*     className;
+@property (nonatomic, copy)     NSString*     className;
 
 - (id)initWithText:(NSString*)text;
 

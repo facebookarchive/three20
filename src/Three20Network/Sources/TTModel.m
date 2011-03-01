@@ -44,7 +44,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSMutableArray*)delegates {
-  if (!_delegates) {
+  if (nil == _delegates) {
     _delegates = TTCreateNonRetainingArray();
   }
   return _delegates;

@@ -30,7 +30,7 @@
 @synthesize image       = _image;
 @synthesize URL         = _URL;
 @synthesize style       = _style;
-@synthesize badgeNumber = _badgeNumber;
+@synthesize badgeValue  = _badgeValue;
 @synthesize canDelete   = _canDelete;
 
 
@@ -112,11 +112,30 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSInteger)badgeNumber {
+  return [self.badgeValue integerValue];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setBadgeNumber:(NSInteger)badgeNumber {
-  _badgeNumber = badgeNumber;
+  if (badgeNumber == 0) {
+    [self setBadgeValue:nil];
+
+  } else {
+    [self setBadgeValue:[NSString stringWithFormat:@"%d",badgeNumber]];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBadgeValue:(NSString *)badgeValue {
+  if (_badgeValue != badgeValue) {
+    [_badgeValue release];
+    _badgeValue = [badgeValue copy];
+  }
 
   [_launcher performSelector:@selector(updateItemBadge:) withObject:self];
 }
-
 
 @end

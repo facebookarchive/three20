@@ -55,6 +55,9 @@
   NSInteger             _totalBytesLoaded;
   NSInteger             _totalBytesExpected;
 
+  NSInteger             _totalBytesDownloaded;
+  NSInteger             _totalContentLength;
+
   id    _userInfo;
 
   BOOL  _isLoading;
@@ -141,7 +144,7 @@
  *
  * By setting the cacheKey, you may override the default cache key generator with your own.
  */
-@property (nonatomic, retain) NSString* cacheKey;
+@property (nonatomic, copy) NSString* cacheKey;
 
 /**
  * A dummy object used to uniquely identify this request object once it's been sent into the fray.
@@ -179,6 +182,16 @@
  * The number of expected bytes from this request.
  */
 @property (nonatomic) NSInteger totalBytesExpected;
+
+/**
+ * The number of downloaded bytes from server.
+ */
+@property (nonatomic) NSInteger totalBytesDownloaded;
+
+/**
+ *  The number of content length of request.
+ */
+@property (nonatomic) NSInteger totalContentLength;
 
 /**
  * Whether or not the request was loaded from the cache.

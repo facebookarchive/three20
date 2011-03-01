@@ -38,7 +38,8 @@
   TTExtensionInfo* extension = [[TTExtensionInfo alloc] init];
 
   extension.name = @"Three20 XML";
-  extension.description = @"The XML extension provides support for parsing XML data and receiving XML responses.";
+  extension.description =
+  @"The XML extension provides support for parsing XML data and receiving XML responses.";
   extension.version = @"1.0";
   extension.copyright = @"Copyright 2009-2010 Facebook";
   extension.license = @"Apache 2.0";

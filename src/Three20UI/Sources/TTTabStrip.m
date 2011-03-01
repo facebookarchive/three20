@@ -92,6 +92,7 @@
 
     _overflowRight.left = self.width-_overflowRight.width;
     _overflowRight.hidden = NO;
+
   } else {
     _overflowRight.hidden = YES;
   }
@@ -106,6 +107,7 @@
     }
 
     _overflowLeft.hidden = NO;
+
   } else {
     _overflowLeft.hidden = YES;
   }

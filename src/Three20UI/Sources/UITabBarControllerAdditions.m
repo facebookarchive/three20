@@ -16,6 +16,9 @@
 
 #import "Three20UI/UITabBarControllerAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTNavigationController.h"
@@ -30,6 +33,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UITabBarControllerAdditions)
+
 @implementation UITabBarController (TTCategory)
 
 
@@ -43,6 +48,7 @@
 - (UIViewController*)rootControllerForController:(UIViewController*)controller {
   if ([controller canContainControllers]) {
     return controller;
+
   } else {
     TTNavigationController* navController = [[[TTNavigationController alloc] init] autorelease];
     [navController pushViewController:controller animated:NO];

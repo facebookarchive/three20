@@ -72,20 +72,20 @@
  * An array of TTMessageField instances representing the editable fields. These
  * fields are rendered in order using appropriate views for each field type.
  */
-@property (nonatomic, retain) NSArray* fields;
+@property (nonatomic, copy) NSArray* fields;
 
 /**
  * A convenience property for editing the text value of the
  * TTMessageSubjectField. If no TTMessageSubjectField is found in the fields
  * array, nil will be returned from the getter and the setter will be a no-op.
  */
-@property (nonatomic, retain) NSString* subject;
+@property (nonatomic, copy) NSString* subject;
 
 /**
  * The body of the message. The body is not required for the user to send a
  * message.
  */
-@property (nonatomic, retain) NSString* body;
+@property (nonatomic, copy) NSString* body;
 
 /**
  * Controls whether a contact add button is shown in the views for
@@ -106,7 +106,7 @@
  *
  * @default NO
  */
-@property(nonatomic) BOOL requireNonEmptyMessageBody;
+@property (nonatomic) BOOL requireNonEmptyMessageBody;
 
 /**
  * Initializes the class with an array of recipients. These recipients will

@@ -16,6 +16,9 @@
 
 #import "Three20Core/NSObjectAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,6 +26,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(NSObjectAdditions)
+
 @implementation NSObject (TTAdditions)
 
 
@@ -41,9 +46,11 @@
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }
@@ -67,9 +74,11 @@
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }
@@ -94,9 +103,11 @@
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }
@@ -122,9 +133,11 @@
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }
@@ -151,9 +164,11 @@
       id anObject;
       [invo getReturnValue:&anObject];
       return anObject;
+
     } else {
       return nil;
     }
+
   } else {
     return nil;
   }

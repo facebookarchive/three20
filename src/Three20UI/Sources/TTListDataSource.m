@@ -98,6 +98,7 @@
 - (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath {
   if (indexPath.row < _items.count) {
     return [_items objectAtIndex:indexPath.row];
+
   } else {
     return nil;
   }

@@ -16,6 +16,9 @@
 
 #import "Three20UI/UINSObjectAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/TTNavigator.h"
 
@@ -29,6 +32,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UINSObjectAdditions)
+
 @implementation NSObject (TTCategory)
 
 
