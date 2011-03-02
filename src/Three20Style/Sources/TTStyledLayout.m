@@ -758,7 +758,6 @@
                       sizeWithFont:_font].width;
         [self addFrameForText:line element:element node:textNode width:frameWidth
               height:[_font ttLineHeight]];
-        frameWidth = 0;
       }
     }
   }
