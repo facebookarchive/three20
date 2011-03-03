@@ -199,6 +199,7 @@
 
   } else if ([tag isEqualToString:@"button"]) {
     TTStyledButtonNode* node = [[[TTStyledButtonNode alloc] init] autorelease];
+    node.className =  [attributeDict objectForKey:@"class"];
     node.URL =  [attributeDict objectForKey:@"href"];
     [self pushNode:node];
 
