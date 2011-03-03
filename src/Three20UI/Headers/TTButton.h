@@ -40,7 +40,7 @@
 - (void)setTitle:(NSString*)title forState:(UIControlState)state;
 
 - (NSString*)imageForState:(UIControlState)state;
-- (void)setImage:(NSString*)title forState:(UIControlState)state;
+- (void)setImage:(NSString*)imageURL forState:(UIControlState)state;
 
 - (TTStyle*)styleForState:(UIControlState)state;
 - (void)setStyle:(TTStyle*)style forState:(UIControlState)state;
