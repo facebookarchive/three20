@@ -32,6 +32,7 @@
 @synthesize style       = _style;
 @synthesize badgeValue  = _badgeValue;
 @synthesize canDelete   = _canDelete;
+@synthesize userInfo	= _userInfo;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
