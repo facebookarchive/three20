@@ -363,6 +363,10 @@ class Pbxproj(object):
 	#
 	# <guid> /* <name> */,
 	def add_file_to_resources(self, name, guid):
+		match = re.search('\/\* '+re.escape('Resources')+' \*\/ = \{\n[ \t]+isa = PBXGroup;\n[ \t]+children = \(\n((?:.|\n)+?)\);', self.get_project_data())
+		if not match:
+			return self.add_file_to_group(name, guid, 'Supporting Files')
+
 		return self.add_file_to_group(name, guid, 'Resources')
 
 	def add_file_to_phase(self, name, guid, phase_guid, phase):
@@ -474,7 +478,7 @@ class Pbxproj(object):
 	def add_framework(self, framework):
 		tthash_base = self.get_hash_base(framework)
 		
-		fileref_hash = self.add_filereference(framework, 'frameworks', tthash_base+'0', 'System/Library/Frameworks/'+framework, 'SDK_ROOT')
+		fileref_hash = self.add_filereference(framework, 'frameworks', tthash_base+'0', 'System/Library/Frameworks/'+framework, 'SDKROOT')
 		libfile_hash = self.add_buildfile(framework, fileref_hash, tthash_base+'1')
 		if not self.add_file_to_frameworks(framework, fileref_hash):
 			return False
