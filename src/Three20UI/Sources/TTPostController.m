@@ -204,6 +204,8 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showAnimationDidStop {
   _textView.hidden = NO;
+
+  [self.superController viewDidDisappear:YES];
 }
 
 
@@ -246,7 +248,10 @@ static const CGFloat kMarginY = 6;
     [_delegate postControllerDidCancel:self];
   }
 
-  [self dismissPopupViewControllerAnimated:YES];
+  BOOL animated = YES;
+
+  [self.superController viewWillAppear:animated];
+  [self dismissPopupViewControllerAnimated:animated];
 }
 
 
@@ -368,6 +373,9 @@ static const CGFloat kMarginY = 6;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showInView:(UIView*)view animated:(BOOL)animated {
   [self retain];
+
+  [self.superController viewWillDisappear:animated];
+
   UIWindow* window = view.window ? view.window : [UIApplication sharedApplication].keyWindow;
 
   self.view.transform = [self transformForOrientation];
@@ -441,7 +449,6 @@ static const CGFloat kMarginY = 6;
     [self.view removeFromSuperview];
     [self release];
     superController.popupViewController = nil;
-    [superController viewWillAppear:animated];
     [superController viewDidAppear:animated];
   }
 }
@@ -531,6 +538,8 @@ static const CGFloat kMarginY = 6;
 - (void)dismissWithResult:(id)result animated:(BOOL)animated {
   [_result release];
   _result = [result retain];
+
+  [self.superController viewWillAppear:animated];
 
   if (animated) {
     if ([_delegate respondsToSelector:@selector(postController:willAnimateTowards:)]) {
