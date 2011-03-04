@@ -131,7 +131,6 @@ static const CGFloat kInfiniteScrollThreshold = 0.5;
 #pragma mark -
 #pragma mark UIScrollViewDelegate
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView {
   [super scrollViewDidScroll:scrollView];
@@ -174,8 +173,8 @@ static const CGFloat kInfiniteScrollThreshold = 0.5;
     }
 
     if (shouldLoad) {
-      [_model load:TTURLRequestCachePolicyDefault more:YES];
       [(TTTableFooterInfiniteScrollView*)_controller.tableView.tableFooterView setLoading:YES];
+      [_model load:TTURLRequestCachePolicyDefault more:YES];
     }
   }
 }
