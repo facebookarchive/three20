@@ -134,12 +134,12 @@ __attribute__((weak_import));
   }
 
   id<TTNavigatorRootContainer>  container = nil;
-  UIViewController*             controller = nil;      // The iterator.
-  UIViewController*             childController = nil; // The last iterated controller.
+  UIViewController*             controller = nil;
+  UIViewController*             childController = nil;
 
   for (controller = view.viewController;
        nil != controller;
-       controller = controller.parentViewController) {
+       controller = controller.superController) {
     if ([controller conformsToProtocol:@protocol(TTNavigatorRootContainer)]) {
       container = (id<TTNavigatorRootContainer>)controller;
       break;
