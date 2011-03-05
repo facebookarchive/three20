@@ -18,6 +18,19 @@
 
 @class TTBaseNavigator;
 
+/**
+ * A root container object is any object that can set a root view controller.
+ *
+ * On the iPhone this generally isn't necessary because you'll have one
+ * navigator in the app at a time, and the window will always own the root controller.
+ *
+ * On the iPad there are a variety of implementations that require multiple
+ * navigators to exist simultaneously. With a split-view design, for example, one might have
+ * two controllers on the screen simultaneously, each with their own TTNavigator mapping.
+ *
+ * If no root container is specified for a TTNavigator, the key window will be assumed as the
+ * root container.
+ */
 @protocol TTNavigatorRootContainer
 
 @required
