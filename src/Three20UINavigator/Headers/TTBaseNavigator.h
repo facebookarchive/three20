@@ -70,6 +70,10 @@
 /**
  * A container that holds the root view controller.
  *
+ * The method setRootViewController: will be called whenever the root view controller changes
+ * for this navigator. If you are building a multi-controller application, such as a split view
+ * iPad app, you will implement the root container protocol on your split view controller.
+ *
  * If nil, the window is treated as the root container.
  *
  * @default nil
