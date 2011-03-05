@@ -66,7 +66,7 @@
   if (animated) {
     NSString* URL = self.topViewController.originalNavigatorURL;
     UIViewAnimationTransition transition = URL
-      ? [[TTBaseNavigator globalNavigator].URLMap transitionForURL:URL]
+      ? [[TTBaseNavigator navigatorForView:self.view].URLMap transitionForURL:URL]
       : UIViewAnimationTransitionNone;
     if (transition) {
       UIViewAnimationTransition inverseTransition = [self invertTransition:transition];
