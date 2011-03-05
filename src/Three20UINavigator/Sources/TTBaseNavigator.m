@@ -591,6 +591,10 @@ __attribute__((weak_import));
 
   if (nil != [TTBaseNavigator popoverController] && isModal) {
     // Present the content controller on this popover and bail out immediately.
+    if ([controller respondsToSelector:@selector(viewWillAppearInPopover:)]) {
+      [(id)controller viewWillAppearInPopover:[TTBaseNavigator popoverController]];
+    }
+
     contentController.modalPresentationStyle = UIModalPresentationCurrentContext;
     [[TTBaseNavigator popoverController].contentViewController
      presentModalViewController:contentController
@@ -605,9 +609,8 @@ __attribute__((weak_import));
       UINavigationController* navController = popoverContentController;
 
       // Inform the controller that it is being displayed within a popover controller.
-      if ([controller conformsToProtocol:@protocol(TTNavigatorPopoverProtocol)]) {
-        [(id<TTNavigatorPopoverProtocol>)controller
-         viewWillAppearInPopover:action.targetPopoverController];
+      if ([controller respondsToSelector:@selector(viewWillAppearInPopover:)]) {
+        [(id)controller viewWillAppearInPopover:action.targetPopoverController];
       }
 
       [navController pushViewController: contentController
@@ -634,9 +637,8 @@ __attribute__((weak_import));
     (id<UIPopoverControllerDelegate>)([TTBaseNavigator class]);
 
   // Inform the controller that it is being displayed within a popover controller.
-  if ([controller conformsToProtocol:@protocol(TTNavigatorPopoverProtocol)]) {
-    [(id<TTNavigatorPopoverProtocol>)controller viewWillAppearInPopover:
-     [TTBaseNavigator popoverController]];
+  if ([controller respondsToSelector:@selector(viewWillAppearInPopover:)]) {
+    [(id)controller viewWillAppearInPopover:[TTBaseNavigator popoverController]];
   }
 
   [[NSNotificationCenter defaultCenter]
