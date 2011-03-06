@@ -8,7 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface SplitCatalogController()
 
-- (void)setupURLRouting;
+- (void)setupNavigators;
 
 @end
 
@@ -23,7 +23,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-    [self setupURLRouting];
+    [self setupNavigators];
   }
 
   return self;
@@ -31,23 +31,22 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-
-  [self.leftNavigator openURLs:@"tt://catalog", nil];
-  [self.rightNavigator openURLs:@"http://three20.info/", nil];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)willOpenUrlPath:(NSURL*)url {
-  [self.rightNavigator openURLAction:[TTURLAction actionWithURLPath:[url absoluteString]]];
+  NSString* urlPath = [url absoluteString];
+  if (nil == self.primaryNavigator.rootViewController) {
+    // First run-through, let the navigator set up the root navigator controller as necessary.
+    // This will eventually pipe through setRootViewController: found below.
+    [self.primaryNavigator openURLAction:[TTURLAction actionWithURLPath:urlPath]];
 
-  [self.popoverSplitController dismissPopoverAnimated:YES];
+  } else {
+    // Subsequent runthroughs, we just forcefully reset the navigation stack.
+    UIViewController* viewController = [self.primaryNavigator viewControllerForURL:urlPath];
 
-  // We need to do this because the right navigator clobbered the right navigation controller
-  // and our button along with it.
-  [self updateSplitViewButton];
+    UINavigationController* navController =
+    (UINavigationController*)self.primaryNavigator.rootViewController;
+    [navController setViewControllers: [NSArray arrayWithObject:viewController]
+                             animated: NO];
+  }
 
   // Don't create a view controller here; we're forwarding the URL routing.
   return nil;
@@ -55,8 +54,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)routeLeftNavigator {
-  TTURLMap* map = self.leftNavigator.URLMap;
+- (void)setupSecondaryNavigator {
+  TTURLMap* map = self.secondaryNavigator.URLMap;
 
   // Forward all unhandled URL actions to the right navigator.
   [map                    from: @"*"
@@ -69,8 +68,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)routeRightNavigator {
-  TTURLMap* map = self.rightNavigator.URLMap;
+- (void)setupPrimaryNavigator {
+  TTURLMap* map = self.primaryNavigator.URLMap;
 
 
   [map                    from: @"*"
@@ -79,9 +78,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setupURLRouting {
-  [self routeLeftNavigator];
-  [self routeRightNavigator];
+- (void)setupNavigators {
+  [self setupPrimaryNavigator];
+  [self setupSecondaryNavigator];
+
+  [self.secondaryNavigator openURLs:@"tt://catalog", nil];
+  [self.primaryNavigator openURLs:@"http://three20.info/", nil];
 }
 
 
