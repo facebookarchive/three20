@@ -46,7 +46,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _navigationBarStyle = UIBarStyleDefault;
-    _statusBarStyle = UIStatusBarStyleDefault;
+    _statusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
   }
 
   return self;
