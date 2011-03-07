@@ -170,7 +170,6 @@ static const CGFloat kInfiniteScrollThreshold = 0.5;
     }
 
     if (shouldLoad) {
-      [(TTTableFooterInfiniteScrollView*)_controller.tableView.tableFooterView setLoading:YES];
       [_model load:TTURLRequestCachePolicyDefault more:YES];
     }
   }

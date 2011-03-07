@@ -32,6 +32,8 @@
 @property(readonly) BOOL dragRefreshEnabled;
 @property(readonly) BOOL infiniteScrollEnabled;
 
+- (void)modelDidStartLoad:(id<TTModel>)model;
+
 - (id)initWithController:(TTTableViewController*)controller
          withDragRefresh:(BOOL)enableDragRefresh
       withInfiniteScroll:(BOOL)enableInfiniteScroll;
