@@ -83,6 +83,11 @@
 - (id)init;
 
 /**
+ * @return YES if this action will result in a popover being opened or navigated within.
+ */
+- (BOOL)isPopoverAction;
+
+/**
  * @default nil
  */
 - (TTURLAction*)applyParentURLPath:(NSString*)parentURLPath;

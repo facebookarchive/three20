@@ -532,9 +532,7 @@ __attribute__((weak_import));
                             mode: (TTNavigationMode)mode {
   BOOL isModal = (mode == TTNavigationModeModal);
 
-  TTDASSERT((isModal && nil != [TTBaseNavigator popoverController])
-            || nil != action.sourceButton || nil != action.sourceView
-            || nil != action.targetPopoverController);
+  TTDASSERT(action.isPopoverAction);
 
   // Note for the above assertion:
   // When using popover controllers you need to provide either a source button or a
@@ -555,10 +553,7 @@ __attribute__((weak_import));
   // You'll then implement the -createDelegate method in your table view controller and return
   // an autoreleased object of the delegate.
 
-  if (nil == action.sourceButton
-      && nil == action.sourceView
-      && nil == action.targetPopoverController
-      && (!isModal || nil == [TTBaseNavigator popoverController])) {
+  if (!action.isPopoverAction) {
     return;
   }
 
@@ -667,7 +662,8 @@ __attribute__((weak_import));
 
   } else {
     UIViewController* previousSuper = controller.superController;
-    if (nil != previousSuper) {
+    // We can't make controllers visible for popover actions in this way, so ignore this logic.
+    if (!action.isPopoverAction && nil != previousSuper) {
       if (previousSuper != parentController) {
         // The controller already exists, so we just need to make it visible
         for (UIViewController* superController = previousSuper; controller; ) {
@@ -1262,9 +1258,7 @@ __attribute__((weak_import));
                               mode: (TTNavigationMode)mode
                             action: (TTURLAction*)action {
 
-  if (TTIsPad() && (nil != action.sourceButton
-                    || nil != action.sourceView
-                    || nil != action.targetPopoverController)) {
+  if (TTIsPad() && action.isPopoverAction) {
     [self presentPopoverController: controller
                             action: action
                               mode: mode];
