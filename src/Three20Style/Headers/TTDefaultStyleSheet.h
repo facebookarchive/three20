@@ -24,6 +24,7 @@
 // Common styles
 @property (nonatomic, readonly) UIColor*  textColor;
 @property (nonatomic, readonly) UIColor*  highlightedTextColor;
+@property (nonatomic, readonly) UIColor*  backgroundTextColor;
 @property (nonatomic, readonly) UIFont*   font;
 @property (nonatomic, readonly) UIColor*  backgroundColor;
 @property (nonatomic, readonly) UIColor*  navigationBarTintColor;
