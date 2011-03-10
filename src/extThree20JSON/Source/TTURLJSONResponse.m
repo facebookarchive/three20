@@ -22,6 +22,8 @@
 #import "extThree20JSON/JSON.h"
 #elif defined(EXTJSON_YAJL)
 #import "extThree20JSON/NSObject+YAJL.h"
+#elif defined(EXTJSON_TouchJSON)
+#import "extThree20JSON/CJSONDeserializer.h"
 #endif
 
 // Core
@@ -78,6 +80,11 @@
                                 code:kTTExtJSONErrorCodeInvalidJSON
                             userInfo:[exception userInfo]];
     }
+#elif defined(EXTJSON_TouchJSON)
+	//NSString* json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	  _rootObject = [[CJSONDeserializer deserializer] deserialize:data error:&err];
+	  NSLog(@"Root: %@", _rootObject);
+	//TT_RELEASE_SAFELY(json);  
 #endif
   }
 
