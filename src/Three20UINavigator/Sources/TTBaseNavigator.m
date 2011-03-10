@@ -127,6 +127,12 @@ __attribute__((weak_import));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTBaseNavigator*)navigatorForView:(UIView*)view {
+  // If this is called with a UIBarButtonItem, we can't traverse a view hierarchy to find the
+  // navigator, return the global navigator as a fallback.
+  if (![view isKindOfClass:[UIView class]]) {
+    return [TTBaseNavigator globalNavigator];
+  }
+
   id<TTNavigatorRootContainer>  container = nil;
   UIViewController*             controller = nil;      // The iterator.
   UIViewController*             childController = nil; // The last iterated controller.
