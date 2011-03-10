@@ -237,7 +237,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
     [self createTextView];
     _textField.hidden = YES;
     _textView.hidden = NO;
-    _textView.text = [_textField.text stringByAppendingString:@"\n"];
+    _textView.text = _textField.text;
     _internal.ignoreBeginAndEnd = YES;
     [_textView becomeFirstResponder];
     [self performSelector:@selector(stopIgnoringBeginAndEnd) withObject:nil afterDelay:0];
