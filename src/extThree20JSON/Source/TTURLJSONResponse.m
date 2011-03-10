@@ -81,10 +81,7 @@
                             userInfo:[exception userInfo]];
     }
 #elif defined(EXTJSON_TouchJSON)
-	//NSString* json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	  _rootObject = [[CJSONDeserializer deserializer] deserialize:data error:&err];
-	  NSLog(@"Root: %@", _rootObject);
-	//TT_RELEASE_SAFELY(json);  
 #endif
   }
 
