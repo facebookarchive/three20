@@ -459,7 +459,7 @@ class Pbxproj(object):
 						project_data = project_data[:settings_start] + build_settings + project_data[settings_end:]
 			else:
 				# One
-				if search_paths != value:
+				if search_paths.strip('"') != value.strip('"'):
 					existing_path = search_paths
 					path_set = '(\n\t\t\t\t\t'+value+',\n\t\t\t\t\t'+existing_path+'\n\t\t\t\t)'
 					build_settings = build_settings[:match.start(1)] + path_set + build_settings[match.end(1):]
