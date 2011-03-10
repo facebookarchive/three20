@@ -107,40 +107,46 @@ def main():
 The Three20 Module Script.
 Easily add Three20 modules to your projects.
 
-Modules may take the form <module-name>(:<module-target>)
+MODULES:
 
-module-target defaults to module-name if it is not specified
-module-name may be a path to a .pbxproj file.
+    Modules may take the form <module-name>(:<module-target>)
+    <module-target> defaults to <module-name> if it is not specified
+    <module-name> may be a path to a .pbxproj file.
 
-Examples:
-  Most common use case:
-  > %prog -p path/to/myApp/myApp.xcodeproj Three20
+EXAMPLES:
 
-  Print all dependencies for the Three20UI module
-  > %prog -d Three20UI
-
-  Print all dependencies for the Three20 module's Three20-Xcode3.2.5 target.
-  > %prog -d Three20:Three20-Xcode3.2.5
-
-  Add the Three20 project settings specifically to the Debug and Release configurations.
-  By default, all Three20 settings are added to all project configurations.
-  This includes adding the header search path and linker flags.
-  > %prog -p path/to/myApp.xcodeproj -c Debug -c Release
-
-  Add the extThree20XML module and all of its dependencies to the myApp project.
-  > %prog -p path/to/myApp.xcodeproj extThree20XML
-
-  Add a specific target of a module to a project.
-  > %prog -p path/to/myApp.xcodeproj extThree20JSON:extThree20JSON+SBJSON'''
+    Most common use case:
+    > %prog -p path/to/myApp/myApp.xcodeproj Three20
+    
+    Print all dependencies for the Three20UI module
+    > %prog -d Three20UI
+    
+    Print all dependencies for the Three20 module's Three20-Xcode3.2.5 target.
+    > %prog -d Three20:Three20-Xcode3.2.5
+    
+    Add the Three20 project settings specifically to the Debug and Release configurations.
+    By default, all Three20 settings are added to all project configurations.
+    This includes adding the header search path and linker flags.
+    > %prog -p path/to/myApp.xcodeproj -c Debug -c Release
+    
+    Add the extThree20XML module and all of its dependencies to the myApp project.
+    > %prog -p path/to/myApp.xcodeproj extThree20XML
+    
+    Add a specific target of a module to a project.
+    > %prog -p path/to/myApp.xcodeproj extThree20JSON:extThree20JSON+SBJSON'''
 	parser = OptionParser(usage = usage)
+	
 	parser.add_option("-d", "--dependencies", dest="print_dependencies",
 	                  help="Print dependencies for the given modules",
 	                  action="store_true")
+	
 	parser.add_option("-v", "--verbose", dest="verbose",
 	                  help="Display verbose output",
 	                  action="store_true")
+
 	parser.add_option("-p", "--project", dest="projects",
 	                  help="Add the given modules to this project", action="append")
+	
 	parser.add_option("-c", "--config", dest="configs",
 	                  help="Explicit configurations to add Three20 settings to (example: Debug). By default, ttmodule will add configuration settings to every configuration for the given target", action="append")
 
