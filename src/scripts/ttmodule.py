@@ -125,8 +125,8 @@ EXAMPLES:
     Print all dependencies for the Three20UI module
     > %prog -d Three20UI
     
-    Print all dependencies for the Three20 module's Three20-Xcode3.2.5 target.
-    > %prog -d Three20:Three20-Xcode3.2.5
+    Print all dependencies for the extThree20JSON module's extThree20JSON+SBJSON target.
+    > %prog -d extThree20JSON:extThree20JSON+SBJSON
     
     Add the Three20 project settings specifically to the Debug and Release configurations.
     By default, all Three20 settings are added to all project configurations.
