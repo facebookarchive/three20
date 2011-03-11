@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		666E16DD12944999001C1D97 /* TTNavigatorRootContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16DC12944999001C1D97 /* TTNavigatorRootContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66FC299F1264D93900F56B19 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FC299E1264D93900F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		6E3C35ED118B75800079637E /* TTNavigatorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3611118B77F70079637E /* TTURLAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3610118B77F70079637E /* TTURLAction.m */; };
 		6E3C3614118B77FE0079637E /* TTURLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3613118B77FE0079637E /* TTURLAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -124,7 +123,6 @@
 
 /* Begin PBXFileReference section */
 		666E16DC12944999001C1D97 /* TTNavigatorRootContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorRootContainer.h; path = Headers/TTNavigatorRootContainer.h; sourceTree = "<group>"; };
-		66FC299E1264D93900F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		6E3C35EA118B75800079637E /* TTNavigatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorDelegate.h; path = Headers/TTNavigatorDelegate.h; sourceTree = "<group>"; };
 		6E3C3610118B77F70079637E /* TTURLAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLAction.m; path = Sources/TTURLAction.m; sourceTree = "<group>"; };
 		6E3C3613118B77FE0079637E /* TTURLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLAction.h; path = Headers/TTURLAction.h; sourceTree = "<group>"; };
@@ -225,19 +223,10 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		66FC299D1264D93900F56B19 /* Xcode 3.2.4 Workaround */ = {
-			isa = PBXGroup;
-			children = (
-				66FC299E1264D93900F56B19 /* Xcode324iOS41TestSuiteWorkaround.m */,
-			);
-			name = "Xcode 3.2.4 Workaround";
-			sourceTree = "<group>";
-		};
 		6E08B274118282F700DA1579 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				6EE7364611849AF200A35176 /* Resources */,
-				66FC299D1264D93900F56B19 /* Xcode 3.2.4 Workaround */,
 				6E7F94B3118E210300443B46 /* TTURLActionTests.m */,
 				6E7F945D118E1B0E00443B46 /* UIViewControllerAdditionTests.m */,
 			);
@@ -665,7 +654,6 @@
 			files = (
 				6E7F945E118E1B0E00443B46 /* UIViewControllerAdditionTests.m in Sources */,
 				6E7F94B4118E210300443B46 /* TTURLActionTests.m in Sources */,
-				66FC299F1264D93900F56B19 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +708,8 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -737,8 +726,8 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;

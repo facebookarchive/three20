@@ -17,7 +17,6 @@
 #include "Paths.xcconfig"
 
 OBJC_LIBRARY      = -ObjC
-OBJC_ALLLOAD      = -all_load
 
 // stdlib / libSystem
 
@@ -31,53 +30,6 @@ OBJC_LIB          = -lobjc
 // Common build settings
 
 ALWAYS_SEARCH_USER_PATHS = NO
-
-//
-// Three20 Modules
-//
-
-THREE20CORE_LIB         = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Core.a"
-THREE20NETWORK_LIB      = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Network.a"
-THREE20STYLE_LIB        = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Style.a"
-THREE20UICOMMON_LIB     = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UICommon.a"
-THREE20UINAVIGATOR_LIB  = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UINavigator.a"
-THREE20UI_LIB           = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UI.a"
-THREE20_LIB             = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20.a"
-
-THREE20CORE325_LIB         = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Core-Xcode3.2.5.a"
-THREE20NETWORK325_LIB      = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Network-Xcode3.2.5.a"
-THREE20STYLE325_LIB        = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Style-Xcode3.2.5.a"
-THREE20UICOMMON325_LIB     = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UICommon-Xcode3.2.5.a"
-THREE20UINAVIGATOR325_LIB  = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UINavigator-Xcode3.2.5.a"
-THREE20UI325_LIB           = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UI-Xcode3.2.5.a"
-THREE20325_LIB             = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20-Xcode3.2.5.a"
-
-THREE20CORE322_LIB         = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Core-Xcode3.2.2.a"
-THREE20NETWORK322_LIB      = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Network-Xcode3.2.2.a"
-THREE20STYLE322_LIB        = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20Style-Xcode3.2.2.a"
-THREE20UICOMMON322_LIB     = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UICommon-Xcode3.2.2.a"
-THREE20UINAVIGATOR322_LIB  = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UINavigator-Xcode3.2.2.a"
-THREE20UI322_LIB           = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20UI-Xcode3.2.2.a"
-THREE20322_LIB             = -force_load "$(CONFIGURATION_BUILD_DIR)/libThree20-Xcode3.2.2.a"
-
-//
-// Three20 Extensions
-//
-
-EXTTHREE20CSSSTYLE_LIB    = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20CSSStyle.a"
-EXTTHREE20XML_LIB         = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20XML.a"
-EXTTHREE20JSONSBJSON_LIB  = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20JSON+SBJSON.a"
-EXTTHREE20JSONYAJL_LIB    = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20JSON+YAJL.a"
-
-EXTTHREE20CSSSTYLE325_LIB    = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20CSSStyle-Xcode3.2.5.a"
-EXTTHREE20XML325_LIB         = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20XML-Xcode3.2.5.a"
-EXTTHREE20JSONSBJSON325_LIB  = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20JSON+SBJSON-Xcode3.2.5.a"
-EXTTHREE20JSONYAJL325_LIB    = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20JSON+YAJL-Xcode3.2.5.a"
-
-EXTTHREE20CSSSTYLE322_LIB    = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20CSSStyle-Xcode3.2.2.a"
-EXTTHREE20XML322_LIB         = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20XML-Xcode3.2.2.a"
-EXTTHREE20JSONSBJSON322_LIB  = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20JSON+SBJSON-Xcode3.2.2.a"
-EXTTHREE20JSONYAJL322_LIB    = -force_load "$(CONFIGURATION_BUILD_DIR)/libextThree20JSON+YAJL-Xcode3.2.2.a"
 
 //
 // Frameworks

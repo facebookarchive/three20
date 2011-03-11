@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		662D82C612639CE4005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 662D82C412639CDE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		6E6454901184D3BC00F08CB1 /* Three20Style+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6464041187F5CB00F08CB1 /* TTStyledButtonNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6464021187F5CB00F08CB1 /* TTStyledButtonNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6464051187F5CB00F08CB1 /* TTStyledLinkNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6464031187F5CB00F08CB1 /* TTStyledLinkNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -206,7 +205,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		662D82C412639CDE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66313A7D1267B4E800C09C9F /* Three20Style_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Style_Prefix.pch; path = Headers/Three20Style_Prefix.pch; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Style+Additions.h"; path = "Headers/Three20Style+Additions.h"; sourceTree = "<group>"; };
@@ -389,19 +387,10 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		662D82C312639CDE005851C2 /* Xcode 3.2.4 Workaround */ = {
-			isa = PBXGroup;
-			children = (
-				662D82C412639CDE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */,
-			);
-			name = "Xcode 3.2.4 Workaround";
-			sourceTree = "<group>";
-		};
 		6E08B274118282F700DA1579 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				6EE7364611849AF200A35176 /* Resources */,
-				662D82C312639CDE005851C2 /* Xcode 3.2.4 Workaround */,
 				6EE739981184B9CE00A35176 /* StyleAdditionTests.m */,
 				6EE739991184B9CE00A35176 /* StyleGlobalTests.m */,
 			);
@@ -1059,7 +1048,6 @@
 			files = (
 				6EE7399A1184B9CE00A35176 /* StyleAdditionTests.m in Sources */,
 				6EE7399B1184B9CE00A35176 /* StyleGlobalTests.m in Sources */,
-				662D82C612639CE4005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1114,7 +1102,8 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -1136,8 +1125,8 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
