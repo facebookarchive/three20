@@ -68,9 +68,9 @@ def relpath(p1, p2):
 class Pbxproj(object):
 
 	@staticmethod
-	def get_pbxproj_by_name(name):
+	def get_pbxproj_by_name(name, xcode_version = None):
 		if name not in pbxproj_cache:
-			pbxproj_cache[name] = Pbxproj(name)
+			pbxproj_cache[name] = Pbxproj(name, xcode_version = xcode_version)
 
 		return pbxproj_cache[name]
 
@@ -78,7 +78,7 @@ class Pbxproj(object):
 	# Three20
 	# Three20:Three20-Xcode3.2.5
 	# /path/to/project.xcodeproj/project.pbxproj
-	def __init__(self, name):
+	def __init__(self, name, xcode_version = None):
 		self._project_data = None
 
 		parts = name.split(':')
@@ -105,6 +105,8 @@ class Pbxproj(object):
 
 		self._guid = None
 		self._deps = None
+		self._xcode_version = xcode_version
+		self._projectVersion = None
 		self.guid()
 
 	def __str__(self):
@@ -132,6 +134,12 @@ class Pbxproj(object):
 			self.dependencies()
 
 		return self._guid
+
+	def version(self):
+		if not self._projectVersion:
+			self.dependencies()
+
+		return self._projectVersion
 
 	# Load the project data from disk.
 	def get_project_data(self):
@@ -164,6 +172,16 @@ class Pbxproj(object):
 			logging.error("Unable to open the project file at this path (is it readable?): "+self.path())
 			return None
 
+		# Get project file format version
+
+		result = re.search('\tobjectVersion = ([0-9]+);', project_data)
+
+		if not result:
+			logging.error("Can't recover: unable to find the project version for your target at: "+self.path())
+			return None
+	
+		(self._projectVersion,) = result.groups()
+		self._projectVersion = int(self._projectVersion)
 
 		# Get configuration list guid
 
@@ -193,7 +211,7 @@ class Pbxproj(object):
 		                   project_data)
 	
 		if not result:
-			logging.error("This is fatal: Unable to find the build phases from your target at: "+self.path())
+			logging.error("Can't recover: Unable to find the build phases from your target at: "+self.path())
 			return None
 	
 		(self._guid, buildPhases, ) = result.groups()
@@ -363,6 +381,10 @@ class Pbxproj(object):
 	#
 	# <guid> /* <name> */,
 	def add_file_to_resources(self, name, guid):
+		match = re.search('\/\* '+re.escape('Resources')+' \*\/ = \{\n[ \t]+isa = PBXGroup;\n[ \t]+children = \(\n((?:.|\n)+?)\);', self.get_project_data())
+		if not match:
+			return self.add_file_to_group(name, guid, 'Supporting Files')
+
 		return self.add_file_to_group(name, guid, 'Resources')
 
 	def add_file_to_phase(self, name, guid, phase_guid, phase):
@@ -415,7 +437,25 @@ class Pbxproj(object):
 		build_path = os.path.join(os.path.join(os.path.join(os.path.dirname(Paths.src_dir), 'Build'), 'Products'), 'three20')
 		rel_path = relpath(project_path, build_path)
 
-		return self.add_build_setting(configuration, 'HEADER_SEARCH_PATHS', '"'+rel_path+'"')
+		did_add_build_setting = self.add_build_setting(configuration, 'HEADER_SEARCH_PATHS', '"'+rel_path+'"')
+		if not did_add_build_setting:
+			return did_add_build_setting
+		
+		# Version 46 is Xcode 4's file format.
+		try:
+			primary_version = int(self._xcode_version.split('.')[0])
+		except ValueError, e:
+			primary_version = 0
+		if self._projectVersion >= 46 or primary_version >= 4:
+			did_add_build_setting = self.add_build_setting(configuration, 'HEADER_SEARCH_PATHS', '"$(BUILT_PRODUCTS_DIR)/../../three20"')
+			if not did_add_build_setting:
+				return did_add_build_setting
+
+			did_add_build_setting = self.add_build_setting(configuration, 'HEADER_SEARCH_PATHS', '"$(BUILT_PRODUCTS_DIR)/../three20"')
+			if not did_add_build_setting:
+				return did_add_build_setting
+
+		return did_add_build_setting
 	
 	def add_build_setting(self, configuration, setting_name, value):
 		project_data = self.get_project_data()
@@ -448,14 +488,14 @@ class Pbxproj(object):
 					# multiple entries.
 					escaped_value = re.escape(value).replace(' ', '",\n[ \t]+"')
 					match = re.search(escaped_value, search_paths)
-					if not match:
+					if not match and not re.search(re.escape(value.strip('"')), search_paths):
 						match = re.search(re.escape(setting_name)+' = \(\n', build_settings)
 
 						build_settings = build_settings[:match.end()] + '\t\t\t\t\t'+value+',\n' + build_settings[match.end():]
 						project_data = project_data[:settings_start] + build_settings + project_data[settings_end:]
 			else:
 				# One
-				if search_paths != value:
+				if search_paths.strip('"') != value.strip('"'):
 					existing_path = search_paths
 					path_set = '(\n\t\t\t\t\t'+value+',\n\t\t\t\t\t'+existing_path+'\n\t\t\t\t)'
 					build_settings = build_settings[:match.start(1)] + path_set + build_settings[match.end(1):]
@@ -474,7 +514,7 @@ class Pbxproj(object):
 	def add_framework(self, framework):
 		tthash_base = self.get_hash_base(framework)
 		
-		fileref_hash = self.add_filereference(framework, 'frameworks', tthash_base+'0', 'System/Library/Frameworks/'+framework, 'SDK_ROOT')
+		fileref_hash = self.add_filereference(framework, 'frameworks', tthash_base+'0', 'System/Library/Frameworks/'+framework, 'SDKROOT')
 		libfile_hash = self.add_buildfile(framework, fileref_hash, tthash_base+'1')
 		if not self.add_file_to_frameworks(framework, fileref_hash):
 			return False
