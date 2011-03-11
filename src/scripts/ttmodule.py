@@ -23,6 +23,7 @@ limitations under the License.
 
 import logging
 import re
+import os
 import sys
 from optparse import OptionParser
 
@@ -118,6 +119,9 @@ EXAMPLES:
     Most common use case:
     > %prog -p path/to/myApp/myApp.xcodeproj Three20
     
+    For adding Xcode 4 support to an Xcode 3.2.# project:
+    > %prog -p path/to/myApp/myApp.xcodeproj Three20 --xcode-version=4
+    
     Print all dependencies for the Three20UI module
     > %prog -d Three20UI
     
@@ -146,6 +150,9 @@ EXAMPLES:
 
 	parser.add_option("-p", "--project", dest="projects",
 	                  help="Add the given modules to this project", action="append")
+
+	parser.add_option("--xcode-version", dest="xcode_version",
+	                  help="Set the xcode version you plan to open this project in. By default uses xcodebuild to determine your latest Xcode version.")
 	
 	parser.add_option("-c", "--config", dest="configs",
 	                  help="Explicit configurations to add Three20 settings to (example: Debug). By default, ttmodule will add configuration settings to every configuration for the given target", action="append")
@@ -167,8 +174,16 @@ EXAMPLES:
 
 	if options.projects is not None:
 		did_anything = True
+		
+		if not options.xcode_version:
+			f=os.popen("xcodebuild -version")
+			xcodebuild_version = f.readlines()[0]
+			match = re.search('Xcode ([a-zA-Z0-9.]+)', xcodebuild_version)
+			if match:
+				(options.xcode_version, ) = match.groups()
+		
 		for name in options.projects:
-			project = Pbxproj.get_pbxproj_by_name(name)
+			project = Pbxproj.get_pbxproj_by_name(name, xcode_version = options.xcode_version)
 			add_modules_to_project(args, project, options.configs)
 
 	if not did_anything:

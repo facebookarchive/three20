@@ -68,9 +68,9 @@ def relpath(p1, p2):
 class Pbxproj(object):
 
 	@staticmethod
-	def get_pbxproj_by_name(name):
+	def get_pbxproj_by_name(name, xcode_version = None):
 		if name not in pbxproj_cache:
-			pbxproj_cache[name] = Pbxproj(name)
+			pbxproj_cache[name] = Pbxproj(name, xcode_version = xcode_version)
 
 		return pbxproj_cache[name]
 
@@ -78,7 +78,7 @@ class Pbxproj(object):
 	# Three20
 	# Three20:Three20-Xcode3.2.5
 	# /path/to/project.xcodeproj/project.pbxproj
-	def __init__(self, name):
+	def __init__(self, name, xcode_version = None):
 		self._project_data = None
 
 		parts = name.split(':')
@@ -105,6 +105,7 @@ class Pbxproj(object):
 
 		self._guid = None
 		self._deps = None
+		self._xcode_version = xcode_version
 		self._projectVersion = None
 		self.guid()
 
@@ -441,7 +442,11 @@ class Pbxproj(object):
 			return did_add_build_setting
 		
 		# Version 46 is Xcode 4's file format.
-		if self._projectVersion >= 46:
+		try:
+			primary_version = int(self._xcode_version.split('.')[0])
+		except ValueError, e:
+			primary_version = 0
+		if self._projectVersion >= 46 or primary_version >= 4:
 			did_add_build_setting = self.add_build_setting(configuration, 'HEADER_SEARCH_PATHS', '"$(BUILT_PRODUCTS_DIR)/../../three20"')
 			if not did_add_build_setting:
 				return did_add_build_setting
