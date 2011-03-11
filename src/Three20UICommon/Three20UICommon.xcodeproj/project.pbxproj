@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		662D83471264CD94005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 662D83461264CD94005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		666E16BF12944956001C1D97 /* UISplitViewController+TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16BB12944956001C1D97 /* UISplitViewController+TTNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		666E16C012944956001C1D97 /* UIView+TTUICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16BC12944956001C1D97 /* UIView+TTUICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		666E16C512944961001C1D97 /* UISplitViewController+TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E16C112944961001C1D97 /* UISplitViewController+TTNavigator.m */; };
@@ -68,7 +67,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		662D83461264CD94005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		666E16BB12944956001C1D97 /* UISplitViewController+TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISplitViewController+TTNavigator.h"; path = "Headers/UISplitViewController+TTNavigator.h"; sourceTree = "<group>"; };
 		666E16BC12944956001C1D97 /* UIView+TTUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+TTUICommon.h"; path = "Headers/UIView+TTUICommon.h"; sourceTree = "<group>"; };
 		666E16C112944961001C1D97 /* UISplitViewController+TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISplitViewController+TTNavigator.m"; path = "Sources/UISplitViewController+TTNavigator.m"; sourceTree = "<group>"; };
@@ -142,19 +140,10 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		662D83451264CD94005851C2 /* Xcode 3.2.4 Workaround */ = {
-			isa = PBXGroup;
-			children = (
-				662D83461264CD94005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */,
-			);
-			name = "Xcode 3.2.4 Workaround";
-			sourceTree = "<group>";
-		};
 		6E08B274118282F700DA1579 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				6EE7364611849AF200A35176 /* Resources */,
-				662D83451264CD94005851C2 /* Xcode 3.2.4 Workaround */,
 				6E6459371187645D00F08CB1 /* UICommonTests.m */,
 				6E7F9475118E1DC600443B46 /* UIViewControllerAdditionTests.m */,
 			);
@@ -428,7 +417,6 @@
 			files = (
 				6E6459381187645D00F08CB1 /* UICommonTests.m in Sources */,
 				6E7F9476118E1DC600443B46 /* UIViewControllerAdditionTests.m in Sources */,
-				662D83471264CD94005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,7 +461,8 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -490,8 +479,8 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
