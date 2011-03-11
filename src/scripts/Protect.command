@@ -22,7 +22,7 @@ IFS=$'\n'
 
 # In Xcode 4 Archive builds, there is one extra folder placed between the configuration build
 # dir and the public headers path titled "ArchiveIntermediates".
-if [[ $CONFIGURATION_BUILD_DIR == *ArchiveIntermediates* ]]; then
+if [[ "$DEPLOYMENT_LOCATION" == "YES" && "$XCODE_VERSION_MAJOR" -ge "0400" ]]; then
   cd ${CONFIGURATION_BUILD_DIR}/..${PUBLIC_HEADERS_FOLDER_PATH}
 else
   cd ${CONFIGURATION_BUILD_DIR}${PUBLIC_HEADERS_FOLDER_PATH}
