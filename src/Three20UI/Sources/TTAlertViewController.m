@@ -190,7 +190,8 @@
 - (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
   NSString* URL = [self buttonURLAtIndex:buttonIndex];
   BOOL canOpenURL = YES;
-  if ([_delegate respondsToSelector:@selector(alertViewController:didDismissWithButtonIndex:URL:)]) {
+  if ([_delegate respondsToSelector:
+       @selector(alertViewController:didDismissWithButtonIndex:URL:)]) {
     canOpenURL = [_delegate alertViewController:self didDismissWithButtonIndex:buttonIndex URL:URL];
   }
   if (URL && canOpenURL) {
@@ -218,6 +219,7 @@
 - (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL {
   if (URL) {
     [_URLs addObject:URL];
+
   } else {
     [_URLs addObject:[NSNull null]];
   }

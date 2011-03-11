@@ -83,7 +83,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface UITouch (TTCategory)
 
+/**
+ *
+ */
 - (id)initInView:(UIView *)view location:(CGPoint)location;
+
+/**
+ *
+ */
 - (void)changeToPhase:(UITouchPhase)phase;
 
 @end
@@ -395,8 +402,10 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 - (UIView*)ancestorOrSelfWithClass:(Class)cls {
   if ([self isKindOfClass:cls]) {
     return self;
+
   } else if (self.superview) {
     return [self.superview ancestorOrSelfWithClass:cls];
+
   } else {
     return nil;
   }
@@ -478,7 +487,8 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 - (void)presentAsKeyboardAnimationDidStop {
   [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardDidShowNotification
                                                       object:self
-                                                    userInfo:[self userInfoForKeyboardNotification]];
+                                                    userInfo:[self
+                                                              userInfoForKeyboardNotification]];
 }
 
 
@@ -486,7 +496,8 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 - (void)dismissAsKeyboardAnimationDidStop {
   [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardDidHideNotification
                                                       object:self
-                                                    userInfo:[self userInfoForKeyboardNotification]];
+                                                    userInfo:[self
+                                                              userInfoForKeyboardNotification]];
   [self removeFromSuperview];
 }
 
@@ -495,7 +506,8 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 - (void)presentAsKeyboardInView:(UIView*)containingView {
   [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardWillShowNotification
                                                       object:self
-                                                    userInfo:[self userInfoForKeyboardNotification]];
+                                                    userInfo:[self
+                                                              userInfoForKeyboardNotification]];
 
   self.top = containingView.height;
   [containingView addSubview:self];
@@ -513,7 +525,8 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 - (void)dismissAsKeyboard:(BOOL)animated {
   [[NSNotificationCenter defaultCenter] postNotificationName:UIKeyboardWillHideNotification
                                                       object:self
-                                                    userInfo:[self userInfoForKeyboardNotification]];
+                                                    userInfo:[self
+                                                              userInfoForKeyboardNotification]];
 
   if (animated) {
     [UIView beginAnimations:nil context:nil];
@@ -526,6 +539,7 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 
   if (animated) {
     [UIView commitAnimations];
+
   } else {
     [self dismissAsKeyboardAnimationDidStop];
   }

@@ -112,6 +112,7 @@
 
   if (lightSource >= 0 && lightSource <= 90) {
     CGContextAddLineToPoint(context, floor(fw-radius), 0);
+
   } else {
     CGContextAddArcToPoint(context, fw, 0, fw, floor(radius), radius);
   }
@@ -128,6 +129,7 @@
   if (lightSource >= 0 && lightSource <= 90) {
     CGContextMoveToPoint(context, floor(fw-radius), 0);
     CGContextAddArcToPoint(context, fw, 0, fw, floor(radius), radius);
+
   } else {
     CGContextMoveToPoint(context, fw, radius);
     CGContextAddLineToPoint(context, fw, fh-radius);

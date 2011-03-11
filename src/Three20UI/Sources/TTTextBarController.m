@@ -246,6 +246,7 @@ static CGFloat kPadding = 5;
   if (_defaultText) {
     _textEditor.text = _defaultText;
     TT_RELEASE_SAFELY(_defaultText);
+
   } else {
     _defaultText = [_textEditor.text retain];
   }
@@ -260,6 +261,7 @@ static CGFloat kPadding = 5;
 - (void)dismissPopupViewControllerAnimated:(BOOL)animated {
   if (animated) {
     [_textEditor resignFirstResponder];
+
   } else {
     UIViewController* superController = self.superController;
     [self.view removeFromSuperview];
@@ -384,7 +386,9 @@ static CGFloat kPadding = 5;
   if (!_postButton) {
     _postButton = [[TTButton buttonWithStyle:@"textBarPostButton:"
                              title:NSLocalizedString(@"Post", @"")] retain];
-    [_postButton addTarget:self action:@selector(post) forControlEvents:UIControlEventTouchUpInside];
+    [_postButton addTarget: self
+                    action: @selector(post)
+          forControlEvents: UIControlEventTouchUpInside];
     [_postButton setEnabled:NO];
   }
   return _postButton;
@@ -403,6 +407,7 @@ static CGFloat kPadding = 5;
 
   if (shouldDismiss) {
     [self dismissWithResult:nil animated:YES];
+
   } else {
     [self showActivity:[self titleForActivity]];
   }
@@ -420,6 +425,7 @@ static CGFloat kPadding = 5;
       delegate:self cancelButtonTitle:TTLocalizedString(@"Yes", @"")
       otherButtonTitles:TTLocalizedString(@"No", @""), nil] autorelease];
     [cancelAlertView show];
+
   } else {
     [self dismissWithCancel];
   }
@@ -458,6 +464,7 @@ static CGFloat kPadding = 5;
 //
 //    if (!CGRectIsEmpty(originRect)) {
 //      _screenView.frame = CGRectOffset(originRect, 0, -TTStatusHeight());
+//
 //    } else {
 //      _screenView.transform = CGAffineTransformMakeScale(0.00001, 0.00001);
 //    }
@@ -466,6 +473,7 @@ static CGFloat kPadding = 5;
 //    _navigationBar.alpha = 0;
 //
 //    [UIView commitAnimations];
+//
 //  } else {
 //    [self dismissAnimationDidStop];
 //  }

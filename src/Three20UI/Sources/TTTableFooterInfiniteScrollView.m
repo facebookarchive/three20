@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,10 +30,16 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTTableFooterInfiniteScrollView
 
 @synthesize indicator = _indicator;
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     self.indicator = [[[UIActivityIndicatorView alloc]
@@ -47,6 +53,8 @@
   return self;
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawRect:(CGRect)rect{
   CGContextRef contextRef = UIGraphicsGetCurrentContext();
   CGContextSetRGBFillColor(contextRef, 1, 1, 1, 1);
@@ -60,16 +68,21 @@
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   [super layoutSubviews];
   self.indicator.left = roundf((self.width / 2) - (self.indicator.width / 2));
   self.indicator.top = roundf((self.height / 2) - (self.indicator.height / 2));
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setLoading:(BOOL)loading {
   _loading = loading;
   if (_loading) {
     [self.indicator startAnimating];
+
   } else {
     [self.indicator stopAnimating];
   }

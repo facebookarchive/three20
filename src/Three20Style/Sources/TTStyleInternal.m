@@ -44,6 +44,7 @@ TT_FIX_CATEGORY_BUG(TTStyleInternal)
       components[i*4+1] = rgba[0];
       components[i*4+2] = rgba[0];
       components[i*4+3] = rgba[1];
+
     } else if (n == 4) {
       components[i*4] = rgba[0];
       components[i*4+1] = rgba[1];

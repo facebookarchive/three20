@@ -48,6 +48,7 @@ TT_FIX_CATEGORY_BUG(UITabBarControllerAdditions)
 - (UIViewController*)rootControllerForController:(UIViewController*)controller {
   if ([controller canContainControllers]) {
     return controller;
+
   } else {
     TTNavigationController* navController = [[[TTNavigationController alloc] init] autorelease];
     [navController pushViewController:controller animated:NO];

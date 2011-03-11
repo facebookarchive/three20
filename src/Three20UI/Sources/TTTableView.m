@@ -92,6 +92,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 //    CGPoint point = [touch locationInView:_menuView];
 //    if (point.y < 0 || point.y > _menuView.height) {
 //      [self hideMenu:YES];
+
 //    } else {
 //      UIView* hit = [_menuView hitTest:point withEvent:event];
 //      if (![hit isKindOfClass:[UIControl class]]) {

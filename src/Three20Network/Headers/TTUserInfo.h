@@ -31,7 +31,7 @@
   id        _weakRef;
 }
 
-@property (nonatomic, retain) NSString* topic;
+@property (nonatomic, copy)   NSString* topic;
 @property (nonatomic, retain) id        strongRef;
 @property (nonatomic, assign) id        weakRef;
 

@@ -55,7 +55,7 @@
 - (void)reset;
 
 /**
- * Valid while loading. Returns download progress as between 0 and 1. 
+ * Valid while loading. Returns download progress as between 0 and 1.
  */
 
 - (float)downloadProgress;

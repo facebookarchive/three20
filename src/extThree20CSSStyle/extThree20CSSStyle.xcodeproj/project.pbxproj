@@ -380,6 +380,7 @@
 				BEF31F360F352DF5000DE5D2 /* Headers */,
 				6E3C34AD118807DC0079637E /* Protect Copied Headers */,
 				BEF31F370F352DF5000DE5D2 /* Sources */,
+				668E667E131AE00F00ACE4AB /* Lint */,
 				BEF31F380F352DF5000DE5D2 /* Frameworks */,
 			);
 			buildRules = (
@@ -514,6 +515,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		668E667E131AE00F00ACE4AB /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env python ../scripts/lint";
+			shellScript = "";
+			showEnvVarsInLog = 0;
+		};
 		6E083B2B11B6113900B99C32 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -659,6 +675,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					EXTJSON_SBJSON,
 					DEBUG,
@@ -677,8 +694,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../common/Xcode324iOS41Fix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -750,8 +765,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../common/Xcode324iOS41Fix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -765,8 +778,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../common/Xcode324iOS41Fix.pch;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;

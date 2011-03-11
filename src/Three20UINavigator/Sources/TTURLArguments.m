@@ -30,14 +30,19 @@ TTURLArgumentType TTConvertArgumentType(char argType) {
       || argType == 'S'
       || argType == 'L') {
     return TTURLArgumentTypeInteger;
+
   } else if (argType == 'q' || argType == 'Q') {
     return TTURLArgumentTypeLongLong;
+
   } else if (argType == 'f') {
     return TTURLArgumentTypeFloat;
+
   } else if (argType == 'd') {
     return TTURLArgumentTypeDouble;
+
   } else if (argType == 'B') {
     return TTURLArgumentTypeBool;
+
   } else {
     return TTURLArgumentTypePointer;
   }
@@ -50,6 +55,7 @@ TTURLArgumentType TTURLArgumentTypeForProperty(Class cls, NSString* propertyName
   if (prop) {
     const char* type = property_getAttributes(prop);
     return TTConvertArgumentType(type[1]);
+
   } else {
     return TTURLArgumentTypeNone;
   }

@@ -34,6 +34,6 @@
 @property (nonatomic, copy)     NSString* version;
 @property (nonatomic, copy)     NSString* copyright;
 @property (nonatomic, copy)     NSString* license;
-@property (nonatomic, retain)   NSArray*  authors; // NSArray of TTExtensionAuthor* objects.
+@property (nonatomic, copy)     NSArray*  authors; // NSArray of TTExtensionAuthor* objects.
 
 @end

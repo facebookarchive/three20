@@ -54,7 +54,7 @@
 
   NSInteger             _totalBytesLoaded;
   NSInteger             _totalBytesExpected;
-    
+
   NSInteger             _totalBytesDownloaded;
   NSInteger             _totalContentLength;
 
@@ -144,7 +144,7 @@
  *
  * By setting the cacheKey, you may override the default cache key generator with your own.
  */
-@property (nonatomic, retain) NSString* cacheKey;
+@property (nonatomic, copy) NSString* cacheKey;
 
 /**
  * A dummy object used to uniquely identify this request object once it's been sent into the fray.

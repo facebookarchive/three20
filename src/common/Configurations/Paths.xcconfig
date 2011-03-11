@@ -23,5 +23,19 @@ SYMROOT = $(OBJROOT)/Products
 // Search Paths
 
 LIBRARY_SEARCH_PATHS    = $(STDLIB_LIBRARY)
-HEADER_SEARCH_PATHS     = $(STDLIB_HEADERS) "$(CONFIGURATION_BUILD_DIR)/../three20"
 
+// Header search paths: why we have three
+//
+// CONFIGURATION_BUILD_DIR is for when the headers are copied to Three20's Build folder.
+// Applies to:
+//  - Xcode 3.2.#
+//  - Xcode 4 with the Build Location preference set to "Place build products in locations
+//    specified by targets"
+//
+// BUILT_PRODUCTS_DIR is for Xcode 4 support only. We need two copies of a BUILT_PRODUCTS_DIR path
+//                    because on Archive builds, there is one extra folder placed between the
+//                    product and the public header path.
+// Applies to:
+//  - Xcode 4 only
+
+HEADER_SEARCH_PATHS     = $(STDLIB_HEADERS) "$(BUILT_PRODUCTS_DIR)/../three20" "$(BUILT_PRODUCTS_DIR)/../../three20" "$(CONFIGURATION_BUILD_DIR)/../../three20"

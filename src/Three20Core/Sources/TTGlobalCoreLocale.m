@@ -27,6 +27,7 @@ NSLocale* TTCurrentLocale() {
   if (languages.count > 0) {
     NSString* currentLanguage = [languages objectAtIndex:0];
     return [[[NSLocale alloc] initWithLocaleIdentifier:currentLanguage] autorelease];
+
   } else {
     return [NSLocale currentLocale];
   }
@@ -36,7 +37,7 @@ NSLocale* TTCurrentLocale() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTLocalizedString(NSString* key, NSString* comment) {
   static NSBundle* bundle = nil;
-  if (!bundle) {
+  if (nil == bundle) {
     NSString* path = [[[NSBundle mainBundle] resourcePath]
           stringByAppendingPathComponent:@"Three20.bundle"];
     bundle = [[NSBundle bundleWithPath:path] retain];
@@ -54,8 +55,10 @@ NSString* TTDescriptionForError(NSError* error) {
     // Note: If new error codes are added here, be sure to document them in the header.
     if (error.code == NSURLErrorTimedOut) {
       return TTLocalizedString(@"Connection Timed Out", @"");
+
     } else if (error.code == NSURLErrorNotConnectedToInternet) {
       return TTLocalizedString(@"No Internet Connection", @"");
+
     } else {
       return TTLocalizedString(@"Connection Error", @"");
     }

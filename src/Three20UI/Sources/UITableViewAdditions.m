@@ -54,6 +54,7 @@ TT_FIX_CATEGORY_BUG(UITableViewAdditions)
 - (CGFloat)tableCellMargin {
   if (self.style == UITableViewStyleGrouped) {
     return 10;
+
   } else {
     return 0;
   }
@@ -108,7 +109,8 @@ TT_FIX_CATEGORY_BUG(UITableViewAdditions)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollFirstResponderIntoView {
   UIView* responder = [self.window findFirstResponder];
-  UITableViewCell* cell = (UITableViewCell*)[responder ancestorOrSelfWithClass:[UITableViewCell class]];
+  UITableViewCell* cell = (UITableViewCell*)[responder
+                                             ancestorOrSelfWithClass:[UITableViewCell class]];
   if (cell) {
     NSIndexPath* indexPath = [self indexPathForCell:cell];
     if (indexPath) {

@@ -45,6 +45,8 @@ TT_FIX_CATEGORY_BUG(NSDataAdditions)
   ];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)sha1Hash {
   unsigned char result[CC_SHA1_DIGEST_LENGTH];
   CC_SHA1([self bytes], [self length], result);

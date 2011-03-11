@@ -113,6 +113,7 @@ TT_FIX_CATEGORY_BUG(UIViewController_TTNavigator)
                                          repeats: YES] retain];
     }
 #if TTDFLAG_CONTROLLERGARBAGECOLLECTION
+
   } else {
     TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
                     @"Not adding a navigator controller.");

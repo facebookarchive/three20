@@ -2,8 +2,6 @@
 // Prefix header for all source files of the 'extThree20JSON+YAJL' target in the 'extThree20JSON' project
 //
 
-#import "../../common/Xcode324iOS41Fix.pch"
-
 #ifdef __OBJC__
   #import <Foundation/Foundation.h>
 #endif

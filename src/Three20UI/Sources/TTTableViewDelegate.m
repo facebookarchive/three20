@@ -134,6 +134,7 @@
 
     if ([object isKindOfClass:[TTTableButton class]]) {
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     } else if ([object isKindOfClass:[TTTableMoreButton class]]) {
       TTTableMoreButton* moreLink = (TTTableMoreButton*)object;
       moreLink.isLoading = YES;
@@ -144,6 +145,7 @@
 
       if (moreLink.model) {
         [moreLink.model load:TTURLRequestCachePolicyDefault more:YES];
+
       } else {
         [_controller.model load:TTURLRequestCachePolicyDefault more:YES];
       }

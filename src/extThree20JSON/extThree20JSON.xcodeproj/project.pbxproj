@@ -13,7 +13,6 @@
 		6609982412939800007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6609982012939800007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6609987112939B06007B1E07 /* GTMBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 6609986D12939B06007B1E07 /* GTMBase64.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6609987212939B06007B1E07 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6609986E12939B06007B1E07 /* GTMBase64.m */; };
-		663DB07912661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663DB07812661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		664B29E912848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		664B29EC12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		664B29F012848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
@@ -154,7 +153,6 @@
 		6609986D12939B06007B1E07 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		6609986E12939B06007B1E07 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		663DB06D12661EE900CF8CEA /* Library+YAJL.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Library+YAJL.xcconfig"; path = "Configurations/Library+YAJL.xcconfig"; sourceTree = "<group>"; };
-		663DB07812661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		664B29E812848B1A0008D569 /* TTErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorCodes.h; path = Headers/TTErrorCodes.h; sourceTree = "<group>"; };
 		664B29EF12848B270008D569 /* TTErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorCodes.m; path = Source/TTErrorCodes.m; sourceTree = "<group>"; };
 		66E71A0312938B22007134B0 /* Changes.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changes.markdown; sourceTree = "<group>"; };
@@ -274,14 +272,6 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
-			sourceTree = "<group>";
-		};
-		663DB07712661F8200CF8CEA /* Xcode 3.2.4 Workaround */ = {
-			isa = PBXGroup;
-			children = (
-				663DB07812661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */,
-			);
-			name = "Xcode 3.2.4 Workaround";
 			sourceTree = "<group>";
 		};
 		66E71B5812938CE3007134B0 /* src */ = {
@@ -433,7 +423,6 @@
 			isa = PBXGroup;
 			children = (
 				6ED117E51183BE2A0096AEBF /* Resources */,
-				663DB07712661F8200CF8CEA /* Xcode 3.2.4 Workaround */,
 				6E645A6511876D2900F08CB1 /* extJSONTests+SBJSON.m */,
 			);
 			name = Tests;
@@ -729,7 +718,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E645A9A11876E0400F08CB1 /* extJSONTests+SBJSON.m in Sources */,
-				663DB07912661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,7 +785,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					EXTJSON_YAJL,
 					DEBUG,
@@ -842,7 +830,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					EXTJSON_SBJSON,
 					DEBUG,
@@ -862,8 +850,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;

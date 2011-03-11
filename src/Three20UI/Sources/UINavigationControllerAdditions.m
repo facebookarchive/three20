@@ -57,6 +57,7 @@ TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
   UIViewController* popup = [self popupViewController];
   if (popup) {
     return [popup rotatingHeaderView];
+
   } else {
     return [super rotatingHeaderView];
   }
@@ -88,9 +89,11 @@ TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
     if ([self isKindOfClass:[TTNavigationController class]]) {
       [(TTNavigationController*)self pushViewController: controller
                                  animatedWithTransition: transition];
+
     } else {
       [self pushViewController:controller animated:YES];
     }
+
   } else {
     [self pushViewController:controller animated:animated];
   }
@@ -111,6 +114,7 @@ TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
   NSInteger controllerIndex = [self.viewControllers indexOfObject:controller];
   if (controllerIndex != NSNotFound) {
     return [NSNumber numberWithInt:controllerIndex].stringValue;
+
   } else {
     return nil;
   }
@@ -122,6 +126,7 @@ TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
   NSInteger controllerIndex = key.intValue;
   if (controllerIndex < self.viewControllers.count) {
     return [self.viewControllers objectAtIndex:controllerIndex];
+
   } else {
     return nil;
   }

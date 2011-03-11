@@ -396,6 +396,7 @@
     id data = [field persistField:view];
     if (data) {
       [fields addObject:data];
+
     } else {
       [fields addObject:@""];
     }
@@ -630,6 +631,7 @@
   NSString* text = nil;
   if (fieldIndex == _fieldViews.count) {
     text = _textEditor.text;
+
   } else {
     TTPickerTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
     if ([textField isKindOfClass:[TTPickerTextField class]]) {
@@ -649,6 +651,7 @@
 
   if (fieldIndex == _fieldViews.count) {
     _textEditor.text = text;
+
   } else {
     TTPickerTextField* textField = [_fieldViews objectAtIndex:fieldIndex];
     if ([textField isKindOfClass:[TTPickerTextField class]]) {
@@ -665,6 +668,7 @@
 
   if (fieldIndex == _fieldViews.count) {
     return _textEditor.text.length > 0;
+
   } else {
     TTMessageField* field = [_fields objectAtIndex:fieldIndex];
     if ([field isKindOfClass:[TTMessageRecipientField class]]) {
@@ -672,6 +676,7 @@
       return (TTIsStringWithAnyText(pickerTextField.text)
               && !pickerTextField.text.isWhitespaceAndNewlines)
               || pickerTextField.cellViews.count > 0;
+
     } else {
       UITextField* textField = [_fieldViews objectAtIndex:fieldIndex];
       return (TTIsStringWithAnyText(textField.text)
@@ -688,6 +693,7 @@
 
   if (fieldIndex == _fieldViews.count) {
     return _textEditor;
+
   } else {
     return [_fieldViews objectAtIndex:fieldIndex];
   }
@@ -702,6 +708,7 @@
     if ([field isKindOfClass:[TTMessageRecipientField class]]) {
       TTPickerTextField* textField = [_fieldViews objectAtIndex:i];
       [(TTMessageRecipientField*)field setRecipients:textField.cells];
+
     } else if ([field isKindOfClass:[TTMessageTextField class]]) {
       UITextField* textField = [_fieldViews objectAtIndex:i];
       [(TTMessageTextField*)field setText:textField.text];
@@ -729,6 +736,7 @@
 - (void)cancel:(BOOL)confirmIfNecessary {
   if (confirmIfNecessary && ![self messageShouldCancel]) {
     [self confirmCancellation];
+
   } else {
     if ([_delegate respondsToSelector:@selector(composeControllerWillCancel:)]) {
       [_delegate composeControllerWillCancel:self];
@@ -763,6 +771,7 @@
       _activityView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
       [self.view addSubview:_activityView];
     }
+
   } else {
     [_activityView removeFromSuperview];
     TT_RELEASE_SAFELY(_activityView);

@@ -59,6 +59,7 @@
 - (void)showActivity:(BOOL)shouldShow animated:(BOOL)animated {
   if (shouldShow) {
     [_activityView startAnimating];
+
   } else {
     [_activityView stopAnimating];
   }
@@ -89,7 +90,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if(self = [super initWithFrame:frame]) {
+  if (self = [super initWithFrame:frame]) {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
     _lastUpdatedLabel = [[UILabel alloc]

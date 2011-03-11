@@ -57,6 +57,7 @@
   if (_next) {
     id value = [object performSelector:_selector];
     return [_next perform:value returnType:returnType];
+
   } else {
     NSMethodSignature *sig = [object methodSignatureForSelector:_selector];
     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:sig];

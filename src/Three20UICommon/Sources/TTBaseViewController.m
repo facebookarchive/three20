@@ -46,7 +46,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     _navigationBarStyle = UIBarStyleDefault;
-    _statusBarStyle = UIStatusBarStyleDefault;
+    _statusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
   }
 
   return self;
@@ -108,6 +108,7 @@
 
   if (appearing) {
     [self keyboardWillAppear:animated withBounds:keyboardBounds];
+
   } else {
     [self keyboardDidDisappear:animated withBounds:keyboardBounds];
   }
@@ -154,7 +155,7 @@
     UINavigationBar* bar = self.navigationController.navigationBar;
     bar.tintColor = _navigationBarTintColor;
     bar.barStyle = _navigationBarStyle;
-    
+
     if (!TTIsPad()) {
       [[UIApplication sharedApplication] setStatusBarStyle:_statusBarStyle animated:YES];
     }
@@ -195,6 +196,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   if (TTIsPad()) {
     return YES;
+
   } else {
     UIViewController* popup = [self popupViewController];
     if (popup) {

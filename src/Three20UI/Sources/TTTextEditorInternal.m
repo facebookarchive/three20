@@ -109,8 +109,10 @@ TT_FIX_CATEGORY_BUG(TTTextEditorInternal)
     }
   }
 
-  if ([_delegate respondsToSelector:@selector(textEditor:shouldChangeTextInRange:replacementText:)]) {
+  if ([_delegate respondsToSelector:
+       @selector(textEditor:shouldChangeTextInRange:replacementText:)]) {
     return [_delegate textEditor:_textEditor shouldChangeTextInRange:range replacementText:text];
+
   } else {
     return YES;
   }
@@ -140,7 +142,8 @@ TT_FIX_CATEGORY_BUG(TTTextEditorInternal)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)textFieldShouldBeginEditing:(UITextField*)textField {
-  if (!_ignoreBeginAndEnd && [_delegate respondsToSelector:@selector(textEditorShouldBeginEditing:)]) {
+  if (!_ignoreBeginAndEnd
+      && [_delegate respondsToSelector:@selector(textEditorShouldBeginEditing:)]) {
     return [_delegate textEditorShouldBeginEditing:_textEditor];
 
   } else {
@@ -151,8 +154,10 @@ TT_FIX_CATEGORY_BUG(TTTextEditorInternal)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)textFieldShouldEndEditing:(UITextField*)textField {
-  if (!_ignoreBeginAndEnd && [_delegate respondsToSelector:@selector(textEditorShouldEndEditing:)]) {
+  if (!_ignoreBeginAndEnd
+      && [_delegate respondsToSelector:@selector(textEditorShouldEndEditing:)]) {
     return [_delegate textEditorShouldEndEditing:_textEditor];
+
   } else {
     return YES;
   }
@@ -188,7 +193,8 @@ TT_FIX_CATEGORY_BUG(TTTextEditorInternal)
     shouldChangeCharactersInRange: (NSRange)range
                 replacementString: (NSString*)string {
   BOOL shouldChange = YES;
-  if ([_delegate respondsToSelector:@selector(textEditor:shouldChangeTextInRange:replacementText:)]) {
+  if ([_delegate respondsToSelector:
+       @selector(textEditor:shouldChangeTextInRange:replacementText:)]) {
     shouldChange = [_delegate textEditor:_textEditor shouldChangeTextInRange:range
                          replacementText:string];
   }

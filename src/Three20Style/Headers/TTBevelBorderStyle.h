@@ -31,7 +31,10 @@
 
 + (TTBevelBorderStyle*)styleWithColor:(UIColor*)color width:(CGFloat)width next:(TTStyle*)next;
 
-+ (TTBevelBorderStyle*)styleWithHighlight:(UIColor*)highlight shadow:(UIColor*)shadow
-                                    width:(CGFloat)width lightSource:(NSInteger)lightSource next:(TTStyle*)next;
++ (TTBevelBorderStyle*)styleWithHighlight:(UIColor*)highlight
+                                   shadow:(UIColor*)shadow
+                                    width:(CGFloat)width
+                              lightSource:(NSInteger)lightSource
+                                     next:(TTStyle*)next;
 
 @end

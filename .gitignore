@@ -5,19 +5,6 @@ build/*
 *.mode1v3
 *.xcworkspace
 xcuserdata
-=======
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-*.xcworkspace
-!default.xcworkspace
-xcuserdata
-profile
-*.moved-aside
-*.xcscheme
-*.xcuserdata
 
 # osx noise
 .DS_Store
@@ -25,3 +12,14 @@ profile
 
 Development
 Build
+config
+src/Three20/*.h
+src/Three20Core/*.h
+src/Three20Network/*.h
+src/Three20Style/*.h
+src/Three20UICommon/*.h
+src/Three20UINavigator/*.h
+src/Three20UI/*.h
+extensions/
+
+*.pyc

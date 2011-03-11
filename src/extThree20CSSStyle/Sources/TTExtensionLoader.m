@@ -38,7 +38,9 @@
   TTExtensionInfo* extension = [[TTExtensionInfo alloc] init];
 
   extension.name = @"Three20 CSS Styling";
-  extension.description = @"The CSS Styling extension provides support for customizing the style of an app using standard CSS.";
+  extension.description =
+    @"The CSS Styling extension provides support for customizing the style of an app using"
+    @" standard CSS.";
   extension.version = @"1.0";
   extension.copyright = @"Copyright 2009-2010 Facebook";
   extension.license = @"Apache 2.0";

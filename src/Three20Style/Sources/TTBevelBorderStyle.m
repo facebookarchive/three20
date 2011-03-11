@@ -73,8 +73,11 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (TTBevelBorderStyle*)styleWithHighlight:(UIColor*)highlight shadow:(UIColor*)shadowColor
-                                    width:(CGFloat)width lightSource:(NSInteger)lightSource next:(TTStyle*)next {
++ (TTBevelBorderStyle*)styleWithHighlight:(UIColor*)highlight
+                                   shadow:(UIColor*)shadowColor
+                                    width:(CGFloat)width
+                              lightSource:(NSInteger)lightSource
+                                     next:(TTStyle*)next {
   TTBevelBorderStyle* style = [[[TTBevelBorderStyle alloc] initWithNext:next] autorelease];
   style.highlight = highlight;
   style.shadow = shadowColor;
@@ -115,6 +118,7 @@
 
     rect.origin.y += _width;
     rect.size.height -= _width;
+
   } else {
     [[UIColor clearColor] setStroke];
   }
@@ -125,6 +129,7 @@
     [rightColor setStroke];
 
     rect.size.width -= _width;
+
   } else {
     [[UIColor clearColor] setStroke];
   }
@@ -135,6 +140,7 @@
     [bottomColor setStroke];
 
     rect.size.height -= _width;
+
   } else {
     [[UIColor clearColor] setStroke];
   }
@@ -146,6 +152,7 @@
 
     rect.origin.x += _width;
     rect.size.width -= _width;
+
   } else {
     [[UIColor clearColor] setStroke];
   }
