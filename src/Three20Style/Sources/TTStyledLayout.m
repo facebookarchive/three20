@@ -712,7 +712,7 @@
                                                                stringIndex - frameStart)]
                           sizeWithFont:_font].width;
             [self addFrameForText:line element:element node:textNode width:frameWidth
-                  height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
+                  height:[_font ttLineHeight]];
           }
 
           if (_lineWidth) {
@@ -734,7 +734,7 @@
         frameWidth = [[text substringWithRange:NSMakeRange(frameStart, stringIndex - frameStart)]
                       sizeWithFont:_font].width;
         [self addFrameForText:line element:element node:textNode width:frameWidth
-              height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
+              height:[_font ttLineHeight]];
 
         lineStartIndex = lineRange.location + lineRange.length;
         frameStart = stringIndex;
@@ -750,7 +750,7 @@
           frameWidth = [[text substringWithRange:NSMakeRange(frameStart, stringIndex - frameStart)]
                         sizeWithFont:_font].width;
           [self addFrameForText:line element:element node:textNode width:frameWidth
-                height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
+                height:[_font ttLineHeight]];
         }
 
         if (_lineWidth) {
