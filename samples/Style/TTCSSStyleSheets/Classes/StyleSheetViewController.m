@@ -48,8 +48,9 @@
   }
 
   self.title = @"Three20 CSS extension";
-
   self.view.backgroundColor = TTCSS(@"body", backgroundColor);
+
+  // Using helper macro
   UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   headerLabel.text = @"Header text";
   headerLabel.font            = TTCSS(@"h1", font);
@@ -59,7 +60,19 @@
   headerLabel.shadowOffset    = TTCSS(@"h1", shadowOffset);
   [headerLabel sizeToFit];
   [self.view addSubview:headerLabel];
+
+  // Using UILabel addition
+  UILabel* headerLabel2 = [[UILabel alloc] initWithFrame:CGRectZero];
+  headerLabel2.text = @"Header 2 text";
+  [headerLabel2 applyCssSelector:@"h2"];
+  [headerLabel2 sizeToFit];
+  CGRect frame = headerLabel2.frame;
+  frame.origin.y = headerLabel.frame.size.height;
+  headerLabel2.frame = frame;
+  [self.view addSubview:headerLabel2];
+
   TT_RELEASE_SAFELY(headerLabel);
+  TT_RELEASE_SAFELY(headerLabel2);
 }
 
 

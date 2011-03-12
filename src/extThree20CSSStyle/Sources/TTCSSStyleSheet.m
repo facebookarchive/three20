@@ -492,6 +492,16 @@ NSString* kKeyTextShadowColor   = @"color";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)textShadowRadiusWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  selector = [self selector:selector forState:state];
+
+  NSDictionary* textShadow = [self textShadowWithCssSelector: selector
+                                                    forState: state];
+  return [[textShadow objectForKey:kKeyTextShadowBlur] floatValue];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Utilities

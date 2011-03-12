@@ -6,6 +6,6 @@
   #import <Foundation/Foundation.h>
   #import <UIKit/UIKit.h>
   #import "Three20/Three20.h"
-  #import "extThree20CSSStyle/extThree20CSSStyle.h"
+  #import "extThree20CSSStyle/extThree20CSSStyle+Additions.h"
   #import "Atlas.h"
 #endif

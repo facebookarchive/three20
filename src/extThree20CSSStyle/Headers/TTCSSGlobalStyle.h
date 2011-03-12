@@ -34,7 +34,10 @@
 #define TTCSS_shadowOffset(_SELECTOR, _STATE) \
 ([TTCSSSTYLESHEET textShadowOffsetWithCssSelector:_SELECTOR forState:_STATE])
 
-// _VARNAME must be one of: color, backgroundColor, font, shadowColor, shadowOffset
+#define TTCSS_shadowRadius(_SELECTOR, _STATE) \
+([TTCSSSTYLESHEET textShadowRadiusWithCssSelector:_SELECTOR forState:_STATE])
+
+// _VARNAME must be one of: color, backgroundColor, font, shadowColor, shadowOffset, shadowRadius
 #define TTCSSSTATE(_SELECTOR, _VARNAME, _STATE) \
 TTCSS_##_VARNAME(_SELECTOR, _STATE)
 

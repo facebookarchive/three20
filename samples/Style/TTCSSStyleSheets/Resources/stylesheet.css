@@ -21,7 +21,15 @@ body {
 h1 {
   font-weight: bold;
   font-size: 50pt;
-  color: #666;
+  color: #FF6;
   background-color: transparent;
-  text-shadow: 1px 1px 1px #999; /* blur amount (3rd value) doesn't do anything */
+  text-shadow: 2px 2px 0px #F99;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 35pt;
+  color: white;
+  background-color: transparent;
+  text-shadow: 3px 3px 3px #99F;
 }
