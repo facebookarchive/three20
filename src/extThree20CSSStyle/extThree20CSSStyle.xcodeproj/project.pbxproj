@@ -42,6 +42,7 @@
 		6E85154011B2E8660071A4FD /* TTCSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E85145111B1B5200071A4FD /* TTCSSParser.m */; };
 		6EAE4E5611B2F0A7001073B4 /* testcase.css in Resources */ = {isa = PBXBuildFile; fileRef = 6EAE4E5511B2F0A7001073B4 /* testcase.css */; };
 		6EB460DA1183D8CB00685649 /* libextThree20CSSStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */; };
+		90C3A115132B9BE100AC06A2 /* TTCSSGlobalStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C3A114132B9BE100AC06A2 /* TTCSSGlobalStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 		6EAE4E5511B2F0A7001073B4 /* testcase.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = testcase.css; path = UnitTests/Resources/CSS/testcase.css; sourceTree = "<group>"; };
 		6EB460921183D16000685649 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EB460A61183D2AC00685649 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
+		90C3A114132B9BE100AC06A2 /* TTCSSGlobalStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCSSGlobalStyle.h; path = Headers/TTCSSGlobalStyle.h; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20CSSStyle.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* extCSSStyleUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extCSSStyleUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -318,6 +320,7 @@
 		6EB4609C1183D1E000685649 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				90C3A10F132B9B5000AC06A2 /* Global */,
 				6E036A2A11B364AF0025E8EE /* CSS Parser */,
 				6E036A2B11B364B60025E8EE /* CSS Stylesheet */,
 			);
@@ -354,6 +357,14 @@
 			name = Configurations;
 			sourceTree = "<group>";
 		};
+		90C3A10F132B9B5000AC06A2 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				90C3A114132B9BE100AC06A2 /* TTCSSGlobalStyle.h */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -362,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E3C3470118806590079637E /* extThree20CSSStyle.h in Headers */,
+				90C3A115132B9BE100AC06A2 /* TTCSSGlobalStyle.h in Headers */,
 				6E85145411B1B5390071A4FD /* TTCSSParser.h in Headers */,
 				6E8514ED11B2E3F30071A4FD /* CssTokens.h in Headers */,
 				6E036A3211B364DF0025E8EE /* TTCSSStyleSheet.h in Headers */,

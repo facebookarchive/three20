@@ -25,22 +25,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-    _styleSheet = [[TTCSSStyleSheet alloc] init];
-
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    TTDefaultCSSStyleSheet *_styleSheet = [[[TTDefaultCSSStyleSheet alloc] init] autorelease];
     _loadedSuccessfully = [_styleSheet
-                           loadFromFilename:TTPathForBundleResource(@"stylesheet.css")];
+                           addStyleSheetFromDisk:TTPathForBundleResource(@"stylesheet.css")];
+    [TTStyleSheet setGlobalStyleSheet:_styleSheet];
   }
 
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_styleSheet);
-
-  [super dealloc];
 }
 
 
@@ -56,19 +49,14 @@
 
   self.title = @"Three20 CSS extension";
 
-  self.view.backgroundColor = [_styleSheet backgroundColorWithCssSelector: @"body"
-                                                                 forState: UIControlStateNormal];
-
+  self.view.backgroundColor = TTCSS(@"body", backgroundColor);
   UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   headerLabel.text = @"Header text";
-  headerLabel.font = [_styleSheet fontWithCssSelector:@"h1" forState:UIControlStateNormal];
-  headerLabel.textColor = [_styleSheet colorWithCssSelector:@"h1" forState:UIControlStateNormal];
-  headerLabel.backgroundColor = [_styleSheet backgroundColorWithCssSelector: @"h1"
-                                                                   forState: UIControlStateNormal];
-  headerLabel.shadowColor = [_styleSheet textShadowColorWithCssSelector: @"h1"
-                                                               forState: UIControlStateNormal];
-  headerLabel.shadowOffset = [_styleSheet textShadowOffsetWithCssSelector: @"h1"
-                                                                 forState: UIControlStateNormal];
+  headerLabel.font            = TTCSS(@"h1", font);
+  headerLabel.textColor       = TTCSS(@"h1", color);
+  headerLabel.backgroundColor = TTCSS(@"h1", backgroundColor);
+  headerLabel.shadowColor     = TTCSS(@"h1", shadowColor);
+  headerLabel.shadowOffset    = TTCSS(@"h1", shadowOffset);
   [headerLabel sizeToFit];
   [self.view addSubview:headerLabel];
   TT_RELEASE_SAFELY(headerLabel);
