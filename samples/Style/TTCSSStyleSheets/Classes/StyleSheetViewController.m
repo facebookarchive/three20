@@ -16,6 +16,8 @@
 
 #import "StyleSheetViewController.h"
 
+#import "SampleCSSStyleSheet.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,7 +29,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    TTDefaultCSSStyleSheet *_styleSheet = [[[TTDefaultCSSStyleSheet alloc] init] autorelease];
+    SampleCSSStyleSheet *_styleSheet = [[[SampleCSSStyleSheet alloc] init] autorelease];
     _loadedSuccessfully = [_styleSheet
                            addStyleSheetFromDisk:TTPathForBundleResource(@"stylesheet.css")];
     [TTStyleSheet setGlobalStyleSheet:_styleSheet];
@@ -66,10 +68,29 @@
   headerLabel2.text = @"Header 2 text";
   [headerLabel2 applyCssSelector:@"h2"];
   [headerLabel2 sizeToFit];
+  CGFloat top = headerLabel.frame.size.height;
   CGRect frame = headerLabel2.frame;
-  frame.origin.y = headerLabel.frame.size.height;
+  frame.origin.y = top;
   headerLabel2.frame = frame;
   [self.view addSubview:headerLabel2];
+
+  // Using TTTextStyle addition
+  TTButton* headerLabel3 = [TTButton buttonWithStyle:@"h3:" title:@"Header 3 text"];
+  [headerLabel3 sizeToFit];
+  top += headerLabel2.frame.size.height;
+  frame = headerLabel3.frame;
+  frame.origin.y = top;
+  headerLabel3.frame = frame;
+  [self.view addSubview:headerLabel3];
+
+  // Using TTTextStyle + TTShadowStyle addition
+  TTButton* headerLabel4 = [TTButton buttonWithStyle:@"h4:" title:@"Header 4 text"];
+  [headerLabel4 sizeToFit];
+  top += headerLabel2.frame.size.height;
+  frame = headerLabel4.frame;
+  frame.origin.y = top;
+  headerLabel4.frame = frame;
+  [self.view addSubview:headerLabel4];
 
   TT_RELEASE_SAFELY(headerLabel);
   TT_RELEASE_SAFELY(headerLabel2);

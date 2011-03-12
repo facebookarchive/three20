@@ -14,10 +14,5 @@
 // limitations under the License.
 //
 
-// CSS Style
-#import "extThree20CSSStyle/extThree20CSSStyle.h"
-
-// Additions
-#import "extThree20CSSStyle/UILabelAdditions.h"
-#import "extThree20CSSStyle/TTTextStyleAdditions.h"
-#import "extThree20CSSStyle/TTShadowStyleAdditions.h"
+@interface SampleCSSStyleSheet : TTDefaultCSSStyleSheet {}
+@end

@@ -46,6 +46,10 @@
 		90C3A1B5132BE3EB00AC06A2 /* UILabelAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C3A1B3132BE3EB00AC06A2 /* UILabelAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90C3A1B6132BE3EB00AC06A2 /* UILabelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C3A1B4132BE3EB00AC06A2 /* UILabelAdditions.m */; };
 		90C3A1B8132BE40100AC06A2 /* extThree20CSSStyle+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C3A1B7132BE40100AC06A2 /* extThree20CSSStyle+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90C3A1BD132BF2D100AC06A2 /* TTTextStyleAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C3A1BB132BF2D100AC06A2 /* TTTextStyleAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90C3A1BE132BF2D100AC06A2 /* TTTextStyleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C3A1BC132BF2D100AC06A2 /* TTTextStyleAdditions.m */; };
+		90C3A1C4132BFDFF00AC06A2 /* TTShadowStyleAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C3A1C2132BFDFE00AC06A2 /* TTShadowStyleAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90C3A1C5132BFDFF00AC06A2 /* TTShadowStyleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C3A1C3132BFDFF00AC06A2 /* TTShadowStyleAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +169,10 @@
 		90C3A1B4132BE3EB00AC06A2 /* UILabelAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILabelAdditions.m; path = Sources/UILabelAdditions.m; sourceTree = "<group>"; };
 		90C3A1B7132BE40100AC06A2 /* extThree20CSSStyle+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "extThree20CSSStyle+Additions.h"; path = "Headers/extThree20CSSStyle+Additions.h"; sourceTree = "<group>"; };
 		90C3A1B9132BEB7100AC06A2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		90C3A1BB132BF2D100AC06A2 /* TTTextStyleAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTextStyleAdditions.h; path = Headers/TTTextStyleAdditions.h; sourceTree = "<group>"; };
+		90C3A1BC132BF2D100AC06A2 /* TTTextStyleAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTextStyleAdditions.m; path = Sources/TTTextStyleAdditions.m; sourceTree = "<group>"; };
+		90C3A1C2132BFDFE00AC06A2 /* TTShadowStyleAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTShadowStyleAdditions.h; path = Headers/TTShadowStyleAdditions.h; sourceTree = "<group>"; };
+		90C3A1C3132BFDFF00AC06A2 /* TTShadowStyleAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTShadowStyleAdditions.m; path = Sources/TTShadowStyleAdditions.m; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20CSSStyle.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* extCSSStyleUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extCSSStyleUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -380,6 +388,10 @@
 			children = (
 				90C3A1B3132BE3EB00AC06A2 /* UILabelAdditions.h */,
 				90C3A1B4132BE3EB00AC06A2 /* UILabelAdditions.m */,
+				90C3A1BB132BF2D100AC06A2 /* TTTextStyleAdditions.h */,
+				90C3A1BC132BF2D100AC06A2 /* TTTextStyleAdditions.m */,
+				90C3A1C2132BFDFE00AC06A2 /* TTShadowStyleAdditions.h */,
+				90C3A1C3132BFDFF00AC06A2 /* TTShadowStyleAdditions.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -400,6 +412,8 @@
 				6E036D1911B487CF0025E8EE /* TTDefaultCSSStyleSheet.h in Headers */,
 				66E722D3129392EB007134B0 /* TTExtensionLoader.h in Headers */,
 				90C3A1B5132BE3EB00AC06A2 /* UILabelAdditions.h in Headers */,
+				90C3A1BD132BF2D100AC06A2 /* TTTextStyleAdditions.h in Headers */,
+				90C3A1C4132BFDFF00AC06A2 /* TTShadowStyleAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +631,8 @@
 				6E036D1A11B487CF0025E8EE /* TTDefaultCSSStyleSheet.m in Sources */,
 				66E722D0129392DD007134B0 /* TTExtensionLoader.m in Sources */,
 				90C3A1B6132BE3EB00AC06A2 /* UILabelAdditions.m in Sources */,
+				90C3A1BE132BF2D100AC06A2 /* TTTextStyleAdditions.m in Sources */,
+				90C3A1C5132BFDFF00AC06A2 /* TTShadowStyleAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

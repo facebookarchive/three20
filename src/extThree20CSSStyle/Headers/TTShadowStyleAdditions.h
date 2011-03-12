@@ -14,10 +14,15 @@
 // limitations under the License.
 //
 
-// CSS Style
-#import "extThree20CSSStyle/extThree20CSSStyle.h"
+#import "Three20Style/TTShadowStyle.h"
 
-// Additions
-#import "extThree20CSSStyle/UILabelAdditions.h"
-#import "extThree20CSSStyle/TTTextStyleAdditions.h"
-#import "extThree20CSSStyle/TTShadowStyleAdditions.h"
+@interface TTShadowStyle (TTCSSCategory)
+
++ (TTShadowStyle*)styleWithCssSelector:(NSString*)selector
+                              forState:(UIControlState)state
+                                  next:(TTStyle*)next;
+
++ (TTShadowStyle*)styleWithCssSelector:(NSString*)selector
+                                  next:(TTStyle*)next;
+
+@end
