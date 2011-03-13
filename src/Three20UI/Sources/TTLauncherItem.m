@@ -32,7 +32,7 @@
 @synthesize style       = _style;
 @synthesize badgeValue  = _badgeValue;
 @synthesize canDelete   = _canDelete;
-@synthesize userInfo	= _userInfo;
+@synthesize userInfo    = _userInfo;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,7 @@
   TT_RELEASE_SAFELY(_image);
   TT_RELEASE_SAFELY(_URL);
   TT_RELEASE_SAFELY(_style);
+  TT_RELEASE_SAFELY(_userInfo);
 
   [super dealloc];
 }
