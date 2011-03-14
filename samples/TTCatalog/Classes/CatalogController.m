@@ -12,6 +12,13 @@
       [[[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStyleBordered
       target:nil action:nil] autorelease];
 
+    self.navigationItem.rightBarButtonItem =
+      [[[UIBarButtonItem alloc] initWithTitle:@"Extensions"
+                                        style:UIBarButtonItemStyleBordered
+                                       target:self
+                                       action:@selector(showExtensions:)]
+       autorelease];
+
     self.tableViewStyle = UITableViewStyleGrouped;
   }
   return self;
@@ -58,5 +65,16 @@
     [TTTableTextItem itemWithText:@"Launcher" URL:@"tt://launcherTest"],
     nil];
 }
+
+
+- (void)showExtensions:(UIBarButtonItem*)sourceButton {
+  TTURLAction* action = [[TTURLAction actionWithURLPath:
+                         [TTExtensionsController
+                          urlPathForExtensionsControllerWithPrefix:@"tt://"]]
+                         applyAnimated:YES];
+
+  [[TTNavigator globalNavigator] openURLAction:action];
+}
+
 
 @end

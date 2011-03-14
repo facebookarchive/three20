@@ -183,6 +183,10 @@
               selector: nil
             transition: 0];
   
+  // This registers the necessary URLs
+  [TTExtensionsController registerUrlPathsWithNavigator: navigator
+                                                 prefix: @"tt://"];
+
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://catalog"]];
   }
