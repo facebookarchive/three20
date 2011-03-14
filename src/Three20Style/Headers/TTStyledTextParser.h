@@ -14,6 +14,11 @@
 // limitations under the License.
 //
 
+/**
+ * button node supports className and href property. Use className for assigning style classes to the button and href for assigning URLs.
+ *
+ */
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
