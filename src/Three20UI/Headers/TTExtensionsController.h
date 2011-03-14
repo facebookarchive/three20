@@ -20,15 +20,20 @@
 
 /**
  * A list of all available, loaded, and failed extensions. This controller is used in
- * conjunction with the TTExtensionLoader. It is intended to provide helpful information
- * about the extensions linked in the application. It can also be used as a means of
- * crediting the extensions whose licenses require it.
+ * conjunction with the TTExtensionLoader found in Three20Core.
+ * It is intended to provide helpful information about the extensions linked in the
+ * application. It can also be used as a means of crediting the extensions whose
+ * licenses require it.
  *
  * @see TTExtensionLoader
  */
 @interface TTExtensionsController : TTTableViewController {
 
 }
+
+
+#pragma mark -
+#pragma mark URL Path Registration
 
 /**
  * Registers two URLs with the given navigator (e.g. with a prefix of @"tt://")
@@ -42,5 +47,32 @@
  * * @"myApp://three20/extensions/(initWithExtensionID:)"  -> [TTExtensionInfoController class]
  */
 + (void)registerUrlPathsWithNavigator:(TTNavigator*)navigator prefix:(NSString*)prefix;
+
+
+/**
+ * URL path construction for opening extension controllers with TTNavigator.
+ */
+#pragma mark -
+#pragma mark URL Path Construction
+
+/**
+ * The URL path for the extensions controller.
+ *
+ * This controller shows a list of all available extensions and whether or not they have
+ * been loaded successfully.
+ *
+ * @param prefix  The same prefix used to register the URL paths.
+ */
++ (NSString*)urlPathForExtensionsControllerWithPrefix:(NSString*)prefix;
+
+/**
+ * The URL path for a specific extension's information controller.
+ *
+ * @param prefix      The same prefix used to register the URL paths.
+ * @param extensionId The extension identifier. A list of these identifiers can be obtained from
+ *                    TTExtensionLoader.
+ */
++ (NSString*)urlPathForExtensionInfoControllerWithPrefix: (NSString*)prefix
+                                             extensionID: (NSString*)extensionId;
 
 @end

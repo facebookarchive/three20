@@ -52,19 +52,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)registerUrlPathsWithNavigator:(TTNavigator*)navigator prefix:(NSString*)prefix {
-  TTURLMap* map = navigator.URLMap;
-
-  NSString* extensionsUrlPath = [prefix stringByAppendingString:@"extensions"];
-  [map          from: extensionsUrlPath
-    toViewController: [TTExtensionsController class]];
-  [map          from: [extensionsUrlPath
-                       stringByAppendingString:@"/(initWithExtensionID:)"]
-    toViewController: [TTExtensionInfoController class]];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTTableItem*)tableItemForExtension:(TTExtensionInfo*)extension {
   NSString* urlPath = [[self navigatorURL] stringByAppendingFormat:@"/%@",
                        extension.identifier];
@@ -132,6 +119,35 @@
   self.dataSource = [TTSectionedDataSource dataSourceWithItems: sectionItems
                                                       sections: sectionTitles];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSString*)urlPathForExtensionsControllerWithPrefix:(NSString*)prefix {
+  // We can't use stringByAppendingPathComponent here because it turns :// into :/
+  return [prefix stringByAppendingString:@"extensions"];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSString*)urlPathForExtensionInfoControllerWithPrefix: (NSString*)prefix
+                                             extensionID: (NSString*)extensionId {
+  // We can't use stringByAppendingPathComponent here because it turns :// into :/
+  return [[self urlPathForExtensionsControllerWithPrefix:prefix]
+          stringByAppendingFormat:@"/%@", extensionId];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)registerUrlPathsWithNavigator:(TTNavigator*)navigator prefix:(NSString*)prefix {
+  TTURLMap* map = navigator.URLMap;
+
+  [map          from: [self urlPathForExtensionsControllerWithPrefix:prefix]
+    toViewController: [TTExtensionsController class]];
+  [map          from: [[self urlPathForExtensionsControllerWithPrefix:prefix]
+                       stringByAppendingString:@"/(initWithExtensionID:)"]
+    toViewController: [TTExtensionInfoController class]];
+}
+
 
 @end
 
