@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66A053FE132EBFE800132434 /* TTLicenseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A053FC132EBFE800132434 /* TTLicenseInfo.m */; };
+		66A05400132EBFFA00132434 /* TTLicenseInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A053FF132EBFFA00132434 /* TTLicenseInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A05403132EC13E00132434 /* TTLicense.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A05401132EC13C00132434 /* TTLicense.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADC9091290B23A00855386 /* TTExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC9071290B23A00855386 /* TTExtensionInfo.m */; };
 		66ADC90F1290B24D00855386 /* TTExtensionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADC90E1290B24D00855386 /* TTExtensionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADCE681291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -63,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66A053FC132EBFE800132434 /* TTLicenseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLicenseInfo.m; path = Sources/TTLicenseInfo.m; sourceTree = "<group>"; };
+		66A053FF132EBFFA00132434 /* TTLicenseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLicenseInfo.h; path = Headers/TTLicenseInfo.h; sourceTree = "<group>"; };
+		66A05401132EC13C00132434 /* TTLicense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLicense.h; path = Headers/TTLicense.h; sourceTree = "<group>"; };
 		66ADC9071290B23A00855386 /* TTExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionInfo.m; path = Sources/TTExtensionInfo.m; sourceTree = "<group>"; };
 		66ADC90E1290B24D00855386 /* TTExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionInfo.h; path = Headers/TTExtensionInfo.h; sourceTree = "<group>"; };
 		66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionInfoPrivate.h; path = Headers/TTExtensionInfoPrivate.h; sourceTree = "<group>"; };
@@ -169,6 +175,16 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		66A0540F132EC22300132434 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				66A05401132EC13C00132434 /* TTLicense.h */,
+				66A053FF132EBFFA00132434 /* TTLicenseInfo.h */,
+				66A053FC132EBFE800132434 /* TTLicenseInfo.m */,
+			);
+			name = Licenses;
+			sourceTree = "<group>";
+		};
 		66ECA24F128DFE10006C78C2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +230,7 @@
 				6ED117D21183BDBF0096AEBF /* Global */,
 				6ED118141183BF9D0096AEBF /* Additions */,
 				6ED118C21183C2310096AEBF /* Debug */,
+				66A0540F132EC22300132434 /* Licenses */,
 				66ECA24F128DFE10006C78C2 /* Extensions */,
 				6E607CAE11AF2DE800C93CD4 /* Entity Tables */,
 				6E78061A1183BD810078A30B /* Classes */,
@@ -334,6 +351,8 @@
 				66ADC90F1290B24D00855386 /* TTExtensionInfo.h in Headers */,
 				66ADCE681291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */,
 				66ADCE8B1291BEBB00855386 /* TTExtensionAuthor.h in Headers */,
+				66A05400132EBFFA00132434 /* TTLicenseInfo.h in Headers */,
+				66A05403132EC13E00132434 /* TTLicense.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +502,7 @@
 				66ECA257128DFE28006C78C2 /* TTExtensionLoader.m in Sources */,
 				66ADC9091290B23A00855386 /* TTExtensionInfo.m in Sources */,
 				66ADCE871291BEAE00855386 /* TTExtensionAuthor.m in Sources */,
+				66A053FE132EBFE800132434 /* TTLicenseInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

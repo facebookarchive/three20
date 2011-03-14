@@ -27,6 +27,10 @@
 // - Debug
 #import "Three20Core/TTDebug.h"
 
+// - Licenses
+#import "Three20Core/TTLicense.h"
+#import "Three20Core/TTLicenseInfo.h"
+
 // - Extensions
 #import "Three20Core/TTExtensionInfo.h"
 #import "Three20Core/TTExtensionAuthor.h"
