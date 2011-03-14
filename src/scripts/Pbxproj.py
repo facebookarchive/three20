@@ -319,23 +319,31 @@ class Pbxproj(object):
 	def add_filereference(self, name, file_type, default_guid, rel_path, source_tree):
 		project_data = self.get_project_data()
 
+		quoted_rel_path = '"'+rel_path.strip('"')+'"'
+
 		fileref_hash = None
 
 		match = re.search('([A-Z0-9]+) \/\* '+re.escape(name)+' \*\/ = \{isa = PBXFileReference; lastKnownFileType = "wrapper.'+file_type+'"; name = '+re.escape(name)+'; path = '+re.escape(rel_path)+';', project_data)
+
+		if not match:
+			# Check again for quoted versions, just to be sure.
+			match = re.search('([A-Z0-9]+) \/\* '+re.escape(name)+' \*\/ = \{isa = PBXFileReference; lastKnownFileType = "wrapper.'+file_type+'"; name = '+re.escape(name)+'; path = '+re.escape(quoted_rel_path)+';', project_data)
+
 		if match:
 			logging.info("This file has already been added.")
 			(fileref_hash, ) = match.groups()
 			
 		else:
 			match = re.search('\/\* Begin PBXFileReference section \*\/\n', project_data)
-		
+
 			if not match:
 				logging.error("Couldn't find the PBXFileReference section.")
 				return False
-		
+
 			fileref_hash = default_guid
-		
-			pbxfileref = "\t\t"+fileref_hash+" /* "+name+" */ = {isa = PBXFileReference; lastKnownFileType = \"wrapper."+file_type+"\"; name = "+name+"; path = "+rel_path+"; sourceTree = "+source_tree+"; };\n"
+			
+			pbxfileref = "\t\t"+fileref_hash+" /* "+name+" */ = {isa = PBXFileReference; lastKnownFileType = \"wrapper."+file_type+"\"; name = "+name+"; path = "+quoted_rel_path+"; sourceTree = "+source_tree+"; };\n"
+
 			project_data = project_data[:match.end()] + pbxfileref + project_data[match.end():]
 
 		self.set_project_data(project_data)
