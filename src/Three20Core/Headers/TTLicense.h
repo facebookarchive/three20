@@ -19,6 +19,7 @@
 typedef enum {
   TTLicenseUnknown,       // No license provided
   TTLicenseApache2_0,     // Apache 2.0
-  TTLicenseBSDNew         // New BSD
+  TTLicenseBSDNew,        // New BSD
+  TTLicenseMIT,           // MIT
 
 } TTLicense;
