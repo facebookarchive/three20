@@ -25,10 +25,10 @@
   NSString* _website;
 }
 
-@property (nonatomic, copy) NSString* name;
-@property (nonatomic, copy) NSString* github;
-@property (nonatomic, copy) NSString* twitter;
-@property (nonatomic, copy) NSString* website;
+@property (nonatomic, copy) NSString* name;     // Full name
+@property (nonatomic, copy) NSString* github;   // Github username
+@property (nonatomic, copy) NSString* twitter;  // Twitter username
+@property (nonatomic, copy) NSString* website;  // Website
 
 + (id)authorWithName: (NSString*)name;
 

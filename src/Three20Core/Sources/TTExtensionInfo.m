@@ -32,9 +32,7 @@
 @synthesize name              = _name;
 @synthesize description       = _description;
 @synthesize version           = _version;
-@synthesize copyrightOwner    = _copyrightOwner;
-@synthesize copyrightTimespan = _copyrightTimespan;
-@synthesize license           = _license;
+@synthesize licenses          = _licenses;
 @synthesize authors           = _authors;
 
 
@@ -43,9 +41,6 @@
   if (self = [super init]) {
     self.version = @"No version provided.";
     self.description = @"No description provided.";
-    self.copyrightOwner = @"No copyright owner provided.";
-    self.copyrightTimespan = @"No copyright timespan provided.";
-    self.license = TTLicenseUnknown;
   }
 
   return self;
@@ -58,8 +53,7 @@
   TT_RELEASE_SAFELY(_description);
   TT_RELEASE_SAFELY(_name);
   TT_RELEASE_SAFELY(_version);
-  TT_RELEASE_SAFELY(_copyrightOwner);
-  TT_RELEASE_SAFELY(_copyrightTimespan);
+  TT_RELEASE_SAFELY(_licenses);
   TT_RELEASE_SAFELY(_authors);
 
   [super dealloc];

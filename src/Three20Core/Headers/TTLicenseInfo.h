@@ -22,7 +22,30 @@
  * In general, the bare minimum of information is kept in Three20. Where possible,
  * more information about a given license may be found online through the URL path.
  */
-@interface TTLicenseInfo : NSObject
+@interface TTLicenseInfo : NSObject {
+@private
+  TTLicense _license;
+  NSString* _copyrightTimespan;
+  NSString* _copyrightOwner;
+}
+
+@property (nonatomic, assign) TTLicense license;
+@property (nonatomic, copy)   NSString* copyrightTimespan;
+@property (nonatomic, copy)   NSString* copyrightOwner;
+
+/**
+ * The license preamble with the given information inserted where necessary.
+ */
+@property (nonatomic, readonly) NSString* preamble;
+
++ (TTLicenseInfo*)licenseInfoWithLicense: (TTLicense)license
+                       copyrightTimespan: (NSString*)copyrightTimespan
+                          copyrightOwner: (NSString*)copyrightOwner;
+
+// Designated initializer
+- (TTLicenseInfo*)initWithLicense: (TTLicense)license
+                copyrightTimespan: (NSString*)copyrightTimespan
+                   copyrightOwner: (NSString*)copyrightOwner;
 
 /**
  * The full license name.
@@ -33,12 +56,5 @@
  * The URL path of the full license.
  */
 + (NSString*)urlPathForLicense:(TTLicense)license;
-
-/**
- * The license preamble with the given information inserted where necessary.
- */
-+ (NSString*)preambleForLicense: (TTLicense)license
-          withCopyrightTimespan: (NSString*)copyrightTimespan
-             withCopyrightOwner: (NSString*)copyrightOwner;
 
 @end

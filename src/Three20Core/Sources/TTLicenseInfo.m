@@ -16,11 +16,53 @@
 
 #import "Three20Core/TTLicenseInfo.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTLicenseInfo
+
+@synthesize license           = _license;
+@synthesize copyrightTimespan = _copyrightTimespan;
+@synthesize copyrightOwner    = _copyrightOwner;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_copyrightTimespan);
+  TT_RELEASE_SAFELY(_copyrightOwner);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTLicenseInfo*)initWithLicense: (TTLicense)license
+                copyrightTimespan: (NSString*)copyrightTimespan
+                   copyrightOwner: (NSString*)copyrightOwner {
+  self = [super init];
+  if (nil != self) {
+    self.license = license;
+    self.copyrightTimespan = copyrightTimespan;
+    self.copyrightOwner = copyrightOwner;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (TTLicenseInfo*)licenseInfoWithLicense: (TTLicense)license
+                       copyrightTimespan: (NSString*)copyrightTimespan
+                          copyrightOwner: (NSString*)copyrightOwner {
+  return [[[self alloc] initWithLicense: license
+                      copyrightTimespan: copyrightTimespan
+                         copyrightOwner: copyrightOwner]
+          autorelease];
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,10 +104,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (NSString*)preambleForLicense: (TTLicense)license
-          withCopyrightTimespan: (NSString*)copyrightTimespan
-             withCopyrightOwner: (NSString*)copyrightOwner {
-  switch (license) {
+- (NSString*)preamble {
+  switch (self.license) {
 
     case TTLicenseApache2_0:
       return [NSString stringWithFormat:
@@ -82,8 +122,8 @@
               @" WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied."
               @" See the License for the specific language governing permissions and"
               @" limitations under the License.",
-              copyrightTimespan,
-              copyrightOwner];
+              self.copyrightTimespan,
+              self.copyrightOwner];
       break;
 
     case TTLicenseBSDNew:
@@ -111,8 +151,8 @@
               @" LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND"
               @" ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT"
               @" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS",
-              copyrightTimespan,
-              copyrightOwner];
+              self.copyrightTimespan,
+              self.copyrightOwner];
       break;
 
     default:
