@@ -18,7 +18,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
-#import "Three20Core/TTLicense.h"
+#import "Three20Core/TTLicenseInfo.h"
 #import "Three20Core/TTExtensionAuthor.h"
 #import "Three20Core/TTExtensionInfo.h"
 
@@ -46,9 +46,11 @@ TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTCSSStyleExtension)
     @"The CSS Styling extension provides support for customizing the style of an app using"
     @" standard CSS.";
   extension.version = @"1.0";
-  extension.license = TTLicenseApache2_0;
-  extension.copyrightOwner = @"Facebook";
-  extension.copyrightTimespan = @"2009-2011";
+  extension.licenses = [NSArray arrayWithObjects:
+                        [TTLicenseInfo licenseInfoWithLicense: TTLicenseApache2_0
+                                            copyrightTimespan: @"2009-2011"
+                                               copyrightOwner: @"Facebook"],
+                        nil];
   extension.authors = [NSArray arrayWithObjects:
                        [TTExtensionAuthor authorWithName:@"Jeff Verkoeyen"],
                        nil];
