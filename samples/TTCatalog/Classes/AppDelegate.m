@@ -33,6 +33,8 @@
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.supportsShakeToReload = YES;
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
+  
+  [TTExtensionLoader loadAllExtensions];
 
   TTURLMap* map = navigator.URLMap;
   [map from:@"*" toViewController:[TTWebController class]];
