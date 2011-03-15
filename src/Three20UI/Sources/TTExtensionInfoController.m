@@ -19,14 +19,20 @@
 // UI
 #import "Three20UI/TTSectionedDataSource.h"
 #import "Three20UI/TTTableCaptionItem.h"
+#import "Three20UI/TTTableImageItem.h"
 #import "Three20UI/TTTableLongTextItem.h"
 #import "Three20UI/TTTableTextItem.h"
 
 // UINavigator
 #import "Three20UINavigator/UIViewController+TTNavigator.h"
 
+// Network
+#import "Three20Network/TTGlobalNetwork.h"
+#import "Three20Network/TTURLCache.h"
+
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/NSStringAdditions.h"
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTLicense.h"
 #import "Three20Core/TTLicenseInfo.h"
@@ -68,6 +74,15 @@
   TT_RELEASE_SAFELY(_extension);
 
   [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)urlPathForEmail:(NSString*)email size:(NSInteger)size {
+  return [NSString stringWithFormat:
+          @"http://gravatar.com/avatar/%@?size=%d",
+          [email md5Hash],
+          size];
 }
 
 
@@ -116,7 +131,12 @@
                                     [_extension.authors count]] autorelease];
     for (TTExtensionAuthor* author in _extension.authors) {
       TTDASSERT([author isKindOfClass:[TTExtensionAuthor class]]);
-      [authorItems addObject:[TTTableTextItem itemWithText:author.name]];
+      [authorItems addObject:
+       [TTTableImageItem itemWithText: author.name
+                             imageURL: [self urlPathForEmail: author.email
+                                                        size: 50]
+                         defaultImage: TTIMAGE(@"bundle://Three20.bundle/images/defaultPerson.png")
+                                  URL: nil]];
     }
 
     [items addObject:authorItems];
