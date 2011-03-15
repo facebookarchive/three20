@@ -17,8 +17,11 @@
 #import "extThree20XML/TTExtensionLoader.h"
 
 // Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTExtensionAuthor.h"
 #import "Three20Core/TTExtensionInfo.h"
+
+TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTXMLExtension)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,8 +44,9 @@
   extension.description =
   @"The XML extension provides support for parsing XML data and receiving XML responses.";
   extension.version = @"1.0";
-  extension.copyright = @"Copyright 2009-2010 Facebook";
-  extension.license = @"Apache 2.0";
+  extension.license = TTLicenseApache2_0;
+  extension.copyrightOwner = @"Facebook";
+  extension.copyrightTimespan = @"2009 - 2011";
   extension.authors = [NSArray arrayWithObjects:
                        [TTExtensionAuthor authorWithName:@"Jeff Verkoeyen"],
                        nil];

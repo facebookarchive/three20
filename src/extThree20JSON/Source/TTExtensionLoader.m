@@ -17,8 +17,11 @@
 #import "extThree20JSON/TTExtensionLoader.h"
 
 // Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTExtensionAuthor.h"
 #import "Three20Core/TTExtensionInfo.h"
+
+TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTJSONExtension)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,18 +43,19 @@
   extension.name = @"Three20 JSON";
   extension.description = @"The JSON extension provides support for parsing json files and receiving JSON responses.";
   extension.version = @"1.0";
-  extension.copyright = @"Copyright 2009-2010 Facebook.";
-  extension.license = @"Apache 2.0";
+  extension.copyrightOwner = @"Facebook";
+  extension.copyrightTimespan = @"2009 - 2011";
+  extension.license = TTLicenseApache2_0;
   extension.authors = [NSArray arrayWithObjects:
                        [TTExtensionAuthor authorWithName:@"Jeff Verkoeyen"],
                        nil];
 
 #ifdef EXTJSON_SBJSON
   extension.version = [extension.version stringByAppendingString:@" SBJSON 2.3.1"];
-  extension.copyright = [extension.copyright stringByAppendingString:@" 2009-2010 Stig Brautaset."];
+  //extension.copyright = [extension.copyright stringByAppendingString:@" 2009-2010 Stig Brautaset."];
 #elif defined(EXTJSON_YAJL)
   extension.version = [extension.version stringByAppendingString:@" YAJL 1.0.11"];
-  extension.copyright = [extension.copyright stringByAppendingString:@" 2009 Gabriel Handford. 2010 Lloyd Hilaiel."];
+  //extension.copyright = [extension.copyright stringByAppendingString:@" 2009 Gabriel Handford. 2010 Lloyd Hilaiel."];
 #endif
 
   return [extension autorelease];

@@ -10,6 +10,7 @@
 		660997C6129396F0007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 660997C2129396F0007B1E07 /* TTExtensionLoader.m */; };
 		660997C912939700007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 660997C712939700007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		663DB1A6126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663DB1A5126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */; };
+		66A055C1132EED0000132434 /* libextThree20XML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */; };
 		6E3C3468118806430079637E /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3466118806430079637E /* TTURLXMLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3469118806430079637E /* TTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3467118806430079637E /* TTXMLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C346C1188064F0079637E /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C346A1188064F0079637E /* TTURLXMLResponse.m */; };
@@ -19,7 +20,6 @@
 		6E3C34A3118807A70079637E /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E3C34A2118807A70079637E /* testcase.xml */; };
 		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
 		6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7911876D4600F08CB1 /* libThree20Network.a */; };
-		6EB460DA1183D8CB00685649 /* libextThree20XML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +124,7 @@
 			files = (
 				6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */,
 				6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */,
-				6EB460DA1183D8CB00685649 /* libextThree20XML.a in Frameworks */,
+				66A055C1132EED0000132434 /* libextThree20XML.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
