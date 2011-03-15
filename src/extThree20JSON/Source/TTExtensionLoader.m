@@ -67,7 +67,11 @@ TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTJSONExtension)
 #endif
 
   extension.authors = [NSArray arrayWithObjects:
-                       [TTExtensionAuthor authorWithName:@"Jeff Verkoeyen"],
+                       [TTExtensionAuthor authorWithName: @"Jeff Verkoeyen"
+                                                  github: @"jverkoey"
+                                                 twitter: @"featherless"
+                                                 website: @"http://JeffVerkoeyen.com/"
+                                                   email: @"jverkoey@gmail.com"],
                        nil];
 
   extension.licenses = licenses;
