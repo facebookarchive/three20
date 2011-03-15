@@ -41,25 +41,36 @@ TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTJSONExtension)
 - (TTExtensionInfo*)extensionInfoNamedThree20JSON {
   TTExtensionInfo* extension = [[TTExtensionInfo alloc] init];
 
+  NSMutableArray* licenses = [NSMutableArray array];
+
   extension.name = @"Three20 JSON";
   extension.description = @"The JSON extension provides support for parsing json files and receiving JSON responses.";
   extension.version = @"1.0";
-  extension.licenses = [NSArray arrayWithObjects:
-                        [TTLicenseInfo licenseInfoWithLicense: TTLicenseApache2_0
-                                            copyrightTimespan: @"2009-2011"
-                                               copyrightOwner: @"Facebook"],
-                        nil];
+
+  [licenses addObject:[TTLicenseInfo licenseInfoWithLicense: TTLicenseApache2_0
+                                          copyrightTimespan: @"2009-2011"
+                                             copyrightOwner: @"Facebook"]];
+
+#ifdef EXTJSON_SBJSON
+  extension.version = [extension.version stringByAppendingString:@" SBJSON 2.3.1"];
+
+  [licenses addObject:[TTLicenseInfo licenseInfoWithLicense: TTLicenseBSDNew
+                                          copyrightTimespan: @"2009-2010"
+                                             copyrightOwner: @"Stig Brautaset"]];
+
+#elif defined(EXTJSON_YAJL)
+  extension.version = [extension.version stringByAppendingString:@" YAJL 0.2.17"];
+
+  [licenses addObject:[TTLicenseInfo licenseInfoWithLicense: TTLicenseMIT
+                                          copyrightTimespan: @"2009"
+                                             copyrightOwner: @"Gabriel Handford"]];
+#endif
+
   extension.authors = [NSArray arrayWithObjects:
                        [TTExtensionAuthor authorWithName:@"Jeff Verkoeyen"],
                        nil];
 
-#ifdef EXTJSON_SBJSON
-  extension.version = [extension.version stringByAppendingString:@" SBJSON 2.3.1"];
-  //extension.copyright = [extension.copyright stringByAppendingString:@" 2009-2010 Stig Brautaset."];
-#elif defined(EXTJSON_YAJL)
-  extension.version = [extension.version stringByAppendingString:@" YAJL 1.0.11"];
-  //extension.copyright = [extension.copyright stringByAppendingString:@" 2009 Gabriel Handford. 2010 Lloyd Hilaiel."];
-#endif
+  extension.licenses = licenses;
 
   return [extension autorelease];
 }
