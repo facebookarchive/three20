@@ -23,24 +23,28 @@
   NSString* _github;
   NSString* _twitter;
   NSString* _website;
+  NSString* _email;
 }
 
 @property (nonatomic, copy) NSString* name;     // Full name
 @property (nonatomic, copy) NSString* github;   // Github username
 @property (nonatomic, copy) NSString* twitter;  // Twitter username
 @property (nonatomic, copy) NSString* website;  // Website
+@property (nonatomic, copy) NSString* email;    // Email
 
 + (id)authorWithName: (NSString*)name;
 
 + (id)authorWithName: (NSString*)name
               github: (NSString*)github
              twitter: (NSString*)twitter
-             website: (NSString*)website;
+             website: (NSString*)website
+               email: (NSString*)email;
 
 // Designated initializer
 - (id)initWithName: (NSString*)name
             github: (NSString*)github
            twitter: (NSString*)twitter
-           website: (NSString*)website;
+           website: (NSString*)website
+             email: (NSString*)email;
 
 @end

@@ -29,6 +29,7 @@
 @synthesize github  = _github;
 @synthesize twitter = _twitter;
 @synthesize website = _website;
+@synthesize email   = _email;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +37,8 @@
   return [[[self alloc] initWithName: name
                               github: nil
                              twitter: nil
-                             website: nil] autorelease];
+                             website: nil
+                               email: nil] autorelease];
 }
 
 
@@ -44,11 +46,13 @@
 + (id)authorWithName: (NSString*)name
               github: (NSString*)github
              twitter: (NSString*)twitter
-             website: (NSString*)website {
+             website: (NSString*)website
+               email: (NSString*)email {
   return [[[self alloc] initWithName: name
                               github: github
                              twitter: twitter
-                             website: website] autorelease];
+                             website: website
+                               email: email] autorelease];
 }
 
 
@@ -56,12 +60,15 @@
 - (id)initWithName: (NSString*)name
             github: (NSString*)github
            twitter: (NSString*)twitter
-           website: (NSString*)website {
-  if (self = [super init]) {
+           website: (NSString*)website
+             email: (NSString*)email {
+  self = [super init];
+  if (nil != self) {
     self.name     = name;
     self.github   = github;
     self.twitter  = twitter;
     self.website  = website;
+    self.email    = email;
   }
   return self;
 }
@@ -69,7 +76,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  return [self initWithName:@"Unknown" github:nil twitter:nil website:nil];
+  return [self initWithName:@"Unknown" github:nil twitter:nil website:nil email:nil];
 }
 
 
@@ -79,6 +86,7 @@
   TT_RELEASE_SAFELY(_github);
   TT_RELEASE_SAFELY(_twitter);
   TT_RELEASE_SAFELY(_website);
+  TT_RELEASE_SAFELY(_email);
 
   [super dealloc];
 }
