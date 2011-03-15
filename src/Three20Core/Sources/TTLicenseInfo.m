@@ -63,7 +63,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString*)preambleForLicense: (TTLicense)license
-              withCopyrightYear: (NSString*)copyrightYear
+          withCopyrightTimespan: (NSString*)copyrightTimespan
              withCopyrightOwner: (NSString*)copyrightOwner {
   switch (license) {
 
@@ -82,7 +82,7 @@
               @" WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied."
               @" See the License for the specific language governing permissions and"
               @" limitations under the License.",
-              copyrightYear,
+              copyrightTimespan,
               copyrightOwner];
       break;
 
@@ -111,7 +111,7 @@
               @" LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND"
               @" ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT"
               @" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS",
-              copyrightYear,
+              copyrightTimespan,
               copyrightOwner];
       break;
 

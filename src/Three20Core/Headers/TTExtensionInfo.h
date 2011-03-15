@@ -17,14 +17,19 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "Three20Core/TTLicense.h"
+
 @interface TTExtensionInfo : NSObject {
 @private
   NSString* _id;
   NSString* _name;
   NSString* _description;
   NSString* _version;
-  NSString* _copyright;
-  NSString* _license;
+
+  // License information
+  TTLicense _license;
+  NSString* _copyrightOwner;
+  NSString* _copyrightTimespan;
   NSArray*  _authors;
 }
 
@@ -32,8 +37,9 @@
 @property (nonatomic, copy)     NSString* name;
 @property (nonatomic, copy)     NSString* description;
 @property (nonatomic, copy)     NSString* version;
-@property (nonatomic, copy)     NSString* copyright;
-@property (nonatomic, copy)     NSString* license;
+@property (nonatomic, assign)   TTLicense license;
+@property (nonatomic, copy)     NSString* copyrightOwner;
+@property (nonatomic, copy)     NSString* copyrightTimespan;
 @property (nonatomic, copy)     NSArray*  authors; // NSArray of TTExtensionAuthor* objects.
 
 @end

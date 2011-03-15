@@ -38,7 +38,7 @@
  * The license preamble with the given information inserted where necessary.
  */
 + (NSString*)preambleForLicense: (TTLicense)license
-              withCopyrightYear: (NSString*)copyrightYear
+          withCopyrightTimespan: (NSString*)copyrightTimespan
              withCopyrightOwner: (NSString*)copyrightOwner;
 
 @end
