@@ -75,4 +75,17 @@
 + (NSString*)urlPathForExtensionInfoControllerWithPrefix: (NSString*)prefix
                                              extensionID: (NSString*)extensionId;
 
+/**
+ * The URL path for a specific extension's license information controller.
+ *
+ * @param prefix        The same prefix used to register the URL paths.
+ * @param extensionId   The extension identifier. A list of these identifiers can be obtained from
+ *                      TTExtensionLoader.
+ * @param licenseIndex  The license index. Each extension has an array of licenses to which this
+ *                      index should map.
+ */
++ (NSString*)urlPathForExtensionLicenseControllerWithPrefix: (NSString*)prefix
+                                                extensionID: (NSString*)extensionId
+                                               licenseIndex: (NSInteger)licenseIndex;
+
 @end

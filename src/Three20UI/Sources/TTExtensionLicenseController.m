@@ -42,12 +42,15 @@ static const CGFloat kFramePadding = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithExtensionID:(NSString*)identifier {
+- (id)initWithExtensionID:(NSString*)identifier licenseIndex:(NSInteger)licenseIndex {
   self = [super initWithNibName:nil bundle:nil];
   if (nil != self) {
-    _extensionInfo = [[[TTExtensionLoader availableExtensions] objectForKey:identifier] retain];
+    TTExtensionInfo* extensionInfo = [[TTExtensionLoader availableExtensions]
+                                      objectForKey:identifier];
 
-    self.title = [TTLicenseInfo nameForLicense:_extensionInfo.license];
+    _licenseInfo = [[extensionInfo.licenses objectAtIndex:licenseIndex] retain];
+
+    self.title = [TTLicenseInfo nameForLicense:_licenseInfo.license];
   }
 
   return self;
@@ -56,13 +59,13 @@ static const CGFloat kFramePadding = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  return [self initWithExtensionID:nil];
+  return [self initWithExtensionID:nil licenseIndex:0];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_extensionInfo);
+  TT_RELEASE_SAFELY(_licenseInfo);
 
   [super dealloc];
 }
@@ -74,12 +77,8 @@ static const CGFloat kFramePadding = 10;
 
   self.view.backgroundColor = [UIColor whiteColor];
 
-  NSString* preamble = [TTLicenseInfo preambleForLicense: _extensionInfo.license
-                                   withCopyrightTimespan: _extensionInfo.copyrightTimespan
-                                      withCopyrightOwner: _extensionInfo.copyrightOwner];
-
   _licensePreambleLabel = [[TTStyledTextLabel alloc] init];
-  _licensePreambleLabel.text = [TTStyledText textWithURLs:preamble lineBreaks:YES];
+  _licensePreambleLabel.text = [TTStyledText textWithURLs:[_licenseInfo preamble] lineBreaks:YES];
   _licensePreambleLabel.backgroundColor = self.view.backgroundColor;
 
   _scrollView = [[UIScrollView alloc] init];

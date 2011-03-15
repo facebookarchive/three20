@@ -41,7 +41,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (nil != self) {
     self.title = @"Extensions";
     self.variableHeightRows = YES;
 
@@ -140,11 +141,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString*)urlPathForExtensionLicenseControllerWithPrefix: (NSString*)prefix
-                                                extensionID: (NSString*)extensionId {
+                                                extensionID: (NSString*)extensionId
+                                               licenseIndex: (NSInteger)licenseIndex {
   // We can't use stringByAppendingPathComponent here because it turns :// into :/
   return [[self urlPathForExtensionInfoControllerWithPrefix: prefix
                                                 extensionID: extensionId]
-          stringByAppendingString:@"/license"];
+          stringByAppendingFormat:@"/license/%d", licenseIndex];
 }
 
 
@@ -158,7 +160,7 @@
                        stringByAppendingString:@"/(initWithExtensionID:)"]
     toViewController: [TTExtensionInfoController class]];
   [map          from: [[self urlPathForExtensionsControllerWithPrefix:prefix]
-                       stringByAppendingString:@"/(initWithExtensionID:)/license"]
+                       stringByAppendingString:@"/(initWithExtensionID:)/license/(licenseIndex:)"]
     toViewController: [TTExtensionLicenseController class]];
 }
 

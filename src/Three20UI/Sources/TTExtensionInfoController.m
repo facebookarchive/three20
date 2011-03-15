@@ -66,6 +66,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_extension);
+
   [super dealloc];
 }
 
@@ -82,19 +83,32 @@
                     [TTTableLongTextItem itemWithText:_extension.description],
                     nil]];
 
-  NSString* licenseURLPath = [[self navigatorURL] stringByAppendingString:@"/license"];
-
   [titles addObject:@"General Info"];
-  [items addObject:[NSArray arrayWithObjects:
-                    [TTTableCaptionItem itemWithText:_extension.name caption:@"Name:"],
-                    [TTTableCaptionItem itemWithText:_extension.version caption:@"Version:"],
-                    [TTTableCaptionItem itemWithText:
-                     [TTLicenseInfo nameForLicense:_extension.license]
-                                             caption: @"License:"
-                                                 URL: licenseURLPath],
-                    [TTTableCaptionItem itemWithText: _extension.copyrightOwner
-                                             caption: @"Copyright:"],
-                    nil]];
+
+  NSMutableArray* generalInfo = [NSMutableArray array];
+
+  [generalInfo addObjectsFromArray:
+   [NSArray arrayWithObjects:
+    [TTTableCaptionItem itemWithText:_extension.name caption:@"Name:"],
+    [TTTableCaptionItem itemWithText:_extension.version caption:@"Version:"],
+    nil]];
+
+  for (NSInteger ix = 0; ix < [_extension.licenses count]; ++ix) {
+    TTLicenseInfo* licenseInfo = [_extension.licenses objectAtIndex:ix];
+
+    NSString* licenseURLPath = [[self navigatorURL] stringByAppendingFormat:
+                                @"/license/%d",
+                                ix];
+
+    [generalInfo addObject:
+     [TTTableCaptionItem itemWithText: [NSString stringWithFormat:@"%@ %@",
+                                        licenseInfo.copyrightOwner,
+                                        licenseInfo.copyrightTimespan]
+                              caption: @"License:"
+                                  URL: licenseURLPath]];
+  }
+
+  [items addObject:generalInfo];
 
   if ([_extension.authors count] > 0) {
     [titles addObject:@"Authors"];

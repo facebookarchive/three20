@@ -20,12 +20,12 @@
 // Core
 #import "Three20Core/TTLicense.h"
 
-@class TTExtensionInfo;
+@class TTLicenseInfo;
 @class TTStyledTextLabel;
 
 @interface TTExtensionLicenseController : TTViewController {
 @private
-  TTExtensionInfo* _extensionInfo;
+  TTLicenseInfo* _licenseInfo;
 
   UIScrollView*       _scrollView;
   TTStyledTextLabel*  _licensePreambleLabel;
