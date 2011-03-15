@@ -18,6 +18,7 @@
 
 // UI
 #import "Three20UI/TTExtensionInfoController.h"
+#import "Three20UI/TTExtensionLicenseController.h"
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTSectionedDataSource.h"
 #import "Three20UI/TTTableSubtitleItem.h"
@@ -105,7 +106,7 @@
   }
 
   if ([availableExtensions count] > 0) {
-    [sectionTitles addObject:@"Linked, but not loaded extensions"];
+    [sectionTitles addObject:@"Linked, but not loaded, extensions"];
     for (NSString* extensionID in availableExtensions) {
       TTExtensionInfo* extension = [availableExtensions objectForKey:extensionID];
       [availableItems addObject:[self tableItemForExtension:extension]];
@@ -138,6 +139,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSString*)urlPathForExtensionLicenseControllerWithPrefix: (NSString*)prefix
+                                                extensionID: (NSString*)extensionId {
+  // We can't use stringByAppendingPathComponent here because it turns :// into :/
+  return [[self urlPathForExtensionInfoControllerWithPrefix: prefix
+                                                extensionID: extensionId]
+          stringByAppendingString:@"/license"];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)registerUrlPathsWithNavigator:(TTNavigator*)navigator prefix:(NSString*)prefix {
   TTURLMap* map = navigator.URLMap;
 
@@ -146,6 +157,9 @@
   [map          from: [[self urlPathForExtensionsControllerWithPrefix:prefix]
                        stringByAppendingString:@"/(initWithExtensionID:)"]
     toViewController: [TTExtensionInfoController class]];
+  [map          from: [[self urlPathForExtensionsControllerWithPrefix:prefix]
+                       stringByAppendingString:@"/(initWithExtensionID:)/license"]
+    toViewController: [TTExtensionLicenseController class]];
 }
 
 

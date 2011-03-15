@@ -22,9 +22,14 @@
 #import "Three20UI/TTTableLongTextItem.h"
 #import "Three20UI/TTTableTextItem.h"
 
+// UINavigator
+#import "Three20UINavigator/UIViewController+TTNavigator.h"
+
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTDebug.h"
+#import "Three20Core/TTLicense.h"
+#import "Three20Core/TTLicenseInfo.h"
 #import "Three20Core/TTExtensionInfo.h"
 #import "Three20Core/TTExtensionAuthor.h"
 #import "Three20Core/TTExtensionLoader.h"
@@ -38,7 +43,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithExtensionID:(NSString*)identifier {
-  if (self = [super initWithNibName:nil bundle:nil]) {
+  self = [super initWithNibName:nil bundle:nil];
+  if (nil != self) {
     self.title = @"Extension Info";
     self.tableViewStyle = UITableViewStyleGrouped;
 
@@ -76,12 +82,18 @@
                     [TTTableLongTextItem itemWithText:_extension.description],
                     nil]];
 
+  NSString* licenseURLPath = [[self navigatorURL] stringByAppendingString:@"/license"];
+
   [titles addObject:@"General Info"];
   [items addObject:[NSArray arrayWithObjects:
                     [TTTableCaptionItem itemWithText:_extension.name caption:@"Name:"],
                     [TTTableCaptionItem itemWithText:_extension.version caption:@"Version:"],
-                    [TTTableCaptionItem itemWithText:_extension.license caption:@"License:"],
-                    [TTTableCaptionItem itemWithText:_extension.copyright caption:@"Copyright:"],
+                    [TTTableCaptionItem itemWithText:
+                     [TTLicenseInfo nameForLicense:_extension.license]
+                                             caption: @"License:"
+                                                 URL: licenseURLPath],
+                    [TTTableCaptionItem itemWithText: _extension.copyrightOwner
+                                             caption: @"Copyright:"],
                     nil]];
 
   if ([_extension.authors count] > 0) {
