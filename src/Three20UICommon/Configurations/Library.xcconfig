@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,5 +17,6 @@
 #include "../common/Configurations/Library.xcconfig"
 #include "../common/Configurations/Libraries.xcconfig"
 
-PRODUCT_NAME            = Three20UICommon
+BASE_PRODUCT_NAME       = Three20UICommon
+PRODUCT_NAME            = $(BASE_PRODUCT_NAME)
 BUILD_LIBRARY_VERSION   = 1.0

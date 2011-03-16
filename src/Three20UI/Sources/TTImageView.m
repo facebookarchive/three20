@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,10 +18,10 @@
 
 // UI
 #import "Three20UI/TTImageViewDelegate.h"
-#import "Three20UI/TTImageLayer.h"
 
 // UI (private)
-#import "Three20UI/TTImageViewInternal.h"
+#import "Three20UI/private/TTImageLayer.h"
+#import "Three20UI/private/TTImageViewInternal.h"
 
 // Style
 #import "Three20Style/TTShape.h"
@@ -99,6 +99,7 @@
 - (void)drawContent:(CGRect)rect {
   if (nil != _image) {
     [_image drawInRect:rect contentMode:self.contentMode];
+
   } else {
     [_defaultImage drawInRect:rect contentMode:self.contentMode];
   }
@@ -209,7 +210,7 @@
 
       if (![request send]) {
         // Put the default image in place while waiting for the request to load
-        if (_defaultImage && self.image != _defaultImage) {
+        if (_defaultImage && nil == self.image) {
           self.image = _defaultImage;
         }
       }
@@ -249,6 +250,19 @@
 - (void)unsetImage {
   [self stopLoading];
   self.image = nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setDefaultImage:(UIImage*)theDefaultImage {
+  if (_defaultImage != theDefaultImage) {
+    [_defaultImage release];
+    _defaultImage = [theDefaultImage retain];
+  }
+  if (nil == _urlPath || 0 == _urlPath.length) {
+    //no url path set yet, so use it as the current image
+    self.image = _defaultImage;
+  }
 }
 
 

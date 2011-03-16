@@ -425,7 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37930311B7F2A40011C497 /* libThree20Network.a */,
-				6E37930511B7F2A40011C497 /* UnitTests.octest */,
+				6E37930511B7F2A40011C497 /* NetworkUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -434,7 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37930911B7F2A40011C497 /* libThree20Style.a */,
-				6E37930B11B7F2A40011C497 /* UnitTests.octest */,
+				6E37930B11B7F2A40011C497 /* StyleUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -443,7 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37930F11B7F2A40011C497 /* libThree20UICommon.a */,
-				6E37931111B7F2A40011C497 /* UnitTests.octest */,
+				6E37931111B7F2A40011C497 /* UICommonUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -452,7 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37931511B7F2A40011C497 /* libThree20UINavigator.a */,
-				6E37931711B7F2A40011C497 /* UnitTests.octest */,
+				6E37931711B7F2A40011C497 /* UINavigatorUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -461,7 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37931B11B7F2A40011C497 /* libThree20UI.a */,
-				6E37931D11B7F2A40011C497 /* UnitTests.octest */,
+				6E37931D11B7F2A40011C497 /* UIUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -531,7 +531,7 @@
 			children = (
 				6E6462881187DF2C00F08CB1 /* libextThree20JSON+SBJSON.a */,
 				6E64628A1187DF2C00F08CB1 /* libextThree20JSON+YAJL.a */,
-				6E64628C1187DF2C00F08CB1 /* extJSONUnitTests.octest */,
+				6E64628C1187DF2C00F08CB1 /* extJSONUnitTests+SBJSON.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -540,7 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				6E7F981A118E385E00443B46 /* libThree20.a */,
-				6E7F981C118E385E00443B46 /* UnitTests.octest */,
+				6E7F981C118E385E00443B46 /* Three20UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -579,9 +579,19 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTFacebook" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
@@ -665,10 +675,10 @@
 			remoteRef = 6E37930211B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37930511B7F2A40011C497 /* UnitTests.octest */ = {
+		6E37930511B7F2A40011C497 /* NetworkUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = NetworkUnitTests.octest;
 			remoteRef = 6E37930411B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -679,10 +689,10 @@
 			remoteRef = 6E37930811B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37930B11B7F2A40011C497 /* UnitTests.octest */ = {
+		6E37930B11B7F2A40011C497 /* StyleUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = StyleUnitTests.octest;
 			remoteRef = 6E37930A11B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -693,10 +703,10 @@
 			remoteRef = 6E37930E11B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37931111B7F2A40011C497 /* UnitTests.octest */ = {
+		6E37931111B7F2A40011C497 /* UICommonUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UICommonUnitTests.octest;
 			remoteRef = 6E37931011B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -707,10 +717,10 @@
 			remoteRef = 6E37931411B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37931711B7F2A40011C497 /* UnitTests.octest */ = {
+		6E37931711B7F2A40011C497 /* UINavigatorUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UINavigatorUnitTests.octest;
 			remoteRef = 6E37931611B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -721,10 +731,10 @@
 			remoteRef = 6E37931A11B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37931D11B7F2A40011C497 /* UnitTests.octest */ = {
+		6E37931D11B7F2A40011C497 /* UIUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UIUnitTests.octest;
 			remoteRef = 6E37931C11B7F2A40011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -742,10 +752,10 @@
 			remoteRef = 6E6462891187DF2C00F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E64628C1187DF2C00F08CB1 /* extJSONUnitTests.octest */ = {
+		6E64628C1187DF2C00F08CB1 /* extJSONUnitTests+SBJSON.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = extJSONUnitTests.octest;
+			path = "extJSONUnitTests+SBJSON.octest";
 			remoteRef = 6E64628B1187DF2C00F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -756,10 +766,10 @@
 			remoteRef = 6E7F9819118E385E00443B46 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E7F981C118E385E00443B46 /* UnitTests.octest */ = {
+		6E7F981C118E385E00443B46 /* Three20UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = Three20UnitTests.octest;
 			remoteRef = 6E7F981B118E385E00443B46 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -854,9 +864,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "TTFacebook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -865,9 +873,7 @@
 			baseConfigurationReference = 6E64627C1187DF0F00F08CB1 /* App.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				INFOPLIST_FILE = "TTFacebook-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -875,14 +881,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E64627D1187DF0F00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -890,14 +895,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E64627D1187DF0F00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -103,6 +103,7 @@
   if (_imageView2) {
     _imageView2.frame = CGRectMake(0, 0, height, height);
     left = _imageView2.right + kTableCellSmallMargin;
+
   } else {
     left = kTableCellHPadding;
   }

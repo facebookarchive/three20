@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,6 +25,24 @@ BOOL TTIsBundleURL(NSString* URL);
  * @return YES if the URL begins with "documents://"
  */
 BOOL TTIsDocumentsURL(NSString* URL);
+
+/**
+ * Used by TTPathForBundleResource to construct the bundle path.
+ *
+ * Retains the given bundle.
+ *
+ * @default nil (See TTGetDefaultBundle for what this means)
+ */
+void TTSetDefaultBundle(NSBundle* bundle);
+
+/**
+ * Retrieves the default bundle.
+ *
+ * If the default bundle is nil, returns [NSBundle mainBundle].
+ *
+ * @see TTSetDefaultBundle
+ */
+NSBundle* TTGetDefaultBundle();
 
 /**
  * @return The main bundle path concatenated with the given relative path.

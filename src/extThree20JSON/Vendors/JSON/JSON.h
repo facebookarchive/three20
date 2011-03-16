@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009 Stig Brautaset. All rights reserved.
+ Copyright (C) 2009-2010 Stig Brautaset. All rights reserved.
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -35,16 +35,31 @@
  JSON. One standard object-based and a higher level api consisting of
  categories added to existing Objective-C classes.
 
- Learn more on the http://code.google.com/p/json-framework project site.
+ This framework does its best to be as strict as possible, both in what it accepts and what it generates. For example, it does not support trailing commas in arrays or objects. Nor does it support embedded comments, or anything else not in the JSON specification. This is considered a feature.
 
- This framework does its best to be as strict as possible, both in what it
- accepts and what it generates. For example, it does not support trailing commas
- in arrays or objects. Nor does it support embedded comments, or
- anything else not in the JSON specification. This is considered a feature.
+ @section Links
+
+ @li <a href="http://stig.github.com/json-framework">Project home page</a>.
+ @li Online version of the <a href="http://stig.github.com/json-framework/api">API documentation</a>.
 
 */
 
-#import "extThree20JSON/SBJSON.h"
+
+// This setting of 1 is best if you copy the source into your project.
+// The build transforms the 1 to a 0 when building the framework and static lib.
+
+#if 1
+
+#import "extThree20JSON/SBJsonParser.h"
+#import "extThree20JSON/SBJsonWriter.h"
 #import "extThree20JSON/NSObject+SBJSON.h"
 #import "extThree20JSON/NSString+SBJSON.h"
 
+#else
+
+#import <JSON/SBJsonParser.h>
+#import <JSON/SBJsonWriter.h>
+#import <JSON/NSObject+SBJSON.h>
+#import <JSON/NSString+SBJSON.h>
+
+#endif

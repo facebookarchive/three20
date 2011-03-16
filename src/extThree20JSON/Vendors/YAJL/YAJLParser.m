@@ -28,7 +28,7 @@
 //
 
 
-#import "YAJLParser.h"
+#import "extThree20JSON/YAJLParser.h"
 
 NSString *const YAJLErrorDomain = @"YAJLErrorDomain";
 NSString *const YAJLParserException = @"YAJLParserException";
@@ -40,8 +40,9 @@ NSString *const YAJLParserValueKey = @"YAJLParserValueKey";
 @property (retain, nonatomic) NSError *parserError;
 @end
 
+//! @internal
 
-@interface YAJLParser (Private)
+@interface YAJLParser ()
 - (void)_add:(id)value;
 - (void)_mapKey:(NSString *)key;
 
@@ -55,6 +56,8 @@ NSString *const YAJLParserValueKey = @"YAJLParserValueKey";
 - (void)_cancelWithErrorForStatus:(NSInteger)code message:(NSString *)message value:(NSString *)value;
 @end
 
+//! @endinternal
+
 
 @implementation YAJLParser
 
@@ -66,7 +69,7 @@ NSString *const YAJLParserValueKey = @"YAJLParserValueKey";
 
 - (id)initWithParserOptions:(YAJLParserOptions)parserOptions {
   if ((self = [super init])) {
-    parserOptions_ = parserOptions;   
+    parserOptions_ = parserOptions;
   }
   return self;
 }
@@ -75,8 +78,8 @@ NSString *const YAJLParserValueKey = @"YAJLParserValueKey";
   if (handle_ != NULL) {
     yajl_free(handle_);
     handle_ = NULL;
-  } 
-  
+  }
+
   [parserError_ release];
   [super dealloc];
 }
@@ -109,7 +112,7 @@ int yajl_boolean(void *ctx, int boolVal) {
 
 // Instead of using yajl_integer, and yajl_double we use yajl_number and parse
 // as double (or long long); This is to be more compliant since Javascript numbers are represented
-// as double precision floating point, though JSON spec doesn't define a max value 
+// as double precision floating point, though JSON spec doesn't define a max value
 // and is up to the parser?
 
 //int yajl_integer(void *ctx, long integerVal) {
@@ -140,7 +143,7 @@ int yajl_number(void *ctx, const char *numberVal, unsigned int numberLen) {
   char buf[numberLen+1];
   memcpy(buf, numberVal, numberLen);
   buf[numberLen] = 0;
-  
+
   if (memchr(numberVal, '.', numberLen) || memchr(numberVal, 'e', numberLen) || memchr(numberVal, 'E', numberLen)) {
     return ParseDouble(ctx, buf, numberVal, numberLen);
   } else {
@@ -152,7 +155,7 @@ int yajl_number(void *ctx, const char *numberVal, unsigned int numberLen) {
         [s release];
         return 0;
       } else {
-        // If we integer overflow lets try double precision for HUGE_VAL > double > LLONG_MAX 
+        // If we integer overflow lets try double precision for HUGE_VAL > double > LLONG_MAX
         return ParseDouble(ctx, buf, numberVal, numberLen);
       }
     }
@@ -160,7 +163,7 @@ int yajl_number(void *ctx, const char *numberVal, unsigned int numberLen) {
     [(id)ctx _add:number];
     [number release];
   }
-  
+
   return 1;
 }
 
@@ -214,6 +217,8 @@ yajl_end_array
 
 #pragma mark -
 
+//! @internal
+
 - (void)_add:(id)value {
   [delegate_ parser:self didAdd:value];
 }
@@ -230,7 +235,7 @@ yajl_end_array
   [delegate_ parserDidEndDictionary:self];
 }
 
-- (void)_startArray { 
+- (void)_startArray {
   [delegate_ parserDidStartArray:self];
 }
 
@@ -238,20 +243,22 @@ yajl_end_array
   [delegate_ parserDidEndArray:self];
 }
 
+//! @endinternal
+
 - (YAJLParserStatus)parse:(NSData *)data {
   if (!handle_) {
     yajl_parser_config cfg = {
       ((parserOptions_ & YAJLParserOptionsAllowComments) ? 1 : 0), // allowComments: if nonzero, javascript style comments will be allowed in the input (both /* */ and //)
       ((parserOptions_ & YAJLParserOptionsCheckUTF8) ? 1 : 0)  // checkUTF8: if nonzero, invalid UTF8 strings will cause a parse error
     };
-    
+
     handle_ = yajl_alloc(&callbacks, &cfg, NULL, self);
-    if (!handle_) { 
+    if (!handle_) {
       self.parserError = [self _errorForStatus:YAJLParserErrorCodeAllocError message:@"Unable to allocate YAJL handle" value:nil];
       return YAJLParserStatusError;
-    } 
+    }
   }
-  
+
   yajl_status status = yajl_parse(handle_, [data bytes], [data length]);
   if (status == yajl_status_client_canceled) {
     // We cancelled because we encountered an error here in the client;

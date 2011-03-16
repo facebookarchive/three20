@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTImageLayer.h"
+#import "Three20UI/private/TTImageLayer.h"
 
 // UI
 #import "Three20UI/TTImageView.h"
@@ -32,6 +32,7 @@
 - (void)display {
   if (nil != _override) {
     self.contents = (id)_override.image.CGImage;
+
   } else {
     return [super display];
   }

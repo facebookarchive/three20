@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,9 @@
 #import "Three20Core/TTGlobalCorePaths.h"
 
 
+static NSBundle* globalBundle = nil;
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsBundleURL(NSString* URL) {
   return [URL hasPrefix:@"bundle://"];
@@ -30,8 +33,22 @@ BOOL TTIsDocumentsURL(NSString* URL) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+void TTSetDefaultBundle(NSBundle* bundle) {
+  [bundle retain];
+  [globalBundle release];
+  globalBundle = bundle;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSBundle* TTGetDefaultBundle() {
+  return (nil != globalBundle) ? globalBundle : [NSBundle mainBundle];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTPathForBundleResource(NSString* relativePath) {
-  NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+  NSString* resourcePath = [TTGetDefaultBundle() resourcePath];
   return [resourcePath stringByAppendingPathComponent:relativePath];
 }
 
@@ -39,7 +56,7 @@ NSString* TTPathForBundleResource(NSString* relativePath) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTPathForDocumentsResource(NSString* relativePath) {
   static NSString* documentsPath = nil;
-  if (!documentsPath) {
+  if (nil == documentsPath) {
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(
       NSDocumentDirectory, NSUserDomainMask, YES);
     documentsPath = [[dirs objectAtIndex:0] retain];

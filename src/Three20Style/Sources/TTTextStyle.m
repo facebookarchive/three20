@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -190,6 +190,7 @@
   if (_textAlignment == UITextAlignmentLeft
       && _verticalAlignment == UIControlContentVerticalAlignmentTop) {
     rect.size = size;
+
   } else {
     CGSize textSize = [self sizeOfText:text withFont:font size:size];
 
@@ -201,12 +202,14 @@
 
     if (_textAlignment == UITextAlignmentCenter) {
       rect.origin.x = round(size.width/2 - textSize.width/2);
+
     } else if (_textAlignment == UITextAlignmentRight) {
       rect.origin.x = size.width - textSize.width;
     }
 
     if (_verticalAlignment == UIControlContentVerticalAlignmentCenter) {
       rect.origin.y = round(size.height/2 - textSize.height/2);
+
     } else if (_verticalAlignment == UIControlContentVerticalAlignmentBottom) {
       rect.origin.y = size.height - textSize.height;
     }
@@ -249,12 +252,14 @@
   if (_numberOfLines == 1) {
     CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
     titleRect.size = [text drawAtPoint:
-                      CGPointMake(titleRect.origin.x+rect.origin.x, titleRect.origin.y+rect.origin.y)
+                      CGPointMake(titleRect.origin.x+rect.origin.x,
+                                  titleRect.origin.y+rect.origin.y)
                               forWidth:rect.size.width withFont:font
                            minFontSize:_minimumFontSize ? _minimumFontSize : font.pointSize
                         actualFontSize:nil lineBreakMode:_lineBreakMode
                     baselineAdjustment:UIBaselineAdjustmentAlignCenters];
     context.contentFrame = titleRect;
+
   } else {
     CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
     titleRect = CGRectOffset(titleRect, rect.origin.x, rect.origin.y);
@@ -313,6 +318,7 @@
 
   if (_next) {
     return [self.next addToSize:size context:context];
+
   } else {
     return size;
   }

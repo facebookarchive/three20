@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 #import "extThree20JSON/TTURLJSONResponse.h"
 
 // extJSON
+#import "extThree20JSON/TTErrorCodes.h"
 #ifdef EXTJSON_SBJSON
 #import "extThree20JSON/JSON.h"
 #elif defined(EXTJSON_YAJL)
@@ -57,18 +58,30 @@
   // mistake.
   TTDASSERT([data isKindOfClass:[NSData class]]);
   TTDASSERT(nil == _rootObject);
-
+  NSError* err = nil;
   if ([data isKindOfClass:[NSData class]]) {
 #ifdef EXTJSON_SBJSON
     NSString* json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     _rootObject = [[json JSONValue] retain];
     TT_RELEASE_SAFELY(json);
+    if (!_rootObject) {
+      err = [NSError errorWithDomain:kTTExtJSONErrorDomain
+                                code:kTTExtJSONErrorCodeInvalidJSON
+                            userInfo:nil];
+    }
 #elif defined(EXTJSON_YAJL)
-    _rootObject = [[data yajl_JSON] retain];
+    @try {
+      _rootObject = [[data yajl_JSON] retain];
+    }
+    @catch (NSException* exception) {
+      err = [NSError errorWithDomain:kTTExtJSONErrorDomain
+                                code:kTTExtJSONErrorCodeInvalidJSON
+                            userInfo:[exception userInfo]];
+    }
 #endif
   }
 
-  return nil;
+  return err;
 }
 
 

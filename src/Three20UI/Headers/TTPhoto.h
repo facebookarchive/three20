@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
 @property (nonatomic, assign) id<TTPhotoSource> photoSource;
 
 /**
- * The index of the photo within its photo source.
+ * The size of the photo.
  */
 @property (nonatomic) CGSize size;
 

@@ -388,7 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				6E3795EC11B9B79C0011C497 /* libThree20.a */,
-				6E3795EE11B9B79C0011C497 /* UnitTests.octest */,
+				6E3795EE11B9B79C0011C497 /* Three20UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -440,7 +440,7 @@
 			children = (
 				6E6462E51187E6C800F08CB1 /* libextThree20JSON+SBJSON.a */,
 				6E6462E71187E6C800F08CB1 /* libextThree20JSON+YAJL.a */,
-				6E6462E91187E6C800F08CB1 /* extJSONUnitTests.octest */,
+				6E6462E91187E6C800F08CB1 /* extJSONUnitTests+SBJSON.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -458,7 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				6E64631D1187E7E800F08CB1 /* libThree20Network.a */,
-				6E64631F1187E7E800F08CB1 /* UnitTests.octest */,
+				6E64631F1187E7E800F08CB1 /* NetworkUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -467,7 +467,7 @@
 			isa = PBXGroup;
 			children = (
 				6E6463261187E7F000F08CB1 /* libThree20Style.a */,
-				6E6463281187E7F000F08CB1 /* UnitTests.octest */,
+				6E6463281187E7F000F08CB1 /* StyleUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -476,7 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				6E64632F1187E7F600F08CB1 /* libThree20UI.a */,
-				6E6463311187E7F600F08CB1 /* UnitTests.octest */,
+				6E6463311187E7F600F08CB1 /* UIUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -485,7 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				6E877627118D0052001691E0 /* libThree20UICommon.a */,
-				6E877629118D0052001691E0 /* UnitTests.octest */,
+				6E877629118D0052001691E0 /* UICommonUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -494,7 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				6E877630118D005A001691E0 /* libThree20UINavigator.a */,
-				6E877632118D005A001691E0 /* UnitTests.octest */,
+				6E877632118D005A001691E0 /* UINavigatorUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -534,7 +534,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTTwitter" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
@@ -586,10 +593,10 @@
 			remoteRef = 6E3795EB11B9B79C0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E3795EE11B9B79C0011C497 /* UnitTests.octest */ = {
+		6E3795EE11B9B79C0011C497 /* Three20UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = Three20UnitTests.octest;
 			remoteRef = 6E3795ED11B9B79C0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -607,10 +614,10 @@
 			remoteRef = 6E6462E61187E6C800F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E6462E91187E6C800F08CB1 /* extJSONUnitTests.octest */ = {
+		6E6462E91187E6C800F08CB1 /* extJSONUnitTests+SBJSON.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = extJSONUnitTests.octest;
+			path = "extJSONUnitTests+SBJSON.octest";
 			remoteRef = 6E6462E81187E6C800F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -635,10 +642,10 @@
 			remoteRef = 6E64631C1187E7E800F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E64631F1187E7E800F08CB1 /* UnitTests.octest */ = {
+		6E64631F1187E7E800F08CB1 /* NetworkUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = NetworkUnitTests.octest;
 			remoteRef = 6E64631E1187E7E800F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -649,10 +656,10 @@
 			remoteRef = 6E6463251187E7F000F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E6463281187E7F000F08CB1 /* UnitTests.octest */ = {
+		6E6463281187E7F000F08CB1 /* StyleUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = StyleUnitTests.octest;
 			remoteRef = 6E6463271187E7F000F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -663,10 +670,10 @@
 			remoteRef = 6E64632E1187E7F600F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E6463311187E7F600F08CB1 /* UnitTests.octest */ = {
+		6E6463311187E7F600F08CB1 /* UIUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UIUnitTests.octest;
 			remoteRef = 6E6463301187E7F600F08CB1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -677,10 +684,10 @@
 			remoteRef = 6E877626118D0052001691E0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E877629118D0052001691E0 /* UnitTests.octest */ = {
+		6E877629118D0052001691E0 /* UICommonUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UICommonUnitTests.octest;
 			remoteRef = 6E877628118D0052001691E0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -691,10 +698,10 @@
 			remoteRef = 6E87762F118D005A001691E0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E877632118D005A001691E0 /* UnitTests.octest */ = {
+		6E877632118D005A001691E0 /* UINavigatorUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UINavigatorUnitTests.octest;
 			remoteRef = 6E877631118D005A001691E0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -782,9 +789,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "TTTwitter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -793,9 +798,7 @@
 			baseConfigurationReference = 6E6462D91187E6A900F08CB1 /* App.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				INFOPLIST_FILE = "TTTwitter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -803,13 +806,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6462DA1187E6A900F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -817,13 +819,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6462DA1187E6A900F08CB1 /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

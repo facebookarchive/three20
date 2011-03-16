@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 #import "Three20Core/NSMutableDictionaryAdditions.h"
 
 // Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTGlobalCore.h"
 
 
@@ -26,6 +27,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(NSMutableDictionaryAdditions)
+
 @implementation NSMutableDictionary (TTCategory)
 
 

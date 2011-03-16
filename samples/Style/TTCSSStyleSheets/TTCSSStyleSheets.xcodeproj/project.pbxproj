@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		663DB50E1266288E00CF8CEA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663DB50D1266288E00CF8CEA /* Default@2x.png */; };
 		6E036BD011B38E550025E8EE /* libextThree20CSSStyle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E036BCD11B38E520025E8EE /* libextThree20CSSStyle.a */; };
 		6E036BF511B38EDC0025E8EE /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 6E036BF411B38EDC0025E8EE /* stylesheet.css */; };
 		6E036BF811B38F3C0025E8EE /* StyleSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036BF711B38F3C0025E8EE /* StyleSheetViewController.m */; };
@@ -209,6 +210,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		663DB50D1266288E00CF8CEA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Resources/Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		6E036BC711B38E520025E8EE /* extThree20CSSStyle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20CSSStyle.xcodeproj; path = ../../../src/extThree20CSSStyle/extThree20CSSStyle.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E036BF411B38EDC0025E8EE /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = stylesheet.css; path = Resources/stylesheet.css; sourceTree = "<group>"; };
 		6E036BF611B38F3C0025E8EE /* StyleSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleSheetViewController.h; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				6E0835B311B4C42100B99C32 /* extThree20CSSStyle.bundle */,
 				6E8513D211B19B0E0071A4FD /* TTCSSStyleSheets-Info.plist */,
 				6E850FAC11B176F10071A4FD /* Default.png */,
+				663DB50D1266288E00CF8CEA /* Default@2x.png */,
 				6E850FAD11B176F10071A4FD /* Icon.png */,
 				6E036BF411B38EDC0025E8EE /* stylesheet.css */,
 			);
@@ -347,7 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				6E3793EF11B9B59D0011C497 /* libThree20Network.a */,
-				6E3793F111B9B59D0011C497 /* UnitTests.octest */,
+				6E3793F111B9B59D0011C497 /* NetworkUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -356,7 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				6E3793F511B9B59D0011C497 /* libThree20Style.a */,
-				6E3793F711B9B59D0011C497 /* UnitTests.octest */,
+				6E3793F711B9B59D0011C497 /* StyleUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -365,7 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				6E3793FB11B9B59D0011C497 /* libThree20UICommon.a */,
-				6E3793FD11B9B59D0011C497 /* UnitTests.octest */,
+				6E3793FD11B9B59D0011C497 /* UICommonUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -374,7 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37940111B9B59D0011C497 /* libThree20UINavigator.a */,
-				6E37940311B9B59D0011C497 /* UnitTests.octest */,
+				6E37940311B9B59D0011C497 /* UINavigatorUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -383,7 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37940711B9B59D0011C497 /* libThree20UI.a */,
-				6E37940911B9B59D0011C497 /* UnitTests.octest */,
+				6E37940911B9B59D0011C497 /* UIUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -425,7 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				6E850F8811B1762B0071A4FD /* libThree20.a */,
-				6E850F8A11B1762B0071A4FD /* UnitTests.octest */,
+				6E850F8A11B1762B0071A4FD /* Three20UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -481,9 +484,19 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTCSSStyleSheets" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
@@ -563,10 +576,10 @@
 			remoteRef = 6E3793EE11B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E3793F111B9B59D0011C497 /* UnitTests.octest */ = {
+		6E3793F111B9B59D0011C497 /* NetworkUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = NetworkUnitTests.octest;
 			remoteRef = 6E3793F011B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -577,10 +590,10 @@
 			remoteRef = 6E3793F411B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E3793F711B9B59D0011C497 /* UnitTests.octest */ = {
+		6E3793F711B9B59D0011C497 /* StyleUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = StyleUnitTests.octest;
 			remoteRef = 6E3793F611B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -591,10 +604,10 @@
 			remoteRef = 6E3793FA11B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E3793FD11B9B59D0011C497 /* UnitTests.octest */ = {
+		6E3793FD11B9B59D0011C497 /* UICommonUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UICommonUnitTests.octest;
 			remoteRef = 6E3793FC11B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -605,10 +618,10 @@
 			remoteRef = 6E37940011B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37940311B9B59D0011C497 /* UnitTests.octest */ = {
+		6E37940311B9B59D0011C497 /* UINavigatorUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UINavigatorUnitTests.octest;
 			remoteRef = 6E37940211B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -619,10 +632,10 @@
 			remoteRef = 6E37940611B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37940911B9B59D0011C497 /* UnitTests.octest */ = {
+		6E37940911B9B59D0011C497 /* UIUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UIUnitTests.octest;
 			remoteRef = 6E37940811B9B59D0011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -633,10 +646,10 @@
 			remoteRef = 6E850F8711B1762B0071A4FD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E850F8A11B1762B0071A4FD /* UnitTests.octest */ = {
+		6E850F8A11B1762B0071A4FD /* Three20UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = Three20UnitTests.octest;
 			remoteRef = 6E850F8911B1762B0071A4FD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -652,6 +665,7 @@
 				6E850FAE11B176F10071A4FD /* Default.png in Resources */,
 				6E850FAF11B176F10071A4FD /* Icon.png in Resources */,
 				6E036BF511B38EDC0025E8EE /* stylesheet.css in Resources */,
+				663DB50E1266288E00CF8CEA /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,7 +740,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				INFOPLIST_FILE = "TTCSSStyleSheets-Info.plist";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -738,7 +752,7 @@
 				COPY_PHASE_STRIP = YES;
 				INFOPLIST_FILE = "TTCSSStyleSheets-Info.plist";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -746,13 +760,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E850F4911B175FD0071A4FD /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -760,13 +773,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E850F4911B175FD0071A4FD /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

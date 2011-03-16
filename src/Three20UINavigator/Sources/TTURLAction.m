@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,7 +32,16 @@
 @synthesize state         = _state;
 @synthesize animated      = _animated;
 @synthesize withDelay     = _withDelay;
+@synthesize sourceRect    = _sourceRect;
+@synthesize sourceView    = _sourceView;
+@synthesize sourceButton  = _sourceButton;
 @synthesize transition    = _transition;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (id)action {
+  return [[[self alloc] init] autorelease];
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +53,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURLPath:(NSString*)urlPath {
   if (self = [super init]) {
-    TTDASSERT(nil != urlPath);
     self.urlPath = urlPath;
     self.animated = NO;
     self.withDelay = NO;
@@ -66,10 +74,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  self.urlPath        = nil;
-  self.parentURLPath  = nil;
-  self.query          = nil;
-  self.state          = nil;
+  TT_RELEASE_SAFELY(_urlPath);
+  TT_RELEASE_SAFELY(_parentURLPath);
+  TT_RELEASE_SAFELY(_query);
+  TT_RELEASE_SAFELY(_state);
+  TT_RELEASE_SAFELY(_sourceView);
+  TT_RELEASE_SAFELY(_sourceButton);
 
   [super dealloc];
 }
@@ -106,6 +116,27 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)applyWithDelay:(BOOL)withDelay {
   self.withDelay = withDelay;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applySourceRect:(CGRect)sourceRect {
+  self.sourceRect = sourceRect;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applySourceView:(UIView*)sourceView {
+  self.sourceView = sourceView;
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTURLAction*)applySourceButton:(UIBarButtonItem*)sourceButton {
+  self.sourceButton = sourceButton;
   return self;
 }
 

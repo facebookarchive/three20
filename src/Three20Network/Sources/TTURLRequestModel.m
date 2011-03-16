@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -158,5 +158,15 @@
   [self didCancelLoad];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (float)downloadProgress {
+  if ([self isLoading]) {
+    if (!_loadingRequest.totalContentLength) {
+      return 0;
+    }
+    return (float)_loadingRequest.totalBytesDownloaded / (float)_loadingRequest.totalContentLength;
+  }
+  return 0.0f;
+}
 
 @end

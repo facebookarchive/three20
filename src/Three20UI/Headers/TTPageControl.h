@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -37,6 +37,11 @@
 @property (nonatomic)       NSInteger currentPage;
 @property (nonatomic, copy) NSString* dotStyle;
 
+/**
+ * Set to YES to hide the pagecontrol if only one page is present
+ *
+ * @default NO
+ */
 @property (nonatomic)       BOOL      hidesForSinglePage;
 
 @end

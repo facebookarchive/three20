@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@
 - (void)launcherView:(TTLauncherView*)launcher didMoveItem:(TTLauncherItem*)item;
 
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item;
+
+- (void)launcherViewDidEndDragging:(TTLauncherView*)launcher;
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher;
 

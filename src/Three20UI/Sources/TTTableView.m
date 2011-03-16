@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,9 @@
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTStyledTextLabel.h"
 #import "Three20UI/UIViewAdditions.h"
+
+// UICommon
+#import "Three20UICommon/UIWindowAdditions.h"
 
 // Style
 #import "Three20Style/TTStyledNode.h"
@@ -88,6 +91,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
 //    CGPoint point = [touch locationInView:_menuView];
 //    if (point.y < 0 || point.y > _menuView.height) {
 //      [self hideMenu:YES];
+
 //    } else {
 //      UIView* hit = [_menuView hitTest:point withEvent:event];
 //      if (![hit isKindOfClass:[UIControl class]]) {
@@ -113,10 +117,10 @@ static const CGFloat kCancelHighlightThreshold = 4;
     // the node implementation. One potential fix would be to provide some protocol for these
     // nodes to converse with.
     if ([element isKindOfClass:[TTStyledLinkNode class]]) {
-      TTOpenURL([(TTStyledLinkNode*)element URL]);
+      TTOpenURLFromView([(TTStyledLinkNode*)element URL], self);
 
     } else if ([element isKindOfClass:[TTStyledButtonNode class]]) {
-      TTOpenURL([(TTStyledButtonNode*)element URL]);
+      TTOpenURLFromView([(TTStyledButtonNode*)element URL], self);
 
 
     } else {
@@ -174,8 +178,16 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)reloadData {
+  // -[UITableView reloadData] takes away first responder status if the first responder is a
+  // subview, so remember it and then restore it afterward to avoid awkward keyboard disappearance
+  UIResponder* firstResponder = [self.window findFirstResponderInView:self];
+
   CGFloat y = self.contentOffset.y;
   [super reloadData];
+
+  if (nil != firstResponder) {
+    [firstResponder becomeFirstResponder];
+  }
 
   if (_highlightedLabel) {
     self.highlightedLabel = nil;

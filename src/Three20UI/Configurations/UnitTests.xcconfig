@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,8 @@
 #include "../common/Configurations/UnitTests.xcconfig"
 #include "../common/Configurations/Libraries.xcconfig"
 
-PRODUCT_NAME          = UIUnitTests
-BUILD_BUNDLE_VERSION  = 1.0
+BASE_PRODUCT_NAME       = UIUnitTests
+PRODUCT_NAME            = $(BASE_PRODUCT_NAME)
+BUILD_BUNDLE_VERSION    = 1.0
 
-OTHER_LDFLAGS         = $(COMMON_LDFLAGS) $(UIKIT_FX) $(COREGRAPHICS_FX) $(QUARTZCORE_FX)
+OTHER_LDFLAGS           = $(COMMON_LDFLAGS) $(UIKIT_FX) $(COREGRAPHICS_FX) $(QUARTZCORE_FX)

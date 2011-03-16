@@ -1,0 +1,12 @@
+{
+	Checkboxes = (
+		{
+			Key = CoreData;
+			Title = "Use Core Data for storage";
+		},
+	);
+	TemplateSelection = {
+		"" = "Simple Application";
+		CoreData = "Simple Core Data Application";
+	};
+}

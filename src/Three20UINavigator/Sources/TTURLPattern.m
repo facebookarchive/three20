@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@
 #import "Three20UINavigator/TTURLPattern.h"
 
 // UINavigator (Private)
-#import "Three20UINavigator/TTURLWildcard.h"
-#import "Three20UINavigator/TTURLLiteral.h"
+#import "Three20UINavigator/private/TTURLWildcard.h"
+#import "Three20UINavigator/private/TTURLLiteral.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -150,9 +150,9 @@
   }
 
   if (URL.query) {
-    NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* query = [URL.query queryContentsUsingEncoding:NSUTF8StringEncoding];
     for (NSString* name in [query keyEnumerator]) {
-      NSString* value = [query objectForKey:name];
+      NSString* value = [[query objectForKey:name] objectAtIndex:0];
       [self parseParameter:name value:value];
     }
   }

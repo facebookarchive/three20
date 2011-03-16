@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Three20Core/TTCorePreprocessorMacros.h" // For __TTDEPRECATED_METHOD
 
 /**
  * Doxygen does not handle categories very well, so please refer to the .m file in general
@@ -29,13 +30,38 @@
 
 /**
  * Determines if the string is empty or contains only whitespace.
+ * @deprecated Use TTIsStringWithAnyText() instead. Updating your use of
+ * this method is non-trivial. See the note below.
+ *
+ * Notes for updating your use of isEmptyOrWhitespace:
+ *
+ * if (!textField.text.isEmptyOrWhitespace) {
+ *
+ * becomes
+ *
+ * if (TTIsStringWithAnyText(textField.text) && !textField.text.isWhitespaceAndNewlines) {
+ *
+ * and
+ *
+ * if (textField.text.isEmptyOrWhitespace) {
+ *
+ * becomes
+ *
+ * if (0 == textField.text.length || textField.text.isWhitespaceAndNewlines) {
  */
-- (BOOL)isEmptyOrWhitespace;
+- (BOOL)isEmptyOrWhitespace __TTDEPRECATED_METHOD;
 
 /**
  * Parses a URL query string into a dictionary.
+ *
+ * @deprecated Use queryContentsUsingEncoding: instead.
  */
-- (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding;
+- (NSDictionary*)queryDictionaryUsingEncoding:(NSStringEncoding)encoding __TTDEPRECATED_METHOD;
+
+/**
+ * Parses a URL query string into a dictionary where the values are arrays.
+ */
+- (NSDictionary*)queryContentsUsingEncoding:(NSStringEncoding)encoding;
 
 /**
  * Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.
@@ -87,6 +113,13 @@
  * @return md5 hash of this string
  */
 @property (nonatomic, readonly) NSString* md5Hash;
+
+/**
+ * Calculate the SHA1 hash of this string using CommonCrypto CC_SHA1.
+ *
+ * @return NSString with SHA1 hash of this string
+ */
+@property (nonatomic, readonly) NSString* sha1Hash;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,5 +24,12 @@
  * @return md5 hash of this data
  */
 @property (nonatomic, readonly) NSString* md5Hash;
+
+/**
+ * Calculate the SHA1 hash of this data using CC_SHA1.
+ *
+ * @return SHA1 hash of this data
+ */
+@property (nonatomic, readonly) NSString* sha1Hash;
 
 @end

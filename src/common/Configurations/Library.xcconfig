@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,12 +15,29 @@
 //
 
 HEADERS_FOLDER_PATH           = /../three20/
-PRIVATE_HEADERS_FOLDER_PATH   = $(HEADERS_FOLDER_PATH)$(PRODUCT_NAME)/private
-PUBLIC_HEADERS_FOLDER_PATH    = $(HEADERS_FOLDER_PATH)$(PRODUCT_NAME)
+PRIVATE_HEADERS_FOLDER_PATH   = $(HEADERS_FOLDER_PATH)$(BASE_PRODUCT_NAME)/private
+PUBLIC_HEADERS_FOLDER_PATH    = $(HEADERS_FOLDER_PATH)$(BASE_PRODUCT_NAME)
 
 GCC_PRECOMPILE_PREFIX_HEADER  = YES
-GCC_PREFIX_HEADER             = $(SRCROOT)/Headers/$(PRODUCT_NAME)_Prefix.pch
+GCC_PREFIX_HEADER             = $(SRCROOT)/Headers/$(BASE_PRODUCT_NAME)_Prefix.pch
 RUN_CLANG_STATIC_ANALYZER     = NO
+
+// Don't include the Three20 libraries in the archive. This makes it possible to build IPAs
+// in Xcode 4.
+SKIP_INSTALL = YES
+
+// Uncomment this flags to build the modules with LLVM compiler 1.5
+//GCC_VERSION = com.apple.compilers.llvm.clang.1_0
+
+// We frequently use self.view; in Three20UI and LLVM compiler 1.5 raises warnings.
+// This flag turns them off.
+//WARNING_CFLAGS = -Wno-unused-value
+
+FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/Developer/Library/Frameworks"
+IPHONEOS_DEPLOYMENT_TARGET = 3.0
+SDKROOT = iphoneos
+// Required for older iOS devices (iPhone 3G)
+ARCHS = $(ARCHS_STANDARD_32_BIT)
 
 // Linker Flags
 

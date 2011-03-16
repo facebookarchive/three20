@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
 #import "Three20UI/UIViewAdditions.h"
 
 // UI (private)
-#import "Three20UI/TTSearchTextFieldInternal.h"
+#import "Three20UI/private/TTSearchTextFieldInternal.h"
 
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
@@ -107,6 +107,7 @@ static const CGFloat kDesiredTableHeight = 150;
       initWithBarButtonSystemItem:UIBarButtonSystemItemDone
       target:self action:@selector(doneAction)] autorelease];
       [controller.navigationItem setRightBarButtonItem:doneButton animated:YES];
+
     } else {
       [_previousNavigationItem setRightBarButtonItem:_previousRightBarButtonItem animated:YES];
       TT_RELEASE_SAFELY(_previousRightBarButtonItem);
@@ -146,6 +147,7 @@ static const CGFloat kDesiredTableHeight = 150;
 - (NSString*)searchText {
   if (!self.hasText) {
     return @"";
+
   } else {
     NSCharacterSet* whitespace = [NSCharacterSet whitespaceCharacterSet];
     return [self.text stringByTrimmingCharactersInSet:whitespace];
@@ -155,7 +157,7 @@ static const CGFloat kDesiredTableHeight = 150;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)autoSearch {
-  if (_searchesAutomatically || !self.text.length) {
+  if (_searchesAutomatically && self.text.length) {
     [self search];
   }
 }
@@ -192,6 +194,7 @@ static const CGFloat kDesiredTableHeight = 150;
     [self layoutIfNeeded];
     [self showSearchResults:YES];
     [self.tableView reloadData];
+
   } else {
     [self showSearchResults:NO];
   }
@@ -251,6 +254,7 @@ static const CGFloat kDesiredTableHeight = 150;
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
   if (_rowHeight) {
     return _rowHeight;
+
   } else {
     id object = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
     Class cls = [_dataSource tableView:tableView cellClassForObject:object];
@@ -388,6 +392,7 @@ static const CGFloat kDesiredTableHeight = 150;
   if (searchesAutomatically) {
     self.returnKeyType = UIReturnKeyDone;
     self.enablesReturnKeyAutomatically = NO;
+
   } else {
     self.returnKeyType = UIReturnKeySearch;
     self.enablesReturnKeyAutomatically = YES;
@@ -436,6 +441,7 @@ static const CGFloat kDesiredTableHeight = 150;
     }
 
     [_tableView deselectRowAtIndexPath:_tableView.indexPathForSelectedRow animated:NO];
+
   } else {
     [_tableView removeFromSuperview];
     [_shadowView removeFromSuperview];
@@ -448,6 +454,7 @@ static const CGFloat kDesiredTableHeight = 150;
   UIScrollView* scrollView = (UIScrollView*)[self ancestorOrSelfWithClass:[UIScrollView class]];
   if (scrollView) {
     return scrollView;
+
   } else {
     for (UIView* view = self.superview; view; view = view.superview) {
       if (view.height > kDesiredTableHeight) {

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -55,6 +55,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 @synthesize totalBytesLoaded      = _totalBytesLoaded;
 @synthesize totalBytesExpected    = _totalBytesExpected;
 
+@synthesize totalBytesDownloaded  = _totalBytesDownloaded;
+@synthesize totalContentLength    = _totalContentLength;
+
 @synthesize userInfo              = _userInfo;
 @synthesize isLoading             = _isLoading;
 
@@ -67,13 +70,13 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTURLRequest*)request {
-  return [[[TTURLRequest alloc] init] autorelease];
+  return [[[self alloc] init] autorelease];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate {
-  return [[[TTURLRequest alloc] initWithURL:URL delegate:delegate] autorelease];
+  return [[[self alloc] initWithURL:URL delegate:delegate] autorelease];
 }
 
 
@@ -123,7 +126,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)description {
-  return [NSString stringWithFormat:@"<TTURLRequest %@>", _urlPath];
+  return [NSString stringWithFormat:@"<%@ %@>", [super description], _urlPath];
 }
 
 
@@ -143,9 +146,31 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     }
 
     return [joined md5Hash];
+
   } else {
     return [self.urlPath md5Hash];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)appendImageData:(NSData*)data
+               withName:(NSString*)name
+                 toBody:(NSMutableData*)body {
+  NSString *beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
+
+  [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
+  [body appendData:[[NSString stringWithFormat:
+                     @"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n",
+                     name]
+                     dataUsingEncoding:_charsetForMultipart]];
+  [body appendData:[[NSString
+                      stringWithFormat:@"Content-Length: %d\r\n", data.length]
+                     dataUsingEncoding:_charsetForMultipart]];
+  [body appendData:[[NSString
+                      stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
+                     dataUsingEncoding:_charsetForMultipart]];
+  [body appendData:data];
 }
 
 
@@ -159,7 +184,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
   for (id key in [_parameters keyEnumerator]) {
     NSString* value = [_parameters valueForKey:key];
-    if (![value isKindOfClass:[UIImage class]]) {
+    // Really, this can only be an NSString. We're cheating here.
+    if (![value isKindOfClass:[UIImage class]] &&
+        ![value isKindOfClass:[NSData class]]) {
       [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
       [body appendData:[[NSString
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
@@ -175,18 +202,12 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       CGFloat quality = [TTURLRequestQueue mainQueue].imageCompressionQuality;
       NSData* data = UIImageJPEGRepresentation(image, quality);
 
-      [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
-      [body appendData:[[NSString stringWithFormat:
-                       @"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n",
-                       key]
-          dataUsingEncoding:_charsetForMultipart]];
-      [body appendData:[[NSString
-        stringWithFormat:@"Content-Length: %d\r\n", data.length]
-          dataUsingEncoding:_charsetForMultipart]];
-      [body appendData:[[NSString
-        stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
-          dataUsingEncoding:_charsetForMultipart]];
-      [body appendData:data];
+      [self appendImageData:data withName:key toBody:body];
+      imageKey = key;
+
+    } else if ([[_parameters objectForKey:key] isKindOfClass:[NSData class]]) {
+      NSData* data = [_parameters objectForKey:key];
+      [self appendImageData:data withName:key toBody:body];
       imageKey = key;
     }
   }
@@ -235,9 +256,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (NSData*)httpBody {
   if (_httpBody) {
     return _httpBody;
+
   } else if ([[_httpMethod uppercaseString] isEqualToString:@"POST"]
              || [[_httpMethod uppercaseString] isEqualToString:@"PUT"]) {
     return [self generatePostBody];
+
   } else {
     return nil;
   }
@@ -248,9 +271,11 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (NSString*)contentType {
   if (_contentType) {
     return _contentType;
+
   } else if ([_httpMethod isEqualToString:@"POST"]
              || [_httpMethod isEqualToString:@"PUT"]) {
     return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", kStringBoundary];
+
   } else {
     return nil;
   }
@@ -305,7 +330,6 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   return [[TTURLRequestQueue mainQueue] sendRequest:self];
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)sendSynchronously {
   return [[TTURLRequestQueue mainQueue] sendSynchronousRequest:self];
@@ -330,7 +354,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated
+/**
+ * Deprecated
+ */
 - (void)setURL:(NSString*)urlPath {
   NSString* aUrlPath = [urlPath copy];
   [_urlPath release];
@@ -339,7 +365,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated
+/**
+ * Deprecated
+ */
 - (NSString*)URL {
   return _urlPath;
 }

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@
   NSInteger         _argumentCount;
 }
 
-@property (nonatomic)           Class             targetClass;
+@property (nonatomic, assign)   Class             targetClass;
 @property (nonatomic, assign)   id                targetObject;
 @property (nonatomic, readonly) TTNavigationMode  navigationMode;
 @property (nonatomic, copy)     NSString*         parentURL;
-@property (nonatomic)           NSInteger         transition;
-@property (nonatomic)           NSInteger         argumentCount;
+@property (nonatomic, assign)   NSInteger         transition;
+@property (nonatomic, assign)   NSInteger         argumentCount;
 @property (nonatomic, readonly) BOOL              isUniversal;
 @property (nonatomic, readonly) BOOL              isFragment;
 
@@ -44,6 +44,12 @@
 - (BOOL)matchURL:(NSURL*)URL;
 
 - (id)invoke:(id)target withURL:(NSURL*)URL query:(NSDictionary*)query;
+
+/**
+ * either instantiates an object or delegates object creation
+ * depending on current configuration
+ * @return the newly created object or nil if something went wrong
+ */
 - (id)createObjectFromURL:(NSURL*)URL query:(NSDictionary*)query;
 
 @end

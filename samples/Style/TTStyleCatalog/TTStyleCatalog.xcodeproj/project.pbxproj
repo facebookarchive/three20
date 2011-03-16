@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		665E980D12662D0C0025FA42 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 665E980C12662D0C0025FA42 /* Default@2x.png */; };
 		6E37949111B9B63E0011C497 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37946E11B9B6300011C497 /* libThree20Core.a */; };
 		6E37949211B9B63E0011C497 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37947411B9B6300011C497 /* libThree20Network.a */; };
 		6E37949311B9B63F0011C497 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37947A11B9B6300011C497 /* libThree20Style.a */; };
@@ -187,6 +188,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		665E980C12662D0C0025FA42 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Resources/Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		6E37945911B9B6300011C497 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../../../src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E37945C11B9B6300011C497 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../../../src/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E37945F11B9B6300011C497 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../../../src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -285,6 +287,7 @@
 				6E850F4E11B1761D0071A4FD /* Three20.bundle */,
 				6E8513D211B19B0E0071A4FD /* TTStyleCatalog-Info.plist */,
 				6E850FAC11B176F10071A4FD /* Default.png */,
+				665E980C12662D0C0025FA42 /* Default@2x.png */,
 				6E850FAD11B176F10071A4FD /* Icon.png */,
 			);
 			name = Resources;
@@ -314,7 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37947411B9B6300011C497 /* libThree20Network.a */,
-				6E37947611B9B6300011C497 /* UnitTests.octest */,
+				6E37947611B9B6300011C497 /* NetworkUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -323,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37947A11B9B6300011C497 /* libThree20Style.a */,
-				6E37947C11B9B6300011C497 /* UnitTests.octest */,
+				6E37947C11B9B6300011C497 /* StyleUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,7 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37948011B9B6300011C497 /* libThree20UICommon.a */,
-				6E37948211B9B6300011C497 /* UnitTests.octest */,
+				6E37948211B9B6300011C497 /* UICommonUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -341,7 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37948611B9B6300011C497 /* libThree20UINavigator.a */,
-				6E37948811B9B6300011C497 /* UnitTests.octest */,
+				6E37948811B9B6300011C497 /* UINavigatorUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -350,7 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				6E37948C11B9B6300011C497 /* libThree20UI.a */,
-				6E37948E11B9B6300011C497 /* UnitTests.octest */,
+				6E37948E11B9B6300011C497 /* UIUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -384,7 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				6E850F8811B1762B0071A4FD /* libThree20.a */,
-				6E850F8A11B1762B0071A4FD /* UnitTests.octest */,
+				6E850F8A11B1762B0071A4FD /* Three20UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -448,13 +451,13 @@
 			buildRules = (
 			);
 			dependencies = (
-				6E850F8D11B176330071A4FD /* PBXTargetDependency */,
-				6E37949811B9B64D0011C497 /* PBXTargetDependency */,
 				6E37949A11B9B64D0011C497 /* PBXTargetDependency */,
-				6E37949C11B9B64D0011C497 /* PBXTargetDependency */,
+				6E37949811B9B64D0011C497 /* PBXTargetDependency */,
 				6E37949E11B9B64D0011C497 /* PBXTargetDependency */,
+				6E37949C11B9B64D0011C497 /* PBXTargetDependency */,
 				6E3794A011B9B64D0011C497 /* PBXTargetDependency */,
 				6E3794A211B9B64D0011C497 /* PBXTargetDependency */,
+				6E850F8D11B176330071A4FD /* PBXTargetDependency */,
 			);
 			name = TTStyleCatalog;
 			productName = TTStylePreview;
@@ -468,7 +471,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTStyleCatalog" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
@@ -530,10 +540,10 @@
 			remoteRef = 6E37947311B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37947611B9B6300011C497 /* UnitTests.octest */ = {
+		6E37947611B9B6300011C497 /* NetworkUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = NetworkUnitTests.octest;
 			remoteRef = 6E37947511B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -544,10 +554,10 @@
 			remoteRef = 6E37947911B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37947C11B9B6300011C497 /* UnitTests.octest */ = {
+		6E37947C11B9B6300011C497 /* StyleUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = StyleUnitTests.octest;
 			remoteRef = 6E37947B11B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -558,10 +568,10 @@
 			remoteRef = 6E37947F11B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37948211B9B6300011C497 /* UnitTests.octest */ = {
+		6E37948211B9B6300011C497 /* UICommonUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UICommonUnitTests.octest;
 			remoteRef = 6E37948111B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -572,10 +582,10 @@
 			remoteRef = 6E37948511B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37948811B9B6300011C497 /* UnitTests.octest */ = {
+		6E37948811B9B6300011C497 /* UINavigatorUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UINavigatorUnitTests.octest;
 			remoteRef = 6E37948711B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -586,10 +596,10 @@
 			remoteRef = 6E37948B11B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E37948E11B9B6300011C497 /* UnitTests.octest */ = {
+		6E37948E11B9B6300011C497 /* UIUnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = UIUnitTests.octest;
 			remoteRef = 6E37948D11B9B6300011C497 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -600,10 +610,10 @@
 			remoteRef = 6E850F8711B1762B0071A4FD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6E850F8A11B1762B0071A4FD /* UnitTests.octest */ = {
+		6E850F8A11B1762B0071A4FD /* Three20UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
+			path = Three20UnitTests.octest;
 			remoteRef = 6E850F8911B1762B0071A4FD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -617,6 +627,7 @@
 				6E850F4F11B1761D0071A4FD /* Three20.bundle in Resources */,
 				6E850FAE11B176F10071A4FD /* Default.png in Resources */,
 				6E850FAF11B176F10071A4FD /* Icon.png in Resources */,
+				665E980D12662D0C0025FA42 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,8 +696,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "TTStyleCatalog-Info.plist";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -695,8 +705,7 @@
 			baseConfigurationReference = 6E850F4811B175FD0071A4FD /* App.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				INFOPLIST_FILE = "TTStyleCatalog-Info.plist";
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -704,13 +713,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E850F4911B175FD0071A4FD /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -718,13 +726,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E850F4911B175FD0071A4FD /* Project.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

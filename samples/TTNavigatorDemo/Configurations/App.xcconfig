@@ -18,5 +18,6 @@
 #include "../../common/Configurations/Libraries.xcconfig"
 #include "RelPath.xcconfig"
 
-PRODUCT_NAME            = TTNavigatorDemo
+BASE_PRODUCT_NAME       = TTNavigatorDemo
+PRODUCT_NAME            = $(BASE_PRODUCT_NAME)
 BUILD_LIBRARY_VERSION   = 1.0

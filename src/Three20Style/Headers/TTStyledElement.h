@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 @property (nonatomic, readonly) TTStyledNode* firstChild;
 @property (nonatomic, readonly) TTStyledNode* lastChild;
-@property (nonatomic, retain)   NSString*     className;
+@property (nonatomic, copy)     NSString*     className;
 
 - (id)initWithText:(NSString*)text;
 

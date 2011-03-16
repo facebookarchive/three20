@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -190,7 +190,8 @@
 - (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
   NSString* URL = [self buttonURLAtIndex:buttonIndex];
   BOOL canOpenURL = YES;
-  if ([_delegate respondsToSelector:@selector(alertViewController:didDismissWithButtonIndex:URL:)]) {
+  if ([_delegate respondsToSelector:
+       @selector(alertViewController:didDismissWithButtonIndex:URL:)]) {
     canOpenURL = [_delegate alertViewController:self didDismissWithButtonIndex:buttonIndex URL:URL];
   }
   if (URL && canOpenURL) {
@@ -218,6 +219,7 @@
 - (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL {
   if (URL) {
     [_URLs addObject:URL];
+
   } else {
     [_URLs addObject:[NSNull null]];
   }

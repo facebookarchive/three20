@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -52,6 +52,7 @@ static NSString* kUniversalURLPattern = @"*";
 
     if ([target class] == target && navigationMode) {
       _targetClass = target;
+
     } else {
       _targetObject = target;
     }
@@ -88,6 +89,17 @@ static NSString* kUniversalURLPattern = @"*";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)description {
+  if (nil != _targetClass) {
+    return [NSString stringWithFormat:@"%@ => %@", _URL, _targetClass];
+
+  } else {
+    return [NSString stringWithFormat:@"%@ => %@", _URL, _targetObject];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Private
@@ -110,8 +122,10 @@ static NSString* kUniversalURLPattern = @"*";
 - (NSComparisonResult)compareSpecificity:(TTURLPattern*)pattern2 {
   if (_specificity > pattern2.specificity) {
     return NSOrderedAscending;
+
   } else if (_specificity < pattern2.specificity) {
     return NSOrderedDescending;
+
   } else {
     return NSOrderedSame;
   }
@@ -153,6 +167,7 @@ static NSString* kUniversalURLPattern = @"*";
       [parts addObject:@"query"];
       [self setSelectorWithNames:parts];
     }
+
   } else {
     [self setSelectorIfPossible:@selector(initWithNavigatorURL:query:)];
   }
@@ -297,15 +312,16 @@ static NSString* kUniversalURLPattern = @"*";
     }
   }
 
-  NSDictionary* URLQuery = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+  NSDictionary* URLQuery = [URL.query queryContentsUsingEncoding:NSUTF8StringEncoding];
   if (URLQuery.count) {
     for (NSString* name in [URLQuery keyEnumerator]) {
       id<TTURLPatternText> patternText = [_query objectForKey:name];
-      NSString* text = [URLQuery objectForKey:name];
+      NSString* text = [[URLQuery objectForKey:name] objectAtIndex:0];
       if (patternText) {
         if ([self setArgument:text pattern:patternText forInvocation:invocation]) {
           --remainingArgs;
         }
+
       } else {
         if (!unmatchedArgs) {
           unmatchedArgs = [NSMutableDictionary dictionary];
@@ -357,6 +373,7 @@ static NSString* kUniversalURLPattern = @"*";
     if (!_selector) {
       [self deduceSelector];
     }
+
   } else {
     [self compileURL];
 
@@ -400,6 +417,7 @@ static NSString* kUniversalURLPattern = @"*";
 
   if ((URL.fragment && !_fragment) || (_fragment && !URL.fragment)) {
     return NO;
+
   } else if (URL.fragment && _fragment && ![_fragment match:URL.fragment]) {
     return NO;
   }
@@ -424,6 +442,7 @@ static NSString* kUniversalURLPattern = @"*";
       if (query) {
         [invocation setArgument:&query atIndex:3];
       }
+
     } else {
       [self setArgumentsFromURL:URL forInvocation:invocation query:query];
     }
@@ -441,21 +460,34 @@ static NSString* kUniversalURLPattern = @"*";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)createObjectFromURL: (NSURL*)URL
                     query: (NSDictionary*)query {
-  id target = nil;
-  if (self.instantiatesClass) {
-    target = [_targetClass alloc];
-  } else {
-    target = [_targetObject retain];
-  }
-
   id returnValue = nil;
-  if (_selector) {
-    returnValue = [self invoke:target withURL:URL query:query];
-  } else if (self.instantiatesClass) {
-    returnValue = [target init];
-  }
 
-  [target autorelease];
+  if (self.instantiatesClass) {
+    //suppress static analyzer warning for this part
+    // - invoke:withURL:query actually calls an - init method
+    // which returns either a new object with retain count of +1
+    // or returnValue (which already has +1 retain count)
+#ifndef __clang_analyzer__
+    returnValue = [_targetClass alloc];
+    if (_selector) {
+      returnValue = [self invoke:returnValue withURL:URL query:query];
+
+    } else {
+      returnValue = [returnValue init];
+    }
+    [returnValue autorelease];
+#endif
+
+  } else {
+    id target = [_targetObject retain];
+    if (_selector) {
+      returnValue = [self invoke:target withURL:URL query:query];
+
+    } else {
+      TTDWARNING(@"No object created from URL:'%@' URL");
+    }
+    [target release];
+  }
   return returnValue;
 }
 

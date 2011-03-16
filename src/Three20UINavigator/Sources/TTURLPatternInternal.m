@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,12 +14,17 @@
 // limitations under the License.
 //
 
-#import "Three20UINavigator/TTURLPatternInternal.h"
+#import "Three20UINavigator/private/TTURLPatternInternal.h"
+
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+TT_FIX_CATEGORY_BUG(TTURLPatternInternal)
+
 @implementation TTURLPattern (TTInternal)
 
 
@@ -32,4 +37,3 @@
 
 
 @end
-
