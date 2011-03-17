@@ -85,7 +85,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithName:kDefaultCacheName]) {
+  if ((self = [self initWithName:kDefaultCacheName])) {
   }
 
   return self;
@@ -679,7 +679,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 
   NSFileManager* fm = [NSFileManager defaultManager];
   NSDirectoryEnumerator* e = [fm enumeratorAtPath:_cachePath];
-  for (NSString* fileName; fileName = [e nextObject]; ) {
+  for (NSString* fileName; (fileName = [e nextObject]); ) {
     NSString* filePath = [_cachePath stringByAppendingPathComponent:fileName];
 #if __IPHONE_4_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
     [fm setAttributes:attrs ofItemAtPath:filePath error:nil];

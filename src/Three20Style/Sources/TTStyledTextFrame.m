@@ -32,7 +32,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithText:(NSString*)text element:(TTStyledElement*)element node:(TTStyledTextNode*)node {
-  if (self = [super initWithElement:element]) {
+  if ((self = [super initWithElement:element])) {
     _text = [text copy];
     _node = node;
   }

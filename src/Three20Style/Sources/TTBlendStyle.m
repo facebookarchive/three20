@@ -27,7 +27,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNext:(TTStyle*)next {
-  if (self = [super initWithNext:next]) {
+  if ((self = [super initWithNext:next])) {
     _blendMode = kCGBlendModeNormal;
   }
 

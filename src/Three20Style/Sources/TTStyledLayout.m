@@ -56,7 +56,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithRootNode:(TTStyledNode*)rootNode {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _rootNode = rootNode;
   }
 
@@ -66,7 +66,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithX:(CGFloat)x width:(CGFloat)width height:(CGFloat)height {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _x = x;
     _minX = x;
     _width = width;
