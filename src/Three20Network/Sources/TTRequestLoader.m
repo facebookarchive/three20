@@ -48,7 +48,7 @@ static const NSInteger kLoadMaxRetries = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initForRequest:(TTURLRequest*)request queue:(TTURLRequestQueue*)queue {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _urlPath            = [request.urlPath copy];
     _queue              = queue;
     _cacheKey           = [request.cacheKey retain];

@@ -73,7 +73,7 @@ __attribute__((weak_import));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _URLMap = [[TTURLMap alloc] init];
     _persistenceMode = TTNavigatorPersistenceModeNone;
 
