@@ -31,13 +31,25 @@
  * If no root container is specified for a TTNavigator, the key window will be assumed as the
  * root container.
  */
-@protocol TTNavigatorRootContainer
+@protocol TTNavigatorRootContainer <NSObject>
 
 @required
 
+/**
+ * The top-most controller this container is aware of. In practice, this is often the container
+ * itself.
+ */
+- (UIViewController*)rootViewController;
+
+/**
+ * Set the root view controller for the given navigator.
+ */
 - (void)navigator:(TTBaseNavigator*)navigator setRootViewController:(UIViewController*)controller;
 
-- (TTBaseNavigator*)getNavigatorForController:(UIViewController*)controller;
+/**
+ * Retrieve the navigator that has this controller as its root.
+ */
+- (TTBaseNavigator*)navigatorForRootController:(UIViewController*)controller;
 
 @end
 

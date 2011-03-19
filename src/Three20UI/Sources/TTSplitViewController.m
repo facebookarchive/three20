@@ -328,7 +328,13 @@ static const CGFloat kMasterWidthInLandscape = 330;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTBaseNavigator*)getNavigatorForController:(UIViewController*)controller {
+- (UIViewController*)rootViewController {
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTBaseNavigator*)navigatorForRootController:(UIViewController*)controller {
   if (controller == self.secondaryViewController) {
     return _secondaryNavigator;
 

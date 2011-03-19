@@ -162,7 +162,7 @@ __attribute__((weak_import));
     childController = controller;
   }
 
-  TTBaseNavigator* navigator = [container getNavigatorForController:childController];
+  TTBaseNavigator* navigator = [container navigatorForRootController:childController];
   if (nil == navigator) {
     navigator = [TTBaseNavigator globalNavigator];
   }
