@@ -32,7 +32,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _margin = UIEdgeInsetsZero;
     _padding = UIEdgeInsetsMake(6, 6, 6, 6);
   }
@@ -90,7 +90,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder*)decoder {
-  if (self = [super initWithCoder:decoder]) {
+  if ((self = [super initWithCoder:decoder])) {
     self.text = [decoder decodeObjectForKey:@"text"];
   }
   return self;

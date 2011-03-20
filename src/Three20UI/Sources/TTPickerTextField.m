@@ -52,7 +52,7 @@ static const CGFloat kMinCursorWidth  = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+  if ((self = [super initWithFrame:frame])) {
     _cellViews = [[NSMutableArray alloc] init];
     _lineCount = 1;
     _cursorOrigin = CGPointZero;

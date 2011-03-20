@@ -65,7 +65,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNode:(TTStyledNode*)rootNode {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _rootNode = [rootNode retain];
   }
 

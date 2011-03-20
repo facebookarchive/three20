@@ -36,7 +36,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNext:(TTStyle*)next {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _next = [next retain];
   }
 
@@ -46,7 +46,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithNext:nil]) {
+  if ((self = [self initWithNext:nil])) {
   }
 
   return self;

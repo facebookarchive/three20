@@ -41,7 +41,7 @@ TT_FIX_CATEGORY_BUG(UITableViewAdditions)
 - (UIView*)indexView {
   Class indexViewClass = NSClassFromString(@"UITableViewIndex");
   NSEnumerator* e = [self.subviews reverseObjectEnumerator];
-  for (UIView* child; child = [e nextObject]; ) {
+  for (UIView* child; (child = [e nextObject]); ) {
     if ([child isKindOfClass:indexViewClass]) {
       return child;
     }

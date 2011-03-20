@@ -87,7 +87,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder*)decoder {
-  if (self = [super initWithCoder:decoder]) {
+  if ((self = [super initWithCoder:decoder])) {
     self.text = [decoder decodeObjectForKey:@"text"];
   }
   return self;

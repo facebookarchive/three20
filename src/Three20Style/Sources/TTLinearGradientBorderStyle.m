@@ -41,7 +41,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNext:(TTStyle*)next {
-  if (self = [super initWithNext:next]) {
+  if ((self = [super initWithNext:next])) {
     _location2 = 1;
     _width = 1;
   }

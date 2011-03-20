@@ -48,7 +48,7 @@ static CGFloat kThumbSpacing = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithPhotoSource:(id<TTPhotoSource>)photoSource
                  delegate:(id<TTThumbsTableViewCellDelegate>)delegate {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _photoSource = [photoSource retain];
     _delegate = delegate;
   }

@@ -35,7 +35,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.backgroundColor = [UIColor clearColor];
     self.style = TTSTYLE(tableHeader);
 

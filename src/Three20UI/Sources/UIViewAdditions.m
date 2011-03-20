@@ -104,7 +104,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initInView:(UIView *)view location:(CGPoint)location {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _tapCount = 1;
     _locationInWindow = location;
     _previousLocationInWindow = location;

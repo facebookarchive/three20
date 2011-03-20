@@ -50,7 +50,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder*)decoder {
-  if (self = [super initWithCoder:decoder]) {
+  if ((self = [super initWithCoder:decoder])) {
     self.URL = [decoder decodeObjectForKey:@"URL"];
     self.accessoryURL = [decoder decodeObjectForKey:@"accessoryURL"];
   }

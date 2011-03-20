@@ -38,7 +38,7 @@ static const CGFloat kKeyWidth = 75;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier]) {
+  if ((self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier])) {
     self.textLabel.font = TTSTYLEVAR(tableTitleFont);
     self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);

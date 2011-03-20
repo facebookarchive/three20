@@ -36,7 +36,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     _URLs = [[NSMutableArray alloc] init];
   }
 
@@ -46,7 +46,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title delegate:(id)delegate {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+  if ((self = [self initWithNibName:nil bundle:nil])) {
     _delegate = delegate;
 
     if (nil != title) {
@@ -60,7 +60,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title {
-  if (self = [self initWithTitle:title delegate:nil]) {
+  if ((self = [self initWithTitle:title delegate:nil])) {
   }
 
   return self;
@@ -69,7 +69,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithTitle:nil delegate:nil]) {
+  if ((self = [self initWithTitle:nil delegate:nil])) {
   }
 
   return self;

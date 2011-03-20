@@ -42,7 +42,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithButton:(TTButton*)button {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _button = button;
   }
   return self;

@@ -43,7 +43,7 @@ static const UILineBreakMode kLineBreakMode = UILineBreakModeWordWrap;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
+  if ((self = [super initWithStyle:style reuseIdentifier:identifier])) {
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.lineBreakMode = kLineBreakMode;
     self.textLabel.numberOfLines = 0;

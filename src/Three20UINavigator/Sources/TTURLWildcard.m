@@ -37,7 +37,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _argIndex = NSNotFound;
     _argType  = TTURLArgumentTypeNone;
   }

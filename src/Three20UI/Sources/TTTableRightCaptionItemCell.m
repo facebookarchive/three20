@@ -35,7 +35,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier]) {
+  if ((self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier])) {
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     self.textLabel.numberOfLines = 0;

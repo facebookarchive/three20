@@ -35,7 +35,7 @@ TT_FIX_CATEGORY_BUG(TTSearchTextFieldInternal)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTextField:(TTSearchTextField*)textField {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _textField = textField;
   }
 
