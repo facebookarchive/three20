@@ -1,6 +1,3 @@
-[submodule "src/extThree20JSON/Vendors/TouchJSON/TouchJSON"]
-	path = src/extThree20JSON/Vendors/TouchJSON/TouchJSON
-	url = git://github.com/TouchCode/TouchJSON.git
 [submodule "src/extThree20JSON/Vendors/TouchJSON"]
 	path = src/extThree20JSON/Vendors/TouchJSON
 	url = git://github.com/TouchCode/TouchJSON.git
