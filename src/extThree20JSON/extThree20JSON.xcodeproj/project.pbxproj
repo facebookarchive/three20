@@ -390,7 +390,7 @@
 		6E645A1F11876CA800F08CB1 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				C6CCA17F1328466700F27105 /* TouchJSON */,
+				C6CCA17F1328466700F27105 /* Source */,
 				6E645A2011876CA800F08CB1 /* SBJSON */,
 				6E645AF71187744C00F08CB1 /* YAJL */,
 			);
@@ -517,7 +517,7 @@
 			name = Configurations;
 			sourceTree = "<group>";
 		};
-		C6CCA17F1328466700F27105 /* TouchJSON */ = {
+		C6CCA17F1328466700F27105 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				C6CCA1801328466700F27105 /* CDataScanner.h */,
@@ -526,7 +526,8 @@
 				C6CCA18B1328466700F27105 /* Extensions */,
 				C6CCA1901328466700F27105 /* JSON */,
 			);
-			path = TouchJSON;
+			name = Source;
+			path = TouchJSON/Source;
 			sourceTree = "<group>";
 		};
 		C6CCA1821328466700F27105 /* Experimental */ = {
