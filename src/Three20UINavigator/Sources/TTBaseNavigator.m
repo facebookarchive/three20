@@ -506,13 +506,12 @@ __attribute__((weak_import));
  */
 - (void)presentModalController: (UIViewController*)controller
               parentController: (UIViewController*)parentController
-                      animated: (BOOL)animated
-                    transition: (NSInteger)transition {
-  controller.modalTransitionStyle = transition;
+                        action: (TTURLAction*)action {
+  controller.modalTransitionStyle = action.transition;
 
   if ([controller isKindOfClass:[UINavigationController class]]) {
-    [parentController presentModalViewController: controller
-                                        animated: animated];
+    [[self.rootContainer rootViewController] presentModalViewController: controller
+                                                               animated: action.animated];
 
   } else {
     UINavigationController* navController = [[[[self navigationControllerClass] alloc] init]
@@ -520,8 +519,8 @@ __attribute__((weak_import));
     [navController pushViewController: controller
                              animated: NO];
     navController.modalPresentationStyle = controller.modalPresentationStyle;
-    [parentController presentModalViewController: navController
-                                        animated: animated];
+    [[self.rootContainer rootViewController] presentModalViewController: navController
+                                                               animated: action.animated];
   }
 }
 
@@ -1266,8 +1265,7 @@ __attribute__((weak_import));
   } else if (mode == TTNavigationModeModal) {
     [self presentModalController: controller
                 parentController: parentController
-                        animated: action.animated
-                      transition: action.transition];
+                          action: action];
 
     [TTBaseNavigator dismissPopoverAnimated:YES];
 
