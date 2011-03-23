@@ -22,6 +22,7 @@ extern const CGFloat    kTableCellSpacing;
 extern const CGFloat    kTableCellMargin;
 extern const CGFloat    kTableCellHPadding;
 extern const CGFloat    kTableCellVPadding;
+extern const CGFloat    kDisclosureIndicatorWidth;
 extern const NSInteger  kTableMessageTextLineCount;
 
 /**

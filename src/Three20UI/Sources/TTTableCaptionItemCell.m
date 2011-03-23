@@ -72,7 +72,10 @@ static const CGFloat kKeyWidth = 75;
 
   CGFloat margin = [tableView tableCellMargin];
   CGFloat width = tableView.width - (kKeyWidth + kKeySpacing + kTableCellHPadding*2 + margin*2);
-
+  
+  //This should really use the same logic that is used to determine if the disclosure indicator is actually shown
+  width = (item.URL) ? width - kDisclosureIndicatorWidth : width;
+  
   CGSize detailTextSize = [item.text sizeWithFont:TTSTYLEVAR(tableSmallFont)
                                 constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
                                     lineBreakMode:UILineBreakModeWordWrap];

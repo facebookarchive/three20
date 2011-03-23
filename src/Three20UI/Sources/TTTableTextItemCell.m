@@ -82,6 +82,10 @@ static const CGFloat kMaxLabelHeight = 2000;
   TTTableTextItem* item = object;
 
   CGFloat width = tableView.width - (kTableCellHPadding*2 + [tableView tableCellMargin]*2);
+	
+  //This should really use the same logic that is used to determine if the disclosure indicator is actually shown
+  width = (item.URL) ? width - kDisclosureIndicatorWidth : width;	
+	
   UIFont* font = [self textFontForItem:item];
   CGSize size = [item.text sizeWithFont:font
                       constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)

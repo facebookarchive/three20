@@ -63,7 +63,10 @@
   TTTableCaptionItem* item = object;
 
   CGFloat width = tableView.width - kTableCellHPadding*2;
-
+	
+  //This should really use the same logic that is used to determine if the disclosure indicator is actually shown
+  width = (item.URL) ? width - kDisclosureIndicatorWidth : width;
+	
   CGSize detailTextSize = [item.text sizeWithFont:TTSTYLEVAR(tableFont)
                                 constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
                                     lineBreakMode:UILineBreakModeTailTruncation];

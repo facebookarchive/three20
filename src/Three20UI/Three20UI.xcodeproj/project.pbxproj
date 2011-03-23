@@ -1899,7 +1899,7 @@
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libThree20UI.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* Three20UIUnitTests */ = {
+		EB9E6C6110B6A8F800DE563C /* Three20UICommonUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "Three20UIUnitTests" */;
 			buildPhases = (
@@ -1968,7 +1968,7 @@
 			projectRoot = "";
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* Three20UI */,
-				EB9E6C6110B6A8F800DE563C /* Three20UIUnitTests */,
+				EB9E6C6110B6A8F800DE563C /* Three20UICommonUnitTests */,
 			);
 		};
 /* End PBXProject section */

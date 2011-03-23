@@ -25,6 +25,7 @@ const CGFloat   kTableCellMargin      = 10;
 const CGFloat   kTableCellHPadding    = 10;
 const CGFloat   kTableCellVPadding    = 10;
 
+const CGFloat	kDisclosureIndicatorWidth = 20;
 const NSInteger kTableMessageTextLineCount = 2;
 
 
