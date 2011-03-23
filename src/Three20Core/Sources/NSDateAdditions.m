@@ -40,14 +40,7 @@ TT_FIX_CATEGORY_BUG(NSDateAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSDate*)dateWithToday {
-  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-  formatter.dateFormat = @"yyyy-d-M";
-
-  NSString* formattedTime = [formatter stringFromDate:[NSDate date]];
-  NSDate* date = [formatter dateFromString:formattedTime];
-  TT_RELEASE_SAFELY(formatter);
-
-  return date;
+  return [[NSDate date] dateAtMidnight];
 }
 
 
@@ -59,14 +52,11 @@ TT_FIX_CATEGORY_BUG(NSDateAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDate*)dateAtMidnight {
-  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-  formatter.dateFormat = @"yyyy-d-M";
-
-  NSString* formattedTime = [formatter stringFromDate:self];
-  NSDate* date = [formatter dateFromString:formattedTime];
-  TT_RELEASE_SAFELY(formatter);
-
-  return date;
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSDateComponents *comps = [gregorian components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:[NSDate date]];
+	NSDate *midnight = [gregorian dateFromComponents:comps];
+	[gregorian release];
+	return midnight;
 }
 
 
