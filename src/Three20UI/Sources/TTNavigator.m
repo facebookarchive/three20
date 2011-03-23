@@ -102,6 +102,13 @@ UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
     [controller showFromBarButtonItem: action.sourceButton
                              animated: action.animated];
 
+  } else if (nil != action.sourceView) {
+    [controller showFromRect: (CGRectIsEmpty(action.sourceRect)
+                               ? action.sourceView.bounds
+                               : action.sourceRect)
+                      inView: action.sourceView
+                    animated: action.animated];
+
   } else {
     [controller showInView: parentController.view
                   animated: action.animated];
