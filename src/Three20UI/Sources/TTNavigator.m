@@ -34,6 +34,7 @@
 #import "Three20UINavigator/private/TTBaseNavigatorInternal.h"
 
 // UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
 // Core
@@ -98,11 +99,11 @@ UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
   parentController.popupViewController = controller;
   controller.superController = parentController;
 
-  if (nil != action.sourceButton) {
+  if (TTIsPad() && nil != action.sourceButton) {
     [controller showFromBarButtonItem: action.sourceButton
                              animated: action.animated];
 
-  } else if (nil != action.sourceView) {
+  } else if (TTIsPad() && nil != action.sourceView) {
     [controller showFromRect: (CGRectIsEmpty(action.sourceRect)
                                ? action.sourceView.bounds
                                : action.sourceRect)
