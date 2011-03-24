@@ -17,6 +17,8 @@
 // UI
 #import "Three20UI/TTPopupViewController.h"
 
+@class TTURLAction;
+
 @protocol TTActionSheetControllerDelegate;
 
 /**
@@ -32,11 +34,16 @@
   id              _userInfo;
   NSMutableArray* _URLs;
 
+  // The action used to open this action sheet.
+  TTURLAction*    _action;
+
   id<TTActionSheetControllerDelegate> _delegate;
 }
 
 @property (nonatomic, readonly) UIActionSheet*  actionSheet;
 @property (nonatomic, retain)   id              userInfo;
+
+@property (nonatomic, retain)   TTURLAction*    action;
 
 @property (nonatomic, assign)   id<TTActionSheetControllerDelegate> delegate;
 

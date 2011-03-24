@@ -35,6 +35,7 @@
 
 @synthesize delegate  = _delegate;
 @synthesize userInfo  = _userInfo;
+@synthesize action    = _action;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,6 +84,7 @@
 - (void)dealloc {
   TT_RELEASE_SAFELY(_URLs);
   TT_RELEASE_SAFELY(_userInfo);
+  TT_RELEASE_SAFELY(_action);
 
   [super dealloc];
 }
@@ -180,6 +182,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)willPresentActionSheet:(UIActionSheet*)actionSheet {
+  [TTNavigator dismissPopoverAnimated:YES];
+
   if ([_delegate respondsToSelector:@selector(willPresentActionSheet:)]) {
     [_delegate willPresentActionSheet:actionSheet];
   }
@@ -215,14 +219,29 @@
   }
 
   if (URL && canOpenURL) {
-    [self.navigator openURLAction:
-     [[TTURLAction actionWithURLPath:URL]
-      applyAnimated:YES]];
+    self.action.urlPath = URL;
+    [self.navigator openURLAction:[self.action applyAnimated:YES]];
   }
 
   if ([_delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {
     [_delegate actionSheet:actionSheet didDismissWithButtonIndex:buttonIndex];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTNavigatorDisplayProtocol
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)  navigator: (TTBaseNavigator*)navigator
+  presentController: (UIViewController*)controller
+   parentController: (UIViewController*)parentController
+             action: (TTURLAction*)action {
+  self.action = action;
+  return NO; // we did not present this controller.
 }
 
 
