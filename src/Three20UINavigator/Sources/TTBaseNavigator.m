@@ -556,6 +556,19 @@ __attribute__((weak_import));
     return;
   }
 
+  // If the user taps the same button twice, we should try to hide the popover controller.
+  if (nil != [TTBaseNavigator popoverController]) {
+    UIViewController* contentController =
+      [TTBaseNavigator popoverController].contentViewController;
+    if ([contentController isKindOfClass:[UINavigationController class]]) {
+      UINavigationController* navController = (UINavigationController*)contentController;
+      if ([navController.topViewController.originalNavigatorURL isEqualToString:action.urlPath]
+          && [TTBaseNavigator dismissPopoverAnimated:action.animated forced:NO]) {
+        return;
+      }
+    }
+  }
+
   // If there is an active popover and we're not targetting it, see if we are allowed to dismiss
   // it. If not, we bail out early.
   if (nil != [TTBaseNavigator popoverController]
