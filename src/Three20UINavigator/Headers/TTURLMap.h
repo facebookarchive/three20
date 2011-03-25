@@ -56,9 +56,11 @@
  */
 - (void)from:(NSString*)URL toViewController:(id)target;
 - (void)from:(NSString*)URL toViewController:(id)target selector:(SEL)selector;
-- (void)from:(NSString*)URL toViewController:(id)target transition:(NSInteger)transition;
+- (void)from:(NSString*)URL toViewController:(id)target
+        transition:(UIViewAnimationTransition)transition;
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition;
+        toViewController:(id)target selector:(SEL)selector
+        transition:(UIViewAnimationTransition)transition;
 
 /**
  * Adds a URL pattern which will create and present a share view controller when loaded.
@@ -78,9 +80,11 @@
  */
 - (void)from:(NSString*)URL toModalViewController:(id)target;
 - (void)from:(NSString*)URL toModalViewController:(id)target selector:(SEL)selector;
-- (void)from:(NSString*)URL toModalViewController:(id)target transition:(NSInteger)transition;
+- (void)from:(NSString*)URL toModalViewController:(id)target
+        transition:(UIViewAnimationTransition)transition;
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toModalViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition;
+        toModalViewController:(id)target selector:(SEL)selector
+        transition:(UIViewAnimationTransition)transition;
 
 - (void)from:(NSString*)URL toPopoverViewController:(id)target;
 - (void)from:(NSString*)URL toPopoverViewController:(id)target selector:(SEL)selector;
@@ -148,7 +152,7 @@
 /**
  * Tests if there is a pattern that matches the URL and if so returns its transition.
  */
-- (NSInteger)transitionForURL:(NSString*)URL;
+- (UIViewAnimationTransition)transitionForURL:(NSString*)URL;
 
 /**
  * Returns YES if there is a registered pattern with the URL scheme.
