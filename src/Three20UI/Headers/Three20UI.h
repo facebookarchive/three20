@@ -75,6 +75,7 @@
 #import "Three20UI/TTSearchBar.h"
 
 #import "Three20UI/TTTableViewController.h"
+#import "Three20UI/TTTableViewCoreDataController.h"
 #import "Three20UI/TTSearchDisplayController.h"
 #import "Three20UI/TTTableView.h"
 #import "Three20UI/TTTableViewDelegate.h"
@@ -89,7 +90,7 @@
 #import "Three20UI/TTSectionedDataSource.h"
 #import "Three20UI/TTTableHeaderView.h"
 #import "Three20UI/TTTableFooterInfiniteScrollView.h"
-#import "THree20UI/TTTableHeaderDragRefreshView.h"
+#import "Three20UI/TTTableHeaderDragRefreshView.h"
 #import "Three20UI/TTTableViewCell.h"
 
 // Table Items
