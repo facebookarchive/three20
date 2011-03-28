@@ -395,7 +395,7 @@ NSString* kKeyTextShadowColor   = @"color";
         NSArray* fontFamilyValues = [ruleSet objectForKey:kCssPropertyFontFamily];
         if ([fontFamilyValues count] > 0) {
           NSArray* systemFontFamilyNames = [UIFont familyNames];
-          NSLog(@"Font families: %@", systemFontFamilyNames);
+          TTDINFO(@"Font families: %@", systemFontFamilyNames);
           for (NSString* fontName in fontFamilyValues) {
           }
           if ([[fontFamilyValues objectAtIndex:0] isEqualToString:@"bold"]) {
