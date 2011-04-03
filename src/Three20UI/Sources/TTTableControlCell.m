@@ -192,7 +192,8 @@ static const CGFloat kControlPadding = 8;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
   if (object != _control && object != _item) {
-    [_control removeFromSuperview];
+    if (_control.superview == self.contentView)
+      [_control removeFromSuperview];
     TT_RELEASE_SAFELY(_control);
     TT_RELEASE_SAFELY(_item);
 
