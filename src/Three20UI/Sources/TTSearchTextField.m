@@ -268,7 +268,7 @@ static const CGFloat kDesiredTableHeight = 150;
   if ([_internal.delegate respondsToSelector:@selector(textField:didSelectObject:)]) {
     id object = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (cell.selectionStyle != UITableViewCellSeparatorStyleNone) {
+    if (cell.selectionStyle != UITableViewCellSelectionStyleNone) {
       [_internal.delegate performSelector:@selector(textField:didSelectObject:) withObject:self
                           withObject:object];
     }
