@@ -52,7 +52,7 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     [[NSNotificationCenter defaultCenter]
      addObserver: self
      selector: @selector(didReceiveMemoryWarning:)
@@ -394,8 +394,7 @@ NSString* kKeyTextShadowColor   = @"color";
 
         NSArray* fontFamilyValues = [ruleSet objectForKey:kCssPropertyFontFamily];
         if ([fontFamilyValues count] > 0) {
-          NSArray* systemFontFamilyNames = [UIFont familyNames];
-          TTDINFO(@"Font families: %@", systemFontFamilyNames);
+          TTDINFO(@"Font families: %@", [UIFont familyNames]);
           for (NSString* fontName in fontFamilyValues) {
           }
           if ([[fontFamilyValues objectAtIndex:0] isEqualToString:@"bold"]) {
