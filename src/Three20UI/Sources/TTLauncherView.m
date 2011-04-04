@@ -68,7 +68,7 @@ static const NSInteger kDefaultColumnCount = 3;
 @synthesize prompt      = _prompt;
 @synthesize editing     = _editing;
 @synthesize delegate    = _delegate;
-
+@synthesize editable	= _editable;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
@@ -97,6 +97,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
     self.autoresizesSubviews = YES;
     self.columnCount = kDefaultColumnCount;
+    self.editable = YES;
   }
 
   return self;
@@ -482,6 +483,9 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)buttonTouchedDown:(TTLauncherButton*)button withEvent:(UIEvent*)event {
+  if (!_editable)
+    return;
+
   if (_editing) {
     if (!_dragButton) {
       [self startDraggingButton:button withEvent:event];
