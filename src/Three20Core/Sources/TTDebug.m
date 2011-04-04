@@ -52,6 +52,18 @@ int TTIsInDebugger(void) {
   return (info.kp_proc.p_flag & P_TRACED) != 0;
 }
 
+#else
+
+int TTIsInDebugger(void) {
+    return 0;
+}
+
 #endif // #ifdef TARGET_IPHONE_SIMULATOR
+
+#else
+
+int TTIsInDebugger(void) {
+    return 0;
+}
 
 #endif // #ifdef DEBUG
