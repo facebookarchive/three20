@@ -52,6 +52,17 @@
 @property (nonatomic, readonly) TTNavigator*          secondaryNavigator;
 
 /**
+ * Access is granted to the dimmer view here for layout purposes. If you implement custom
+ * layouts in a subclass, you should update the frame of the dimmer view accordingly.
+ *
+ * For example:
+ *
+ *     self.primaryDimmerView.frame = self.primaryViewController.view.frame;
+ *
+ */
+@property (nonatomic, readonly) UIView*               primaryDimmerView;
+
+/**
  * Dims the primary view controller.
  */
 - (void)dimPrimaryViewController:(BOOL)isDimmed animated:(BOOL)isAnimated;

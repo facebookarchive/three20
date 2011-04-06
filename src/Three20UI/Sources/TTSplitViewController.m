@@ -46,6 +46,8 @@ static const CGFloat kMasterWidthInLandscape = 330;
 @synthesize primaryNavigator        = _primaryNavigator;
 @synthesize secondaryNavigator      = _secondaryNavigator;
 
+@synthesize primaryDimmerView       = _primaryDimmerView;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
@@ -100,7 +102,7 @@ static const CGFloat kMasterWidthInLandscape = 330;
   _primaryViewController.view.left = masterWidth;
   _primaryViewController.view.top = 0;
 
-  // Left side, large view.
+  // Left side, small view.
   _secondaryViewController.view.height = TTScreenBounds().size.height - statusBarHeight;
   _secondaryViewController.view.width = masterWidth;
   _secondaryViewController.view.left = 0;
