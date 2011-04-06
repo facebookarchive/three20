@@ -82,7 +82,7 @@ extern NSString* TTBaseNavigatorWillShowPopoverNotification;
 /**
  * The controller that is at the root of the view controller hierarchy.
  */
-@property (nonatomic, readonly) UIViewController* rootViewController;
+@property (nonatomic, retain) UIViewController* rootViewController;
 
 /**
  * The currently visible view controller.
