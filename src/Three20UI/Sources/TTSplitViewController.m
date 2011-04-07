@@ -145,6 +145,9 @@ static const CGFloat kMasterWidthInLandscape = 330;
 
   [_primaryViewController viewDidAppear:animated];
   [_secondaryViewController viewDidAppear:animated];
+
+  [self primaryViewDidAppear:animated];
+  [self secondaryViewDidAppear:animated];
 }
 
 
@@ -238,6 +241,18 @@ static const CGFloat kMasterWidthInLandscape = 330;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)primaryViewDidAppear:(BOOL)animated {
+  // no-op
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)secondaryViewDidAppear:(BOOL)animated {
+  // no-op
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Properties
@@ -280,6 +295,8 @@ static const CGFloat kMasterWidthInLandscape = 330;
           [self.view bringSubviewToFront:_primaryDimmerView];
         }
         [_primaryViewController viewDidAppear:NO];
+
+        [self primaryViewDidAppear:NO];
       }
     }
   }
@@ -314,6 +331,8 @@ static const CGFloat kMasterWidthInLandscape = 330;
           [self.view addSubview:secondaryView];
         }
         [_secondaryViewController viewDidAppear:NO];
+
+        [self secondaryViewDidAppear:NO];
       }
     }
   }

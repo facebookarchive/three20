@@ -74,6 +74,15 @@
  */
 - (void)updateLayoutWithOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
+/**
+ * Called after the relevant controller receives the viewDidApppear: method. Useful for doing
+ * any layout adjustments after either view appears.
+ *
+ * The default implementation does nothing.
+ */
+- (void)primaryViewDidAppear:(BOOL)animated;
+- (void)secondaryViewDidAppear:(BOOL)animated;
+
 @end
 
 /**
