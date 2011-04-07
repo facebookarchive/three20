@@ -24,6 +24,10 @@
 @property (nonatomic, readonly) UIFont* tableMessageItemMessageFont;
 @property (nonatomic, readonly) UIFont* tableMessageItemTimestampFont;
 
+@property (nonatomic, readonly) NSInteger tableMessageItemTitleNumberOfLines;
+@property (nonatomic, readonly) NSInteger tableMessageItemSubtitleNumberOfLines;
+@property (nonatomic, readonly) NSInteger tableMessageItemMessageNumberOfLines;
+
 @property (nonatomic, readonly) CGSize  tableMessageItemIconSize;
 
 @end
