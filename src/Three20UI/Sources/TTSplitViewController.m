@@ -279,6 +279,7 @@ static const CGFloat kMasterWidthInLandscape = 330;
       UIView* primaryView = self.primaryViewController.view;
       primaryView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                       | UIViewAutoresizingFlexibleHeight);
+      primaryView.clipsToBounds = YES;
 
       if ([self isViewLoaded]) {
         [self updateLayoutWithOrientation:TTInterfaceOrientation()];
@@ -322,6 +323,7 @@ static const CGFloat kMasterWidthInLandscape = 330;
 
       UIView* secondaryView = self.secondaryViewController.view;
       secondaryView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+      secondaryView.clipsToBounds = YES;
 
       if ([self isViewLoaded]) {
         [self updateLayoutWithOrientation:TTInterfaceOrientation()];
