@@ -58,6 +58,16 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)heightWithFont: (UIFont*)font
+       constrainedToWidth: (CGFloat)width
+            lineBreakMode: (UILineBreakMode)lineBreakMode {
+  return [self sizeWithFont: font
+          constrainedToSize: CGSizeMake(width, CGFLOAT_MAX)
+              lineBreakMode: lineBreakMode].height;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)stringByRemovingHTMLTags {
   TTMarkupStripper* stripper = [[[TTMarkupStripper alloc] init] autorelease];
   return [stripper parse:self];
