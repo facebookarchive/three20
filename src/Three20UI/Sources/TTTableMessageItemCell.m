@@ -22,6 +22,10 @@
 #import "Three20UI/UIViewAdditions.h"
 #import "Three20UI/UITableViewAdditions.h"
 
+// UINavigator
+#import "Three20UINavigator/TTBaseNavigator.h"
+#import "Three20UINavigator/TTURLMap.h"
+
 // Style
 #import "Three20Style/TTGlobalStyle.h"
 #import "Three20Style/TTDefaultStyleSheet.h"
@@ -110,7 +114,15 @@
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   TTTableMessageItem* item = object;
 
+  UITableViewCellAccessoryType accessoryType =
+  [self accessoryTypeForObject: object
+                        URLMap: [TTBaseNavigator navigatorForView:tableView].URLMap];
+
   CGFloat cellWidth = tableView.width - [tableView tableCellMargin] * 2;
+
+  if (accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
+    cellWidth -= kTableDisclosureIndicatorWidth;
+  }
 
   CGSize iconSize = TTSTYLEVAR(tableMessageItemIconSize);
 
@@ -122,7 +134,7 @@
     left = kTableCellMargin;
   }
 
-  CGFloat textWidth = cellWidth - left;
+  CGFloat textWidth = cellWidth - left - kTableCellSmallMargin;
   CGFloat textHeight = 0;
 
   if (TTIsStringWithAnyText(item.title)) {
@@ -205,7 +217,7 @@
     left = kTableCellMargin;
   }
 
-  CGFloat width = self.contentView.width - left;
+  CGFloat width = self.contentView.width - left - kTableCellSmallMargin;
   CGFloat top = kTableCellSmallMargin;
 
   if (_titleLabel.text.length) {

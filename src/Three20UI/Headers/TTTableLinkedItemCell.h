@@ -19,6 +19,7 @@
 
 @class TTTableLinkedItem;
 @class TTBaseNavigator;
+@class TTURLMap;
 
 @interface TTTableLinkedItemCell : TTTableViewCell {
   TTTableLinkedItem*  _item;
@@ -26,5 +27,8 @@
 }
 
 @property (nonatomic, retain) TTBaseNavigator* navigator;
+
++ (UITableViewCellAccessoryType)accessoryTypeForObject:(id)object URLMap:(TTURLMap*)URLMap;
++ (UITableViewCellSelectionStyle)selectionStyleForObject:(id)object;
 
 @end

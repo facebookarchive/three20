@@ -23,6 +23,7 @@ extern const CGFloat    kTableCellMargin;
 extern const CGFloat    kTableCellHPadding;
 extern const CGFloat    kTableCellVPadding;
 extern const NSInteger  kTableMessageTextLineCount;
+extern const CGFloat    kTableDisclosureIndicatorWidth;
 
 /**
  * The base class for table cells which are single-object based.

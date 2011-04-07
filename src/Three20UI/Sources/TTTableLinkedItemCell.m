@@ -55,6 +55,48 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UITableViewCellAccessoryType)accessoryTypeForObject:(id)object URLMap:(TTURLMap*)URLMap {
+  TTTableLinkedItem* item = object;
+
+  if (item.URL) {
+    TTNavigationMode navigationMode = [URLMap navigationModeForURL:item.URL];
+    if (item.accessoryURL) {
+      return UITableViewCellAccessoryDetailDisclosureButton;
+
+    } else if (navigationMode == TTNavigationModeCreate ||
+               navigationMode == TTNavigationModeShare) {
+      return UITableViewCellAccessoryDisclosureIndicator;
+
+    } else {
+      return UITableViewCellAccessoryNone;
+    }
+
+  } else if (nil != item.delegate && nil != item.selector) {
+    return UITableViewCellAccessoryDisclosureIndicator;
+
+  } else {
+    return UITableViewCellAccessoryNone;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UITableViewCellSelectionStyle)selectionStyleForObject:(id)object {
+  TTTableLinkedItem* item = object;
+
+  if (item.URL) {
+    return TTSTYLEVAR(tableSelectionStyle);
+
+  } else if (nil != item.delegate && nil != item.selector) {
+    return TTSTYLEVAR(tableSelectionStyle);
+
+  } else {
+    return UITableViewCellSelectionStyleNone;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)object {
   return _item;
 }
@@ -66,32 +108,8 @@
     [_item release];
     _item = [object retain];
 
-    TTTableLinkedItem* item = object;
-
-    if (item.URL) {
-      TTNavigationMode navigationMode = [self.navigator.URLMap
-                                         navigationModeForURL:item.URL];
-      if (item.accessoryURL) {
-        self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-
-      } else if (navigationMode == TTNavigationModeCreate ||
-                 navigationMode == TTNavigationModeShare) {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-      } else {
-        self.accessoryType = UITableViewCellAccessoryNone;
-      }
-
-      self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
-
-    } else if (nil != item.delegate && nil != item.selector) {
-      self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-      self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
-
-    } else {
-      self.accessoryType = UITableViewCellAccessoryNone;
-      self.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    self.accessoryType = [[self class] accessoryTypeForObject:object URLMap:self.navigator.URLMap];
+    self.selectionStyle = [[self class] selectionStyleForObject:object];
   }
 }
 
