@@ -41,9 +41,33 @@ static const NSInteger  kMessageTextLineCount       = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIFont*)titleFont {
+  return TTSTYLEVAR(tableMessageItemTitleFont);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIFont*)subtitleFont {
+  return TTSTYLEVAR(tableMessageItemSubtitleFont);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIFont*)messageFont {
+  return TTSTYLEVAR(tableMessageItemMessageFont);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIFont*)timestampFont {
+  return TTSTYLEVAR(tableMessageItemTimestampFont);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier]) {
-    self.textLabel.font = TTSTYLEVAR(font);
+    self.textLabel.font = [[self class] subtitleFont];
     self.textLabel.textColor = TTSTYLEVAR(textColor);
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.textAlignment = UITextAlignmentLeft;
@@ -51,7 +75,7 @@ static const NSInteger  kMessageTextLineCount       = 2;
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.textLabel.contentMode = UIViewContentModeLeft;
 
-    self.detailTextLabel.font = TTSTYLEVAR(font);
+    self.detailTextLabel.font = [[self class] messageFont];
     self.detailTextLabel.textColor = TTSTYLEVAR(tableSubTextColor);
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.detailTextLabel.textAlignment = UITextAlignmentLeft;
@@ -213,7 +237,7 @@ static const NSInteger  kMessageTextLineCount       = 2;
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.textColor = [UIColor blackColor];
     _titleLabel.highlightedTextColor = [UIColor whiteColor];
-    _titleLabel.font = TTSTYLEVAR(tableFont);
+    _titleLabel.font = [[self class] titleFont];
     _titleLabel.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:_titleLabel];
   }
@@ -231,7 +255,7 @@ static const NSInteger  kMessageTextLineCount       = 2;
 - (UILabel*)timestampLabel {
   if (!_timestampLabel) {
     _timestampLabel = [[UILabel alloc] init];
-    _timestampLabel.font = TTSTYLEVAR(tableTimestampFont);
+    _timestampLabel.font = [[self class] timestampFont];
     _timestampLabel.textColor = TTSTYLEVAR(timestampTextColor);
     _timestampLabel.highlightedTextColor = [UIColor whiteColor];
     _timestampLabel.contentMode = UIViewContentModeLeft;

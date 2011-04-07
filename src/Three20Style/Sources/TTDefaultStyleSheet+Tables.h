@@ -18,6 +18,12 @@
 
 @interface TTDefaultStyleSheet (TTTables)
 
-@property (nonatomic, readonly) CGSize tableMessageItemIconSize;
+// Message items
+@property (nonatomic, readonly) UIFont* tableMessageItemTitleFont;
+@property (nonatomic, readonly) UIFont* tableMessageItemSubtitleFont;
+@property (nonatomic, readonly) UIFont* tableMessageItemMessageFont;
+@property (nonatomic, readonly) UIFont* tableMessageItemTimestampFont;
+
+@property (nonatomic, readonly) CGSize  tableMessageItemIconSize;
 
 @end
