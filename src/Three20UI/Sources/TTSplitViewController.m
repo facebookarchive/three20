@@ -93,17 +93,14 @@ static const CGFloat kMasterWidthInLandscape = 330;
 - (void)updateLayoutWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
   CGFloat masterWidth = [self secondaryWidthWithOrientation:interfaceOrientation];
 
-  CGSize statusBarSize = [UIApplication sharedApplication].statusBarFrame.size;
-  CGFloat statusBarHeight = fminf(statusBarSize.width, statusBarSize.height);
-
   // Right side, large view.
-  _primaryViewController.view.height = TTScreenBounds().size.height - statusBarHeight;
-  _primaryViewController.view.width = TTScreenBounds().size.width - masterWidth;
+  _primaryViewController.view.height = self.view.height;
+  _primaryViewController.view.width = self.view.width - masterWidth;
   _primaryViewController.view.left = masterWidth;
   _primaryViewController.view.top = 0;
 
   // Left side, small view.
-  _secondaryViewController.view.height = TTScreenBounds().size.height - statusBarHeight;
+  _secondaryViewController.view.height = self.view.height;
   _secondaryViewController.view.width = masterWidth;
   _secondaryViewController.view.left = 0;
   _secondaryViewController.view.top = 0;
