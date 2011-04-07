@@ -25,14 +25,13 @@
 // Style
 #import "Three20Style/TTGlobalStyle.h"
 #import "Three20Style/TTDefaultStyleSheet.h"
+#import "Three20Style/TTDefaultStyleSheet+Tables.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/NSDateAdditions.h"
 
 static const NSInteger  kMessageTextLineCount       = 2;
-static const CGFloat    kDefaultMessageImageWidth   = 34;
-static const CGFloat    kDefaultMessageImageHeight  = 34;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,9 +109,10 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
 
   CGFloat left = 0;
   if (_imageView2) {
+    CGSize iconSize = TTSTYLEVAR(tableMessageItemIconSize);
     _imageView2.frame = CGRectMake(kTableCellSmallMargin, kTableCellSmallMargin,
-                                   kDefaultMessageImageWidth, kDefaultMessageImageHeight);
-    left += kTableCellSmallMargin + kDefaultMessageImageHeight + kTableCellSmallMargin;
+                                   iconSize.width, iconSize.height);
+    left += kTableCellSmallMargin + iconSize.height + kTableCellSmallMargin;
 
   } else {
     left = kTableCellMargin;
