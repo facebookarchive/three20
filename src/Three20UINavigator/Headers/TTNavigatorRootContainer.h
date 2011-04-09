@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 
 @class TTBaseNavigator;
+@class TTURLAction;
 
 /**
  * A root container object is any object that can set a root view controller.
@@ -50,6 +51,21 @@
  * Retrieve the navigator that has this controller as its root.
  */
 - (TTBaseNavigator*)navigatorForRootController:(UIViewController*)controller;
+
+
+@optional
+
+/**
+ * Called immediately before the navigator is about to present the view controller. Useful as
+ * a means of implementing custom controller presentation.
+ *
+ * @return YES if the controller was presented.
+ *         NO  if the navigator should present the controller.
+ */
+- (BOOL)    navigator: (TTBaseNavigator*)navigator
+    presentController: (UIViewController*)controller
+               action: (TTURLAction*)action;
+
 
 @end
 
