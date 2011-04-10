@@ -53,7 +53,7 @@
              [self majorVersion],
              [self minorVersion],
              [self bugfixVersion]]
-          : [NSString stringWithFormat:@"%d.%d.%d",
+          : [NSString stringWithFormat:@"%d.%d.%d.%d",
              [self majorVersion],
              [self minorVersion],
              [self bugfixVersion],
