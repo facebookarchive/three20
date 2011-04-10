@@ -1,3 +1,6 @@
 [submodule "src/extThree20JSON/Vendors/TouchJSON"]
 	path = src/extThree20JSON/Vendors/TouchJSON
 	url = git://github.com/TouchCode/TouchJSON.git
+[submodule "src/extThree20JSON/Vendors/JSONKit"]
+	path = src/extThree20JSON/Vendors/JSONKit
+	url = git://github.com/johnezang/JSONKit.git
