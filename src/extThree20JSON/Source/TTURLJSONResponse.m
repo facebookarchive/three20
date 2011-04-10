@@ -24,6 +24,8 @@
 #import "extThree20JSON/NSObject+YAJL.h"
 #elif defined(EXTJSON_TouchJSON)
 #import "extThree20JSON/CJSONDeserializer.h"
+#elif defined(EXTJSON_JSONKit)
+#import "extThree20JSON/JSONKit.h"
 #endif
 
 // Core
@@ -83,6 +85,16 @@
     }
 #elif defined(EXTJSON_TouchJSON)
 	  _rootObject = [[CJSONDeserializer deserializer] deserialize:data error:&err];
+#elif defined(EXTJSON_JSONKit)
+	 
+	  @try {
+		  _rootObject = [[[JSONDecoder decoder] objectWithData:data error:&err] retain];
+	  }
+	  @catch (NSException* exception) {
+		  err = [NSError errorWithDomain:kTTExtJSONErrorDomain
+									code:kTTExtJSONErrorCodeInvalidJSON
+								userInfo:[exception userInfo]];
+	  }
 #endif
   }
 
