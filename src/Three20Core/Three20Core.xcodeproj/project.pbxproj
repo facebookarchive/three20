@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6656B2531354035900B34AB5 /* TTAvailability.h in Headers */ = {isa = PBXBuildFile; fileRef = 6656B2521354035900B34AB5 /* TTAvailability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6656B2551354035F00B34AB5 /* TTAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6656B2541354035F00B34AB5 /* TTAvailability.m */; };
 		66ADC9091290B23A00855386 /* TTExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC9071290B23A00855386 /* TTExtensionInfo.m */; };
 		66ADC90F1290B24D00855386 /* TTExtensionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADC90E1290B24D00855386 /* TTExtensionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADCE681291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -63,6 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6656B2521354035900B34AB5 /* TTAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTAvailability.h; path = Headers/TTAvailability.h; sourceTree = "<group>"; };
+		6656B2541354035F00B34AB5 /* TTAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTAvailability.m; path = Sources/TTAvailability.m; sourceTree = "<group>"; };
 		66ADC9071290B23A00855386 /* TTExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionInfo.m; path = Sources/TTExtensionInfo.m; sourceTree = "<group>"; };
 		66ADC90E1290B24D00855386 /* TTExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionInfo.h; path = Headers/TTExtensionInfo.h; sourceTree = "<group>"; };
 		66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionInfoPrivate.h; path = Headers/TTExtensionInfoPrivate.h; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 				6E178E7D1183C8E5003B099E /* TTGlobalCorePaths.m */,
 				6EDAE9C6118CA1720008133C /* TTGlobalCoreRects.h */,
 				6EDAE9C8118CA1790008133C /* TTGlobalCoreRects.m */,
+				6656B2521354035900B34AB5 /* TTAvailability.h */,
+				6656B2541354035F00B34AB5 /* TTAvailability.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 				66ADC90F1290B24D00855386 /* TTExtensionInfo.h in Headers */,
 				66ADCE681291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */,
 				66ADCE8B1291BEBB00855386 /* TTExtensionAuthor.h in Headers */,
+				6656B2531354035900B34AB5 /* TTAvailability.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +490,7 @@
 				66ECA257128DFE28006C78C2 /* TTExtensionLoader.m in Sources */,
 				66ADC9091290B23A00855386 /* TTExtensionInfo.m in Sources */,
 				66ADCE871291BEAE00855386 /* TTExtensionAuthor.m in Sources */,
+				6656B2551354035F00B34AB5 /* TTAvailability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
