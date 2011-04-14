@@ -29,6 +29,7 @@
 // UINavigator
 #import "Three20UINavigator/TTURLMap.h"
 #import "Three20UINavigator/TTURLAction.h"
+#import "Three20UINavigator/UIViewController+TTNavigator.h"
 
 // UINavigator (private)
 #import "Three20UINavigator/private/TTBaseNavigatorInternal.h"
@@ -131,16 +132,19 @@ UIViewController* TTOpenURLFromView(NSString* URL, UIView* view) {
   if ([controller isKindOfClass:[TTPopupViewController class]]) {
     TTPopupViewController* popupViewController = (TTPopupViewController*)controller;
 
-    BOOL didDismiss = NO;
+    BOOL shouldPresentPopupController = YES;
     if (nil != parentController.popupViewController
         && [parentController.popupViewController isKindOfClass:[TTPopupViewController class]]) {
+      if ([parentController.popupViewController.originalNavigatorURL
+           isEqualToString:action.urlPath]) {
+        shouldPresentPopupController = NO;
+      }
       [(TTPopupViewController*)parentController.popupViewController
        dismissPopupViewControllerAnimated:YES];
       parentController.popupViewController = nil;
-      didDismiss = YES;
     }
 
-    if (!didDismiss || [controller isKindOfClass:[TTAlertViewController class]]) {
+    if (shouldPresentPopupController) {
       parentController.popupViewController = popupViewController;
       [self presentPopupController: popupViewController
                   parentController: parentController
