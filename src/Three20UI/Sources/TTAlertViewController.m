@@ -125,10 +125,28 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showInView:(UIView*)view animated:(BOOL)animated {
+- (void)showAlertViewAnimated:(BOOL)animated {
   [self viewWillAppear:animated];
   [self.alertView show];
   [self viewDidAppear:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showInView:(UIView*)view animated:(BOOL)animated {
+  [self showAlertViewAnimated:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated {
+  [self showAlertViewAnimated:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated {
+  [self showAlertViewAnimated:animated];
 }
 
 
