@@ -33,7 +33,7 @@
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.supportsShakeToReload = YES;
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
-  
+
   [TTExtensionLoader loadAllExtensions];
 
   TTURLMap* map = navigator.URLMap;
@@ -184,8 +184,8 @@
       toViewController: [DownloadProgressTestController class]
               selector: nil
             transition: 0];
-  
-  // This registers the necessary URLs
+
+  // This registers a set of URL paths for extension view controllers.
   [TTExtensionsController registerUrlPathsWithNavigator: navigator
                                                  prefix: @"tt://"];
 
