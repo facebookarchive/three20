@@ -16,6 +16,9 @@
 
 #import "Three20Core/Three20.h"
 
+#import "Three20Core/Three20Version.h"
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,40 +27,37 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSInteger)majorVersion {
-  return 1;
+  return [[[THREE20_VERSION componentsSeparatedByString:@"."] objectAtIndex:0] intValue];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSInteger)minorVersion {
-  return 0;
+  return [[[THREE20_VERSION componentsSeparatedByString:@"."] objectAtIndex:1] intValue];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSInteger)bugfixVersion {
-  return 5;
+  return [[[THREE20_VERSION componentsSeparatedByString:@"."] objectAtIndex:2] intValue];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSInteger)hotfixVersion {
-  return 0;
+  NSArray* components = [THREE20_VERSION componentsSeparatedByString:@"."];
+  if ([components count] > 3) {
+    return [[components objectAtIndex:3] intValue];
+
+  } else {
+    return 0;
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString*)version {
-  return ([self hotfixVersion] > 0
-          ? [NSString stringWithFormat:@"%d.%d.%d",
-             [self majorVersion],
-             [self minorVersion],
-             [self bugfixVersion]]
-          : [NSString stringWithFormat:@"%d.%d.%d.%d",
-             [self majorVersion],
-             [self minorVersion],
-             [self bugfixVersion],
-             [self hotfixVersion]]);
+  return THREE20_VERSION;
 }
 
 

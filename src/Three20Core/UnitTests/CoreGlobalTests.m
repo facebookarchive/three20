@@ -20,6 +20,7 @@
 
 // Core
 #import "Three20Core/Three20.h"
+#import "Three20Core/Three20Version.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 #import "Three20Core/TTGlobalCorePaths.h"
 #import "Three20Core/TTGlobalCore.h"
@@ -56,8 +57,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testThree20Versioning {
-  STAssertTrue([[Three20 version] isEqualToString:@"1.0.5"],
+  STAssertTrue([[Three20 version] isEqualToString:THREE20_VERSION],
                @"The latest version has not been updated correctly.");
+  STAssertEquals([Three20 majorVersion], 1,
+                 @"The latest major version has not been updated correctly.");
+  STAssertEquals([Three20 minorVersion], 0,
+                 @"The latest minor version has not been updated correctly.");
+  STAssertEquals([Three20 bugfixVersion], 5,
+                 @"The latest bugfix version has not been updated correctly.");
+  STAssertEquals([Three20 hotfixVersion], 0,
+                 @"The latest hotfix version has not been updated correctly.");
 }
 
 

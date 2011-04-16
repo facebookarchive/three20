@@ -14,20 +14,9 @@
 // limitations under the License.
 //
 
-// Core
-#import "Three20Core/Three20Core.h"
+/*! \mainpage Three20 API Documentation
+ *
+ * Generated from Three20 Release <a href="http://three20.info/roadmap/1.0.5">1.0.5</a>.
+ */
 
-// Network
-#import "Three20Network/Three20Network.h"
-
-// Style
-#import "Three20Style/Three20Style.h"
-
-// UICommon
-#import "Three20UICommon/Three20UICommon.h"
-
-// UINavigator
-#import "Three20UINavigator/Three20UINavigator.h"
-
-// UI
-#import "Three20UI/Three20UI.h"
+#define THREE20_VERSION @"1.0.5"
