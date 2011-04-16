@@ -19,7 +19,7 @@
 // UI
 #import "Three20UI/TTSectionedDataSource.h"
 #import "Three20UI/TTTableCaptionItem.h"
-#import "Three20UI/TTTableImageItem.h"
+#import "Three20UI/TTTableSubtitleItem.h"
 #import "Three20UI/TTTableLongTextItem.h"
 #import "Three20UI/TTTableTextItem.h"
 
@@ -32,6 +32,7 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCore.h"
 #import "Three20Core/NSStringAdditions.h"
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTLicense.h"
@@ -131,12 +132,26 @@
                                     [_extension.authors count]] autorelease];
     for (TTExtensionAuthor* author in _extension.authors) {
       TTDASSERT([author isKindOfClass:[TTExtensionAuthor class]]);
+      NSString* subtitle = nil;
+      if (TTIsStringWithAnyText(author.twitter)) {
+        subtitle = [NSString stringWithFormat:@"@%@", author.twitter];
+
+      } else if (TTIsStringWithAnyText(author.github)) {
+        subtitle = [NSString stringWithFormat:@"github: %@", author.github];
+
+      } else if (TTIsStringWithAnyText(author.email)) {
+        subtitle = [NSString stringWithFormat:@"email: %@", author.email];
+      }
+
       [authorItems addObject:
-       [TTTableImageItem itemWithText: author.name
-                             imageURL: [self urlPathForEmail: author.email
-                                                        size: 50]
-                         defaultImage: TTIMAGE(@"bundle://Three20.bundle/images/defaultPerson.png")
-                                  URL: nil]];
+       [TTTableSubtitleItem itemWithText: author.name
+                                subtitle: subtitle
+                                imageURL: [self urlPathForEmail: author.email
+                                                           size: 50]
+                            defaultImage:
+        TTIMAGE(@"bundle://Three20.bundle/images/defaultPerson.png")
+                                     URL: nil
+                            accessoryURL: nil]];
     }
 
     [items addObject:authorItems];
