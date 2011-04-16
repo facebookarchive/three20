@@ -28,7 +28,9 @@
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCore.h"
 
+static const CGFloat kDefaultImageSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,12 +79,18 @@
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   TTTableSubtitleItem* item = object;
 
-  CGFloat height = TTSTYLEVAR(tableFont).ttLineHeight + kTableCellVPadding*2;
+  CGFloat height = TTSTYLEVAR(tableFont).ttLineHeight;
   if (item.subtitle) {
     height += TTSTYLEVAR(font).ttLineHeight;
   }
 
-  return height;
+  CGFloat imageHeight = 0;
+  if (TTIsStringWithAnyText(item.imageURL)
+      || nil != item.defaultImage) {
+    imageHeight = kDefaultImageSize;
+  }
+
+  return MAX(height, imageHeight) + kTableCellVPadding * 2;
 }
 
 
@@ -101,7 +109,9 @@
   CGFloat left = 0;
 
   if (_imageView2) {
-    _imageView2.frame = CGRectMake(0, 0, height, height);
+    CGFloat imageDimensions = MIN(height, kDefaultImageSize);
+    _imageView2.frame = CGRectMake(kTableCellHPadding, kTableCellVPadding,
+                                   imageDimensions, imageDimensions);
     left = _imageView2.right + kTableCellSmallMargin;
 
   } else {
