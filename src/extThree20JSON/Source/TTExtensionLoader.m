@@ -51,13 +51,50 @@ TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTJSONExtension)
                                           copyrightTimespan: @"2009-2011"
                                              copyrightOwner: @"Facebook"]];
 
+  NSMutableArray* authors = [NSMutableArray array];
+
 #ifdef EXTJSON_SBJSON
-  extension.website = @"http://code.google.com/p/json-framework/";
+  extension.website = @"http://stig.github.com/json-framework/";
   extension.version = [extension.version stringByAppendingString:@" SBJSON 2.3.1"];
 
   [licenses addObject:[TTLicenseInfo licenseInfoWithLicense: TTLicenseBSDNew
-                                          copyrightTimespan: @"2009-2010"
+                                          copyrightTimespan: @"2007-2011"
                                              copyrightOwner: @"Stig Brautaset"]];
+
+  [authors addObject:[TTExtensionAuthor authorWithName: @"Stig Brautaset"
+                                                github: @"stig"
+                                               twitter: @"stigbra"
+                                               website: @"http://stig.brautaset.org/"
+                                                 email: @"stig@brautaset.org"]];
+
+  [authors addObjectsFromArray:[NSArray arrayWithObjects:
+                                [TTExtensionAuthor authorWithName:@"Blake Seely"],
+                                [TTExtensionAuthor authorWithName:@"Marc Lehmann"],
+                                [TTExtensionAuthor authorWithName: @"Jens Alfke"
+                                                           github: nil
+                                                          twitter: nil
+                                                          website: @"http://mooseyard.com/Jens/"
+                                                            email: @"jens@mooseyard.com"],
+                                [TTExtensionAuthor authorWithName:@"Greg Bolsinga"],
+                                [TTExtensionAuthor authorWithName:@"Ben Rimmington"],
+                                [TTExtensionAuthor authorWithName:@"renerattur"],
+                                [TTExtensionAuthor authorWithName:@"dmaclach"],
+                                [TTExtensionAuthor authorWithName:@"boredzo"],
+                                [TTExtensionAuthor authorWithName: @"Adium"
+                                                           github: nil
+                                                          twitter: nil
+                                                          website: @"http://adiumx.com"
+                                                            email: nil],
+                                [TTExtensionAuthor authorWithName:@"Joerg Schwieder"],
+                                [TTExtensionAuthor authorWithName:@"Mike Monaco"],
+                                [TTExtensionAuthor authorWithName:@"dewvinci"],
+                                [TTExtensionAuthor authorWithName:@"Tobias Höhmann"],
+                                [TTExtensionAuthor authorWithName:@"George MacKerron"],
+                                [TTExtensionAuthor authorWithName:@"jinksys"],
+                                [TTExtensionAuthor authorWithName:@"Lloyd Hilaiel"],
+                                [TTExtensionAuthor authorWithName:@"Gabriel Handford"],
+                                [TTExtensionAuthor authorWithName:@"Andy Warwick"],
+                                nil]];
 
 #elif defined(EXTJSON_YAJL)
   extension.website = @"https://github.com/gabriel/yajl-objc";
@@ -68,15 +105,16 @@ TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTJSONExtension)
                                              copyrightOwner: @"Gabriel Handford"]];
 #endif
 
-  extension.authors = [NSArray arrayWithObjects:
-                       [TTExtensionAuthor authorWithName: @"Jeff Verkoeyen"
-                                                  github: @"jverkoey"
-                                                 twitter: @"featherless"
-                                                 website: @"http://JeffVerkoeyen.com/"
-                                                   email: @"jverkoey@gmail.com"],
-                       nil];
+  [authors addObjectsFromArray:[NSMutableArray arrayWithObjects:
+                                [TTExtensionAuthor authorWithName: @"Jeff Verkoeyen"
+                                                           github: @"jverkoey"
+                                                          twitter: @"featherless"
+                                                          website: @"http://JeffVerkoeyen.com/"
+                                                            email: @"jverkoey@gmail.com"],
+                                nil]];
 
   extension.licenses = licenses;
+  extension.authors = authors;
 
   return [extension autorelease];
 }
