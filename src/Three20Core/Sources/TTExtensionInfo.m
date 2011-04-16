@@ -31,6 +31,7 @@
 @synthesize identifier        = _id;
 @synthesize name              = _name;
 @synthesize description       = _description;
+@synthesize website           = _website;
 @synthesize version           = _version;
 @synthesize licenses          = _licenses;
 @synthesize authors           = _authors;
@@ -50,8 +51,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_id);
-  TT_RELEASE_SAFELY(_description);
   TT_RELEASE_SAFELY(_name);
+  TT_RELEASE_SAFELY(_description);
+  TT_RELEASE_SAFELY(_website);
   TT_RELEASE_SAFELY(_version);
   TT_RELEASE_SAFELY(_licenses);
   TT_RELEASE_SAFELY(_authors);

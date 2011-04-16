@@ -22,6 +22,7 @@
   NSString* _id;
   NSString* _name;
   NSString* _description;
+  NSString* _website;
   NSString* _version;
 
   // License information
@@ -33,6 +34,7 @@
 @property (nonatomic, readonly) NSString* identifier;
 @property (nonatomic, copy)     NSString* name;
 @property (nonatomic, copy)     NSString* description;
+@property (nonatomic, copy)     NSString* website;
 @property (nonatomic, copy)     NSString* version;
 @property (nonatomic, copy)     NSArray*  licenses; // NSArray of TTLicenseInfo* objects.
 @property (nonatomic, copy)     NSArray*  authors;  // NSArray of TTExtensionAuthor* objects.

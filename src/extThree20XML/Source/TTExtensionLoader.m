@@ -45,6 +45,7 @@ TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTXMLExtension)
   extension.description =
   @"The XML extension provides support for parsing XML data and receiving XML responses.";
   extension.version = @"1.0";
+  extension.website = @"http://three20.info/extension/extXML";
   extension.licenses = [NSArray arrayWithObjects:
                         [TTLicenseInfo licenseInfoWithLicense: TTLicenseApache2_0
                                             copyrightTimespan: @"2009-2011"

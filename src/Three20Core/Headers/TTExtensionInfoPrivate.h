@@ -16,7 +16,6 @@
 
 #import "Three20Core/TTExtensionInfo.h"
 
-
 @interface TTExtensionInfo (TTPrivate)
 
 - (void)setIdentifier:(NSString*)identifier;

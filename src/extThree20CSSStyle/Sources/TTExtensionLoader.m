@@ -46,6 +46,7 @@ TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTCSSStyleExtension)
     @"The CSS Styling extension provides support for customizing the style of an app using"
     @" standard CSS.";
   extension.version = @"1.0";
+  extension.website = @"http://three20.info/extension/extCSSStyle";
   extension.licenses = [NSArray arrayWithObjects:
                         [TTLicenseInfo licenseInfoWithLicense: TTLicenseApache2_0
                                             copyrightTimespan: @"2009-2011"

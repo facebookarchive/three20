@@ -52,6 +52,7 @@ TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTJSONExtension)
                                              copyrightOwner: @"Facebook"]];
 
 #ifdef EXTJSON_SBJSON
+  extension.website = @"http://code.google.com/p/json-framework/";
   extension.version = [extension.version stringByAppendingString:@" SBJSON 2.3.1"];
 
   [licenses addObject:[TTLicenseInfo licenseInfoWithLicense: TTLicenseBSDNew
@@ -59,6 +60,7 @@ TT_FIX_CATEGORY_BUG(TTExtensionLoader_TTJSONExtension)
                                              copyrightOwner: @"Stig Brautaset"]];
 
 #elif defined(EXTJSON_YAJL)
+  extension.website = @"https://github.com/gabriel/yajl-objc";
   extension.version = [extension.version stringByAppendingString:@" YAJL 0.2.17"];
 
   [licenses addObject:[TTLicenseInfo licenseInfoWithLicense: TTLicenseMIT

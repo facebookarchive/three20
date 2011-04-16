@@ -109,6 +109,12 @@
     [TTTableCaptionItem itemWithText:_extension.version caption:@"Version:"],
     nil]];
 
+  if (TTIsStringWithAnyText(_extension.website)) {
+    [generalInfo addObject:
+     [TTTableCaptionItem itemWithText:_extension.website caption:@"Website:"
+                                  URL:_extension.website]];
+  }
+
   for (NSInteger ix = 0; ix < [_extension.licenses count]; ++ix) {
     TTLicenseInfo* licenseInfo = [_extension.licenses objectAtIndex:ix];
 
