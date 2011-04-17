@@ -30,4 +30,4 @@
  * Check out the versionStringCompare: addition to NSString if you need to compare Three20
  * versions. You will need to import Three20+Additions.h in order to use it.
  */
-extern NSString* Three20Version;
+extern NSString* const Three20Version;
