@@ -49,6 +49,14 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_extension);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithExtensionID:(NSString*)identifier {
   self = [super initWithNibName:nil bundle:nil];
   if (nil != self) {
@@ -71,15 +79,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_extension);
-
-  [super dealloc];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)urlPathForEmail:(NSString*)email size:(NSInteger)size {
+- (NSString*)urlPathForGravatar:(NSString*)email size:(NSInteger)size {
   return [NSString stringWithFormat:
           @"http://gravatar.com/avatar/%@?size=%d",
           [email md5Hash],
@@ -99,7 +99,7 @@
                     [TTTableLongTextItem itemWithText:_extension.description],
                     nil]];
 
-  [titles addObject:@"General Info"];
+  [titles addObject:@"General Information"];
 
   NSMutableArray* generalInfo = [NSMutableArray array];
 
@@ -159,8 +159,8 @@
       [authorItems addObject:
        [TTTableSubtitleItem itemWithText: author.name
                                 subtitle: subtitle
-                                imageURL: [self urlPathForEmail: author.email
-                                                           size: 50]
+                                imageURL: [self urlPathForGravatar: author.email
+                                                              size: 50]
                             defaultImage:
         TTIMAGE(@"bundle://Three20.bundle/images/defaultPerson.png")
                                      URL: authorURLPath
