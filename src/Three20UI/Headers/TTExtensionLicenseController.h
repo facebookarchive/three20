@@ -23,6 +23,9 @@
 @class TTLicenseInfo;
 @class TTStyledTextLabel;
 
+/**
+ * Display license text with the correct copyright information applied.
+ */
 @interface TTExtensionLicenseController : TTViewController {
 @private
   TTLicenseInfo* _licenseInfo;
@@ -30,5 +33,8 @@
   UIScrollView*       _scrollView;
   TTStyledTextLabel*  _licensePreambleLabel;
 }
+
+// Designated initializer.
+- (id)initWithExtensionID:(NSString*)identifier licenseIndex:(NSInteger)licenseIndex;
 
 @end

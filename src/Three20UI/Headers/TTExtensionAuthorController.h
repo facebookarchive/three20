@@ -19,9 +19,15 @@
 
 @class TTExtensionAuthor;
 
+/**
+ * Display information about a specific author.
+ */
 @interface TTExtensionAuthorController : TTTableViewController {
 @private
   TTExtensionAuthor* _author;
 }
+
+// Designated initializer.
+- (id)initWithExtensionID:(NSString*)identifier authorIndex:(NSInteger)authorIndex;
 
 @end

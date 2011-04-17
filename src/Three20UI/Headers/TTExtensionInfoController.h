@@ -29,4 +29,7 @@
   TTExtensionInfo* _extension;
 }
 
+// Designated initializer.
+- (id)initWithExtensionID:(NSString*)identifier;
+
 @end
