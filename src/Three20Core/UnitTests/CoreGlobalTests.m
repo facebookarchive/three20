@@ -57,7 +57,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testThree20Versioning {
-  STAssertTrue([[Three20 version] isEqualToString:THREE20_VERSION],
+  STAssertTrue([[Three20 version] isEqualToString:Three20Version],
                @"The latest version has not been updated correctly.");
   STAssertEquals([Three20 majorVersion], 1,
                  @"The latest major version has not been updated correctly.");

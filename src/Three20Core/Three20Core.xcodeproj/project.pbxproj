@@ -15,6 +15,7 @@
 		66ADCE681291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		66ADCE871291BEAE00855386 /* TTExtensionAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADCE811291BEAE00855386 /* TTExtensionAuthor.m */; };
 		66ADCE8B1291BEBB00855386 /* TTExtensionAuthor.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66CE68FB135B320F00E127E2 /* Three20Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CE68FA135B320F00E127E2 /* Three20Version.m */; };
 		66ECA257128DFE28006C78C2 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */; };
 		66ECA25B128DFE34006C78C2 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ECA258128DFE34006C78C2 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E178E811183C8E5003B099E /* TTGlobalCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E178E7B1183C8E5003B099E /* TTGlobalCore.m */; };
@@ -74,6 +75,7 @@
 		66ADCE661291BC1E00855386 /* TTExtensionInfoPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionInfoPrivate.h; path = Headers/TTExtensionInfoPrivate.h; sourceTree = "<group>"; };
 		66ADCE811291BEAE00855386 /* TTExtensionAuthor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionAuthor.m; path = Sources/TTExtensionAuthor.m; sourceTree = "<group>"; };
 		66ADCE881291BEBB00855386 /* TTExtensionAuthor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionAuthor.h; path = Headers/TTExtensionAuthor.h; sourceTree = "<group>"; };
+		66CE68FA135B320F00E127E2 /* Three20Version.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Three20Version.m; path = Sources/Three20Version.m; sourceTree = "<group>"; };
 		66ECA251128DFE28006C78C2 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Sources/TTExtensionLoader.m; sourceTree = "<group>"; };
 		66ECA258128DFE34006C78C2 /* TTExtensionLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionLoader.h; path = Headers/TTExtensionLoader.h; sourceTree = "<group>"; };
 		6E178E751183C8AE003B099E /* Three20Core_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Core_Prefix.pch; path = Headers/Three20Core_Prefix.pch; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				660E7374135A560A00531398 /* Three20Version.h */,
+				66CE68FA135B320F00E127E2 /* Three20Version.m */,
 				66A0530B132EB47F00132434 /* Three20.h */,
 				66A05309132EB47900132434 /* Three20.m */,
 				6E178E771183C8D3003B099E /* TTCorePreprocessorMacros.h */,
@@ -495,6 +498,7 @@
 				66ADC9091290B23A00855386 /* TTExtensionInfo.m in Sources */,
 				66ADCE871291BEAE00855386 /* TTExtensionAuthor.m in Sources */,
 				66A0530A132EB47900132434 /* Three20.m in Sources */,
+				66CE68FB135B320F00E127E2 /* Three20Version.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
