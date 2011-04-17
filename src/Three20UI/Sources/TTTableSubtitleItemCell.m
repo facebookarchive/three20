@@ -109,7 +109,7 @@ static const CGFloat kDefaultImageSize = 50;
   CGFloat left = 0;
 
   if (_imageView2) {
-    CGFloat imageDimensions = MIN(height, kDefaultImageSize);
+    CGFloat imageDimensions = MIN(height - kTableCellVPadding * 2, kDefaultImageSize);
     _imageView2.frame = CGRectMake(kTableCellHPadding, kTableCellVPadding,
                                    imageDimensions, imageDimensions);
     left = _imageView2.right + kTableCellSmallMargin;
