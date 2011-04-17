@@ -123,9 +123,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateTableDelegate {
   if (!_tableView.delegate) {
+    [_tableDelegate release];
+    _tableDelegate = [[self createDelegate] retain];
+
     // You need to set it to nil before changing it or it won't have any effect
     _tableView.delegate = nil;
-    [self updateTableDelegate];
+    _tableView.delegate = _tableDelegate;
   }
 }
 
