@@ -14,20 +14,20 @@
 // limitations under the License.
 //
 
-// Core
-#import "Three20Core/Three20Core.h"
+#import <Foundation/Foundation.h>
 
-// Network
-#import "Three20Network/Three20Network.h"
-
-// Style
-#import "Three20Style/Three20Style.h"
-
-// UICommon
-#import "Three20UICommon/Three20UICommon.h"
-
-// UINavigator
-#import "Three20UINavigator/Three20UINavigator.h"
-
-// UI
-#import "Three20UI/Three20UI.h"
+/**
+ * Expressed in MAJOR.MINOR.BUGFIX(.HOTFIX) notation.
+ *
+ * For example, 1.0.5.1 is:
+ *  - the first major release,
+ *  - with no minor updates,
+ *  - with 5 bugfix patches,
+ *  - and 1 hotfix patch.
+ *
+ * The .HOTFIX version will only be present if hotfixVersion is > 0.
+ *
+ * Check out the versionStringCompare: addition to NSString if you need to compare Three20
+ * versions. You will need to import Three20+Additions.h in order to use it.
+ */
+extern NSString* const Three20Version;
