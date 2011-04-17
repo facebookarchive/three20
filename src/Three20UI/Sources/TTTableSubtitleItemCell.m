@@ -130,6 +130,17 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)prepareForReuse {
+  [super prepareForReuse];
+
+  self.textLabel.text = nil;
+  self.detailTextLabel.text = nil;
+  self.imageView2.defaultImage = nil;
+  self.imageView2.urlPath = nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
   if (_item != object) {
     [super setObject:object];
