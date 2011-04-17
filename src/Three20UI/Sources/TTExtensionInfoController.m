@@ -136,8 +136,15 @@
     [titles addObject:@"Authors"];
     NSMutableArray* authorItems = [[[NSMutableArray alloc] initWithCapacity:
                                     [_extension.authors count]] autorelease];
-    for (TTExtensionAuthor* author in _extension.authors) {
+
+    for (NSInteger ix = 0; ix < [_extension.authors count]; ++ix) {
+      TTExtensionAuthor* author = [_extension.authors objectAtIndex:ix];
       TTDASSERT([author isKindOfClass:[TTExtensionAuthor class]]);
+
+      NSString* authorURLPath = [[self navigatorURL] stringByAppendingFormat:
+                                  @"/author/%d",
+                                  ix];
+
       NSString* subtitle = nil;
       if (TTIsStringWithAnyText(author.twitter)) {
         subtitle = [NSString stringWithFormat:@"@%@", author.twitter];
@@ -156,7 +163,7 @@
                                                            size: 50]
                             defaultImage:
         TTIMAGE(@"bundle://Three20.bundle/images/defaultPerson.png")
-                                     URL: nil
+                                     URL: authorURLPath
                             accessoryURL: nil]];
     }
 

@@ -42,6 +42,14 @@ static const CGFloat kFramePadding = 10;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_licenseInfo);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithExtensionID:(NSString*)identifier licenseIndex:(NSInteger)licenseIndex {
   self = [super initWithNibName:nil bundle:nil];
   if (nil != self) {
@@ -60,14 +68,6 @@ static const CGFloat kFramePadding = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   return [self initWithExtensionID:nil licenseIndex:0];
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_licenseInfo);
-
-  [super dealloc];
 }
 
 

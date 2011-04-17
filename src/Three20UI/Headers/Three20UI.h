@@ -19,7 +19,13 @@
 #import "Three20UI/TTViewController.h"
 #import "Three20UI/TTSplitViewController.h"
 #import "Three20UI/TTNavigationController.h"
+
+// - Extensions
 #import "Three20UI/TTExtensionsController.h"
+#import "Three20UI/TTExtensionInfoController.h"
+#import "Three20UI/TTExtensionLicenseController.h"
+#import "Three20UI/TTExtensionAuthorController.h"
+
 #import "Three20UI/TTWebController.h"
 #import "Three20UI/TTMessageController.h"
 #import "Three20UI/TTMessageControllerDelegate.h"

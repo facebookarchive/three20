@@ -19,6 +19,7 @@
 // UI
 #import "Three20UI/TTExtensionInfoController.h"
 #import "Three20UI/TTExtensionLicenseController.h"
+#import "Three20UI/TTExtensionAuthorController.h"
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTSectionedDataSource.h"
 #import "Three20UI/TTTableSubtitleItem.h"
@@ -151,6 +152,17 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSString*)urlPathForExtensionAuthorControllerWithPrefix: (NSString*)prefix
+                                               extensionID: (NSString*)extensionId
+                                               authorIndex: (NSInteger)authorIndex {
+  // We can't use stringByAppendingPathComponent here because it turns :// into :/
+  return [[self urlPathForExtensionInfoControllerWithPrefix: prefix
+                                                extensionID: extensionId]
+          stringByAppendingFormat:@"/author/%d", authorIndex];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)registerUrlPathsWithNavigator:(TTNavigator*)navigator prefix:(NSString*)prefix {
   TTURLMap* map = navigator.URLMap;
 
@@ -162,6 +174,9 @@
   [map          from: [[self urlPathForExtensionsControllerWithPrefix:prefix]
                        stringByAppendingString:@"/(initWithExtensionID:)/license/(licenseIndex:)"]
     toViewController: [TTExtensionLicenseController class]];
+  [map          from: [[self urlPathForExtensionsControllerWithPrefix:prefix]
+                       stringByAppendingString:@"/(initWithExtensionID:)/author/(authorIndex:)"]
+    toViewController: [TTExtensionAuthorController class]];
 }
 
 

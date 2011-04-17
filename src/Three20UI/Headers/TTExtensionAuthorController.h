@@ -17,16 +17,11 @@
 // UI
 #import "Three20UI/TTTableViewController.h"
 
-@class TTExtensionInfo;
+@class TTExtensionAuthor;
 
-/**
- * Display information about a specific extension.
- *
- * @see TTExtensionInfo
- */
-@interface TTExtensionInfoController : TTTableViewController {
+@interface TTExtensionAuthorController : TTTableViewController {
 @private
-  TTExtensionInfo* _extension;
+  TTExtensionAuthor* _author;
 }
 
 @end

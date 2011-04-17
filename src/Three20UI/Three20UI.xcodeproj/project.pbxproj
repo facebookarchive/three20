@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660E761E135A64E900531398 /* TTExtensionAuthorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E761C135A64E900531398 /* TTExtensionAuthorController.m */; };
+		660E7620135A64F600531398 /* TTExtensionAuthorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 660E761F135A64F600531398 /* TTExtensionAuthorController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E18E712945430001C1D97 /* TTSplitViewController.m */; };
 		666E18F51294543F001C1D97 /* TTSplitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E18F41294543F001C1D97 /* TTSplitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A0553C132EDDB800132434 /* TTExtensionLicenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A0553A132EDDB600132434 /* TTExtensionLicenseController.m */; };
-		66A05540132EDDD100132434 /* TTExtensionLicenseController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0553F132EDDD000132434 /* TTExtensionLicenseController.h */; };
+		66A05540132EDDD100132434 /* TTExtensionLicenseController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0553F132EDDD000132434 /* TTExtensionLicenseController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADC8C91290AC0200855386 /* TTExtensionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC8C61290AC0200855386 /* TTExtensionsController.m */; };
 		66ADC8CF1290AC1200855386 /* TTExtensionsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66ADC8CC1290AC1200855386 /* TTExtensionsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADCD9D1291AA7100855386 /* TTExtensionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADCD9B1291AA7100855386 /* TTExtensionInfoController.m */; };
@@ -435,6 +437,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		660E761C135A64E900531398 /* TTExtensionAuthorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionAuthorController.m; path = Sources/TTExtensionAuthorController.m; sourceTree = "<group>"; };
+		660E761F135A64F600531398 /* TTExtensionAuthorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionAuthorController.h; path = Headers/TTExtensionAuthorController.h; sourceTree = "<group>"; };
 		666E18E712945430001C1D97 /* TTSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTSplitViewController.m; path = Sources/TTSplitViewController.m; sourceTree = "<group>"; };
 		666E18F41294543F001C1D97 /* TTSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSplitViewController.h; path = Headers/TTSplitViewController.h; sourceTree = "<group>"; };
 		66A0553A132EDDB600132434 /* TTExtensionLicenseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLicenseController.m; path = Sources/TTExtensionLicenseController.m; sourceTree = "<group>"; };
@@ -775,6 +779,8 @@
 				66ADCD9B1291AA7100855386 /* TTExtensionInfoController.m */,
 				66A0553F132EDDD000132434 /* TTExtensionLicenseController.h */,
 				66A0553A132EDDB600132434 /* TTExtensionLicenseController.m */,
+				660E761F135A64F600531398 /* TTExtensionAuthorController.h */,
+				660E761C135A64E900531398 /* TTExtensionAuthorController.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1866,6 +1872,7 @@
 				66F2E85412D426A5006FB485 /* TTTableFooterInfiniteScrollView.h in Headers */,
 				66F2E85F12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */,
 				66A05540132EDDD100132434 /* TTExtensionLicenseController.h in Headers */,
+				660E7620135A64F600531398 /* TTExtensionAuthorController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2227,6 +2234,7 @@
 				66F2E85712D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */,
 				66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */,
 				66A0553C132EDDB800132434 /* TTExtensionLicenseController.m in Sources */,
+				660E761E135A64E900531398 /* TTExtensionAuthorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
