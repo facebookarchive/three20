@@ -73,6 +73,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_model);
+  TT_RELEASE_SAFELY(_navigator);
 
   [super dealloc];
 }
@@ -118,7 +119,19 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCell*)tableView:(UITableView *)tableView
-                    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (nil == _navigator) {
+    TTBaseNavigator* navigator = [TTBaseNavigator navigatorForView:tableView];
+    if (_navigator != navigator) {
+      [_navigator release];
+      _navigator = [navigator retain];
+    }
+    if (nil == _navigator) {
+      // Default the the global navigator if this table isn't attached to a view hierarchy.
+      _navigator = [TTBaseNavigator globalNavigator];
+    }
+  }
+
   id object = [self tableView:tableView objectForRowAtIndexPath:indexPath];
 
   Class cellClass = [self tableView:tableView cellClassForObject:object];
@@ -136,10 +149,8 @@
   [identifier release];
 
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
-    if ([cell isKindOfClass:[TTTableLinkedItemCell class]]) {
-      [(TTTableLinkedItemCell*)cell setNavigator:[TTBaseNavigator navigatorForView:tableView]];
-    }
-    [(TTTableViewCell*)cell setObject:object];
+    [(TTTableViewCell*)cell setObject: object
+                            navigator: _navigator];
   }
 
   [self tableView:tableView cell:cell willAppearAtIndexPath:indexPath];

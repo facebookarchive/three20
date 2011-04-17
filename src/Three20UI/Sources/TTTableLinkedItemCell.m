@@ -36,12 +36,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTTableLinkedItemCell
 
-@synthesize navigator = _navigator;
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
-  TT_RELEASE_SAFELY(_navigator);
   TT_RELEASE_SAFELY(_item);
 
   [super dealloc];
@@ -107,26 +104,18 @@
   if (_item != object) {
     [_item release];
     _item = [object retain];
-
-    self.accessoryType = [[self class] accessoryTypeForObject:object URLMap:self.navigator.URLMap];
-    self.selectionStyle = [[self class] selectionStyleForObject:object];
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Properties
+- (void)setObject:(id)object navigator:(TTBaseNavigator*)navigator {
+  if (_item != object) {
+    [self setObject:object];
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (TTBaseNavigator*)navigator {
-  if (nil == _navigator) {
-    self.navigator = [TTNavigator navigator];
+    self.accessoryType = [[self class] accessoryTypeForObject:object URLMap:navigator.URLMap];
+    self.selectionStyle = [[self class] selectionStyleForObject:object];
   }
-
-  return _navigator;
 }
 
 

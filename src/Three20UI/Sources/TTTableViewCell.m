@@ -66,4 +66,10 @@ const NSInteger kTableMessageTextLineCount = 2;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setObject:(id)object navigator:(TTBaseNavigator*)navigator {
+  [self setObject:object];
+}
+
+
 @end
