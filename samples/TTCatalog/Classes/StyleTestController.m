@@ -121,6 +121,11 @@
     [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(0, 180, 231)
                                color2:RGBCOLOR(0, 0, 255) next:nil]],
 
+    // simple bottom only border
+    [TTShapeStyle styleWithShape:[TTRectangleShape shape] next:
+    [TTSolidFillStyle styleWithColor:RGBCOLOR(255, 255, 255) next:
+    [TTFourBorderStyle styleWithTop:nil right:nil bottom:black left:nil width:5 next:nil]]],
+
     nil];
 
   CGFloat padding = 10;
