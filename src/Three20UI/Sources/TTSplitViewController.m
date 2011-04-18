@@ -94,16 +94,14 @@ static const CGFloat kMasterWidthInLandscape = 330;
   CGFloat masterWidth = [self secondaryWidthWithOrientation:interfaceOrientation];
 
   // Right side, large view.
-  _primaryViewController.view.height = self.view.height;
-  _primaryViewController.view.width = self.view.width - masterWidth;
-  _primaryViewController.view.left = masterWidth;
-  _primaryViewController.view.top = 0;
+  _primaryViewController.view.frame = CGRectMake(masterWidth, 0,
+                                                 self.view.width - masterWidth,
+                                                 self.view.height);
 
   // Left side, small view.
-  _secondaryViewController.view.height = self.view.height;
-  _secondaryViewController.view.width = masterWidth;
-  _secondaryViewController.view.left = 0;
-  _secondaryViewController.view.top = 0;
+  _secondaryViewController.view.frame = CGRectMake(0, 0,
+                                                   masterWidth,
+                                                   self.view.height);
 
   _primaryDimmerView.frame = _primaryViewController.view.frame;
 }
