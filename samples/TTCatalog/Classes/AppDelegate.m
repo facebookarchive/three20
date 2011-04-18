@@ -29,6 +29,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIApplicationDelegate
 
+- (void)applicationWillTerminate:(UIApplication *)application {
+  TT_RELEASE_SAFELY(_rootViewController);
+}
+
 - (void)applicationDidFinishLaunching:(UIApplication*)application {
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.supportsShakeToReload = YES;
@@ -121,9 +125,17 @@
               selector: nil
             transition: 0];
 
-  if (![navigator restoreViewControllers]) {
+  _rootViewController = [[TTRootViewController alloc] init];
+  [[TTNavigator navigator].window addSubview:_rootViewController.view];
+  [TTNavigator navigator].rootContainer = _rootViewController;
+
+  if (TTIsPad() || ![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://catalog"]];
   }
+
+  [_rootViewController showController: navigator.rootViewController
+                           transition: UIViewAnimationTransitionNone
+                             animated: NO];
 }
 
 - (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)URL {
