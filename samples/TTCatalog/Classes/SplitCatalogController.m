@@ -2,6 +2,8 @@
 
 #import "CatalogController.h"
 
+static const CGFloat kBorderWidth = 1;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,25 +33,67 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)willOpenUrlPath:(NSURL*)url {
-  NSString* urlPath = [url absoluteString];
-  if (nil == self.primaryNavigator.rootViewController) {
-    // First run-through, let the navigator set up the root navigator controller as necessary.
-    // This will eventually pipe through setRootViewController: found below.
-    [self.primaryNavigator openURLAction:[TTURLAction actionWithURLPath:urlPath]];
+- (void)updateLayoutWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  [super updateLayoutWithOrientation:interfaceOrientation];
 
-  } else {
-    // Subsequent runthroughs, we just forcefully reset the navigation stack.
-    UIViewController* viewController = [self.primaryNavigator viewControllerForURL:urlPath];
+  _dividerView.height = self.view.height;
+  _dividerView.width = kBorderWidth;
+  _dividerView.right = self.primaryViewController.view.left + _dividerView.width;
+  _dividerView.top = self.primaryViewController.view.top;
 
-    UINavigationController* navController =
-    (UINavigationController*)self.primaryNavigator.rootViewController;
-    [navController setViewControllers: [NSArray arrayWithObject:viewController]
-                             animated: NO];
-  }
+  [self.view bringSubviewToFront:_dividerView];
+}
 
-  // Don't create a view controller here; we're forwarding the URL routing.
-  return nil;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)loadView {
+  [super loadView];
+
+  self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth
+                                | UIViewAutoresizingFlexibleHeight);
+
+  _dividerView = [[UIView alloc] init];
+  _dividerView.backgroundColor = [UIColor lightGrayColor];
+
+  _dividerView.autoresizingMask = (UIViewAutoresizingFlexibleHeight);
+  [self.view addSubview:_dividerView];
+
+  [self updateLayoutWithOrientation:TTInterfaceOrientation()];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewDidUnload {
+  [super viewDidUnload];
+
+  TT_RELEASE_SAFELY(_dividerView);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTSplitViewController
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)primaryViewDidAppear:(BOOL)animated {
+  [super primaryViewDidAppear:animated];
+
+  [self.view bringSubviewToFront:_dividerView];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)openSecondaryURLAction:(NSURL*)url {
+  self.primaryNavigator.rootViewController = nil;
+  [self.primaryNavigator openURLAction:[TTURLAction actionWithURLPath:url.absoluteString]];
 }
 
 
@@ -58,9 +102,9 @@
   TTURLMap* map = self.secondaryNavigator.URLMap;
 
   // Forward all unhandled URL actions to the right navigator.
-  [map                    from: @"*"
-                      toObject: self
-                      selector: @selector(willOpenUrlPath:)];
+  [map              from: @"*"
+                toObject: self
+                selector: @selector(openSecondaryURLAction:)];
 
   [map                    from: @"tt://catalog"
               toViewController: [CatalogController class]];
@@ -70,7 +114,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setupPrimaryNavigator {
   TTURLMap* map = self.primaryNavigator.URLMap;
-
 
   [map                    from: @"*"
               toViewController: [TTWebController class]];
