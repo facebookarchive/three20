@@ -20,7 +20,6 @@
 // Additions
 #import "Three20UI/UIViewAdditions.h"
 #import "Three20UI/UINavigationControllerAdditions.h"
-#import "Three20UI/UINavigationControllerAdditions.h"
 #import "Three20UI/UITabBarControllerAdditions.h"
 #import "Three20UI/UITableViewAdditions.h"
 #import "Three20UI/UIWebViewAdditions.h"
