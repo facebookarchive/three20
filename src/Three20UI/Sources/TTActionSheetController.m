@@ -220,7 +220,13 @@
 
   if (URL && canOpenURL) {
     self.action.urlPath = URL;
-    [self.navigator openURLAction:[self.action applyAnimated:YES]];
+
+    TTURLAction* action = self.action;
+    if (nil == action) {
+      action = [TTURLAction action];
+    }
+    action.urlPath = URL;
+    [self.navigator openURLAction:[action applyAnimated:YES]];
   }
 
   if ([_delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {
