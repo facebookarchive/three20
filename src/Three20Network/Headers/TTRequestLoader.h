@@ -126,6 +126,7 @@
 - (BOOL)cancel:(TTURLRequest*)request;
 
 - (NSError*)processResponse:(NSHTTPURLResponse*)response data:(id)data;
+- (BOOL)dispatchCanAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace*)protectionSpace;
 - (void)dispatchError:(NSError*)error;
 - (void)dispatchLoaded:(NSDate*)timestamp;
 - (void)dispatchAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge;

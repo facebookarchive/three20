@@ -654,6 +654,9 @@ static TTURLRequestQueue* gMainQueue = nil;
   [self loadNextInQueue];
 }
 
+- (BOOL) loader: (TTRequestLoader *)loader canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+	return [loader dispatchCanAuthenticateAgainstProtectionSpace: protectionSpace];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)                       loader: (TTRequestLoader*)loader

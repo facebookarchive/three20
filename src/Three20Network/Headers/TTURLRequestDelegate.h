@@ -51,6 +51,11 @@
 - (void)request:(TTURLRequest*)request didLoadBytes:(float)bytesLoaded ofTotalExpected:(float)totalExpected;
 
 /**
+ * Allows delegate to decide whether it can accept authentication challenge
+ */
+- (BOOL)request:(TTURLRequest*)request canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace*)protectionSpace;
+
+/**
  * Allows delegate to handle any authentication challenges.
  */
 - (void)request:(TTURLRequest*)request

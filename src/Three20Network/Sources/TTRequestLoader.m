@@ -257,6 +257,23 @@ static const NSInteger kLoadMaxRetries = 2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)dispatchCanAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace*)protectionSpace {
+	for (TTURLRequest* request in [[_requests copy] autorelease]) {
+		
+		for (id<TTURLRequestDelegate> delegate in request.delegates) {
+			if ([delegate respondsToSelector:@selector(request:canAuthenticateAgainstProtectionSpace:)]) {
+				/// Take the first response as authoritative
+				return [delegate request:request canAuthenticateAgainstProtectionSpace:protectionSpace];
+				break;
+			}
+		}
+	}
+	
+	/// Return NO by default
+	return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dispatchAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge {
   for (TTURLRequest* request in [[_requests copy] autorelease]) {
 
@@ -356,6 +373,9 @@ static const NSInteger kLoadMaxRetries = 2;
   TT_RELEASE_SAFELY(_connection);
 }
 
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+	return [_queue loader:self canAuthenticateAgainstProtectionSpace:protectionSpace];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection *)connection
