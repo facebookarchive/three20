@@ -603,9 +603,16 @@ __attribute__((weak_import));
     }
 
     contentController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [[TTBaseNavigator popoverController].contentViewController
-     presentModalViewController:contentController
-     animated:action.animated];
+
+    // Allow stacked modal controllers by traversing the currently visible modal view controllers
+    // and finding the visible one.
+    UIViewController* visibleContentController =
+    [TTBaseNavigator popoverController].contentViewController;
+    while (nil != visibleContentController.modalViewController) {
+      visibleContentController = visibleContentController.modalViewController;
+    }
+    [visibleContentController presentModalViewController: contentController
+                                                animated: action.animated];
     return;
   }
 
