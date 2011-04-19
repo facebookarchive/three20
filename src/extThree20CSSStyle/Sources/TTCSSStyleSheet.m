@@ -449,7 +449,7 @@ NSString* kKeyTextShadowColor   = @"color";
                                  [values subarrayWithRange:
                                   NSMakeRange(3, [values count] - 3)]];
 
-        textShadow = [[NSDictionary alloc] initWithObjectsAndKeys:
+        textShadow = [NSDictionary dictionaryWithObjectsAndKeys:
                       horizOffset, kKeyTextShadowHOffset,
                       vertOffset,  kKeyTextShadowVOffset,
                       blurAmount,  kKeyTextShadowBlur,

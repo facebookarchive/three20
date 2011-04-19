@@ -14,28 +14,10 @@
 // limitations under the License.
 //
 
-// Core
-
-// - Global
-#import "Three20Core/TTCorePreprocessorMacros.h"
-
-#import "Three20Core/Three20.h"
 #import "Three20Core/Three20Version.h"
-#import "Three20Core/TTGlobalCore.h"
-#import "Three20Core/TTGlobalCoreLocale.h"
-#import "Three20Core/TTGlobalCorePaths.h"
-#import "Three20Core/TTGlobalCoreRects.h"
 
-// - Debug
-#import "Three20Core/TTDebug.h"
-
-// - Extensions
-#import "Three20Core/TTExtensionInfo.h"
-#import "Three20Core/TTExtensionAuthor.h"
-#import "Three20Core/TTExtensionLoader.h"
-
-// - Entity Tables
-#import "Three20Core/TTEntityTables.h"
-
-// - Classes
-#import "Three20Core/TTMarkupStripper.h"
+/*! \mainpage Three20 API Documentation
+ *
+ * Generated from Three20 Release <a href="http://three20.info/roadmap/1.0.5">1.0.5</a>.
+ */
+NSString* const Three20Version = @"1.0.5";

@@ -30,6 +30,7 @@
   NSString*       _badgeValue;
 
   BOOL            _canDelete;
+  id              _userInfo;
 }
 
 @property (nonatomic, assign) TTLauncherView* launcher;
@@ -40,6 +41,7 @@
 @property (nonatomic)         NSInteger       badgeNumber;
 @property (nonatomic, copy)   NSString*       badgeValue;
 @property (nonatomic)         BOOL            canDelete;
+@property (nonatomic, retain) id              userInfo;
 
 - (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL;
 - (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL
