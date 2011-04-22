@@ -35,21 +35,21 @@ NSLocale* TTCurrentLocale() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTLocalizedString(NSString* key, NSString* comment) {
   static NSBundle* bundle = nil;
-  if (!bundle) {
-      static NSString* const kBundleName = @"Three20.bundle";
+  if (nil == bundle) {
+    static NSString* const kBundleName = @"Three20.bundle";
     for (NSBundle* mainBundle in [NSBundle allBundles]) {
-        // direct match?
-        if ([[[mainBundle bundlePath] lastPathComponent] isEqualToString: kBundleName]) {
-            bundle = [mainBundle retain];
-            break;
-        }
+      // direct match?
+      if ([[[mainBundle bundlePath] lastPathComponent] isEqualToString: kBundleName]) {
+        bundle = [mainBundle retain];
+        break;
+      }
         
-        // is it nearby?
-        NSString* path = [[mainBundle resourcePath]
-          stringByAppendingPathComponent: kBundleName];
-        bundle = [[NSBundle bundleWithPath:path] retain];
-        if (bundle)
-            break;
+      // is it nearby?
+      NSString* path = [[mainBundle resourcePath]
+            stringByAppendingPathComponent: kBundleName];
+      bundle = [[NSBundle bundleWithPath:path] retain];
+      if (bundle)
+        break;
     }
   }
 
