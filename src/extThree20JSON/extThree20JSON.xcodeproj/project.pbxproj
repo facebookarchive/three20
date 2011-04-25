@@ -17,6 +17,10 @@
 		664B29EC12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		664B29F012848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
 		664B29F312848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
+		66A16605134266380052CA46 /* NSBundle+YAJL.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A16603134266380052CA46 /* NSBundle+YAJL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66A16606134266380052CA46 /* NSBundle+YAJL.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A16604134266380052CA46 /* NSBundle+YAJL.m */; };
+		66A1663513427CD10052CA46 /* GHNSBundle+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A1663313427CD10052CA46 /* GHNSBundle+Utils.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		66A1663613427CD10052CA46 /* GHNSBundle+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1663413427CD10052CA46 /* GHNSBundle+Utils.m */; };
 		66E71B9112938CE3007134B0 /* yajl_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B5A12938CE3007134B0 /* yajl_common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E71B9212938CE3007134B0 /* yajl_gen.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B5B12938CE3007134B0 /* yajl_gen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E71B9312938CE3007134B0 /* yajl_parse.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B5C12938CE3007134B0 /* yajl_parse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -155,6 +159,10 @@
 		663DB06D12661EE900CF8CEA /* Library+YAJL.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Library+YAJL.xcconfig"; path = "Configurations/Library+YAJL.xcconfig"; sourceTree = "<group>"; };
 		664B29E812848B1A0008D569 /* TTErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorCodes.h; path = Headers/TTErrorCodes.h; sourceTree = "<group>"; };
 		664B29EF12848B270008D569 /* TTErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorCodes.m; path = Source/TTErrorCodes.m; sourceTree = "<group>"; };
+		66A16603134266380052CA46 /* NSBundle+YAJL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+YAJL.h"; sourceTree = "<group>"; };
+		66A16604134266380052CA46 /* NSBundle+YAJL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+YAJL.m"; sourceTree = "<group>"; };
+		66A1663313427CD10052CA46 /* GHNSBundle+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHNSBundle+Utils.h"; sourceTree = "<group>"; };
+		66A1663413427CD10052CA46 /* GHNSBundle+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHNSBundle+Utils.m"; sourceTree = "<group>"; };
 		66E71A0312938B22007134B0 /* Changes.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changes.markdown; sourceTree = "<group>"; };
 		66E71A0412938B22007134B0 /* Credits.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits.markdown; sourceTree = "<group>"; };
 		66E71A0512938B22007134B0 /* Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.markdown; sourceTree = "<group>"; };
@@ -274,6 +282,15 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
+		66A1663213427CD10052CA46 /* GHKit */ = {
+			isa = PBXGroup;
+			children = (
+				66A1663313427CD10052CA46 /* GHNSBundle+Utils.h */,
+				66A1663413427CD10052CA46 /* GHNSBundle+Utils.m */,
+			);
+			path = GHKit;
+			sourceTree = "<group>";
+		};
 		66E71B5812938CE3007134B0 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,8 +392,11 @@
 			children = (
 				6E645AFF1187744C00F08CB1 /* README.md */,
 				6E645AFC1187744C00F08CB1 /* LICENSE */,
+				66A1663213427CD10052CA46 /* GHKit */,
 				6E645AF91187744C00F08CB1 /* GTM */,
 				66E71B5812938CE3007134B0 /* src */,
+				66A16603134266380052CA46 /* NSBundle+YAJL.h */,
+				66A16604134266380052CA46 /* NSBundle+YAJL.m */,
 				6E645AFD1187744C00F08CB1 /* NSObject+YAJL.h */,
 				6E645AFE1187744C00F08CB1 /* NSObject+YAJL.m */,
 				6E645B7C1187744D00F08CB1 /* YAJL.h */,
@@ -466,6 +486,8 @@
 				66E71BA812938CF8007134B0 /* yajl_version.h in Headers */,
 				6609982212939800007B1E07 /* TTExtensionLoader.h in Headers */,
 				6609987112939B06007B1E07 /* GTMBase64.h in Headers */,
+				66A16605134266380052CA46 /* NSBundle+YAJL.h in Headers */,
+				66A1663513427CD10052CA46 /* GHNSBundle+Utils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +717,8 @@
 				66E71BA112938CE3007134B0 /* yajl_version.c in Sources */,
 				6609981B129397F5007B1E07 /* TTExtensionLoader.m in Sources */,
 				6609987212939B06007B1E07 /* GTMBase64.m in Sources */,
+				66A16606134266380052CA46 /* NSBundle+YAJL.m in Sources */,
+				66A1663613427CD10052CA46 /* GHNSBundle+Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,7 +948,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -940,7 +963,6 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;

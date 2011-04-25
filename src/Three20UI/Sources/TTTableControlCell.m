@@ -192,7 +192,13 @@ static const CGFloat kControlPadding = 8;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
   if (object != _control && object != _item) {
-    [_control removeFromSuperview];
+    if (_control.superview == self.contentView) {
+      //on cell reuse it is possible that another
+      //cell is already the owner of _control, so
+      //check if we're its superview first
+      [_control removeFromSuperview];
+    }
+
     TT_RELEASE_SAFELY(_control);
     TT_RELEASE_SAFELY(_item);
 

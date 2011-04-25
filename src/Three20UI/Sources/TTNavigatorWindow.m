@@ -31,7 +31,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-  if (event.type == UIEventSubtypeMotionShake
+  if (UIEventSubtypeMotionShake == motion
       && [TTNavigator navigator].supportsShakeToReload) {
     // If you're going to use a custom navigator implementation, you need to ensure that you
     // implement the reload method. If you're inheriting from TTNavigator, then you're fine.
