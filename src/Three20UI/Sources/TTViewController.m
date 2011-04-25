@@ -172,6 +172,8 @@
 
 #pragma mark -
 #pragma mark Where methods
+// JE: Pretty sure we can remove this, this is from the initial three20 integration for 3.x
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) goToURL:(NSString *)url andQuery:(NSDictionary *)query{
 	TTURLAction *action = [TTURLAction actionWithURLPath:url];
 	[action applyAnimated:YES];

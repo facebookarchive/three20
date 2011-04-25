@@ -150,7 +150,8 @@
     if (URL.path) {
       for (NSString* name in URL.path.pathComponents) {
         if (![name isEqualToString:@"/"]) {
-          [self parsePathComponent:name]; // Gets called for: search, but that's it. That makes sense I guess.
+          // Gets called for: search, but that's it. That makes sense I guess.
+          [self parsePathComponent:name];
         }
       }
     }
@@ -160,21 +161,22 @@
 	// From JE: I'm not sure if this is necessary any more
     NSDictionary* query = [URL.query queryContentsUsingEncoding:NSUTF8StringEncoding];
 
-	// JE:	
-	NSArray *queryComponents = [URL.query componentsSeparatedByString:@"&"];	
+	// JE:
+	NSArray *queryComponents = [URL.query componentsSeparatedByString:@"&"];
 	NSMutableArray *queryKeyOrder = [NSMutableArray array];
 
-	for (NSString *component in queryComponents) {	
-		NSArray *pair = [component componentsSeparatedByString:@"="];	
+	for (NSString *component in queryComponents) {
+		NSArray *pair = [component componentsSeparatedByString:@"="];
 		//NSLog(@"adding key: %@", [pair objectAtIndex:0]);
 		[queryKeyOrder addObject:[pair objectAtIndex:0]];
 	}
 
-	self.queryKeyOrder = queryKeyOrder;	
+	self.queryKeyOrder = queryKeyOrder;
 	//NSLog(@"Query key order = %@", self.queryKeyOrder);
     for (NSString* name in [query keyEnumerator]) {
       NSString* value = [[query objectForKey:name] objectAtIndex:0];
-      [self parseParameter:name value:value]; // JE: URL query params are added in the wrong order here
+        // JE: URL query params are added in the wrong order here
+      [self parseParameter:name value:value];
     }
   }
 

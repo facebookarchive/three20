@@ -146,11 +146,11 @@ static NSString* kUniversalURLPattern = @"*";
     }
   }
 
-  for (id<TTURLPatternText> pattern in [_query objectEnumerator]) { // JE: objectEnumerator is not returning stuff in order.
+  for (id<TTURLPatternText> pattern in [_query objectEnumerator]) {
+    // JE: objectEnumerator is not returning stuff in order.
     if ([pattern isKindOfClass:[TTURLWildcard class]]) {
       TTURLWildcard* wildcard = (TTURLWildcard*)pattern;
       if (wildcard.name) {
-		//NSLog(@"Adding name: %@", wildcard.name);  
         [parts addObject:wildcard.name];
       }
     }
@@ -159,7 +159,6 @@ static NSString* kUniversalURLPattern = @"*";
   if ([_fragment isKindOfClass:[TTURLWildcard class]]) {
     TTURLWildcard* wildcard = (TTURLWildcard*)_fragment;
     if (wildcard.name) {
-	 // NSLog(@"Adding name: %@", wildcard.name);	
       [parts addObject:wildcard.name];
     }
   }
@@ -172,15 +171,16 @@ static NSString* kUniversalURLPattern = @"*";
   }
 
  // NSLog(@"Parts: %@", parts);
-	
+
   if (parts.count) {
     [self setSelectorWithNames:parts];
     if (!_selector) {
-	  //NSLog(@" Selector was not set without query!");	
+	  //NSLog(@" Selector was not set without query!");
       [parts addObject:@"query"];
-	  [self setSelectorWithNames:parts]; // JE: <- This doesn't work!!!!!!T&!^$%*!^%@$^%!@^*$%*^@!%#*@!T
+	  [self setSelectorWithNames:parts];
+      // JE: ^^ This doesn't work!!!!!!T&!^$%*!^%@$^%!@^*$%*^@!%#*@!T
 	  if (!_selector) {
-		//  NSLog(@" Selector was STILL not set with query!");
+		// NSLog(@" Selector was STILL not set with query!");
 	  }
     }
 

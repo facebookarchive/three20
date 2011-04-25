@@ -190,7 +190,7 @@
   if (target && selectorAsString) {
     [target performSelector:NSSelectorFromString(selectorAsString)];
   }
-  
+
   if ([_delegate respondsToSelector:@selector(alertView:willDismissWithButtonIndex:)]) {
     [_delegate alertView:alertView willDismissWithButtonIndex:buttonIndex];
   }
@@ -226,26 +226,29 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector {
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target
+                       selector:(SEL)selector {
   if (URL) {
     [_URLs addObject:URL];
 
   } else {
     [_URLs addObject:[NSNull null]];
   }
-  
+
   if (target) {
     [_targets addObject:target];
+
   } else {
     [_targets addObject:[NSNull null]];
   }
-  
+
   if (selector) {
     [_selectors addObject:NSStringFromSelector(selector)];
+
   } else {
     [_selectors addObject:[NSNull null]];
   }
-  
+
   return [self.alertView addButtonWithTitle:title];
 }
 
@@ -287,6 +290,7 @@
   if (buttonIndex < _targets.count) {
     id target = [_targets objectAtIndex:buttonIndex];
     return target != [NSNull null] ? target : nil;
+
   } else {
     return nil;
   }
@@ -297,6 +301,7 @@
   if (buttonIndex < _selectors.count) {
     id selector = [_selectors objectAtIndex:buttonIndex];
     return selector != [NSNull null] ? selector : nil;
+
   } else {
     return nil;
   }

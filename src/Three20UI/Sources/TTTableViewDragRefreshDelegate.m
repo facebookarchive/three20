@@ -149,11 +149,13 @@ static const CGFloat kHeaderVisibleHeight = 60.0f;
   // If dragging ends and we are far enough to be fully showing the header view trigger a
   // load as long as we arent loading already
   if (scrollView.contentOffset.y <= kRefreshDeltaY && !_model.isLoading) {
-    NSString *notificationToPost = (dragRefreshNotificationName != nil ? dragRefreshNotificationName : @"DragRefreshTableReload");
+    NSString *notificationToPost = (dragRefreshNotificationName != nil ?
+                                    dragRefreshNotificationName : @"DragRefreshTableReload");
 
     [[NSNotificationCenter defaultCenter]
      postNotificationName:notificationToPost object:nil];
-    //[_controller.model load:TTURLRequestCachePolicyNetwork more:NO]; // JE: Commented out this reload. I'm letting the TTModelViewController handle it
+      // JE: Commented out this reload. I'm letting the TTModelViewController handle it
+    //[_controller.model load:TTURLRequestCachePolicyNetwork more:NO];
   }
 }
 

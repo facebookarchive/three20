@@ -67,7 +67,8 @@
  * @return The index of the new button. Button indices start at 0 and increase in the order they
  *         are added.
  */
-- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector;
+- (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target
+                       selector:(SEL)selector;
 
 /**
  * Append a button with the given title, target and selector.
@@ -134,7 +135,8 @@
  * Retrieve the button's selector at the given index.
  *
  * @param index The index of the button in question
- * @return nil if index is out of range. Otherwise returns the button's selector at index as a string.
+ * @return nil if index is out of range. Otherwise returns the button's selector at index as
+ * a string.
  */
 - (NSString*)selectorAtIndex:(NSInteger)buttonIndex;
 

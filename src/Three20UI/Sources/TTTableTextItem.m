@@ -77,12 +77,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (id)itemWithText:(NSString*)text URLAction:(TTURLAction*)URLAction accessoryURL:(TTURLAction*)accessoryURLAction {
++ (id)itemWithText:(NSString*)text URLAction:(TTURLAction*)URLAction
+      accessoryURL:(TTURLAction*)accessoryURLAction {
 	TTTableTextItem* item = [[[self alloc] init] autorelease];
 	item.text = text;
 	item.URLAction = URLAction;
 	item.accessoryURLAction = accessoryURLAction;
-	return item;	
+	return item;
 }
 
 

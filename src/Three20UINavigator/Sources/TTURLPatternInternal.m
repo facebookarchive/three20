@@ -34,30 +34,31 @@ TT_FIX_CATEGORY_BUG(TTURLPatternInternal)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// 
+//
 //- (void)setSelectorWithNames:(NSArray*)names {
 //  NSString* selectorName = [[names componentsJoinedByString:@":"] stringByAppendingString:@":"];
 //  SEL selector = NSSelectorFromString(selectorName);
 //  [self setSelectorIfPossible:selector];
 //}
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSelectorWithNames:(NSArray*)names {
-//	NSLog(@"    Names: %@", names);
-//	NSLog(@"    Names components joined by string: %@", [names componentsJoinedByString:@":"]);
-//	NSLog(@"    Names components joined by string with appending: %@", [[names componentsJoinedByString:@":"] stringByAppendingString:@":"]);
-	
+    //NSLog(@"    Names: %@", names);
+    //NSLog(@"    Names components joined by string: %@", [names componentsJoinedByString:@":"]);
+    //NSLog(@"    Names components joined by string with appending: %@",
+    //[[names componentsJoinedByString:@":"] stringByAppendingString:@":"]);
+
 	//	NSString* aselectorName = [[names componentsJoinedByString:@":"] stringByAppendingString:@":"];
 	//	SEL aselector = NSSelectorFromString(aselectorName);
-	//	[self setSelectorIfPossible:aselector];	
+	//	[self setSelectorIfPossible:aselector];
 	//	return;
 
 	NSMutableArray *orderedNames = [NSMutableArray array];
-	//NSLog(@"queryKeyOrder: %@", self.queryKeyOrder);	
-	for (NSString *orderedQueryKey in self.queryKeyOrder) {	
+	//NSLog(@"queryKeyOrder: %@", self.queryKeyOrder);
+	for (NSString *orderedQueryKey in self.queryKeyOrder) {
 		TTURLWildcard *wildcard = [_query objectForKey:orderedQueryKey];
-		NSString *orderedQueryValue = wildcard.name;	
+		NSString *orderedQueryValue = wildcard.name;
 		//NSLog(@"  looking at %@ (for key %@)", orderedQueryValue, orderedQueryKey);
-		if ([names containsObject:orderedQueryValue]){ 
+		if ([names containsObject:orderedQueryValue]) {
 			//NSLog(@"  Adding %@", orderedQueryValue);
 			[orderedNames addObject:orderedQueryValue];
 		}
@@ -66,7 +67,7 @@ TT_FIX_CATEGORY_BUG(TTURLPatternInternal)
 	if ([orderedNames count] > 0 && [names containsObject:@"query"]) {
 		[orderedNames addObject:@"query"];
 	}
-	
+
 	//NSLog(@"names: %@", names);
 //	NSLog(@"orderedNames: %@", orderedNames);
 	NSString* selectorName = nil;
@@ -75,7 +76,7 @@ TT_FIX_CATEGORY_BUG(TTURLPatternInternal)
 	}else {
 		selectorName = [[names componentsJoinedByString:@":"] stringByAppendingString:@":"];
 	}
-	SEL selector = NSSelectorFromString(selectorName);	
+	SEL selector = NSSelectorFromString(selectorName);
 
 	[self setSelectorIfPossible:selector];
 	if (!_selector) {

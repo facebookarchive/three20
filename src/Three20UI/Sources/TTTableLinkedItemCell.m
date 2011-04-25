@@ -66,18 +66,18 @@
 
     TTTableLinkedItem* item = object;
 
-	  // JE: Also use the URLAction's URL to decide what accessoryType this cell is	
-	  NSString *url = item.URL;	
-	  if (nil != item.URLAction) {	
-		  url = item.URLAction.urlPath;  	
+	  // JE: Also use the URLAction's URL to decide what accessoryType this cell is
+	  NSString *url = item.URL;
+	  if (nil != item.URLAction) {
+		  url = item.URLAction.urlPath;
 	  }
-	
+
 	  NSString *accessoryURL = item.accessoryURL;
-	  if (nil != item.accessoryURLAction) {	
-		  accessoryURL = item.accessoryURLAction.urlPath;  
-	  }	
+	  if (nil != item.accessoryURLAction) {
+		  accessoryURL = item.accessoryURLAction.urlPath;
+	  }
 	if (url) {
-      TTNavigationMode navigationMode = [[TTNavigator navigator].URLMap										 
+      TTNavigationMode navigationMode = [[TTNavigator navigator].URLMap
                                          navigationModeForURL:url];
 	  if (accessoryURL) {
         self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -103,6 +103,7 @@
 		if (item.selector != nil) {
 			self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
+
 		} else {
 			self.accessoryType = UITableViewCellAccessoryNone;
 			self.selectionStyle = UITableViewCellSelectionStyleNone;

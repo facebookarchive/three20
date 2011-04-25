@@ -51,7 +51,8 @@ TT_FIX_CATEGORY_BUG(UINSObjectAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)URLAction {
-	TTURLAction *result = [TTURLAction actionWithURLPath:[[TTNavigator navigator].URLMap URLForObject:self]];
+	TTURLAction *result = [TTURLAction actionWithURLPath:
+                           [[TTNavigator navigator].URLMap URLForObject:self]];
 	[result applyAnimated:YES];
 	[result applyQuery:[NSDictionary dictionaryWithObject:self forKey:@"object"]];
 	return result;
@@ -60,7 +61,8 @@ TT_FIX_CATEGORY_BUG(UINSObjectAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTURLAction*)URLActionWithName:(NSString*)name {
-	TTURLAction *result = [TTURLAction actionWithURLPath:[[TTNavigator navigator].URLMap URLForObject:self withName:name]];
+	TTURLAction *result = [TTURLAction actionWithURLPath:
+                           [[TTNavigator navigator].URLMap URLForObject:self withName:name]];
 	[result applyAnimated:YES];
 	[result applyQuery:[NSDictionary dictionaryWithObject:self forKey:@"object"]];
 	return result;

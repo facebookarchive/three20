@@ -127,7 +127,8 @@
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
-	if (nil != item.URLAction && [_controller shouldOpenURL:item.URLAction.urlPath]) { // JE: URL Action Support	
+	if (nil != item.URLAction && [_controller shouldOpenURL:item.URLAction.urlPath]) {
+      // JE: URL Action Support
 	  [[TTNavigator navigator] openURLAction:item.URLAction];
 	  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}else if (item.URL && [_controller shouldOpenURL:item.URL]) {
@@ -172,7 +173,9 @@
   id object = [dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
-	if (nil != item.accessoryURLAction && [_controller shouldOpenURL:item.accessoryURLAction.urlPath]) { // JE: URL Action Support
+	if (nil != item.accessoryURLAction &&
+        [_controller shouldOpenURL:item.accessoryURLAction.urlPath]) {
+      // JE: URL Action Support
 	  [[TTNavigator navigator] openURLAction:item.accessoryURLAction];
 	}else if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
       TTOpenURLFromView(item.accessoryURL, tableView);

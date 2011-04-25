@@ -27,7 +27,7 @@
 
 @synthesize URL           = _URL;
 @synthesize accessoryURL  = _accessoryURL;
-@synthesize URLAction     = _URLAction;	
+@synthesize URLAction     = _URLAction;
 @synthesize accessoryURLAction  = _accessoryURLAction;
 @synthesize delegate      = _delegate;
 @synthesize selector      = _selector;
