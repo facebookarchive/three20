@@ -183,6 +183,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
         shouldReloadTableForSearchString:(NSString*)searchString {
   if (_pausesBeforeSearching) {
     [self restartPauseTimer];
+
   } else {
     [_searchResultsViewController.dataSource search:searchString];
   }

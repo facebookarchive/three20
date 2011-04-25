@@ -8,6 +8,7 @@ Products
 *.xcworkspace
 xcuserdata
 .DS_Store
+config
 src/Three20/*.h
 src/Three20Core/*.h
 src/Three20Network/*.h
@@ -16,3 +17,5 @@ src/Three20UICommon/*.h
 src/Three20UINavigator/*.h
 src/Three20UI/*.h
 extensions/
+
+*.pyc

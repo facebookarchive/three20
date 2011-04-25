@@ -93,6 +93,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
 - (UIResponder*)activeTextField {
   if (_textView && !_textView.hidden) {
     return _textView;
+
   } else {
     return _textField;
   }
@@ -193,6 +194,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
     _internal.ignoreBeginAndEnd = YES;
     [_textView becomeFirstResponder];
     [self performSelector:@selector(stopIgnoringBeginAndEnd) withObject:nil afterDelay:0];
+
   } else if (numberOfLines == 1 && _textField.hidden) {
     _textField.hidden = NO;
     _textView.hidden = YES;
@@ -404,6 +406,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
 - (NSString*)text {
   if (_textView && !_textView.hidden) {
     return _textView.text;
+
   } else {
     return _textField.text;
   }
@@ -471,6 +474,7 @@ static const CGFloat kUITextViewVerticalPadding = 6;
         [scrollView scrollRectToVisible:CGRectMake(0,scrollView.contentSize.height-1,1,1)
           animated:NO];
       }
+
     } else {
       [scrollView scrollRectToVisible:CGRectMake(0,0,1,1) animated:NO];
     }

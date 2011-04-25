@@ -7,74 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66099819129397F5007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66099817129397F5007B1E07 /* TTExtensionLoader.m */; };
 		6609981B129397F5007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66099817129397F5007B1E07 /* TTExtensionLoader.m */; };
-		6609981D129397F5007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66099817129397F5007B1E07 /* TTExtensionLoader.m */; };
 		6609981F129397F5007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66099817129397F5007B1E07 /* TTExtensionLoader.m */; };
-		6609982112939800007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6609982012939800007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6609982212939800007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6609982012939800007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6609982312939800007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6609982012939800007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6609982412939800007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6609982012939800007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6609986F12939B06007B1E07 /* GTMBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 6609986D12939B06007B1E07 /* GTMBase64.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		6609987012939B06007B1E07 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6609986E12939B06007B1E07 /* GTMBase64.m */; };
 		6609987112939B06007B1E07 /* GTMBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 6609986D12939B06007B1E07 /* GTMBase64.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6609987212939B06007B1E07 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6609986E12939B06007B1E07 /* GTMBase64.m */; };
-		663DB07912661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663DB07812661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		664B29E912848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		664B29EA12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		664B29EC12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		664B29ED12848B1A0008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29E812848B1A0008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		664B29F012848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
-		664B29F112848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
 		664B29F312848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
-		664B29F412848B270008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29EF12848B270008D569 /* TTErrorCodes.m */; };
-		66C34BA11266200500489E9A /* TTURLJSONResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A1A11876C9800F08CB1 /* TTURLJSONResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BA21266200500489E9A /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2211876CA800F08CB1 /* JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BA31266200500489E9A /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2311876CA800F08CB1 /* NSObject+SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BA41266200500489E9A /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2511876CA800F08CB1 /* NSString+SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BA61266200500489E9A /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2A11876CA800F08CB1 /* SBJsonBase.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66C34BA71266200500489E9A /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2C11876CA800F08CB1 /* SBJsonParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BA81266200500489E9A /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A2E11876CA800F08CB1 /* SBJsonWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BA91266200500489E9A /* extThree20JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6462111187DD2A00F08CB1 /* extThree20JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BAC1266200500489E9A /* TTURLJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A1C11876C9800F08CB1 /* TTURLJSONResponse.m */; };
-		66C34BAD1266200500489E9A /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2411876CA800F08CB1 /* NSObject+SBJSON.m */; };
-		66C34BAE1266200500489E9A /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2611876CA800F08CB1 /* NSString+SBJSON.m */; };
-		66C34BB01266200500489E9A /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2B11876CA800F08CB1 /* SBJsonBase.m */; };
-		66C34BB11266200500489E9A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2D11876CA800F08CB1 /* SBJsonParser.m */; };
-		66C34BB21266200500489E9A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A2F11876CA800F08CB1 /* SBJsonWriter.m */; };
-		66C34BBF1266200600489E9A /* TTURLJSONResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A1A11876C9800F08CB1 /* TTURLJSONResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BC11266200600489E9A /* NSObject+YAJL.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645AFD1187744C00F08CB1 /* NSObject+YAJL.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BCB1266200600489E9A /* YAJL.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645B7C1187744D00F08CB1 /* YAJL.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BCC1266200600489E9A /* YAJLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645B7D1187744D00F08CB1 /* YAJLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BCD1266200600489E9A /* YAJLGen.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645B7F1187744D00F08CB1 /* YAJLGen.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BCE1266200600489E9A /* YAJLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645B811187744D00F08CB1 /* YAJLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BCF1266200600489E9A /* extThree20JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6462111187DD2A00F08CB1 /* extThree20JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66C34BD21266200600489E9A /* TTURLJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A1C11876C9800F08CB1 /* TTURLJSONResponse.m */; };
-		66C34BD41266200600489E9A /* NSObject+YAJL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645AFE1187744C00F08CB1 /* NSObject+YAJL.m */; };
-		66C34BDC1266200600489E9A /* YAJLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645B7E1187744D00F08CB1 /* YAJLDocument.m */; };
-		66C34BDD1266200600489E9A /* YAJLGen.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645B801187744D00F08CB1 /* YAJLGen.m */; };
-		66C34BDE1266200600489E9A /* YAJLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645B821187744D00F08CB1 /* YAJLParser.m */; };
-		66C34BEE1266200600489E9A /* extJSONTests+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A6511876D2900F08CB1 /* extJSONTests+SBJSON.m */; };
-		66C34C121266208300489E9A /* libThree20Core-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DB02612661DC400CF8CEA /* libThree20Core-Xcode3.2.5.a */; };
-		66C34C131266208300489E9A /* libThree20Network-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 663DB03212661DC400CF8CEA /* libThree20Network-Xcode3.2.5.a */; };
-		66C34C141266208300489E9A /* libextThree20JSON+SBJSON-Xcode3.2.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C34BB81266200600489E9A /* libextThree20JSON+SBJSON-Xcode3.2.5.a */; };
-		66E71B6F12938CE3007134B0 /* yajl_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B5A12938CE3007134B0 /* yajl_common.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66E71B7012938CE3007134B0 /* yajl_gen.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B5B12938CE3007134B0 /* yajl_gen.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66E71B7112938CE3007134B0 /* yajl_parse.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B5C12938CE3007134B0 /* yajl_parse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66E71B7212938CE3007134B0 /* yajl.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6012938CE3007134B0 /* yajl.c */; };
-		66E71B7312938CE3007134B0 /* yajl_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6212938CE3007134B0 /* yajl_alloc.c */; };
-		66E71B7412938CE3007134B0 /* yajl_alloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B6312938CE3007134B0 /* yajl_alloc.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66E71B7512938CE3007134B0 /* yajl_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6412938CE3007134B0 /* yajl_buf.c */; };
-		66E71B7612938CE3007134B0 /* yajl_buf.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B6512938CE3007134B0 /* yajl_buf.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66E71B7712938CE3007134B0 /* yajl_bytestack.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B6612938CE3007134B0 /* yajl_bytestack.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66E71B7812938CE3007134B0 /* yajl_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6712938CE3007134B0 /* yajl_encode.c */; };
-		66E71B7912938CE3007134B0 /* yajl_encode.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B6812938CE3007134B0 /* yajl_encode.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66E71B7A12938CE3007134B0 /* yajl_gen.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6912938CE3007134B0 /* yajl_gen.c */; };
-		66E71B7B12938CE3007134B0 /* yajl_lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6A12938CE3007134B0 /* yajl_lex.c */; };
-		66E71B7C12938CE3007134B0 /* yajl_lex.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B6B12938CE3007134B0 /* yajl_lex.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66E71B7D12938CE3007134B0 /* yajl_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6C12938CE3007134B0 /* yajl_parser.c */; };
-		66E71B7E12938CE3007134B0 /* yajl_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B6D12938CE3007134B0 /* yajl_parser.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		66E71B7F12938CE3007134B0 /* yajl_version.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6E12938CE3007134B0 /* yajl_version.c */; };
 		66E71B9112938CE3007134B0 /* yajl_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B5A12938CE3007134B0 /* yajl_common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E71B9212938CE3007134B0 /* yajl_gen.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B5B12938CE3007134B0 /* yajl_gen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E71B9312938CE3007134B0 /* yajl_parse.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B5C12938CE3007134B0 /* yajl_parse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -92,7 +34,6 @@
 		66E71B9F12938CE3007134B0 /* yajl_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6C12938CE3007134B0 /* yajl_parser.c */; };
 		66E71BA012938CE3007134B0 /* yajl_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71B6D12938CE3007134B0 /* yajl_parser.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		66E71BA112938CE3007134B0 /* yajl_version.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E71B6E12938CE3007134B0 /* yajl_version.c */; };
-		66E71BA612938CF8007134B0 /* yajl_version.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71BA512938CF8007134B0 /* yajl_version.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E71BA812938CF8007134B0 /* yajl_version.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E71BA512938CF8007134B0 /* yajl_version.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E645A1D11876C9800F08CB1 /* TTURLJSONResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E645A1A11876C9800F08CB1 /* TTURLJSONResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E645A1E11876C9800F08CB1 /* TTURLJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E645A1C11876C9800F08CB1 /* TTURLJSONResponse.m */; };
@@ -127,83 +68,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		663DB02512661DC400CF8CEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6650CAA21262F6E2003FF804;
-			remoteInfo = "Three20Core-Xcode3.2.5";
-		};
-		663DB02912661DC400CF8CEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 664961641262EE5000C2C80E;
-			remoteInfo = "Three20CoreUnitTests-Xcode3.2.5";
-		};
-		663DB03112661DC400CF8CEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 662D81EF12630516005851C2;
-			remoteInfo = "Three20Network-Xcode3.2.5";
-		};
-		663DB03512661DC400CF8CEA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 662D81B2126304EB005851C2;
-			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
-		};
-		66C34C031266204A00489E9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 6650CA791262F6E2003FF804;
-			remoteInfo = "Three20Core-Xcode3.2.5";
-		};
-		66C34C051266204A00489E9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 662D81C912630516005851C2;
-			remoteInfo = "Three20Network-Xcode3.2.5";
-		};
-		66C34C071266205300489E9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 6650CA791262F6E2003FF804;
-			remoteInfo = "Three20Core-Xcode3.2.5";
-		};
-		66C34C091266205300489E9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 662D81C912630516005851C2;
-			remoteInfo = "Three20Network-Xcode3.2.5";
-		};
-		66C34C0B1266205C00489E9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66C34B9B1266200500489E9A;
-			remoteInfo = "extThree20JSON+SBJSON-Xcode3.2.5";
-		};
-		66C34C0D1266205C00489E9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 664961541262EE5000C2C80E;
-			remoteInfo = "Three20CoreUnitTests-Xcode3.2.5";
-		};
-		66C34C0F1266205C00489E9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 662D81A0126304EB005851C2;
-			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
-		};
 		6E645A6F11876D3F00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
@@ -289,12 +153,8 @@
 		6609986D12939B06007B1E07 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
 		6609986E12939B06007B1E07 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		663DB06D12661EE900CF8CEA /* Library+YAJL.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Library+YAJL.xcconfig"; path = "Configurations/Library+YAJL.xcconfig"; sourceTree = "<group>"; };
-		663DB07812661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		664B29E812848B1A0008D569 /* TTErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorCodes.h; path = Headers/TTErrorCodes.h; sourceTree = "<group>"; };
 		664B29EF12848B270008D569 /* TTErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorCodes.m; path = Source/TTErrorCodes.m; sourceTree = "<group>"; };
-		66C34BB81266200600489E9A /* libextThree20JSON+SBJSON-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20JSON+SBJSON-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66C34BE41266200600489E9A /* libextThree20JSON+YAJL-Xcode3.2.5.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20JSON+YAJL-Xcode3.2.5.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66C34BF91266200600489E9A /* extJSONUnitTests+SBJSON-Xcode3.2.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "extJSONUnitTests+SBJSON-Xcode3.2.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E71A0312938B22007134B0 /* Changes.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changes.markdown; sourceTree = "<group>"; };
 		66E71A0412938B22007134B0 /* Credits.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits.markdown; sourceTree = "<group>"; };
 		66E71A0512938B22007134B0 /* Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.markdown; sourceTree = "<group>"; };
@@ -360,30 +220,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		66C34BB31266200500489E9A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66C34BDF1266200600489E9A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66C34BF01266200600489E9A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66C34C121266208300489E9A /* libThree20Core-Xcode3.2.5.a in Frameworks */,
-				66C34C131266208300489E9A /* libThree20Network-Xcode3.2.5.a in Frameworks */,
-				66C34C141266208300489E9A /* libextThree20JSON+SBJSON-Xcode3.2.5.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6E645BD41187751200F08CB1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,11 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON+SBJSON.a */,
-				66C34BB81266200600489E9A /* libextThree20JSON+SBJSON-Xcode3.2.5.a */,
 				6E645BD91187751200F08CB1 /* libextThree20JSON+YAJL.a */,
-				66C34BE41266200600489E9A /* libextThree20JSON+YAJL-Xcode3.2.5.a */,
 				EB9E6C6210B6A8F800DE563C /* extJSONUnitTests+SBJSON.octest */,
-				66C34BF91266200600489E9A /* extJSONUnitTests+SBJSON-Xcode3.2.5.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -439,14 +272,6 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
-			sourceTree = "<group>";
-		};
-		663DB07712661F8200CF8CEA /* Xcode 3.2.4 Workaround */ = {
-			isa = PBXGroup;
-			children = (
-				663DB07812661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */,
-			);
-			name = "Xcode 3.2.4 Workaround";
 			sourceTree = "<group>";
 		};
 		66E71B5812938CE3007134B0 /* src */ = {
@@ -531,9 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				6E645A7011876D3F00F08CB1 /* libThree20Core.a */,
-				663DB02612661DC400CF8CEA /* libThree20Core-Xcode3.2.5.a */,
 				6E645A7211876D3F00F08CB1 /* CoreUnitTests.octest */,
-				663DB02A12661DC400CF8CEA /* CoreUnitTests-Xcode3.2.5.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -542,9 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				6E645A7911876D4600F08CB1 /* libThree20Network.a */,
-				663DB03212661DC400CF8CEA /* libThree20Network-Xcode3.2.5.a */,
 				6E645A7B11876D4600F08CB1 /* NetworkUnitTests.octest */,
-				663DB03612661DC400CF8CEA /* NetworkUnitTests-Xcode3.2.5.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -602,7 +423,6 @@
 			isa = PBXGroup;
 			children = (
 				6ED117E51183BE2A0096AEBF /* Resources */,
-				663DB07712661F8200CF8CEA /* Xcode 3.2.4 Workaround */,
 				6E645A6511876D2900F08CB1 /* extJSONTests+SBJSON.m */,
 			);
 			name = Tests;
@@ -622,50 +442,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		66C34BA01266200500489E9A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66C34BA11266200500489E9A /* TTURLJSONResponse.h in Headers */,
-				66C34BA21266200500489E9A /* JSON.h in Headers */,
-				66C34BA31266200500489E9A /* NSObject+SBJSON.h in Headers */,
-				66C34BA41266200500489E9A /* NSString+SBJSON.h in Headers */,
-				66C34BA61266200500489E9A /* SBJsonBase.h in Headers */,
-				66C34BA71266200500489E9A /* SBJsonParser.h in Headers */,
-				66C34BA81266200500489E9A /* SBJsonWriter.h in Headers */,
-				66C34BA91266200500489E9A /* extThree20JSON.h in Headers */,
-				664B29EA12848B1A0008D569 /* TTErrorCodes.h in Headers */,
-				6609982312939800007B1E07 /* TTExtensionLoader.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66C34BBE1266200600489E9A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66C34BBF1266200600489E9A /* TTURLJSONResponse.h in Headers */,
-				66C34BC11266200600489E9A /* NSObject+YAJL.h in Headers */,
-				66C34BCB1266200600489E9A /* YAJL.h in Headers */,
-				66C34BCC1266200600489E9A /* YAJLDocument.h in Headers */,
-				66C34BCD1266200600489E9A /* YAJLGen.h in Headers */,
-				66C34BCE1266200600489E9A /* YAJLParser.h in Headers */,
-				66C34BCF1266200600489E9A /* extThree20JSON.h in Headers */,
-				664B29ED12848B1A0008D569 /* TTErrorCodes.h in Headers */,
-				66E71B6F12938CE3007134B0 /* yajl_common.h in Headers */,
-				66E71B7012938CE3007134B0 /* yajl_gen.h in Headers */,
-				66E71B7112938CE3007134B0 /* yajl_parse.h in Headers */,
-				66E71B7412938CE3007134B0 /* yajl_alloc.h in Headers */,
-				66E71B7612938CE3007134B0 /* yajl_buf.h in Headers */,
-				66E71B7712938CE3007134B0 /* yajl_bytestack.h in Headers */,
-				66E71B7912938CE3007134B0 /* yajl_encode.h in Headers */,
-				66E71B7C12938CE3007134B0 /* yajl_lex.h in Headers */,
-				66E71B7E12938CE3007134B0 /* yajl_parser.h in Headers */,
-				66E71BA612938CF8007134B0 /* yajl_version.h in Headers */,
-				6609982112939800007B1E07 /* TTExtensionLoader.h in Headers */,
-				6609986F12939B06007B1E07 /* GTMBase64.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6E645BA81187751200F08CB1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -713,67 +489,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		66C34B9B1266200500489E9A /* extThree20JSON+SBJSON-Xcode3.2.5 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66C34BB41266200500489E9A /* Build configuration list for PBXNativeTarget "extThree20JSON+SBJSON-Xcode3.2.5" */;
-			buildPhases = (
-				66C34BA01266200500489E9A /* Headers */,
-				66C34BAA1266200500489E9A /* Protect Copied Headers */,
-				66C34BAB1266200500489E9A /* Sources */,
-				66C34BB31266200500489E9A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66C34C041266204A00489E9A /* PBXTargetDependency */,
-				66C34C061266204A00489E9A /* PBXTargetDependency */,
-			);
-			name = "extThree20JSON+SBJSON-Xcode3.2.5";
-			productName = Three20;
-			productReference = 66C34BB81266200600489E9A /* libextThree20JSON+SBJSON-Xcode3.2.5.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		66C34BB91266200600489E9A /* extThree20JSON+YAJL-Xcode3.2.5 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66C34BE01266200600489E9A /* Build configuration list for PBXNativeTarget "extThree20JSON+YAJL-Xcode3.2.5" */;
-			buildPhases = (
-				66C34BBE1266200600489E9A /* Headers */,
-				66C34BD01266200600489E9A /* Protect Copied Headers */,
-				66C34BD11266200600489E9A /* Sources */,
-				66C34BDF1266200600489E9A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66C34C081266205300489E9A /* PBXTargetDependency */,
-				66C34C0A1266205300489E9A /* PBXTargetDependency */,
-			);
-			name = "extThree20JSON+YAJL-Xcode3.2.5";
-			productName = Three20;
-			productReference = 66C34BE41266200600489E9A /* libextThree20JSON+YAJL-Xcode3.2.5.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		66C34BE51266200600489E9A /* extThree20JSONUnitTests+SBJSON-Xcode3.2.5 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66C34BF51266200600489E9A /* Build configuration list for PBXNativeTarget "extThree20JSONUnitTests+SBJSON-Xcode3.2.5" */;
-			buildPhases = (
-				66C34BEC1266200600489E9A /* Resources */,
-				66C34BED1266200600489E9A /* Sources */,
-				66C34BF01266200600489E9A /* Frameworks */,
-				66C34BF41266200600489E9A /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66C34C0E1266205C00489E9A /* PBXTargetDependency */,
-				66C34C101266205C00489E9A /* PBXTargetDependency */,
-				66C34C0C1266205C00489E9A /* PBXTargetDependency */,
-			);
-			name = "extThree20JSONUnitTests+SBJSON-Xcode3.2.5";
-			productName = CoreUnitTests;
-			productReference = 66C34BF91266200600489E9A /* extJSONUnitTests+SBJSON-Xcode3.2.5.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 		6E645BA31187751200F08CB1 /* extThree20JSON+YAJL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6E645BD51187751200F08CB1 /* Build configuration list for PBXNativeTarget "extThree20JSON+YAJL" */;
@@ -868,44 +583,13 @@
 			projectRoot = "";
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* extThree20JSON+SBJSON */,
-				66C34B9B1266200500489E9A /* extThree20JSON+SBJSON-Xcode3.2.5 */,
 				6E645BA31187751200F08CB1 /* extThree20JSON+YAJL */,
-				66C34BB91266200600489E9A /* extThree20JSON+YAJL-Xcode3.2.5 */,
 				EB9E6C6110B6A8F800DE563C /* extThree20JSONUnitTests+SBJSON */,
-				66C34BE51266200600489E9A /* extThree20JSONUnitTests+SBJSON-Xcode3.2.5 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		663DB02612661DC400CF8CEA /* libThree20Core-Xcode3.2.5.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Core-Xcode3.2.5.a";
-			remoteRef = 663DB02512661DC400CF8CEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		663DB02A12661DC400CF8CEA /* CoreUnitTests-Xcode3.2.5.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "CoreUnitTests-Xcode3.2.5.octest";
-			remoteRef = 663DB02912661DC400CF8CEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		663DB03212661DC400CF8CEA /* libThree20Network-Xcode3.2.5.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libThree20Network-Xcode3.2.5.a";
-			remoteRef = 663DB03112661DC400CF8CEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		663DB03612661DC400CF8CEA /* NetworkUnitTests-Xcode3.2.5.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "NetworkUnitTests-Xcode3.2.5.octest";
-			remoteRef = 663DB03512661DC400CF8CEA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		6E645A7011876D3F00F08CB1 /* libThree20Core.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -937,13 +621,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		66C34BEC1266200600489E9A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EB9E6C5D10B6A8F800DE563C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -954,47 +631,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		66C34BAA1266200500489E9A /* Protect Copied Headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Protect Copied Headers";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/Protect.command";
-			shellScript = "";
-		};
-		66C34BD01266200600489E9A /* Protect Copied Headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Protect Copied Headers";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh ../scripts/Protect.command";
-			shellScript = "";
-		};
-		66C34BF41266200600489E9A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		6E3C34C3118807EF0079637E /* Protect Copied Headers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1039,52 +675,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		66C34BAB1266200500489E9A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66C34BAC1266200500489E9A /* TTURLJSONResponse.m in Sources */,
-				66C34BAD1266200500489E9A /* NSObject+SBJSON.m in Sources */,
-				66C34BAE1266200500489E9A /* NSString+SBJSON.m in Sources */,
-				66C34BB01266200500489E9A /* SBJsonBase.m in Sources */,
-				66C34BB11266200500489E9A /* SBJsonParser.m in Sources */,
-				66C34BB21266200500489E9A /* SBJsonWriter.m in Sources */,
-				664B29F112848B270008D569 /* TTErrorCodes.m in Sources */,
-				6609981D129397F5007B1E07 /* TTExtensionLoader.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66C34BD11266200600489E9A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66C34BD21266200600489E9A /* TTURLJSONResponse.m in Sources */,
-				66C34BD41266200600489E9A /* NSObject+YAJL.m in Sources */,
-				66C34BDC1266200600489E9A /* YAJLDocument.m in Sources */,
-				66C34BDD1266200600489E9A /* YAJLGen.m in Sources */,
-				66C34BDE1266200600489E9A /* YAJLParser.m in Sources */,
-				664B29F412848B270008D569 /* TTErrorCodes.m in Sources */,
-				66E71B7212938CE3007134B0 /* yajl.c in Sources */,
-				66E71B7312938CE3007134B0 /* yajl_alloc.c in Sources */,
-				66E71B7512938CE3007134B0 /* yajl_buf.c in Sources */,
-				66E71B7812938CE3007134B0 /* yajl_encode.c in Sources */,
-				66E71B7A12938CE3007134B0 /* yajl_gen.c in Sources */,
-				66E71B7B12938CE3007134B0 /* yajl_lex.c in Sources */,
-				66E71B7D12938CE3007134B0 /* yajl_parser.c in Sources */,
-				66E71B7F12938CE3007134B0 /* yajl_version.c in Sources */,
-				66099819129397F5007B1E07 /* TTExtensionLoader.m in Sources */,
-				6609987012939B06007B1E07 /* GTMBase64.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66C34BED1266200600489E9A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66C34BEE1266200600489E9A /* extJSONTests+SBJSON.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6E645BC01187751200F08CB1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1128,48 +718,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E645A9A11876E0400F08CB1 /* extJSONTests+SBJSON.m in Sources */,
-				663DB07912661F8200CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		66C34C041266204A00489E9A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Three20Core-Xcode3.2.5";
-			targetProxy = 66C34C031266204A00489E9A /* PBXContainerItemProxy */;
-		};
-		66C34C061266204A00489E9A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Three20Network-Xcode3.2.5";
-			targetProxy = 66C34C051266204A00489E9A /* PBXContainerItemProxy */;
-		};
-		66C34C081266205300489E9A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Three20Core-Xcode3.2.5";
-			targetProxy = 66C34C071266205300489E9A /* PBXContainerItemProxy */;
-		};
-		66C34C0A1266205300489E9A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Three20Network-Xcode3.2.5";
-			targetProxy = 66C34C091266205300489E9A /* PBXContainerItemProxy */;
-		};
-		66C34C0C1266205C00489E9A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66C34B9B1266200500489E9A /* extThree20JSON+SBJSON-Xcode3.2.5 */;
-			targetProxy = 66C34C0B1266205C00489E9A /* PBXContainerItemProxy */;
-		};
-		66C34C0E1266205C00489E9A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Three20CoreUnitTests-Xcode3.2.5";
-			targetProxy = 66C34C0D1266205C00489E9A /* PBXContainerItemProxy */;
-		};
-		66C34C101266205C00489E9A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Three20NetworkUnitTests-Xcode3.2.5";
-			targetProxy = 66C34C0F1266205C00489E9A /* PBXContainerItemProxy */;
-		};
 		6E645A7D11876D5800F08CB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Three20Core;
@@ -1208,157 +762,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		66C34BB51266200500489E9A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library+SBJSON.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					EXTJSON_SBJSON,
-					DEBUG,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+SBJSON-Xcode3.2.5";
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		66C34BB61266200500489E9A /* Internal */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library+SBJSON.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					EXTJSON_SBJSON,
-					DEBUG,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+SBJSON-Xcode3.2.5";
-				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos;
-			};
-			name = Internal;
-		};
-		66C34BB71266200500489E9A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library+SBJSON.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_SBJSON;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+SBJSON-Xcode3.2.5";
-				SDKROOT = iphoneos;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		66C34BE11266200600489E9A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 663DB06D12661EE900CF8CEA /* Library+YAJL.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					EXTJSON_YAJL,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+YAJL-Xcode3.2.5";
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		66C34BE21266200600489E9A /* Internal */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 663DB06D12661EE900CF8CEA /* Library+YAJL.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					EXTJSON_YAJL,
-					DEBUG,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+YAJL-Xcode3.2.5";
-				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos;
-			};
-			name = Internal;
-		};
-		66C34BE31266200600489E9A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 663DB06D12661EE900CF8CEA /* Library+YAJL.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_YAJL;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+YAJL-Xcode3.2.5";
-				SDKROOT = iphoneos;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		66C34BF61266200600489E9A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests+SBJSON.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+SBJSON-Xcode3.2.5";
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		66C34BF71266200600489E9A /* Internal */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests+SBJSON.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+SBJSON-Xcode3.2.5";
-				SDKROOT = iphoneos;
-			};
-			name = Internal;
-		};
-		66C34BF81266200600489E9A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EB460A61183D2AC00685649 /* UnitTests+SBJSON.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				PREBINDING = NO;
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+SBJSON-Xcode3.2.5";
-				SDKROOT = iphoneos;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		6E645BD61187751200F08CB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 663DB06D12661EE900CF8CEA /* Library+YAJL.xcconfig */;
@@ -1382,7 +785,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					EXTJSON_YAJL,
 					DEBUG,
@@ -1427,7 +830,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					EXTJSON_SBJSON,
 					DEBUG,
@@ -1447,8 +850,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/../common/Xcode324iOS41Fix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
@@ -1548,36 +950,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		66C34BB41266200500489E9A /* Build configuration list for PBXNativeTarget "extThree20JSON+SBJSON-Xcode3.2.5" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66C34BB51266200500489E9A /* Debug */,
-				66C34BB61266200500489E9A /* Internal */,
-				66C34BB71266200500489E9A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66C34BE01266200600489E9A /* Build configuration list for PBXNativeTarget "extThree20JSON+YAJL-Xcode3.2.5" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66C34BE11266200600489E9A /* Debug */,
-				66C34BE21266200600489E9A /* Internal */,
-				66C34BE31266200600489E9A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66C34BF51266200600489E9A /* Build configuration list for PBXNativeTarget "extThree20JSONUnitTests+SBJSON-Xcode3.2.5" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66C34BF61266200600489E9A /* Debug */,
-				66C34BF71266200600489E9A /* Internal */,
-				66C34BF81266200600489E9A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		6E645BD51187751200F08CB1 /* Build configuration list for PBXNativeTarget "extThree20JSON+YAJL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

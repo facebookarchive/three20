@@ -248,6 +248,7 @@
 - (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector {
   if (URL) {
     [_URLs addObject:URL];
+
   } else {
     [_URLs addObject:[NSNull null]];
   }
@@ -298,6 +299,7 @@
   if (buttonIndex < _URLs.count) {
     id URL = [_URLs objectAtIndex:buttonIndex];
     return URL != [NSNull null] ? URL : nil;
+
   } else {
     return nil;
   }

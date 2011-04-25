@@ -40,7 +40,7 @@
 @property (nonatomic, assign)   TTTab*      selectedTabView;
 @property (nonatomic)           NSInteger   selectedTabIndex;
 
-@property (nonatomic, retain)   NSArray*    tabItems;
+@property (nonatomic, copy)     NSArray*    tabItems;
 @property (nonatomic, readonly) NSArray*    tabViews;
 
 @property (nonatomic, assign)   id<TTTabDelegate> delegate;

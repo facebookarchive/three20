@@ -164,6 +164,12 @@
  * with the top-most controller that contains this view that /isn't/ the container.
  * If getNavigatorForController: returns a navigator, this navigator is returned.
  * Otherwise, the global navigator is returned.
+ *
+ * If the given view is not, in fact, a view, which is the case if a UIBarButtonItem is passed,
+ * returns the global navigator via [TTBaseNavigator globalNavigator].
+ *
+ * If you need to use a specific navigator for UIBarButtonItem, handle the button tap
+ * yourself and use navigatorForView: on an actual view in the controller.
  */
 + (TTBaseNavigator*)navigatorForView:(UIView*)view;
 

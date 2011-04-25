@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -153,6 +153,7 @@ static const CGFloat kInfiniteScrollThreshold = 0.5;
     if (_model.isLoading) {
       if (scrollView.contentOffset.y >= 0) {
         _controller.tableView.contentInset = UIEdgeInsetsZero;
+
       } else if (scrollView.contentOffset.y < 0) {
         _controller.tableView.contentInset = UIEdgeInsetsMake(kHeaderVisibleHeight, 0, 0, 0);
       }
@@ -165,7 +166,9 @@ static const CGFloat kInfiniteScrollThreshold = 0.5;
     scrollRatio = MAX(MIN(scrollRatio, 1),0);
     BOOL shouldLoad;
     if ([_controller respondsToSelector:@selector(shouldLoadAtScrollRatio:)]) {
-      shouldLoad = [(id <TTTableNetworkEnabledTableViewController>)_controller shouldLoadAtScrollRatio:scrollRatio];
+      shouldLoad = [(id <TTTableNetworkEnabledTableViewController>)_controller
+                    shouldLoadAtScrollRatio:scrollRatio];
+
     } else {
       shouldLoad = scrollRatio > kInfiniteScrollThreshold;
     }

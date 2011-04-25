@@ -16,6 +16,9 @@
 
 #import "Three20UI/UITableViewAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/UIViewAdditions.h"
 
@@ -29,6 +32,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UITableViewAdditions)
+
 @implementation UITableView (TTCategory)
 
 
@@ -49,6 +54,7 @@
 - (CGFloat)tableCellMargin {
   if (self.style == UITableViewStyleGrouped) {
     return 10;
+
   } else {
     return 0;
   }
@@ -103,7 +109,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollFirstResponderIntoView {
   UIView* responder = [self.window findFirstResponder];
-  UITableViewCell* cell = (UITableViewCell*)[responder ancestorOrSelfWithClass:[UITableViewCell class]];
+  UITableViewCell* cell = (UITableViewCell*)[responder
+                                             ancestorOrSelfWithClass:[UITableViewCell class]];
   if (cell) {
     NSIndexPath* indexPath = [self indexPathForCell:cell];
     if (indexPath) {

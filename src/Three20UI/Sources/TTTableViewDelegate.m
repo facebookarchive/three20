@@ -94,7 +94,15 @@
       NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
       if (title.length > 0) {
         TTTableHeaderView* header = [_headers objectForKey:title];
-        if (nil == header) {
+
+        // If retrieved from cache, prepare for reuse here.
+        // We reset the the opacity to 1 because UITableView might set this property to 0 after
+        // removing it.
+        // TODO (jverkoey Feb 26, 2011): When does this happen, exactly?
+        if (nil != header) {
+          header.alpha = 1;
+
+        } else {
           if (nil == _headers) {
             _headers = [[NSMutableDictionary alloc] init];
           }
@@ -131,6 +139,7 @@
 
     if ([object isKindOfClass:[TTTableButton class]]) {
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     } else if ([object isKindOfClass:[TTTableMoreButton class]]) {
       TTTableMoreButton* moreLink = (TTTableMoreButton*)object;
       moreLink.isLoading = YES;
@@ -141,6 +150,7 @@
 
       if (moreLink.model) {
         [moreLink.model load:TTURLRequestCachePolicyDefault more:YES];
+
       } else {
         [_controller.model load:TTURLRequestCachePolicyDefault more:YES];
       }

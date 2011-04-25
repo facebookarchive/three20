@@ -140,6 +140,7 @@ static CGFloat kThumbnailRowHeight = 79;
 - (NSString*)URLForPhoto:(id<TTPhoto>)photo {
   if ([photo respondsToSelector:@selector(URLValueWithName:)]) {
     return [photo URLValueWithName:@"TTPhotoViewController"];
+
   } else {
     return nil;
   }
@@ -281,6 +282,7 @@ static CGFloat kThumbnailRowHeight = 79;
     NSString* URL = [self URLForPhoto:photo];
     if (URL) {
       TTOpenURLFromView(URL, self.view);
+
     } else {
       TTPhotoViewController* controller = [self createPhotoViewController];
       controller.centerPhoto = photo;

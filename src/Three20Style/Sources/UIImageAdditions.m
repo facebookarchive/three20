@@ -16,6 +16,9 @@
 
 #import "Three20Style/UIImageAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,6 +26,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UIImageAdditions)
+
 @implementation UIImage (TTCategory)
 
 
@@ -40,6 +45,7 @@
   if (radius == 0) {
     CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
     CGContextAddRect(context, rect);
+
   } else {
     CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
     CGContextScaleCTM(context, radius, radius);
@@ -92,9 +98,11 @@
     if (self.imageOrientation == UIImageOrientationDown) {
       CGContextTranslateCTM(bitmap, sourceW, sourceH);
       CGContextRotateCTM(bitmap, 180 * (M_PI/180));
+
     } else if (self.imageOrientation == UIImageOrientationLeft) {
       CGContextTranslateCTM(bitmap, sourceH, 0);
       CGContextRotateCTM(bitmap, 90 * (M_PI/180));
+
     } else if (self.imageOrientation == UIImageOrientationRight) {
       CGContextTranslateCTM(bitmap, 0, sourceW);
       CGContextRotateCTM(bitmap, -90 * (M_PI/180));
@@ -119,44 +127,54 @@
       return CGRectMake(rect.origin.x,
                         rect.origin.y + floor(rect.size.height/2 - self.size.height/2),
                         self.size.width, self.size.height);
+
     } else if (contentMode == UIViewContentModeRight) {
       return CGRectMake(rect.origin.x + (rect.size.width - self.size.width),
                         rect.origin.y + floor(rect.size.height/2 - self.size.height/2),
                         self.size.width, self.size.height);
+
     } else if (contentMode == UIViewContentModeTop) {
       return CGRectMake(rect.origin.x + floor(rect.size.width/2 - self.size.width/2),
                         rect.origin.y,
                         self.size.width, self.size.height);
+
     } else if (contentMode == UIViewContentModeBottom) {
       return CGRectMake(rect.origin.x + floor(rect.size.width/2 - self.size.width/2),
                         rect.origin.y + floor(rect.size.height - self.size.height),
                         self.size.width, self.size.height);
+
     } else if (contentMode == UIViewContentModeCenter) {
       return CGRectMake(rect.origin.x + floor(rect.size.width/2 - self.size.width/2),
                         rect.origin.y + floor(rect.size.height/2 - self.size.height/2),
                         self.size.width, self.size.height);
+
     } else if (contentMode == UIViewContentModeBottomLeft) {
       return CGRectMake(rect.origin.x,
                         rect.origin.y + floor(rect.size.height - self.size.height),
                         self.size.width, self.size.height);
+
     } else if (contentMode == UIViewContentModeBottomRight) {
       return CGRectMake(rect.origin.x + (rect.size.width - self.size.width),
                         rect.origin.y + (rect.size.height - self.size.height),
                         self.size.width, self.size.height);
+
     } else if (contentMode == UIViewContentModeTopLeft) {
       return CGRectMake(rect.origin.x,
                         rect.origin.y,
 
                         self.size.width, self.size.height);
+
     } else if (contentMode == UIViewContentModeTopRight) {
       return CGRectMake(rect.origin.x + (rect.size.width - self.size.width),
                         rect.origin.y,
                         self.size.width, self.size.height);
+
     } else if (contentMode == UIViewContentModeScaleAspectFill) {
       CGSize imageSize = self.size;
       if (imageSize.height < imageSize.width) {
         imageSize.width = floor((imageSize.width/imageSize.height) * rect.size.height);
         imageSize.height = rect.size.height;
+
       } else {
         imageSize.height = floor((imageSize.height/imageSize.width) * rect.size.width);
         imageSize.width = rect.size.width;
@@ -164,11 +182,13 @@
       return CGRectMake(rect.origin.x + floor(rect.size.width/2 - imageSize.width/2),
                         rect.origin.y + floor(rect.size.height/2 - imageSize.height/2),
                         imageSize.width, imageSize.height);
+
     } else if (contentMode == UIViewContentModeScaleAspectFit) {
       CGSize imageSize = self.size;
       if (imageSize.height < imageSize.width) {
         imageSize.height = floor((imageSize.height/imageSize.width) * rect.size.width);
         imageSize.width = rect.size.width;
+
       } else {
         imageSize.width = floor((imageSize.width/imageSize.height) * rect.size.height);
         imageSize.height = rect.size.height;

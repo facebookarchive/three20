@@ -39,6 +39,9 @@ TTCSSParser* gActiveParser = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface TTCSSParser()
 
+/**
+ *
+ */
 - (void)consumeToken:(int)token text:(char*)text;
 
 @end

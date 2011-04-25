@@ -22,8 +22,8 @@
   BOOL      _highlighted;
 }
 
-@property (nonatomic)         BOOL      highlighted;
-@property (nonatomic, retain) NSString* URL;
+@property (nonatomic)       BOOL      highlighted;
+@property (nonatomic, copy) NSString* URL;
 
 - (id)initWithURL:(NSString*)URL;
 - (id)initWithURL:(NSString*)URL next:(TTStyledNode*)nextSibling;

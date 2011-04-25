@@ -48,7 +48,7 @@
  *
  * After you've restored the state, you should set frozenState to nil.
  */
-@property (nonatomic, retain) NSDictionary* frozenState;
+@property (nonatomic, copy) NSDictionary* frozenState;
 
 /**
  * Forcefully initiates garbage collection. You may call this in your didReceiveMemoryWarning

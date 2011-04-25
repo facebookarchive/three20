@@ -123,8 +123,9 @@
       TTExtensionInfo* extension = [availableExtensions objectForKey:extensionID];
       [availableItems addObject:[self tableItemForExtension:extension]];
     }
-    [availableItems addObject:[TTTableLongTextItem itemWithText:
-                               @"Call [TTExtensionLoader loadAllExtensions] in your app delegate to load extensions."]];
+    [availableItems addObject:
+     [TTTableLongTextItem itemWithText:
+      @"Call [TTExtensionLoader loadAllExtensions] in your app delegate to load extensions."]];
     [sectionItems addObject:availableItems];
   }
 

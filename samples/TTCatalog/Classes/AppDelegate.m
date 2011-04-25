@@ -11,6 +11,7 @@
 #import "TableTestController.h"
 #import "TableWithBannerController.h"
 #import "TableWithShadowController.h"
+#import "TableDragRefreshController.h"
 #import "SearchTestController.h"
 #import "MessageTestController.h"
 #import "ActivityTestController.h"
@@ -21,6 +22,7 @@
 #import "StyleTestController.h"
 #import "ButtonTestController.h"
 #import "TabBarTestController.h"
+#import "DownloadProgressTestController.h"
 
 @implementation AppDelegate
 
@@ -103,6 +105,12 @@
               selector: nil
             transition: 0];
 
+  [map            from: @"tt://tableDragRefresh"
+                parent: @"tt://catalog"
+      toViewController: [TableDragRefreshController class]
+              selector: nil
+            transition: 0];
+
   [map            from: @"tt://composerTest"
                 parent: @"tt://catalog"
       toViewController: [MessageTestController class]
@@ -169,7 +177,12 @@
               selector: nil
             transition: 0];
 
-
+  [map            from: @"tt://dlprogress"
+                parent: @"tt://catalog"
+      toViewController: [DownloadProgressTestController class]
+              selector: nil
+            transition: 0];
+  
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://catalog"]];
   }

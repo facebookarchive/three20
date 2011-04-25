@@ -115,6 +115,7 @@
   if (queries) {
     NSString* query = [queries componentsJoinedByString:@"&"];
     return [path stringByAppendingFormat:@"?%@", query];
+
   } else {
     return path;
   }

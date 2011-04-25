@@ -82,6 +82,7 @@
 - (NSString*)outerHTML {
   if (_nextSibling) {
     return _nextSibling.outerHTML;
+
   } else {
     return @"";
   }
@@ -92,6 +93,7 @@
 - (id)ancestorOrSelfWithClass:(Class)cls {
   if ([self isKindOfClass:cls]) {
     return self;
+
   } else {
     return [_parentNode ancestorOrSelfWithClass:cls];
   }

@@ -110,6 +110,7 @@ static const CGFloat kHighlightTextPadding = 20.0f;
   CGFloat y = 0.0;
   if (_highlightRect.origin.y + (_highlightRect.size.height / 2) < superviewSize.height / 2) {
     y = _highlightRect.origin.y + _highlightRect.size.height + kHighlightTextPadding;
+
   } else {
     y = _highlightRect.origin.y - height - kHighlightTextPadding;
   }
@@ -178,6 +179,7 @@ static const CGFloat kHighlightTextPadding = 20.0f;
 
   if (animated) {
     [UIView commitAnimations];
+
   } else {
     _textLabel.alpha = 1.0;
   }

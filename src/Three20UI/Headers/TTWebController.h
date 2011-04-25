@@ -35,7 +35,7 @@
   UIBarButtonItem*  _activityItem;
 
   NSURL*            _loadingURL;
-  
+
   UIActionSheet*    _actionSheet;
 
   id<TTWebControllerDelegate> _delegate;

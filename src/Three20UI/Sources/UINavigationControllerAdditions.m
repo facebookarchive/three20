@@ -16,6 +16,9 @@
 
 #import "Three20UI/UINavigationControllerAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTNavigationController.h"
@@ -38,6 +41,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UINavigationControllerAdditions)
+
 @implementation UINavigationController (TTCategory)
 
 
@@ -52,6 +57,7 @@
   UIViewController* popup = [self popupViewController];
   if (popup) {
     return [popup rotatingHeaderView];
+
   } else {
     return [super rotatingHeaderView];
   }
@@ -83,9 +89,11 @@
     if ([self isKindOfClass:[TTNavigationController class]]) {
       [(TTNavigationController*)self pushViewController: controller
                                  animatedWithTransition: transition];
+
     } else {
       [self pushViewController:controller animated:YES];
     }
+
   } else {
     [self pushViewController:controller animated:animated];
   }
@@ -106,6 +114,7 @@
   NSInteger controllerIndex = [self.viewControllers indexOfObject:controller];
   if (controllerIndex != NSNotFound) {
     return [NSNumber numberWithInt:controllerIndex].stringValue;
+
   } else {
     return nil;
   }
@@ -117,6 +126,7 @@
   NSInteger controllerIndex = key.intValue;
   if (controllerIndex < self.viewControllers.count) {
     return [self.viewControllers objectAtIndex:controllerIndex];
+
   } else {
     return nil;
   }

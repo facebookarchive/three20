@@ -16,7 +16,9 @@
 
 #import "Three20Core/NSArrayAdditions.h"
 
+// Core
 #import "Three20Core/NSObjectAdditions.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,6 +27,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(NSArrayAdditions)
+
 @implementation NSArray (TTCategory)
 
 
