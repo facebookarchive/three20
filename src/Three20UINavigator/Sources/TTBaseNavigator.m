@@ -101,7 +101,7 @@ __attribute__((weak_import));
   _delegate = nil;
   TT_RELEASE_SAFELY(_window);
   TT_RELEASE_SAFELY(_rootViewController);
-  TT_RELEASE_SAFELY(_popoverController);
+  //TT_RELEASE_SAFELY(_popoverController); // JE: 3.x
   TT_RELEASE_SAFELY(_delayedControllers);
   TT_RELEASE_SAFELY(_URLMap);
   TT_RELEASE_SAFELY(_persistenceKey);
@@ -324,6 +324,16 @@ __attribute__((weak_import));
 }
 
 
+// JE: Made a stupid implementation of this that does nothing
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)presentPopoverController: (UIViewController*)controller
+                    sourceButton: (UIBarButtonItem*)sourceButton
+                      sourceView: (UIView*)sourceView
+                      sourceRect: (CGRect)sourceRect
+                        animated: (BOOL)animated {
+
+}
+/* JE: 3.x
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)presentPopoverController: (UIViewController*)controller
                     sourceButton: (UIBarButtonItem*)sourceButton
@@ -355,7 +365,7 @@ __attribute__((weak_import));
                                       animated: animated];
   }
 }
-
+*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -948,12 +958,14 @@ __attribute__((weak_import));
 #pragma mark UIPopoverControllerDelegate
 
 
+/* JE: 3.x
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
   if (popoverController == _popoverController) {
     TT_RELEASE_SAFELY(_popoverController);
   }
 }
+ */
 
 
 

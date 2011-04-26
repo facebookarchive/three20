@@ -28,16 +28,18 @@
 /**
  * A URL-based navigation system with built-in persistence.
  */
-@interface TTBaseNavigator : NSObject <
-  UIPopoverControllerDelegate
-> {
+@interface TTBaseNavigator : NSObject
+//<
+  //UIPopoverControllerDelegate // JE: 3.x
+//>
+{
   TTURLMap*                   _URLMap;
 
   UIWindow*                   _window;
 
   UIViewController*           _rootViewController;
   NSMutableArray*             _delayedControllers;
-  UIPopoverController*        _popoverController;
+  //UIPopoverController*        _popoverController; // JE: 3.x
 
   NSString*                   _persistenceKey;
   TTNavigatorPersistenceMode  _persistenceMode;
