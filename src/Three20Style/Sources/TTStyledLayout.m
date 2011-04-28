@@ -367,16 +367,20 @@
   }
 
   // Horizontally align all frames on the current line
-	TTStyledFrame* frame = _lineFirstFrame;
-	while (frame) {
-		if (_textAlignment == UITextAlignmentRight) {
-			[self offsetFrame:frame byX:_width - _lineWidth];
-
-		} else if (_textAlignment == UITextAlignmentCenter) {
-			[self offsetFrame:frame byX:floor((_width - _lineWidth) / 2.0)];
-		}
-		frame = frame.nextFrame;
-	}
+  if (_textAlignment != UITextAlignmentLeft) {
+    CGFloat offset = 0;
+    if (_textAlignment == UITextAlignmentRight) {
+      offset = _width - _lineWidth;
+      
+    } else if (_textAlignment == UITextAlignmentCenter) {
+      offset = floor((_width - _lineWidth) / 2);
+    }
+    TTStyledFrame* frame = _lineFirstFrame;
+    while (frame) {
+      [self offsetFrame:frame byX:offset];
+      frame = frame.nextFrame;
+    }
+  }
 
   _height += _lineHeight;
   [self checkFloats];
