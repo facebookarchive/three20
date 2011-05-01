@@ -38,6 +38,11 @@
 		6E64556E1184D4C500F08CB1 /* TTImageViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D01184D4C500F08CB1 /* TTImageViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E64556F1184D4C500F08CB1 /* TTImageViewInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D11184D4C500F08CB1 /* TTImageViewInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E6455701184D4C500F08CB1 /* TTLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D21184D4C500F08CB1 /* TTLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6455711184D4C500F08CB1 /* TTLauncherButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D31184D4C500F08CB1 /* TTLauncherButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6455721184D4C500F08CB1 /* TTLauncherItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D41184D4C500F08CB1 /* TTLauncherItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6455731184D4C500F08CB1 /* TTLauncherScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D51184D4C500F08CB1 /* TTLauncherScrollView.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6E6455741184D4C500F08CB1 /* TTLauncherView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D61184D4C500F08CB1 /* TTLauncherView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6455751184D4C500F08CB1 /* TTLauncherViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D71184D4C500F08CB1 /* TTLauncherViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6455761184D4C500F08CB1 /* TTLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D81184D4C500F08CB1 /* TTLink.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6455771184D4C500F08CB1 /* TTListDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454D91184D4C500F08CB1 /* TTListDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6455781184D4C500F08CB1 /* TTMessageController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454DA1184D4C500F08CB1 /* TTMessageController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,6 +167,10 @@
 		6E6456941184D4DA00F08CB1 /* TTImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64560C1184D4DA00F08CB1 /* TTImageView.m */; };
 		6E6456951184D4DA00F08CB1 /* TTImageViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64560D1184D4DA00F08CB1 /* TTImageViewInternal.m */; };
 		6E6456961184D4DA00F08CB1 /* TTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64560E1184D4DA00F08CB1 /* TTLabel.m */; };
+		6E6456971184D4DA00F08CB1 /* TTLauncherButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E64560F1184D4DA00F08CB1 /* TTLauncherButton.m */; };
+		6E6456981184D4DA00F08CB1 /* TTLauncherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456101184D4DA00F08CB1 /* TTLauncherItem.m */; };
+		6E6456991184D4DA00F08CB1 /* TTLauncherScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456111184D4DA00F08CB1 /* TTLauncherScrollView.m */; };
+		6E64569A1184D4DA00F08CB1 /* TTLauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456121184D4DA00F08CB1 /* TTLauncherView.m */; };
 		6E64569B1184D4DA00F08CB1 /* TTLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456131184D4DA00F08CB1 /* TTLink.m */; };
 		6E64569C1184D4DA00F08CB1 /* TTListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456141184D4DA00F08CB1 /* TTListDataSource.m */; };
 		6E64569D1184D4DA00F08CB1 /* TTMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6456151184D4DA00F08CB1 /* TTMessageController.m */; };
@@ -262,6 +271,8 @@
 		6E6459381187645D00F08CB1 /* UIGlobalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6459371187645D00F08CB1 /* UIGlobalTests.m */; };
 		6E86A8DB118CBF7500662DA5 /* TTNavigatorWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E86A8DA118CBF7500662DA5 /* TTNavigatorWindow.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6E86A8EC118CBF8E00662DA5 /* TTNavigatorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E86A8EB118CBF8E00662DA5 /* TTNavigatorWindow.m */; };
+		6ECCA5FE11C0C0F6002296C7 /* TTLauncherHighlightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCA5FC11C0C0F6002296C7 /* TTLauncherHighlightView.m */; };
+		6ECCA60011C0C105002296C7 /* TTLauncherHighlightView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECCA5FF11C0C105002296C7 /* TTLauncherHighlightView.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6EDAE9F6118CA5810008133C /* TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDAE9F5118CA5810008133C /* TTNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EDAEA02118CA59C0008133C /* TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDAEA01118CA59C0008133C /* TTNavigator.m */; };
 		6EDAEA1D118CA5E20008133C /* libThree20UICommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDAEA09118CA5B50008133C /* libThree20UICommon.a */; };
@@ -454,6 +465,11 @@
 		6E6454D01184D4C500F08CB1 /* TTImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageViewDelegate.h; path = Headers/TTImageViewDelegate.h; sourceTree = "<group>"; };
 		6E6454D11184D4C500F08CB1 /* TTImageViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTImageViewInternal.h; path = Headers/TTImageViewInternal.h; sourceTree = "<group>"; };
 		6E6454D21184D4C500F08CB1 /* TTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLabel.h; path = Headers/TTLabel.h; sourceTree = "<group>"; };
+		6E6454D31184D4C500F08CB1 /* TTLauncherButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherButton.h; path = Headers/TTLauncherButton.h; sourceTree = "<group>"; };
+		6E6454D41184D4C500F08CB1 /* TTLauncherItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherItem.h; path = Headers/TTLauncherItem.h; sourceTree = "<group>"; };
+		6E6454D51184D4C500F08CB1 /* TTLauncherScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherScrollView.h; path = Headers/TTLauncherScrollView.h; sourceTree = "<group>"; };
+		6E6454D61184D4C500F08CB1 /* TTLauncherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherView.h; path = Headers/TTLauncherView.h; sourceTree = "<group>"; };
+		6E6454D71184D4C500F08CB1 /* TTLauncherViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherViewDelegate.h; path = Headers/TTLauncherViewDelegate.h; sourceTree = "<group>"; };
 		6E6454D81184D4C500F08CB1 /* TTLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLink.h; path = Headers/TTLink.h; sourceTree = "<group>"; };
 		6E6454D91184D4C500F08CB1 /* TTListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTListDataSource.h; path = Headers/TTListDataSource.h; sourceTree = "<group>"; };
 		6E6454DA1184D4C500F08CB1 /* TTMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTMessageController.h; path = Headers/TTMessageController.h; sourceTree = "<group>"; };
@@ -578,6 +594,10 @@
 		6E64560C1184D4DA00F08CB1 /* TTImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTImageView.m; path = Sources/TTImageView.m; sourceTree = "<group>"; };
 		6E64560D1184D4DA00F08CB1 /* TTImageViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTImageViewInternal.m; path = Sources/TTImageViewInternal.m; sourceTree = "<group>"; };
 		6E64560E1184D4DA00F08CB1 /* TTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLabel.m; path = Sources/TTLabel.m; sourceTree = "<group>"; };
+		6E64560F1184D4DA00F08CB1 /* TTLauncherButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLauncherButton.m; path = Sources/TTLauncherButton.m; sourceTree = "<group>"; };
+		6E6456101184D4DA00F08CB1 /* TTLauncherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLauncherItem.m; path = Sources/TTLauncherItem.m; sourceTree = "<group>"; };
+		6E6456111184D4DA00F08CB1 /* TTLauncherScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLauncherScrollView.m; path = Sources/TTLauncherScrollView.m; sourceTree = "<group>"; };
+		6E6456121184D4DA00F08CB1 /* TTLauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLauncherView.m; path = Sources/TTLauncherView.m; sourceTree = "<group>"; };
 		6E6456131184D4DA00F08CB1 /* TTLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLink.m; path = Sources/TTLink.m; sourceTree = "<group>"; };
 		6E6456141184D4DA00F08CB1 /* TTListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTListDataSource.m; path = Sources/TTListDataSource.m; sourceTree = "<group>"; };
 		6E6456151184D4DA00F08CB1 /* TTMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTMessageController.m; path = Sources/TTMessageController.m; sourceTree = "<group>"; };
@@ -679,6 +699,8 @@
 		6E6459371187645D00F08CB1 /* UIGlobalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIGlobalTests.m; path = UnitTests/UIGlobalTests.m; sourceTree = "<group>"; };
 		6E86A8DA118CBF7500662DA5 /* TTNavigatorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigatorWindow.h; path = Headers/TTNavigatorWindow.h; sourceTree = "<group>"; };
 		6E86A8EB118CBF8E00662DA5 /* TTNavigatorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigatorWindow.m; path = Sources/TTNavigatorWindow.m; sourceTree = "<group>"; };
+		6ECCA5FC11C0C0F6002296C7 /* TTLauncherHighlightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTLauncherHighlightView.m; path = Sources/TTLauncherHighlightView.m; sourceTree = "<group>"; };
+		6ECCA5FF11C0C105002296C7 /* TTLauncherHighlightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherHighlightView.h; path = Headers/TTLauncherHighlightView.h; sourceTree = "<group>"; };
 		6EDAE9F5118CA5810008133C /* TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigator.h; path = Headers/TTNavigator.h; sourceTree = "<group>"; };
 		6EDAEA01118CA59C0008133C /* TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigator.m; path = Sources/TTNavigator.m; sourceTree = "<group>"; };
 		6EDAEA03118CA5B50008133C /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../Three20UICommon/Three20UICommon.xcodeproj; sourceTree = "<group>"; };
@@ -1539,6 +1561,9 @@
 		6E64583E1184E26500F08CB1 /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
+				6E6454D61184D4C500F08CB1 /* TTLauncherView.h */,
+				6E6456121184D4DA00F08CB1 /* TTLauncherView.m */,
+				6E6454D71184D4C500F08CB1 /* TTLauncherViewDelegate.h */,
 				6E6458411184E29B00F08CB1 /* Private */,
 				6E64583F1184E28700F08CB1 /* Launcher Button */,
 				6E6458401184E29000F08CB1 /* Launcher Item */,
@@ -1549,6 +1574,8 @@
 		6E64583F1184E28700F08CB1 /* Launcher Button */ = {
 			isa = PBXGroup;
 			children = (
+				6E6454D31184D4C500F08CB1 /* TTLauncherButton.h */,
+				6E64560F1184D4DA00F08CB1 /* TTLauncherButton.m */,
 			);
 			name = "Launcher Button";
 			sourceTree = "<group>";
@@ -1556,6 +1583,8 @@
 		6E6458401184E29000F08CB1 /* Launcher Item */ = {
 			isa = PBXGroup;
 			children = (
+				6E6454D41184D4C500F08CB1 /* TTLauncherItem.h */,
+				6E6456101184D4DA00F08CB1 /* TTLauncherItem.m */,
 			);
 			name = "Launcher Item";
 			sourceTree = "<group>";
@@ -1563,6 +1592,10 @@
 		6E6458411184E29B00F08CB1 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				6E6454D51184D4C500F08CB1 /* TTLauncherScrollView.h */,
+				6E6456111184D4DA00F08CB1 /* TTLauncherScrollView.m */,
+				6ECCA5FF11C0C105002296C7 /* TTLauncherHighlightView.h */,
+				6ECCA5FC11C0C0F6002296C7 /* TTLauncherHighlightView.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -1701,6 +1734,11 @@
 				6E64556E1184D4C500F08CB1 /* TTImageViewDelegate.h in Headers */,
 				6E64556F1184D4C500F08CB1 /* TTImageViewInternal.h in Headers */,
 				6E6455701184D4C500F08CB1 /* TTLabel.h in Headers */,
+				6E6455711184D4C500F08CB1 /* TTLauncherButton.h in Headers */,
+				6E6455721184D4C500F08CB1 /* TTLauncherItem.h in Headers */,
+				6E6455731184D4C500F08CB1 /* TTLauncherScrollView.h in Headers */,
+				6E6455741184D4C500F08CB1 /* TTLauncherView.h in Headers */,
+				6E6455751184D4C500F08CB1 /* TTLauncherViewDelegate.h in Headers */,
 				6E6455761184D4C500F08CB1 /* TTLink.h in Headers */,
 				6E6455771184D4C500F08CB1 /* TTListDataSource.h in Headers */,
 				6E6455781184D4C500F08CB1 /* TTMessageController.h in Headers */,
@@ -1815,6 +1853,7 @@
 				6EDAE9F6118CA5810008133C /* TTNavigator.h in Headers */,
 				6E86A8DB118CBF7500662DA5 /* TTNavigatorWindow.h in Headers */,
 				6E60820311B0C32600C93CD4 /* TTNavigationController.h in Headers */,
+				6ECCA60011C0C105002296C7 /* TTLauncherHighlightView.h in Headers */,
 				66ADC8CF1290AC1200855386 /* TTExtensionsController.h in Headers */,
 				66ADCDA31291AA7E00855386 /* TTExtensionInfoController.h in Headers */,
 				666E18F51294543F001C1D97 /* TTSplitViewController.h in Headers */,
@@ -1850,7 +1889,7 @@
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libThree20UI.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* Three20UIUnitTests */ = {
+		EB9E6C6110B6A8F800DE563C /* Three20UICommonUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "Three20UIUnitTests" */;
 			buildPhases = (
@@ -1919,7 +1958,7 @@
 			projectRoot = "";
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* Three20UI */,
-				EB9E6C6110B6A8F800DE563C /* Three20UIUnitTests */,
+				EB9E6C6110B6A8F800DE563C /* Three20UICommonUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2070,6 +2109,10 @@
 				6E6456941184D4DA00F08CB1 /* TTImageView.m in Sources */,
 				6E6456951184D4DA00F08CB1 /* TTImageViewInternal.m in Sources */,
 				6E6456961184D4DA00F08CB1 /* TTLabel.m in Sources */,
+				6E6456971184D4DA00F08CB1 /* TTLauncherButton.m in Sources */,
+				6E6456981184D4DA00F08CB1 /* TTLauncherItem.m in Sources */,
+				6E6456991184D4DA00F08CB1 /* TTLauncherScrollView.m in Sources */,
+				6E64569A1184D4DA00F08CB1 /* TTLauncherView.m in Sources */,
 				6E64569B1184D4DA00F08CB1 /* TTLink.m in Sources */,
 				6E64569C1184D4DA00F08CB1 /* TTListDataSource.m in Sources */,
 				6E64569D1184D4DA00F08CB1 /* TTMessageController.m in Sources */,
@@ -2170,6 +2213,7 @@
 				6EDAEA02118CA59C0008133C /* TTNavigator.m in Sources */,
 				6E86A8EC118CBF8E00662DA5 /* TTNavigatorWindow.m in Sources */,
 				6E60820111B0C31400C93CD4 /* TTNavigationController.m in Sources */,
+				6ECCA5FE11C0C0F6002296C7 /* TTLauncherHighlightView.m in Sources */,
 				66ADC8C91290AC0200855386 /* TTExtensionsController.m in Sources */,
 				66ADCD9D1291AA7100855386 /* TTExtensionInfoController.m in Sources */,
 				666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */,

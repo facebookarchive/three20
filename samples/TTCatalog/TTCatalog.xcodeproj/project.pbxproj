@@ -60,6 +60,7 @@
 		BEF6EC370F280CB300CF4096 /* ScrollViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF6EC360F280CB300CF4096 /* ScrollViewTestController.m */; };
 		E46662FE127F91A4001A0F20 /* TableWithBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46662FD127F91A4001A0F20 /* TableWithBannerController.m */; };
 		E4D1D1D61306D2670090AE0C /* TableDragRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D1D1D51306D2670090AE0C /* TableDragRefreshController.m */; };
+		FE16FDFB136DC6700002D8BC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE16FDFA136DC6700002D8BC /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +302,7 @@
 		E46662FD127F91A4001A0F20 /* TableWithBannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableWithBannerController.m; sourceTree = "<group>"; };
 		E4D1D1D41306D2670090AE0C /* TableDragRefreshController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableDragRefreshController.h; sourceTree = "<group>"; };
 		E4D1D1D51306D2670090AE0C /* TableDragRefreshController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableDragRefreshController.m; sourceTree = "<group>"; };
+		FE16FDFA136DC6700002D8BC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +321,7 @@
 				6E3794F811B9B6DD0011C497 /* libThree20UI.a in Frameworks */,
 				6E3794F911B9B6DD0011C497 /* libThree20UINavigator.a in Frameworks */,
 				6E3794FA11B9B6DE0011C497 /* libThree20UICommon.a in Frameworks */,
+				FE16FDFB136DC6700002D8BC /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +366,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				FE16FDFA136DC6700002D8BC /* MessageUI.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
