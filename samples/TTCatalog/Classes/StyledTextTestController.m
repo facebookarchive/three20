@@ -51,10 +51,11 @@
 @implementation StyledTextTestController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
+// UIViewController
 
-- (id)init {
-  if (self = [super init]) {
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nil bundle:nil];
+  if (self) {
     [TTStyleSheet setGlobalStyleSheet:[[[TextTestStyleSheet alloc] init] autorelease]];
   }
   return self;

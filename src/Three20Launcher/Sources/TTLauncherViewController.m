@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,7 +30,13 @@
 
 @property (nonatomic, retain) UIBarButtonItem* oldRightBarButtonItem;
 
-@end
+@synthesize launcher    = _launcher;
+@synthesize title       = _title;
+@synthesize image       = _image;
+@synthesize URL         = _URL;
+@synthesize style       = _style;
+@synthesize badgeValue  = _badgeValue;
+@synthesize canDelete   = _canDelete;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,12 +121,31 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)launcherViewDidEndEditing:(TTLauncherView*)launcher {
-  [self.navigationItem setRightBarButtonItem:self.oldRightBarButtonItem animated:YES];
-
-  self.oldRightBarButtonItem = nil;
+- (NSInteger)badgeNumber {
+  return [self.badgeValue integerValue];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBadgeNumber:(NSInteger)badgeNumber {
+  if (badgeNumber == 0) {
+    [self setBadgeValue:nil];
+
+  } else {
+    [self setBadgeValue:[NSString stringWithFormat:@"%d",badgeNumber]];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setBadgeValue:(NSString *)badgeValue {
+  if (_badgeValue != badgeValue) {
+    [_badgeValue release];
+    _badgeValue = [badgeValue copy];
+  }
+
+  [_launcher performSelector:@selector(updateItemBadge:) withObject:self];
+}
 
 @end
 

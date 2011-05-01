@@ -27,11 +27,17 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "NSObject+YAJL.h"
-#import "YAJLGen.h"
-#import "YAJLDocument.h"
+#import "extThree20JSON/NSObject+YAJL.h"
+#import "extThree20JSON/YAJLGen.h"
+#import "extThree20JSON/YAJLDocument.h"
 
-@implementation NSObject (YAJL)
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
+
+TT_FIX_CATEGORY_BUG(NSObject_YAJL)
+
+@implementation NSObject(YAJL)
 
 #pragma mark Gen
 
@@ -52,7 +58,7 @@
 - (id)yajl_JSON {
   NSError *error = nil;
   id JSON = [self yajl_JSON:&error];
-  if (error) [NSException raise:YAJLParserException format:[error localizedDescription]];
+  if (error) [NSException raise:YAJLParserException format:[error localizedDescription], nil];
   return JSON;
 }
 
@@ -61,7 +67,7 @@
 }
 
 - (id)yajl_JSONWithOptions:(YAJLParserOptions)options error:(NSError **)error {
-  NSData *data = nil; 
+  NSData *data = nil;
   if ([self isKindOfClass:[NSData class]]) {
     data = (NSData *)self;
   } else if ([self respondsToSelector:@selector(dataUsingEncoding:)]) {
@@ -69,12 +75,11 @@
   } else {
     [NSException raise:YAJLParsingUnsupportedException format:@"Object of type (%@) must implement dataUsingEncoding: to be parsed", [self class]];
   }
-  
+
   YAJLDocument *document = [[YAJLDocument alloc] initWithData:data parserOptions:options error:error];
   id root = [document.root retain];
   [document release];
   return [root autorelease];
 }
-
 
 @end

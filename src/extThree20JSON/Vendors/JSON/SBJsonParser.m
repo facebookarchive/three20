@@ -1,20 +1,20 @@
 /*
- Copyright (C) 2009 Stig Brautaset. All rights reserved.
- 
+ Copyright (C) 2009,2010 Stig Brautaset. All rights reserved.
+
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
- 
+
  * Redistributions of source code must retain the above copyright notice, this
    list of conditions and the following disclaimer.
- 
+
  * Redistributions in binary form must reproduce the above copyright notice,
    this list of conditions and the following disclaimer in the documentation
    and/or other materials provided with the distribution.
- 
+
  * Neither the name of the author nor the names of its contributors may be used
    to endorse or promote products derived from this software without specific
    prior written permission.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -27,7 +27,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "SBJsonParser.h"
+#import "extThree20JSON/SBJsonParser.h"
 
 @interface SBJsonParser ()
 
@@ -64,45 +64,33 @@ static char ctrl[0x22];
     ctrl[1] = '\\';
     for (int i = 1; i < 0x20; i++)
         ctrl[i+1] = i;
-    ctrl[0x21] = 0;    
+    ctrl[0x21] = 0;
 }
 
-/**
- @deprecated This exists in order to provide fragment support in older APIs in one more version.
- It should be removed in the next major version.
- */
-- (id)fragmentWithString:(id)repr {
+- (id)objectWithString:(NSString *)repr {
     [self clearErrorTrace];
-    
+
     if (!repr) {
         [self addErrorWithCode:EINPUT description:@"Input was 'nil'"];
         return nil;
     }
-    
+
     depth = 0;
     c = [repr UTF8String];
-    
+
     id o;
     if (![self scanValue:&o]) {
         return nil;
     }
-    
+
     // We found some valid JSON. But did it also contain something else?
     if (![self scanIsAtEnd]) {
         [self addErrorWithCode:ETRAILGARBAGE description:@"Garbage after JSON"];
         return nil;
     }
-        
+
     NSAssert1(o, @"Should have a valid object from %@", repr);
-    return o;    
-}
 
-- (id)objectWithString:(NSString *)repr {
-
-    id o = [self fragmentWithString:repr];
-    if (!o)
-        return nil;
-    
     // Check that the object we've found is a valid JSON container.
     if (![o isKindOfClass:[NSDictionary class]] && ![o isKindOfClass:[NSArray class]]) {
         [self addErrorWithCode:EFRAGMENT description:@"Valid fragment, but not JSON"];
@@ -112,13 +100,24 @@ static char ctrl[0x22];
     return o;
 }
 
+- (id)objectWithString:(NSString*)repr error:(NSError**)error {
+    id tmp = [self objectWithString:repr];
+    if (tmp)
+        return tmp;
+
+    if (error)
+        *error = [self.errorTrace lastObject];
+    return nil;
+}
+
+
 /*
  In contrast to the public methods, it is an error to omit the error parameter here.
  */
 - (BOOL)scanValue:(NSObject **)o
 {
     skipWhitespace(c);
-    
+
     switch (*c++) {
         case '{':
             return [self scanRestOfDictionary:(NSMutableDictionary **)o];
@@ -156,7 +155,7 @@ static char ctrl[0x22];
             return NO;
             break;
     }
-    
+
     NSAssert(0, @"Should never get here");
     return NO;
 }
@@ -198,25 +197,25 @@ static char ctrl[0x22];
         [self addErrorWithCode:EDEPTH description: @"Nested too deep"];
         return NO;
     }
-    
+
     *o = [NSMutableArray arrayWithCapacity:8];
-    
+
     for (; *c ;) {
         id v;
-        
+
         skipWhitespace(c);
         if (*c == ']' && c++) {
             depth--;
             return YES;
         }
-        
+
         if (![self scanValue:&v]) {
             [self addErrorWithCode:EPARSE description:@"Expected value while parsing array"];
             return NO;
         }
-        
+
         [*o addObject:v];
-        
+
         skipWhitespace(c);
         if (*c == ',' && c++) {
             skipWhitespace(c);
@@ -224,51 +223,51 @@ static char ctrl[0x22];
                 [self addErrorWithCode:ETRAILCOMMA description: @"Trailing comma disallowed in array"];
                 return NO;
             }
-        }        
+        }
     }
-    
+
     [self addErrorWithCode:EEOF description: @"End of input while parsing array"];
     return NO;
 }
 
-- (BOOL)scanRestOfDictionary:(NSMutableDictionary **)o 
+- (BOOL)scanRestOfDictionary:(NSMutableDictionary **)o
 {
     if (maxDepth && ++depth > maxDepth) {
         [self addErrorWithCode:EDEPTH description: @"Nested too deep"];
         return NO;
     }
-    
+
     *o = [NSMutableDictionary dictionaryWithCapacity:7];
-    
+
     for (; *c ;) {
         id k, v;
-        
+
         skipWhitespace(c);
         if (*c == '}' && c++) {
             depth--;
             return YES;
-        }    
-        
+        }
+
         if (!(*c == '\"' && c++ && [self scanRestOfString:&k])) {
             [self addErrorWithCode:EPARSE description: @"Object key string expected"];
             return NO;
         }
-        
+
         skipWhitespace(c);
         if (*c != ':') {
             [self addErrorWithCode:EPARSE description: @"Expected ':' separating key and value"];
             return NO;
         }
-        
+
         c++;
         if (![self scanValue:&v]) {
             NSString *string = [NSString stringWithFormat:@"Object value expected for key: %@", k];
             [self addErrorWithCode:EPARSE description: string];
             return NO;
         }
-        
+
         [*o setObject:v forKey:k];
-        
+
         skipWhitespace(c);
         if (*c == ',' && c++) {
             skipWhitespace(c);
@@ -276,22 +275,31 @@ static char ctrl[0x22];
                 [self addErrorWithCode:ETRAILCOMMA description: @"Trailing comma disallowed in object"];
                 return NO;
             }
-        }        
+        }
     }
-    
+
     [self addErrorWithCode:EEOF description: @"End of input while parsing object"];
     return NO;
 }
 
-- (BOOL)scanRestOfString:(NSMutableString **)o 
+- (BOOL)scanRestOfString:(NSMutableString **)o
 {
+    // if the string has no control characters in it, return it in one go, without any temporary allocations.
+    size_t len = strcspn(c, ctrl);
+    if (len && *(c + len) == '\"')
+    {
+        *o = [[[NSMutableString alloc] initWithBytes:(char*)c length:len encoding:NSUTF8StringEncoding] autorelease];
+        c += len + 1;
+        return YES;
+    }
+
     *o = [NSMutableString stringWithCapacity:16];
     do {
-        // First see if there's a portion we can grab in one go. 
+        // First see if there's a portion we can grab in one go.
         // Doing this caused a massive speedup on the long string.
-        size_t len = strcspn(c, ctrl);
+        len = strcspn(c, ctrl);
         if (len) {
-            // check for 
+            // check for
             id t = [[NSString alloc] initWithBytesNoCopy:(char*)c
                                                   length:len
                                                 encoding:NSUTF8StringEncoding
@@ -302,11 +310,11 @@ static char ctrl[0x22];
                 c += len;
             }
         }
-        
+
         if (*c == '"') {
             c++;
             return YES;
-            
+
         } else if (*c == '\\') {
             unichar uc = *++c;
             switch (uc) {
@@ -314,13 +322,13 @@ static char ctrl[0x22];
                 case '/':
                 case '"':
                     break;
-                    
+
                 case 'b':   uc = '\b';  break;
                 case 'n':   uc = '\n';  break;
                 case 'r':   uc = '\r';  break;
                 case 't':   uc = '\t';  break;
-                case 'f':   uc = '\f';  break;                    
-                    
+                case 'f':   uc = '\f';  break;
+
                 case 'u':
                     c++;
                     if (![self scanUnicodeChar:&uc]) {
@@ -336,16 +344,16 @@ static char ctrl[0x22];
             }
             CFStringAppendCharacters((CFMutableStringRef)*o, &uc, 1);
             c++;
-            
+
         } else if (*c < 0x20) {
             [self addErrorWithCode:ECTRL description: [NSString stringWithFormat:@"Unescaped control character '0x%x'", *c]];
             return NO;
-            
+
         } else {
             NSLog(@"should not be able to get here");
         }
     } while (*c);
-    
+
     [self addErrorWithCode:EEOF description:@"Unexpected EOF while parsing string"];
     return NO;
 }
@@ -353,33 +361,33 @@ static char ctrl[0x22];
 - (BOOL)scanUnicodeChar:(unichar *)x
 {
     unichar hi, lo;
-    
+
     if (![self scanHexQuad:&hi]) {
         [self addErrorWithCode:EUNICODE description: @"Missing hex quad"];
-        return NO;        
+        return NO;
     }
-    
+
     if (hi >= 0xd800) {     // high surrogate char?
         if (hi < 0xdc00) {  // yes - expect a low char
-            
+
             if (!(*c == '\\' && ++c && *c == 'u' && ++c && [self scanHexQuad:&lo])) {
                 [self addErrorWithCode:EUNICODE description: @"Missing low character in surrogate pair"];
                 return NO;
             }
-            
+
             if (lo < 0xdc00 || lo >= 0xdfff) {
                 [self addErrorWithCode:EUNICODE description:@"Invalid low surrogate char"];
                 return NO;
             }
-            
+
             hi = (hi - 0xd800) * 0x400 + (lo - 0xdc00) + 0x10000;
-            
+
         } else if (hi < 0xe000) {
             [self addErrorWithCode:EUNICODE description:@"Invalid high character in surrogate pair"];
             return NO;
         }
     }
-    
+
     *x = hi;
     return YES;
 }
@@ -406,63 +414,96 @@ static char ctrl[0x22];
 
 - (BOOL)scanNumber:(NSNumber **)o
 {
+    BOOL simple = YES;
+
     const char *ns = c;
-    
+
     // The logic to test for validity of the number formatting is relicensed
     // from JSON::XS with permission from its author Marc Lehmann.
     // (Available at the CPAN: http://search.cpan.org/dist/JSON-XS/ .)
-    
+
     if ('-' == *c)
         c++;
-    
-    if ('0' == *c && c++) {        
+
+    if ('0' == *c && c++) {
         if (isdigit(*c)) {
             [self addErrorWithCode:EPARSENUM description: @"Leading 0 disallowed in number"];
             return NO;
         }
-        
+
     } else if (!isdigit(*c) && c != ns) {
         [self addErrorWithCode:EPARSENUM description: @"No digits after initial minus"];
         return NO;
-        
+
     } else {
         skipDigits(c);
     }
-    
+
     // Fractional part
     if ('.' == *c && c++) {
-        
+        simple = NO;
         if (!isdigit(*c)) {
             [self addErrorWithCode:EPARSENUM description: @"No digits after decimal point"];
             return NO;
-        }        
+        }
         skipDigits(c);
     }
-    
+
     // Exponential part
     if ('e' == *c || 'E' == *c) {
+        simple = NO;
         c++;
-        
+
         if ('-' == *c || '+' == *c)
             c++;
-        
+
         if (!isdigit(*c)) {
             [self addErrorWithCode:EPARSENUM description: @"No digits after exponent"];
             return NO;
         }
         skipDigits(c);
     }
-    
-    id str = [[NSString alloc] initWithBytesNoCopy:(char*)ns
-                                            length:c - ns
-                                          encoding:NSUTF8StringEncoding
-                                      freeWhenDone:NO];
-    [str autorelease];
-    if (str && (*o = [NSDecimalNumber decimalNumberWithString:str]))
+
+    // If we are only reading integers, don't go through the expense of creating an NSDecimal.
+    // This ends up being a very large perf win.
+    if (simple) {
+        BOOL negate = NO;
+        long long val = 0;
+        const char *d = ns;
+
+        if (*d == '-') {
+            negate = YES;
+            d++;
+        }
+
+        while (isdigit(*d)) {
+            val *= 10;
+            if (val < 0)
+                goto longlong_overflow;
+            val += *d - '0';
+            if (val < 0)
+                goto longlong_overflow;
+            d++;
+        }
+
+        *o = [NSNumber numberWithLongLong:negate ? -val : val];
         return YES;
-    
-    [self addErrorWithCode:EPARSENUM description: @"Failed creating decimal instance"];
-    return NO;
+
+    } else {
+        // jumped to by simple branch, if an overflow occured
+        longlong_overflow:;
+
+        id str = [[NSString alloc] initWithBytesNoCopy:(char*)ns
+                                                length:c - ns
+                                              encoding:NSUTF8StringEncoding
+                                          freeWhenDone:NO];
+        [str autorelease];
+        if (str && (*o = [NSDecimalNumber decimalNumberWithString:str]))
+            return YES;
+
+        [self addErrorWithCode:EPARSENUM description: @"Failed creating decimal instance"];
+        return NO;
+    }
 }
 
 - (BOOL)scanIsAtEnd

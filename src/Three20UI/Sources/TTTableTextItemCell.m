@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@
 #import "Three20Style/TTGlobalStyle.h"
 
 static const CGFloat kMaxLabelHeight = 2000;
-
+static const UILineBreakMode kLineBreakMode = UILineBreakModeWordWrap;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ static const CGFloat kMaxLabelHeight = 2000;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
-    self.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    self.textLabel.lineBreakMode = kLineBreakMode;
     self.textLabel.numberOfLines = 0;
   }
 
@@ -63,8 +63,10 @@ static const CGFloat kMaxLabelHeight = 2000;
 + (UIFont*)textFontForItem:(TTTableTextItem*)item {
   if ([item isKindOfClass:[TTTableLongTextItem class]]) {
     return TTSTYLEVAR(font);
+
   } else if ([item isKindOfClass:[TTTableGrayTextItem class]]) {
     return TTSTYLEVAR(font);
+
   } else {
     return TTSTYLEVAR(tableFont);
   }
@@ -85,7 +87,7 @@ static const CGFloat kMaxLabelHeight = 2000;
   UIFont* font = [self textFontForItem:item];
   CGSize size = [item.text sizeWithFont:font
                       constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                          lineBreakMode:UILineBreakModeTailTruncation];
+                          lineBreakMode:kLineBreakMode];
   if (size.height > kMaxLabelHeight) {
     size.height = kMaxLabelHeight;
   }

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -150,9 +150,9 @@
   }
 
   if (URL.query) {
-    NSDictionary* query = [URL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* query = [URL.query queryContentsUsingEncoding:NSUTF8StringEncoding];
     for (NSString* name in [query keyEnumerator]) {
-      NSString* value = [query objectForKey:name];
+      NSString* value = [[query objectForKey:name] objectAtIndex:0];
       [self parseParameter:name value:value];
     }
   }

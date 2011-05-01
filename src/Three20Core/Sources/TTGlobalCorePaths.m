@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ NSString* TTPathForBundleResource(NSString* relativePath) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 NSString* TTPathForDocumentsResource(NSString* relativePath) {
   static NSString* documentsPath = nil;
-  if (!documentsPath) {
+  if (nil == documentsPath) {
     NSArray* dirs = NSSearchPathForDirectoriesInDomains(
       NSDocumentDirectory, NSUserDomainMask, YES);
     documentsPath = [[dirs objectAtIndex:0] retain];

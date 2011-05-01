@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -128,6 +128,7 @@ static const CGFloat kIndexViewMargin = 4;
         CGRect frame = indexView.frame;
         frame.origin.x = self.width - (indexView.width + kIndexViewMargin);
         indexView.frame = frame;
+
       } else {
         indexView.frame = CGRectOffset(indexView.frame, indexView.width + kIndexViewMargin, 0);
       }
@@ -304,6 +305,7 @@ static const CGFloat kIndexViewMargin = 4;
       [_cancelButton addTarget:_searchField action:@selector(resignFirstResponder)
                      forControlEvents:UIControlEventTouchUpInside];
       [self addSubview:_cancelButton];
+
     } else {
       [_cancelButton removeFromSuperview];
       TT_RELEASE_SAFELY(_cancelButton);
@@ -325,6 +327,7 @@ static const CGFloat kIndexViewMargin = 4;
       iconView.frame = CGRectInset(iconView.frame, -floor(kMarginX/2), 0);
       _searchField.leftView = iconView;
       _searchField.leftViewMode = UITextFieldViewModeAlways;
+
     } else {
       _searchField.leftView = nil;
       _searchField.leftViewMode = UITextFieldViewModeNever;

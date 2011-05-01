@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
   CGFloat   _height;
 }
 
-@property (nonatomic, retain) NSString* URL;
+@property (nonatomic, copy)   NSString* URL;
 @property (nonatomic, retain) UIImage*  image;
 @property (nonatomic, retain) UIImage*  defaultImage;
 @property (nonatomic)         CGFloat   width;

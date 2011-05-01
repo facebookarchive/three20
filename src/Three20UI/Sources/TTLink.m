@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)linkTouched {
-  [[TTNavigator navigator] openURLAction:_URLAction];
+  [[TTBaseNavigator navigatorForView:self] openURLAction:_URLAction];
 }
 
 
@@ -93,6 +93,7 @@
 
     _screenView.frame = self.bounds;
     _screenView.hidden = NO;
+
   } else {
     _screenView.hidden = YES;
   }

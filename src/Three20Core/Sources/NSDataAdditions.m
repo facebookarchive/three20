@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,6 +18,9 @@
 
 #import <CommonCrypto/CommonDigest.h>
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,6 +28,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(NSDataAdditions)
+
 @implementation NSData (TTCategory)
 
 
@@ -40,6 +45,8 @@
   ];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)sha1Hash {
   unsigned char result[CC_SHA1_DIGEST_LENGTH];
   CC_SHA1([self bytes], [self length], result);
