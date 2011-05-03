@@ -56,8 +56,11 @@
                data:(id)data {
   TTDINFO(@"response headers: %@", [response allHeaderFields]);
 
-  // Return if no content  
+  // Return OK with no content  
   if ([response statusCode] == 204) return nil;
+  
+  // Return OK if success with no data
+  if ([response statusCode] == 200 && [data length] <= 1) return nil;
     
   // Check the response content-type, don't attempt to parse if its not application/json, utf8 encoded
   if ([[[response allHeaderFields] objectForKey:@"Content-Type"] isEqualToString:@"application/json; charset=utf-8"] == NO) {
@@ -87,7 +90,12 @@
     }
 #elif defined(EXTJSON_YAJL)
     @try {
-      _rootObject = [[data yajl_JSON] retain];
+        if ([data length] > 1) {
+            _rootObject = [[data yajl_JSON] retain];
+        }
+        else {
+            _rootObject = nil;
+        }
     }
     @catch (NSException* exception) {
       err = [NSError errorWithDomain:kTTExtJSONErrorDomain
