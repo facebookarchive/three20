@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -70,6 +70,7 @@
       [sections addObject:object];
       section = [NSMutableArray array];
       [items addObject:section];
+
     } else {
       [section addObject:object];
     }
@@ -90,6 +91,7 @@
   while (object) {
     if ([object isKindOfClass:[NSString class]]) {
       [sections addObject:object];
+
     } else {
       [items addObject:object];
     }
@@ -124,6 +126,7 @@
   if (_sections) {
     NSArray* items = [_items objectAtIndex:section];
     return items.count;
+
   } else {
     return _items.count;
   }
@@ -134,6 +137,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
   if (_sections.count) {
     return [_sections objectAtIndex:section];
+
   } else {
     return nil;
   }
@@ -151,6 +155,7 @@
   if (_sections) {
     NSArray* section = [_items objectAtIndex:indexPath.section];
     return [section objectAtIndex:indexPath.row];
+
   } else {
     return [_items objectAtIndex:indexPath.row];
   }
@@ -167,6 +172,7 @@
         return [NSIndexPath indexPathForRow:objectIndex inSection:i];
       }
     }
+
   } else {
     NSUInteger objectIndex = [_items indexOfObject:object];
     if (objectIndex != NSNotFound) {
@@ -196,6 +202,7 @@
         }
       }
     }
+
   } else {
     for (NSInteger i = 0; i < _items.count; ++i) {
       TTTableItem* item = [_items objectAtIndex:i];
@@ -226,11 +233,12 @@
   if (_sections.count) {
     NSMutableArray* items = [_items objectAtIndex:indexPath.section];
     [items removeObjectAtIndex:indexPath.row];
-    if (!items.count && andSection) {
+    if (andSection && !items.count) {
       [_sections removeObjectAtIndex:indexPath.section];
       [_items removeObjectAtIndex:indexPath.section];
       return YES;
     }
+
   } else if (!indexPath.section) {
     [_items removeObjectAtIndex:indexPath.row];
   }

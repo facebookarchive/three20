@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -43,6 +43,11 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Additions.
+ */
+TT_FIX_CATEGORY_BUG(UIViewController_TTNavigator)
+
 @implementation UIViewController (TTNavigator)
 
 
@@ -108,6 +113,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
                                          repeats: YES] retain];
     }
 #if TTDFLAG_CONTROLLERGARBAGECOLLECTION
+
   } else {
     TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
                     @"Not adding a navigator controller.");

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,11 @@
  * Shortcut for calling [[TTNavigator navigator] openURL:]
  */
 UIViewController* TTOpenURL(NSString* URL);
+
+/**
+ * Shortcut for calling [[TTBaseNavigator navigatorForView:view] openURL:]
+ */
+UIViewController* TTOpenURLFromView(NSString* URL, UIView* view);
 
 /**
  * A URL-based navigation system with built-in persistence.

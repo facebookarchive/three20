@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -259,13 +259,14 @@
   if (_lastInterfaceOrientation != self.interfaceOrientation) {
     _lastInterfaceOrientation = self.interfaceOrientation;
     [_tableView reloadData];
+
   } else if ([_tableView isKindOfClass:[TTTableView class]]) {
     TTTableView* tableView = (TTTableView*)_tableView;
     tableView.highlightedLabel = nil;
     tableView.showShadows = _showTableShadows;
   }
 
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:YES];
+  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:animated];
 }
 
 
@@ -313,6 +314,7 @@
     CGFloat maxY = _tableView.contentSize.height - _tableView.height;
     if (scrollY <= maxY) {
       _tableView.contentOffset = CGPointMake(0, scrollY);
+
     } else {
       _tableView.contentOffset = CGPointMake(0, maxY);
     }
@@ -392,12 +394,15 @@
     NSInteger numberOfSections = [_dataSource numberOfSectionsInTableView:_tableView];
     if (!numberOfSections) {
       return NO;
+
     } else if (numberOfSections == 1) {
       NSInteger numberOfRows = [_dataSource tableView:_tableView numberOfRowsInSection:0];
       return numberOfRows > 0;
+
     } else {
       return YES;
     }
+
   } else {
     NSInteger numberOfRows = [_dataSource tableView:_tableView numberOfRowsInSection:0];
     return numberOfRows > 0;
@@ -427,6 +432,7 @@
   if (show) {
     [self updateTableDelegate];
     _tableView.dataSource = _dataSource;
+
   } else {
     _tableView.dataSource = nil;
   }
@@ -442,13 +448,15 @@
       ? [_dataSource titleForLoading:NO]
       : [self defaultTitleForLoading];
       if (title.length) {
-        TTActivityLabel* label = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox]
-                                  autorelease];
+        TTActivityLabel* label =
+          [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleWhiteBox]
+           autorelease];
         label.text = title;
         label.backgroundColor = _tableView.backgroundColor;
         self.loadingView = label;
       }
     }
+
   } else {
     self.loadingView = nil;
   }
@@ -468,12 +476,14 @@
                                                                image:image] autorelease];
         errorView.backgroundColor = _tableView.backgroundColor;
         self.errorView = errorView;
+
       } else {
         self.errorView = nil;
       }
       _tableView.dataSource = nil;
       [_tableView reloadData];
     }
+
   } else {
     self.errorView = nil;
   }
@@ -492,11 +502,13 @@
                                                              image:image] autorelease];
       errorView.backgroundColor = _tableView.backgroundColor;
       self.emptyView = errorView;
+
     } else {
       self.emptyView = nil;
     }
     _tableView.dataSource = nil;
     [_tableView reloadData];
+
   } else {
     self.emptyView = nil;
   }
@@ -512,26 +524,30 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
-    if (_isViewAppearing && _flags.isShowingModel) {
+    if (_flags.isShowingModel) {
       if ([_dataSource respondsToSelector:@selector(tableView:willUpdateObject:atIndexPath:)]) {
         NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willUpdateObject:object
                                                atIndexPath:indexPath];
         if (newIndexPath) {
           if (newIndexPath.length == 1) {
-            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"UPDATING SECTION AT %@", newIndexPath);
+            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS,
+                            @"UPDATING SECTION AT %@", newIndexPath);
             NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
             [_tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                       withRowAnimation:UITableViewRowAnimationTop];
+
           } else if (newIndexPath.length == 2) {
             TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"UPDATING ROW AT %@", newIndexPath);
             [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                               withRowAnimation:UITableViewRowAnimationTop];
           }
           [self invalidateView];
+
         } else {
           [_tableView reloadData];
         }
       }
+
     } else {
       [self refresh];
     }
@@ -542,16 +558,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
-    if (_isViewAppearing && _flags.isShowingModel) {
+    if (_flags.isShowingModel) {
       if ([_dataSource respondsToSelector:@selector(tableView:willInsertObject:atIndexPath:)]) {
         NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willInsertObject:object
                                                atIndexPath:indexPath];
         if (newIndexPath) {
           if (newIndexPath.length == 1) {
-            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"INSERTING SECTION AT %@", newIndexPath);
+            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS,
+                            @"INSERTING SECTION AT %@", newIndexPath);
             NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
             [_tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                       withRowAnimation:UITableViewRowAnimationTop];
+
           } else if (newIndexPath.length == 2) {
             TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"INSERTING ROW AT %@", newIndexPath);
             [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
@@ -561,10 +579,12 @@
                               atScrollPosition:UITableViewScrollPositionNone animated:NO];
           }
           [self invalidateView];
+
         } else {
           [_tableView reloadData];
         }
       }
+
     } else {
       [self refresh];
     }
@@ -575,26 +595,30 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
-    if (_isViewAppearing && _flags.isShowingModel) {
+    if (_flags.isShowingModel) {
       if ([_dataSource respondsToSelector:@selector(tableView:willRemoveObject:atIndexPath:)]) {
         NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willRemoveObject:object
                                                atIndexPath:indexPath];
         if (newIndexPath) {
           if (newIndexPath.length == 1) {
-            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"DELETING SECTION AT %@", newIndexPath);
+            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS,
+                            @"DELETING SECTION AT %@", newIndexPath);
             NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
             [_tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                       withRowAnimation:UITableViewRowAnimationLeft];
+
           } else if (newIndexPath.length == 2) {
             TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"DELETING ROW AT %@", newIndexPath);
             [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                               withRowAnimation:UITableViewRowAnimationLeft];
           }
           [self invalidateView];
+
         } else {
           [_tableView reloadData];
         }
       }
+
     } else {
       [self refresh];
     }
@@ -654,6 +678,7 @@
     if (_tableBannerView) {
       if (animated) {
         [self fadeOutView:_tableBannerView];
+
       } else {
         [_tableBannerView removeFromSuperview];
       }
@@ -695,6 +720,7 @@
     if (_tableOverlayView) {
       if (animated) {
         [self fadeOutView:_tableOverlayView];
+
       } else {
         [_tableOverlayView removeFromSuperview];
       }
@@ -747,6 +773,7 @@
     _loadingView = [view retain];
     if (_loadingView) {
       [self addToOverlayView:_loadingView];
+
     } else {
       [self resetOverlayView];
     }
@@ -765,6 +792,7 @@
 
     if (_errorView) {
       [self addToOverlayView:_errorView];
+
     } else {
       [self resetOverlayView];
     }
@@ -782,6 +810,7 @@
     _emptyView = [view retain];
     if (_emptyView) {
       [self addToOverlayView:_emptyView];
+
     } else {
       [self resetOverlayView];
     }
@@ -793,6 +822,7 @@
 - (id<UITableViewDelegate>)createDelegate {
   if (_variableHeightRows) {
     return [[[TTTableViewVarHeightDelegate alloc] initWithController:self] autorelease];
+
   } else {
     return [[[TTTableViewDelegate alloc] initWithController:self] autorelease];
   }
@@ -846,6 +876,7 @@
 
     if (animated) {
       [UIView commitAnimations];
+
     } else {
       [_menuView removeFromSuperview];
     }
@@ -861,7 +892,7 @@
   if ([object respondsToSelector:@selector(URLValue)]) {
     NSString* URL = [object URLValue];
     if (URL) {
-      TTOpenURL(URL);
+      TTOpenURLFromView(URL, self.view);
     }
   }
 }

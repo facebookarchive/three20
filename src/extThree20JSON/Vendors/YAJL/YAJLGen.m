@@ -27,8 +27,8 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "YAJLGen.h"
-#import "YAJL_GTMBase64.h"
+#import "extThree20JSON/YAJLGen.h"
+#import "extThree20JSON/private/GTMBase64.h"
 
 NSString *const YAJLGenInvalidObjectException = @"YAJLGenInvalidObjectException";
 
@@ -41,21 +41,21 @@ NSString *const YAJLGenInvalidObjectException = @"YAJLGenInvalidObjectException"
 - (id)initWithGenOptions:(YAJLGenOptions)genOptions indentString:(NSString *)indentString {
   if ((self = [super init])) {
     genOptions_ = genOptions;
-    yajl_gen_config cfg = { 
+    yajl_gen_config cfg = {
       ((genOptions & YAJLGenOptionsBeautify) ? 1 : 0),
       [indentString UTF8String]
-    };    
-    gen_ = yajl_gen_alloc(&cfg, NULL);    
+    };
+    gen_ = yajl_gen_alloc(&cfg, NULL);
   }
   return self;
 }
 
-- (void)dealloc { 
+- (void)dealloc {
   if (gen_ != NULL) yajl_gen_free(gen_);
   [super dealloc];
 }
 
-- (void)object:(id)obj {  
+- (void)object:(id)obj {
   if ([obj respondsToSelector:@selector(JSON)]) {
     return [self object:[obj JSON]];
   } else if ([obj isKindOfClass:[NSArray class]]) {
@@ -80,12 +80,12 @@ NSString *const YAJLGenInvalidObjectException = @"YAJLGenInvalidObjectException"
     [self string:obj];
   } else if ([obj isKindOfClass:[NSNull class]]) {
     [self null];
-  } else {    
-    
+  } else {
+
     BOOL unknownType = NO;
     if (genOptions_ & YAJLGenOptionsIncludeUnsupportedTypes) {
       // Begin with support for non-JSON representable (PList) types
-      if ([obj isKindOfClass:[NSDate class]]) { 
+      if ([obj isKindOfClass:[NSDate class]]) {
         [self number:[NSNumber numberWithLongLong:round([obj timeIntervalSince1970] * 1000)]];
       } else if ([obj isKindOfClass:[NSData class]]) {
         [self string:[YAJL_GTMBase64 stringByEncodingData:obj]];
@@ -97,7 +97,7 @@ NSString *const YAJLGenInvalidObjectException = @"YAJLGenInvalidObjectException"
     } else {
       unknownType = YES;
     }
-    
+
     // If we didn't handle special PList types
     if (unknownType) {
       if (!(genOptions_ & YAJLGenOptionsIgnoreUnknownTypes)) {
@@ -126,7 +126,7 @@ NSString *const YAJLGenInvalidObjectException = @"YAJLGenInvalidObjectException"
 
 - (void)string:(NSString *)s {
   unsigned int length = [s lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-  const unsigned char *c = (const unsigned char *)[s UTF8String]; 
+  const unsigned char *c = (const unsigned char *)[s UTF8String];
   yajl_gen_string(gen_, c, length);
 }
 
@@ -151,12 +151,12 @@ NSString *const YAJLGenInvalidObjectException = @"YAJLGenInvalidObjectException"
 }
 
 - (NSString *)buffer {
-  const unsigned char *buf;  
+  const unsigned char *buf;
   unsigned int len;
-  yajl_gen_get_buf(gen_, &buf, &len); 
-  NSString *s = [NSString stringWithUTF8String:(const char*)buf]; 
+  yajl_gen_get_buf(gen_, &buf, &len);
+  NSString *s = [NSString stringWithUTF8String:(const char*)buf];
   return s;
-} 
+}
 
 @end
 

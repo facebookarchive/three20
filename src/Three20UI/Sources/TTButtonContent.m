@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -146,6 +146,7 @@
       if ([_delegate respondsToSelector:@selector(imageView:didLoadImage:)]) {
         [_delegate imageView:nil didLoadImage:image];
       }
+
     } else {
       TTURLRequest* request = [TTURLRequest requestWithURL:_imageURL delegate:self];
       request.response = [[[TTURLImageResponse alloc] init] autorelease];

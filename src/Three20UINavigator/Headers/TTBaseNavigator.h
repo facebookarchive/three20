@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 #import "Three20UINavigator/TTNavigatorPersistenceMode.h"
 
 @protocol TTNavigatorDelegate;
+@protocol TTNavigatorRootContainer;
 @class TTURLAction;
 @class TTURLMap;
 @class TTURLPattern;
@@ -28,14 +29,18 @@
 /**
  * A URL-based navigation system with built-in persistence.
  */
-@interface TTBaseNavigator : NSObject {
+@interface TTBaseNavigator : NSObject <
+  UIPopoverControllerDelegate
+> {
   TTURLMap*                   _URLMap;
 
   UIWindow*                   _window;
 
   UIViewController*           _rootViewController;
   NSMutableArray*             _delayedControllers;
+  UIPopoverController*        _popoverController;
 
+  NSString*                   _persistenceKey;
   TTNavigatorPersistenceMode  _persistenceMode;
   NSTimeInterval              _persistenceExpirationAge;
 
@@ -65,6 +70,15 @@
 @property (nonatomic, retain) UIWindow* window;
 
 /**
+ * A container that holds the root view controller.
+ *
+ * If nil, the window is treated as the root container.
+ *
+ * @default nil
+ */
+@property (nonatomic, assign) id<TTNavigatorRootContainer> rootContainer;
+
+/**
  * The controller that is at the root of the view controller hierarchy.
  */
 @property (nonatomic, readonly) UIViewController* rootViewController;
@@ -88,6 +102,18 @@
  * Setting this property will open a new URL.
  */
 @property (nonatomic, copy) NSString* URL;
+
+/**
+ * The key to use for storing persistence information.
+ *
+ * Three bits of information are stored for persistence.
+ * If a key name is given, these values will first be stored within a dictionary and
+ * then persisted with the given key name.
+ * If a key name is not given, the values are stored individually.
+ *
+ * @default nil
+ */
+@property (nonatomic, copy) NSString* persistenceKey;
 
 /**
  * How view controllers are automatically persisted on termination and restored on launch.
@@ -135,6 +161,22 @@
 @property (nonatomic, assign) id<MFMailComposeViewControllerDelegate> mailDelegate;
 @property (nonatomic, assign) id<MFMessageComposeViewControllerDelegate> messageDelegate;
 
+/**
+ * Determines the navigator that contains this view.
+ *
+ * Traverse the view hierarchy until the root view container is reached. If this root container
+ * conforms to the TTNavigatorRootContainer protocol, we call getNavigatorForController:
+ * with the top-most controller that contains this view that /isn't/ the container.
+ * If getNavigatorForController: returns a navigator, this navigator is returned.
+ * Otherwise, the global navigator is returned.
+ *
+ * If the given view is not, in fact, a view, which is the case if a UIBarButtonItem is passed,
+ * returns the global navigator via [TTBaseNavigator globalNavigator].
+ *
+ * If you need to use a specific navigator for UIBarButtonItem, handle the button tap
+ * yourself and use navigatorForView: on an actual view in the controller.
+ */
++ (TTBaseNavigator*)navigatorForView:(UIView*)view;
 
 + (TTBaseNavigator*)globalNavigator;
 + (void)setGlobalNavigator:(TTBaseNavigator*)navigator;

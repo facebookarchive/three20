@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -133,6 +133,7 @@
   [context.shape addTopEdgeToPath:strokeRect lightSource:kDefaultLightSource];
   if (_top) {
     [_top setStroke];
+
   } else {
     [[UIColor clearColor] setStroke];
   }
@@ -141,6 +142,7 @@
   [context.shape addRightEdgeToPath:strokeRect lightSource:kDefaultLightSource];
   if (_right) {
     [_right setStroke];
+
   } else {
     [[UIColor clearColor] setStroke];
   }
@@ -149,6 +151,7 @@
   [context.shape addBottomEdgeToPath:strokeRect lightSource:kDefaultLightSource];
   if (_bottom) {
     [_bottom setStroke];
+
   } else {
     [[UIColor clearColor] setStroke];
   }
@@ -157,6 +160,7 @@
   [context.shape addLeftEdgeToPath:strokeRect lightSource:kDefaultLightSource];
   if (_left) {
     [_left setStroke];
+
   } else {
     [[UIColor clearColor] setStroke];
   }

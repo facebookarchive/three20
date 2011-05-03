@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -81,6 +81,9 @@
 - (void)from:(NSString*)URL toModalViewController:(id)target transition:(NSInteger)transition;
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
         toModalViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition;
+
+- (void)from:(NSString*)URL toPopoverViewController:(id)target;
+- (void)from:(NSString*)URL toPopoverViewController:(id)target selector:(SEL)selector;
 
 /**
  * Adds a mapping from a class to a generated URL.

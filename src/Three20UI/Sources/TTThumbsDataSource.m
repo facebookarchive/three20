@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -78,9 +78,9 @@ static CGFloat kThumbSpacing = 4;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)columnCount {
-  CGFloat width = TTScreenBounds().size.width;
-  return round((width - kThumbSpacing*2) / (kThumbSize+kThumbSpacing));
+- (NSInteger)columnCountForView:(UIView *)view {
+  CGFloat width = view.bounds.size.width;
+  return floorf((width - kThumbSpacing*2) / (kThumbSize+kThumbSpacing) + 0.1);
 }
 
 
@@ -93,15 +93,17 @@ static CGFloat kThumbSpacing = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
   NSInteger maxIndex = _photoSource.maxPhotoIndex;
-  NSInteger columnCount = self.columnCount;
+  NSInteger columnCount = [self columnCountForView:tableView];
   if (maxIndex >= 0) {
     maxIndex += 1;
     NSInteger count =  ceil((maxIndex / columnCount) + (maxIndex % columnCount ? 1 : 0));
     if (self.hasMoreToLoad) {
       return count + 1;
+
     } else {
       return count;
     }
+
   } else {
     return 0;
   }
@@ -128,6 +130,7 @@ static CGFloat kThumbSpacing = 4;
     if (_photoSource.numberOfPhotos == -1) {
       caption = [NSString stringWithFormat:TTLocalizedString(@"Showing %@ Photos", @""),
                  TTFormatInteger(_photoSource.maxPhotoIndex+1)];
+
     } else {
       caption = [NSString stringWithFormat:TTLocalizedString(@"Showing %@ of %@ Photos", @""),
                  TTFormatInteger(_photoSource.maxPhotoIndex+1),
@@ -135,8 +138,9 @@ static CGFloat kThumbSpacing = 4;
     }
 
     return [TTTableMoreButton itemWithText:text subtitle:caption];
+
   } else {
-    NSInteger columnCount = self.columnCount;
+    NSInteger columnCount = [self columnCountForView:tableView];
     return [_photoSource photoAtIndex:indexPath.row * columnCount];
   }
 }
@@ -146,6 +150,7 @@ static CGFloat kThumbSpacing = 4;
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
   if ([object conformsToProtocol:@protocol(TTPhoto)]) {
     return [TTThumbsTableViewCell class];
+
   } else {
     return [super tableView:tableView cellClassForObject:object];
   }
@@ -159,7 +164,7 @@ static CGFloat kThumbSpacing = 4;
   if ([cell isKindOfClass:[TTThumbsTableViewCell class]]) {
     TTThumbsTableViewCell* thumbsCell = (TTThumbsTableViewCell*)cell;
     thumbsCell.delegate = _delegate;
-    thumbsCell.columnCount = self.columnCount;
+    thumbsCell.columnCount = [self columnCountForView:tableView];
   }
 }
 

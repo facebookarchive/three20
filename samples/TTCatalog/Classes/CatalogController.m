@@ -42,6 +42,7 @@
     [TTTableTextItem itemWithText:@"Web Images in Table" URL:@"tt://imageTest2"],
     [TTTableTextItem itemWithText:@"Table With Banner" URL:@"tt://tableWithBanner"],
     [TTTableTextItem itemWithText:@"Table With Shadow" URL:@"tt://tableWithShadow"],
+    [TTTableTextItem itemWithText:@"Table With Drag Refresh" URL:@"tt://tableDragRefresh"],
 
     @"Models",
     [TTTableTextItem itemWithText:@"Model Search" URL:@"tt://searchTest"],
@@ -52,6 +53,7 @@
     [TTTableTextItem itemWithText:@"YouTube Player" URL:@"tt://youTubeTest"],
     [TTTableTextItem itemWithText:@"Web Browser" URL:@"http://github.com/joehewitt/three20"],
     [TTTableTextItem itemWithText:@"Activity Labels" URL:@"tt://activityTest"],
+    [TTTableTextItem itemWithText:@"Download Progress" URL:@"tt://dlprogress"],
     [TTTableTextItem itemWithText:@"Scroll View" URL:@"tt://scrollViewTest"],
     [TTTableTextItem itemWithText:@"Launcher" URL:@"tt://launcherTest"],
     nil];
