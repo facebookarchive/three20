@@ -38,6 +38,7 @@
   NSData*               _httpBody;
   NSMutableDictionary*  _parameters;
   NSMutableDictionary*  _headers;
+  NSTimeInterval        _timeoutInterval;
 
   NSString*             _contentType;
   NSStringEncoding      _charsetForMultipart;
@@ -125,6 +126,11 @@
  * Custom HTTP headers.
  */
 @property (nonatomic, readonly) NSMutableDictionary* headers;
+
+/**
+ * Use this property to set a custom timeoutInterval value
+ */
+@property (nonatomic, assign) NSTimeInterval timeoutInterval;
 
 /**
  * @default TTURLRequestCachePolicyDefault

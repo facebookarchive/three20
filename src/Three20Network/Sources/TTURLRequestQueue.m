@@ -494,9 +494,10 @@ static TTURLRequestQueue* gMainQueue = nil;
     URL = [NSURL URLWithString:request.urlPath];
   }
 
+  NSTimeInterval timeout = (request.timeoutInterval == 0 ? kTimeout : request.timeoutInterval);
   NSMutableURLRequest* URLRequest = [NSMutableURLRequest requestWithURL:URL
                                     cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                    timeoutInterval:kTimeout];
+                                    timeoutInterval:timeout];
 
   if (self.userAgent) {
       [URLRequest setValue:self.userAgent forHTTPHeaderField:@"User-Agent"];

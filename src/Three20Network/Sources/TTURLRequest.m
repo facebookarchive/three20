@@ -35,11 +35,12 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTURLRequest
 
-@synthesize urlPath     = _urlPath;
-@synthesize httpMethod  = _httpMethod;
-@synthesize httpBody    = _httpBody;
-@synthesize parameters  = _parameters;
-@synthesize headers     = _headers;
+@synthesize urlPath               = _urlPath;
+@synthesize httpMethod            = _httpMethod;
+@synthesize httpBody              = _httpBody;
+@synthesize parameters            = _parameters;
+@synthesize headers               = _headers;
+@synthesize timeoutInterval       = _timeoutInterval;
 
 @synthesize contentType           = _contentType;
 @synthesize charsetForMultipart   = _charsetForMultipart;
