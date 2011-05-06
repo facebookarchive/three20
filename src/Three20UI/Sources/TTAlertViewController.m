@@ -264,8 +264,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL target:(NSObject *)target selector:(SEL)selector {
-  self.alertView.cancelButtonIndex = [self addButtonWithTitle:title URL:URL target:target selector:selector];
+- (NSInteger)addCancelButtonWithTitle:(NSString*)title URL:(NSString*)URL
+                               target:(NSObject *)target selector:(SEL)selector {
+  self.alertView.cancelButtonIndex = [self addButtonWithTitle:title
+                                                          URL:URL
+                                                       target:target
+                                                     selector:selector];
   return self.alertView.cancelButtonIndex;
 }
 
@@ -275,7 +279,8 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)addCancelButtonWithTitle:(NSString*)title target:(NSObject *)target selector:(SEL)selector {
+- (NSInteger)addCancelButtonWithTitle:(NSString*)title target:(NSObject *)target
+                             selector:(SEL)selector {
   return [self addCancelButtonWithTitle:title URL:nil target:target selector:selector];
 }
 
