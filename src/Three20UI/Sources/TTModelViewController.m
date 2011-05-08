@@ -478,14 +478,14 @@
   if (_flags.isViewInvalid && !_flags.isViewSuspended && !_flags.isUpdatingView) {
     _flags.isUpdatingView = YES;
 
-    // Ensure the model is created
+    // Ensure the model is created   
     TTModel *aModel = self.model;
 #pragma unused(aModel)
-
+    
     // Ensure the view is created
     UIView *aView = self.view;
 #pragma unused(aView)
-
+    
     [self updateViewStates];
 
     if (_frozenState && _flags.isShowingModel) {
