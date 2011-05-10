@@ -61,6 +61,7 @@
 
 - (id)initWithItems:(NSArray*)items sections:(NSArray*)sections;
 
+- (NSIndexPath*)indexPathOfItem:(id)aItem;
 - (NSIndexPath*)indexPathOfItemWithUserInfo:(id)userInfo;
 
 - (void)removeItemAtIndexPath:(NSIndexPath*)indexPath;
