@@ -64,7 +64,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _contentInset   = UIEdgeInsetsZero;
 
     self.font = TTSTYLEVAR(font);
-    self.backgroundColor = TTSTYLEVAR(backgroundColor);
+    self.backgroundColor = TTSTYLEVAR(styledTextBackgroundColor);
     self.contentMode = UIViewContentModeRedraw;
   }
 
