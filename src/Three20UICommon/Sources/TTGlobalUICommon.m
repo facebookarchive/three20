@@ -85,9 +85,13 @@ BOOL TTOSVersionIsAtLeast(float version) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsKeyboardVisible() {
   // Operates on the assumption that the keyboard is visible if and only if there is a first
-  // responder; i.e. a control responding to key events
+  // responder of a certain class; i.e. a control responding to key events
   UIWindow* window = [UIApplication sharedApplication].keyWindow;
-  return !![window findFirstResponder];
+  UIView* firstResponder = [window findFirstResponder];
+  return ([firstResponder isKindOfClass:[UITextView class]] ||
+          [firstResponder isKindOfClass:[UITextField class]] ||
+          [firstResponder isKindOfClass:[UISearchBar class]] ||
+          [firstResponder conformsToProtocol:@protocol(UITextInputTraits)]);
 }
 
 
