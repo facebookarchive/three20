@@ -638,7 +638,12 @@
     _tableView = [[TTTableView alloc] initWithFrame:self.view.bounds style:_tableViewStyle];
     _tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
     | UIViewAutoresizingFlexibleHeight;
-
+	
+	if (TTSTYLEVAR(tableCellSeparatorColor)) {
+		_tableView.separatorColor = TTSTYLEVAR(tableCellSeparatorColor);
+	}
+	_tableView.separatorStyle = TTSTYLEVAR(tableCellSeparatorStyle);
+	  
     UIColor* backgroundColor = _tableViewStyle == UITableViewStyleGrouped
     ? TTSTYLEVAR(tableGroupedBackgroundColor)
     : TTSTYLEVAR(tablePlainBackgroundColor);
