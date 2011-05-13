@@ -639,10 +639,16 @@
     _tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
     | UIViewAutoresizingFlexibleHeight;
 	
-	if (TTSTYLEVAR(tableCellSeparatorColor)) {
-		_tableView.separatorColor = TTSTYLEVAR(tableCellSeparatorColor);
+	UIColor* separatorColor = _tableViewStyle == UITableViewStyleGrouped
+	? TTSTYLEVAR(tableGroupedCellSeparatorColor)
+	: TTSTYLEVAR(tablePlainCellSeparatorColor);
+	if (separatorColor) {
+		_tableView.separatorColor = separatorColor;
 	}
-	_tableView.separatorStyle = TTSTYLEVAR(tableCellSeparatorStyle);
+	  
+	_tableView.separatorStyle = _tableViewStyle == UITableViewStyleGrouped
+	? TTSTYLEVAR(tableGroupedCellSeparatorStyle)
+	: TTSTYLEVAR(tablePlainCellSeparatorStyle);
 	  
     UIColor* backgroundColor = _tableViewStyle == UITableViewStyleGrouped
     ? TTSTYLEVAR(tableGroupedBackgroundColor)

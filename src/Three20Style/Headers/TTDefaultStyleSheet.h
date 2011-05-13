@@ -32,9 +32,11 @@
 
 // Tables
 @property (nonatomic, readonly) UIColor*  tablePlainBackgroundColor;
-@property (nonatomic, readonly) UIColor*  tableCellSeparatorColor;
-@property (nonatomic, readonly) UITableViewCellSeparatorStyle tableCellSeparatorStyle;
+@property (nonatomic, readonly) UIColor*  tablePlainCellSeparatorColor;
+@property (nonatomic, readonly) UITableViewCellSeparatorStyle tablePlainCellSeparatorStyle;
 @property (nonatomic, readonly) UIColor*  tableGroupedBackgroundColor;
+@property (nonatomic, readonly) UIColor*  tableGroupedCellSeparatorColor;
+@property (nonatomic, readonly) UITableViewCellSeparatorStyle tableGroupedCellSeparatorStyle;
 @property (nonatomic, readonly) UIColor*  searchTableBackgroundColor;
 @property (nonatomic, readonly) UIColor*  searchTableSeparatorColor;
 
