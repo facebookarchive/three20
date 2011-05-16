@@ -353,6 +353,20 @@ static const NSInteger kLoadMaxRetries = 2;
   TT_RELEASE_SAFELY(_connection);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  CAN AUTH BY %@ WHEN LOADING %@ ", protectionSpace.authenticationMethod, _urlPath);
+    id result = [_queue performSelector: @selector(loader:canAuthenticateAgainstProtectionSpace:)
+                             withObject: self
+                             withObject: protectionSpace];
+    if( result == (id)kCFBooleanTrue ) {
+        return YES;
+    }
+    else if( result == (id)kCFBooleanFalse ) {
+        return NO;
+    }
+    return [result isKindOfClass:[NSNumber class]] && [(NSNumber*)result boolValue];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection *)connection
