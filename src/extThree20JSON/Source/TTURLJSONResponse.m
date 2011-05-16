@@ -86,7 +86,6 @@
 #elif defined(EXTJSON_TouchJSON)
 	  _rootObject = [[CJSONDeserializer deserializer] deserialize:data error:&err];
 #elif defined(EXTJSON_JSONKit)
-	 
 	  @try {
 		  _rootObject = [[[JSONDecoder decoder] objectWithData:data error:&err] retain];
 	  }
