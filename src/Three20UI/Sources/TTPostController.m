@@ -518,7 +518,7 @@ static const CGFloat kMarginY = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)cancel {
-  if (!TTIsStringWithAnyText(_textView.text)
+  if (TTIsStringWithAnyText(_textView.text)
       && !_textView.text.isWhitespaceAndNewlines
       && !(_defaultText && [_defaultText isEqualToString:_textView.text])) {
     UIAlertView* cancelAlertView = [[[UIAlertView alloc] initWithTitle:
