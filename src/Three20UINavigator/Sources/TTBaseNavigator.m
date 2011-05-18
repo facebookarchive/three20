@@ -462,11 +462,11 @@ __attribute__((weak_import));
     if ([_URLMap isMailURL:theURL] && _mailDelegate) {
         MFMailComposeViewController *mailCompose= [[[MFMailComposeViewController alloc] init] autorelease];
         mailCompose.mailComposeDelegate = _mailDelegate;
-        NSDictionary *params = [theURL.resourceSpecifier queryDictionaryUsingEncoding:NSUTF8StringEncoding];
-        NSArray *recipients = [[params objectForKey:@"to"] componentsSeparatedByString:@","];
+        NSDictionary *params = [theURL.resourceSpecifier queryContentsUsingEncoding:NSUTF8StringEncoding];
+        NSArray *recipients = [[[params objectForKey:@"to"] lastObject] componentsSeparatedByString:@","];
         [mailCompose setToRecipients:recipients];
-        [mailCompose setSubject:[params objectForKey:@"subject"]];
-        NSString *mailBody = [params objectForKey:@"body"];
+        [mailCompose setSubject:[[params objectForKey:@"subject"] lastObject]];
+        NSString *mailBody = [[params objectForKey:@"body"] lastObject];
         // TODO: Detect if mailBody has HTML tags and set isHTML if so
         [mailCompose setMessageBody:mailBody isHTML:NO];
         [self.topViewController presentModalViewController:mailCompose animated:YES];
