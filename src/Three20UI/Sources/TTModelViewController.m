@@ -208,6 +208,7 @@
 - (void)didReceiveMemoryWarning {
   if (_hasViewAppeared && !_isViewAppearing) {
     [super didReceiveMemoryWarning];
+    [self resetViewStates];
     [self refresh];
 
   } else {
