@@ -643,6 +643,11 @@
     ? TTSTYLEVAR(tableGroupedBackgroundColor)
     : TTSTYLEVAR(tablePlainBackgroundColor);
     if (backgroundColor) {
+      // With SDK 3.2 one needs to initialize the backgroundView before setting the backgroundColor
+      if ([_tableView respondsToSelector:@selector(backgroundView)]) {
+        [_tableView setBackgroundView:nil];
+        [_tableView setBackgroundView:[[[UIView alloc] init] autorelease]];
+      }
       _tableView.backgroundColor = backgroundColor;
       self.view.backgroundColor = backgroundColor;
     }
