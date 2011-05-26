@@ -933,6 +933,16 @@ __attribute__((weak_import));
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)topViewController {
   UIViewController* controller = _rootViewController;
+
+  // Modal view controllers are presented (and stacked) from TTRootViewController
+  // Use its modalViewController when available as start to find top view controller
+  if (self.rootContainer != nil) {
+    UIViewController *modalRootController = [self.rootContainer rootViewController];
+    if (modalRootController.modalViewController) {
+      controller = modalRootController.modalViewController;
+    }
+  }
+
   while (controller) {
     UIViewController* child = controller.popupViewController;
     if (!child || ![child canBeTopViewController]) {
