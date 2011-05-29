@@ -468,9 +468,9 @@ class Pbxproj(object):
 	def add_build_setting(self, configuration, setting_name, value):
 		project_data = self.get_project_data()
 
-		match = re.search('\/\* '+configuration+' \*\/ = {\n[ \t]+isa = XCBuildConfiguration;\n[ \t]+buildSettings = \{\n((?:.|\n)+?)\};', project_data)
+		match = re.search('\/\* '+configuration+' \*\/ = {\n[ \t]+isa = XCBuildConfiguration;\n(?:.|\n)+?[ \t]+buildSettings = \{\n((?:.|\n)+?)\};', project_data)
 		if not match:
-			print "Couldn't find this configuration."
+			print "Couldn't find the "+configuration+" configuration in "+self.path()
 			return False
 
 		settings_start = match.start(1)
