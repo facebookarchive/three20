@@ -200,3 +200,12 @@ extern const CGFloat ttkDefaultFlipTransitionDuration;
 #define TT_TRANSITION_DURATION      ttkDefaultTransitionDuration
 #define TT_FAST_TRANSITION_DURATION ttkDefaultFastTransitionDuration
 #define TT_FLIP_TRANSITION_DURATION ttkDefaultFlipTransitionDuration
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Undocumented Navigation Bar Constants
+
+/**
+ * Set this as as popover content's navigation bar style to force the style to adopt the*
+ * color of the popover.
+ */
+extern const UIStatusBarStyle TTStatusBarStylePopover;

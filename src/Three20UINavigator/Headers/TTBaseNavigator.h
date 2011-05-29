@@ -25,19 +25,18 @@
 @class TTURLMap;
 @class TTURLPattern;
 
+extern NSString* TTBaseNavigatorWillShowPopoverNotification;
+
 /**
  * A URL-based navigation system with built-in persistence.
  */
-@interface TTBaseNavigator : NSObject <
-  UIPopoverControllerDelegate
-> {
+@interface TTBaseNavigator : NSObject {
   TTURLMap*                   _URLMap;
 
   UIWindow*                   _window;
 
   UIViewController*           _rootViewController;
   NSMutableArray*             _delayedControllers;
-  UIPopoverController*        _popoverController;
 
   NSString*                   _persistenceKey;
   TTNavigatorPersistenceMode  _persistenceMode;
@@ -70,6 +69,10 @@
 /**
  * A container that holds the root view controller.
  *
+ * The method setRootViewController: will be called whenever the root view controller changes
+ * for this navigator. If you are building a multi-controller application, such as a split view
+ * iPad app, you will implement the root container protocol on your split view controller.
+ *
  * If nil, the window is treated as the root container.
  *
  * @default nil
@@ -79,7 +82,7 @@
 /**
  * The controller that is at the root of the view controller hierarchy.
  */
-@property (nonatomic, readonly) UIViewController* rootViewController;
+@property (nonatomic, retain) UIViewController* rootViewController;
 
 /**
  * The currently visible view controller.
@@ -173,8 +176,51 @@
  */
 + (TTBaseNavigator*)navigatorForView:(UIView*)view;
 
+/**
+ * Return the popover controller containing this view, if it is within one. Nil otherwise.
+ *
+ * Useful for routing navigation from Three20 elements through a popover controller.
+ */
++ (UIPopoverController*)popoverControllerForView:(UIView*)view;
+
 + (TTBaseNavigator*)globalNavigator;
 + (void)setGlobalNavigator:(TTBaseNavigator*)navigator;
+
+/**
+ * The popover controller is a globally active object.
+ */
++ (UIPopoverController*)popoverController;
+
+/**
+ * Set the active popover controller.
+ */
++ (void)setPopoverController:(UIPopoverController*)popoverController;
+
+/**
+ * The action used to open the popover.
+ */
++ (TTURLAction*)popoverAction;
+
+/**
+ * Set the action used to open the active popover.
+ */
++ (void)setPopoverAction:(TTURLAction*)action;
+
+/**
+ * Dismiss this navigator's popover controller.
+ *
+ * @param forced NO  will call popoverControllerShouldDismissPopover: on the popover
+ *                   before attempting to dismiss it.
+ *               YES will dismiss the popover no matter what.
+ */
++ (BOOL)dismissPopoverAnimated:(BOOL)isAnimated forced:(BOOL)isForced;
+
+/**
+ * Dismiss this navigator's popover controller.
+ *
+ * Implied forced. See comment above.
+ */
++ (void)dismissPopoverAnimated:(BOOL)isAnimated;
 
 /**
  * Load and display the view controller with a pattern that matches the URL.

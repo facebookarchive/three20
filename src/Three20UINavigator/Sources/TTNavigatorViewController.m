@@ -17,11 +17,12 @@
 #import "Three20UINavigator/TTNavigatorViewController.h"
 
 // UINavigator (private)
+#import "Three20UINavigator/TTBaseNavigator.h"
 #import "Three20UINavigator/private/UIViewController+TTNavigatorGarbageCollection.h"
 
 // Core
 #import "Three20Core/TTDebug.h"
-#import "Three20Core/TTDebugFlags.h"
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,10 +30,23 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTNavigatorViewController
 
+@synthesize navigator = _navigator;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTBaseNavigator*)navigator {
+  if (nil == _navigator) {
+    self.navigator = [TTBaseNavigator globalNavigator];
+  }
+  return _navigator;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void) dealloc {
   [self unsetNavigatorProperties];
+
+  TT_RELEASE_SAFELY(_navigator);
 
   [super dealloc];
 }

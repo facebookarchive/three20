@@ -16,12 +16,20 @@
 
 #import "Three20UICommon/TTBaseViewController.h"
 
+@class TTBaseNavigator;
+
 /**
  * Cleans up navigator properties when the controller is released. Used by the garbage
  * collector found in UICommon's UIViewControllerAdditions.m.
  */
 @interface TTNavigatorViewController : TTBaseViewController {
-
+@private
+  /**
+   * If specified, all navigation within this controller will go through this navigator.
+   */
+  TTBaseNavigator* _navigator;
 }
+
+@property (nonatomic, retain) TTBaseNavigator* navigator;
 
 @end

@@ -29,6 +29,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIApplicationDelegate
 
+- (void)applicationWillTerminate:(UIApplication *)application {
+  TT_RELEASE_SAFELY(_rootViewController);
+}
+
 - (void)applicationDidFinishLaunching:(UIApplication*)application {
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.supportsShakeToReload = YES;
@@ -45,7 +49,7 @@
     SplitCatalogController* controller =
       (SplitCatalogController*)[[TTNavigator navigator] viewControllerForURL:@"tt://catalog"];
     TTDASSERT([controller isKindOfClass:[SplitCatalogController class]]);
-    map = controller.rightNavigator.URLMap;
+    map = controller.primaryNavigator.URLMap;
 
   } else {
     [map                    from: @"tt://catalog"
@@ -53,139 +57,85 @@
   }
 
   [map            from: @"tt://photoTest1"
-                parent: @"tt://catalog"
-      toViewController: [PhotoTest1Controller class]
-              selector: nil
-            transition: 0];
+      toViewController: [PhotoTest1Controller class]];
+
   [map            from: @"tt://photoTest2"
-                parent: @"tt://catalog"
-      toViewController: [PhotoTest2Controller class]
-              selector: nil
-            transition: 0];
+      toViewController: [PhotoTest2Controller class]];
 
   [map            from: @"tt://imageTest1"
-                parent: @"tt://catalog"
-      toViewController: [ImageTest1Controller class]
-              selector: nil
-            transition: 0];
+      toViewController: [ImageTest1Controller class]];
 
   [map            from: @"tt://tableTest"
-                parent: @"tt://catalog"
-      toViewController: [TableTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [TableTestController class]];
 
   [map            from: @"tt://tableItemTest"
-                parent: @"tt://catalog"
-      toViewController: [TableItemTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [TableItemTestController class]];
 
   [map            from: @"tt://tableControlsTest"
-                parent: @"tt://catalog"
-      toViewController: [TableControlsTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [TableControlsTestController class]];
 
   [map            from: @"tt://styledTextTableTest"
-                parent: @"tt://catalog"
-      toViewController: [StyledTextTableTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [StyledTextTableTestController class]];
 
   [map            from: @"tt://tableWithShadow"
-                parent: @"tt://catalog"
-      toViewController: [TableWithShadowController class]
-              selector: nil
-            transition: 0];
+      toViewController: [TableWithShadowController class]];
 
   [map            from: @"tt://tableWithBanner"
-                parent: @"tt://catalog"
-      toViewController: [TableWithBannerController class]
-              selector: nil
-            transition: 0];
+      toViewController: [TableWithBannerController class]];
 
   [map            from: @"tt://tableDragRefresh"
-                parent: @"tt://catalog"
-      toViewController: [TableDragRefreshController class]
-              selector: nil
-            transition: 0];
+      toViewController: [TableDragRefreshController class]];
 
   [map            from: @"tt://composerTest"
-                parent: @"tt://catalog"
-      toViewController: [MessageTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [MessageTestController class]];
 
   [map            from: @"tt://searchTest"
-                parent: @"tt://catalog"
-      toViewController: [SearchTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [SearchTestController class]];
 
   [map            from: @"tt://activityTest"
-                parent: @"tt://catalog"
-      toViewController: [ActivityTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [ActivityTestController class]];
 
   [map            from: @"tt://styleTest"
-                parent: @"tt://catalog"
-      toViewController: [StyleTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [StyleTestController class]];
 
   [map            from: @"tt://styledTextTest"
-                parent: @"tt://catalog"
-      toViewController: [StyledTextTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [StyledTextTestController class]];
 
   [map            from: @"tt://buttonTest"
-                parent: @"tt://catalog"
-      toViewController: [ButtonTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [ButtonTestController class]];
 
   [map            from: @"tt://tabBarTest"
-                parent: @"tt://catalog"
-      toViewController: [TabBarTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [TabBarTestController class]];
 
   [map            from: @"tt://youTubeTest"
-                parent: @"tt://catalog"
-      toViewController: [YouTubeTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [YouTubeTestController class]];
 
   [map            from: @"tt://imageTest2"
-                parent: @"tt://catalog"
-      toViewController: [TableImageTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [TableImageTestController class]];
 
   [map            from: @"tt://scrollViewTest"
-                parent: @"tt://catalog"
-      toViewController: [ScrollViewTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [ScrollViewTestController class]];
 
   [map            from: @"tt://launcherTest"
-                parent: @"tt://catalog"
-      toViewController: [LauncherViewTestController class]
-              selector: nil
-            transition: 0];
+      toViewController: [LauncherViewTestController class]];
 
   [map            from: @"tt://dlprogress"
                 parent: @"tt://catalog"
       toViewController: [DownloadProgressTestController class]
               selector: nil
             transition: 0];
-  
-  if (![navigator restoreViewControllers]) {
+
+  _rootViewController = [[TTRootViewController alloc] init];
+  [[TTNavigator navigator].window addSubview:_rootViewController.view];
+  [TTNavigator navigator].rootContainer = _rootViewController;
+
+  if (TTIsPad() || ![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://catalog"]];
   }
+
+  [_rootViewController showController: navigator.rootViewController
+                           transition: UIViewAnimationTransitionNone
+                             animated: NO];
 }
 
 - (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)URL {

@@ -19,6 +19,8 @@
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 #import "Three20UINavigator/TTNavigatorDelegate.h"
+#import "Three20UINavigator/TTNavigatorPopoverProtocol.h"
+#import "Three20UINavigator/TTNavigatorDisplayProtocol.h"
 #import "Three20UINavigator/TTNavigatorRootContainer.h"
 #import "Three20UINavigator/TTBaseNavigationController.h"
 #import "Three20UINavigator/TTURLAction.h"
@@ -30,6 +32,7 @@
 #import "Three20UINavigator/private/TTBaseNavigatorInternal.h"
 
 // UICommon
+#import "Three20UICommon/TTGlobalUICommon.h"
 #import "Three20UICommon/UIView+TTUICommon.h"
 #import "Three20UICommon/UIViewControllerAdditions.h"
 
@@ -41,10 +44,15 @@
 #import "Three20Core/NSDateAdditions.h"
 
 static TTBaseNavigator* gNavigator = nil;
+static UIPopoverController* gPopoverController = nil;
+static TTURLAction*         gPopoverAction = nil;
 
 static NSString* kNavigatorHistoryKey           = @"TTNavigatorHistory";
 static NSString* kNavigatorHistoryTimeKey       = @"TTNavigatorHistoryTime";
 static NSString* kNavigatorHistoryImportantKey  = @"TTNavigatorHistoryImportant";
+
+NSString* TTBaseNavigatorWillShowPopoverNotification =
+  @"TTBaseNavigatorWillShowPopoverNotification";
 
 #ifdef __IPHONE_4_0
 UIKIT_EXTERN NSString *const UIApplicationDidEnterBackgroundNotification
@@ -101,7 +109,6 @@ __attribute__((weak_import));
   _delegate = nil;
   TT_RELEASE_SAFELY(_window);
   TT_RELEASE_SAFELY(_rootViewController);
-  TT_RELEASE_SAFELY(_popoverController);
   TT_RELEASE_SAFELY(_delayedControllers);
   TT_RELEASE_SAFELY(_URLMap);
   TT_RELEASE_SAFELY(_persistenceKey);
@@ -119,6 +126,13 @@ __attribute__((weak_import));
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)setGlobalNavigator:(TTBaseNavigator*)navigator {
   if (gNavigator != navigator) {
+    [[NSNotificationCenter defaultCenter] removeObserver: gNavigator
+                                                    name: UIDeviceOrientationDidChangeNotification
+                                                  object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver: navigator
+                                             selector: @selector(orientationChanged:)
+                                                 name: UIDeviceOrientationDidChangeNotification
+                                               object: nil];
     [gNavigator release];
     gNavigator = [navigator retain];
   }
@@ -134,12 +148,12 @@ __attribute__((weak_import));
   }
 
   id<TTNavigatorRootContainer>  container = nil;
-  UIViewController*             controller = nil;      // The iterator.
-  UIViewController*             childController = nil; // The last iterated controller.
+  UIViewController*             controller = nil;
+  UIViewController*             childController = nil;
 
   for (controller = view.viewController;
        nil != controller;
-       controller = controller.parentViewController) {
+       controller = controller.superController) {
     if ([controller conformsToProtocol:@protocol(TTNavigatorRootContainer)]) {
       container = (id<TTNavigatorRootContainer>)controller;
       break;
@@ -148,12 +162,199 @@ __attribute__((weak_import));
     childController = controller;
   }
 
-  TTBaseNavigator* navigator = [container getNavigatorForController:childController];
+  TTBaseNavigator* navigator = [container navigatorForRootController:childController];
   if (nil == navigator) {
     navigator = [TTBaseNavigator globalNavigator];
   }
 
   return navigator;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIPopoverControllerDelegate
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+  if (popoverController == [TTBaseNavigator popoverController]) {
+    id visibleViewController = [[TTBaseNavigator popoverController] contentViewController];
+    if ([visibleViewController isKindOfClass:[UINavigationController class]]) {
+      visibleViewController = [visibleViewController visibleViewController];
+    }
+    if ([visibleViewController
+         respondsToSelector:@selector(shouldDismissPopover:)]) {
+      return [visibleViewController shouldDismissPopover:popoverController];
+    }
+  }
+
+  return YES;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+  // If we're getting this notification but the popover controller differs, it means at least
+  // one of the following:
+  // - TTBaseNavigator wasn't made aware of the popover controller that is being dismissed, but for
+  //   some reason its delegate was set to [TTBaseNavigator class]
+  // - TTBaseNavigator was assigned a new popover controller before this message was received.
+  //
+  // Either way, if you've hit this assertion you need to determine why the popover controller
+  // isn't stored in TTBaseNavigator.
+  TTDASSERT(popoverController == [TTBaseNavigator popoverController]);
+
+  if (popoverController == [TTBaseNavigator popoverController]) {
+    [TTBaseNavigator setPopoverController:nil];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Popover Support
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIPopoverController*)popoverController {
+  return gPopoverController;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)setPopoverController:(UIPopoverController*)popoverController {
+  if (gPopoverController != popoverController) {
+    [self dismissPopoverAnimated:NO];
+
+    // dismissPopoverAnimated will release this popover, but if, in the future, it doesn't for
+    // any reason, we release the popover here as well to be safe.
+    TT_RELEASE_SAFELY(gPopoverController);
+
+    gPopoverController = [popoverController retain];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (TTURLAction*)popoverAction {
+  return gPopoverAction;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)setPopoverAction:(TTURLAction*)action {
+  if (gPopoverAction != action) {
+    [gPopoverAction release];
+    gPopoverAction = [action retain];
+
+    // We should never be setting the popover action without an active popover.
+    TTDASSERT(nil == gPopoverAction
+              || nil != gPopoverController);
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)dismissPopoverAnimated:(BOOL)isAnimated forced:(BOOL)isForced {
+  if (isForced || [self popoverControllerShouldDismissPopover:[self popoverController]]) {
+    // Don't use self dismissPopoverAnimated: here because that will cause an infinite loop.
+    [[self popoverController] dismissPopoverAnimated:isAnimated];
+
+    // popoverControllerDidDismissPopover: is not called when we programmatically dismiss a popover,
+    // so we must be sure to release the popover ourselves.
+    TT_RELEASE_SAFELY(gPopoverController);
+    TT_RELEASE_SAFELY(gPopoverAction);
+    return YES;
+
+  } else {
+    return NO;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)dismissPopoverAnimated:(BOOL)isAnimated {
+  [self dismissPopoverAnimated:isAnimated forced:YES];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIPopoverController*)popoverControllerForView:(UIView*)view {
+  if (nil == [self popoverController] || ![view isKindOfClass:[UIView class]]) {
+    // Bail out early, there's no known popover or it's not a view.
+    return nil;
+  }
+
+  UIViewController* controller = nil;      // The iterator.
+
+  for (controller = view.viewController;
+       nil != controller;
+       controller = controller.superController) {
+    if (controller == gPopoverController.contentViewController) {
+      break;
+    }
+  }
+
+  if (nil != controller) {
+    return [self popoverController];
+
+  } else {
+    return nil;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)presentPopoverController:(UIPopoverController*)controller fromAction:(TTURLAction*)action {
+  TTDASSERT(nil != action);
+  if (nil == action) {
+    return;
+  }
+
+  controller.passthroughViews = action.passthroughViews;
+
+  // TODO (jverkoey Dec. 15, 2010): Debatable what order of priority these should be in.
+  // Perhaps we should simply TTDASSERT that only one or the other is provided?
+  if (nil != action.sourceButton) {
+    [controller presentPopoverFromBarButtonItem: action.sourceButton
+                       permittedArrowDirections: UIPopoverArrowDirectionAny
+                                       animated: NO];
+
+  } else {
+    CGRect sourceRect = action.sourceRect;
+    if (CGRectIsEmpty(action.sourceRect)) {
+      sourceRect = action.sourceView.frame;
+    }
+    [controller presentPopoverFromRect: sourceRect
+                                inView: action.sourceView.superview
+              permittedArrowDirections: UIPopoverArrowDirectionAny
+                              animated: NO];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)updatePopoverForNewOrientation {
+  if (nil != [TTBaseNavigator popoverController] && nil != [TTBaseNavigator popoverAction]) {
+    [self presentPopoverController: [TTBaseNavigator popoverController]
+                        fromAction: [TTBaseNavigator popoverAction]];
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)orientationChanged:(NSNotification*)notification {
+  if (nil != [TTBaseNavigator popoverController]) {
+    // We need to update the popover orientation after this run loop has finished so that
+    // we give the iPad time to change its orientation - and subsequently the location
+    // of the source view or button.
+    [self performSelector: @selector(updatePopoverForNewOrientation)
+               withObject: nil
+               afterDelay: 0];
+  }
 }
 
 
@@ -305,55 +506,160 @@ __attribute__((weak_import));
  */
 - (void)presentModalController: (UIViewController*)controller
               parentController: (UIViewController*)parentController
-                      animated: (BOOL)animated
-                    transition: (NSInteger)transition {
-  controller.modalTransitionStyle = transition;
+                        action: (TTURLAction*)action {
+  controller.modalTransitionStyle = action.transition;
 
   if ([controller isKindOfClass:[UINavigationController class]]) {
-    [parentController presentModalViewController: controller
-                                        animated: animated];
+    [[self.rootContainer rootViewController] presentModalViewController: controller
+                                                               animated: action.animated];
 
   } else {
     UINavigationController* navController = [[[[self navigationControllerClass] alloc] init]
                                              autorelease];
     [navController pushViewController: controller
                              animated: NO];
-    [parentController presentModalViewController: navController
-                                        animated: animated];
+    navController.modalPresentationStyle = controller.modalPresentationStyle;
+    [[self.rootContainer rootViewController] presentModalViewController: navController
+                                                               animated: action.animated];
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)presentPopoverController: (UIViewController*)controller
-                    sourceButton: (UIBarButtonItem*)sourceButton
-                      sourceView: (UIView*)sourceView
-                      sourceRect: (CGRect)sourceRect
-                        animated: (BOOL)animated {
-  TTDASSERT(nil != sourceButton || nil != sourceView);
+                          action: (TTURLAction*)action
+                            mode: (TTNavigationMode)mode {
+  BOOL isModal = (mode == TTNavigationModeModal);
 
-  if (nil == sourceButton && nil == sourceView) {
+  TTDASSERT(action.isPopoverAction);
+
+  // Note for the above assertion:
+  // When using popover controllers you need to provide either a source button or a
+  // source view + source rect in the TTURLAction. We don't know what to do without it here,
+  // so we're just going to bail out. Come back when you're ready.
+  //
+  // Oh. While you're here, you may as well check the stack trace from this breakpoint and
+  // figure out where you're opening this URL from. The TTURLAction that you're passing to
+  // the TTNavigator system has three properties (mentioned above) that you can provide.
+  // Set them before you pass the TTURLAction object into the TTNavigator and you should be
+  // good from there.
+  //
+  // If the TTURLAction is coming from within Three20 you'll have to work a bit harder.
+  //
+  // For table views, it's debatable whether you should be using a popover controller here in
+  // the first place. If you really are intending to do this, subclass one of the table delegate
+  // objects and implement -tableView:didSelectRowAtIndexPath:.
+  // You'll then implement the -createDelegate method in your table view controller and return
+  // an autoreleased object of the delegate.
+
+  if (!action.isPopoverAction) {
     return;
   }
 
-  if (nil != _popoverController) {
-    [_popoverController dismissPopoverAnimated:animated];
-    TT_RELEASE_SAFELY(_popoverController);
+  // If the user taps the same button twice, we should try to hide the popover controller.
+  if (nil != [TTBaseNavigator popoverController]) {
+    UIViewController* contentController =
+      [TTBaseNavigator popoverController].contentViewController;
+    if ([contentController isKindOfClass:[UINavigationController class]]) {
+      UINavigationController* navController = (UINavigationController*)contentController;
+      if ([navController.topViewController.originalNavigatorURL isEqualToString:action.urlPath]
+          && [TTBaseNavigator dismissPopoverAnimated:action.animated forced:NO]) {
+        return;
+      }
+    }
   }
 
-  _popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
-  _popoverController.delegate = self;
-  if (nil != sourceButton) {
-    [_popoverController presentPopoverFromBarButtonItem: sourceButton
-                               permittedArrowDirections: UIPopoverArrowDirectionAny
-                                               animated: animated];
+  // If there is an active popover and we're not targetting it, see if we are allowed to dismiss
+  // it. If not, we bail out early.
+  if (nil != [TTBaseNavigator popoverController]
+      && [TTBaseNavigator popoverController] != action.targetPopoverController
+      && ![TTBaseNavigator dismissPopoverAnimated:action.animated forced:NO]) {
+    // Not allowed to dismiss the active popover.
+    return;
+  }
+
+  UIViewController* contentController = nil;
+
+  // We place the given controller within a navigation controller, unless it's a container
+  // controller or an image picker controller (which hates being in a nav controller and will,
+  // in fact, crash if you try otherwise).
+  // Target popover controllers are a special case where we assume that the popover has a
+  // navigation controller within it that we can push the controller onto.
+  if ((nil != action.targetPopoverController && !isModal)
+      || [controller canContainControllers]
+      || [controller isKindOfClass:[UIImagePickerController class]]) {
+    contentController = controller;
 
   } else {
-    [_popoverController presentPopoverFromRect: sourceRect
-                                        inView: sourceView
-                      permittedArrowDirections: UIPopoverArrowDirectionAny
-                                      animated: animated];
+    contentController = [[[[self navigationControllerClass] alloc]
+                          initWithRootViewController:controller]
+                         autorelease];
   }
+
+  if (nil != [TTBaseNavigator popoverController] && isModal) {
+    // Present the content controller on this popover and bail out immediately.
+    if ([controller respondsToSelector:@selector(viewWillAppearInPopover:)]) {
+      [(id)controller viewWillAppearInPopover:[TTBaseNavigator popoverController]];
+    }
+
+    contentController.modalPresentationStyle = UIModalPresentationCurrentContext;
+
+    // Allow stacked modal controllers by traversing the currently visible modal view controllers
+    // and finding the visible one.
+    UIViewController* visibleContentController =
+    [TTBaseNavigator popoverController].contentViewController;
+    while (nil != visibleContentController.modalViewController) {
+      visibleContentController = visibleContentController.modalViewController;
+    }
+    [visibleContentController presentModalViewController: contentController
+                                                animated: action.animated];
+    return;
+  }
+
+  if (nil != action.targetPopoverController) {
+    id popoverContentController = [action.targetPopoverController
+                                                  contentViewController];
+    if ([popoverContentController isKindOfClass:[UINavigationController class]]) {
+      UINavigationController* navController = popoverContentController;
+
+      // Inform the controller that it is being displayed within a popover controller.
+      if ([controller respondsToSelector:@selector(viewWillAppearInPopover:)]) {
+        [(id)controller viewWillAppearInPopover:action.targetPopoverController];
+      }
+
+      [navController pushViewController: contentController
+                               animated: action.animated];
+      return;
+
+    } else {
+      // This is an unhandled type of controller.
+      TTDASSERT(NO);
+      return;
+    }
+  }
+
+  [TTBaseNavigator dismissPopoverAnimated:action.animated];
+
+  [TTBaseNavigator setPopoverController:[[UIPopoverController alloc]
+                                         initWithContentViewController:contentController]];
+  [TTBaseNavigator setPopoverAction:action];
+
+  // We want to receive notifications when this popover is dismissed so that we can properly
+  // release it.
+
+  [TTBaseNavigator popoverController].delegate =
+    (id<UIPopoverControllerDelegate>)([TTBaseNavigator class]);
+
+  // Inform the controller that it is being displayed within a popover controller.
+  if ([controller respondsToSelector:@selector(viewWillAppearInPopover:)]) {
+    [(id)controller viewWillAppearInPopover:[TTBaseNavigator popoverController]];
+  }
+
+  [[NSNotificationCenter defaultCenter]
+    postNotificationName: TTBaseNavigatorWillShowPopoverNotification
+                  object: nil];
+
+  [self presentPopoverController:[TTBaseNavigator popoverController] fromAction:action];
 }
 
 
@@ -375,7 +681,8 @@ __attribute__((weak_import));
 
   } else {
     UIViewController* previousSuper = controller.superController;
-    if (nil != previousSuper) {
+    // We can't make controllers visible for popover actions in this way, so ignore this logic.
+    if (!action.isPopoverAction && nil != previousSuper) {
       if (previousSuper != parentController) {
         // The controller already exists, so we just need to make it visible
         for (UIViewController* superController = previousSuper; controller; ) {
@@ -388,11 +695,23 @@ __attribute__((weak_import));
       }
       didPresentNewController = NO;
 
+      [TTBaseNavigator dismissPopoverAnimated:YES];
+
     } else if (nil != parentController) {
-      [self presentDependantController: controller
-                      parentController: parentController
-                                  mode: mode
-                                action: action];
+      BOOL didPresent = NO;
+      if ([controller respondsToSelector:
+           @selector(navigator:presentController:parentController:action:)]) {
+        didPresent = [(id)controller navigator: self
+                             presentController: controller
+                              parentController: parentController
+                                        action: action];
+      }
+      if (!didPresent) {
+        [self presentDependantController: controller
+                        parentController: parentController
+                                    mode: mode
+                                  action: action];
+      }
     }
   }
 
@@ -408,28 +727,34 @@ __attribute__((weak_import));
   BOOL didPresentNewController = NO;
 
   if (nil != controller) {
-    UIViewController* topViewController = self.topViewController;
+    if ([self.rootContainer respondsToSelector:@selector(navigator:presentController:action:)]) {
+      didPresentNewController = [self.rootContainer navigator: self
+                                            presentController: controller
+                                                       action: action];
+    }
 
-    if (controller != topViewController) {
-      UIViewController* parentController = [self parentForController: controller
-                                                         isContainer: [controller
-                                                                       canContainControllers]
-                                                       parentURLPath: parentURLPath
-                                            ? parentURLPath
-                                                                    : pattern.parentURL];
+    if (!didPresentNewController) {
+      UIViewController* topViewController = self.topViewController;
 
-      if (nil != parentController && parentController != topViewController) {
-        [self presentController: parentController
-               parentController: nil
-                           mode: TTNavigationModeNone
-                         action: [TTURLAction actionWithURLPath:nil]];
+      if (controller != topViewController) {
+        UIViewController* parentController = [self parentForController: controller
+                                                           isContainer: [controller
+                                                                         canContainControllers]
+                                                         parentURLPath: parentURLPath
+                                              ? parentURLPath : pattern.parentURL];
+
+        if (nil != parentController && parentController != topViewController) {
+          [self presentController: parentController
+                 parentController: nil
+                             mode: TTNavigationModeNone
+                           action: [TTURLAction actionWithURLPath:nil]];
+        }
+
+        didPresentNewController = [self presentController: controller
+                                         parentController: parentController
+                                                     mode: pattern.navigationMode
+                                                   action: action];
       }
-
-      didPresentNewController = [self
-                                 presentController: controller
-                                 parentController: parentController
-                                 mode: pattern.navigationMode
-                                 action: action];
     }
   }
   return didPresentNewController;
@@ -942,21 +1267,6 @@ __attribute__((weak_import));
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIPopoverControllerDelegate
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
-  if (popoverController == _popoverController) {
-    TT_RELEASE_SAFELY(_popoverController);
-  }
-}
-
-
-
 @end
 
 
@@ -975,30 +1285,33 @@ __attribute__((weak_import));
                               mode: (TTNavigationMode)mode
                             action: (TTURLAction*)action {
 
-  if (mode == TTNavigationModeModal) {
+  if (TTIsPad() && action.isPopoverAction) {
+    [self presentPopoverController: controller
+                            action: action
+                              mode: mode];
+
+  } else if (mode == TTNavigationModeModal) {
     [self presentModalController: controller
                 parentController: parentController
-                        animated: action.animated
-                      transition: action.transition];
+                          action: action];
 
-  } else if (mode == TTNavigationModePopover) {
-    [self presentPopoverController: controller
-                      sourceButton: action.sourceButton
-                        sourceView: action.sourceView
-                        sourceRect: action.sourceRect
-                          animated: action.animated];
+    [TTBaseNavigator dismissPopoverAnimated:YES];
 
   } else {
     [parentController addSubcontroller: controller
                               animated: action.animated
                             transition: action.transition];
+
+    [TTBaseNavigator dismissPopoverAnimated:YES];
   }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)getVisibleChildController:(UIViewController*)controller {
-  return controller.topSubcontroller;
+  return (nil != controller.popupViewController)
+    ? controller.popupViewController
+    : controller.topSubcontroller;
 }
 
 

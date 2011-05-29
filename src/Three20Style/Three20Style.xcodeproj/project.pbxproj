@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66CE6B0A135BBD7800E127E2 /* TTDefaultStyleSheet+WebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 66CE6B09135BBD7800E127E2 /* TTDefaultStyleSheet+WebViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454901184D3BC00F08CB1 /* Three20Style+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6464041187F5CB00F08CB1 /* TTStyledButtonNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6464021187F5CB00F08CB1 /* TTStyledButtonNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6464051187F5CB00F08CB1 /* TTStyledLinkNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6464031187F5CB00F08CB1 /* TTStyledLinkNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -206,6 +207,7 @@
 
 /* Begin PBXFileReference section */
 		66313A7D1267B4E800C09C9F /* Three20Style_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Style_Prefix.pch; path = Headers/Three20Style_Prefix.pch; sourceTree = "<group>"; };
+		66CE6B09135BBD7800E127E2 /* TTDefaultStyleSheet+WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TTDefaultStyleSheet+WebViewController.h"; path = "Headers/TTDefaultStyleSheet+WebViewController.h"; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Style+Additions.h"; path = "Headers/Three20Style+Additions.h"; sourceTree = "<group>"; };
 		6E6464021187F5CB00F08CB1 /* TTStyledButtonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTStyledButtonNode.h; path = Headers/TTStyledButtonNode.h; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				6EE737071184A38F00A35176 /* TTDefaultStyleSheet.h */,
 				6EE737891184A39B00A35176 /* TTDefaultStyleSheet.m */,
 				6E850F0711B0FE200071A4FD /* TTDefaultStyleSheet+DragRefreshHeader.h */,
+				66CE6B09135BBD7800E127E2 /* TTDefaultStyleSheet+WebViewController.h */,
 			);
 			name = Stylesheet;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				6E6464041187F5CB00F08CB1 /* TTStyledButtonNode.h in Headers */,
 				6E6464051187F5CB00F08CB1 /* TTStyledLinkNode.h in Headers */,
 				6E850F0911B0FE200071A4FD /* TTDefaultStyleSheet+DragRefreshHeader.h in Headers */,
+				66CE6B0A135BBD7800E127E2 /* TTDefaultStyleSheet+WebViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

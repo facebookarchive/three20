@@ -19,31 +19,85 @@
 @class TTNavigator;
 
 /**
- * A split view controller that implements the navigator root protocol.
+ * A custom split view controller implementation that implements the navigator root protocol.
  *
  * See the TTCatalog sample app for an example of this controller in action.
  */
-@interface TTSplitViewController : UISplitViewController <
-  UISplitViewControllerDelegate,
+@interface TTSplitViewController : UIViewController <
   TTNavigatorRootContainer
 > {
 @private
-  TTNavigator* _leftNavigator;
-  TTNavigator* _rightNavigator;
+  UIViewController* _primaryViewController;
+  UIViewController* _secondaryViewController;
 
-  UIBarButtonItem*      _splitViewButton;
-  UIPopoverController*  _popoverSplitController;
+  TTNavigator* _secondaryNavigator;
+  TTNavigator* _primaryNavigator;
+
+  // Used to "dim" the primary navigator. It's simply a black overlay view with 50% transparency.
+  UIView* _primaryDimmerView;
 }
 
-@property (nonatomic, readonly) TTNavigator*          leftNavigator;
-@property (nonatomic, readonly) TTNavigator*          rightNavigator;
-@property (nonatomic, retain)   UIBarButtonItem*      splitViewButton;
-@property (nonatomic, retain)   UIPopoverController*  popoverSplitController;
-
+/**
+ * The primary view controller is the larger of the two view controllers. In practice, the
+ * primary view controller is the one on the right.
+ * The secondary view controller is generally reserved for left-side navigation.
+ */
+@property (nonatomic, retain)   UIViewController*     primaryViewController;
+@property (nonatomic, retain)   UIViewController*     secondaryViewController;
 
 /**
- * Show/hide the button as the right-side navigator's root navigation item's left button.
+ * These are each independent navigators with their own URL maps.
  */
-- (void)updateSplitViewButton;
+@property (nonatomic, readonly) TTNavigator*          primaryNavigator;
+@property (nonatomic, readonly) TTNavigator*          secondaryNavigator;
+
+/**
+ * Access is granted to the dimmer view here for layout purposes. If you implement custom
+ * layouts in a subclass, you should update the frame of the dimmer view accordingly.
+ *
+ * For example:
+ *
+ *     self.primaryDimmerView.frame = self.primaryViewController.view.frame;
+ *
+ */
+@property (nonatomic, readonly) UIView*               primaryDimmerView;
+
+/**
+ * Dims the primary view controller.
+ */
+- (void)dimPrimaryViewController:(BOOL)isDimmed animated:(BOOL)isAnimated;
+
+/**
+ * This method is called on willAnimateRotationToInterfaceOrientation: and when new
+ * view controllers are set. If you override this method, you should call super in order
+ * to lay out the controllers.
+ */
+- (void)updateLayoutWithOrientation:(UIInterfaceOrientation)interfaceOrientation;
+
+/**
+ * Called after the relevant controller receives the viewDidApppear: method. Useful for doing
+ * any layout adjustments after either view appears.
+ *
+ * The default implementation does nothing.
+ */
+- (void)primaryViewDidAppear:(BOOL)animated;
+- (void)secondaryViewDidAppear:(BOOL)animated;
+
+@end
+
+/**
+ * This protocol is meant to be implemented by the primary and secondary view controllers in
+ * order to provide them with additional information.
+ */
+@protocol TTSplitViewControllerProtocol
+@optional
+
+/**
+ * The primary dimmer view was tapped.
+ *
+ * The split view controller won't do anything by default when the dimmer is tapped.
+ * If you want to hide the dimmer you will need to call dimPrimaryViewController:animated:
+ */
+- (void)splitViewControllerDimmerWasTapped:(TTSplitViewController*)splitViewController;
 
 @end

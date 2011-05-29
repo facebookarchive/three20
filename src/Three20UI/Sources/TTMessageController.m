@@ -308,7 +308,7 @@
   [super loadView];
   self.view.backgroundColor = TTSTYLEVAR(backgroundColor);
 
-  _scrollView = [[[UIScrollView class] alloc] initWithFrame:TTKeyboardNavigationFrame()];
+  _scrollView = [[[UIScrollView class] alloc] initWithFrame:self.view.bounds];
   _scrollView.backgroundColor = TTSTYLEVAR(backgroundColor);
   _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
   _scrollView.canCancelContentTouches = NO;
@@ -376,7 +376,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
   [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-  _scrollView.height = self.view.height - TTKeyboardHeight();
+  if (!TTIsPad()) {
+    _scrollView.height = self.view.height - TTKeyboardHeight();
+  }
   [self layoutViews];
 }
 
@@ -526,6 +528,18 @@
   if (buttonIndex == 0) {
     [self cancel:NO];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark TTNavigatorPopoverProtocol
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewWillAppearInPopover:(UIPopoverController*)popoverController {
+  self.navigationItem.leftBarButtonItem = nil;
 }
 
 

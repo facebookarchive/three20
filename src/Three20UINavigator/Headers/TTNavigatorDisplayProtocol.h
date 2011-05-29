@@ -14,9 +14,19 @@
 // limitations under the License.
 //
 
-#import "Three20UICommon/Three20UICommon.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-// Additions
-#import "Three20UICommon/UIView+TTUICommon.h"
-#import "Three20UICommon/UIViewControllerAdditions.h"
-#import "Three20UICommon/UIWindowAdditions.h"
+@class TTBaseNavigator;
+@class TTURLAction;
+
+@protocol TTNavigatorDisplayProtocol <NSObject>
+
+@required
+
+- (BOOL)  navigator: (TTBaseNavigator*)navigator
+  presentController: (UIViewController*)controller
+   parentController: (UIViewController*)parentController
+             action: (TTURLAction*)action;
+
+@end

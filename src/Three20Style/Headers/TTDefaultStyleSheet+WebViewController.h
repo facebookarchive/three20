@@ -14,9 +14,8 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "Three20Style/TTDefaultStyleSheet.h"
 
-@interface UISplitViewController (TTNavigator)
+@interface TTDefaultStyleSheet (TTWebViewController)
 
 @end
