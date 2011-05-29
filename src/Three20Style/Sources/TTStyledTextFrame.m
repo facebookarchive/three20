@@ -25,9 +25,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTStyledTextFrame
 
-@synthesize node = _node;
-@synthesize text = _text;
-@synthesize font = _font;
+@synthesize node          = _node;
+@synthesize text          = _text;
+@synthesize font          = _font;
+@synthesize textAlignment = _textAlignment;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +59,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawInRect:(CGRect)rect {
-  [_text drawInRect:rect withFont:_font lineBreakMode:UILineBreakModeClip];
+	[_text drawInRect:rect withFont:_font lineBreakMode:UILineBreakModeClip alignment:_textAlignment];
 }
 
 

@@ -57,6 +57,7 @@
 
 @synthesize rootNode      = _rootNode;
 @synthesize font          = _font;
+@synthesize textAlignment = _textAlignment;
 @synthesize width         = _width;
 @synthesize height        = _height;
 @synthesize invalidImages = _invalidImages;
@@ -301,6 +302,15 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setTextAlignment:(UITextAlignment)textAlignment {
+	if (textAlignment != _textAlignment) {
+		_textAlignment = textAlignment;
+		[self setNeedsLayout];
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setWidth:(CGFloat)width {
   if (width != _width) {
     _width = width;
@@ -327,6 +337,7 @@
   TTStyledLayout* layout = [[TTStyledLayout alloc] initWithRootNode:_rootNode];
   layout.width = _width;
   layout.font = _font;
+  layout.textAlignment = _textAlignment;
   [layout layout:_rootNode];
 
   [_rootFrame release];

@@ -51,6 +51,7 @@
 @synthesize height        = _height;
 @synthesize rootFrame     = _rootFrame;
 @synthesize font          = _font;
+@synthesize textAlignment = _textAlignment;
 @synthesize invalidImages = _invalidImages;
 
 
@@ -164,17 +165,30 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)offsetFrame:(TTStyledFrame*)frame by:(CGFloat)y {
-   frame.y += y;
-
+- (void)offsetFrame:(TTStyledFrame*)frame byY:(CGFloat)y {
+  frame.y += y;
   if ([frame isKindOfClass:[TTStyledInlineFrame class]]) {
     TTStyledInlineFrame* inlineFrame = (TTStyledInlineFrame*)frame;
     TTStyledFrame* child = inlineFrame.firstChildFrame;
     while (child) {
-      [self offsetFrame:child by:y];
+      [self offsetFrame:child byY:y];
       child = child.nextFrame;
     }
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)offsetFrame:(TTStyledFrame*)frame byX:(CGFloat)x {
+  frame.x += x;
+  if ([frame isKindOfClass:[TTStyledInlineFrame class]]) {
+    TTStyledInlineFrame* inlineFrame = (TTStyledInlineFrame*)frame;
+		TTStyledFrame* child = inlineFrame.firstChildFrame;
+		while (child) {
+			[self offsetFrame:child byX:x];
+			child = child.nextFrame;
+		}
+	}
 }
 
 
@@ -346,8 +360,24 @@
       // XXXjoe Support top, bottom, and center alignment also
       if (frame.height < _lineHeight) {
         UIFont* font = frame.font ? frame.font : _font;
-        [self offsetFrame:frame by:(_lineHeight - (frame.height - font.descender))];
+        [self offsetFrame:frame byY:(_lineHeight - (frame.height - font.descender))];
       }
+      frame = frame.nextFrame;
+    }
+  }
+
+  // Horizontally align all frames on the current line
+  if (_textAlignment != UITextAlignmentLeft) {
+    CGFloat offset = 0;
+    if (_textAlignment == UITextAlignmentRight) {
+      offset = _width - _lineWidth;
+      
+    } else if (_textAlignment == UITextAlignmentCenter) {
+      offset = floor((_width - _lineWidth) / 2);
+    }
+    TTStyledFrame* frame = _lineFirstFrame;
+    while (frame) {
+      [self offsetFrame:frame byX:offset];
       frame = frame.nextFrame;
     }
   }
@@ -375,6 +405,7 @@
   TTStyledTextFrame* frame = [[[TTStyledTextFrame alloc] initWithText:text element:element
                                                          node:node] autorelease];
   frame.font = _font;
+  frame.textAlignment = _textAlignment;
   [self addContentFrame:frame width:width height:height];
   return frame;
 }
