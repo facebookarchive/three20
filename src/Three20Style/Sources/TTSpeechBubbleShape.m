@@ -197,30 +197,29 @@ static const CGFloat kInsetWidth = 5;
     CGPathMoveToPoint(path, nil, 0, fh-radius);
   }
 
+  // Use a custom pointLocation with a value between 315 and 405 instead of 0-45 and 315-360
+  // to ease calculations
+  CGFloat myPointLocation = _pointLocation;
+  if (myPointLocation >= 0 && myPointLocation < 45) {
+    myPointLocation += 360;
+  }
 
-  if ((_pointLocation >= 315 && _pointLocation < 360) ||
-      (_pointLocation >= 0 && _pointLocation < 45)) {
+  if (myPointLocation >= 315 && myPointLocation < 405) {
 
     // Compute extension of arrow
     CGFloat pw = _pointAngle >= 270 || _pointAngle <= 90 ? -_pointSize.width : _pointSize.width;
 
     // Compute location of arrow on line
     // Do not place the arrow on the arcs at the corner!
-    if (_pointLocation >= 315) {
-      pointY = fh - (((_pointLocation - 315) / 90) * (fh - 2 * radius - _pointSize.height) +
-                radius + floor(_pointSize.height/2));
-
-    } else {
-      pointY = fh - ((_pointLocation / 90) * (fh - 2 * radius - _pointSize.height) +
-                radius + floor(_pointSize.height/2));
-    }
+    pointY = fh - (((myPointLocation - 315) / 90) * (fh - 2 * radius - _pointSize.height) +
+                   radius + _pointSize.height/2);
 
     // Draw the lines, first to the arrow...
-    CGPathAddLineToPoint(path, nil, 0, pointY+floor(_pointSize.width/2));
+    CGPathAddLineToPoint(path, nil, 0, pointY+floor(_pointSize.height/2));
     // Then up to the point...
     CGPathAddLineToPoint(path, nil, pw, pointY);
     // And back again to the rectangle..
-    CGPathAddLineToPoint(path, nil, 0, pointY-floor(_pointSize.width/2));
+    CGPathAddLineToPoint(path, nil, 0, pointY-floor(_pointSize.height/2));
   }
 
   // Then continue the rest of the line
