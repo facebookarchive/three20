@@ -174,12 +174,12 @@
 @property (nonatomic) BOOL shouldHandleCookies;
 
 /**
- * The number of bytes loaded by this request.
+ * The number of request body bytes already uploaded by this request.
  */
 @property (nonatomic) NSInteger totalBytesLoaded;
 
 /**
- * The number of expected bytes from this request.
+ * The total number of request body bytes expected to be uploaded for this request.
  */
 @property (nonatomic) NSInteger totalBytesExpected;
 
