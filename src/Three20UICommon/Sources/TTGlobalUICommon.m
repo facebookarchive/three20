@@ -121,6 +121,34 @@ UIDeviceOrientation TTDeviceOrientation() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTDeviceOrientationIsPortrait() {
+  UIDeviceOrientation orient = TTDeviceOrientation();
+
+  switch (orient) {
+    case UIInterfaceOrientationPortrait:
+    case UIInterfaceOrientationPortraitUpsideDown:
+      return YES;
+    default:
+      return NO;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTDeviceOrientationIsLandscape() {
+  UIDeviceOrientation orient = TTDeviceOrientation();
+
+  switch (orient) {
+    case UIInterfaceOrientationLandscapeLeft:
+    case UIInterfaceOrientationLandscapeRight:
+      return YES;
+    default:
+      return NO;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsSupportedOrientation(UIInterfaceOrientation orientation) {
   if (TTIsPad()) {
     return YES;
