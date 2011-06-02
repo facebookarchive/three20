@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -54,6 +54,9 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 @synthesize totalBytesLoaded      = _totalBytesLoaded;
 @synthesize totalBytesExpected    = _totalBytesExpected;
+
+@synthesize totalBytesDownloaded  = _totalBytesDownloaded;
+@synthesize totalContentLength    = _totalContentLength;
 
 @synthesize userInfo              = _userInfo;
 @synthesize isLoading             = _isLoading;

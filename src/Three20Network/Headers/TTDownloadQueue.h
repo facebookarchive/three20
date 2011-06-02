@@ -3,7 +3,7 @@
 //  eReader
 //
 //  Created by Matej Ornest on 23.8.10.
-//  Copyright 2010 Matej Ornest. All rights reserved.
+//  Copyright 2010 - 2011 Matej Ornest. All rights reserved.
 //
 
 #import "Three20Network/TTURLRequestQueue.h"

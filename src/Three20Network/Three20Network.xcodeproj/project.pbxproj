@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35060FFF1397E3DE004CFF7F /* TTDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 35060FFB1397E3DE004CFF7F /* TTDownloadQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		350610001397E3DE004CFF7F /* TTDownloadRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 35060FFC1397E3DE004CFF7F /* TTDownloadRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		350610011397E3DE004CFF7F /* TTDownloadRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 35060FFD1397E3DE004CFF7F /* TTDownloadRequestLoader.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		350610021397E3DE004CFF7F /* TTURLPlistResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 35060FFE1397E3DE004CFF7F /* TTURLPlistResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		350610091397E426004CFF7F /* TTDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610031397E426004CFF7F /* TTDownloadQueue.m */; };
+		3506100A1397E426004CFF7F /* TTDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610041397E426004CFF7F /* TTDownloadRequest.m */; };
+		3506100B1397E426004CFF7F /* TTDownloadRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610051397E426004CFF7F /* TTDownloadRequestLoader.m */; };
+		3506100C1397E426004CFF7F /* TTURLBaseResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 350610061397E426004CFF7F /* TTURLBaseResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3506100D1397E426004CFF7F /* TTURLBaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610071397E426004CFF7F /* TTURLBaseResponse.m */; };
+		3506100E1397E426004CFF7F /* TTURLPlistResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610081397E426004CFF7F /* TTURLPlistResponse.m */; };
+		3506100F1397E426004CFF7F /* TTDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610031397E426004CFF7F /* TTDownloadQueue.m */; };
+		350610101397E426004CFF7F /* TTDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610041397E426004CFF7F /* TTDownloadRequest.m */; };
+		350610111397E426004CFF7F /* TTDownloadRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610051397E426004CFF7F /* TTDownloadRequestLoader.m */; };
+		350610121397E426004CFF7F /* TTURLBaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610071397E426004CFF7F /* TTURLBaseResponse.m */; };
+		350610131397E426004CFF7F /* TTURLPlistResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610081397E426004CFF7F /* TTURLPlistResponse.m */; };
 		664B29BF12848AA50008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29BC12848AA50008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		664B29C312848AAD0008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29C012848AAD0008D569 /* TTErrorCodes.m */; };
 		66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */; };
@@ -85,6 +100,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35060FFB1397E3DE004CFF7F /* TTDownloadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDownloadQueue.h; path = Headers/TTDownloadQueue.h; sourceTree = "<group>"; };
+		35060FFC1397E3DE004CFF7F /* TTDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDownloadRequest.h; path = Headers/TTDownloadRequest.h; sourceTree = "<group>"; };
+		35060FFD1397E3DE004CFF7F /* TTDownloadRequestLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDownloadRequestLoader.h; path = Headers/TTDownloadRequestLoader.h; sourceTree = "<group>"; };
+		35060FFE1397E3DE004CFF7F /* TTURLPlistResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLPlistResponse.h; path = Headers/TTURLPlistResponse.h; sourceTree = "<group>"; };
+		350610031397E426004CFF7F /* TTDownloadQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDownloadQueue.m; path = Sources/TTDownloadQueue.m; sourceTree = "<group>"; };
+		350610041397E426004CFF7F /* TTDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDownloadRequest.m; path = Sources/TTDownloadRequest.m; sourceTree = "<group>"; };
+		350610051397E426004CFF7F /* TTDownloadRequestLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDownloadRequestLoader.m; path = Sources/TTDownloadRequestLoader.m; sourceTree = "<group>"; };
+		350610061397E426004CFF7F /* TTURLBaseResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLBaseResponse.h; path = Sources/TTURLBaseResponse.h; sourceTree = "<group>"; };
+		350610071397E426004CFF7F /* TTURLBaseResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLBaseResponse.m; path = Sources/TTURLBaseResponse.m; sourceTree = "<group>"; };
+		350610081397E426004CFF7F /* TTURLPlistResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLPlistResponse.m; path = Sources/TTURLPlistResponse.m; sourceTree = "<group>"; };
 		664B29BC12848AA50008D569 /* TTErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorCodes.h; path = Headers/TTErrorCodes.h; sourceTree = "<group>"; };
 		664B29C012848AAD0008D569 /* TTErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorCodes.m; path = Sources/TTErrorCodes.m; sourceTree = "<group>"; };
 		66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkURLCacheTests.m; path = UnitTests/NetworkURLCacheTests.m; sourceTree = "<group>"; };
@@ -241,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				6EE7361311849A3500A35176 /* TTURLResponse.h */,
+				350610061397E426004CFF7F /* TTURLBaseResponse.h */,
+				350610071397E426004CFF7F /* TTURLBaseResponse.m */,
 				6E08B8121183B28A00DA1579 /* Responses */,
 			);
 			name = Response;
@@ -249,6 +276,8 @@
 		6E08B8121183B28A00DA1579 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				35060FFE1397E3DE004CFF7F /* TTURLPlistResponse.h */,
+				350610081397E426004CFF7F /* TTURLPlistResponse.m */,
 				6EE7360C11849A3500A35176 /* TTURLDataResponse.h */,
 				6EE7360D11849A3500A35176 /* TTURLImageResponse.h */,
 				6EE7362311849A4000A35176 /* TTURLDataResponse.m */,
@@ -273,6 +302,10 @@
 				6E08B8211183B28A00DA1579 /* Private */,
 				6EE7361011849A3500A35176 /* TTURLRequestDelegate.h */,
 				6EE7360F11849A3500A35176 /* TTURLRequestCachePolicy.h */,
+				35060FFC1397E3DE004CFF7F /* TTDownloadRequest.h */,
+				350610041397E426004CFF7F /* TTDownloadRequest.m */,
+				35060FFB1397E3DE004CFF7F /* TTDownloadQueue.h */,
+				350610031397E426004CFF7F /* TTDownloadQueue.m */,
 				6EE7361211849A3500A35176 /* TTURLRequestQueue.h */,
 				6EE7362711849A4000A35176 /* TTURLRequestQueue.m */,
 				6EF963FD118EFCCF003902E7 /* Private */,
@@ -285,6 +318,8 @@
 			children = (
 				6EE7360A11849A3500A35176 /* TTRequestLoader.h */,
 				6EE7362111849A4000A35176 /* TTRequestLoader.m */,
+				350610051397E426004CFF7F /* TTDownloadRequestLoader.m */,
+				35060FFD1397E3DE004CFF7F /* TTDownloadRequestLoader.h */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -370,6 +405,11 @@
 				6EE7364911849B1D00A35176 /* Three20Network_Prefix.pch in Headers */,
 				6EF96405118EFCF0003902E7 /* TTURLRequestQueueInternal.h in Headers */,
 				664B29BF12848AA50008D569 /* TTErrorCodes.h in Headers */,
+				35060FFF1397E3DE004CFF7F /* TTDownloadQueue.h in Headers */,
+				350610001397E3DE004CFF7F /* TTDownloadRequest.h in Headers */,
+				350610011397E3DE004CFF7F /* TTDownloadRequestLoader.h in Headers */,
+				350610021397E3DE004CFF7F /* TTURLPlistResponse.h in Headers */,
+				3506100C1397E426004CFF7F /* TTURLBaseResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +581,11 @@
 				6EE7362E11849A4000A35176 /* TTURLRequestModel.m in Sources */,
 				6EE7362F11849A4000A35176 /* TTURLRequestQueue.m in Sources */,
 				664B29C312848AAD0008D569 /* TTErrorCodes.m in Sources */,
+				350610091397E426004CFF7F /* TTDownloadQueue.m in Sources */,
+				3506100A1397E426004CFF7F /* TTDownloadRequest.m in Sources */,
+				3506100B1397E426004CFF7F /* TTDownloadRequestLoader.m in Sources */,
+				3506100D1397E426004CFF7F /* TTURLBaseResponse.m in Sources */,
+				3506100E1397E426004CFF7F /* TTURLPlistResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +596,11 @@
 				6EE7363A11849A9800A35176 /* MockModelDelegate.m in Sources */,
 				6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */,
 				66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */,
+				3506100F1397E426004CFF7F /* TTDownloadQueue.m in Sources */,
+				350610101397E426004CFF7F /* TTDownloadRequest.m in Sources */,
+				350610111397E426004CFF7F /* TTDownloadRequestLoader.m in Sources */,
+				350610121397E426004CFF7F /* TTURLBaseResponse.m in Sources */,
+				350610131397E426004CFF7F /* TTURLPlistResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +648,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -629,6 +680,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
@@ -641,6 +693,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;

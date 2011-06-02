@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -307,7 +307,7 @@ static const NSInteger kLoadMaxRetries = 2;
   _response = [response retain];
   NSDictionary* headers = [response allHeaderFields];
   _contentLength = [[headers objectForKey:@"Content-Length"] integerValue];
-
+	
   // If you hit this assertion it's because a massive file is about to be downloaded.
   // If you're sure you want to do this, add the following line to your app delegate startup
   // method. Setting the max content length to zero allows anything to go through. If you just
@@ -322,13 +322,25 @@ static const NSInteger kLoadMaxRetries = 2;
   }
 
   _responseData = [[NSMutableData alloc] initWithCapacity: _contentLength];
+
+  /// Implementation by Cemal Eker adopted in Three20. Retained for compatibility reasons
+  for (TTURLRequest* request in [[_requests copy] autorelease]) {
+      request.totalContentLength = _contentLength;
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
+	
   [_responseData appendData:data];
+	
   [self dispatchDownloadedBytes:[_responseData length] ofTotalExpected:_contentLength];
+
+  /// Implementation by Cemal Eker adopted in Three20. Retained for compatibility reasons
+  for (TTURLRequest* request in [[_requests copy] autorelease]) {
+      request.totalBytesDownloaded += [data length];
+  }
 }
 
 
