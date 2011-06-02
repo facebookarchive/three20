@@ -45,4 +45,17 @@
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
             data:(id)data;
 
+@optional
+/**
+ * Processes the data from a unsuccessful request to construct a custom NSError object.
+ *
+ * @param  request    The request this response is bound to.
+ * @param  response   The response object, useful for getting the status code.
+ * @param  data       The data received from the TTURLRequest.
+ * @return NSError to construct for this response.
+ *
+ * @optional
+ */
+- (NSError*)request:(TTURLRequest*)request processErrorResponse:(NSHTTPURLResponse*)response
+               data:(id)data;
 @end
