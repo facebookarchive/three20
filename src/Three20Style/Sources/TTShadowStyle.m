@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -84,6 +84,7 @@
   if (_offset.width < 0) {
     inset.left += fabs(_offset.width) + blurSize*2;
     inset.right -= blurSize;
+
   } else if (_offset.width > 0) {
     inset.right += fabs(_offset.width) + blurSize*2;
     inset.left -= blurSize;
@@ -91,6 +92,7 @@
   if (_offset.height < 0) {
     inset.top += fabs(_offset.height) + blurSize*2;
     inset.bottom -= blurSize;
+
   } else if (_offset.height > 0) {
     inset.bottom += fabs(_offset.height) + blurSize*2;
     inset.top -= blurSize;
@@ -130,6 +132,7 @@
 
   if (_next) {
     return [self.next addToSize:size context:context];
+
   } else {
     return size;
   }

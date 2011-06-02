@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,6 +14,9 @@
 // limitations under the License.
 //
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Code Management
+
 /**
  * Borrowed from Apple's AvailabiltyInternal.h header. There's no reason why we shouldn't be
  * able to use this macro, as it's a gcc-supported flag.
@@ -22,12 +25,14 @@
  */
 #define __TTDEPRECATED_METHOD __attribute__((deprecated))
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Errors
-
-#define TT_ERROR_DOMAIN @"three20.net"
-
-#define TT_EC_INVALID_IMAGE 101
+/**
+ * Add this macro before each category implementation, so we don't have to use
+ * -all_load or -force_load to load object files from static libraries that only contain
+ * categories and no classes.
+ * See http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html for more info.
+ */
+#define TT_FIX_CATEGORY_BUG(name) @interface TT_FIX_CATEGORY_BUG_##name @end \
+                                  @implementation TT_FIX_CATEGORY_BUG_##name @end
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

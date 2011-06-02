@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -96,8 +96,9 @@
   UIColor* clearColor = [UIColor colorWithWhite:1.0 alpha:0.0];
 
   UIColor* botEndHighlight;
-  if( _withBottomHighlight ) {
+  if ( _withBottomHighlight ) {
     botEndHighlight = [UIColor colorWithWhite:1.0 alpha:0.27];
+
   } else {
     botEndHighlight = clearColor;
   }

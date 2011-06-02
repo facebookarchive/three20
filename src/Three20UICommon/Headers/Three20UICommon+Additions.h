@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@
 #import "Three20UICommon/Three20UICommon.h"
 
 // Additions
+#import "Three20UICommon/UIView+TTUICommon.h"
 #import "Three20UICommon/UIViewControllerAdditions.h"
+#import "Three20UICommon/UISplitViewController+TTNavigator.h"
 #import "Three20UICommon/UIWindowAdditions.h"
 #import "Three20UICommon/UIDeviceAdditions.h"

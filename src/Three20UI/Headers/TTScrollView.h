@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -115,7 +115,7 @@
  * Returns whether the content is moving in the scroll view after the user lifted their
  * finger. (read-only)
  */
-@property(nonatomic,readonly,getter=isDecelerating) BOOL decelerating;
+@property (nonatomic,readonly,getter=isDecelerating) BOOL decelerating;
 
 /**
  * @default YES
@@ -165,7 +165,7 @@
  *
  * @default 1.0
  */
-@property(nonatomic,assign) CGFloat zoomScale;
+@property (nonatomic,assign) CGFloat zoomScale;
 
 /**
  * A floating-point value that specifies the maximum scale factor that
@@ -173,7 +173,7 @@
  *
  * @default 4.0
  */
-@property(nonatomic) CGFloat maximumZoomScale;
+@property (nonatomic) CGFloat maximumZoomScale;
 
 @property (nonatomic, assign) id<TTScrollViewDelegate>    delegate;
 @property (nonatomic, assign) id<TTScrollViewDataSource>  dataSource;

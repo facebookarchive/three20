@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -73,7 +73,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
-  _label.frame = CGRectMake(12, 0, self.width, self.height);
+  _label.size = [_label sizeThatFits:CGSizeMake(self.bounds.size.width - 12,
+                                                self.bounds.size.height)];
+  _label.origin = CGPointMake(12, floorf((self.bounds.size.height - _label.size.height)/2.f));
 }
 
 

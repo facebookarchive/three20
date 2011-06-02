@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -77,6 +77,7 @@
 @property (nonatomic, readonly) UIFont* tableSummaryFont;
 @property (nonatomic, readonly) UIFont* tableHeaderPlainFont;
 @property (nonatomic, readonly) UIFont* tableHeaderGroupedFont;
+@property (nonatomic, readonly) CGFloat tableBannerViewHeight;
 @property (nonatomic, readonly) UIFont* photoCaptionFont;
 @property (nonatomic, readonly) UIFont* messageFont;
 @property (nonatomic, readonly) UIFont* errorTitleFont;

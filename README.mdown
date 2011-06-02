@@ -19,13 +19,17 @@ If you would like to ask any questions regarding Three20, please check out any o
 
 * [Three20.info][]
 * [Three20 Mailing List][]
-* [Three20 Scope][]
+* [Three20 Tagged Questions on StackOverflow][]
 
 Adding Three20 to your project
 ==============================
 
-Three20 is compiled as a static library, and the easiest way to add it to your
-project is to use Xcode's "dependent project" facilities.  Here is how:  
+Three20 is compiled as static libraries. It use Xcode's "dependent project" facilities.
+There are two methods of adding Three20 to your project.
+
+The first is with the [TTModule Python Script][].
+
+The Second option is to add it to your project manually.  Here is how:  
 **Estimated time:** 5 minutes.
 
 1. Clone the three20 git repository: `git clone git://github.com/facebook/three20.git`.  Make sure 
@@ -155,7 +159,7 @@ Learn more at [Three20.info][]
 [Facebook iPhone app]: http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284882215&mt=8
 [Three20.info]: http://Three20.info
 [Three20 Mailing List]: http://groups.google.com/group/three20/
-[Three20 Scope]: http://three20.stackexchange.com
+[Three20 Tagged Questions on StackOverflow]: http://stackoverflow.com/questions/tagged/three20
 [TTPhotoViewController]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTPhotoViewController.h
 [TTMessageController]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTMessageController.h
 [TTImageView]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTImageView.h
@@ -165,3 +169,4 @@ Learn more at [Three20.info][]
 [TTTextEditor]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTTextEditor.h
 [TTPickerTextField]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTPickerTextField.h
 [TTNavigator]: http://github.com/facebook/three20/blob/master/src/Three20UI/Headers/TTNavigator.h
+[TTModule Python Script]: http://three20.info/article/2010-10-06-Adding-Three20-To-Your-Project

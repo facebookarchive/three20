@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -92,7 +92,15 @@
       NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
       if (title.length > 0) {
         TTTableHeaderView* header = [_headers objectForKey:title];
-        if (nil == header) {
+
+        // If retrieved from cache, prepare for reuse here.
+        // We reset the the opacity to 1 because UITableView might set this property to 0 after
+        // removing it.
+        // TODO (jverkoey Feb 26, 2011): When does this happen, exactly?
+        if (nil != header) {
+          header.alpha = 1;
+
+        } else {
           if (nil == _headers) {
             _headers = [[NSMutableDictionary alloc] init];
           }
@@ -118,7 +126,7 @@
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
     if (item.URL && [_controller shouldOpenURL:item.URL]) {
-      TTOpenURL(item.URL);
+      TTOpenURLFromView(item.URL, tableView);
 
     } else if (item.delegate && item.selector) {
       [item.delegate performSelector:item.selector withObject:object];
@@ -126,6 +134,7 @@
 
     if ([object isKindOfClass:[TTTableButton class]]) {
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     } else if ([object isKindOfClass:[TTTableMoreButton class]]) {
       TTTableMoreButton* moreLink = (TTTableMoreButton*)object;
       moreLink.isLoading = YES;
@@ -136,6 +145,7 @@
 
       if (moreLink.model) {
         [moreLink.model load:TTURLRequestCachePolicyDefault more:YES];
+
       } else {
         [_controller.model load:TTURLRequestCachePolicyDefault more:YES];
       }
@@ -158,7 +168,7 @@
   if ([object isKindOfClass:[TTTableLinkedItem class]]) {
     TTTableLinkedItem* item = object;
     if (item.accessoryURL && [_controller shouldOpenURL:item.accessoryURL]) {
-      TTOpenURL(item.accessoryURL);
+      TTOpenURLFromView(item.accessoryURL, tableView);
     }
   }
 }

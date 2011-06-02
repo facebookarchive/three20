@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -67,6 +67,7 @@
       [TTSolidFillStyle styleWithColor:[UIColor colorWithWhite:0.75 alpha:1] next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(3, 4, 3, 4) next:
       [TTTextStyle styleWithColor:self.linkTextColor next:nil]]]]];
+
   } else {
     return
       [TTTextStyle styleWithColor:self.linkTextColor next:nil];
@@ -90,6 +91,7 @@
                     contentMode:UIViewContentModeScaleAspectFill size:CGSizeZero next:
       [TTSolidBorderStyle styleWithColor:RGBACOLOR(0,0,0,0.2) width:1 next:
       [TTSolidFillStyle styleWithColor:RGBACOLOR(0,0,0,0.5) next:nil]]];
+
   } else {
     return
       [TTImageStyle styleWithImageURL:nil defaultImage:nil
@@ -378,16 +380,22 @@
   TTShape* shape = nil;
   if (corner == 1) {
     shape = [TTRoundedRectangleShape shapeWithTopLeft:8 topRight:0 bottomRight:0 bottomLeft:0];
+
   } else if (corner == 2) {
     shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:8 bottomRight:0 bottomLeft:0];
+
   } else if (corner == 3) {
     shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:8 bottomLeft:0];
+
   } else if (corner == 4) {
     shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:0 bottomRight:0 bottomLeft:8];
+
   } else if (corner == 5) {
     shape = [TTRoundedRectangleShape shapeWithTopLeft:8 topRight:0 bottomRight:0 bottomLeft:8];
+
   } else if (corner == 6) {
     shape = [TTRoundedRectangleShape shapeWithTopLeft:0 topRight:8 bottomRight:8 bottomLeft:0];
+
   } else {
     shape = [TTRectangleShape shape];
   }
@@ -405,10 +413,14 @@
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:11]  color:RGBCOLOR(255, 255, 255)
                    minimumFontSize:8 shadowColor:RGBACOLOR(0,0,0,0.1) shadowOffset:CGSizeMake(-1,-1)
                    next:nil]]]]]];
+
   } else {
     return
       [TTShapeStyle styleWithShape:shape next:
-      [TTBevelBorderStyle styleWithHighlight:highlight shadow:shadowColor width:1 lightSource:125 next:
+      [TTBevelBorderStyle styleWithHighlight:highlight
+                                      shadow:shadowColor
+                                       width:1
+                                 lightSource:125 next:
       [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
       [TTPartStyle styleWithName:@"image" style:[self tabGridTabImage:state] next:
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:11]  color:self.linkTextColor
@@ -476,6 +488,7 @@
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:14]  color:TTSTYLEVAR(textColor)
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:1 alpha:0.8]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
+
   } else {
     return
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(5, 1, 1, 1) next:
@@ -501,6 +514,7 @@
       [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:13]  color:[UIColor whiteColor]
                    minimumFontSize:8 shadowColor:[UIColor colorWithWhite:0 alpha:0.5]
                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]];
+
   } else {
     return
       [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(0, 10, 0, 10) next:
@@ -580,6 +594,7 @@
 - (TTStyle*)pageDot:(UIControlState)state {
   if (state == UIControlStateSelected) {
     return [self pageDotWithColor:[UIColor whiteColor]];
+
   } else {
     return [self pageDotWithColor:RGBCOLOR(77, 77, 77)];
   }
@@ -648,8 +663,10 @@
   return
     [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(237, 239, 241)
                                color2:RGBCOLOR(206, 208, 212) next:
-    [TTFourBorderStyle styleWithTop:RGBCOLOR(187, 189, 190) right:nil bottom:nil left:nil width:1 next:
-    [TTFourBorderStyle styleWithTop:RGBCOLOR(255, 255, 255) right:nil bottom:nil left:nil width:1
+    [TTFourBorderStyle styleWithTop:RGBCOLOR(187, 189, 190)
+                              right:nil bottom:nil left:nil width:1 next:
+    [TTFourBorderStyle styleWithTop:RGBCOLOR(255, 255, 255)
+                              right:nil bottom:nil left:nil width:1
                        next:nil]]];
 }
 
@@ -659,8 +676,10 @@
   return
     [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(206, 208, 212)
                                color2:RGBCOLOR(184, 186, 190) next:
-    [TTFourBorderStyle styleWithTop:RGBCOLOR(161, 161, 161) right:nil bottom:nil left:nil width:1 next:
-    [TTFourBorderStyle styleWithTop:RGBCOLOR(230, 232, 235) right:nil bottom:nil left:nil width:1
+    [TTFourBorderStyle styleWithTop:RGBCOLOR(161, 161, 161)
+                              right:nil bottom:nil left:nil width:1 next:
+    [TTFourBorderStyle styleWithTop:RGBCOLOR(230, 232, 235)
+                              right:nil bottom:nil left:nil width:1
                        next:nil]]];
 }
 
@@ -991,6 +1010,12 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat) tableBannerViewHeight {
+  return 22;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)photoCaptionFont {
   return [UIFont boldSystemFontOfSize:12];
 }
@@ -1045,14 +1070,18 @@
   if (state & UIControlStateHighlighted || state & UIControlStateSelected) {
     if (color.value < 0.2) {
       return [color addHue:0 saturation:0 value:0.2];
+
     } else if (color.saturation > 0.3) {
       return [color multiplyHue:1 saturation:1 value:0.4];
+
     } else {
       return [color multiplyHue:1 saturation:2.3 value:0.64];
     }
+
   } else {
     if (color.saturation < 0.5) {
       return [color multiplyHue:1 saturation:1.6 value:0.97];
+
     } else {
       return [color multiplyHue:1 saturation:1.25 value:0.75];
     }
@@ -1064,6 +1093,7 @@
 - (UIColor*)toolbarButtonTextColorForState:(UIControlState)state {
   if (state & UIControlStateDisabled) {
     return [UIColor colorWithWhite:1 alpha:0.4];
+
   } else {
     return [UIColor whiteColor];
   }
@@ -1129,7 +1159,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)tableRefreshHeaderStatusFont {
-  return [UIFont boldSystemFontOfSize:13.0f];
+  return [UIFont boldSystemFontOfSize:14.0f];
 }
 
 
@@ -1141,13 +1171,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)tableRefreshHeaderTextColor {
-  return RGBCOLOR(87, 108, 137);
+  return RGBCOLOR(109, 128, 153);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)tableRefreshHeaderTextShadowColor {
-  return [UIColor colorWithWhite:0.9 alpha:1];
+  return [[UIColor whiteColor] colorWithAlphaComponent:0.9];
 }
 
 

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@
 
 #import "Three20UI/private/TTImageViewInternal.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
 // UI
 #import "Three20UI/TTImageViewDelegate.h"
 #import "Three20UI/UIViewAdditions.h"
@@ -27,6 +30,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+TT_FIX_CATEGORY_BUG(TTImageViewInternal)
+
 @implementation TTImageView (TTInternal)
 
 
@@ -67,11 +72,13 @@
 
       // If a width was specified, but no height, then resize the image with the correct aspect
       // ratio.
+
       } else if (frame.size.width && !frame.size.height) {
         self.height = floor((image.size.height/image.size.width) * frame.size.width);
 
       // If a height was specified, but no width, then resize the image with the correct aspect
       // ratio.
+
       } else if (frame.size.height && !frame.size.width) {
         self.width = floor((image.size.width/image.size.height) * frame.size.height);
       }

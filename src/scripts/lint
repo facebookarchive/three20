@@ -1,0 +1,331 @@
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+lint
+
+Validate style guidelines for a given source file.
+
+When run from Xcode, the linter will automatically lint all of the built source files
+and headers.
+
+Version 1.0
+
+History:
+1.0 - February 27, 2011: Includes a set of simple linters and a delinter for most lints.
+
+Created by Jeff Verkoeyen on 2011-02-27.
+Copyright 2009-2011 Facebook
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+
+import ConfigParser
+import logging
+import os
+import Paths
+import pickle
+import re
+import string
+import sys
+from optparse import OptionParser
+
+from Pbxproj import Pbxproj
+from Pbxproj import relpath
+
+gcopyrightyears = '2009-2011'
+gdivider = '///////////////////////////////////////////////////////////////////////////////////////////////////'
+
+# Program entry. The meat of this script happens in the lint() method below.
+def main():
+	usage = '''%prog filename
+
+The Three20 Linter.
+Verify Three20 style guidelines for source code.'''
+
+	parser = OptionParser(usage = usage)
+	parser.add_option("-d", "--delint", dest="delint",
+	                  help="Delint the source",
+	                  action="store_true")
+
+	(options, args) = parser.parse_args()
+	
+	if len(args) == 0:
+		parser.print_help()
+
+	enabled_for_projects = True
+	
+	# Allow third-party developers to disable the linter entirely. See config.template for
+	# more information in the "lint" section.
+	configpath = os.path.join(os.path.dirname(Paths.src_dir), 'config')
+	if os.path.exists(configpath):
+		config = ConfigParser.ConfigParser()
+		config.read(configpath)
+		enabled_for_projects = config.getboolean('lint', 'enabled_for_projects')
+
+	# If we're running the linter from Xcode, let's just process the project.
+	if 'PROJECT_FILE_PATH' in os.environ:
+		if enabled_for_projects:
+			lint_project(os.environ['PROJECT_FILE_PATH'], options)
+	else:
+		for filename in args:
+			lint(filename, options)
+
+
+# This filter makes it possible to set the line number on logging.error calls.
+class FilenameFilter(logging.Filter):
+	def __init__(self):
+		self.lineno = -1
+
+	def filter(self, record):
+		record.linenumber = self.lineno
+		return True
+
+
+def lint_project(project_path, options):
+	project = Pbxproj.get_pbxproj_by_name(project_path)
+	
+	tempdir = None
+	if os.environ['TEMP_FILES_DIR']:
+		tempdir = os.environ['TEMP_FILES_DIR']
+	
+	# We avoid relinting the same file over and over again by maintaining a mapping of filenames
+	# to modified times on disk. We store this information in the project's build directory and
+	# load it each time we run the linter for this project.
+	# Because we store the mtimes on a per project basis, we shouldn't run into any performance
+	# issues with a lint.dat file that's becoming completely massive.
+	mtimes = {}
+	
+	# Read the lint.dat file and unpickle it if we find it.
+	if tempdir:
+		lintdatpath = os.path.join(os.path.abspath(tempdir), 'lint.dat')
+		if os.path.exists(lintdatpath):
+			lintdatfile = open(lintdatpath, 'rb')
+			mtimes = pickle.load(lintdatfile)
+
+	# The linter script may have changed since we last ran this project, so we might have to
+	# force lint every file to update them because there may be new linters.
+	
+	# Assume that the linter hasn't been run for this project.
+	forcelint = True
+	
+	# Get this script's path
+	lintfilename = os.path.realpath(__file__)
+	
+	# Check the mtime.
+	mtime = os.path.getmtime(lintfilename)
+	if lintfilename in mtimes:
+		if mtime <= mtimes[lintfilename]:
+			# The lint script hasn't changed since we last ran this, so we don't have to force
+			# lint.
+			forcelint = False
+
+	# Store the linter's mtime for future runs.
+	mtimes[lintfilename] = mtime
+
+	#
+	# Get all of the "built" filenames in this project.
+	
+	# The "Compile sources" phase files
+	filenames = project.get_built_sources()
+	
+	# The "Copy headers" phase files
+	filenames = filenames + project.get_built_headers()
+	
+	# Iterate through and lint each of the files that have been modified since we last ran
+	# the linter, unless we're forcelinting, in which case we lint everything.
+	for filename in filenames:
+		mtime = os.path.getmtime(filename)
+		
+		# If the filename isn't in the lint data, we have no idea when it was last modified so
+		# we'll run the linter anyway.
+		if not forcelint and filename in mtimes:
+			# Is it older or unchanged?
+			if mtime <= mtimes[filename]:
+				# Yeah, let's skip it then.
+				continue
+
+		# The beef.
+		if lint(filename, options):
+			# Only update the last known modification time if there weren't any errors.
+			mtimes[filename] = mtime
+		else:
+			print "If you would like to disable the lint tool, please read the instructions in config.template in the root of the Three20 project"
+			if filename in mtimes:
+				del mtimes[filename]
+	
+	# Write out the lint data once we're done with this project. Thanks, pickle!
+	if tempdir:
+		lintdatfile = open(lintdatpath, 'wb')
+		pickle.dump(mtimes, lintdatfile)
+
+
+# Lint the given filename.
+def lint(filename, options):
+	logger = logging.getLogger()
+	
+	f = FilenameFilter()
+	logger.addFilter(f)
+
+	# Set up the warning logger format.
+	ch = logging.StreamHandler()
+	if 'PROJECT_FILE_PATH' in os.environ:
+		formatter = logging.Formatter(filename+":%(linenumber)s: warning: "+relpath(os.getcwd(), filename)+":%(linenumber)s: %(message)s")
+	else:
+		formatter = logging.Formatter(filename+":%(linenumber)s: %(message)s")
+	ch.setFormatter(formatter)
+	logger.addHandler(ch)
+
+	file = open(filename, 'r')
+	filedata = file.read()
+	
+	did_lint_cleanly = True
+	
+	# Everything is set up now, let's run through the linters!
+	if not lint_basics(filedata, filename, f, options.delint):
+		did_lint_cleanly = False
+
+	logger.removeFilter(f)
+	logger.removeHandler(ch)
+	
+	return did_lint_cleanly
+	
+
+# Basic lint tests that only look at one line's information.
+# If isdelinting is True, this method will try to fix as many lint issues as it can and then
+# write the results out to disk.
+def lint_basics(filedata, filename, linenofilter, isdelinting = False):
+	logger = logging.getLogger()
+
+	lines = string.split(filedata, "\n")
+	linenofilter.lineno = 1
+
+	prevline = None
+	
+	did_lint_cleanly = True
+	
+	nwarningsfixed = 0
+	nwarnings = 0
+	if isdelinting:
+		newfilelines = []
+	
+	for line in lines:
+		# Check line lengths.
+		if len(line) > 100:
+			did_lint_cleanly = False
+			nwarnings = nwarnings + 1
+			
+			# This is not something we can fix with the delinter.
+			if isdelinting:
+				logger.error('I don\'t know how to split this line up.')
+			else:
+				logger.error('Line length > 100')
+
+		# Check method dividers.
+		if not re.search(r'.h$', filename) and re.search(r'^[-+][ ]*\([\w\s*]+\)', line):
+			if prevline != gdivider and prevline != ' */':
+				did_lint_cleanly = False
+				nwarnings = nwarnings + 1
+			
+				# This is not something we can fix with the delinter.
+				if isdelinting:
+					if re.match(r'/+', prevline):
+						newfilelines.pop()
+					newfilelines.append(gdivider)
+					nwarningsfixed = nwarningsfixed + 1
+				else:
+					logger.error('This method is missing a correct divider before it')
+
+		# Properties
+		if re.search(r'^@property', line):
+			if re.search(r'(NSString|NSArray|NSDictionary|NSSet)[ ]*\*', line) and not re.search(r'copy|readonly', line):
+				nwarnings = nwarnings + 1
+				if isdelinting:
+					line = re.sub(r'\bretain\b', r'copy', line)
+					nwarningsfixed = nwarningsfixed + 1
+				else:
+					did_lint_cleanly = False
+					logger.error('Objects that have mutable subclasses, such as NSString, should be copied, not retained')
+				
+			if re.search(r'^@property\(', line):
+				nwarnings = nwarnings + 1
+				if isdelinting:
+					line = line.rstrip(' \t')
+					nwarningsfixed = nwarningsfixed + 1
+				else:
+					did_lint_cleanly = False
+					logger.error('Must be a space after the @property declarator')
+
+		# Trailing whitespace
+		if re.search('[ \t]+$', line):
+			nwarnings = nwarnings + 1
+			if isdelinting:
+				line = line.rstrip(' \t')
+				nwarningsfixed = nwarningsfixed + 1
+			else:
+				did_lint_cleanly = False
+				logger.error('Trailing whitespace')
+
+		# Spaces after logical constructs
+		if re.search('(if|while|for)\(', line, re.IGNORECASE):
+			nwarnings = nwarnings + 1
+			if isdelinting:
+				line = re.sub(r'(if|while|for)\(', r'\1 (', line)
+				nwarningsfixed = nwarningsfixed + 1
+			else:
+				did_lint_cleanly = False
+				logger.error('Missing space after logical construct')
+
+		# Boolean checks against non-boolean objects
+		# This test is really hard to do without knowing the type of the object.
+		#if re.search('[^!]!(?!TTIs|[a-z0-9_.]*\.is|is|_is|has|_has|\[|self\.is|[a-z0-9_]+\.)[a-z0-9_]+', line, re.IGNORECASE):
+		#	did_lint_cleanly = False
+		#	logger.error('Use if (nil == value) instead of boolean checks for pointers')
+
+		# Else statements must have one empty line before them
+		if re.search('}[ ]+else', line, re.IGNORECASE) and prevline != '' and not re.search(r'^[ ]*//', prevline):
+			nwarnings = nwarnings + 1
+			if isdelinting:
+				newfilelines.append('')
+				nwarningsfixed = nwarningsfixed + 1
+			else:
+				did_lint_cleanly = False
+				logger.error('There must be one empty line before an else statement')
+
+		# Copyright statement for Facebook
+		match = re.match('\/\/ Copyright ([0-9]+-[0-9]+) Facebook', line, re.IGNORECASE)
+		if match:
+			(copyrightyears, ) = match.groups()
+			if copyrightyears != gcopyrightyears:
+				nwarnings = nwarnings + 1
+				if isdelinting:
+					line = re.sub(r'([0-9]+-[0-9]+)', gcopyrightyears, line)
+					nwarningsfixed = nwarningsfixed + 1
+				else:
+					did_lint_cleanly = False
+					logger.error('The copyright statement on this file is outdated. Should be 2009-2011')
+
+		if isdelinting:
+			newfilelines.append(line)
+
+		prevline = line
+		linenofilter.lineno = linenofilter.lineno + 1
+
+	if isdelinting and nwarnings > 0:
+		newfiledata = '\n'.join(newfilelines)
+		file = open(filename, 'w')
+		file.write(newfiledata)
+
+	return did_lint_cleanly
+
+if __name__ == "__main__":
+	sys.exit(main())

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -36,6 +36,9 @@ static const NSInteger kMaxBadgeNumber = 99;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface TTLauncherButton()
 
+/**
+ * Adds the badge view to this button and sets its display values.
+ */
 - (void)updateBadge;
 
 @end
@@ -103,7 +106,7 @@ static const NSInteger kMaxBadgeNumber = 99;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateBadge {
-  if (!_badge && _item.badgeNumber) {
+  if (_badge == nil && _item.badgeValue != nil) {
     _badge = [[TTLabel alloc] init];
     _badge.style = TTSTYLE(largeBadge);
     _badge.backgroundColor = [UIColor clearColor];
@@ -111,16 +114,23 @@ static const NSInteger kMaxBadgeNumber = 99;
     [self addSubview:_badge];
   }
 
-  if (_item.badgeNumber > 0) {
-    if (_item.badgeNumber <= kMaxBadgeNumber) {
-      _badge.text = [NSString stringWithFormat:@"%d", _item.badgeNumber];
+  NSString *badgeText = nil;
+  NSString *badgeValue = _item.badgeValue;
+
+  if (badgeValue != nil) {
+    NSRange range = [badgeValue rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet]
+                                                         invertedSet]];
+
+    if (range.location == NSNotFound && _item.badgeNumber > kMaxBadgeNumber) {
+      badgeText = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
 
     } else {
-      _badge.text = [NSString stringWithFormat:@"%d+", kMaxBadgeNumber];
+      badgeText = badgeValue;
     }
   }
 
-  _badge.hidden = _item.badgeNumber <= 0;
+  _badge.text = badgeText;
+  _badge.hidden = badgeValue == nil;
   [_badge sizeToFit];
   [self setNeedsLayout];
 }
@@ -182,7 +192,9 @@ static const NSInteger kMaxBadgeNumber = 99;
   if (_badge || _closeButton) {
     CGRect imageRect = [self rectForImage];
     if (_badge) {
-      _badge.origin = CGPointMake((imageRect.origin.x + imageRect.size.width) - (floor(_badge.width*0.7)),
+      _badge.origin = CGPointMake((imageRect.origin.x
+                                   + imageRect.size.width)
+                                  - (floor(_badge.width*0.7)),
                                   imageRect.origin.y - (floor(_badge.height*0.25)));
     }
 
@@ -222,6 +234,7 @@ static const NSInteger kMaxBadgeNumber = 99;
     if (dragging) {
       self.transform = CGAffineTransformMakeScale(1.4, 1.4);
       self.alpha = 0.7;
+
     } else {
       self.transform = CGAffineTransformIdentity;
       self.alpha = 1;

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@
 - (void)setTitle:(NSString*)title forState:(UIControlState)state;
 
 - (NSString*)imageForState:(UIControlState)state;
-- (void)setImage:(NSString*)title forState:(UIControlState)state;
+- (void)setImage:(NSString*)imageURL forState:(UIControlState)state;
 
 - (TTStyle*)styleForState:(UIControlState)state;
 - (void)setStyle:(TTStyle*)style forState:(UIControlState)state;

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,6 +27,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+  [TTExtensionLoader loadAllExtensions];
+
   TTDefaultCSSStyleSheet* styleSheet = [[TTDefaultCSSStyleSheet alloc] init];
   [styleSheet addStyleSheetFromDisk:TTPathForBundleResource(@"stylesheet.css")];
   [TTStyleSheet setGlobalStyleSheet:styleSheet];
@@ -39,6 +41,9 @@
 
   [map from:@"*" toViewController:[TTWebController class]];
   [map from:kAppRootURLPath toViewController:[TTFacebookSearchFeedViewController class]];
+
+  [TTExtensionsController registerUrlPathsWithNavigator: navigator
+                                                 prefix: kAppPrefixURLPath];
 
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:kAppRootURLPath]];

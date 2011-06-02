@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -131,7 +131,8 @@
         [self addNode:node];
       }
 
-      NSRange subSearchRange = NSMakeRange(startRange.location, string.length - startRange.location);
+      NSRange subSearchRange = NSMakeRange(startRange.location,
+                                           string.length - startRange.location);
       NSRange endRange = [string rangeOfString:@" " options:NSCaseInsensitiveSearch
                                  range:subSearchRange];
       if (endRange.location == NSNotFound) {
@@ -183,11 +184,11 @@
     node.className =  [attributeDict objectForKey:@"class"];
     [self pushNode:node];
 
-  } else if ([tag isEqualToString:@"b"]) {
+  } else if ([tag isEqualToString:@"b"] || [tag isEqualToString:@"strong"]) {
     TTStyledBoldNode* node = [[[TTStyledBoldNode alloc] init] autorelease];
     [self pushNode:node];
 
-  } else if ([tag isEqualToString:@"i"]) {
+  } else if ([tag isEqualToString:@"i"] || [tag isEqualToString:@"em"]) {
     TTStyledItalicNode* node = [[[TTStyledItalicNode alloc] init] autorelease];
     [self pushNode:node];
 
@@ -237,7 +238,9 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSData *)parser:(NSXMLParser *)parser resolveExternalEntityName:(NSString *)entityName systemID:(NSString *)systemID {
+- (NSData *)          parser:(NSXMLParser *)parser
+   resolveExternalEntityName:(NSString *)entityName
+                    systemID:(NSString *)systemID {
   static NSDictionary* entityTable = nil;
   if (!entityTable) {
     entityTable = [[NSDictionary alloc] initWithObjectsAndKeys:

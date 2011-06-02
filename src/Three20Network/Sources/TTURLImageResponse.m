@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 #import "Three20Network/TTURLImageResponse.h"
 
 // Network
+#import "Three20Network/TTErrorCodes.h"
 #import "Three20Network/TTURLRequest.h"
 #import "Three20Network/TTURLCache.h"
 
@@ -84,8 +85,9 @@
       _image = [image retain];
 
     } else {
-      return [NSError errorWithDomain:TT_ERROR_DOMAIN code:TT_EC_INVALID_IMAGE
-                      userInfo:nil];
+      return [NSError errorWithDomain:kTTNetworkErrorDomain
+                                 code:kTTNetworkErrorCodeInvalidImage
+                             userInfo:nil];
     }
   }
 

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,6 +59,13 @@ static const CGFloat kHighlightTextPadding = 20.0f;
     _textLabel.shadowOffset = CGSizeMake(1, 1);
 
     [self addSubview:_textLabel];
+
+    CGRect coverFrame = [UIApplication sharedApplication].statusBarFrame;
+    _statusBarCover = [[UIWindow alloc] initWithFrame:coverFrame];
+    _statusBarCover.backgroundColor = [UIColor colorWithWhite:0.0 alpha:kHighlightOverlayAlpha];
+    _statusBarCover.windowLevel = UIWindowLevelStatusBar;
+    _statusBarCover.alpha = 0.0;
+    _statusBarCover.hidden = NO;
   }
 
   return self;
@@ -68,6 +75,7 @@ static const CGFloat kHighlightTextPadding = 20.0f;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_textLabel);
+  TT_RELEASE_SAFELY(_statusBarCover);
   self.parentView = nil;
 
   [super dealloc];
@@ -93,21 +101,22 @@ static const CGFloat kHighlightTextPadding = 20.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutLabel {
-  CGFloat width = self.bounds.size.width - 2 * kHighlightTextPadding;
+  CGSize superviewSize = self.superview.bounds.size;
+  CGFloat width = superviewSize.width - 2 * kHighlightTextPadding;
   CGFloat height = [_textLabel.text sizeWithFont:_textLabel.font
-                               constrainedToSize:CGSizeMake(width, self.bounds.size.height)].height;
+                               constrainedToSize:CGSizeMake(width, superviewSize.height)].height;
 
   // If the highlighted rect is above center, put the text below it; otherwise, above it.
   CGFloat y = 0.0;
-  if (_highlightRect.origin.y + (_highlightRect.size.height / 2) < self.bounds.size.height / 2) {
+  if (_highlightRect.origin.y + (_highlightRect.size.height / 2) < superviewSize.height / 2) {
     y = _highlightRect.origin.y + _highlightRect.size.height + kHighlightTextPadding;
+
   } else {
     y = _highlightRect.origin.y - height - kHighlightTextPadding;
   }
 
   _textLabel.frame = CGRectMake(kHighlightTextPadding, y, width, height);
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,6 +145,13 @@ static const CGFloat kHighlightTextPadding = 20.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setAlpha:(CGFloat)alpha {
+  [super setAlpha:alpha];
+  _statusBarCover.alpha = alpha;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)appear:(BOOL)animated {
   // The expanded frame needs to be 3.5 times the original size, and the expansion needs to emanate
   // from the same center as the highlighted rect
@@ -159,8 +175,11 @@ static const CGFloat kHighlightTextPadding = 20.0f;
   }
   self.alpha = 1.0;
   self.frame = self.superview.bounds;
+  _statusBarCover.alpha = 1.0;
+
   if (animated) {
     [UIView commitAnimations];
+
   } else {
     _textLabel.alpha = 1.0;
   }

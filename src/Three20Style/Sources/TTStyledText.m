@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -42,6 +42,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface TTStyledText()
 
+/**
+ * Cancels all network requests.
+ */
 - (void)stopLoadingImages;
 
 @end
@@ -390,6 +393,7 @@
 - (void)addChild:(TTStyledNode*)child {
   if (!_rootNode) {
     self.rootNode = child;
+
   } else {
     TTStyledNode* previousNode = _rootNode;
     TTStyledNode* node = _rootNode.nextSibling;
@@ -412,9 +416,11 @@
 - (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)insertIndex {
   if (!_rootNode) {
     self.rootNode = child;
+
   } else if (insertIndex == 0) {
     child.nextSibling = _rootNode;
     self.rootNode = child;
+
   } else {
     NSInteger i = 0;
     TTStyledNode* previousNode = _rootNode;

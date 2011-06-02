@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -70,24 +70,31 @@
     for (TTTab* tab in self.tabViews) {
       if (column == 0) {
         [tab setStylesWithSelector:@"tabGridTabTopLeft:"];
+
       } else if (column == columnCount-1) {
         [tab setStylesWithSelector:@"tabGridTabTopRight:"];
+
       } else if (column == cellCount - columnCount) {
         [tab setStylesWithSelector:@"tabGridTabBottomLeft:"];
+
       } else if (column == cellCount - 1) {
         [tab setStylesWithSelector:@"tabGridTabBottomRight:"];
+
       } else {
         [tab setStylesWithSelector:@"tabGridTabCenter:"];
       }
       ++column;
     }
+
   } else {
     int column = 0;
     for (TTTab* tab in self.tabViews) {
       if (column == 0) {
         [tab setStylesWithSelector:@"tabGridTabLeft:"];
+
       } else if (column == columnCount-1) {
         [tab setStylesWithSelector:@"tabGridTabRight:"];
+
       } else {
         [tab setStylesWithSelector:@"tabGridTabCenter:"];
       }
@@ -104,6 +111,7 @@
     layout.padding = 1;
     layout.columnCount = [self columnCount];
     return [layout layoutSubviews:self.tabViews forView:self];
+
   } else {
     return self.frame.size;
   }

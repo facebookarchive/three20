@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -42,6 +42,11 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Additions.
+ */
+TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
+
 @implementation UIViewController (TTCategory)
 
 
@@ -116,6 +121,7 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
                                          repeats: YES] retain];
     }
 #if TTDFLAG_CONTROLLERGARBAGECOLLECTION
+
   } else {
     TTDCONDITIONLOG(TTDFLAG_CONTROLLERGARBAGECOLLECTION,
                     @"Not adding a common controller.");
@@ -321,8 +327,12 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showBars:(BOOL)show animated:(BOOL)animated {
 #ifdef __IPHONE_3_2
-	if ([[UIApplication sharedApplication] respondsToSelector:@selector(setStatusBarHidden:withAnimation:)])
-		[[UIApplication sharedApplication] setStatusBarHidden:!show withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
+	if ([[UIApplication sharedApplication]
+       respondsToSelector:@selector(setStatusBarHidden:withAnimation:)])
+		[[UIApplication sharedApplication] setStatusBarHidden:!show
+                                            withAnimation:(animated
+                                                           ? UIStatusBarAnimationFade
+                                                           : UIStatusBarAnimationNone)];
 	else
 #endif
 		[[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];

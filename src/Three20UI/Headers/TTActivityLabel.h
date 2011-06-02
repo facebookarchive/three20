@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,7 +34,6 @@ typedef enum {
   TTActivityLabelStyle      _style;
 
   TTView*                   _bezelView;
-  UIView*                   _backgroundView;
   UIProgressView*           _progressView;
   UIActivityIndicatorView*  _activityIndicator;
   UILabel*                  _label;
@@ -46,9 +45,8 @@ typedef enum {
 
 @property (nonatomic, readonly) TTActivityLabelStyle style;
 
-@property (nonatomic, retain)   UIView*   backgroundView;
-@property (nonatomic, assign)   NSString* text;
-@property (nonatomic, assign)   UIFont*   font;
+@property (nonatomic, copy)     NSString* text;
+@property (nonatomic, retain)   UIFont*   font;
 
 @property (nonatomic)           float     progress;
 @property (nonatomic)           BOOL      isAnimating;
