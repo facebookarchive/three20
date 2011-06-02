@@ -236,7 +236,6 @@
   [self popNode];
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData *)parser:(NSXMLParser *)parser resolveExternalEntityName:(NSString *)entityName systemID:(NSString *)systemID {
   static NSDictionary* entityTable = nil;

@@ -265,24 +265,20 @@ static const NSTimeInterval kGarbageCollectionInterval = 20;
 	if(self.tabBarController) {
 		
 		/// If there is a tabbar interface
-		NSInteger selectedIndex = self.tabBarController.selectedIndex;
 		
-		UIViewController *visibleViewController = nil;
+		UIViewController *tabBarVisibleViewController = ((UINavigationController *)self.tabBarController.selectedViewController).visibleViewController;
 		
-		if(selectedIndex < 4) {
-			visibleViewController = ((UINavigationController *)self.tabBarController.selectedViewController).visibleViewController;
-		}
-		else {
-			visibleViewController = self.tabBarController.moreNavigationController.visibleViewController;
-		}
+		UIViewController *moreVisibleViewController = self.tabBarController.moreNavigationController.visibleViewController;
 		
-		returnValue = (visibleViewController == viewController);
+		/// Is view controller visible on tabbar or under more view controller?
+		returnValue = ((viewController == tabBarVisibleViewController) || (viewController == moreVisibleViewController));
 	}
 	else if(self.navigationController) {
 		/// No tabbar, but navigation controller
 		returnValue = (self.navigationController.visibleViewController == viewController);
 	}
 	else {
+		/// No parent view controller at all?
 		returnValue = (viewController.view.superview != nil);
 	}
 	

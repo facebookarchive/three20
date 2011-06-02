@@ -15,7 +15,7 @@
 //
 
 // Network
-#import "Three20Network/TTURLResponse.h"
+#import "Three20Network/TTURLBaseResponse.h"
 
 /**
  * An implementation of the TTURLResponse protocal for UIImage objects.
@@ -24,7 +24,7 @@
  * If it receives an NSData object, it updates the image cache.
  * If the image wasn't in the cache, it stores the downloaded image in the cache.
  */
-@interface TTURLImageResponse : NSObject <TTURLResponse> {
+@interface TTURLImageResponse : TTURLBaseResponse {
   UIImage* _image;
 }
 

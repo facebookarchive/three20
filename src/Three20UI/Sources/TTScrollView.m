@@ -1318,8 +1318,8 @@ static const CGFloat kFrameDuration = 1.0/40.0;
     }
 
     // Declare common.
-    UIEdgeInsets pageEdges;
-    UIEdgeInsets newEdges;
+    UIEdgeInsets pageEdges = UIEdgeInsetsZero;
+    UIEdgeInsets newEdges = UIEdgeInsetsZero;
 
     UIEdgeInsets edges = [self squareTouchEdges:_touchEdges];
     CGFloat left = _pageStartEdges.left + (edges.left - _touchStartEdges.left);

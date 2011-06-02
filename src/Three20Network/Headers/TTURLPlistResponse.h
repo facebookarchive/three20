@@ -15,12 +15,11 @@
 //
 
 // Network
-#import "Three20Network/TTURLResponse.h"
-
+#import "Three20Network/TTURLBaseResponse.h"
 /**
  * An implementation of the TTURLResponse protocol for objects parsed from plist XML format.
  */
-@interface TTURLPlistResponse : NSObject <TTURLResponse> {
+@interface TTURLPlistResponse : TTURLBaseResponse {
 	id _data;
 }
 

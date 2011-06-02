@@ -25,6 +25,10 @@
 @interface TTViewController : TTNavigatorViewController {
 @protected
   TTSearchDisplayController* _searchController;
+
+@private
+	TTViewController*		_customModalViewController;
+	UIView*					_modalOverlayView;
 }
 
 /**
@@ -38,11 +42,42 @@
 @property (nonatomic, retain) TTTableViewController* searchViewController;
 
 /**
+ * View controller presented with custom presentation style
+ */
+@property (nonatomic, readonly) TTViewController* customModalViewController;
+
+/**
+ * View controller's parent controller. Is set when view controller is presented
+ * with presentCustomModalViewController:animated:.
+ */
+@property (nonatomic, readonly) TTViewController* customParentViewController;
+
+/**
  * Forcefully initiates garbage collection. You may call this in your didReceiveMemoryWarning
  * message if you are worried about garbage collection memory consumption.
  *
  * See Articles/UI/GarbageCollection.mdown for a more detailed discussion.
  */
 + (void)doGarbageCollection;
+
+/**
+ * Allows to present view controller with custom presentation style.
+ * Controller's view is embedded to fullscreen sized view with black semi transparent background
+ * which is added as subview of application's key window.
+ * Only supported animation is "Cross Dissolve", value in modalTransitionStyle and modalPresentationStyle
+ * is ignored.
+ */
+- (void)presentCustomModalViewController:(TTViewController*)modalViewController animated:(BOOL)animated;
+
+/**
+ * Dismisses view controller previously presented with presentCustomModalViewController:animated:
+ * Works very same as UIViewController's dismissModalViewControllerAnimated:
+ */
+- (void)dismissCustomModalViewControllerAnimated:(BOOL)animated;
+
+/**
+ * Informs parent that custom modal view has disappeared
+ */
+- (void)didDismissCustomModalViewControllerAnimated:(BOOL)animated;
 
 @end

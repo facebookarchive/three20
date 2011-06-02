@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Three20UICommon-Xcode3.2.2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Three20UICommon-Xcode3.2.5.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
+		</dict>
+		<key>Three20UICommonUnitTests-Xcode3.2.2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>Three20UICommonUnitTests-Xcode3.2.5.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Three20UICommonUnitTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>665A53601264D54B0032D0BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>665A53771264D54B0032D0BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>665A53D01264D6550032D0BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>665A53E71264D6550032D0BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BEF31F390F352DF5000DE5D2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB9E6C6110B6A8F800DE563C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -100,9 +100,9 @@ static const CGFloat kHPadding  = 10;
   _subtitleView.size = [_subtitleView sizeThatFits:CGSizeMake(self.width - kHPadding*2, 0)];
   [_titleView sizeToFit];
   [_imageView sizeToFit];
-
+	
   _titleView.width = self.width;
-  _titleView.height = self.height;
+  //_titleView.height = self.height;
 	
   CGFloat maxHeight = _imageView.height + _titleView.height + _subtitleView.height
                       + kVPadding1 + kVPadding2;

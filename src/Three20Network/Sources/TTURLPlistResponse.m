@@ -40,6 +40,8 @@
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
 			   data:(id)data {
 	
+	[super request:request processResponse:response data:data];
+	
 	/*if ([data isKindOfClass:[NSData class]]) {
 		_data = [data retain];
 	}*/

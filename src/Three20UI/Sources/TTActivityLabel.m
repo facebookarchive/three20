@@ -179,7 +179,7 @@ static CGFloat kProgressMargin  = 6;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  CGSize textSize = [_label.text sizeWithFont:_label.font];
+	CGSize textSize = (_label.text != nil) ? [_label.text sizeWithFont:_label.font] : CGSizeZero;
 
   CGFloat indicatorSize = 0;
   [_activityIndicator sizeToFit];

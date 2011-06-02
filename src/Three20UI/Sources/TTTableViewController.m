@@ -91,8 +91,16 @@ static const CGFloat kBannerViewHeight = 22;
 - (void)dealloc {
   _tableView.delegate = nil;
   _tableView.dataSource = nil;
-  TT_RELEASE_SAFELY(_tableDelegate);
-  TT_RELEASE_SAFELY(_dataSource);
+
+  // Avoid infinite loop when delegate or datasource points to self
+  if(_tableDelegate != (id)self) {
+	TT_RELEASE_SAFELY(_tableDelegate);
+  }
+  
+  if(_dataSource != (id)self) {
+    TT_RELEASE_SAFELY(_dataSource);
+  }
+	
   TT_RELEASE_SAFELY(_tableView);
   TT_RELEASE_SAFELY(_loadingView);
   TT_RELEASE_SAFELY(_errorView);
@@ -125,8 +133,12 @@ static const CGFloat kBannerViewHeight = 22;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateTableDelegate {
   if (!_tableView.delegate) {
+	  
     [_tableDelegate release];
-    _tableDelegate = [[self createDelegate] retain];
+	
+	  id tableDelegate = [self createDelegate];
+	  
+	  _tableDelegate = (tableDelegate != self) ? [tableDelegate retain] : tableDelegate;
 
     // You need to set it to nil before changing it or it won't have any effect
     _tableView.delegate = nil;
@@ -227,7 +239,14 @@ static const CGFloat kBannerViewHeight = 22;
   [super viewDidUnload];
   _tableView.delegate = nil;
   _tableView.dataSource = nil;
-  TT_RELEASE_SAFELY(_tableDelegate);
+	
+	if(_tableDelegate != (id)self) {
+		TT_RELEASE_SAFELY(_tableDelegate);
+	}
+	else {
+		_tableDelegate = nil;
+	}
+
   TT_RELEASE_SAFELY(_tableView);
   [_tableBannerView removeFromSuperview];
   TT_RELEASE_SAFELY(_tableBannerView);

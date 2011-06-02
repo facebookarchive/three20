@@ -30,4 +30,21 @@
 	return deviceType;
 }
 
+- (NSString *) osRelease {
+	
+	size_t strSize;
+	
+	sysctlbyname("kern.osrelease", NULL, &strSize, NULL, 0); 
+	
+	char *osRelease = malloc(strSize);
+	
+	sysctlbyname("kern.osrelease", osRelease, &strSize, NULL, 0);
+	
+	NSString *osType = [NSString stringWithCString: osRelease encoding: NSUTF8StringEncoding];
+	
+	free(osRelease);
+	
+	return osType;
+}
+
 @end

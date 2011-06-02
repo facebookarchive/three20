@@ -13,4 +13,6 @@
 
 - (NSString *) deviceType;
 
+- (NSString *) osRelease;
+
 @end
