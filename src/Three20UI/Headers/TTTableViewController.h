@@ -48,6 +48,8 @@
 
 /**
  * A view that is displayed as a banner at the bottom of the table view.
+ *
+ * This property should be set within viewDidLoad.
  */
 @property (nonatomic, retain) UIView* tableBannerView;
 
@@ -102,6 +104,8 @@
 
 /**
  * Sets the view that is displayed at the bottom of the table view with an optional animation.
+ *
+ * This method should be called within viewDidLoad.
  */
 - (void)setTableBannerView:(UIView*)tableBannerView animated:(BOOL)animated;
 
