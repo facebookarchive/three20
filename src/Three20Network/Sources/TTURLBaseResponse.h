@@ -13,4 +13,6 @@
 	NSDictionary *_allHTTPHeaderFields;
 }
 
+@property (nonatomic, readonly, retain) NSDictionary *responseHeaders;
+
 @end

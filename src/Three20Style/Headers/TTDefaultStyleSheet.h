@@ -33,6 +33,7 @@
 // Tables
 @property (nonatomic, readonly) UIColor*  tablePlainBackgroundColor;
 @property (nonatomic, readonly) UIColor*  tableGroupedBackgroundColor;
+@property (nonatomic, readonly) UIColor*  tableSeparatorColor;
 @property (nonatomic, readonly) UIColor*  searchTableBackgroundColor;
 @property (nonatomic, readonly) UIColor*  searchTableSeparatorColor;
 
@@ -87,7 +88,7 @@
 
 @property (nonatomic, readonly) UITableViewCellSelectionStyle tableSelectionStyle;
 @property (nonatomic, readonly) UITableViewCellSeparatorStyle tableSeparatorStyle;
-
+@property (nonatomic, readonly) UITableViewCellSeparatorStyle searchTableSeparatorStyle;
 - (TTStyle*)selectionFillStyle:(TTStyle*)next;
 
 - (TTStyle*)toolbarButtonForState:(UIControlState)state shape:(TTShape*)shape
