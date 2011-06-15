@@ -22,6 +22,26 @@ static const NSInteger kMaxConcurrentLoads = 3;
 		return [super sendRequest: request];
 	}
 	
+	/// Inform delegates that request did start loading
+	for (id<TTURLRequestDelegate> delegate in request.delegates) {
+		if ([delegate respondsToSelector:@selector(requestDidStartLoad:)]) {
+			[delegate requestDidStartLoad:request];
+		}
+	}
+	
+	// If the url is empty, fail.
+	if (!request.urlPath.length) {
+		NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadURL userInfo:nil];
+		for (id<TTURLRequestDelegate> delegate in request.delegates) {
+			if ([delegate respondsToSelector:@selector(request:didFailLoadWithError:)]) {
+				[delegate request:request didFailLoadWithError:error];
+			}
+		}
+		return NO;
+	}
+	
+	request.isLoading = YES;
+	
 	/// Load request with DownloadLoader
 	TTDownloadRequestLoader *loader = nil;
 	

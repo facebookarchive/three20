@@ -35,6 +35,7 @@
 
 // - Responses
 #import "Three20Network/TTURLResponse.h"
+#import "Three20Network/TTURLBaseResponse.h"
 #import "Three20Network/TTURLDataResponse.h"
 #import "Three20Network/TTURLImageResponse.h"
 #import "Three20Network/TTURLPlistResponse.h"

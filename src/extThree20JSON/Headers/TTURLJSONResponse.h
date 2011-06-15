@@ -15,13 +15,12 @@
 //
 
 // Network
-#import "Three20Network/TTURLResponse.h"
 #import "Three20Network/TTURLBaseResponse.h"
 
 /**
- * An implementation of the TTURLResponse protocal for turning JSON responses into NSObjects.
+ * An implementation of the TTURLResponse protocol for turning JSON responses into NSObjects.
  */
-@interface TTURLJSONResponse : TTURLBaseResponse <TTURLResponse> {
+@interface TTURLJSONResponse : TTURLBaseResponse {
   id _rootObject;
 }
 

@@ -16,6 +16,8 @@
 
 #import "Three20UINavigator/TTNavigatorViewController.h"
 
+#define TT_VIEW_CONTROLLER
+
 @class TTTableViewController;
 @class TTSearchDisplayController;
 
