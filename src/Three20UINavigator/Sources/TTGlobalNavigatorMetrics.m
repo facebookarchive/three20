@@ -92,7 +92,7 @@ CGFloat TTBarsHeight() {
     return frame.size.height + TT_ROW_HEIGHT;
 
   } else {
-    return frame.size.width + TT_LANDSCAPE_TOOLBAR_HEIGHT;
+    return frame.size.width + (TTIsPad() ? TT_ROW_HEIGHT : TT_LANDSCAPE_TOOLBAR_HEIGHT);
   }
 }
 
