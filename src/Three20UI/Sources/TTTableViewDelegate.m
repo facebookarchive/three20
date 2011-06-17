@@ -52,7 +52,8 @@
 @implementation TTTableViewDelegate
 
 @synthesize controller = _controller;
-
+@synthesize forwardScrollViewDelegateMessagesToController =
+    _forwardScrollViewDelegateMessagesToController;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,6 +193,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+  if (_forwardScrollViewDelegateMessagesToController &&
+      [_controller respondsToSelector:@selector(scrollViewShouldScrollToTop:)]) {
+    if (![(NSObject<UIScrollViewDelegate> *)_controller scrollViewShouldScrollToTop:scrollView]) {
+        return NO;
+    }
+  }
   [TTURLRequestQueue mainQueue].suspended = YES;
   return YES;
 }
@@ -199,12 +206,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+    if (_forwardScrollViewDelegateMessagesToController &&
+        [_controller respondsToSelector:@selector(scrollViewDidScrollToTop:)]) {
+        return [(NSObject<UIScrollViewDelegate> *)_controller scrollViewDidScrollToTop:scrollView];
+    }
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (_forwardScrollViewDelegateMessagesToController &&
+        [_controller respondsToSelector:@selector(scrollViewDidScroll:)]) {
+        return [(NSObject<UIScrollViewDelegate> *)_controller scrollViewDidScroll:scrollView];
+    }
+
   if (_controller.menuView) {
     [_controller hideMenu:YES];
   }
@@ -213,6 +229,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (_forwardScrollViewDelegateMessagesToController &&
+        [_controller respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
+        return [(NSObject<UIScrollViewDelegate> *)_controller
+                scrollViewWillBeginDragging:scrollView];
+    }
+
   [TTURLRequestQueue mainQueue].suspended = YES;
 
   [_controller didBeginDragging];
@@ -227,6 +249,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (_forwardScrollViewDelegateMessagesToController &&
+        [_controller respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
+        return [(NSObject<UIScrollViewDelegate> *)_controller
+                scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    }
+
   if (!decelerate) {
     [TTURLRequestQueue mainQueue].suspended = NO;
   }
@@ -237,6 +265,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (_forwardScrollViewDelegateMessagesToController &&
+        [_controller respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+        return [(NSObject<UIScrollViewDelegate> *)_controller
+                scrollViewDidEndDecelerating:scrollView];
+    }
+
   [TTURLRequestQueue mainQueue].suspended = NO;
 }
 

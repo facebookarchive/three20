@@ -39,10 +39,12 @@
 @interface TTTableViewDelegate : NSObject <UITableViewDelegate> {
   TTTableViewController*  _controller;
   NSMutableDictionary*    _headers;
+  BOOL _forwardScrollViewDelegateMessagesToController;
 }
 
 - (id)initWithController:(TTTableViewController*)controller;
 
 @property (nonatomic, readonly) TTTableViewController* controller;
+@property (nonatomic, assign) BOOL forwardScrollViewDelegateMessagesToController;
 
 @end
