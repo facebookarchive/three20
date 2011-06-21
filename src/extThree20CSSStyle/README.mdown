@@ -83,6 +83,12 @@ style sheet with all of the default TTDefaultStyleSheet values. You can then com
 style sheet upon this one using addStyleSheetFromDisk:. For an example of this in action,
 see TTFacebook in the `three20/samples` directory.
 
+### The Rule Set Object
+
+The Rule Set Object is an model that store data for each CSS Selector parsed. This object
+contains the CSS properties as Objective-C objects ready to use on your application.
+See the documentation for TTCSSRuleSet and TTCSSTextShadowModel for more information.
+
 
 Known Limitations
 -----------------
@@ -173,7 +179,25 @@ Add the following code in your app delegate's `applicationDidFinishLaunching`.
     
     TT_RELEASE_SAFELY(styleSheet);
 
-Now you can freely customize the styles of your app using `stylesheet.css`. You can freely
-add new styles to the CSS, but with the current design you will also need to add an accessor
-to a custom object that inherits from `TTDefaultCSSStyleSheet`. See the source for
-`TTDefaultCSSStyleSheet` for examples of how to interact with the style sheet object.
+Now you can freely customize the styles of your app using `stylesheet.css`. You can access 
+the CSS rules and his properties using two convenient functions:
+
+### TTCSS function
+
+Allows you to retrieve the selector and some specific property.
+
+	// Read the color from the CSS 'headerFont'.
+	UIColor *headerFontColor = TTCSS( @"headerFont", color );
+
+### TTCSSRule function
+
+Retrieve an TTCSSRuleSet object for specified property. So you can access every property directly.
+
+	// Read the color rule set 'headerFont'.
+	TTCSSRuleSet *headerFont = TTCSSRuleSet( @"headerFont" );
+
+	UIColor *headerFontColor = headerFont.color;
+	
+
+You also could add an accessor to a custom object that inherits from `TTDefaultCSSStyleSheet`. See the source for
+`TTDefaultCSSStyleSheet` for an example.
