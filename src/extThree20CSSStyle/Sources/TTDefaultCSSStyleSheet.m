@@ -15,6 +15,7 @@
 //
 
 #import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
+#import "extThree20CSSStyle/TTCSSRuleSet.h"
 
 // extThree20CSSStyle
 #import "extThree20CSSStyle/TTCSSStyleSheet.h"
@@ -353,6 +354,15 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
                                              forState: UIControlStateNormal];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(TTCSSRuleSet*)css:(NSString*)selector {
+	return [_styleSheet css:selector];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(TTCSSRuleSet*)css:(NSString*)selectorName forState:(UIControlState)state {
+	return [_styleSheet css:selectorName forState:state];
+}
 
 @end
 

@@ -17,9 +17,22 @@
 #import "Three20Style/TTDefaultStyleSheet.h"
 
 @class TTCSSStyleSheet;
+@class TTCSSRuleSet;
 
 #define TTCSSBGCOLOR(selector)  [[TTDefaultCSSStyleSheet globalCSSStyleSheet] \
                                   backgroundColorForCSSSelector:selector]
+
+/**
+ * Retrieve a Full CSS Rule (TTCSSRuleSet) for specified selector.
+ */
+#define TTCSSRule(selector) [[TTDefaultCSSStyleSheet globalCSSStyleSheet] css:selector]
+
+/**
+ * Retrieve an value for a property of an Rule Set (TTCSSRuleSet) for specified selector.
+ */
+#define TTCSS(selector,property) [[[TTDefaultCSSStyleSheet globalCSSStyleSheet] \
+									css:selector] property]
+
 
 @interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
 @private
@@ -33,5 +46,15 @@
 - (UIColor*)backgroundColorForCSSSelector:(NSString*)cssSelector;
 
 + (TTDefaultCSSStyleSheet*)globalCSSStyleSheet;
+
+/**
+ * CSS Rule Set.
+ */
+-(TTCSSRuleSet*)css:(NSString*)selectorName;
+
+/**
+ * CSS Rule Set, also accept an specific state.
+ */
+-(TTCSSRuleSet*)css:(NSString*)selectorName forState:(UIControlState)state;
 
 @end

@@ -14,12 +14,10 @@
 // limitations under the License.
 //
 
-// CSS Parser
-#import "extThree20CSSStyle/TTCSSParser.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-// CSS Stylesheet
-#import "extThree20CSSStyle/TTCSSStyleSheet.h"
-#import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
-
-// CSS Models
-#import "extThree20CSSStyle/TTCSSTextShadowModel.h"
+/**
+ * Helper function to convert an CSS readed colors to UIColor.
+ */
+UIColor* TTColorFromCssValues( NSArray* cssValues );
