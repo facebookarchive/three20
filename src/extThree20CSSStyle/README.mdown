@@ -93,6 +93,17 @@ See the documentation for TTCSSRuleSet and TTCSSTextShadowModel for more informa
 Known Limitations
 -----------------
 
+### Font families and font weights.
+You need to always use iOS font family names and iOS font weights. For example, to use Helvetica
+Bold on iOS you should create your CSS like this:
+
+	.font {
+	   font-family: Helvetica;
+	   font-weight: Bold;
+	}
+
+This names are case-sensitive, you must make sure to respect the iOS font names.
+
 ### Font Sizes
 
 Font-size is always interpreted in points, regardless of what you specify. This is due to
