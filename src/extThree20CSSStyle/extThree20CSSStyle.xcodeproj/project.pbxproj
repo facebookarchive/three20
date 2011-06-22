@@ -26,6 +26,7 @@
 		1831D1B313AA9FB500AB4D55 /* TTDataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831D1B113AA9FB500AB4D55 /* TTDataConverter.m */; };
 		1831D1B413AA9FB500AB4D55 /* TTDataPopulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831D1B213AA9FB500AB4D55 /* TTDataPopulator.m */; };
 		1831D1DA13AAA24400AB4D55 /* TTDataPopulatorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1831D1D913AAA24400AB4D55 /* TTDataPopulatorDelegate.h */; };
+		1832BD9713B243FD00C50CFE /* TTDefaultCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1832BD9613B243FD00C50CFE /* TTDefaultCSSStyleSheet.h */; };
 		183F67B313B0F5BE0032CFF5 /* TTCSSFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 183F67B213B0F5BE0032CFF5 /* TTCSSFunctions.m */; };
 		183F67EA13B0F8B40032CFF5 /* TTCSSFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 183F67AD13B0F5AE0032CFF5 /* TTCSSFunctions.h */; };
 		186AE75913AA4C35004D43FA /* TTCSSRuleSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 186AE6F213AA3FF1004D43FA /* TTCSSRuleSet.h */; };
@@ -42,7 +43,6 @@
 		6E036A3211B364DF0025E8EE /* TTCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E036A3111B364DF0025E8EE /* TTCSSStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E036A7D11B371790025E8EE /* CssStyleSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036A7711B371150025E8EE /* CssStyleSheetTests.m */; };
 		6E036B6911B38DA30025E8EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E85155511B2E94E0071A4FD /* CoreGraphics.framework */; };
-		6E036D1911B487CF0025E8EE /* TTDefaultCSSStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E036D1A11B487CF0025E8EE /* TTDefaultCSSStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */; };
 		6E3C3470118806590079637E /* extThree20CSSStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E646518118805EB00F08CB1 /* extThree20CSSStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
@@ -142,6 +142,7 @@
 		1831D1B113AA9FB500AB4D55 /* TTDataConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDataConverter.m; path = ThirdPart/TTDataConverter.m; sourceTree = "<group>"; };
 		1831D1B213AA9FB500AB4D55 /* TTDataPopulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDataPopulator.m; path = ThirdPart/TTDataPopulator.m; sourceTree = "<group>"; };
 		1831D1D913AAA24400AB4D55 /* TTDataPopulatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDataPopulatorDelegate.h; path = Headers/TTDataPopulatorDelegate.h; sourceTree = "<group>"; };
+		1832BD9613B243FD00C50CFE /* TTDefaultCSSStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDefaultCSSStyleSheet.h; path = Headers/TTDefaultCSSStyleSheet.h; sourceTree = "<group>"; };
 		183F67AD13B0F5AE0032CFF5 /* TTCSSFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCSSFunctions.h; path = Headers/TTCSSFunctions.h; sourceTree = "<group>"; };
 		183F67B213B0F5BE0032CFF5 /* TTCSSFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTCSSFunctions.m; path = Sources/TTCSSFunctions.m; sourceTree = "<group>"; };
 		186AE6F213AA3FF1004D43FA /* TTCSSRuleSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCSSRuleSet.h; path = Headers/TTCSSRuleSet.h; sourceTree = "<group>"; };
@@ -160,7 +161,6 @@
 		6E036A7711B371150025E8EE /* CssStyleSheetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CssStyleSheetTests.m; path = UnitTests/CssStyleSheetTests.m; sourceTree = "<group>"; };
 		6E036B3611B38A420025E8EE /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
 		6E036B6111B38D1B0025E8EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDefaultCSSStyleSheet.h; path = Sources/TTDefaultCSSStyleSheet.h; sourceTree = "<group>"; };
 		6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDefaultCSSStyleSheet.m; path = Sources/TTDefaultCSSStyleSheet.m; sourceTree = "<group>"; };
 		6E0835AB11B4C3A200B99C32 /* extThree20CSSStyle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = extThree20CSSStyle.bundle; path = Resources/extThree20CSSStyle.bundle; sourceTree = "<group>"; };
 		6E083B5311B6122800B99C32 /* Build.Command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Build.Command; path = Grammars/Build.Command; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 			children = (
 				6E036A3111B364DF0025E8EE /* TTCSSStyleSheet.h */,
 				6E036A2E11B364CC0025E8EE /* TTCSSStyleSheet.m */,
-				6E036D1711B487CF0025E8EE /* TTDefaultCSSStyleSheet.h */,
+				1832BD9613B243FD00C50CFE /* TTDefaultCSSStyleSheet.h */,
 				6E036D1811B487CF0025E8EE /* TTDefaultCSSStyleSheet.m */,
 			);
 			name = "CSS Stylesheet";
@@ -428,11 +428,11 @@
 				186AE80913AA512C004D43FA /* TTCSSTextShadowModel.h in Headers */,
 				186AE75913AA4C35004D43FA /* TTCSSRuleSet.h in Headers */,
 				6E036A3211B364DF0025E8EE /* TTCSSStyleSheet.h in Headers */,
-				6E036D1911B487CF0025E8EE /* TTDefaultCSSStyleSheet.h in Headers */,
 				6E3C3470118806590079637E /* extThree20CSSStyle.h in Headers */,
 				6E85145411B1B5390071A4FD /* TTCSSParser.h in Headers */,
 				6E8514ED11B2E3F30071A4FD /* CssTokens.h in Headers */,
 				66E722D3129392EB007134B0 /* TTExtensionLoader.h in Headers */,
+				1832BD9713B243FD00C50CFE /* TTDefaultCSSStyleSheet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

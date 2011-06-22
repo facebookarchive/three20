@@ -25,13 +25,13 @@
 /**
  * Retrieve a Full CSS Rule (TTCSSRuleSet) for specified selector.
  */
-#define TTCSSRule(selector) [[TTDefaultCSSStyleSheet globalCSSStyleSheet] css:selector]
+#define TTCSSRule(selector) (TTCSSRuleSet*)[[TTDefaultCSSStyleSheet\
+									globalCSSStyleSheet] css:selector]
 
 /**
  * Retrieve an value for a property of an Rule Set (TTCSSRuleSet) for specified selector.
  */
-#define TTCSS(selector,property) [[[TTDefaultCSSStyleSheet globalCSSStyleSheet] \
-									css:selector] property]
+#define TTCSS(selector,property) [TTCSSRule(selector) property]
 
 
 @interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
