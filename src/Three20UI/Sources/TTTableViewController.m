@@ -574,9 +574,6 @@
             TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"INSERTING ROW AT %@", newIndexPath);
             [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                               withRowAnimation:UITableViewRowAnimationTop];
-
-            [_tableView scrollToRowAtIndexPath:newIndexPath
-                              atScrollPosition:UITableViewScrollPositionNone animated:NO];
           }
           [self invalidateView];
 
