@@ -38,8 +38,11 @@ TT_FIX_CATEGORY_BUG(TTCSSLabelAdditions)
 	[super applyCssRules:anRuleSet];
 
 	// Set properties from CSS, if defined.
-	if (anRuleSet.font) self.font       = anRuleSet.font;
+	if (anRuleSet.font)  self.font      = anRuleSet.font;
 	if (anRuleSet.color) self.textColor = anRuleSet.color;
+
+	// Alignment.
+	if (anRuleSet.text_align) self.textAlignment = [anRuleSet textAlign];
 
 	// Set Shadow, if needed.
 	if (anRuleSet.text_shadow.shadowColor) {
