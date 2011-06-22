@@ -18,6 +18,7 @@
 
 @class TTCSSStyleSheet;
 @class TTCSSRuleSet;
+@protocol TTCSSApplyProtocol;
 
 #define TTCSSBGCOLOR(selector)  [[TTDefaultCSSStyleSheet globalCSSStyleSheet] \
                                   backgroundColorForCSSSelector:selector]
@@ -56,5 +57,11 @@
  * CSS Rule Set, also accept an specific state.
  */
 -(TTCSSRuleSet*)css:(NSString*)selectorName forState:(UIControlState)state;
+
+/**
+ * Apply the rules for the specified selector to the informed object. This object
+ * must conform with the TTCSSApplyProtocol to read and properly apply the CSS rules.
+ */
+-(void)applyCssFromSelector:(NSString*)selectorName toObject:(id<TTCSSApplyProtocol>)anObject;
 
 @end

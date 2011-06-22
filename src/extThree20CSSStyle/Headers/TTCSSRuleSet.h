@@ -36,6 +36,7 @@
 
 	// Text Shadow.
 	TTCSSTextShadowModel* text_shadow;
+	NSNumber* text_shadow_opacity;
 
 	// Background properties.
 	NSString *background_image;
@@ -87,11 +88,12 @@
 /**
  * This property describes how inline contents of a block are horizontally
  * aligned. Values have the following meanings:<br>
- * - left: Align text along the left edge.<br>
- * - center: Align text equally along both sides of the center line.<br>
- * - right: Align text along the right edge.<br>
+ *		- left: Align text along the left edge.<br>
+ *		- center: Align text equally along both sides of the center line.<br>
+ *		- right: Align text along the right edge.<br>
  * <br>
- * You should use the textAlign method to retrieve an iOS formatted UITextAlignment.
+ * Use the textAlign method to retrieve an iOS formatted UITextAlignment
+ * based on this values.
  */
 @property (copy) NSString* text_align;
 
@@ -99,6 +101,12 @@
  * An TTCSSTextShadowModel object that define a text shadow properties.
  */
 @property (retain) TTCSSTextShadowModel* text_shadow;
+
+/**
+ * Specifies the opacity of the receiver’s text shadow.
+ * The default value is 0.
+ */
+@property (copy) NSNumber* text_shadow_opacity;
 
 /**
  * This property describes the foreground color of an element.
@@ -135,6 +143,7 @@
 
 /**
  * Return an formatted UITextAlignment based on the defined <tt>'text_align'</tt> property.
+ * If isn't setted return default left alignment.
  */
 -(UITextAlignment)textAlign;
 

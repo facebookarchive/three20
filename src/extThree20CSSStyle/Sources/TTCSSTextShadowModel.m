@@ -38,6 +38,15 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++(id)initWithShadowColor:(id)anColor andShadowOffset:(CGSize)anOffset
+		   andShadowBlur:(NSNumber*)blur {
+	TTCSSTextShadowModel *instance = [TTCSSTextShadowModel initWithShadowColor:anColor
+															   andShadowOffset:anOffset];
+	instance.shadowBlur  = blur;
+	return instance;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(id)init {
 	self = [super init];
 	if (self != nil) {
@@ -45,7 +54,7 @@
 		// Default values.
 		self.shadowOffset   = CGSizeMake(0, -1);
 		self.shadowColor	= [UIColor clearColor];
-		shadowBlur			= [[NSNumber numberWithInt:0] retain];
+		self.shadowBlur		= [[NSNumber numberWithInt:3] retain];
 
 	}
 	return self;

@@ -179,6 +179,7 @@ NSString* kKeyTextShadowColor   = @"color";
 								@"background_image",	@"background-image",
 								@"text_shadow",			@"text-shadow",
 								@"text_align",			@"text-align",
+							    @"text_shadow_opacity", @"text-shadow-opacity",
 						  nil] retain];
 	}
 	return _propertiesMap;
@@ -199,14 +200,16 @@ NSString* kKeyTextShadowColor   = @"color";
 		NSArray* values = object;
 		TTDASSERT([values count] >= 4);
 		if ([values count] >= 4) {
+			TTCSSTextShadowModel *shadowModel;
 			// Create an Shadow Model from data and return.
-			return [TTCSSTextShadowModel initWithShadowColor:[values subarrayWithRange:
+			shadowModel = [TTCSSTextShadowModel initWithShadowColor:[values subarrayWithRange:
 															  NSMakeRange(3,[values count] - 3)]
 											 andShadowOffset:CGSizeMake([[values objectAtIndex:0] floatValue],
-																		[[values objectAtIndex:1] floatValue])];
-
+																		[[values objectAtIndex:1] floatValue])
+													  andShadowBlur:[values objectAtIndex:3]];
+			// Return.
+			return shadowModel;
 		}
-
 	}
 
 	///////// /////// /////// /////// /////// /////// /////// /////// /////// ///////

@@ -33,11 +33,11 @@
 @property (assign) CGSize shadowOffset;
 
 /**
- * The shadowBlur property is always interpreted as <tt>0</tt>.
- * This is due to the technical limitations of specifying blur
- * for text shadows for <tt>UILabels</tt>.
+ * The shadowBlur specifies the blur radius used to render the receiver’s shadow.
+ * This value coud not be rendered on iOS older than 3.2.
+ * The default value is 3.0.
  */
-@property (readonly) NSNumber* shadowBlur;
+@property (copy) NSNumber* shadowBlur;
 
 /*
  * Define the color to create the shadow effect.
@@ -50,5 +50,6 @@
 #pragma mark -
 #pragma mark Init Methods.
 +(id)initWithShadowColor:(id)anColor andShadowOffset:(CGSize)anOffset;
++(id)initWithShadowColor:(id)anColor andShadowOffset:(CGSize)anOffset andShadowBlur:(NSNumber*)blur;
 
 @end

@@ -19,6 +19,7 @@
 
 // extThree20CSSStyle
 #import "extThree20CSSStyle/TTCSSStyleSheet.h"
+#import "extThree20CSSStyle/TTCSSApplyProtocol.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -362,6 +363,18 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(TTCSSRuleSet*)css:(NSString*)selectorName forState:(UIControlState)state {
 	return [_styleSheet css:selectorName forState:state];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)applyCssFromSelector:(NSString*)selectorName toObject:(id<TTCSSApplyProtocol>)anObject {
+	// Assert that the conforms with the protocol.
+	if ( ![(id)anObject conformsToProtocol:@protocol(TTCSSApplyProtocol)] )
+		[NSException raise:NSInternalInconsistencyException
+					format:@"'%@' must conform with the 'TTCSSApplyProtocol' protocol",
+														NSStringFromClass([(id)anObject class]) ];
+	// Apply retrieved rules to the object.
+	[anObject applyCssRules:[self css:selectorName]];
 }
 
 @end

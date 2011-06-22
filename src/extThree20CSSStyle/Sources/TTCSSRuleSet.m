@@ -30,7 +30,7 @@
 @implementation TTCSSRuleSet
 @synthesize selector, font_size, font_family, font_weight;
 @synthesize color, background_color, background_image;
-@synthesize text_shadow, text_align;
+@synthesize text_shadow, text_shadow_opacity, text_align;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -74,6 +74,7 @@
     TT_RELEASE_SAFELY( color );
     TT_RELEASE_SAFELY( background_color );
     TT_RELEASE_SAFELY( background_image );
+	TT_RELEASE_SAFELY( text_shadow_opacity );
     [super dealloc];
 }
 

@@ -34,6 +34,11 @@
 		186AE80913AA512C004D43FA /* TTCSSTextShadowModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 186AE80813AA512C004D43FA /* TTCSSTextShadowModel.h */; };
 		186AE80B13AA5379004D43FA /* TTCSSTextShadowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AE80A13AA5379004D43FA /* TTCSSTextShadowModel.m */; };
 		186AE92013AA7C7E004D43FA /* CssRuleSetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AE91F13AA7C7E004D43FA /* CssRuleSetTests.m */; };
+		18F5A81713B2927500B3EF43 /* TTCSSApplyProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F5A81613B2927500B3EF43 /* TTCSSApplyProtocol.h */; };
+		18F5A86F13B2973F00B3EF43 /* UIView+CSSAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F5A86E13B2973F00B3EF43 /* UIView+CSSAdditions.h */; };
+		18F5A87813B2979E00B3EF43 /* UIView+CSSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A87713B2979E00B3EF43 /* UIView+CSSAdditions.m */; };
+		18F5A88813B298BE00B3EF43 /* UILabel+CSSAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F5A88713B298BE00B3EF43 /* UILabel+CSSAdditions.h */; };
+		18F5A88A13B298D100B3EF43 /* UILabel+CSSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A88913B298D100B3EF43 /* UILabel+CSSAdditions.m */; };
 		663DB00812661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663DB00712661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		66E722D0129392DD007134B0 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E722CC129392DD007134B0 /* TTExtensionLoader.m */; };
 		66E722D3129392EB007134B0 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E722D1129392EB007134B0 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -150,6 +155,11 @@
 		186AE80813AA512C004D43FA /* TTCSSTextShadowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCSSTextShadowModel.h; path = Headers/TTCSSTextShadowModel.h; sourceTree = "<group>"; };
 		186AE80A13AA5379004D43FA /* TTCSSTextShadowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTCSSTextShadowModel.m; path = Sources/TTCSSTextShadowModel.m; sourceTree = "<group>"; };
 		186AE91F13AA7C7E004D43FA /* CssRuleSetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CssRuleSetTests.m; path = UnitTests/CssRuleSetTests.m; sourceTree = "<group>"; };
+		18F5A81613B2927500B3EF43 /* TTCSSApplyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCSSApplyProtocol.h; path = Headers/TTCSSApplyProtocol.h; sourceTree = "<group>"; };
+		18F5A86E13B2973F00B3EF43 /* UIView+CSSAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+CSSAdditions.h"; path = "Headers/UIView+CSSAdditions.h"; sourceTree = "<group>"; };
+		18F5A87713B2979E00B3EF43 /* UIView+CSSAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+CSSAdditions.m"; path = "Sources/UIView+CSSAdditions.m"; sourceTree = "<group>"; };
+		18F5A88713B298BE00B3EF43 /* UILabel+CSSAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+CSSAdditions.h"; path = "Headers/UILabel+CSSAdditions.h"; sourceTree = "<group>"; };
+		18F5A88913B298D100B3EF43 /* UILabel+CSSAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+CSSAdditions.m"; path = "Sources/UILabel+CSSAdditions.m"; sourceTree = "<group>"; };
 		66313D671267BFCF00C09C9F /* extThree20CSSStyle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20CSSStyle_Prefix.pch; path = Headers/extThree20CSSStyle_Prefix.pch; sourceTree = "<group>"; };
 		663DB00712661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66E722CC129392DD007134B0 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Sources/TTExtensionLoader.m; sourceTree = "<group>"; };
@@ -222,6 +232,7 @@
 		183F67AF13B0F5B10032CFF5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				18F5A81613B2927500B3EF43 /* TTCSSApplyProtocol.h */,
 				183F67AD13B0F5AE0032CFF5 /* TTCSSFunctions.h */,
 				183F67B213B0F5BE0032CFF5 /* TTCSSFunctions.m */,
 			);
@@ -238,6 +249,17 @@
 				186AE75613AA4C1C004D43FA /* TTCSSRuleSet.m */,
 			);
 			name = "CSS Model Objects";
+			sourceTree = "<group>";
+		};
+		18F5A86613B2971900B3EF43 /* UIKit Additions */ = {
+			isa = PBXGroup;
+			children = (
+				18F5A86E13B2973F00B3EF43 /* UIView+CSSAdditions.h */,
+				18F5A87713B2979E00B3EF43 /* UIView+CSSAdditions.m */,
+				18F5A88713B298BE00B3EF43 /* UILabel+CSSAdditions.h */,
+				18F5A88913B298D100B3EF43 /* UILabel+CSSAdditions.m */,
+			);
+			name = "UIKit Additions";
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -375,6 +397,7 @@
 		6EB4609C1183D1E000685649 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				18F5A86613B2971900B3EF43 /* UIKit Additions */,
 				183F67AF13B0F5B10032CFF5 /* Common */,
 				186AE6E013AA3F97004D43FA /* CSS Model Objects */,
 				6E036A2A11B364AF0025E8EE /* CSS Parser */,
@@ -421,6 +444,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F5A88813B298BE00B3EF43 /* UILabel+CSSAdditions.h in Headers */,
+				18F5A86F13B2973F00B3EF43 /* UIView+CSSAdditions.h in Headers */,
+				18F5A81713B2927500B3EF43 /* TTCSSApplyProtocol.h in Headers */,
 				183F67EA13B0F8B40032CFF5 /* TTCSSFunctions.h in Headers */,
 				1831D1AF13AA9FAC00AB4D55 /* TTDataConverter.h in Headers */,
 				1831D1DA13AAA24400AB4D55 /* TTDataPopulatorDelegate.h in Headers */,
@@ -654,6 +680,8 @@
 				1831D1B313AA9FB500AB4D55 /* TTDataConverter.m in Sources */,
 				1831D1B413AA9FB500AB4D55 /* TTDataPopulator.m in Sources */,
 				183F67B313B0F5BE0032CFF5 /* TTCSSFunctions.m in Sources */,
+				18F5A87813B2979E00B3EF43 /* UIView+CSSAdditions.m in Sources */,
+				18F5A88A13B298D100B3EF43 /* UILabel+CSSAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
