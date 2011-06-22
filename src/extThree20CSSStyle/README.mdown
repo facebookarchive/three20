@@ -125,8 +125,8 @@ Supported CSS Properties and Values
     <color>         #FFF or #FF00FF or rgb(255, 0, 255)
                     or rgba(0, 255, 255, 0.5) or <color-name>
     
-    <color-name>    Any of the standard names found in the W3C for css3.
-                    http://www.w3.org/TR/css3-color/
+    <color-name>    Any of the Extended color keywords found in the W3C for css3.
+                    http://www.w3.org/TR/css3-color/#svg-color
                     Also, iPhone OS standard colors:
                     lightTextColor
                     darkTextColor
