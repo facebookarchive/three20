@@ -461,7 +461,7 @@
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* Three20NetworkUnitTests */ = {
+		EB9E6C6110B6A8F800DE563C /* extThree20CSSStyleUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "extThree20CSSStyleUnitTests" */;
 			buildPhases = (
@@ -518,7 +518,7 @@
 			projectRoot = "";
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* extThree20CSSStyle */,
-				EB9E6C6110B6A8F800DE563C /* Three20NetworkUnitTests */,
+				EB9E6C6110B6A8F800DE563C /* extThree20CSSStyleUnitTests */,
 				6E083B2C11B6113900B99C32 /* Grammar */,
 			);
 		};

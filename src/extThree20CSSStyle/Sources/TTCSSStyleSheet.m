@@ -310,12 +310,12 @@ NSString* kKeyTextShadowColor   = @"color";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)colorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
   	// Try Retrieve Rule Set from Cache.
-	TTCSSRuleSet *ruleSet = [self css:[self selector:selector forState:state]];
+	TTCSSRuleSet *ruleSet = [self css:selector forState:state];
 
 	// If don't have an CSS Rule Set, return nil.
 	if ( !ruleSet ) return nil;
 
-	// Return color font from rule set.
+	// Return color from rule set.
 	return ruleSet.color;
 }
 
@@ -327,12 +327,12 @@ NSString* kKeyTextShadowColor   = @"color";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)backgroundColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
 	// Try Retrieve Rule Set from Cache.
-	TTCSSRuleSet *ruleSet = [self css:[self selector:selector forState:state]];
+	TTCSSRuleSet *ruleSet = [self css:selector forState:state];
 
 	// If don't have an CSS Rule Set, return nil.
 	if ( !ruleSet ) return nil;
 
-	// Return color font from rule set.
+	// Return background color from rule set.
 	return ruleSet.background_color;
 }
 
@@ -350,7 +350,7 @@ NSString* kKeyTextShadowColor   = @"color";
 - (UIFont*)fontWithCssSelector:(NSString*)selector forState:(UIControlState)state {
 
   // Try Retrieve Rule Set from Cache.
-  TTCSSRuleSet *ruleSet = [self css:[self selector:selector forState:state]];
+  TTCSSRuleSet *ruleSet = [self css:selector forState:state];
 
   // If don't have an CSS Rule Set, return nil.
   if ( !ruleSet ) return nil;
@@ -373,7 +373,7 @@ NSString* kKeyTextShadowColor   = @"color";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)textShadowColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
 	// Try Retrieve Rule Set from Cache.
-	TTCSSRuleSet *ruleSet = [self css:[self selector:selector forState:state]];
+	TTCSSRuleSet *ruleSet = [self css:selector forState:state];
 
 	// If don't have an CSS Rule Set, return nil.
 	if ( !ruleSet ) return nil;
@@ -390,7 +390,7 @@ NSString* kKeyTextShadowColor   = @"color";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)textShadowOffsetWithCssSelector:(NSString*)selector forState:(UIControlState)state {
   	// Try Retrieve Rule Set from Cache.
-	TTCSSRuleSet *ruleSet = [self css:[self selector:selector forState:state]];
+	TTCSSRuleSet *ruleSet = [self css:selector forState:state];
 
 	// If don't have an CSS Rule Set, return zero.
 	if ( !ruleSet ) return CGSizeZero;
