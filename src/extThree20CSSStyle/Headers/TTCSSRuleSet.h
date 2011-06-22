@@ -19,7 +19,7 @@
 
 #import "TTCSSTextShadowModel.h"
 
-@interface TTCSSRuleSet : NSObject {
+@interface TTCSSRuleSet : NSObject  {
 	NSString *selector;
 
 	// Colors.
@@ -30,6 +30,9 @@
 	NSString *font_family;
 	NSString *font_weight;
 	NSNumber *font_size;
+
+	// Alignment and Justification.
+	NSString *text_align;
 
 	// Text Shadow.
 	TTCSSTextShadowModel* text_shadow;
@@ -82,6 +85,17 @@
 @property (copy) NSNumber *font_size;
 
 /**
+ * This property describes how inline contents of a block are horizontally
+ * aligned. Values have the following meanings:<br>
+ * - left: Align text along the left edge.<br>
+ * - center: Align text equally along both sides of the center line.<br>
+ * - right: Align text along the right edge.<br>
+ * <br>
+ * You should use the textAlign method to retrieve an iOS formatted UITextAlignment.
+ */
+@property (copy) NSString* text_align;
+
+/**
  * An TTCSSTextShadowModel object that define a text shadow properties.
  */
 @property (retain) TTCSSTextShadowModel* text_shadow;
@@ -118,5 +132,10 @@
  * Will return <tt>nil</tt> if can't format.
  */
 -(UIFont*)font;
+
+/**
+ * Return an formatted UITextAlignment based on the defined <tt>'text_align'</tt> property.
+ */
+-(UITextAlignment)textAlign;
 
 @end

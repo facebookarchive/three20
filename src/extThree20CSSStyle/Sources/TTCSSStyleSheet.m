@@ -178,6 +178,7 @@ NSString* kKeyTextShadowColor   = @"color";
 								@"background_color",	@"background-color",
 								@"background_image",	@"background-image",
 								@"text_shadow",			@"text-shadow",
+								@"text_align",			@"text-align",
 						  nil] retain];
 	}
 	return _propertiesMap;

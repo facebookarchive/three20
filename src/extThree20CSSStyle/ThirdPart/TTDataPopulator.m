@@ -165,7 +165,16 @@
 				//// //// //// //// //// //// //// //// //// //////// //// //////// //// /////
 				// Set Value if isn't NIL.
 				if ( serverData != nil ) {
-					[anObject performSelector:anSelector withObject:serverData];
+
+					// Validate first.
+					NSError *anError;
+					if ( ![anObject validateValue:&serverData forKey:dataKey error:&anError] ) {
+						[NSException raise:anError.domain format:@"%@", [anError localizedDescription]];
+						return nil;
+					}
+
+					// Set the value.
+					[anObject setValue:serverData forKey:dataKey];
 				}
 			}
 		}

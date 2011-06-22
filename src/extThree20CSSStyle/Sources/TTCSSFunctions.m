@@ -22,6 +22,7 @@
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTGlobalCorePaths.h"
 
+
 // CSS3 Color Lookuptable (4.3. Extended color keywords): http://www.w3.org/TR/css3-color/#svg-color
 #define __colorLookupTable [NSDictionary dictionaryWithObjectsAndKeys:\
 					RGBCOLOR(0xFF, 0x00, 0xFF), @"fuschia",\
@@ -186,11 +187,13 @@
 UIColor* TTColorFromCssValues( NSArray* cssValues ) {
     UIColor* anColor = nil;
 
-    // Anything more or less is unsupported, and therefore this property is ignored
-    // according to the W3C guidelines.
-    TTDASSERT([cssValues count] == 1
-              || [cssValues count] == 5    // rgb( x x x )
-              || [cssValues count] == 6);  // rgba( x x x x )
+	// Validate CSS Color. Anything more or less is unsupported, and therefore this
+	// property is ignored according to the W3C guidelines.
+	BOOL validCss =	   [cssValues count] == 1
+					|| [cssValues count] == 5    // rgb( x x x )
+					|| [cssValues count] == 6;   // rgba( x x x x )
+	if ( !validCss )
+		[NSException raise:@"TTCSSColorFormatter" format:@"Invalid CSS color values: '%@'", cssValues];
 
     if ([cssValues count] == 1) {
         NSString* cssString = [cssValues objectAtIndex:0];
@@ -218,7 +221,13 @@ UIColor* TTColorFromCssValues( NSArray* cssValues ) {
             anColor = nil;
 
         } else {
-			[__colorLookupTable objectForKey:cssString];
+			UIColor *color = [__colorLookupTable objectForKey:cssString];
+			// If not found, raise error.
+			if ( !color )
+				[NSException raise:@"TTCSSColorFormatter"
+							format:@"'%@' isn't a valid W3C CSS Extended color keywords.", cssString];
+			// Return correct.
+			return color;
         }
 
     } else if ([cssValues count] == 5 && [[cssValues objectAtIndex:0] isEqualToString:@"rgb("]) {

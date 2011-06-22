@@ -165,6 +165,11 @@ The `text-shadow` property is defined in one chunk, but read using two distinct 
 The third parameter is ignored. See "Text Shadows" in the `Known Limitations` section for
 the technical reasons.
 
+### Alignment and Justification
+
+	text-align:		(left|center|right)
+	
+This property describes how inline contents of a block are horizontally aligned.
 
 Examples
 --------
