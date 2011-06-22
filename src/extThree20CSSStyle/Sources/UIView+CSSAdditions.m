@@ -16,6 +16,14 @@
 
 #import "extThree20CSSStyle/UIView+CSSAdditions.h"
 
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
+
+/**
+ * Additions.
+ */
+TT_FIX_CATEGORY_BUG(TTCSSViewAdditions)
+
 @implementation UIView (TTCSSAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

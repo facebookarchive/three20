@@ -34,6 +34,14 @@
  */
 #define TTCSS(selector,property) [TTCSSRule(selector) property]
 
+/**
+ * Apply an CSS style to specified object.
+ * The object must conform with the TTCSSApplyProtocol.
+ */
+#define TTApplyCSS(selector,object) [[TTDefaultCSSStyleSheet globalCSSStyleSheet]\
+												applyCssFromSelector:selector\
+													toObject:object]
+
 
 @interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
 @private
