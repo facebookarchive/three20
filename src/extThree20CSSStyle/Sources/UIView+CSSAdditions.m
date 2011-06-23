@@ -33,6 +33,22 @@ TT_FIX_CATEGORY_BUG(TTCSSViewAdditions)
 -(void)applyCssRules:(TTCSSRuleSet*)anRuleSet {
 	// Set properties from CSS.
 	self.backgroundColor = anRuleSet.background_color;
+
+    // Hidden?
+    self.hidden = anRuleSet.hidden;
+
+    // Original frame.
+    CGRect newFrame = self.frame;
+
+    // Change Frame from CSS values if needed.
+    newFrame.origin.x    = ( anRuleSet.left ? anRuleSet.origin.x : newFrame.origin.x );
+    newFrame.origin.y    = ( anRuleSet.top ? anRuleSet.origin.y : newFrame.origin.y );
+    ///
+    newFrame.size.width  = ( anRuleSet.width ? anRuleSet.size.width : newFrame.size.width );
+    newFrame.size.height = ( anRuleSet.height ? anRuleSet.size.height : newFrame.size.height );
+
+    // Apply.
+    self.frame = newFrame;
 }
 
 @end

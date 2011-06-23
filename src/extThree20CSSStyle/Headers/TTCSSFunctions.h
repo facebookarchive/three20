@@ -21,3 +21,8 @@
  * Helper function to convert an CSS readed colors to UIColor.
  */
 UIColor* TTColorFromCssValues( NSArray* cssValues );
+
+/**
+ * Helper function to convert an CSS readed size to CGFloat.
+ */
+CGFloat TTValueFromCssValues( NSString* value );

@@ -135,7 +135,11 @@ NSString* kKeyTextShadowColor   = @"color";
   TT_RELEASE_SAFELY(_cssRulesSet);
   _cssRulesSet = [[NSMutableDictionary alloc] initWithCapacity:[_cssStyles count]];
 
-  NSMutableDictionary* newStyles = [_cssStyles mutableCopy];
+   // Should init the styles?
+   if ( !_cssStyles )
+      _cssStyles = [NSDictionary new];
+
+   NSMutableDictionary* newStyles = [_cssStyles mutableCopy];
 
   for (NSString* selector in styleSheet.cssStyles) {
     NSDictionary* addingRuleSet   = [styleSheet.cssStyles objectForKey:selector];
@@ -179,7 +183,14 @@ NSString* kKeyTextShadowColor   = @"color";
 								@"background_image",	@"background-image",
 								@"text_shadow",			@"text-shadow",
 								@"text_align",			@"text-align",
-							    @"text_shadow_opacity", @"text-shadow-opacity",
+                                @"width",               @"width",
+                                @"visibility",          @"visibility",
+                                @"height",              @"height",
+                                @"top",                 @"top",
+                                @"left",                @"left",
+                                @"right",               @"right",
+                                @"bottom",              @"bottom",
+                                @"text_shadow_opacity", @"text-shadow-opacity",
 						  nil] retain];
 	}
 	return _propertiesMap;

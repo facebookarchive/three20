@@ -217,7 +217,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1831D1A913AA9F4800AB4D55 /* Data Methods */ = {
+		1831D1A913AA9F4800AB4D55 /* Data Processing */ = {
 			isa = PBXGroup;
 			children = (
 				1831D1AD13AA9FAC00AB4D55 /* TTDataConverter.h */,
@@ -226,7 +226,7 @@
 				1831D1AE13AA9FAC00AB4D55 /* TTDataPopulator.h */,
 				1831D1B213AA9FB500AB4D55 /* TTDataPopulator.m */,
 			);
-			name = "Data Methods";
+			name = "Data Processing";
 			sourceTree = "<group>";
 		};
 		183F67AF13B0F5B10032CFF5 /* Common */ = {
@@ -242,7 +242,7 @@
 		186AE6E013AA3F97004D43FA /* CSS Model Objects */ = {
 			isa = PBXGroup;
 			children = (
-				1831D1A913AA9F4800AB4D55 /* Data Methods */,
+				1831D1A913AA9F4800AB4D55 /* Data Processing */,
 				186AE80813AA512C004D43FA /* TTCSSTextShadowModel.h */,
 				186AE80A13AA5379004D43FA /* TTCSSTextShadowModel.m */,
 				186AE6F213AA3FF1004D43FA /* TTCSSRuleSet.h */,
@@ -487,7 +487,7 @@
 			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20CSSStyle.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9E6C6110B6A8F800DE563C /* Three20NetworkUnitTests */ = {
+		EB9E6C6110B6A8F800DE563C /* extThree20CSSStyleUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9E6C6710B6A8F900DE563C /* Build configuration list for PBXNativeTarget "extThree20CSSStyleUnitTests" */;
 			buildPhases = (
@@ -544,7 +544,7 @@
 			projectRoot = "";
 			targets = (
 				BEF31F390F352DF5000DE5D2 /* extThree20CSSStyle */,
-				EB9E6C6110B6A8F800DE563C /* Three20NetworkUnitTests */,
+				EB9E6C6110B6A8F800DE563C /* extThree20CSSStyleUnitTests */,
 				6E083B2C11B6113900B99C32 /* Grammar */,
 			);
 		};

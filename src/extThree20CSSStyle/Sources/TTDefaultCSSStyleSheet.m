@@ -72,6 +72,7 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
    object: nil];
 
   TT_RELEASE_SAFELY(_styleSheet);
+  TT_RELEASE_SAFELY(_cachedCssFiles);
 
   [super dealloc];
 }
@@ -98,13 +99,20 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)addStyleSheetFromDisk:(NSString*)filename {
+- (BOOL)addStyleSheetFromDisk:(NSString*)filename ignoreCache:(BOOL)cache {
+
+  // Check if this file is already cached, also respect if should ignore the cache.
+  if (!cache && [_cachedCssFiles containsObject:filename]) {
+    TTDWARNING( @"'%@' is already loaded and cached. Ignoring...", filename );
+    return NO;
+  }
+
   TTCSSStyleSheet* styleSheet = [[TTCSSStyleSheet alloc] init];
 
   BOOL loadedSuccessfully = [styleSheet loadFromFilename:filename];
@@ -113,9 +121,22 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
   TT_RELEASE_SAFELY(styleSheet);
 
+  ///////////// //////// //////// //////// ////////
+  // Init cache, if needed.
+  if ( !_cachedCssFiles )
+    _cachedCssFiles = [NSMutableSet new];
+
+  // Cache if Loaded Successfully.
+  if ( loadedSuccessfully )
+    [_cachedCssFiles addObject:filename];
+
   return loadedSuccessfully;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)addStyleSheetFromDisk:(NSString*)filename {
+  return [self addStyleSheetFromDisk:filename ignoreCache:NO];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)backgroundColorForCSSSelector:(NSString*)cssSelector {
@@ -130,6 +151,18 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
   return (TTDefaultCSSStyleSheet*)[TTStyleSheet globalStyleSheet];
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(void)applyCssFromSelector:(NSString*)selectorName toObject:(id<TTCSSApplyProtocol>)anObject {
+	// Assert that the conforms with the protocol.
+	if ( ![(id)anObject conformsToProtocol:@protocol(TTCSSApplyProtocol)] )
+		[NSException raise:NSInternalInconsistencyException
+                format:@"'%@' must conform with the 'TTCSSApplyProtocol' protocol",
+     NSStringFromClass([(id)anObject class]) ];
+
+	// Apply retrieved rules to the object.
+	[anObject applyCssRules:[self css:selectorName]];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -365,17 +398,6 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 	return [_styleSheet css:selectorName forState:state];
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(void)applyCssFromSelector:(NSString*)selectorName toObject:(id<TTCSSApplyProtocol>)anObject {
-	// Assert that the conforms with the protocol.
-	if ( ![(id)anObject conformsToProtocol:@protocol(TTCSSApplyProtocol)] )
-		[NSException raise:NSInternalInconsistencyException
-					format:@"'%@' must conform with the 'TTCSSApplyProtocol' protocol",
-														NSStringFromClass([(id)anObject class]) ];
-	// Apply retrieved rules to the object.
-	[anObject applyCssRules:[self css:selectorName]];
-}
 
 @end
 

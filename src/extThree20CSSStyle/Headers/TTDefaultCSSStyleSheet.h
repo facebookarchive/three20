@@ -20,6 +20,10 @@
 @class TTCSSRuleSet;
 @protocol TTCSSApplyProtocol;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 #define TTCSSBGCOLOR(selector)  [[TTDefaultCSSStyleSheet globalCSSStyleSheet] \
                                   backgroundColorForCSSSelector:selector]
 
@@ -42,15 +46,32 @@
 												applyCssFromSelector:selector\
 													toObject:object]
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
 @private
   TTCSSStyleSheet* _styleSheet;
+
+  // Maintain an control of CSS Files already loaded and cached.
+  NSMutableSet*				_cachedCssFiles;
+
 }
 
 @property (nonatomic, readonly) TTCSSStyleSheet* styleSheet;
 
+/**
+ * Load an CSS Style Sheet from disk and cache his data.
+ * If the file is already cached no data will be loaded again,
+ * if you need to reload the file use addStyleSheetFromDisk:ignoreCache:
+ */
 - (BOOL)addStyleSheetFromDisk:(NSString*)filename;
+
+/**
+ * Load an CSS Style Sheet from disk and cache his data.
+ * @param cache YES will ignore if is already cached and reload the data if needed.
+ */
+- (BOOL)addStyleSheetFromDisk:(NSString*)filename ignoreCache:(BOOL)cache;
 
 - (UIColor*)backgroundColorForCSSSelector:(NSString*)cssSelector;
 

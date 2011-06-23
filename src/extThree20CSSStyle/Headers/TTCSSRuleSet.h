@@ -40,6 +40,18 @@
 
 	// Background properties.
 	NSString *background_image;
+    
+    // Visibility.
+    NSString *visibility;
+
+    // Positioning and size.
+    NSString *width;
+    NSString *height;
+    NSString *top;
+    NSString *left;
+    NSString *right;
+    NSString *bottom;
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,14 +100,45 @@
 /**
  * This property describes how inline contents of a block are horizontally
  * aligned. Values have the following meanings:<br>
- *		- left: Align text along the left edge.<br>
- *		- center: Align text equally along both sides of the center line.<br>
- *		- right: Align text along the right edge.<br>
+ *		- <tt>left</tt>: Align text along the left edge.<br>
+ *		- <tt>center</tt>: Align text equally along both sides of the center line.<br>
+ *		- <tt>right</tt>: Align text along the right edge.<br>
  * <br>
  * Use the textAlign method to retrieve an iOS formatted UITextAlignment
  * based on this values.
  */
 @property (copy) NSString* text_align;
+
+/**
+ * This property specifies the size of an element’s rendering box.
+ * Possible Values:<br>
+ *      - <tt>auto</tt>: The width is determinant on the values of other properties.
+ *      - <tt>length</tt>: Refers to an absolute measurement for the computed
+ * element box width. Negative values are not allowed.
+ *      - <tt>percentage</tt>: Refers to a percentage of the width of the containing
+ * element block.<br>
+ * Examples:<br>
+ *    <tt>"75px", "50%"</tt>
+ */
+@property (copy) NSString* width;
+
+/**
+ * /copydef width
+ */
+@property (copy) NSString* height;
+
+@property (copy) NSString* top;
+@property (copy) NSString* left;
+@property (copy) NSString* right;
+@property (copy) NSString* bottom;
+
+/**
+ * The visibility property specifies whether or not an element is visible.
+ * Possible Values:<br>
+ *      - <tt>visible</tt>: The element is visible. <b>This is default.</b>
+ *      - <tt>hidden</tt>: The element is invisible.
+ */
+@property (copy) NSString* visibility;
 
 /**
  * An TTCSSTextShadowModel object that define a text shadow properties.
@@ -147,4 +190,21 @@
  */
 -(UITextAlignment)textAlign;
 
+/**
+ * Return an formatted CGSize based on the defined <tt>'width'</tt>
+ * and <tt>'height'</tt> properties.
+ */
+-(CGSize)size;
+
+/**
+ * Return an formatted CGPoint based on the defined <tt>'top'</tt>
+ * and <tt>'left'</tt> properties.
+ */
+-(CGPoint)origin;
+
+/**
+ * Return an Boolean value that determines whether the receiver is hidden based
+ * on the <tt>'visibility'</tt> property.
+ */
+-(BOOL)hidden;
 @end

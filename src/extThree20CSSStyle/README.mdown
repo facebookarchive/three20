@@ -170,8 +170,20 @@ The third parameter could be ignored on older iOS versions, see "Text Shadows" i
 ### Alignment and Justification
 
 	text-align:		(left|center|right)
-	
+
 This property describes how inline contents of a block are horizontally aligned.
+    
+### Positioning and Size
+
+    top:            <number>px
+    left:           <number>px
+    width:          <number>px
+    height:         <number>px
+    
+### Visibilty
+
+    visibilty: (visible|hidden)
+
 
 Examples
 --------

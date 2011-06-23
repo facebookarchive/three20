@@ -15,6 +15,7 @@
 //
 
 #import "extThree20CSSStyle/TTCSSFunctions.h"
+#import "extThree20CSSStyle/TTDataConverter.h"
 #import "Three20Style/TTGlobalStyle.h"
 
 // Core
@@ -245,5 +246,23 @@ UIColor* TTColorFromCssValues( NSArray* cssValues ) {
     }
 
     return anColor;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Sizes.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Helper function to convert an CSS readed size to CGFloat.
+ */
+CGFloat TTValueFromCssValues( NSString* value ) {
+    // Pixel measure.
+    if ( ! NSEqualRanges( [value rangeOfString:@"px"], (NSRange){NSNotFound,0} )) {
+        value = [value stringByReplacingOccurrencesOfString:@"px" withString:@""];
+        return [[TTDataConverter convertToNSNumberThisObject:value] floatValue];
+    }
+    return 0;
 }
 

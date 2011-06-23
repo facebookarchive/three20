@@ -31,6 +31,8 @@
 @synthesize selector, font_size, font_family, font_weight;
 @synthesize color, background_color, background_image;
 @synthesize text_shadow, text_shadow_opacity, text_align;
+@synthesize width, height, visibility;
+@synthesize top, left, right, bottom;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -60,6 +62,9 @@
 
 		// Default alignment is left.
 		self.text_align = @"left";
+
+        // Default visiblity is visible.
+        self.visibility = @"visible";
     }
     return self;
 }
@@ -72,9 +77,16 @@
     TT_RELEASE_SAFELY( font_weight );
     TT_RELEASE_SAFELY( text_shadow );
     TT_RELEASE_SAFELY( color );
+    TT_RELEASE_SAFELY( width );
+    TT_RELEASE_SAFELY( height );
+    TT_RELEASE_SAFELY( top );
+    TT_RELEASE_SAFELY( left );
+    TT_RELEASE_SAFELY( right );
+    TT_RELEASE_SAFELY( bottom );
     TT_RELEASE_SAFELY( background_color );
     TT_RELEASE_SAFELY( background_image );
-	TT_RELEASE_SAFELY( text_shadow_opacity );
+    TT_RELEASE_SAFELY( text_shadow_opacity );
+    TT_RELEASE_SAFELY( visibility );
     [super dealloc];
 }
 
@@ -101,6 +113,18 @@
 	}
 	return YES;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)validateVisibility:(id *)ioValue error:(NSError **)outError {
+	// Validate correct values.
+	if ( ![[NSArray arrayWithObjects:@"visible", @"hidden", nil]
+		   containsObject:(NSString*)*ioValue] ) {
+		*outError = [self formatError:@"'visibility' must be 'visible' or 'hidden'!"];
+		return NO;
+	}
+	return YES;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)validateFont_family:(id *)ioValue error:(NSError **)outError {
@@ -242,5 +266,24 @@
 	return UITextAlignmentLeft;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Return an formatted CGSize based on the defined width and height properties.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(CGSize)size {
+    return CGSizeMake(TTValueFromCssValues(self.width), TTValueFromCssValues(self.height));
+}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Return an formatted CGPoint based on the defined top and left properties.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(CGPoint)origin {
+    return CGPointMake(TTValueFromCssValues(self.left), TTValueFromCssValues(self.top));
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Return an Boolean value that determines whether the receiver is hidden
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)hidden {
+    return [self.visibility isEqualToString:@"hidden"];
+}
 @end
