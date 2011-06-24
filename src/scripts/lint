@@ -138,8 +138,9 @@ def lint_project(project_path, options):
 	# The "Compile sources" phase files
 	filenames = project.get_built_sources()
 	
-	# The "Copy headers" phase files
-	filenames = filenames + project.get_built_headers()
+	# The "Copy headers" phase files if they exist
+	if project.get_built_headers():
+		filenames = filenames + project.get_built_headers()
 	
 	# Iterate through and lint each of the files that have been modified since we last ran
 	# the linter, unless we're forcelinting, in which case we lint everything.
