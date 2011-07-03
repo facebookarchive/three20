@@ -29,8 +29,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTSplitViewController
 
-@synthesize leftNavigator     = _leftNavigator;
-@synthesize rightNavigator    = _rightNavigator;
+@synthesize primaryNavigator     = _primaryNavigator;
+@synthesize detailsNavigator    = _detailsNavigator;
 @synthesize splitViewButton   = _splitViewButton;
 @synthesize popoverSplitController = _popoverSplitController;
 
@@ -47,13 +47,13 @@
                                                                       bundle: nil] autorelease],
                             nil];
 
-    _leftNavigator = [[TTNavigator alloc] init];
-    _leftNavigator.rootContainer = self;
-    _leftNavigator.persistenceKey = @"splitNavPersistenceLeft";
+    _primaryNavigator = [[TTNavigator alloc] init];
+    _primaryNavigator.rootContainer = self;
+    _primaryNavigator.persistenceKey = @"splitNavPersistenceLeft";
 
-    _rightNavigator = [[TTNavigator alloc] init];
-    _rightNavigator.rootContainer = self;
-    _rightNavigator.persistenceKey = @"splitNavPersistenceRight";
+    _detailsNavigator = [[TTNavigator alloc] init];
+    _detailsNavigator.rootContainer = self;
+    _detailsNavigator.persistenceKey = @"splitNavPersistenceRight";
   }
 
   return self;
@@ -63,8 +63,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   self.delegate = nil;
-  TT_RELEASE_SAFELY(_leftNavigator);
-  TT_RELEASE_SAFELY(_rightNavigator);
+  TT_RELEASE_SAFELY(_primaryNavigator);
+  TT_RELEASE_SAFELY(_detailsNavigator);
   TT_RELEASE_SAFELY(_splitViewButton);
   TT_RELEASE_SAFELY(_popoverSplitController);
 
@@ -74,11 +74,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateSplitViewButton {
-  if (nil != _rightNavigator.rootViewController) {
+  if (nil != _detailsNavigator.rootViewController) {
 
-    if (nil != _leftNavigator.rootViewController) {
+    if (nil != _primaryNavigator.rootViewController) {
       UINavigationController* navController =
-        (UINavigationController*)_leftNavigator.rootViewController;
+        (UINavigationController*)_primaryNavigator.rootViewController;
       UIViewController* topViewController = navController.topViewController;
       if (nil != topViewController) {
         self.splitViewButton.title = topViewController.title;
@@ -90,7 +90,7 @@
     }
 
     UINavigationController* navController =
-      (UINavigationController*)_rightNavigator.rootViewController;
+      (UINavigationController*)_detailsNavigator.rootViewController;
     UIViewController* topViewController = navController.topViewController;
     UINavigationItem* navItem = topViewController.navigationItem;
 
@@ -116,10 +116,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTBaseNavigator*)getNavigatorForController:(UIViewController*)controller {
   if (controller == [self.viewControllers objectAtIndex:0]) {
-    return _leftNavigator;
+    return _primaryNavigator;
 
   } else if (controller == [self.viewControllers objectAtIndex:1]) {
-    return _rightNavigator;
+    return _detailsNavigator;
   }
 
   return nil;
@@ -128,7 +128,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)navigator:(TTBaseNavigator*)navigator setRootViewController:(UIViewController*)controller {
-  if (_rightNavigator == navigator) {
+  if (_detailsNavigator == navigator) {
     self.viewControllers = [NSArray arrayWithObjects:
                             [self.viewControllers objectAtIndex:0],
                             controller,
@@ -136,7 +136,7 @@
 
     [self updateSplitViewButton];
 
-  } else if (_leftNavigator == navigator) {
+  } else if (_primaryNavigator == navigator) {
     self.viewControllers = [NSArray arrayWithObjects:
                             controller,
                             [self.viewControllers objectAtIndex:1],
