@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		666E16BF12944956001C1D97 /* UISplitViewController+TTNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16BB12944956001C1D97 /* UISplitViewController+TTNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		666E16C012944956001C1D97 /* UIView+TTUICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E16BC12944956001C1D97 /* UIView+TTUICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		666E16C512944961001C1D97 /* UISplitViewController+TTNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E16C112944961001C1D97 /* UISplitViewController+TTNavigator.m */; };
 		666E16C612944961001C1D97 /* UIView+TTUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E16C212944961001C1D97 /* UIView+TTUICommon.m */; };
 		6E3C377F118C94E50079637E /* TTGlobalUICommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C377E118C94E50079637E /* TTGlobalUICommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3781118C94FC0079637E /* TTGlobalUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */; };
@@ -67,9 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		666E16BB12944956001C1D97 /* UISplitViewController+TTNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISplitViewController+TTNavigator.h"; path = "Headers/UISplitViewController+TTNavigator.h"; sourceTree = "<group>"; };
 		666E16BC12944956001C1D97 /* UIView+TTUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+TTUICommon.h"; path = "Headers/UIView+TTUICommon.h"; sourceTree = "<group>"; };
-		666E16C112944961001C1D97 /* UISplitViewController+TTNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISplitViewController+TTNavigator.m"; path = "Sources/UISplitViewController+TTNavigator.m"; sourceTree = "<group>"; };
 		666E16C212944961001C1D97 /* UIView+TTUICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+TTUICommon.m"; path = "Sources/UIView+TTUICommon.m"; sourceTree = "<group>"; };
 		6E3C377E118C94E50079637E /* TTGlobalUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalUICommon.h; path = Headers/TTGlobalUICommon.h; sourceTree = "<group>"; };
 		6E3C3780118C94FC0079637E /* TTGlobalUICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTGlobalUICommon.m; path = Sources/TTGlobalUICommon.m; sourceTree = "<group>"; };
@@ -161,8 +157,6 @@
 		6E3C37AF118C967B0079637E /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				666E16BB12944956001C1D97 /* UISplitViewController+TTNavigator.h */,
-				666E16C112944961001C1D97 /* UISplitViewController+TTNavigator.m */,
 				666E16BC12944956001C1D97 /* UIView+TTUICommon.h */,
 				666E16C212944961001C1D97 /* UIView+TTUICommon.m */,
 				6E3C37D5118C97040079637E /* UIViewControllerAdditions.h */,
@@ -243,7 +237,6 @@
 				6EDAE96A118C99580008133C /* Three20UICommon+Additions.h in Headers */,
 				6E7B103B119235CF001359FE /* TTBaseViewController.h in Headers */,
 				6E7B116911924440001359FE /* UIViewControllerGarbageCollection.h in Headers */,
-				666E16BF12944956001C1D97 /* UISplitViewController+TTNavigator.h in Headers */,
 				666E16C012944956001C1D97 /* UIView+TTUICommon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,7 +399,6 @@
 				6E3C37AD118C96700079637E /* UIWindowAdditions.m in Sources */,
 				6E3C37D1118C96FA0079637E /* UIViewControllerAdditions.m in Sources */,
 				6E7B1039119235BF001359FE /* TTBaseViewController.m in Sources */,
-				666E16C512944961001C1D97 /* UISplitViewController+TTNavigator.m in Sources */,
 				666E16C612944961001C1D97 /* UIView+TTUICommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
