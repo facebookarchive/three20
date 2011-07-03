@@ -77,7 +77,8 @@
   if (nil != _detailsNavigator.rootViewController) {
 
     if (nil != _primaryNavigator.rootViewController) {
-      UINavigationController* navController = [self.viewControllers objectAtIndex:0];
+      UINavigationController* navController =
+      (UINavigationController*)_primaryNavigator.rootViewController;
       UIViewController* topViewController = navController.topViewController;
       if (nil != topViewController) {
         self.rootPopoverSplitButtonItem.title = topViewController.title;
@@ -88,14 +89,16 @@
       self.rootPopoverSplitButtonItem.title = @"Default Title";
     }
 
-    UINavigationController* navController = [self.viewControllers objectAtIndex:1];
+    UINavigationController* navController =
+    (UINavigationController*)_detailsNavigator.rootViewController;
     UIViewController* topViewController = navController.topViewController;
     UINavigationItem* navItem = topViewController.navigationItem;
 
-    navItem.leftBarButtonItem = _rootPopoverSplitButtonItem;
+    if ([[navController viewControllers] count]<=1) {
+      navItem.leftBarButtonItem = _rootPopoverSplitButtonItem;
+    }
   }
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidAppear:(BOOL)animated {
