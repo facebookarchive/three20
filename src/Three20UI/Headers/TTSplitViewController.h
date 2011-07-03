@@ -31,13 +31,13 @@
   TTNavigator* _primaryNavigator;
   TTNavigator* _detailsNavigator;
 
-  UIBarButtonItem*      _splitViewButton;
+  UIBarButtonItem*      _rootPopoverSplitButtonItem;
   UIPopoverController*  _popoverSplitController;
 }
 
 @property (nonatomic, readonly) TTNavigator*          primaryNavigator;
 @property (nonatomic, readonly) TTNavigator*          detailsNavigator;
-@property (nonatomic, retain)   UIBarButtonItem*      splitViewButton;
+@property (nonatomic, retain)   UIBarButtonItem*      rootPopoverSplitButtonItem;
 @property (nonatomic, retain)   UIPopoverController*  popoverSplitController;
 
 
