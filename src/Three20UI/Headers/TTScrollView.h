@@ -77,6 +77,11 @@
   NSUInteger      _touchCount;
   CGFloat         _overshoot;
 
+  // Scroll animation.
+  // Set the engine to animate the next relayout.
+  BOOL _nextLayoutAnimated;
+  NSTimeInterval _centerPageAnimationDuration;
+
   // The first touch in this view.
   UITouch*        _touch1;
 
@@ -91,9 +96,21 @@
 }
 
 /**
- * The current page index.
+ * Retrieve or set the current page index.
+ * If you inform anew value for this page, the Scroll View will
+ * load this page on the center of the view.
+ * This operatin is not animated, you should use <tt>setCenterPageIndex:animated:</tt>
+ * if you want to control the animation.
  */
 @property (nonatomic) NSInteger centerPageIndex;
+
+/**
+ * Set the duration for the animation performed by the <tt>setCenterPageIndex:animated:</tt>
+ * method.
+ *
+ * @default Is the value setted on the <tt>TT_TRANSITION_DURATION</tt> constant.
+ */
+@property (assign) NSTimeInterval centerPageAnimationDuration;
 
 /**
  * Whether or not the current page is zoomed.
@@ -230,6 +247,13 @@
 - (void)zoomToFit;
 
 - (void)zoomToDistance:(CGFloat)distance;
+
+/**
+ * Set the current center page and optionally animate the transition.
+ * <b>Only animate if the distance between the actual page and the informed
+ * is one. Example: If is one page 1 and you inform page 3, will not animate.</b>
+ */
+- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated;
 
 /**
  * Cancels any active touches and resets everything to an untouched state.
