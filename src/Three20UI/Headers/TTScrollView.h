@@ -105,10 +105,19 @@
  * out. (read-only)
  *
  * The value of this property is YES if user is making a zoom gesture, otherwise it is NO
- *
  */
 @property (nonatomic, readonly) BOOL zooming;
 
+/**
+ * A Boolean value that indicates whether the user is scrolling the
+ * view with his finger. If the scroll is scrolling by animation this
+ * value is NO. (read-only)
+ */
+@property (readonly) BOOL isDragging;
+
+/**
+ * The scroller is performing an "hold" action.
+ */
 @property (nonatomic, readonly) BOOL holding;
 
 /**
@@ -118,21 +127,29 @@
 @property (nonatomic,readonly,getter=isDecelerating) BOOL decelerating;
 
 /**
+ * A Boolean value that determines whether scrolling is enabled.
+ *
  * @default YES
  */
 @property (nonatomic) BOOL scrollEnabled;
 
-/**
+/*
+ * A Boolean value that determines whether zooming is enabled.
+ *
  * @default YES
  */
 @property (nonatomic) BOOL zoomEnabled;
 
 /**
+ * A Boolean value that determines whether rotation is enabled.
+ *
  * @default YES
  */
 @property (nonatomic) BOOL rotateEnabled;
 
 /**
+ * A <tt>CGFloat</tt> value that determines the gap between the pages.
+ *
  * @default 40
  */
 @property (nonatomic) CGFloat pageSpacing;

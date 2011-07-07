@@ -64,6 +64,8 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 @synthesize zoomScale         = _zoomScale;
 @synthesize zooming           = _executingZoomGesture;
 
+@synthesize isDragging        = _dragging;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
