@@ -75,6 +75,7 @@
 #import "Three20UI/TTSearchBar.h"
 
 #import "Three20UI/TTTableViewController.h"
+#import "Three20UI/TTTableViewCoreDataController.h"
 #import "Three20UI/TTSearchDisplayController.h"
 #import "Three20UI/TTTableView.h"
 #import "Three20UI/TTTableViewDelegate.h"
