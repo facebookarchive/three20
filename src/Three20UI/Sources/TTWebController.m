@@ -230,6 +230,7 @@
 - (void)viewDidUnload {
   [super viewDidUnload];
 
+  _delegate = nil;
   _webView.delegate = nil;
 
   TT_RELEASE_SAFELY(_webView);
@@ -317,6 +318,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
  navigationType:(UIWebViewNavigationType)navigationType {
+  if ([_delegate respondsToSelector:@selector(webController:webView:shouldStartLoadWithRequest:navigationType:)] &&
+      ![_delegate webController:self webView:webView shouldStartLoadWithRequest:request navigationType:navigationType]) {
+    return NO;
+  }
+
   if ([[TTNavigator navigator].URLMap isAppURL:request.URL]) {
     [_loadingURL release];
     _loadingURL = [[NSURL URLWithString:@"about:blank"] retain];
@@ -334,6 +340,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidStartLoad:(UIWebView*)webView {
+  if ([_delegate respondsToSelector:@selector(webController:webViewDidStartLoad:)]) {
+    [_delegate webController:self webViewDidStartLoad:webView];
+  }
+
   self.title = TTLocalizedString(@"Loading...", @"");
   if (!self.navigationItem.rightBarButtonItem) {
     [self.navigationItem setRightBarButtonItem:_activityItem animated:YES];
@@ -346,6 +356,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webViewDidFinishLoad:(UIWebView*)webView {
+  if ([_delegate respondsToSelector:@selector(webController:webViewDidFinishLoad:)]) {
+    [_delegate webController:self webViewDidFinishLoad:webView];
+  }
+
   TT_RELEASE_SAFELY(_loadingURL);
   self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
   if (self.navigationItem.rightBarButtonItem == _activityItem) {
@@ -360,6 +374,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
+  if ([_delegate respondsToSelector:@selector(webController:webView:didFailLoadWithError:)]) {
+    [_delegate webController:self webView:webView didFailLoadWithError:error];
+  }
+
   TT_RELEASE_SAFELY(_loadingURL);
   [self webViewDidFinishLoad:webView];
 }
