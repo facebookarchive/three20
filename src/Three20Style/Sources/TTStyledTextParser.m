@@ -110,19 +110,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parseURLs:(NSString*)string {
-  NSInteger stringIndex = 0;
+  NSError *error = NULL;
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(https?:\\/\\/[^\\s]*)"
+                                                                         options:NSRegularExpressionCaseInsensitive
+                                                                           error:&error];
+  NSArray *matches = [regex matchesInString:string
+                                    options:0
+                                      range:NSMakeRange(0, [string length])];
 
-  while (stringIndex < string.length) {
+  if ([matches count] > 0) {
+    NSInteger stringIndex = 0;
     NSRange searchRange = NSMakeRange(stringIndex, string.length - stringIndex);
-    NSRange startRange = [string rangeOfString:@"http://" options:NSCaseInsensitiveSearch
-                                 range:searchRange];
-    if (startRange.location == NSNotFound) {
-      NSString* text = [string substringWithRange:searchRange];
-      TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:text] autorelease];
-      [self addNode:node];
-      break;
 
-    } else {
+    for (NSTextCheckingResult *match in matches) {
+      NSRange startRange = [match range];
+      
       NSRange beforeRange = NSMakeRange(searchRange.location,
         startRange.location - searchRange.location);
       if (beforeRange.length) {
@@ -130,9 +132,7 @@
         TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:text] autorelease];
         [self addNode:node];
       }
-
-      NSRange subSearchRange = NSMakeRange(startRange.location,
-                                           string.length - startRange.location);
+      NSRange subSearchRange = NSMakeRange(startRange.location, string.length - startRange.location);
       NSRange endRange = [string rangeOfString:@" " options:NSCaseInsensitiveSearch
                                  range:subSearchRange];
       if (endRange.location == NSNotFound) {
@@ -140,8 +140,8 @@
         TTStyledLinkNode* node = [[[TTStyledLinkNode alloc] initWithText:URL] autorelease];
         node.URL = URL;
         [self addNode:node];
-        break;
-
+        stringIndex = [string length];
+      
       } else {
         NSRange URLRange = NSMakeRange(startRange.location,
                                              endRange.location - startRange.location);
@@ -152,6 +152,10 @@
         stringIndex = endRange.location;
       }
     }
+  } else {
+    NSString* text = string;
+    TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:text] autorelease];
+    [self addNode:node];
   }
 }
 
