@@ -101,6 +101,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
   [_imageView2 unsetImage];
   _titleLabel.text = nil;
   _timestampLabel.text = nil;
+  self.captionLabel.text = nil;
 }
 
 
