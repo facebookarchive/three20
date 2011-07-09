@@ -235,12 +235,7 @@ static const NSInteger kActivityLabelTag          = 96;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-    _toolbar.height = TT_TOOLBAR_HEIGHT;
-
-  } else {
-    _toolbar.height = TT_LANDSCAPE_TOOLBAR_HEIGHT+1;
-  }
+  _toolbar.height = TTToolbarHeight();
   _toolbar.top = self.view.height - _toolbar.height;
 }
 
