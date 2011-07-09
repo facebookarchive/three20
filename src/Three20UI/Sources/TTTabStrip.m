@@ -45,6 +45,7 @@
     _scrollView.scrollsToTop = NO;
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self addSubview:_scrollView];
 
     self.style = TTSTYLE(tabStrip);
