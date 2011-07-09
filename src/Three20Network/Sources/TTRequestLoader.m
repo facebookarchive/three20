@@ -16,6 +16,9 @@
 
 #import "Three20Network/private/TTRequestLoader.h"
 
+//Global
+#import "Three20Network/TTErrorCodes.h"
+
 // Network
 #import "Three20Network/TTGlobalNetwork.h"
 #import "Three20Network/TTURLRequest.h"
@@ -372,8 +375,13 @@ static const NSInteger kLoadMaxRetries = 2;
   } else {
     TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  FAILED LOADING (%d) %@",
                     _response.statusCode, _urlPath);
-    NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
-                                     userInfo:nil];
+	  NSDictionary* userInfo = [NSDictionary dictionaryWithObject:_responseData forKey:kTTErrorResponseDataKey];
+	  NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
+									   userInfo:userInfo];
+	  /*
+	   NSError* error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode
+	   userInfo:nil];
+	   */
     [_queue loader:self didFailLoadWithError:error];
   }
 
