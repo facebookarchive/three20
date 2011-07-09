@@ -16,6 +16,7 @@
 
 #import "Three20Network/TTURLRequest.h"
 
+
 // Network
 #import "Three20Network/TTGlobalNetwork.h"
 #import "Three20Network/TTURLResponse.h"
@@ -160,7 +161,8 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 - (void)appendImageData:(NSData*)data
                withName:(NSString*)name
                  toBody:(NSMutableData*)body {
-  NSString *beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
+  NSString *beginLine = [NSString stringWithFormat:@"--%@\r\n", kStringBoundary];
+	NSString *endLine = @"\r\n";
 
   [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:
@@ -174,17 +176,17 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
                       stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
                      dataUsingEncoding:_charsetForMultipart]];
   [body appendData:data];
+		[body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)generatePostBody {
-  NSMutableData* body = [NSMutableData data];
-  NSString* beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
 
-  [body appendData:[[NSString stringWithFormat:@"--%@\r\n", kStringBoundary]
-    dataUsingEncoding:NSUTF8StringEncoding]];
-
+	NSMutableData* body = [NSMutableData data];
+  NSString* beginLine = [NSString stringWithFormat:@"--%@\r\n", kStringBoundary];
+	NSString *endLine = @"\r\n";
+	
   for (id key in [_parameters keyEnumerator]) {
     NSString* value = [_parameters valueForKey:key];
     // Really, this can only be an NSString. We're cheating here.
@@ -195,6 +197,7 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
           dataUsingEncoding:_charsetForMultipart]];
       [body appendData:[value dataUsingEncoding:_charsetForMultipart]];
+		[body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
     }
   }
 
@@ -230,9 +233,10 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
     [body appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType]
           dataUsingEncoding:_charsetForMultipart]];
     [body appendData:data];
+		[body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
   }
 
-  [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", kStringBoundary]
+  [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", kStringBoundary]
                    dataUsingEncoding:NSUTF8StringEncoding]];
 
   // If an image was found, remove it from the dictionary to save memory while we
