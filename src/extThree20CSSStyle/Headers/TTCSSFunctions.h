@@ -14,22 +14,15 @@
 // limitations under the License.
 //
 
-// CSS Parser
-#import "TTCSSParser.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-// CSS Stylesheet
-#import "TTCSSStyleSheet.h"
-#import "TTDefaultCSSStyleSheet.h"
+/**
+ * Helper function to convert an CSS readed colors to UIColor.
+ */
+UIColor* TTColorFromCssValues( NSArray* cssValues );
 
-// CSS Models
-#import "TTCSSTextShadowModel.h"
-#import "TTCSSRuleSet.h"
-
-// Data Processing
-#import "TTDataConverter.h"
-#import "TTDataPopulator.h"
-#import "TTDataPopulatorDelegate.h"
-
-// UIKit Additions.
-#import "UIView+CSSAdditions.h"
-#import "UILabel+CSSAdditions.h"
+/**
+ * Helper function to convert an CSS readed size to CGFloat.
+ */
+CGFloat TTValueFromCssValues( NSString* value );

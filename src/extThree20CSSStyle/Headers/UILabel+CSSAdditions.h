@@ -13,23 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+#import <UIKit/UIKit.h>
 
-// CSS Parser
-#import "TTCSSParser.h"
+#import "extThree20CSSStyle/UIView+CSSAdditions.h"
 
-// CSS Stylesheet
-#import "TTCSSStyleSheet.h"
-#import "TTDefaultCSSStyleSheet.h"
-
-// CSS Models
-#import "TTCSSTextShadowModel.h"
-#import "TTCSSRuleSet.h"
-
-// Data Processing
-#import "TTDataConverter.h"
-#import "TTDataPopulator.h"
-#import "TTDataPopulatorDelegate.h"
-
-// UIKit Additions.
-#import "UIView+CSSAdditions.h"
-#import "UILabel+CSSAdditions.h"
+@interface UILabel(TTCSSAdditions)
+@end

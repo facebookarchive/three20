@@ -38,4 +38,11 @@
  */
 - (void)imageView:(TTImageView*)imageView didFailLoadWithError:(NSError*)error;
 
+/**
+ * Called before the image view send a network request.
+ * At this point we have the opportunity to configure the requester
+ * with some custom options (to use ETAGs, for example).
+ */
+- (void)imageView:(TTImageView*)imageView willSendARequest:(TTURLRequest*)requester;
+
 @end

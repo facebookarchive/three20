@@ -83,9 +83,26 @@ style sheet with all of the default TTDefaultStyleSheet values. You can then com
 style sheet upon this one using addStyleSheetFromDisk:. For an example of this in action,
 see TTFacebook in the `three20/samples` directory.
 
+### The Rule Set Object
+
+The Rule Set Object is an model that store data for each CSS Selector parsed. This object
+contains the CSS properties as Objective-C objects ready to use on your application.
+See the documentation for TTCSSRuleSet and TTCSSTextShadowModel for more information.
+
 
 Known Limitations
 -----------------
+
+### Font families and font weights.
+You need to always use iOS font family names and iOS font weights. For example, to use Helvetica
+Bold on iOS you should create your CSS like this:
+
+	.font {
+	   font-family: Helvetica;
+	   font-weight: Bold;
+	}
+
+This names are case-sensitive, you must make sure to respect the iOS font names.
 
 ### Font Sizes
 
@@ -94,7 +111,7 @@ the tricky nature of varying DPI on the various iPhone OS devices.
 
 ### Text Shadows
 
-The "blur" property is always interpreted as "0". This is due to the technical limitations
+In iOS older the 3.2 the "blur" property always interpreted as "0". This is due to the technical limitations
 of specifying blur for text shadows for UILabels.
 
 
@@ -108,8 +125,8 @@ Supported CSS Properties and Values
     <color>         #FFF or #FF00FF or rgb(255, 0, 255)
                     or rgba(0, 255, 255, 0.5) or <color-name>
     
-    <color-name>    Any of the standard names found in the W3C for css3.
-                    http://www.w3.org/TR/css3-color/
+    <color-name>    Any of the Extended color keywords found in the W3C for css3.
+                    http://www.w3.org/TR/css3-color/#svg-color
                     Also, iPhone OS standard colors:
                     lightTextColor
                     darkTextColor
@@ -139,14 +156,33 @@ Fonts are defined with a set of properties that collectively create the final UI
 
 ### Text Shadow
 
+	text-shadow-opacity: <number>						
     text-shadow:      <number>px <number>px <ignored> <color>
                       textShadowColorWithCssSelector
                       textShadowOffsetWithCssSelector
 
 The `text-shadow` property is defined in one chunk, but read using two distinct methods.
 
-The third parameter is ignored. See "Text Shadows" in the `Known Limitations` section for
-the technical reasons.
+The third parameter could be ignored on older iOS versions, see "Text Shadows" in the 
+`Known Limitations` section for the technical reasons.
+
+
+### Alignment and Justification
+
+	text-align:		(left|center|right)
+
+This property describes how inline contents of a block are horizontally aligned.
+    
+### Positioning and Size
+
+    top:            <number>px
+    left:           <number>px
+    width:          <number>px
+    height:         <number>px
+    
+### Visibilty
+
+    visibilty: (visible|hidden)
 
 
 Examples
@@ -173,7 +209,25 @@ Add the following code in your app delegate's `applicationDidFinishLaunching`.
     
     TT_RELEASE_SAFELY(styleSheet);
 
-Now you can freely customize the styles of your app using `stylesheet.css`. You can freely
-add new styles to the CSS, but with the current design you will also need to add an accessor
-to a custom object that inherits from `TTDefaultCSSStyleSheet`. See the source for
-`TTDefaultCSSStyleSheet` for examples of how to interact with the style sheet object.
+Now you can freely customize the styles of your app using `stylesheet.css`. You can access 
+the CSS rules and his properties using two convenient functions:
+
+### TTCSS function
+
+Allows you to retrieve the selector and some specific property.
+
+	// Read the color from the CSS 'headerFont'.
+	UIColor *headerFontColor = TTCSS( @"headerFont", color );
+
+### TTCSSRule function
+
+Retrieve an TTCSSRuleSet object for specified property. So you can access every property directly.
+
+	// Read the color rule set 'headerFont'.
+	TTCSSRuleSet *headerFont = TTCSSRuleSet( @"headerFont" );
+
+	UIColor *headerFontColor = headerFont.color;
+	
+
+You also could add an accessor to a custom object that inherits from `TTDefaultCSSStyleSheet`. See the source for
+`TTDefaultCSSStyleSheet` for an example.
