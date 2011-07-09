@@ -15,6 +15,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 #import "Three20Core/TTCorePreprocessorMacros.h" // For __TTDEPRECATED_METHOD
 
 /**
@@ -50,6 +52,15 @@
  * if (0 == textField.text.length || textField.text.isWhitespaceAndNewlines) {
  */
 - (BOOL)isEmptyOrWhitespace __TTDEPRECATED_METHOD;
+
+/**
+ * Calculates the height of this text given the font, max width, and line break mode.
+ *
+ * A convenience wrapper for sizeWithFont:constrainedToSize:lineBreakMode:
+ */
+- (CGFloat)heightWithFont: (UIFont*)font
+       constrainedToWidth: (CGFloat)width
+            lineBreakMode: (UILineBreakMode)lineBreakMode;
 
 /**
  * Parses a URL query string into a dictionary.

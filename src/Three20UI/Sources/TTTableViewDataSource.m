@@ -18,6 +18,7 @@
 
 // UI
 #import "Three20UI/TTTextEditor.h"
+#import "Three20UI/TTNavigator.h"
 
 // - Table Items
 #import "Three20UI/TTTableItem.h"
@@ -48,6 +49,9 @@
 #import "Three20UI/TTStyledTextTableCell.h"
 #import "Three20UI/TTTableFlushViewCell.h"
 
+// UINavigator
+#import "Three20UINavigator/TTBaseNavigator.h"
+
 // Style
 #import "Three20Style/TTStyledText.h"
 
@@ -69,6 +73,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
   TT_RELEASE_SAFELY(_model);
+  TT_RELEASE_SAFELY(_navigator);
 
   [super dealloc];
 }
@@ -114,7 +119,19 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCell*)tableView:(UITableView *)tableView
-                    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (nil == _navigator) {
+    TTBaseNavigator* navigator = [TTBaseNavigator navigatorForView:tableView];
+    if (_navigator != navigator) {
+      [_navigator release];
+      _navigator = [navigator retain];
+    }
+    if (nil == _navigator) {
+      // Default the the global navigator if this table isn't attached to a view hierarchy.
+      _navigator = [TTBaseNavigator globalNavigator];
+    }
+  }
+
   id object = [self tableView:tableView objectForRowAtIndexPath:indexPath];
 
   Class cellClass = [self tableView:tableView cellClassForObject:object];
@@ -132,7 +149,8 @@
   [identifier release];
 
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
-    [(TTTableViewCell*)cell setObject:object];
+    [(TTTableViewCell*)cell setObject: object
+                            navigator: _navigator];
   }
 
   [self tableView:tableView cell:cell willAppearAtIndexPath:indexPath];

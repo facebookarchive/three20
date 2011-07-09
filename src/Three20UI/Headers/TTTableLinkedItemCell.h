@@ -18,9 +18,14 @@
 #import "Three20UI/TTTableViewCell.h"
 
 @class TTTableLinkedItem;
+@class TTBaseNavigator;
+@class TTURLMap;
 
 @interface TTTableLinkedItemCell : TTTableViewCell {
-  TTTableLinkedItem* _item;
+  TTTableLinkedItem*  _item;
 }
+
++ (UITableViewCellAccessoryType)accessoryTypeForObject:(id)object URLMap:(TTURLMap*)URLMap;
++ (UITableViewCellSelectionStyle)selectionStyleForObject:(id)object;
 
 @end

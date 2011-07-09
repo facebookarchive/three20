@@ -19,6 +19,8 @@
 // Network
 #import "Three20Network/TTModel.h"
 
+@class TTBaseNavigator;
+
 @protocol TTTableViewDataSource <UITableViewDataSource, TTModel, UISearchDisplayDelegate>
 
 /**
@@ -78,7 +80,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface TTTableViewDataSource : NSObject <TTTableViewDataSource> {
-  id<TTModel> _model;
+  id<TTModel>       _model;
+  TTBaseNavigator*  _navigator;
 }
 
 @end

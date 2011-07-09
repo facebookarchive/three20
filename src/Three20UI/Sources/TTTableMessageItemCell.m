@@ -20,19 +20,23 @@
 #import "Three20UI/TTImageView.h"
 #import "Three20UI/TTTableMessageItem.h"
 #import "Three20UI/UIViewAdditions.h"
-#import "Three20Style/UIFontAdditions.h"
+#import "Three20UI/UITableViewAdditions.h"
+
+// UINavigator
+#import "Three20UINavigator/TTBaseNavigator.h"
+#import "Three20UINavigator/TTURLMap.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"
 #import "Three20Style/TTDefaultStyleSheet.h"
+#import "Three20Style/TTDefaultStyleSheet+Tables.h"
+#import "Three20Style/UIFontAdditions.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCore.h"
 #import "Three20Core/NSDateAdditions.h"
-
-static const NSInteger  kMessageTextLineCount       = 2;
-static const CGFloat    kDefaultMessageImageWidth   = 34;
-static const CGFloat    kDefaultMessageImageHeight  = 34;
+#import "Three20Core/NSStringAdditions.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,21 +48,22 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier]) {
-    self.textLabel.font = TTSTYLEVAR(font);
+    self.textLabel.font = TTSTYLEVAR(tableMessageItemSubtitleFont);
     self.textLabel.textColor = TTSTYLEVAR(textColor);
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.textAlignment = UITextAlignmentLeft;
     self.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.textLabel.contentMode = UIViewContentModeLeft;
+    self.textLabel.numberOfLines = TTSTYLEVAR(tableMessageItemSubtitleNumberOfLines);
 
-    self.detailTextLabel.font = TTSTYLEVAR(font);
+    self.detailTextLabel.font = TTSTYLEVAR(tableMessageItemMessageFont);
     self.detailTextLabel.textColor = TTSTYLEVAR(tableSubTextColor);
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.detailTextLabel.textAlignment = UITextAlignmentLeft;
     self.detailTextLabel.contentMode = UIViewContentModeTop;
     self.detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
-    self.detailTextLabel.numberOfLines = kMessageTextLineCount;
+    self.detailTextLabel.numberOfLines = TTSTYLEVAR(tableMessageItemMessageNumberOfLines);
     self.detailTextLabel.contentMode = UIViewContentModeLeft;
   }
 
@@ -83,9 +88,89 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * TODO (jverkoey April 7, 2011): Make this a utility method.
+ */
++ (CGFloat)heightForFont: (UIFont*)font
+                    text: (NSString*)text
+                maxWidth: (CGFloat)maxWidth
+           numberOfLines: (NSInteger)numberOfLines
+           lineBreakMode: (UILineBreakMode)lineBreakMode {
+  CGFloat maxHeight;
+  if (numberOfLines > 0) {
+    maxHeight = font.ttLineHeight * numberOfLines;
+
+  } else {
+    maxHeight = CGFLOAT_MAX;
+  }
+
+  return [text sizeWithFont: font
+          constrainedToSize: CGSizeMake(maxWidth, maxHeight)
+              lineBreakMode: lineBreakMode].height;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
-  // XXXjoe Compute height based on font sizes
-  return 90;
+  TTTableMessageItem* item = object;
+
+  UITableViewCellAccessoryType accessoryType =
+  [self accessoryTypeForObject: object
+                        URLMap: [TTBaseNavigator navigatorForView:tableView].URLMap];
+
+  CGFloat cellWidth = tableView.width - [tableView tableCellMargin] * 2;
+
+  if (accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
+    cellWidth -= kTableDisclosureIndicatorWidth;
+  }
+
+  CGSize iconSize = TTSTYLEVAR(tableMessageItemIconSize);
+
+  CGFloat left = 0;
+  if (TTIsStringWithAnyText(item.imageURL)) {
+    left += kTableCellSmallMargin + iconSize.width + kTableCellSmallMargin;
+
+  } else {
+    left = kTableCellMargin;
+  }
+
+  CGFloat textWidth = cellWidth - left - kTableCellSmallMargin;
+  CGFloat textHeight = 0;
+
+  if (TTIsStringWithAnyText(item.title)) {
+    CGFloat numberOfLines = TTSTYLEVAR(tableMessageItemTitleNumberOfLines);
+    UIFont* font = TTSTYLEVAR(tableMessageItemTitleFont);
+    CGFloat labelHeight = [self heightForFont: font
+                                         text: item.title
+                                     maxWidth: textWidth
+                                numberOfLines: numberOfLines
+                                lineBreakMode: UILineBreakModeTailTruncation];
+    textHeight += labelHeight;
+  }
+
+  if (TTIsStringWithAnyText(item.caption)) {
+    CGFloat numberOfLines = TTSTYLEVAR(tableMessageItemSubtitleNumberOfLines);
+    UIFont* font = TTSTYLEVAR(tableMessageItemSubtitleFont);
+    CGFloat labelHeight = [self heightForFont: font
+                                         text: item.caption
+                                     maxWidth: textWidth
+                                numberOfLines: numberOfLines
+                                lineBreakMode: UILineBreakModeTailTruncation];
+    textHeight += labelHeight;
+  }
+
+  if (TTIsStringWithAnyText(item.text)) {
+    CGFloat numberOfLines = TTSTYLEVAR(tableMessageItemMessageNumberOfLines);
+    UIFont* font = TTSTYLEVAR(tableMessageItemMessageFont);
+    CGFloat labelHeight = [self heightForFont: font
+                                         text: item.text
+                                     maxWidth: textWidth
+                                numberOfLines: numberOfLines
+                                lineBreakMode: UILineBreakModeTailTruncation];
+    textHeight += labelHeight;
+  }
+
+  return MAX(iconSize.height, textHeight) + kTableCellSmallMargin * 2;
 }
 
 
@@ -106,24 +191,40 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * TODO (jverkoey April 7, 2011): Make this a utility method.
+ */
+- (CGFloat)heightForLabel:(UILabel*)label maxWidth:(CGFloat)maxWidth {
+  return [[self class] heightForFont: label.font
+                                text: label.text
+                            maxWidth: maxWidth
+                       numberOfLines: label.numberOfLines
+                       lineBreakMode: label.lineBreakMode];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
   [super layoutSubviews];
 
   CGFloat left = 0;
   if (_imageView2) {
+    CGSize iconSize = TTSTYLEVAR(tableMessageItemIconSize);
     _imageView2.frame = CGRectMake(kTableCellSmallMargin, kTableCellSmallMargin,
-                                   kDefaultMessageImageWidth, kDefaultMessageImageHeight);
-    left += kTableCellSmallMargin + kDefaultMessageImageHeight + kTableCellSmallMargin;
+                                   iconSize.width, iconSize.height);
+    left += kTableCellSmallMargin + iconSize.width + kTableCellSmallMargin;
 
   } else {
     left = kTableCellMargin;
   }
 
-  CGFloat width = self.contentView.width - left;
+  CGFloat width = self.contentView.width - left - kTableCellSmallMargin;
   CGFloat top = kTableCellSmallMargin;
 
   if (_titleLabel.text.length) {
-    _titleLabel.frame = CGRectMake(left, top, width, _titleLabel.font.ttLineHeight);
+    _titleLabel.frame = CGRectMake(left, top, width,
+                                   [self heightForLabel:_titleLabel maxWidth:width]);
+
     top += _titleLabel.height;
 
   } else {
@@ -131,7 +232,10 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
   }
 
   if (self.captionLabel.text.length) {
-    self.captionLabel.frame = CGRectMake(left, top, width, self.captionLabel.font.ttLineHeight);
+    self.captionLabel.frame = CGRectMake(left, top, width,
+                                         [self heightForLabel: self.captionLabel
+                                                     maxWidth: width]);
+
     top += self.captionLabel.height;
 
   } else {
@@ -139,8 +243,9 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
   }
 
   if (self.detailTextLabel.text.length) {
-    CGFloat textHeight = self.detailTextLabel.font.ttLineHeight * kMessageTextLineCount;
-    self.detailTextLabel.frame = CGRectMake(left, top, width, textHeight);
+    self.detailTextLabel.frame = CGRectMake(left, top, width,
+                                         [self heightForLabel: self.detailTextLabel
+                                                     maxWidth: width]);
 
   } else {
     self.detailTextLabel.frame = CGRectZero;
@@ -214,8 +319,9 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.textColor = [UIColor blackColor];
     _titleLabel.highlightedTextColor = [UIColor whiteColor];
-    _titleLabel.font = TTSTYLEVAR(tableFont);
+    _titleLabel.font = TTSTYLEVAR(tableMessageItemTitleFont);
     _titleLabel.contentMode = UIViewContentModeLeft;
+    _titleLabel.numberOfLines = TTSTYLEVAR(tableMessageItemTitleNumberOfLines);
     [self.contentView addSubview:_titleLabel];
   }
   return _titleLabel;
@@ -232,10 +338,11 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
 - (UILabel*)timestampLabel {
   if (!_timestampLabel) {
     _timestampLabel = [[UILabel alloc] init];
-    _timestampLabel.font = TTSTYLEVAR(tableTimestampFont);
+    _timestampLabel.font = TTSTYLEVAR(tableMessageItemTimestampFont);
     _timestampLabel.textColor = TTSTYLEVAR(timestampTextColor);
     _timestampLabel.highlightedTextColor = [UIColor whiteColor];
     _timestampLabel.contentMode = UIViewContentModeLeft;
+    _timestampLabel.numberOfLines = 1;
     [self.contentView addSubview:_timestampLabel];
   }
   return _timestampLabel;

@@ -25,6 +25,8 @@ const CGFloat   kTableCellMargin      = 10;
 const CGFloat   kTableCellHPadding    = 10;
 const CGFloat   kTableCellVPadding    = 10;
 
+const CGFloat   kTableDisclosureIndicatorWidth = 20;
+
 const NSInteger kTableMessageTextLineCount = 2;
 
 
@@ -63,6 +65,12 @@ const NSInteger kTableMessageTextLineCount = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setObject:(id)object navigator:(TTBaseNavigator*)navigator {
+  [self setObject:object];
 }
 
 

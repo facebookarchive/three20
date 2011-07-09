@@ -23,6 +23,9 @@ extern const CGFloat    kTableCellMargin;
 extern const CGFloat    kTableCellHPadding;
 extern const CGFloat    kTableCellVPadding;
 extern const NSInteger  kTableMessageTextLineCount;
+extern const CGFloat    kTableDisclosureIndicatorWidth;
+
+@class TTBaseNavigator;
 
 /**
  * The base class for table cells which are single-object based.
@@ -39,6 +42,12 @@ extern const NSInteger  kTableMessageTextLineCount;
 @interface TTTableViewCell : UITableViewCell
 
 @property (nonatomic, retain) id object;
+
+/**
+ * @param object      The table data source's object that was used to create this cell.
+ * @param navigator   The table view's navigator. Necessary for linked cells.
+ */
+- (void)setObject:(id)object navigator:(TTBaseNavigator*)navigator;
 
 /**
  * Measure the height of the row with the object that will be assigned to the cell.
