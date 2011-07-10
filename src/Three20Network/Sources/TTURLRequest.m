@@ -262,6 +262,15 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSMutableDictionary*)headers {
+  if (!_headers) {
+    _headers = [[NSMutableDictionary alloc] init];
+  }
+  return _headers;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)httpBody {
   if (_httpBody) {
     return _httpBody;
