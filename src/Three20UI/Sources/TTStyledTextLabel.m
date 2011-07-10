@@ -454,6 +454,7 @@ static const CGFloat kCancelHighlightThreshold = 4;
     _text = [text retain];
     _text.delegate = self;
     _text.font = _font;
+    _text.textAlignment = _textAlignment;
     [self setNeedsLayout];
     [self setNeedsDisplay];
   }
@@ -482,6 +483,14 @@ static const CGFloat kCancelHighlightThreshold = 4;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setTextAlignment:(UITextAlignment)textAlignment {
+  if (textAlignment != _textAlignment) {
+    _textAlignment = textAlignment;
+    _text.textAlignment = _textAlignment;
+    [self setNeedsLayout];
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)textColor {
