@@ -6,7 +6,10 @@
 //  Copyright 2010 Shopify. All rights reserved.
 //
 
+#import "Three20UI/TTSectionedDataSource.h"
+
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface NSFetchedResultsDataSource : TTSectionedDataSource <NSFetchedResultsControllerDelegate>{
 

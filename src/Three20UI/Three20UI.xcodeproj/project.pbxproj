@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52CDF88C13C934C30077BEF5 /* TTTableViewCoreDataController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52CDF88B13C934C30077BEF5 /* TTTableViewCoreDataController.h */; };
+		52CDF88F13C934DA0077BEF5 /* TTTableViewCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CDF88D13C934DA0077BEF5 /* TTTableViewCoreDataController.m */; };
+		52CDF89013C934DA0077BEF5 /* NSFetchedResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CDF88E13C934DA0077BEF5 /* NSFetchedResultsDataSource.m */; };
+		52CDF89213C935040077BEF5 /* NSFetchedResultsDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 52CDF89113C935040077BEF5 /* NSFetchedResultsDataSource.h */; };
+		52CDF95013C936B10077BEF5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CDF94F13C936B10077BEF5 /* CoreData.framework */; };
 		666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E18E712945430001C1D97 /* TTSplitViewController.m */; };
 		666E18F51294543F001C1D97 /* TTSplitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 666E18F41294543F001C1D97 /* TTSplitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66ADC8C91290AC0200855386 /* TTExtensionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66ADC8C61290AC0200855386 /* TTExtensionsController.m */; };
@@ -283,6 +288,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		52CDF86213C934A50077BEF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81EF12630516005851C2;
+			remoteInfo = "Three20Network-Xcode3.2.5";
+		};
+		52CDF86413C934A50077BEF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81B2126304EB005851C2;
+			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
+		};
 		6E6454A61184D42800F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E6454A11184D42800F08CB1 /* Three20Style.xcodeproj */;
@@ -433,6 +452,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52CDF88B13C934C30077BEF5 /* TTTableViewCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewCoreDataController.h; path = Headers/TTTableViewCoreDataController.h; sourceTree = "<group>"; };
+		52CDF88D13C934DA0077BEF5 /* TTTableViewCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableViewCoreDataController.m; path = Sources/TTTableViewCoreDataController.m; sourceTree = "<group>"; };
+		52CDF88E13C934DA0077BEF5 /* NSFetchedResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSFetchedResultsDataSource.m; path = Sources/NSFetchedResultsDataSource.m; sourceTree = "<group>"; };
+		52CDF89113C935040077BEF5 /* NSFetchedResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSFetchedResultsDataSource.h; path = Headers/NSFetchedResultsDataSource.h; sourceTree = "<group>"; };
+		52CDF94F13C936B10077BEF5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		666E18E712945430001C1D97 /* TTSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTSplitViewController.m; path = Sources/TTSplitViewController.m; sourceTree = "<group>"; };
 		666E18F41294543F001C1D97 /* TTSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTSplitViewController.h; path = Headers/TTSplitViewController.h; sourceTree = "<group>"; };
 		66ADC8C61290AC0200855386 /* TTExtensionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionsController.m; path = Sources/TTExtensionsController.m; sourceTree = "<group>"; };
@@ -719,6 +743,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52CDF95013C936B10077BEF5 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,6 +810,7 @@
 		6E08B743118397FA00DA1579 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				52CDF94F13C936B10077BEF5 /* CoreData.framework */,
 				6EE7366611849C5800A35176 /* Three20Core.xcodeproj */,
 				6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */,
 				6E6454A11184D42800F08CB1 /* Three20Style.xcodeproj */,
@@ -1299,6 +1325,8 @@
 		6E6458281184DF5F00F08CB1 /* Table Controller */ = {
 			isa = PBXGroup;
 			children = (
+				52CDF88D13C934DA0077BEF5 /* TTTableViewCoreDataController.m */,
+				52CDF88B13C934C30077BEF5 /* TTTableViewCoreDataController.h */,
 				6E6455291184D4C500F08CB1 /* TTTableViewController.h */,
 				6E6456591184D4DA00F08CB1 /* TTTableViewController.m */,
 			);
@@ -1346,6 +1374,8 @@
 		6E64582C1184DFC500F08CB1 /* Table Data Source */ = {
 			isa = PBXGroup;
 			children = (
+				52CDF89113C935040077BEF5 /* NSFetchedResultsDataSource.h */,
+				52CDF88E13C934DA0077BEF5 /* NSFetchedResultsDataSource.m */,
 				6E64552A1184D4C500F08CB1 /* TTTableViewDataSource.h */,
 				6E64565A1184D4DA00F08CB1 /* TTTableViewDataSource.m */,
 				6E64582D1184DFEF00F08CB1 /* Table Data Sources */,
@@ -1704,7 +1734,9 @@
 			isa = PBXGroup;
 			children = (
 				6EE738A31184ADB400A35176 /* libThree20Network.a */,
+				52CDF86313C934A50077BEF5 /* libThree20Network-Xcode3.2.5.a */,
 				6EE738A51184ADB400A35176 /* NetworkUnitTests.octest */,
+				52CDF86513C934A50077BEF5 /* NetworkUnitTests-Xcode3.2.5.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1859,6 +1891,8 @@
 				666E18F51294543F001C1D97 /* TTSplitViewController.h in Headers */,
 				66F2E85412D426A5006FB485 /* TTTableFooterInfiniteScrollView.h in Headers */,
 				66F2E85F12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */,
+				52CDF88C13C934C30077BEF5 /* TTTableViewCoreDataController.h in Headers */,
+				52CDF89213C935040077BEF5 /* NSFetchedResultsDataSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1964,6 +1998,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		52CDF86313C934A50077BEF5 /* libThree20Network-Xcode3.2.5.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Network-Xcode3.2.5.a";
+			remoteRef = 52CDF86213C934A50077BEF5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		52CDF86513C934A50077BEF5 /* NetworkUnitTests-Xcode3.2.5.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NetworkUnitTests-Xcode3.2.5.octest";
+			remoteRef = 52CDF86413C934A50077BEF5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6E6454A71184D42800F08CB1 /* libThree20Style.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2219,6 +2267,8 @@
 				666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */,
 				66F2E85712D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */,
 				66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */,
+				52CDF88F13C934DA0077BEF5 /* TTTableViewCoreDataController.m in Sources */,
+				52CDF89013C934DA0077BEF5 /* NSFetchedResultsDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
