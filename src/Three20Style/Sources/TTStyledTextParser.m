@@ -114,8 +114,22 @@
 
   while (stringIndex < string.length) {
     NSRange searchRange = NSMakeRange(stringIndex, string.length - stringIndex);
-    NSRange startRange = [string rangeOfString:@"http://" options:NSCaseInsensitiveSearch
+    NSRange httpRange = [string rangeOfString:@"http://" options:NSCaseInsensitiveSearch
+                                range:searchRange];
+    NSRange httpsRange = [string rangeOfString:@"https://" options:NSCaseInsensitiveSearch
                                  range:searchRange];
+
+    NSRange startRange;
+    if (httpRange.location == NSNotFound) {
+        startRange = httpsRange;
+
+    } else if (httpsRange.location == NSNotFound) {
+        startRange = httpRange;
+
+    } else {
+        startRange = (httpRange.location < httpsRange.location) ? httpRange : httpsRange;
+    }
+
     if (startRange.location == NSNotFound) {
       NSString* text = [string substringWithRange:searchRange];
       TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:text] autorelease];
