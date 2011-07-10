@@ -1325,8 +1325,8 @@
 		6E6458281184DF5F00F08CB1 /* Table Controller */ = {
 			isa = PBXGroup;
 			children = (
-				52CDF88D13C934DA0077BEF5 /* TTTableViewCoreDataController.m */,
 				52CDF88B13C934C30077BEF5 /* TTTableViewCoreDataController.h */,
+				52CDF88D13C934DA0077BEF5 /* TTTableViewCoreDataController.m */,
 				6E6455291184D4C500F08CB1 /* TTTableViewController.h */,
 				6E6456591184D4DA00F08CB1 /* TTTableViewController.m */,
 			);
