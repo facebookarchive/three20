@@ -14,10 +14,15 @@
 // limitations under the License.
 //
 
-// CSS Parser
-#import "extThree20CSSStyle/TTCSSParser.h"
+#import "Three20Style/TTShadowStyle.h"
 
-// CSS Stylesheet
-#import "extThree20CSSStyle/TTCSSGlobalStyle.h"
-#import "extThree20CSSStyle/TTCSSStyleSheet.h"
-#import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
+@interface TTShadowStyle (TTCSSCategory)
+
++ (TTShadowStyle*)styleWithCssSelector:(NSString*)selector
+                              forState:(UIControlState)state
+                                  next:(TTStyle*)next;
+
++ (TTShadowStyle*)styleWithCssSelector:(NSString*)selector
+                                  next:(TTStyle*)next;
+
+@end

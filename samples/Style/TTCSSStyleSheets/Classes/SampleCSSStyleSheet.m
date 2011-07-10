@@ -14,10 +14,23 @@
 // limitations under the License.
 //
 
-// CSS Parser
-#import "extThree20CSSStyle/TTCSSParser.h"
+#import "SampleCSSStyleSheet.h"
 
-// CSS Stylesheet
-#import "extThree20CSSStyle/TTCSSGlobalStyle.h"
-#import "extThree20CSSStyle/TTCSSStyleSheet.h"
-#import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
+@implementation SampleCSSStyleSheet
+
+- (TTStyle *)h3:(UIControlState)state {
+  return
+  [TTSolidFillStyle styleWithColor:TTCSSSTATE(@"h3", backgroundColor, state) next:
+   [TTTextStyle styleWithCssSelector:@"h3" forState:state next:
+    nil]];
+}
+
+- (TTStyle *)h4:(UIControlState)state {
+  return
+  [TTSolidFillStyle styleWithColor:TTCSSSTATE(@"h4text", backgroundColor, state) next:
+   [TTShadowStyle styleWithCssSelector:@"h4shadow" forState:state next:
+    [TTTextStyle styleWithCssSelector:@"h4text" forState:state next:
+     nil]]];
+}
+
+@end

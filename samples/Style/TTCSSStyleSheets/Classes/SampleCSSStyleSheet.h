@@ -14,10 +14,5 @@
 // limitations under the License.
 //
 
-// CSS Parser
-#import "extThree20CSSStyle/TTCSSParser.h"
-
-// CSS Stylesheet
-#import "extThree20CSSStyle/TTCSSGlobalStyle.h"
-#import "extThree20CSSStyle/TTCSSStyleSheet.h"
-#import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
+@interface SampleCSSStyleSheet : TTDefaultCSSStyleSheet {}
+@end
