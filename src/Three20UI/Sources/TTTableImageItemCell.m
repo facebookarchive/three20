@@ -47,7 +47,8 @@ static const CGFloat kDefaultImageSize = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
+	self = [super initWithStyle:style reuseIdentifier:identifier];
+  if (self) {
     _imageView2 = [[TTImageView alloc] init];
     [self.contentView addSubview:_imageView2];
   }

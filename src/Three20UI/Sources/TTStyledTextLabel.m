@@ -59,7 +59,8 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _textAlignment  = UITextAlignmentLeft;
     _contentInset   = UIEdgeInsetsZero;
 

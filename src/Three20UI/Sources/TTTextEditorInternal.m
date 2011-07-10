@@ -36,7 +36,8 @@ TT_FIX_CATEGORY_BUG(TTTextEditorInternal)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTextEditor:(TTTextEditor*)textEditor {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _textEditor = textEditor;
   }
 

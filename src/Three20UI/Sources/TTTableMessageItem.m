@@ -83,7 +83,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder*)decoder {
-  if (self = [super initWithCoder:decoder]) {
+	self = [super initWithCoder:decoder];
+  if (self) {
     self.title = [decoder decodeObjectForKey:@"title"];
     self.caption = [decoder decodeObjectForKey:@"caption"];
     self.timestamp = [decoder decodeObjectForKey:@"timestamp"];

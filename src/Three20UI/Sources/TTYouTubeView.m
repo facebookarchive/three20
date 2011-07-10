@@ -51,7 +51,8 @@ wmode=\"transparent\" width=\"%0.0f\" height=\"%0.0f\"></embed>\
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURLPath:(NSString*)urlPath {
-  if (self = [self initWithFrame:CGRectMake(0, 0, kDefaultWidth, kDefaultHeight)]) {
+	self = [self initWithFrame:CGRectMake(0, 0, kDefaultWidth, kDefaultHeight)];
+  if (self) {
     self.urlPath = urlPath;
   }
   return self;
