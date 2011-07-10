@@ -75,6 +75,11 @@
  */
 - (CGSize)textShadowOffsetWithCssSelector:(NSString*)selector forState:(UIControlState)state;
 
+/**
+ * Get text shadow radius from a specific rule set.
+ */
+- (CGFloat)textShadowRadiusWithCssSelector:(NSString*)selector forState:(UIControlState)state;
+
 
 /**
  * Release all cached data.

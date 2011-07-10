@@ -18,9 +18,6 @@
 
 @class TTCSSStyleSheet;
 
-#define TTCSSBGCOLOR(selector)  [[TTDefaultCSSStyleSheet globalCSSStyleSheet] \
-                                  backgroundColorForCSSSelector:selector]
-
 @interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
 @private
   TTCSSStyleSheet* _styleSheet;
@@ -29,8 +26,6 @@
 @property (nonatomic, readonly) TTCSSStyleSheet* styleSheet;
 
 - (BOOL)addStyleSheetFromDisk:(NSString*)filename;
-
-- (UIColor*)backgroundColorForCSSSelector:(NSString*)cssSelector;
 
 + (TTDefaultCSSStyleSheet*)globalCSSStyleSheet;
 
