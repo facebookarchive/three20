@@ -28,6 +28,11 @@
 @synthesize autoresizesToText = _autoresizesToText;
 @synthesize overflowed        = _overflowed;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setAutoresizesToText:(BOOL)value {
+  _autoresizesToText = value;
+    self.delaysContentTouches = !value;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setContentOffset:(CGPoint)offset animated:(BOOL)animated {

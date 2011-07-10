@@ -149,6 +149,10 @@
   return _defaultObjectPattern;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)isMailURL:(NSURL*)URL {
+    return [URL.scheme caseInsensitiveCompare:@"mailto"] == NSOrderedSame;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)isWebURL:(NSURL*)URL {
@@ -257,6 +261,14 @@
   [pattern release];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)from:(NSString*)URL toSharedViewController:(id)target transition:(NSInteger)transition {
+    TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
+                                                                              mode:TTNavigationModeShare];
+    pattern.transition = transition;
+    [self addObjectPattern:pattern forURL:URL];
+    [pattern release];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)from:(NSString*)URL parent:(NSString*)parentURL

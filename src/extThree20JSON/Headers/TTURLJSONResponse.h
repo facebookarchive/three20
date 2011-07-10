@@ -24,6 +24,6 @@
   id _rootObject;
 }
 
-@property (nonatomic, retain, readonly) id    rootObject;
+@property (nonatomic, retain) id    rootObject;
 
 @end

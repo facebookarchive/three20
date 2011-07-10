@@ -64,7 +64,7 @@
     UIImage* image = [[TTURLCache sharedCache] imageForURL:request.urlPath fromDisk:NO];
 
     if (nil == image) {
-      image = [UIImage imageWithData:data];
+        image = [UIImage imageWithData:data];
     }
 
     if (nil != image) {

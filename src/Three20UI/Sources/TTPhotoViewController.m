@@ -541,8 +541,16 @@ static const NSInteger kActivityLabelTag          = 96;
 
   _toolbar.barStyle = self.navigationBarStyle;
   _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin;
-  _toolbar.items = [NSArray arrayWithObjects:
-                    space, _previousButton, space, _nextButton, space, nil];
+  
+    if ( _photoSource.numberOfPhotos > 1) {
+        _toolbar.items = [NSArray arrayWithObjects:
+                          space, _previousButton, space, playButton, space, _nextButton, space, nil];
+    }
+    else {
+        _toolbar.items = [NSArray arrayWithObjects:
+                          space, _previousButton, space, _nextButton, space, nil];
+    }
+
   [_innerView addSubview:_toolbar];
 }
 

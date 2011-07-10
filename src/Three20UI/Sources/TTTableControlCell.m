@@ -86,6 +86,17 @@ static const CGFloat kControlPadding = 8;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)shouldRespectControlBaseline:(UIView*)view {
+    if ([view isKindOfClass:[UITextField class]]) {
+        UITextField *textField = (UITextField *)view;
+        if (textField.rightView || textField.leftView) return NO;
+        return YES;
+    }
+    else if ([view isKindOfClass:[UITextView class]]) return YES;
+    return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark TTTableViewCell class public
@@ -145,13 +156,13 @@ static const CGFloat kControlPadding = 8;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  if ([TTTableControlCell shouldSizeControlToFit:_control]) {
+  if ([[self class] shouldSizeControlToFit:_control]) {
     _control.frame = CGRectInset(self.contentView.bounds, 2, kTableCellSpacing / 2);
 
   } else {
     CGFloat minX = kControlPadding;
     CGFloat contentWidth = self.contentView.width - kControlPadding;
-    if (![TTTableControlCell shouldRespectControlPadding:_control]) {
+    if (![[self class] shouldRespectControlPadding:_control]) {
       contentWidth -= kControlPadding;
     }
     if (self.textLabel.text.length) {
@@ -164,16 +175,26 @@ static const CGFloat kControlPadding = 8;
       [_control sizeToFit];
     }
 
-    if ([TTTableControlCell shouldConsiderControlIntrinsicSize:_control]) {
+    if ([[self class] shouldConsiderControlIntrinsicSize:_control]) {
       minX += contentWidth - _control.width;
     }
+
+    CGFloat minY = floor(self.contentView.height/2 - _control.height/2);
 
     // XXXjoe For some reason I need to re-add the control as a subview or else
     // the re-use of the cell will cause the control to fail to paint itself on occasion
     [self.contentView addSubview:_control];
-    _control.frame = CGRectMake(minX, floor(self.contentView.height/2 - _control.height/2),
-                                contentWidth, _control.height);
+    _control.frame = CGRectMake(minX, minY,
+                                contentWidth - kControlPadding, _control.height);
+      
+    if ([[self class] shouldRespectControlBaseline:_control]) {
+      [self.textLabel sizeToFit];
+      self.textLabel.centerY = self.contentView.height/2;
+      _control.bottom = self.textLabel.bottom;
+    }      
   }
+  
+//  _control.backgroundColor = [UIColor redColor];
 }
 
 

@@ -51,6 +51,8 @@
 
 @property (nonatomic, assign) id<TTTextEditorDelegate> delegate;
 
+@property (nonatomic, readonly) UIView *textView;
+
 - (void)scrollContainerToCursor:(UIScrollView*)scrollView;
 
 @end

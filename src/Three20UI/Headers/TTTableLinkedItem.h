@@ -32,4 +32,6 @@
 @property (nonatomic, assign) id        delegate;
 @property (nonatomic, assign) SEL       selector;
 
++ (id)itemWithDelegate:(id)delegate selector:(SEL)selector;
+
 @end

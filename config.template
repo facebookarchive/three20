@@ -14,4 +14,4 @@
 
 ; By default, Three20 will run the linter on all Three20 projects. If you are hacking on
 ; Three20 and don't really care about stylistic consistency, set this to false.
-enabled_for_projects = true
+enabled_for_projects = false

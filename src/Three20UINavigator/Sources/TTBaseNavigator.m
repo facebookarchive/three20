@@ -39,6 +39,7 @@
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
 #import "Three20Core/NSDateAdditions.h"
+#import "Three20Core/NSStringAdditions.h"
 
 static TTBaseNavigator* gNavigator = nil;
 
@@ -60,6 +61,8 @@ __attribute__((weak_import));
 @implementation TTBaseNavigator
 
 @synthesize delegate                  = _delegate;
+@synthesize mailDelegate              = _mailDelegate;
+@synthesize messageDelegate           = _messageDelegate;
 @synthesize URLMap                    = _URLMap;
 @synthesize window                    = _window;
 @synthesize rootViewController        = _rootViewController;
@@ -320,6 +323,7 @@ __attribute__((weak_import));
                              animated: NO];
     [parentController presentModalViewController: navController
                                         animated: animated];
+    TTDCONDITIONLOG(TTDFLAG_NAVIGATOR, @"TTDINFO URL %@", navController);
   }
 }
 
@@ -455,11 +459,25 @@ __attribute__((weak_import));
   NSString* urlPath = action.urlPath;
 
   NSURL* theURL = [NSURL URLWithString:urlPath];
+    if ([_URLMap isMailURL:theURL] && _mailDelegate) {
+        MFMailComposeViewController *mailCompose= [[[MFMailComposeViewController alloc] init] autorelease];
+        mailCompose.mailComposeDelegate = _mailDelegate;
+        NSDictionary *params = [theURL.resourceSpecifier queryContentsUsingEncoding:NSUTF8StringEncoding];
+        NSArray *recipients = [[[params objectForKey:@"to"] lastObject] componentsSeparatedByString:@","];
+        [mailCompose setToRecipients:recipients];
+        [mailCompose setSubject:[[params objectForKey:@"subject"] lastObject]];
+        NSString *mailBody = [[params objectForKey:@"body"] lastObject];
+        // TODO: Detect if mailBody has HTML tags and set isHTML if so
+        [mailCompose setMessageBody:mailBody isHTML:NO];
+        [self.topViewController presentModalViewController:mailCompose animated:YES];
+        return nil;
+    }
+    
   if ([_URLMap isAppURL:theURL]) {
     [[UIApplication sharedApplication] openURL:theURL];
     return nil;
   }
-
+    
   if (nil == theURL.scheme) {
     if (nil != theURL.fragment) {
       urlPath = [self.URL stringByAppendingString:urlPath];

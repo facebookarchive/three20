@@ -68,6 +68,7 @@
  */
 - (void)from:(NSString*)URL toSharedViewController:(id)target;
 - (void)from:(NSString*)URL toSharedViewController:(id)target selector:(SEL)selector;
+- (void)from:(NSString*)URL toSharedViewController:(id)target transition:(NSInteger)transition;
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
         toSharedViewController:(id)target;
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
@@ -159,6 +160,11 @@
  * Returns YES if the URL is destined for an external app.
  */
 - (BOOL)isAppURL:(NSURL*)URL;
+
+/**
+ * Returns YES if the URL is for email
+ */
+- (BOOL)isMailURL:(NSURL*)URL;
 
 /**
  * Gets a URL that has been mapped to the object.

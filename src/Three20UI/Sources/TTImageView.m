@@ -202,6 +202,7 @@
     UIImage* image = [[TTURLCache sharedCache] imageForURL:_urlPath];
 
     if (nil != image) {
+    
       self.image = image;
 
     } else {

@@ -469,10 +469,14 @@ static NSMutableDictionary* gNamedCaches = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)imageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
+- (id)imageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk {    
   UIImage* image = [_imageCache objectForKey:URL];
 
-  if (nil == image && fromDisk) {
+  if (image) {
+//    TTDCONDITIONLOG(TTDFLAG_URLCACHE, @"[HIT] %@", URL);
+  }
+  else if (nil == image && fromDisk) {
+//    TTDCONDITIONLOG(TTDFLAG_URLCACHE, @"[MISS] %@", URL);
     if (TTIsBundleURL(URL)) {
       image = [self loadImageFromBundle:URL];
       [self storeImage:image forURL:URL];
@@ -482,6 +486,7 @@ static NSMutableDictionary* gNamedCaches = nil;
       [self storeImage:image forURL:URL];
     }
   }
+ 
 
   return image;
 }

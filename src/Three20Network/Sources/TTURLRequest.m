@@ -123,6 +123,52 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   [super dealloc];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)URLParameters {
+    // for POST and PUT, just put everything in the body
+    if ([_httpMethod isEqualToString:@"POST"] || [_httpMethod isEqualToString:@"PUT"]) {
+        return nil;
+    }
+    
+    NSMutableString *URLParameters = [NSMutableString string];
+    NSDictionary *params = self.parameters;
+    NSArray *paramKeys = [params allKeys];
+    
+    if (paramKeys.count == 0) return nil;
+        
+    for (NSString *param in paramKeys) {
+        id value = [params objectForKey:param];
+        if ([value isKindOfClass:[NSString class]]) {
+            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        else if ([value isKindOfClass:[NSNumber class]]) {
+            value = [value stringValue];
+        }
+        
+        [URLParameters appendFormat:@"%@=%@", [param stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], value];
+        if (param != [paramKeys lastObject]) {
+            [URLParameters appendString:@"&"];
+        }
+    }
+    
+    return URLParameters;
+}
+
+
+- (NSString *)urlPath {
+    return [self URLWithParameters];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)URLWithParameters  {
+    NSString *params = [self URLParameters];
+    if (params) {
+        return [NSString stringWithFormat:@"%@?%@", _urlPath, params];
+    }
+    else {
+        return _urlPath;
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)description {
@@ -191,7 +237,12 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
       [body appendData:[[NSString
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
           dataUsingEncoding:_charsetForMultipart]];
-      [body appendData:[value dataUsingEncoding:_charsetForMultipart]];
+        if([value isKindOfClass:[NSString class]]) {
+            [body appendData:[value dataUsingEncoding:_charsetForMultipart]];
+        }
+        else if ([value isKindOfClass:[NSNumber class]]) {
+            [body appendData:[[(NSNumber *)value stringValue] dataUsingEncoding:_charsetForMultipart]];
+        }
     }
   }
 

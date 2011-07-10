@@ -16,6 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 #import "Three20UINavigator/TTNavigatorPersistenceMode.h"
 
@@ -48,8 +49,9 @@
   BOOL                        _supportsShakeToReload;
   BOOL                        _opensExternalURLs;
 
-  id<TTNavigatorDelegate>       _delegate;
-  id<TTNavigatorRootContainer>  _rootContainer;
+  id<TTNavigatorDelegate>     _delegate;
+  id<MFMailComposeViewControllerDelegate> _mailDelegate;
+  id<MFMessageComposeViewControllerDelegate> _messageDelegate;
 }
 
 /**
@@ -155,6 +157,9 @@
 @property (nonatomic, readonly) BOOL isDelayed;
 
 @property (nonatomic, assign) id<TTNavigatorDelegate> delegate;
+
+@property (nonatomic, assign) id<MFMailComposeViewControllerDelegate> mailDelegate;
+@property (nonatomic, assign) id<MFMessageComposeViewControllerDelegate> messageDelegate;
 
 /**
  * Determines the navigator that contains this view.
