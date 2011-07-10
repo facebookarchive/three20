@@ -484,7 +484,7 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)buttonTouchedDown:(TTLauncherButton*)button withEvent:(UIEvent*)event {
-  if (!_editable)
+  if (!self.editable)
     return;
 
   if (_editing) {
