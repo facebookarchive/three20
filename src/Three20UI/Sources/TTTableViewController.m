@@ -818,7 +818,7 @@
   // Move each content subview down, revealing the menu
   for (UIView* subview in _menuCell.contentView.subviews) {
     if (subview != _menuView) {
-      subview.left -= _menuCell.contentView.width;
+      subview.right += _menuCell.contentView.width;
     }
   }
 
@@ -840,7 +840,7 @@
 
     for (UIView* view in _menuCell.contentView.subviews) {
       if (view != _menuView) {
-        view.left += _menuCell.contentView.width;
+        view.right -= _menuCell.contentView.width;
       }
     }
 
