@@ -49,6 +49,7 @@
 
   BOOL _editing;
   BOOL _springing;
+  BOOL _editable;
 
   id<TTLauncherViewDelegate> _delegate;
 }
@@ -68,6 +69,7 @@
 @property (nonatomic, copy) NSString* prompt;
 
 @property (nonatomic, readonly) BOOL editing;
+@property (nonatomic, assign) BOOL editable;
 
 - (void)addItem:(TTLauncherItem*)item animated:(BOOL)animated;
 
