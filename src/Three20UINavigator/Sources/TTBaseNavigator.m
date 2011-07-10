@@ -695,13 +695,16 @@ __attribute__((weak_import));
     } else {
       id object = [_URLMap objectForURL:baseURL query:nil pattern:pattern];
       if (object) {
+        UIViewController *controller = nil;
         id result = [_URLMap dispatchURL:URL toTarget:object query:query];
         if ([result isKindOfClass:[UIViewController class]]) {
-          return result;
+          controller = result;
 
         } else {
-          return object;
+          controller = object;
         }
+        controller.originalNavigatorURL = baseURL;
+        return controller;
 
       } else {
         return nil;
