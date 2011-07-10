@@ -38,7 +38,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithElement:(TTStyledElement*)element node:(TTStyledImageNode*)node {
-  if (self = [super initWithElement:element]) {
+	self = [super initWithElement:element];
+  if (self) {
     _imageNode = node;
   }
 

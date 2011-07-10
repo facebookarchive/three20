@@ -39,7 +39,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame  {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.scrollEnabled = YES;
     _scrollView.scrollsToTop = NO;

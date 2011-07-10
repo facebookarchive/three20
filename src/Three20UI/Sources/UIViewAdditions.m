@@ -104,7 +104,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initInView:(UIView *)view location:(CGPoint)location {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _tapCount = 1;
     _locationInWindow = location;
     _previousLocationInWindow = location;
@@ -139,7 +140,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTouch:(UITouch *)touch {
-  if (self == [super init]) {
+	self = [super init];
+  if (self) {
     UIEventFake *selfFake = (UIEventFake*)self;
     selfFake->_touches = [[NSMutableSet setWithObject:touch] retain];
     selfFake->_timestamp = [NSDate timeIntervalSinceReferenceDate];
