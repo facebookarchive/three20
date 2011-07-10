@@ -64,6 +64,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 @synthesize shouldHandleCookies   = _shouldHandleCookies;
 @synthesize respondedFromCache    = _respondedFromCache;
 @synthesize filterPasswordLogging = _filterPasswordLogging;
+@synthesize multiPartForm         = _multiPartForm;
 
 @synthesize delegates             = _delegates;
 
@@ -100,6 +101,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     _cacheExpirationAge = TT_DEFAULT_CACHE_EXPIRATION_AGE;
     _shouldHandleCookies = YES;
     _charsetForMultipart = NSUTF8StringEncoding;
+    _multiPartForm = YES;
   }
   return self;
 }
@@ -152,6 +154,20 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSData *)generateNonMultipartPostBody {
+  NSMutableArray *paramsArray = [NSMutableArray array];
+  for (id key in [_parameters keyEnumerator]) {
+    NSString *value = [_parameters valueForKey:key];
+    if ([key isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]]) {
+      [paramsArray addObject:[NSString stringWithFormat:@"%@=%@", 
+                              key, 
+                              [[value stringByReplacingOccurrencesOfString:@" " withString:@"+"] urlEncoded]]];
+    }
+  }
+  NSString *stringBody = [paramsArray componentsJoinedByString:@"&"];
+  return [stringBody dataUsingEncoding:NSUTF8StringEncoding];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)appendImageData:(NSData*)data
@@ -256,11 +272,13 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 - (NSData*)httpBody {
   if (_httpBody) {
     return _httpBody;
-
-  } else if ([[_httpMethod uppercaseString] isEqualToString:@"POST"]
-             || [[_httpMethod uppercaseString] isEqualToString:@"PUT"]) {
-    return [self generatePostBody];
-
+  } else if (([[_httpMethod uppercaseString] isEqualToString:@"POST"]
+              || [[_httpMethod uppercaseString] isEqualToString:@"PUT"])) {
+    if (_multiPartForm) {
+      return [self generatePostBody];      
+    } else {
+      return [self generateNonMultipartPostBody];
+    }
   } else {
     return nil;
   }
@@ -274,8 +292,12 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
   } else if ([_httpMethod isEqualToString:@"POST"]
              || [_httpMethod isEqualToString:@"PUT"]) {
-    return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", kStringBoundary];
-
+    if (_multiPartForm) {
+      return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", kStringBoundary];      
+    } else {
+      return [NSString stringWithFormat:@"application/x-www-form-urlencoded", kStringBoundary];            
+    }
+    
   } else {
     return nil;
   }
