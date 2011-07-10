@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -82,6 +82,7 @@
 - (NSString*)outerHTML {
   if (_nextSibling) {
     return _nextSibling.outerHTML;
+
   } else {
     return @"";
   }
@@ -92,6 +93,7 @@
 - (id)ancestorOrSelfWithClass:(Class)cls {
   if ([self isKindOfClass:cls]) {
     return self;
+
   } else {
     return [_parentNode ancestorOrSelfWithClass:cls];
   }

@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,7 +51,8 @@
 /**
  * The style of the status bar when this view controller is appearing.
  *
- * @default UIStatusBarStyleDefault
+ * @default [[UIApplication sharedApplication] statusBarStyle] via app's info.plist
+ *
  */
 @property (nonatomic) UIStatusBarStyle statusBarStyle;
 

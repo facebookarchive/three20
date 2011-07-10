@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,6 +53,12 @@
  * Resets the model to its original state before any data was loaded.
  */
 - (void)reset;
+
+/**
+ * Valid while loading. Returns download progress as between 0 and 1.
+ */
+
+- (float)downloadProgress;
 
 @end
 

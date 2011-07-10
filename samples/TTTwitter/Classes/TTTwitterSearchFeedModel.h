@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,11 +20,18 @@
 @interface TTTwitterSearchFeedModel : TTURLRequestModel {
   NSString* _searchQuery;
 
-  NSArray*  _tweets;
+  NSMutableArray*  _tweets;
+
+  NSUInteger _page;             // page of search request
+  NSUInteger _resultsPerPage;   // results per page, once the initial query is made
+                                // this value shouldn't be changed
+  BOOL _finished;
 }
 
-@property (nonatomic, copy)     NSString* searchQuery;
-@property (nonatomic, readonly) NSArray*  tweets;
+@property (nonatomic, copy)     NSString*       searchQuery;
+@property (nonatomic, readonly) NSMutableArray* tweets;
+@property (nonatomic, assign)   NSUInteger      resultsPerPage;
+@property (nonatomic, readonly) BOOL            finished;
 
 - (id)initWithSearchQuery:(NSString*)searchQuery;
 

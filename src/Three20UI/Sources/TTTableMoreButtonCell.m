@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -89,14 +89,17 @@ static const CGFloat kMoreButtonMargin = 40;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  _activityIndicatorView.left = kMoreButtonMargin - (_activityIndicatorView.width + kTableCellSmallMargin);
+  _activityIndicatorView.left = kMoreButtonMargin - (_activityIndicatorView.width
+                                                     + kTableCellSmallMargin);
   _activityIndicatorView.top = floor(self.contentView.height/2 - _activityIndicatorView.height/2);
 
   self.textLabel.frame = CGRectMake(kMoreButtonMargin, self.textLabel.top,
-                                    self.contentView.width - (kMoreButtonMargin + kTableCellSmallMargin),
+                                    self.contentView.width - (kMoreButtonMargin
+                                                              + kTableCellSmallMargin),
                                     self.textLabel.height);
   self.detailTextLabel.frame = CGRectMake(kMoreButtonMargin, self.detailTextLabel.top,
-                                          self.contentView.width - (kMoreButtonMargin + kTableCellSmallMargin),
+                                          self.contentView.width - (kMoreButtonMargin
+                                                                    + kTableCellSmallMargin),
                                           self.detailTextLabel.height);
 
 }
@@ -118,6 +121,7 @@ static const CGFloat kMoreButtonMargin = 40;
 
     self.textLabel.textColor = TTSTYLEVAR(moreLinkTextColor);
     self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
+    self.accessoryType = UITableViewCellAccessoryNone;
   }
 }
 

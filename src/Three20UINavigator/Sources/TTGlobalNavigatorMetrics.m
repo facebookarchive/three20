@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ UIInterfaceOrientation TTInterfaceOrientation() {
   UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
   if (UIDeviceOrientationUnknown == orient) {
     return [TTBaseNavigator globalNavigator].visibleViewController.interfaceOrientation;
+
   } else {
     return orient;
   }
@@ -74,8 +75,10 @@ CGFloat TTStatusHeight() {
   UIInterfaceOrientation orientation = TTInterfaceOrientation();
   if (orientation == UIInterfaceOrientationLandscapeLeft) {
     return [UIScreen mainScreen].applicationFrame.origin.x;
+
   } else if (orientation == UIInterfaceOrientationLandscapeRight) {
     return -[UIScreen mainScreen].applicationFrame.origin.x;
+
   } else {
     return [UIScreen mainScreen].applicationFrame.origin.y;
   }
@@ -87,6 +90,7 @@ CGFloat TTBarsHeight() {
   CGRect frame = [UIApplication sharedApplication].statusBarFrame;
   if (UIInterfaceOrientationIsPortrait(TTInterfaceOrientation())) {
     return frame.size.height + TT_ROW_HEIGHT;
+
   } else {
     return frame.size.width + TT_LANDSCAPE_TOOLBAR_HEIGHT;
   }

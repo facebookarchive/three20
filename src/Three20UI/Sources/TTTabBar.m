@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -176,7 +176,9 @@
     TTTabItem* tabItem = [_tabItems objectAtIndex:i];
     TTTab* tab = [[[TTTab alloc] initWithItem:tabItem tabBar:self] autorelease];
     [tab setStylesWithSelector:self.tabStyle];
-    [tab addTarget:self action:@selector(tabTouchedUp:) forControlEvents:UIControlEventTouchUpInside];
+    [tab        addTarget: self
+                   action: @selector(tabTouchedUp:)
+         forControlEvents: UIControlEventTouchUpInside];
     [self addTab:tab];
     [_tabViews addObject:tab];
     if (i == _selectedTabIndex) {

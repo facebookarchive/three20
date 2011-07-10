@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
   NSString*       _URL;
 
   NSString*       _style;
-  NSInteger       _badgeNumber;
+  NSString*       _badgeValue;
 
   BOOL            _canDelete;
 }
@@ -38,6 +38,7 @@
 @property (nonatomic, copy)   NSString*       URL;
 @property (nonatomic, copy)   NSString*       style;
 @property (nonatomic)         NSInteger       badgeNumber;
+@property (nonatomic, copy)   NSString*       badgeValue;
 @property (nonatomic)         BOOL            canDelete;
 
 - (id)initWithTitle:(NSString*)title image:(NSString*)image URL:(NSString*)URL;

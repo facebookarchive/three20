@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -129,6 +129,22 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated {
+  [self viewWillAppear:animated];
+  [self.actionSheet showFromBarButtonItem:item animated:animated];
+  [self viewDidAppear:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated {
+  [self viewWillAppear:animated];
+  [self.actionSheet showFromRect:rect inView:view animated:animated];
+  [self viewDidAppear:animated];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissPopupViewControllerAnimated:(BOOL)animated {
   [self viewWillDisappear:animated];
   [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex
@@ -221,6 +237,7 @@
 - (NSInteger)addButtonWithTitle:(NSString*)title URL:(NSString*)URL {
   if (URL) {
     [_URLs addObject:URL];
+
   } else {
     [_URLs addObject:[NSNull null]];
   }
@@ -247,6 +264,7 @@
   if (buttonIndex < _URLs.count) {
     id URL = [_URLs objectAtIndex:buttonIndex];
     return URL != [NSNull null] ? URL : nil;
+
   } else {
     return nil;
   }

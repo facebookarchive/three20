@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -99,6 +99,7 @@
 - (void)drawContent:(CGRect)rect {
   if (nil != _image) {
     [_image drawInRect:rect contentMode:self.contentMode];
+
   } else {
     [_defaultImage drawInRect:rect contentMode:self.contentMode];
   }
@@ -209,7 +210,7 @@
 
       if (![request send]) {
         // Put the default image in place while waiting for the request to load
-        if (_defaultImage && self.image != _defaultImage) {
+        if (_defaultImage && nil == self.image) {
           self.image = _defaultImage;
         }
       }

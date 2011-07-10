@@ -1,0 +1,17 @@
+;
+; This Three20 config file is used by various scripts in the Three20 ecosystem to
+; change configuration settings.
+;
+; NOTICE: This is just a template. Changes to this file will not be noticed by scripts.
+;         To configure Three20, copy this file and rename it to "config" in the same folder.
+;
+; This file represents the assumed "defaults" when the config file does not exist.
+;
+
+; The Three20 lint tool validates source code for the Three20 style guidelines to ensure a
+; consistent style across the code base.
+[lint]
+
+; By default, Three20 will run the linter on all Three20 projects. If you are hacking on
+; Three20 and don't really care about stylistic consistency, set this to false.
+enabled_for_projects = true

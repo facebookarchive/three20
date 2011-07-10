@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -136,7 +136,7 @@ static const NSInteger kLoadMaxRetries = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)load:(NSURL*)URL {
-  if (!_connection) {
+  if (nil == _connection) {
     [self connectToURL:URL];
   }
 }
@@ -165,6 +165,7 @@ static const NSInteger kLoadMaxRetries = 2;
     TT_RELEASE_SAFELY(_connection);
 
     [_queue loader:self didFailLoadWithError:error];
+
   } else {
     [self connection:nil didReceiveResponse:(NSHTTPURLResponse*)response];
     [self connection:nil didReceiveData:data];
@@ -294,12 +295,20 @@ static const NSInteger kLoadMaxRetries = 2;
   }
 
   _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
+
+    for (TTURLRequest* request in [[_requests copy] autorelease]) {
+        request.totalContentLength = contentLength;
+    }
+
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
   [_responseData appendData:data];
+    for (TTURLRequest* request in [[_requests copy] autorelease]) {
+        request.totalBytesDownloaded += [data length];
+    }
 }
 
 
@@ -388,7 +397,9 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Deprecated
+/**
+ * Deprecated
+ */
 - (NSString*)URL {
   return _urlPath;
 }

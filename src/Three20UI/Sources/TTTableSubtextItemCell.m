@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,8 @@
 #import "Three20UI/TTTableSubtextItemCell.h"
 
 // UI
-#import "Three20UI/TTTableCaptionItem.h"
+#import "Three20UI/TTTableSubtextItem.h"
+#import "Three20UI/UITableViewAdditions.h"
 #import "Three20UI/UIViewAdditions.h"
 
 // Style
@@ -60,9 +61,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
-  TTTableCaptionItem* item = object;
+  TTTableSubtextItem* item = object;
 
-  CGFloat width = tableView.width - kTableCellHPadding*2;
+  CGFloat width = tableView.width - [tableView tableCellMargin]*2 - kTableCellHPadding*2;
 
   CGSize detailTextSize = [item.text sizeWithFont:TTSTYLEVAR(tableFont)
                                 constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
@@ -120,7 +121,7 @@
   if (_item != object) {
     [super setObject:object];
 
-    TTTableCaptionItem* item = object;
+    TTTableSubtextItem* item = object;
     self.textLabel.text = item.caption;
     self.detailTextLabel.text = item.text;
   }

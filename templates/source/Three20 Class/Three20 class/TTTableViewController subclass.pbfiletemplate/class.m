@@ -15,13 +15,13 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id) init {
-  if (self = [super init]) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     //self.variableHeightRows = YES;
 
     self.dataSource =
       [TTListDataSource dataSourceWithObjects:
-        [[TTTableTitleItem item] applyTitle:@"Table cell item"],
+        [TTTableTextItem itemWithText:@"Table cell item"],
          nil];
   }
 

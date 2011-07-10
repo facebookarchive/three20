@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
   id        _weakRef;
 }
 
-@property (nonatomic, retain) NSString* topic;
+@property (nonatomic, copy)   NSString* topic;
 @property (nonatomic, retain) id        strongRef;
 @property (nonatomic, assign) id        weakRef;
 

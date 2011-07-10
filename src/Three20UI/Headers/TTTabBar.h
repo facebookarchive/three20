@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@
 @property (nonatomic, assign)   TTTab*      selectedTabView;
 @property (nonatomic)           NSInteger   selectedTabIndex;
 
-@property (nonatomic, retain)   NSArray*    tabItems;
+@property (nonatomic, copy)     NSArray*    tabItems;
 @property (nonatomic, readonly) NSArray*    tabViews;
 
 @property (nonatomic, assign)   id<TTTabDelegate> delegate;

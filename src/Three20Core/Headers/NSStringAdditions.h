@@ -1,5 +1,5 @@
 //
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,8 +30,26 @@
 
 /**
  * Determines if the string is empty or contains only whitespace.
+ * @deprecated Use TTIsStringWithAnyText() instead. Updating your use of
+ * this method is non-trivial. See the note below.
+ *
+ * Notes for updating your use of isEmptyOrWhitespace:
+ *
+ * if (!textField.text.isEmptyOrWhitespace) {
+ *
+ * becomes
+ *
+ * if (TTIsStringWithAnyText(textField.text) && !textField.text.isWhitespaceAndNewlines) {
+ *
+ * and
+ *
+ * if (textField.text.isEmptyOrWhitespace) {
+ *
+ * becomes
+ *
+ * if (0 == textField.text.length || textField.text.isWhitespaceAndNewlines) {
  */
-- (BOOL)isEmptyOrWhitespace;
+- (BOOL)isEmptyOrWhitespace __TTDEPRECATED_METHOD;
 
 /**
  * Parses a URL query string into a dictionary.

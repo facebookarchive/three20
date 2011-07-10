@@ -1,4 +1,4 @@
-// Copyright 2009-2010 Facebook
+// Copyright 2009-2011 Facebook
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may
 // not use this file except in compliance with the License. You may obtain
@@ -13,6 +13,9 @@
 // under the License.
 
 #import "Three20UI/UINSStringAdditions.h"
+
+// Core
+#import "Three20Core/TTCorePreprocessorMacros.h"
 
 // UI
 #import "Three20UI/TTNavigator.h"
@@ -29,6 +32,8 @@
 /**
  * Additions.
  */
+TT_FIX_CATEGORY_BUG(UINSStringAdditions)
+
 @implementation NSString (TTCategory)
 
 
@@ -48,9 +53,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)openURLFromButton:(UIView*)button {
   NSDictionary* query = [NSDictionary dictionaryWithObjectsAndKeys:button, @"__target__", nil];
-  [[TTNavigator navigator] openURLAction:[[[TTURLAction actionWithURLPath: self]
-                                                               applyQuery: query]
-                                                            applyAnimated: YES]];
+  [[TTBaseNavigator navigatorForView:button]
+    openURLAction:[[[TTURLAction actionWithURLPath: self]
+                    applyQuery: query]
+                   applyAnimated: YES]];
 }
 
 
