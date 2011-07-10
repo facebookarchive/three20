@@ -37,10 +37,12 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
   if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier]) {
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+	self.textLabel.backgroundColor = TTSTYLEVAR(backgroundTextColor);
     self.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     self.textLabel.numberOfLines = 0;
 
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+	self.detailTextLabel.backgroundColor = TTSTYLEVAR(backgroundTextColor);
 
     // XXXjoe TODO
   }
