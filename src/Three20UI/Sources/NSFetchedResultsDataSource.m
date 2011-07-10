@@ -36,8 +36,8 @@
 @synthesize entity = _entity;
 
 - (id) initWithEntity:(NSEntityDescription *)entity controllerTableView:(UITableView *)controllerTableView{
-	
-	if(self = [super init]){
+	self = [super init];
+	if(self){
 		
 		self.entity = entity;
 		self.tableView = controllerTableView;
