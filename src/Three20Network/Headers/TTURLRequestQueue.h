@@ -34,7 +34,6 @@
   CGFloat               _imageCompressionQuality;
 
   BOOL                  _suspended;
-  NSInteger             _suspendedSemaphore;
 }
 
 /**

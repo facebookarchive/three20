@@ -320,9 +320,8 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setSuspended:(BOOL)isSuspended {
-  _suspendedSemaphore = isSuspended ? _suspendedSemaphore + 1 : fmax(0, _suspendedSemaphore - 1);
-  _suspended = _suspendedSemaphore != 0;
-  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"SUSPEND LOADING %d", _suspended);  
+  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"SUSPEND LOADING %d", isSuspended);
+  _suspended = isSuspended;
 
   if (!_suspended) {
     [self loadNextInQueue];
