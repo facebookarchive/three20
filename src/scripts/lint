@@ -44,6 +44,7 @@ from Pbxproj import relpath
 
 gcopyrightyears = '2009-2011'
 gdivider = '///////////////////////////////////////////////////////////////////////////////////////////////////'
+maxlinelength = 100
 
 # Program entry. The meat of this script happens in the lint() method below.
 def main():
@@ -56,8 +57,15 @@ Verify Three20 style guidelines for source code.'''
 	parser.add_option("-d", "--delint", dest="delint",
 	                  help="Delint the source",
 	                  action="store_true")
+	parser.add_option("-l", "--maxline", dest="maxlinelength",
+	                      help="Maximum permissible length of a line",type="int",
+	                      action="store")
 
 	(options, args) = parser.parse_args()
+	
+	global maxlinelength
+	if options.maxlinelength:
+		maxlinelength = options.maxlinelength
 	
 	if len(args) == 0:
 		parser.print_help()
@@ -138,8 +146,9 @@ def lint_project(project_path, options):
 	# The "Compile sources" phase files
 	filenames = project.get_built_sources()
 	
-	# The "Copy headers" phase files
-	filenames = filenames + project.get_built_headers()
+	# The "Copy headers" phase files if they exist
+	if project.get_built_headers():
+		filenames = filenames + project.get_built_headers()
 	
 	# Iterate through and lint each of the files that have been modified since we last ran
 	# the linter, unless we're forcelinting, in which case we lint everything.
@@ -204,6 +213,7 @@ def lint(filename, options):
 # If isdelinting is True, this method will try to fix as many lint issues as it can and then
 # write the results out to disk.
 def lint_basics(filedata, filename, linenofilter, isdelinting = False):
+	
 	logger = logging.getLogger()
 
 	lines = string.split(filedata, "\n")
@@ -220,7 +230,7 @@ def lint_basics(filedata, filename, linenofilter, isdelinting = False):
 	
 	for line in lines:
 		# Check line lengths.
-		if len(line) > 100:
+		if len(line) > maxlinelength:
 			did_lint_cleanly = False
 			nwarnings = nwarnings + 1
 			
@@ -228,7 +238,7 @@ def lint_basics(filedata, filename, linenofilter, isdelinting = False):
 			if isdelinting:
 				logger.error('I don\'t know how to split this line up.')
 			else:
-				logger.error('Line length > 100')
+				logger.error('Line length > %d'% maxlinelength)
 
 		# Check method dividers.
 		if not re.search(r'.h$', filename) and re.search(r'^[-+][ ]*\([\w\s*]+\)', line):
