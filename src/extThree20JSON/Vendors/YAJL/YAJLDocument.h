@@ -148,6 +148,19 @@ extern NSInteger YAJLDocumentStackCapacity;
 - (id)initWithData:(NSData *)data parserOptions:(YAJLParserOptions)parserOptions error:(NSError **)error;
 
 /*!
+ Create document from data.
+ @param data Data to parse
+ @param parserOptions Parse options
+ - YAJLParserOptionsNone: No options
+ - YAJLParserOptionsAllowComments: Javascript style comments will be allowed in the input (both /&asterisk; &asterisk;/ and //)
+ - YAJLParserOptionsCheckUTF8: Invalid UTF8 strings will cause a parse error
+ - YAJLParserOptionsStrictPrecision: If YES will force strict precision and return integer overflow error
+ @param capacity Initial capacity for NSArray and NSDictionary objects (Defaults to 20)
+ @param error Error to set on failure
+ */
+- (id)initWithData:(NSData *)data parserOptions:(YAJLParserOptions)parserOptions capacity:(NSInteger)capacity error:(NSError **)error;
+
+/*!
  Create empty document with parser options.
  @param parserOptions Parse options
   - YAJLParserOptionsNone: No options
@@ -156,6 +169,17 @@ extern NSInteger YAJLDocumentStackCapacity;
   - YAJLParserOptionsStrictPrecision: If YES will force strict precision and return integer overflow error
  */
 - (id)initWithParserOptions:(YAJLParserOptions)parserOptions;
+
+/*!
+ Create empty document with parser options.
+ @param parserOptions Parse options
+ - YAJLParserOptionsNone: No options
+ - YAJLParserOptionsAllowComments: Javascript style comments will be allowed in the input (both /&asterisk; &asterisk;/ and //)
+ - YAJLParserOptionsCheckUTF8: Invalid UTF8 strings will cause a parse error
+ - YAJLParserOptionsStrictPrecision: If YES will force strict precision and return integer overflow error
+ @param capacity Initial capacity for NSArray and NSDictionary objects (Defaults to 20)
+ */
+- (id)initWithParserOptions:(YAJLParserOptions)parserOptions capacity:(NSInteger)capacity;
 
 /*!
  Parse data.

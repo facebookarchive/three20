@@ -43,7 +43,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNext:(TTStyle*)next {
-  if (self = [super initWithNext:next]) {
+	self = [super initWithNext:next];
+  if (self) {
     _shadowOffset = CGSizeZero;
     _numberOfLines = 1;
     _textAlignment = UITextAlignmentCenter;

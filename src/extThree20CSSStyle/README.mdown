@@ -92,11 +92,6 @@ Known Limitations
 Font-size is always interpreted in points, regardless of what you specify. This is due to
 the tricky nature of varying DPI on the various iPhone OS devices.
 
-### Text Shadows
-
-The "blur" property is always interpreted as "0". This is due to the technical limitations
-of specifying blur for text shadows for UILabels.
-
 
 Supported CSS Properties and Values
 -----------------------------------
@@ -139,14 +134,12 @@ Fonts are defined with a set of properties that collectively create the final UI
 
 ### Text Shadow
 
-    text-shadow:      <number>px <number>px <ignored> <color>
+    text-shadow:      <number>px <number>px <number>px <color>
                       textShadowColorWithCssSelector
                       textShadowOffsetWithCssSelector
+                      textShadowRadiusWithCssSelector
 
 The `text-shadow` property is defined in one chunk, but read using two distinct methods.
-
-The third parameter is ignored. See "Text Shadows" in the `Known Limitations` section for
-the technical reasons.
 
 
 Examples

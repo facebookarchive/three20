@@ -59,7 +59,8 @@ static const CGFloat kIndexViewMargin = 4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _boxView = [[TTView alloc] init];
     _boxView.backgroundColor = [UIColor clearColor];
     [self addSubview:_boxView];

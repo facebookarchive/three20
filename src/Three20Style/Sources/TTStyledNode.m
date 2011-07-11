@@ -31,7 +31,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNextSibling:(TTStyledNode*)nextSibling {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     self.nextSibling = nextSibling;
   }
 
@@ -41,7 +42,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithNextSibling:nil]) {
+	self = [self initWithNextSibling:nil];
+  if (self) {
   }
 
   return self;

@@ -45,3 +45,17 @@ Reported bug in SBJsonWriter's handling of NaN, Infinity and -Infinity.
 
 ## jinksys
 Reported bug with header inclusion of framework.
+
+## Lloyd Hilaiel
+For his work on [YAJL][yajl] (Yet Another JSON Library)
+
+[yajl]: http://github.com/lloyd/yajl
+
+## Gabriel Handford
+
+For his work on [YAJL-ObjC][yajl-objc].
+
+[yajl-objc]: http://github.com/gabriel/yajl-objc
+
+## Andy Warwick
+Reported several build-issues that I didn't catch.

@@ -48,7 +48,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithDelegate:(id<TTRecursiveProgressDelegate>)delegate {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _firstPercent = 0;
     _lastPercent = 1;
     _parent = nil;
@@ -63,7 +64,8 @@
 - (id)initWithParent:(TTRecursiveProgress*)parent
         firstPercent: (CGFloat)firstPercent
          lastPercent: (CGFloat)lastPercent {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _firstPercent = firstPercent;
     _lastPercent = lastPercent;
     _parent = parent;

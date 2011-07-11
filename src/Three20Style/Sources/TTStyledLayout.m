@@ -51,12 +51,14 @@
 @synthesize height        = _height;
 @synthesize rootFrame     = _rootFrame;
 @synthesize font          = _font;
+@synthesize textAlignment = _textAlignment;
 @synthesize invalidImages = _invalidImages;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithRootNode:(TTStyledNode*)rootNode {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _rootNode = rootNode;
   }
 
@@ -66,7 +68,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithX:(CGFloat)x width:(CGFloat)width height:(CGFloat)height {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _x = x;
     _minX = x;
     _width = width;
@@ -172,6 +175,20 @@
     TTStyledFrame* child = inlineFrame.firstChildFrame;
     while (child) {
       [self offsetFrame:child by:y];
+      child = child.nextFrame;
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)offsetFrame:(TTStyledFrame*)frame byX:(CGFloat)x {
+  frame.x += x;
+
+  if ([frame isKindOfClass:[TTStyledInlineFrame class]]) {
+    TTStyledInlineFrame* inlineFrame = (TTStyledInlineFrame*)frame;
+    TTStyledFrame* child = inlineFrame.firstChildFrame;
+    while (child) {
+      [self offsetFrame:child byX:x];
       child = child.nextFrame;
     }
   }
@@ -340,14 +357,40 @@
 
   // Vertically align all frames on the current line
   if (_lineFirstFrame.nextFrame) {
-    TTStyledFrame* frame = _lineFirstFrame;
+    TTStyledFrame* frame;
+
+    // Find the descender that descends the farthest below the baseline.
+    // font.descender is a negative number if the descender descends below
+    // the baseline (as most descenders do), but can also be a positive
+    // number for a descender above the baseline.
+    CGFloat lowestDescender = MAXFLOAT;
+    frame = _lineFirstFrame;
+    while (frame) {
+      UIFont* font = frame.font ? frame.font : _font;
+      lowestDescender = MIN(lowestDescender, font.descender);
+      frame = frame.nextFrame;
+    }
+
+    frame = _lineFirstFrame;
     while (frame) {
       // Align to the text baseline
       // XXXjoe Support top, bottom, and center alignment also
       if (frame.height < _lineHeight) {
         UIFont* font = frame.font ? frame.font : _font;
-        [self offsetFrame:frame by:(_lineHeight - (frame.height - font.descender))];
+        [self offsetFrame:frame by:(_lineHeight - (frame.height - (lowestDescender - font.descender)))];
       }
+      frame = frame.nextFrame;
+    }
+  }
+
+  // Horizontally align all frames on current line if required
+  if (_textAlignment != UITextAlignmentLeft) {
+    CGFloat remainingSpace = _width - _lineWidth;
+    CGFloat offset = _textAlignment == UITextAlignmentCenter ? remainingSpace/2 : remainingSpace;
+
+    TTStyledFrame* frame = _lineFirstFrame;
+    while (frame) {
+      [self offsetFrame:frame byX:offset];
       frame = frame.nextFrame;
     }
   }
@@ -698,7 +741,7 @@
                                                                stringIndex - frameStart)]
                           sizeWithFont:_font].width;
             [self addFrameForText:line element:element node:textNode width:frameWidth
-                  height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
+                  height:[_font ttLineHeight]];
           }
 
           if (_lineWidth) {
@@ -720,7 +763,7 @@
         frameWidth = [[text substringWithRange:NSMakeRange(frameStart, stringIndex - frameStart)]
                       sizeWithFont:_font].width;
         [self addFrameForText:line element:element node:textNode width:frameWidth
-              height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
+              height:[_font ttLineHeight]];
 
         lineStartIndex = lineRange.location + lineRange.length;
         frameStart = stringIndex;
@@ -736,7 +779,7 @@
           frameWidth = [[text substringWithRange:NSMakeRange(frameStart, stringIndex - frameStart)]
                         sizeWithFont:_font].width;
           [self addFrameForText:line element:element node:textNode width:frameWidth
-                height:_lineHeight ? _lineHeight : [_font ttLineHeight]];
+                height:[_font ttLineHeight]];
         }
 
         if (_lineWidth) {
