@@ -1707,9 +1707,7 @@
 			isa = PBXGroup;
 			children = (
 				6EE738A31184ADB400A35176 /* libThree20Network.a */,
-				6DB1E2AF13CA813200A72466 /* libThree20Network-Xcode3.2.5.a */,
 				6EE738A51184ADB400A35176 /* NetworkUnitTests.octest */,
-				6DB1E2B113CA813200A72466 /* NetworkUnitTests-Xcode3.2.5.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
