@@ -14,10 +14,14 @@
 // limitations under the License.
 //
 
-// CSS Parser
-#import "extThree20CSSStyle/TTCSSParser.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-// CSS Stylesheet
-#import "extThree20CSSStyle/TTCSSGlobalStyle.h"
-#import "extThree20CSSStyle/TTCSSStyleSheet.h"
-#import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
+@interface UILabel (TTCSSCategory)
+
+/**
+ * Set a css stylesheet selector, will set font, colors and shadow.
+ */
+- (void)applyCssSelector:(NSString *)selector;
+
+@end
