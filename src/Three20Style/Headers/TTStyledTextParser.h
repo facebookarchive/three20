@@ -44,5 +44,6 @@
 
 - (void)parseXHTML:(NSString*)html;
 - (void)parseText:(NSString*)string;
+- (void)parseLine:(NSString *)string;
 
 @end

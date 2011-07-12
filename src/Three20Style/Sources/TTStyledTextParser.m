@@ -286,7 +286,7 @@
         // Find all text before the line break and parse it
         NSRange textRange = NSMakeRange(stringIndex, range.location - stringIndex);
         NSString* substr = [string substringWithRange:textRange];
-        [self parseURLs:substr];
+        [self parseLine:substr];
 
         // Add a line break node after the text
         TTStyledLineBreakNode* br = [[[TTStyledLineBreakNode alloc] init] autorelease];
@@ -297,19 +297,22 @@
       } else {
         // Find all text until the end of hte string and parse it
         NSString* substr = [string substringFromIndex:stringIndex];
-        [self parseURLs:substr];
+        [self parseLine:substr];
         break;
       }
     }
+  } else {
+    [self parseLine:string];
+  }
+}
 
-  } else if (_parseURLs) {
+- (void)parseLine:(NSString *)string {
+  if (_parseURLs) {
     [self parseURLs:string];
-
   } else {
     TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:string] autorelease];
     [self addNode:node];
   }
 }
-
 
 @end
