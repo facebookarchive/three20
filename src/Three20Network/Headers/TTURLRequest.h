@@ -74,6 +74,7 @@ extern const NSTimeInterval TTURLRequestUseQueueTimeout;
   BOOL  _shouldHandleCookies;
   BOOL  _respondedFromCache;
   BOOL  _filterPasswordLogging;
+  BOOL  _multiPartForm;
 
   NSMutableArray* _delegates;
 }
@@ -256,6 +257,11 @@ extern const NSTimeInterval TTURLRequestUseQueueTimeout;
  */
 @property (nonatomic, readonly) NSMutableArray* delegates;
 
+/**
+ * Determine whether to construct a multipart form or to instead encode the http body as the W3C default
+ * of application/x-www-form-urlencoded  
+ */
+@property (nonatomic, assign) BOOL multiPartForm;
 
 + (TTURLRequest*)request;
 
