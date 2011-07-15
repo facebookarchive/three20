@@ -34,7 +34,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithItems:(NSArray*)items sections:(NSArray*)sections {
-  if (self = [self init]) {
+	self = [self init];
+  if (self) {
     _items    = [items mutableCopy];
     _sections = [sections mutableCopy];
   }

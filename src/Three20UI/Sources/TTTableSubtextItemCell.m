@@ -34,15 +34,18 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier]) {
+	self = [super initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier];
+  if (self) {
     self.detailTextLabel.font = TTSTYLEVAR(tableFont);
     self.detailTextLabel.textColor = TTSTYLEVAR(textColor);
     self.detailTextLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+	self.detailTextLabel.backgroundColor = TTSTYLEVAR(backgroundTextColor);
     self.detailTextLabel.adjustsFontSizeToFitWidth = YES;
 
     self.textLabel.font = TTSTYLEVAR(font);
     self.textLabel.textColor = TTSTYLEVAR(tableSubTextColor);
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
+	self.textLabel.backgroundColor = TTSTYLEVAR(backgroundTextColor);
     self.textLabel.textAlignment = UITextAlignmentLeft;
     self.textLabel.contentMode = UIViewContentModeTop;
     self.textLabel.lineBreakMode = UILineBreakModeWordWrap;

@@ -70,7 +70,8 @@ static const NSInteger kActivityLabelTag          = 96;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
     self.navigationItem.backBarButtonItem =
       [[[UIBarButtonItem alloc]
         initWithTitle:
@@ -95,7 +96,8 @@ static const NSInteger kActivityLabelTag          = 96;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithPhoto:(id<TTPhoto>)photo {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+	self = [self initWithNibName:nil bundle:nil];
+  if (self) {
     self.centerPhoto = photo;
   }
 
@@ -105,7 +107,8 @@ static const NSInteger kActivityLabelTag          = 96;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithPhotoSource:(id<TTPhotoSource>)photoSource {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+	self = [self initWithNibName:nil bundle:nil];
+  if (self) {
     self.photoSource = photoSource;
   }
 
@@ -115,7 +118,8 @@ static const NSInteger kActivityLabelTag          = 96;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+	self = [self initWithNibName:nil bundle:nil];
+  if (self) {
   }
 
   return self;
@@ -235,12 +239,7 @@ static const NSInteger kActivityLabelTag          = 96;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-    _toolbar.height = TT_TOOLBAR_HEIGHT;
-
-  } else {
-    _toolbar.height = TT_LANDSCAPE_TOOLBAR_HEIGHT+1;
-  }
+  _toolbar.height = TTToolbarHeight();
   _toolbar.top = self.view.height - _toolbar.height;
 }
 

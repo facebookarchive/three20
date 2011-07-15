@@ -1,11 +1,70 @@
-﻿# JSON Framework Changes
+# JSON Framework Changes
+
+## Version 3.0beta2 (TBD)
+
+## Changes
+* [Issue 46][#46]: Stream Parser delegate methods are now optional.
+
+### Bug Fixes
+* [Issue 42][#42]: Fix bug in handling of Unicode Surrogate Pairs.
+* [Issue 48][#48]: Increase precision when writing floating-point numbers so NSTimeInterval instances since epoch can be represented fully.
+
+[#42]: http://github.com/stig/json-framework/issues/#issue/42
+[#46]: http://github.com/stig/json-framework/issues/#issue/46
+[#48]: http://github.com/stig/json-framework/issues/#issue/48
+
+## Version 3.0beta1 (January 30th, 2011)
+
+### Bug Fixes
+* [Issue 36][#36]: Fix bug in build script that caused it to break if $SRCROOT has spaces.
+
+[#36]: http://github.com/stig/json-framework/issues/#issue/36
+
+### Changes
+
+* Remove the hacky dataToHere method in favour of just exposing the internal NSMutableData buffer.
+* Added a minimal Mac example project showing how to link to an external JSON framework rather than copying the sources into your project.
+
+## Version 3.0alpha3 (January 2nd, 2011)
+
+* Added documentation to the TwitterStream sample project.
+* Fixed a few warnings, bugs & a memory leak reported by Andy Warwick.
+
+## Version 3.0alpha2 (December 28th, 2010)
+
+### Changes
+
+* Minor changes to formatting when the HumanReadable flag is set. Empty arrays and objects are no longer special-cased to appear on a single line. The separator between key and value in an object has changed to ': ' rather than ' : '.
+* [Issue 25][#25]: Simplified error handling.
+
+### New Features
+
+* [Issue 16][#16]: Added support for parsing a UTF8 data stream. This means you can start parsing huge documents before it's all downloaded. Supports skipping the outer-most layer of huge arrays/objects or parsing multiple whitespace-separated completed documents.
+* [Issue 12][#12]: Added support for writing JSON to a data stream. This means you can write huge JSON documents to disk, or an HTTP destination, without having to hold the entire structure in memory. You can even generate it as you go, and just stream snapshots to an external process.
+* [Issue 18][#18] & [27][#27]: Re-orient API to be NSData-based. The NSString-oriented API methods now delegates to this.
+
+### Enhancements
+
+* [Issue 9][#9]: Improve performance of the SBJsonWriter. This implementation is nearly twice as fast as 2.3.x on Sam Soffes' [benchmarks][bench].
+* [Issue 30][#30]: Added *TwitterStream* example project showing how to interact with Twitter's multi-document stream. (See `Examples/TwitterStream` in the distribution.)
+
+[bench]: http://github.com/samsoffes/json-benchmarks
+[#9]: http://github.com/stig/json-framework/issues/#issue/9
+[#12]: http://github.com/stig/json-framework/issues/#issue/12
+[#16]: http://github.com/stig/json-framework/issues/#issue/16
+[#18]: http://github.com/stig/json-framework/issues/#issue/18
+[#27]: http://github.com/stig/json-framework/issues/#issue/27
+[#30]: http://github.com/stig/json-framework/issues/#issue/30
+[#25]: http://github.com/stig/json-framework/issues/#issue/25
 
 ## Version 2.3.1 (September 25th, 2010)
 
 ### Changes
 
+* Move to host releases on Github rather than Google code.
 * Renamed .md files to .markdown.
 * Removed bench target--use [Sam Soffes's benchmarks][json-benchmark] instead.
+* Releases are no longer a munged form of the source tree, but identical to the tagged source.
 
 [json-benchmark]: http://github.com/samsoffes/json-benchmark
 
@@ -29,7 +88,7 @@
 ### Changes
 
 * **Parsing performance improvements.**  
-[Issue 56][issue-56]: Dewvinci & Tobias Hoehmann came up with a patch to improve parsing of short JSON texts with lots of numbers by over 60%.
+[Issue 56][issue-56]: Dewvinci & Tobias Höhmann came up with a patch to improve parsing of short JSON texts with lots of numbers by over 60%.
 * **Refactored tests to be more data-driven.**  
 This should make the source leaner and easier to maintain.
 * **Removed problematic SDK**  

@@ -16,6 +16,7 @@
 
 #import "Three20Network/TTURLRequest.h"
 
+
 // Network
 #import "Three20Network/TTGlobalNetwork.h"
 #import "Three20Network/TTURLResponse.h"
@@ -28,7 +29,7 @@
 #import "Three20Core/NSStringAdditions.h"
 
 static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
-
+const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,12 +59,15 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 @synthesize totalBytesDownloaded  = _totalBytesDownloaded;
 @synthesize totalContentLength    = _totalContentLength;
 
+@synthesize timeoutInterval       = _timeoutInterval;
+
 @synthesize userInfo              = _userInfo;
 @synthesize isLoading             = _isLoading;
 
 @synthesize shouldHandleCookies   = _shouldHandleCookies;
 @synthesize respondedFromCache    = _respondedFromCache;
 @synthesize filterPasswordLogging = _filterPasswordLogging;
+@synthesize multiPartForm         = _multiPartForm;
 
 @synthesize delegates             = _delegates;
 
@@ -82,7 +86,8 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate {
-  if (self = [self init]) {
+	self = [self init];
+  if (self) {
     _urlPath = [URL retain];
     if (nil != delegate) {
       [_delegates addObject:delegate];
@@ -94,12 +99,15 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _delegates = TTCreateNonRetainingArray();
     _cachePolicy = TTURLRequestCachePolicyDefault;
     _cacheExpirationAge = TT_DEFAULT_CACHE_EXPIRATION_AGE;
     _shouldHandleCookies = YES;
     _charsetForMultipart = NSUTF8StringEncoding;
+    _multiPartForm = YES;
+    _timeoutInterval = TTURLRequestUseDefaultTimeout;
   }
   return self;
 }
@@ -152,12 +160,27 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
   }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSData *)generateNonMultipartPostBody {
+  NSMutableArray *paramsArray = [NSMutableArray array];
+  for (id key in [_parameters keyEnumerator]) {
+    NSString *value = [_parameters valueForKey:key];
+    if ([key isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]]) {
+      [paramsArray addObject:[NSString stringWithFormat:@"%@=%@", 
+                              key, 
+                              [[value stringByReplacingOccurrencesOfString:@" " withString:@"+"] urlEncoded]]];
+    }
+  }
+  NSString *stringBody = [paramsArray componentsJoinedByString:@"&"];
+  return [stringBody dataUsingEncoding:NSUTF8StringEncoding];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)appendImageData:(NSData*)data
                withName:(NSString*)name
                  toBody:(NSMutableData*)body {
-  NSString *beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
+  NSString *beginLine = [NSString stringWithFormat:@"--%@\r\n", kStringBoundary];
+	NSString *endLine = @"\r\n";
 
   [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
   [body appendData:[[NSString stringWithFormat:
@@ -171,17 +194,17 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
                       stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
                      dataUsingEncoding:_charsetForMultipart]];
   [body appendData:data];
+		[body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)generatePostBody {
-  NSMutableData* body = [NSMutableData data];
-  NSString* beginLine = [NSString stringWithFormat:@"\r\n--%@\r\n", kStringBoundary];
 
-  [body appendData:[[NSString stringWithFormat:@"--%@\r\n", kStringBoundary]
-    dataUsingEncoding:NSUTF8StringEncoding]];
-
+	NSMutableData* body = [NSMutableData data];
+  NSString* beginLine = [NSString stringWithFormat:@"--%@\r\n", kStringBoundary];
+	NSString *endLine = @"\r\n";
+	
   for (id key in [_parameters keyEnumerator]) {
     NSString* value = [_parameters valueForKey:key];
     // Really, this can only be an NSString. We're cheating here.
@@ -192,6 +215,7 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
           dataUsingEncoding:_charsetForMultipart]];
       [body appendData:[value dataUsingEncoding:_charsetForMultipart]];
+		[body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
     }
   }
 
@@ -227,9 +251,10 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
     [body appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType]
           dataUsingEncoding:_charsetForMultipart]];
     [body appendData:data];
+		[body appendData:[endLine dataUsingEncoding:NSUTF8StringEncoding]];
   }
 
-  [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", kStringBoundary]
+  [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", kStringBoundary]
                    dataUsingEncoding:NSUTF8StringEncoding]];
 
   // If an image was found, remove it from the dictionary to save memory while we
@@ -253,14 +278,25 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSMutableDictionary*)headers {
+  if (!_headers) {
+    _headers = [[NSMutableDictionary alloc] init];
+  }
+  return _headers;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)httpBody {
   if (_httpBody) {
     return _httpBody;
-
-  } else if ([[_httpMethod uppercaseString] isEqualToString:@"POST"]
-             || [[_httpMethod uppercaseString] isEqualToString:@"PUT"]) {
-    return [self generatePostBody];
-
+  } else if (([[_httpMethod uppercaseString] isEqualToString:@"POST"]
+              || [[_httpMethod uppercaseString] isEqualToString:@"PUT"])) {
+    if (_multiPartForm) {
+      return [self generatePostBody];      
+    } else {
+      return [self generateNonMultipartPostBody];
+    }
   } else {
     return nil;
   }
@@ -274,8 +310,12 @@ static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
 
   } else if ([_httpMethod isEqualToString:@"POST"]
              || [_httpMethod isEqualToString:@"PUT"]) {
-    return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", kStringBoundary];
-
+    if (_multiPartForm) {
+      return [NSString stringWithFormat:@"multipart/form-data; boundary=%@", kStringBoundary];      
+    } else {
+      return [NSString stringWithFormat:@"application/x-www-form-urlencoded", kStringBoundary];            
+    }
+    
   } else {
     return nil;
   }
