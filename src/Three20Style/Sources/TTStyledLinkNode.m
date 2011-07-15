@@ -31,7 +31,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURL:(NSString*)URL {
-  if (self = [self initWithText:nil URL:URL next:nil]) {
+	self = [self initWithText:nil URL:URL next:nil];
+  if (self) {
   }
 
   return self;
@@ -40,7 +41,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURL:(NSString*)URL next:(TTStyledNode*)nextSibling {
-  if (self = [self initWithText:nil URL:URL next:nextSibling]) {
+	self = [self initWithText:nil URL:URL next:nextSibling];
+  if (self) {
   }
 
   return self;
@@ -49,7 +51,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithText:(NSString*)text URL:(NSString*)URL next:(TTStyledNode*)nextSibling {
-  if (self = [super initWithText:text next:nextSibling]) {
+	self = [super initWithText:text next:nextSibling];
+  if (self) {
     self.URL = URL;
   }
 
@@ -59,7 +62,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithText:nil URL:nil next:nil]) {
+	self = [self initWithText:nil URL:nil next:nil];
+  if (self) {
   }
 
   return self;

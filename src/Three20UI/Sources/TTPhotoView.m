@@ -57,7 +57,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _photoVersion = TTPhotoVersionNone;
     self.clipsToBounds = NO;
   }
@@ -279,7 +280,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)loadPreview:(BOOL)fromNetwork {
-  if (![self loadVersion:TTPhotoVersionLarge fromNetwork:NO]) {
+	BOOL keepTrying = YES;
+	// Trying to load the large image first causes scrolling to stall something
+	// fierce when using local images on older iPhones since the large image
+	// *always* starts to load in time for this first call to succeed. So we
+	// skip straight to attempting to load the small version unless we're loading
+	// off the network.
+	if (fromNetwork) {
+		keepTrying = [self loadVersion:TTPhotoVersionLarge fromNetwork:NO];
+	}
+	if (keepTrying) {
     if (![self loadVersion:TTPhotoVersionSmall fromNetwork:NO]) {
       if (![self loadVersion:TTPhotoVersionThumbnail fromNetwork:fromNetwork]) {
         return NO;

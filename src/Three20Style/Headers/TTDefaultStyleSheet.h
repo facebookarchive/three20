@@ -24,6 +24,7 @@
 // Common styles
 @property (nonatomic, readonly) UIColor*  textColor;
 @property (nonatomic, readonly) UIColor*  highlightedTextColor;
+@property (nonatomic, readonly) UIColor*  backgroundTextColor;
 @property (nonatomic, readonly) UIFont*   font;
 @property (nonatomic, readonly) UIColor*  backgroundColor;
 @property (nonatomic, readonly) UIColor*  navigationBarTintColor;
@@ -32,7 +33,11 @@
 
 // Tables
 @property (nonatomic, readonly) UIColor*  tablePlainBackgroundColor;
+@property (nonatomic, readonly) UIColor*  tablePlainCellSeparatorColor;
+@property (nonatomic, readonly) UITableViewCellSeparatorStyle tablePlainCellSeparatorStyle;
 @property (nonatomic, readonly) UIColor*  tableGroupedBackgroundColor;
+@property (nonatomic, readonly) UIColor*  tableGroupedCellSeparatorColor;
+@property (nonatomic, readonly) UITableViewCellSeparatorStyle tableGroupedCellSeparatorStyle;
 @property (nonatomic, readonly) UIColor*  searchTableBackgroundColor;
 @property (nonatomic, readonly) UIColor*  searchTableSeparatorColor;
 
