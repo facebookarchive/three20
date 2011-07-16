@@ -53,7 +53,9 @@ TT_FIX_CATEGORY_BUG(NSDateAdditions)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDate*)dateAtMidnight {
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-	NSDateComponents *comps = [gregorian components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:[NSDate date]];
+	NSDateComponents *comps = [gregorian components:
+                               (NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit)
+                                           fromDate:[NSDate date]];
 	NSDate *midnight = [gregorian dateFromComponents:comps];
 	[gregorian release];
 	return midnight;
@@ -146,31 +148,33 @@ TT_FIX_CATEGORY_BUG(NSDateAdditions)
   if (elapsed > 0) {
     if (elapsed <= 1) {
       return TTLocalizedString(@"in just a moment", @"");
-      
-    } else if (elapsed < TT_MINUTE) {
+    }
+    else if (elapsed < TT_MINUTE) {
       int seconds = (int)(elapsed);
       return [NSString stringWithFormat:TTLocalizedString(@"in %d seconds", @""), seconds];
-      
-    } else if (elapsed < 2*TT_MINUTE) {
+
+    }
+    else if (elapsed < 2*TT_MINUTE) {
       return TTLocalizedString(@"in about a minute", @"");
-      
-    } else if (elapsed < TT_HOUR) {
+    }
+    else if (elapsed < TT_HOUR) {
       int mins = (int)(elapsed/TT_MINUTE);
       return [NSString stringWithFormat:TTLocalizedString(@"in %d minutes", @""), mins];
-      
-    } else if (elapsed < TT_HOUR*1.5) {
+    }
+    else if (elapsed < TT_HOUR*1.5) {
       return TTLocalizedString(@"in about an hour", @"");
-      
-    } else if (elapsed < TT_DAY) {
+    }
+    else if (elapsed < TT_DAY) {
       int hours = (int)((elapsed+TT_HOUR/2)/TT_HOUR);
       return [NSString stringWithFormat:TTLocalizedString(@"in %d hours", @""), hours];
-      
-    } else {
+    }
+    else {
       return [self formatDateTime];
-    }    
-  } else {
+    }
+  }
+  else {
     elapsed = -elapsed;
-    
+
     if (elapsed <= 1) {
       return TTLocalizedString(@"just a moment ago", @"");
 

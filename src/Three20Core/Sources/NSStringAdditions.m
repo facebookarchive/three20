@@ -144,9 +144,10 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)urlEncoded {
   CFStringRef cfUrlEncodedString = CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                           (CFStringRef)self, 
-                                                                           NULL, (CFStringRef)@"!*’();:@&=$,/?%#[]", 
-                                                                           kCFStringEncodingUTF8);
+                                            (CFStringRef)self,NULL,
+                                            (CFStringRef)@"!*’();:@&=$,/?%#[]",
+                                            kCFStringEncodingUTF8);
+
   NSString *urlEncoded = [NSString stringWithString:(NSString *)cfUrlEncodedString];
   CFRelease(cfUrlEncodedString);
   return urlEncoded;

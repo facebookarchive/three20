@@ -79,12 +79,13 @@ static const CGFloat kDisclosureIndicatorWidth = 23;
   if (item.URL) {
     padding += kDisclosureIndicatorWidth;
   }
-	
+
   CGFloat margin = item.margin.left + item.margin.right;
 
   item.text.width = tableView.width - padding - margin;
 
-  return item.text.height + item.padding.top + item.padding.bottom + item.margin.top + item.margin.bottom;
+  return item.text.height + item.padding.top + item.padding.bottom
+                          + item.margin.top + item.margin.bottom;
 }
 
 

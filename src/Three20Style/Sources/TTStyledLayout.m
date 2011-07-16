@@ -377,7 +377,8 @@
       // XXXjoe Support top, bottom, and center alignment also
       if (frame.height < _lineHeight) {
         UIFont* font = frame.font ? frame.font : _font;
-        [self offsetFrame:frame by:(_lineHeight - (frame.height - (lowestDescender - font.descender)))];
+        [self offsetFrame:frame by:(_lineHeight - (frame.height -
+                                                   (lowestDescender - font.descender)))];
       }
       frame = frame.nextFrame;
     }
