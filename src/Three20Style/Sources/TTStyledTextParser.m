@@ -274,7 +274,8 @@
 - (void)parseText:(NSString*)string URLs:(BOOL)shouldParseURLs {
   if (shouldParseURLs) {
     [self parseURLs:string];
-  } else {
+  }
+  else {
     TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:string] autorelease];
     [self addNode:node];
   }
@@ -303,7 +304,7 @@
     NSCharacterSet* newLines = [NSCharacterSet newlineCharacterSet];
     NSInteger stringIndex = 0;
     NSInteger length = string.length;
-    
+
     while (1) {
       NSRange searchRange = NSMakeRange(stringIndex, length - stringIndex);
       NSRange range = [string rangeOfCharacterFromSet:newLines options:0 range:searchRange];
@@ -312,22 +313,24 @@
         NSRange textRange = NSMakeRange(stringIndex, range.location - stringIndex);
         NSString* substr = [string substringWithRange:textRange];
         [self parseText:substr URLs:_parseURLs];
-        
+
         // Add a line break node after the text
         TTStyledLineBreakNode* br = [[[TTStyledLineBreakNode alloc] init] autorelease];
         [self addNode:br];
-        
+
         stringIndex = stringIndex + substr.length + 1;
-        
-      } else {
+
+      }
+      else {
         // Find all text until the end of hte string and parse it
         NSString* substr = [string substringFromIndex:stringIndex];
         [self parseText:substr URLs:_parseURLs];
         break;
       }
     }
-    
-  } else {
+
+  }
+  else {
     [self parseText:string URLs:_parseURLs];
   }
 }
