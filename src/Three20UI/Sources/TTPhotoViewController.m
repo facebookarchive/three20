@@ -30,6 +30,7 @@
 #import "Three20UI/UIToolbarAdditions.h"
 
 // UINavigator
+#import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
 #import "Three20UINavigator/TTURLObject.h"
 #import "Three20UINavigator/TTURLMap.h"
 #import "Three20UINavigator/TTBaseNavigationController.h"

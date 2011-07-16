@@ -93,7 +93,7 @@
  * A Boolean value indicating if the controller clears the selection when the table appears.
  * Default is YES.
  */
-@property(nonatomic) BOOL clearsSelectionOnViewWillAppear;
+@property (nonatomic) BOOL clearsSelectionOnViewWillAppear;
 
 /**
  * Initializes and returns a controller having the given style.
