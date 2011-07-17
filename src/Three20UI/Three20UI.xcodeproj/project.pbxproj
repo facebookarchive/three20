@@ -17,6 +17,7 @@
 		66F2E85712D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */; };
 		66F2E85F12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */; };
+		6DB1E37D13CA885B00A72466 /* TTLauncherPersistenceMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DB1E37C13CA885B00A72466 /* TTLauncherPersistenceMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E60820111B0C31400C93CD4 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */; };
 		6E60820311B0C32600C93CD4 /* TTNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E60820211B0C32600C93CD4 /* TTNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6454741184D2CD00F08CB1 /* Three20UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6454731184D2CD00F08CB1 /* Three20UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -443,6 +444,7 @@
 		66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableFooterInfiniteScrollView.m; path = Sources/TTTableFooterInfiniteScrollView.m; sourceTree = "<group>"; };
 		66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewNetworkEnabledDelegate.h; path = Headers/TTTableViewNetworkEnabledDelegate.h; sourceTree = "<group>"; };
 		66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableViewNetworkEnabledDelegate.m; path = Sources/TTTableViewNetworkEnabledDelegate.m; sourceTree = "<group>"; };
+		6DB1E37C13CA885B00A72466 /* TTLauncherPersistenceMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherPersistenceMode.h; path = Headers/TTLauncherPersistenceMode.h; sourceTree = "<group>"; };
 		6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigationController.m; path = Sources/TTNavigationController.m; sourceTree = "<group>"; };
 		6E60820211B0C32600C93CD4 /* TTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigationController.h; path = Headers/TTNavigationController.h; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
@@ -1561,6 +1563,7 @@
 		6E64583E1184E26500F08CB1 /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
+				6DB1E37C13CA885B00A72466 /* TTLauncherPersistenceMode.h */,
 				6E6454D61184D4C500F08CB1 /* TTLauncherView.h */,
 				6E6456121184D4DA00F08CB1 /* TTLauncherView.m */,
 				6E6454D71184D4C500F08CB1 /* TTLauncherViewDelegate.h */,
@@ -1859,6 +1862,7 @@
 				666E18F51294543F001C1D97 /* TTSplitViewController.h in Headers */,
 				66F2E85412D426A5006FB485 /* TTTableFooterInfiniteScrollView.h in Headers */,
 				66F2E85F12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */,
+				6DB1E37D13CA885B00A72466 /* TTLauncherPersistenceMode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
