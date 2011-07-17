@@ -687,7 +687,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTableBannerView:(UIView*)tableBannerView animated:(BOOL)animated {
-  TT_INVALIDATE_TIMER(_bannerTimer);
   if (tableBannerView != _tableBannerView) {
     if (_tableBannerView) {
       if (animated) {
@@ -705,7 +704,6 @@
       self.tableView.contentInset = UIEdgeInsetsMake(0, 0, TTSTYLEVAR(tableBannerViewHeight), 0);
       self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
       _tableBannerView.frame = [self rectForBannerView];
-      _tableBannerView.userInteractionEnabled = NO;
       _tableBannerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                            | UIViewAutoresizingFlexibleTopMargin);
       [self addSubviewOverTableView:_tableBannerView];

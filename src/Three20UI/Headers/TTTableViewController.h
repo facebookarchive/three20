@@ -28,8 +28,6 @@
   UIView*       _errorView;
   UIView*       _emptyView;
 
-  NSTimer*      _bannerTimer;
-
   UIView*           _menuView;
   UITableViewCell*  _menuCell;
 
