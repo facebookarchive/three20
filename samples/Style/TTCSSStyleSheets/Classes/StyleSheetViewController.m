@@ -75,6 +75,9 @@
   
   // Use the Helper Function TTApplyCSS and specify the Rule Set Name then the object to apply.
   TTApplyCSS( @"h2", headerLabel2 ); 
+  
+  // This will work too!
+  [headerLabel applyCssSelector:@"h2"];
 
   [headerLabel2 sizeToFit];
   CGFloat top = headerLabel.frame.size.height;
