@@ -51,7 +51,8 @@ static CGFloat kProgressMargin  = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _style = style;
     _progress = 0;
     _smoothesProgress = NO;
@@ -139,7 +140,8 @@ static CGFloat kProgressMargin  = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style {
-  if (self = [self initWithFrame:frame style:style text:nil]) {
+	self = [self initWithFrame:frame style:style text:nil];
+  if (self) {
   }
 
   return self;
@@ -148,7 +150,8 @@ static CGFloat kProgressMargin  = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(TTActivityLabelStyle)style {
-  if (self = [self initWithFrame:CGRectZero style:style text:nil]) {
+	self = [self initWithFrame:CGRectZero style:style text:nil];
+  if (self) {
   }
 
   return self;
@@ -157,7 +160,8 @@ static CGFloat kProgressMargin  = 6;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [self initWithFrame:frame style:TTActivityLabelStyleWhiteBox text:nil]) {
+	self = [self initWithFrame:frame style:TTActivityLabelStyleWhiteBox text:nil];
+  if (self) {
   }
 
   return self;

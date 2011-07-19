@@ -20,10 +20,23 @@
 
 @interface UIView(TTCSSAdditions) <TTCSSApplyProtocol>
 
+<<<<<<< HEAD:src/extThree20CSSStyle/Headers/UIView+CSSAdditions.h
 /**
  * Convenient Init method to create an UIView and apply
  * an CSS Rule Set on one pass.
  */
 -(id)initWithFrame:(CGRect)anFrame andApplyCssFromSelector:(NSString*)anSelector;
+=======
+@interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
+@private
+  TTCSSStyleSheet* _styleSheet;
+}
+
+@property (nonatomic, readonly) TTCSSStyleSheet* styleSheet;
+
+- (BOOL)addStyleSheetFromDisk:(NSString*)filename;
+
++ (TTDefaultCSSStyleSheet*)globalCSSStyleSheet;
+>>>>>>> 300db176390f97e990cb772da3e8502e8f514ba3:src/extThree20CSSStyle/Sources/TTDefaultCSSStyleSheet.h
 
 @end

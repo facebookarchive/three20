@@ -114,6 +114,7 @@ Both line break characters\n\nand HTML line breaks<br/>are respected.";
   label1.text = [TTStyledText textFromXHTML:kText lineBreaks:YES URLs:YES];
   label1.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
   //label1.backgroundColor = [UIColor grayColor];
+  //label1.textAlignment = UITextAlignmentCenter;
   [label1 sizeToFit];
   [self.view addSubview:label1];
 }

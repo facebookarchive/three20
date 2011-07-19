@@ -57,7 +57,8 @@ NSString* kKeyTextShadowColor   = @"color";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     [[NSNotificationCenter defaultCenter]
      addObserver: self
      selector: @selector(didReceiveMemoryWarning:)
@@ -387,8 +388,23 @@ NSString* kKeyTextShadowColor   = @"color";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIFont*)fontWithCssSelector:(NSString*)selector forState:(UIControlState)state {
 
+<<<<<<< HEAD
   // Try Retrieve Rule Set from Cache.
   TTCSSRuleSet *ruleSet = [self css:selector forState:state];
+=======
+        NSArray* fontFamilyValues = [ruleSet objectForKey:kCssPropertyFontFamily];
+        if ([fontFamilyValues count] > 0) {
+          TTDINFO(@"Font families: %@", [UIFont familyNames]);
+          for (NSString* fontName in fontFamilyValues) {
+          }
+          if ([[fontFamilyValues objectAtIndex:0] isEqualToString:@"bold"]) {
+            isBold = YES;
+          }
+        }
+
+        if (isBold) {
+          font = [UIFont boldSystemFontOfSize:fontSize];
+>>>>>>> 300db176390f97e990cb772da3e8502e8f514ba3
 
   // If don't have an CSS Rule Set, return nil.
   if ( !ruleSet ) return nil;
@@ -409,9 +425,53 @@ NSString* kKeyTextShadowColor   = @"color";
 #pragma mark Text Shadows
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 - (UIColor*)textShadowColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
 	// Try Retrieve Rule Set from Cache.
 	TTCSSRuleSet *ruleSet = [self css:selector forState:state];
+=======
+- (NSDictionary*)textShadowWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  NSDictionary* textShadow = [self objectForCssSelector: selector
+                                           propertyName: kCssPropertyTextShadow];
+
+  // No cached value.
+  if (nil == textShadow) {
+    NSDictionary* ruleSet = [_cssStyles objectForKey:selector];
+
+    // The given selector actually exists in the CSS.
+    if (nil != ruleSet) {
+      NSArray* values = [ruleSet objectForKey:kCssPropertyTextShadow];
+
+      // Safety check
+      if (nil == values) return nil;
+
+      // Anything more or less is unsupported, and therefore this property is ignored
+      // according to the W3C guidelines.
+      TTDASSERT([values count] >= 4);
+      if ([values count] >= 4) {
+        NSNumber* horizOffset = [NSNumber numberWithFloat:[[values objectAtIndex:0] floatValue]];
+        NSNumber* vertOffset  = [NSNumber numberWithFloat:[[values objectAtIndex:1] floatValue]];
+        NSNumber* blurAmount  = [NSNumber numberWithFloat:[[values objectAtIndex:2] floatValue]];
+        UIColor* color        = [self colorFromCssValues:
+                                 [values subarrayWithRange:
+                                  NSMakeRange(3, [values count] - 3)]];
+
+        textShadow = [NSDictionary dictionaryWithObjectsAndKeys:
+                      horizOffset, kKeyTextShadowHOffset,
+                      vertOffset,  kKeyTextShadowVOffset,
+                      blurAmount,  kKeyTextShadowBlur,
+                      color,       kKeyTextShadowColor,
+                      nil];
+      }
+
+      if (nil != textShadow) {
+        [self setObjectForCssSelector: selector
+                         propertyName: kCssPropertyTextShadow
+                               object: textShadow];
+      }
+    }
+  }
+>>>>>>> 300db176390f97e990cb772da3e8502e8f514ba3
 
 	// If don't have an CSS Rule Set, return nil.
 	if ( !ruleSet ) return nil;
@@ -421,8 +481,17 @@ NSString* kKeyTextShadowColor   = @"color";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 - (UIColor*)textShadowColorWithCssSelector:(NSString*)selector {
 	return [self textShadowColorWithCssSelector:selector forState:UIControlStateNormal];
+=======
+- (UIColor*)textShadowColorWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  selector = [self selector:selector forState:state];
+
+  NSDictionary* textShadow = [self textShadowWithCssSelector: selector
+                                                    forState: state];
+  return nil != textShadow ? [textShadow objectForKey:kKeyTextShadowColor] : nil;
+>>>>>>> 300db176390f97e990cb772da3e8502e8f514ba3
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -433,6 +502,7 @@ NSString* kKeyTextShadowColor   = @"color";
 	// If don't have an CSS Rule Set, return zero.
 	if ( !ruleSet ) return CGSizeZero;
 
+<<<<<<< HEAD
 	// Return Text Shadow Color.
 	return ruleSet.text_shadow.shadowOffset;
 }
@@ -440,6 +510,24 @@ NSString* kKeyTextShadowColor   = @"color";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)textShadowOffsetWithCssSelector:(NSString*)selector {
 	return [self textShadowOffsetWithCssSelector:selector forState:UIControlStateNormal];
+=======
+  NSDictionary* textShadow = [self textShadowWithCssSelector: selector
+                                                    forState: state];
+  return nil != textShadow ?
+  CGSizeMake([[textShadow objectForKey:kKeyTextShadowHOffset] floatValue],
+             [[textShadow objectForKey:kKeyTextShadowVOffset] floatValue]) :
+  CGSizeZero;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)textShadowRadiusWithCssSelector:(NSString*)selector forState:(UIControlState)state {
+  selector = [self selector:selector forState:state];
+
+  NSDictionary* textShadow = [self textShadowWithCssSelector: selector
+                                                    forState: state];
+  return nil != textShadow ? [[textShadow objectForKey:kKeyTextShadowBlur] floatValue] : 0;
+>>>>>>> 300db176390f97e990cb772da3e8502e8f514ba3
 }
 
 

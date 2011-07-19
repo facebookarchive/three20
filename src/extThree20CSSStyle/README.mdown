@@ -109,11 +109,14 @@ This names are case-sensitive, you must make sure to respect the iOS font names.
 Font-size is always interpreted in points, regardless of what you specify. This is due to
 the tricky nature of varying DPI on the various iPhone OS devices.
 
+<<<<<<< HEAD
 ### Text Shadows
 
 In iOS older the 3.2 the "blur" property always interpreted as "0". This is due to the technical limitations
 of specifying blur for text shadows for UILabels.
 
+=======
+>>>>>>> 300db176390f97e990cb772da3e8502e8f514ba3
 
 Supported CSS Properties and Values
 -----------------------------------
@@ -156,13 +159,19 @@ Fonts are defined with a set of properties that collectively create the final UI
 
 ### Text Shadow
 
+<<<<<<< HEAD
 	text-shadow-opacity: <number>						
     text-shadow:      <number>px <number>px <ignored> <color>
+=======
+    text-shadow:      <number>px <number>px <number>px <color>
+>>>>>>> 300db176390f97e990cb772da3e8502e8f514ba3
                       textShadowColorWithCssSelector
                       textShadowOffsetWithCssSelector
+                      textShadowRadiusWithCssSelector
 
 The `text-shadow` property is defined in one chunk, but read using two distinct methods.
 
+<<<<<<< HEAD
 The third parameter could be ignored on older iOS versions, see "Text Shadows" in the 
 `Known Limitations` section for the technical reasons.
 
@@ -184,6 +193,8 @@ This property describes how inline contents of a block are horizontally aligned.
 
     visibilty: (visible|hidden)
 
+=======
+>>>>>>> 300db176390f97e990cb772da3e8502e8f514ba3
 
 Examples
 --------

@@ -61,14 +61,17 @@
 @synthesize tableViewStyle      = _tableViewStyle;
 @synthesize variableHeightRows  = _variableHeightRows;
 @synthesize showTableShadows    = _showTableShadows;
+@synthesize clearsSelectionOnViewWillAppear = _clearsSelectionOnViewWillAppear;
 @synthesize dataSource          = _dataSource;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
     _lastInterfaceOrientation = self.interfaceOrientation;
     _tableViewStyle = UITableViewStylePlain;
+    _clearsSelectionOnViewWillAppear = YES;
   }
 
   return self;
@@ -77,7 +80,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+	self = [self initWithNibName:nil bundle:nil];
+  if (self) {
     _tableViewStyle = style;
   }
 
@@ -266,7 +270,9 @@
     tableView.showShadows = _showTableShadows;
   }
 
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:animated];
+  if (_clearsSelectionOnViewWillAppear) {
+    [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:animated];
+  }
 }
 
 
@@ -574,9 +580,6 @@
             TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"INSERTING ROW AT %@", newIndexPath);
             [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                               withRowAnimation:UITableViewRowAnimationTop];
-
-            [_tableView scrollToRowAtIndexPath:newIndexPath
-                              atScrollPosition:UITableViewScrollPositionNone animated:NO];
           }
           [self invalidateView];
 
@@ -638,6 +641,17 @@
     _tableView = [[TTTableView alloc] initWithFrame:self.view.bounds style:_tableViewStyle];
     _tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
     | UIViewAutoresizingFlexibleHeight;
+
+	UIColor* separatorColor = _tableViewStyle == UITableViewStyleGrouped
+	? TTSTYLEVAR(tableGroupedCellSeparatorColor)
+	: TTSTYLEVAR(tablePlainCellSeparatorColor);
+	if (separatorColor) {
+		_tableView.separatorColor = separatorColor;
+	}
+
+	_tableView.separatorStyle = _tableViewStyle == UITableViewStyleGrouped
+	? TTSTYLEVAR(tableGroupedCellSeparatorStyle)
+	: TTSTYLEVAR(tablePlainCellSeparatorStyle);
 
     UIColor* backgroundColor = _tableViewStyle == UITableViewStyleGrouped
     ? TTSTYLEVAR(tableGroupedBackgroundColor)
@@ -930,5 +944,17 @@
                     tableFrame.size.width, bannerViewHeight);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)invalidateModel {
+  [super invalidateModel];
+
+  // Renew the tableView delegate when the model is refreshed.
+  // Otherwise the delegate will be retained the model.
+
+  // You need to set it to nil before changing it or it won't have any effect
+  _tableView.delegate = nil;
+  [self updateTableDelegate];
+}
 
 @end

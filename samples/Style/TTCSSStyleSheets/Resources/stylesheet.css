@@ -15,13 +15,44 @@
  */
 
 body {
-  background-color: #111;
+  background-color: #114;
 }
 
 h1 {
   font-weight: bold;
   font-size: 50pt;
-  color: #666;
+  color: #FF6;
   background-color: transparent;
-  text-shadow: 1px 1px 1px #999; /* blur amount (3rd value) doesn't do anything */
+  text-shadow: 2px 2px 0px #F99;
 }
+
+h2 {
+  font-size: 45pt;
+  color: white;
+  background-color: transparent;
+  text-shadow: 0px 1px 3px #9BF;
+}
+
+h3, h3:hover {
+  font-size: 35pt;
+  font-weight: bold;
+  color: white;
+  background-color: transparent;
+  text-shadow: 3px -3px 3px #99F;
+}
+
+h3:hover {
+  color: #99F;
+  text-shadow: 3px 3px 3px white;
+}
+
+h4text, h4text:hover {
+  color: white;
+  font-size: 35pt;
+  background-color: transparent;
+}
+
+h4text:hover { color: gray; }
+
+h4shadow       { text-shadow: 3px 3px 4px rgba(0, 255, 0, .5); }
+h4shadow:hover { text-shadow: 0px 0px 4px green; }

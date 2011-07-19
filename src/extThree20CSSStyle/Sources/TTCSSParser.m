@@ -64,7 +64,8 @@ int cssConsume(char* text, int token) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _ruleSets           = [[NSMutableDictionary alloc] init];
     _activeCssSelectors = [[NSMutableArray alloc] init];
   }

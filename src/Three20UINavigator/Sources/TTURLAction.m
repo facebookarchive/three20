@@ -52,7 +52,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURLPath:(NSString*)urlPath {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     self.urlPath = urlPath;
     self.animated = NO;
     self.withDelay = NO;
@@ -65,7 +66,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithURLPath:nil]) {
+	self = [self initWithURLPath:nil];
+  if (self) {
   }
 
   return self;

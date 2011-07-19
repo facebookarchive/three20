@@ -39,7 +39,8 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     [[NSNotificationCenter defaultCenter]
      addObserver: self
      selector: @selector(didReceiveMemoryWarning:)
@@ -137,13 +138,6 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
 - (BOOL)addStyleSheetFromDisk:(NSString*)filename {
   return [self addStyleSheetFromDisk:filename ignoreCache:NO];
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIColor*)backgroundColorForCSSSelector:(NSString*)cssSelector {
-  return [_styleSheet backgroundColorWithCssSelector: cssSelector
-                                            forState: UIControlStateNormal];
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTDefaultCSSStyleSheet*)globalCSSStyleSheet {

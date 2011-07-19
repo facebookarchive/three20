@@ -43,7 +43,8 @@ static const UILineBreakMode kLineBreakMode = UILineBreakModeWordWrap;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)identifier {
-  if (self = [super initWithStyle:style reuseIdentifier:identifier]) {
+	self = [super initWithStyle:style reuseIdentifier:identifier];
+  if (self) {
     self.textLabel.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     self.textLabel.lineBreakMode = kLineBreakMode;
     self.textLabel.numberOfLines = 0;
@@ -124,6 +125,7 @@ static const UILineBreakMode kLineBreakMode = UILineBreakModeWordWrap;
 
     TTTableTextItem* item = object;
     self.textLabel.text = item.text;
+	self.textLabel.backgroundColor = TTSTYLEVAR(backgroundTextColor);
 
     if ([object isKindOfClass:[TTTableButton class]]) {
       self.textLabel.font = TTSTYLEVAR(tableButtonFont);
