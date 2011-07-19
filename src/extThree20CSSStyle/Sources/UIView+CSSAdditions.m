@@ -15,9 +15,11 @@
 //
 
 #import "extThree20CSSStyle/UIView+CSSAdditions.h"
+#import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
+#import "Three20Core/TTGlobalCorePaths.h"
 
 /**
  * Additions.
@@ -25,6 +27,19 @@
 TT_FIX_CATEGORY_BUG(TTCSSViewAdditions)
 
 @implementation UIView (TTCSSAdditions)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Convenient Init method to create an UIView and apply an CSS Rule Set on one pass.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(id)initWithFrame:(CGRect)anFrame andApplyCssFromSelector:(NSString*)anSelector {
+    self = [self initWithFrame:anFrame];
+    if (self != nil) {
+        // Apply CSS.
+        TTApplyCSS( anSelector, self );
+    }
+    return self;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Receive an Set of Rules from some CSS selector to apply. This method
@@ -34,21 +49,45 @@ TT_FIX_CATEGORY_BUG(TTCSSViewAdditions)
 	// Set properties from CSS.
 	self.backgroundColor = anRuleSet.background_color;
 
-    // Hidden?
-    self.hidden = anRuleSet.hidden;
+  ////////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////
+  // Set image background.
+  if ( anRuleSet.background_image ) {
 
-    // Original frame.
-    CGRect newFrame = self.frame;
+    ////////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////
+    // Assert that this file exist on the bundle
+    BOOL exist = [[NSFileManager defaultManager] fileExistsAtPath:
+                                    TTPathForBundleResource( anRuleSet.background_image )];
+    if ( !exist ) {
+       NSString *m = [NSString stringWithFormat:@"The file '%@' on the property %@",
+                                    anRuleSet.background_image,
+                                    @"'background_image' don't exist on your application bundle."];
+      [NSException raise:@"NSFileNotFoundException" format:@"%@", m];
+    }
 
-    // Change Frame from CSS values if needed.
-    newFrame.origin.x    = ( anRuleSet.left ? anRuleSet.origin.x : newFrame.origin.x );
-    newFrame.origin.y    = ( anRuleSet.top ? anRuleSet.origin.y : newFrame.origin.y );
-    ///
-    newFrame.size.width  = ( anRuleSet.width ? anRuleSet.size.width : newFrame.size.width );
-    newFrame.size.height = ( anRuleSet.height ? anRuleSet.size.height : newFrame.size.height );
+    ////////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////
+    // If ok add as subview.
+    [self addSubview:[[UIImageView alloc] initWithImage:
+                                        [UIImage imageNamed:anRuleSet.background_image]]];
+  }
 
-    // Apply.
-    self.frame = newFrame;
+  ////////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////
+  // Hidden?
+  self.hidden = anRuleSet.hidden;
+
+  ////////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////
+  // Original frame.
+  CGRect newFrame = self.frame;
+
+  ////////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////
+  // Change Frame from CSS values if needed.
+  newFrame.origin.x    = ( anRuleSet.left ? anRuleSet.origin.x : newFrame.origin.x );
+  newFrame.origin.y    = ( anRuleSet.top ? anRuleSet.origin.y : newFrame.origin.y );
+  ///
+  newFrame.size.width  = ( anRuleSet.width ? anRuleSet.size.width : newFrame.size.width );
+  newFrame.size.height = ( anRuleSet.height ? anRuleSet.size.height : newFrame.size.height );
+
+  // Apply.
+  self.frame = newFrame;
 }
 
 @end

@@ -191,6 +191,10 @@ NSString* kKeyTextShadowColor   = @"color";
                                 @"right",               @"right",
                                 @"bottom",              @"bottom",
                                 @"text_shadow_opacity", @"text-shadow-opacity",
+                                @"margin_left",         @"margin-left",
+                                @"margin_right",        @"margin-right",
+                                @"vertical_align",      @"vertical-align",
+
 						  nil] retain];
 	}
 	return _propertiesMap;
@@ -222,6 +226,25 @@ NSString* kKeyTextShadowColor   = @"color";
 			return shadowModel;
 		}
 	}
+
+    ///////// /////// /////// /////// /////// /////// /////// /////// /////// ///////
+	// Strings.
+	if ( convertToClass == [NSString class] ) {
+        if ( [object isKindOfClass:[NSArray class]] ) {
+            NSMutableString *merged = [NSMutableString string];
+            for ( NSString* part in object ) {
+                [merged appendString:part];
+            }
+            // Return merged.
+            return merged;
+        }
+        else if ( [object isKindOfClass:[NSString class]] ) {
+            return object;
+        }
+        else {
+            return nil;
+        }
+    }
 
 	///////// /////// /////// /////// /////// /////// /////// /////// /////// ///////
 	// Some crude data is returned as an NSArray...

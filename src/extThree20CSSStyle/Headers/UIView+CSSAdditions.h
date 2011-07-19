@@ -19,4 +19,11 @@
 #import "extThree20CSSStyle/TTCSSApplyProtocol.h"
 
 @interface UIView(TTCSSAdditions) <TTCSSApplyProtocol>
+
+/**
+ * Convenient Init method to create an UIView and apply
+ * an CSS Rule Set on one pass.
+ */
+-(id)initWithFrame:(CGRect)anFrame andApplyCssFromSelector:(NSString*)anSelector;
+
 @end

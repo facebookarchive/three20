@@ -40,7 +40,7 @@
 
 	// Background properties.
 	NSString *background_image;
-    
+
     // Visibility.
     NSString *visibility;
 
@@ -52,6 +52,12 @@
     NSString *right;
     NSString *bottom;
 
+    // Object alignment.
+    NSString *vertical_align;
+
+    // Margins.
+    NSString *margin_right;
+    NSString *margin_left;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -169,6 +175,41 @@
  */
 @property (copy) NSString *background_image;
 
+/**
+ * This property sets the vertical alignment of an element.
+ * Values have the following meanings:<br>
+ *		- <tt>top</tt>: The top of the element is aligned with the top of the
+ * tallest element on the line.<br>
+ *		- <tt>middle</tt>: The element is placed in the middle of the parent element.<br>
+ *		- <tt>bottom</tt>: The bottom of the element is aligned with the lowest element on the line.<br>
+ * <br>
+ * Use the contentVerticalAlignment method to retrieve an iOS formatted
+ * UIControlContentVerticalAlignment based on this values.
+ */
+@property (copy) NSString* vertical_align;
+
+/**
+ * This property specifies the left margin of an element.
+ * Possible Values:<br>
+ *      - <tt>auto</tt>: The left margin is calculated automatically.
+ *      - <tt>length</tt>: Specifies a fixed left margin in px.
+ *      - <tt>percentage</tt>: Specifies a left margin in percent.
+ * Examples:<br>
+ *    <tt>"75px", "50%"</tt>
+ */
+@property (copy) NSString* margin_left;
+
+/**
+ * This property specifies the right margin of an element.
+ * Possible Values:<br>
+ *      - <tt>auto</tt>: The right margin is calculated automatically.
+ *      - <tt>length</tt>: Specifies a fixed right margin in px.
+ *      - <tt>percentage</tt>: Specifies a left margin in percent.
+ * Examples:<br>
+ *    <tt>"75px", "50%"</tt>
+ */
+@property (copy) NSString* margin_right;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Init Methods.
@@ -207,4 +248,17 @@
  * on the <tt>'visibility'</tt> property.
  */
 -(BOOL)hidden;
+
+/**
+ * Return an formatted UIControlContentVerticalAlignment based on the defined
+ * <tt>'vertical_align'</tt> property. If isn't setted return default top alignment.
+ */
+-(UIControlContentVerticalAlignment)contentVerticalAlignment;
+
+/**
+ * Return an formatted UIControlContentHorizontalAlignment based on the defined
+ * <tt>'margin-left'</tt> and <tt>margin-right</tt> properties.
+ * If isn't setted return default left alignment.
+ */
+-(UIControlContentHorizontalAlignment)contentHorizontalAlignment;
 @end
