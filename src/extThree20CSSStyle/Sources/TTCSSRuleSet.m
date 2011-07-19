@@ -33,6 +33,7 @@
 @synthesize text_shadow, text_shadow_opacity, text_align;
 @synthesize width, height, visibility;
 @synthesize top, left, right, bottom;
+@synthesize vertical_align, margin_right, margin_left;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -65,6 +66,9 @@
 
         // Default visiblity is visible.
         self.visibility = @"visible";
+
+        // Default vertical aligment is top.
+        self.vertical_align = @"top";
     }
     return self;
 }
@@ -87,6 +91,9 @@
     TT_RELEASE_SAFELY( background_image );
     TT_RELEASE_SAFELY( text_shadow_opacity );
     TT_RELEASE_SAFELY( visibility );
+    TT_RELEASE_SAFELY( vertical_align );
+    TT_RELEASE_SAFELY( margin_right );
+    TT_RELEASE_SAFELY( margin_left );
     [super dealloc];
 }
 
@@ -103,6 +110,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Validate Methods.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)validateVertical_align:(id *)ioValue error:(NSError **)outError {
+	// Validate correct values.
+	if ( ![[NSArray arrayWithObjects:@"top", @"middle", @"bottom", nil]
+		   containsObject:(NSString*)*ioValue] ) {
+		*outError = [self formatError:@"'vertical_align' must be 'top', 'middle' or 'bottom'!"];
+		return NO;
+	}
+	return YES;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)validateText_align:(id *)ioValue error:(NSError **)outError {
 	// Validate correct values.
@@ -124,7 +142,6 @@
 	}
 	return YES;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)validateFont_family:(id *)ioValue error:(NSError **)outError {
@@ -238,11 +255,11 @@
     // Font weight.
     NSString *fullFontWeight = ( font_weight == nil
 								? @""
-								: [NSString stringWithFormat:@"-%@", font_weight] );
+								: [NSString stringWithFormat:@"-%@", [font_weight capitalizedString]] );
 
     //////////////////////////////////
     // Font Name.
-    NSString *fullFontName = [NSString stringWithFormat:@"%@%@", font_family,
+    NSString *fullFontName = [NSString stringWithFormat:@"%@%@", [font_family capitalizedString],
 							  fullFontWeight];
 
     //////////////////////////////////
@@ -285,5 +302,40 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)hidden {
     return [self.visibility isEqualToString:@"hidden"];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Return an formatted UIControlContentVerticalAlignment based on the defined
+// <tt>'vertical_align'</tt> property. If isn't setted return default top alignment.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(UIControlContentVerticalAlignment)contentVerticalAlignment {
+	if ([vertical_align isEqualToString:@"top"]) {
+		return UIControlContentVerticalAlignmentTop;
+	}
+	else if ([vertical_align isEqualToString:@"middle"]) {
+		return UIControlContentVerticalAlignmentCenter;
+	}
+	else if ([vertical_align isEqualToString:@"bottom"]) {
+		return UIControlContentVerticalAlignmentBottom;
+	}
+	return UIControlContentVerticalAlignmentTop;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Return an formatted UIControlContentHorizontalAlignment based on the defined
+// <tt>'margin-left'</tt> and <tt>margin-right</tt> properties.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(UIControlContentHorizontalAlignment)contentHorizontalAlignment {
+	if ([margin_right isEqualToString:@"auto"] && ![margin_left isEqualToString:@"auto"]) {
+		return UIControlContentHorizontalAlignmentLeft;
+	}
+	else if ([margin_right isEqualToString:@"auto"] && [margin_left isEqualToString:@"auto"]) {
+		return UIControlContentHorizontalAlignmentCenter;
+	}
+	else if (![margin_right isEqualToString:@"auto"] && [margin_left isEqualToString:@"auto"]) {
+		return UIControlContentHorizontalAlignmentRight;
+	}
+    return UIControlContentHorizontalAlignmentLeft;
 }
 @end
