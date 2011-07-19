@@ -23,32 +23,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-#define TTCSSBGCOLOR(selector)  [[TTDefaultCSSStyleSheet globalCSSStyleSheet] \
-                                  backgroundColorForCSSSelector:selector]
-
-/**
- * Retrieve a Full CSS Rule (TTCSSRuleSet) for specified selector.
- */
-#define TTCSSRule(selector) (TTCSSRuleSet*)[[TTDefaultCSSStyleSheet\
-									globalCSSStyleSheet] css:selector]
-
-/**
- * Retrieve an value for a property of an Rule Set (TTCSSRuleSet) for specified selector.
- */
-#define TTCSS(selector,property) [TTCSSRule(selector) property]
-
-/**
- * Apply an CSS style to specified object.
- * The object must conform with the TTCSSApplyProtocol.
- */
-#define TTApplyCSS(selector,object) [[TTDefaultCSSStyleSheet globalCSSStyleSheet]\
-												applyCssFromSelector:selector\
-													toObject:object]
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 @interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
 @private
   TTCSSStyleSheet* _styleSheet;
@@ -72,8 +46,6 @@
  * @param cache YES will ignore if is already cached and reload the data if needed.
  */
 - (BOOL)addStyleSheetFromDisk:(NSString*)filename ignoreCache:(BOOL)cache;
-
-- (UIColor*)backgroundColorForCSSSelector:(NSString*)cssSelector;
 
 + (TTDefaultCSSStyleSheet*)globalCSSStyleSheet;
 

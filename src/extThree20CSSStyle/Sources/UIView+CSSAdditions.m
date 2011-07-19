@@ -16,6 +16,7 @@
 
 #import "extThree20CSSStyle/UIView+CSSAdditions.h"
 #import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
+#import "extThree20CSSStyle/TTCSSGlobalStyle.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -88,6 +89,15 @@ TT_FIX_CATEGORY_BUG(TTCSSViewAdditions)
 
   // Apply.
   self.frame = newFrame;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Set a CSS stylesheet selector.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)applyCssSelector:(NSString *)anSelector {
+  // Apply CSS.
+  TTApplyCSS( anSelector, self );
 }
 
 @end

@@ -15,27 +15,18 @@
 //
 
 // CSS Parser
-#import "TTCSSParser.h"
+#import "extThree20CSSStyle/TTCSSParser.h"
 
 // CSS Stylesheet
-<<<<<<< HEAD
-#import "TTCSSStyleSheet.h"
-#import "TTDefaultCSSStyleSheet.h"
-
-// CSS Models
-#import "TTCSSTextShadowModel.h"
-#import "TTCSSRuleSet.h"
-
-// Data Processing
-#import "TTDataConverter.h"
-#import "TTDataPopulator.h"
-#import "TTDataPopulatorDelegate.h"
-
-// UIKit Additions.
-#import "UIView+CSSAdditions.h"
-#import "UILabel+CSSAdditions.h"
-=======
 #import "extThree20CSSStyle/TTCSSGlobalStyle.h"
 #import "extThree20CSSStyle/TTCSSStyleSheet.h"
 #import "extThree20CSSStyle/TTDefaultCSSStyleSheet.h"
->>>>>>> 300db176390f97e990cb772da3e8502e8f514ba3
+
+// CSS Models
+#import "extThree20CSSStyle/TTCSSTextShadowModel.h"
+#import "extThree20CSSStyle/TTCSSRuleSet.h"
+
+// Data Processing
+#import "extThree20CSSStyle/TTDataConverter.h"
+#import "extThree20CSSStyle/TTDataPopulator.h"
+#import "extThree20CSSStyle/TTDataPopulatorDelegate.h"

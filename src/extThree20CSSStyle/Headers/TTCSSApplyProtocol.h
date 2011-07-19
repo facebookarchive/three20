@@ -30,4 +30,9 @@
  */
 -(void)applyCssRules:(TTCSSRuleSet*)anRuleSet;
 
+/**
+ * Set a CSS stylesheet selector.
+ */
+- (void)applyCssSelector:(NSString *)selector;
+
 @end
