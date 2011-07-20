@@ -49,4 +49,7 @@
 - (void)tableView:(UITableView*)tableView touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 - (void)tableView:(UITableView*)tableView touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event;
 
+@optional
+- (void)tableView:(UITableView*)tableView touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event;
+
 @end

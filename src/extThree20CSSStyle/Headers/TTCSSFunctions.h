@@ -14,11 +14,15 @@
 // limitations under the License.
 //
 
-// CSS Style
-#import "extThree20CSSStyle/extThree20CSSStyle.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-// Additions
-#import "extThree20CSSStyle/UIView+CSSAdditions.h"
-#import "extThree20CSSStyle/UILabel+CSSAdditions.h"
-#import "extThree20CSSStyle/TTTextStyleAdditions.h"
-#import "extThree20CSSStyle/TTShadowStyleAdditions.h"
+/**
+ * Helper function to convert an CSS readed colors to UIColor.
+ */
+UIColor* TTColorFromCssValues( NSArray* cssValues );
+
+/**
+ * Helper function to convert an CSS readed size to CGFloat.
+ */
+CGFloat TTValueFromCssValues( NSString* value );

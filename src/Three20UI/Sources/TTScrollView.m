@@ -64,6 +64,10 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 @synthesize zoomScale         = _zoomScale;
 @synthesize zooming           = _executingZoomGesture;
 
+@synthesize isDragging        = _dragging;
+
+@synthesize centerPageAnimationDuration = _centerPageAnimationDuration;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
@@ -84,6 +88,7 @@ static const CGFloat kFrameDuration = 1.0/40.0;
     _orientation = UIDeviceOrientationPortrait;
     _decelerationRate = 0.9;      // Inertia, how faster slow the residual movement.
     _maximumZoomScale = 4.0;      // Maximum zoom scale default value.
+    _centerPageAnimationDuration = TT_TRANSITION_DURATION;
 
     for (NSInteger i = 0; i < _maxPages; ++i) {
       [_pages addObject:[NSNull null]];
@@ -485,7 +490,7 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)moveToPageAtIndex:(NSInteger)pageIndex resetEdges:(BOOL)resetEdges {
+- (void)moveToPageAtIndex:(NSInteger)pageIndex resetEdges:(BOOL)resetEdges animated:(BOOL)animated {
   if (resetEdges) {
     _pageEdges = _pageStartEdges = UIEdgeInsetsZero;
     _zooming = NO;
@@ -521,13 +526,22 @@ static const CGFloat kFrameDuration = 1.0/40.0;
     _pageArrayIndex = [self arrayIndexForPageIndex:pageIndex relativeToIndex:_centerPageIndex];
     _centerPageIndex = pageIndex;
     [self setNeedsLayout];
+
+    // Should animate the next relayout?
+    _nextLayoutAnimated = animated;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)moveToPageAtIndex:(NSInteger)pageIndex resetEdges:(BOOL)resetEdges {
+    [self moveToPageAtIndex:pageIndex resetEdges:resetEdges animated:NO];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutPage {
   UIView* page = [self pageAtIndex:_centerPageIndex create:YES];
+
+  // Layout.
   if (nil != page) {
     CGAffineTransform rotation = TTRotateTransformForOrientation(_orientation);
     CGPoint offset = [self offsetForOrientation:_pageEdges.left y:_pageEdges.top];
@@ -538,13 +552,37 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 
       page.transform = [self rotateTransform:CGAffineTransformScale(
         CGAffineTransformMakeTranslation(offset.x, offset.y), zoom, zoom)];
+
+      // Should animate the relayout?
+      if ( _nextLayoutAnimated ) {
+        [UIView beginAnimations:@"pageAnimation" context:nil];
+        [UIView setAnimationDuration:_centerPageAnimationDuration];
+      }
       page.frame = CGRectMake(offset.x + frame.origin.x*zoom, offset.y + frame.origin.y*zoom,
         frame.size.width*zoom, frame.size.height*zoom);
 
+      // Should animate the relayout?
+      if ( _nextLayoutAnimated ) {
+        [UIView commitAnimations];
+      }
+
     } else {
+
       page.transform = rotation;
+
+      // Should animate the relayout?
+      if ( _nextLayoutAnimated ) {
+        [UIView beginAnimations:@"pageAnimation" context:nil];
+        [UIView setAnimationDuration:_centerPageAnimationDuration];
+      }
+
       page.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
         frame.size.width, frame.size.height);
+
+      // Should animate the relayout?
+      if ( _nextLayoutAnimated ) {
+        [UIView commitAnimations];
+      }
     }
   }
 }
@@ -558,6 +596,9 @@ static const CGFloat kFrameDuration = 1.0/40.0;
 
   NSInteger minPageIndex = _centerPageIndex - kOffscreenPages;
   NSInteger maxPageIndex = _centerPageIndex + kOffscreenPages;
+
+  // Determine the direction.
+  BOOL isGoingLeft = _centerPageIndex < _visiblePageIndex;
 
   CGRect centerFrame = [self frameOfPageAtIndex:_centerPageIndex];
   CGFloat centerPageOverflow = [self overflowForFrame:centerFrame] * self.zoomFactor;
@@ -576,9 +617,21 @@ static const CGFloat kFrameDuration = 1.0/40.0;
       CGPoint offset = [self offsetForOrientation:x y:0];
 
       page.transform = rotation;
+
+      // Should animate the the "going right" relayout?
+      if ( _nextLayoutAnimated && !isGoingLeft ) {
+        [UIView beginAnimations:@"pageAnimation" context:nil];
+        [UIView setAnimationDuration:_centerPageAnimationDuration];
+      }
+
       page.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
         frame.size.width, frame.size.height);
       page.hidden = pinched;
+
+      // Should animate the the "going right" relayout?
+      if ( _nextLayoutAnimated && !isGoingLeft) {
+        [UIView commitAnimations];
+      }
     }
   }
 
@@ -597,9 +650,22 @@ static const CGFloat kFrameDuration = 1.0/40.0;
       CGPoint offset = [self offsetForOrientation:x y:0];
 
       page.transform = rotation;
+
+      // Should animate the "going left" relayout?
+      if ( _nextLayoutAnimated && isGoingLeft ) {
+        [UIView beginAnimations:@"pageAnimation" context:nil];
+        [UIView setAnimationDuration:_centerPageAnimationDuration];
+      }
+
       page.frame = CGRectMake(offset.x + frame.origin.x, offset.y + frame.origin.y,
         frame.size.width, frame.size.height);
       page.hidden = pinched;
+
+      // Should animate the "going left" relayout?
+      if ( _nextLayoutAnimated && isGoingLeft) {
+        [UIView commitAnimations];
+      }
+
     }
   }
 }
@@ -1541,6 +1607,9 @@ static const CGFloat kFrameDuration = 1.0/40.0;
     _visiblePageIndex = _centerPageIndex;
     [_delegate scrollView:self didMoveToPageAtIndex:_centerPageIndex];
   }
+
+  // Reset the layout animated flag.
+  _nextLayoutAnimated = NO;
 }
 
 
@@ -1588,6 +1657,13 @@ static const CGFloat kFrameDuration = 1.0/40.0;
   [self reloadData];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setCenterPageIndex:(NSInteger)centerPageIndex animated:(BOOL)animated {
+  // TODO: Fix limitation, for now only animate the distance of one page .. :(
+  animated = ( _centerPageIndex-centerPageIndex >= -1 || _centerPageIndex+centerPageIndex <= 1 );
+
+  [self moveToPageAtIndex:centerPageIndex resetEdges:!_touchCount animated:animated];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setCenterPageIndex:(NSInteger)centerPageIndex {

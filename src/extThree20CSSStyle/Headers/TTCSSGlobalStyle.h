@@ -20,26 +20,45 @@
 #define TTCSSSTYLESHEET ([[TTDefaultCSSStyleSheet globalCSSStyleSheet] styleSheet])
 
 #define TTCSS_color(_SELECTOR, _STATE) \
-([TTCSSSTYLESHEET colorWithCssSelector:_SELECTOR forState:_STATE])
+                      ([TTCSSSTYLESHEET colorWithCssSelector:_SELECTOR forState:_STATE])
 
 #define TTCSS_backgroundColor(_SELECTOR, _STATE) \
-([TTCSSSTYLESHEET backgroundColorWithCssSelector:_SELECTOR forState:_STATE])
+                      ([TTCSSSTYLESHEET backgroundColorWithCssSelector:_SELECTOR forState:_STATE])
 
 #define TTCSS_font(_SELECTOR, _STATE) \
-([TTCSSSTYLESHEET fontWithCssSelector:_SELECTOR forState:_STATE])
+                      ([TTCSSSTYLESHEET fontWithCssSelector:_SELECTOR forState:_STATE])
 
 #define TTCSS_shadowColor(_SELECTOR, _STATE) \
-([TTCSSSTYLESHEET textShadowColorWithCssSelector:_SELECTOR forState:_STATE])
+                      ([TTCSSSTYLESHEET textShadowColorWithCssSelector:_SELECTOR forState:_STATE])
 
 #define TTCSS_shadowOffset(_SELECTOR, _STATE) \
-([TTCSSSTYLESHEET textShadowOffsetWithCssSelector:_SELECTOR forState:_STATE])
+                      ([TTCSSSTYLESHEET textShadowOffsetWithCssSelector:_SELECTOR forState:_STATE])
 
 #define TTCSS_shadowRadius(_SELECTOR, _STATE) \
-([TTCSSSTYLESHEET textShadowRadiusWithCssSelector:_SELECTOR forState:_STATE])
+                      ([TTCSSSTYLESHEET textShadowRadiusWithCssSelector:_SELECTOR forState:_STATE])
 
 // _VARNAME must be one of: color, backgroundColor, font, shadowColor, shadowOffset, shadowRadius
 #define TTCSSSTATE(_SELECTOR, _VARNAME, _STATE) \
-TTCSS_##_VARNAME(_SELECTOR, _STATE)
+                        TTCSS_##_VARNAME(_SELECTOR, _STATE)
 
-#define TTCSS(_SELECTOR, _VARNAME) \
-TTCSSSTATE(_SELECTOR, _VARNAME, UIControlStateNormal)
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Retrieve a Full CSS Rule (TTCSSRuleSet) for specified selector.
+ */
+#define TTCSSRule(selector) (TTCSSRuleSet*)[[TTDefaultCSSStyleSheet\
+                              globalCSSStyleSheet] css:selector]
+
+/**
+ * Retrieve an value for a property of an Rule Set (TTCSSRuleSet) for specified selector.
+ */
+#define TTCSS(selector,property) [TTCSSRule(selector) property]
+
+/**
+ * Apply an CSS style to specified object.
+ * The object must conform with the TTCSSApplyProtocol.
+ */
+#define TTApplyCSS(selector,object) [[TTDefaultCSSStyleSheet globalCSSStyleSheet]\
+                              applyCssFromSelector:selector\
+                              toObject:object]

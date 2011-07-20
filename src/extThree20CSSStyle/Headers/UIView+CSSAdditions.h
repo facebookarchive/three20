@@ -13,20 +13,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+#import <UIKit/UIKit.h>
 
-#import "Three20Style/TTDefaultStyleSheet.h"
+#import "extThree20CSSStyle/TTCSSRuleSet.h"
+#import "extThree20CSSStyle/TTCSSApplyProtocol.h"
 
-@class TTCSSStyleSheet;
+@interface UIView(TTCSSAdditions) <TTCSSApplyProtocol>
 
-@interface TTDefaultCSSStyleSheet : TTDefaultStyleSheet {
-@private
-  TTCSSStyleSheet* _styleSheet;
-}
+/**
+ * Convenient Init method to create an UIView and apply
+ * an CSS Rule Set on one pass.
+ */
+-(id)initWithFrame:(CGRect)anFrame andApplyCssFromSelector:(NSString*)anSelector;
 
-@property (nonatomic, readonly) TTCSSStyleSheet* styleSheet;
-
-- (BOOL)addStyleSheetFromDisk:(NSString*)filename;
-
-+ (TTDefaultCSSStyleSheet*)globalCSSStyleSheet;
 
 @end
