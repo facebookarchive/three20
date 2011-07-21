@@ -217,7 +217,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)from:(NSString*)URL toViewController:(id)target transition:(NSInteger)transition {
+- (void)from:(NSString*)URL toViewController:(id)target
+        transition:(UIViewAnimationTransition)transition {
   TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
                                                                   mode:TTNavigationModeCreate];
   pattern.transition = transition;
@@ -228,7 +229,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition {
+        toViewController:(id)target selector:(SEL)selector
+        transition:(UIViewAnimationTransition)transition {
   TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
                                                                   mode:TTNavigationModeCreate];
   pattern.parentURL = parentURL;
@@ -301,7 +303,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)from:(NSString*)URL toModalViewController:(id)target transition:(NSInteger)transition {
+- (void)from:(NSString*)URL toModalViewController:(id)target
+        transition:(UIViewAnimationTransition)transition {
   TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
                                                                   mode:TTNavigationModeModal];
   pattern.transition = transition;
@@ -312,7 +315,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)from:(NSString*)URL parent:(NSString*)parentURL
-        toModalViewController:(id)target selector:(SEL)selector transition:(NSInteger)transition {
+        toModalViewController:(id)target selector:(SEL)selector
+        transition:(UIViewAnimationTransition)transition {
   TTURLNavigatorPattern* pattern = [[TTURLNavigatorPattern alloc] initWithTarget:target
                                                                   mode:TTNavigationModeModal];
   pattern.parentURL = parentURL;
@@ -490,7 +494,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSInteger)transitionForURL:(NSString*)URL {
+- (UIViewAnimationTransition)transitionForURL:(NSString*)URL {
   TTURLNavigatorPattern* pattern = [self matchObjectPattern:[NSURL URLWithString:URL]];
   return pattern.transition;
 }
