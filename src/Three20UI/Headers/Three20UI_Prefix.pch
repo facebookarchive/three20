@@ -2,8 +2,6 @@
 // Prefix header for all source files of the 'Three20' target in the 'Three20' project
 //
 
-#import "../../common/Xcode324iOS41Fix.pch"
-
 #ifdef __OBJC__
   #import <Foundation/Foundation.h>
   #import <UIKit/UIKit.h>

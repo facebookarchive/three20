@@ -36,7 +36,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNext:(TTStyle*)next {
-  if (self = [super initWithNext:next]) {
+	self = [super initWithNext:next];
+  if (self) {
     _margin = UIEdgeInsetsZero;
     _padding = UIEdgeInsetsZero;
     _minSize = CGSizeZero;

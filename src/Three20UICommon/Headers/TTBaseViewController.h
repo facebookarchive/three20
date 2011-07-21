@@ -51,7 +51,8 @@
 /**
  * The style of the status bar when this view controller is appearing.
  *
- * @default UIStatusBarStyleDefault
+ * @default [[UIApplication sharedApplication] statusBarStyle] via app's info.plist
+ *
  */
 @property (nonatomic) UIStatusBarStyle statusBarStyle;
 
