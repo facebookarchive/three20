@@ -62,12 +62,12 @@
     // the data in the cache if there was a cache miss, and then just retain the image data we
     // downloaded? This needs to be tested in production.
 	UIImage* image = nil;
-	if(request.cachePolicy != TTURLRequestCachePolicyNoCache)
+	if(!(request.cachePolicy | TTURLRequestCachePolicyNoCache)) {
       image = [[TTURLCache sharedCache] imageForURL:request.urlPath fromDisk:NO];
+  }
     if (nil == image) {
       image = [UIImage imageWithData:data];
     }
-
     if (nil != image) {
       if (!request.respondedFromCache) {
 // XXXjoe Working on option to scale down really large images to a smaller size to save memory
