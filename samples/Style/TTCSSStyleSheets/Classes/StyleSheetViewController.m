@@ -17,6 +17,7 @@
 #import "StyleSheetViewController.h"
 
 #import "SampleCSSStyleSheet.h"
+#import "extThree20CSSStyle/TTCSSRuleSet.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,23 +51,34 @@
   }
 
   self.title = @"Three20 CSS extension";
-  self.view.backgroundColor = TTCSS(@"body", backgroundColor);
+  self.view.backgroundColor = TTCSS( @"body", background_color );
 
   // Using helper macro
   UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   headerLabel.text = @"Header text";
+  
+  // When using TTCSS you specify the Rule Set Name and the CSS property.
   headerLabel.font            = TTCSS(@"h1", font);
   headerLabel.textColor       = TTCSS(@"h1", color);
-  headerLabel.backgroundColor = TTCSS(@"h1", backgroundColor);
-  headerLabel.shadowColor     = TTCSS(@"h1", shadowColor);
-  headerLabel.shadowOffset    = TTCSS(@"h1", shadowOffset);
+  headerLabel.backgroundColor = TTCSS(@"h1", background_color);
+  
+  // Some CSS property have sub properties.
+  headerLabel.shadowColor     = TTCSS(@"h1", text_shadow).shadowColor;
+  headerLabel.shadowOffset    = TTCSS(@"h1", text_shadow).shadowOffset;
+  
   [headerLabel sizeToFit];
   [self.view addSubview:headerLabel];
 
   // Using UILabel addition
   UILabel* headerLabel2 = [[UILabel alloc] initWithFrame:CGRectZero];
   headerLabel2.text = @"Header 2 text";
-  [headerLabel2 applyCssSelector:@"h2"];
+  
+  // Use the Helper Function TTApplyCSS and specify the Rule Set Name then the object to apply.
+  TTApplyCSS( @"h2", headerLabel2 ); 
+  
+  // This will work too!
+  [headerLabel applyCssSelector:@"h2"];
+
   [headerLabel2 sizeToFit];
   CGFloat top = headerLabel.frame.size.height;
   CGRect frame = headerLabel2.frame;

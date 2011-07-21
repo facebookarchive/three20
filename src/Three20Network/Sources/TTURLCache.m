@@ -264,8 +264,7 @@ static NSMutableDictionary* gNamedCaches = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIImage*)loadImageFromDocuments:(NSString*)URL {
   NSString* path = TTPathForDocumentsResource([URL substringFromIndex:12]);
-  NSData* data = [NSData dataWithContentsOfFile:path];
-  return [UIImage imageWithData:data];
+  return [UIImage imageWithContentsOfFile:path];
 }
 
 

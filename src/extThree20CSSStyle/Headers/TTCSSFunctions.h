@@ -14,11 +14,15 @@
 // limitations under the License.
 //
 
-#include "Paths.xcconfig"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/Developer/Library/Frameworks"
-IPHONEOS_DEPLOYMENT_TARGET = 3.0
-SDKROOT = iphoneos
-// Required for older iOS devices (iPhone 3G)
-ARCHS = $(ARCHS_STANDARD_32_BIT)
-ARCHS[sdk=iphoneos*] = armv6 armv7
+/**
+ * Helper function to convert an CSS readed colors to UIColor.
+ */
+UIColor* TTColorFromCssValues( NSArray* cssValues );
+
+/**
+ * Helper function to convert an CSS readed size to CGFloat.
+ */
+CGFloat TTValueFromCssValues( NSString* value );

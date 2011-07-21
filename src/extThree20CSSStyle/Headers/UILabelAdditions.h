@@ -14,14 +14,5 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-@interface UILabel (TTCSSCategory)
-
-/**
- * Set a css stylesheet selector, will set font, colors and shadow.
- */
-- (void)applyCssSelector:(NSString *)selector;
-
-@end
+// For compatibility issues we import the UILabel additions.
+#import "extThree20CSSStyle/UILabel+CSSAdditions.h"

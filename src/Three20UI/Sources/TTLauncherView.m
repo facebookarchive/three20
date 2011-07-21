@@ -23,6 +23,7 @@
 #import "Three20UI/TTPageControl.h"
 #import "Three20UI/UIViewAdditions.h"
 
+
 // UI (private)
 #import "Three20UI/private/TTLauncherScrollView.h"
 #import "Three20UI/private/TTLauncherHighlightView.h"
@@ -69,6 +70,8 @@ static const NSInteger kDefaultColumnCount = 3;
 @synthesize editing     = _editing;
 @synthesize delegate    = _delegate;
 @synthesize editable	= _editable;
+@synthesize persistenceMode           = _persistenceMode;
+@synthesize persistenceKey            = _persistenceKey;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
@@ -99,6 +102,9 @@ static const NSInteger kDefaultColumnCount = 3;
     self.autoresizesSubviews = YES;
     self.columnCount = kDefaultColumnCount;
     self.editable = YES;
+    self.persistenceKey = @"launcherViewPages";
+    self.persistenceMode = TTLauncherPersistenceModeNone;
+
   }
 
   return self;
@@ -985,10 +991,49 @@ static const NSInteger kDefaultColumnCount = 3;
 
   [self layoutButtons];
 
+  if (self.persistenceMode == TTLauncherPersistenceModeAll) {
+    [self persistLauncherItems];
+  }
+
   if ([_delegate respondsToSelector:@selector(launcherViewDidEndEditing:)]) {
     [_delegate launcherViewDidEndEditing:self];
   }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)persistLauncherItems {
+  NSData* pagesData = [NSKeyedArchiver archivedDataWithRootObject:self.pages];
+  [[NSUserDefaults standardUserDefaults] setValue:pagesData forKey:self.persistenceKey];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)restoreLauncherItems {
+  if (self.persistenceMode == TTLauncherPersistenceModeAll) {
+    NSData* pagesData = [[NSUserDefaults standardUserDefaults] objectForKey:self.persistenceKey];
+
+    NSObject* pages;
+    if (pagesData!=nil) {
+      pages = [NSKeyedUnarchiver unarchiveObjectWithData:pagesData];
+    }
+
+    if (pagesData!=nil && pages!=nil && [pages isKindOfClass:[NSArray class]]) {
+      self.pages = (NSArray*)pages;
+      return YES;
+    }
+  }
+
+  return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)resetDefaults {
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+
+  [defaults removeObjectForKey:_persistenceKey];
+  [defaults synchronize];
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
