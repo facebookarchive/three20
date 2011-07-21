@@ -229,6 +229,15 @@
 - (void)loadView {
   [super loadView];
   self.tableView;
+
+  // If this view was unloaded and is now being reloaded, and it was previously
+  // showing a table banner, then redisplay that banner now.
+  if (_tableBannerView) {
+    UIView* savedTableBannerView = [_tableBannerView retain];
+    [self setTableBannerView:nil animated:NO];
+    [self setTableBannerView:savedTableBannerView animated:NO];
+    [savedTableBannerView release];
+  }
 }
 
 
@@ -239,8 +248,6 @@
   _tableView.dataSource = nil;
   TT_RELEASE_SAFELY(_tableDelegate);
   TT_RELEASE_SAFELY(_tableView);
-  [_tableBannerView removeFromSuperview];
-  TT_RELEASE_SAFELY(_tableBannerView);
   [_tableOverlayView removeFromSuperview];
   TT_RELEASE_SAFELY(_tableOverlayView);
   [_loadingView removeFromSuperview];
@@ -253,6 +260,9 @@
   TT_RELEASE_SAFELY(_menuView);
   [_menuCell removeFromSuperview];
   TT_RELEASE_SAFELY(_menuCell);
+
+  // Do not release _tableBannerView, because we have no way to recreate it on demand if
+  // this view gets reloaded.
 }
 
 
@@ -687,7 +697,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTableBannerView:(UIView*)tableBannerView animated:(BOOL)animated {
-  TT_INVALIDATE_TIMER(_bannerTimer);
   if (tableBannerView != _tableBannerView) {
     if (_tableBannerView) {
       if (animated) {
@@ -705,7 +714,6 @@
       self.tableView.contentInset = UIEdgeInsetsMake(0, 0, TTSTYLEVAR(tableBannerViewHeight), 0);
       self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
       _tableBannerView.frame = [self rectForBannerView];
-      _tableBannerView.userInteractionEnabled = NO;
       _tableBannerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                            | UIViewAutoresizingFlexibleTopMargin);
       [self addSubviewOverTableView:_tableBannerView];

@@ -13,12 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+#import <UIKit/UIKit.h>
 
-#include "Paths.xcconfig"
+#import "extThree20CSSStyle/UIView+CSSAdditions.h"
 
-FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/Developer/Library/Frameworks"
-IPHONEOS_DEPLOYMENT_TARGET = 3.0
-SDKROOT = iphoneos
-// Required for older iOS devices (iPhone 3G)
-ARCHS = $(ARCHS_STANDARD_32_BIT)
-ARCHS[sdk=iphoneos*] = armv6 armv7
+@interface UILabel(TTCSSAdditions)
+@end
