@@ -301,7 +301,7 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 - (void)showBars:(BOOL)show animated:(BOOL)animated {
 
   BOOL statusBarHidden = [[[[NSBundle mainBundle] infoDictionary]
-                           objectForKey:@"UIStatusBarHidden"] intValue];
+                           objectForKey:@"UIStatusBarHidden"] boolValue];
 
   if (!statusBarHidden) {
     #ifdef __IPHONE_3_2
