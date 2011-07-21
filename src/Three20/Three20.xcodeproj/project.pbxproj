@@ -751,10 +751,10 @@
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Internal;
@@ -769,7 +769,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -787,7 +787,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -802,7 +801,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 			};
@@ -815,7 +814,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PREBINDING = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
@@ -827,10 +826,10 @@
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -840,10 +839,10 @@
 			baseConfigurationReference = 6E64543D1184BE1B00F08CB1 /* Project.xcconfig */;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -859,7 +858,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
@@ -875,7 +873,6 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				PREBINDING = NO;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = octest;
