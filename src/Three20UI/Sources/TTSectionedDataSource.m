@@ -241,7 +241,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)addItem:(TTTableItem *)item atIndexPath:(NSIndexPath*)indexPath {
   NSMutableArray* items = [_items objectAtIndex:indexPath.section];
-  [items addObject:item];
+  [items insertObject:item atIndex:indexPath.row];
 }
 
 
