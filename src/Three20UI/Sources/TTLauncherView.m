@@ -740,6 +740,12 @@ static const NSInteger kDefaultColumnCount = 3;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+  [self updatePagerWithContentOffset:_scrollView.contentOffset];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UIPageControlDelegate
@@ -917,7 +923,9 @@ static const NSInteger kDefaultColumnCount = 3;
     NSUInteger page = [path indexAtPosition:0];
     CGFloat x = page * _scrollView.width;
     [_scrollView setContentOffset:CGPointMake(x, 0) animated:animated];
-    [self updatePagerWithContentOffset:CGPointMake(x, 0)];
+    if (!animated) {
+      [self updatePagerWithContentOffset:CGPointMake(x, 0)];
+    }
   }
 }
 
