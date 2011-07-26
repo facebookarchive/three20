@@ -735,13 +735,13 @@ static const NSInteger kDefaultColumnCount = 3;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-  [self updatePagerWithContentOffset:_scrollView.contentOffset];
+  [self updatePagerWithContentOffset:scrollView.contentOffset];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-  [self updatePagerWithContentOffset:_scrollView.contentOffset];
+  [self updatePagerWithContentOffset:scrollView.contentOffset];
 }
 
 
