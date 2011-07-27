@@ -118,31 +118,33 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView
                     cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   id object = [self tableView:tableView objectForRowAtIndexPath:indexPath];
-  
+
   UITableViewCell* cell;
-  
+
   if ([object conformsToProtocol:@protocol(TTTableItemCellMapping)]) {
     cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:[object cellIdentifier]];
     if (cell == nil) {
       cell = [[object newCell] autorelease];
     }
+
   } else {
     // items that don't implement the TTTableItemCellMapping protocol
     // are handled as a special-case
     Class cellClass = [self tableView:tableView cellClassForObject:object];
-    NSString* identifier = [NSString stringWithCString:class_getName(cellClass) encoding:NSASCIIStringEncoding];
-    
+    NSString* identifier = [NSString stringWithCString:class_getName(cellClass)
+                                              encoding:NSASCIIStringEncoding];
+
     cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
       cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
                                reuseIdentifier:identifier] autorelease];
     }
   }
-    
+
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
     [(TTTableViewCell*)cell setObject:object];
   }
- 
+
   [self tableView:tableView cell:cell willAppearAtIndexPath:indexPath];
 
   return cell;
@@ -258,6 +260,7 @@
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
   if ([object conformsToProtocol:@protocol(TTTableItemCellMapping)]) {
     return [object cellClass];
+
   } else if ([object isKindOfClass:[TTStyledText class]]) {
     return [TTStyledTextTableCell class];
 
