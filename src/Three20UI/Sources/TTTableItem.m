@@ -62,8 +62,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)cellClass {
+  NSString* error = @"Subclasses of TTTableItem need to overwrite cellClass\
+ to return a proper TableCell to contruct";
   NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyException
-                                                   reason:@"Subclasses of TTTableItem need to overwrite cellClass to return a proper TableCell to contruct"
+                                                   reason:error
                                                  userInfo:nil];
   @throw exception;
   return [TTTableViewCell class];
