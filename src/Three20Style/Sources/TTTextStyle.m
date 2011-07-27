@@ -239,7 +239,7 @@
     if ([osVersion versionStringCompare:@"3.2"] != NSOrderedAscending) {
       shadowYOffset = _shadowOffset.height;
     }
-	  
+
     CGSize offset = CGSizeMake(_shadowOffset.width, shadowYOffset);
     CGContextSetShadowWithColor(ctx, offset, 0, _shadowColor.CGColor);
   }
