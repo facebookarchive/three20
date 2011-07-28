@@ -77,7 +77,7 @@
 		6E6462121187DD2F00F08CB1 /* extThree20JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6462111187DD2A00F08CB1 /* extThree20JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6462131187DD3300F08CB1 /* extThree20JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6462111187DD2A00F08CB1 /* extThree20JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB460DA1183D8CB00685649 /* libextThree20JSON+SBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20JSON+SBJSON.a */; };
-		E4E4A8F013E1AC9B00B6DF51 /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = E4E4A8E913E1AC9B00B6DF51 /* SBJson.h */; };
+		E4E4A8F013E1AC9B00B6DF51 /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = E4E4A8E913E1AC9B00B6DF51 /* SBJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4E4A8F113E1AC9B00B6DF51 /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = E4E4A8EA13E1AC9B00B6DF51 /* SBJsonStreamParserAccumulator.h */; };
 		E4E4A8F213E1AC9B00B6DF51 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E4A8EB13E1AC9B00B6DF51 /* SBJsonStreamParserAccumulator.m */; };
 		E4E4A8F313E1AC9B00B6DF51 /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = E4E4A8EC13E1AC9B00B6DF51 /* SBJsonStreamWriterAccumulator.h */; };
