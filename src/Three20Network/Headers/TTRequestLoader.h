@@ -36,12 +36,7 @@
  * TTURLRequestQueue's sendRequest.
  * For all other TTURLRequest types, they will each have their own loader.
  */
-@interface TTRequestLoader : NSObject 
-#ifdef __IPHONE_5_0
-<NSURLConnectionDataDelegate>
-#else
-<NSURLConnectionDelegate> 
-#endif
+@interface TTRequestLoader : NSObject
 {
   NSString*               _urlPath;
 
