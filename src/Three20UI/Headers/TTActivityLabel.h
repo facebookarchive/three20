@@ -43,7 +43,7 @@ typedef enum {
   NSTimer*                  _smoothTimer;
 }
 
-@property (nonatomic, readonly) TTActivityLabelStyle style;
+@property (nonatomic) TTActivityLabelStyle style;
 
 @property (nonatomic, copy)     NSString* text;
 @property (nonatomic, retain)   UIFont*   font;

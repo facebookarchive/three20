@@ -48,13 +48,29 @@ static const CGFloat kVPadding = 7;
 @synthesize isVertical  = _isVertical;
 @synthesize imageDelegate = _imageDelegate;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)initialize
+{
+    self.backgroundColor = [UIColor clearColor];
+    self.contentMode = UIViewContentModeRedraw;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+
+    return self;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
   if (self) {
-    self.backgroundColor = [UIColor clearColor];
-    self.contentMode = UIViewContentModeRedraw;
+    [self initialize];
   }
   return self;
 }

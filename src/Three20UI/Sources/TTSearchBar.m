@@ -56,11 +56,10 @@ static const CGFloat kIndexViewMargin = 4;
 @synthesize showsCancelButton = _showsCancelButton;
 @synthesize showsSearchIcon   = _showsSearchIcon;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
+    [super initialize];
     _boxView = [[TTView alloc] init];
     _boxView.backgroundColor = [UIColor clearColor];
     [self addSubview:_boxView];
@@ -80,10 +79,7 @@ static const CGFloat kIndexViewMargin = 4;
     self.font = TTSTYLEVAR(font);
     self.showsSearchIcon = YES;
     self.showsCancelButton = NO;
-  }
-  return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

@@ -32,6 +32,7 @@
 @property (nonatomic, retain) TTStyle*  style;
 @property (nonatomic, retain) TTLayout* layout;
 
+- (void)initialize;
 - (void)drawContent:(CGRect)rect;
 
 @end

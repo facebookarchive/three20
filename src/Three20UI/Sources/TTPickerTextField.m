@@ -49,11 +49,10 @@ static const CGFloat kMinCursorWidth  = 50;
 @synthesize selectedCell  = _selectedCell;
 @synthesize lineCount     = _lineCount;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
+    [super initialize];
     _cellViews = [[NSMutableArray alloc] init];
     _lineCount = 1;
     _cursorOrigin = CGPointZero;
@@ -65,12 +64,8 @@ static const CGFloat kMinCursorWidth  = 50;
     self.enablesReturnKeyAutomatically = NO;
 
     [self addTarget:self action:@selector(textFieldDidEndEditing)
-      forControlEvents:UIControlEventEditingDidEnd];
-  }
-
-  return self;
+   forControlEvents:UIControlEventEditingDidEnd];
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

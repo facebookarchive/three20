@@ -74,9 +74,8 @@ static const NSInteger kDefaultColumnCount = 3;
 @synthesize persistenceKey            = _persistenceKey;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
     _scrollView = [[TTLauncherScrollView alloc] initWithFrame:
                    CGRectMake(0, 0, self.width, self.height - kPagerHeight)];
     _scrollView.delegate = self;
@@ -104,7 +103,24 @@ static const NSInteger kDefaultColumnCount = 3;
     self.editable = YES;
     self.persistenceKey = @"launcherViewPages";
     self.persistenceMode = TTLauncherPersistenceModeNone;
+}
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+
+    return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+  if (self) {
+      [self initialize];
   }
 
   return self;

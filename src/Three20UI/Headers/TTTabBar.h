@@ -45,8 +45,6 @@
 
 @property (nonatomic, assign)   id<TTTabDelegate> delegate;
 
-- (id)initWithFrame:(CGRect)frame;
-
 - (void)showTabAtIndex:(NSInteger)tabIndex;
 - (void)hideTabAtIndex:(NSInteger)tabIndex;
 

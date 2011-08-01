@@ -35,11 +35,9 @@
 @synthesize spotlightColor  = _spotlightColor;
 @synthesize textAlignment   = _textAlignment;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
     self.text = @"";
     self.font = TTSTYLEVAR(font);
     self.textColor = [UIColor colorWithWhite:0.25 alpha:1];
@@ -47,6 +45,24 @@
     self.textAlignment = UITextAlignmentLeft;
     self.backgroundColor = [UIColor clearColor];
     self.contentMode = UIViewContentModeCenter;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+
+    return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+  if (self) {
+      [self initialize];
   }
 
   return self;

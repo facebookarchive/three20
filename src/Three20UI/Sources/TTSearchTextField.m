@@ -56,11 +56,9 @@ static const CGFloat kDesiredTableHeight = 150;
 @synthesize showsDarkScreen       = _showsDarkScreen;
 @synthesize dataSource            = _dataSource;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
     _internal = [[TTSearchTextFieldInternal alloc] initWithTextField:self];
 
     self.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -69,11 +67,29 @@ static const CGFloat kDesiredTableHeight = 150;
     self.searchesAutomatically = YES;
 
     [self addTarget:self action:@selector(didBeginEditing)
-      forControlEvents:UIControlEventEditingDidBegin];
+   forControlEvents:UIControlEventEditingDidBegin];
     [self addTarget:self action:@selector(didEndEditing)
-      forControlEvents:UIControlEventEditingDidEnd];
+   forControlEvents:UIControlEventEditingDidEnd];
 
     [super setDelegate:_internal];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+
+    return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+  if (self) {
+    [self initialize];
   }
 
   return self;

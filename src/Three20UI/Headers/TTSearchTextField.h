@@ -51,6 +51,8 @@
 
 @property (nonatomic, retain)   id<TTTableViewDataSource> dataSource;
 
+- (void)initialize;
+
 - (void)search;
 
 - (void)showSearchResults:(BOOL)show;
