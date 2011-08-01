@@ -756,6 +756,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Internal;
 		};
@@ -789,6 +790,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Internal;
@@ -829,6 +831,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -841,6 +844,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -857,6 +861,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -872,6 +877,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
