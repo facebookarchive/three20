@@ -32,39 +32,22 @@
 /**
  @brief The JSON writer class.
  
- Objective-C types are mapped to JSON types in the following way:
+ This uses SBJsonStreamWriter internally.
  
- @li NSNull -> Null
- @li NSString -> String
- @li NSArray -> Array
- @li NSDictionary -> Object
- @li NSNumber (-initWithBool:) -> Boolean
- @li NSNumber -> Number
- 
- In JSON the keys of an object must be strings. NSDictionary keys need
- not be, but attempting to convert an NSDictionary with non-string keys
- into JSON will throw an exception.
- 
- NSNumber instances created with the +initWithBool: method are
- converted into the JSON boolean "true" and "false" values, and vice
- versa. Any other NSNumber instances are converted to a JSON number the
- way you would expect.
- 
+ @see @ref json2objc
  */
+
 @interface SBJsonWriter : NSObject {
-	
-@protected
+@private
     NSString *error;
     NSUInteger maxDepth;
-	
-@private
     BOOL sortKeys, humanReadable;
 }
 
 /**
  @brief The maximum recursing depth.
  
- Defaults to 512. If the input is nested deeper than this the input will be deemed to be
+ Defaults to 32. If the input is nested deeper than this the input will be deemed to be
  malicious and the parser returns nil, signalling an error. ("Nested too deep".) You can
  turn off this security feature by setting the maxDepth value to 0.
  */
@@ -77,7 +60,7 @@
  You need to check the return value of the call you're making to figure out
  if the call actually failed, before you know call this method.
  */
-@property(copy) NSString *error;
+@property (readonly, copy) NSString *error;
 
 /**
  @brief Whether we are generating human-readable (multiline) JSON.

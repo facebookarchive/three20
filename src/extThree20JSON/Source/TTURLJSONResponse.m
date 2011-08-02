@@ -19,7 +19,7 @@
 // extJSON
 #import "extThree20JSON/TTErrorCodes.h"
 #ifdef EXTJSON_SBJSON
-#import "extThree20JSON/JSON.h"
+#import "extThree20JSON/SBJson.h"
 #elif defined(EXTJSON_YAJL)
 #import "extThree20JSON/NSObject+YAJL.h"
 #endif

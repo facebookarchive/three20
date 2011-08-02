@@ -1,6 +1,5 @@
 /*
- Copyright (c) 2010, Stig Brautaset.
- All rights reserved.
+ Copyright (c) 2011, Stig Brautaset. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
@@ -32,39 +31,29 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    sbjson_token_error = -1,
-    sbjson_token_eof,
-    
-    sbjson_token_array_start,
-    sbjson_token_array_end,
-    
-    sbjson_token_object_start,
-    sbjson_token_object_end,
 
-    sbjson_token_separator,
-    sbjson_token_keyval_separator,
-    
-    sbjson_token_number,
-    sbjson_token_string,
-    sbjson_token_true,
-    sbjson_token_false,
-    sbjson_token_null,
-    
-} sbjson_token_t;
-
-@class SBJsonUTF8Stream;
-
-@interface SBJsonTokeniser : NSObject {
+@interface SBJsonUTF8Stream : NSObject {
 @private
-    SBJsonUTF8Stream *_stream;
-    NSString *_error;
+    const char *_bytes;
+    NSMutableData *_data;
+    NSUInteger _length;
+    NSUInteger _index;
 }
 
-@property (copy) NSString *error;
+@property (assign) NSUInteger index;
 
 - (void)appendData:(NSData*)data_;
 
-- (sbjson_token_t)getToken:(NSObject**)token;
+- (BOOL)haveRemainingCharacters:(NSUInteger)chars;
+
+- (void)skip;
+- (void)skipWhitespace;
+- (BOOL)skipCharacters:(const char *)chars length:(NSUInteger)len;
+
+- (BOOL)getUnichar:(unichar*)ch;
+- (BOOL)getNextUnichar:(unichar*)ch;
+- (BOOL)getSimpleString:(NSString**)string;
+
+- (NSString*)stringWithRange:(NSRange)range;
 
 @end

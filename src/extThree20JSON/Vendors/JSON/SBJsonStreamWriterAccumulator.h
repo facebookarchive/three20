@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009 Stig Brautaset. All rights reserved.
+ Copyright (C) 2011 Stig Brautaset. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -27,22 +27,13 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
+#import "SBJsonStreamWriter.h"
 
-/**
- @brief Adds JSON parsing methods to NSString
- 
-This is a category on NSString that adds methods for parsing the target string.
-*/
-@interface NSString (NSString_SBJSON)
+@interface SBJsonStreamWriterAccumulator : NSObject <SBJsonStreamWriterDelegate> {
+@private
+    NSMutableData *data;
+}
 
-/**
- @brief Returns the NSDictionary or NSArray represented by the current string's JSON representation.
- 
- Returns the dictionary or array represented in the receiver, or nil on error.
-
- Returns the NSDictionary or NSArray represented by the current string's JSON representation.
- */
-- (id)JSONValue;
+@property (readonly, copy) NSData* data;
 
 @end
