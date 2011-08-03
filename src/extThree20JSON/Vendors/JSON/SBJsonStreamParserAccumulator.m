@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2009 Stig Brautaset. All rights reserved.
+ Copyright (C) 2011 Stig Brautaset. All rights reserved.
  
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
@@ -27,35 +27,25 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
+#import "SBJsonStreamParserAccumulator.h"
 
-#pragma mark JSON Writing
+@implementation SBJsonStreamParserAccumulator
 
-/// Adds JSON generation to NSArray
-@interface NSArray (NSArray_SBJsonWriting)
+@synthesize value;
 
-/// Returns a string containing the receiver encoded in JSON.
-- (NSString *)JSONRepresentation;
+- (void)dealloc {
+    [value release];
+    [super dealloc];
+}
 
-@end
+#pragma mark SBJsonStreamParserAdapterDelegate
 
+- (void)parser:(SBJsonStreamParser*)parser foundArray:(NSArray *)array {
+	value = [array retain];
+}
 
-/// Adds JSON generation to NSArray
-@interface NSDictionary (NSDictionary_SBJsonWriting)
-
-/// Returns a string containing the receiver encoded in JSON.
-- (NSString *)JSONRepresentation;
-
-@end
-
-#pragma mark JSON Parsing
-
-/// Adds JSON parsing methods to NSString
-@interface NSString (NSString_SBJsonParsing)
-
-/// Returns the NSDictionary or NSArray represented by the receiver's JSON representation, or nil on error
-- (id)JSONValue;
+- (void)parser:(SBJsonStreamParser*)parser foundObject:(NSDictionary *)dict {
+	value = [dict retain];
+}
 
 @end
-
-
