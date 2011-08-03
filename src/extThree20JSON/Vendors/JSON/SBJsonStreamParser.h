@@ -49,9 +49,8 @@ typedef enum {
  You will most likely find it much more convenient to implement the
  SBJsonStreamParserAdapterDelegate protocol instead.
  */
-@protocol SBJsonStreamParserDelegate<NSObject>
+@protocol SBJsonStreamParserDelegate
 
-@optional
 /// Called when object start is found
 - (void)parserFoundObjectStart:(SBJsonStreamParser*)parser;
 
@@ -83,39 +82,69 @@ typedef enum {
 
 
 /**
- @brief JSON Stream-parser class
+ @brief Parse a stream of JSON data.
+ 
+ Using this class directly you can reduce the apparent latency for each
+ download/parse cycle of documents over a slow connection. You can start
+ parsing *and return chunks of the parsed document* before the entire
+ document is downloaded.
+ 
+ Using this class is also useful to parse huge documents on disk
+ bit by bit so you don't have to keep them all in memory. 
+ 
+ @see SBJsonStreamParserAdapter for more information.
+ 
+ @see @ref objc2json
  
  */
 @interface SBJsonStreamParser : NSObject {
-	BOOL multi;
+@private
+	BOOL supportMultipleDocuments;
 	id<SBJsonStreamParserDelegate> delegate;
 	SBJsonTokeniser *tokeniser;
-	SBJsonStreamParserState **states;
-	NSUInteger depth, maxDepth;
+    NSMutableArray *stateStack;
+	__weak SBJsonStreamParserState *state;
+	NSUInteger maxDepth;
 	NSString *error;
 }
+
+@property (nonatomic, assign) __weak SBJsonStreamParserState *state; // Private
+@property (nonatomic, readonly, retain) NSMutableArray *stateStack; // Private
 
 /**
  @brief Expect multiple documents separated by whitespace
 
- If you set this property to true the parser will never return SBJsonStreamParserComplete.
- Once an object is completed it will expect another object to follow, separated only by whitespace.
+ Normally the @p -parse: method returns SBJsonStreamParserComplete when it's found a complete JSON document.
+ Attempting to parse any more data at that point is considered an error. ("Garbage after JSON".)
+ 
+ If you set this property to true the parser will never return SBJsonStreamParserComplete. Rather,
+ once an object is completed it will expect another object to immediately follow, separated
+ only by (optional) whitespace.
 
- @see The TwitterStream example project.
+ @see The TweetStream app in the Examples
  */
-@property BOOL multi;
+@property BOOL supportMultipleDocuments;
 
-/// Set this to the object you want to receive messages
+/**
+ @brief Delegate to receive messages
+
+ The object set here receives a series of messages as the parser breaks down the JSON stream
+ into valid tokens.
+
+ @note
+ Usually this should be an instance of SBJsonStreamParserAdapter, but you can
+ substitute your own implementation of the SBJsonStreamParserDelegate protocol if you need to. 
+ */
 @property (assign) id<SBJsonStreamParserDelegate> delegate;
 
-/// The current depth in the json document (each [ and { each count 1)
-@property (readonly) NSUInteger depth;
+/**
+ @brief The max parse depth
+ 
+ If the input is nested deeper than this the parser will halt parsing and return an error.
 
-/// The max depth to allow the parser to reach
+ Defaults to 32. 
+ */
 @property NSUInteger maxDepth;
-
-/// @internal
-@property (readonly) SBJsonStreamParserState **states;
 
 /// Holds the error after SBJsonStreamParserError was returned
 @property (copy) NSString *error;
@@ -124,7 +153,9 @@ typedef enum {
  @brief Parse some JSON
  
  The JSON is assumed to be UTF8 encoded. This can be a full JSON document, or a part of one.
- 
+
+ @param data An NSData object containing the next chunk of JSON
+
  @return 
  @li SBJsonStreamParserComplete if a full document was found
  @li SBJsonStreamParserWaitingForData if a partial document was found and more data is required to complete it
