@@ -61,14 +61,17 @@
 @synthesize tableViewStyle      = _tableViewStyle;
 @synthesize variableHeightRows  = _variableHeightRows;
 @synthesize showTableShadows    = _showTableShadows;
+@synthesize clearsSelectionOnViewWillAppear = _clearsSelectionOnViewWillAppear;
 @synthesize dataSource          = _dataSource;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
     _lastInterfaceOrientation = self.interfaceOrientation;
     _tableViewStyle = UITableViewStylePlain;
+    _clearsSelectionOnViewWillAppear = YES;
   }
 
   return self;
@@ -77,7 +80,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
-  if (self = [self initWithNibName:nil bundle:nil]) {
+	self = [self initWithNibName:nil bundle:nil];
+  if (self) {
     _tableViewStyle = style;
   }
 
@@ -225,6 +229,15 @@
 - (void)loadView {
   [super loadView];
   self.tableView;
+
+  // If this view was unloaded and is now being reloaded, and it was previously
+  // showing a table banner, then redisplay that banner now.
+  if (_tableBannerView) {
+    UIView* savedTableBannerView = [_tableBannerView retain];
+    [self setTableBannerView:nil animated:NO];
+    [self setTableBannerView:savedTableBannerView animated:NO];
+    [savedTableBannerView release];
+  }
 }
 
 
@@ -235,8 +248,6 @@
   _tableView.dataSource = nil;
   TT_RELEASE_SAFELY(_tableDelegate);
   TT_RELEASE_SAFELY(_tableView);
-  [_tableBannerView removeFromSuperview];
-  TT_RELEASE_SAFELY(_tableBannerView);
   [_tableOverlayView removeFromSuperview];
   TT_RELEASE_SAFELY(_tableOverlayView);
   [_loadingView removeFromSuperview];
@@ -249,6 +260,9 @@
   TT_RELEASE_SAFELY(_menuView);
   [_menuCell removeFromSuperview];
   TT_RELEASE_SAFELY(_menuCell);
+
+  // Do not release _tableBannerView, because we have no way to recreate it on demand if
+  // this view gets reloaded.
 }
 
 
@@ -266,7 +280,9 @@
     tableView.showShadows = _showTableShadows;
   }
 
-  [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:animated];
+  if (_clearsSelectionOnViewWillAppear) {
+    [_tableView deselectRowAtIndexPath:[_tableView indexPathForSelectedRow] animated:animated];
+  }
 }
 
 
@@ -574,9 +590,6 @@
             TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"INSERTING ROW AT %@", newIndexPath);
             [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                               withRowAnimation:UITableViewRowAnimationTop];
-
-            [_tableView scrollToRowAtIndexPath:newIndexPath
-                              atScrollPosition:UITableViewScrollPositionNone animated:NO];
           }
           [self invalidateView];
 
@@ -639,6 +652,17 @@
     _tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth
     | UIViewAutoresizingFlexibleHeight;
 
+	UIColor* separatorColor = _tableViewStyle == UITableViewStyleGrouped
+	? TTSTYLEVAR(tableGroupedCellSeparatorColor)
+	: TTSTYLEVAR(tablePlainCellSeparatorColor);
+	if (separatorColor) {
+		_tableView.separatorColor = separatorColor;
+	}
+
+	_tableView.separatorStyle = _tableViewStyle == UITableViewStyleGrouped
+	? TTSTYLEVAR(tableGroupedCellSeparatorStyle)
+	: TTSTYLEVAR(tablePlainCellSeparatorStyle);
+
     UIColor* backgroundColor = _tableViewStyle == UITableViewStyleGrouped
     ? TTSTYLEVAR(tableGroupedBackgroundColor)
     : TTSTYLEVAR(tablePlainBackgroundColor);
@@ -673,7 +697,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setTableBannerView:(UIView*)tableBannerView animated:(BOOL)animated {
-  TT_INVALIDATE_TIMER(_bannerTimer);
   if (tableBannerView != _tableBannerView) {
     if (_tableBannerView) {
       if (animated) {
@@ -691,7 +714,6 @@
       self.tableView.contentInset = UIEdgeInsetsMake(0, 0, TTSTYLEVAR(tableBannerViewHeight), 0);
       self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
       _tableBannerView.frame = [self rectForBannerView];
-      _tableBannerView.userInteractionEnabled = NO;
       _tableBannerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
                                            | UIViewAutoresizingFlexibleTopMargin);
       [self addSubviewOverTableView:_tableBannerView];
@@ -930,5 +952,17 @@
                     tableFrame.size.width, bannerViewHeight);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)invalidateModel {
+  [super invalidateModel];
+
+  // Renew the tableView delegate when the model is refreshed.
+  // Otherwise the delegate will be retained the model.
+
+  // You need to set it to nil before changing it or it won't have any effect
+  _tableView.delegate = nil;
+  [self updateTableDelegate];
+}
 
 @end

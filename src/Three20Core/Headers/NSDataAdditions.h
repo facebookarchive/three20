@@ -32,4 +32,19 @@
  */
 @property (nonatomic, readonly) NSString* sha1Hash;
 
+
+/**
+ * Create an NSData from a base64 encoded representation
+ * Padding '=' characters are optional. Whitespace is ignored.
+ * @return the NSData object
+ */
++ (id)dataWithBase64EncodedString:(NSString *)string;
+
+/**
+ * Marshal the data into a base64 encoded representation
+ *
+ * @return the base64 encoded string
+ */
+- (NSString *)base64Encoding;
+
 @end
