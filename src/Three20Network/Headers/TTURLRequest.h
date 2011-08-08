@@ -274,7 +274,8 @@ extern const NSTimeInterval TTURLRequestUseQueueTimeout;
 /**
  * Add a file whose data will be posted.
  */
-- (void)addFile:(NSData*)data mimeType:(NSString*)mimeType fileName:(NSString*)fileName;
+- (void)addFile:(NSData*)data forKey:(NSString*)key mimeType:(NSString*)mimeType
+       fileName:(NSString*)fileName;
 
 /**
  * Attempt to send a request.
