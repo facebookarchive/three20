@@ -78,6 +78,18 @@
   }
 }
 
+- (TTStyle*)remoteAvatarButton:(UIControlState)state {
+    if (state == UIControlStateHighlighted) {
+        return [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:nil];
+    } else {
+        return [TTImageStyle styleWithImageURL:nil
+                                  defaultImage:[UIImage imageNamed:@"defaultPerson.png"]
+                                   contentMode:UIViewContentModeCenter
+                                          size:CGSizeMake(50, 50)
+                                          next:nil];
+    }
+}
+
 @end
 
 @implementation ButtonTestController
@@ -142,6 +154,9 @@
   scrollView.delaysContentTouches = NO;
   self.view = scrollView;
 
+    TTButton* remoteAvatarButton = [TTButton buttonWithStyle:@"remoteAvatarButton:"];
+    [remoteAvatarButton setImage:@"url" forState:UIControlStateNormal];
+
   NSArray* buttons = [NSArray arrayWithObjects:
     [TTButton buttonWithStyle:@"toolbarButton:" title:@"Toolbar Button"],
     [TTButton buttonWithStyle:@"toolbarRoundButton:" title:@"Round Button"],
@@ -152,6 +167,7 @@
     [TTButton buttonWithStyle:@"blueToolbarButton:" title:@"Blue Button"],
     [TTButton buttonWithStyle:@"embossedButton:" title:@"Embossed Button"],
     [TTButton buttonWithStyle:@"dropButton:" title:@"Shadow Button"],
+    remoteAvatarButton,
     nil];
 
   for (TTButton* button in buttons) {
