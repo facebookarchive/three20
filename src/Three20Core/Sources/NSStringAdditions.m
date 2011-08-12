@@ -142,10 +142,26 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)stringByAddingURLEncodedQueryDictionary:(NSDictionary*)query {
+  NSMutableDictionary* encodedQuery = [NSMutableDictionary dictionaryWithCapacity:[query count]];
+
+  for (NSString* key in [query keyEnumerator]) {
+    NSParameterAssert([key respondsToSelector:@selector(urlEncoded)]);
+    NSString* value = [query objectForKey:key];
+    NSParameterAssert([value respondsToSelector:@selector(urlEncoded)]);
+    value = [value urlEncoded];
+    key = [key urlEncoded];
+    [encodedQuery setValue:value forKey:key];
+  }
+
+  return [self stringByAddingQueryDictionary:encodedQuery];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)urlEncoded {
   CFStringRef cfUrlEncodedString = CFURLCreateStringByAddingPercentEscapes(NULL,
                                             (CFStringRef)self,NULL,
-                                            (CFStringRef)@"!*’();:@&=$,/?%#[]",
+                                            (CFStringRef)@"!#$%&'()*+,/:;=?@[]",
                                             kCFStringEncodingUTF8);
 
   NSString *urlEncoded = [NSString stringWithString:(NSString *)cfUrlEncodedString];
