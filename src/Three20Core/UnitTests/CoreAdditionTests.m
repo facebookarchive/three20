@@ -308,6 +308,44 @@
     @"Additional query parameters not correct. %@", [baseUrl stringByAddingQueryDictionary:query]);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSString_stringByAddingURLEncodedQueryDictionary {
+  NSString* baseUrl = @"http://google.com/search";
+  STAssertEqualObjects([baseUrl stringByAddingURLEncodedQueryDictionary:nil],
+                       [baseUrl stringByAppendingString:@"?"],
+                       @"Empty dictionary fail.");
+
+  STAssertEqualObjects([baseUrl stringByAddingURLEncodedQueryDictionary:[NSDictionary dictionary]],
+                       [baseUrl stringByAppendingString:@"?"],
+                       @"Empty dictionary fail.");
+
+  baseUrl = @"http://google.com/search?hl=foo";
+  STAssertEqualObjects([baseUrl stringByAddingURLEncodedQueryDictionary:[NSDictionary
+                                                        dictionaryWithObject:@"Ö " forKey:@"Ü"]],
+                       [baseUrl stringByAppendingString:@"&%C3%9C=%C3%96%20"],
+                       @"Single parameter fail.");
+
+
+  NSDictionary* query = [NSDictionary
+                         dictionaryWithObjectsAndKeys:
+                         @"%(", @"\u1234",
+                         @"§/",      @"hl",
+                         nil];
+  NSString* baseUrlWithQuery = [baseUrl stringByAddingURLEncodedQueryDictionary:query];
+  STAssertTrue([baseUrlWithQuery isEqualToString:[baseUrl
+                                        stringByAppendingString:@"&%E1%88%B4=%25%28&hl=%C2%A7%2F"]]
+               || [baseUrlWithQuery isEqualToString:[baseUrl
+                                        stringByAppendingString:@"&hl=%C2%A7%2F&%E1%88%B4=%25%28"]],
+               @"Additional query parameters not correct. %@",
+               [baseUrl stringByAddingQueryDictionary:query]);
+
+  NSDictionary* malformedQueryDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1]
+                                                                   forKey:@""];
+  STAssertNoThrowSpecificNamed([@"" stringByAddingURLEncodedQueryDictionary:malformedQueryDict],
+                               NSException, NSInvalidArgumentException,
+                               @"Doesn't thow expected exception");
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNSString_urlEncoded {
