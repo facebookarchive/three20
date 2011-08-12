@@ -310,6 +310,38 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSString_urlEncoded {
+  NSString* reservedCharacters = @"!#$%&'()*+,/:;=?@[] ";
+
+  STAssertEqualObjects([reservedCharacters
+                        urlEncoded],
+                       @"%21%23%24%25%26%27%28%29%2A%2B%2C%2F%3A%3B%3D%3F%40%5B%5D%20",
+                       @"incorrect url encoding");
+
+  NSString* aLittleBitOfWhiteSpace = @"\r\n\t";
+
+  STAssertEqualObjects([aLittleBitOfWhiteSpace
+                        urlEncoded],
+                       @"%0D%0A%09",
+                       @"incorrect url encoding");
+
+  NSString* someHighCodeCharacters = @"äÄöÖüÜñàÀáÀîÎ";
+
+  STAssertEqualObjects([someHighCodeCharacters
+                        urlEncoded],
+                       @"%C3%A4%C3%84%C3%B6%C3%96%C3%BC%C3%9C%C3%B1%"
+                       @"C3%A0%C3%80%C3%A1%C3%80%C3%AE%C3%8E",
+                       @"incorrect url encoding");
+
+  NSString* someUnusualCharacters = @"Ƕဿᴞ🆒";
+
+  STAssertEqualObjects([someUnusualCharacters
+                        urlEncoded],
+                       @"%C7%B6%E1%80%BF%E1%B4%9E%F0%9F%86%92",
+                       @"incorrect url encoding");
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNSString_versionStringCompare {
   STAssertTrue([@"3.0"   versionStringCompare:@"3.0"]    == NSOrderedSame, @"same version");
   STAssertTrue([@"3.0a2" versionStringCompare:@"3.0a2"]  == NSOrderedSame, @"same version alpha");
