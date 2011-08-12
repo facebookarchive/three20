@@ -21,11 +21,12 @@
   id        _object;
   UILabel*  _labelView;
   BOOL      _selected;
+  BOOL      _highlighted;
 }
 
 @property (nonatomic, retain) id        object;
 @property (nonatomic, copy)   NSString* label;
 @property (nonatomic, retain) UIFont*   font;
 @property (nonatomic)         BOOL      selected;
-
+@property (nonatomic)         BOOL      highlighted;
 @end

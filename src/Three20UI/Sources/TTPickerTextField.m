@@ -29,6 +29,10 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
+#import "Three20/Three20+Additions.h"
+
+#import "Three20Core/NSObjectAdditions.h"
+
 static NSString* kEmpty = @" ";
 static NSString* kSelected = @"`";
 
@@ -237,6 +241,12 @@ static const CGFloat kMinCursorWidth  = 50;
     } else {
       if ([touch.view isKindOfClass:[TTPickerViewCell class]]) {
         self.selectedCell = (TTPickerViewCell*)touch.view;
+          // Allow for others to catch a select of a picked field.
+          SEL sel = @selector(textField:didSelectCell:withObject:);
+        if ([self.delegate respondsToSelector:sel])
+        {
+            [self.delegate performSelector:sel withObject:self withObject:self.selectedCell];
+        }
         [self becomeFirstResponder];
       }
     }
