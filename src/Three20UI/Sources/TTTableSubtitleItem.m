@@ -111,7 +111,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithCoder:(NSCoder*)decoder {
-  if (self = [super initWithCoder:decoder]) {
+	self = [super initWithCoder:decoder];
+  if (self) {
     self.subtitle = [decoder decodeObjectForKey:@"subtitle"];
     self.imageURL = [decoder decodeObjectForKey:@"imageURL"];
   }

@@ -37,7 +37,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithURL:(NSString*)URL {
-  if (self = [super initWithText:nil next:nil]) {
+	self = [super initWithText:nil next:nil];
+  if (self) {
     self.URL = URL;
   }
 
@@ -47,7 +48,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [self initWithURL:nil]) {
+	self = [self initWithURL:nil];
+  if (self) {
   }
 
   return self;

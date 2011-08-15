@@ -110,12 +110,40 @@ BOOL TTIsPad() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 UIDeviceOrientation TTDeviceOrientation() {
-  UIDeviceOrientation orient = [UIDevice currentDevice].orientation;
+  UIDeviceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
   if (UIDeviceOrientationUnknown == orient) {
     return UIDeviceOrientationPortrait;
 
   } else {
     return orient;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTDeviceOrientationIsPortrait() {
+  UIDeviceOrientation orient = TTDeviceOrientation();
+
+  switch (orient) {
+    case UIInterfaceOrientationPortrait:
+    case UIInterfaceOrientationPortraitUpsideDown:
+      return YES;
+    default:
+      return NO;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTDeviceOrientationIsLandscape() {
+  UIDeviceOrientation orient = TTDeviceOrientation();
+
+  switch (orient) {
+    case UIInterfaceOrientationLandscapeLeft:
+    case UIInterfaceOrientationLandscapeRight:
+      return YES;
+    default:
+      return NO;
   }
 }
 

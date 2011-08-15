@@ -71,7 +71,8 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-  if (self = [super init]) {
+	self = [super init];
+  if (self) {
     _URLMap = [[TTURLMap alloc] init];
     _persistenceMode = TTNavigatorPersistenceModeNone;
 
@@ -314,6 +315,8 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
   } else {
     UINavigationController* navController = [[[[self navigationControllerClass] alloc] init]
                                              autorelease];
+    navController.modalTransitionStyle = transition;
+    navController.modalPresentationStyle = controller.modalPresentationStyle;
     [navController pushViewController: controller
                              animated: NO];
     [parentController presentModalViewController: navController

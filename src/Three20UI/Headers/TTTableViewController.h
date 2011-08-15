@@ -28,8 +28,6 @@
   UIView*       _errorView;
   UIView*       _emptyView;
 
-  NSTimer*      _bannerTimer;
-
   UIView*           _menuView;
   UITableViewCell*  _menuCell;
 
@@ -39,6 +37,7 @@
 
   BOOL _variableHeightRows;
   BOOL _showTableShadows;
+  BOOL _clearsSelectionOnViewWillAppear;
 
   id<TTTableViewDataSource> _dataSource;
   id<UITableViewDelegate>   _tableDelegate;
@@ -87,6 +86,12 @@
  * empty cells for the remaining space. This causes the bottom shadow to appear out of place.
  */
 @property (nonatomic) BOOL showTableShadows;
+
+/**
+ * A Boolean value indicating if the controller clears the selection when the table appears.
+ * Default is YES.
+ */
+@property (nonatomic) BOOL clearsSelectionOnViewWillAppear;
 
 /**
  * Initializes and returns a controller having the given style.

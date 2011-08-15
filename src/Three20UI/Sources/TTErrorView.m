@@ -39,7 +39,8 @@ static const CGFloat kHPadding  = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image {
-  if (self = [self init]) {
+	self = [self init];
+  if (self) {
     self.title = title;
     self.subtitle = subtitle;
     self.image = image;
@@ -51,7 +52,8 @@ static const CGFloat kHPadding  = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _imageView = [[UIImageView alloc] init];
     _imageView.contentMode = UIViewContentModeCenter;
     [self addSubview:_imageView];
@@ -97,12 +99,12 @@ static const CGFloat kHPadding  = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutSubviews {
-  _subtitleView.size = [_subtitleView sizeThatFits:CGSizeMake(self.width - kHPadding*2, 0)];
-  [_titleView sizeToFit];
+
   [_imageView sizeToFit];
-	
-  _titleView.width = self.width;
-  //_titleView.height = self.height;
+
+  _subtitleView.size = [_subtitleView sizeThatFits:CGSizeMake(self.width - kHPadding*2, 0)];
+
+  _titleView.size = [_titleView sizeThatFits: CGSizeMake(self.width - kHPadding * 2, 0)];
 	
   CGFloat maxHeight = _imageView.height + _titleView.height + _subtitleView.height
                       + kVPadding1 + kVPadding2;

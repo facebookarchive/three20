@@ -28,10 +28,25 @@
 		6E850FAE11B176F10071A4FD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E850FAC11B176F10071A4FD /* Default.png */; };
 		6E850FAF11B176F10071A4FD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E850FAD11B176F10071A4FD /* Icon.png */; };
 		6E850FB811B1795F0071A4FD /* Atlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E850FB711B1795F0071A4FD /* Atlas.m */; };
+		90C3A1C1132BF66B00AC06A2 /* SampleCSSStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C3A1C0132BF66B00AC06A2 /* SampleCSSStyleSheet.m */; };
 		EB383B6510BBF62B0000B2D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		187835D313D5F7C2004600D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793D711B9B59D0011C497 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81EF12630516005851C2;
+			remoteInfo = "Three20Network-Xcode3.2.5";
+		};
+		187835D513D5F7C2004600D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E3793D711B9B59D0011C497 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 662D81B2126304EB005851C2;
+			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
+		};
 		6E036BCC11B38E520025E8EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E036BC711B38E520025E8EE /* extThree20CSSStyle.xcodeproj */;
@@ -234,6 +249,8 @@
 		6E850FB711B1795F0071A4FD /* Atlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Atlas.m; sourceTree = "<group>"; };
 		6E8513D111B19B080071A4FD /* TTCSSStyleSheets_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCSSStyleSheets_Prefix.pch; path = Headers/TTCSSStyleSheets_Prefix.pch; sourceTree = "<group>"; };
 		6E8513D211B19B0E0071A4FD /* TTCSSStyleSheets-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTCSSStyleSheets-Info.plist"; sourceTree = "<group>"; };
+		90C3A1BF132BF66B00AC06A2 /* SampleCSSStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleCSSStyleSheet.h; sourceTree = "<group>"; };
+		90C3A1C0132BF66B00AC06A2 /* SampleCSSStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleCSSStyleSheet.m; sourceTree = "<group>"; };
 		EB383B6410BBF62B0000B2D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -268,6 +285,8 @@
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				6E850FB611B1795F0071A4FD /* Atlas.h */,
 				6E850FB711B1795F0071A4FD /* Atlas.m */,
+				90C3A1BF132BF66B00AC06A2 /* SampleCSSStyleSheet.h */,
+				90C3A1C0132BF66B00AC06A2 /* SampleCSSStyleSheet.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -350,7 +369,9 @@
 			isa = PBXGroup;
 			children = (
 				6E3793EF11B9B59D0011C497 /* libThree20Network.a */,
+				187835D413D5F7C2004600D3 /* libThree20Network-Xcode3.2.5.a */,
 				6E3793F111B9B59D0011C497 /* NetworkUnitTests.octest */,
+				187835D613D5F7C2004600D3 /* NetworkUnitTests-Xcode3.2.5.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -541,6 +562,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		187835D413D5F7C2004600D3 /* libThree20Network-Xcode3.2.5.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libThree20Network-Xcode3.2.5.a";
+			remoteRef = 187835D313D5F7C2004600D3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		187835D613D5F7C2004600D3 /* NetworkUnitTests-Xcode3.2.5.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NetworkUnitTests-Xcode3.2.5.octest";
+			remoteRef = 187835D513D5F7C2004600D3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6E036BCD11B38E520025E8EE /* libextThree20CSSStyle.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -680,6 +715,7 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				6E850FB811B1795F0071A4FD /* Atlas.m in Sources */,
 				6E036BF811B38F3C0025E8EE /* StyleSheetViewController.m in Sources */,
+				90C3A1C1132BF66B00AC06A2 /* SampleCSSStyleSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

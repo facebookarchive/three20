@@ -18,4 +18,4 @@
 
 NSString* const kTTNetworkErrorDomain = @"three20.network";
 NSInteger const kTTNetworkErrorCodeInvalidImage = 100;
-
+NSString* const kTTErrorResponseDataKey = @"responsedata";

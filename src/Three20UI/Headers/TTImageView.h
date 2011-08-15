@@ -84,6 +84,11 @@
 @property (nonatomic, assign) TTURLRequestCachePolicy cachePolicy;
 
 /**
+ * The TTURLRequest requester used to load this image.
+ */
+@property (nonatomic, readonly) TTURLRequest* request;
+
+/**
  * Cancel any pending request, remove the image, and redraw the view.
  */
 - (void)unsetImage;

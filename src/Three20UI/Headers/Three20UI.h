@@ -46,9 +46,11 @@
 #import "Three20UI/TTScrollViewDelegate.h"
 #import "Three20UI/TTScrollViewDataSource.h"
 
+// Launcher
 #import "Three20UI/TTLauncherView.h"
 #import "Three20UI/TTLauncherViewDelegate.h"
 #import "Three20UI/TTLauncherItem.h"
+#import "Three20UI/TTLauncherPersistenceMode.h"
 
 #import "Three20UI/TTLabel.h"
 #import "Three20UI/TTStyledTextLabel.h"
@@ -89,7 +91,7 @@
 #import "Three20UI/TTSectionedDataSource.h"
 #import "Three20UI/TTTableHeaderView.h"
 #import "Three20UI/TTTableFooterInfiniteScrollView.h"
-#import "THree20UI/TTTableHeaderDragRefreshView.h"
+#import "Three20UI/TTTableHeaderDragRefreshView.h"
 #import "Three20UI/TTTableViewCell.h"
 
 // Table Items

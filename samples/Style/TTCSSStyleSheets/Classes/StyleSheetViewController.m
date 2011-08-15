@@ -16,6 +16,9 @@
 
 #import "StyleSheetViewController.h"
 
+#import "SampleCSSStyleSheet.h"
+#import "extThree20CSSStyle/TTCSSRuleSet.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,22 +28,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-    _styleSheet = [[TTCSSStyleSheet alloc] init];
-
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    SampleCSSStyleSheet *_styleSheet = [[[SampleCSSStyleSheet alloc] init] autorelease];
     _loadedSuccessfully = [_styleSheet
-                           loadFromFilename:TTPathForBundleResource(@"stylesheet.css")];
+                           addStyleSheetFromDisk:TTPathForBundleResource(@"stylesheet.css")];
+    [TTStyleSheet setGlobalStyleSheet:_styleSheet];
   }
 
   return self;
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_styleSheet);
-
-  [super dealloc];
 }
 
 
@@ -55,23 +51,61 @@
   }
 
   self.title = @"Three20 CSS extension";
+  self.view.backgroundColor = TTCSS( @"body", background_color );
 
-  self.view.backgroundColor = [_styleSheet backgroundColorWithCssSelector: @"body"
-                                                                 forState: UIControlStateNormal];
-
+  // Using helper macro
   UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   headerLabel.text = @"Header text";
-  headerLabel.font = [_styleSheet fontWithCssSelector:@"h1" forState:UIControlStateNormal];
-  headerLabel.textColor = [_styleSheet colorWithCssSelector:@"h1" forState:UIControlStateNormal];
-  headerLabel.backgroundColor = [_styleSheet backgroundColorWithCssSelector: @"h1"
-                                                                   forState: UIControlStateNormal];
-  headerLabel.shadowColor = [_styleSheet textShadowColorWithCssSelector: @"h1"
-                                                               forState: UIControlStateNormal];
-  headerLabel.shadowOffset = [_styleSheet textShadowOffsetWithCssSelector: @"h1"
-                                                                 forState: UIControlStateNormal];
+  
+  // When using TTCSS you specify the Rule Set Name and the CSS property.
+  headerLabel.font            = TTCSS(@"h1", font);
+  headerLabel.textColor       = TTCSS(@"h1", color);
+  headerLabel.backgroundColor = TTCSS(@"h1", background_color);
+  
+  // Some CSS property have sub properties.
+  headerLabel.shadowColor     = TTCSS(@"h1", text_shadow).shadowColor;
+  headerLabel.shadowOffset    = TTCSS(@"h1", text_shadow).shadowOffset;
+  
   [headerLabel sizeToFit];
   [self.view addSubview:headerLabel];
+
+  // Using UILabel addition
+  UILabel* headerLabel2 = [[UILabel alloc] initWithFrame:CGRectZero];
+  headerLabel2.text = @"Header 2 text";
+  
+  // Use the Helper Function TTApplyCSS and specify the Rule Set Name then the object to apply.
+  TTApplyCSS( @"h2", headerLabel2 ); 
+  
+  // This will work too!
+  [headerLabel applyCssSelector:@"h2"];
+
+  [headerLabel2 sizeToFit];
+  CGFloat top = headerLabel.frame.size.height;
+  CGRect frame = headerLabel2.frame;
+  frame.origin.y = top;
+  headerLabel2.frame = frame;
+  [self.view addSubview:headerLabel2];
+
+  // Using TTTextStyle addition
+  TTButton* headerLabel3 = [TTButton buttonWithStyle:@"h3:" title:@"Header 3 text"];
+  [headerLabel3 sizeToFit];
+  top += headerLabel2.frame.size.height;
+  frame = headerLabel3.frame;
+  frame.origin.y = top;
+  headerLabel3.frame = frame;
+  [self.view addSubview:headerLabel3];
+
+  // Using TTTextStyle + TTShadowStyle addition
+  TTButton* headerLabel4 = [TTButton buttonWithStyle:@"h4:" title:@"Header 4 text"];
+  [headerLabel4 sizeToFit];
+  top += headerLabel2.frame.size.height;
+  frame = headerLabel4.frame;
+  frame.origin.y = top;
+  headerLabel4.frame = frame;
+  [self.view addSubview:headerLabel4];
+
   TT_RELEASE_SAFELY(headerLabel);
+  TT_RELEASE_SAFELY(headerLabel2);
 }
 
 

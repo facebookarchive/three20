@@ -45,13 +45,15 @@
 @synthesize defaultImage        = _defaultImage;
 @synthesize autoresizesToImage  = _autoresizesToImage;
 @synthesize cachePolicy			= _cachePolicy;
+@synthesize request				= _request;
 
 @synthesize delegate = _delegate;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+	self = [super initWithFrame:frame];
+  if (self) {
     _autoresizesToImage = NO;
 	_cachePolicy = TTURLRequestCachePolicyDefault;
   }
@@ -210,6 +212,11 @@
       TTURLRequest* request = [TTURLRequest requestWithURL:_urlPath delegate:self];
 	  request.cachePolicy = _cachePolicy;
       request.response = [[[TTURLImageResponse alloc] init] autorelease];
+
+      // Give the delegate one chance to configure the requester.
+      if ([_delegate respondsToSelector:@selector(imageView:willSendARequest:)]) {
+    	  [_delegate imageView:self willSendARequest:request];
+      }
 
       if (![request send]) {
         // Put the default image in place while waiting for the request to load
