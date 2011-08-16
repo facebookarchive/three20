@@ -115,6 +115,17 @@
   return nil;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+  if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
+    NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+    if (!title) {
+      return 0;
+    }
+    return 22.0;
+  }
+  return 0;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**
