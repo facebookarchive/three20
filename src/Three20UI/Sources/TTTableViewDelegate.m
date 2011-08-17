@@ -43,6 +43,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
+static const CGFloat kEmptyHeaderHeight = 0;
+static const CGFloat kSectionHeaderHeight = 22;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,11 +122,11 @@
   if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
     NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
     if (!title) {
-      return 0;
+      return kEmptyHeaderHeight;
     }
-    return 22.0;
+    return kSectionHeaderHeight;
   }
-  return 0;
+  return kEmptyHeaderHeight;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
