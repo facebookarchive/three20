@@ -32,6 +32,7 @@
 #import "Three20UI/TTTableTextItem.h"
 #import "Three20UI/TTTableActivityItem.h"
 #import "Three20UI/TTTableControlItem.h"
+#import "Three20UI/TTTableAutomaticMoreButton.h"
 
 // - Table Cells
 #import "Three20UI/TTTableMoreButtonCell.h"
@@ -47,6 +48,7 @@
 #import "Three20UI/TTTableTextItemCell.h"
 #import "Three20UI/TTStyledTextTableCell.h"
 #import "Three20UI/TTTableFlushViewCell.h"
+#import "Three20UI/TTTableAutomaticMoreButtonCell.h"
 
 // Style
 #import "Three20Style/TTStyledText.h"
@@ -249,7 +251,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
   if ([object isKindOfClass:[TTTableItem class]]) {
-    if ([object isKindOfClass:[TTTableMoreButton class]]) {
+      
+    if ([object isKindOfClass:[TTTableAutomaticMoreButton class]]) {
+      return [TTTableAutomaticMoreButtonCell class];
+        
+    } else if ([object isKindOfClass:[TTTableMoreButton class]]) {
       return [TTTableMoreButtonCell class];
 
     } else if ([object isKindOfClass:[TTTableSubtextItem class]]) {
