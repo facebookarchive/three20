@@ -45,4 +45,12 @@
 - (void)navigator:(TTBaseNavigator*)navigator willOpenURL:(NSURL*)URL
  inViewController:(UIViewController*)controller;
 
+/**
+ * The URL was not routed to in the navigator's TTURLMap
+ *
+ * This delegate selector will be messaged only when the navigator fails to fina 
+ * a matching path in its URLMap routes.  
+ */
+- (void)navigator:(TTBaseNavigator*)navigator didNotMatchURL:(NSURL*)URL;
+
 @end

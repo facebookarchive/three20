@@ -536,6 +536,12 @@ __attribute__((weak_import));
     }
 
     [[UIApplication sharedApplication] openURL:theURL];
+  } else {
+      // no match found, controller was nil
+      if ([_delegate respondsToSelector:@selector(navigator:didNotMatchURL:)]) {
+          [_delegate navigator: self
+                didNotMatchURL: theURL];
+      }
   }
 
   return controller;
