@@ -45,6 +45,9 @@
 
 static const CGFloat kEmptyHeaderHeight = 0.f;
 static const CGFloat kSectionHeaderHeight = 22.f;
+static const CGFloat kGroupedSectionHeaderHeight = 36.f;
+static const CGFloat kGroupedSectionFirstHeaderHeight = 36.f + 10.f;
+static const NSUInteger kFirstTableSection = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,7 +127,17 @@ static const CGFloat kSectionHeaderHeight = 22.f;
     if (!title) {
       return kEmptyHeaderHeight;
     }
-    return kSectionHeaderHeight;
+
+    if (tableView.style == UITableViewStylePlain) {
+      return kSectionHeaderHeight;
+
+    } else {
+      if (section == kFirstTableSection) {
+        return kGroupedSectionFirstHeaderHeight;
+      }
+      return kGroupedSectionHeaderHeight;
+    }
+
   }
   return kEmptyHeaderHeight;
 }
