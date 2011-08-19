@@ -106,7 +106,7 @@
 
   CGFloat height = self.contentView.height;
   CGFloat width = self.contentView.width - (height + kTableCellSmallMargin);
-  CGFloat left = 0;
+  CGFloat left = 0.0f;
 
   if (_imageView2) {
     _imageView2.frame = CGRectMake(0, 0, height, height);

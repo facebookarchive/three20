@@ -89,7 +89,7 @@
   CGFloat fw = rect.size.width;
   CGFloat fh = rect.size.height;
 
-  CGFloat width = 5;
+  CGFloat width = 5.0f;
   CGRect shadowRect = CGRectMake(-width, -width, fw+width*2, fh+width*2);
   CGMutablePathRef path = CGPathCreateMutable();
   CGPathAddRect(path, nil, shadowRect);

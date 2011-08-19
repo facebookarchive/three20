@@ -28,17 +28,17 @@
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
 static const NSInteger kOffscreenPages = 1;
-static const CGFloat kDefaultPageSpacing = 40.0;
-static const CGFloat kFlickThreshold = 60.0;
-static const CGFloat kTapZoom = 0.75;
-static const CGFloat kResistance = 0.15;
+static const CGFloat kDefaultPageSpacing = 40.0f;
+static const CGFloat kFlickThreshold = 60.0f;
+static const CGFloat kTapZoom = 0.75f;
+static const CGFloat kResistance = 0.15f;
 static const NSInteger kInvalidIndex = -1;
 static const NSTimeInterval kFlickDuration = 0.4;
 static const NSTimeInterval kBounceDuration = 0.3;
 static const NSTimeInterval kOvershoot = 2;
-static const CGFloat kIncreaseSpeed = 1.5;    // How much increase after release touch.
+static const CGFloat kIncreaseSpeed = 1.5f;    // How much increase after release touch.
                                               // (Residual movement).
-static const CGFloat kFrameDuration = 1.0/40.0;
+static const CGFloat kFrameDuration = 1.0/40.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
