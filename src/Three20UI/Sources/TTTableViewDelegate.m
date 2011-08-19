@@ -124,7 +124,7 @@ static const NSUInteger kFirstTableSection = 0;
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
   if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
     NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-    if (!title) {
+    if (![title length]) {
       return kEmptyHeaderHeight;
     }
 
