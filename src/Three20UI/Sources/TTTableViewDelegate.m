@@ -43,10 +43,10 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kEmptyHeaderHeight = 0.f;
-static const CGFloat kSectionHeaderHeight = 22.f;
-static const CGFloat kGroupedSectionHeaderHeight = 36.f;
-static const CGFloat kGroupedSectionFirstHeaderHeight = 36.f + 10.f;
+static const CGFloat kEmptyHeaderHeight = 0.0f;
+static const CGFloat kSectionHeaderHeight = 22.0f;
+static const CGFloat kGroupedSectionHeaderHeight = 36.0f;
+static const CGFloat kGroupedSectionFirstHeaderHeight = 36.0f + 10.0f;
 static const NSUInteger kFirstTableSection = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

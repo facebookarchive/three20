@@ -32,12 +32,12 @@
 static NSString* kEmpty = @" ";
 static NSString* kSelected = @"`";
 
-static const CGFloat kCellPaddingY    = 3;
-static const CGFloat kPaddingX        = 8;
-static const CGFloat kSpacingY        = 6;
-static const CGFloat kPaddingRatio    = 1.75;
-static const CGFloat kClearButtonSize = 38;
-static const CGFloat kMinCursorWidth  = 50;
+static const CGFloat kCellPaddingY    = 3.0f;
+static const CGFloat kPaddingX        = 8.0f;
+static const CGFloat kSpacingY        = 6.0f;
+static const CGFloat kPaddingRatio    = 1.75f;
+static const CGFloat kClearButtonSize = 38.0f;
+static const CGFloat kMinCursorWidth  = 50.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

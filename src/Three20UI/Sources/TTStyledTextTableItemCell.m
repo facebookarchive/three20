@@ -30,7 +30,7 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kDisclosureIndicatorWidth = 23;
+static const CGFloat kDisclosureIndicatorWidth = 23.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

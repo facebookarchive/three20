@@ -28,8 +28,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kDefaultTextViewLines = 5;
-static const CGFloat kControlPadding = 8;
+static const CGFloat kDefaultTextViewLines = 5.0f;
+static const CGFloat kControlPadding = 8.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
