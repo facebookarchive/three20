@@ -64,9 +64,15 @@
     NSString* json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     // When there are newline characters in the JSON string, 
     // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
-    json =  [json stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]; 
-    _rootObject = [[json JSONValue] retain];
+    
+    // You got to be careful if the following call succeeds. The following call will allocate a 
+    // a new autoreleased string and we don't want to lose the reference to the original allocation
+    // Hence, play safe and assign to a new variable
+    NSString *njson =  [json stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]]; 
+    _rootObject = [[njson JSONValue] retain];
+    // Release json only since json is an autoreleased object if the call succeeded.
     TT_RELEASE_SAFELY(json);
+    njson = nil;
     if (!_rootObject) {
       err = [NSError errorWithDomain:kTTExtJSONErrorDomain
                                 code:kTTExtJSONErrorCodeInvalidJSON
