@@ -22,6 +22,9 @@
 // Core
 #import "Three20Core/TTGlobalCoreLocale.h"
 
+#include <sys/types.h>
+#include <sys/sysctl.h>
+
 const CGFloat ttkDefaultRowHeight = 44.0f;
 
 const CGFloat ttkDefaultPortraitToolbarHeight   = 44.0f;
@@ -145,6 +148,34 @@ BOOL TTDeviceOrientationIsLandscape() {
     default:
       return NO;
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSString* TTDeviceModelName() {
+  size_t size;
+  sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+  char *machine = malloc(size);
+  sysctlbyname("hw.machine", machine, &size, NULL, 0);
+  NSString *platform = [NSString stringWithCString:machine encoding:NSASCIIStringEncoding];
+  free(machine);
+  
+  if ([platform isEqualToString:@"iPhone1,1"])    return @"iPhone 1G";
+  if ([platform isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
+  if ([platform isEqualToString:@"iPhone2,1"])    return @"iPhone 3GS";
+  if ([platform isEqualToString:@"iPhone3,1"])    return @"iPhone 4 (GSM)";
+  if ([platform isEqualToString:@"iPhone3,2"])    return @"iPhone 4 (CDMA)";
+  if ([platform isEqualToString:@"iPod1,1"])      return @"iPod Touch 1G";
+  if ([platform isEqualToString:@"iPod2,1"])      return @"iPod Touch 2G";
+  if ([platform isEqualToString:@"iPod3,1"])      return @"iPod Touch 3G";
+  if ([platform isEqualToString:@"iPod4,1"])      return @"iPod Touch 4G";
+  if ([platform isEqualToString:@"iPad1,1"])      return @"iPad";
+  if ([platform isEqualToString:@"iPad2,1"])      return @"iPad 2 (WiFi)";
+  if ([platform isEqualToString:@"iPad2,2"])      return @"iPad 2 (GSM)";
+  if ([platform isEqualToString:@"iPad2,3"])      return @"iPad 2 (CDMA)";
+  if ([platform isEqualToString:@"i386"])         return @"Simulator";
+  
+  return platform;
 }
 
 
