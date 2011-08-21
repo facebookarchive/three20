@@ -58,9 +58,9 @@ BOOL TTDeviceOrientationIsPortrait();
 BOOL TTDeviceOrientationIsLandscape();
 
 /**
- * @return platform name in human readable strings
+ * @return device full model name in human readable strings
  */
-NSString* TTDevicePlatform();
+NSString* TTDeviceModelName();
 
 /**
  * On iPhone/iPod touch

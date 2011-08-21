@@ -152,7 +152,7 @@ BOOL TTDeviceOrientationIsLandscape() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-NSString* TTDevicePlatform() {
+NSString* TTDeviceModelName() {
   size_t size;
   sysctlbyname("hw.machine", NULL, &size, NULL, 0);
   char *machine = malloc(size);
