@@ -298,23 +298,7 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showBars:(BOOL)show animated:(BOOL)animated {
-
-  BOOL statusBarHidden = [[[[NSBundle mainBundle] infoDictionary]
-                           objectForKey:@"UIStatusBarHidden"] boolValue];
-
-  if (!statusBarHidden) {
-    #ifdef __IPHONE_3_2
-    if ([[UIApplication sharedApplication]
-         respondsToSelector:@selector(setStatusBarHidden:withAnimation:)])
-      [[UIApplication sharedApplication] setStatusBarHidden:!show
-                                              withAnimation:(animated
-                                                             ? UIStatusBarAnimationFade
-                                                             :UIStatusBarAnimationNone)];
-    else
-  #endif
-    [[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];
-  }
+- (void)showNavigationBar:(BOOL)show animated:(BOOL)animated {
 
   if (animated) {
     [UIView beginAnimations:nil context:NULL];
@@ -324,6 +308,24 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
   if (animated) {
     [UIView commitAnimations];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showBars:(BOOL)show animated:(BOOL)animated {
+
+  #ifdef __IPHONE_3_2
+  if ([[UIApplication sharedApplication]
+        respondsToSelector:@selector(setStatusBarHidden:withAnimation:)])
+    [[UIApplication sharedApplication] setStatusBarHidden:!show
+                                            withAnimation:(animated
+                                                            ? UIStatusBarAnimationFade
+                                                            :UIStatusBarAnimationNone)];
+  else
+  #endif
+  [[UIApplication sharedApplication] setStatusBarHidden:!show animated:animated];
+
+  [self showNavigationBar:show animated:animated];
 }
 
 
