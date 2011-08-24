@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AD0D9E914053D4800532C29 /* TTRadialGradientStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AD0D9E714053D4800532C29 /* TTRadialGradientStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0AD0D9EA14053D4800532C29 /* TTRadialGradientStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0D9E814053D4800532C29 /* TTRadialGradientStyle.m */; };
 		6E6454901184D3BC00F08CB1 /* Three20Style+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6464041187F5CB00F08CB1 /* TTStyledButtonNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6464021187F5CB00F08CB1 /* TTStyledButtonNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E6464051187F5CB00F08CB1 /* TTStyledLinkNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6464031187F5CB00F08CB1 /* TTStyledLinkNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -205,6 +207,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AD0D9E714053D4800532C29 /* TTRadialGradientStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTRadialGradientStyle.h; path = Headers/TTRadialGradientStyle.h; sourceTree = "<group>"; };
+		0AD0D9E814053D4800532C29 /* TTRadialGradientStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTRadialGradientStyle.m; path = Sources/TTRadialGradientStyle.m; sourceTree = "<group>"; };
 		66313A7D1267B4E800C09C9F /* Three20Style_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Style_Prefix.pch; path = Headers/Three20Style_Prefix.pch; sourceTree = "<group>"; };
 		6E64543D1184BE1B00F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E64548F1184D3BC00F08CB1 /* Three20Style+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Three20Style+Additions.h"; path = "Headers/Three20Style+Additions.h"; sourceTree = "<group>"; };
@@ -499,6 +503,8 @@
 		6EE738521184AA1500A35176 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				0AD0D9E714053D4800532C29 /* TTRadialGradientStyle.h */,
+				0AD0D9E814053D4800532C29 /* TTRadialGradientStyle.m */,
 				6EE737031184A38F00A35176 /* TTBevelBorderStyle.h */,
 				6EE737851184A39B00A35176 /* TTBevelBorderStyle.m */,
 				6EE737041184A38F00A35176 /* TTBlendStyle.h */,
@@ -793,6 +799,7 @@
 				6EE7377B1184A38F00A35176 /* TTStyledTextNode.h in Headers */,
 				6EE7377C1184A38F00A35176 /* TTStyledTextParser.h in Headers */,
 				6EE7377F1184A38F00A35176 /* TTStyleInternal.h in Headers */,
+				0AD0D9E914053D4800532C29 /* TTRadialGradientStyle.h in Headers */,
 				6EE737801184A38F00A35176 /* TTStyleSheet.h in Headers */,
 				6EE737811184A38F00A35176 /* TTTextStyle.h in Headers */,
 				6EE737821184A38F00A35176 /* UIColorAdditions.h in Headers */,
@@ -1023,6 +1030,7 @@
 				6EE738001184A39B00A35176 /* UIImageAdditions.m in Sources */,
 				6E64640C1187F5EC00F08CB1 /* TTStyledButtonNode.m in Sources */,
 				6E64640D1187F5EC00F08CB1 /* TTStyledLinkNode.m in Sources */,
+				0AD0D9EA14053D4800532C29 /* TTRadialGradientStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
