@@ -59,6 +59,12 @@ BOOL TTIsStringWithAnyText(id object) {
   return [object isKindOfClass:[NSString class]] && [(NSString*)object length] > 0;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTIsStringEmptyOrWhitespace(id object) {
+	
+	/// Consider nil object as empty
+	return object == nil || ![object isKindOfClass: [NSString class]] || ([object length] == 0 || ![[object stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]] length]);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void TTSwapMethods(Class cls, SEL originalSel, SEL newSel) {

@@ -53,7 +53,7 @@
 @property (nonatomic, copy) NSString* cachePath;
 
 /**
- * Returns the size of the current caches size on disk
+ * Returns the size of the current caches size on disl
  */
 @property (nonatomic, readonly) unsigned long long int diskSize;
 

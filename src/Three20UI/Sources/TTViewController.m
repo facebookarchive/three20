@@ -130,6 +130,8 @@ static NSMutableDictionary *customParentViewControllers;
 - (void)viewDidUnload {
   [super viewDidUnload];
   TT_RELEASE_SAFELY(_searchController);
+  TT_RELEASE_SAFELY(_customModalViewController);
+  TT_RELEASE_SAFELY(_modalOverlayView);
 }
 
 
