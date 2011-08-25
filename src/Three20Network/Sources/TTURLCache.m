@@ -484,9 +484,8 @@ static NSMutableDictionary* gNamedCaches = nil;
     } else if (TTIsDocumentsURL(URL)) {
       image = [self loadImageFromDocuments:URL];
       [self storeImage:image forURL:URL];
-    }
+    } 
   }
- 
 
   return image;
 }

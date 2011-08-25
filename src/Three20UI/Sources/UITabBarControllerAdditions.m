@@ -50,9 +50,10 @@ TT_FIX_CATEGORY_BUG(UITabBarControllerAdditions)
     return controller;
 
   } else {
-    TTNavigationController* navController = [[[TTNavigationController alloc] init] autorelease];
+    TTNavigationController* navController = [[TTNavigationController alloc] init];
+	controller.navigationController.viewControllers = nil;
     [navController pushViewController:controller animated:NO];
-    return navController;
+	  return [navController autorelease];
   }
 }
 

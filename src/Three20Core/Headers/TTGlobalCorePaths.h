@@ -17,6 +17,11 @@
 #import <Foundation/Foundation.h>
 
 /**
+ * @return YES if the URL begins with "asset-library://"
+ */
+BOOL TTIsAssetsLibraryURL(NSString* URL);
+
+/**
  * @return YES if the URL begins with "bundle://"
  */
 BOOL TTIsBundleURL(NSString* URL);
