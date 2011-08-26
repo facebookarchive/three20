@@ -69,6 +69,7 @@ __attribute__((weak_import));
 @synthesize supportsShakeToReload     = _supportsShakeToReload;
 @synthesize opensExternalURLs         = _opensExternalURLs;
 @synthesize rootContainer             = _rootContainer;
+@synthesize modalTransitionInProgress = _modalTransitionInProgress;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -309,6 +310,10 @@ __attribute__((weak_import));
                     transition: (NSInteger)transition {
   controller.modalTransitionStyle = transition;
 
+  if (_modalTransitionInProgress) {
+    return;
+  }
+
   if ([controller isKindOfClass:[UINavigationController class]]) {
     [parentController presentModalViewController: controller
                                         animated: animated];
@@ -321,6 +326,8 @@ __attribute__((weak_import));
     [parentController presentModalViewController: navController
                                         animated: animated];
   }
+
+  _modalTransitionInProgress = YES;
 }
 
 

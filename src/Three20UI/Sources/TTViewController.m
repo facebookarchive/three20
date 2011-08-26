@@ -128,6 +128,7 @@
   [super viewDidAppear:animated];
 
   [TTURLRequestQueue mainQueue].suspended = NO;
+  [TTNavigator globalNavigator].modalTransitionInProgress = NO;
 }
 
 

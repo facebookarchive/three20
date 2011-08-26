@@ -50,6 +50,8 @@
   BOOL                        _supportsShakeToReload;
   BOOL                        _opensExternalURLs;
 
+  BOOL                        _modalTransitionInProgress;
+
   id<TTNavigatorDelegate>       _delegate;
   id<TTNavigatorRootContainer>  _rootContainer;
 }
@@ -148,6 +150,13 @@
  * @default NO
  */
 @property (nonatomic) BOOL opensExternalURLs;
+
+/**
+ * Indicates that a modal transition is occuring, and no new ones may begin.
+ *
+ * @default NO
+ */
+@property (nonatomic) BOOL modalTransitionInProgress;
 
 /**
  * Indicates that we are asking controllers to delay heavy operations until a later time.
