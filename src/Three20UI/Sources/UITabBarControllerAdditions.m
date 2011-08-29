@@ -51,9 +51,11 @@ TT_FIX_CATEGORY_BUG(UITabBarControllerAdditions)
 
   } else {
     TTNavigationController* navController = [[TTNavigationController alloc] init];
+	NSArray *viewControllers = [controller.navigationController.viewControllers retain]; // XXX: Hold on to view controllers otherwise controller can become nil if this array is only thing retaining it
 	controller.navigationController.viewControllers = nil;
     [navController pushViewController:controller animated:NO];
-	  return [navController autorelease];
+	[viewControllers release];
+	return [navController autorelease]; // XXX: Autorelease must happen last or else we will crash!
   }
 }
 
