@@ -34,6 +34,8 @@
 #import "Three20Network/TTURLImageResponse.h"
 #import "Three20Network/TTURLRequest.h"
 
+#import <AssetsLibrary/AssetsLibrary.h>
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,15 +208,51 @@
       self.image = image;
 
     } else {
-      TTURLRequest* request = [TTURLRequest requestWithURL:_urlPath delegate:self];
-      request.response = [[[TTURLImageResponse alloc] init] autorelease];
+		if (TTIsWebURL(_urlPath)) {
+		  TTURLRequest* request = [TTURLRequest requestWithURL:_urlPath delegate:self];
+		  request.response = [[[TTURLImageResponse alloc] init] autorelease];
 
-      if (![request send]) {
-        // Put the default image in place while waiting for the request to load
-        if (_defaultImage && nil == self.image) {
-          self.image = _defaultImage;
-        }
-      }
+		  if (![request send]) {
+			// Put the default image in place while waiting for the request to load
+			if (_defaultImage && nil == self.image) {
+			  self.image = _defaultImage;
+			}
+		  }
+		}
+		else if (TTIsAssetsLibraryURL(_urlPath)) {
+			ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+			
+			[self imageViewDidStartLoad];
+			if ([_delegate respondsToSelector:@selector(imageViewDidStartLoad:)]) {
+				[_delegate imageViewDidStartLoad:self];
+			}
+					
+			[library assetForURL:[NSURL URLWithString:_urlPath]
+					 resultBlock:^(ALAsset *asset) {
+						 ALAssetRepresentation *representation = [asset defaultRepresentation];
+						 
+						 CGImageRef imageRef = [representation fullScreenImage];
+						 // TODO: Tweak the scale?
+						 UIImage *imageForAsset = [[[UIImage alloc] initWithCGImage:imageRef scale:1.0 orientation:representation.orientation] autorelease];
+						 self.image = imageForAsset;
+
+						 [self imageViewDidLoadImage:self.image];
+						 if ([_delegate respondsToSelector:@selector(imageView:didLoadImage:)]) {
+							 [_delegate imageView:self didLoadImage:self.image];
+						 }
+						 
+						 [library release];
+							
+					 } failureBlock:^(NSError *error) {
+						 
+						 [self imageViewDidFailLoadWithError:error];
+						 if ([_delegate respondsToSelector:@selector(imageView:didFailLoadWithError:)]) {
+							 [_delegate imageView:self didFailLoadWithError:error];
+						 }
+						 
+						 [library release];
+					 }];			
+		}
     }
   }
 }

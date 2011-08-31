@@ -55,6 +55,7 @@ SECURITY_FX             = -framework Security
 STOREKIT_FX             = -framework StoreKit
 SYSTEMCONFIGURATION_FX  = -framework SystemConfiguration
 UIKIT_FX                = -framework UIKit
+ASSETSLIBRARY_FX        = -framework AssetsLibrary
 
 // Unit Tests
 
