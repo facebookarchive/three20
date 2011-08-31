@@ -258,6 +258,8 @@ static CGFloat kProgressMargin  = 6;
 
   _activityIndicator.frame = CGRectMake(_label.left - (indicatorSize+kSpacing), y,
                                         indicatorSize, indicatorSize);
+
+	[_bezelView bringSubviewToFront: _activityIndicator];
 }
 
 

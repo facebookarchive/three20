@@ -358,22 +358,6 @@ static NSMutableDictionary* gNamedCaches = nil;
   return [_cachePath stringByAppendingPathComponent:key];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (unsigned long long int) diskSize {
-	NSArray *filesArray = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath: _cachePath 
-																			 error: nil];
-	NSEnumerator *filesEnumerator = [filesArray objectEnumerator];
-	NSString *file;
-	unsigned long long int size = 0;
-	
-	while (file = [filesEnumerator nextObject]) {
-		NSDictionary *fileDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath: [_cachePath stringByAppendingPathComponent: file] 																				error: nil];
-		size += [fileDictionary fileSize];
-	}
-	
-	return size;
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)etagCachePathForKey:(NSString*)key {
