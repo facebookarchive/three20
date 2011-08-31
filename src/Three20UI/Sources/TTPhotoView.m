@@ -293,10 +293,27 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadImage {
-  if (_photo) {
-    _photoVersion = TTPhotoVersionLarge;
-    self.urlPath = [_photo URLForVersion:TTPhotoVersionLarge];
-  }
+	if (_photo) {
+		_photoVersion = TTPhotoVersionLarge;
+		if (self.photo.alAsset) {
+			[self showProgress:0];
+			
+			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+				
+				UIImage *image = [UIImage imageFromALAsset:self.photo.alAsset fullResolution:NO orFullScreen:YES];
+				
+				dispatch_async(dispatch_get_main_queue(), ^{
+					if (image != nil) {
+						[self setImage:image];
+					}
+					[self showProgress:-1];
+				});
+			});
+			
+		} else {
+			self.urlPath = [_photo URLForVersion:TTPhotoVersionLarge];
+		}
+	}
 }
 
 

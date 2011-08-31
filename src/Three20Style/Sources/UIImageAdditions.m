@@ -247,5 +247,90 @@ TT_FIX_CATEGORY_BUG(UIImageAdditions)
   CGContextRestoreGState(context);
 }
 
++ (UIImage *)image:(UIImage *)image rotateInRadians:(CGFloat)radians {
+	CGImageRef cgImage = image.CGImage;
+	const CGFloat originalWidth = CGImageGetWidth(cgImage);
+	const CGFloat originalHeight = CGImageGetHeight(cgImage);
+	
+	const CGRect imgRect = (CGRect){
+        .origin.x = 0.0f,
+        .origin.y = 0.0f,
+        .size.width = originalWidth,
+        .size.height = originalHeight};
+	const CGRect rotatedRect = CGRectApplyAffineTransform(imgRect,
+                                                          CGAffineTransformMakeRotation(radians));
+	
+	/// Create an ARGB bitmap context
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	
+	/// Create the bitmap context, we want pre-multiplied ARGB, 8-bits per component
+	CGContextRef bmContext = CGBitmapContextCreate(NULL,
+                                                   rotatedRect.size.width,
+                                                   rotatedRect.size.height,
+                                                   8/*Bits per component*/,
+                                                   0, //bytesPerRow
+                                                   colorSpace,
+                                                   kCGBitmapByteOrderDefault |
+                                                   kCGImageAlphaPremultipliedFirst);
+	
+	CGColorSpaceRelease(colorSpace);
+	
+	if (!bmContext)
+		return nil;
+	
+	/// Image quality
+	CGContextSetShouldAntialias(bmContext, true);
+	CGContextSetAllowsAntialiasing(bmContext, true);
+	CGContextSetInterpolationQuality(bmContext, kCGInterpolationHigh);
+	
+	/// Rotation happen here
+	CGContextTranslateCTM(bmContext,
+                          +(rotatedRect.size.width * 0.5f),
+                          +(rotatedRect.size.height * 0.5f));
+	CGContextRotateCTM(bmContext, radians);
+	
+	/// Draw the image in the bitmap context
+	CGContextDrawImage(bmContext, (CGRect){
+        .origin.x = -originalWidth * 0.5f,
+        .origin.y = -originalHeight * 0.5f,
+        .size.width = originalWidth,
+        .size.height = originalHeight}, cgImage);
+	
+	/// Create an image object from the context
+	CGImageRef rotatedImageRef = CGBitmapContextCreateImage(bmContext);
+	UIImage* rotated = [UIImage imageWithCGImage:rotatedImageRef];
+	
+	/// Cleanup
+	CGImageRelease(rotatedImageRef);
+	CGContextRelease(bmContext);
+	
+	return rotated;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIImage *)imageFromALAsset:(ALAsset *)asset fullResolution:(BOOL)fullResolution orFullScreen:(BOOL)fullScreen {
+	ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
+	fullResolution = !fullScreen;
+	CGImageRef imageRef = fullResolution ? [assetRepresentation fullResolutionImage] : [assetRepresentation fullScreenImage];
+	UIImage *image = [UIImage imageWithCGImage:imageRef];
+	switch([assetRepresentation orientation]) {
+		case UIImageOrientationUp:
+		case UIImageOrientationUpMirrored:
+			break;
+		case UIImageOrientationDown:
+		case UIImageOrientationDownMirrored:
+			image = [self image:image rotateInRadians:M_PI];
+			break;
+		case UIImageOrientationLeft:
+		case UIImageOrientationLeftMirrored:
+			image = [self image:image rotateInRadians:M_PI_2];
+			break;
+		case UIImageOrientationRight:
+		case UIImageOrientationRightMirrored:
+			image = [self image:image rotateInRadians:-M_PI_2];
+			break;
+	}
+	return image;
+}
 
 @end

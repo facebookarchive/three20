@@ -15,10 +15,10 @@
 //
 
 // UI
-#import "Three20UI/TTPhotoVersion.h"
-
-// UINavigator
+#import "Three20UI/TTPhotoVersion.h"\// UINavigator
 #import "Three20UINavigator/TTURLObject.h"
+
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @protocol TTPhotoSource;
 
@@ -28,6 +28,11 @@
  * The photo source that the photo belongs to.
  */
 @property (nonatomic, assign) id<TTPhotoSource> photoSource;
+
+/**
+ * Asset of the photo.
+ */
+@property (nonatomic, assign) ALAsset *alAsset;
 
 /**
  * The size of the photo.

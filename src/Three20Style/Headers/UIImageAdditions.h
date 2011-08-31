@@ -17,6 +17,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import <AssetsLibrary/AssetsLibrary.h>
+
 @interface UIImage (TTCategory)
 
 /*
@@ -39,5 +41,8 @@
  */
 - (void)drawInRect:(CGRect)rect radius:(CGFloat)radius;
 - (void)drawInRect:(CGRect)rect radius:(CGFloat)radius contentMode:(UIViewContentMode)contentMode;
+
++ (UIImage *)image:(UIImage *)image rotateInRadians:(CGFloat)radians;
++ (UIImage *)imageFromALAsset:(ALAsset *)asset fullResolution:(BOOL)fullResolution orFullScreen:(BOOL)fullScreen;
 
 @end
