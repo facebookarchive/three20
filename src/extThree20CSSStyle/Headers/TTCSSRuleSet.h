@@ -16,6 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreText/CoreText.h>
 
 #import "TTCSSTextShadowModel.h"
 
@@ -109,8 +110,11 @@
  *		- <tt>left</tt>: Align text along the left edge.<br>
  *		- <tt>center</tt>: Align text equally along both sides of the center line.<br>
  *		- <tt>right</tt>: Align text along the right edge.<br>
+ *      - <tt>justify</tt>: Stretches the lines so that each
+ * line has equal width (like in newspapers and magazines)
  * <br>
- * Use the textAlign method to retrieve an iOS formatted UITextAlignment
+ * Use the textAlign method to retrieve an iOS formatted <tt>UITextAlignment</tt> or
+ * the paragraphAlign method to retireve an Core Text formatted <tt>CTTextAlignment</tt>
  * based on this values.
  */
 @property (copy) NSString* text_align;
@@ -226,10 +230,16 @@
 -(UIFont*)font;
 
 /**
- * Return an formatted UITextAlignment based on the defined <tt>'text_align'</tt> property.
+ * Return an formatted <tt>UITextAlignment</tt> based on the defined <tt>'text_align'</tt> property.
  * If isn't setted return default left alignment.
  */
 -(UITextAlignment)textAlign;
+
+/**
+ * Return an formatted <tt>CTTextAlignment</tt> based on the defined <tt>'text_align'</tt> property.
+ * If isn't setted return natural alignment (<tt>kCTNaturalTextAlignment</tt>).
+ */
+-(CTTextAlignment)paragraphAlign;
 
 /**
  * Return an formatted CGSize based on the defined <tt>'width'</tt>
@@ -261,4 +271,11 @@
  * If isn't setted return default left alignment.
  */
 -(UIControlContentHorizontalAlignment)contentHorizontalAlignment;
+
+/**
+ * Return a Dictionary with formatted <tt>NSAttributedString</tt> dictionary based
+ * on the CSS defined in this object. See <b>Core Text String Attribute Name Constants</b>
+ * to consult the Keys of this dictionary.
+ */
+-(NSDictionary*)attributedStringDictionary;
 @end

@@ -124,9 +124,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)validateText_align:(id *)ioValue error:(NSError **)outError {
 	// Validate correct values.
-	if ( ![[NSArray arrayWithObjects:@"left", @"center", @"right", nil]
+	if ( ![[NSArray arrayWithObjects:@"left", @"center", @"right", @"justify", nil]
 		   containsObject:(NSString*)*ioValue] ) {
-		*outError = [self formatError:@"'text_align' must be 'left', 'center' or 'right'!"];
+		*outError = [self formatError:@"'text_align' must be 'left', 'center', 'right' or 'justify'!"];
 		return NO;
 	}
 	return YES;
@@ -284,6 +284,26 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Return an formatted <tt>CTTextAlignment</tt> based on the defined <tt>'text_align'</tt> property.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(CTTextAlignment)paragraphAlign {
+	if ([text_align isEqualToString:@"left"]) {
+		return kCTLeftTextAlignment;
+	}
+	else if ([text_align isEqualToString:@"center"]) {
+		return kCTCenterTextAlignment;
+	}
+	else if ([text_align isEqualToString:@"right"]) {
+		return kCTRightTextAlignment;
+	}
+	else if ([text_align isEqualToString:@"justify"]) {
+		return kCTJustifiedTextAlignment;
+	}
+
+	return kCTNaturalTextAlignment;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Return an formatted CGSize based on the defined width and height properties.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(CGSize)size {
@@ -337,5 +357,52 @@
 		return UIControlContentHorizontalAlignmentRight;
 	}
     return UIControlContentHorizontalAlignmentLeft;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Return a Dictionary with formatted <tt>NSAttributedString</tt> dictionary based
+// on the CSS defined in this object. See <b>NSAttributedString Standard Attributes</b>
+// to consult the Keys of this dictionary.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(NSDictionary*)attributedStringDictionary {
+
+    // Retrieve an UIFont.
+    UIFont *font = [self font];
+
+    ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
+    // Create a CTFont from UIFont.
+    CTFontRef cgFont = CTFontCreateWithName((CFStringRef)font.fontName,         // Name.
+                                            font.pointSize,                     // Size.
+                                            NULL);
+
+    ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
+    // Paragraph settings.
+    CFIndex prgphNParams = 1;                            // Total settings to define.
+
+    // Alignment
+    CTTextAlignment theAlignment = [self paragraphAlign];
+    CTParagraphStyleSetting prgphSettings[1] = {
+        { kCTParagraphStyleSpecifierAlignment, sizeof(CTTextAlignment), &theAlignment }
+    };
+
+    ////////// /////////////////// ///////
+    // Create a Paragraph Style.
+    CTParagraphStyleRef paragraph = CTParagraphStyleCreate(prgphSettings, prgphNParams);
+
+    ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
+    // Mount attributes.
+    NSDictionary *att = [NSDictionary dictionaryWithObjectsAndKeys:
+
+                          // Font name.
+                         (id)cgFont, kCTFontAttributeName,
+
+                         // Foreground color.
+                         (id)[(UIColor*)[self color] CGColor], kCTForegroundColorAttributeName,
+
+                         // Paragraph style.
+                         paragraph, kCTParagraphStyleAttributeName,
+
+                         nil];
+    return att;
 }
 @end
