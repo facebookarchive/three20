@@ -20,7 +20,7 @@
 
 #import "TTCSSTextShadowModel.h"
 
-@interface TTCSSRuleSet : NSObject  {
+@interface TTCSSRuleSet : NSObject <NSCopying> {
 	NSString *selector;
 
 	// Colors.
@@ -31,6 +31,7 @@
 	NSString *font_family;
 	NSString *font_weight;
 	NSNumber *font_size;
+    NSString *font_style;
 
 	// Alignment and Justification.
 	NSString *text_align;
@@ -84,17 +85,26 @@
 
 /**
  * The ‘font-weight’ property specifies weight of glyphs in the font.
- * In iOS each font has different font weight descriptions (such as Medium, Light, Oblique, etc.).
- * You can call <tt>[UIFont familyNames]</tt> to retrieve a list of available fonts on your system.
- * Default value is <tt>nil</tt>.<br>
+ * Property Values:<br>
+ *		- <tt>normal</tt>: A normal font style. .<br>
+ *		- <tt>bold</tt>: Defines thick characters.<br>
  * <br>
- * <b>Example:</b><br>
- * To use the font <tt>Helvetica-BoldOblique</tt> you should
- * inform <tt>BoldOblique</tt> as font-weight and <tt>Helvetica</tt> as font_family.
- * <br>
+ * Default value is <tt>normal</tt>.<br>
  * Font weight name is case-sensitive, make sure to inform correctly.
  */
 @property (copy) NSString *font_weight;
+
+/**
+ * The ‘font-style’ property specifies the font style for a text.
+ * Property Values:<br>
+ *		- <tt>normal</tt>: A normal font style. .<br>
+ *		- <tt>italic</tt>: An italic font style.<br>
+ *		- <tt>oblique</tt>: Same as italic.<br>
+ * <br>
+ * Default value is <tt>normal</tt>.<br>
+ * Font style name is case-sensitive, make sure to inform correctly.
+ */
+@property (copy) NSString *font_style;
 
 /**
  * This property indicates the desired height of glyphs from the font.
@@ -222,12 +232,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Data Methods.
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Return an formatted UIFont object based on the defined properties.
  * Will return <tt>nil</tt> if can't format.
  */
 -(UIFont*)font;
+
+/**
+ * Return an formatted <b>Core Text Font</b> (<tt>CTFontRef</tt>)
+ * based on the defined properties.
+ * Will return <tt>NULL</tt> if can't format.
+ */
+-(CTFontRef)coreTextFont;
 
 /**
  * Return an formatted <tt>UITextAlignment</tt> based on the defined <tt>'text_align'</tt> property.

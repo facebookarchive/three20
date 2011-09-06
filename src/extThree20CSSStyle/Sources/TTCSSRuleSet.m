@@ -28,7 +28,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTCSSRuleSet
-@synthesize selector, font_size, font_family, font_weight;
+@synthesize selector, font_size, font_family, font_style, font_weight;
 @synthesize color, background_color, background_image;
 @synthesize text_shadow, text_shadow_opacity, text_align;
 @synthesize width, height, visibility;
@@ -60,6 +60,7 @@
 
 		// Default Font Family.
 		self.font_family		  = [[UIFont systemFontOfSize:[UIFont systemFontSize]] familyName];
+        self.font_style           = @"normal";
 
 		// Default alignment is left.
 		self.text_align = @"left";
@@ -79,6 +80,7 @@
     TT_RELEASE_SAFELY( selector );
     TT_RELEASE_SAFELY( font_size );
     TT_RELEASE_SAFELY( font_weight );
+    TT_RELEASE_SAFELY( font_style );
     TT_RELEASE_SAFELY( text_shadow );
     TT_RELEASE_SAFELY( color );
     TT_RELEASE_SAFELY( width );
@@ -95,6 +97,39 @@
     TT_RELEASE_SAFELY( margin_right );
     TT_RELEASE_SAFELY( margin_left );
     [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSCopying Methods.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//Returns a new instance that’s a copy of the receiver. (required)
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)copyWithZone:(NSZone *)zone {
+    TTCSSRuleSet *copy = [[[self class] allocWithZone:zone] init];
+    copy.font_family            = self.font_family;
+    copy.selector               = self.selector;
+    copy.font_size              = self.font_size;
+    copy.font_weight            = self.font_weight;
+    copy.font_style             = self.font_style;
+    copy.text_shadow            = self.text_shadow;
+    copy.color                  = self.color;
+    copy.width                  = self.width;
+    copy.height                 = self.height;
+    copy.top                    = self.top;
+    copy.left                   = self.left;
+    copy.right                  = self.right;
+    copy.bottom                 = self.bottom;
+    copy.bottom                 = self.bottom;
+    copy.background_color       = self.bottom;
+    copy.background_image       = self.background_image;
+    copy.text_shadow_opacity    = self.text_shadow_opacity;
+    copy.visibility             = self.visibility;
+    copy.vertical_align         = self.vertical_align;
+    copy.margin_right           = self.margin_right;
+    copy.margin_left            = self.margin_left;
+    return copy;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -138,6 +173,28 @@
 	if ( ![[NSArray arrayWithObjects:@"visible", @"hidden", nil]
 		   containsObject:(NSString*)*ioValue] ) {
 		*outError = [self formatError:@"'visibility' must be 'visible' or 'hidden'!"];
+		return NO;
+	}
+	return YES;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)validateFont_weight:(id *)ioValue error:(NSError **)outError {
+	// Validate correct values.
+	if ( ![[NSArray arrayWithObjects:@"normal", @"bold", nil]
+		   containsObject:(NSString*)*ioValue] ) {
+		*outError = [self formatError:@"'font_style' must be 'normal' or 'bold'!"];
+		return NO;
+	}
+	return YES;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)validateFont_style:(id *)ioValue error:(NSError **)outError {
+	// Validate correct values.
+	if ( ![[NSArray arrayWithObjects:@"normal", @"italic", @"oblique", nil]
+		   containsObject:(NSString*)*ioValue] ) {
+		*outError = [self formatError:@"'font_style' must be 'normal', 'italic' or 'oblique'!"];
 		return NO;
 	}
 	return YES;
@@ -242,6 +299,58 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// Return an formatted <b>Core Text Font</b>.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(CTFontRef)coreTextFont {
+    // If not enough properties return nil.
+    if ( !font_family && !font_size ) {
+        TTDWARNING ( @"Can't format CTFontRef, 'font_family' or 'font_size' isn't defined." );
+        return NULL;
+    }
+
+    ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
+    // Create a CTFont.
+    CTFontRef cgFont = CTFontCreateWithName((CFStringRef)[font_family capitalizedString], // Family.
+                                            [font_size floatValue],                       // Size.
+                                            NULL);
+
+    //////////////////////////////////
+    // Font weight.
+    BOOL isBold   = [font_weight isEqualToString:@"bold"];
+
+    // Font style.
+    BOOL isItalic  = [font_style isEqualToString:@"italic"] ||
+                     [font_style isEqualToString:@"oblique"];
+
+    // If isn't bold or italic, just return formatted until now.
+    if ( !isBold && !isItalic )
+        return cgFont;
+
+    //////// ///////// //////// ///////////// ///////////// /////////
+    // Traits init empty and we add as needed:
+    CTFontSymbolicTraits symbolicTraits = 0;
+
+    // Bold.
+    if (isBold)
+        symbolicTraits |= kCTFontBoldTrait;
+
+    // Italic.
+    if (isItalic)
+        symbolicTraits |= kCTFontItalicTrait;
+
+    // Create a copy of the original font with the masked trait set to the
+    // desired value. If the font family does not have the appropriate style,
+    // this will return NULL.
+
+    return CTFontCreateCopyWithSymbolicTraits(cgFont,
+                                            // 0.0 means the original font’s size is preserved.
+                                            0.0,
+                                            NULL,
+                                            symbolicTraits,
+                                            symbolicTraits);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Return an formatted UIFont object based on the defined properties.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(UIFont*)font {
@@ -251,20 +360,20 @@
         return nil;
     }
 
-    //////////////////////////////////
-    // Font weight.
-    NSString *fullFontWeight = ( font_weight == nil
-								? @""
-								: [NSString stringWithFormat:@"-%@", [font_weight capitalizedString]] );
+    // Create a CTFont.
+    CTFontRef ctFont = [self coreTextFont];
 
     //////////////////////////////////
-    // Font Name.
-    NSString *fullFontName = [NSString stringWithFormat:@"%@%@", [font_family capitalizedString],
-							  fullFontWeight];
+    // If nothing, return nil.
+    if ( ctFont == NULL )
+        return nil;
+
+    // Grab the Font Name.
+    NSString *fontName = (NSString*)CTFontCopyPostScriptName(ctFont);
 
     //////////////////////////////////
     // Create and return UIFont.
-    return [UIFont fontWithName:fullFontName size:[font_size floatValue]];
+    return [UIFont fontWithName:fontName size:CTFontGetSize(ctFont)];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -366,14 +475,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(NSDictionary*)attributedStringDictionary {
 
-    // Retrieve an UIFont.
-    UIFont *font = [self font];
-
     ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
-    // Create a CTFont from UIFont.
-    CTFontRef cgFont = CTFontCreateWithName((CFStringRef)font.fontName,         // Name.
-                                            font.pointSize,                     // Size.
-                                            NULL);
+    // Create a CTFont.
+    CTFontRef cgFont = [self coreTextFont];
 
     ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
     // Paragraph settings.
