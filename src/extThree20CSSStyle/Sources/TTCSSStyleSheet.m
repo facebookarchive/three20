@@ -185,6 +185,7 @@ NSString* kKeyTextShadowColor   = @"color";
 								@"background_image",	@"background-image",
 								@"text_shadow",			@"text-shadow",
 								@"text_align",			@"text-align",
+                                @"text_decoration",     @"text-decoration",
                                 @"width",               @"width",
                                 @"visibility",          @"visibility",
                                 @"height",              @"height",

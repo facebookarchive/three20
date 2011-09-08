@@ -30,7 +30,7 @@
 @implementation TTCSSRuleSet
 @synthesize selector, font_size, font_family, font_style, font_weight;
 @synthesize color, background_color, background_image;
-@synthesize text_shadow, text_shadow_opacity, text_align;
+@synthesize text_shadow, text_shadow_opacity, text_align, text_decoration;
 @synthesize width, height, visibility;
 @synthesize top, left, right, bottom;
 @synthesize vertical_align, margin_right, margin_left;
@@ -62,6 +62,9 @@
 		self.font_family		  = [[UIFont systemFontOfSize:[UIFont systemFontSize]] familyName];
         self.font_style           = @"normal";
 
+        // Default decoration.
+        self.text_decoration = @"none";
+
 		// Default alignment is left.
 		self.text_align = @"left";
 
@@ -92,6 +95,7 @@
     TT_RELEASE_SAFELY( background_color );
     TT_RELEASE_SAFELY( background_image );
     TT_RELEASE_SAFELY( text_shadow_opacity );
+    TT_RELEASE_SAFELY( text_decoration );
     TT_RELEASE_SAFELY( visibility );
     TT_RELEASE_SAFELY( vertical_align );
     TT_RELEASE_SAFELY( margin_right );
@@ -121,10 +125,10 @@
     copy.left                   = self.left;
     copy.right                  = self.right;
     copy.bottom                 = self.bottom;
-    copy.bottom                 = self.bottom;
-    copy.background_color       = self.bottom;
+    copy.background_color       = self.background_color;
     copy.background_image       = self.background_image;
     copy.text_shadow_opacity    = self.text_shadow_opacity;
+    copy.text_decoration        = self.text_decoration;
     copy.visibility             = self.visibility;
     copy.vertical_align         = self.vertical_align;
     copy.margin_right           = self.margin_right;
@@ -151,6 +155,17 @@
 	if ( ![[NSArray arrayWithObjects:@"top", @"middle", @"bottom", nil]
 		   containsObject:(NSString*)*ioValue] ) {
 		*outError = [self formatError:@"'vertical_align' must be 'top', 'middle' or 'bottom'!"];
+		return NO;
+	}
+	return YES;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)validateText_decoration:(id *)ioValue error:(NSError **)outError {
+	// Validate correct values.
+	if ( ![[NSArray arrayWithObjects:@"none", @"underline", nil]
+		   containsObject:(NSString*)*ioValue] ) {
+		*outError = [self formatError:@"'text_decoration' must be 'underline' or 'none'!"];
 		return NO;
 	}
 	return YES;
@@ -299,58 +314,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Return an formatted <b>Core Text Font</b>.
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(CTFontRef)coreTextFont {
-    // If not enough properties return nil.
-    if ( !font_family && !font_size ) {
-        TTDWARNING ( @"Can't format CTFontRef, 'font_family' or 'font_size' isn't defined." );
-        return NULL;
-    }
-
-    ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
-    // Create a CTFont.
-    CTFontRef cgFont = CTFontCreateWithName((CFStringRef)[font_family capitalizedString], // Family.
-                                            [font_size floatValue],                       // Size.
-                                            NULL);
-
-    //////////////////////////////////
-    // Font weight.
-    BOOL isBold   = [font_weight isEqualToString:@"bold"];
-
-    // Font style.
-    BOOL isItalic  = [font_style isEqualToString:@"italic"] ||
-                     [font_style isEqualToString:@"oblique"];
-
-    // If isn't bold or italic, just return formatted until now.
-    if ( !isBold && !isItalic )
-        return cgFont;
-
-    //////// ///////// //////// ///////////// ///////////// /////////
-    // Traits init empty and we add as needed:
-    CTFontSymbolicTraits symbolicTraits = 0;
-
-    // Bold.
-    if (isBold)
-        symbolicTraits |= kCTFontBoldTrait;
-
-    // Italic.
-    if (isItalic)
-        symbolicTraits |= kCTFontItalicTrait;
-
-    // Create a copy of the original font with the masked trait set to the
-    // desired value. If the font family does not have the appropriate style,
-    // this will return NULL.
-
-    return CTFontCreateCopyWithSymbolicTraits(cgFont,
-                                            // 0.0 means the original font’s size is preserved.
-                                            0.0,
-                                            NULL,
-                                            symbolicTraits,
-                                            symbolicTraits);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Return an formatted UIFont object based on the defined properties.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(UIFont*)font {
@@ -360,20 +323,20 @@
         return nil;
     }
 
-    // Create a CTFont.
-    CTFontRef ctFont = [self coreTextFont];
+    //////////////////////////////////
+    // Font weight.
+    NSString *fullFontWeight = ( font_weight == nil
+								? @""
+								: [NSString stringWithFormat:@"-%@", [font_weight capitalizedString]] );
 
     //////////////////////////////////
-    // If nothing, return nil.
-    if ( ctFont == NULL )
-        return nil;
-
-    // Grab the Font Name.
-    NSString *fontName = (NSString*)CTFontCopyPostScriptName(ctFont);
+    // Font Name.
+    NSString *fullFontName = [NSString stringWithFormat:@"%@%@", [font_family capitalizedString],
+							  fullFontWeight];
 
     //////////////////////////////////
     // Create and return UIFont.
-    return [UIFont fontWithName:fontName size:CTFontGetSize(ctFont)];
+    return [UIFont fontWithName:fullFontName size:[font_size floatValue]];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -390,26 +353,6 @@
 		return UITextAlignmentRight;
 	}
 	return UITextAlignmentLeft;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Return an formatted <tt>CTTextAlignment</tt> based on the defined <tt>'text_align'</tt> property.
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(CTTextAlignment)paragraphAlign {
-	if ([text_align isEqualToString:@"left"]) {
-		return kCTLeftTextAlignment;
-	}
-	else if ([text_align isEqualToString:@"center"]) {
-		return kCTCenterTextAlignment;
-	}
-	else if ([text_align isEqualToString:@"right"]) {
-		return kCTRightTextAlignment;
-	}
-	else if ([text_align isEqualToString:@"justify"]) {
-		return kCTJustifiedTextAlignment;
-	}
-
-	return kCTNaturalTextAlignment;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -432,7 +375,6 @@
 -(BOOL)hidden {
     return [self.visibility isEqualToString:@"hidden"];
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Return an formatted UIControlContentVerticalAlignment based on the defined
@@ -468,45 +410,4 @@
     return UIControlContentHorizontalAlignmentLeft;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Return a Dictionary with formatted <tt>NSAttributedString</tt> dictionary based
-// on the CSS defined in this object. See <b>NSAttributedString Standard Attributes</b>
-// to consult the Keys of this dictionary.
-///////////////////////////////////////////////////////////////////////////////////////////////////
--(NSDictionary*)attributedStringDictionary {
-
-    ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
-    // Create a CTFont.
-    CTFontRef cgFont = [self coreTextFont];
-
-    ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
-    // Paragraph settings.
-    CFIndex prgphNParams = 1;                            // Total settings to define.
-
-    // Alignment
-    CTTextAlignment theAlignment = [self paragraphAlign];
-    CTParagraphStyleSetting prgphSettings[1] = {
-        { kCTParagraphStyleSpecifierAlignment, sizeof(CTTextAlignment), &theAlignment }
-    };
-
-    ////////// /////////////////// ///////
-    // Create a Paragraph Style.
-    CTParagraphStyleRef paragraph = CTParagraphStyleCreate(prgphSettings, prgphNParams);
-
-    ////////// /////////////////// ////////////// //////////////// //////////////// ///////////////
-    // Mount attributes.
-    NSDictionary *att = [NSDictionary dictionaryWithObjectsAndKeys:
-
-                          // Font name.
-                         (id)cgFont, kCTFontAttributeName,
-
-                         // Foreground color.
-                         (id)[(UIColor*)[self color] CGColor], kCTForegroundColorAttributeName,
-
-                         // Paragraph style.
-                         paragraph, kCTParagraphStyleAttributeName,
-
-                         nil];
-    return att;
-}
 @end

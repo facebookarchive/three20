@@ -16,7 +16,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <CoreText/CoreText.h>
 
 #import "TTCSSTextShadowModel.h"
 
@@ -35,6 +34,9 @@
 
 	// Alignment and Justification.
 	NSString *text_align;
+
+    // Decorations.
+    NSString *text_decoration;
 
 	// Text Shadow.
 	TTCSSTextShadowModel* text_shadow;
@@ -84,13 +86,24 @@
 @property (copy) NSString *font_family;
 
 /**
- * The ‘font-weight’ property specifies weight of glyphs in the font.
+ * The ‘font-weight’ property specifies weight of glyphs in the font.<br>
  * Property Values:<br>
  *		- <tt>normal</tt>: A normal font style. .<br>
  *		- <tt>bold</tt>: Defines thick characters.<br>
  * <br>
  * Default value is <tt>normal</tt>.<br>
  * Font weight name is case-sensitive, make sure to inform correctly.
+ * <br><br>
+ * <b>iOS 3.1 and older users note:</b><br>
+ * If your application does support iOS 3.1 you should inform the
+ * font-weight property specifying the <b>weight</b> of the font using
+ * the iOS Family Name. You can call <tt>[UIFont familyNames]</tt> to
+ * retrieve a list of available fonts on your system.
+ * <br>
+ * <b>Example:</b><br>
+ * To use the font <tt>Helvetica-BoldOblique</tt> you should
+ * inform <tt>BoldOblique</tt> as font-weight and <tt>Helvetica</tt> as font_family.
+ * <br>
  */
 @property (copy) NSString *font_weight;
 
@@ -128,6 +141,17 @@
  * based on this values.
  */
 @property (copy) NSString* text_align;
+
+/**
+ * The text-decoration property specifies the decoration added to text.<br>
+ * Property Values:<br>
+ *		- <tt>none</tt>: Defines a normal text.<br>
+ *		- <tt>underline</tt>: Defines a line below the text.<br>
+ * <br>
+ * Default value is the <tt>none</tt>.
+ */
+@property (copy) NSString* text_decoration;
+
 
 /**
  * This property specifies the size of an element’s rendering box.
@@ -241,23 +265,10 @@
 -(UIFont*)font;
 
 /**
- * Return an formatted <b>Core Text Font</b> (<tt>CTFontRef</tt>)
- * based on the defined properties.
- * Will return <tt>NULL</tt> if can't format.
- */
--(CTFontRef)coreTextFont;
-
-/**
  * Return an formatted <tt>UITextAlignment</tt> based on the defined <tt>'text_align'</tt> property.
  * If isn't setted return default left alignment.
  */
 -(UITextAlignment)textAlign;
-
-/**
- * Return an formatted <tt>CTTextAlignment</tt> based on the defined <tt>'text_align'</tt> property.
- * If isn't setted return natural alignment (<tt>kCTNaturalTextAlignment</tt>).
- */
--(CTTextAlignment)paragraphAlign;
 
 /**
  * Return an formatted CGSize based on the defined <tt>'width'</tt>
@@ -290,10 +301,4 @@
  */
 -(UIControlContentHorizontalAlignment)contentHorizontalAlignment;
 
-/**
- * Return a Dictionary with formatted <tt>NSAttributedString</tt> dictionary based
- * on the CSS defined in this object. See <b>Core Text String Attribute Name Constants</b>
- * to consult the Keys of this dictionary.
- */
--(NSDictionary*)attributedStringDictionary;
 @end
