@@ -195,12 +195,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)validateFont_weight:(id *)ioValue error:(NSError **)outError {
-	// Validate correct values.
-	if ( ![[NSArray arrayWithObjects:@"normal", @"bold", nil]
-		   containsObject:(NSString*)*ioValue] ) {
-		*outError = [self formatError:@"'font_style' must be 'normal' or 'bold'!"];
-		return NO;
-	}
 	return YES;
 }
 
