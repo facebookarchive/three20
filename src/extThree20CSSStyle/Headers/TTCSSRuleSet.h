@@ -19,7 +19,7 @@
 
 #import "TTCSSTextShadowModel.h"
 
-@interface TTCSSRuleSet : NSObject  {
+@interface TTCSSRuleSet : NSObject <NSCopying> {
 	NSString *selector;
 
 	// Colors.
@@ -30,9 +30,13 @@
 	NSString *font_family;
 	NSString *font_weight;
 	NSNumber *font_size;
+    NSString *font_style;
 
 	// Alignment and Justification.
 	NSString *text_align;
+
+    // Decorations.
+    NSString *text_decoration;
 
 	// Text Shadow.
 	TTCSSTextShadowModel* text_shadow;
@@ -82,18 +86,38 @@
 @property (copy) NSString *font_family;
 
 /**
- * The ‘font-weight’ property specifies weight of glyphs in the font.
- * In iOS each font has different font weight descriptions (such as Medium, Light, Oblique, etc.).
- * You can call <tt>[UIFont familyNames]</tt> to retrieve a list of available fonts on your system.
- * Default value is <tt>nil</tt>.<br>
+ * The ‘font-weight’ property specifies weight of glyphs in the font.<br>
+ * Property Values:<br>
+ *		- <tt>normal</tt>: A normal font style. .<br>
+ *		- <tt>bold</tt>: Defines thick characters.<br>
+ * <br>
+ * Default value is <tt>normal</tt>.<br>
+ * Font weight name is case-sensitive, make sure to inform correctly.
+ * <br><br>
+ * <b>iOS 3.1 and older users note:</b><br>
+ * If your application does support iOS 3.1 you should inform the
+ * font-weight property specifying the <b>weight</b> of the font using
+ * the iOS Family Name. You can call <tt>[UIFont familyNames]</tt> to
+ * retrieve a list of available fonts on your system.
  * <br>
  * <b>Example:</b><br>
  * To use the font <tt>Helvetica-BoldOblique</tt> you should
  * inform <tt>BoldOblique</tt> as font-weight and <tt>Helvetica</tt> as font_family.
  * <br>
- * Font weight name is case-sensitive, make sure to inform correctly.
  */
 @property (copy) NSString *font_weight;
+
+/**
+ * The ‘font-style’ property specifies the font style for a text.
+ * Property Values:<br>
+ *		- <tt>normal</tt>: A normal font style. .<br>
+ *		- <tt>italic</tt>: An italic font style.<br>
+ *		- <tt>oblique</tt>: Same as italic.<br>
+ * <br>
+ * Default value is <tt>normal</tt>.<br>
+ * Font style name is case-sensitive, make sure to inform correctly.
+ */
+@property (copy) NSString *font_style;
 
 /**
  * This property indicates the desired height of glyphs from the font.
@@ -109,11 +133,25 @@
  *		- <tt>left</tt>: Align text along the left edge.<br>
  *		- <tt>center</tt>: Align text equally along both sides of the center line.<br>
  *		- <tt>right</tt>: Align text along the right edge.<br>
+ *      - <tt>justify</tt>: Stretches the lines so that each
+ * line has equal width (like in newspapers and magazines)
  * <br>
- * Use the textAlign method to retrieve an iOS formatted UITextAlignment
+ * Use the textAlign method to retrieve an iOS formatted <tt>UITextAlignment</tt> or
+ * the paragraphAlign method to retireve an Core Text formatted <tt>CTTextAlignment</tt>
  * based on this values.
  */
 @property (copy) NSString* text_align;
+
+/**
+ * The text-decoration property specifies the decoration added to text.<br>
+ * Property Values:<br>
+ *		- <tt>none</tt>: Defines a normal text.<br>
+ *		- <tt>underline</tt>: Defines a line below the text.<br>
+ * <br>
+ * Default value is the <tt>none</tt>.
+ */
+@property (copy) NSString* text_decoration;
+
 
 /**
  * This property specifies the size of an element’s rendering box.
@@ -218,6 +256,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Data Methods.
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Return an formatted UIFont object based on the defined properties.
@@ -226,7 +265,7 @@
 -(UIFont*)font;
 
 /**
- * Return an formatted UITextAlignment based on the defined <tt>'text_align'</tt> property.
+ * Return an formatted <tt>UITextAlignment</tt> based on the defined <tt>'text_align'</tt> property.
  * If isn't setted return default left alignment.
  */
 -(UITextAlignment)textAlign;
@@ -261,4 +300,5 @@
  * If isn't setted return default left alignment.
  */
 -(UIControlContentHorizontalAlignment)contentHorizontalAlignment;
+
 @end

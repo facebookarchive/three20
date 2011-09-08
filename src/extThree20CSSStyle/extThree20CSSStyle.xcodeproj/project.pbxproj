@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		182EB7881417D33A008864CA /* TTCSSRuleSet+CoreFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 182EB7871417D33A008864CA /* TTCSSRuleSet+CoreFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		182EB78A1417D345008864CA /* TTCSSRuleSet+CoreFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 182EB7891417D345008864CA /* TTCSSRuleSet+CoreFont.m */; };
 		1831D1AF13AA9FAC00AB4D55 /* TTDataConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1831D1AD13AA9FAC00AB4D55 /* TTDataConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1831D1B013AA9FAC00AB4D55 /* TTDataPopulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1831D1AE13AA9FAC00AB4D55 /* TTDataPopulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1831D1B313AA9FB500AB4D55 /* TTDataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831D1B113AA9FB500AB4D55 /* TTDataConverter.m */; };
@@ -151,6 +153,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182EB7871417D33A008864CA /* TTCSSRuleSet+CoreFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TTCSSRuleSet+CoreFont.h"; path = "Headers/TTCSSRuleSet+CoreFont.h"; sourceTree = "<group>"; };
+		182EB7891417D345008864CA /* TTCSSRuleSet+CoreFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TTCSSRuleSet+CoreFont.m"; path = "Sources/TTCSSRuleSet+CoreFont.m"; sourceTree = "<group>"; };
 		1831D1AD13AA9FAC00AB4D55 /* TTDataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDataConverter.h; path = Headers/TTDataConverter.h; sourceTree = "<group>"; };
 		1831D1AE13AA9FAC00AB4D55 /* TTDataPopulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDataPopulator.h; path = Headers/TTDataPopulator.h; sourceTree = "<group>"; };
 		1831D1B113AA9FB500AB4D55 /* TTDataConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDataConverter.m; path = ThirdPart/TTDataConverter.m; sourceTree = "<group>"; };
@@ -263,6 +267,8 @@
 				186AE80A13AA5379004D43FA /* TTCSSTextShadowModel.m */,
 				186AE6F213AA3FF1004D43FA /* TTCSSRuleSet.h */,
 				186AE75613AA4C1C004D43FA /* TTCSSRuleSet.m */,
+				182EB7871417D33A008864CA /* TTCSSRuleSet+CoreFont.h */,
+				182EB7891417D345008864CA /* TTCSSRuleSet+CoreFont.m */,
 				1892DC1D13D61D6A008DFAC5 /* TTShadowStyleAdditions.h */,
 				1892DC2313D61D81008DFAC5 /* TTShadowStyleAdditions.m */,
 				1892DC1E13D61D6A008DFAC5 /* TTTextStyleAdditions.h */,
@@ -487,6 +493,7 @@
 				1892DC1F13D61D6A008DFAC5 /* TTShadowStyleAdditions.h in Headers */,
 				1892DC2013D61D6A008DFAC5 /* TTTextStyleAdditions.h in Headers */,
 				1892DC2E13D61D90008DFAC5 /* extThree20CSSStyle+Additions.h in Headers */,
+				182EB7881417D33A008864CA /* TTCSSRuleSet+CoreFont.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +719,7 @@
 				18F5A88A13B298D100B3EF43 /* UILabel+CSSAdditions.m in Sources */,
 				1892DC2513D61D81008DFAC5 /* TTShadowStyleAdditions.m in Sources */,
 				1892DC2613D61D81008DFAC5 /* TTTextStyleAdditions.m in Sources */,
+				182EB78A1417D345008864CA /* TTCSSRuleSet+CoreFont.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

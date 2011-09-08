@@ -28,9 +28,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTCSSRuleSet
-@synthesize selector, font_size, font_family, font_weight;
+@synthesize selector, font_size, font_family, font_style, font_weight;
 @synthesize color, background_color, background_image;
-@synthesize text_shadow, text_shadow_opacity, text_align;
+@synthesize text_shadow, text_shadow_opacity, text_align, text_decoration;
 @synthesize width, height, visibility;
 @synthesize top, left, right, bottom;
 @synthesize vertical_align, margin_right, margin_left;
@@ -60,6 +60,10 @@
 
 		// Default Font Family.
 		self.font_family		  = [[UIFont systemFontOfSize:[UIFont systemFontSize]] familyName];
+        self.font_style           = @"normal";
+
+        // Default decoration.
+        self.text_decoration = @"none";
 
 		// Default alignment is left.
 		self.text_align = @"left";
@@ -79,6 +83,7 @@
     TT_RELEASE_SAFELY( selector );
     TT_RELEASE_SAFELY( font_size );
     TT_RELEASE_SAFELY( font_weight );
+    TT_RELEASE_SAFELY( font_style );
     TT_RELEASE_SAFELY( text_shadow );
     TT_RELEASE_SAFELY( color );
     TT_RELEASE_SAFELY( width );
@@ -90,11 +95,45 @@
     TT_RELEASE_SAFELY( background_color );
     TT_RELEASE_SAFELY( background_image );
     TT_RELEASE_SAFELY( text_shadow_opacity );
+    TT_RELEASE_SAFELY( text_decoration );
     TT_RELEASE_SAFELY( visibility );
     TT_RELEASE_SAFELY( vertical_align );
     TT_RELEASE_SAFELY( margin_right );
     TT_RELEASE_SAFELY( margin_left );
     [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark NSCopying Methods.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//Returns a new instance that’s a copy of the receiver. (required)
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)copyWithZone:(NSZone *)zone {
+    TTCSSRuleSet *copy = [[[self class] allocWithZone:zone] init];
+    copy.font_family            = self.font_family;
+    copy.selector               = self.selector;
+    copy.font_size              = self.font_size;
+    copy.font_weight            = self.font_weight;
+    copy.font_style             = self.font_style;
+    copy.text_shadow            = self.text_shadow;
+    copy.color                  = self.color;
+    copy.width                  = self.width;
+    copy.height                 = self.height;
+    copy.top                    = self.top;
+    copy.left                   = self.left;
+    copy.right                  = self.right;
+    copy.bottom                 = self.bottom;
+    copy.background_color       = self.background_color;
+    copy.background_image       = self.background_image;
+    copy.text_shadow_opacity    = self.text_shadow_opacity;
+    copy.text_decoration        = self.text_decoration;
+    copy.visibility             = self.visibility;
+    copy.vertical_align         = self.vertical_align;
+    copy.margin_right           = self.margin_right;
+    copy.margin_left            = self.margin_left;
+    return copy;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,11 +161,22 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)validateText_decoration:(id *)ioValue error:(NSError **)outError {
+	// Validate correct values.
+	if ( ![[NSArray arrayWithObjects:@"none", @"underline", nil]
+		   containsObject:(NSString*)*ioValue] ) {
+		*outError = [self formatError:@"'text_decoration' must be 'underline' or 'none'!"];
+		return NO;
+	}
+	return YES;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 -(BOOL)validateText_align:(id *)ioValue error:(NSError **)outError {
 	// Validate correct values.
-	if ( ![[NSArray arrayWithObjects:@"left", @"center", @"right", nil]
+	if ( ![[NSArray arrayWithObjects:@"left", @"center", @"right", @"justify", nil]
 		   containsObject:(NSString*)*ioValue] ) {
-		*outError = [self formatError:@"'text_align' must be 'left', 'center' or 'right'!"];
+		*outError = [self formatError:@"'text_align' must be 'left', 'center', 'right' or 'justify'!"];
 		return NO;
 	}
 	return YES;
@@ -138,6 +188,22 @@
 	if ( ![[NSArray arrayWithObjects:@"visible", @"hidden", nil]
 		   containsObject:(NSString*)*ioValue] ) {
 		*outError = [self formatError:@"'visibility' must be 'visible' or 'hidden'!"];
+		return NO;
+	}
+	return YES;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)validateFont_weight:(id *)ioValue error:(NSError **)outError {
+	return YES;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+-(BOOL)validateFont_style:(id *)ioValue error:(NSError **)outError {
+	// Validate correct values.
+	if ( ![[NSArray arrayWithObjects:@"normal", @"italic", @"oblique", nil]
+		   containsObject:(NSString*)*ioValue] ) {
+		*outError = [self formatError:@"'font_style' must be 'normal', 'italic' or 'oblique'!"];
 		return NO;
 	}
 	return YES;
@@ -304,7 +370,6 @@
     return [self.visibility isEqualToString:@"hidden"];
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Return an formatted UIControlContentVerticalAlignment based on the defined
 // <tt>'vertical_align'</tt> property. If isn't setted return default top alignment.
@@ -338,4 +403,5 @@
 	}
     return UIControlContentHorizontalAlignmentLeft;
 }
+
 @end
