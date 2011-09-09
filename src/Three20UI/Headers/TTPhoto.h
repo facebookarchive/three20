@@ -15,7 +15,7 @@
 //
 
 // UI
-#import "Three20UI/TTPhotoVersion.h"\// UINavigator
+#import "Three20UI/TTPhotoVersion.h"
 #import "Three20UINavigator/TTURLObject.h"
 
 #import <AssetsLibrary/AssetsLibrary.h>
