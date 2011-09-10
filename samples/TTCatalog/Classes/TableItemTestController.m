@@ -20,9 +20,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Table Items";
     self.variableHeightRows = YES;
-
-    // Uncomment this to see how the table looks with the grouped style
-    //self.tableViewStyle = UITableViewStyleGrouped;
+    self.tableViewStyle = UITableViewStyleGrouped;
 
     // Uncomment this to see how the table cells look against a custom background color
     //self.tableView.backgroundColor = [UIColor yellowColor];
@@ -34,7 +32,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
     // This demonstrates how to create a table with standard table "fields".  Many of these
     // fields with URLs that will be visited when the row is selected
     self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
-      @"Links and Buttons",
+      [TTDataSourceSection sectionWithHeaderTitle:@"Links and Buttons" 
+                                      footerTitle:@"Items with links & buttons"],
       [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"
                        accessoryURL:@"http://www.google.com"],
       [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableItemTest"],
@@ -47,7 +46,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                           text:kLoremIpsum timestamp:[NSDate date] URL:@"tt://tableItemTest"],
       [TTTableMoreButton itemWithText:@"TTTableMoreButton"],
 
-      @"Images",
+      [TTDataSourceSection sectionWithHeaderTitle:@"Images" 
+                                      footerTitle:nil],
       [TTTableImageItem itemWithText:@"TTTableImageItem" imageURL:localImage
                         URL:@"tt://tableItemTest"],
       [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" imageURL:localImage
@@ -72,7 +72,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                                          stringByAppendingString:kLoremIpsum]],
       [TTTableSummaryItem itemWithText:@"TTTableSummaryItem"],
 
-      @"",
+       [TTDataSourceSection sectionWithHeaderTitle:nil 
+                                        footerTitle:@"Miscellaneous items"],
       [TTTableActivityItem itemWithText:@"TTTableActivityItem"],
 
       nil];
