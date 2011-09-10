@@ -18,6 +18,7 @@
 
 // UI
 #import "Three20UI/TTTableItem.h"
+#import "Three20UI/TTDataSourceSection.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -67,7 +68,8 @@
   va_list ap;
   va_start(ap, object);
   while (object) {
-    if ([object isKindOfClass:[NSString class]]) {
+    if ([object isKindOfClass:[NSString class]] ||
+        [object isKindOfClass:[TTDataSourceSection class]]) {
       [sections addObject:object];
       section = [NSMutableArray array];
       [items addObject:section];
@@ -137,7 +139,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
   if (_sections.count) {
-    return [_sections objectAtIndex:section];
+    if ([[_sections objectAtIndex:section] isKindOfClass:[TTDataSourceSection class]]) {
+      TTDataSourceSection* sectionInfo = [_sections objectAtIndex:section];
+      return sectionInfo.headerTitle;
+
+    } else {
+      return [_sections objectAtIndex:section];
+    }
+
+  } else {
+    return nil;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+  if (_sections.count &&
+      [[_sections objectAtIndex:section] isKindOfClass:[TTDataSourceSection class]]) {
+    TTDataSourceSection* sectionInfo = [_sections objectAtIndex:section];
+    return sectionInfo.footerTitle;
 
   } else {
     return nil;
