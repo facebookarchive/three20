@@ -17,8 +17,8 @@
 		66F2E85712D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */; };
 		66F2E85F12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */; };
-		6D672E67141B28D1001CE194 /* TTDataSourceSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D672E66141B28D1001CE194 /* TTDataSourceSection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6D672E6C141B28E0001CE194 /* TTDataSourceSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D672E6B141B28E0001CE194 /* TTDataSourceSection.m */; };
+		6D672E67141B28D1001CE194 /* TTTableSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D672E66141B28D1001CE194 /* TTTableSection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D672E6C141B28E0001CE194 /* TTTableSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D672E6B141B28E0001CE194 /* TTTableSection.m */; };
 		6DB1E37D13CA885B00A72466 /* TTLauncherPersistenceMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DB1E37C13CA885B00A72466 /* TTLauncherPersistenceMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E60820111B0C31400C93CD4 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */; };
 		6E60820311B0C32600C93CD4 /* TTNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E60820211B0C32600C93CD4 /* TTNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -446,8 +446,8 @@
 		66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableFooterInfiniteScrollView.m; path = Sources/TTTableFooterInfiniteScrollView.m; sourceTree = "<group>"; };
 		66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewNetworkEnabledDelegate.h; path = Headers/TTTableViewNetworkEnabledDelegate.h; sourceTree = "<group>"; };
 		66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableViewNetworkEnabledDelegate.m; path = Sources/TTTableViewNetworkEnabledDelegate.m; sourceTree = "<group>"; };
-		6D672E66141B28D1001CE194 /* TTDataSourceSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDataSourceSection.h; path = Headers/TTDataSourceSection.h; sourceTree = "<group>"; };
-		6D672E6B141B28E0001CE194 /* TTDataSourceSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTDataSourceSection.m; path = Sources/TTDataSourceSection.m; sourceTree = "<group>"; };
+		6D672E66141B28D1001CE194 /* TTTableSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableSection.h; path = Headers/TTTableSection.h; sourceTree = "<group>"; };
+		6D672E6B141B28E0001CE194 /* TTTableSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableSection.m; path = Sources/TTTableSection.m; sourceTree = "<group>"; };
 		6DB1E37C13CA885B00A72466 /* TTLauncherPersistenceMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherPersistenceMode.h; path = Headers/TTLauncherPersistenceMode.h; sourceTree = "<group>"; };
 		6E6081FF11B0C31400C93CD4 /* TTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTNavigationController.m; path = Sources/TTNavigationController.m; sourceTree = "<group>"; };
 		6E60820211B0C32600C93CD4 /* TTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTNavigationController.h; path = Headers/TTNavigationController.h; sourceTree = "<group>"; };
@@ -779,13 +779,13 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		6D672E6D141B28F7001CE194 /* Section */ = {
+		6D672E6D141B28F7001CE194 /* Table Section */ = {
 			isa = PBXGroup;
 			children = (
-				6D672E66141B28D1001CE194 /* TTDataSourceSection.h */,
-				6D672E6B141B28E0001CE194 /* TTDataSourceSection.m */,
+				6D672E66141B28D1001CE194 /* TTTableSection.h */,
+				6D672E6B141B28E0001CE194 /* TTTableSection.m */,
 			);
-			name = Section;
+			name = "Table Section";
 			sourceTree = "<group>";
 		};
 		6E08B274118282F700DA1579 /* Tests */ = {
@@ -1304,6 +1304,7 @@
 				6E64582C1184DFC500F08CB1 /* Table Data Source */,
 				6E64582B1184DFB500F08CB1 /* Search Display Controller */,
 				6E64582E1184E01E00F08CB1 /* Table Views */,
+				6D672E6D141B28F7001CE194 /* Table Section */,
 				6E6458301184E04F00F08CB1 /* Table Item */,
 				6E6458311184E05900F08CB1 /* Table Cell */,
 				6E6458371184E1D500F08CB1 /* Error View */,
@@ -1371,7 +1372,6 @@
 		6E64582D1184DFEF00F08CB1 /* Table Data Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6D672E6D141B28F7001CE194 /* Section */,
 				6E6454D91184D4C500F08CB1 /* TTListDataSource.h */,
 				6E6456141184D4DA00F08CB1 /* TTListDataSource.m */,
 				6E6454FA1184D4C500F08CB1 /* TTSectionedDataSource.h */,
@@ -1877,7 +1877,7 @@
 				66F2E85412D426A5006FB485 /* TTTableFooterInfiniteScrollView.h in Headers */,
 				66F2E85F12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */,
 				6DB1E37D13CA885B00A72466 /* TTLauncherPersistenceMode.h in Headers */,
-				6D672E67141B28D1001CE194 /* TTDataSourceSection.h in Headers */,
+				6D672E67141B28D1001CE194 /* TTTableSection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2238,7 +2238,7 @@
 				666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */,
 				66F2E85712D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */,
 				66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */,
-				6D672E6C141B28E0001CE194 /* TTDataSourceSection.m in Sources */,
+				6D672E6C141B28E0001CE194 /* TTTableSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
