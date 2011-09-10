@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TTDataSourceSection : NSObject {
+@interface TTTableSection : NSObject {
   NSString*     _headerTitle;
   NSString*     _footerTitle;
 }

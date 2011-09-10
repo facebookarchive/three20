@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20UI/TTDataSourceSection.h"
+#import "Three20UI/TTTableSection.h"
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -23,7 +23,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation TTDataSourceSection
+@implementation TTTableSection
 
 @synthesize headerTitle     = _headerTitle;
 @synthesize footerTitle  = _footerTitle;
@@ -31,7 +31,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (id)sectionWithHeaderTitle:(NSString*)headerTitle footerTitle:(NSString*)footerTitle {
-  TTDataSourceSection* item = [[[self alloc] init] autorelease];
+  TTTableSection* item = [[[self alloc] init] autorelease];
   item.headerTitle = headerTitle;
   item.footerTitle = footerTitle;
   return item;

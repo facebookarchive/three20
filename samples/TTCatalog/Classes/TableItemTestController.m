@@ -34,7 +34,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
     // This demonstrates how to create a table with standard table "fields".  Many of these
     // fields with URLs that will be visited when the row is selected
     self.dataSource = [TTSectionedDataSource dataSourceWithObjects:
-      [TTDataSourceSection sectionWithHeaderTitle:@"Links and Buttons" 
+      [TTTableSection sectionWithHeaderTitle:@"Links and Buttons" 
                                       footerTitle:@"Items with links & buttons"],
       [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"
                        accessoryURL:@"http://www.google.com"],
@@ -48,7 +48,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                           text:kLoremIpsum timestamp:[NSDate date] URL:@"tt://tableItemTest"],
       [TTTableMoreButton itemWithText:@"TTTableMoreButton"],
 
-      [TTDataSourceSection sectionWithHeaderTitle:@"Images" 
+      [TTTableSection sectionWithHeaderTitle:@"Images" 
                                       footerTitle:nil],
       [TTTableImageItem itemWithText:@"TTTableImageItem" imageURL:localImage
                         URL:@"tt://tableItemTest"],
@@ -74,7 +74,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                                          stringByAppendingString:kLoremIpsum]],
       [TTTableSummaryItem itemWithText:@"TTTableSummaryItem"],
 
-      [TTDataSourceSection sectionWithHeaderTitle:nil 
+      [TTTableSection sectionWithHeaderTitle:nil 
                                         footerTitle:@"Miscellaneous items"],
       [TTTableActivityItem itemWithText:@"TTTableActivityItem"],
 
