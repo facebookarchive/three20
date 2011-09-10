@@ -92,7 +92,8 @@
   va_list ap;
   va_start(ap, object);
   while (object) {
-    if ([object isKindOfClass:[NSString class]]) {
+    if ([object isKindOfClass:[NSString class]] ||
+        [object isKindOfClass:[TTDataSourceSection class]]) {
       [sections addObject:object];
 
     } else {
@@ -154,7 +155,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-  if (_sections.count &&
+  if (tableView.style==UITableViewStyleGrouped &&
+      _sections.count &&
       [[_sections objectAtIndex:section] isKindOfClass:[TTDataSourceSection class]]) {
     TTDataSourceSection* sectionInfo = [_sections objectAtIndex:section];
     return sectionInfo.footerTitle;

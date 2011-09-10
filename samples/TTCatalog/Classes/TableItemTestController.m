@@ -20,6 +20,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Table Items";
     self.variableHeightRows = YES;
+   
+    // comment this to see how the table looks with the plain style
     self.tableViewStyle = UITableViewStyleGrouped;
 
     // Uncomment this to see how the table cells look against a custom background color
@@ -72,7 +74,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                                          stringByAppendingString:kLoremIpsum]],
       [TTTableSummaryItem itemWithText:@"TTTableSummaryItem"],
 
-       [TTDataSourceSection sectionWithHeaderTitle:nil 
+      [TTDataSourceSection sectionWithHeaderTitle:nil 
                                         footerTitle:@"Miscellaneous items"],
       [TTTableActivityItem itemWithText:@"TTTableActivityItem"],
 
