@@ -19,7 +19,7 @@
 // the datasource can ask the items what cell class should be used to render the item
 @protocol TTTableItemSelectingClass <NSObject>
 @required
-+(Class)cellClass;
+-(Class)cellClass;
 @end
 
 #import <Foundation/Foundation.h>
