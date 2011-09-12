@@ -18,6 +18,6 @@
 
 /*! \mainpage Three20 API Documentation
  *
- * Generated from Three20 Release <a href="http://three20.info/roadmap/1.0.5">1.0.5</a>.
+ * Generated from Three20 Release <a href="http://three20.info/roadmap/1.0.8">1.0.8</a>.
  */
-NSString* const Three20Version = @"1.0.6.2";
+NSString* const Three20Version = @"1.0.8";

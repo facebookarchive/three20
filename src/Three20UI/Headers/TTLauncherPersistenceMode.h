@@ -14,11 +14,8 @@
 // limitations under the License.
 //
 
-#include "Paths.xcconfig"
+typedef enum {
+  TTLauncherPersistenceModeNone,  // no persistence
+  TTLauncherPersistenceModeAll,   // persists all pages & buttons
+} TTLauncherPersistenceMode;
 
-FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/Developer/Library/Frameworks"
-IPHONEOS_DEPLOYMENT_TARGET = 3.0
-SDKROOT = iphoneos
-// Required for older iOS devices (iPhone 3G)
-ARCHS = $(ARCHS_STANDARD_32_BIT)
-ARCHS[sdk=iphoneos*] = armv6 armv7
