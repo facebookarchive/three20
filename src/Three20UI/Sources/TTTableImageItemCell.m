@@ -35,6 +35,7 @@
 
 static const CGFloat kKeySpacing = 12.0f;
 static const CGFloat kDefaultImageSize = 50.0f;
+static const CGFloat kAccessoryWidth = 20.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,6 +115,9 @@ static const CGFloat kDefaultImageSize = 50.0f;
   }
 
   CGFloat maxWidth = tableView.width - (imageWidth + kTableCellHPadding*2 + kTableCellMargin*2);
+
+  if (imageItem.URL)
+    maxWidth -= kAccessoryWidth;
 
   CGSize textSize = [imageItem.text sizeWithFont:[self fontForImageItem:imageItem]
                                constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
