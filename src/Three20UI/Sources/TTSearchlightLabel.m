@@ -133,7 +133,7 @@
 
   CGSize textSize = [self sizeThatFits:CGSizeZero];
 
-  CGFloat x = 0;
+  CGFloat x = 0.0f;
   if (_textAlignment == UITextAlignmentRight) {
     x = self.frame.size.width - textSize.width;
 
@@ -141,7 +141,7 @@
     x = ceil(self.frame.size.width/2 - textSize.width/2);
   }
 
-  CGFloat y = 0;
+  CGFloat y = 0.0f;
   if (self.contentMode == UIViewContentModeCenter) {
     y = ceil(rect.size.height/2 + _font.capHeight/2);
 

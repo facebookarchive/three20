@@ -33,8 +33,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kKeySpacing = 12;
-static const CGFloat kDefaultImageSize = 50;
+static const CGFloat kKeySpacing = 12.0f;
+static const CGFloat kDefaultImageSize = 50.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

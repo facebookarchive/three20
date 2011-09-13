@@ -22,22 +22,25 @@
 // Core
 #import "Three20Core/TTGlobalCoreLocale.h"
 
-const CGFloat ttkDefaultRowHeight = 44;
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
-const CGFloat ttkDefaultPortraitToolbarHeight   = 44;
-const CGFloat ttkDefaultLandscapeToolbarHeight  = 33;
+const CGFloat ttkDefaultRowHeight = 44.0f;
 
-const CGFloat ttkDefaultPortraitKeyboardHeight      = 216;
-const CGFloat ttkDefaultLandscapeKeyboardHeight     = 160;
-const CGFloat ttkDefaultPadPortraitKeyboardHeight   = 264;
-const CGFloat ttkDefaultPadLandscapeKeyboardHeight  = 352;
+const CGFloat ttkDefaultPortraitToolbarHeight   = 44.0f;
+const CGFloat ttkDefaultLandscapeToolbarHeight  = 33.0f;
 
-const CGFloat ttkGroupedTableCellInset = 9;
-const CGFloat ttkGroupedPadTableCellInset = 42;
+const CGFloat ttkDefaultPortraitKeyboardHeight      = 216.0f;
+const CGFloat ttkDefaultLandscapeKeyboardHeight     = 160.0f;
+const CGFloat ttkDefaultPadPortraitKeyboardHeight   = 264.0f;
+const CGFloat ttkDefaultPadLandscapeKeyboardHeight  = 352.0f;
 
-const CGFloat ttkDefaultTransitionDuration      = 0.3;
-const CGFloat ttkDefaultFastTransitionDuration  = 0.2;
-const CGFloat ttkDefaultFlipTransitionDuration  = 0.7;
+const CGFloat ttkGroupedTableCellInset = 9.0f;
+const CGFloat ttkGroupedPadTableCellInset = 42.0f;
+
+const CGFloat ttkDefaultTransitionDuration      = 0.3f;
+const CGFloat ttkDefaultFastTransitionDuration  = 0.2f;
+const CGFloat ttkDefaultFlipTransitionDuration  = 0.7f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +52,7 @@ float TTOSVersion() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTOSVersionIsAtLeast(float version) {
   // Floating-point comparison is pretty bad, so let's cut it some slack with an epsilon.
-  static const CGFloat kEpsilon = 0.0000001;
+  static const CGFloat kEpsilon = 0.0000001f;
 
 #ifdef __IPHONE_4_2
   return 4.2 - version >= -kEpsilon;
@@ -145,6 +148,34 @@ BOOL TTDeviceOrientationIsLandscape() {
     default:
       return NO;
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSString* TTDeviceModelName() {
+  size_t size;
+  sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+  char *machine = malloc(size);
+  sysctlbyname("hw.machine", machine, &size, NULL, 0);
+  NSString *platform = [NSString stringWithCString:machine encoding:NSASCIIStringEncoding];
+  free(machine);
+  
+  if ([platform isEqualToString:@"iPhone1,1"])    return @"iPhone 1G";
+  if ([platform isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
+  if ([platform isEqualToString:@"iPhone2,1"])    return @"iPhone 3GS";
+  if ([platform isEqualToString:@"iPhone3,1"])    return @"iPhone 4 (GSM)";
+  if ([platform isEqualToString:@"iPhone3,2"])    return @"iPhone 4 (CDMA)";
+  if ([platform isEqualToString:@"iPod1,1"])      return @"iPod Touch 1G";
+  if ([platform isEqualToString:@"iPod2,1"])      return @"iPod Touch 2G";
+  if ([platform isEqualToString:@"iPod3,1"])      return @"iPod Touch 3G";
+  if ([platform isEqualToString:@"iPod4,1"])      return @"iPod Touch 4G";
+  if ([platform isEqualToString:@"iPad1,1"])      return @"iPad";
+  if ([platform isEqualToString:@"iPad2,1"])      return @"iPad 2 (WiFi)";
+  if ([platform isEqualToString:@"iPad2,2"])      return @"iPad 2 (GSM)";
+  if ([platform isEqualToString:@"iPad2,3"])      return @"iPad 2 (CDMA)";
+  if ([platform isEqualToString:@"i386"])         return @"Simulator";
+  
+  return platform;
 }
 
 

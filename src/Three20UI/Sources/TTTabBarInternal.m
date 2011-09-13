@@ -23,9 +23,9 @@
 #import "Three20UI/TTTab.h"
 #import "Three20UI/UIViewAdditions.h"
 
-        CGFloat   kTabMargin      = 10;
-const   NSInteger kMaxBadgeNumber = 99;
-static  CGFloat   kPadding        = 10;
+        CGFloat   kTabMargin      = 10.0f;
+const   NSInteger kMaxBadgeNumber = 99.0f;
+static  CGFloat   kPadding        = 10.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,9 +42,9 @@ TT_FIX_CATEGORY_BUG(TTTabBarInternal)
 
   if (self.contentMode == UIViewContentModeScaleToFill) {
     CGFloat maxTextWidth = self.width - (kTabMargin*2 + kPadding*2*_tabViews.count);
-    CGFloat totalTextWidth = 0;
+    CGFloat totalTextWidth = 0.0f;
     CGFloat totalTabWidth = kTabMargin*2;
-    CGFloat maxTabWidth = 0;
+    CGFloat maxTabWidth = 0.0f;
     for (int i = 0; i < _tabViews.count; ++i) {
       TTTab* tab = [_tabViews objectAtIndex:i];
       [tab sizeToFit];

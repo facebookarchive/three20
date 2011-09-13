@@ -53,9 +53,14 @@ TT_FIX_CATEGORY_BUG(UITableViewAdditions)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tableCellMargin {
   if (self.style == UITableViewStyleGrouped) {
-    return 10;
-
-  } else {
+      if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)) {
+          return 45.0;
+      }
+      else {
+          return 10.0;
+      }
+  }
+  else {
     return 0;
   }
 }

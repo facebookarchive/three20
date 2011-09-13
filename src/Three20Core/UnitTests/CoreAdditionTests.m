@@ -308,6 +308,76 @@
     @"Additional query parameters not correct. %@", [baseUrl stringByAddingQueryDictionary:query]);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSString_stringByAddingURLEncodedQueryDictionary {
+  NSString* baseUrl = @"http://google.com/search";
+  STAssertEqualObjects([baseUrl stringByAddingURLEncodedQueryDictionary:nil],
+                       [baseUrl stringByAppendingString:@"?"],
+                       @"Empty dictionary fail.");
+
+  STAssertEqualObjects([baseUrl stringByAddingURLEncodedQueryDictionary:[NSDictionary dictionary]],
+                       [baseUrl stringByAppendingString:@"?"],
+                       @"Empty dictionary fail.");
+
+  baseUrl = @"http://google.com/search?hl=foo";
+  STAssertEqualObjects([baseUrl stringByAddingURLEncodedQueryDictionary:[NSDictionary
+                                                        dictionaryWithObject:@"Ö " forKey:@"Ü"]],
+                       [baseUrl stringByAppendingString:@"&%C3%9C=%C3%96%20"],
+                       @"Single parameter fail.");
+
+
+  NSDictionary* query = [NSDictionary
+                         dictionaryWithObjectsAndKeys:
+                         @"%(", @"\u1234",
+                         @"§/",      @"hl",
+                         nil];
+  NSString* baseUrlWithQuery = [baseUrl stringByAddingURLEncodedQueryDictionary:query];
+  STAssertTrue([baseUrlWithQuery isEqualToString:[baseUrl
+                                        stringByAppendingString:@"&%E1%88%B4=%25%28&hl=%C2%A7%2F"]]
+               || [baseUrlWithQuery isEqualToString:[baseUrl
+                                        stringByAppendingString:@"&hl=%C2%A7%2F&%E1%88%B4=%25%28"]],
+               @"Additional query parameters not correct. %@",
+               [baseUrl stringByAddingQueryDictionary:query]);
+
+  NSDictionary* malformedQueryDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1]
+                                                                   forKey:@""];
+  STAssertNoThrowSpecificNamed([@"" stringByAddingURLEncodedQueryDictionary:malformedQueryDict],
+                               NSException, NSInvalidArgumentException,
+                               @"Doesn't thow expected exception");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)testNSString_urlEncoded {
+  NSString* reservedCharacters = @"!#$%&'()*+,/:;=?@[] ";
+
+  STAssertEqualObjects([reservedCharacters
+                        urlEncoded],
+                       @"%21%23%24%25%26%27%28%29%2A%2B%2C%2F%3A%3B%3D%3F%40%5B%5D%20",
+                       @"incorrect url encoding");
+
+  NSString* aLittleBitOfWhiteSpace = @"\r\n\t";
+
+  STAssertEqualObjects([aLittleBitOfWhiteSpace
+                        urlEncoded],
+                       @"%0D%0A%09",
+                       @"incorrect url encoding");
+
+  NSString* someHighCodeCharacters = @"äÄöÖüÜñàÀáÀîÎ";
+
+  STAssertEqualObjects([someHighCodeCharacters
+                        urlEncoded],
+                       @"%C3%A4%C3%84%C3%B6%C3%96%C3%BC%C3%9C%C3%B1%"
+                       @"C3%A0%C3%80%C3%A1%C3%80%C3%AE%C3%8E",
+                       @"incorrect url encoding");
+
+  NSString* someUnusualCharacters = @"Ƕဿᴞ🆒";
+
+  STAssertEqualObjects([someUnusualCharacters
+                        urlEncoded],
+                       @"%C7%B6%E1%80%BF%E1%B4%9E%F0%9F%86%92",
+                       @"incorrect url encoding");
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testNSString_versionStringCompare {
