@@ -17,6 +17,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+// When the items your TTTableViewDataSource collects conform to this protocol
+// the datasource can ask the items what cell class should be used to render the item
+@protocol TTTableItemSelectingClass <NSObject>
+@required
+
+- (Class)cellClass;
+
+@end
+
 @interface TTTableItem : NSObject <NSCoding> {
   id _userInfo;
 }
