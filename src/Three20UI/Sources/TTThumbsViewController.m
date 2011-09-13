@@ -41,7 +41,7 @@
 #import "Three20Core/TTGlobalCoreRects.h"
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static CGFloat kThumbnailRowHeight = 79;
+static CGFloat kThumbnailRowHeight = 79.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

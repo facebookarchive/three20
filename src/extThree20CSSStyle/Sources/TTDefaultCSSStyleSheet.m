@@ -52,12 +52,14 @@ NSString* kDefaultCSSPath = @"extThree20CSSStyle.bundle/stylesheets/default.css"
     BOOL loadedSuccessfully = [_styleSheet
                                loadFromFilename:TTPathForBundleResource(kDefaultCSSPath)];
 
-    // If this fails, it's very likely that you forgot to add the extThree20CSSStyle.bundle file
-    // to your project. If you didn't, ensure that it's being copied in the "Copy Bundle Resources"
-    // phase.
-    TTDASSERT(loadedSuccessfully);
+    // Test if load succesfully.
     if (!loadedSuccessfully) {
-      // Bail out.
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"%@ fail to load the Default CSS file. "
+                           @"It's very likely that you forgot to add the extThree20CSSStyle.bundle "
+                           @"to your project. If you didn't, ensure that it's being copied in "
+                           @"the 'Copy Bundle Resources' phase.", NSStringFromClass([self class])];
+        return nil;
     }
   }
 

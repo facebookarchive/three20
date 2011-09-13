@@ -41,8 +41,8 @@
 #import "Three20Core/NSStringAdditions.h"
 #import "Three20Core/TTGlobalCore.h"
 
-static CGFloat kMargin  = 1;
-static CGFloat kPadding = 5;
+static CGFloat kMargin  = 1.0f;
+static CGFloat kPadding = 5.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

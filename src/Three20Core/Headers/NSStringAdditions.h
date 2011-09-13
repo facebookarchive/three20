@@ -69,6 +69,16 @@
 - (NSString*)stringByAddingQueryDictionary:(NSDictionary*)query;
 
 /**
+ * Parses a URL, adds urlEncoded query parameters to its query, and re-encodes it as a new URL.
+ *
+ * This method encodes keys and values of query using [NSString urlEncoded] and calls
+ * stringByAddingQueryDictionary with the resulting dictionary.
+ *
+ * @throw NSInvalidArgumentException If any value or key does not respond to urlEncoded.
+ */
+- (NSString*)stringByAddingURLEncodedQueryDictionary:(NSDictionary*)query;
+
+/**
  * Returns a URL Encoded String
  */
 - (NSString*)urlEncoded;

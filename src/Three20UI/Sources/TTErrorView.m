@@ -26,9 +26,9 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kVPadding1 = 30;
-static const CGFloat kVPadding2 = 20;
-static const CGFloat kHPadding  = 10;
+static const CGFloat kVPadding1 = 30.0f;
+static const CGFloat kVPadding2 = 20.0f;
+static const CGFloat kHPadding  = 10.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ static const CGFloat kHPadding  = 10;
                       + kVPadding1 + kVPadding2;
   BOOL canShowImage = _imageView.image && self.height > maxHeight;
 
-  CGFloat totalHeight = 0;
+  CGFloat totalHeight = 0.0f;
 
   if (canShowImage) {
     totalHeight += _imageView.height;

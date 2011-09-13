@@ -19,7 +19,7 @@
 // Style (private)
 #import "Three20Style/private/TTShapeInternal.h"
 
-static const CGFloat kInsetWidth = 5;
+static const CGFloat kInsetWidth = 5.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,8 +59,8 @@ static const CGFloat kInsetWidth = 5;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGRect)subtractPointFromRect:(CGRect)rect {
-  CGFloat x = 0;
-  CGFloat y = 0;
+  CGFloat x = 0.0f;
+  CGFloat y = 0.0f;
   CGFloat w = rect.size.width;
   CGFloat h = rect.size.height;
 
@@ -97,7 +97,7 @@ static const CGFloat kInsetWidth = 5;
              reset:(BOOL)reset {
   CGFloat fw = size.width;
   CGFloat fh = size.height;
-  CGFloat pointX = 0;
+  CGFloat pointX = 0.0f;
   CGFloat radius = RD(_radius);
 
   if (lightSource >= 0 && lightSource <= 90) {
@@ -131,7 +131,7 @@ static const CGFloat kInsetWidth = 5;
                reset:(BOOL)reset {
   CGFloat fw = size.width;
   CGFloat fh = size.height;
-  CGFloat pointY = 0;
+  CGFloat pointY = 0.0f;
   CGFloat radius = RD(_radius);
 
   if (reset) {
@@ -157,7 +157,7 @@ static const CGFloat kInsetWidth = 5;
                 reset:(BOOL)reset {
   CGFloat fw = size.width;
   CGFloat fh = size.height;
-  CGFloat pointX = 0;
+  CGFloat pointX = 0.0f;
   CGFloat radius = RD(_radius);
 
   if (reset) {
@@ -190,7 +190,7 @@ static const CGFloat kInsetWidth = 5;
 - (void)addLeftEdge:(CGSize)size lightSource:(NSInteger)lightSource toPath:(CGMutablePathRef)path
               reset:(BOOL)reset {
   CGFloat fh = size.height;
-  CGFloat pointY = 0;
+  CGFloat pointY = 0.0f;
   CGFloat radius = RD(_radius);
 
   if (reset) {

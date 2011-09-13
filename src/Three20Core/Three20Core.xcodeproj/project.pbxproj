@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6656B2531354035900B34AB5 /* TTAvailability.h in Headers */ = {isa = PBXBuildFile; fileRef = 6656B2521354035900B34AB5 /* TTAvailability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6656B2551354035F00B34AB5 /* TTAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6656B2541354035F00B34AB5 /* TTAvailability.m */; };
 		660E7375135A560A00531398 /* Three20Version.h in Headers */ = {isa = PBXBuildFile; fileRef = 660E7374135A560A00531398 /* Three20Version.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66A0530A132EB47900132434 /* Three20.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A05309132EB47900132434 /* Three20.m */; };
 		66A0530C132EB47F00132434 /* Three20.h in Headers */ = {isa = PBXBuildFile; fileRef = 66A0530B132EB47F00132434 /* Three20.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -67,6 +69,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6656B2521354035900B34AB5 /* TTAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTAvailability.h; path = Headers/TTAvailability.h; sourceTree = "<group>"; };
+		6656B2541354035F00B34AB5 /* TTAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTAvailability.m; path = Sources/TTAvailability.m; sourceTree = "<group>"; };
 		660E7374135A560A00531398 /* Three20Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Version.h; path = Headers/Three20Version.h; sourceTree = "<group>"; };
 		66A05309132EB47900132434 /* Three20.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Three20.m; path = Sources/Three20.m; sourceTree = "<group>"; };
 		66A0530B132EB47F00132434 /* Three20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20.h; path = Headers/Three20.h; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 				6E178E7D1183C8E5003B099E /* TTGlobalCorePaths.m */,
 				6EDAE9C6118CA1720008133C /* TTGlobalCoreRects.h */,
 				6EDAE9C8118CA1790008133C /* TTGlobalCoreRects.m */,
+				6656B2521354035900B34AB5 /* TTAvailability.h */,
+				6656B2541354035F00B34AB5 /* TTAvailability.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -346,6 +352,7 @@
 				66ADC90F1290B24D00855386 /* TTExtensionInfo.h in Headers */,
 				66ADCE681291BC1E00855386 /* TTExtensionInfoPrivate.h in Headers */,
 				66ADCE8B1291BEBB00855386 /* TTExtensionAuthor.h in Headers */,
+				6656B2531354035900B34AB5 /* TTAvailability.h in Headers */,
 				66A0530C132EB47F00132434 /* Three20.h in Headers */,
 				660E7375135A560A00531398 /* Three20Version.h in Headers */,
 			);
@@ -497,6 +504,7 @@
 				66ECA257128DFE28006C78C2 /* TTExtensionLoader.m in Sources */,
 				66ADC9091290B23A00855386 /* TTExtensionInfo.m in Sources */,
 				66ADCE871291BEAE00855386 /* TTExtensionAuthor.m in Sources */,
+				6656B2551354035F00B34AB5 /* TTAvailability.m in Sources */,
 				66A0530A132EB47900132434 /* Three20.m in Sources */,
 				66CE68FB135B320F00E127E2 /* Three20Version.m in Sources */,
 			);

@@ -46,7 +46,7 @@ static const CGFloat kHeaderVisibleHeight = 60.0f;
 static const CGFloat kInfiniteScrollFooterHeight = 40.0f;
 
 // The percentage of table scrolling to trigger infinite scroll agter
-static const CGFloat kInfiniteScrollThreshold = 0.5;
+static const CGFloat kInfiniteScrollThreshold = 0.5f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
