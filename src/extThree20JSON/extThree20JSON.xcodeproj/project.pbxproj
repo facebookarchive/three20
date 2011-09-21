@@ -801,6 +801,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 663DB06D12661EE900CF8CEA /* Library+YAJL.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_YAJL;
