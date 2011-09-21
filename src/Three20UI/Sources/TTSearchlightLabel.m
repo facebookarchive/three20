@@ -152,7 +152,7 @@
     y = _font.capHeight;
   }
 
-  CGContextSelectFont(context, [_font.fontName UTF8String], _font.pointSize, kCGEncodingMacRoman);
+  CGContextSelectFont(context, [_font.fontName cStringUsingEncoding:NSMacOSRomanStringEncoding], _font.pointSize, kCGEncodingMacRoman);
   CGContextSetTextDrawingMode(context, kCGTextFill);
   CGContextSetTextMatrix(context, CGAffineTransformScale(CGAffineTransformIdentity, 1, -1));
 
@@ -169,7 +169,7 @@
     CGImageRelease(mask);
 
     [_spotlightColor setFill];
-    CGContextShowTextAtPoint(context, x, y, [self.text UTF8String], self.text.length);
+    CGContextShowTextAtPoint(context, x, y, [self.text cStringUsingEncoding:NSMacOSRomanStringEncoding], self.text.length);
   }
 }
 
