@@ -333,4 +333,49 @@ TT_FIX_CATEGORY_BUG(UIImageAdditions)
 	return image;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (UIImage *)imageFromALAsset:(ALAsset *)asset forImageSize:(TTALAssetImageSize)imageSize {
+    ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
+	
+    CGImageRef imageRef = nil;
+    
+    switch (imageSize) {
+        case TTALAssetImageSizeThumb:
+            imageRef = [asset thumbnail];
+            break;
+        case TTALAssetImageSizeFullScreen:
+            imageRef = [assetRepresentation fullScreenImage];
+            break;
+        case TTALAssetImageSizeFullResolution:
+            imageRef = [assetRepresentation fullResolutionImage];
+            break;
+        default:
+            break;
+    }
+    
+	UIImage *image = [UIImage imageWithCGImage:imageRef];
+	
+    if (imageSize != TTALAssetImageSizeThumb) {
+        switch([assetRepresentation orientation]) {
+            case UIImageOrientationUp:
+            case UIImageOrientationUpMirrored:
+                break;
+            case UIImageOrientationDown:
+            case UIImageOrientationDownMirrored:
+                image = [self image:image rotateInRadians:M_PI];
+                break;
+            case UIImageOrientationLeft:
+            case UIImageOrientationLeftMirrored:
+                image = [self image:image rotateInRadians:M_PI_2];
+                break;
+            case UIImageOrientationRight:
+            case UIImageOrientationRightMirrored:
+                image = [self image:image rotateInRadians:-M_PI_2];
+                break;
+        }
+    }
+    
+	return image;
+}
+
 @end

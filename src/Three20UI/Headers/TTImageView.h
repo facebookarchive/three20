@@ -20,6 +20,9 @@
 // Network
 #import "Three20Network/TTURLRequestDelegate.h"
 
+// Style
+#import "Three20Style/UIImageAdditions.h"
+
 @class TTURLRequest;
 @protocol TTImageViewDelegate;
 
@@ -32,6 +35,7 @@
   UIImage*      _image;
   UIImage*      _defaultImage;
   BOOL          _autoresizesToImage;
+  TTALAssetImageSize _assetImageSize;
 
   id<TTImageViewDelegate> _delegate;
 }
@@ -75,6 +79,11 @@
  * A delegate that notifies you when the image has started and finished loading.
  */
 @property (nonatomic, assign) id<TTImageViewDelegate> delegate;
+
+/**
+ * A property to determine the size of the image loaded from urlPath.
+ */
+@property (nonatomic, assign) TTALAssetImageSize assetImageSize;
 
 /**
  * Cancel any pending request, remove the image, and redraw the view.

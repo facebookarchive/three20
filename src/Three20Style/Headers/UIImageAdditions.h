@@ -19,6 +19,13 @@
 
 #import <AssetsLibrary/AssetsLibrary.h>
 
+
+typedef enum  {
+    TTALAssetImageSizeThumb,
+    TTALAssetImageSizeFullScreen,
+    TTALAssetImageSizeFullResolution
+} TTALAssetImageSize;
+
 @interface UIImage (TTCategory)
 
 /*
@@ -44,5 +51,6 @@
 
 + (UIImage *)image:(UIImage *)image rotateInRadians:(CGFloat)radians;
 + (UIImage *)imageFromALAsset:(ALAsset *)asset fullResolution:(BOOL)fullResolution orFullScreen:(BOOL)fullScreen;
++ (UIImage *)imageFromALAsset:(ALAsset *)asset forImageSize:(TTALAssetImageSize)imageSize;
 
 @end

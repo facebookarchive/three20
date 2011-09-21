@@ -27,7 +27,6 @@
 #import "Three20Style/TTShape.h"
 #import "Three20Style/TTStyleContext.h"
 #import "Three20Style/TTContentStyle.h"
-#import "Three20Style/UIImageAdditions.h"
 
 // Network
 #import "Three20Network/TTURLCache.h"
@@ -48,12 +47,13 @@
 @synthesize autoresizesToImage  = _autoresizesToImage;
 
 @synthesize delegate = _delegate;
-
+@synthesize assetImageSize = _assetImageSize;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _autoresizesToImage = NO;
+    self.assetImageSize = TTALAssetImageSizeFullResolution;
   }
   return self;
 }
@@ -295,7 +295,7 @@
 //						 UIImage *imageForAsset = [[[UIImage alloc] initWithCGImage:imageRef scale:1.0 orientation:representation.orientation] autorelease];
 
 						 // Instead we use this helper:
-						 self.image = [UIImage imageFromALAsset:asset fullResolution:NO orFullScreen:YES];
+                         self.image = [UIImage imageFromALAsset:asset forImageSize:self.assetImageSize];
 
 						 [self imageViewDidLoadImage:self.image];
 						 if ([_delegate respondsToSelector:@selector(imageView:didLoadImage:)]) {
