@@ -17,7 +17,6 @@
 // UI Controllers
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTViewController.h"
-#import "Three20UI/TTSplitViewController.h"
 #import "Three20UI/TTNavigationController.h"
 #import "Three20UI/TTExtensionsController.h"
 #import "Three20UI/TTWebController.h"
