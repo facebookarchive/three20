@@ -74,8 +74,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                                          stringByAppendingString:kLoremIpsum]],
       [TTTableSummaryItem itemWithText:@"TTTableSummaryItem"],
 
-      [TTTableSection sectionWithHeaderTitle:nil 
-                                        footerTitle:@"Miscellaneous items"],
+      [TTTableSection sectionWithHeaderTitle:@"" 
+                                        footerTitle:@"Miscellaneous"],
       [TTTableActivityItem itemWithText:@"TTTableActivityItem"],
 
       nil];
