@@ -329,7 +329,16 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dismissModalViewController {
-  [self dismissModalViewControllerAnimated:YES];
+  if ([self respondsToSelector:@selector(presentingViewController)])
+  {
+    // iOS 5 and above
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+  }
+  else
+  {
+    // Before iOS 5
+    [self dismissModalViewControllerAnimated:YES];
+  }
 }
 
 
