@@ -145,7 +145,7 @@ static const CGFloat kControlPadding = 8;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  if ([TTTableControlCell shouldSizeControlToFit:_control]) {
+  if ([[self class] shouldSizeControlToFit:_control]) {
     _control.frame = CGRectInset(self.contentView.bounds, 2, kTableCellSpacing / 2);
 
   } else {
