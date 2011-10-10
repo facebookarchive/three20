@@ -16,6 +16,6 @@
 
 #import "Three20Style/private/TTShapeInternal.h"
 
-const CGFloat kArrowPointWidth  = 2.8;
-const CGFloat kArrowRadius      = 2;
+const CGFloat kArrowPointWidth  = 2.8f;
+const CGFloat kArrowRadius      = 2.0f;
 

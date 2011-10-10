@@ -130,6 +130,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)shareAction {
+  if (nil != _actionSheet && [_actionSheet isVisible]) {
+    //should only happen on the iPad
+    assert(TTIsPad());
+    [_actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+    return;
+  }
+
   if (nil == _actionSheet) {
     _actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                delegate:self
@@ -143,12 +150,7 @@
     }  else {
       [_actionSheet showInView: self.view];
     }
-
-  } else {
-    [_actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
-    TT_RELEASE_SAFELY(_actionSheet);
   }
-
 }
 
 
@@ -399,6 +401,12 @@
   if (buttonIndex == 0) {
     [[UIApplication sharedApplication] openURL:self.URL];
   }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  TT_RELEASE_SAFELY(_actionSheet);
 }
 
 

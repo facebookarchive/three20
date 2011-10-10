@@ -16,8 +16,8 @@
 
 #import "Three20UI/TTTableViewGroupedVarHeightDelegate.h"
 
-static const CGFloat kEmptyHeaderHeight = 1;
-static const CGFloat kSectionHeaderHeight = 35;
+static const CGFloat kEmptyHeaderHeight = 1.0f;
+static const CGFloat kSectionHeaderHeight = 35.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
