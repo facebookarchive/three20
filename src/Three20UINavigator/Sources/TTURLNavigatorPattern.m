@@ -487,7 +487,7 @@ static NSString* kUniversalURLPattern = @"*";
       returnValue = [self invoke:target withURL:URL query:query];
 
     } else {
-      TTDWARNING(@"No object created from URL:'%@' URL");
+      TTDWARNING(@"No object created from URL:'%@'", URL);
     }
     [target release];
   }
