@@ -775,7 +775,7 @@
 					EXTJSON_YAJL,
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -793,7 +793,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 			};
 			name = Internal;
 		};
@@ -809,7 +809,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_YAJL;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
 			name = Release;
