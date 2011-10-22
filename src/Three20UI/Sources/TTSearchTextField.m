@@ -419,7 +419,7 @@ static const CGFloat kDesiredTableHeight = 150.0f;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showSearchResults:(BOOL)show {
   if (show && _dataSource) {
-    self.tableView;
+    [self tableView];
 
     if (!_shadowView) {
       _shadowView = [[TTView alloc] init];
