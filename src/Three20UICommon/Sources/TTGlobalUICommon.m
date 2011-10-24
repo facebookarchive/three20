@@ -106,6 +106,15 @@ BOOL TTIsPhoneSupported() {
   return [deviceType isEqualToString:@"iPhone"];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTIsMultiTaskingSupported() {
+    UIDevice* device = [UIDevice currentDevice];
+    BOOL backgroundSupported = NO;
+    if ([device respondsToSelector:@selector(isMultitaskingSupported)]){
+         backgroundSupported = device.multitaskingSupported;
+    }
+    return backgroundSupported;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsPad() {
