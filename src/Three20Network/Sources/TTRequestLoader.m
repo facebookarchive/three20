@@ -37,12 +37,51 @@
 
 static const NSInteger kLoadMaxRetries = 2;
 
-
 @interface TTRequestLoader ()
+- (void)resetCancelLoadingState;
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response;
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 @end
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface AlertDelegate : NSObject<UIAlertViewDelegate>
+{
+  TTRequestLoader *mLoader;
+}
+-(id)initWithLoader:(TTRequestLoader*)loader;
+@end
+
+@implementation AlertDelegate
+
+-(id)initWithLoader:(TTRequestLoader*)loader;
+{
+  if ((self = [super init])) {
+    mLoader = [loader retain];
+  }
+  return self;
+}
+
+- (void)alertView:(UIAlertView*)alert clickedButtonAtIndex:(NSInteger)idx
+{
+  if (idx != 0) {
+    [mLoader cancel];
+  }
+  [alert release];
+  [mLoader resetCancelLoadingState];
+  [self autorelease];
+}
+
+-(void)dealloc
+{
+  [mLoader release];
+  [super dealloc];
+}
+@end
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -152,6 +191,33 @@ static const NSInteger kLoadMaxRetries = 2;
       }
     }
   }
+}
+
+#pragma mark Alert messaging when download is bigger than max allowed
+
+-(void)showMaxContentAlert
+{
+  AlertDelegate *deleg = [[AlertDelegate alloc] initWithLoader:self];
+  NSString *t, *m, *b0, *b1;
+  NSBundle *bndl = [NSBundle mainBundle];
+  
+  m = @"It could take a while to download this content. Do you want to continue?";
+  m = [bndl localizedStringForKey:m value:m table:nil];
+  t = [bndl localizedStringForKey:@"Warning" value:@"Warning" table:nil];
+  b0= [bndl localizedStringForKey:@"Continue" value:@"Continue" table:nil];
+  b1= [bndl localizedStringForKey:@"Abort Download" value:@"Abort Download" table:nil];
+  
+  _cancelAlert = [[UIAlertView alloc] initWithTitle:t
+                                            message:m
+                                           delegate:deleg
+                                  cancelButtonTitle:b0
+                                  otherButtonTitles:b1, nil];
+  [_cancelAlert show];
+}
+
+-(void)resetCancelLoadingState
+{
+  _cancelAlert = nil;
 }
 
 
@@ -349,12 +415,19 @@ static const NSInteger kLoadMaxRetries = 2;
   // method. Setting the max content length to zero allows anything to go through. If you just
   // want to raise the limit, set it to any positive byte size.
   // [[TTURLRequestQueue mainQueue] setMaxContentLength:0]
-  TTDASSERT(0 == _queue.maxContentLength || contentLength <=_queue.maxContentLength);
+  //TTDASSERT(0 == _queue.maxContentLength || contentLength <=_queue.maxContentLength);
+  TTDPRINT(@"contentLength=%d", contentLength);
 
   if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
-    TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"MAX CONTENT LENGTH EXCEEDED (%d) %@",
-                    contentLength, _urlPath);
-    [self cancel];
+    // instead of unilaterally cancelling the download, show a dialog to let the
+    // user decide. While the user decides, the download starts anyway.
+    [self performSelectorOnMainThread:@selector(showMaxContentAlert)
+                           withObject:nil
+                        waitUntilDone:YES];
+    
+//    TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"MAX CONTENT LENGTH EXCEEDED (%d) %@",
+//                    contentLength, _urlPath);
+//    [self cancel];
   }
 
   _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
@@ -393,6 +466,11 @@ static const NSInteger kLoadMaxRetries = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+  if (_cancelAlert) {
+    [_cancelAlert dismissWithClickedButtonIndex:1 animated:YES];
+    [self resetCancelLoadingState];
+  }
+  
   TTNetworkRequestStopped();
 
   TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Response status code: %d", _response.statusCode);
