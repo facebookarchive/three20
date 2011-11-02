@@ -113,12 +113,14 @@ BOOL TTIsPad() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 UIDeviceOrientation TTDeviceOrientation() {
-  UIDeviceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
-  if (UIDeviceOrientationUnknown == orient) {
+  UIDeviceOrientation o;
+  o = (UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation;
+
+  if (UIDeviceOrientationUnknown == o) {
     return UIDeviceOrientationPortrait;
 
   } else {
-    return orient;
+    return o;
   }
 }
 
@@ -159,7 +161,7 @@ NSString* TTDeviceModelName() {
   sysctlbyname("hw.machine", machine, &size, NULL, 0);
   NSString *platform = [NSString stringWithCString:machine encoding:NSASCIIStringEncoding];
   free(machine);
-  
+
   if ([platform isEqualToString:@"iPhone1,1"])    return @"iPhone 1G";
   if ([platform isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
   if ([platform isEqualToString:@"iPhone2,1"])    return @"iPhone 3GS";
@@ -174,7 +176,7 @@ NSString* TTDeviceModelName() {
   if ([platform isEqualToString:@"iPad2,2"])      return @"iPad 2 (GSM)";
   if ([platform isEqualToString:@"iPad2,3"])      return @"iPad 2 (CDMA)";
   if ([platform isEqualToString:@"i386"])         return @"Simulator";
-  
+
   return platform;
 }
 

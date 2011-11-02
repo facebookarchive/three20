@@ -85,4 +85,8 @@
 
 - (NSString*)titleForError:(NSError*)error;
 
+- (void)layoutTextEditor;
+
+- (void)showKeyboard;
+
 @end

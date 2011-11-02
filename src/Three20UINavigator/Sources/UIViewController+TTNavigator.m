@@ -37,7 +37,7 @@ static NSMutableDictionary* gNavigatorURLs          = nil;
 static NSMutableSet*        gsNavigatorControllers  = nil;
 static NSTimer*             gsGarbageCollectorTimer = nil;
 
-static const NSTimeInterval kGarbageCollectionInterval = 20;
+static const NSTimeInterval kGarbageCollectionInterval = 5;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

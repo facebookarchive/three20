@@ -56,6 +56,11 @@
    * When load requests fail we'll attempt the request again, as many as 2 times by default.
    */
   int                     _retriesLeft;
+  
+  /**
+   * Alert shown if the request is configured with a max download cap.
+   */
+  id                      _cancelAlert;
 }
 
 /**
