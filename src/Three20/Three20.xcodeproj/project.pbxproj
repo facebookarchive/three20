@@ -391,6 +391,7 @@
 				BEF31F370F352DF5000DE5D2 /* Sources */,
 				668E6653131ADFFD00ACE4AB /* Lint */,
 				BEF31F380F352DF5000DE5D2 /* Frameworks */,
+				E55871171457D2A3000F5589 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -614,6 +615,19 @@
 			shellPath = "/bin/sh ../scripts/Protect.command";
 			shellScript = "";
 		};
+		E55871171457D2A3000F5589 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp ${BUILT_PRODUCTS_DIR}/*  ${BUILD_DIR}/";
+		};
 		EB9E6C6010B6A8F800DE563C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -741,7 +755,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos;
 			};
 			name = Internal;
 		};
@@ -770,7 +783,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
-				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -781,7 +793,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)";
-				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
 			name = Release;
