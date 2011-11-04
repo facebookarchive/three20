@@ -23,6 +23,11 @@
 float TTOSVersion();
 
 /**
+ * Checks if the run-time version of the OS is at least a certain version.
+ */
+BOOL TTRuntimeOSVersionIsAtLeast(float version);
+
+/**
  * Checks if the link-time version of the OS is at least a certain version.
  */
 BOOL TTOSVersionIsAtLeast(float version);

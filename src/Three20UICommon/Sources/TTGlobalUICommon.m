@@ -48,6 +48,13 @@ float TTOSVersion() {
   return [[[UIDevice currentDevice] systemVersion] floatValue];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTRuntimeOSVersionIsAtLeast(float version) {
+
+    static const CGFloat kEpsilon = 0.0000001f;
+    return TTOSVersion() - version > -kEpsilon;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTOSVersionIsAtLeast(float version) {
