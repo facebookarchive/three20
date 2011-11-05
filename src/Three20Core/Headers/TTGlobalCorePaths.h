@@ -27,7 +27,7 @@ BOOL TTIsBundleURL(NSString* URL);
 BOOL TTIsDocumentsURL(NSString* URL);
 
 /**
- * @return YES if the URL begins with "caches://"
+ * @return YES if the URL begins with "cache://"
  */
 BOOL TTIsCachesURL(NSString* URL);
 
