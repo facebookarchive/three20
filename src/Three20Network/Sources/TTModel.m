@@ -15,6 +15,7 @@
 //
 
 #import "Three20Network/TTModel.h"
+#import "Three20Network/TTModelDelegate.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"

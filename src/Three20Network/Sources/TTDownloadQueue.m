@@ -9,6 +9,7 @@
 #import "TTDownloadQueue.h"
 #import "TTDownloadRequestLoader.h"
 #import "TTDownloadRequest.h"
+#import "TTURLRequestDelegate.h"
 
 static const NSInteger kMaxConcurrentLoads = 3;
 

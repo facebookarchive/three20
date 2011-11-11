@@ -676,7 +676,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)viewControllerForURL: (NSString*)URL
                                     query: (NSDictionary*)query
-                                  pattern: (TTURLNavigatorPattern**)pattern {
+                                  pattern: (TTURLPattern**)pattern {
   NSRange fragmentRange = [URL rangeOfString:@"#" options:NSBackwardsSearch];
   if (fragmentRange.location != NSNotFound) {
     NSString* baseURL = [URL substringToIndex:fragmentRange.location];
@@ -691,7 +691,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
       }
 
     } else {
-      id object = [_URLMap objectForURL:baseURL query:nil pattern:pattern];
+      id object = [_URLMap objectForURL:baseURL query:nil pattern: (TTURLNavigatorPattern **)pattern];
       if (object) {
         id result = [_URLMap dispatchURL:URL toTarget:object query:query];
         if ([result isKindOfClass:[UIViewController class]]) {
@@ -707,7 +707,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
     }
   }
 
-  id object = [_URLMap objectForURL:URL query:query pattern:pattern];
+  id object = [_URLMap objectForURL:URL query:query pattern:(TTURLNavigatorPattern **)pattern];
   if (object) {
     UIViewController* controller = object;
     controller.originalNavigatorURL = URL;

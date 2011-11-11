@@ -55,7 +55,7 @@ TT_FIX_CATEGORY_BUG(NSDateAdditions)
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 	NSDateComponents *comps = [gregorian components:
                                (NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit)
-                                           fromDate:[NSDate date]];
+                                           fromDate: self];
 	NSDate *midnight = [gregorian dateFromComponents:comps];
 	[gregorian release];
 	return midnight;
@@ -116,10 +116,12 @@ TT_FIX_CATEGORY_BUG(NSDateAdditions)
 - (NSInteger)dayInWeek {
 	
 	NSCalendar *calendar = [NSCalendar currentCalendar];
-	
+
 	NSDateComponents *comps = [calendar components: NSWeekdayCalendarUnit fromDate: self];
 	
-	return [comps weekday];
+	NSInteger weekdDay = [comps weekday];
+	
+	return weekdDay;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

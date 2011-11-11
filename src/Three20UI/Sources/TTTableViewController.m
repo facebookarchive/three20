@@ -240,7 +240,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
-  self.tableView;
+  
+  if(self.tableView) {}
 
   // If this view was unloaded and is now being reloaded, and it was previously
   // showing a table banner, then redisplay that banner now.
@@ -425,7 +426,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)canShowModel {
+	
   if ([_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+	  
     NSInteger numberOfSections = [_dataSource numberOfSectionsInTableView:_tableView];
     if (!numberOfSections) {
       return NO;

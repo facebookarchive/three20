@@ -3,7 +3,7 @@
 //  Three20Network
 //
 //  Created by Matěj Ornest on 2.6.11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Mineus s.r.o. All rights reserved.
 //
 
 #import "TTURLBaseResponse.h"
