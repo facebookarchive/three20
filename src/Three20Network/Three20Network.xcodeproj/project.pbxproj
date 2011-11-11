@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		35060FFF1397E3DE004CFF7F /* TTDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 35060FFB1397E3DE004CFF7F /* TTDownloadQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		350610001397E3DE004CFF7F /* TTDownloadRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 35060FFC1397E3DE004CFF7F /* TTDownloadRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		350610011397E3DE004CFF7F /* TTDownloadRequestLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 35060FFD1397E3DE004CFF7F /* TTDownloadRequestLoader.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -22,6 +23,9 @@
 		350610111397E426004CFF7F /* TTDownloadRequestLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610051397E426004CFF7F /* TTDownloadRequestLoader.m */; };
 		350610121397E426004CFF7F /* TTURLBaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610071397E426004CFF7F /* TTURLBaseResponse.m */; };
 		350610131397E426004CFF7F /* TTURLPlistResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 350610081397E426004CFF7F /* TTURLPlistResponse.m */; };
+=======
+		662D819D126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 662D819C126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */; };
+>>>>>>> f4f9bc60bd7a56a50b9cc00797b30d0bc2703e94
 		664B29BF12848AA50008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29BC12848AA50008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		664B29C312848AAD0008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29C012848AAD0008D569 /* TTErrorCodes.m */; };
 		66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */; };
@@ -59,6 +63,10 @@
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE739CD1184BAF600A35176 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */; };
 		6EF96405118EFCF0003902E7 /* TTURLRequestQueueInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF96404118EFCF0003902E7 /* TTURLRequestQueueInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+<<<<<<< HEAD
+=======
+		E1F076A1130521F7007CA6F1 /* NetworkRequestTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */; };
+>>>>>>> f4f9bc60bd7a56a50b9cc00797b30d0bc2703e94
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +108,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
 		35060FFB1397E3DE004CFF7F /* TTDownloadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDownloadQueue.h; path = Headers/TTDownloadQueue.h; sourceTree = "<group>"; };
 		35060FFC1397E3DE004CFF7F /* TTDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDownloadRequest.h; path = Headers/TTDownloadRequest.h; sourceTree = "<group>"; };
 		35060FFD1397E3DE004CFF7F /* TTDownloadRequestLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTDownloadRequestLoader.h; path = Headers/TTDownloadRequestLoader.h; sourceTree = "<group>"; };
@@ -110,6 +119,9 @@
 		350610061397E426004CFF7F /* TTURLBaseResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = TTURLBaseResponse.h; path = Sources/TTURLBaseResponse.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		350610071397E426004CFF7F /* TTURLBaseResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = TTURLBaseResponse.m; path = Sources/TTURLBaseResponse.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		350610081397E426004CFF7F /* TTURLPlistResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLPlistResponse.m; path = Sources/TTURLPlistResponse.m; sourceTree = "<group>"; };
+=======
+		662D819C126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
+>>>>>>> f4f9bc60bd7a56a50b9cc00797b30d0bc2703e94
 		664B29BC12848AA50008D569 /* TTErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorCodes.h; path = Headers/TTErrorCodes.h; sourceTree = "<group>"; };
 		664B29C012848AAD0008D569 /* TTErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorCodes.m; path = Sources/TTErrorCodes.m; sourceTree = "<group>"; };
 		66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkURLCacheTests.m; path = UnitTests/NetworkURLCacheTests.m; sourceTree = "<group>"; };

@@ -157,7 +157,7 @@
 
     nil];
 
-  CGFloat padding = 10;
+  CGFloat padding = 10.0f;
   CGFloat viewWidth = scrollView.width/2 - padding*2;
   CGFloat viewHeight = TT_ROW_HEIGHT;
 

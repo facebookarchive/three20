@@ -16,6 +16,9 @@
 
 #import "Three20UI/private/TTButtonContent.h"
 
+// Style
+#import "Three20Style/TTImageStyle.h"
+
 // UI
 #import "Three20UI/TTImageViewDelegate.h"
 
@@ -149,6 +152,11 @@
       }
 
     } else {
+      TTImageStyle* imageStyle = [_style firstStyleOfClass:[TTImageStyle class]];
+      if (imageStyle && imageStyle.defaultImage) {
+        self.image = imageStyle.defaultImage;
+      }
+
       TTURLRequest* request = [TTURLRequest requestWithURL:_imageURL delegate:self];
       request.response = [[[TTURLImageResponse alloc] init] autorelease];
       [request send];

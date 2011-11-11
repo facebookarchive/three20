@@ -32,7 +32,7 @@
 #import "Three20Style/TTDefaultStyleSheet.h"
 #import "Three20Style/TTGlobalStyle.h"
 
-static const CGFloat kMaxLabelHeight = 2000;
+static const CGFloat kMaxLabelHeight = 2000.0f;
 static const UILineBreakMode kLineBreakMode = UILineBreakModeWordWrap;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

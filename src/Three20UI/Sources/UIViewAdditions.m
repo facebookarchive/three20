@@ -291,7 +291,7 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)ttScreenX {
-  CGFloat x = 0;
+  CGFloat x = 0.0f;
   for (UIView* view = self; view; view = view.superview) {
     x += view.left;
   }
@@ -301,7 +301,7 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)ttScreenY {
-  CGFloat y = 0;
+  CGFloat y = 0.0f;
   for (UIView* view = self; view; view = view.superview) {
     y += view.top;
   }
@@ -311,7 +311,7 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)screenViewX {
-  CGFloat x = 0;
+  CGFloat x = 0.0f;
   for (UIView* view = self; view; view = view.superview) {
       x += view.left;
 
@@ -446,7 +446,7 @@ TT_FIX_CATEGORY_BUG(UIViewAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGPoint)offsetFromView:(UIView*)otherView {
-  CGFloat x = 0, y = 0;
+  CGFloat x = 0.0f, y = 0.0f;
   for (UIView* view = self; view && view != otherView; view = view.superview) {
     x += view.left;
     y += view.top;

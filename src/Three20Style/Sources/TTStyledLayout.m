@@ -709,7 +709,7 @@
 
   NSInteger stringIndex = 0;
   NSInteger lineStartIndex = 0;
-  CGFloat frameWidth = 0;
+  CGFloat frameWidth = 0.0f;
   NSInteger frameStart = 0;
 
   while (stringIndex < length) {

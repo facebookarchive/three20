@@ -168,7 +168,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)layoutViews {
-  CGFloat y = 0;
+  CGFloat y = 0.0f;
 
   for (UIView* view in _scrollView.subviews) {
     view.frame = CGRectMake(0, y, self.view.width, view.height);

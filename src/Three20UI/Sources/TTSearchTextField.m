@@ -41,8 +41,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kShadowHeight = 24;
-static const CGFloat kDesiredTableHeight = 150;
+static const CGFloat kShadowHeight = 24.0f;
+static const CGFloat kDesiredTableHeight = 150.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -472,7 +472,7 @@ static const CGFloat kDesiredTableHeight = 150;
 - (CGRect)rectForSearchResults:(BOOL)withKeyboard {
   UIView* superview = self.superviewForSearchResults;
 
-  CGFloat y = 0;
+  CGFloat y = 0.0f;
   UIView* view = self;
   while (view != superview) {
     y += view.top;
