@@ -17,6 +17,8 @@
 		66F2E85712D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */; };
 		66F2E85F12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */; };
+		6D31FEDB14312683006C6B7F /* TTTableSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D31FEDA14312683006C6B7F /* TTTableSection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D31FEDD1431268C006C6B7F /* TTTableSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D31FEDC1431268C006C6B7F /* TTTableSection.m */; };
 		6DB1E37D13CA885B00A72466 /* TTLauncherPersistenceMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DB1E37C13CA885B00A72466 /* TTLauncherPersistenceMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DD20D35141D0C1B00916A4A /* TTTableSettingsItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DD20D34141D0C1B00916A4A /* TTTableSettingsItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6DD20D37141D0C2800916A4A /* TTTableSettingsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD20D36141D0C2800916A4A /* TTTableSettingsItem.m */; };
@@ -448,6 +450,8 @@
 		66F2E85512D426AF006FB485 /* TTTableFooterInfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableFooterInfiniteScrollView.m; path = Sources/TTTableFooterInfiniteScrollView.m; sourceTree = "<group>"; };
 		66F2E85D12D426DA006FB485 /* TTTableViewNetworkEnabledDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewNetworkEnabledDelegate.h; path = Headers/TTTableViewNetworkEnabledDelegate.h; sourceTree = "<group>"; };
 		66F2E86312D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableViewNetworkEnabledDelegate.m; path = Sources/TTTableViewNetworkEnabledDelegate.m; sourceTree = "<group>"; };
+		6D31FEDA14312683006C6B7F /* TTTableSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableSection.h; path = Headers/TTTableSection.h; sourceTree = "<group>"; };
+		6D31FEDC1431268C006C6B7F /* TTTableSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableSection.m; path = Sources/TTTableSection.m; sourceTree = "<group>"; };
 		6DB1E37C13CA885B00A72466 /* TTLauncherPersistenceMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTLauncherPersistenceMode.h; path = Headers/TTLauncherPersistenceMode.h; sourceTree = "<group>"; };
 		6DD20D34141D0C1B00916A4A /* TTTableSettingsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableSettingsItem.h; path = Headers/TTTableSettingsItem.h; sourceTree = "<group>"; };
 		6DD20D36141D0C2800916A4A /* TTTableSettingsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableSettingsItem.m; path = Sources/TTTableSettingsItem.m; sourceTree = "<group>"; };
@@ -781,6 +785,15 @@
 				66ADCD9B1291AA7100855386 /* TTExtensionInfoController.m */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		6D31FED61431266E006C6B7F /* Table Section */ = {
+			isa = PBXGroup;
+			children = (
+				6D31FEDA14312683006C6B7F /* TTTableSection.h */,
+				6D31FEDC1431268C006C6B7F /* TTTableSection.m */,
+			);
+			name = "Table Section";
 			sourceTree = "<group>";
 		};
 		6E08B274118282F700DA1579 /* Tests */ = {
@@ -1294,6 +1307,7 @@
 		6E6458271184DF1E00F08CB1 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
+				6D31FED61431266E006C6B7F /* Table Section */,
 				6E6458281184DF5F00F08CB1 /* Table Controller */,
 				6E6458291184DF6C00F08CB1 /* Table Delegate */,
 				6E64582C1184DFC500F08CB1 /* Table Data Source */,
@@ -1877,6 +1891,7 @@
 				6DB1E37D13CA885B00A72466 /* TTLauncherPersistenceMode.h in Headers */,
 				6DD20D35141D0C1B00916A4A /* TTTableSettingsItem.h in Headers */,
 				6DD20D3B141D0C4800916A4A /* TTTableSettingsItemCell.h in Headers */,
+				6D31FEDB14312683006C6B7F /* TTTableSection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2239,6 +2254,7 @@
 				66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */,
 				6DD20D37141D0C2800916A4A /* TTTableSettingsItem.m in Sources */,
 				6DD20D39141D0C3A00916A4A /* TTTableSettingsItemCell.m in Sources */,
+				6D31FEDD1431268C006C6B7F /* TTTableSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
