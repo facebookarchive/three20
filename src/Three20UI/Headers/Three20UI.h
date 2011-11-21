@@ -86,6 +86,8 @@
 #import "Three20UI/TTTableViewPlainVarHeightDelegate.h"
 #import "Three20UI/TTTableViewDragRefreshDelegate.h"
 #import "Three20UI/TTTableViewNetworkEnabledDelegate.h"
+#import "Three20UI/TTTableViewGroupedCheckmarkDelegate.h"
+
 
 #import "Three20UI/TTListDataSource.h"
 #import "Three20UI/TTSectionedDataSource.h"
@@ -114,6 +116,7 @@
 #import "Three20UI/TTTableActivityItem.h"
 #import "Three20UI/TTTableStyledTextItem.h"
 #import "Three20UI/TTTableControlItem.h"
+#import "Three20UI/TTTableCheckmarkItem.h"
 #import "Three20UI/TTTableViewItem.h"
 
 // Table Item Cells
@@ -130,6 +133,7 @@
 #import "Three20UI/TTStyledTextTableCell.h"
 #import "Three20UI/TTTableActivityItemCell.h"
 #import "Three20UI/TTTableControlCell.h"
+#import "Three20UI/TTTableCheckmarkCell.h"
 #import "Three20UI/TTTableFlushViewCell.h"
 
 #import "Three20UI/TTErrorView.h"

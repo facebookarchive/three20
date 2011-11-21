@@ -29,9 +29,11 @@
 #import "Three20UI/TTTableLinkedItem.h"
 #import "Three20UI/TTTableButton.h"
 #import "Three20UI/TTTableMoreButton.h"
+#import "Three20UI/TTTableCheckmarkItem.h"
 
 // - Table Item Cells
 #import "Three20UI/TTTableMoreButtonCell.h"
+#import "Three20UI/TTTableCheckmarkCell.h"
 
 // Style
 #import "Three20Style/TTGlobalStyle.h"
@@ -177,6 +179,17 @@ static const NSUInteger kFirstTableSection = 0;
         [_controller.model load:TTURLRequestCachePolicyDefault more:YES];
       }
     }
+  }
+  else if ([object isKindOfClass:[TTTableCheckmarkItem class]]) {
+      TTTableCheckmarkItem *item = object;
+      [item setChecked:![item isChecked]];
+      TTTableCheckmarkCell *cell =
+      (TTTableCheckmarkCell *)[tableView cellForRowAtIndexPath:indexPath];
+      [cell layoutSubviews];
+      [tableView deselectRowAtIndexPath:indexPath animated:YES];
+      if (item.delegate && item.selector) {
+          [item.delegate performSelector:item.selector withObject:item];
+      }
   }
 
   [_controller didSelectObject:object atIndexPath:indexPath];

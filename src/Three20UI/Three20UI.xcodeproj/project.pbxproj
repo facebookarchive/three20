@@ -281,6 +281,12 @@
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE738A61184ADB800A35176 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE738A31184ADB400A35176 /* libThree20Network.a */; };
 		6EE739D01184BB0400A35176 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20UI.a */; };
+		CB97CA341479FE2300AC29B7 /* TTTableViewGroupedCheckmarkDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = CB97CA331479FE2300AC29B7 /* TTTableViewGroupedCheckmarkDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB97CA391479FE3D00AC29B7 /* TTTableViewGroupedCheckmarkDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB97CA381479FE3D00AC29B7 /* TTTableViewGroupedCheckmarkDelegate.m */; };
+		CBA572751479DFEB004B37F6 /* TTTableCheckmarkItem.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA572741479DFEB004B37F6 /* TTTableCheckmarkItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CBA572791479E0EE004B37F6 /* TTTableCheckmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA572781479E0ED004B37F6 /* TTTableCheckmarkCell.m */; };
+		CBA5727B1479E0F9004B37F6 /* TTTableCheckmarkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA5727A1479E0F8004B37F6 /* TTTableCheckmarkItem.m */; };
+		CBA5727D1479E12E004B37F6 /* TTTableCheckmarkCell.h in Headers */ = {isa = PBXBuildFile; fileRef = CBA5727C1479E12E004B37F6 /* TTTableCheckmarkCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -713,6 +719,12 @@
 		6EE7366611849C5800A35176 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6EE7389D1184ADB400A35176 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20UI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20UI.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB97CA331479FE2300AC29B7 /* TTTableViewGroupedCheckmarkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableViewGroupedCheckmarkDelegate.h; path = Headers/TTTableViewGroupedCheckmarkDelegate.h; sourceTree = "<group>"; };
+		CB97CA381479FE3D00AC29B7 /* TTTableViewGroupedCheckmarkDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableViewGroupedCheckmarkDelegate.m; path = Sources/TTTableViewGroupedCheckmarkDelegate.m; sourceTree = "<group>"; };
+		CBA572741479DFEB004B37F6 /* TTTableCheckmarkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableCheckmarkItem.h; path = Headers/TTTableCheckmarkItem.h; sourceTree = "<group>"; };
+		CBA572781479E0ED004B37F6 /* TTTableCheckmarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableCheckmarkCell.m; path = Sources/TTTableCheckmarkCell.m; sourceTree = "<group>"; };
+		CBA5727A1479E0F8004B37F6 /* TTTableCheckmarkItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTableCheckmarkItem.m; path = Sources/TTTableCheckmarkItem.m; sourceTree = "<group>"; };
+		CBA5727C1479E12E004B37F6 /* TTTableCheckmarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTableCheckmarkCell.h; path = Headers/TTTableCheckmarkCell.h; sourceTree = "<group>"; };
 		EB9E6C6210B6A8F800DE563C /* UIUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1332,6 +1344,8 @@
 				6E6456601184D4DA00F08CB1 /* TTTableViewPlainVarHeightDelegate.m */,
 				6E6455311184D4C500F08CB1 /* TTTableViewVarHeightDelegate.h */,
 				6E6456611184D4DA00F08CB1 /* TTTableViewVarHeightDelegate.m */,
+				CB97CA331479FE2300AC29B7 /* TTTableViewGroupedCheckmarkDelegate.h */,
+				CB97CA381479FE3D00AC29B7 /* TTTableViewGroupedCheckmarkDelegate.m */,
 			);
 			name = "Table Delegates";
 			sourceTree = "<group>";
@@ -1450,6 +1464,8 @@
 				6E6456551184D4DA00F08CB1 /* TTTableTextItem.m */,
 				6E64552E1184D4C500F08CB1 /* TTTableViewItem.h */,
 				6E64565E1184D4DA00F08CB1 /* TTTableViewItem.m */,
+				CBA572741479DFEB004B37F6 /* TTTableCheckmarkItem.h */,
+				CBA5727A1479E0F8004B37F6 /* TTTableCheckmarkItem.m */,
 			);
 			name = "Table Items";
 			sourceTree = "<group>";
@@ -1485,6 +1501,8 @@
 				6E6456531184D4DA00F08CB1 /* TTTableSubtitleItemCell.m */,
 				6E6455261184D4C500F08CB1 /* TTTableTextItemCell.h */,
 				6E6456561184D4DA00F08CB1 /* TTTableTextItemCell.m */,
+				CBA5727C1479E12E004B37F6 /* TTTableCheckmarkCell.h */,
+				CBA572781479E0ED004B37F6 /* TTTableCheckmarkCell.m */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -1853,6 +1871,9 @@
 				6E6455F71184D4C500F08CB1 /* UIToolbarAdditions.h in Headers */,
 				6E6455F81184D4C500F08CB1 /* UIViewAdditions.h in Headers */,
 				6E6455FA1184D4C500F08CB1 /* UIWebViewAdditions.h in Headers */,
+				CBA572751479DFEB004B37F6 /* TTTableCheckmarkItem.h in Headers */,
+				CBA5727D1479E12E004B37F6 /* TTTableCheckmarkCell.h in Headers */,
+				CB97CA341479FE2300AC29B7 /* TTTableViewGroupedCheckmarkDelegate.h in Headers */,
 				6EDAE9F6118CA5810008133C /* TTNavigator.h in Headers */,
 				6E86A8DB118CBF7500662DA5 /* TTNavigatorWindow.h in Headers */,
 				6E60820311B0C32600C93CD4 /* TTNavigationController.h in Headers */,
@@ -2223,6 +2244,9 @@
 				666E18E912945430001C1D97 /* TTSplitViewController.m in Sources */,
 				66F2E85712D426AF006FB485 /* TTTableFooterInfiniteScrollView.m in Sources */,
 				66F2E86512D426EF006FB485 /* TTTableViewNetworkEnabledDelegate.m in Sources */,
+				CBA572791479E0EE004B37F6 /* TTTableCheckmarkCell.m in Sources */,
+				CBA5727B1479E0F9004B37F6 /* TTTableCheckmarkItem.m in Sources */,
+				CB97CA391479FE3D00AC29B7 /* TTTableViewGroupedCheckmarkDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
