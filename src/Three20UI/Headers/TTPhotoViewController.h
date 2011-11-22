@@ -114,4 +114,11 @@
  */
 - (void)showActivity:(NSString*)title;
 
+/**
+ * The right bar button item for the navigation controller.
+ * The default is a "Show all" button if the previous view controller
+ * is not a TTThumbsViewController
+ */
+- (UIBarButtonItem*)rightBarButtonItem;
+
 @end
