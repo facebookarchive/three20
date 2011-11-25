@@ -12,6 +12,7 @@
 #import "TableWithBannerController.h"
 #import "TableWithShadowController.h"
 #import "TableDragRefreshController.h"
+#import "TableCheckmarkController.h"
 #import "SearchTestController.h"
 #import "MessageTestController.h"
 #import "ActivityTestController.h"
@@ -110,6 +111,12 @@
       toViewController: [TableDragRefreshController class]
               selector: nil
             transition: 0];
+    
+  [map            from: @"tt://tableCheckmark"
+                parent: @"tt://catalog"
+      toViewController: [TableCheckmarkController class]
+              selector: nil
+            transition: 0];    
 
   [map            from: @"tt://composerTest"
                 parent: @"tt://catalog"

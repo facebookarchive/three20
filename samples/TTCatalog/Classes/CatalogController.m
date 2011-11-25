@@ -43,6 +43,7 @@
     [TTTableTextItem itemWithText:@"Table With Banner" URL:@"tt://tableWithBanner"],
     [TTTableTextItem itemWithText:@"Table With Shadow" URL:@"tt://tableWithShadow"],
     [TTTableTextItem itemWithText:@"Table With Drag Refresh" URL:@"tt://tableDragRefresh"],
+    [TTTableTextItem itemWithText:@"Checkmark Table" URL:@"tt://tableCheckmark"],
 
     @"Models",
     [TTTableTextItem itemWithText:@"Model Search" URL:@"tt://searchTest"],
