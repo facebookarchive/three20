@@ -47,6 +47,9 @@
   NSInteger         _positionOrigin;
   CGPoint           _dragOrigin;
   CGPoint           _touchOrigin;
+  NSInteger         _moveStart;
+  NSInteger         _moveEnd;
+
 
   TTLauncherHighlightView* _highlightView;
 
