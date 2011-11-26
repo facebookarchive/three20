@@ -385,6 +385,7 @@ static const NSInteger kDefaultColumnCount = 3;
     _touchOrigin = [touch locationInView:_scrollView];
     _dragOrigin = button.center;
     _dragTouch = touch;
+    _moveStart=_positionOrigin;
 
     button.dragging = YES;
 
@@ -640,7 +641,9 @@ static const NSInteger kDefaultColumnCount = 3;
         if ([_delegate respondsToSelector:@selector(launcherView:didMoveItem:)]) {
           [_delegate launcherView:self didMoveItem:_dragButton.item];
         }
-
+	if ([_delegate respondsToSelector:@selector(launcherView:didMoveItem:from:to:)]) {
+            [_delegate launcherView:self didMoveItem:_dragButton.item from:_moveStart to:itemIndex];
+        }
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:TT_TRANSITION_DURATION];
         [self layoutButtons];
