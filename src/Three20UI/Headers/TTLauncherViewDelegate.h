@@ -29,6 +29,8 @@
 
 - (void)launcherView:(TTLauncherView*)launcher didMoveItem:(TTLauncherItem*)item;
 
+- (void)launcherView:(TTLauncherView*)launcher didMoveItem:(TTLauncherItem*)item from:(NSInteger)fromMove to:(NSInteger)toMove;
+
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item;
 
 - (void)launcherViewDidEndDragging:(TTLauncherView*)launcher;
