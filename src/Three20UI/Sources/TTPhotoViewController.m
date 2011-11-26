@@ -379,7 +379,7 @@ static const NSInteger kActivityLabelTag          = 96;
       // The photo source has a URL mapping in TTURLMap, so we use that to show the thumbs
       NSDictionary* query = [NSDictionary dictionaryWithObject:self forKey:@"delegate"];
       TTBaseNavigator* navigator = [TTBaseNavigator navigatorForView:self.view];
-      UIViewController * controller = [navigator viewControllerForURL:URL query:query]; 
+      UIViewController * controller = [navigator viewControllerForURL:URL query:query];
       NSAssert([controller isKindOfClass:[TTThumbsViewController class]], nil);
       _thumbsController = [(TTThumbsViewController *)controller retain];
       [navigator.URLMap setObject:_thumbsController forURL:URL];
