@@ -23,6 +23,7 @@
 @protocol TTNavigatorRootContainer;
 @class TTURLAction;
 @class TTURLMap;
+@class TTURLNavigatorPattern;
 @class TTURLPattern;
 
 /**
@@ -223,7 +224,7 @@
  * @return The view controller mapped to URL.
  */
 - (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
-                                  pattern:(TTURLPattern**)pattern;
+                                  pattern:(TTURLNavigatorPattern**)pattern;
 
 /**
  * Tells the navigator to delay heavy operations.
