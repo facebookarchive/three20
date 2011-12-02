@@ -114,7 +114,7 @@ static const CGFloat kControlPadding = 8.0f;
     } else if ([view isKindOfClass:[TTTextEditor class]]) {
       TTTextEditor* textEditor = (TTTextEditor*)view;
       CGFloat ttLineHeight = textEditor.font.ttLineHeight;
-      height = ttLineHeight * kDefaultTextViewLines;
+      height = ttLineHeight * (textEditor.maxNumberOfLines + 1);
 
     } else if ([view isKindOfClass:[UITextField class]]) {
       UITextField* textField = (UITextField*)view;
