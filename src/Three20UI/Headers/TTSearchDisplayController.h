@@ -34,11 +34,14 @@ extern const int kTTSearchBarBackgroundTag;
   TTTableViewController*  _searchResultsViewController;
   NSTimer*                _pauseTimer;
   BOOL                    _pausesBeforeSearching;
+    
+  UIView* _searchMessageView;  
 
   id<UITableViewDelegate> _searchResultsDelegate2;
 }
 
 @property (nonatomic, retain) TTTableViewController* searchResultsViewController;
 @property (nonatomic)         BOOL                   pausesBeforeSearching;
+@property (nonatomic, retain) UIView * searchMessageView;
 
 @end

@@ -38,7 +38,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 @synthesize searchResultsViewController = _searchResultsViewController;
 @synthesize pausesBeforeSearching       = _pausesBeforeSearching;
-
+@synthesize searchMessageView = _searchMessageView;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithSearchBar:(UISearchBar*)searchBar contentsController:(UIViewController*)controller {
@@ -66,6 +66,40 @@ static const NSTimeInterval kPauseInterval = 0.4;
 #pragma mark -
 #pragma mark Private
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showMessageView:(BOOL)show {
+    if (_searchMessageView) {
+        if (show) {
+            [self.searchContentsController.view bringSubviewToFront:_searchMessageView];
+        }
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+        [_searchMessageView setAlpha:show ? 1.0 : 0.0];
+        [UIView commitAnimations];
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setSearchMessageView:(UIView *)searchMessageView {
+    if (_searchMessageView) {
+        [_searchMessageView removeFromSuperview];
+    }
+    _searchMessageView = searchMessageView;
+    if (_searchMessageView) {
+        _searchMessageView.alpha = 0;
+
+        _searchMessageView.frame = CGRectMake(0
+                 , self.searchBar.frame.origin.y + self.searchBar.frame.size.height
+                 , self.searchBar.frame.size.width
+                 , self.searchResultsViewController.view.frame.size.height
+                    - TTKeyboardHeightForOrientation(
+                    TTDeviceOrientationIsLandscape() ?
+                    UIInterfaceOrientationLandscapeLeft : UIInterfaceOrientationPortrait)
+                );
+
+        [self.searchContentsController.view addSubview:_searchMessageView];
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resetResults {
@@ -110,6 +144,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
     backgroundView.alpha = 0;
     [UIView commitAnimations];
   }
+
 //  if (!self.searchContentsController.navigationController) {
 //    [UIView beginAnimations:nil context:nil];
 //    self.searchBar.superview.top -= self.searchBar.screenY - TTStatusHeight();
@@ -120,7 +155,8 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController*)controller {
-  [_searchResultsViewController updateView];
+    [_searchResultsViewController updateView];
+    [self showMessageView:TRUE];
 }
 
 
@@ -137,6 +173,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
     [UIView commitAnimations];
   }
 
+  [self showMessageView:FALSE];
 //  if (!self.searchContentsController.navigationController) {
 //    [UIView beginAnimations:nil context:nil];
 //    self.searchBar.superview.top += self.searchBar.top - TTStatusHeight();
@@ -178,6 +215,11 @@ static const NSTimeInterval kPauseInterval = 0.4;
   [self resetResults];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)searchDisplayController:(UISearchDisplayController *)controller
+        didHideSearchResultsTableView:(UITableView *)tableView {
+  [self showMessageView:TRUE];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)searchDisplayController:(UISearchDisplayController*)controller
