@@ -126,7 +126,7 @@ static const NSInteger kLoadMaxRetries = 2;
   }
   TTNetworkRequestStarted();
 
-  TTURLRequest* request = _requests.count == 1 ? [_requests objectAtIndex:0] : nil;
+  TTURLRequest* request = _requests.count >= 1 ? [_requests objectAtIndex:0] : nil;
   
   // there are situations where urlPath is somehow nil (therefore crashing in
   // createNSURLRequest:URL:, even if we checked for non-blank values before 
@@ -194,7 +194,7 @@ static const NSInteger kLoadMaxRetries = 2;
   // correctly, this would be the place to start tracing for errors.
   TTNetworkRequestStarted();
 
-  TTURLRequest* request = _requests.count == 1 ? [_requests objectAtIndex:0] : nil;
+  TTURLRequest* request = _requests.count >= 1 ? [_requests objectAtIndex:0] : nil;
   NSURLRequest* URLRequest = [_queue createNSURLRequest:request URL:URL];
 
   NSHTTPURLResponse* response = nil;
