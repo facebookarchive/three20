@@ -67,15 +67,22 @@ static const NSTimeInterval kPauseInterval = 0.4;
 #pragma mark Private
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showMessageView:(BOOL)show {
+- (void)showMessageView:(BOOL)show animated:(BOOL)animated {
     if (_searchMessageView) {
         if (show) {
             [self.searchContentsController.view bringSubviewToFront:_searchMessageView];
         }
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+
+        if (animated) {
+            [UIView beginAnimations:nil context:nil];
+            [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+        }
+
         [_searchMessageView setAlpha:show ? 1.0 : 0.0];
-        [UIView commitAnimations];
+
+        if (animated) {
+            [UIView commitAnimations];
+        }
     }
 }
 
@@ -156,7 +163,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController*)controller {
     [_searchResultsViewController updateView];
-    [self showMessageView:TRUE];
+    [self showMessageView:TRUE animated:TRUE];
 }
 
 
@@ -173,7 +180,8 @@ static const NSTimeInterval kPauseInterval = 0.4;
     [UIView commitAnimations];
   }
 
-  [self showMessageView:FALSE];
+  [self showMessageView:FALSE animated:FALSE];
+
 //  if (!self.searchContentsController.navigationController) {
 //    [UIView beginAnimations:nil context:nil];
 //    self.searchBar.superview.top += self.searchBar.top - TTStatusHeight();
@@ -218,7 +226,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)searchDisplayController:(UISearchDisplayController *)controller
         didHideSearchResultsTableView:(UITableView *)tableView {
-  [self showMessageView:TRUE];
+  [self showMessageView:_searchMessageView.alpha animated:FALSE];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
