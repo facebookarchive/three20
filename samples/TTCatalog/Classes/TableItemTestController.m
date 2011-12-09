@@ -21,8 +21,8 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
     self.title = @"Table Items";
     self.variableHeightRows = YES;
 
-    // Uncomment this to see how the table looks with the grouped style
-    //self.tableViewStyle = UITableViewStyleGrouped;
+    // comment this to see how the table looks with the standard style
+    self.tableViewStyle = UITableViewStyleGrouped;
 
     // Uncomment this to see how the table cells look against a custom background color
     //self.tableView.backgroundColor = [UIColor yellowColor];
@@ -37,9 +37,9 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
       @"Generic Items",
       [TTTableSettingsItem itemWithText:Three20Version caption:@"Three20 Version"
                                                      URL:@"tt://tableItemTest"],
-      @"Links and Buttons",
       [TTTableTextItem itemWithText:@"TTTableTextItem" URL:@"tt://tableItemTest"
                        accessoryURL:@"http://www.google.com"],
+      [TTTableSection sectionWithHeaderTitle:@"Links & Buttons" footerTitle:nil],
       [TTTableLink itemWithText:@"TTTableLink" URL:@"tt://tableItemTest"],
       [TTTableButton itemWithText:@"TTTableButton"],
       [TTTableCaptionItem itemWithText:@"TTTableCaptionItem" caption:@"caption"
@@ -50,7 +50,7 @@ static NSString* kLoremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipisi
                           text:kLoremIpsum timestamp:[NSDate date] URL:@"tt://tableItemTest"],
       [TTTableMoreButton itemWithText:@"TTTableMoreButton"],
 
-      @"Images",
+      [TTTableSection sectionWithHeaderTitle:@"Images" footerTitle:@"Usage of images inside TTTableView"],
       [TTTableImageItem itemWithText:@"TTTableImageItem" imageURL:localImage
                         URL:@"tt://tableItemTest"],
       [TTTableRightImageItem itemWithText:@"TTTableRightImageItem" imageURL:localImage
