@@ -39,6 +39,7 @@ static const NSTimeInterval kPauseInterval = 0.4;
 @synthesize searchResultsViewController = _searchResultsViewController;
 @synthesize pausesBeforeSearching       = _pausesBeforeSearching;
 @synthesize searchMessageView = _searchMessageView;
+@synthesize searchBarEx;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithSearchBar:(UISearchBar*)searchBar contentsController:(UIViewController*)controller {
@@ -65,6 +66,11 @@ static const NSTimeInterval kPauseInterval = 0.4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Private
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTSearchBarEx *)searchBarEx {
+    return [self.searchBar isKindOfClass:[TTSearchBarEx class]] ? (TTSearchBarEx *) self.searchBar : nil;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showMessageView:(BOOL)show animated:(BOOL)animated {
