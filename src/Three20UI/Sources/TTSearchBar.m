@@ -477,6 +477,8 @@ static const CGFloat kIndexViewMargin = 4.0f;
         _backgroundNavBar = [[UINavigationBar alloc] init];
 
         _backgroundNavBar.items = [NSArray arrayWithObject:_backgroundNavItem];
+        
+        _wasEditing = FALSE;
     }
 
     return self;
@@ -507,8 +509,6 @@ static const CGFloat kIndexViewMargin = 4.0f;
 
     for (UIView * v in self.subviews) {
         if ([v isKindOfClass:[UITextField class]]) {
-            [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:TT_TRANSITION_DURATION];
 
             CGRect frame = v.frame;
 
@@ -516,11 +516,9 @@ static const CGFloat kIndexViewMargin = 4.0f;
                 [self insertSubview:_backgroundNavBar belowSubview:v];
 
                 if (_leftBarButtonItem) {
-
                     UIView * temp = [_leftBarButtonItem valueForKey:@"view"];
                     frame.origin.x = temp ? kMarginX + temp.frame.size.width + kPaddingX : 0.0;
                     frame.size.width -= (frame.origin.x - kMarginX);
-
                 }
 
                 if (_rightBarButtonItem) {
@@ -528,9 +526,19 @@ static const CGFloat kIndexViewMargin = 4.0f;
                     frame.size.width -= temp ? temp.frame.size.width + kPaddingX : 0.0;
                 }
             }
+
+            if (_wasEditing) {
+                [UIView beginAnimations:nil context:nil];
+                [UIView setAnimationDuration:TT_TRANSITION_DURATION];
+            }
+
             v.frame = frame;
             _backgroundNavBar.alpha = [(UITextField *) v isEditing] ? 0.0 : 1.0;
-            [UIView commitAnimations];
+
+            if (_wasEditing)
+                [UIView commitAnimations];
+
+            _wasEditing = [(UITextField *) v isEditing];
         }
     }
 }

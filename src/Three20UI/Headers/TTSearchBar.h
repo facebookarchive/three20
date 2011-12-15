@@ -69,6 +69,8 @@
 
     UIBarButtonItem * _rightBarButtonItem;
     UIBarButtonItem * _leftBarButtonItem;
+    
+    BOOL _wasEditing;
 
 }
 

@@ -69,7 +69,8 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTSearchBarEx *)searchBarEx {
-    return [self.searchBar isKindOfClass:[TTSearchBarEx class]] ? (TTSearchBarEx *) self.searchBar : nil;
+    return [self.searchBar isKindOfClass:[TTSearchBarEx class]] 
+                                ? (TTSearchBarEx *) self.searchBar : nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
