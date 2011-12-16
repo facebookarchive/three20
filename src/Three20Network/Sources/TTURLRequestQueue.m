@@ -651,7 +651,10 @@ static TTURLRequestQueue* gMainQueue = nil;
       [loader dispatchLoaded:[NSDate date]];
     }
   }
-
+  else if (nil == error) {
+      [loader dispatchLoaded:[NSDate date]];
+  }
+    
   if (nil != error) {
     [loader dispatchError:error];
   }
