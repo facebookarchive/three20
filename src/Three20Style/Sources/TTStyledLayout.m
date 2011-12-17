@@ -644,10 +644,11 @@
     CGSize textSize = [text sizeWithFont:_font
                             constrainedToSize:CGSizeMake(_width, CGFLOAT_MAX)
                             lineBreakMode:UILineBreakModeWordWrap];
+	CGFloat textHeight = textSize.height;
     [self addFrameForText:text element:element node:textNode width:textSize.width
          height:textSize.height];
-    _height += textSize.height;
-    return;
+	_height += textHeight;
+	return;
   }
 
   NSMutableCharacterSet *separators = [NSMutableCharacterSet whitespaceAndNewlineCharacterSet];
