@@ -159,7 +159,7 @@
     bar.barStyle = _navigationBarStyle;
 
     if (!TTIsPad()) {
-      [[UIApplication sharedApplication] setStatusBarStyle:_statusBarStyle animated:YES];
+      [[UIApplication sharedApplication] setStatusBarStyle:_statusBarStyle animated:animated];
     }
   }
 }

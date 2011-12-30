@@ -179,7 +179,7 @@ static const NSUInteger kFirstTableSection = 0;
     }
   }
 
-  [_controller didSelectObject:object atIndexPath:indexPath];
+  //[_controller didSelectObject:object atIndexPath:indexPath];
 }
 
 
