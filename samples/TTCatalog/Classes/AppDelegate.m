@@ -1,5 +1,4 @@
 #import "AppDelegate.h"
-#import "SplitCatalogController.h"
 #import "CatalogController.h"
 #import "PhotoTest1Controller.h"
 #import "PhotoTest2Controller.h"
@@ -38,19 +37,8 @@
   [map from:@"*" toViewController:[TTWebController class]];
 
 
-  if (TTIsPad()) {
-    [map                    from: @"tt://catalog"
-          toSharedViewController: [SplitCatalogController class]];
-
-    SplitCatalogController* controller =
-      (SplitCatalogController*)[[TTNavigator navigator] viewControllerForURL:@"tt://catalog"];
-    TTDASSERT([controller isKindOfClass:[SplitCatalogController class]]);
-    map = controller.rightNavigator.URLMap;
-
-  } else {
-    [map                    from: @"tt://catalog"
-          toSharedViewController: [CatalogController class]];
-  }
+  [map                from: @"tt://catalog"
+    toSharedViewController: [CatalogController class]];
 
   [map            from: @"tt://photoTest1"
                 parent: @"tt://catalog"

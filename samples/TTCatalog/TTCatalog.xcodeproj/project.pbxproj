@@ -13,7 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* CatalogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* CatalogController.m */; };
-		666E183012944D23001C1D97 /* SplitCatalogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666E182F12944D23001C1D97 /* SplitCatalogController.m */; };
 		6675F5F412945622008DE0A6 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F012945622008DE0A6 /* Default-Landscape.png */; };
 		6675F5F512945622008DE0A6 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F112945622008DE0A6 /* Default-Portrait.png */; };
 		6675F5F612945622008DE0A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6675F5F212945622008DE0A6 /* Default@2x.png */; };
@@ -223,8 +222,6 @@
 		28C286E00D94DF7D0034E888 /* CatalogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalogController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		665E998712662FFA0025FA42 /* TTCatalog-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTCatalog-Info.plist"; sourceTree = "<group>"; };
-		666E182E12944D23001C1D97 /* SplitCatalogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitCatalogController.h; sourceTree = "<group>"; };
-		666E182F12944D23001C1D97 /* SplitCatalogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitCatalogController.m; sourceTree = "<group>"; };
 		6675F5F012945622008DE0A6 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "../Resources/Default-Landscape.png"; sourceTree = SOURCE_ROOT; };
 		6675F5F112945622008DE0A6 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "../Resources/Default-Portrait.png"; sourceTree = SOURCE_ROOT; };
 		6675F5F212945622008DE0A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Resources/Default@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -330,8 +327,6 @@
 			children = (
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
-				666E182E12944D23001C1D97 /* SplitCatalogController.h */,
-				666E182F12944D23001C1D97 /* SplitCatalogController.m */,
 				28C286DF0D94DF7D0034E888 /* CatalogController.h */,
 				28C286E00D94DF7D0034E888 /* CatalogController.m */,
 				EA1080F1101B37E90098AAC2 /* Photos */,
@@ -1010,7 +1005,6 @@
 				BEC787631040A430005C00CF /* LauncherViewTestController.m in Sources */,
 				6E002567116A6D1A00D1F0CB /* TableWithShadowController.m in Sources */,
 				E46662FE127F91A4001A0F20 /* TableWithBannerController.m in Sources */,
-				666E183012944D23001C1D97 /* SplitCatalogController.m in Sources */,
 				E4D1D1D61306D2670090AE0C /* TableDragRefreshController.m in Sources */,
 				7000C4C0130CCAE3006D7ADE /* DownloadTestModel.m in Sources */,
 				7000C4C1130CCAE3006D7ADE /* DownloadProgressTestController.m in Sources */,
