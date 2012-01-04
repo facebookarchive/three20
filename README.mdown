@@ -31,7 +31,7 @@ You can access Three20 API documentation in several ways:
     1. Open your Xcode Preferences (`⌘,`) and switch to Documentation tab. 
     1. Click the `+` button
     1. Add the Three20 doc set feed: `feed://facebook.github.com/three20/api/com.facebook.Three20.atom`
-1. Generate the documentation from the project repository with the `src/scripts/docs.py`
+1. Generate the documentation from the project repository with the `src/scripts/docs.py` script
 
 Adding Three20 to your project
 ==============================
