@@ -51,13 +51,13 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/isEmptyOrWhitespace">&nbsp;&nbsp;&nbsp;&nbsp;- isEmptyOrWhitespace</option>
+	<option value="//api/name/isEmptyOrWhitespace:__TTDEPRECATED_METHOD:">&nbsp;&nbsp;&nbsp;&nbsp;- isEmptyOrWhitespace:__TTDEPRECATED_METHOD:</option>
 	
 	<option value="//api/name/isWhitespaceAndNewlines">&nbsp;&nbsp;&nbsp;&nbsp;- isWhitespaceAndNewlines</option>
 	
 	<option value="//api/name/queryContentsUsingEncoding:">&nbsp;&nbsp;&nbsp;&nbsp;- queryContentsUsingEncoding:</option>
 	
-	<option value="//api/name/queryDictionaryUsingEncoding:">&nbsp;&nbsp;&nbsp;&nbsp;- queryDictionaryUsingEncoding:</option>
+	<option value="//api/name/queryDictionaryUsingEncoding:__TTDEPRECATED_METHOD:">&nbsp;&nbsp;&nbsp;&nbsp;- queryDictionaryUsingEncoding:__TTDEPRECATED_METHOD:</option>
 	
 	<option value="//api/name/stringByAddingQueryDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- stringByAddingQueryDictionary:</option>
 	
@@ -105,13 +105,13 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEmptyOrWhitespace">isEmptyOrWhitespace</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEmptyOrWhitespace:__TTDEPRECATED_METHOD:">isEmptyOrWhitespace:__TTDEPRECATED_METHOD:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isWhitespaceAndNewlines">isWhitespaceAndNewlines</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/queryContentsUsingEncoding:">queryContentsUsingEncoding:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/queryDictionaryUsingEncoding:">queryDictionaryUsingEncoding:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/queryDictionaryUsingEncoding:__TTDEPRECATED_METHOD:">queryDictionaryUsingEncoding:__TTDEPRECATED_METHOD:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringByAddingQueryDictionary:">stringByAddingQueryDictionary:</a></span></li>
 	
@@ -183,7 +183,7 @@ for the documentation that is reflected on api.three20.info.</p>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/isEmptyOrWhitespace">&ndash;&nbsp;isEmptyOrWhitespace</a></code>
+		<code><a href="#//api/name/isEmptyOrWhitespace:__TTDEPRECATED_METHOD:">&ndash;&nbsp;isEmptyOrWhitespace:__TTDEPRECATED_METHOD:</a></code>
 		<span class="tooltip"><p>Determines if the string is empty or contains only whitespace.
 @deprecated Use TTIsStringWithAnyText() instead. Updating your use of
 this method is non-trivial. See the note below.</p></span>
@@ -192,7 +192,7 @@ this method is non-trivial. See the note below.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/queryDictionaryUsingEncoding:">&ndash;&nbsp;queryDictionaryUsingEncoding:</a></code>
+		<code><a href="#//api/name/queryDictionaryUsingEncoding:__TTDEPRECATED_METHOD:">&ndash;&nbsp;queryDictionaryUsingEncoding:__TTDEPRECATED_METHOD:</a></code>
 		<span class="tooltip"><p>Parses a URL query string into a dictionary.</p></span>
 	</span>
 	
@@ -365,8 +365,8 @@ this method is non-trivial. See the note below.</p></span>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/isEmptyOrWhitespace" title="isEmptyOrWhitespace"></a>
-	<h3 class="subsubtitle method-title">isEmptyOrWhitespace</h3>
+	<a name="//api/name/isEmptyOrWhitespace:__TTDEPRECATED_METHOD:" title="isEmptyOrWhitespace:__TTDEPRECATED_METHOD:"></a>
+	<h3 class="subsubtitle method-title">isEmptyOrWhitespace:__TTDEPRECATED_METHOD:</h3>
 	
 	
 	
@@ -377,7 +377,7 @@ this method is non-trivial. See the note below.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (BOOL)isEmptyOrWhitespace</code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)isEmptyOrWhitespace __TTDEPRECATED_METHOD</code></div>
 	
 	
 	
@@ -394,7 +394,7 @@ this method is non-trivial. See the note below.</p>
 
 <p>Notes for updating your use of isEmptyOrWhitespace:</p>
 
-<p>if (!textField.text.<a href="#//api/name/isEmptyOrWhitespace">isEmptyOrWhitespace</a>) {</p>
+<p>if (!textField.text.isEmptyOrWhitespace) {</p>
 
 <p>becomes</p>
 
@@ -402,7 +402,7 @@ this method is non-trivial. See the note below.</p>
 
 <p>and</p>
 
-<p>if (textField.text.<a href="#//api/name/isEmptyOrWhitespace">isEmptyOrWhitespace</a>) {</p>
+<p>if (textField.text.isEmptyOrWhitespace) {</p>
 
 <p>becomes</p>
 
@@ -502,8 +502,8 @@ this method is non-trivial. See the note below.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/queryDictionaryUsingEncoding:" title="queryDictionaryUsingEncoding:"></a>
-	<h3 class="subsubtitle method-title">queryDictionaryUsingEncoding:</h3>
+	<a name="//api/name/queryDictionaryUsingEncoding:__TTDEPRECATED_METHOD:" title="queryDictionaryUsingEncoding:__TTDEPRECATED_METHOD:"></a>
+	<h3 class="subsubtitle method-title">queryDictionaryUsingEncoding:__TTDEPRECATED_METHOD:</h3>
 	
 	
 	
@@ -512,7 +512,7 @@ this method is non-trivial. See the note below.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (NSDictionary *)queryDictionaryUsingEncoding:(NSStringEncoding)<em>encoding</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)queryDictionaryUsingEncoding:(NSStringEncoding)<em>encoding</em> __TTDEPRECATED_METHOD</code></div>
 	
 	
 	
