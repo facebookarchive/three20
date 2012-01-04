@@ -1,0 +1,2043 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTURLCache Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTURLCache Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/cachePath">&nbsp;&nbsp;&nbsp;&nbsp;cachePath</option>
+	
+	<option value="//api/name/disableDiskCache">&nbsp;&nbsp;&nbsp;&nbsp;disableDiskCache</option>
+	
+	<option value="//api/name/disableImageCache">&nbsp;&nbsp;&nbsp;&nbsp;disableImageCache</option>
+	
+	<option value="//api/name/etagCachePath">&nbsp;&nbsp;&nbsp;&nbsp;etagCachePath</option>
+	
+	<option value="//api/name/invalidationAge">&nbsp;&nbsp;&nbsp;&nbsp;invalidationAge</option>
+	
+	<option value="//api/name/maxPixelCount">&nbsp;&nbsp;&nbsp;&nbsp;maxPixelCount</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/cacheWithName:">&nbsp;&nbsp;&nbsp;&nbsp;+ cacheWithName:</option>
+	
+	<option value="//api/name/setSharedCache:">&nbsp;&nbsp;&nbsp;&nbsp;+ setSharedCache:</option>
+	
+	<option value="//api/name/sharedCache">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedCache</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/cachePathForKey:">&nbsp;&nbsp;&nbsp;&nbsp;- cachePathForKey:</option>
+	
+	<option value="//api/name/cachePathForURL:">&nbsp;&nbsp;&nbsp;&nbsp;- cachePathForURL:</option>
+	
+	<option value="//api/name/dataForKey:expires:timestamp:">&nbsp;&nbsp;&nbsp;&nbsp;- dataForKey:expires:timestamp:</option>
+	
+	<option value="//api/name/dataForURL:">&nbsp;&nbsp;&nbsp;&nbsp;- dataForURL:</option>
+	
+	<option value="//api/name/dataForURL:expires:timestamp:">&nbsp;&nbsp;&nbsp;&nbsp;- dataForURL:expires:timestamp:</option>
+	
+	<option value="//api/name/etagCachePathForKey:">&nbsp;&nbsp;&nbsp;&nbsp;- etagCachePathForKey:</option>
+	
+	<option value="//api/name/etagForKey:">&nbsp;&nbsp;&nbsp;&nbsp;- etagForKey:</option>
+	
+	<option value="//api/name/hasDataForKey:expires:">&nbsp;&nbsp;&nbsp;&nbsp;- hasDataForKey:expires:</option>
+	
+	<option value="//api/name/hasDataForURL:">&nbsp;&nbsp;&nbsp;&nbsp;- hasDataForURL:</option>
+	
+	<option value="//api/name/hasImageForURL:fromDisk:">&nbsp;&nbsp;&nbsp;&nbsp;- hasImageForURL:fromDisk:</option>
+	
+	<option value="//api/name/imageForURL:">&nbsp;&nbsp;&nbsp;&nbsp;- imageForURL:</option>
+	
+	<option value="//api/name/imageForURL:fromDisk:">&nbsp;&nbsp;&nbsp;&nbsp;- imageForURL:fromDisk:</option>
+	
+	<option value="//api/name/initWithName:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithName:</option>
+	
+	<option value="//api/name/invalidateAll">&nbsp;&nbsp;&nbsp;&nbsp;- invalidateAll</option>
+	
+	<option value="//api/name/invalidateKey:">&nbsp;&nbsp;&nbsp;&nbsp;- invalidateKey:</option>
+	
+	<option value="//api/name/invalidateURL:">&nbsp;&nbsp;&nbsp;&nbsp;- invalidateURL:</option>
+	
+	<option value="//api/name/keyForURL:">&nbsp;&nbsp;&nbsp;&nbsp;- keyForURL:</option>
+	
+	<option value="//api/name/logMemoryUsage">&nbsp;&nbsp;&nbsp;&nbsp;- logMemoryUsage</option>
+	
+	<option value="//api/name/moveDataForURL:toURL:">&nbsp;&nbsp;&nbsp;&nbsp;- moveDataForURL:toURL:</option>
+	
+	<option value="//api/name/moveDataFromPath:toURL:">&nbsp;&nbsp;&nbsp;&nbsp;- moveDataFromPath:toURL:</option>
+	
+	<option value="//api/name/moveDataFromPathToTemporaryURL:">&nbsp;&nbsp;&nbsp;&nbsp;- moveDataFromPathToTemporaryURL:</option>
+	
+	<option value="//api/name/removeAll:">&nbsp;&nbsp;&nbsp;&nbsp;- removeAll:</option>
+	
+	<option value="//api/name/removeKey:">&nbsp;&nbsp;&nbsp;&nbsp;- removeKey:</option>
+	
+	<option value="//api/name/removeURL:fromDisk:">&nbsp;&nbsp;&nbsp;&nbsp;- removeURL:fromDisk:</option>
+	
+	<option value="//api/name/storeData:forKey:">&nbsp;&nbsp;&nbsp;&nbsp;- storeData:forKey:</option>
+	
+	<option value="//api/name/storeData:forURL:">&nbsp;&nbsp;&nbsp;&nbsp;- storeData:forURL:</option>
+	
+	<option value="//api/name/storeEtag:forKey:">&nbsp;&nbsp;&nbsp;&nbsp;- storeEtag:forKey:</option>
+	
+	<option value="//api/name/storeImage:forURL:">&nbsp;&nbsp;&nbsp;&nbsp;- storeImage:forURL:</option>
+	
+	<option value="//api/name/storeTemporaryData:">&nbsp;&nbsp;&nbsp;&nbsp;- storeTemporaryData:</option>
+	
+	<option value="//api/name/storeTemporaryFile:">&nbsp;&nbsp;&nbsp;&nbsp;- storeTemporaryFile:</option>
+	
+	<option value="//api/name/storeTemporaryImage:toDisk:">&nbsp;&nbsp;&nbsp;&nbsp;- storeTemporaryImage:toDisk:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachePath">cachePath</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disableDiskCache">disableDiskCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disableImageCache">disableImageCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/etagCachePath">etagCachePath</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invalidationAge">invalidationAge</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/maxPixelCount">maxPixelCount</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheWithName:">cacheWithName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setSharedCache:">setSharedCache:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedCache">sharedCache</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachePathForKey:">cachePathForKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachePathForURL:">cachePathForURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataForKey:expires:timestamp:">dataForKey:expires:timestamp:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataForURL:">dataForURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataForURL:expires:timestamp:">dataForURL:expires:timestamp:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/etagCachePathForKey:">etagCachePathForKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/etagForKey:">etagForKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasDataForKey:expires:">hasDataForKey:expires:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasDataForURL:">hasDataForURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasImageForURL:fromDisk:">hasImageForURL:fromDisk:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageForURL:">imageForURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageForURL:fromDisk:">imageForURL:fromDisk:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithName:">initWithName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invalidateAll">invalidateAll</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invalidateKey:">invalidateKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invalidateURL:">invalidateURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyForURL:">keyForURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/logMemoryUsage">logMemoryUsage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/moveDataForURL:toURL:">moveDataForURL:toURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/moveDataFromPath:toURL:">moveDataFromPath:toURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/moveDataFromPathToTemporaryURL:">moveDataFromPathToTemporaryURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeAll:">removeAll:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeKey:">removeKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeURL:fromDisk:">removeURL:fromDisk:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/storeData:forKey:">storeData:forKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/storeData:forURL:">storeData:forURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/storeEtag:forKey:">storeEtag:forKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/storeImage:forURL:">storeImage:forURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/storeTemporaryData:">storeTemporaryData:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/storeTemporaryFile:">storeTemporaryFile:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/storeTemporaryImage:toDisk:">storeTemporaryImage:toDisk:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTURLCache Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTURLCache Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTURLCache.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A general purpose URL cache for caching data in memory and on disk.</p>
+
+<p>Etags are supported.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/disableDiskCache">&nbsp;&nbsp;disableDiskCache</a></code>
+		<span class="tooltip"><p>Disables the disk cache. Disables etag support as well.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/disableImageCache">&nbsp;&nbsp;disableImageCache</a></code>
+		<span class="tooltip"><p>Disables the in-memory cache for images.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cachePath">&nbsp;&nbsp;cachePath</a></code>
+		<span class="tooltip"><p>Gets the path to the directory of the disk cache.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/etagCachePath">&nbsp;&nbsp;etagCachePath</a></code>
+		<span class="tooltip"><p>Gets the path to the directory of the disk cache for etags.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/maxPixelCount">&nbsp;&nbsp;maxPixelCount</a></code>
+		<span class="tooltip"><p>The maximum number of pixels to keep in memory for cached images.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/invalidationAge">&nbsp;&nbsp;invalidationAge</a></code>
+		<span class="tooltip"><p>The amount of time to set back the modification timestamp on files when invalidating them.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheWithName:">+&nbsp;cacheWithName:</a></code>
+		<span class="tooltip"><p>Gets a shared cache identified with a unique name.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sharedCache">+&nbsp;sharedCache</a></code>
+		<span class="tooltip"><p>Gets the shared cache singleton used across the application.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setSharedCache:">+&nbsp;setSharedCache:</a></code>
+		<span class="tooltip"><p>Sets the shared cache singleton used across the application.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithName:">&ndash;&nbsp;initWithName:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyForURL:">&ndash;&nbsp;keyForURL:</a></code>
+		<span class="tooltip"><p>Gets the key that would be used to cache a URL response.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cachePathForURL:">&ndash;&nbsp;cachePathForURL:</a></code>
+		<span class="tooltip"><p>Gets the path in the cache where a URL may be stored.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cachePathForKey:">&ndash;&nbsp;cachePathForKey:</a></code>
+		<span class="tooltip"><p>Gets the path in the cache where a key may be stored.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/etagCachePathForKey:">&ndash;&nbsp;etagCachePathForKey:</a></code>
+		<span class="tooltip"><p>Etag cache files are stored in the following way:
+File name: <key>
+File data: <etag value></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasDataForURL:">&ndash;&nbsp;hasDataForURL:</a></code>
+		<span class="tooltip"><p>Determines if there is a cache entry for a URL.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasDataForKey:expires:">&ndash;&nbsp;hasDataForKey:expires:</a></code>
+		<span class="tooltip"><p>Determines if there is a cache entry for a key.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasImageForURL:fromDisk:">&ndash;&nbsp;hasImageForURL:fromDisk:</a></code>
+		<span class="tooltip"><p>Determines if there is an image cache entry for a URL.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataForURL:">&ndash;&nbsp;dataForURL:</a></code>
+		<span class="tooltip"><p>Gets the data for a URL from the cache if it exists.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataForURL:expires:timestamp:">&ndash;&nbsp;dataForURL:expires:timestamp:</a></code>
+		<span class="tooltip"><p>Gets the data for a URL from the cache if it exists and is newer than a minimum timestamp.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataForKey:expires:timestamp:">&ndash;&nbsp;dataForKey:expires:timestamp:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageForURL:">&ndash;&nbsp;imageForURL:</a></code>
+		<span class="tooltip"><p>Gets an image from the in-memory image cache.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageForURL:fromDisk:">&ndash;&nbsp;imageForURL:fromDisk:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/etagForKey:">&ndash;&nbsp;etagForKey:</a></code>
+		<span class="tooltip"><p>Get an etag value for a given cache key.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/storeData:forURL:">&ndash;&nbsp;storeData:forURL:</a></code>
+		<span class="tooltip"><p>Stores a data on disk.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/storeData:forKey:">&ndash;&nbsp;storeData:forKey:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/storeImage:forURL:">&ndash;&nbsp;storeImage:forURL:</a></code>
+		<span class="tooltip"><p>Stores an image in the memory cache.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/storeEtag:forKey:">&ndash;&nbsp;storeEtag:forKey:</a></code>
+		<span class="tooltip"><p>Stores an etag value in the etag cache.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/storeTemporaryImage:toDisk:">&ndash;&nbsp;storeTemporaryImage:toDisk:</a></code>
+		<span class="tooltip"><p>Convenient way to create a temporary URL for some data and cache it in memory.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/storeTemporaryData:">&ndash;&nbsp;storeTemporaryData:</a></code>
+		<span class="tooltip"><p>Convenient way to create a temporary URL for some data and cache in on disk.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/storeTemporaryFile:">&ndash;&nbsp;storeTemporaryFile:</a></code>
+		<span class="tooltip"><p>Convenient way to create a temporary URL for a file and move it to the disk cache.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/moveDataForURL:toURL:">&ndash;&nbsp;moveDataForURL:toURL:</a></code>
+		<span class="tooltip"><p>Moves the data currently stored under one URL to another URL.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/moveDataFromPath:toURL:">&ndash;&nbsp;moveDataFromPath:toURL:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/moveDataFromPathToTemporaryURL:">&ndash;&nbsp;moveDataFromPathToTemporaryURL:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeURL:fromDisk:">&ndash;&nbsp;removeURL:fromDisk:</a></code>
+		<span class="tooltip"><p>Removes the data for a URL from the memory cache and optionally from the disk cache.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeKey:">&ndash;&nbsp;removeKey:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeAll:">&ndash;&nbsp;removeAll:</a></code>
+		<span class="tooltip"><p>Erases the memory cache and optionally the disk cache.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/invalidateURL:">&ndash;&nbsp;invalidateURL:</a></code>
+		<span class="tooltip"><p>Invalidates the file in the disk cache so that its modified timestamp is the current
+time minus the default cache expiration age.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/invalidateKey:">&ndash;&nbsp;invalidateKey:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/invalidateAll">&ndash;&nbsp;invalidateAll</a></code>
+		<span class="tooltip"><p>Invalidates all files in the disk cache according to rules explained in <code>invalidateURL</code>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/logMemoryUsage">&ndash;&nbsp;logMemoryUsage</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cachePath" title="cachePath"></a>
+	<h3 class="subsubtitle method-title">cachePath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets the path to the directory of the disk cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *cachePath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets the path to the directory of the disk cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/disableDiskCache" title="disableDiskCache"></a>
+	<h3 class="subsubtitle method-title">disableDiskCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Disables the disk cache. Disables etag support as well.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL disableDiskCache</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Disables the disk cache. Disables etag support as well.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/disableImageCache" title="disableImageCache"></a>
+	<h3 class="subsubtitle method-title">disableImageCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Disables the in-memory cache for images.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL disableImageCache</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Disables the in-memory cache for images.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/etagCachePath" title="etagCachePath"></a>
+	<h3 class="subsubtitle method-title">etagCachePath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets the path to the directory of the disk cache for etags.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *etagCachePath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets the path to the directory of the disk cache for etags.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/invalidationAge" title="invalidationAge"></a>
+	<h3 class="subsubtitle method-title">invalidationAge</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The amount of time to set back the modification timestamp on files when invalidating them.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSTimeInterval invalidationAge</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The amount of time to set back the modification timestamp on files when invalidating them.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/maxPixelCount" title="maxPixelCount"></a>
+	<h3 class="subsubtitle method-title">maxPixelCount</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The maximum number of pixels to keep in memory for cached images.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSUInteger maxPixelCount</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The maximum number of pixels to keep in memory for cached images.</p>
+
+<p>Setting this to zero will allow an unlimited number of images to be cached.  The default
+is zero.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheWithName:" title="cacheWithName:"></a>
+	<h3 class="subsubtitle method-title">cacheWithName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets a shared cache identified with a unique name.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (TTURLCache *)cacheWithName:(NSString *)<em>name</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets a shared cache identified with a unique name.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setSharedCache:" title="setSharedCache:"></a>
+	<h3 class="subsubtitle method-title">setSharedCache:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sets the shared cache singleton used across the application.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)setSharedCache:(TTURLCache *)<em>cache</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sets the shared cache singleton used across the application.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sharedCache" title="sharedCache"></a>
+	<h3 class="subsubtitle method-title">sharedCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets the shared cache singleton used across the application.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (TTURLCache *)sharedCache</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets the shared cache singleton used across the application.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cachePathForKey:" title="cachePathForKey:"></a>
+	<h3 class="subsubtitle method-title">cachePathForKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets the path in the cache where a key may be stored.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)cachePathForKey:(NSString *)<em>key</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets the path in the cache where a key may be stored.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cachePathForURL:" title="cachePathForURL:"></a>
+	<h3 class="subsubtitle method-title">cachePathForURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets the path in the cache where a URL may be stored.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)cachePathForURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets the path in the cache where a URL may be stored.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dataForKey:expires:timestamp:" title="dataForKey:expires:timestamp:"></a>
+	<h3 class="subsubtitle method-title">dataForKey:expires:timestamp:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dataForURL:" title="dataForURL:"></a>
+	<h3 class="subsubtitle method-title">dataForURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets the data for a URL from the cache if it exists.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSData *)dataForURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>nil if the URL is not cached.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets the data for a URL from the cache if it exists.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dataForURL:expires:timestamp:" title="dataForURL:expires:timestamp:"></a>
+	<h3 class="subsubtitle method-title">dataForURL:expires:timestamp:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets the data for a URL from the cache if it exists and is newer than a minimum timestamp.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSData *)dataForURL:(NSString *)<em>URL</em> expires:(NSTimeInterval)<em>expirationAge</em> timestamp:(NSDate **)<em>timestamp</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>nil if hthe URL is not cached or if the cache entry is older than the minimum.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets the data for a URL from the cache if it exists and is newer than a minimum timestamp.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/etagCachePathForKey:" title="etagCachePathForKey:"></a>
+	<h3 class="subsubtitle method-title">etagCachePathForKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Etag cache files are stored in the following way:
+File name: <key>
+File data: <etag value></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)etagCachePathForKey:(NSString *)<em>key</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The etag cache path for the given key.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Etag cache files are stored in the following way:
+File name: <key>
+File data: <etag value></p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/etagForKey:" title="etagForKey:"></a>
+	<h3 class="subsubtitle method-title">etagForKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get an etag value for a given cache key.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)etagForKey:(NSString *)<em>key</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Get an etag value for a given cache key.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasDataForKey:expires:" title="hasDataForKey:expires:"></a>
+	<h3 class="subsubtitle method-title">hasDataForKey:expires:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determines if there is a cache entry for a key.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasDataForKey:(NSString *)<em>key</em> expires:(NSTimeInterval)<em>expirationAge</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Determines if there is a cache entry for a key.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasDataForURL:" title="hasDataForURL:"></a>
+	<h3 class="subsubtitle method-title">hasDataForURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determines if there is a cache entry for a URL.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasDataForURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Determines if there is a cache entry for a URL.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasImageForURL:fromDisk:" title="hasImageForURL:fromDisk:"></a>
+	<h3 class="subsubtitle method-title">hasImageForURL:fromDisk:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determines if there is an image cache entry for a URL.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasImageForURL:(NSString *)<em>URL</em> fromDisk:(BOOL)<em>fromDisk</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Determines if there is an image cache entry for a URL.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/imageForURL:" title="imageForURL:"></a>
+	<h3 class="subsubtitle method-title">imageForURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets an image from the in-memory image cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)imageForURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>nil if the URL is not cached.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets an image from the in-memory image cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/imageForURL:fromDisk:" title="imageForURL:fromDisk:"></a>
+	<h3 class="subsubtitle method-title">imageForURL:fromDisk:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithName:" title="initWithName:"></a>
+	<h3 class="subsubtitle method-title">initWithName:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/invalidateAll" title="invalidateAll"></a>
+	<h3 class="subsubtitle method-title">invalidateAll</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Invalidates all files in the disk cache according to rules explained in <code>invalidateURL</code>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)invalidateAll</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Invalidates all files in the disk cache according to rules explained in <code>invalidateURL</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/invalidateKey:" title="invalidateKey:"></a>
+	<h3 class="subsubtitle method-title">invalidateKey:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/invalidateURL:" title="invalidateURL:"></a>
+	<h3 class="subsubtitle method-title">invalidateURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Invalidates the file in the disk cache so that its modified timestamp is the current
+time minus the default cache expiration age.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)invalidateURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Invalidates the file in the disk cache so that its modified timestamp is the current
+time minus the default cache expiration age.</p>
+
+<p>This ensures that the next time the URL is requested from the cache it will be loaded
+from the network if the default cache expiration age is used.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/keyForURL:" title="keyForURL:"></a>
+	<h3 class="subsubtitle method-title">keyForURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets the key that would be used to cache a URL response.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)keyForURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets the key that would be used to cache a URL response.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/logMemoryUsage" title="logMemoryUsage"></a>
+	<h3 class="subsubtitle method-title">logMemoryUsage</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/moveDataForURL:toURL:" title="moveDataForURL:toURL:"></a>
+	<h3 class="subsubtitle method-title">moveDataForURL:toURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Moves the data currently stored under one URL to another URL.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)moveDataForURL:(NSString *)<em>oldURL</em> toURL:(NSString *)<em>newURL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Moves the data currently stored under one URL to another URL.</p>
+
+<p>This is handy when you are caching data at a temporary URL while the permanent URL is being
+retrieved from a server.  Once you know the permanent URL you can use this to move the data.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/moveDataFromPath:toURL:" title="moveDataFromPath:toURL:"></a>
+	<h3 class="subsubtitle method-title">moveDataFromPath:toURL:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/moveDataFromPathToTemporaryURL:" title="moveDataFromPathToTemporaryURL:"></a>
+	<h3 class="subsubtitle method-title">moveDataFromPathToTemporaryURL:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeAll:" title="removeAll:"></a>
+	<h3 class="subsubtitle method-title">removeAll:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Erases the memory cache and optionally the disk cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)removeAll:(BOOL)<em>fromDisk</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Erases the memory cache and optionally the disk cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeKey:" title="removeKey:"></a>
+	<h3 class="subsubtitle method-title">removeKey:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeURL:fromDisk:" title="removeURL:fromDisk:"></a>
+	<h3 class="subsubtitle method-title">removeURL:fromDisk:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Removes the data for a URL from the memory cache and optionally from the disk cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)removeURL:(NSString *)<em>URL</em> fromDisk:(BOOL)<em>fromDisk</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Removes the data for a URL from the memory cache and optionally from the disk cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/storeData:forKey:" title="storeData:forKey:"></a>
+	<h3 class="subsubtitle method-title">storeData:forKey:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/storeData:forURL:" title="storeData:forURL:"></a>
+	<h3 class="subsubtitle method-title">storeData:forURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Stores a data on disk.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)storeData:(NSData *)<em>data</em> forURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Stores a data on disk.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/storeEtag:forKey:" title="storeEtag:forKey:"></a>
+	<h3 class="subsubtitle method-title">storeEtag:forKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Stores an etag value in the etag cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)storeEtag:(NSString *)<em>etag</em> forKey:(NSString *)<em>key</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Stores an etag value in the etag cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/storeImage:forURL:" title="storeImage:forURL:"></a>
+	<h3 class="subsubtitle method-title">storeImage:forURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Stores an image in the memory cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)storeImage:(UIImage *)<em>image</em> forURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Stores an image in the memory cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/storeTemporaryData:" title="storeTemporaryData:"></a>
+	<h3 class="subsubtitle method-title">storeTemporaryData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenient way to create a temporary URL for some data and cache in on disk.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)storeTemporaryData:(NSData *)<em>data</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The temporary URL</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Convenient way to create a temporary URL for some data and cache in on disk.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/storeTemporaryFile:" title="storeTemporaryFile:"></a>
+	<h3 class="subsubtitle method-title">storeTemporaryFile:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenient way to create a temporary URL for a file and move it to the disk cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)storeTemporaryFile:(NSURL *)<em>fileURL</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The temporary URL</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Convenient way to create a temporary URL for a file and move it to the disk cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/storeTemporaryImage:toDisk:" title="storeTemporaryImage:toDisk:"></a>
+	<h3 class="subsubtitle method-title">storeTemporaryImage:toDisk:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenient way to create a temporary URL for some data and cache it in memory.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)storeTemporaryImage:(UIImage *)<em>image</em> toDisk:(BOOL)<em>toDisk</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The temporary URL</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Convenient way to create a temporary URL for some data and cache it in memory.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

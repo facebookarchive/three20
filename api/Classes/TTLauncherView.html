@@ -1,0 +1,908 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTLauncherView Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTLauncherView Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/columnCount">&nbsp;&nbsp;&nbsp;&nbsp;columnCount</option>
+	
+	<option value="//api/name/currentPageIndex">&nbsp;&nbsp;&nbsp;&nbsp;currentPageIndex</option>
+	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
+	<option value="//api/name/editable">&nbsp;&nbsp;&nbsp;&nbsp;editable</option>
+	
+	<option value="//api/name/editing">&nbsp;&nbsp;&nbsp;&nbsp;editing</option>
+	
+	<option value="//api/name/pager">&nbsp;&nbsp;&nbsp;&nbsp;pager</option>
+	
+	<option value="//api/name/pages">&nbsp;&nbsp;&nbsp;&nbsp;pages</option>
+	
+	<option value="//api/name/persistenceKey">&nbsp;&nbsp;&nbsp;&nbsp;persistenceKey</option>
+	
+	<option value="//api/name/persistenceMode">&nbsp;&nbsp;&nbsp;&nbsp;persistenceMode</option>
+	
+	<option value="//api/name/prompt">&nbsp;&nbsp;&nbsp;&nbsp;prompt</option>
+	
+	<option value="//api/name/rowCount">&nbsp;&nbsp;&nbsp;&nbsp;rowCount</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addItem:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- addItem:animated:</option>
+	
+	<option value="//api/name/beginEditing">&nbsp;&nbsp;&nbsp;&nbsp;- beginEditing</option>
+	
+	<option value="//api/name/beginHighlightItem:withText:">&nbsp;&nbsp;&nbsp;&nbsp;- beginHighlightItem:withText:</option>
+	
+	<option value="//api/name/endEditing">&nbsp;&nbsp;&nbsp;&nbsp;- endEditing</option>
+	
+	<option value="//api/name/endHighlightItem:">&nbsp;&nbsp;&nbsp;&nbsp;- endHighlightItem:</option>
+	
+	<option value="//api/name/indexPathOfItem:">&nbsp;&nbsp;&nbsp;&nbsp;- indexPathOfItem:</option>
+	
+	<option value="//api/name/itemWithURL:">&nbsp;&nbsp;&nbsp;&nbsp;- itemWithURL:</option>
+	
+	<option value="//api/name/persistLauncherItems">&nbsp;&nbsp;&nbsp;&nbsp;- persistLauncherItems</option>
+	
+	<option value="//api/name/removeItem:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- removeItem:animated:</option>
+	
+	<option value="//api/name/resetDefaults">&nbsp;&nbsp;&nbsp;&nbsp;- resetDefaults</option>
+	
+	<option value="//api/name/restoreLauncherItems">&nbsp;&nbsp;&nbsp;&nbsp;- restoreLauncherItems</option>
+	
+	<option value="//api/name/scrollToItem:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollToItem:animated:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/columnCount">columnCount</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentPageIndex">currentPageIndex</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/editable">editable</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/editing">editing</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pager">pager</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pages">pages</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistenceKey">persistenceKey</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistenceMode">persistenceMode</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prompt">prompt</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rowCount">rowCount</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addItem:animated:">addItem:animated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/beginEditing">beginEditing</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/beginHighlightItem:withText:">beginHighlightItem:withText:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endEditing">endEditing</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endHighlightItem:">endHighlightItem:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/indexPathOfItem:">indexPathOfItem:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/itemWithURL:">itemWithURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistLauncherItems">persistLauncherItems</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeItem:animated:">removeItem:animated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resetDefaults">resetDefaults</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/restoreLauncherItems">restoreLauncherItems</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollToItem:animated:">scrollToItem:animated:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTLauncherView Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTLauncherView Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">UIView</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UIScrollViewDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTLauncherView.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pages">&nbsp;&nbsp;pages</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/columnCount">&nbsp;&nbsp;columnCount</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rowCount">&nbsp;&nbsp;rowCount</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pager">&nbsp;&nbsp;pager</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentPageIndex">&nbsp;&nbsp;currentPageIndex</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/prompt">&nbsp;&nbsp;prompt</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/editing">&nbsp;&nbsp;editing</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/editable">&nbsp;&nbsp;editable</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistenceKey">&nbsp;&nbsp;persistenceKey</a></code>
+		<span class="tooltip"><p>The key to use for storing persistence information.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistenceMode">&nbsp;&nbsp;persistenceMode</a></code>
+		<span class="tooltip"><p>How buttons are automatically persisted on termination and restored on launch.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addItem:animated:">&ndash;&nbsp;addItem:animated:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeItem:animated:">&ndash;&nbsp;removeItem:animated:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/itemWithURL:">&ndash;&nbsp;itemWithURL:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/indexPathOfItem:">&ndash;&nbsp;indexPathOfItem:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollToItem:animated:">&ndash;&nbsp;scrollToItem:animated:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/beginEditing">&ndash;&nbsp;beginEditing</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endEditing">&ndash;&nbsp;endEditing</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistLauncherItems">&ndash;&nbsp;persistLauncherItems</a></code>
+		<span class="tooltip"><p>Persists all <a href="#//api/name/pages">pages</a> &amp; buttons to user defaults.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/restoreLauncherItems">&ndash;&nbsp;restoreLauncherItems</a></code>
+		<span class="tooltip"><p>Restores all <a href="#//api/name/pages">pages</a> &amp; button from user defaults and returns if sucess</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/resetDefaults">&ndash;&nbsp;resetDefaults</a></code>
+		<span class="tooltip"><p>Erases all data stored in user defaults.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/beginHighlightItem:withText:">&ndash;&nbsp;beginHighlightItem:withText:</a></code>
+		<span class="tooltip"><p>Dims the launcher view except for a transparent circle around the given item. The given text
+will also be shown center-aligned below or above the circle, as appropriate. The item can be
+tapped while the overlay is up; tapping anywhere else on the overlay simply dismisses the
+overlay and does not pass the event through.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endHighlightItem:">&ndash;&nbsp;endHighlightItem:</a></code>
+		<span class="tooltip"><p>Removes the highlighting overlay introduced by <a href="#//api/name/beginHighlightItem:withText:">beginHighlightItem:withText:</a>. This will be done
+automatically if the user taps anywhere on the overlay except the transparent circle.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/columnCount" title="columnCount"></a>
+	<h3 class="subsubtitle method-title">columnCount</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentPageIndex" title="currentPageIndex"></a>
+	<h3 class="subsubtitle method-title">currentPageIndex</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/editable" title="editable"></a>
+	<h3 class="subsubtitle method-title">editable</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/editing" title="editing"></a>
+	<h3 class="subsubtitle method-title">editing</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pager" title="pager"></a>
+	<h3 class="subsubtitle method-title">pager</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pages" title="pages"></a>
+	<h3 class="subsubtitle method-title">pages</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistenceKey" title="persistenceKey"></a>
+	<h3 class="subsubtitle method-title">persistenceKey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The key to use for storing persistence information.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *persistenceKey</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The key to use for storing persistence information.</p>
+
+<p>@default launcherViewPages</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTLauncherView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistenceMode" title="persistenceMode"></a>
+	<h3 class="subsubtitle method-title">persistenceMode</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>How buttons are automatically persisted on termination and restored on launch.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) TTLauncherPersistenceMode persistenceMode</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>How buttons are automatically persisted on termination and restored on launch.</p>
+
+<p>@default TTLauncherPersistenceModeNone</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTLauncherView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prompt" title="prompt"></a>
+	<h3 class="subsubtitle method-title">prompt</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rowCount" title="rowCount"></a>
+	<h3 class="subsubtitle method-title">rowCount</h3>
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addItem:animated:" title="addItem:animated:"></a>
+	<h3 class="subsubtitle method-title">addItem:animated:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/beginEditing" title="beginEditing"></a>
+	<h3 class="subsubtitle method-title">beginEditing</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/beginHighlightItem:withText:" title="beginHighlightItem:withText:"></a>
+	<h3 class="subsubtitle method-title">beginHighlightItem:withText:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Dims the launcher view except for a transparent circle around the given item. The given text
+will also be shown center-aligned below or above the circle, as appropriate. The item can be
+tapped while the overlay is up; tapping anywhere else on the overlay simply dismisses the
+overlay and does not pass the event through.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)beginHighlightItem:(TTLauncherItem *)<em>item</em> withText:(NSString *)<em>text</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Dims the launcher view except for a transparent circle around the given item. The given text
+will also be shown center-aligned below or above the circle, as appropriate. The item can be
+tapped while the overlay is up; tapping anywhere else on the overlay simply dismisses the
+overlay and does not pass the event through.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTLauncherView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endEditing" title="endEditing"></a>
+	<h3 class="subsubtitle method-title">endEditing</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endHighlightItem:" title="endHighlightItem:"></a>
+	<h3 class="subsubtitle method-title">endHighlightItem:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Removes the highlighting overlay introduced by <a href="#//api/name/beginHighlightItem:withText:">beginHighlightItem:withText:</a>. This will be done
+automatically if the user taps anywhere on the overlay except the transparent circle.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)endHighlightItem:(TTLauncherItem *)<em>item</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Removes the highlighting overlay introduced by <a href="#//api/name/beginHighlightItem:withText:">beginHighlightItem:withText:</a>. This will be done
+automatically if the user taps anywhere on the overlay except the transparent circle.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTLauncherView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/indexPathOfItem:" title="indexPathOfItem:"></a>
+	<h3 class="subsubtitle method-title">indexPathOfItem:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/itemWithURL:" title="itemWithURL:"></a>
+	<h3 class="subsubtitle method-title">itemWithURL:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistLauncherItems" title="persistLauncherItems"></a>
+	<h3 class="subsubtitle method-title">persistLauncherItems</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Persists all <a href="#//api/name/pages">pages</a> &amp; buttons to user defaults.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)persistLauncherItems</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Persists all <a href="#//api/name/pages">pages</a> &amp; buttons to user defaults.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTLauncherView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeItem:animated:" title="removeItem:animated:"></a>
+	<h3 class="subsubtitle method-title">removeItem:animated:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/resetDefaults" title="resetDefaults"></a>
+	<h3 class="subsubtitle method-title">resetDefaults</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Erases all data stored in user defaults.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)resetDefaults</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Erases all data stored in user defaults.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTLauncherView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/restoreLauncherItems" title="restoreLauncherItems"></a>
+	<h3 class="subsubtitle method-title">restoreLauncherItems</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Restores all <a href="#//api/name/pages">pages</a> &amp; button from user defaults and returns if sucess</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)restoreLauncherItems</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Restores all <a href="#//api/name/pages">pages</a> &amp; button from user defaults and returns if sucess</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTLauncherView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollToItem:animated:" title="scrollToItem:animated:"></a>
+	<h3 class="subsubtitle method-title">scrollToItem:animated:</h3>
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

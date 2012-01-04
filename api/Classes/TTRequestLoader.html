@@ -1,0 +1,964 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTRequestLoader Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTRequestLoader Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/URL">&nbsp;&nbsp;&nbsp;&nbsp;URL</option>
+	
+	<option value="//api/name/cacheExpirationAge">&nbsp;&nbsp;&nbsp;&nbsp;cacheExpirationAge</option>
+	
+	<option value="//api/name/cacheKey">&nbsp;&nbsp;&nbsp;&nbsp;cacheKey</option>
+	
+	<option value="//api/name/cachePolicy">&nbsp;&nbsp;&nbsp;&nbsp;cachePolicy</option>
+	
+	<option value="//api/name/isLoading">&nbsp;&nbsp;&nbsp;&nbsp;isLoading</option>
+	
+	<option value="//api/name/requests">&nbsp;&nbsp;&nbsp;&nbsp;requests</option>
+	
+	<option value="//api/name/urlPath">&nbsp;&nbsp;&nbsp;&nbsp;urlPath</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addRequest:">&nbsp;&nbsp;&nbsp;&nbsp;- addRequest:</option>
+	
+	<option value="//api/name/cancel">&nbsp;&nbsp;&nbsp;&nbsp;- cancel</option>
+	
+	<option value="//api/name/cancel:">&nbsp;&nbsp;&nbsp;&nbsp;- cancel:</option>
+	
+	<option value="//api/name/dispatchAuthenticationChallenge:">&nbsp;&nbsp;&nbsp;&nbsp;- dispatchAuthenticationChallenge:</option>
+	
+	<option value="//api/name/dispatchError:">&nbsp;&nbsp;&nbsp;&nbsp;- dispatchError:</option>
+	
+	<option value="//api/name/dispatchLoaded:">&nbsp;&nbsp;&nbsp;&nbsp;- dispatchLoaded:</option>
+	
+	<option value="//api/name/initForRequest:queue:">&nbsp;&nbsp;&nbsp;&nbsp;- initForRequest:queue:</option>
+	
+	<option value="//api/name/load:">&nbsp;&nbsp;&nbsp;&nbsp;- load:</option>
+	
+	<option value="//api/name/loadSynchronously:">&nbsp;&nbsp;&nbsp;&nbsp;- loadSynchronously:</option>
+	
+	<option value="//api/name/processResponse:data:">&nbsp;&nbsp;&nbsp;&nbsp;- processResponse:data:</option>
+	
+	<option value="//api/name/removeRequest:">&nbsp;&nbsp;&nbsp;&nbsp;- removeRequest:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URL">URL</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheExpirationAge">cacheExpirationAge</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheKey">cacheKey</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachePolicy">cachePolicy</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLoading">isLoading</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requests">requests</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/urlPath">urlPath</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addRequest:">addRequest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancel">cancel</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancel:">cancel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dispatchAuthenticationChallenge:">dispatchAuthenticationChallenge:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dispatchError:">dispatchError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dispatchLoaded:">dispatchLoaded:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initForRequest:queue:">initForRequest:queue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/load:">load:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadSynchronously:">loadSynchronously:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/processResponse:data:">processResponse:data:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeRequest:">removeRequest:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTRequestLoader Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTRequestLoader Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTRequestLoader.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The loader manages a set of TTURLRequests and makes the necessary callbacks for each.
+It implements the NSURLConnectionDelegate protocol and calls the required operations on the
+queue as the protocol methods are invoked.</p>
+
+<p>NSURLErrorCannotFindHost errors are retried at least twice before completely giving up.</p>
+
+<p>The loader collects identical GET TTURLRequests into a single object. This logic is handled in
+TTURLRequestQueue&rsquo;s sendRequest.
+For all other <a href="../Classes/TTURLRequest.html">TTURLRequest</a> types, they will each have their own loader.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requests">&nbsp;&nbsp;requests</a></code>
+		<span class="tooltip"><p>The list of TTURLRequests currently attached to this loader.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/urlPath">&nbsp;&nbsp;urlPath</a></code>
+		<span class="tooltip"><p>The common <a href="#//api/name/urlPath">urlPath</a> shared by every request.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheKey">&nbsp;&nbsp;cacheKey</a></code>
+		<span class="tooltip"><p>The common <a href="#//api/name/cacheKey">cacheKey</a> shared by every request.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cachePolicy">&nbsp;&nbsp;cachePolicy</a></code>
+		<span class="tooltip"><p>The common cache policy shared by every request.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheExpirationAge">&nbsp;&nbsp;cacheExpirationAge</a></code>
+		<span class="tooltip"><p>The common cache expiration age shared by ever request.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isLoading">&nbsp;&nbsp;isLoading</a></code>
+		<span class="tooltip"><p>Whether or not any of the <a href="#//api/name/requests">requests</a> in this loader are loading.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/URL">&nbsp;&nbsp;URL</a></code>
+		<span class="tooltip"><p>Deprecated due to name ambiguity. Use <a href="#//api/name/urlPath">urlPath</a> instead.
+Remove after May 6, 2010.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initForRequest:queue:">&ndash;&nbsp;initForRequest:queue:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addRequest:">&ndash;&nbsp;addRequest:</a></code>
+		<span class="tooltip"><p>Duplication is possible due to the use of an NSArray for the request list.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeRequest:">&ndash;&nbsp;removeRequest:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/load:">&ndash;&nbsp;load:</a></code>
+		<span class="tooltip"><p>If the loader isn&rsquo;t already active, create the NSURLRequest from the first <a href="../Classes/TTURLRequest.html">TTURLRequest</a> added
+to this loader and fire it off.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadSynchronously:">&ndash;&nbsp;loadSynchronously:</a></code>
+		<span class="tooltip"><p>As with <a href="#//api/name/load:">load:</a>, will create the NSURLRequest from the first <a href="../Classes/TTURLRequest.html">TTURLRequest</a> added to the loader.
+Unlike <a href="#//api/name/load:">load:</a>, this method will not return until the request has been fully completed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancel:">&ndash;&nbsp;cancel:</a></code>
+		<span class="tooltip"><p>Cancel only the given request.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/processResponse:data:">&ndash;&nbsp;processResponse:data:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dispatchError:">&ndash;&nbsp;dispatchError:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dispatchLoaded:">&ndash;&nbsp;dispatchLoaded:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dispatchAuthenticationChallenge:">&ndash;&nbsp;dispatchAuthenticationChallenge:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancel">&ndash;&nbsp;cancel</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/URL" title="URL"></a>
+	<h3 class="subsubtitle method-title">URL</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Deprecated due to name ambiguity. Use <a href="#//api/name/urlPath">urlPath</a> instead.
+Remove after May 6, 2010.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *URL</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Deprecated due to name ambiguity. Use <a href="#//api/name/urlPath">urlPath</a> instead.
+Remove after May 6, 2010.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheExpirationAge" title="cacheExpirationAge"></a>
+	<h3 class="subsubtitle method-title">cacheExpirationAge</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The common cache expiration age shared by ever request.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSTimeInterval cacheExpirationAge</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The common cache expiration age shared by ever request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheKey" title="cacheKey"></a>
+	<h3 class="subsubtitle method-title">cacheKey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The common <a href="#//api/name/cacheKey">cacheKey</a> shared by every request.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *cacheKey</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The common <a href="#//api/name/cacheKey">cacheKey</a> shared by every request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cachePolicy" title="cachePolicy"></a>
+	<h3 class="subsubtitle method-title">cachePolicy</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The common cache policy shared by every request.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) TTURLRequestCachePolicy cachePolicy</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The common cache policy shared by every request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isLoading" title="isLoading"></a>
+	<h3 class="subsubtitle method-title">isLoading</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Whether or not any of the <a href="#//api/name/requests">requests</a> in this loader are loading.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isLoading</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Whether or not any of the <a href="#//api/name/requests">requests</a> in this loader are loading.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requests" title="requests"></a>
+	<h3 class="subsubtitle method-title">requests</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The list of TTURLRequests currently attached to this loader.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSArray *requests</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The list of TTURLRequests currently attached to this loader.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/urlPath" title="urlPath"></a>
+	<h3 class="subsubtitle method-title">urlPath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The common <a href="#//api/name/urlPath">urlPath</a> shared by every request.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *urlPath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The common <a href="#//api/name/urlPath">urlPath</a> shared by every request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addRequest:" title="addRequest:"></a>
+	<h3 class="subsubtitle method-title">addRequest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Duplication is possible due to the use of an NSArray for the request list.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addRequest:(TTURLRequest *)<em>request</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Duplication is possible due to the use of an NSArray for the request list.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cancel" title="cancel"></a>
+	<h3 class="subsubtitle method-title">cancel</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cancel:" title="cancel:"></a>
+	<h3 class="subsubtitle method-title">cancel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancel only the given request.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)cancel:(TTURLRequest *)<em>request</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>NO   If there are no <a href="#//api/name/requests">requests</a> left.
+YES  If there are any <a href="#//api/name/requests">requests</a> left.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancel only the given request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dispatchAuthenticationChallenge:" title="dispatchAuthenticationChallenge:"></a>
+	<h3 class="subsubtitle method-title">dispatchAuthenticationChallenge:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dispatchError:" title="dispatchError:"></a>
+	<h3 class="subsubtitle method-title">dispatchError:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dispatchLoaded:" title="dispatchLoaded:"></a>
+	<h3 class="subsubtitle method-title">dispatchLoaded:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initForRequest:queue:" title="initForRequest:queue:"></a>
+	<h3 class="subsubtitle method-title">initForRequest:queue:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/load:" title="load:"></a>
+	<h3 class="subsubtitle method-title">load:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If the loader isn&rsquo;t already active, create the NSURLRequest from the first <a href="../Classes/TTURLRequest.html">TTURLRequest</a> added
+to this loader and fire it off.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)load:(NSURL *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If the loader isn&rsquo;t already active, create the NSURLRequest from the first <a href="../Classes/TTURLRequest.html">TTURLRequest</a> added
+to this loader and fire it off.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadSynchronously:" title="loadSynchronously:"></a>
+	<h3 class="subsubtitle method-title">loadSynchronously:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>As with <a href="#//api/name/load:">load:</a>, will create the NSURLRequest from the first <a href="../Classes/TTURLRequest.html">TTURLRequest</a> added to the loader.
+Unlike <a href="#//api/name/load:">load:</a>, this method will not return until the request has been fully completed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)loadSynchronously:(NSURL *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>As with <a href="#//api/name/load:">load:</a>, will create the NSURLRequest from the first <a href="../Classes/TTURLRequest.html">TTURLRequest</a> added to the loader.
+Unlike <a href="#//api/name/load:">load:</a>, this method will not return until the request has been fully completed.</p>
+
+<p>This is useful for threads that need to block while waiting for resources from the net.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTRequestLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/processResponse:data:" title="processResponse:data:"></a>
+	<h3 class="subsubtitle method-title">processResponse:data:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeRequest:" title="removeRequest:"></a>
+	<h3 class="subsubtitle method-title">removeRequest:</h3>
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

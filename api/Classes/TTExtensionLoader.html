@@ -1,0 +1,499 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTExtensionLoader Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTExtensionLoader Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/availableExtensions">&nbsp;&nbsp;&nbsp;&nbsp;+ availableExtensions</option>
+	
+	<option value="//api/name/failedExtensions">&nbsp;&nbsp;&nbsp;&nbsp;+ failedExtensions</option>
+	
+	<option value="//api/name/loadAllExtensions">&nbsp;&nbsp;&nbsp;&nbsp;+ loadAllExtensions</option>
+	
+	<option value="//api/name/loadedExtensions">&nbsp;&nbsp;&nbsp;&nbsp;+ loadedExtensions</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/availableExtensions">availableExtensions</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/failedExtensions">failedExtensions</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadAllExtensions">loadAllExtensions</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadedExtensions">loadedExtensions</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTExtensionLoader Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTExtensionLoader Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTExtensionLoader.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The extension loader provides basic utility methods to load extensions once an application
+has started running.</p>
+
+<p><a href="#//api/name/loadAllExtensions">[TTExtensionLoader loadAllExtensions]</a>;</p>
+
+<p>is likely the only method you&rsquo;ll need to use.</p>
+
+<p>How it works:</p>
+
+<p>An extension creates a <a href="TTExtensionLoader.html">TTExtensionLoader</a> category, e.g.:</p>
+
+<p>@interface <a href="TTExtensionLoader.html">TTExtensionLoader</a> (TTXMLExtension)</p>
+
+<p>The extension then implements a method in this category with the prefix &ldquo;loadExtensionNamed&rdquo;</p>
+
+<ul>
+<li>(BOOL)loadExtensionNamedThree20XML;</li>
+</ul>
+
+
+<p>This method will be called when <a href="#//api/name/loadAllExtensions">loadAllExtensions</a> is called and should be used to initialize
+any extension-specific functionality. A simple example of this might be to register some global
+navigator URLs for use by the application.</p>
+
+<p>The extension can then optionally implement a second method with the prefix
+&ldquo;extensionInfoNamed&rdquo;. The text after the prefix should match that of the load method.</p>
+
+<ul>
+<li>(TTExtensionInfo*)extensionInfoNamedThree20XML;</li>
+</ul>
+
+
+<p>This method should return an autoreleased <a href="../Classes/TTExtensionInfo.html">TTExtensionInfo</a> object that has been populated with
+any information the extension wishes to provide. If this method isn&rsquo;t implemented, a default
+<a href="../Classes/TTExtensionInfo.html">TTExtensionInfo</a> object will be created.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadAllExtensions">+&nbsp;loadAllExtensions</a></code>
+		<span class="tooltip"><p>Load all extensions that provide a method of the following signature:
+&ndash; (BOOL)loadExtensionNamed<extension name></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/availableExtensions">+&nbsp;availableExtensions</a></code>
+		<span class="tooltip"><p>Retrieve the map of available extensions.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadedExtensions">+&nbsp;loadedExtensions</a></code>
+		<span class="tooltip"><p>Retrieve the map of loaded extensions.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/failedExtensions">+&nbsp;failedExtensions</a></code>
+		<span class="tooltip"><p>Retrieve the map of extensions that failed to load.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/availableExtensions" title="availableExtensions"></a>
+	<h3 class="subsubtitle method-title">availableExtensions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieve the map of available extensions.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)availableExtensions</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Retrieve the map of available extensions.</p>
+
+<p>Format:
+[(NSString<strong>)identifier] => (<a href="../Classes/TTExtensionInfo.html">TTExtensionInfo</a></strong>)extension</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTExtensionLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/failedExtensions" title="failedExtensions"></a>
+	<h3 class="subsubtitle method-title">failedExtensions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieve the map of extensions that failed to load.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)failedExtensions</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Retrieve the map of extensions that failed to load.</p>
+
+<p>Format:
+[(NSString<strong>)identifier] => (<a href="../Classes/TTExtensionInfo.html">TTExtensionInfo</a></strong>)extension</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTExtensionLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadAllExtensions" title="loadAllExtensions"></a>
+	<h3 class="subsubtitle method-title">loadAllExtensions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Load all extensions that provide a method of the following signature:
+&ndash; (BOOL)loadExtensionNamed<extension name></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)loadAllExtensions</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Load all extensions that provide a method of the following signature:
+&ndash; (BOOL)loadExtensionNamed<extension name></p>
+
+<p>For example:
+&ndash; (BOOL)loadExtensionNamedThree20XML</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTExtensionLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadedExtensions" title="loadedExtensions"></a>
+	<h3 class="subsubtitle method-title">loadedExtensions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieve the map of loaded extensions.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)loadedExtensions</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Retrieve the map of loaded extensions.</p>
+
+<p>Format:
+[(NSString<strong>)identifier] => (<a href="../Classes/TTExtensionInfo.html">TTExtensionInfo</a></strong>)extension</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTExtensionLoader.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

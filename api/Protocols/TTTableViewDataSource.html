@@ -1,0 +1,672 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTTableViewDataSource Protocol Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTTableViewDataSource Protocol Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/model">&nbsp;&nbsp;&nbsp;&nbsp;model</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/lettersForSectionsWithSearch:summary:">&nbsp;&nbsp;&nbsp;&nbsp;+ lettersForSectionsWithSearch:summary:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/imageForEmpty">&nbsp;&nbsp;&nbsp;&nbsp;- imageForEmpty</option>
+	
+	<option value="//api/name/imageForError:">&nbsp;&nbsp;&nbsp;&nbsp;- imageForError:</option>
+	
+	<option value="//api/name/search:">&nbsp;&nbsp;&nbsp;&nbsp;- search:</option>
+	
+	<option value="//api/name/subtitleForEmpty">&nbsp;&nbsp;&nbsp;&nbsp;- subtitleForEmpty</option>
+	
+	<option value="//api/name/subtitleForError:">&nbsp;&nbsp;&nbsp;&nbsp;- subtitleForError:</option>
+	
+	<option value="//api/name/tableView:cell:willAppearAtIndexPath:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:cell:willAppearAtIndexPath:</option>
+	
+	<option value="//api/name/tableView:cellClassForObject:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:cellClassForObject:</option>
+	
+	<option value="//api/name/tableView:indexPathForObject:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:indexPathForObject:</option>
+	
+	<option value="//api/name/tableView:labelForObject:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:labelForObject:</option>
+	
+	<option value="//api/name/tableView:objectForRowAtIndexPath:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:objectForRowAtIndexPath:</option>
+	
+	<option value="//api/name/tableView:willInsertObject:atIndexPath:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:willInsertObject:atIndexPath:</option>
+	
+	<option value="//api/name/tableView:willRemoveObject:atIndexPath:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:willRemoveObject:atIndexPath:</option>
+	
+	<option value="//api/name/tableView:willUpdateObject:atIndexPath:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:willUpdateObject:atIndexPath:</option>
+	
+	<option value="//api/name/tableViewDidLoadModel:">&nbsp;&nbsp;&nbsp;&nbsp;- tableViewDidLoadModel:</option>
+	
+	<option value="//api/name/titleForEmpty">&nbsp;&nbsp;&nbsp;&nbsp;- titleForEmpty</option>
+	
+	<option value="//api/name/titleForError:">&nbsp;&nbsp;&nbsp;&nbsp;- titleForError:</option>
+	
+	<option value="//api/name/titleForLoading:">&nbsp;&nbsp;&nbsp;&nbsp;- titleForLoading:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/model">model</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lettersForSectionsWithSearch:summary:">lettersForSectionsWithSearch:summary:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageForEmpty">imageForEmpty</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageForError:">imageForError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/search:">search:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subtitleForEmpty">subtitleForEmpty</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subtitleForError:">subtitleForError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:cell:willAppearAtIndexPath:">tableView:cell:willAppearAtIndexPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:cellClassForObject:">tableView:cellClassForObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:indexPathForObject:">tableView:indexPathForObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:labelForObject:">tableView:labelForObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:objectForRowAtIndexPath:">tableView:objectForRowAtIndexPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:willInsertObject:atIndexPath:">tableView:willInsertObject:atIndexPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:willRemoveObject:atIndexPath:">tableView:willRemoveObject:atIndexPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:willUpdateObject:atIndexPath:">tableView:willUpdateObject:atIndexPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableViewDidLoadModel:">tableViewDidLoadModel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/titleForEmpty">titleForEmpty</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/titleForError:">titleForError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/titleForLoading:">titleForLoading:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTTableViewDataSource Protocol Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTTableViewDataSource Protocol Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value"><a href="../Protocols/TTModel.html">TTModel</a><br />UISearchDisplayDelegate<br />UITableViewDataSource</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTTableViewDataSource.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/model">&nbsp;&nbsp;model</a></code>
+		<span class="tooltip"><p>Optional method to return a <a href="#//api/name/model">model</a> object to delegate the <a href="../Classes/TTModel.html">TTModel</a> protocol to.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lettersForSectionsWithSearch:summary:">+&nbsp;lettersForSectionsWithSearch:summary:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:objectForRowAtIndexPath:">&ndash;&nbsp;tableView:objectForRowAtIndexPath:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:cellClassForObject:">&ndash;&nbsp;tableView:cellClassForObject:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:labelForObject:">&ndash;&nbsp;tableView:labelForObject:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:indexPathForObject:">&ndash;&nbsp;tableView:indexPathForObject:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:cell:willAppearAtIndexPath:">&ndash;&nbsp;tableView:cell:willAppearAtIndexPath:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableViewDidLoadModel:">&ndash;&nbsp;tableViewDidLoadModel:</a></code>
+		<span class="tooltip"><p>Informs the data source that its <a href="#//api/name/model">model</a> loaded.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/titleForLoading:">&ndash;&nbsp;titleForLoading:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageForEmpty">&ndash;&nbsp;imageForEmpty</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/titleForEmpty">&ndash;&nbsp;titleForEmpty</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subtitleForEmpty">&ndash;&nbsp;subtitleForEmpty</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageForError:">&ndash;&nbsp;imageForError:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/titleForError:">&ndash;&nbsp;titleForError:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subtitleForError:">&ndash;&nbsp;subtitleForError:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:willUpdateObject:atIndexPath:">&ndash;&nbsp;tableView:willUpdateObject:atIndexPath:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:willInsertObject:atIndexPath:">&ndash;&nbsp;tableView:willInsertObject:atIndexPath:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:willRemoveObject:atIndexPath:">&ndash;&nbsp;tableView:willRemoveObject:atIndexPath:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/search:">&ndash;&nbsp;search:</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/model" title="model"></a>
+	<h3 class="subsubtitle method-title">model</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Optional method to return a <a href="#//api/name/model">model</a> object to delegate the <a href="../Classes/TTModel.html">TTModel</a> protocol to.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) id&lt;TTModel&gt; model</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Optional method to return a <a href="#//api/name/model">model</a> object to delegate the <a href="../Classes/TTModel.html">TTModel</a> protocol to.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/lettersForSectionsWithSearch:summary:" title="lettersForSectionsWithSearch:summary:"></a>
+	<h3 class="subsubtitle method-title">lettersForSectionsWithSearch:summary:</h3>
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/imageForEmpty" title="imageForEmpty"></a>
+	<h3 class="subsubtitle method-title">imageForEmpty</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/imageForError:" title="imageForError:"></a>
+	<h3 class="subsubtitle method-title">imageForError:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/search:" title="search:"></a>
+	<h3 class="subsubtitle method-title">search:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subtitleForEmpty" title="subtitleForEmpty"></a>
+	<h3 class="subsubtitle method-title">subtitleForEmpty</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subtitleForError:" title="subtitleForError:"></a>
+	<h3 class="subsubtitle method-title">subtitleForError:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:cell:willAppearAtIndexPath:" title="tableView:cell:willAppearAtIndexPath:"></a>
+	<h3 class="subsubtitle method-title">tableView:cell:willAppearAtIndexPath:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:cellClassForObject:" title="tableView:cellClassForObject:"></a>
+	<h3 class="subsubtitle method-title">tableView:cellClassForObject:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:indexPathForObject:" title="tableView:indexPathForObject:"></a>
+	<h3 class="subsubtitle method-title">tableView:indexPathForObject:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:labelForObject:" title="tableView:labelForObject:"></a>
+	<h3 class="subsubtitle method-title">tableView:labelForObject:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:objectForRowAtIndexPath:" title="tableView:objectForRowAtIndexPath:"></a>
+	<h3 class="subsubtitle method-title">tableView:objectForRowAtIndexPath:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:willInsertObject:atIndexPath:" title="tableView:willInsertObject:atIndexPath:"></a>
+	<h3 class="subsubtitle method-title">tableView:willInsertObject:atIndexPath:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:willRemoveObject:atIndexPath:" title="tableView:willRemoveObject:atIndexPath:"></a>
+	<h3 class="subsubtitle method-title">tableView:willRemoveObject:atIndexPath:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:willUpdateObject:atIndexPath:" title="tableView:willUpdateObject:atIndexPath:"></a>
+	<h3 class="subsubtitle method-title">tableView:willUpdateObject:atIndexPath:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableViewDidLoadModel:" title="tableViewDidLoadModel:"></a>
+	<h3 class="subsubtitle method-title">tableViewDidLoadModel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Informs the data source that its <a href="#//api/name/model">model</a> loaded.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)tableViewDidLoadModel:(UITableView *)<em>tableView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Informs the data source that its <a href="#//api/name/model">model</a> loaded.</p>
+
+<p>That would be a good time to prepare the freshly loaded data for use in the table view.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewDataSource.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/titleForEmpty" title="titleForEmpty"></a>
+	<h3 class="subsubtitle method-title">titleForEmpty</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/titleForError:" title="titleForError:"></a>
+	<h3 class="subsubtitle method-title">titleForError:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/titleForLoading:" title="titleForLoading:"></a>
+	<h3 class="subsubtitle method-title">titleForLoading:</h3>
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

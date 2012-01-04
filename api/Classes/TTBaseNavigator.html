@@ -1,0 +1,1945 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTBaseNavigator Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTBaseNavigator Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/URL">&nbsp;&nbsp;&nbsp;&nbsp;URL</option>
+	
+	<option value="//api/name/URLMap">&nbsp;&nbsp;&nbsp;&nbsp;URLMap</option>
+	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
+	<option value="//api/name/isDelayed">&nbsp;&nbsp;&nbsp;&nbsp;isDelayed</option>
+	
+	<option value="//api/name/opensExternalURLs">&nbsp;&nbsp;&nbsp;&nbsp;opensExternalURLs</option>
+	
+	<option value="//api/name/persistenceExpirationAge">&nbsp;&nbsp;&nbsp;&nbsp;persistenceExpirationAge</option>
+	
+	<option value="//api/name/persistenceKey">&nbsp;&nbsp;&nbsp;&nbsp;persistenceKey</option>
+	
+	<option value="//api/name/persistenceMode">&nbsp;&nbsp;&nbsp;&nbsp;persistenceMode</option>
+	
+	<option value="//api/name/rootContainer">&nbsp;&nbsp;&nbsp;&nbsp;rootContainer</option>
+	
+	<option value="//api/name/rootViewController">&nbsp;&nbsp;&nbsp;&nbsp;rootViewController</option>
+	
+	<option value="//api/name/supportsShakeToReload">&nbsp;&nbsp;&nbsp;&nbsp;supportsShakeToReload</option>
+	
+	<option value="//api/name/topViewController">&nbsp;&nbsp;&nbsp;&nbsp;topViewController</option>
+	
+	<option value="//api/name/visibleViewController">&nbsp;&nbsp;&nbsp;&nbsp;visibleViewController</option>
+	
+	<option value="//api/name/window">&nbsp;&nbsp;&nbsp;&nbsp;window</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/globalNavigator">&nbsp;&nbsp;&nbsp;&nbsp;+ globalNavigator</option>
+	
+	<option value="//api/name/navigatorForView:">&nbsp;&nbsp;&nbsp;&nbsp;+ navigatorForView:</option>
+	
+	<option value="//api/name/setGlobalNavigator:">&nbsp;&nbsp;&nbsp;&nbsp;+ setGlobalNavigator:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/beginDelay">&nbsp;&nbsp;&nbsp;&nbsp;- beginDelay</option>
+	
+	<option value="//api/name/cancelDelay">&nbsp;&nbsp;&nbsp;&nbsp;- cancelDelay</option>
+	
+	<option value="//api/name/endDelay">&nbsp;&nbsp;&nbsp;&nbsp;- endDelay</option>
+	
+	<option value="//api/name/getVisibleChildController:">&nbsp;&nbsp;&nbsp;&nbsp;- getVisibleChildController:</option>
+	
+	<option value="//api/name/navigationControllerClass">&nbsp;&nbsp;&nbsp;&nbsp;- navigationControllerClass</option>
+	
+	<option value="//api/name/objectForPath:">&nbsp;&nbsp;&nbsp;&nbsp;- objectForPath:</option>
+	
+	<option value="//api/name/openURLAction:">&nbsp;&nbsp;&nbsp;&nbsp;- openURLAction:</option>
+	
+	<option value="//api/name/openURLs:">&nbsp;&nbsp;&nbsp;&nbsp;- openURLs:</option>
+	
+	<option value="//api/name/pathForObject:">&nbsp;&nbsp;&nbsp;&nbsp;- pathForObject:</option>
+	
+	<option value="//api/name/persistController:path:">&nbsp;&nbsp;&nbsp;&nbsp;- persistController:path:</option>
+	
+	<option value="//api/name/persistViewControllers">&nbsp;&nbsp;&nbsp;&nbsp;- persistViewControllers</option>
+	
+	<option value="//api/name/presentDependantController:parentController:mode:action:">&nbsp;&nbsp;&nbsp;&nbsp;- presentDependantController:parentController:mode:action:</option>
+	
+	<option value="//api/name/removeAllViewControllers">&nbsp;&nbsp;&nbsp;&nbsp;- removeAllViewControllers</option>
+	
+	<option value="//api/name/resetDefaults">&nbsp;&nbsp;&nbsp;&nbsp;- resetDefaults</option>
+	
+	<option value="//api/name/restoreViewControllers">&nbsp;&nbsp;&nbsp;&nbsp;- restoreViewControllers</option>
+	
+	<option value="//api/name/viewControllerForURL:">&nbsp;&nbsp;&nbsp;&nbsp;- viewControllerForURL:</option>
+	
+	<option value="//api/name/viewControllerForURL:query:">&nbsp;&nbsp;&nbsp;&nbsp;- viewControllerForURL:query:</option>
+	
+	<option value="//api/name/viewControllerForURL:query:pattern:">&nbsp;&nbsp;&nbsp;&nbsp;- viewControllerForURL:query:pattern:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_TTInternal Methods">TTInternal Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URL">URL</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URLMap">URLMap</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isDelayed">isDelayed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/opensExternalURLs">opensExternalURLs</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistenceExpirationAge">persistenceExpirationAge</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistenceKey">persistenceKey</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistenceMode">persistenceMode</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rootContainer">rootContainer</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rootViewController">rootViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/supportsShakeToReload">supportsShakeToReload</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/topViewController">topViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/visibleViewController">visibleViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/window">window</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/globalNavigator">globalNavigator</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/navigatorForView:">navigatorForView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setGlobalNavigator:">setGlobalNavigator:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/beginDelay">beginDelay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelDelay">cancelDelay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endDelay">endDelay</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getVisibleChildController:">getVisibleChildController:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/navigationControllerClass">navigationControllerClass</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/objectForPath:">objectForPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/openURLAction:">openURLAction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/openURLs:">openURLs:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pathForObject:">pathForObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistController:path:">persistController:path:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistViewControllers">persistViewControllers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/presentDependantController:parentController:mode:action:">presentDependantController:parentController:mode:action:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeAllViewControllers">removeAllViewControllers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resetDefaults">resetDefaults</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/restoreViewControllers">restoreViewControllers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/viewControllerForURL:">viewControllerForURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/viewControllerForURL:query:">viewControllerForURL:query:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/viewControllerForURL:query:pattern:">viewControllerForURL:query:pattern:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTBaseNavigator Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTBaseNavigator Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UIPopoverControllerDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTBaseNavigator.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A URL-based navigation system with built-in persistence.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/URLMap">&nbsp;&nbsp;URLMap</a></code>
+		<span class="tooltip"><p>The <a href="#//api/name/URL">URL</a> map used to translate between URLs and view controllers.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/window">&nbsp;&nbsp;window</a></code>
+		<span class="tooltip"><p>The <a href="#//api/name/window">window</a> that contains the view controller hierarchy.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rootContainer">&nbsp;&nbsp;rootContainer</a></code>
+		<span class="tooltip"><p>A container that holds the root view controller.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rootViewController">&nbsp;&nbsp;rootViewController</a></code>
+		<span class="tooltip"><p>The controller that is at the root of the view controller hierarchy.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/visibleViewController">&nbsp;&nbsp;visibleViewController</a></code>
+		<span class="tooltip"><p>The currently visible view controller.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/topViewController">&nbsp;&nbsp;topViewController</a></code>
+		<span class="tooltip"><p>The view controller that is currently on top of the navigation stack.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/URL">&nbsp;&nbsp;URL</a></code>
+		<span class="tooltip"><p>The <a href="#//api/name/URL">URL</a> of the currently visible view controller;</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistenceKey">&nbsp;&nbsp;persistenceKey</a></code>
+		<span class="tooltip"><p>The key to use for storing persistence information.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistenceMode">&nbsp;&nbsp;persistenceMode</a></code>
+		<span class="tooltip"><p>How view controllers are automatically persisted on termination and restored on launch.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistenceExpirationAge">&nbsp;&nbsp;persistenceExpirationAge</a></code>
+		<span class="tooltip"><p>The age at which persisted view controllers are too old to be restored.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/supportsShakeToReload">&nbsp;&nbsp;supportsShakeToReload</a></code>
+		<span class="tooltip"><p>Causes the current view controller to be reloaded when shaking the phone.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/opensExternalURLs">&nbsp;&nbsp;opensExternalURLs</a></code>
+		<span class="tooltip"><p>Allows URLs to be opened externally if they don&rsquo;t match any patterns.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isDelayed">&nbsp;&nbsp;isDelayed</a></code>
+		<span class="tooltip"><p>Indicates that we are asking controllers to delay heavy operations until a later time.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/navigatorForView:">+&nbsp;navigatorForView:</a></code>
+		<span class="tooltip"><p>Determines the navigator that contains this view.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/globalNavigator">+&nbsp;globalNavigator</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setGlobalNavigator:">+&nbsp;setGlobalNavigator:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/openURLAction:">&ndash;&nbsp;openURLAction:</a></code>
+		<span class="tooltip"><p>Load and display the view controller with a pattern that matches the <a href="#//api/name/URL">URL</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/openURLs:">&ndash;&nbsp;openURLs:</a></code>
+		<span class="tooltip"><p>Opens a sequence of URLs.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/viewControllerForURL:">&ndash;&nbsp;viewControllerForURL:</a></code>
+		<span class="tooltip"><p>Gets a view controller for the <a href="#//api/name/URL">URL</a> without opening it.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/viewControllerForURL:query:">&ndash;&nbsp;viewControllerForURL:query:</a></code>
+		<span class="tooltip"><p>Gets a view controller for the <a href="#//api/name/URL">URL</a> without opening it.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/viewControllerForURL:query:pattern:">&ndash;&nbsp;viewControllerForURL:query:pattern:</a></code>
+		<span class="tooltip"><p>Gets a view controller for the <a href="#//api/name/URL">URL</a> without opening it.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/beginDelay">&ndash;&nbsp;beginDelay</a></code>
+		<span class="tooltip"><p>Tells the navigator to delay heavy operations.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endDelay">&ndash;&nbsp;endDelay</a></code>
+		<span class="tooltip"><p>Tells controllers that were created during the delay to finish what they were planning to do.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelDelay">&ndash;&nbsp;cancelDelay</a></code>
+		<span class="tooltip"><p>Cancels the delay without notifying delayed controllers.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistViewControllers">&ndash;&nbsp;persistViewControllers</a></code>
+		<span class="tooltip"><p>Persists all view controllers to user defaults.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/restoreViewControllers">&ndash;&nbsp;restoreViewControllers</a></code>
+		<span class="tooltip"><p>Restores all view controllers from user defaults and returns the last one.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistController:path:">&ndash;&nbsp;persistController:path:</a></code>
+		<span class="tooltip"><p>Persists a view controller&rsquo;s state and recursively persists the next view controller after it.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeAllViewControllers">&ndash;&nbsp;removeAllViewControllers</a></code>
+		<span class="tooltip"><p>Removes all view controllers from the <a href="#//api/name/window">window</a> and releases them.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pathForObject:">&ndash;&nbsp;pathForObject:</a></code>
+		<span class="tooltip"><p>Gets a navigation path which can be used to locate an object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/objectForPath:">&ndash;&nbsp;objectForPath:</a></code>
+		<span class="tooltip"><p>Finds an object using its navigation path.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/resetDefaults">&ndash;&nbsp;resetDefaults</a></code>
+		<span class="tooltip"><p>Erases all data stored in user defaults.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="TTInternal Methods" name="task_TTInternal Methods"></a>
+						<h3 class="subsubtitle task-title">TTInternal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/presentDependantController:parentController:mode:action:">&ndash;&nbsp;presentDependantController:parentController:mode:action:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getVisibleChildController:">&ndash;&nbsp;getVisibleChildController:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/navigationControllerClass">&ndash;&nbsp;navigationControllerClass</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/URL" title="URL"></a>
+	<h3 class="subsubtitle method-title">URL</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The <a href="#//api/name/URL">URL</a> of the currently visible view controller;</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *URL</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The <a href="#//api/name/URL">URL</a> of the currently visible view controller;</p>
+
+<p>Setting this property will open a new <a href="#//api/name/URL">URL</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/URLMap" title="URLMap"></a>
+	<h3 class="subsubtitle method-title">URLMap</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The <a href="#//api/name/URL">URL</a> map used to translate between URLs and view controllers.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) TTURLMap *URLMap</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The <a href="#//api/name/URL">URL</a> map used to translate between URLs and view controllers.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/TTURLMap.html">TTURLMap</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isDelayed" title="isDelayed"></a>
+	<h3 class="subsubtitle method-title">isDelayed</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates that we are asking controllers to delay heavy operations until a later time.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isDelayed</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indicates that we are asking controllers to delay heavy operations until a later time.</p>
+
+<p>@default NO</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/opensExternalURLs" title="opensExternalURLs"></a>
+	<h3 class="subsubtitle method-title">opensExternalURLs</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Allows URLs to be opened externally if they don&rsquo;t match any patterns.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL opensExternalURLs</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Allows URLs to be opened externally if they don&rsquo;t match any patterns.</p>
+
+<p>@default NO</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistenceExpirationAge" title="persistenceExpirationAge"></a>
+	<h3 class="subsubtitle method-title">persistenceExpirationAge</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The age at which persisted view controllers are too old to be restored.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSTimeInterval persistenceExpirationAge</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The age at which persisted view controllers are too old to be restored.</p>
+
+<p>In some cases, it is a good practice not to restore really old navigation paths, because
+the user probably won&rsquo;t remember how they got there, and would prefer to start from the
+beginning.</p>
+
+<p>Set this to 0 to restore from any age.</p>
+
+<p>@default 0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistenceKey" title="persistenceKey"></a>
+	<h3 class="subsubtitle method-title">persistenceKey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The key to use for storing persistence information.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *persistenceKey</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The key to use for storing persistence information.</p>
+
+<p>Three bits of information are stored for persistence.
+If a key name is given, these values will first be stored within a dictionary and
+then persisted with the given key name.
+If a key name is not given, the values are stored individually.</p>
+
+<p>@default nil</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistenceMode" title="persistenceMode"></a>
+	<h3 class="subsubtitle method-title">persistenceMode</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>How view controllers are automatically persisted on termination and restored on launch.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) TTNavigatorPersistenceMode persistenceMode</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>How view controllers are automatically persisted on termination and restored on launch.</p>
+
+<p>@default TTNavigatorPersistenceModeNone</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rootContainer" title="rootContainer"></a>
+	<h3 class="subsubtitle method-title">rootContainer</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A container that holds the root view controller.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id&lt;TTNavigatorRootContainer&gt; rootContainer</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A container that holds the root view controller.</p>
+
+<p>If nil, the <a href="#//api/name/window">window</a> is treated as the root container.</p>
+
+<p>@default nil</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rootViewController" title="rootViewController"></a>
+	<h3 class="subsubtitle method-title">rootViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The controller that is at the root of the view controller hierarchy.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) UIViewController *rootViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The controller that is at the root of the view controller hierarchy.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/supportsShakeToReload" title="supportsShakeToReload"></a>
+	<h3 class="subsubtitle method-title">supportsShakeToReload</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Causes the current view controller to be reloaded when shaking the phone.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL supportsShakeToReload</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Causes the current view controller to be reloaded when shaking the phone.</p>
+
+<p>@default NO</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/topViewController" title="topViewController"></a>
+	<h3 class="subsubtitle method-title">topViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The view controller that is currently on top of the navigation stack.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) UIViewController *topViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The view controller that is currently on top of the navigation stack.</p>
+
+<p>This differs from <a href="#//api/name/visibleViewController">visibleViewController</a> in that it ignores things like search
+display controllers which are visible, but not part of navigation.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/visibleViewController" title="visibleViewController"></a>
+	<h3 class="subsubtitle method-title">visibleViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The currently visible view controller.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) UIViewController *visibleViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The currently visible view controller.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/window" title="window"></a>
+	<h3 class="subsubtitle method-title">window</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The <a href="#//api/name/window">window</a> that contains the view controller hierarchy.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIWindow *window</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The <a href="#//api/name/window">window</a> that contains the view controller hierarchy.</p>
+
+<p>By default retrieves the keyWindow. If there is no keyWindow, creates a new
+<a href="../Classes/TTNavigatorWindow.html">TTNavigatorWindow</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/globalNavigator" title="globalNavigator"></a>
+	<h3 class="subsubtitle method-title">globalNavigator</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/navigatorForView:" title="navigatorForView:"></a>
+	<h3 class="subsubtitle method-title">navigatorForView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determines the navigator that contains this view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (TTBaseNavigator *)navigatorForView:(UIView *)<em>view</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Determines the navigator that contains this view.</p>
+
+<p>Traverse the view hierarchy until the root view container is reached. If this root container
+conforms to the TTNavigatorRootContainer protocol, we call getNavigatorForController:
+with the top-most controller that contains this view that /isn&rsquo;t/ the container.
+If getNavigatorForController: returns a navigator, this navigator is returned.
+Otherwise, the global navigator is returned.</p>
+
+<p>If the given view is not, in fact, a view, which is the case if a UIBarButtonItem is passed,
+returns the global navigator via <a href="#//api/name/globalNavigator">[TTBaseNavigator globalNavigator]</a>.</p>
+
+<p>If you need to use a specific navigator for UIBarButtonItem, handle the button tap
+yourself and use <a href="#//api/name/navigatorForView:">navigatorForView:</a> on an actual view in the controller.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setGlobalNavigator:" title="setGlobalNavigator:"></a>
+	<h3 class="subsubtitle method-title">setGlobalNavigator:</h3>
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/beginDelay" title="beginDelay"></a>
+	<h3 class="subsubtitle method-title">beginDelay</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tells the navigator to delay heavy operations.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)beginDelay</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Tells the navigator to delay heavy operations.</p>
+
+<p>Initializing controllers can be very expensive, so if you are going to do some animation
+while this might be happening, this will tell controllers created through the navigator
+that they should hold off so as not to slow down the operations.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cancelDelay" title="cancelDelay"></a>
+	<h3 class="subsubtitle method-title">cancelDelay</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancels the delay without notifying delayed controllers.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cancelDelay</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancels the delay without notifying delayed controllers.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endDelay" title="endDelay"></a>
+	<h3 class="subsubtitle method-title">endDelay</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tells controllers that were created during the delay to finish what they were planning to do.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)endDelay</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Tells controllers that were created during the delay to finish what they were planning to do.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getVisibleChildController:" title="getVisibleChildController:"></a>
+	<h3 class="subsubtitle method-title">getVisibleChildController:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/navigationControllerClass" title="navigationControllerClass"></a>
+	<h3 class="subsubtitle method-title">navigationControllerClass</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/objectForPath:" title="objectForPath:"></a>
+	<h3 class="subsubtitle method-title">objectForPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Finds an object using its navigation path.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)objectForPath:(NSString *)<em>path</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Finds an object using its navigation path.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/openURLAction:" title="openURLAction:"></a>
+	<h3 class="subsubtitle method-title">openURLAction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Load and display the view controller with a pattern that matches the <a href="#//api/name/URL">URL</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)openURLAction:(TTURLAction *)<em>URLAction</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Load and display the view controller with a pattern that matches the URL.</p>
+
+<p>This method replaces all other openURL methods by using the chainable TTURLAction object.</p>
+
+<p>If there is not yet a rootViewController, the view controller loaded with this URL
+will be assigned as the rootViewController and inserted into the keyWindow. If there is not
+a keyWindow, a UIWindow will be created and displayed.</p>
+
+<p>Example TTURLAction initialization:
+[[TTURLAction actionWithURLPath:@&ldquo;tt://some/path&rdquo;]
+applyAnimated:YES]</p>
+
+<p>Each apply<strong> method on the <a href="../Classes/TTURLAction.html">TTURLAction</a> object returns self, allowing you to chain methods
+when initializing the object. This allows for a flexible method that requires a shifting set
+of parameters that have specific defaults. The old open<a href="#//api/name/URL">URL</a></strong> methods are being phased out, so
+please start using openURLAction instead.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/openURLs:" title="openURLs:"></a>
+	<h3 class="subsubtitle method-title">openURLs:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Opens a sequence of URLs.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)openURLs:(NSString *)<em>URL</em>, <em>...</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The view controller of the last opened <a href="#//api/name/URL">URL</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Opens a sequence of URLs.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pathForObject:" title="pathForObject:"></a>
+	<h3 class="subsubtitle method-title">pathForObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets a navigation path which can be used to locate an object.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pathForObject:(id)<em>object</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets a navigation path which can be used to locate an object.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistController:path:" title="persistController:path:"></a>
+	<h3 class="subsubtitle method-title">persistController:path:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Persists a view controller&rsquo;s state and recursively persists the next view controller after it.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)persistController:(UIViewController *)<em>controller</em> path:(NSMutableArray *)<em>path</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Persists a view controller&rsquo;s state and recursively persists the next view controller after it.</p>
+
+<p>Do not call this directly except from within a view controller that is being directed
+by the app map to persist itself.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistViewControllers" title="persistViewControllers"></a>
+	<h3 class="subsubtitle method-title">persistViewControllers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Persists all view controllers to user defaults.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)persistViewControllers</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Persists all view controllers to user defaults.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/presentDependantController:parentController:mode:action:" title="presentDependantController:parentController:mode:action:"></a>
+	<h3 class="subsubtitle method-title">presentDependantController:parentController:mode:action:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeAllViewControllers" title="removeAllViewControllers"></a>
+	<h3 class="subsubtitle method-title">removeAllViewControllers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Removes all view controllers from the <a href="#//api/name/window">window</a> and releases them.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)removeAllViewControllers</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Removes all view controllers from the <a href="#//api/name/window">window</a> and releases them.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/resetDefaults" title="resetDefaults"></a>
+	<h3 class="subsubtitle method-title">resetDefaults</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Erases all data stored in user defaults.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)resetDefaults</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Erases all data stored in user defaults.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/restoreViewControllers" title="restoreViewControllers"></a>
+	<h3 class="subsubtitle method-title">restoreViewControllers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Restores all view controllers from user defaults and returns the last one.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)restoreViewControllers</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Restores all view controllers from user defaults and returns the last one.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/viewControllerForURL:" title="viewControllerForURL:"></a>
+	<h3 class="subsubtitle method-title">viewControllerForURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets a view controller for the <a href="#//api/name/URL">URL</a> without opening it.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)viewControllerForURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The view controller mapped to <a href="#//api/name/URL">URL</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets a view controller for the <a href="#//api/name/URL">URL</a> without opening it.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/viewControllerForURL:query:" title="viewControllerForURL:query:"></a>
+	<h3 class="subsubtitle method-title">viewControllerForURL:query:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets a view controller for the <a href="#//api/name/URL">URL</a> without opening it.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)viewControllerForURL:(NSString *)<em>URL</em> query:(NSDictionary *)<em>query</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The view controller mapped to <a href="#//api/name/URL">URL</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets a view controller for the <a href="#//api/name/URL">URL</a> without opening it.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/viewControllerForURL:query:pattern:" title="viewControllerForURL:query:pattern:"></a>
+	<h3 class="subsubtitle method-title">viewControllerForURL:query:pattern:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets a view controller for the <a href="#//api/name/URL">URL</a> without opening it.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)viewControllerForURL:(NSString *)<em>URL</em> query:(NSDictionary *)<em>query</em> pattern:(TTURLPattern **)<em>pattern</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The view controller mapped to <a href="#//api/name/URL">URL</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets a view controller for the <a href="#//api/name/URL">URL</a> without opening it.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseNavigator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

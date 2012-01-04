@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTXMLParser Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTXMLParser Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/rootObject">&nbsp;&nbsp;&nbsp;&nbsp;rootObject</option>
+	
+	<option value="//api/name/treatDuplicateKeysAsArrayItems">&nbsp;&nbsp;&nbsp;&nbsp;treatDuplicateKeysAsArrayItems</option>
+	
+	
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rootObject">rootObject</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/treatDuplicateKeysAsArrayItems">treatDuplicateKeysAsArrayItems</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTXMLParser Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTXMLParser Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSXMLParser</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTXMLParser.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>An implementation of the NSXMLParser object that turns XML into NSObjects.</p>
+
+<p>Uses a simple stack-based traversal of the XML document to recursively create the objects
+at each level. Upon successful completion, <a href="#//api/name/rootObject">rootObject</a> will be an NSDictionary object.</p>
+
+<p>To traverse the resulting NSObject hierarchy, use the NSDictionary additions provided at the end
+of this file to access the XML entity name, type, and object. For example:</p>
+
+<p>&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
+<issues type="array">
+<issue>
+<number type="integer">3</number>
+</issue>
+<issue>
+<number type="integer">10</number>
+</issue>
+</issues></p>
+
+<p>Logic to parse the above XML as an NSData* object:</p>
+
+<p><a href="TTXMLParser.html">TTXMLParser</a>* parser = [[TTXMLParser alloc] initWithData:xmlData];
+[parser parse];</p>
+
+<p>parser.<a href="#//api/name/rootObject">rootObject</a> will become the following NSObject:</p>
+
+<p><a href="#//api/name/rootObject">rootObject</a> => NSDictionary* (root)
+<key>         <value>
+&ndash; <strong><em>Entity_Name</em></strong>:  &ldquo;issues&rdquo;
+&ndash; <strong><em>Entity_Type</em></strong>:  &ldquo;array&rdquo;
+&ndash; <strong><em>Entity_Value</em></strong>: NSArray of NSDictionaries, accessed with [rootObject objectForXMLNode]</p>
+
+<p>[rootObject objectForXMLNode] => NSArray<strong> of NSDictionaries
+Each item of the NSArray is an NSDictionary</strong>:
+foreach item in array:
+&ndash; <strong><em>Entity_Name</em></strong>:  &ldquo;issue&rdquo;
+&ndash; <strong><em>Entity_Type</em></strong>:  kCommonXMLType_Unknown
+&ndash; <strong><em>Entity_Value</em></strong>: NSDictionary*
+etc&hellip;</p>
+
+<p>Implementation note: This class is designed as a simple means of parsing XML documents. It has
+not been optimized for speed or memory usage, and has only been tested with documents less than
+one MB (megabyte) in size.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rootObject">&nbsp;&nbsp;rootObject</a></code>
+		<span class="tooltip"><p>Only valid after [parser parse] has been called.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/treatDuplicateKeysAsArrayItems">&nbsp;&nbsp;treatDuplicateKeysAsArrayItems</a></code>
+		<span class="tooltip"><p>When a duplicate key is encountered, the key&rsquo;s value is turned into an array and both
+the original item and the new duplicate item are added to the array. Any subsequent duplicates
+are also added to this array.
+This is useful for RSS feeds, where feed items are presented inline (and not as array items).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/rootObject" title="rootObject"></a>
+	<h3 class="subsubtitle method-title">rootObject</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Only valid after [parser parse] has been called.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) id rootObject</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Only valid after [parser parse] has been called.</p>
+
+<p>Will return an NSDictionary* after successful parsing.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTXMLParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/treatDuplicateKeysAsArrayItems" title="treatDuplicateKeysAsArrayItems"></a>
+	<h3 class="subsubtitle method-title">treatDuplicateKeysAsArrayItems</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>When a duplicate key is encountered, the key&rsquo;s value is turned into an array and both
+the original item and the new duplicate item are added to the array. Any subsequent duplicates
+are also added to this array.
+This is useful for RSS feeds, where feed items are presented inline (and not as array items).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL treatDuplicateKeysAsArrayItems</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>When a duplicate key is encountered, the key&rsquo;s value is turned into an array and both
+the original item and the new duplicate item are added to the array. Any subsequent duplicates
+are also added to this array.
+This is useful for RSS feeds, where feed items are presented inline (and not as array items).</p>
+
+<p>@default NO</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTXMLParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

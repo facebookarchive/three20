@@ -1,0 +1,1481 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTModelViewController Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTModelViewController Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/model">&nbsp;&nbsp;&nbsp;&nbsp;model</option>
+	
+	<option value="//api/name/modelError">&nbsp;&nbsp;&nbsp;&nbsp;modelError</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/beginUpdates">&nbsp;&nbsp;&nbsp;&nbsp;- beginUpdates</option>
+	
+	<option value="//api/name/canShowModel">&nbsp;&nbsp;&nbsp;&nbsp;- canShowModel</option>
+	
+	<option value="//api/name/createModel">&nbsp;&nbsp;&nbsp;&nbsp;- createModel</option>
+	
+	<option value="//api/name/didLoadModel:">&nbsp;&nbsp;&nbsp;&nbsp;- didLoadModel:</option>
+	
+	<option value="//api/name/didRefreshModel">&nbsp;&nbsp;&nbsp;&nbsp;- didRefreshModel</option>
+	
+	<option value="//api/name/didShowModel:">&nbsp;&nbsp;&nbsp;&nbsp;- didShowModel:</option>
+	
+	<option value="//api/name/endUpdates">&nbsp;&nbsp;&nbsp;&nbsp;- endUpdates</option>
+	
+	<option value="//api/name/invalidateModel">&nbsp;&nbsp;&nbsp;&nbsp;- invalidateModel</option>
+	
+	<option value="//api/name/invalidateView">&nbsp;&nbsp;&nbsp;&nbsp;- invalidateView</option>
+	
+	<option value="//api/name/isModelCreated">&nbsp;&nbsp;&nbsp;&nbsp;- isModelCreated</option>
+	
+	<option value="//api/name/refresh">&nbsp;&nbsp;&nbsp;&nbsp;- refresh</option>
+	
+	<option value="//api/name/reload">&nbsp;&nbsp;&nbsp;&nbsp;- reload</option>
+	
+	<option value="//api/name/reloadIfNeeded">&nbsp;&nbsp;&nbsp;&nbsp;- reloadIfNeeded</option>
+	
+	<option value="//api/name/shouldLoad">&nbsp;&nbsp;&nbsp;&nbsp;- shouldLoad</option>
+	
+	<option value="//api/name/shouldLoadMore">&nbsp;&nbsp;&nbsp;&nbsp;- shouldLoadMore</option>
+	
+	<option value="//api/name/shouldReload">&nbsp;&nbsp;&nbsp;&nbsp;- shouldReload</option>
+	
+	<option value="//api/name/showEmpty:">&nbsp;&nbsp;&nbsp;&nbsp;- showEmpty:</option>
+	
+	<option value="//api/name/showError:">&nbsp;&nbsp;&nbsp;&nbsp;- showError:</option>
+	
+	<option value="//api/name/showLoading:">&nbsp;&nbsp;&nbsp;&nbsp;- showLoading:</option>
+	
+	<option value="//api/name/showModel:">&nbsp;&nbsp;&nbsp;&nbsp;- showModel:</option>
+	
+	<option value="//api/name/updateView">&nbsp;&nbsp;&nbsp;&nbsp;- updateView</option>
+	
+	<option value="//api/name/willLoadModel">&nbsp;&nbsp;&nbsp;&nbsp;- willLoadModel</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/model">model</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/modelError">modelError</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/beginUpdates">beginUpdates</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/canShowModel">canShowModel</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createModel">createModel</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didLoadModel:">didLoadModel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didRefreshModel">didRefreshModel</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didShowModel:">didShowModel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endUpdates">endUpdates</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invalidateModel">invalidateModel</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invalidateView">invalidateView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isModelCreated">isModelCreated</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/refresh">refresh</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reload">reload</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reloadIfNeeded">reloadIfNeeded</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldLoad">shouldLoad</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldLoadMore">shouldLoadMore</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldReload">shouldReload</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showEmpty:">showEmpty:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showError:">showError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showLoading:">showLoading:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showModel:">showModel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateView">updateView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/willLoadModel">willLoadModel</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTModelViewController Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTModelViewController Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/TTViewController.html">TTViewController</a> : <a href="../Classes/TTNavigatorViewController.html">TTNavigatorViewController</a> : <a href="../Classes/TTBaseViewController.html">TTBaseViewController</a> : UIViewController</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value"><a href="../Protocols/TTModelDelegate.html">TTModelDelegate</a></td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTModelViewController.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A view controller that manages a <a href="#//api/name/model">model</a> in addition to a view.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/model">&nbsp;&nbsp;model</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/modelError">&nbsp;&nbsp;modelError</a></code>
+		<span class="tooltip"><p>An error that occurred while trying to load content.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createModel">&ndash;&nbsp;createModel</a></code>
+		<span class="tooltip"><p>Creates the <a href="#//api/name/model">model</a> that the controller manages.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/invalidateModel">&ndash;&nbsp;invalidateModel</a></code>
+		<span class="tooltip"><p>Releases the current <a href="#//api/name/model">model</a> and forces the creation of a new <a href="#//api/name/model">model</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isModelCreated">&ndash;&nbsp;isModelCreated</a></code>
+		<span class="tooltip"><p>Indicates whether the <a href="#//api/name/model">model</a> has been created.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldLoad">&ndash;&nbsp;shouldLoad</a></code>
+		<span class="tooltip"><p>Indicates that data should be loaded from the <a href="#//api/name/model">model</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldReload">&ndash;&nbsp;shouldReload</a></code>
+		<span class="tooltip"><p>Indicates that data should be reloaded from the <a href="#//api/name/model">model</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldLoadMore">&ndash;&nbsp;shouldLoadMore</a></code>
+		<span class="tooltip"><p>Indicates that more data should be loaded from the <a href="#//api/name/model">model</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/canShowModel">&ndash;&nbsp;canShowModel</a></code>
+		<span class="tooltip"><p>Tests if it is possible to show the <a href="#//api/name/model">model</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/reload">&ndash;&nbsp;reload</a></code>
+		<span class="tooltip"><p>Reloads data from the <a href="#//api/name/model">model</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/reloadIfNeeded">&ndash;&nbsp;reloadIfNeeded</a></code>
+		<span class="tooltip"><p>Reloads data from the <a href="#//api/name/model">model</a> if it has become out of date.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/refresh">&ndash;&nbsp;refresh</a></code>
+		<span class="tooltip"><p>Refreshes the <a href="#//api/name/model">model</a> state and loads new data if necessary.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/beginUpdates">&ndash;&nbsp;beginUpdates</a></code>
+		<span class="tooltip"><p>Begins a multi-stage update.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endUpdates">&ndash;&nbsp;endUpdates</a></code>
+		<span class="tooltip"><p>Ends a multi-stage <a href="#//api/name/model">model</a> update and updates the view to reflect the <a href="#//api/name/model">model</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/invalidateView">&ndash;&nbsp;invalidateView</a></code>
+		<span class="tooltip"><p>Indicates that the <a href="#//api/name/model">model</a> has changed and schedules the view to be updated to reflect it.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateView">&ndash;&nbsp;updateView</a></code>
+		<span class="tooltip"><p>Immediately creates, loads, and displays the <a href="#//api/name/model">model</a> (if it was not already).</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didRefreshModel">&ndash;&nbsp;didRefreshModel</a></code>
+		<span class="tooltip"><p>Called when the <a href="#//api/name/model">model</a> is refreshed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/willLoadModel">&ndash;&nbsp;willLoadModel</a></code>
+		<span class="tooltip"><p>Called before the <a href="#//api/name/model">model</a> is asked to load itself.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didLoadModel:">&ndash;&nbsp;didLoadModel:</a></code>
+		<span class="tooltip"><p>Called after the <a href="#//api/name/model">model</a> has loaded, just before it is to be displayed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didShowModel:">&ndash;&nbsp;didShowModel:</a></code>
+		<span class="tooltip"><p>Called just after a <a href="#//api/name/model">model</a> has been loaded and displayed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showModel:">&ndash;&nbsp;showModel:</a></code>
+		<span class="tooltip"><p>Shows views to represent the loaded model&rsquo;s content.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showLoading:">&ndash;&nbsp;showLoading:</a></code>
+		<span class="tooltip"><p>Shows views to represent the <a href="#//api/name/model">model</a> loading.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showEmpty:">&ndash;&nbsp;showEmpty:</a></code>
+		<span class="tooltip"><p>Shows views to represent an empty <a href="#//api/name/model">model</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showError:">&ndash;&nbsp;showError:</a></code>
+		<span class="tooltip"><p>Shows views to represent an error that occurred while loading the <a href="#//api/name/model">model</a>.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/model" title="model"></a>
+	<h3 class="subsubtitle method-title">model</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/modelError" title="modelError"></a>
+	<h3 class="subsubtitle method-title">modelError</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>An error that occurred while trying to load content.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSError *modelError</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>An error that occurred while trying to load content.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/beginUpdates" title="beginUpdates"></a>
+	<h3 class="subsubtitle method-title">beginUpdates</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Begins a multi-stage update.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)beginUpdates</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Begins a multi-stage update.</p>
+
+<p>You can call this method to make complicated updates more efficient, and to condense
+multiple changes to your <a href="#//api/name/model">model</a> into a single visual change.  Call endUpdate when you are done
+to update the view with all of your changes.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/canShowModel" title="canShowModel"></a>
+	<h3 class="subsubtitle method-title">canShowModel</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tests if it is possible to show the <a href="#//api/name/model">model</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)canShowModel</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Tests if it is possible to show the <a href="#//api/name/model">model</a>.</p>
+
+<p>After a <a href="#//api/name/model">model</a> has loaded, this method is called to test whether or not to set the <a href="#//api/name/model">model</a>
+has content that can be shown.  If you return NO, <a href="#//api/name/showEmpty:">showEmpty:</a> will be called, and if you
+return YES, <a href="#//api/name/showModel:">showModel:</a> will be called.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createModel" title="createModel"></a>
+	<h3 class="subsubtitle method-title">createModel</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates the <a href="#//api/name/model">model</a> that the controller manages.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)createModel</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Creates the <a href="#//api/name/model">model</a> that the controller manages.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didLoadModel:" title="didLoadModel:"></a>
+	<h3 class="subsubtitle method-title">didLoadModel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called after the <a href="#//api/name/model">model</a> has loaded, just before it is to be displayed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)didLoadModel:(BOOL)<em>firstTime</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called after the <a href="#//api/name/model">model</a> has loaded, just before it is to be displayed.</p>
+
+<p>This is not called until after the view has loaded.  If your <a href="#//api/name/model">model</a> finishes loading before
+the view is loaded, this will still be called, but not until after the view is loaded.</p>
+
+<p>If you <a href="#//api/name/refresh">refresh</a> a <a href="#//api/name/model">model</a> which is already loaded, this will be called, but the firstTime
+argument will be false.</p>
+
+<p>The default implementation of this method does nothing. Subclasses may override this method
+to take an appropriate action.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didRefreshModel" title="didRefreshModel"></a>
+	<h3 class="subsubtitle method-title">didRefreshModel</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when the <a href="#//api/name/model">model</a> is refreshed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)didRefreshModel</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called when the <a href="#//api/name/model">model</a> is refreshed.</p>
+
+<p>Subclasses should override this function update parts of the view that may need to changed
+when there is a new <a href="#//api/name/model">model</a>, or something about the existing <a href="#//api/name/model">model</a> changes.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didShowModel:" title="didShowModel:"></a>
+	<h3 class="subsubtitle method-title">didShowModel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called just after a <a href="#//api/name/model">model</a> has been loaded and displayed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)didShowModel:(BOOL)<em>firstTime</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called just after a <a href="#//api/name/model">model</a> has been loaded and displayed.</p>
+
+<p>The default implementation of this method does nothing. Subclasses may override this method
+to take an appropriate action.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/endUpdates" title="endUpdates"></a>
+	<h3 class="subsubtitle method-title">endUpdates</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Ends a multi-stage <a href="#//api/name/model">model</a> update and updates the view to reflect the <a href="#//api/name/model">model</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)endUpdates</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Ends a multi-stage <a href="#//api/name/model">model</a> update and updates the view to reflect the <a href="#//api/name/model">model</a>.</p>
+
+<p>You can call this method to make complicated updates more efficient, and to condense
+multiple changes to your <a href="#//api/name/model">model</a> into a single visual change.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/invalidateModel" title="invalidateModel"></a>
+	<h3 class="subsubtitle method-title">invalidateModel</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Releases the current <a href="#//api/name/model">model</a> and forces the creation of a new <a href="#//api/name/model">model</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)invalidateModel</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Releases the current <a href="#//api/name/model">model</a> and forces the creation of a new <a href="#//api/name/model">model</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/invalidateView" title="invalidateView"></a>
+	<h3 class="subsubtitle method-title">invalidateView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates that the <a href="#//api/name/model">model</a> has changed and schedules the view to be updated to reflect it.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)invalidateView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indicates that the <a href="#//api/name/model">model</a> has changed and schedules the view to be updated to reflect it.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isModelCreated" title="isModelCreated"></a>
+	<h3 class="subsubtitle method-title">isModelCreated</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates whether the <a href="#//api/name/model">model</a> has been created.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isModelCreated</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indicates whether the <a href="#//api/name/model">model</a> has been created.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/refresh" title="refresh"></a>
+	<h3 class="subsubtitle method-title">refresh</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Refreshes the <a href="#//api/name/model">model</a> state and loads new data if necessary.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)refresh</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Refreshes the <a href="#//api/name/model">model</a> state and loads new data if necessary.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/reload" title="reload"></a>
+	<h3 class="subsubtitle method-title">reload</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reloads data from the <a href="#//api/name/model">model</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)reload</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reloads data from the <a href="#//api/name/model">model</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/reloadIfNeeded" title="reloadIfNeeded"></a>
+	<h3 class="subsubtitle method-title">reloadIfNeeded</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reloads data from the <a href="#//api/name/model">model</a> if it has become out of date.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)reloadIfNeeded</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Reloads data from the <a href="#//api/name/model">model</a> if it has become out of date.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shouldLoad" title="shouldLoad"></a>
+	<h3 class="subsubtitle method-title">shouldLoad</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates that data should be loaded from the <a href="#//api/name/model">model</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)shouldLoad</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indicates that data should be loaded from the <a href="#//api/name/model">model</a>.</p>
+
+<p>Do not call this directly.  Subclasses should implement this method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shouldLoadMore" title="shouldLoadMore"></a>
+	<h3 class="subsubtitle method-title">shouldLoadMore</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates that more data should be loaded from the <a href="#//api/name/model">model</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)shouldLoadMore</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indicates that more data should be loaded from the <a href="#//api/name/model">model</a>.</p>
+
+<p>Do not call this directly.  Subclasses should implement this method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shouldReload" title="shouldReload"></a>
+	<h3 class="subsubtitle method-title">shouldReload</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates that data should be reloaded from the <a href="#//api/name/model">model</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)shouldReload</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indicates that data should be reloaded from the <a href="#//api/name/model">model</a>.</p>
+
+<p>Do not call this directly.  Subclasses should implement this method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showEmpty:" title="showEmpty:"></a>
+	<h3 class="subsubtitle method-title">showEmpty:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shows views to represent an empty <a href="#//api/name/model">model</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showEmpty:(BOOL)<em>show</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Shows views to represent an empty <a href="#//api/name/model">model</a>.</p>
+
+<p>The default implementation of this method does nothing. Subclasses may override this method
+to take an appropriate action.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showError:" title="showError:"></a>
+	<h3 class="subsubtitle method-title">showError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shows views to represent an error that occurred while loading the <a href="#//api/name/model">model</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showError:(BOOL)<em>show</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Shows views to represent an error that occurred while loading the <a href="#//api/name/model">model</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showLoading:" title="showLoading:"></a>
+	<h3 class="subsubtitle method-title">showLoading:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shows views to represent the <a href="#//api/name/model">model</a> loading.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showLoading:(BOOL)<em>show</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Shows views to represent the <a href="#//api/name/model">model</a> loading.</p>
+
+<p>The default implementation of this method does nothing. Subclasses may override this method
+to take an appropriate action.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showModel:" title="showModel:"></a>
+	<h3 class="subsubtitle method-title">showModel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shows views to represent the loaded model&rsquo;s content.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showModel:(BOOL)<em>show</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Shows views to represent the loaded model&rsquo;s content.</p>
+
+<p>The default implementation of this method does nothing. Subclasses may override this method
+to take an appropriate action.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateView" title="updateView"></a>
+	<h3 class="subsubtitle method-title">updateView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Immediately creates, loads, and displays the <a href="#//api/name/model">model</a> (if it was not already).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)updateView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Immediately creates, loads, and displays the <a href="#//api/name/model">model</a> (if it was not already).</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/willLoadModel" title="willLoadModel"></a>
+	<h3 class="subsubtitle method-title">willLoadModel</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called before the <a href="#//api/name/model">model</a> is asked to load itself.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)willLoadModel</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called before the <a href="#//api/name/model">model</a> is asked to load itself.</p>
+
+<p>This is not called until after the view has loaded.  If your <a href="#//api/name/model">model</a> starts loading before
+the view is loaded, this will still be called, but not until after the view is loaded.</p>
+
+<p>The default implementation of this method does nothing. Subclasses may override this method
+to take an appropriate action.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTModelViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

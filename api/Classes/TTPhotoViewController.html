@@ -1,0 +1,749 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTPhotoViewController Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTPhotoViewController Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/captionStyle">&nbsp;&nbsp;&nbsp;&nbsp;captionStyle</option>
+	
+	<option value="//api/name/centerPhoto">&nbsp;&nbsp;&nbsp;&nbsp;centerPhoto</option>
+	
+	<option value="//api/name/centerPhotoIndex">&nbsp;&nbsp;&nbsp;&nbsp;centerPhotoIndex</option>
+	
+	<option value="//api/name/defaultImage">&nbsp;&nbsp;&nbsp;&nbsp;defaultImage</option>
+	
+	<option value="//api/name/photoSource">&nbsp;&nbsp;&nbsp;&nbsp;photoSource</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/createPhotoView">&nbsp;&nbsp;&nbsp;&nbsp;- createPhotoView</option>
+	
+	<option value="//api/name/createThumbsViewController">&nbsp;&nbsp;&nbsp;&nbsp;- createThumbsViewController</option>
+	
+	<option value="//api/name/didMoveToPhoto:fromPhoto:">&nbsp;&nbsp;&nbsp;&nbsp;- didMoveToPhoto:fromPhoto:</option>
+	
+	<option value="//api/name/initWithPhoto:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPhoto:</option>
+	
+	<option value="//api/name/initWithPhotoSource:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPhotoSource:</option>
+	
+	<option value="//api/name/showActivity:">&nbsp;&nbsp;&nbsp;&nbsp;- showActivity:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/captionStyle">captionStyle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/centerPhoto">centerPhoto</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/centerPhotoIndex">centerPhotoIndex</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/defaultImage">defaultImage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/photoSource">photoSource</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createPhotoView">createPhotoView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createThumbsViewController">createThumbsViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didMoveToPhoto:fromPhoto:">didMoveToPhoto:fromPhoto:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPhoto:">initWithPhoto:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPhotoSource:">initWithPhotoSource:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showActivity:">showActivity:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTPhotoViewController Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTPhotoViewController Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/TTModelViewController.html">TTModelViewController</a> : <a href="../Classes/TTViewController.html">TTViewController</a> : <a href="../Classes/TTNavigatorViewController.html">TTNavigatorViewController</a> : <a href="../Classes/TTBaseViewController.html">TTBaseViewController</a> : UIViewController</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value"><a href="../Protocols/TTScrollViewDataSource.html">TTScrollViewDataSource</a><br /><a href="../Protocols/TTScrollViewDelegate.html">TTScrollViewDelegate</a><br /><a href="../Protocols/TTThumbsViewControllerDelegate.html">TTThumbsViewControllerDelegate</a></td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTPhotoViewController.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/photoSource">&nbsp;&nbsp;photoSource</a></code>
+		<span class="tooltip"><p>The source of a sequential photo collection that will be displayed.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/centerPhoto">&nbsp;&nbsp;centerPhoto</a></code>
+		<span class="tooltip"><p>The photo that is currently visible and centered.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/centerPhotoIndex">&nbsp;&nbsp;centerPhotoIndex</a></code>
+		<span class="tooltip"><p>The index of the currently visible photo.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/defaultImage">&nbsp;&nbsp;defaultImage</a></code>
+		<span class="tooltip"><p>The default image to show before a photo has been loaded.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/captionStyle">&nbsp;&nbsp;captionStyle</a></code>
+		<span class="tooltip"><p>The style to use for the caption label.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithPhoto:">&ndash;&nbsp;initWithPhoto:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithPhotoSource:">&ndash;&nbsp;initWithPhotoSource:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createPhotoView">&ndash;&nbsp;createPhotoView</a></code>
+		<span class="tooltip"><p>Creates a photo view for a new page.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createThumbsViewController">&ndash;&nbsp;createThumbsViewController</a></code>
+		<span class="tooltip"><p>Creates the thumbnail controller used by the &ldquo;See All&rdquo; button.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didMoveToPhoto:fromPhoto:">&ndash;&nbsp;didMoveToPhoto:fromPhoto:</a></code>
+		<span class="tooltip"><p>Sent to the controller after it moves from one photo to another.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showActivity:">&ndash;&nbsp;showActivity:</a></code>
+		<span class="tooltip"><p>Shows or hides an activity label on top of the photo.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/captionStyle" title="captionStyle"></a>
+	<h3 class="subsubtitle method-title">captionStyle</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The style to use for the caption label.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) TTStyle *captionStyle</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The style to use for the caption label.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTPhotoViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/centerPhoto" title="centerPhoto"></a>
+	<h3 class="subsubtitle method-title">centerPhoto</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The photo that is currently visible and centered.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) id&lt;TTPhoto&gt; centerPhoto</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The photo that is currently visible and centered.</p>
+
+<p>You can assign this directly to change the <a href="#//api/name/photoSource">photoSource</a> to the one that contains the photo.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTPhotoViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/centerPhotoIndex" title="centerPhotoIndex"></a>
+	<h3 class="subsubtitle method-title">centerPhotoIndex</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The index of the currently visible photo.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSInteger centerPhotoIndex</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The index of the currently visible photo.</p>
+
+<p>Because <a href="#//api/name/centerPhoto">centerPhoto</a> can be nil while waiting for the source to load the photo, this property
+must be maintained even though <a href="#//api/name/centerPhoto">centerPhoto</a> has its own index property.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTPhotoViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/defaultImage" title="defaultImage"></a>
+	<h3 class="subsubtitle method-title">defaultImage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The default image to show before a photo has been loaded.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIImage *defaultImage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The default image to show before a photo has been loaded.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTPhotoViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/photoSource" title="photoSource"></a>
+	<h3 class="subsubtitle method-title">photoSource</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The source of a sequential photo collection that will be displayed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) id&lt;TTPhotoSource&gt; photoSource</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The source of a sequential photo collection that will be displayed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTPhotoViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/createPhotoView" title="createPhotoView"></a>
+	<h3 class="subsubtitle method-title">createPhotoView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a photo view for a new page.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (TTPhotoView *)createPhotoView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Creates a photo view for a new page.</p>
+
+<p>Do not call this directly. It is meant to be overriden by subclasses.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTPhotoViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createThumbsViewController" title="createThumbsViewController"></a>
+	<h3 class="subsubtitle method-title">createThumbsViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates the thumbnail controller used by the &ldquo;See All&rdquo; button.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (TTThumbsViewController *)createThumbsViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Creates the thumbnail controller used by the &ldquo;See All&rdquo; button.</p>
+
+<p>Do not call this directly. It is meant to be overriden by subclasses.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTPhotoViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didMoveToPhoto:fromPhoto:" title="didMoveToPhoto:fromPhoto:"></a>
+	<h3 class="subsubtitle method-title">didMoveToPhoto:fromPhoto:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sent to the controller after it moves from one photo to another.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)didMoveToPhoto:(id&lt;TTPhoto&gt;)<em>photo</em> fromPhoto:(id&lt;TTPhoto&gt;)<em>fromPhoto</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent to the controller after it moves from one photo to another.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTPhotoViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithPhoto:" title="initWithPhoto:"></a>
+	<h3 class="subsubtitle method-title">initWithPhoto:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithPhotoSource:" title="initWithPhotoSource:"></a>
+	<h3 class="subsubtitle method-title">initWithPhotoSource:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showActivity:" title="showActivity:"></a>
+	<h3 class="subsubtitle method-title">showActivity:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shows or hides an activity label on top of the photo.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showActivity:(NSString *)<em>title</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Shows or hides an activity label on top of the photo.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTPhotoViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

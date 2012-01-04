@@ -1,0 +1,1905 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTURLRequest Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTURLRequest Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/URL">&nbsp;&nbsp;&nbsp;&nbsp;URL</option>
+	
+	<option value="//api/name/cacheExpirationAge">&nbsp;&nbsp;&nbsp;&nbsp;cacheExpirationAge</option>
+	
+	<option value="//api/name/cacheKey">&nbsp;&nbsp;&nbsp;&nbsp;cacheKey</option>
+	
+	<option value="//api/name/cachePolicy">&nbsp;&nbsp;&nbsp;&nbsp;cachePolicy</option>
+	
+	<option value="//api/name/charsetForMultipart">&nbsp;&nbsp;&nbsp;&nbsp;charsetForMultipart</option>
+	
+	<option value="//api/name/contentType">&nbsp;&nbsp;&nbsp;&nbsp;contentType</option>
+	
+	<option value="//api/name/delegates">&nbsp;&nbsp;&nbsp;&nbsp;delegates</option>
+	
+	<option value="//api/name/filterPasswordLogging">&nbsp;&nbsp;&nbsp;&nbsp;filterPasswordLogging</option>
+	
+	<option value="//api/name/headers">&nbsp;&nbsp;&nbsp;&nbsp;headers</option>
+	
+	<option value="//api/name/httpBody">&nbsp;&nbsp;&nbsp;&nbsp;httpBody</option>
+	
+	<option value="//api/name/httpMethod">&nbsp;&nbsp;&nbsp;&nbsp;httpMethod</option>
+	
+	<option value="//api/name/isLoading">&nbsp;&nbsp;&nbsp;&nbsp;isLoading</option>
+	
+	<option value="//api/name/multiPartForm">&nbsp;&nbsp;&nbsp;&nbsp;multiPartForm</option>
+	
+	<option value="//api/name/parameters">&nbsp;&nbsp;&nbsp;&nbsp;parameters</option>
+	
+	<option value="//api/name/respondedFromCache">&nbsp;&nbsp;&nbsp;&nbsp;respondedFromCache</option>
+	
+	<option value="//api/name/response">&nbsp;&nbsp;&nbsp;&nbsp;response</option>
+	
+	<option value="//api/name/shouldHandleCookies">&nbsp;&nbsp;&nbsp;&nbsp;shouldHandleCookies</option>
+	
+	<option value="//api/name/timeoutInterval">&nbsp;&nbsp;&nbsp;&nbsp;timeoutInterval</option>
+	
+	<option value="//api/name/timestamp">&nbsp;&nbsp;&nbsp;&nbsp;timestamp</option>
+	
+	<option value="//api/name/totalBytesDownloaded">&nbsp;&nbsp;&nbsp;&nbsp;totalBytesDownloaded</option>
+	
+	<option value="//api/name/totalBytesExpected">&nbsp;&nbsp;&nbsp;&nbsp;totalBytesExpected</option>
+	
+	<option value="//api/name/totalBytesLoaded">&nbsp;&nbsp;&nbsp;&nbsp;totalBytesLoaded</option>
+	
+	<option value="//api/name/totalContentLength">&nbsp;&nbsp;&nbsp;&nbsp;totalContentLength</option>
+	
+	<option value="//api/name/urlPath">&nbsp;&nbsp;&nbsp;&nbsp;urlPath</option>
+	
+	<option value="//api/name/userInfo">&nbsp;&nbsp;&nbsp;&nbsp;userInfo</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/request">&nbsp;&nbsp;&nbsp;&nbsp;+ request</option>
+	
+	<option value="//api/name/requestWithURL:delegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ requestWithURL:delegate:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addFile:mimeType:fileName:">&nbsp;&nbsp;&nbsp;&nbsp;- addFile:mimeType:fileName:</option>
+	
+	<option value="//api/name/cancel">&nbsp;&nbsp;&nbsp;&nbsp;- cancel</option>
+	
+	<option value="//api/name/createNSURLRequest">&nbsp;&nbsp;&nbsp;&nbsp;- createNSURLRequest</option>
+	
+	<option value="//api/name/initWithURL:delegate:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithURL:delegate:</option>
+	
+	<option value="//api/name/send">&nbsp;&nbsp;&nbsp;&nbsp;- send</option>
+	
+	<option value="//api/name/sendSynchronously">&nbsp;&nbsp;&nbsp;&nbsp;- sendSynchronously</option>
+	
+	<option value="//api/name/setValue:forHTTPHeaderField:">&nbsp;&nbsp;&nbsp;&nbsp;- setValue:forHTTPHeaderField:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URL">URL</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheExpirationAge">cacheExpirationAge</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheKey">cacheKey</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachePolicy">cachePolicy</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/charsetForMultipart">charsetForMultipart</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/contentType">contentType</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegates">delegates</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/filterPasswordLogging">filterPasswordLogging</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/headers">headers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/httpBody">httpBody</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/httpMethod">httpMethod</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLoading">isLoading</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/multiPartForm">multiPartForm</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parameters">parameters</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/respondedFromCache">respondedFromCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/response">response</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldHandleCookies">shouldHandleCookies</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/timeoutInterval">timeoutInterval</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/timestamp">timestamp</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/totalBytesDownloaded">totalBytesDownloaded</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/totalBytesExpected">totalBytesExpected</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/totalBytesLoaded">totalBytesLoaded</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/totalContentLength">totalContentLength</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/urlPath">urlPath</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userInfo">userInfo</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/request">request</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestWithURL:delegate:">requestWithURL:delegate:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addFile:mimeType:fileName:">addFile:mimeType:fileName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancel">cancel</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createNSURLRequest">createNSURLRequest</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithURL:delegate:">initWithURL:delegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/send">send</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendSynchronously">sendSynchronously</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setValue:forHTTPHeaderField:">setValue:forHTTPHeaderField:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTURLRequest Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTURLRequest Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTURLRequest.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The <a href="../Classes/Three20.html">Three20</a> network <a href="#//api/name/request">request</a> object, built to work with the <a href="../Classes/Three20.html">Three20</a> cache and co.</p>
+
+<p>Allows customization of the http method, body, and <a href="#//api/name/parameters">parameters</a>, as well as natural <a href="#//api/name/response">response</a>
+processing using <a href="../Protocols/TTURLResponse.html">TTURLResponse</a> objects.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/urlPath">&nbsp;&nbsp;urlPath</a></code>
+		<span class="tooltip"><p>The <a href="#//api/name/URL">URL</a> path to be loaded by the <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/URL">&nbsp;&nbsp;URL</a></code>
+		<span class="tooltip"><p>The <a href="#//api/name/URL">URL</a> path to be loaded by the <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/httpMethod">&nbsp;&nbsp;httpMethod</a></code>
+		<span class="tooltip"><p>The HTTP method to <a href="#//api/name/send">send</a> with the <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/response">&nbsp;&nbsp;response</a></code>
+		<span class="tooltip"><p>An object that handles the <a href="#//api/name/response">response</a> data and may parse and validate it.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/httpBody">&nbsp;&nbsp;httpBody</a></code>
+		<span class="tooltip"><p>The HTTP body to <a href="#//api/name/send">send</a> with the <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/contentType">&nbsp;&nbsp;contentType</a></code>
+		<span class="tooltip"><p>The content type of the data in the <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parameters">&nbsp;&nbsp;parameters</a></code>
+		<span class="tooltip"><p>Parameters to use for an HTTP POST/PUT.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/headers">&nbsp;&nbsp;headers</a></code>
+		<span class="tooltip"><p>Custom HTTP <a href="#//api/name/headers">headers</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cachePolicy">&nbsp;&nbsp;cachePolicy</a></code>
+		<span class="tooltip"><p>@default TTURLRequestCachePolicyDefault</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheExpirationAge">&nbsp;&nbsp;cacheExpirationAge</a></code>
+		<span class="tooltip"><p>The maximum age of cached data that can be used as a <a href="#//api/name/response">response</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheKey">&nbsp;&nbsp;cacheKey</a></code>
+		<span class="tooltip"><p>If no cache key is provided, a unique key is generated from the <a href="#//api/name/request">request</a> data. If the <a href="#//api/name/request">request</a>
+is a POST/PUT <a href="#//api/name/request">request</a>, then the POST/PUT <a href="#//api/name/parameters">parameters</a> are also used to generate the cache key.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userInfo">&nbsp;&nbsp;userInfo</a></code>
+		<span class="tooltip"><p>A dummy object used to uniquely identify this <a href="#//api/name/request">request</a> object once it&rsquo;s been sent into the fray.
+Generally <a href="../Classes/TTUserInfo.html">TTUserInfo</a> objects are used here.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/timestamp">&nbsp;&nbsp;timestamp</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isLoading">&nbsp;&nbsp;isLoading</a></code>
+		<span class="tooltip"><p>Whether or not the <a href="#//api/name/request">request</a> is currently active.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldHandleCookies">&nbsp;&nbsp;shouldHandleCookies</a></code>
+		<span class="tooltip"><p>Decide whether default cookie handling will happen for this <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/totalBytesLoaded">&nbsp;&nbsp;totalBytesLoaded</a></code>
+		<span class="tooltip"><p>The number of <a href="#//api/name/request">request</a> body bytes already uploaded by this <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/totalBytesExpected">&nbsp;&nbsp;totalBytesExpected</a></code>
+		<span class="tooltip"><p>The total number of <a href="#//api/name/request">request</a> body bytes expected to be uploaded for this <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/totalBytesDownloaded">&nbsp;&nbsp;totalBytesDownloaded</a></code>
+		<span class="tooltip"><p>The number of downloaded bytes from server.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/totalContentLength">&nbsp;&nbsp;totalContentLength</a></code>
+		<span class="tooltip"><p>The number of content length of <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/timeoutInterval">&nbsp;&nbsp;timeoutInterval</a></code>
+		<span class="tooltip"><p>The timeout to use for the <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/respondedFromCache">&nbsp;&nbsp;respondedFromCache</a></code>
+		<span class="tooltip"><p>Whether or not the <a href="#//api/name/request">request</a> was loaded from the cache.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/filterPasswordLogging">&nbsp;&nbsp;filterPasswordLogging</a></code>
+		<span class="tooltip"><p>Whether <a href="#//api/name/parameters">parameters</a> named &ldquo;password&rdquo; should be suppressed in log messages.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/charsetForMultipart">&nbsp;&nbsp;charsetForMultipart</a></code>
+		<span class="tooltip"><p>Charset to use when creating multipart/form-data data.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegates">&nbsp;&nbsp;delegates</a></code>
+		<span class="tooltip"><p>An array of non-retained objects that receive messages about the progress of the <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/multiPartForm">&nbsp;&nbsp;multiPartForm</a></code>
+		<span class="tooltip"><p>Determine whether to construct a multipart form or to instead encode the http body as the W3C default
+of application/x-www-form-urlencoded</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/request">+&nbsp;request</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestWithURL:delegate:">+&nbsp;requestWithURL:delegate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithURL:delegate:">&ndash;&nbsp;initWithURL:delegate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setValue:forHTTPHeaderField:">&ndash;&nbsp;setValue:forHTTPHeaderField:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addFile:mimeType:fileName:">&ndash;&nbsp;addFile:mimeType:fileName:</a></code>
+		<span class="tooltip"><p>Add a file whose data will be posted.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/send">&ndash;&nbsp;send</a></code>
+		<span class="tooltip"><p>Attempt to <a href="#//api/name/send">send</a> a <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendSynchronously">&ndash;&nbsp;sendSynchronously</a></code>
+		<span class="tooltip"><p>Attempt to <a href="#//api/name/send">send</a> a synchronous <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancel">&ndash;&nbsp;cancel</a></code>
+		<span class="tooltip"><p>Cancel the <a href="#//api/name/request">request</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createNSURLRequest">&ndash;&nbsp;createNSURLRequest</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/URL" title="URL"></a>
+	<h3 class="subsubtitle method-title">URL</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The <a href="#//api/name/URL">URL</a> path to be loaded by the <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *URL</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The <a href="#//api/name/URL">URL</a> path to be loaded by the <a href="#//api/name/request">request</a>.</p>
+
+<p>Deprecated due to name ambiguity. Use <a href="#//api/name/urlPath">urlPath</a> instead.
+Remove after May 6, 2010.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheExpirationAge" title="cacheExpirationAge"></a>
+	<h3 class="subsubtitle method-title">cacheExpirationAge</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The maximum age of cached data that can be used as a <a href="#//api/name/response">response</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSTimeInterval cacheExpirationAge</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The maximum age of cached data that can be used as a <a href="#//api/name/response">response</a>.</p>
+
+<p>@default TT_DEFAULT_CACHE_EXPIRATION_AGE (1 week)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheKey" title="cacheKey"></a>
+	<h3 class="subsubtitle method-title">cacheKey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If no cache key is provided, a unique key is generated from the <a href="#//api/name/request">request</a> data. If the <a href="#//api/name/request">request</a>
+is a POST/PUT <a href="#//api/name/request">request</a>, then the POST/PUT <a href="#//api/name/parameters">parameters</a> are also used to generate the cache key.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *cacheKey</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If no cache key is provided, a unique key is generated from the <a href="#//api/name/request">request</a> data. If the <a href="#//api/name/request">request</a>
+is a POST/PUT <a href="#//api/name/request">request</a>, then the POST/PUT <a href="#//api/name/parameters">parameters</a> are also used to generate the cache key.</p>
+
+<p>By setting the <a href="#//api/name/cacheKey">cacheKey</a>, you may override the default cache key generator with your own.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cachePolicy" title="cachePolicy"></a>
+	<h3 class="subsubtitle method-title">cachePolicy</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>@default TTURLRequestCachePolicyDefault</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) TTURLRequestCachePolicy cachePolicy</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>@default TTURLRequestCachePolicyDefault</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/charsetForMultipart" title="charsetForMultipart"></a>
+	<h3 class="subsubtitle method-title">charsetForMultipart</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Charset to use when creating multipart/form-data data.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSStringEncoding charsetForMultipart</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Charset to use when creating multipart/form-data data.</p>
+
+<p>@default NSUTF8StringEncoding to remain backwards compatible.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/contentType" title="contentType"></a>
+	<h3 class="subsubtitle method-title">contentType</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The content type of the data in the <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *contentType</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The content type of the data in the <a href="#//api/name/request">request</a>.</p>
+
+<p>If not provided and <a href="#//api/name/httpMethod">httpMethod</a> is POST/PUT, then <a href="#//api/name/contentType">contentType</a> is @&ldquo;multipart/form-data&rdquo;.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delegates" title="delegates"></a>
+	<h3 class="subsubtitle method-title">delegates</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>An array of non-retained objects that receive messages about the progress of the <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSMutableArray *delegates</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>An array of non-retained objects that receive messages about the progress of the <a href="#//api/name/request">request</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/filterPasswordLogging" title="filterPasswordLogging"></a>
+	<h3 class="subsubtitle method-title">filterPasswordLogging</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Whether <a href="#//api/name/parameters">parameters</a> named &ldquo;password&rdquo; should be suppressed in log messages.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL filterPasswordLogging</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Whether <a href="#//api/name/parameters">parameters</a> named &ldquo;password&rdquo; should be suppressed in log messages.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/headers" title="headers"></a>
+	<h3 class="subsubtitle method-title">headers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Custom HTTP <a href="#//api/name/headers">headers</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSMutableDictionary *headers</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Custom HTTP <a href="#//api/name/headers">headers</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/httpBody" title="httpBody"></a>
+	<h3 class="subsubtitle method-title">httpBody</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The HTTP body to <a href="#//api/name/send">send</a> with the <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSData *httpBody</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The HTTP body to <a href="#//api/name/send">send</a> with the <a href="#//api/name/request">request</a>.</p>
+
+<p>If provided, will always be used. Please consider this when using POST/PUT methods: if
+<a href="#//api/name/httpBody">httpBody</a> is provided, then the POST/PUT data generated from the <a href="#//api/name/parameters">parameters</a> property will not
+be used.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/httpMethod" title="httpMethod"></a>
+	<h3 class="subsubtitle method-title">httpMethod</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The HTTP method to <a href="#//api/name/send">send</a> with the <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *httpMethod</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The HTTP method to <a href="#//api/name/send">send</a> with the <a href="#//api/name/request">request</a>.</p>
+
+<p>@example @&ldquo;POST&rdquo;
+@example @&ldquo;GET&rdquo;
+@example @&ldquo;PUT&rdquo;
+@default nil (equivalent to @&ldquo;GET&rdquo;)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isLoading" title="isLoading"></a>
+	<h3 class="subsubtitle method-title">isLoading</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Whether or not the <a href="#//api/name/request">request</a> is currently active.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL isLoading</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Whether or not the <a href="#//api/name/request">request</a> is currently active.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/multiPartForm" title="multiPartForm"></a>
+	<h3 class="subsubtitle method-title">multiPartForm</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determine whether to construct a multipart form or to instead encode the http body as the W3C default
+of application/x-www-form-urlencoded</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL multiPartForm</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Determine whether to construct a multipart form or to instead encode the http body as the W3C default
+of application/x-www-form-urlencoded</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parameters" title="parameters"></a>
+	<h3 class="subsubtitle method-title">parameters</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parameters to use for an HTTP POST/PUT.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSMutableDictionary *parameters</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Parameters to use for an HTTP POST/PUT.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/respondedFromCache" title="respondedFromCache"></a>
+	<h3 class="subsubtitle method-title">respondedFromCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Whether or not the <a href="#//api/name/request">request</a> was loaded from the cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL respondedFromCache</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Whether or not the <a href="#//api/name/request">request</a> was loaded from the cache.</p>
+
+<p>This is only valid after the <a href="#//api/name/request">request</a> has completed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/response" title="response"></a>
+	<h3 class="subsubtitle method-title">response</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>An object that handles the <a href="#//api/name/response">response</a> data and may parse and validate it.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) id&lt;TTURLResponse&gt; response</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>An object that handles the <a href="#//api/name/response">response</a> data and may parse and validate it.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/TTURLDataResponse.html">TTURLDataResponse</a></p></code></li>
+			
+			<li><code><p><a href="../Classes/TTURLImageResponse.html">TTURLImageResponse</a></p></code></li>
+			
+			<li><code><p><a href="../Classes/TTURLXMLResponse.html">TTURLXMLResponse</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shouldHandleCookies" title="shouldHandleCookies"></a>
+	<h3 class="subsubtitle method-title">shouldHandleCookies</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Decide whether default cookie handling will happen for this <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL shouldHandleCookies</code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>YES</em></dt>
+			<dd><p>if cookies should be sent with and set for this <a href="#//api/name/request">request</a>;
+otherwise NO.
+@discussion The default is YES &ndash; in other words, cookies are sent from and
+stored to the cookie manager by default.</p>
+
+<p>@default YES</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Decide whether default cookie handling will happen for this <a href="#//api/name/request">request</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/timeoutInterval" title="timeoutInterval"></a>
+	<h3 class="subsubtitle method-title">timeoutInterval</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The timeout to use for the <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSTimeInterval timeoutInterval</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The timeout to use for the <a href="#//api/name/request">request</a>.</p>
+
+<p>If a negative value is set the <a href="#//api/name/request">request</a> uses
+the defaultTimeout of the <a href="../Classes/TTURLRequestQueue.html">TTURLRequestQueue</a>. <b>This differs from behaviour of
+NSURLRequest.</b> Given a negative <a href="#//api/name/timeoutInterval">timeoutInterval</a> NSURLRequest always fails.</p>
+
+<p>You should use the TTURLRequestUseQueueTimeout constant to improve
+code readabillity, instead of negative numbers.</p>
+
+<p>The default value is TTURLRequestUseQueueTimeout</p>
+
+<p>@par from NSURLRequest.h:</p>
+
+<p>The timeout interval specifies the limit on the idle
+interval alloted to a <a href="#//api/name/request">request</a> in the process of loading. The &ldquo;idle
+interval&rdquo; is defined as the period of time that has passed since the
+last instance of load activity occurred for a <a href="#//api/name/request">request</a> that is in the
+process of loading. Hence, when an instance of load activity occurs
+(e.g. bytes are received from the network for a <a href="#//api/name/request">request</a>), the idle
+interval for a <a href="#//api/name/request">request</a> is reset to 0. If the idle interval ever
+becomes greater than or equal to the timeout interval, the <a href="#//api/name/request">request</a>
+is considered to have timed out. This timeout interval is measured
+in seconds.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/TTURLRequestQueue.html">TTURLRequestQueue</a>::defaultTimeout</p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/timestamp" title="timestamp"></a>
+	<h3 class="subsubtitle method-title">timestamp</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/totalBytesDownloaded" title="totalBytesDownloaded"></a>
+	<h3 class="subsubtitle method-title">totalBytesDownloaded</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The number of downloaded bytes from server.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSInteger totalBytesDownloaded</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The number of downloaded bytes from server.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/totalBytesExpected" title="totalBytesExpected"></a>
+	<h3 class="subsubtitle method-title">totalBytesExpected</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The total number of <a href="#//api/name/request">request</a> body bytes expected to be uploaded for this <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSInteger totalBytesExpected</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The total number of <a href="#//api/name/request">request</a> body bytes expected to be uploaded for this <a href="#//api/name/request">request</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/totalBytesLoaded" title="totalBytesLoaded"></a>
+	<h3 class="subsubtitle method-title">totalBytesLoaded</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The number of <a href="#//api/name/request">request</a> body bytes already uploaded by this <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSInteger totalBytesLoaded</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The number of <a href="#//api/name/request">request</a> body bytes already uploaded by this <a href="#//api/name/request">request</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/totalContentLength" title="totalContentLength"></a>
+	<h3 class="subsubtitle method-title">totalContentLength</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The number of content length of <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSInteger totalContentLength</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The number of content length of <a href="#//api/name/request">request</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/urlPath" title="urlPath"></a>
+	<h3 class="subsubtitle method-title">urlPath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The <a href="#//api/name/URL">URL</a> path to be loaded by the <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *urlPath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The <a href="#//api/name/URL">URL</a> path to be loaded by the <a href="#//api/name/request">request</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userInfo" title="userInfo"></a>
+	<h3 class="subsubtitle method-title">userInfo</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A dummy object used to uniquely identify this <a href="#//api/name/request">request</a> object once it&rsquo;s been sent into the fray.
+Generally <a href="../Classes/TTUserInfo.html">TTUserInfo</a> objects are used here.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) id userInfo</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A dummy object used to uniquely identify this <a href="#//api/name/request">request</a> object once it&rsquo;s been sent into the fray.
+Generally <a href="../Classes/TTUserInfo.html">TTUserInfo</a> objects are used here.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/TTUserInfo.html">TTUserInfo</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/request" title="request"></a>
+	<h3 class="subsubtitle method-title">request</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestWithURL:delegate:" title="requestWithURL:delegate:"></a>
+	<h3 class="subsubtitle method-title">requestWithURL:delegate:</h3>
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addFile:mimeType:fileName:" title="addFile:mimeType:fileName:"></a>
+	<h3 class="subsubtitle method-title">addFile:mimeType:fileName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add a file whose data will be posted.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addFile:(NSData *)<em>data</em> mimeType:(NSString *)<em>mimeType</em> fileName:(NSString *)<em>fileName</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Add a file whose data will be posted.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cancel" title="cancel"></a>
+	<h3 class="subsubtitle method-title">cancel</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancel the <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cancel</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancel the <a href="#//api/name/request">request</a>.</p>
+
+<p>If there are multiple requests going to the same <a href="#//api/name/URL">URL</a> as this <a href="#//api/name/request">request</a>, the others will
+not be cancelled.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createNSURLRequest" title="createNSURLRequest"></a>
+	<h3 class="subsubtitle method-title">createNSURLRequest</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithURL:delegate:" title="initWithURL:delegate:"></a>
+	<h3 class="subsubtitle method-title">initWithURL:delegate:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/send" title="send"></a>
+	<h3 class="subsubtitle method-title">send</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Attempt to <a href="#//api/name/send">send</a> a <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)send</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the <a href="#//api/name/request">request</a> was loaded synchronously from the cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Attempt to <a href="#//api/name/send">send</a> a <a href="#//api/name/request">request</a>.</p>
+
+<p>If the <a href="#//api/name/request">request</a> can be resolved by the cache, it will happen synchronously.  Otherwise,
+the <a href="#//api/name/request">request</a> will respond to its delegate asynchronously.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendSynchronously" title="sendSynchronously"></a>
+	<h3 class="subsubtitle method-title">sendSynchronously</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Attempt to <a href="#//api/name/send">send</a> a synchronous <a href="#//api/name/request">request</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendSynchronously</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the <a href="#//api/name/request">request</a> was loaded from the cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Attempt to <a href="#//api/name/send">send</a> a synchronous <a href="#//api/name/request">request</a>.</p>
+
+<p>The <a href="#//api/name/request">request</a> will happen synchronously, regardless of whether the data is being grabbed from
+the network or from the cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequest.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setValue:forHTTPHeaderField:" title="setValue:forHTTPHeaderField:"></a>
+	<h3 class="subsubtitle method-title">setValue:forHTTPHeaderField:</h3>
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

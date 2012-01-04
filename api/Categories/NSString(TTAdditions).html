@@ -1,0 +1,879 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>NSString(TTAdditions) Category Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">NSString(TTAdditions) Category Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/md5Hash">&nbsp;&nbsp;&nbsp;&nbsp;md5Hash</option>
+	
+	<option value="//api/name/sha1Hash">&nbsp;&nbsp;&nbsp;&nbsp;sha1Hash</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/isEmptyOrWhitespace">&nbsp;&nbsp;&nbsp;&nbsp;- isEmptyOrWhitespace</option>
+	
+	<option value="//api/name/isWhitespaceAndNewlines">&nbsp;&nbsp;&nbsp;&nbsp;- isWhitespaceAndNewlines</option>
+	
+	<option value="//api/name/queryContentsUsingEncoding:">&nbsp;&nbsp;&nbsp;&nbsp;- queryContentsUsingEncoding:</option>
+	
+	<option value="//api/name/queryDictionaryUsingEncoding:">&nbsp;&nbsp;&nbsp;&nbsp;- queryDictionaryUsingEncoding:</option>
+	
+	<option value="//api/name/stringByAddingQueryDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- stringByAddingQueryDictionary:</option>
+	
+	<option value="//api/name/stringByAddingURLEncodedQueryDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- stringByAddingURLEncodedQueryDictionary:</option>
+	
+	<option value="//api/name/stringByRemovingHTMLTags">&nbsp;&nbsp;&nbsp;&nbsp;- stringByRemovingHTMLTags</option>
+	
+	<option value="//api/name/urlEncoded">&nbsp;&nbsp;&nbsp;&nbsp;- urlEncoded</option>
+	
+	<option value="//api/name/versionStringCompare:">&nbsp;&nbsp;&nbsp;&nbsp;- versionStringCompare:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/md5Hash">md5Hash</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sha1Hash">sha1Hash</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEmptyOrWhitespace">isEmptyOrWhitespace</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isWhitespaceAndNewlines">isWhitespaceAndNewlines</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/queryContentsUsingEncoding:">queryContentsUsingEncoding:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/queryDictionaryUsingEncoding:">queryDictionaryUsingEncoding:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringByAddingQueryDictionary:">stringByAddingQueryDictionary:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringByAddingURLEncodedQueryDictionary:">stringByAddingURLEncodedQueryDictionary:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringByRemovingHTMLTags">stringByRemovingHTMLTags</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/urlEncoded">urlEncoded</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/versionStringCompare:">versionStringCompare:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="NSString(TTAdditions) Category Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">NSString(TTAdditions) Category Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">NSStringAdditions.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Doxygen does not handle categories very well, so please refer to the .m file in general
+for the documentation that is reflected on api.three20.info.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isWhitespaceAndNewlines">&ndash;&nbsp;isWhitespaceAndNewlines</a></code>
+		<span class="tooltip"><p>Determines if the string contains only whitespace and newlines.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isEmptyOrWhitespace">&ndash;&nbsp;isEmptyOrWhitespace</a></code>
+		<span class="tooltip"><p>Determines if the string is empty or contains only whitespace.
+@deprecated Use TTIsStringWithAnyText() instead. Updating your use of
+this method is non-trivial. See the note below.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/queryDictionaryUsingEncoding:">&ndash;&nbsp;queryDictionaryUsingEncoding:</a></code>
+		<span class="tooltip"><p>Parses a URL query string into a dictionary.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/queryContentsUsingEncoding:">&ndash;&nbsp;queryContentsUsingEncoding:</a></code>
+		<span class="tooltip"><p>Parses a URL query string into a dictionary where the values are arrays.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringByAddingQueryDictionary:">&ndash;&nbsp;stringByAddingQueryDictionary:</a></code>
+		<span class="tooltip"><p>Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringByAddingURLEncodedQueryDictionary:">&ndash;&nbsp;stringByAddingURLEncodedQueryDictionary:</a></code>
+		<span class="tooltip"><p>Parses a URL, adds <a href="#//api/name/urlEncoded">urlEncoded</a> query parameters to its query, and re-encodes it as a new URL.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/urlEncoded">&ndash;&nbsp;urlEncoded</a></code>
+		<span class="tooltip"><p>Returns a URL Encoded String</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stringByRemovingHTMLTags">&ndash;&nbsp;stringByRemovingHTMLTags</a></code>
+		<span class="tooltip"><p>Returns a string with all HTML tags removed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/versionStringCompare:">&ndash;&nbsp;versionStringCompare:</a></code>
+		<span class="tooltip"><p>Compares two strings expressing software versions.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/md5Hash">&nbsp;&nbsp;md5Hash</a></code>
+		<span class="tooltip"><p>Calculate the md5 hash of this string using CC_MD5.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sha1Hash">&nbsp;&nbsp;sha1Hash</a></code>
+		<span class="tooltip"><p>Calculate the SHA1 hash of this string using CommonCrypto CC_SHA1.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/md5Hash" title="md5Hash"></a>
+	<h3 class="subsubtitle method-title">md5Hash</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Calculate the md5 hash of this string using CC_MD5.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *md5Hash</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>md5 hash of this string</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Calculate the md5 hash of this string using CC_MD5.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sha1Hash" title="sha1Hash"></a>
+	<h3 class="subsubtitle method-title">sha1Hash</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Calculate the SHA1 hash of this string using CommonCrypto CC_SHA1.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *sha1Hash</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>NSString with SHA1 hash of this string</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Calculate the SHA1 hash of this string using CommonCrypto CC_SHA1.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/isEmptyOrWhitespace" title="isEmptyOrWhitespace"></a>
+	<h3 class="subsubtitle method-title">isEmptyOrWhitespace</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determines if the string is empty or contains only whitespace.
+@deprecated Use TTIsStringWithAnyText() instead. Updating your use of
+this method is non-trivial. See the note below.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isEmptyOrWhitespace</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Determines if the string is empty or contains only whitespace.
+@deprecated Use TTIsStringWithAnyText() instead. Updating your use of
+this method is non-trivial. See the note below.</p>
+
+<p>Notes for updating your use of isEmptyOrWhitespace:</p>
+
+<p>if (!textField.text.<a href="#//api/name/isEmptyOrWhitespace">isEmptyOrWhitespace</a>) {</p>
+
+<p>becomes</p>
+
+<p>if (TTIsStringWithAnyText(textField.text) &amp;&amp; !textField.text.<a href="#//api/name/isWhitespaceAndNewlines">isWhitespaceAndNewlines</a>) {</p>
+
+<p>and</p>
+
+<p>if (textField.text.<a href="#//api/name/isEmptyOrWhitespace">isEmptyOrWhitespace</a>) {</p>
+
+<p>becomes</p>
+
+<p>if (0 == textField.text.length || textField.text.<a href="#//api/name/isWhitespaceAndNewlines">isWhitespaceAndNewlines</a>) {</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isWhitespaceAndNewlines" title="isWhitespaceAndNewlines"></a>
+	<h3 class="subsubtitle method-title">isWhitespaceAndNewlines</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determines if the string contains only whitespace and newlines.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isWhitespaceAndNewlines</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Determines if the string contains only whitespace and newlines.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/queryContentsUsingEncoding:" title="queryContentsUsingEncoding:"></a>
+	<h3 class="subsubtitle method-title">queryContentsUsingEncoding:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parses a URL query string into a dictionary where the values are arrays.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)queryContentsUsingEncoding:(NSStringEncoding)<em>encoding</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Parses a URL query string into a dictionary where the values are arrays.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/queryDictionaryUsingEncoding:" title="queryDictionaryUsingEncoding:"></a>
+	<h3 class="subsubtitle method-title">queryDictionaryUsingEncoding:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parses a URL query string into a dictionary.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)queryDictionaryUsingEncoding:(NSStringEncoding)<em>encoding</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Parses a URL query string into a dictionary.</p>
+
+<p>@deprecated Use <a href="#//api/name/queryContentsUsingEncoding:">queryContentsUsingEncoding:</a> instead.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringByAddingQueryDictionary:" title="stringByAddingQueryDictionary:"></a>
+	<h3 class="subsubtitle method-title">stringByAddingQueryDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringByAddingQueryDictionary:(NSDictionary *)<em>query</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Parses a URL, adds query parameters to its query, and re-encodes it as a new URL.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringByAddingURLEncodedQueryDictionary:" title="stringByAddingURLEncodedQueryDictionary:"></a>
+	<h3 class="subsubtitle method-title">stringByAddingURLEncodedQueryDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parses a URL, adds <a href="#//api/name/urlEncoded">urlEncoded</a> query parameters to its query, and re-encodes it as a new URL.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringByAddingURLEncodedQueryDictionary:(NSDictionary *)<em>query</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Parses a URL, adds urlEncoded query parameters to its query, and re-encodes it as a new URL.</p>
+
+<p>This method encodes keys and values of query using [NSString urlEncoded] and calls
+stringByAddingQueryDictionary with the resulting dictionary.</p>
+
+<p>@throw NSInvalidArgumentException If any value or key does not respond to <a href="#//api/name/urlEncoded">urlEncoded</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stringByRemovingHTMLTags" title="stringByRemovingHTMLTags"></a>
+	<h3 class="subsubtitle method-title">stringByRemovingHTMLTags</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a string with all HTML tags removed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)stringByRemovingHTMLTags</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a string with all HTML tags removed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/urlEncoded" title="urlEncoded"></a>
+	<h3 class="subsubtitle method-title">urlEncoded</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a URL Encoded String</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)urlEncoded</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a URL Encoded String</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/versionStringCompare:" title="versionStringCompare:"></a>
+	<h3 class="subsubtitle method-title">versionStringCompare:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Compares two strings expressing software versions.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSComparisonResult)versionStringCompare:(NSString *)<em>other</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Compares two strings expressing software versions.</p>
+
+<p>The comparison is (except for the development version provisions noted below) lexicographic
+string comparison. So as long as the strings being compared use consistent version formats,
+a variety of schemes are supported. For example &ldquo;3.02&rdquo; &lt; &ldquo;3.03&rdquo; and &ldquo;3.0.2&rdquo; &lt; &ldquo;3.0.3&rdquo;. If you
+mix such schemes, like trying to compare &ldquo;3.02&rdquo; and &ldquo;3.0.3&rdquo;, the result may not be what you
+expect.</p>
+
+<p>Development versions are also supported by adding an &ldquo;a&rdquo; character and more version info after
+it. For example &ldquo;3.0a1&rdquo; or &ldquo;3.01a4&rdquo;. The way these are handled is as follows: if the parts
+before the &ldquo;a&rdquo; are different, the parts after the &ldquo;a&rdquo; are ignored. If the parts before the &ldquo;a&rdquo;
+are identical, the result of the comparison is the result of NUMERICALLY comparing the parts
+after the &ldquo;a&rdquo;. If the part after the &ldquo;a&rdquo; is empty, it is treated as if it were &ldquo;0&rdquo;. If one
+string has an &ldquo;a&rdquo; and the other does not (e.g. &ldquo;3.0&rdquo; and &ldquo;3.0a1&rdquo;) the one without the &ldquo;a&rdquo;
+is newer.</p>
+
+<p>Examples (?? means undefined):
+&ldquo;3.0&rdquo; = &ldquo;3.0&rdquo;
+&ldquo;3.0a2&rdquo; = &ldquo;3.0a2&rdquo;
+&ldquo;3.0&rdquo; > &ldquo;2.5&rdquo;
+&ldquo;3.1&rdquo; > &ldquo;3.0&rdquo;
+&ldquo;3.0a1&rdquo; &lt; &ldquo;3.0&rdquo;
+&ldquo;3.0a1&rdquo; &lt; &ldquo;3.0a4&rdquo;
+&ldquo;3.0a2&rdquo; &lt; &ldquo;3.0a19&rdquo;  &lt;&mdash; numeric, not lexicographic
+&ldquo;3.0a&rdquo; &lt; &ldquo;3.0a1&rdquo;
+&ldquo;3.02&rdquo; &lt; &ldquo;3.03&rdquo;
+&ldquo;3.0.2&rdquo; &lt; &ldquo;3.0.3&rdquo;
+&ldquo;3.00&rdquo; ?? &ldquo;3.0&rdquo;
+&ldquo;3.02&rdquo; ?? &ldquo;3.0.3&rdquo;
+&ldquo;3.02&rdquo; ?? &ldquo;3.0.2&rdquo;</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSStringAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

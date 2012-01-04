@@ -1,0 +1,1255 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTTableViewController Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTTableViewController Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/UITableView">&nbsp;&nbsp;&nbsp;&nbsp;UITableView</option>
+	
+	<option value="//api/name/clearsSelectionOnViewWillAppear">&nbsp;&nbsp;&nbsp;&nbsp;clearsSelectionOnViewWillAppear</option>
+	
+	<option value="//api/name/dataSource">&nbsp;&nbsp;&nbsp;&nbsp;dataSource</option>
+	
+	<option value="//api/name/emptyView">&nbsp;&nbsp;&nbsp;&nbsp;emptyView</option>
+	
+	<option value="//api/name/errorView">&nbsp;&nbsp;&nbsp;&nbsp;errorView</option>
+	
+	<option value="//api/name/loadingView">&nbsp;&nbsp;&nbsp;&nbsp;loadingView</option>
+	
+	<option value="//api/name/menuView">&nbsp;&nbsp;&nbsp;&nbsp;menuView</option>
+	
+	<option value="//api/name/showTableShadows">&nbsp;&nbsp;&nbsp;&nbsp;showTableShadows</option>
+	
+	<option value="//api/name/tableBannerView">&nbsp;&nbsp;&nbsp;&nbsp;tableBannerView</option>
+	
+	<option value="//api/name/tableOverlayView">&nbsp;&nbsp;&nbsp;&nbsp;tableOverlayView</option>
+	
+	<option value="//api/name/tableViewStyle">&nbsp;&nbsp;&nbsp;&nbsp;tableViewStyle</option>
+	
+	<option value="//api/name/variableHeightRows">&nbsp;&nbsp;&nbsp;&nbsp;variableHeightRows</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/createDelegate">&nbsp;&nbsp;&nbsp;&nbsp;- createDelegate</option>
+	
+	<option value="//api/name/didBeginDragging">&nbsp;&nbsp;&nbsp;&nbsp;- didBeginDragging</option>
+	
+	<option value="//api/name/didEndDragging">&nbsp;&nbsp;&nbsp;&nbsp;- didEndDragging</option>
+	
+	<option value="//api/name/didSelectObject:atIndexPath:">&nbsp;&nbsp;&nbsp;&nbsp;- didSelectObject:atIndexPath:</option>
+	
+	<option value="//api/name/hideMenu:">&nbsp;&nbsp;&nbsp;&nbsp;- hideMenu:</option>
+	
+	<option value="//api/name/initWithStyle:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithStyle:</option>
+	
+	<option value="//api/name/rectForBannerView">&nbsp;&nbsp;&nbsp;&nbsp;- rectForBannerView</option>
+	
+	<option value="//api/name/rectForOverlayView">&nbsp;&nbsp;&nbsp;&nbsp;- rectForOverlayView</option>
+	
+	<option value="//api/name/setTableBannerView:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- setTableBannerView:animated:</option>
+	
+	<option value="//api/name/shouldOpenURL:">&nbsp;&nbsp;&nbsp;&nbsp;- shouldOpenURL:</option>
+	
+	<option value="//api/name/showMenu:forCell:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- showMenu:forCell:animated:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/UITableView">UITableView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearsSelectionOnViewWillAppear">clearsSelectionOnViewWillAppear</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataSource">dataSource</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/emptyView">emptyView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/errorView">errorView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadingView">loadingView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/menuView">menuView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showTableShadows">showTableShadows</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableBannerView">tableBannerView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableOverlayView">tableOverlayView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableViewStyle">tableViewStyle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/variableHeightRows">variableHeightRows</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createDelegate">createDelegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didBeginDragging">didBeginDragging</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didEndDragging">didEndDragging</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didSelectObject:atIndexPath:">didSelectObject:atIndexPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hideMenu:">hideMenu:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithStyle:">initWithStyle:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rectForBannerView">rectForBannerView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rectForOverlayView">rectForOverlayView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setTableBannerView:animated:">setTableBannerView:animated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldOpenURL:">shouldOpenURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showMenu:forCell:animated:">showMenu:forCell:animated:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTTableViewController Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTTableViewController Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/TTModelViewController.html">TTModelViewController</a> : <a href="../Classes/TTViewController.html">TTViewController</a> : <a href="../Classes/TTNavigatorViewController.html">TTNavigatorViewController</a> : <a href="../Classes/TTBaseViewController.html">TTBaseViewController</a> : UIViewController</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTTableViewController.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/UITableView">&nbsp;&nbsp;UITableView</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableBannerView">&nbsp;&nbsp;tableBannerView</a></code>
+		<span class="tooltip"><p>A view that is displayed as a banner at the bottom of the table view.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableOverlayView">&nbsp;&nbsp;tableOverlayView</a></code>
+		<span class="tooltip"><p>A view that is displayed over the table view.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadingView">&nbsp;&nbsp;loadingView</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/errorView">&nbsp;&nbsp;errorView</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/emptyView">&nbsp;&nbsp;emptyView</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/menuView">&nbsp;&nbsp;menuView</a></code>
+		
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataSource">&nbsp;&nbsp;dataSource</a></code>
+		<span class="tooltip"><p>The data source used to populate the table view.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableViewStyle">&nbsp;&nbsp;tableViewStyle</a></code>
+		<span class="tooltip"><p>The style of the table view.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/variableHeightRows">&nbsp;&nbsp;variableHeightRows</a></code>
+		<span class="tooltip"><p>Indicates if the table should support non-fixed row heights.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showTableShadows">&nbsp;&nbsp;showTableShadows</a></code>
+		<span class="tooltip"><p>When enabled, draws gutter shadows above the first table item and below the last table item.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearsSelectionOnViewWillAppear">&nbsp;&nbsp;clearsSelectionOnViewWillAppear</a></code>
+		<span class="tooltip"><p>A Boolean value indicating if the controller clears the selection when the table appears.
+Default is YES.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithStyle:">&ndash;&nbsp;initWithStyle:</a></code>
+		<span class="tooltip"><p>Initializes and returns a controller having the given style.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createDelegate">&ndash;&nbsp;createDelegate</a></code>
+		<span class="tooltip"><p>Creates an delegate for the table view.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setTableBannerView:animated:">&ndash;&nbsp;setTableBannerView:animated:</a></code>
+		<span class="tooltip"><p>Sets the view that is displayed at the bottom of the table view with an optional animation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showMenu:forCell:animated:">&ndash;&nbsp;showMenu:forCell:animated:</a></code>
+		<span class="tooltip"><p>Shows a menu over a table cell.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hideMenu:">&ndash;&nbsp;hideMenu:</a></code>
+		<span class="tooltip"><p>Hides the currently visible table cell menu.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didSelectObject:atIndexPath:">&ndash;&nbsp;didSelectObject:atIndexPath:</a></code>
+		<span class="tooltip"><p>Tells the controller that the user selected an object in the table.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldOpenURL:">&ndash;&nbsp;shouldOpenURL:</a></code>
+		<span class="tooltip"><p>Asks if a URL from that user touched in the table should be opened.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didBeginDragging">&ndash;&nbsp;didBeginDragging</a></code>
+		<span class="tooltip"><p>Tells the controller that the user began dragging the table view.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didEndDragging">&ndash;&nbsp;didEndDragging</a></code>
+		<span class="tooltip"><p>Tells the controller that the user stopped dragging the table view.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rectForOverlayView">&ndash;&nbsp;rectForOverlayView</a></code>
+		<span class="tooltip"><p>The rectangle where the overlay view should appear.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rectForBannerView">&ndash;&nbsp;rectForBannerView</a></code>
+		<span class="tooltip"><p>The rectangle where the banner view should appear.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/UITableView" title="UITableView"></a>
+	<h3 class="subsubtitle method-title">UITableView</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/clearsSelectionOnViewWillAppear" title="clearsSelectionOnViewWillAppear"></a>
+	<h3 class="subsubtitle method-title">clearsSelectionOnViewWillAppear</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A Boolean value indicating if the controller clears the selection when the table appears.
+Default is YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL clearsSelectionOnViewWillAppear</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A Boolean value indicating if the controller clears the selection when the table appears.
+Default is YES.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dataSource" title="dataSource"></a>
+	<h3 class="subsubtitle method-title">dataSource</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The data source used to populate the table view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) id&lt;TTTableViewDataSource&gt; dataSource</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The data source used to populate the table view.</p>
+
+<p>Setting <a href="#//api/name/dataSource">dataSource</a> has the side effect of also setting model to the value of the
+dataSource&rsquo;s model property.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/emptyView" title="emptyView"></a>
+	<h3 class="subsubtitle method-title">emptyView</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/errorView" title="errorView"></a>
+	<h3 class="subsubtitle method-title">errorView</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadingView" title="loadingView"></a>
+	<h3 class="subsubtitle method-title">loadingView</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/menuView" title="menuView"></a>
+	<h3 class="subsubtitle method-title">menuView</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showTableShadows" title="showTableShadows"></a>
+	<h3 class="subsubtitle method-title">showTableShadows</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>When enabled, draws gutter shadows above the first table item and below the last table item.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL showTableShadows</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>When enabled, draws gutter shadows above the first table item and below the last table item.</p>
+
+<p>Known issues: When there aren&rsquo;t enough cell items to fill the screen, the table view draws
+empty cells for the remaining space. This causes the bottom shadow to appear out of place.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableBannerView" title="tableBannerView"></a>
+	<h3 class="subsubtitle method-title">tableBannerView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A view that is displayed as a banner at the bottom of the table view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIView *tableBannerView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A view that is displayed as a banner at the bottom of the table view.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableOverlayView" title="tableOverlayView"></a>
+	<h3 class="subsubtitle method-title">tableOverlayView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A view that is displayed over the table view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIView *tableOverlayView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A view that is displayed over the table view.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableViewStyle" title="tableViewStyle"></a>
+	<h3 class="subsubtitle method-title">tableViewStyle</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The style of the table view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) UITableViewStyle tableViewStyle</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The style of the table view.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/variableHeightRows" title="variableHeightRows"></a>
+	<h3 class="subsubtitle method-title">variableHeightRows</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates if the table should support non-fixed row heights.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL variableHeightRows</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Indicates if the table should support non-fixed row heights.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/createDelegate" title="createDelegate"></a>
+	<h3 class="subsubtitle method-title">createDelegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates an delegate for the table view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id&lt;UITableViewDelegate&gt;)createDelegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Creates an delegate for the table view.</p>
+
+<p>Subclasses can override this to provide their own table delegate implementation.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didBeginDragging" title="didBeginDragging"></a>
+	<h3 class="subsubtitle method-title">didBeginDragging</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tells the controller that the user began dragging the table view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)didBeginDragging</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Tells the controller that the user began dragging the table view.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didEndDragging" title="didEndDragging"></a>
+	<h3 class="subsubtitle method-title">didEndDragging</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tells the controller that the user stopped dragging the table view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)didEndDragging</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Tells the controller that the user stopped dragging the table view.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didSelectObject:atIndexPath:" title="didSelectObject:atIndexPath:"></a>
+	<h3 class="subsubtitle method-title">didSelectObject:atIndexPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tells the controller that the user selected an object in the table.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)didSelectObject:(id)<em>object</em> atIndexPath:(NSIndexPath *)<em>indexPath</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Tells the controller that the user selected an object in the table.</p>
+
+<p>By default, the object&rsquo;s URLValue will be opened in <a href="../Classes/TTNavigator.html">TTNavigator</a>, if it has one. If you don&rsquo;t
+want this to be happen, be sure to override this method and be sure not to call super.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hideMenu:" title="hideMenu:"></a>
+	<h3 class="subsubtitle method-title">hideMenu:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Hides the currently visible table cell menu.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)hideMenu:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Hides the currently visible table cell menu.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithStyle:" title="initWithStyle:"></a>
+	<h3 class="subsubtitle method-title">initWithStyle:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes and returns a controller having the given style.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithStyle:(UITableViewStyle)<em>style</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Initializes and returns a controller having the given style.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rectForBannerView" title="rectForBannerView"></a>
+	<h3 class="subsubtitle method-title">rectForBannerView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The rectangle where the banner view should appear.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGRect)rectForBannerView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The rectangle where the banner view should appear.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rectForOverlayView" title="rectForOverlayView"></a>
+	<h3 class="subsubtitle method-title">rectForOverlayView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The rectangle where the overlay view should appear.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGRect)rectForOverlayView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The rectangle where the overlay view should appear.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setTableBannerView:animated:" title="setTableBannerView:animated:"></a>
+	<h3 class="subsubtitle method-title">setTableBannerView:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sets the view that is displayed at the bottom of the table view with an optional animation.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setTableBannerView:(UIView *)<em>tableBannerView</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sets the view that is displayed at the bottom of the table view with an optional animation.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shouldOpenURL:" title="shouldOpenURL:"></a>
+	<h3 class="subsubtitle method-title">shouldOpenURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Asks if a URL from that user touched in the table should be opened.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)shouldOpenURL:(NSString *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Asks if a URL from that user touched in the table should be opened.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showMenu:forCell:animated:" title="showMenu:forCell:animated:"></a>
+	<h3 class="subsubtitle method-title">showMenu:forCell:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shows a menu over a table cell.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showMenu:(UIView *)<em>view</em> forCell:(UITableViewCell *)<em>cell</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Shows a menu over a table cell.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTTableViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

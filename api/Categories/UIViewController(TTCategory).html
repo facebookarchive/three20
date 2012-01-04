@@ -1,0 +1,1276 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>UIViewController(TTCategory) Category Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">UIViewController(TTCategory) Category Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/canBeTopViewController">&nbsp;&nbsp;&nbsp;&nbsp;canBeTopViewController</option>
+	
+	<option value="//api/name/canContainControllers">&nbsp;&nbsp;&nbsp;&nbsp;canContainControllers</option>
+	
+	<option value="//api/name/popupViewController">&nbsp;&nbsp;&nbsp;&nbsp;popupViewController</option>
+	
+	<option value="//api/name/superController">&nbsp;&nbsp;&nbsp;&nbsp;superController</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/doCommonGarbageCollection">&nbsp;&nbsp;&nbsp;&nbsp;+ doCommonGarbageCollection</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addSubcontroller:animated:transition:">&nbsp;&nbsp;&nbsp;&nbsp;- addSubcontroller:animated:transition:</option>
+	
+	<option value="//api/name/bringControllerToFront:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- bringControllerToFront:animated:</option>
+	
+	<option value="//api/name/delayDidEnd">&nbsp;&nbsp;&nbsp;&nbsp;- delayDidEnd</option>
+	
+	<option value="//api/name/dismissModalViewController">&nbsp;&nbsp;&nbsp;&nbsp;- dismissModalViewController</option>
+	
+	<option value="//api/name/keyForSubcontroller:">&nbsp;&nbsp;&nbsp;&nbsp;- keyForSubcontroller:</option>
+	
+	<option value="//api/name/nextViewController">&nbsp;&nbsp;&nbsp;&nbsp;- nextViewController</option>
+	
+	<option value="//api/name/persistNavigationPath:">&nbsp;&nbsp;&nbsp;&nbsp;- persistNavigationPath:</option>
+	
+	<option value="//api/name/persistView:">&nbsp;&nbsp;&nbsp;&nbsp;- persistView:</option>
+	
+	<option value="//api/name/removeFromSupercontroller">&nbsp;&nbsp;&nbsp;&nbsp;- removeFromSupercontroller</option>
+	
+	<option value="//api/name/removeFromSupercontrollerAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- removeFromSupercontrollerAnimated:</option>
+	
+	<option value="//api/name/restoreView:">&nbsp;&nbsp;&nbsp;&nbsp;- restoreView:</option>
+	
+	<option value="//api/name/showBars:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- showBars:animated:</option>
+	
+	<option value="//api/name/subcontrollerForKey:">&nbsp;&nbsp;&nbsp;&nbsp;- subcontrollerForKey:</option>
+	
+	<option value="//api/name/topSubcontroller">&nbsp;&nbsp;&nbsp;&nbsp;- topSubcontroller</option>
+	
+	<option value="//api/name/ttPreviousViewController">&nbsp;&nbsp;&nbsp;&nbsp;- ttPreviousViewController</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/canBeTopViewController">canBeTopViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/canContainControllers">canContainControllers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/popupViewController">popupViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/superController">superController</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doCommonGarbageCollection">doCommonGarbageCollection</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addSubcontroller:animated:transition:">addSubcontroller:animated:transition:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bringControllerToFront:animated:">bringControllerToFront:animated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delayDidEnd">delayDidEnd</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dismissModalViewController">dismissModalViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyForSubcontroller:">keyForSubcontroller:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/nextViewController">nextViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistNavigationPath:">persistNavigationPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistView:">persistView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeFromSupercontroller">removeFromSupercontroller</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeFromSupercontrollerAnimated:">removeFromSupercontrollerAnimated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/restoreView:">restoreView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showBars:animated:">showBars:animated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/subcontrollerForKey:">subcontrollerForKey:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/topSubcontroller">topSubcontroller</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ttPreviousViewController">ttPreviousViewController</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="UIViewController(TTCategory) Category Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">UIViewController(TTCategory) Category Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">UIViewControllerAdditions.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/canContainControllers">&nbsp;&nbsp;canContainControllers</a></code>
+		<span class="tooltip"><p>Determines whether a controller is primarily a container of other controllers.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/canBeTopViewController">&nbsp;&nbsp;canBeTopViewController</a></code>
+		<span class="tooltip"><p>Whether or not this controller should ever be counted as the &ldquo;top&rdquo; view controller. This is
+used for the purposes of determining which controllers should have modal controllers presented
+within them.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/superController">&nbsp;&nbsp;superController</a></code>
+		<span class="tooltip"><p>The view controller that contains this view controller.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/topSubcontroller">&ndash;&nbsp;topSubcontroller</a></code>
+		<span class="tooltip"><p>The child of this view controller which is most visible.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ttPreviousViewController">&ndash;&nbsp;ttPreviousViewController</a></code>
+		<span class="tooltip"><p>The view controller that comes before this one in a navigation controller&rsquo;s history.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/nextViewController">&ndash;&nbsp;nextViewController</a></code>
+		<span class="tooltip"><p>The view controller that comes after this one in a navigation controller&rsquo;s history.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/popupViewController">&nbsp;&nbsp;popupViewController</a></code>
+		<span class="tooltip"><p>A popup view controller that is presented on top of this view controller.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addSubcontroller:animated:transition:">&ndash;&nbsp;addSubcontroller:animated:transition:</a></code>
+		<span class="tooltip"><p>Displays a controller inside this controller.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeFromSupercontroller">&ndash;&nbsp;removeFromSupercontroller</a></code>
+		<span class="tooltip"><p>Dismisses a view controller using the opposite transition it was presented with.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeFromSupercontrollerAnimated:">&ndash;&nbsp;removeFromSupercontrollerAnimated:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bringControllerToFront:animated:">&ndash;&nbsp;bringControllerToFront:animated:</a></code>
+		<span class="tooltip"><p>Brings a controller that is a child of this controller to the front.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyForSubcontroller:">&ndash;&nbsp;keyForSubcontroller:</a></code>
+		<span class="tooltip"><p>Gets a key that can be used to identify a subcontroller in subcontrollerForKey.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/subcontrollerForKey:">&ndash;&nbsp;subcontrollerForKey:</a></code>
+		<span class="tooltip"><p>Gets a subcontroller with the key that was returned from keyForSubcontroller.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistView:">&ndash;&nbsp;persistView:</a></code>
+		<span class="tooltip"><p>Persists aspects of the view state to a dictionary that can later be used to restore it.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/restoreView:">&ndash;&nbsp;restoreView:</a></code>
+		<span class="tooltip"><p>Restores aspects of the view state from a dictionary populated by persistView.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/persistNavigationPath:">&ndash;&nbsp;persistNavigationPath:</a></code>
+		<span class="tooltip"><p>XXXjoe Not documenting this in the hopes that I can eliminate it ;)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delayDidEnd">&ndash;&nbsp;delayDidEnd</a></code>
+		<span class="tooltip"><p>Finishes initializing the controller after a TTNavigator-coordinated delay.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showBars:animated:">&ndash;&nbsp;showBars:animated:</a></code>
+		<span class="tooltip"><p>Shows or hides the navigation and status bars.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dismissModalViewController">&ndash;&nbsp;dismissModalViewController</a></code>
+		<span class="tooltip"><p>Shortcut for its animated-optional cousin.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doCommonGarbageCollection">+&nbsp;doCommonGarbageCollection</a></code>
+		<span class="tooltip"><p>Forcefully initiates garbage collection. You may call this in your didReceiveMemoryWarning
+message if you are worried about garbage collection memory consumption.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/canBeTopViewController" title="canBeTopViewController"></a>
+	<h3 class="subsubtitle method-title">canBeTopViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Whether or not this controller should ever be counted as the &ldquo;top&rdquo; view controller. This is
+used for the purposes of determining which controllers should have modal controllers presented
+within them.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL canBeTopViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Whether or not this controller should ever be counted as the &ldquo;top&rdquo; view controller. This is
+used for the purposes of determining which controllers should have modal controllers presented
+within them.</p>
+
+<p>@default YES; subclasses may override to NO if they so desire.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/canContainControllers" title="canContainControllers"></a>
+	<h3 class="subsubtitle method-title">canContainControllers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determines whether a controller is primarily a container of other controllers.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL canContainControllers</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Determines whether a controller is primarily a container of other controllers.</p>
+
+<p>@default NO</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/popupViewController" title="popupViewController"></a>
+	<h3 class="subsubtitle method-title">popupViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A popup view controller that is presented on top of this view controller.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIViewController *popupViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A popup view controller that is presented on top of this view controller.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/superController" title="superController"></a>
+	<h3 class="subsubtitle method-title">superController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The view controller that contains this view controller.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIViewController *superController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The view controller that contains this view controller.</p>
+
+<p>This is just like parentViewController, except that it is not readonly.  This property offers
+custom UIViewController subclasses the chance to tell <a href="../Classes/TTNavigator.html">TTNavigator</a> how to follow the hierarchy
+of view controllers.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/doCommonGarbageCollection" title="doCommonGarbageCollection"></a>
+	<h3 class="subsubtitle method-title">doCommonGarbageCollection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Forcefully initiates garbage collection. You may call this in your didReceiveMemoryWarning
+message if you are worried about garbage collection memory consumption.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)doCommonGarbageCollection</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Forcefully initiates garbage collection. You may call this in your didReceiveMemoryWarning
+message if you are worried about garbage collection memory consumption.</p>
+
+<p>See Articles/UI/GarbageCollection.mdown for a more detailed discussion.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addSubcontroller:animated:transition:" title="addSubcontroller:animated:transition:"></a>
+	<h3 class="subsubtitle method-title">addSubcontroller:animated:transition:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Displays a controller inside this controller.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addSubcontroller:(UIViewController *)<em>controller</em> animated:(BOOL)<em>animated</em> transition:(UIViewAnimationTransition)<em>transition</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Displays a controller inside this controller.</p>
+
+<p><a href="../Classes/TTURLMap.html">TTURLMap</a> uses this to display newly created controllers.  The default does nothing &mdash;
+UIViewController categories and subclasses should implement to display the controller
+in a manner specific to them.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bringControllerToFront:animated:" title="bringControllerToFront:animated:"></a>
+	<h3 class="subsubtitle method-title">bringControllerToFront:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Brings a controller that is a child of this controller to the front.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)bringControllerToFront:(UIViewController *)<em>controller</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Brings a controller that is a child of this controller to the front.</p>
+
+<p><a href="../Classes/TTURLMap.html">TTURLMap</a> uses this to display controllers that exist already, but may not be visible.
+The default does nothing &mdash; UIViewController categories and subclasses should implement
+to display the controller in a manner specific to them.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delayDidEnd" title="delayDidEnd"></a>
+	<h3 class="subsubtitle method-title">delayDidEnd</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Finishes initializing the controller after a TTNavigator-coordinated delay.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)delayDidEnd</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Finishes initializing the controller after a TTNavigator-coordinated delay.</p>
+
+<p>If the controller was created in between calls to <a href="../Classes/TTNavigator.html">TTNavigator</a> beginDelay and endDelay, then
+this will be called after endDelay.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dismissModalViewController" title="dismissModalViewController"></a>
+	<h3 class="subsubtitle method-title">dismissModalViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shortcut for its animated-optional cousin.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)dismissModalViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Shortcut for its animated-optional cousin.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/keyForSubcontroller:" title="keyForSubcontroller:"></a>
+	<h3 class="subsubtitle method-title">keyForSubcontroller:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets a key that can be used to identify a subcontroller in subcontrollerForKey.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)keyForSubcontroller:(UIViewController *)<em>controller</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets a key that can be used to identify a subcontroller in subcontrollerForKey.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/nextViewController" title="nextViewController"></a>
+	<h3 class="subsubtitle method-title">nextViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The view controller that comes after this one in a navigation controller&rsquo;s history.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)nextViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The view controller that comes after this one in a navigation controller&rsquo;s history.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistNavigationPath:" title="persistNavigationPath:"></a>
+	<h3 class="subsubtitle method-title">persistNavigationPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>XXXjoe Not documenting this in the hopes that I can eliminate it ;)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)persistNavigationPath:(NSMutableArray *)<em>path</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>XXXjoe Not documenting this in the hopes that I can eliminate it ;)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/persistView:" title="persistView:"></a>
+	<h3 class="subsubtitle method-title">persistView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Persists aspects of the view state to a dictionary that can later be used to restore it.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)persistView:(NSMutableDictionary *)<em>state</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Persists aspects of the view state to a dictionary that can later be used to restore it.</p>
+
+<p>This will be called when <a href="../Classes/TTNavigator.html">TTNavigator</a> is persisting the navigation history so that it
+can later be restored.  This usually happens when the app quits, or when there is a low
+memory warning.</p>
+
+<p>Return NO to avoid adding this controller to the navigation history.</p>
+
+<p>Default return value: YES</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeFromSupercontroller" title="removeFromSupercontroller"></a>
+	<h3 class="subsubtitle method-title">removeFromSupercontroller</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Dismisses a view controller using the opposite transition it was presented with.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)removeFromSupercontroller</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Dismisses a view controller using the opposite transition it was presented with.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeFromSupercontrollerAnimated:" title="removeFromSupercontrollerAnimated:"></a>
+	<h3 class="subsubtitle method-title">removeFromSupercontrollerAnimated:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/restoreView:" title="restoreView:"></a>
+	<h3 class="subsubtitle method-title">restoreView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Restores aspects of the view state from a dictionary populated by persistView.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)restoreView:(NSDictionary *)<em>state</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Restores aspects of the view state from a dictionary populated by persistView.</p>
+
+<p>This will be called when <a href="../Classes/TTNavigator.html">TTNavigator</a> is restoring the navigation history.  This may
+happen after launch, or when the controller appears again after a low memory warning.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showBars:animated:" title="showBars:animated:"></a>
+	<h3 class="subsubtitle method-title">showBars:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shows or hides the navigation and status bars.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showBars:(BOOL)<em>show</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Shows or hides the navigation and status bars.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/subcontrollerForKey:" title="subcontrollerForKey:"></a>
+	<h3 class="subsubtitle method-title">subcontrollerForKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets a subcontroller with the key that was returned from keyForSubcontroller.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)subcontrollerForKey:(NSString *)<em>key</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets a subcontroller with the key that was returned from keyForSubcontroller.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/topSubcontroller" title="topSubcontroller"></a>
+	<h3 class="subsubtitle method-title">topSubcontroller</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The child of this view controller which is most visible.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)topSubcontroller</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The child of this view controller which is most visible.</p>
+
+<p>This would be the selected view controller of a tab bar controller, or the top
+view controller of a navigation controller.  This property offers custom UIViewController
+subclasses the chance to tell <a href="../Classes/TTNavigator.html">TTNavigator</a> how to follow the hierarchy of view controllers.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ttPreviousViewController" title="ttPreviousViewController"></a>
+	<h3 class="subsubtitle method-title">ttPreviousViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The view controller that comes before this one in a navigation controller&rsquo;s history.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)ttPreviousViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The view controller that comes before this one in a navigation controller&rsquo;s history.</p>
+
+<p>This is an App Store-compatible version of previousViewController.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIViewControllerAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

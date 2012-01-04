@@ -1,0 +1,1066 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTImageView Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTImageView Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/autoresizesToImage">&nbsp;&nbsp;&nbsp;&nbsp;autoresizesToImage</option>
+	
+	<option value="//api/name/defaultImage">&nbsp;&nbsp;&nbsp;&nbsp;defaultImage</option>
+	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
+	<option value="//api/name/image">&nbsp;&nbsp;&nbsp;&nbsp;image</option>
+	
+	<option value="//api/name/isLoaded">&nbsp;&nbsp;&nbsp;&nbsp;isLoaded</option>
+	
+	<option value="//api/name/isLoading">&nbsp;&nbsp;&nbsp;&nbsp;isLoading</option>
+	
+	<option value="//api/name/request">&nbsp;&nbsp;&nbsp;&nbsp;request</option>
+	
+	<option value="//api/name/urlPath">&nbsp;&nbsp;&nbsp;&nbsp;urlPath</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/imageViewDidFailLoadWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- imageViewDidFailLoadWithError:</option>
+	
+	<option value="//api/name/imageViewDidLoadImage:">&nbsp;&nbsp;&nbsp;&nbsp;- imageViewDidLoadImage:</option>
+	
+	<option value="//api/name/imageViewDidStartLoad">&nbsp;&nbsp;&nbsp;&nbsp;- imageViewDidStartLoad</option>
+	
+	<option value="//api/name/reload">&nbsp;&nbsp;&nbsp;&nbsp;- reload</option>
+	
+	<option value="//api/name/setImage:">&nbsp;&nbsp;&nbsp;&nbsp;- setImage:</option>
+	
+	<option value="//api/name/stopLoading">&nbsp;&nbsp;&nbsp;&nbsp;- stopLoading</option>
+	
+	<option value="//api/name/unsetImage">&nbsp;&nbsp;&nbsp;&nbsp;- unsetImage</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_TTInternal Methods">TTInternal Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/autoresizesToImage">autoresizesToImage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/defaultImage">defaultImage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/image">image</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLoaded">isLoaded</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLoading">isLoading</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/request">request</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/urlPath">urlPath</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageViewDidFailLoadWithError:">imageViewDidFailLoadWithError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageViewDidLoadImage:">imageViewDidLoadImage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageViewDidStartLoad">imageViewDidStartLoad</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reload">reload</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setImage:">setImage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopLoading">stopLoading</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unsetImage">unsetImage</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTImageView Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTImageView Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/TTView.html">TTView</a> : UIView</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value"><a href="../Protocols/TTURLRequestDelegate.html">TTURLRequestDelegate</a></td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTImageView.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A view that asynchronously loads an <a href="#//api/name/image">image</a> and subsequently displays it.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/urlPath">&nbsp;&nbsp;urlPath</a></code>
+		<span class="tooltip"><p>The path of the image. This may be a web path (<a href="http://path/to/image.gif">http://path/to/image.gif)</a>) or a local bundle
+path (bundle://path/to/<a href="#//api/name/image">image</a>.png).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/defaultImage">&nbsp;&nbsp;defaultImage</a></code>
+		<span class="tooltip"><p>The default <a href="#//api/name/image">image</a> that is displayed until the <a href="#//api/name/image">image</a> has been downloaded. If no <a href="#//api/name/urlPath">urlPath</a> is
+specified, this <a href="#//api/name/image">image</a> will be displayed indefinitely.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/image">&nbsp;&nbsp;image</a></code>
+		<span class="tooltip"><p>The <a href="#//api/name/image">image</a> that is currently being displayed.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/autoresizesToImage">&nbsp;&nbsp;autoresizesToImage</a></code>
+		<span class="tooltip"><p>Override the default sizing operation and resize the frame of this view with the size of
+the <a href="#//api/name/image">image</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isLoading">&nbsp;&nbsp;isLoading</a></code>
+		<span class="tooltip"><p>Is an asynchronous <a href="#//api/name/request">request</a> currently active?</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isLoaded">&nbsp;&nbsp;isLoaded</a></code>
+		<span class="tooltip"><p>Has the <a href="#//api/name/image">image</a> been successfully loaded?</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>A <a href="#//api/name/delegate">delegate</a> that notifies you when the <a href="#//api/name/image">image</a> has started and finished loading.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/request">&nbsp;&nbsp;request</a></code>
+		<span class="tooltip"><p>The <a href="../Classes/TTURLRequest.html">TTURLRequest</a> requester used to load this <a href="#//api/name/image">image</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unsetImage">&ndash;&nbsp;unsetImage</a></code>
+		<span class="tooltip"><p>Cancel any pending <a href="#//api/name/request">request</a>, remove the <a href="#//api/name/image">image</a>, and redraw the view.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/reload">&ndash;&nbsp;reload</a></code>
+		<span class="tooltip"><p>Force the <a href="#//api/name/image">image</a> to be reloaded. If the <a href="#//api/name/image">image</a> is not in the cache, an asynchronous <a href="#//api/name/request">request</a> is
+sent off to fetch the <a href="#//api/name/image">image</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stopLoading">&ndash;&nbsp;stopLoading</a></code>
+		<span class="tooltip"><p>Cancel this <a href="#//api/name/image">image</a> views' active asynchronous requests.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageViewDidStartLoad">&ndash;&nbsp;imageViewDidStartLoad</a></code>
+		<span class="tooltip"><p>Called when the <a href="#//api/name/image">image</a> begins loading asynchronously.
+Overridable method.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageViewDidLoadImage:">&ndash;&nbsp;imageViewDidLoadImage:</a></code>
+		<span class="tooltip"><p>Called when the <a href="#//api/name/image">image</a> finishes loading asynchronously.
+Overridable method.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageViewDidFailLoadWithError:">&ndash;&nbsp;imageViewDidFailLoadWithError:</a></code>
+		<span class="tooltip"><p>Called when the <a href="#//api/name/image">image</a> failed to load asynchronously.
+Overridable method.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="TTInternal Methods" name="task_TTInternal Methods"></a>
+						<h3 class="subsubtitle task-title">TTInternal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setImage:">&ndash;&nbsp;setImage:</a></code>
+		<span class="tooltip"><p>Useful when overriding the <a href="TTImageView.html">TTImageView</a> class&rsquo;s setImage method.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/autoresizesToImage" title="autoresizesToImage"></a>
+	<h3 class="subsubtitle method-title">autoresizesToImage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Override the default sizing operation and resize the frame of this view with the size of
+the <a href="#//api/name/image">image</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL autoresizesToImage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Override the default sizing operation and resize the frame of this view with the size of
+the <a href="#//api/name/image">image</a>.</p>
+
+<p>@default NO</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/defaultImage" title="defaultImage"></a>
+	<h3 class="subsubtitle method-title">defaultImage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The default <a href="#//api/name/image">image</a> that is displayed until the <a href="#//api/name/image">image</a> has been downloaded. If no <a href="#//api/name/urlPath">urlPath</a> is
+specified, this <a href="#//api/name/image">image</a> will be displayed indefinitely.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIImage *defaultImage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The default <a href="#//api/name/image">image</a> that is displayed until the <a href="#//api/name/image">image</a> has been downloaded. If no <a href="#//api/name/urlPath">urlPath</a> is
+specified, this <a href="#//api/name/image">image</a> will be displayed indefinitely.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A <a href="#//api/name/delegate">delegate</a> that notifies you when the <a href="#//api/name/image">image</a> has started and finished loading.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id&lt;TTImageViewDelegate&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>A <a href="#//api/name/delegate">delegate</a> that notifies you when the <a href="#//api/name/image">image</a> has started and finished loading.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/image" title="image"></a>
+	<h3 class="subsubtitle method-title">image</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The <a href="#//api/name/image">image</a> that is currently being displayed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) UIImage *image</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The <a href="#//api/name/image">image</a> that is currently being displayed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isLoaded" title="isLoaded"></a>
+	<h3 class="subsubtitle method-title">isLoaded</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Has the <a href="#//api/name/image">image</a> been successfully loaded?</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isLoaded</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Has the <a href="#//api/name/image">image</a> been successfully loaded?</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isLoading" title="isLoading"></a>
+	<h3 class="subsubtitle method-title">isLoading</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Is an asynchronous <a href="#//api/name/request">request</a> currently active?</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isLoading</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Is an asynchronous <a href="#//api/name/request">request</a> currently active?</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/request" title="request"></a>
+	<h3 class="subsubtitle method-title">request</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The <a href="../Classes/TTURLRequest.html">TTURLRequest</a> requester used to load this <a href="#//api/name/image">image</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) TTURLRequest *request</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The <a href="../Classes/TTURLRequest.html">TTURLRequest</a> requester used to load this <a href="#//api/name/image">image</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/urlPath" title="urlPath"></a>
+	<h3 class="subsubtitle method-title">urlPath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The path of the image. This may be a web path (<a href="http://path/to/image.gif">http://path/to/image.gif)</a>) or a local bundle
+path (bundle://path/to/<a href="#//api/name/image">image</a>.png).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *urlPath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The path of the image. This may be a web path (<a href="http://path/to/image.gif">http://path/to/image.gif)</a>) or a local bundle
+path (bundle://path/to/<a href="#//api/name/image">image</a>.png).</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/imageViewDidFailLoadWithError:" title="imageViewDidFailLoadWithError:"></a>
+	<h3 class="subsubtitle method-title">imageViewDidFailLoadWithError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when the <a href="#//api/name/image">image</a> failed to load asynchronously.
+Overridable method.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)imageViewDidFailLoadWithError:(NSError *)<em>error</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called when the <a href="#//api/name/image">image</a> failed to load asynchronously.
+Overridable method.</p>
+
+<p>@protected</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/imageViewDidLoadImage:" title="imageViewDidLoadImage:"></a>
+	<h3 class="subsubtitle method-title">imageViewDidLoadImage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when the <a href="#//api/name/image">image</a> finishes loading asynchronously.
+Overridable method.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)imageViewDidLoadImage:(UIImage *)<em>image</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called when the <a href="#//api/name/image">image</a> finishes loading asynchronously.
+Overridable method.</p>
+
+<p>@protected</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/imageViewDidStartLoad" title="imageViewDidStartLoad"></a>
+	<h3 class="subsubtitle method-title">imageViewDidStartLoad</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when the <a href="#//api/name/image">image</a> begins loading asynchronously.
+Overridable method.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)imageViewDidStartLoad</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called when the <a href="#//api/name/image">image</a> begins loading asynchronously.
+Overridable method.</p>
+
+<p>@protected</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/reload" title="reload"></a>
+	<h3 class="subsubtitle method-title">reload</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Force the <a href="#//api/name/image">image</a> to be reloaded. If the <a href="#//api/name/image">image</a> is not in the cache, an asynchronous <a href="#//api/name/request">request</a> is
+sent off to fetch the <a href="#//api/name/image">image</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)reload</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Force the <a href="#//api/name/image">image</a> to be reloaded. If the <a href="#//api/name/image">image</a> is not in the cache, an asynchronous <a href="#//api/name/request">request</a> is
+sent off to fetch the <a href="#//api/name/image">image</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setImage:" title="setImage:"></a>
+	<h3 class="subsubtitle method-title">setImage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Useful when overriding the <a href="TTImageView.html">TTImageView</a> class&rsquo;s setImage method.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setImage:(UIImage *)<em>image</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Useful when overriding the <a href="TTImageView.html">TTImageView</a> class&rsquo;s setImage method.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/TTPhotoView.html">TTPhotoView</a></p>
+
+<p>@protected</p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageViewInternal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stopLoading" title="stopLoading"></a>
+	<h3 class="subsubtitle method-title">stopLoading</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancel this <a href="#//api/name/image">image</a> views' active asynchronous requests.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)stopLoading</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancel this <a href="#//api/name/image">image</a> views' active asynchronous requests.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unsetImage" title="unsetImage"></a>
+	<h3 class="subsubtitle method-title">unsetImage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancel any pending <a href="#//api/name/request">request</a>, remove the <a href="#//api/name/image">image</a>, and redraw the view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)unsetImage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancel any pending <a href="#//api/name/request">request</a>, remove the <a href="#//api/name/image">image</a>, and redraw the view.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTImageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

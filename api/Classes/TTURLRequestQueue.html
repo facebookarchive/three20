@@ -1,0 +1,1060 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTURLRequestQueue Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTURLRequestQueue Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/defaultTimeout">&nbsp;&nbsp;&nbsp;&nbsp;defaultTimeout</option>
+	
+	<option value="//api/name/imageCompressionQuality">&nbsp;&nbsp;&nbsp;&nbsp;imageCompressionQuality</option>
+	
+	<option value="//api/name/maxContentLength">&nbsp;&nbsp;&nbsp;&nbsp;maxContentLength</option>
+	
+	<option value="//api/name/suspended">&nbsp;&nbsp;&nbsp;&nbsp;suspended</option>
+	
+	<option value="//api/name/userAgent">&nbsp;&nbsp;&nbsp;&nbsp;userAgent</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/mainQueue">&nbsp;&nbsp;&nbsp;&nbsp;+ mainQueue</option>
+	
+	<option value="//api/name/setMainQueue:">&nbsp;&nbsp;&nbsp;&nbsp;+ setMainQueue:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/cancelAllRequests">&nbsp;&nbsp;&nbsp;&nbsp;- cancelAllRequests</option>
+	
+	<option value="//api/name/cancelRequest:">&nbsp;&nbsp;&nbsp;&nbsp;- cancelRequest:</option>
+	
+	<option value="//api/name/cancelRequestsWithDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- cancelRequestsWithDelegate:</option>
+	
+	<option value="//api/name/createNSURLRequest:URL:">&nbsp;&nbsp;&nbsp;&nbsp;- createNSURLRequest:URL:</option>
+	
+	<option value="//api/name/loader:didFailLoadWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- loader:didFailLoadWithError:</option>
+	
+	<option value="//api/name/loader:didLoadResponse:data:">&nbsp;&nbsp;&nbsp;&nbsp;- loader:didLoadResponse:data:</option>
+	
+	<option value="//api/name/loader:didLoadUnmodifiedResponse:">&nbsp;&nbsp;&nbsp;&nbsp;- loader:didLoadUnmodifiedResponse:</option>
+	
+	<option value="//api/name/loader:didReceiveAuthenticationChallenge:">&nbsp;&nbsp;&nbsp;&nbsp;- loader:didReceiveAuthenticationChallenge:</option>
+	
+	<option value="//api/name/loaderDidCancel:wasLoading:">&nbsp;&nbsp;&nbsp;&nbsp;- loaderDidCancel:wasLoading:</option>
+	
+	<option value="//api/name/sendRequest:">&nbsp;&nbsp;&nbsp;&nbsp;- sendRequest:</option>
+	
+	<option value="//api/name/sendSynchronousRequest:">&nbsp;&nbsp;&nbsp;&nbsp;- sendSynchronousRequest:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_TTRequestLoader Methods">TTRequestLoader Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/defaultTimeout">defaultTimeout</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageCompressionQuality">imageCompressionQuality</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/maxContentLength">maxContentLength</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/suspended">suspended</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userAgent">userAgent</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mainQueue">mainQueue</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMainQueue:">setMainQueue:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelAllRequests">cancelAllRequests</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelRequest:">cancelRequest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelRequestsWithDelegate:">cancelRequestsWithDelegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createNSURLRequest:URL:">createNSURLRequest:URL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loader:didFailLoadWithError:">loader:didFailLoadWithError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loader:didLoadResponse:data:">loader:didLoadResponse:data:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loader:didLoadUnmodifiedResponse:">loader:didLoadUnmodifiedResponse:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loader:didReceiveAuthenticationChallenge:">loader:didReceiveAuthenticationChallenge:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loaderDidCancel:wasLoading:">loaderDidCancel:wasLoading:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendRequest:">sendRequest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendSynchronousRequest:">sendSynchronousRequest:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTURLRequestQueue Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTURLRequestQueue Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTURLRequestQueue.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/suspended">&nbsp;&nbsp;suspended</a></code>
+		<span class="tooltip"><p>Gets the flag that determines if new load requests are allowed to reach the network.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/maxContentLength">&nbsp;&nbsp;maxContentLength</a></code>
+		<span class="tooltip"><p>The maximum size of a download that is allowed.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userAgent">&nbsp;&nbsp;userAgent</a></code>
+		<span class="tooltip"><p>The user-agent string that is sent with all HTTP requests.
+If set to &lsquo;nil&rsquo;, User-Agent set by NSURLRequest will be used,
+which looks like: &lsquo;APP_NAME/N.N CFNetwork/NNN Darwin/NN.N.NNN&rsquo;.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageCompressionQuality">&nbsp;&nbsp;imageCompressionQuality</a></code>
+		<span class="tooltip"><p>The compression quality used for encoding images sent with HTTP posts.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/defaultTimeout">&nbsp;&nbsp;defaultTimeout</a></code>
+		<span class="tooltip"><p>The default Timeout used for all TTURLRequests.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/mainQueue">+&nbsp;mainQueue</a></code>
+		<span class="tooltip"><p>Get the shared cache singleton used across the application.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setMainQueue:">+&nbsp;setMainQueue:</a></code>
+		<span class="tooltip"><p>Set the shared cache singleton used across the application.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendRequest:">&ndash;&nbsp;sendRequest:</a></code>
+		<span class="tooltip"><p>Load a request from the cache or the network if it is not in the cache.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sendSynchronousRequest:">&ndash;&nbsp;sendSynchronousRequest:</a></code>
+		<span class="tooltip"><p>Synchronously load a request from the cache or the network if it is not in the cache.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelRequest:">&ndash;&nbsp;cancelRequest:</a></code>
+		<span class="tooltip"><p>Cancel a request that is in progress.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelRequestsWithDelegate:">&ndash;&nbsp;cancelRequestsWithDelegate:</a></code>
+		<span class="tooltip"><p>Cancel all active or pending requests whose delegate or response is an object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelAllRequests">&ndash;&nbsp;cancelAllRequests</a></code>
+		<span class="tooltip"><p>Cancel all active or pending requests.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/createNSURLRequest:URL:">&ndash;&nbsp;createNSURLRequest:URL:</a></code>
+		<span class="tooltip"><p>Create a Cocoa URL request from a <a href="../Classes/Three20.html">Three20</a> URL request.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="TTRequestLoader Methods" name="task_TTRequestLoader Methods"></a>
+						<h3 class="subsubtitle task-title">TTRequestLoader Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loader:didReceiveAuthenticationChallenge:">&ndash;&nbsp;loader:didReceiveAuthenticationChallenge:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loader:didLoadResponse:data:">&ndash;&nbsp;loader:didLoadResponse:data:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loader:didLoadUnmodifiedResponse:">&ndash;&nbsp;loader:didLoadUnmodifiedResponse:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loader:didFailLoadWithError:">&ndash;&nbsp;loader:didFailLoadWithError:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loaderDidCancel:wasLoading:">&ndash;&nbsp;loaderDidCancel:wasLoading:</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/defaultTimeout" title="defaultTimeout"></a>
+	<h3 class="subsubtitle method-title">defaultTimeout</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The default Timeout used for all TTURLRequests.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSTimeInterval defaultTimeout</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The default Timeout used for all TTURLRequests.</p>
+
+<p>This timeout is applied to all requests that have a negative timeout set.</p>
+
+<p>The default value is defined as kTimeout in <a href="TTURLRequestQueue.html">TTURLRequestQueue</a>.m</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/TTURLRequest.html">TTURLRequest</a>::timeoutInterval</p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/imageCompressionQuality" title="imageCompressionQuality"></a>
+	<h3 class="subsubtitle method-title">imageCompressionQuality</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The compression quality used for encoding images sent with HTTP posts.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) CGFloat imageCompressionQuality</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The compression quality used for encoding images sent with HTTP posts.</p>
+
+<p>@default 0.75</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/maxContentLength" title="maxContentLength"></a>
+	<h3 class="subsubtitle method-title">maxContentLength</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The maximum size of a download that is allowed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) NSUInteger maxContentLength</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The maximum size of a download that is allowed.</p>
+
+<p>If a response reports a content length greater than the max, the download will be
+cancelled. This is helpful for preventing excessive memory usage. Setting this to
+zero will allow all downloads regardless of size.</p>
+
+<p>@default 150000 bytes</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/suspended" title="suspended"></a>
+	<h3 class="subsubtitle method-title">suspended</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Gets the flag that determines if new load requests are allowed to reach the network.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL suspended</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Gets the flag that determines if new load requests are allowed to reach the network.</p>
+
+<p>Because network requests tend to slow down performance, this property can be used to
+temporarily delay them.  All requests made while <a href="#//api/name/suspended">suspended</a> are queued, and when
+<a href="#//api/name/suspended">suspended</a> becomes false again they are executed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userAgent" title="userAgent"></a>
+	<h3 class="subsubtitle method-title">userAgent</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The user-agent string that is sent with all HTTP requests.
+If set to &lsquo;nil&rsquo;, User-Agent set by NSURLRequest will be used,
+which looks like: &lsquo;APP_NAME/N.N CFNetwork/NNN Darwin/NN.N.NNN&rsquo;.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *userAgent</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The user-agent string that is sent with all HTTP requests.
+If set to &lsquo;nil&rsquo;, User-Agent set by NSURLRequest will be used,
+which looks like: &lsquo;APP_NAME/N.N CFNetwork/NNN Darwin/NN.N.NNN&rsquo;.</p>
+
+<p>@default nil</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/mainQueue" title="mainQueue"></a>
+	<h3 class="subsubtitle method-title">mainQueue</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get the shared cache singleton used across the application.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (TTURLRequestQueue *)mainQueue</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Get the shared cache singleton used across the application.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setMainQueue:" title="setMainQueue:"></a>
+	<h3 class="subsubtitle method-title">setMainQueue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the shared cache singleton used across the application.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)setMainQueue:(TTURLRequestQueue *)<em>queue</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Set the shared cache singleton used across the application.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cancelAllRequests" title="cancelAllRequests"></a>
+	<h3 class="subsubtitle method-title">cancelAllRequests</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancel all active or pending requests.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cancelAllRequests</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancel all active or pending requests.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cancelRequest:" title="cancelRequest:"></a>
+	<h3 class="subsubtitle method-title">cancelRequest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancel a request that is in progress.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cancelRequest:(TTURLRequest *)<em>request</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancel a request that is in progress.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cancelRequestsWithDelegate:" title="cancelRequestsWithDelegate:"></a>
+	<h3 class="subsubtitle method-title">cancelRequestsWithDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancel all active or pending requests whose delegate or response is an object.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cancelRequestsWithDelegate:(id)<em>delegate</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancel all active or pending requests whose delegate or response is an object.</p>
+
+<p>This is useful for when an object is about to be destroyed and you want to remove pointers
+to it from active requests to prevent crashes when those pointers are later referenced.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createNSURLRequest:URL:" title="createNSURLRequest:URL:"></a>
+	<h3 class="subsubtitle method-title">createNSURLRequest:URL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create a Cocoa URL request from a <a href="../Classes/Three20.html">Three20</a> URL request.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSURLRequest *)createNSURLRequest:(TTURLRequest *)<em>request</em> URL:(NSURL *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Create a Cocoa URL request from a <a href="../Classes/Three20.html">Three20</a> URL request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loader:didFailLoadWithError:" title="loader:didFailLoadWithError:"></a>
+	<h3 class="subsubtitle method-title">loader:didFailLoadWithError:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loader:didLoadResponse:data:" title="loader:didLoadResponse:data:"></a>
+	<h3 class="subsubtitle method-title">loader:didLoadResponse:data:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loader:didLoadUnmodifiedResponse:" title="loader:didLoadUnmodifiedResponse:"></a>
+	<h3 class="subsubtitle method-title">loader:didLoadUnmodifiedResponse:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loader:didReceiveAuthenticationChallenge:" title="loader:didReceiveAuthenticationChallenge:"></a>
+	<h3 class="subsubtitle method-title">loader:didReceiveAuthenticationChallenge:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loaderDidCancel:wasLoading:" title="loaderDidCancel:wasLoading:"></a>
+	<h3 class="subsubtitle method-title">loaderDidCancel:wasLoading:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendRequest:" title="sendRequest:"></a>
+	<h3 class="subsubtitle method-title">sendRequest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Load a request from the cache or the network if it is not in the cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendRequest:(TTURLRequest *)<em>request</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the request was loaded synchronously from the cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Load a request from the cache or the network if it is not in the cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sendSynchronousRequest:" title="sendSynchronousRequest:"></a>
+	<h3 class="subsubtitle method-title">sendSynchronousRequest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Synchronously load a request from the cache or the network if it is not in the cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)sendSynchronousRequest:(TTURLRequest *)<em>request</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the request was loaded from the cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Synchronously load a request from the cache or the network if it is not in the cache.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTURLRequestQueue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

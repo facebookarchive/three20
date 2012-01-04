@@ -1,0 +1,775 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTBaseViewController Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTBaseViewController Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/autoresizesForKeyboard">&nbsp;&nbsp;&nbsp;&nbsp;autoresizesForKeyboard</option>
+	
+	<option value="//api/name/hasViewAppeared">&nbsp;&nbsp;&nbsp;&nbsp;hasViewAppeared</option>
+	
+	<option value="//api/name/isViewAppearing">&nbsp;&nbsp;&nbsp;&nbsp;isViewAppearing</option>
+	
+	<option value="//api/name/navigationBarStyle">&nbsp;&nbsp;&nbsp;&nbsp;navigationBarStyle</option>
+	
+	<option value="//api/name/navigationBarTintColor">&nbsp;&nbsp;&nbsp;&nbsp;navigationBarTintColor</option>
+	
+	<option value="//api/name/statusBarStyle">&nbsp;&nbsp;&nbsp;&nbsp;statusBarStyle</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/keyboardDidAppear:withBounds:">&nbsp;&nbsp;&nbsp;&nbsp;- keyboardDidAppear:withBounds:</option>
+	
+	<option value="//api/name/keyboardDidDisappear:withBounds:">&nbsp;&nbsp;&nbsp;&nbsp;- keyboardDidDisappear:withBounds:</option>
+	
+	<option value="//api/name/keyboardWillAppear:withBounds:">&nbsp;&nbsp;&nbsp;&nbsp;- keyboardWillAppear:withBounds:</option>
+	
+	<option value="//api/name/keyboardWillDisappear:withBounds:">&nbsp;&nbsp;&nbsp;&nbsp;- keyboardWillDisappear:withBounds:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/autoresizesForKeyboard">autoresizesForKeyboard</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasViewAppeared">hasViewAppeared</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isViewAppearing">isViewAppearing</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/navigationBarStyle">navigationBarStyle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/navigationBarTintColor">navigationBarTintColor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/statusBarStyle">statusBarStyle</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyboardDidAppear:withBounds:">keyboardDidAppear:withBounds:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyboardDidDisappear:withBounds:">keyboardDidDisappear:withBounds:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyboardWillAppear:withBounds:">keyboardWillAppear:withBounds:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyboardWillDisappear:withBounds:">keyboardWillDisappear:withBounds:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTBaseViewController Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTBaseViewController Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">UIViewController</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTBaseViewController.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A view controller with some useful additions.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/navigationBarStyle">&nbsp;&nbsp;navigationBarStyle</a></code>
+		<span class="tooltip"><p>The style of the navigation bar when this view controller is pushed onto
+a navigation controller.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/navigationBarTintColor">&nbsp;&nbsp;navigationBarTintColor</a></code>
+		<span class="tooltip"><p>The color of the navigation bar when this view controller is pushed onto
+a navigation controller.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/statusBarStyle">&nbsp;&nbsp;statusBarStyle</a></code>
+		<span class="tooltip"><p>The style of the status bar when this view controller is appearing.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasViewAppeared">&nbsp;&nbsp;hasViewAppeared</a></code>
+		<span class="tooltip"><p>The view has appeared at least once and hasn&rsquo;t been removed due to a memory warning.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isViewAppearing">&nbsp;&nbsp;isViewAppearing</a></code>
+		<span class="tooltip"><p>The view is about to appear and has not appeared yet.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/autoresizesForKeyboard">&nbsp;&nbsp;autoresizesForKeyboard</a></code>
+		<span class="tooltip"><p>Determines if the view will be resized automatically to fit the keyboard.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyboardWillAppear:withBounds:">&ndash;&nbsp;keyboardWillAppear:withBounds:</a></code>
+		<span class="tooltip"><p>Sent to the controller before the keyboard slides in.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyboardWillDisappear:withBounds:">&ndash;&nbsp;keyboardWillDisappear:withBounds:</a></code>
+		<span class="tooltip"><p>Sent to the controller before the keyboard slides out.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyboardDidAppear:withBounds:">&ndash;&nbsp;keyboardDidAppear:withBounds:</a></code>
+		<span class="tooltip"><p>Sent to the controller after the keyboard has slid in.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyboardDidDisappear:withBounds:">&ndash;&nbsp;keyboardDidDisappear:withBounds:</a></code>
+		<span class="tooltip"><p>Sent to the controller after the keyboard has slid out.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/autoresizesForKeyboard" title="autoresizesForKeyboard"></a>
+	<h3 class="subsubtitle method-title">autoresizesForKeyboard</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determines if the view will be resized automatically to fit the keyboard.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL autoresizesForKeyboard</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Determines if the view will be resized automatically to fit the keyboard.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasViewAppeared" title="hasViewAppeared"></a>
+	<h3 class="subsubtitle method-title">hasViewAppeared</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The view has appeared at least once and hasn&rsquo;t been removed due to a memory warning.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL hasViewAppeared</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The view has appeared at least once and hasn&rsquo;t been removed due to a memory warning.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isViewAppearing" title="isViewAppearing"></a>
+	<h3 class="subsubtitle method-title">isViewAppearing</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The view is about to appear and has not appeared yet.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isViewAppearing</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The view is about to appear and has not appeared yet.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/navigationBarStyle" title="navigationBarStyle"></a>
+	<h3 class="subsubtitle method-title">navigationBarStyle</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The style of the navigation bar when this view controller is pushed onto
+a navigation controller.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) UIBarStyle navigationBarStyle</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The style of the navigation bar when this view controller is pushed onto
+a navigation controller.</p>
+
+<p>@default UIBarStyleDefault</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/navigationBarTintColor" title="navigationBarTintColor"></a>
+	<h3 class="subsubtitle method-title">navigationBarTintColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The color of the navigation bar when this view controller is pushed onto
+a navigation controller.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) UIColor *navigationBarTintColor</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The color of the navigation bar when this view controller is pushed onto
+a navigation controller.</p>
+
+<p>@default TTSTYLEVAR(<a href="#//api/name/navigationBarTintColor">navigationBarTintColor</a>)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/statusBarStyle" title="statusBarStyle"></a>
+	<h3 class="subsubtitle method-title">statusBarStyle</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The style of the status bar when this view controller is appearing.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) UIStatusBarStyle statusBarStyle</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The style of the status bar when this view controller is appearing.</p>
+
+<p>@default [[UIApplication sharedApplication] statusBarStyle] via app&rsquo;s info.plist</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/keyboardDidAppear:withBounds:" title="keyboardDidAppear:withBounds:"></a>
+	<h3 class="subsubtitle method-title">keyboardDidAppear:withBounds:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sent to the controller after the keyboard has slid in.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)keyboardDidAppear:(BOOL)<em>animated</em> withBounds:(CGRect)<em>bounds</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent to the controller after the keyboard has slid in.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/keyboardDidDisappear:withBounds:" title="keyboardDidDisappear:withBounds:"></a>
+	<h3 class="subsubtitle method-title">keyboardDidDisappear:withBounds:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sent to the controller after the keyboard has slid out.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)keyboardDidDisappear:(BOOL)<em>animated</em> withBounds:(CGRect)<em>bounds</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent to the controller after the keyboard has slid out.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/keyboardWillAppear:withBounds:" title="keyboardWillAppear:withBounds:"></a>
+	<h3 class="subsubtitle method-title">keyboardWillAppear:withBounds:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sent to the controller before the keyboard slides in.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)keyboardWillAppear:(BOOL)<em>animated</em> withBounds:(CGRect)<em>bounds</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent to the controller before the keyboard slides in.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/keyboardWillDisappear:withBounds:" title="keyboardWillDisappear:withBounds:"></a>
+	<h3 class="subsubtitle method-title">keyboardWillDisappear:withBounds:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sent to the controller before the keyboard slides out.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)keyboardWillDisappear:(BOOL)<em>animated</em> withBounds:(CGRect)<em>bounds</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sent to the controller before the keyboard slides out.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">TTBaseViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

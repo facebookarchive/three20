@@ -1,0 +1,526 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>TTScrollViewDelegate Protocol Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">Three20 </a></h1>
+				<a id="developerHome" href="../index.html">Facebook</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">TTScrollViewDelegate Protocol Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/scrollView:didMoveToPageAtIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollView:didMoveToPageAtIndex:</option>
+	
+	<option value="//api/name/scrollView:shouldAutorotateToInterfaceOrientation:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollView:shouldAutorotateToInterfaceOrientation:</option>
+	
+	<option value="//api/name/scrollView:tapped:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollView:tapped:</option>
+	
+	<option value="//api/name/scrollView:touchedDown:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollView:touchedDown:</option>
+	
+	<option value="//api/name/scrollView:touchedUpInside:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollView:touchedUpInside:</option>
+	
+	<option value="//api/name/scrollViewDidBeginHolding:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewDidBeginHolding:</option>
+	
+	<option value="//api/name/scrollViewDidBeginZooming:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewDidBeginZooming:</option>
+	
+	<option value="//api/name/scrollViewDidEndDecelerating:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewDidEndDecelerating:</option>
+	
+	<option value="//api/name/scrollViewDidEndDragging:willDecelerate:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewDidEndDragging:willDecelerate:</option>
+	
+	<option value="//api/name/scrollViewDidEndHolding:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewDidEndHolding:</option>
+	
+	<option value="//api/name/scrollViewDidEndZooming:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewDidEndZooming:</option>
+	
+	<option value="//api/name/scrollViewDidRotate:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewDidRotate:</option>
+	
+	<option value="//api/name/scrollViewShouldZoom:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewShouldZoom:</option>
+	
+	<option value="//api/name/scrollViewWillBeginDecelerating:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewWillBeginDecelerating:</option>
+	
+	<option value="//api/name/scrollViewWillBeginDragging:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewWillBeginDragging:</option>
+	
+	<option value="//api/name/scrollViewWillRotate:toOrientation:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollViewWillRotate:toOrientation:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView:didMoveToPageAtIndex:">scrollView:didMoveToPageAtIndex:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView:shouldAutorotateToInterfaceOrientation:">scrollView:shouldAutorotateToInterfaceOrientation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView:tapped:">scrollView:tapped:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView:touchedDown:">scrollView:touchedDown:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView:touchedUpInside:">scrollView:touchedUpInside:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewDidBeginHolding:">scrollViewDidBeginHolding:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewDidBeginZooming:">scrollViewDidBeginZooming:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewDidEndDecelerating:">scrollViewDidEndDecelerating:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewDidEndDragging:willDecelerate:">scrollViewDidEndDragging:willDecelerate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewDidEndHolding:">scrollViewDidEndHolding:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewDidEndZooming:">scrollViewDidEndZooming:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewDidRotate:">scrollViewDidRotate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewShouldZoom:">scrollViewShouldZoom:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewWillBeginDecelerating:">scrollViewWillBeginDecelerating:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewWillBeginDragging:">scrollViewWillBeginDragging:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollViewWillRotate:toOrientation:">scrollViewWillRotate:toOrientation:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="TTScrollViewDelegate Protocol Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">TTScrollViewDelegate Protocol Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">TTScrollViewDelegate.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollView:didMoveToPageAtIndex:">&ndash;&nbsp;scrollView:didMoveToPageAtIndex:</a></code>
+		
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewWillRotate:toOrientation:">&ndash;&nbsp;scrollViewWillRotate:toOrientation:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewDidRotate:">&ndash;&nbsp;scrollViewDidRotate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewWillBeginDragging:">&ndash;&nbsp;scrollViewWillBeginDragging:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewDidEndDragging:willDecelerate:">&ndash;&nbsp;scrollViewDidEndDragging:willDecelerate:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewWillBeginDecelerating:">&ndash;&nbsp;scrollViewWillBeginDecelerating:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewDidEndDecelerating:">&ndash;&nbsp;scrollViewDidEndDecelerating:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewShouldZoom:">&ndash;&nbsp;scrollViewShouldZoom:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewDidBeginZooming:">&ndash;&nbsp;scrollViewDidBeginZooming:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewDidEndZooming:">&ndash;&nbsp;scrollViewDidEndZooming:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollView:touchedDown:">&ndash;&nbsp;scrollView:touchedDown:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollView:touchedUpInside:">&ndash;&nbsp;scrollView:touchedUpInside:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollView:tapped:">&ndash;&nbsp;scrollView:tapped:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewDidBeginHolding:">&ndash;&nbsp;scrollViewDidBeginHolding:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollViewDidEndHolding:">&ndash;&nbsp;scrollViewDidEndHolding:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollView:shouldAutorotateToInterfaceOrientation:">&ndash;&nbsp;scrollView:shouldAutorotateToInterfaceOrientation:</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollView:didMoveToPageAtIndex:" title="scrollView:didMoveToPageAtIndex:"></a>
+	<h3 class="subsubtitle method-title">scrollView:didMoveToPageAtIndex:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollView:shouldAutorotateToInterfaceOrientation:" title="scrollView:shouldAutorotateToInterfaceOrientation:"></a>
+	<h3 class="subsubtitle method-title">scrollView:shouldAutorotateToInterfaceOrientation:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollView:tapped:" title="scrollView:tapped:"></a>
+	<h3 class="subsubtitle method-title">scrollView:tapped:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollView:touchedDown:" title="scrollView:touchedDown:"></a>
+	<h3 class="subsubtitle method-title">scrollView:touchedDown:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollView:touchedUpInside:" title="scrollView:touchedUpInside:"></a>
+	<h3 class="subsubtitle method-title">scrollView:touchedUpInside:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewDidBeginHolding:" title="scrollViewDidBeginHolding:"></a>
+	<h3 class="subsubtitle method-title">scrollViewDidBeginHolding:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewDidBeginZooming:" title="scrollViewDidBeginZooming:"></a>
+	<h3 class="subsubtitle method-title">scrollViewDidBeginZooming:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewDidEndDecelerating:" title="scrollViewDidEndDecelerating:"></a>
+	<h3 class="subsubtitle method-title">scrollViewDidEndDecelerating:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewDidEndDragging:willDecelerate:" title="scrollViewDidEndDragging:willDecelerate:"></a>
+	<h3 class="subsubtitle method-title">scrollViewDidEndDragging:willDecelerate:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewDidEndHolding:" title="scrollViewDidEndHolding:"></a>
+	<h3 class="subsubtitle method-title">scrollViewDidEndHolding:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewDidEndZooming:" title="scrollViewDidEndZooming:"></a>
+	<h3 class="subsubtitle method-title">scrollViewDidEndZooming:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewDidRotate:" title="scrollViewDidRotate:"></a>
+	<h3 class="subsubtitle method-title">scrollViewDidRotate:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewShouldZoom:" title="scrollViewShouldZoom:"></a>
+	<h3 class="subsubtitle method-title">scrollViewShouldZoom:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewWillBeginDecelerating:" title="scrollViewWillBeginDecelerating:"></a>
+	<h3 class="subsubtitle method-title">scrollViewWillBeginDecelerating:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewWillBeginDragging:" title="scrollViewWillBeginDragging:"></a>
+	<h3 class="subsubtitle method-title">scrollViewWillBeginDragging:</h3>
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollViewWillRotate:toOrientation:" title="scrollViewWillRotate:toOrientation:"></a>
+	<h3 class="subsubtitle method-title">scrollViewWillRotate:toOrientation:</h3>
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Facebook. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>
