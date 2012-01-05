@@ -47,6 +47,7 @@
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _scrollView.delegate = self;
     [self addSubview:_scrollView];
 
     self.style = TTSTYLE(tabStrip);
@@ -164,5 +165,12 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UIScrollViewDelegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  [self updateOverflow];
+}
 @end
 
