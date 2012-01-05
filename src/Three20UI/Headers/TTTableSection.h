@@ -14,10 +14,18 @@
 // limitations under the License.
 //
 
-#import "Three20Core/Three20Version.h"
+#import <UIKit/UIKit.h>
 
-/*! \mainpage Three20 API Documentation
- *
- * Generated from Three20 Release <a href="http://three20.info/roadmap/1.0.10">1.0.10</a>.
- */
-NSString* const Three20Version = @"1.0.10";
+
+@interface TTTableSection : NSObject {
+  NSString*     _headerTitle;
+  NSString*     _footerTitle;
+}
+
+@property (nonatomic, copy)   NSString* headerTitle;
+@property (nonatomic, copy)   NSString* footerTitle;
+
+
++ (id)sectionWithHeaderTitle:(NSString*)headerTitle footerTitle:(NSString*)footerTitle;
+
+@end
