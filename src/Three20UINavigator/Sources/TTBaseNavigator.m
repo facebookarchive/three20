@@ -678,7 +678,7 @@ __attribute__((weak_import));
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)viewControllerForURL: (NSString*)URL
                                     query: (NSDictionary*)query
-                                  pattern: (TTURLNavigatorPattern**)pattern {
+                                  pattern: (TTURLPattern**)pattern {
   NSRange fragmentRange = [URL rangeOfString:@"#" options:NSBackwardsSearch];
   if (fragmentRange.location != NSNotFound) {
     NSString* baseURL = [URL substringToIndex:fragmentRange.location];
@@ -693,7 +693,7 @@ __attribute__((weak_import));
       }
 
     } else {
-      id object = [_URLMap objectForURL:baseURL query:nil pattern:pattern];
+      id object = [_URLMap objectForURL:baseURL query:nil pattern:(TTURLNavigatorPattern**)pattern];
       if (object) {
         id result = [_URLMap dispatchURL:URL toTarget:object query:query];
         if ([result isKindOfClass:[UIViewController class]]) {
@@ -709,7 +709,7 @@ __attribute__((weak_import));
     }
   }
 
-  id object = [_URLMap objectForURL:URL query:query pattern:pattern];
+  id object = [_URLMap objectForURL:URL query:query pattern:(TTURLNavigatorPattern**)pattern];
   if (object) {
     UIViewController* controller = object;
     controller.originalNavigatorURL = URL;

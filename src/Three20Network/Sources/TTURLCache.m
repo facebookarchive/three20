@@ -26,7 +26,7 @@
 #import "Three20Core/TTDebugFlags.h"
 #import "Three20Core/NSStringAdditions.h"
 
-static const  CGFloat   kLargeImageSize = 600.0f * 400.0f;
+static const  CGFloat   kLargeImageSize = 2400.0f * 1600.0f;
 
 static        NSString* kDefaultCacheName       = @"Three20";
 static        NSString* kEtagCacheDirectoryName = @"etag";
