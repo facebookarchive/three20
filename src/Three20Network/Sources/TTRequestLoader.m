@@ -120,6 +120,13 @@ static const NSInteger kLoadMaxRetries = 2;
   TTNetworkRequestStarted();
 
   TTURLRequest* request = _requests.count == 1 ? [_requests objectAtIndex:0] : nil;
+  
+  // there are situations where urlPath is somehow nil (therefore crashing in
+  // createNSURLRequest:URL:, even if we checked for non-blank values before 
+  // adding the request to the queue.
+  if (!request.urlPath.length)
+    [self cancel:request];
+  
   NSURLRequest* URLRequest = [_queue createNSURLRequest:request URL:URL];
 
   _connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
