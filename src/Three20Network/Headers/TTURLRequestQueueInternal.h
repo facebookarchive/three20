@@ -23,6 +23,8 @@
  */
 @interface TTURLRequestQueue (TTRequestLoader)
 
+- (BOOL) loader: (TTRequestLoader *)loader canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace;
+
 - (void)                       loader: (TTRequestLoader*)loader
     didReceiveAuthenticationChallenge: (NSURLAuthenticationChallenge*)challenge;
 

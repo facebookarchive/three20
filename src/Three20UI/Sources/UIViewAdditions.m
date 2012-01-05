@@ -140,8 +140,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTouch:(UITouch *)touch {
-	self = [super init];
+
+  self = [super init];
+	
   if (self) {
+
     UIEventFake *selfFake = (UIEventFake*)self;
     selfFake->_touches = [[NSMutableSet setWithObject:touch] retain];
     selfFake->_timestamp = [NSDate timeIntervalSinceReferenceDate];

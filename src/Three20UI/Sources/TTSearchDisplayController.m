@@ -38,13 +38,15 @@ static const NSTimeInterval kPauseInterval = 0.4;
 
 @synthesize searchResultsViewController = _searchResultsViewController;
 @synthesize pausesBeforeSearching       = _pausesBeforeSearching;
-
+@synthesize searchAutomatically			= _searchAutomatically;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithSearchBar:(UISearchBar*)searchBar contentsController:(UIViewController*)controller {
 	self = [super initWithSearchBar:searchBar contentsController:controller];
   if (self) {
     self.delegate = self;
+	  searchBar.delegate = self;
+	_searchAutomatically = YES;
   }
 
   return self;
@@ -99,6 +101,9 @@ static const NSTimeInterval kPauseInterval = 0.4;
 #pragma mark -
 #pragma mark UISearchDisplayDelegate
 
+- (void) searchBarSearchButtonClicked: (UISearchBar *) searchBar {
+  [_searchResultsViewController.dataSource search: searchBar.text];	
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController*)controller {
@@ -182,12 +187,15 @@ static const NSTimeInterval kPauseInterval = 0.4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)searchDisplayController:(UISearchDisplayController*)controller
         shouldReloadTableForSearchString:(NSString*)searchString {
-  if (_pausesBeforeSearching) {
-    [self restartPauseTimer];
-
-  } else {
-    [_searchResultsViewController.dataSource search:searchString];
+	
+  if(_searchAutomatically) {
+	if (_pausesBeforeSearching) {
+		[self restartPauseTimer];
+	} else {
+		[_searchResultsViewController.dataSource search:searchString];
+	}
   }
+
   return NO;
 }
 

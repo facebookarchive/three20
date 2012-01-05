@@ -29,6 +29,57 @@
 - (NSDate*)dateAtMidnight;
 
 /**
+ * Returns a copy of the date with date set to reference date and time set to original time value in GMT time zone
+ * with resolution of minutes (seconds are omitted).
+ */
+- (NSDate*)time;
+
+/**
+ * Returns a year component of the date in GMT
+ */
+- (NSInteger)year;
+
+/**
+ * Returns a month component of the date in GMT
+ */
+- (NSInteger)month;
+
+/**
+ * Returns a week in a year component of the date in GMT
+ */
+- (NSInteger)weekInYear;
+
+/**
+ * Returns a day in month component of the date in GMT
+ */
+- (NSInteger)dayInMonth;
+
+/**
+ * Returns a day in week component of the date in GMT
+ */
+- (NSInteger)dayInWeek;
+
+/**
+ * Returns a day in year component of the date in GMT
+ */
+- (NSInteger)dayInYear;
+
+/**
+ * Returns an hour component of the date in GMT
+ */
+- (NSInteger)hour;
+
+/**
+ * Returns a minute component of the date in GMT
+ */
+- (NSInteger)minute;
+
+/**
+ * Returns a second component of the date in GMT
+ */
+- (NSInteger)second;
+
+/**
  * Formats the date with 'h:mm a' or the localized equivalent.
  */
 - (NSString*)formatTime;

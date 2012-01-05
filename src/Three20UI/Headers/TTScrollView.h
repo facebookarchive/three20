@@ -260,4 +260,11 @@
  */
 - (void)cancelTouches;
 
+/**
+ * Jump to page given by pageIndex
+ * 
+ * YES to animate transition, NO to immediately skip to required page
+ */
+- (void)scrollToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated;
+
 @end

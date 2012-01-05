@@ -26,6 +26,8 @@
 
 - (void)modelDidFinishLoad:(id<TTModel>)model;
 
+- (void)model:(id<TTModel>)model didLoadBytes:(NSNumber*)bytesLoaded ofTotalSize:(NSNumber*)totalExpected;
+
 - (void)model:(id<TTModel>)model didFailLoadWithError:(NSError*)error;
 
 - (void)modelDidCancelLoad:(id<TTModel>)model;

@@ -36,6 +36,7 @@
 @property (nonatomic, readonly) UIColor*  tablePlainCellSeparatorColor;
 @property (nonatomic, readonly) UITableViewCellSeparatorStyle tablePlainCellSeparatorStyle;
 @property (nonatomic, readonly) UIColor*  tableGroupedBackgroundColor;
+@property (nonatomic, readonly) UIColor*  tableSeparatorColor;
 @property (nonatomic, readonly) UIColor*  tableGroupedCellSeparatorColor;
 @property (nonatomic, readonly) UITableViewCellSeparatorStyle tableGroupedCellSeparatorStyle;
 @property (nonatomic, readonly) UIColor*  searchTableBackgroundColor;
@@ -91,7 +92,8 @@
 @property (nonatomic, readonly) UIFont* activityBannerFont;
 
 @property (nonatomic, readonly) UITableViewCellSelectionStyle tableSelectionStyle;
-
+@property (nonatomic, readonly) UITableViewCellSeparatorStyle tableSeparatorStyle;
+@property (nonatomic, readonly) UITableViewCellSeparatorStyle searchTableSeparatorStyle;
 - (TTStyle*)selectionFillStyle:(TTStyle*)next;
 
 - (TTStyle*)toolbarButtonForState:(UIControlState)state shape:(TTShape*)shape

@@ -15,6 +15,7 @@
 //
 
 #import "Three20Network/TTModel.h"
+#import "Three20Network/TTModelDelegate.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"
@@ -107,6 +108,11 @@
   [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didLoadBytes:(float)bytesLoaded ofTotalSize:(float)totalSize {
+	[_delegates perform:@selector(model:didLoadBytes:ofTotalSize:) withObject:self withObject:[NSNumber numberWithFloat:bytesLoaded]
+			 withObject:[NSNumber numberWithFloat:totalSize]];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFailLoadWithError:(NSError*)error {

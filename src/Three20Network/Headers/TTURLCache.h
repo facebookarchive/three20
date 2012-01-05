@@ -53,6 +53,11 @@
 @property (nonatomic, copy) NSString* cachePath;
 
 /**
+ * Returns the size of the current caches size on disl
+ */
+@property (nonatomic, readonly) unsigned long long int diskSize;
+
+/**
  * Gets the path to the directory of the disk cache for etags.
  */
 @property (nonatomic, readonly) NSString* etagCachePath;

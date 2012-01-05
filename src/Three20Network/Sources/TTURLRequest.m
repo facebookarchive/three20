@@ -74,13 +74,14 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTURLRequest*)request {
-  return [[[self alloc] init] autorelease];
+  return [[[TTURLRequest alloc] init] autorelease];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (TTURLRequest*)requestWithURL:(NSString*)URL delegate:(id /*<TTURLRequestDelegate>*/)delegate {
-  return [[[self alloc] initWithURL:URL delegate:delegate] autorelease];
+  //return [[[TTURLRequest alloc] initWithURL:URL delegate:delegate] autorelease];
+  return [[[[self class] alloc] initWithURL: URL delegate: delegate] autorelease];
 }
 
 
@@ -134,7 +135,7 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)description {
-  return [NSString stringWithFormat:@"<%@ %@>", [super description], _urlPath];
+  return [NSString stringWithFormat:@"<TTURLRequest %@>", _urlPath];
 }
 
 
@@ -154,7 +155,6 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
     }
 
     return [joined md5Hash];
-
   } else {
     return [self.urlPath md5Hash];
   }
@@ -199,6 +199,7 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
 - (NSData*)generatePostBody {
 
 	NSMutableData* body = [NSMutableData data];
@@ -207,9 +208,7 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 	
   for (id key in [_parameters keyEnumerator]) {
     NSString* value = [_parameters valueForKey:key];
-    // Really, this can only be an NSString. We're cheating here.
-    if (![value isKindOfClass:[UIImage class]] &&
-        ![value isKindOfClass:[NSData class]]) {
+    if (![value isKindOfClass:[UIImage class]]) {
       [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
       [body appendData:[[NSString
         stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key]
@@ -226,12 +225,18 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
       CGFloat quality = [TTURLRequestQueue mainQueue].imageCompressionQuality;
       NSData* data = UIImageJPEGRepresentation(image, quality);
 
-      [self appendImageData:data withName:key toBody:body];
-      imageKey = key;
-
-    } else if ([[_parameters objectForKey:key] isKindOfClass:[NSData class]]) {
-      NSData* data = [_parameters objectForKey:key];
-      [self appendImageData:data withName:key toBody:body];
+      [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
+      [body appendData:[[NSString stringWithFormat:
+                       @"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n",
+                       key]
+          dataUsingEncoding:_charsetForMultipart]];
+      [body appendData:[[NSString
+        stringWithFormat:@"Content-Length: %d\r\n", data.length]
+          dataUsingEncoding:_charsetForMultipart]];
+      [body appendData:[[NSString
+        stringWithString:@"Content-Type: image/jpeg\r\n\r\n"]
+          dataUsingEncoding:_charsetForMultipart]];
+      [body appendData:data];
       imageKey = key;
     }
   }
@@ -307,7 +312,6 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 - (NSString*)contentType {
   if (_contentType) {
     return _contentType;
-
   } else if ([_httpMethod isEqualToString:@"POST"]
              || [_httpMethod isEqualToString:@"PUT"]) {
     if (_multiPartForm) {
@@ -370,6 +374,7 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
   return [[TTURLRequestQueue mainQueue] sendRequest:self];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)sendSynchronously {
   return [[TTURLRequestQueue mainQueue] sendSynchronousRequest:self];
@@ -394,9 +399,7 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Deprecated
- */
+// Deprecated
 - (void)setURL:(NSString*)urlPath {
   NSString* aUrlPath = [urlPath copy];
   [_urlPath release];
@@ -405,9 +408,7 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Deprecated
- */
+// Deprecated
 - (NSString*)URL {
   return _urlPath;
 }

@@ -31,6 +31,11 @@
 @required
 
 /**
+ * Provides access to response headers returned by server
+ */
+@property (nonatomic, readonly, retain) NSDictionary *responseHeaders;
+
+/**
  * Processes the data from a successful request and determines if it is valid.
  *
  * If the data is not valid, return an error. The data will not be cached if there is an error.

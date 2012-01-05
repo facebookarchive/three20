@@ -38,6 +38,7 @@ typedef enum {
   UIActivityIndicatorView*  _activityIndicator;
   UILabel*                  _label;
 
+	UIView*					_backgroundView;
   float                     _progress;
   BOOL                      _smoothesProgress;
   NSTimer*                  _smoothTimer;
@@ -45,6 +46,7 @@ typedef enum {
 
 @property (nonatomic, readonly) TTActivityLabelStyle style;
 
+@property (nonatomic, retain)	UIView*   backgroundView;
 @property (nonatomic, copy)     NSString* text;
 @property (nonatomic, retain)   UIFont*   font;
 

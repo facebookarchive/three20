@@ -65,6 +65,9 @@ extern const NSTimeInterval TTURLRequestUseQueueTimeout;
   
   NSTimeInterval        _timeoutInterval;
 
+  /// CONFLICT: This comes from other implementation by Cemal Eker;
+  /// Retained here to not break samples which are using this code.
+  /// Applies to associated property definitions as well
   NSInteger             _totalBytesDownloaded;
   NSInteger             _totalContentLength;
 

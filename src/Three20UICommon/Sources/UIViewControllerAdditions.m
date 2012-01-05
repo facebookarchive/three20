@@ -263,6 +263,33 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL) isVisibleViewController: (UIViewController *) viewController {
+	
+	BOOL returnValue;
+	
+	if(self.tabBarController) {
+		
+		/// If there is a tabbar interface
+		
+		UIViewController *tabBarVisibleViewController = ((UINavigationController *)self.tabBarController.selectedViewController).visibleViewController;
+		
+		UIViewController *moreVisibleViewController = self.tabBarController.moreNavigationController.visibleViewController;
+		
+		/// Is view controller visible on tabbar or under more view controller?
+		returnValue = ((viewController == tabBarVisibleViewController) || (viewController == moreVisibleViewController));
+	}
+	else if(self.navigationController) {
+		/// No tabbar, but navigation controller
+		returnValue = (self.navigationController.visibleViewController == viewController);
+	}
+	else {
+		/// No parent view controller at all?
+		returnValue = (viewController.view.superview != nil);
+	}
+	
+	return returnValue;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)keyForSubcontroller:(UIViewController*)controller {

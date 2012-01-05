@@ -46,6 +46,11 @@ BOOL TTIsSetWithItems(id object);
 BOOL TTIsStringWithAnyText(id object);
 
 /**
+ * Tests if an object is a string which contains at least some non-whitespace characters.
+ */
+BOOL TTIsStringEmptyOrWhitespace(id object);
+
+/**
  * Swap the two method implementations on the given class.
  * Uses method_exchangeImplementations to accomplish this.
  */

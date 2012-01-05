@@ -93,8 +93,16 @@
 - (void)dealloc {
   _tableView.delegate = nil;
   _tableView.dataSource = nil;
-  TT_RELEASE_SAFELY(_tableDelegate);
-  TT_RELEASE_SAFELY(_dataSource);
+
+  // Avoid infinite loop when delegate or datasource points to self
+  if(_tableDelegate != (id)self) {
+	TT_RELEASE_SAFELY(_tableDelegate);
+  }
+  
+  if(_dataSource != (id)self) {
+    TT_RELEASE_SAFELY(_dataSource);
+  }
+	
   TT_RELEASE_SAFELY(_tableView);
   TT_RELEASE_SAFELY(_loadingView);
   TT_RELEASE_SAFELY(_errorView);
@@ -127,8 +135,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateTableDelegate {
   if (!_tableView.delegate) {
+	  
     [_tableDelegate release];
-    _tableDelegate = [[self createDelegate] retain];
+	
+	  id tableDelegate = [self createDelegate];
+	  
+	  _tableDelegate = (tableDelegate != self) ? [tableDelegate retain] : tableDelegate;
 
     // You need to set it to nil before changing it or it won't have any effect
     _tableView.delegate = nil;
@@ -228,7 +240,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)loadView {
   [super loadView];
-  [self tableView];
+  
+  if(self.tableView) {}
 
   // If this view was unloaded and is now being reloaded, and it was previously
   // showing a table banner, then redisplay that banner now.
@@ -246,7 +259,14 @@
   [super viewDidUnload];
   _tableView.delegate = nil;
   _tableView.dataSource = nil;
-  TT_RELEASE_SAFELY(_tableDelegate);
+	
+	if(_tableDelegate != (id)self) {
+		TT_RELEASE_SAFELY(_tableDelegate);
+	}
+	else {
+		_tableDelegate = nil;
+	}
+
   TT_RELEASE_SAFELY(_tableView);
   [_tableOverlayView removeFromSuperview];
   TT_RELEASE_SAFELY(_tableOverlayView);
@@ -406,7 +426,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)canShowModel {
+	
   if ([_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+	  
     NSInteger numberOfSections = [_dataSource numberOfSectionsInTableView:_tableView];
     if (!numberOfSections) {
       return NO;
@@ -670,6 +692,8 @@
       _tableView.backgroundColor = backgroundColor;
       self.view.backgroundColor = backgroundColor;
     }
+	_tableView.separatorStyle = TTSTYLEVAR(tableSeparatorStyle);
+	
     [self.view addSubview:_tableView];
   }
   return _tableView;

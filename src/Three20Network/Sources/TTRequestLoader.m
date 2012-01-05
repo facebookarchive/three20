@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "Three20Network/private/TTRequestLoader.h"
+#import "Three20Network/TTRequestLoader.h"
 
 //Global
 #import "Three20Network/TTErrorCodes.h"
@@ -175,7 +175,7 @@ static const NSInteger kLoadMaxRetries = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)load:(NSURL*)URL {
-  if (nil == _connection) {
+  if (!_connection) {
     [self connectToURL:URL];
   }
 }
@@ -204,7 +204,6 @@ static const NSInteger kLoadMaxRetries = 2;
     TT_RELEASE_SAFELY(_connection);
 
     [_queue loader:self didFailLoadWithError:error];
-
   } else {
     [self connection:nil didReceiveResponse:(NSHTTPURLResponse*)response];
     [self connection:nil didReceiveData:data];
@@ -261,7 +260,7 @@ static const NSInteger kLoadMaxRetries = 2;
       // request:processErrorResponse:data: does not return one.
       if (!error) {
         TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"  FAILED LOADING (%d) %@", _response.statusCode, _urlPath);
-        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:data forKey:kTTErrorResponseDataKey];
+		  NSDictionary* userInfo = (data != nil) ? [NSDictionary dictionaryWithObject:data forKey:kTTErrorResponseDataKey] : nil;
         error = [NSError errorWithDomain:NSURLErrorDomain code:_response.statusCode userInfo:userInfo];
       }
     }
@@ -301,6 +300,34 @@ static const NSInteger kLoadMaxRetries = 2;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dispatchDownloadedBytes:(float)downloadedBytes ofTotalExpected:(float) totalExpected {
+	for (TTURLRequest* request in [[_requests copy] autorelease]) {
+		
+		for (id<TTURLRequestDelegate> delegate in request.delegates) {
+			if ([delegate respondsToSelector:@selector(request:didLoadBytes:ofTotalExpected:)]) {
+				[delegate request:request didLoadBytes:downloadedBytes ofTotalExpected:totalExpected];
+			}
+		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)dispatchCanAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace*)protectionSpace {
+	for (TTURLRequest* request in [[_requests copy] autorelease]) {
+		
+		for (id<TTURLRequestDelegate> delegate in request.delegates) {
+			if ([delegate respondsToSelector:@selector(request:canAuthenticateAgainstProtectionSpace:)]) {
+				/// Take the first response as authoritative
+				return [delegate request:request canAuthenticateAgainstProtectionSpace:protectionSpace];
+				break;
+			}
+		}
+	}
+	
+	/// Return NO by default
+	return NO;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dispatchAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge {
@@ -335,36 +362,41 @@ static const NSInteger kLoadMaxRetries = 2;
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response {
   _response = [response retain];
   NSDictionary* headers = [response allHeaderFields];
-  int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
-
+  _contentLength = [[headers objectForKey:@"Content-Length"] integerValue];
+	
   // If you hit this assertion it's because a massive file is about to be downloaded.
   // If you're sure you want to do this, add the following line to your app delegate startup
   // method. Setting the max content length to zero allows anything to go through. If you just
   // want to raise the limit, set it to any positive byte size.
   // [[TTURLRequestQueue mainQueue] setMaxContentLength:0]
-  TTDASSERT(0 == _queue.maxContentLength || contentLength <=_queue.maxContentLength);
+  TTDASSERT(0 == _queue.maxContentLength || _contentLength <=_queue.maxContentLength);
 
-  if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
+  if (_contentLength > _queue.maxContentLength && _queue.maxContentLength) {
     TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"MAX CONTENT LENGTH EXCEEDED (%d) %@",
-                    contentLength, _urlPath);
+                    _contentLength, _urlPath);
     [self cancel];
   }
 
-  _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
+  _responseData = [[NSMutableData alloc] initWithCapacity: _contentLength];
 
-    for (TTURLRequest* request in [[_requests copy] autorelease]) {
-        request.totalContentLength = contentLength;
-    }
-
+  /// Implementation by Cemal Eker adopted in Three20. Retained for compatibility reasons
+  for (TTURLRequest* request in [[_requests copy] autorelease]) {
+      request.totalContentLength = _contentLength;
+  }
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
+	
   [_responseData appendData:data];
-    for (TTURLRequest* request in [[_requests copy] autorelease]) {
-        request.totalBytesDownloaded += [data length];
-    }
+	
+  [self dispatchDownloadedBytes:[_responseData length] ofTotalExpected:_contentLength];
+
+  /// Implementation by Cemal Eker adopted in Three20. Retained for compatibility reasons
+  for (TTURLRequest* request in [[_requests copy] autorelease]) {
+      request.totalBytesDownloaded += [data length];
+  }
 }
 
 
@@ -400,6 +432,9 @@ static const NSInteger kLoadMaxRetries = 2;
   TT_RELEASE_SAFELY(_connection);
 }
 
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+	return [_queue loader:self canAuthenticateAgainstProtectionSpace:protectionSpace];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection *)connection
@@ -444,9 +479,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Deprecated
- */
+// Deprecated
 - (NSString*)URL {
   return _urlPath;
 }

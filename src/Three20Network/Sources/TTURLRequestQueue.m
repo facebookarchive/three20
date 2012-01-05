@@ -25,7 +25,7 @@
 #import "Three20Network/TTURLCache.h"
 
 // Network (Private)
-#import "Three20Network/private/TTRequestLoader.h"
+#import "Three20Network/TTRequestLoader.h"
 
 // Core
 #import "Three20Core/TTGlobalCore.h"
@@ -47,6 +47,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 @implementation TTURLRequestQueue
 
 @synthesize maxContentLength        = _maxContentLength;
+@synthesize requestTimeout			= _requestTimeout;
 @synthesize userAgent               = _userAgent;
 @synthesize suspended               = _suspended;
 @synthesize imageCompressionQuality = _imageCompressionQuality;
@@ -73,11 +74,14 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-	self = [super init];
+	
+  self = [super init];
+	
   if (self) {
     _loaders = [[NSMutableDictionary alloc] init];
     _loaderQueue = [[NSMutableArray alloc] init];
     _maxContentLength = kDefaultMaxContentLength;
+    _requestTimeout = kTimeout;
     _imageCompressionQuality = 0.75;
     _defaultTimeout = kTimeout;
   }
@@ -505,6 +509,8 @@ static TTURLRequestQueue* gMainQueue = nil;
   
   NSMutableURLRequest* URLRequest = [NSMutableURLRequest requestWithURL:URL
                                     cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+
+									 //                                    timeoutInterval:_requestTimeout]; /// Mine
                                     timeoutInterval:usedTimeout];
 
   if (self.userAgent) {
@@ -670,6 +676,9 @@ static TTURLRequestQueue* gMainQueue = nil;
   [self loadNextInQueue];
 }
 
+- (BOOL) loader: (TTRequestLoader *)loader canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+	return [loader dispatchCanAuthenticateAgainstProtectionSpace: protectionSpace];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)                       loader: (TTRequestLoader*)loader

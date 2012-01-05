@@ -47,7 +47,7 @@ static CGFloat kProgressMargin  = 6.0f;
 @synthesize style             = _style;
 @synthesize progress          = _progress;
 @synthesize smoothesProgress  = _smoothesProgress;
-
+@synthesize backgroundView    = _backgroundView;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text {
@@ -95,6 +95,7 @@ static CGFloat kProgressMargin  = 6.0f;
     _label = [[UILabel alloc] init];
     _label.text = text;
     _label.backgroundColor = [UIColor clearColor];
+	_label.numberOfLines = 0;
     _label.lineBreakMode = UILineBreakModeTailTruncation;
 
     if (_style == TTActivityLabelStyleWhite) {
@@ -172,6 +173,7 @@ static CGFloat kProgressMargin  = 6.0f;
 - (void)dealloc {
   TT_INVALIDATE_TIMER(_smoothTimer);
   TT_RELEASE_SAFELY(_bezelView);
+  TT_RELEASE_SAFELY(_backgroundView);
   TT_RELEASE_SAFELY(_progressView);
   TT_RELEASE_SAFELY(_activityIndicator);
   TT_RELEASE_SAFELY(_label);
@@ -189,7 +191,7 @@ static CGFloat kProgressMargin  = 6.0f;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  CGSize textSize = [_label.text sizeWithFont:_label.font];
+	CGSize textSize = (_label.text != nil) ? [_label.text sizeWithFont:_label.font] : CGSizeZero;
 
   CGFloat indicatorSize = 0.0f;
   [_activityIndicator sizeToFit];
@@ -256,6 +258,8 @@ static CGFloat kProgressMargin  = 6.0f;
 
   _activityIndicator.frame = CGRectMake(_label.left - (indicatorSize+kSpacing), y,
                                         indicatorSize, indicatorSize);
+
+	[_bezelView bringSubviewToFront: _activityIndicator];
 }
 
 
@@ -360,5 +364,21 @@ static CGFloat kProgressMargin  = 6.0f;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void) setBackgroundView:(UIView *) backgroundView {
+	
+	if(_backgroundView != backgroundView) {
+		
+		[_backgroundView removeFromSuperview];
+		TT_RELEASE_SAFELY(_backgroundView);
+		
+		if(backgroundView != nil) {	
+			_backgroundView = [backgroundView retain];
+			[self addSubview: _backgroundView];
+			[self sendSubviewToBack: _backgroundView];
+		}
+	}
+}
 
 @end

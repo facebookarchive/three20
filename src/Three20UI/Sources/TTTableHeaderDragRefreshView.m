@@ -59,7 +59,6 @@
 - (void)showActivity:(BOOL)shouldShow animated:(BOOL)animated {
   if (shouldShow) {
     [_activityView startAnimating];
-
   } else {
     [_activityView stopAnimating];
   }
@@ -90,7 +89,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
+  if((self = [super initWithFrame:frame])) {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
     _lastUpdatedLabel = [[UILabel alloc]
@@ -120,11 +119,11 @@
     [self setStatus:TTTableHeaderDragRefreshPullToReload];
     [self addSubview:_statusLabel];
 
-    UIImage* arrowImage = TTSTYLEVAR(tableRefreshHeaderArrowImage);
     _arrowImage = [[UIImageView alloc]
-                   initWithFrame:CGRectMake(25.0f, frame.size.height - 60.0f,
-                                            arrowImage.size.width, arrowImage.size.height)];
-    _arrowImage.image             = arrowImage;
+                   initWithFrame:CGRectMake(25.0f, frame.size.height - 65.0f,
+                                            30.0f, 55.0f)];
+    _arrowImage.contentMode       = UIViewContentModeScaleAspectFit;
+    _arrowImage.image             = TTSTYLEVAR(tableRefreshHeaderArrowImage);
     [_arrowImage layer].transform = CATransform3DMakeRotation(M_PI, 0.0f, 0.0f, 1.0f);
     [self addSubview:_arrowImage];
 
@@ -145,7 +144,6 @@
   TT_RELEASE_SAFELY(_arrowImage);
   TT_RELEASE_SAFELY(_lastUpdatedLabel);
   TT_RELEASE_SAFELY(_lastUpdatedDate);
-
   [super dealloc];
 }
 

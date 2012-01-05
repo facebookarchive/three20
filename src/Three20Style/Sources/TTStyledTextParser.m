@@ -252,7 +252,6 @@
   [self popNode];
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData *)          parser:(NSXMLParser *)parser
    resolveExternalEntityName:(NSString *)entityName

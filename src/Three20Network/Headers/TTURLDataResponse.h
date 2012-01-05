@@ -15,12 +15,12 @@
 //
 
 // Network
-#import "Three20Network/TTURLResponse.h"
+#import "Three20Network/TTURLBaseResponse.h"
 
 /**
  * An implementation of the TTURLResponse protocal for generic NSData objects.
  */
-@interface TTURLDataResponse : NSObject <TTURLResponse> {
+@interface TTURLDataResponse : TTURLBaseResponse {
   NSData* _data;
 }
 

@@ -55,6 +55,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response
                data:(id)data {
+	
+	[super request: request processResponse: response data: data];
+	
   // This response is designed for NSData objects, so if we get anything else it's probably a
   // mistake.
   TTDASSERT([data isKindOfClass:[NSData class]]);

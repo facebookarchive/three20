@@ -33,6 +33,7 @@
 #import "Three20Style/TTInnerShadowStyle.h"
 #import "Three20Style/TTBevelBorderStyle.h"
 #import "Three20Style/TTLinearGradientFillStyle.h"
+#import "Three20Style/TTRadialGradientStyle.h"
 #import "Three20Style/TTFourBorderStyle.h"
 #import "Three20Style/TTLinearGradientBorderStyle.h"
 #import "Three20Style/TTReflectiveFillStyle.h"
@@ -805,6 +806,11 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (UIColor *)tableSeparatorColor {
+  return [UIColor grayColor];
+}
+
 - (UIColor*)tableGroupedCellSeparatorColor {
 	return nil;
 }
@@ -813,7 +819,6 @@
 - (UITableViewCellSeparatorStyle)tableGroupedCellSeparatorStyle {
 	return [self tablePlainCellSeparatorStyle];
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIColor*)searchTableBackgroundColor {
@@ -1080,6 +1085,17 @@
 - (UITableViewCellSelectionStyle)tableSelectionStyle {
   return UITableViewCellSelectionStyleBlue;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCellSeparatorStyle)tableSeparatorStyle {
+  return UITableViewCellSeparatorStyleSingleLine;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITableViewCellSeparatorStyle)searchTableSeparatorStyle {
+  return UITableViewCellSeparatorStyleSingleLine;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private

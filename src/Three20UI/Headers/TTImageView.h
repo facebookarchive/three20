@@ -19,6 +19,7 @@
 
 // Network
 #import "Three20Network/TTURLRequestDelegate.h"
+#import "Three20Network/TTURLRequestCachePolicy.h"
 
 @class TTURLRequest;
 @protocol TTImageViewDelegate;
@@ -31,6 +32,7 @@
   NSString*     _urlPath;
   UIImage*      _image;
   UIImage*      _defaultImage;
+  TTURLRequestCachePolicy _cachePolicy;
   BOOL          _autoresizesToImage;
 
   id<TTImageViewDelegate> _delegate;
@@ -75,6 +77,11 @@
  * A delegate that notifies you when the image has started and finished loading.
  */
 @property (nonatomic, assign) id<TTImageViewDelegate> delegate;
+
+/**
+ * A cache policy to use to download the image
+ */
+@property (nonatomic, assign) TTURLRequestCachePolicy cachePolicy;
 
 /**
  * The TTURLRequest requester used to load this image.

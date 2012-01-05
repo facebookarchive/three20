@@ -85,7 +85,7 @@ static const CGFloat kFrameDuration = 1.0/40.0f;
     _scrollEnabled = YES;
     _zoomEnabled = YES;
     _rotateEnabled = YES;
-    _orientation = UIDeviceOrientationPortrait;
+    _orientation = (UIInterfaceOrientation)UIDeviceOrientationPortrait;
     _decelerationRate = 0.9;      // Inertia, how faster slow the residual movement.
     _maximumZoomScale = 4.0;      // Maximum zoom scale default value.
     _centerPageAnimationDuration = TT_TRANSITION_DURATION;
@@ -1776,6 +1776,19 @@ static const CGFloat kFrameDuration = 1.0/40.0f;
   return [self pageAtIndex:pageIndex create:NO];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)scrollToPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated {
+	
+	if(animated) {
+		UIEdgeInsets edges = [self pageEdgesForAnimation];
+        NSTimeInterval duration = self.flicked ? kFlickDuration : kBounceDuration;
+		
+		[self startAnimationTo:edges duration:duration];
+	}
+	else {
+		[self moveToPageAtIndex:pageIndex resetEdges:YES];
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**

@@ -53,6 +53,7 @@
 #import "Three20Style/TTBlendStyle.h"
 #import "Three20Style/TTSolidFillStyle.h"
 #import "Three20Style/TTLinearGradientFillStyle.h"
+#import "Three20Style/TTRadialGradientStyle.h"
 #import "Three20Style/TTReflectiveFillStyle.h"
 #import "Three20Style/TTShadowStyle.h"
 #import "Three20Style/TTInnerShadowStyle.h"

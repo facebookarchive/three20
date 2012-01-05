@@ -44,6 +44,18 @@
 - (void)requestDidFinishLoad:(TTURLRequest*)request;
 
 /**
+ * The request has downloaded portion of data of total size expected according to server's response.
+ * 
+ * Allows delegates to handle download progress
+ */
+- (void)request:(TTURLRequest*)request didLoadBytes:(float)bytesLoaded ofTotalExpected:(float)totalExpected;
+
+/**
+ * Allows delegate to decide whether it can accept authentication challenge
+ */
+- (BOOL)request:(TTURLRequest*)request canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace*)protectionSpace;
+
+/**
  * Allows delegate to handle any authentication challenges.
  */
 - (void)request:(TTURLRequest*)request

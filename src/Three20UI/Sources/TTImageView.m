@@ -44,6 +44,7 @@
 @synthesize image               = _image;
 @synthesize defaultImage        = _defaultImage;
 @synthesize autoresizesToImage  = _autoresizesToImage;
+@synthesize cachePolicy			= _cachePolicy;
 @synthesize request				= _request;
 
 @synthesize delegate = _delegate;
@@ -54,6 +55,7 @@
 	self = [super initWithFrame:frame];
   if (self) {
     _autoresizesToImage = NO;
+	_cachePolicy = TTURLRequestCachePolicyDefault;
   }
   return self;
 }
@@ -208,6 +210,7 @@
 
     } else {
       TTURLRequest* request = [TTURLRequest requestWithURL:_urlPath delegate:self];
+	  request.cachePolicy = _cachePolicy;
       request.response = [[[TTURLImageResponse alloc] init] autorelease];
 
       // Give the delegate one chance to configure the requester.
