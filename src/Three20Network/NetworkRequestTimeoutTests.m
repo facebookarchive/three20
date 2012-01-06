@@ -57,7 +57,7 @@ static const NSTimeInterval kTimeout = 300.0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testTTURLRequest_timeoutIntervalAccess {
   STAssertEqualsWithAccuracy([[[[TTURLRequest alloc] init] autorelease] timeoutInterval],
-                 (NSTimeInterval)TTURLRequestUseDefaultTimeout,
+                 (NSTimeInterval)TTURLRequestUseQueueTimeout,
                              0.1,
                  @"default timeout should be set on initialization");
   
