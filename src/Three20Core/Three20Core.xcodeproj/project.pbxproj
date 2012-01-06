@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-        objectVersion = 46;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-                660E7375135A560A00531398 /* Three20Version.h in Headers */ = {isa = PBXBuildFile; fileRef = 660E7374135A560A00531398 /* Three20Version.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		660E7375135A560A00531398 /* Three20Version.h in Headers */ = {isa = PBXBuildFile; fileRef = 660E7374135A560A00531398 /* Three20Version.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6656B2531354035900B34AB5 /* TTAvailability.h in Headers */ = {isa = PBXBuildFile; fileRef = 6656B2521354035900B34AB5 /* TTAvailability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6656B2551354035F00B34AB5 /* TTAvailability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6656B2541354035F00B34AB5 /* TTAvailability.m */; };
 		66A0530A132EB47900132434 /* Three20.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A05309132EB47900132434 /* Three20.m */; };
@@ -69,7 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-                660E7374135A560A00531398 /* Three20Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Version.h; path = Headers/Three20Version.h; sourceTree = "<group>"; };
+		660E7374135A560A00531398 /* Three20Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Version.h; path = Headers/Three20Version.h; sourceTree = "<group>"; };
 		6656B2521354035900B34AB5 /* TTAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTAvailability.h; path = Headers/TTAvailability.h; sourceTree = "<group>"; };
 		6656B2541354035F00B34AB5 /* TTAvailability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTAvailability.m; path = Sources/TTAvailability.m; sourceTree = "<group>"; };
 		66A05309132EB47900132434 /* Three20.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Three20.m; path = Sources/Three20.m; sourceTree = "<group>"; };
@@ -406,10 +406,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-                                LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0420;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Three20Core" */;
-                        compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
