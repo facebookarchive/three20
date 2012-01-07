@@ -256,7 +256,7 @@ static const NSInteger kLoadMaxRetries = 2;
   for (TTURLRequest* request in _requests) {
     NSError* error = nil;
     // We need to accept valid HTTP status codes, not only 200.
-    if (!response
+    if (!response || ![response respondsToSelector:@selector(statusCode)]
         || (response.statusCode >= 200 && response.statusCode < 300)
         || response.statusCode == 304) {
       error = [request.response request:request processResponse:response data:data];
@@ -359,15 +359,14 @@ static const NSInteger kLoadMaxRetries = 2;
 	  }
 
 	  _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
+    
+    for (TTURLRequest* request in [[_requests copy] autorelease]) {
+      request.totalContentLength = contentLength;
+    }
+    
   }else {
 	  _responseData = [[NSMutableData alloc] init];
   }
-
-
-    for (TTURLRequest* request in [[_requests copy] autorelease]) {
-        request.totalContentLength = contentLength;
-    }
-
 }
 
 
