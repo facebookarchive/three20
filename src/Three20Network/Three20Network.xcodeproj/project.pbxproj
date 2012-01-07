@@ -13,7 +13,7 @@
 		66F955BA1266647A00BEF6F0 /* both.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B71266647A00BEF6F0 /* both.png */; };
 		66F955BB1266647A00BEF6F0 /* both@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B81266647A00BEF6F0 /* both@2x.png */; };
 		66F955BC1266647A00BEF6F0 /* only@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B91266647A00BEF6F0 /* only@2x.png */; };
-		6D64C15914B7C9C100BF5E23 /* NetworkRequestTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D64C15814B7C9C100BF5E23 /* NetworkRequestTimeoutTests.m */; };
+		6DB66E8614B90568003581DF /* NetworkRequestTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D64C15814B7C9C100BF5E23 /* NetworkRequestTimeoutTests.m */; };
 		6EE735F8118499D300A35176 /* Three20Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F7118499D300A35176 /* Three20Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FA118499FB00A35176 /* TTGlobalNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F9118499FB00A35176 /* TTGlobalNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FC11849A0C00A35176 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE735FB11849A0C00A35176 /* TTGlobalNetwork.m */; };
@@ -529,7 +529,6 @@
 				6EE7362E11849A4000A35176 /* TTURLRequestModel.m in Sources */,
 				6EE7362F11849A4000A35176 /* TTURLRequestQueue.m in Sources */,
 				664B29C312848AAD0008D569 /* TTErrorCodes.m in Sources */,
-				6D64C15914B7C9C100BF5E23 /* NetworkRequestTimeoutTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +539,7 @@
 				6EE7363A11849A9800A35176 /* MockModelDelegate.m in Sources */,
 				6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */,
 				66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */,
+				6DB66E8614B90568003581DF /* NetworkRequestTimeoutTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
