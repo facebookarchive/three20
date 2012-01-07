@@ -360,7 +360,7 @@ static const NSInteger kLoadMaxRetries = 2;
 
 	  _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
   }else {
-	  _responseData = [[NSMutableData alloc] initWithCapacity:1000];
+	  _responseData = [[NSMutableData alloc] init];
   }
 
 
