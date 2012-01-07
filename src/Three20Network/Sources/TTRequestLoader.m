@@ -341,23 +341,28 @@ static const NSInteger kLoadMaxRetries = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response {
   _response = [response retain];
-  NSDictionary* headers = [response allHeaderFields];
-  int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
+  if ([response respondsToSelector:@selector(allHeaderFields)]){
+	  NSDictionary* headers = [response allHeaderFields];
+	  int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
 
-  // If you hit this assertion it's because a massive file is about to be downloaded.
-  // If you're sure you want to do this, add the following line to your app delegate startup
-  // method. Setting the max content length to zero allows anything to go through. If you just
-  // want to raise the limit, set it to any positive byte size.
-  // [[TTURLRequestQueue mainQueue] setMaxContentLength:0]
-  TTDASSERT(0 == _queue.maxContentLength || contentLength <=_queue.maxContentLength);
+	  // If you hit this assertion it's because a massive file is about to be downloaded.
+	  // If you're sure you want to do this, add the following line to your app delegate startup
+	  // method. Setting the max content length to zero allows anything to go through. If you just
+	  // want to raise the limit, set it to any positive byte size.
+	  // [[TTURLRequestQueue mainQueue] setMaxContentLength:0]
+	  TTDASSERT(0 == _queue.maxContentLength || contentLength <=_queue.maxContentLength);
 
-  if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
-    TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"MAX CONTENT LENGTH EXCEEDED (%d) %@",
-                    contentLength, _urlPath);
-    [self cancel];
+	  if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
+		TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"MAX CONTENT LENGTH EXCEEDED (%d) %@",
+						contentLength, _urlPath);
+		[self cancel];
+	  }
+
+	  _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
+  }else {
+	  _responseData = [[NSMutableData alloc] initWithCapacity:1000];
   }
 
-  _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
 
     for (TTURLRequest* request in [[_requests copy] autorelease]) {
         request.totalContentLength = contentLength;
@@ -396,8 +401,9 @@ static const NSInteger kLoadMaxRetries = 2;
   TTNetworkRequestStopped();
 
   TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Response status code: %d", _response.statusCode);
-
-  if (_response.statusCode == 304) {
+  if (![_response respondsToSelector:@selector(statusCode)]){
+	[_queue loader:self didLoadResponse:_response data:_responseData];
+  } else if (_response.statusCode == 304) {
     [_queue loader:self didLoadUnmodifiedResponse:_response];
   } else {
     [_queue loader:self didLoadResponse:_response data:_responseData];
