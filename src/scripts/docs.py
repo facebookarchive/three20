@@ -72,7 +72,7 @@ def publish_ghpages(version):
 	logging.info("Committing new docs")
 	os.system("cd Docs/gh-pages && git add -A .")
 	os.system("cd Docs/gh-pages && git commit -am  \"Three20 " + version + " Documentation\"")
-	#os.system("cd Docs/gh-pages && git push origin gh-pages")
+	os.system("cd Docs/gh-pages && git push origin gh-pages")
 			
 
 def main():
