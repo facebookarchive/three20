@@ -19,3 +19,4 @@ src/Three20UI/*.h
 extensions/
 
 *.pyc
+Docs
