@@ -45,7 +45,7 @@
     SplitCatalogController* controller =
       (SplitCatalogController*)[[TTNavigator navigator] viewControllerForURL:@"tt://catalog"];
     TTDASSERT([controller isKindOfClass:[SplitCatalogController class]]);
-    map = controller.rightNavigator.URLMap;
+    map = controller.detailsNavigator.URLMap;
 
   } else {
     [map                    from: @"tt://catalog"

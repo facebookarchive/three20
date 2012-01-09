@@ -34,14 +34,14 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  [self.leftNavigator openURLs:@"tt://catalog", nil];
-  [self.rightNavigator openURLs:@"http://three20.info/", nil];
+  [self.primaryNavigator openURLs:@"tt://catalog", nil];
+  [self.detailsNavigator openURLs:@"http://three20.info/", nil];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)willOpenUrlPath:(NSURL*)url {
-  [self.rightNavigator openURLAction:[TTURLAction actionWithURLPath:[url absoluteString]]];
+  [self.detailsNavigator openURLAction:[TTURLAction actionWithURLPath:[url absoluteString]]];
 
   [self.popoverSplitController dismissPopoverAnimated:YES];
 
@@ -55,8 +55,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)routeLeftNavigator {
-  TTURLMap* map = self.leftNavigator.URLMap;
+- (void)routePrimaryNavigator {
+  TTURLMap* map = self.primaryNavigator.URLMap;
 
   // Forward all unhandled URL actions to the right navigator.
   [map                    from: @"*"
@@ -69,8 +69,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)routeRightNavigator {
-  TTURLMap* map = self.rightNavigator.URLMap;
+- (void)routeDetailsNavigator {
+  TTURLMap* map = self.detailsNavigator.URLMap;
 
 
   [map                    from: @"*"
@@ -80,9 +80,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setupURLRouting {
-  [self routeLeftNavigator];
-  [self routeRightNavigator];
+  [self routePrimaryNavigator];
+  [self routeDetailsNavigator];
 }
+
 
 
 @end

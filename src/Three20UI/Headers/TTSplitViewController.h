@@ -28,16 +28,16 @@
   TTNavigatorRootContainer
 > {
 @private
-  TTNavigator* _leftNavigator;
-  TTNavigator* _rightNavigator;
+  TTNavigator* _primaryNavigator;
+  TTNavigator* _detailsNavigator;
 
-  UIBarButtonItem*      _splitViewButton;
+  UIBarButtonItem*      _rootPopoverSplitButtonItem;
   UIPopoverController*  _popoverSplitController;
 }
 
-@property (nonatomic, readonly) TTNavigator*          leftNavigator;
-@property (nonatomic, readonly) TTNavigator*          rightNavigator;
-@property (nonatomic, retain)   UIBarButtonItem*      splitViewButton;
+@property (nonatomic, readonly) TTNavigator*          primaryNavigator;
+@property (nonatomic, readonly) TTNavigator*          detailsNavigator;
+@property (nonatomic, retain)   UIBarButtonItem*      rootPopoverSplitButtonItem;
 @property (nonatomic, retain)   UIPopoverController*  popoverSplitController;
 
 
