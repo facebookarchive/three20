@@ -39,6 +39,7 @@
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
 #import "Three20Core/NSDateAdditions.h"
+#import "Three20Core/TTAvailability.h"
 
 static TTBaseNavigator* gNavigator = nil;
 
@@ -344,8 +345,12 @@ __attribute__((weak_import));
     TT_RELEASE_SAFELY(_popoverController);
   }
 
-  _popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
-  _popoverController.delegate = self;
+  _popoverController =  [[TTUIPopoverControllerClass() alloc] init];
+  if (_popoverController != nil) {
+    [_popoverController setContentViewController:controller];
+    [_popoverController setDelegate:self];
+  }
+
   if (nil != sourceButton) {
     [_popoverController presentPopoverFromBarButtonItem: sourceButton
                                permittedArrowDirections: UIPopoverArrowDirectionAny
