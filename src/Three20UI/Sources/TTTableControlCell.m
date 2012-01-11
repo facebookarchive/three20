@@ -105,7 +105,7 @@ static const CGFloat kControlPadding = 8.0f;
   }
 
   CGFloat height = view.height;
-  if (!height) {
+  //if (!height) {
     if ([view isKindOfClass:[UITextView class]]) {
       UITextView* textView = (UITextView*)view;
       CGFloat ttLineHeight = textView.font.ttLineHeight;
@@ -125,7 +125,7 @@ static const CGFloat kControlPadding = 8.0f;
       [view sizeToFit];
       height = view.height;
     }
-  }
+  //}
 
   if (height < TT_ROW_HEIGHT) {
     return TT_ROW_HEIGHT;
