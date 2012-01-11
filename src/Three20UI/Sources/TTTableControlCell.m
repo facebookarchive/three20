@@ -152,9 +152,10 @@ static const CGFloat kControlPadding = 8.0f;
   } else {
     CGFloat minX = kControlPadding;
     CGFloat contentWidth = self.contentView.width - kControlPadding;
-    if (![TTTableControlCell shouldRespectControlPadding:_control]) {
+    // Enable the padding for every kind of control
+    //if (![TTTableControlCell shouldRespectControlPadding:_control]) {
       contentWidth -= kControlPadding;
-    }
+    //}
     if (self.textLabel.text.length) {
       CGSize textSize = [self.textLabel sizeThatFits:self.contentView.bounds.size];
       contentWidth -= textSize.width + kTableCellSpacing;
