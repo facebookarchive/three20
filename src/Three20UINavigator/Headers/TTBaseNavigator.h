@@ -28,16 +28,14 @@
 /**
  * A URL-based navigation system with built-in persistence.
  */
-@interface TTBaseNavigator : NSObject <
-  UIPopoverControllerDelegate
-> {
+@interface TTBaseNavigator : NSObject <UIPopoverControllerDelegate> {
   TTURLMap*                   _URLMap;
 
   UIWindow*                   _window;
 
   UIViewController*           _rootViewController;
   NSMutableArray*             _delayedControllers;
-  id        _popoverController;
+  id                          _popoverController;
 
   NSString*                   _persistenceKey;
   TTNavigatorPersistenceMode  _persistenceMode;
@@ -222,8 +220,9 @@
  *
  * @return The view controller mapped to URL.
  */
-- (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
-                                  pattern:(TTURLPattern**)pattern;
+- (UIViewController*)viewControllerForURL: (NSString*)URL
+                                    query: (NSDictionary*)query
+                                  pattern: (TTURLPattern**)pattern;
 
 /**
  * Tells the navigator to delay heavy operations.

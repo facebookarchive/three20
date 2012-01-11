@@ -25,11 +25,13 @@
 
 }
 
-/**
- * TODO: Move this to a private category header.
- */
+
 - (void)pushAnimationDidStop;
 
+/**
+ * Pushes a view controller onto the receiver’s stack with a transition other than the
+ * standard sliding animation.
+ */
 - (void)pushViewController: (UIViewController*)controller
     animatedWithTransition: (UIViewAnimationTransition)transition;
 

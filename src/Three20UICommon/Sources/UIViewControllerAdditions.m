@@ -154,6 +154,9 @@ TT_FIX_CATEGORY_BUG(UIViewControllerAdditions)
   if (nil != parent) {
     return parent;
 
+  } else if ([self respondsToSelector:@selector(presentingViewController)]) {
+    return [self presentingViewController];
+
   } else {
     NSString* key = [NSString stringWithFormat:@"%d", self.hash];
     return [gSuperControllers objectForKey:key];

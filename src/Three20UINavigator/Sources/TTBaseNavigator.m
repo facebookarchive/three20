@@ -141,13 +141,20 @@ __attribute__((weak_import));
 
   for (controller = view.viewController;
        nil != controller;
-       controller = controller.parentViewController) {
+       controller = controller.superController) {
     if ([controller conformsToProtocol:@protocol(TTNavigatorRootContainer)]) {
       container = (id<TTNavigatorRootContainer>)controller;
       break;
     }
 
     childController = controller;
+  }
+
+  if (container==nil) {
+    controller = [TTBaseNavigator globalNavigator].visibleViewController;
+    if ([controller conformsToProtocol:@protocol(TTNavigatorRootContainer)]) {
+      container = (id<TTNavigatorRootContainer>)controller;
+    }
   }
 
   TTBaseNavigator* navigator = [container getNavigatorForController:childController];
