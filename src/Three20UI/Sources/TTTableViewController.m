@@ -490,6 +490,9 @@
         TTErrorView* errorView = [[[TTErrorView alloc] initWithTitle:title
                                                             subtitle:subtitle
                                                                image:image] autorelease];
+        [errorView.reloadButton addTarget:self
+                                   action:@selector(reload)
+                         forControlEvents:UIControlEventTouchUpInside];
         errorView.backgroundColor = _tableView.backgroundColor;
         self.errorView = errorView;
 

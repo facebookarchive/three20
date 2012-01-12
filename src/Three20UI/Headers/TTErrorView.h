@@ -14,19 +14,25 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+// UI
+#import "Three20UI/TTButton.h"
 
 @interface TTErrorView : UIView {
   UIImageView*  _imageView;
   UILabel*      _titleView;
   UILabel*      _subtitleView;
+  TTButton*     _reloadButton;
 }
 
 @property (nonatomic, retain) UIImage*  image;
 @property (nonatomic, copy)   NSString* title;
 @property (nonatomic, copy)   NSString* subtitle;
+@property (nonatomic, copy)   TTButton* reloadButton;
 
+
+/**
+  * creates an error view
+  */
 - (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image;
 
 @end

@@ -27,7 +27,8 @@
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
 static const CGFloat kVPadding1 = 30.0f;
-static const CGFloat kVPadding2 = 20.0f;
+static const CGFloat kVPadding2 = 10.0f;
+static const CGFloat kVPadding3 = 15.0f;
 static const CGFloat kHPadding  = 10.0f;
 
 
@@ -35,6 +36,8 @@ static const CGFloat kHPadding  = 10.0f;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTErrorView
+
+@synthesize reloadButton = _reloadButton;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,6 +75,13 @@ static const CGFloat kHPadding  = 10.0f;
     _subtitleView.textAlignment = UITextAlignmentCenter;
     _subtitleView.numberOfLines = 0;
     [self addSubview:_subtitleView];
+
+    _reloadButton = [[TTButton buttonWithStyle:@"tableReloadButton:"] retain];
+    [_reloadButton setImage:@"bundle://Three20.bundle/images/reloadButton.png"
+                      forState:UIControlStateNormal];
+    [_reloadButton sizeToFit];
+    [self addSubview:_reloadButton];
+
   }
 
   return self;
@@ -83,6 +93,7 @@ static const CGFloat kHPadding  = 10.0f;
   TT_RELEASE_SAFELY(_imageView);
   TT_RELEASE_SAFELY(_titleView);
   TT_RELEASE_SAFELY(_subtitleView);
+  TT_RELEASE_SAFELY(_reloadButton);
 
   [super dealloc];
 }
@@ -116,6 +127,8 @@ static const CGFloat kHPadding  = 10.0f;
     totalHeight += (totalHeight ? kVPadding2 : 0) + _subtitleView.height;
   }
 
+  totalHeight += (totalHeight ? kVPadding3 : 0) + _reloadButton.height;
+
   CGFloat top = floor(self.height/2 - totalHeight/2);
 
   if (canShowImage) {
@@ -132,7 +145,10 @@ static const CGFloat kHPadding  = 10.0f;
   }
   if (_subtitleView.text.length) {
     _subtitleView.origin = CGPointMake(floor(self.width/2 - _subtitleView.width/2), top);
+    top += _subtitleView.height + kVPadding3;
   }
+
+  _reloadButton.origin = CGPointMake(floor(self.width/2 - _reloadButton.width/2), top);
 }
 
 
@@ -176,6 +192,8 @@ static const CGFloat kHPadding  = 10.0f;
 - (void)setImage:(UIImage*)image {
   _imageView.image = image;
 }
+
+
 
 
 @end
