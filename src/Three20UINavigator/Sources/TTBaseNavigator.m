@@ -889,12 +889,20 @@ __attribute__((weak_import));
   }
   [controller persistNavigationPath:path];
 
-  if (controller.modalViewController
-      && controller.modalViewController.parentViewController == controller) {
-    [self persistController:controller.modalViewController path:path];
+  UIViewController *modalController = controller.modalViewController;
+  if (modalController) {
+    UIViewController *parentViewController = [modalController
+                                              respondsToSelector:
+                                              @selector(presentingViewController)]
+    ? [modalController performSelector:@selector(presentingViewController)]
+    : [modalController parentViewController];
 
-  } else if (controller.popupViewController
-             && controller.popupViewController.superController == controller) {
+    if (parentViewController == controller) {
+      [self persistController:controller.modalViewController path:path];
+    }
+
+  } else if (controller.popupViewController &&
+             controller.popupViewController.superController == controller) {
     [self persistController:controller.popupViewController path:path];
   }
 }
