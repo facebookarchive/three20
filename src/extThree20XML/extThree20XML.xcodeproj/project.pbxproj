@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		660997C6129396F0007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 660997C2129396F0007B1E07 /* TTExtensionLoader.m */; };
 		660997C912939700007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 660997C712939700007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		663DB1A6126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663DB1A5126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		6E3C3468118806430079637E /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3466118806430079637E /* TTURLXMLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3469118806430079637E /* TTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3467118806430079637E /* TTXMLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C346C1188064F0079637E /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C346A1188064F0079637E /* TTURLXMLResponse.m */; };
@@ -92,7 +91,6 @@
 		660997C2129396F0007B1E07 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Source/TTExtensionLoader.m; sourceTree = "<group>"; };
 		660997C712939700007B1E07 /* TTExtensionLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionLoader.h; path = Headers/TTExtensionLoader.h; sourceTree = "<group>"; };
 		66313DC61267C0CB00C09C9F /* extThree20XML_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20XML_Prefix.pch; path = Headers/extThree20XML_Prefix.pch; sourceTree = "<group>"; };
-		663DB1A5126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		6E3C3466118806430079637E /* TTURLXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLResponse.h; path = Headers/TTURLXMLResponse.h; sourceTree = "<group>"; };
 		6E3C3467118806430079637E /* TTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTXMLParser.h; path = Headers/TTXMLParser.h; sourceTree = "<group>"; };
 		6E3C346A1188064F0079637E /* TTURLXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLXMLResponse.m; path = Source/TTURLXMLResponse.m; sourceTree = "<group>"; };
@@ -154,14 +152,6 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
-			sourceTree = "<group>";
-		};
-		663DB1A4126625B400CF8CEA /* Xcode 3.2.4 Workaround */ = {
-			isa = PBXGroup;
-			children = (
-				663DB1A5126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */,
-			);
-			name = "Xcode 3.2.4 Workaround";
 			sourceTree = "<group>";
 		};
 		6E3C3472118806640079637E /* Vendors */ = {
@@ -231,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				6ED117E51183BE2A0096AEBF /* Resources */,
-				663DB1A4126625B400CF8CEA /* Xcode 3.2.4 Workaround */,
 				6E3C3483118807050079637E /* extXMLTests.m */,
 			);
 			name = Tests;
@@ -448,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E3C3484118807050079637E /* extXMLTests.m in Sources */,
-				663DB1A6126625B400CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
