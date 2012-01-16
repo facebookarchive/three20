@@ -40,8 +40,6 @@
 		1892DC2213D61D77008DFAC5 /* TTCSSGlobalStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 1892DC2113D61D77008DFAC5 /* TTCSSGlobalStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1892DC2513D61D81008DFAC5 /* TTShadowStyleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1892DC2313D61D81008DFAC5 /* TTShadowStyleAdditions.m */; };
 		1892DC2613D61D81008DFAC5 /* TTTextStyleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1892DC2413D61D81008DFAC5 /* TTTextStyleAdditions.m */; };
-		1892DC2713D61D81008DFAC5 /* TTShadowStyleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1892DC2313D61D81008DFAC5 /* TTShadowStyleAdditions.m */; };
-		1892DC2813D61D81008DFAC5 /* TTTextStyleAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1892DC2413D61D81008DFAC5 /* TTTextStyleAdditions.m */; };
 		1892DC2E13D61D90008DFAC5 /* extThree20CSSStyle+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1892DC2D13D61D90008DFAC5 /* extThree20CSSStyle+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18F5A81713B2927500B3EF43 /* TTCSSApplyProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F5A81613B2927500B3EF43 /* TTCSSApplyProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18F5A86F13B2973F00B3EF43 /* UIView+CSSAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F5A86E13B2973F00B3EF43 /* UIView+CSSAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -712,8 +710,6 @@
 				6E036A7D11B371790025E8EE /* CssStyleSheetTests.m in Sources */,
 				6E85152611B2E7B80071A4FD /* CssParserTests.m in Sources */,
 				186AE92013AA7C7E004D43FA /* CssRuleSetTests.m in Sources */,
-				1892DC2713D61D81008DFAC5 /* TTShadowStyleAdditions.m in Sources */,
-				1892DC2813D61D81008DFAC5 /* TTTextStyleAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
