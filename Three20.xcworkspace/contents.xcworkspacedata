@@ -82,6 +82,19 @@
       <FileRef
          location = "group:src/Three20UI/Three20UI.xcodeproj">
       </FileRef>
+      <Group
+         location = "container:"
+         name = "extensions">
+         <FileRef
+            location = "group:src/extThree20CSSStyle/extThree20CSSStyle.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:src/extThree20JSON/extThree20JSON.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:src/extThree20XML/extThree20XML.xcodeproj">
+         </FileRef>
+      </Group>
    </Group>
    <Group
       location = "container:"
