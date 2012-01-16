@@ -48,7 +48,6 @@
 		18F5A87813B2979E00B3EF43 /* UIView+CSSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A87713B2979E00B3EF43 /* UIView+CSSAdditions.m */; };
 		18F5A88813B298BE00B3EF43 /* UILabel+CSSAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F5A88713B298BE00B3EF43 /* UILabel+CSSAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18F5A88A13B298D100B3EF43 /* UILabel+CSSAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F5A88913B298D100B3EF43 /* UILabel+CSSAdditions.m */; };
-		663DB00812661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 663DB00712661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		66E722D0129392DD007134B0 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E722CC129392DD007134B0 /* TTExtensionLoader.m */; };
 		66E722D3129392EB007134B0 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E722D1129392EB007134B0 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E036A2011B364670025E8EE /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E036A1411B364530025E8EE /* libThree20Network.a */; };
@@ -177,7 +176,6 @@
 		18F5A88713B298BE00B3EF43 /* UILabel+CSSAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+CSSAdditions.h"; path = "Headers/UILabel+CSSAdditions.h"; sourceTree = "<group>"; };
 		18F5A88913B298D100B3EF43 /* UILabel+CSSAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+CSSAdditions.m"; path = "Sources/UILabel+CSSAdditions.m"; sourceTree = "<group>"; };
 		66313D671267BFCF00C09C9F /* extThree20CSSStyle_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20CSSStyle_Prefix.pch; path = Headers/extThree20CSSStyle_Prefix.pch; sourceTree = "<group>"; };
-		663DB00712661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		66E722CC129392DD007134B0 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Sources/TTExtensionLoader.m; sourceTree = "<group>"; };
 		66E722D1129392EB007134B0 /* TTExtensionLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionLoader.h; path = Headers/TTExtensionLoader.h; sourceTree = "<group>"; };
 		6E036A0E11B364530025E8EE /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -312,14 +310,6 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		663DB00612661D6F00CF8CEA /* Xcode 3.2.4 Workaround */ = {
-			isa = PBXGroup;
-			children = (
-				663DB00712661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m */,
-			);
-			name = "Xcode 3.2.4 Workaround";
-			sourceTree = "<group>";
-		};
 		6E036A0F11B364530025E8EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,7 +432,6 @@
 			isa = PBXGroup;
 			children = (
 				6ED117E51183BE2A0096AEBF /* Resources */,
-				663DB00612661D6F00CF8CEA /* Xcode 3.2.4 Workaround */,
 				6E85152511B2E7B80071A4FD /* CssParserTests.m */,
 				6E036A7711B371150025E8EE /* CssStyleSheetTests.m */,
 				186AE91F13AA7C7E004D43FA /* CssRuleSetTests.m */,
@@ -722,7 +711,6 @@
 			files = (
 				6E036A7D11B371790025E8EE /* CssStyleSheetTests.m in Sources */,
 				6E85152611B2E7B80071A4FD /* CssParserTests.m in Sources */,
-				663DB00812661D6F00CF8CEA /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 				186AE92013AA7C7E004D43FA /* CssRuleSetTests.m in Sources */,
 				1892DC2713D61D81008DFAC5 /* TTShadowStyleAdditions.m in Sources */,
 				1892DC2813D61D81008DFAC5 /* TTTextStyleAdditions.m in Sources */,
