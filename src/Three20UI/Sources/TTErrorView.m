@@ -41,6 +41,18 @@ static const CGFloat kHPadding  = 10.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addReloadButton {
+  _reloadButton = [[TTButton buttonWithStyle:@"tableReloadButton:"] retain];
+  [_reloadButton setImage:@"bundle://Three20.bundle/images/reloadButton.png"
+                 forState:UIControlStateNormal];
+  [_reloadButton sizeToFit];
+  [self addSubview:_reloadButton];
+
+  [self layoutSubviews];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image {
 	self = [self init];
   if (self) {
@@ -75,13 +87,6 @@ static const CGFloat kHPadding  = 10.0f;
     _subtitleView.textAlignment = UITextAlignmentCenter;
     _subtitleView.numberOfLines = 0;
     [self addSubview:_subtitleView];
-
-    _reloadButton = [[TTButton buttonWithStyle:@"tableReloadButton:"] retain];
-    [_reloadButton setImage:@"bundle://Three20.bundle/images/reloadButton.png"
-                      forState:UIControlStateNormal];
-    [_reloadButton sizeToFit];
-    [self addSubview:_reloadButton];
-
   }
 
   return self;
@@ -148,7 +153,9 @@ static const CGFloat kHPadding  = 10.0f;
     top += _subtitleView.height + kVPadding3;
   }
 
-  _reloadButton.origin = CGPointMake(floor(self.width/2 - _reloadButton.width/2), top);
+  if (_reloadButton!=nil) {
+    _reloadButton.origin = CGPointMake(floor(self.width/2 - _reloadButton.width/2), top);
+  }
 }
 
 

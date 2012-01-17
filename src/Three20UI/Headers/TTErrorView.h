@@ -31,8 +31,13 @@
 
 
 /**
-  * creates an error view
-  */
+ * creates an error view
+ */
 - (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image;
+
+/**
+ * adds a reload button into the error view
+ */
+- (void)addReloadButton;
 
 @end
