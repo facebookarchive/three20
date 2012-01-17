@@ -66,8 +66,9 @@
     CGContextSaveGState(ctx);
 
     // Translate context upside-down to invert the clip-to-mask, which turns the mask upside down
-    CGContextTranslateCTM(ctx, 0, context.frame.size.height);
-    CGContextScaleCTM(ctx, 1.0, -1.0);
+    // Turning the mask upside down is no longer necessary. 
+    //CGContextTranslateCTM(ctx, 0, context.frame.size.height);
+    //CGContextScaleCTM(ctx, 1.0, -1.0);
 
     CGRect maskRect = CGRectMake(0, 0, _mask.size.width, _mask.size.height);
     CGContextClipToMask(ctx, maskRect, _mask.CGImage);
