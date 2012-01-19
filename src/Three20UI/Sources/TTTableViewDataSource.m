@@ -35,20 +35,9 @@
 #import "Three20UI/TTTableSettingsItem.h"
 
 // - Table Cells
-#import "Three20UI/TTTableMoreButtonCell.h"
-#import "Three20UI/TTTableSubtextItemCell.h"
-#import "Three20UI/TTTableRightCaptionItemCell.h"
-#import "Three20UI/TTTableCaptionItemCell.h"
-#import "Three20UI/TTTableSubtitleItemCell.h"
-#import "Three20UI/TTTableMessageItemCell.h"
-#import "Three20UI/TTTableImageItemCell.h"
-#import "Three20UI/TTStyledTextTableItemCell.h"
-#import "Three20UI/TTTableActivityItemCell.h"
 #import "Three20UI/TTTableControlCell.h"
-#import "Three20UI/TTTableTextItemCell.h"
 #import "Three20UI/TTStyledTextTableCell.h"
 #import "Three20UI/TTTableFlushViewCell.h"
-#import "Three20UI/TTTableSettingsItemCell.h"
 
 // Style
 #import "Three20Style/TTStyledText.h"
@@ -116,22 +105,29 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCell*)tableView:(UITableView *)tableView
-                    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   id object = [self tableView:tableView objectForRowAtIndexPath:indexPath];
 
-  Class cellClass = [self tableView:tableView cellClassForObject:object];
-  const char* className = class_getName(cellClass);
-  NSString* identifier = [[NSString alloc] initWithBytesNoCopy:(char*)className
-                                           length:strlen(className)
-                                           encoding:NSASCIIStringEncoding freeWhenDone:NO];
+  UITableViewCell* cell;
 
-  UITableViewCell* cell =
-    (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-  if (cell == nil) {
-    cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
+  if ([object isKindOfClass:[TTTableItem class]]) {
+    cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:[object cellIdentifier]];
+    if (cell == nil) {
+      cell = [[object newCell] autorelease];
+    }
+
+  } else {
+    // Non-TTTableItem table view items are handled as a special-case
+    Class cellClass = [self tableView:tableView cellClassForObject:object];
+    NSString* identifier = [NSString stringWithCString:class_getName(cellClass)
+                                              encoding:NSASCIIStringEncoding];
+
+    cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+      cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
                                reuseIdentifier:identifier] autorelease];
+    }
   }
-  [identifier release];
 
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
     [(TTTableViewCell*)cell setObject:object];
@@ -251,42 +247,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
   if ([object isKindOfClass:[TTTableItem class]]) {
-    if ([object isKindOfClass:[TTTableMoreButton class]]) {
-      return [TTTableMoreButtonCell class];
-
-    } else if ([object isKindOfClass:[TTTableSettingsItem class]]) {
-      return [TTTableSettingsItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableSubtextItem class]]) {
-      return [TTTableSubtextItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableRightCaptionItem class]]) {
-      return [TTTableRightCaptionItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableCaptionItem class]]) {
-      return [TTTableCaptionItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableSubtitleItem class]]) {
-      return [TTTableSubtitleItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableMessageItem class]]) {
-      return [TTTableMessageItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableImageItem class]]) {
-      return [TTTableImageItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableStyledTextItem class]]) {
-      return [TTStyledTextTableItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableActivityItem class]]) {
-      return [TTTableActivityItemCell class];
-
-    } else if ([object isKindOfClass:[TTTableControlItem class]]) {
-      return [TTTableControlCell class];
-
-    } else {
-      return [TTTableTextItemCell class];
-    }
+      return [object cellClass];
 
   } else if ([object isKindOfClass:[TTStyledText class]]) {
     return [TTStyledTextTableCell class];
