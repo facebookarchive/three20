@@ -826,6 +826,24 @@
   return [UIColor colorWithWhite:0.85 alpha:1];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (TTStyle*)tableReloadButton:(UIControlState)state {
+  if (state == UIControlStateHighlighted) {
+    return
+    [TTImageStyle styleWithImageURL:@"bundle://Three20.bundle/images/reloadButtonActive.png"
+                       defaultImage:nil
+                        contentMode:UIViewContentModeCenter
+                               size:CGSizeMake(50,50) next:nil];
+
+  } else {
+  return
+   [TTImageStyle styleWithImageURL:@"bundle://Three20.bundle/images/reloadButton.png"
+                      defaultImage:nil
+                       contentMode:UIViewContentModeCenter
+                              size:CGSizeMake(50,50) next:nil];
+  }
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
