@@ -110,23 +110,13 @@
 
   UITableViewCell* cell;
 
-  if ([object isKindOfClass:[TTTableItem class]]) {
-    cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:[object cellIdentifier]];
-    if (cell == nil) {
-      cell = [[object newCell] autorelease];
-    }
+  Class cellClass = [self tableView:tableView cellClassForObject:object];
+  NSString* identifier = NSStringFromClass(cellClass);
 
-  } else {
-    // Non-TTTableItem table view items are handled as a special-case
-    Class cellClass = [self tableView:tableView cellClassForObject:object];
-    NSString* identifier = [NSString stringWithCString:class_getName(cellClass)
-                                              encoding:NSASCIIStringEncoding];
-
-    cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-      cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
-                               reuseIdentifier:identifier] autorelease];
-    }
+  cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+  if (cell == nil) {
+    cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
+                             reuseIdentifier:identifier] autorelease];
   }
 
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
