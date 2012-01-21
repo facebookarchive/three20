@@ -3,17 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		662D819D126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = 662D819C126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */; };
 		664B29BF12848AA50008D569 /* TTErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 664B29BC12848AA50008D569 /* TTErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		664B29C312848AAD0008D569 /* TTErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 664B29C012848AAD0008D569 /* TTErrorCodes.m */; };
 		66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */; };
 		66F955BA1266647A00BEF6F0 /* both.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B71266647A00BEF6F0 /* both.png */; };
 		66F955BB1266647A00BEF6F0 /* both@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B81266647A00BEF6F0 /* both@2x.png */; };
 		66F955BC1266647A00BEF6F0 /* only@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F955B91266647A00BEF6F0 /* only@2x.png */; };
+		6DB66E8614B90568003581DF /* NetworkRequestTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D64C15814B7C9C100BF5E23 /* NetworkRequestTimeoutTests.m */; };
 		6EE735F8118499D300A35176 /* Three20Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F7118499D300A35176 /* Three20Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FA118499FB00A35176 /* TTGlobalNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EE735F9118499FB00A35176 /* TTGlobalNetwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EE735FC11849A0C00A35176 /* TTGlobalNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE735FB11849A0C00A35176 /* TTGlobalNetwork.m */; };
@@ -45,7 +45,6 @@
 		6EE736C811849FAB00A35176 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE7366C11849C5800A35176 /* libThree20Core.a */; };
 		6EE739CD1184BAF600A35176 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */; };
 		6EF96405118EFCF0003902E7 /* TTURLRequestQueueInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EF96404118EFCF0003902E7 /* TTURLRequestQueueInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E1F076A1130521F7007CA6F1 /* NetworkRequestTimeoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,13 +86,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		662D819C126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Xcode324iOS41TestSuiteWorkaround.m; path = ../UnitTests/Xcode324iOS41TestSuiteWorkaround.m; sourceTree = SOURCE_ROOT; };
 		664B29BC12848AA50008D569 /* TTErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTErrorCodes.h; path = Headers/TTErrorCodes.h; sourceTree = "<group>"; };
 		664B29C012848AAD0008D569 /* TTErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTErrorCodes.m; path = Sources/TTErrorCodes.m; sourceTree = "<group>"; };
 		66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkURLCacheTests.m; path = UnitTests/NetworkURLCacheTests.m; sourceTree = "<group>"; };
 		66F955B71266647A00BEF6F0 /* both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = both.png; path = UnitTests/Resources/both.png; sourceTree = "<group>"; };
 		66F955B81266647A00BEF6F0 /* both@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "both@2x.png"; path = "UnitTests/Resources/both@2x.png"; sourceTree = "<group>"; };
 		66F955B91266647A00BEF6F0 /* only@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "only@2x.png"; path = "UnitTests/Resources/only@2x.png"; sourceTree = "<group>"; };
+		6D64C15814B7C9C100BF5E23 /* NetworkRequestTimeoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkRequestTimeoutTests.m; path = UnitTests/NetworkRequestTimeoutTests.m; sourceTree = "<group>"; };
 		6E64541F1184BDF900F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6EE735F7118499D300A35176 /* Three20Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Three20Network.h; path = Headers/Three20Network.h; sourceTree = "<group>"; };
 		6EE735F9118499FB00A35176 /* TTGlobalNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTGlobalNetwork.h; path = Headers/TTGlobalNetwork.h; sourceTree = "<group>"; };
@@ -130,7 +129,6 @@
 		6EE7366611849C5800A35176 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6EF96404118EFCF0003902E7 /* TTURLRequestQueueInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLRequestQueueInternal.h; path = Headers/TTURLRequestQueueInternal.h; sourceTree = "<group>"; };
 		BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libThree20Network.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequestTimeoutTests.m; sourceTree = "<group>"; };
 		EB9E6C6210B6A8F800DE563C /* NetworkUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -177,23 +175,14 @@
 			name = CustomTemplate;
 			sourceTree = "<group>";
 		};
-		662D819B126304DE005851C2 /* Xcode 3.2.4 Workaround */ = {
-			isa = PBXGroup;
-			children = (
-				662D819C126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m */,
-			);
-			name = "Xcode 3.2.4 Workaround";
-			sourceTree = "<group>";
-		};
 		6E08B274118282F700DA1579 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				6EE7364611849AF200A35176 /* Resources */,
 				6E08B27D118282F700DA1579 /* Mocks */,
-				662D819B126304DE005851C2 /* Xcode 3.2.4 Workaround */,
 				6EE7363B11849AA100A35176 /* NetworkModelTests.m */,
+				6D64C15814B7C9C100BF5E23 /* NetworkRequestTimeoutTests.m */,
 				66F955AF126662E300BEF6F0 /* NetworkURLCacheTests.m */,
-				E1F076A0130521F7007CA6F1 /* NetworkRequestTimeoutTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -436,9 +425,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0420;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Three20Network" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -548,9 +538,8 @@
 			files = (
 				6EE7363A11849A9800A35176 /* MockModelDelegate.m in Sources */,
 				6EE7363C11849AA100A35176 /* NetworkModelTests.m in Sources */,
-				662D819D126304DE005851C2 /* Xcode324iOS41TestSuiteWorkaround.m in Sources */,
 				66F955B0126662E300BEF6F0 /* NetworkURLCacheTests.m in Sources */,
-				E1F076A1130521F7007CA6F1 /* NetworkRequestTimeoutTests.m in Sources */,
+				6DB66E8614B90568003581DF /* NetworkRequestTimeoutTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,7 +572,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Internal;
@@ -596,7 +584,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -608,12 +595,10 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Internal;
@@ -626,7 +611,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -637,8 +621,6 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
@@ -652,7 +634,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -665,7 +646,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -676,12 +656,10 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -692,10 +670,8 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};

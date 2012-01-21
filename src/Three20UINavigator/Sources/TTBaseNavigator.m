@@ -39,6 +39,7 @@
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
 #import "Three20Core/NSDateAdditions.h"
+#import "Three20Core/TTAvailability.h"
 
 static TTBaseNavigator* gNavigator = nil;
 
@@ -344,8 +345,12 @@ __attribute__((weak_import));
     TT_RELEASE_SAFELY(_popoverController);
   }
 
-  _popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
-  _popoverController.delegate = self;
+  _popoverController =  [[TTUIPopoverControllerClass() alloc] init];
+  if (_popoverController != nil) {
+    [_popoverController setContentViewController:controller];
+    [_popoverController setDelegate:self];
+  }
+
   if (nil != sourceButton) {
     [_popoverController presentPopoverFromBarButtonItem: sourceButton
                                permittedArrowDirections: UIPopoverArrowDirectionAny
@@ -678,7 +683,7 @@ __attribute__((weak_import));
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)viewControllerForURL: (NSString*)URL
                                     query: (NSDictionary*)query
-                                  pattern: (TTURLNavigatorPattern**)pattern {
+                                  pattern: (TTURLPattern**)pattern {
   NSRange fragmentRange = [URL rangeOfString:@"#" options:NSBackwardsSearch];
   if (fragmentRange.location != NSNotFound) {
     NSString* baseURL = [URL substringToIndex:fragmentRange.location];
@@ -693,7 +698,7 @@ __attribute__((weak_import));
       }
 
     } else {
-      id object = [_URLMap objectForURL:baseURL query:nil pattern:pattern];
+      id object = [_URLMap objectForURL:baseURL query:nil pattern:(TTURLNavigatorPattern**)pattern];
       if (object) {
         id result = [_URLMap dispatchURL:URL toTarget:object query:query];
         if ([result isKindOfClass:[UIViewController class]]) {
@@ -709,7 +714,7 @@ __attribute__((weak_import));
     }
   }
 
-  id object = [_URLMap objectForURL:URL query:query pattern:pattern];
+  id object = [_URLMap objectForURL:URL query:query pattern:(TTURLNavigatorPattern**)pattern];
   if (object) {
     UIViewController* controller = object;
     controller.originalNavigatorURL = URL;
