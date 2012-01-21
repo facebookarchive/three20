@@ -43,6 +43,11 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
+static const CGFloat kEmptyHeaderHeight = 0.0f;
+static const CGFloat kSectionHeaderHeight = 22.0f;
+static const CGFloat kGroupedSectionHeaderHeight = 36.0f;
+static const CGFloat kGroupedSectionFirstHeaderHeight = 36.0f + 10.0f;
+static const NSUInteger kFirstTableSection = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,6 +120,27 @@
   return nil;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+  if ([tableView.dataSource respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
+    NSString* title = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
+    if (![title length]) {
+      return kEmptyHeaderHeight;
+    }
+
+    if (tableView.style == UITableViewStylePlain) {
+      return kSectionHeaderHeight;
+
+    } else {
+      if (section == kFirstTableSection) {
+        return kGroupedSectionFirstHeaderHeight;
+      }
+      return kGroupedSectionHeaderHeight;
+    }
+
+  }
+  return kEmptyHeaderHeight;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /**

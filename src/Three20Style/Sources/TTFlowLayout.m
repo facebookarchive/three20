@@ -35,7 +35,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)layoutSubviews:(NSArray*)subviews forView:(UIView*)view {
   CGFloat x = _padding, y = _padding;
-  CGFloat maxX = 0, rowHeight = 0;
+  CGFloat maxX = 0.0f, rowHeight = 0.0f;
   CGFloat maxWidth = view.frame.size.width - _padding*2;
   for (UIView* subview in subviews) {
     if (x > _padding && x + subview.frame.size.width > maxWidth) {

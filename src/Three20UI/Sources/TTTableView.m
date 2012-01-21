@@ -32,10 +32,10 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static const CGFloat kShadowHeight        = 20.0;
-static const CGFloat kShadowInverseHeight = 10.0;
+static const CGFloat kShadowHeight        = 20.0f;
+static const CGFloat kShadowInverseHeight = 10.0f;
 
-static const CGFloat kCancelHighlightThreshold = 4;
+static const CGFloat kCancelHighlightThreshold = 4.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -258,7 +258,9 @@ static const CGFloat kCancelHighlightThreshold = 4;
 
   } else if (![[self.layer.sublayers objectAtIndex:0] isEqual:_originShadow]) {
     [_originShadow removeFromSuperlayer];
-    [self.layer insertSublayer:_originShadow atIndex:0];
+
+    _originShadow = [self shadowAsInverse:NO];
+   [self.layer insertSublayer:_originShadow atIndex:0];
   }
 
   [CATransaction begin];

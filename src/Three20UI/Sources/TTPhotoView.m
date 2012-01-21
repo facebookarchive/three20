@@ -185,7 +185,7 @@
   CGFloat height = self.height;
   CGFloat cx = self.bounds.origin.x + width/2;
   CGFloat cy = self.bounds.origin.y + height/2;
-  CGFloat marginRight = 0, marginLeft = 0, marginBottom = TTToolbarHeight();
+  CGFloat marginRight = 0.0f, marginLeft = 0.0f, marginBottom = TTToolbarHeight();
 
   // Since the photo view is constrained to the size of the image, but we want to position
   // the status views relative to the screen, offset by the difference
@@ -280,23 +280,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)loadPreview:(BOOL)fromNetwork {
-	BOOL keepTrying = YES;
-	// Trying to load the large image first causes scrolling to stall something
-	// fierce when using local images on older iPhones since the large image
-	// *always* starts to load in time for this first call to succeed. So we
-	// skip straight to attempting to load the small version unless we're loading
-	// off the network.
-	if (fromNetwork) {
-		keepTrying = [self loadVersion:TTPhotoVersionLarge fromNetwork:NO];
-	}
-	if (keepTrying) {
-    if (![self loadVersion:TTPhotoVersionSmall fromNetwork:NO]) {
-      if (![self loadVersion:TTPhotoVersionThumbnail fromNetwork:fromNetwork]) {
-        return NO;
+	if (![self loadVersion:TTPhotoVersionLarge fromNetwork:NO]) {
+      if (![self loadVersion:TTPhotoVersionSmall fromNetwork:NO]) {
+        if (![self loadVersion:TTPhotoVersionThumbnail fromNetwork:fromNetwork]) {
+          return NO;
+        }
       }
     }
-  }
-
   return YES;
 }
 

@@ -21,7 +21,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "extThree20JSON/JSON.h"
+#import "extThree20JSON/SBJson.h"
 
 /**
  * Unit tests for the Core JSON parser. These tests are a part of the comprehensive test suite

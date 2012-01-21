@@ -22,8 +22,8 @@
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
 
-static CGFloat kDefaultWidth = 140;
-static CGFloat kDefaultHeight = 105;
+static CGFloat kDefaultWidth = 140.0f;
+static CGFloat kDefaultHeight = 105.0f;
 
 static NSString* kEmbedHTML = @"\
 <html>\

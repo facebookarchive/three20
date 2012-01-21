@@ -135,7 +135,7 @@
   TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
   CGSize dotSize = [self.normalDotStyle addToSize:CGSizeZero context:context];
 
-  CGFloat margin = 0;
+  CGFloat margin = 0.0f;
   TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
   if (boxStyle) {
     margin = boxStyle.margin.right + boxStyle.margin.left;

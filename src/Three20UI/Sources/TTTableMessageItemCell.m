@@ -31,8 +31,8 @@
 #import "Three20Core/NSDateAdditions.h"
 
 static const NSInteger  kMessageTextLineCount       = 2;
-static const CGFloat    kDefaultMessageImageWidth   = 34;
-static const CGFloat    kDefaultMessageImageHeight  = 34;
+static const CGFloat    kDefaultMessageImageWidth   = 34.0f;
+static const CGFloat    kDefaultMessageImageHeight  = 34.0f;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,7 +112,7 @@ static const CGFloat    kDefaultMessageImageHeight  = 34;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  CGFloat left = 0;
+  CGFloat left = 0.0f;
   if (_imageView2) {
     _imageView2.frame = CGRectMake(kTableCellSmallMargin, kTableCellSmallMargin,
                                    kDefaultMessageImageWidth, kDefaultMessageImageHeight);

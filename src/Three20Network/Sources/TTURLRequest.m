@@ -29,7 +29,7 @@
 #import "Three20Core/NSStringAdditions.h"
 
 static NSString* kStringBoundary = @"3i2ndDfv2rTHiSisAbouNdArYfORhtTPEefj3q2f";
-const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
+const NSTimeInterval TTURLRequestUseQueueTimeout = -1.0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -107,7 +107,7 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
     _shouldHandleCookies = YES;
     _charsetForMultipart = NSUTF8StringEncoding;
     _multiPartForm = YES;
-    _timeoutInterval = TTURLRequestUseDefaultTimeout;
+    _timeoutInterval = TTURLRequestUseQueueTimeout;
   }
   return self;
 }
