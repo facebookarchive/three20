@@ -19,3 +19,4 @@ extensions/
 
 *.pyc
 Docs
+*.xcworkspace
