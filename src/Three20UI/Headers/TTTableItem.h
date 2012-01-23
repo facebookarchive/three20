@@ -17,10 +17,41 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class TTTableViewCell;
+
 @interface TTTableItem : NSObject <NSCoding> {
   id _userInfo;
 }
 
 @property (nonatomic, retain) id userInfo;
+
+/**
+ *
+ * Return class of TTTableViewCell associated with this TTTableViewItem class
+ *
+ * Override to associate a TTTableItem subclass with a TTTableViewCell sublcass
+ *
+ */
+- (Class)cellClass;
+
+/**
+ *
+ * Returns a unique identifier for dequeuing reusable TTTableViewCell's
+ *
+ * Defaults to the class name of the associated TTTableViewCell. Override for dynamic association.
+ *
+ */
+- (NSString*)cellIdentifier;
+
+/**
+ *
+ * Returns an newly-allocated TTTableViewCell appropriate for this TTTableItem. This method calls
+ * [TTableViewCell setObject:] before returning.
+ *
+ * Override for dynamic association between TTTableItems and TTTableViewCells based on a
+ * TTTableItem's properties
+ *
+ */
+- (TTTableViewCell*)newCell;
 
 @end
