@@ -41,6 +41,18 @@ static const NSInteger kLoadMaxRetries = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+@interface TTRequestLoader()
+
+- (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response;
+
+- (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data;
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
+
+@end
+
+// ----
+
 @implementation TTRequestLoader
 
 @synthesize urlPath             = _urlPath;
