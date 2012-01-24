@@ -35,20 +35,9 @@
 #import "Three20UI/TTTableSettingsItem.h"
 
 // - Table Cells
-#import "Three20UI/TTTableMoreButtonCell.h"
-#import "Three20UI/TTTableSubtextItemCell.h"
-#import "Three20UI/TTTableRightCaptionItemCell.h"
-#import "Three20UI/TTTableCaptionItemCell.h"
-#import "Three20UI/TTTableSubtitleItemCell.h"
-#import "Three20UI/TTTableMessageItemCell.h"
-#import "Three20UI/TTTableImageItemCell.h"
-#import "Three20UI/TTStyledTextTableItemCell.h"
-#import "Three20UI/TTTableActivityItemCell.h"
 #import "Three20UI/TTTableControlCell.h"
-#import "Three20UI/TTTableTextItemCell.h"
 #import "Three20UI/TTStyledTextTableCell.h"
 #import "Three20UI/TTTableFlushViewCell.h"
-#import "Three20UI/TTTableSettingsItemCell.h"
 
 // Style
 #import "Three20Style/TTStyledText.h"
@@ -116,29 +105,17 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCell*)tableView:(UITableView *)tableView
-                    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   id object = [self tableView:tableView objectForRowAtIndexPath:indexPath];
 
-  UITableViewCell* cell;
+  Class cellClass = [self tableView:tableView cellClassForObject:object];
+  NSString* identifier = NSStringFromClass(cellClass);
 
-  if ([object conformsToProtocol:@protocol(TTTableItemCellMapping)]) {
-    cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:[object cellIdentifier]];
-    if (cell == nil) {
-      cell = [[object newCell] autorelease];
-    }
-
-  } else {
-    // items that don't implement the TTTableItemCellMapping protocol
-    // are handled as a special-case
-    Class cellClass = [self tableView:tableView cellClassForObject:object];
-    NSString* identifier = [NSString stringWithCString:class_getName(cellClass)
-                                              encoding:NSASCIIStringEncoding];
-
-    cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-      cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
-                               reuseIdentifier:identifier] autorelease];
-    }
+  UITableViewCell* cell = (UITableViewCell*)[tableView
+                                             dequeueReusableCellWithIdentifier:identifier];
+  if (cell == nil) {
+    cell = [[[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
+                             reuseIdentifier:identifier] autorelease];
   }
 
   if ([cell isKindOfClass:[TTTableViewCell class]]) {
@@ -258,7 +235,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)tableView:(UITableView*)tableView cellClassForObject:(id)object {
-  if ([object conformsToProtocol:@protocol(TTTableItemCellMapping)]) {
+  if ([object isKindOfClass:[TTTableItem class]]) {
     return [object cellClass];
 
   } else if ([object isKindOfClass:[TTStyledText class]]) {

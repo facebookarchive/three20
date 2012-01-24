@@ -19,7 +19,12 @@
 
 @class TTTableViewCell;
 
-@protocol TTTableItemCellMapping <NSObject>
+@interface TTTableItem : NSObject <NSCoding> {
+  id _userInfo;
+}
+
+@property (nonatomic, retain) id userInfo;
+
 
 /**
  *
@@ -48,13 +53,5 @@
  *
  */
 - (TTTableViewCell*)newCell;
-
-@end
-
-@interface TTTableItem : NSObject <NSCoding, TTTableItemCellMapping> {
-  id _userInfo;
-}
-
-@property (nonatomic, retain) id userInfo;
 
 @end

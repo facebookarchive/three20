@@ -22,7 +22,6 @@
 // UI
 #import "Three20UI/TTTableViewCell.h"
 
-#import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,22 +59,18 @@
 - (void)encodeWithCoder:(NSCoder*)encoder {
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)cellClass {
-  NSString* error = @"Subclasses of TTTableItem need to overwrite cellClass\
- to return a proper TableCell to contruct";
-  NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyException
-                                                   reason:error
-                                                 userInfo:nil];
-  @throw exception;
   return [TTTableViewCell class];
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)cellIdentifier {
-  const char *className = class_getName([self cellClass]);
-  return [NSString stringWithCString:className encoding:NSASCIIStringEncoding];
+  return NSStringFromClass([self cellClass]);
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTTableViewCell*)newCell {
@@ -83,5 +78,6 @@
                                  reuseIdentifier:[self cellIdentifier]];
   return cell;
 }
+
 
 @end
