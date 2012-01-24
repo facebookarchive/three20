@@ -497,7 +497,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		6E645F091187AD0E00F08CB1 /* Protect Copied Headers */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -505,7 +505,7 @@
 			name = "Protect Copied Headers";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/bin/sh ../scripts/Protect.command";
 			shellScript = "";
 		};

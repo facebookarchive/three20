@@ -441,7 +441,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		668E63EA131A42F500ACE4AB /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -449,7 +449,7 @@
 			name = Lint;
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/usr/bin/env python ../scripts/lint";
 			shellScript = "";
 			showEnvVarsInLog = 0;

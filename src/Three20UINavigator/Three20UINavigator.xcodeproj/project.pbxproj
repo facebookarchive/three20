@@ -584,7 +584,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		668E661D131ADFEA00ACE4AB /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -592,14 +592,14 @@
 			name = Lint;
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/usr/bin/env python ../scripts/lint";
 			shellScript = "";
 			showEnvVarsInLog = 0;
 		};
 		6E645F461187B01F00F08CB1 /* Protect Copied Headers */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -607,7 +607,7 @@
 			name = "Protect Copied Headers";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/bin/sh ../scripts/Protect.command";
 			shellScript = "";
 		};
