@@ -467,6 +467,7 @@ static const CGFloat kIndexViewMargin = 4.0f;
 
 @synthesize rightBarButtonItem = _rightBarButtonItem;
 @synthesize leftBarButtonItem = _leftBarButtonItem;
+@synthesize searchTextField;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
@@ -477,12 +478,22 @@ static const CGFloat kIndexViewMargin = 4.0f;
         _backgroundNavBar = [[UINavigationBar alloc] init];
 
         _backgroundNavBar.items = [NSArray arrayWithObject:_backgroundNavItem];
-        
+
         _wasEditing = FALSE;
     }
 
     return self;
 
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (UITextField *)searchTextField {
+    for (UIView * v in self.subviews) {
+        if ([v isKindOfClass:[UITextField class]]) {
+            return (UITextField *) v;
+        }
+    }
+    return nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
