@@ -240,12 +240,20 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
     NSData* data = [_files objectAtIndex:i];
     NSString* mimeType = [_files objectAtIndex:i+1];
     NSString* fileName = [_files objectAtIndex:i+2];
-
+    NSString* fieldName = [_files objectAtIndex:i+3];
+      
     [body appendData:[beginLine dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:
+    if([fieldName length])  
+        [body appendData:[[NSString stringWithFormat:
                        @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",
-                       fileName, fileName]
+                       fileName, fieldName]
           dataUsingEncoding:_charsetForMultipart]];
+      else
+          [body appendData:[[NSString stringWithFormat:
+                             @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",
+                             fileName, fileName]
+                            dataUsingEncoding:_charsetForMultipart]];
+      
     [body appendData:[[NSString stringWithFormat:@"Content-Length: %d\r\n", data.length]
           dataUsingEncoding:_charsetForMultipart]];
     [body appendData:[[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType]
@@ -349,6 +357,18 @@ const NSTimeInterval TTURLRequestUseDefaultTimeout = -1.0;
   [_files addObject:data];
   [_files addObject:mimeType];
   [_files addObject:fileName];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)addFile:(NSData*)data mimeType:(NSString*)mimeType fileName:(NSString*)fileName fieldName:(NSString*)fieldName {
+    if (!_files) {
+        _files = [[NSMutableArray alloc] init];
+    }
+    
+    [_files addObject:data];
+    [_files addObject:mimeType];
+    [_files addObject:fileName];
+    [_files addObject:fieldName];
 }
 
 
