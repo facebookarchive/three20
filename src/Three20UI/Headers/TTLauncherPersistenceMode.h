@@ -16,6 +16,6 @@
 
 typedef enum {
   TTLauncherPersistenceModeNone,  // no persistence
-  TTLauncherPersistenceModeAll,   // persists all pages & buttons
+  TTLauncherPersistenceModeAll,   // persists all pages and buttons
 } TTLauncherPersistenceMode;
 

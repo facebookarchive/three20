@@ -35,6 +35,11 @@
 #import "Three20Core/TTDebug.h"
 #import "Three20Core/TTDebugFlags.h"
 
+@interface TTRequestLoader (Private)
+- (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response ;
+- (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data ;
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection ;
+@end
 static const NSInteger kLoadMaxRetries = 2;
 
 
@@ -100,13 +105,15 @@ static const NSInteger kLoadMaxRetries = 2;
     // Strictly speaking, to be really conformant need to interpret %xx hex encoded entities.
     // The [NSString dataUsingEncoding] doesn't do that correctly, but most documents don't use that.
     // Skip for now.
-	_responseData = [[[dataSplit objectAtIndex:1] dataUsingEncoding:NSASCIIStringEncoding] retain];
+	_responseData = [[NSMutableData dataWithData:[[dataSplit objectAtIndex:1] dataUsingEncoding:NSASCIIStringEncoding]] retain];
   } else {
     _responseData = [[NSData dataWithBase64EncodedString:[dataSplit objectAtIndex:1]] retain];
   }
 
-  [_queue performSelector:@selector(loader:didLoadResponse:data:) withObject:self
-    withObject:_response withObject:_responseData];
+  [_queue performSelector:@selector(loader:didLoadResponse:data:) 
+               withObject:self
+               withObject:_response 
+               withObject:_responseData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +126,7 @@ static const NSInteger kLoadMaxRetries = 2;
   }
   TTNetworkRequestStarted();
 
-  TTURLRequest* request = _requests.count == 1 ? [_requests objectAtIndex:0] : nil;
+  TTURLRequest* request = _requests.count >= 1 ? [_requests objectAtIndex:0] : nil;
   
   // there are situations where urlPath is somehow nil (therefore crashing in
   // createNSURLRequest:URL:, even if we checked for non-blank values before 
@@ -187,7 +194,7 @@ static const NSInteger kLoadMaxRetries = 2;
   // correctly, this would be the place to start tracing for errors.
   TTNetworkRequestStarted();
 
-  TTURLRequest* request = _requests.count == 1 ? [_requests objectAtIndex:0] : nil;
+  TTURLRequest* request = _requests.count >= 1 ? [_requests objectAtIndex:0] : nil;
   NSURLRequest* URLRequest = [_queue createNSURLRequest:request URL:URL];
 
   NSHTTPURLResponse* response = nil;
@@ -249,7 +256,7 @@ static const NSInteger kLoadMaxRetries = 2;
   for (TTURLRequest* request in _requests) {
     NSError* error = nil;
     // We need to accept valid HTTP status codes, not only 200.
-    if (!response
+    if (!response || ![response respondsToSelector:@selector(statusCode)]
         || (response.statusCode >= 200 && response.statusCode < 300)
         || response.statusCode == 304) {
       error = [request.response request:request processResponse:response data:data];
@@ -334,28 +341,32 @@ static const NSInteger kLoadMaxRetries = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response {
   _response = [response retain];
-  NSDictionary* headers = [response allHeaderFields];
-  int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
+  if ([response respondsToSelector:@selector(allHeaderFields)]){
+	  NSDictionary* headers = [response allHeaderFields];
+	  int contentLength = [[headers objectForKey:@"Content-Length"] intValue];
 
-  // If you hit this assertion it's because a massive file is about to be downloaded.
-  // If you're sure you want to do this, add the following line to your app delegate startup
-  // method. Setting the max content length to zero allows anything to go through. If you just
-  // want to raise the limit, set it to any positive byte size.
-  // [[TTURLRequestQueue mainQueue] setMaxContentLength:0]
-  TTDASSERT(0 == _queue.maxContentLength || contentLength <=_queue.maxContentLength);
+	  // If you hit this assertion it's because a massive file is about to be downloaded.
+	  // If you're sure you want to do this, add the following line to your app delegate startup
+	  // method. Setting the max content length to zero allows anything to go through. If you just
+	  // want to raise the limit, set it to any positive byte size.
+	  // [[TTURLRequestQueue mainQueue] setMaxContentLength:0]
+	  TTDASSERT(0 == _queue.maxContentLength || contentLength <=_queue.maxContentLength);
 
-  if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
-    TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"MAX CONTENT LENGTH EXCEEDED (%d) %@",
-                    contentLength, _urlPath);
-    [self cancel];
-  }
+	  if (contentLength > _queue.maxContentLength && _queue.maxContentLength) {
+		TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"MAX CONTENT LENGTH EXCEEDED (%d) %@",
+						contentLength, _urlPath);
+		[self cancel];
+	  }
 
-  _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
-
+	  _responseData = [[NSMutableData alloc] initWithCapacity:contentLength];
+    
     for (TTURLRequest* request in [[_requests copy] autorelease]) {
-        request.totalContentLength = contentLength;
+      request.totalContentLength = contentLength;
     }
-
+    
+  }else {
+	  _responseData = [[NSMutableData alloc] init];
+  }
 }
 
 
@@ -389,8 +400,9 @@ static const NSInteger kLoadMaxRetries = 2;
   TTNetworkRequestStopped();
 
   TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Response status code: %d", _response.statusCode);
-
-  if (_response.statusCode == 304) {
+  if (![_response respondsToSelector:@selector(statusCode)]){
+	[_queue loader:self didLoadResponse:_response data:_responseData];
+  } else if (_response.statusCode == 304) {
     [_queue loader:self didLoadUnmodifiedResponse:_response];
   } else {
     [_queue loader:self didLoadResponse:_response data:_responseData];

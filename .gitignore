@@ -5,7 +5,6 @@ Products
 *.pbxuser
 *.perspectivev3
 *.mode1v3
-*.xcworkspace
 xcuserdata
 .DS_Store
 config
@@ -19,3 +18,8 @@ src/Three20UI/*.h
 extensions/
 
 *.pyc
+Docs
+
+# we don't support xcworkspaces for single projects. Use Three20.xcworkspace instead
+*.xcworkspace
+!Three20.xcworkspace

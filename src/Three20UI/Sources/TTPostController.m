@@ -478,7 +478,7 @@ static const CGFloat kMarginY = 6.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UITextView*)textView {
-  self.view;
+  [self view];
   return _textView;
 }
 
@@ -486,7 +486,7 @@ static const CGFloat kMarginY = 6.0f;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UINavigationBar*)navigatorBar {
   if (!_navigationBar) {
-    self.view;
+    [self view];
   }
   return _navigationBar;
 }
