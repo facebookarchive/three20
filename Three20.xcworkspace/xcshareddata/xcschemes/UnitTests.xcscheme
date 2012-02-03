@@ -140,7 +140,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EB9E6C6110B6A8F800DE563C"
-               BuildableName = "extJSONUnitTests.octest"
+               BuildableName = "extXMLUnitTests.octest"
                BlueprintName = "extThree20XMLUnitTests"
                ReferencedContainer = "container:src/extThree20XML/extThree20XML.xcodeproj">
             </BuildableReference>
@@ -248,7 +248,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EB9E6C6110B6A8F800DE563C"
-               BuildableName = "extJSONUnitTests.octest"
+               BuildableName = "extXMLUnitTests.octest"
                BlueprintName = "extThree20XMLUnitTests"
                ReferencedContainer = "container:src/extThree20XML/extThree20XML.xcodeproj">
             </BuildableReference>
