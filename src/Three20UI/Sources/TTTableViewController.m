@@ -449,9 +449,10 @@
   if (show) {
     [self updateTableDelegate];
     _tableView.dataSource = _dataSource;
+    _tableView.hidden = NO;
 
   } else {
-    _tableView.dataSource = nil;
+    _tableView.hidden = YES;
   }
   [_tableView reloadData];
 }
@@ -504,8 +505,7 @@
       } else {
         self.errorView = nil;
       }
-      _tableView.dataSource = nil;
-      [_tableView reloadData];
+      _tableView.hidden = YES;
     }
 
   } else {
@@ -530,8 +530,7 @@
     } else {
       self.emptyView = nil;
     }
-    _tableView.dataSource = nil;
-    [_tableView reloadData];
+    _tableView.hidden = YES;
 
   } else {
     self.emptyView = nil;
@@ -548,33 +547,31 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didUpdateObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
-    if (_flags.isShowingModel) {
-      if ([_dataSource respondsToSelector:@selector(tableView:willUpdateObject:atIndexPath:)]) {
-        NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willUpdateObject:object
-                                               atIndexPath:indexPath];
-        if (newIndexPath) {
-          if (newIndexPath.length == 1) {
-            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS,
-                            @"UPDATING SECTION AT %@", newIndexPath);
-            NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
-            [_tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                      withRowAnimation:UITableViewRowAnimationTop];
+    if ([_dataSource respondsToSelector:@selector(tableView:willUpdateObject:atIndexPath:)]) {
+      NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willUpdateObject:object
+                                             atIndexPath:indexPath];
+      if (newIndexPath) {
+        if (newIndexPath.length == 1) {
+          TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS,
+                          @"UPDATING SECTION AT %@", newIndexPath);
+          NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
+          [_tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                    withRowAnimation:UITableViewRowAnimationTop];
 
-          } else if (newIndexPath.length == 2) {
-            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"UPDATING ROW AT %@", newIndexPath);
-            [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                              withRowAnimation:UITableViewRowAnimationTop];
-          }
-          [self invalidateView];
-
-        } else {
-          [_tableView reloadData];
+        } else if (newIndexPath.length == 2) {
+          TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"UPDATING ROW AT %@", newIndexPath);
+          [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                            withRowAnimation:UITableViewRowAnimationTop];
         }
-      }
+        [self invalidateView];
 
-    } else {
-      [self refresh];
+      } else {
+        [_tableView reloadData];
+      }
     }
+
+  } else {
+    [self refresh];
   }
 }
 
@@ -582,33 +579,31 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didInsertObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
-    if (_flags.isShowingModel) {
-      if ([_dataSource respondsToSelector:@selector(tableView:willInsertObject:atIndexPath:)]) {
-        NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willInsertObject:object
-                                               atIndexPath:indexPath];
-        if (newIndexPath) {
-          if (newIndexPath.length == 1) {
-            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS,
-                            @"INSERTING SECTION AT %@", newIndexPath);
-            NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
-            [_tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                      withRowAnimation:UITableViewRowAnimationTop];
+    if ([_dataSource respondsToSelector:@selector(tableView:willInsertObject:atIndexPath:)]) {
+      NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willInsertObject:object
+                                             atIndexPath:indexPath];
+      if (newIndexPath) {
+        if (newIndexPath.length == 1) {
+          TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS,
+                          @"INSERTING SECTION AT %@", newIndexPath);
+          NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
+          [_tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                    withRowAnimation:UITableViewRowAnimationTop];
 
-          } else if (newIndexPath.length == 2) {
-            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"INSERTING ROW AT %@", newIndexPath);
-            [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                              withRowAnimation:UITableViewRowAnimationTop];
-          }
-          [self invalidateView];
-
-        } else {
-          [_tableView reloadData];
+        } else if (newIndexPath.length == 2) {
+          TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"INSERTING ROW AT %@", newIndexPath);
+          [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                            withRowAnimation:UITableViewRowAnimationTop];
         }
-      }
+        [self invalidateView];
 
-    } else {
-      [self refresh];
+      } else {
+        [_tableView reloadData];
+      }
     }
+
+  } else {
+    [self refresh];
   }
 }
 
@@ -616,33 +611,31 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)model:(id<TTModel>)model didDeleteObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
   if (model == _model) {
-    if (_flags.isShowingModel) {
-      if ([_dataSource respondsToSelector:@selector(tableView:willRemoveObject:atIndexPath:)]) {
-        NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willRemoveObject:object
-                                               atIndexPath:indexPath];
-        if (newIndexPath) {
-          if (newIndexPath.length == 1) {
-            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS,
-                            @"DELETING SECTION AT %@", newIndexPath);
-            NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
-            [_tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                      withRowAnimation:UITableViewRowAnimationLeft];
+    if ([_dataSource respondsToSelector:@selector(tableView:willRemoveObject:atIndexPath:)]) {
+      NSIndexPath* newIndexPath = [_dataSource tableView:_tableView willRemoveObject:object
+                                             atIndexPath:indexPath];
+      if (newIndexPath) {
+        if (newIndexPath.length == 1) {
+          TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS,
+                          @"DELETING SECTION AT %@", newIndexPath);
+          NSInteger sectionIndex = [newIndexPath indexAtPosition:0];
+          [_tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                    withRowAnimation:UITableViewRowAnimationLeft];
 
-          } else if (newIndexPath.length == 2) {
-            TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"DELETING ROW AT %@", newIndexPath);
-            [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                              withRowAnimation:UITableViewRowAnimationLeft];
-          }
-          [self invalidateView];
-
-        } else {
-          [_tableView reloadData];
+        } else if (newIndexPath.length == 2) {
+          TTDCONDITIONLOG(TTDFLAG_TABLEVIEWMODIFICATIONS, @"DELETING ROW AT %@", newIndexPath);
+          [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                            withRowAnimation:UITableViewRowAnimationLeft];
         }
-      }
+        [self invalidateView];
 
-    } else {
-      [self refresh];
+      } else {
+        [_tableView reloadData];
+      }
     }
+
+  } else {
+    [self refresh];
   }
 }
 
@@ -775,7 +768,7 @@
   if (dataSource != _dataSource) {
     [_dataSource release];
     _dataSource = [dataSource retain];
-    _tableView.dataSource = nil;
+    _tableView.dataSource = _dataSource;
 
     self.model = dataSource.model;
   }
