@@ -57,22 +57,17 @@ static const CGFloat kUITextViewVerticalPadding = 6.0f;
 @synthesize showsExtraLine    = _showsExtraLine;
 @synthesize delegate          = _delegate;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
+    [super initialize];
     _internal = [[TTTextEditorInternal alloc] initWithTextEditor:self];
     _autoresizesToText = YES;
 
     _textField = [[UITextField alloc] init];
     _textField.delegate = _internal;
     [self addSubview:_textField];
-  }
-
-  return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

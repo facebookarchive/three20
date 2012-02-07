@@ -54,18 +54,12 @@
 @synthesize hidesExtras   = _hidesExtras;
 @synthesize hidesCaption  = _hidesCaption;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
     _photoVersion = TTPhotoVersionNone;
     self.clipsToBounds = NO;
-  }
-
-  return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

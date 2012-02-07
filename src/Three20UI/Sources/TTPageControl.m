@@ -39,15 +39,31 @@
 @synthesize dotStyle            = _dotStyle;
 @synthesize hidesForSinglePage  = _hidesForSinglePage;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)initialize
+{
+    self.backgroundColor = [UIColor clearColor];
+    self.dotStyle = @"pageDot:";
+    self.hidesForSinglePage = NO;
+    self.contentMode = UIViewContentModeRedraw;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+
+    return self;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
   if (self) {
-    self.backgroundColor = [UIColor clearColor];
-    self.dotStyle = @"pageDot:";
-    self.hidesForSinglePage = NO;
-    self.contentMode = UIViewContentModeRedraw;
+    [self initialize];
   }
 
   return self;

@@ -68,11 +68,9 @@ static const CGFloat kFrameDuration = 1.0/40.0f;
 
 @synthesize centerPageAnimationDuration = _centerPageAnimationDuration;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
     self.clipsToBounds = YES;
     self.multipleTouchEnabled = YES;
     self.userInteractionEnabled = YES;
@@ -91,17 +89,34 @@ static const CGFloat kFrameDuration = 1.0/40.0f;
     _centerPageAnimationDuration = TT_TRANSITION_DURATION;
 
     for (NSInteger i = 0; i < _maxPages; ++i) {
-      [_pages addObject:[NSNull null]];
+        [_pages addObject:[NSNull null]];
     }
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-      selector:@selector(deviceOrientationDidChange:)
-      name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+                                             selector:@selector(deviceOrientationDidChange:)
+                                                 name:@"UIDeviceOrientationDidChangeNotification"
+                                               object:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+
+    return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+  if (self) {
+      [self initialize];
   }
 
   return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

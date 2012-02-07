@@ -44,21 +44,16 @@
 
 @synthesize delegate = _delegate;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame  {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
+    [super initialize];
     _selectedTabIndex = NSIntegerMax;
     _tabViews = [[NSMutableArray alloc] init];
 
     self.style = TTSTYLE(tabBar);
     self.tabStyle = @"tab:";
-  }
-
-  return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

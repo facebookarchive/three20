@@ -39,19 +39,34 @@
 
 @synthesize URLAction = _URLAction;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)initialize
+{
+    self.userInteractionEnabled = NO;
+    [self addTarget: self
+             action: @selector(linkTouched) forControlEvents:UIControlEventTouchUpInside];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+
+    return self;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
   if (self) {
-    self.userInteractionEnabled = NO;
-    [self addTarget: self
-             action: @selector(linkTouched) forControlEvents:UIControlEventTouchUpInside];
+    [self initialize];
   }
 
   return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

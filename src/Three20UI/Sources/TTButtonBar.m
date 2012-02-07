@@ -36,18 +36,13 @@ static CGFloat kButtonMaxWidth  = 120.0f;
 @synthesize buttons = _buttons;
 @synthesize buttonStyle = _buttonStyle;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
+    [super initialize];
     _buttons = [[NSMutableArray alloc] init];
-
     self.buttonStyle = @"toolbarButton:";
-  }
-  return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

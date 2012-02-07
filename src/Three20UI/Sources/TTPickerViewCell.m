@@ -36,11 +36,10 @@ static const CGFloat kMaxWidth = 250.0f;
 @synthesize object    = _object;
 @synthesize selected  = _selected;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
+    [super initialize];
     _labelView = [[UILabel alloc] init];
     _labelView.backgroundColor = [UIColor clearColor];
     _labelView.textColor = TTSTYLEVAR(textColor);
@@ -49,11 +48,7 @@ static const CGFloat kMaxWidth = 250.0f;
     [self addSubview:_labelView];
 
     self.backgroundColor = [UIColor clearColor];
-  }
-
-  return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

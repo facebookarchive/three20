@@ -33,12 +33,28 @@
 @synthesize style   = _style;
 @synthesize layout  = _layout;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)initialize
+{
+    self.contentMode = UIViewContentModeRedraw;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+
+    return self;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
   if (self) {
-    self.contentMode = UIViewContentModeRedraw;
+      [self initialize];
   }
 
   return self;

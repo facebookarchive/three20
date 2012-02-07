@@ -38,9 +38,9 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame  {
-	self = [super initWithFrame:frame];
-  if (self) {
+- (void)initialize
+{
+    [super initialize];
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.scrollEnabled = YES;
     _scrollView.scrollsToTop = NO;
@@ -53,11 +53,7 @@
     self.style = TTSTYLE(tabStrip);
     self.tabStyle = @"tabRound:";
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-  }
-
-  return self;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {

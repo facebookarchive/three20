@@ -48,91 +48,49 @@ static CGFloat kProgressMargin  = 6.0f;
 @synthesize progress          = _progress;
 @synthesize smoothesProgress  = _smoothesProgress;
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text {
-	self = [super initWithFrame:frame];
-  if (self) {
-    _style = style;
+- (void)initialize
+{
     _progress = 0;
     _smoothesProgress = NO;
     _smoothTimer =nil;
     _progressView = nil;
-
     _bezelView = [[TTView alloc] init];
-    if (_style == TTActivityLabelStyleBlackBezel) {
-      _bezelView.backgroundColor = [UIColor clearColor];
-      _bezelView.style = TTSTYLE(blackBezel);
-      self.backgroundColor = [UIColor clearColor];
-
-    } else if (_style == TTActivityLabelStyleWhiteBezel) {
-      _bezelView.backgroundColor = [UIColor clearColor];
-      _bezelView.style = TTSTYLE(whiteBezel);
-      self.backgroundColor = [UIColor clearColor];
-
-    } else if (_style == TTActivityLabelStyleWhiteBox) {
-      _bezelView.backgroundColor = [UIColor clearColor];
-      self.backgroundColor = [UIColor whiteColor];
-
-    } else if (_style == TTActivityLabelStyleBlackBox) {
-      _bezelView.backgroundColor = [UIColor clearColor];
-      self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
-
-    } else if (_style == TTActivityLabelStyleBlackBanner) {
-      _bezelView.backgroundColor = [UIColor clearColor];
-      _bezelView.style = TTSTYLE(blackBanner);
-      self.backgroundColor = [UIColor clearColor];
-
-    } else {
-      _bezelView.backgroundColor = [UIColor clearColor];
-      self.backgroundColor = [UIColor clearColor];
-    }
 
     self.autoresizingMask =
-      UIViewAutoresizingFlexibleWidth |
-      UIViewAutoresizingFlexibleHeight;
+    UIViewAutoresizingFlexibleWidth |
+    UIViewAutoresizingFlexibleHeight;
 
     _label = [[UILabel alloc] init];
-    _label.text = text;
+
     _label.backgroundColor = [UIColor clearColor];
     _label.lineBreakMode = UILineBreakModeTailTruncation;
-
-    if (_style == TTActivityLabelStyleWhite) {
-      _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-                                                            UIActivityIndicatorViewStyleWhite];
-      _label.font = TTSTYLEVAR(activityLabelFont);
-      _label.textColor = [UIColor whiteColor];
-
-    } else if (_style == TTActivityLabelStyleGray
-               || _style == TTActivityLabelStyleWhiteBox
-               || _style == TTActivityLabelStyleWhiteBezel) {
-      _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-                                                            UIActivityIndicatorViewStyleGray];
-      _label.font = TTSTYLEVAR(activityLabelFont);
-      _label.textColor = TTSTYLEVAR(tableActivityTextColor);
-
-    } else if (_style == TTActivityLabelStyleBlackBezel || _style == TTActivityLabelStyleBlackBox) {
-      _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-                                                            UIActivityIndicatorViewStyleWhiteLarge];
-      _activityIndicator.frame = CGRectMake(0, 0, 24, 24);
-      _label.font = TTSTYLEVAR(activityLabelFont);
-      _label.textColor = [UIColor whiteColor];
-      _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
-      _label.shadowOffset = CGSizeMake(1, 1);
-
-    } else if (_style == TTActivityLabelStyleBlackBanner) {
-      _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-                                                            UIActivityIndicatorViewStyleWhite];
-      _label.font = TTSTYLEVAR(activityBannerFont);
-      _label.textColor = [UIColor whiteColor];
-      _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
-      _label.shadowOffset = CGSizeMake(1, 1);
-    }
 
     [self addSubview:_bezelView];
     [_bezelView addSubview:_activityIndicator];
     [_bezelView addSubview:_label];
     [_activityIndicator startAnimating];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ((self = [super initWithCoder:aDecoder]))
+    {
+        [self initialize];
+        self.style = TTActivityLabelStyleWhiteBox;
+    }
+    return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithFrame:(CGRect)frame style:(TTActivityLabelStyle)style text:(NSString*)text {
+	self = [super initWithFrame:frame];
+  if (self) {
+
+      [self initialize];
+      self.style = style;
+      _label.text = text;
   }
   return self;
 }
@@ -360,5 +318,69 @@ static CGFloat kProgressMargin  = 6.0f;
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setStyle:(TTActivityLabelStyle)style
+{
+    _style = style;
+    if (_style == TTActivityLabelStyleBlackBezel) {
+        _bezelView.backgroundColor = [UIColor clearColor];
+        _bezelView.style = TTSTYLE(blackBezel);
+        self.backgroundColor = [UIColor clearColor];
+
+    } else if (_style == TTActivityLabelStyleWhiteBezel) {
+        _bezelView.backgroundColor = [UIColor clearColor];
+        _bezelView.style = TTSTYLE(whiteBezel);
+        self.backgroundColor = [UIColor clearColor];
+
+    } else if (_style == TTActivityLabelStyleWhiteBox) {
+        _bezelView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
+
+    } else if (_style == TTActivityLabelStyleBlackBox) {
+        _bezelView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+
+    } else if (_style == TTActivityLabelStyleBlackBanner) {
+        _bezelView.backgroundColor = [UIColor clearColor];
+        _bezelView.style = TTSTYLE(blackBanner);
+        self.backgroundColor = [UIColor clearColor];
+
+    } else {
+        _bezelView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
+    }
+
+    if (_style == TTActivityLabelStyleWhite) {
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+                              UIActivityIndicatorViewStyleWhite];
+        _label.font = TTSTYLEVAR(activityLabelFont);
+        _label.textColor = [UIColor whiteColor];
+
+    } else if (_style == TTActivityLabelStyleGray
+               || _style == TTActivityLabelStyleWhiteBox
+               || _style == TTActivityLabelStyleWhiteBezel) {
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+                              UIActivityIndicatorViewStyleGray];
+        _label.font = TTSTYLEVAR(activityLabelFont);
+        _label.textColor = TTSTYLEVAR(tableActivityTextColor);
+
+    } else if (_style == TTActivityLabelStyleBlackBezel ||_style == TTActivityLabelStyleBlackBox) {
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+                              UIActivityIndicatorViewStyleWhiteLarge];
+        _activityIndicator.frame = CGRectMake(0, 0, 24, 24);
+        _label.font = TTSTYLEVAR(activityLabelFont);
+        _label.textColor = [UIColor whiteColor];
+        _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
+        _label.shadowOffset = CGSizeMake(1, 1);
+
+    } else if (_style == TTActivityLabelStyleBlackBanner) {
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+                              UIActivityIndicatorViewStyleWhite];
+        _label.font = TTSTYLEVAR(activityBannerFont);
+        _label.textColor = [UIColor whiteColor];
+        _label.shadowColor = [UIColor colorWithWhite:0 alpha:0.3];
+        _label.shadowOffset = CGSizeMake(1, 1);
+    }
+}
 
 @end
