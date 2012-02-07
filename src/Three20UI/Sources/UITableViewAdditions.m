@@ -24,6 +24,7 @@
 
 // UICommon
 #import "Three20UICommon/UIWindowAdditions.h"
+#import "Three20UICommon/TTGlobalUICommon.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +54,7 @@ TT_FIX_CATEGORY_BUG(UITableViewAdditions)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tableCellMargin {
   if (self.style == UITableViewStyleGrouped) {
-      if (([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)) {
+      if (TTIsPad()) {
           return 45.0;
       }
       else {

@@ -6,13 +6,13 @@
 
 @implementation DownloadProgressTestController
 
-static const NSString *k1MBDownloadUrl = @"http://cachefly.cachefly.net/1mb.test";
-static const NSString *k5MBDownloadUrl = @"http://cachefly.cachefly.net/5mb.test";
-static const NSString *k10MBDownloadUrl = @"http://cachefly.cachefly.net/10mb.test";
+static NSString* const k1MBDownloadUrl = @"http://cachefly.cachefly.net/1mb.test";
+static NSString* const k5MBDownloadUrl = @"http://cachefly.cachefly.net/5mb.test";
+static NSString* const k10MBDownloadUrl = @"http://cachefly.cachefly.net/10mb.test";
 
-static const NSString *k1MBDownloadTitle = @"Download 1MB File";
-static const NSString *k5MBDownloadTitle = @"Download 5MB File";
-static const NSString *k10MBDownloadTitle = @"Download 10MB File";
+static NSString* const k1MBDownloadTitle = @"Download 1MB File";
+static NSString* const k5MBDownloadTitle = @"Download 5MB File";
+static NSString* const k10MBDownloadTitle = @"Download 10MB File";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // initiation
 
@@ -67,9 +67,9 @@ static const NSString *k10MBDownloadTitle = @"Download 10MB File";
   [self.view addSubview: _activityLabel];
   
   NSArray *buttons = [NSArray arrayWithObjects: 
-                      [TTButton buttonWithStyle:@"toolbarRoundButton:" title:[k1MBDownloadTitle copy]],
-                      [TTButton buttonWithStyle:@"toolbarRoundButton:" title:[k5MBDownloadTitle copy]],
-                      [TTButton buttonWithStyle:@"toolbarRoundButton:" title:[k10MBDownloadTitle copy]],
+                      [TTButton buttonWithStyle:@"toolbarRoundButton:" title:k1MBDownloadTitle],
+                      [TTButton buttonWithStyle:@"toolbarRoundButton:" title:k5MBDownloadTitle],
+                      [TTButton buttonWithStyle:@"toolbarRoundButton:" title:k10MBDownloadTitle],
                       nil];
   for (TTButton* button in buttons) {
     [button setFont: [UIFont systemFontOfSize: 16.0f]];
@@ -96,14 +96,14 @@ static const NSString *k10MBDownloadTitle = @"Download 10MB File";
 // public
 
 - (void)downloadButtonAction:(TTButton*)button {
-    if ([[button titleForState:UIControlStateNormal] isEqualToString: [k1MBDownloadTitle copy]]) {
-      [self loadWithUrl: [k1MBDownloadUrl copy]];
+    if ([[button titleForState:UIControlStateNormal] isEqualToString:k1MBDownloadTitle]) {
+      [self loadWithUrl:k1MBDownloadUrl];
     }
-    else if ([[button titleForState:UIControlStateNormal] isEqualToString: [k5MBDownloadTitle copy]]) {
-      [self loadWithUrl: [k5MBDownloadUrl copy]];
+    else if ([[button titleForState:UIControlStateNormal] isEqualToString: k5MBDownloadTitle]) {
+      [self loadWithUrl:k5MBDownloadUrl];
     }
-    else if ([[button titleForState:UIControlStateNormal] isEqualToString: [k10MBDownloadTitle copy]]) {
-      [self loadWithUrl: [k10MBDownloadUrl copy]];
+    else if ([[button titleForState:UIControlStateNormal] isEqualToString: k10MBDownloadTitle]) {
+      [self loadWithUrl: k10MBDownloadUrl];
     }
 }
 

@@ -57,7 +57,7 @@ static const NSTimeInterval kTimeout = 300.0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)testTTURLRequest_timeoutIntervalAccess {
   STAssertEqualsWithAccuracy([[[[TTURLRequest alloc] init] autorelease] timeoutInterval],
-                 (NSTimeInterval)TTURLRequestUseDefaultTimeout,
+                 (NSTimeInterval)TTURLRequestUseQueueTimeout,
                              0.1,
                  @"default timeout should be set on initialization");
   
@@ -122,6 +122,19 @@ static const NSTimeInterval kTimeout = 300.0;
   
   STAssertNotNil(urlRequest,@"request queue didn't return an NSURLRequest");
   STAssertEqualsWithAccuracy([urlRequest timeoutInterval],48.5,0.1,@"wrong timeoutInterval set");
+}
+
+- (void)testTTURLRequestQueue_useDefaultTimeoutForNilRequest_gh680 {
+  TTURLRequestQueue* queue = [[TTURLRequestQueue alloc] init];
+
+  NSURL* url = [NSURL URLWithString:@"http://three20.info"];
+
+  NSURLRequest* urlRequest = nil;
+
+  urlRequest = [queue createNSURLRequest:nil URL:url];
+
+  STAssertNotNil(urlRequest,@"request queue didn't return an NSURLRequest");
+  STAssertEqualsWithAccuracy([urlRequest timeoutInterval],kTimeout,0.1,@"wrong timeoutInterval set");
 }
 
 @end

@@ -106,12 +106,12 @@
 - (void)endEditing;
 
 /**
- * Persists all pages & buttons to user defaults.
+ * Persists all pages &amp; buttons to user defaults.
  */
 - (void)persistLauncherItems;
 
 /**
- * Restores all pages & button from user defaults and returns if sucess
+ * Restores all pages &amp; button from user defaults and returns if sucess
  */
 - (BOOL)restoreLauncherItems;
 
