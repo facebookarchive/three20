@@ -21,9 +21,4 @@ BASE_PRODUCT_NAME       = extThree20JSON
 PRODUCT_NAME            = $(BASE_PRODUCT_NAME)+SBJSON
 BUILD_LIBRARY_VERSION   = 1.0
 
-// We override these paths in order to copy the headers to the same directory,
-// regardless of target.
-PRIVATE_HEADERS_FOLDER_PATH   = /../three20/$(BASE_PRODUCT_NAME)/private
-PUBLIC_HEADERS_FOLDER_PATH    = /../three20/$(BASE_PRODUCT_NAME)
-
 GCC_PREFIX_HEADER             = $(SRCROOT)/Headers/$(BASE_PRODUCT_NAME)+SBJSON_Prefix.pch
