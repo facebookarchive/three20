@@ -1,20 +1,20 @@
 <?xml version="1.0" standalone="no"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:docset="http://developer.apple.com/rss/docset_extensions" xml:lang="en">
-    <id>http://facebook.github.com/three20/api/com.facebook.Three20.atom/20120108122333</id>
-    <title type="text">Three20 1.0.10 Documentation</title>
+    <id>http://facebook.github.com/three20/api/com.facebook.Three20.atom/20120207101925</id>
+    <title type="text">Three20 1.0.11 Documentation</title>
     <rights>Copyright © 2012 Facebook. All rights reserved.</rights>
     <link rel="self" href="http://facebook.github.com/three20/api/com.facebook.Three20.atom"></link>
     <docset:publisherName>Facebook</docset:publisherName>
     <docset:publisherID>com.facebook.documentation</docset:publisherID>
-    <updated>2012-01-08T12:23:33-05:00</updated>
+    <updated>2012-02-07T10:19:25+01:00</updated>
     <entry>
-        <id>tag:facebook.github.com,2012-01-08:com.facebook.Three20/1.0.10</id>
+        <id>tag:facebook.github.com,2012-02-07:com.facebook.Three20/1.0.11</id>
         <title type="text">Three20 Documentation</title>
-        <updated>2012-01-08T12:23:33-05:00</updated>
-        <content type="text">Three20 Documentation (v1.0.10)</content>
-        <link rel="enclosure" type="application/octet-stream" href="http://facebook.github.com/three20/api/com.facebook.Three20-1.0.10.xar" length="1099275"></link>
+        <updated>2012-02-07T10:19:25+01:00</updated>
+        <content type="text">Three20 Documentation (v1.0.11)</content>
+        <link rel="enclosure" type="application/octet-stream" href="http://facebook.github.com/three20/api/com.facebook.Three20-1.0.11.xar" length="1099018"></link>
         <docset:identifier>com.facebook.Three20</docset:identifier>
-        <docset:version>1.0.10</docset:version>
+        <docset:version>1.0.11</docset:version>
         <docset:minimumXcodeVersion>3.0.0</docset:minimumXcodeVersion>
     </entry>
 </feed>
