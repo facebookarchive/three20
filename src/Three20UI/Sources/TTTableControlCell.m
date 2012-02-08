@@ -168,6 +168,7 @@ static const CGFloat kControlPadding = 8.0f;
 
     if ([TTTableControlCell shouldConsiderControlIntrinsicSize:_control]) {
       minX += contentWidth - _control.width;
+      contentWidth = _control.width;
     }
 
     // XXXjoe For some reason I need to re-add the control as a subview or else

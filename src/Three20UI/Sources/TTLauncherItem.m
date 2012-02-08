@@ -69,6 +69,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
+  TT_RELEASE_SAFELY(_badgeValue);
   TT_RELEASE_SAFELY(_title);
   TT_RELEASE_SAFELY(_image);
   TT_RELEASE_SAFELY(_URL);

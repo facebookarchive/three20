@@ -48,12 +48,25 @@ float TTOSVersion() {
   return [[[UIDevice currentDevice] systemVersion] floatValue];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTRuntimeOSVersionIsAtLeast(float version) {
+
+    static const CGFloat kEpsilon = 0.0000001f;
+    return TTOSVersion() - version > -kEpsilon;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTOSVersionIsAtLeast(float version) {
   // Floating-point comparison is pretty bad, so let's cut it some slack with an epsilon.
   static const CGFloat kEpsilon = 0.0000001f;
 
+#ifdef __IPHONE_5_0
+  return 5.0 - version >= -kEpsilon;
+#endif
+#ifdef __IPHONE_4_3
+  return 4.3 - version >= -kEpsilon;
+#endif
 #ifdef __IPHONE_4_2
   return 4.2 - version >= -kEpsilon;
 #endif
@@ -100,6 +113,15 @@ BOOL TTIsPhoneSupported() {
   return [deviceType isEqualToString:@"iPhone"];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTIsMultiTaskingSupported() {
+    UIDevice* device = [UIDevice currentDevice];
+    BOOL backgroundSupported = NO;
+    if ([device respondsToSelector:@selector(isMultitaskingSupported)]){
+         backgroundSupported = device.multitaskingSupported;
+    }
+    return backgroundSupported;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 BOOL TTIsPad() {
@@ -113,7 +135,7 @@ BOOL TTIsPad() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 UIDeviceOrientation TTDeviceOrientation() {
-  UIDeviceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
+  UIDeviceOrientation orient = [[UIDevice currentDevice] orientation];
   if (UIDeviceOrientationUnknown == orient) {
     return UIDeviceOrientationPortrait;
 
@@ -159,7 +181,7 @@ NSString* TTDeviceModelName() {
   sysctlbyname("hw.machine", machine, &size, NULL, 0);
   NSString *platform = [NSString stringWithCString:machine encoding:NSASCIIStringEncoding];
   free(machine);
-  
+
   if ([platform isEqualToString:@"iPhone1,1"])    return @"iPhone 1G";
   if ([platform isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
   if ([platform isEqualToString:@"iPhone2,1"])    return @"iPhone 3GS";
@@ -174,7 +196,7 @@ NSString* TTDeviceModelName() {
   if ([platform isEqualToString:@"iPad2,2"])      return @"iPad 2 (GSM)";
   if ([platform isEqualToString:@"iPad2,3"])      return @"iPad 2 (CDMA)";
   if ([platform isEqualToString:@"i386"])         return @"Simulator";
-  
+
   return platform;
 }
 
