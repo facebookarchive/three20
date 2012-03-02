@@ -132,8 +132,10 @@ static const UILineBreakMode kLineBreakMode = UILineBreakModeWordWrap;
       self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
       self.textLabel.textAlignment = UITextAlignmentCenter;
       self.accessoryType = UITableViewCellAccessoryNone;
-      self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
-
+      if (item.URL || item.selector)  
+          self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
+      else
+          self.selectionStyle = UITableViewCellSelectionStyleNone;
     } else if ([object isKindOfClass:[TTTableLink class]]) {
       self.textLabel.font = TTSTYLEVAR(tableFont);
       self.textLabel.textColor = TTSTYLEVAR(linkTextColor);
