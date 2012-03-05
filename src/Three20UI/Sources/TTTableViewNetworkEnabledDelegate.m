@@ -155,8 +155,10 @@ static const CGFloat kInfiniteScrollThreshold = 0.5f;
       if (scrollView.contentOffset.y >= 0) {
         _controller.tableView.contentInset = UIEdgeInsetsZero;
 
-      } else if (scrollView.contentOffset.y < 0) {
-        _controller.tableView.contentInset = UIEdgeInsetsMake(kHeaderVisibleHeight, 0, 0, 0);
+      } else if (scrollView.contentOffset.y <= 0.0f &&
+      		scrollView.contentOffset.y > -kHeaderVisibleHeight) {
+        _controller.tableView.contentInset =
+        	UIEdgeInsetsMake(scrollView.contentOffset.y*-1, 0, 0, 0);
       }
     }
   }
