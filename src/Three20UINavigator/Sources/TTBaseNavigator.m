@@ -345,9 +345,9 @@ __attribute__((weak_import));
     TT_RELEASE_SAFELY(_popoverController);
   }
 
-  _popoverController =  [[TTUIPopoverControllerClass() alloc] init];
+  _popoverController =  [[TTUIPopoverControllerClass() alloc]
+                         initWithContentViewController: controller];
   if (_popoverController != nil) {
-    [_popoverController setContentViewController:controller];
     [_popoverController setDelegate:self];
   }
 
