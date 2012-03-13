@@ -100,7 +100,7 @@ static const NSInteger kLoadMaxRetries = 2;
     // Strictly speaking, to be really conformant need to interpret %xx hex encoded entities.
     // The [NSString dataUsingEncoding] doesn't do that correctly, but most documents don't use that.
     // Skip for now.
-	_responseData = [[[dataSplit objectAtIndex:1] dataUsingEncoding:NSASCIIStringEncoding] retain];
+	_responseData = [[NSMutableData dataWithData:[[dataSplit objectAtIndex:1] dataUsingEncoding:NSASCIIStringEncoding]] retain];
   } else {
     _responseData = [[NSData dataWithBase64EncodedString:[dataSplit objectAtIndex:1]] retain];
   }

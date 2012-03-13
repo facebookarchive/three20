@@ -32,7 +32,7 @@
   
   TTTableViewDragRefreshDelegate *delegate = [[TTTableViewDragRefreshDelegate alloc] initWithController:self];
 
-  return [delegate autorelease];
+  return (id<TTTableViewDelegate>)[delegate autorelease];
 }
 
 @end
