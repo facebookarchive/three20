@@ -23,7 +23,7 @@
 @protocol TTNavigatorRootContainer;
 @class TTURLAction;
 @class TTURLMap;
-@class TTURLNavigatorPattern;
+@class TTURLPattern;
 
 /**
  * A URL-based navigation system with built-in persistence.
@@ -37,7 +37,7 @@
 
   UIViewController*           _rootViewController;
   NSMutableArray*             _delayedControllers;
-  UIPopoverController*        _popoverController;
+  id        _popoverController;
 
   NSString*                   _persistenceKey;
   TTNavigatorPersistenceMode  _persistenceMode;
@@ -223,7 +223,7 @@
  * @return The view controller mapped to URL.
  */
 - (UIViewController*)viewControllerForURL:(NSString*)URL query:(NSDictionary*)query
-                                  pattern:(TTURLNavigatorPattern**)pattern;
+                                  pattern:(TTURLPattern**)pattern;
 
 /**
  * Tells the navigator to delay heavy operations.

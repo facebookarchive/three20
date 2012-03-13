@@ -14,30 +14,18 @@
 // limitations under the License.
 //
 
-// UI
-#import "Three20UI/TTButton.h"
+#import <UIKit/UIKit.h>
 
-@interface TTErrorView : UIView {
-  UIImageView*  _imageView;
-  UILabel*      _titleView;
-  UILabel*      _subtitleView;
-  TTButton*     _reloadButton;
+
+@interface TTTableSection : NSObject {
+  NSString*     _headerTitle;
+  NSString*     _footerTitle;
 }
 
-@property (nonatomic, retain) UIImage*  image;
-@property (nonatomic, copy)   NSString* title;
-@property (nonatomic, copy)   NSString* subtitle;
-@property (nonatomic, copy)   TTButton* reloadButton;
+@property (nonatomic, copy)   NSString* headerTitle;
+@property (nonatomic, copy)   NSString* footerTitle;
 
 
-/**
- * creates an error view
- */
-- (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image;
-
-/**
- * adds a reload button into the error view
- */
-- (void)addReloadButton;
++ (id)sectionWithHeaderTitle:(NSString*)headerTitle footerTitle:(NSString*)footerTitle;
 
 @end

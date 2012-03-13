@@ -327,7 +327,8 @@
 - (void)restoreView:(NSDictionary*)state {
   CGFloat scrollY = [[state objectForKey:@"scrollOffsetY"] floatValue];
   if (scrollY) {
-    CGFloat maxY = _tableView.contentSize.height - _tableView.height;
+    //set to 0 if contentSize is smaller than the tableView.height
+    CGFloat maxY = MAX(0, _tableView.contentSize.height - _tableView.height);
     if (scrollY <= maxY) {
       _tableView.contentOffset = CGPointMake(0, scrollY);
 
@@ -490,7 +491,14 @@
         TTErrorView* errorView = [[[TTErrorView alloc] initWithTitle:title
                                                             subtitle:subtitle
                                                                image:image] autorelease];
+        if ([_dataSource reloadButtonForEmpty]) {
+          [errorView addReloadButton];
+          [errorView.reloadButton addTarget:self
+                                     action:@selector(reload)
+                           forControlEvents:UIControlEventTouchUpInside];
+        }
         errorView.backgroundColor = _tableView.backgroundColor;
+
         self.errorView = errorView;
 
       } else {

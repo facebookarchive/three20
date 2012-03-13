@@ -28,11 +28,8 @@
   [ds release];
 }
 
-- (id<TTTableViewDelegate>) createDelegate {
-  
-  TTTableViewDragRefreshDelegate *delegate = [[TTTableViewDragRefreshDelegate alloc] initWithController:self];
-
-  return (id<TTTableViewDelegate>)[delegate autorelease];
+- (id<UITableViewDelegate>)createDelegate {
+  return (id<TTTableViewDelegate>)[[[TTTableViewDragRefreshDelegate alloc] initWithController:self] autorelease];
 }
 
 @end

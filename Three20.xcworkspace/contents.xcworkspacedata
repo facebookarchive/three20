@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "container:"
+      name = "src">
+      <Group
+         location = "group:src/common"
+         name = "common">
+         <Group
+            location = "group:Configurations"
+            name = "Configurations">
+            <FileRef
+               location = "group:Libraries.xcconfig">
+            </FileRef>
+            <FileRef
+               location = "group:Library.xcconfig">
+            </FileRef>
+            <FileRef
+               location = "group:Paths.xcconfig">
+            </FileRef>
+            <FileRef
+               location = "group:Project.xcconfig">
+            </FileRef>
+            <FileRef
+               location = "group:UnitTests.xcconfig">
+            </FileRef>
+         </Group>
+      </Group>
+      <Group
+         location = "group:src/scripts"
+         name = "scripts">
+         <FileRef
+            location = "group:Build.command">
+         </FileRef>
+         <FileRef
+            location = "group:Clean.command">
+         </FileRef>
+         <FileRef
+            location = "group:docs.py">
+         </FileRef>
+         <FileRef
+            location = "group:lint">
+         </FileRef>
+         <FileRef
+            location = "group:Paths.py">
+         </FileRef>
+         <FileRef
+            location = "group:Paths.pyc">
+         </FileRef>
+         <FileRef
+            location = "group:Pbxproj.html">
+         </FileRef>
+         <FileRef
+            location = "group:Pbxproj.py">
+         </FileRef>
+         <FileRef
+            location = "group:Pbxproj.pyc">
+         </FileRef>
+         <FileRef
+            location = "group:Protect.command">
+         </FileRef>
+         <FileRef
+            location = "group:ttmodule.py">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:src/Three20Core/Three20Core.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:src/Three20Network/Three20Network.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:src/Three20Style/Three20Style.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:src/Three20UICommon/Three20UICommon.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:src/Three20UINavigator/Three20UINavigator.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:src/Three20UI/Three20UI.xcodeproj">
+      </FileRef>
+      <Group
+         location = "container:"
+         name = "extensions">
+         <FileRef
+            location = "group:src/extThree20CSSStyle/extThree20CSSStyle.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:src/extThree20JSON/extThree20JSON.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:src/extThree20XML/extThree20XML.xcodeproj">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Samples">
+      <Group
+         location = "group:samples/common"
+         name = "common">
+         <Group
+            location = "group:Configurations"
+            name = "Configurations">
+            <FileRef
+               location = "group:App.xcconfig">
+            </FileRef>
+            <FileRef
+               location = "group:Libraries.xcconfig">
+            </FileRef>
+            <FileRef
+               location = "group:Paths.xcconfig">
+            </FileRef>
+            <FileRef
+               location = "group:Project.xcconfig">
+            </FileRef>
+            <FileRef
+               location = "group:UnitTests.xcconfig">
+            </FileRef>
+         </Group>
+      </Group>
+      <FileRef
+         location = "group:samples/TTCatalog/TTCatalog.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:samples/Core/TTCoreDemo/TTCoreDemo.xcodeproj">
+      </FileRef>
+      <Group
+         location = "container:"
+         name = "Network">
+         <FileRef
+            location = "group:samples/Network/TTNetworkDemo/TTNetworkDemo.xcodeproj">
+         </FileRef>
+      </Group>
+      <Group
+         location = "container:"
+         name = "Style">
+         <FileRef
+            location = "group:samples/Style/TTCSSStyleSheets/TTCSSStyleSheets.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:samples/Style/TTStyleCatalog/TTStyleCatalog.xcodeproj">
+         </FileRef>
+      </Group>
+      <Group
+         location = "container:"
+         name = "UI">
+         <FileRef
+            location = "group:samples/UI/TTNibDemo/TTNibDemo.xcodeproj">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:samples/TTFacebook/TTFacebook.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:samples/TTNavigatorDemo/TTNavigatorDemo.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:samples/TTTwitter/TTTwitter.xcodeproj">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:AUTHORS">
+   </FileRef>
+   <FileRef
+      location = "group:config.template">
+   </FileRef>
+   <FileRef
+      location = "group:diffstrings.py">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <FileRef
+      location = "group:project.dev">
+   </FileRef>
+   <FileRef
+      location = "group:README.mdown">
+   </FileRef>
+</Workspace>

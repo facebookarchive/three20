@@ -377,7 +377,7 @@
   [_model.delegates removeObject:self];
   TT_RELEASE_SAFELY(_model);
   if (wasModelCreated) {
-    [self view];
+    [self model];
   }
 }
 

@@ -15,29 +15,8 @@
 //
 
 // UI
-#import "Three20UI/TTButton.h"
+#import "Three20UI/TTTableCaptionItem.h"
 
-@interface TTErrorView : UIView {
-  UIImageView*  _imageView;
-  UILabel*      _titleView;
-  UILabel*      _subtitleView;
-  TTButton*     _reloadButton;
-}
-
-@property (nonatomic, retain) UIImage*  image;
-@property (nonatomic, copy)   NSString* title;
-@property (nonatomic, copy)   NSString* subtitle;
-@property (nonatomic, copy)   TTButton* reloadButton;
-
-
-/**
- * creates an error view
- */
-- (id)initWithTitle:(NSString*)title subtitle:(NSString*)subtitle image:(UIImage*)image;
-
-/**
- * adds a reload button into the error view
- */
-- (void)addReloadButton;
+@interface TTTableSettingsItem : TTTableCaptionItem
 
 @end

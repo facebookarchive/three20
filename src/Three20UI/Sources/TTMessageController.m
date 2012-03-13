@@ -147,6 +147,7 @@
       label.text = field.title;
       label.font = TTSTYLEVAR(messageFont);
       label.textColor = TTSTYLEVAR(messageFieldTextColor);
+      label.backgroundColor = TTSTYLEVAR(backgroundColor);
       [label sizeToFit];
       label.frame = CGRectInset(label.frame, -2, 0);
       textField.leftView = label;
