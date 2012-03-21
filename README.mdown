@@ -65,8 +65,8 @@ The Second option is to add it to your project manually.  Here is how:
      * Three20
 
 4. Now you need to link the Three20 static libraries to your project.  
-     * (Xcode 3.x) Select all of the project items that you just added to the sidebar.  
-       Under the "Details" table, you will see a number of items, such as libThree20.a and 
+     * (Xcode 3.x) Select all of the project items that you just added to the sidebar. Under 
+       the "Details" table, you will see a number of items, such as libThree20.a and 
        libThree20Core.a.  Check the checkbox on the far right for each of the `lib` files 
        (not the UnitTests). This will link each part of the Three20 framework to your app.
      * (Xcode 4.x) Select your Project Target. Under the "Build Phases" tab you will see
