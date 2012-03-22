@@ -13,11 +13,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
+#import "extThree20XML.h"
 #import "extThree20XML/TTURLXMLResponse.h"
 
 // extThree20XML
+#if ( SELECTED_XML_VENDOR == VENDOR_TTXMLPARSER )
 #import "extThree20XML/TTXMLParser.h"
+#endif
+
+#if ( SELECTED_XML_VENDOR == VENDOR_GDATAXML_PARSER )
+#import "extThree20XML/GDataXMLNode.h"
+#endif
 
 // Core
 #import "Three20Core/TTCorePreprocessorMacros.h"
@@ -56,19 +62,31 @@
   TTDASSERT([data isKindOfClass:[NSData class]]);
   TTDASSERT(nil == _rootObject);
 
+  NSError *error = nil;
+    
   if ([data isKindOfClass:[NSData class]]) {
     TTDCONDITIONLOG(TTDFLAG_XMLPARSER, @"Data: %@", [[[NSString alloc]
       initWithData: data
           encoding: NSUTF8StringEncoding] autorelease]);
+      
+#if ( SELECTED_XML_VENDOR == VENDOR_TTXMLPARSER )
     TTXMLParser* parser = [[TTXMLParser alloc] initWithData:data];
     parser.delegate = self;
     parser.treatDuplicateKeysAsArrayItems = self.isRssFeed;
     [parser parse];
     _rootObject = [parser.rootObject retain];
     TT_RELEASE_SAFELY(parser);
+#endif
+#if ( SELECTED_XML_VENDOR == VENDOR_GDATAXML_PARSER )
+      GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data 
+                                                             options:0 error:&error];
+      
+      _rootObject = doc;
+#endif
+      
   }
 
-  return nil;
+  return error;
 }
 
 

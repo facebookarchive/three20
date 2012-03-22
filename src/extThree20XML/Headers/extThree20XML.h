@@ -16,5 +16,16 @@
 
 #import "extThree20XML/TTURLXMLResponse.h"
 
+#define VENDOR_TTXMLPARSER 1
+#define VENDOR_GDATAXML_PARSER 2
+
+#define SELECTED_XML_VENDOR VENDOR_GDATAXML_PARSER
+
 // Vendors
+#if ( SELECTED_XML_VENDOR == VENDOR_TTXMLPARSER )
 #import "extThree20XML/TTXMLParser.h"
+#endif
+
+#if ( SELECTED_XML_VENDOR == VENDOR_GDATAXML_PARSER )
+#import "extThree20XML/GDataXMLNode.h"
+#endif

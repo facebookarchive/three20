@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		206566DA151B92EF00E762B6 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 206566D9151B92EF00E762B6 /* GDataXMLNode.m */; };
+		206566DC151B930400E762B6 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 206566DB151B930400E762B6 /* GDataXMLNode.h */; };
 		660997C6129396F0007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 660997C2129396F0007B1E07 /* TTExtensionLoader.m */; };
 		660997C912939700007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 660997C712939700007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3468118806430079637E /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3466118806430079637E /* TTURLXMLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -88,6 +90,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		204F91A9150F5EA20085507C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		206566D9151B92EF00E762B6 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = Source/GDataXMLNode.m; sourceTree = "<group>"; };
+		206566DB151B930400E762B6 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = Headers/GDataXMLNode.h; sourceTree = "<group>"; };
 		660997C2129396F0007B1E07 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Source/TTExtensionLoader.m; sourceTree = "<group>"; };
 		660997C712939700007B1E07 /* TTExtensionLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionLoader.h; path = Headers/TTExtensionLoader.h; sourceTree = "<group>"; };
 		66313DC61267C0CB00C09C9F /* extThree20XML_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20XML_Prefix.pch; path = Headers/extThree20XML_Prefix.pch; sourceTree = "<group>"; };
@@ -138,9 +143,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		204F8FF6150F2B530085507C /* GDataXML */ = {
+			isa = PBXGroup;
+			children = (
+				206566DB151B930400E762B6 /* GDataXMLNode.h */,
+				206566D9151B92EF00E762B6 /* GDataXMLNode.m */,
+			);
+			name = GDataXML;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				204F91A9150F5EA20085507C /* libxml2.dylib */,
 				6E646518118805EB00F08CB1 /* extThree20XML.h */,
 				66313DC61267C0CB00C09C9F /* extThree20XML_Prefix.pch */,
 				660997C712939700007B1E07 /* TTExtensionLoader.h */,
@@ -157,6 +172,7 @@
 		6E3C3472118806640079637E /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				204F8FF6150F2B530085507C /* GDataXML */,
 				6E3C3473118806670079637E /* Three20 */,
 			);
 			name = Vendors;
@@ -247,6 +263,7 @@
 				6E3C3469118806430079637E /* TTXMLParser.h in Headers */,
 				6E3C3470118806590079637E /* extThree20XML.h in Headers */,
 				660997C912939700007B1E07 /* TTExtensionLoader.h in Headers */,
+				206566DC151B930400E762B6 /* GDataXMLNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +446,7 @@
 				6E3C346C1188064F0079637E /* TTURLXMLResponse.m in Sources */,
 				6E3C346D1188064F0079637E /* TTXMLParser.m in Sources */,
 				660997C6129396F0007B1E07 /* TTExtensionLoader.m in Sources */,
+				206566DA151B92EF00E762B6 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,8 +496,16 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
+					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Internal;
 		};
@@ -494,6 +520,13 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					EXTJSON_SBJSON,
 					DEBUG,
+				);
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
 				);
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -524,6 +557,13 @@
 					EXTJSON_SBJSON,
 					DEBUG,
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
+					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -535,6 +575,13 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_SBJSON;
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
+				);
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
@@ -547,8 +594,16 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
+					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -560,8 +615,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
+					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
