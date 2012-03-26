@@ -94,7 +94,7 @@ The Second option is to add it to your project manually.  Here is how:
    it.
      * (Xcode 3.x) Add the relative path from your project's directory to the 
        "three20/Build/Products/three20" directory.
-     * (Xcode 4.x) Add this $(BUILT_PRODUCTS_DIR)/../three20
+     * (Xcode 4.x) Add these two "$(BUILT_PRODUCTS_DIR)/../three20" and "$(BUILT_PRODUCTS_DIR)/../../three20"
 
 9. While you are in Project Settings, go to "Other Linker Flags" under the "Linker" section, and
    add "-ObjC" and "-all_load" to the list of flags.
