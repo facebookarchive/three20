@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		206566DA151B92EF00E762B6 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 206566D9151B92EF00E762B6 /* GDataXMLNode.m */; };
-		206566DC151B930400E762B6 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 206566DB151B930400E762B6 /* GDataXMLNode.h */; };
+		20A6CB9B1520E8AF00F2A057 /* extThree20XML+TTXMLParser_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 20A6CB9A1520E8AF00F2A057 /* extThree20XML+TTXMLParser_Prefix.pch */; };
+		20A6CB9D1520E8C300F2A057 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 20A6CB9C1520E8C300F2A057 /* GDataXMLNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20A6CB9F1520E8CD00F2A057 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6CB9E1520E8CD00F2A057 /* GDataXMLNode.m */; };
+		20A6CBA01520E9CB00F2A057 /* extThree20XML+GDataXML_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 66313DC61267C0CB00C09C9F /* extThree20XML+GDataXML_Prefix.pch */; };
+		20C01B7A1520D8B400D35993 /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3466118806430079637E /* TTURLXMLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20C01B7C1520D8B400D35993 /* extThree20XML.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E646518118805EB00F08CB1 /* extThree20XML.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20C01B7D1520D8B400D35993 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 660997C712939700007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20C01B811520D8B400D35993 /* TTURLXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C346A1188064F0079637E /* TTURLXMLResponse.m */; };
+		20C01B831520D8B400D35993 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 660997C2129396F0007B1E07 /* TTExtensionLoader.m */; };
 		660997C6129396F0007B1E07 /* TTExtensionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 660997C2129396F0007B1E07 /* TTExtensionLoader.m */; };
 		660997C912939700007B1E07 /* TTExtensionLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 660997C712939700007B1E07 /* TTExtensionLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E3C3468118806430079637E /* TTURLXMLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E3C3466118806430079637E /* TTURLXMLResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -20,10 +27,24 @@
 		6E3C34A3118807A70079637E /* testcase.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6E3C34A2118807A70079637E /* testcase.xml */; };
 		6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7011876D3F00F08CB1 /* libThree20Core.a */; };
 		6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E645A7911876D4600F08CB1 /* libThree20Network.a */; };
-		6EB460DA1183D8CB00685649 /* libextThree20XML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */; };
+		6EB460DA1183D8CB00685649 /* libextThree20XML+TTXMLParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF31F3A0F352DF5000DE5D2 /* libextThree20XML+TTXMLParser.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		20C01B761520D8B400D35993 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20Core;
+		};
+		20C01B781520D8B400D35993 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20Network;
+		};
 		6E645A6F11876D3F00F08CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */;
@@ -90,30 +111,39 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		204F91A9150F5EA20085507C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		206566D9151B92EF00E762B6 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = Source/GDataXMLNode.m; sourceTree = "<group>"; };
-		206566DB151B930400E762B6 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = Headers/GDataXMLNode.h; sourceTree = "<group>"; };
+		20A6CB981520E88000F2A057 /* Library+GDataXML.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Library+GDataXML.xcconfig"; path = "Configurations/Library+GDataXML.xcconfig"; sourceTree = "<group>"; };
+		20A6CB991520E88000F2A057 /* Library+TTXMLParser.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Library+TTXMLParser.xcconfig"; path = "Configurations/Library+TTXMLParser.xcconfig"; sourceTree = "<group>"; };
+		20A6CB9A1520E8AF00F2A057 /* extThree20XML+TTXMLParser_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "extThree20XML+TTXMLParser_Prefix.pch"; path = "Headers/extThree20XML+TTXMLParser_Prefix.pch"; sourceTree = "<group>"; };
+		20A6CB9C1520E8C300F2A057 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = Headers/GDataXMLNode.h; sourceTree = "<group>"; };
+		20A6CB9E1520E8CD00F2A057 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = Source/GDataXMLNode.m; sourceTree = "<group>"; };
+		20C01B8B1520D8B400D35993 /* libextThree20XML+GDataXML.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20XML+GDataXML.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		660997C2129396F0007B1E07 /* TTExtensionLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTExtensionLoader.m; path = Source/TTExtensionLoader.m; sourceTree = "<group>"; };
 		660997C712939700007B1E07 /* TTExtensionLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTExtensionLoader.h; path = Headers/TTExtensionLoader.h; sourceTree = "<group>"; };
-		66313DC61267C0CB00C09C9F /* extThree20XML_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20XML_Prefix.pch; path = Headers/extThree20XML_Prefix.pch; sourceTree = "<group>"; };
+		66313DC61267C0CB00C09C9F /* extThree20XML+GDataXML_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "extThree20XML+GDataXML_Prefix.pch"; path = "Headers/extThree20XML+GDataXML_Prefix.pch"; sourceTree = "<group>"; };
 		6E3C3466118806430079637E /* TTURLXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTURLXMLResponse.h; path = Headers/TTURLXMLResponse.h; sourceTree = "<group>"; };
 		6E3C3467118806430079637E /* TTXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTXMLParser.h; path = Headers/TTXMLParser.h; sourceTree = "<group>"; };
 		6E3C346A1188064F0079637E /* TTURLXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTURLXMLResponse.m; path = Source/TTURLXMLResponse.m; sourceTree = "<group>"; };
 		6E3C346B1188064F0079637E /* TTXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTXMLParser.m; path = Source/TTXMLParser.m; sourceTree = "<group>"; };
 		6E3C3483118807050079637E /* extXMLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = extXMLTests.m; path = UnitTests/extXMLTests.m; sourceTree = "<group>"; };
 		6E3C34A2118807A70079637E /* testcase.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testcase.xml; path = UnitTests/Resources/XML/testcase.xml; sourceTree = "<group>"; };
-		6E55A4B31183CA80002768DE /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = "<group>"; };
 		6E6454021184BDD500F08CB1 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = "<group>"; };
 		6E645A6A11876D3F00F08CB1 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E645A7311876D4600F08CB1 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E646518118805EB00F08CB1 /* extThree20XML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = extThree20XML.h; path = Headers/extThree20XML.h; sourceTree = "<group>"; };
 		6EB460921183D16000685649 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "UnitTests-Info.plist"; path = "UnitTests/Resources/PropertyLists/UnitTests-Info.plist"; sourceTree = "<group>"; };
 		6EB460A61183D2AC00685649 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = UnitTests.xcconfig; path = Configurations/UnitTests.xcconfig; sourceTree = "<group>"; };
-		BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20XML.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEF31F3A0F352DF5000DE5D2 /* libextThree20XML+TTXMLParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libextThree20XML+TTXMLParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9E6C6210B6A8F800DE563C /* extXMLUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extXMLUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		20C01B861520D8B400D35993 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEF31F380F352DF5000DE5D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -127,7 +157,7 @@
 			files = (
 				6E645AA111876E2B00F08CB1 /* libThree20Core.a in Frameworks */,
 				6E645AA211876E2D00F08CB1 /* libThree20Network.a in Frameworks */,
-				6EB460DA1183D8CB00685649 /* libextThree20XML.a in Frameworks */,
+				6EB460DA1183D8CB00685649 /* libextThree20XML+TTXMLParser.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +167,9 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */,
+				BEF31F3A0F352DF5000DE5D2 /* libextThree20XML+TTXMLParser.a */,
 				EB9E6C6210B6A8F800DE563C /* extXMLUnitTests.octest */,
+				20C01B8B1520D8B400D35993 /* libextThree20XML+GDataXML.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,8 +177,8 @@
 		204F8FF6150F2B530085507C /* GDataXML */ = {
 			isa = PBXGroup;
 			children = (
-				206566DB151B930400E762B6 /* GDataXMLNode.h */,
-				206566D9151B92EF00E762B6 /* GDataXMLNode.m */,
+				20A6CB9E1520E8CD00F2A057 /* GDataXMLNode.m */,
+				20A6CB9C1520E8C300F2A057 /* GDataXMLNode.h */,
 			);
 			name = GDataXML;
 			sourceTree = "<group>";
@@ -155,9 +186,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				204F91A9150F5EA20085507C /* libxml2.dylib */,
+				20A6CB9A1520E8AF00F2A057 /* extThree20XML+TTXMLParser_Prefix.pch */,
+				66313DC61267C0CB00C09C9F /* extThree20XML+GDataXML_Prefix.pch */,
 				6E646518118805EB00F08CB1 /* extThree20XML.h */,
-				66313DC61267C0CB00C09C9F /* extThree20XML_Prefix.pch */,
 				660997C712939700007B1E07 /* TTExtensionLoader.h */,
 				660997C2129396F0007B1E07 /* TTExtensionLoader.m */,
 				6EB4609C1183D1E000685649 /* Source */,
@@ -245,7 +276,8 @@
 		6ED118E41183C38A0096AEBF /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				6E55A4B31183CA80002768DE /* Library.xcconfig */,
+				20A6CB981520E88000F2A057 /* Library+GDataXML.xcconfig */,
+				20A6CB991520E88000F2A057 /* Library+TTXMLParser.xcconfig */,
 				6E6454021184BDD500F08CB1 /* Project.xcconfig */,
 				6EB460A61183D2AC00685649 /* UnitTests.xcconfig */,
 			);
@@ -255,6 +287,18 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		20C01B791520D8B400D35993 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20A6CB9D1520E8C300F2A057 /* GDataXMLNode.h in Headers */,
+				20C01B7A1520D8B400D35993 /* TTURLXMLResponse.h in Headers */,
+				20C01B7C1520D8B400D35993 /* extThree20XML.h in Headers */,
+				20C01B7D1520D8B400D35993 /* TTExtensionLoader.h in Headers */,
+				20A6CBA01520E9CB00F2A057 /* extThree20XML+GDataXML_Prefix.pch in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEF31F360F352DF5000DE5D2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,16 +307,37 @@
 				6E3C3469118806430079637E /* TTXMLParser.h in Headers */,
 				6E3C3470118806590079637E /* extThree20XML.h in Headers */,
 				660997C912939700007B1E07 /* TTExtensionLoader.h in Headers */,
-				206566DC151B930400E762B6 /* GDataXMLNode.h in Headers */,
+				20A6CB9B1520E8AF00F2A057 /* extThree20XML+TTXMLParser_Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BEF31F390F352DF5000DE5D2 /* extThree20XML */ = {
+		20C01B741520D8B400D35993 /* extThree20XML+GDataXML */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20XML" */;
+			buildConfigurationList = 20C01B871520D8B400D35993 /* Build configuration list for PBXNativeTarget "extThree20XML+GDataXML" */;
+			buildPhases = (
+				20C01B791520D8B400D35993 /* Headers */,
+				20C01B7F1520D8B400D35993 /* Protect Copied Headers */,
+				20C01B801520D8B400D35993 /* Sources */,
+				20C01B851520D8B400D35993 /* Lint */,
+				20C01B861520D8B400D35993 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20C01B751520D8B400D35993 /* PBXTargetDependency */,
+				20C01B771520D8B400D35993 /* PBXTargetDependency */,
+			);
+			name = "extThree20XML+GDataXML";
+			productName = Three20;
+			productReference = 20C01B8B1520D8B400D35993 /* libextThree20XML+GDataXML.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		BEF31F390F352DF5000DE5D2 /* extThree20XML+TTXMLParser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20XML+TTXMLParser" */;
 			buildPhases = (
 				BEF31F360F352DF5000DE5D2 /* Headers */,
 				6E3C34AD118807DC0079637E /* Protect Copied Headers */,
@@ -286,9 +351,9 @@
 				6E645A7D11876D5800F08CB1 /* PBXTargetDependency */,
 				6E645A7F11876D5800F08CB1 /* PBXTargetDependency */,
 			);
-			name = extThree20XML;
+			name = "extThree20XML+TTXMLParser";
 			productName = Three20;
-			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20XML.a */;
+			productReference = BEF31F3A0F352DF5000DE5D2 /* libextThree20XML+TTXMLParser.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		EB9E6C6110B6A8F800DE563C /* extThree20XMLUnitTests */ = {
@@ -345,7 +410,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				BEF31F390F352DF5000DE5D2 /* extThree20XML */,
+				BEF31F390F352DF5000DE5D2 /* extThree20XML+TTXMLParser */,
+				20C01B741520D8B400D35993 /* extThree20XML+GDataXML */,
 				EB9E6C6110B6A8F800DE563C /* extThree20XMLUnitTests */,
 			);
 		};
@@ -394,6 +460,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		20C01B7F1520D8B400D35993 /* Protect Copied Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Protect Copied Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh ../scripts/Protect.command";
+			shellScript = "";
+		};
+		20C01B851520D8B400D35993 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env python ../scripts/lint";
+			shellScript = "";
+			showEnvVarsInLog = 0;
+		};
 		668E66BF131AE03600ACE4AB /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,6 +534,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		20C01B801520D8B400D35993 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20C01B811520D8B400D35993 /* TTURLXMLResponse.m in Sources */,
+				20C01B831520D8B400D35993 /* TTExtensionLoader.m in Sources */,
+				20A6CB9F1520E8CD00F2A057 /* GDataXMLNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEF31F370F352DF5000DE5D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -446,7 +551,6 @@
 				6E3C346C1188064F0079637E /* TTURLXMLResponse.m in Sources */,
 				6E3C346D1188064F0079637E /* TTXMLParser.m in Sources */,
 				660997C6129396F0007B1E07 /* TTExtensionLoader.m in Sources */,
-				206566DA151B92EF00E762B6 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +565,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		20C01B751520D8B400D35993 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Core;
+			targetProxy = 20C01B761520D8B400D35993 /* PBXContainerItemProxy */;
+		};
+		20C01B771520D8B400D35993 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Network;
+			targetProxy = 20C01B781520D8B400D35993 /* PBXContainerItemProxy */;
+		};
 		6E645A7D11876D5800F08CB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Three20Core;
@@ -483,12 +597,80 @@
 		};
 		6EB460DE1183D8D400685649 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BEF31F390F352DF5000DE5D2 /* extThree20XML */;
+			target = BEF31F390F352DF5000DE5D2 /* extThree20XML+TTXMLParser */;
 			targetProxy = 6EB460DD1183D8D400685649 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		20C01B881520D8B400D35993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20A6CB981520E88000F2A057 /* Library+GDataXML.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EXTXML_GDATAXML,
+					DEBUG,
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					/usr/include/libxml2,
+					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
+				);
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+GDataXML";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		20C01B891520D8B400D35993 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20A6CB981520E88000F2A057 /* Library+GDataXML.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EXTXML_GDATAXML,
+					DEBUG,
+				);
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
+				);
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+GDataXML";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Internal;
+		};
+		20C01B8A1520D8B400D35993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20A6CB981520E88000F2A057 /* Library+GDataXML.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_PREPROCESSOR_DEFINITIONS = EXTXML_GDATAXML;
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(STDLIB_HEADERS)",
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
+				);
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+GDataXML";
+				SDKROOT = iphoneos;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		6E92493F112C6F4000531F03 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E6454021184BDD500F08CB1 /* Project.xcconfig */;
@@ -511,14 +693,14 @@
 		};
 		6E924940112C6F4000531F03 /* Internal */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			baseConfigurationReference = 20A6CB991520E88000F2A057 /* Library+TTXMLParser.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					EXTJSON_SBJSON,
+					EXTXML_TTXMLPARSER,
 					DEBUG,
 				);
 				HEADER_SEARCH_PATHS = (
@@ -528,6 +710,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
 				);
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+TTXMLParser";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -548,13 +731,13 @@
 		};
 		BEF31F3B0F352DF6000DE5D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			baseConfigurationReference = 20A6CB991520E88000F2A057 /* Library+TTXMLParser.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					EXTJSON_SBJSON,
+					EXTXML_TTXMLPARSER,
 					DEBUG,
 				);
 				HEADER_SEARCH_PATHS = (
@@ -564,17 +747,18 @@
 					/usr/include/libxml2,
 					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
 				);
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+TTXMLParser";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
 		BEF31F3C0F352DF6000DE5D2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E55A4B31183CA80002768DE /* Library.xcconfig */;
+			baseConfigurationReference = 20A6CB991520E88000F2A057 /* Library+TTXMLParser.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_PREPROCESSOR_DEFINITIONS = EXTJSON_SBJSON;
+				GCC_PREPROCESSOR_DEFINITIONS = EXTXML_TTXMLPARSER;
 				HEADER_SEARCH_PATHS = (
 					/usr/include/libxml2,
 					"$(STDLIB_HEADERS)",
@@ -582,6 +766,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
 				);
+				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+TTXMLParser";
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
@@ -656,7 +841,17 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20XML" */ = {
+		20C01B871520D8B400D35993 /* Build configuration list for PBXNativeTarget "extThree20XML+GDataXML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20C01B881520D8B400D35993 /* Debug */,
+				20C01B891520D8B400D35993 /* Internal */,
+				20C01B8A1520D8B400D35993 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEF31F410F352E14000DE5D2 /* Build configuration list for PBXNativeTarget "extThree20XML+TTXMLParser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BEF31F3B0F352DF6000DE5D2 /* Debug */,

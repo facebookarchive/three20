@@ -17,12 +17,12 @@
 #import "extThree20XML/TTURLXMLResponse.h"
 
 // extThree20XML
-#if ( SELECTED_XML_VENDOR == VENDOR_TTXMLPARSER )
+#ifdef EXTXML_TTXMLPARSER
 #import "extThree20XML/TTXMLParser.h"
-#endif
-
-#if ( SELECTED_XML_VENDOR == VENDOR_GDATAXML_PARSER )
+#elif defined (EXTXML_GDATAXML)
 #import "extThree20XML/GDataXMLNode.h"
+#else
+#error "No XML parser selected"
 #endif
 
 // Core
@@ -69,19 +69,18 @@
       initWithData: data
           encoding: NSUTF8StringEncoding] autorelease]);
       
-#if ( SELECTED_XML_VENDOR == VENDOR_TTXMLPARSER )
+#ifdef EXTXML_TTXMLPARSER
     TTXMLParser* parser = [[TTXMLParser alloc] initWithData:data];
     parser.delegate = self;
     parser.treatDuplicateKeysAsArrayItems = self.isRssFeed;
     [parser parse];
     _rootObject = [parser.rootObject retain];
     TT_RELEASE_SAFELY(parser);
-#endif
-#if ( SELECTED_XML_VENDOR == VENDOR_GDATAXML_PARSER )
-      GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data 
+#elif defined (EXTXML_GDATAXML)
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:data 
                                                              options:0 error:&error];
       
-      _rootObject = doc;
+    _rootObject = doc;
 #endif
       
   }

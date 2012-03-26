@@ -38,4 +38,4 @@ LIBRARY_SEARCH_PATHS    = $(STDLIB_LIBRARY)
 // Applies to:
 //  - Xcode 4 only
 
-HEADER_SEARCH_PATHS     = $(STDLIB_HEADERS) "$(BUILT_PRODUCTS_DIR)/../three20" "$(BUILT_PRODUCTS_DIR)/../../three20" "$(CONFIGURATION_BUILD_DIR)/../../three20"
+HEADER_SEARCH_PATHS     = $(STDLIB_HEADERS) "$(BUILT_PRODUCTS_DIR)/../three20" "$(BUILT_PRODUCTS_DIR)/../../three20" "$(CONFIGURATION_BUILD_DIR)/../../three20" "/usr/include/libxml2"
