@@ -610,18 +610,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					EXTXML_GDATAXML,
-					DEBUG,
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(STDLIB_HEADERS)",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
-					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
-				);
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+GDataXML";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -634,18 +623,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					EXTXML_GDATAXML,
-					DEBUG,
-				);
-				HEADER_SEARCH_PATHS = (
-					/usr/include/libxml2,
-					"$(STDLIB_HEADERS)",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
-				);
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+GDataXML";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -657,16 +635,6 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_PREPROCESSOR_DEFINITIONS = EXTXML_GDATAXML;
-				HEADER_SEARCH_PATHS = (
-					/usr/include/libxml2,
-					"$(STDLIB_HEADERS)",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
-				);
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+GDataXML";
-				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -678,13 +646,6 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(STDLIB_HEADERS)",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
-					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
-				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -699,18 +660,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					EXTXML_TTXMLPARSER,
-					DEBUG,
-				);
-				HEADER_SEARCH_PATHS = (
-					/usr/include/libxml2,
-					"$(STDLIB_HEADERS)",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
-				);
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+TTXMLParser";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -736,18 +686,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					EXTXML_TTXMLPARSER,
-					DEBUG,
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(STDLIB_HEADERS)",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
-					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
-				);
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+TTXMLParser";
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -758,15 +697,6 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_PREPROCESSOR_DEFINITIONS = EXTXML_TTXMLPARSER;
-				HEADER_SEARCH_PATHS = (
-					/usr/include/libxml2,
-					"$(STDLIB_HEADERS)",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
-				);
-				PRODUCT_NAME = "$(BASE_PRODUCT_NAME)+TTXMLParser";
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
@@ -779,13 +709,6 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(STDLIB_HEADERS)",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
-					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
-				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -800,13 +723,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(STDLIB_HEADERS)",
-					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
-					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
-					/usr/include/libxml2,
-					"\"$(CONFIGURATION_BUILD_DIR)/../../three20\"",
-				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

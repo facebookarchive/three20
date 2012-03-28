@@ -37,5 +37,8 @@ LIBRARY_SEARCH_PATHS    = $(STDLIB_LIBRARY)
 //                    product and the public header path.
 // Applies to:
 //  - Xcode 4 only
+//
+// LIBRARY_ADDITIONAL_PATHS allows libraries that have a requirement for specific search paths to 
+// get them included here.
 
-HEADER_SEARCH_PATHS     = $(STDLIB_HEADERS) "$(BUILT_PRODUCTS_DIR)/../three20" "$(BUILT_PRODUCTS_DIR)/../../three20" "$(CONFIGURATION_BUILD_DIR)/../../three20" "/usr/include/libxml2"
+HEADER_SEARCH_PATHS     = $(STDLIB_HEADERS) "$(BUILT_PRODUCTS_DIR)/../three20" "$(BUILT_PRODUCTS_DIR)/../../three20" "$(CONFIGURATION_BUILD_DIR)/../../three20" $(LIBRARY_ADDITIONAL_PATHS)

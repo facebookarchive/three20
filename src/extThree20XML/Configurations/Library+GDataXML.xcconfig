@@ -14,6 +14,9 @@
 // limitations under the License.
 //
 
+// This library requires libxml2 headers in search path
+LIBRARY_ADDITIONAL_PATHS = "/usr/include/libxml2"
+
 #include "../common/Configurations/Library.xcconfig"
 #include "../common/Configurations/Libraries.xcconfig"
 
