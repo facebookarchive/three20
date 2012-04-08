@@ -251,7 +251,19 @@
                          right:RGBCOLOR(53, 94, 255) bottom:RGBCOLOR(53, 94, 255)
                          left:RGBCOLOR(53, 94, 255) width:1 next:nil]]]];
 
-   } else {
+   }
+    if (state & UIControlStateHighlighted)
+    {
+        return
+        [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
+         [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 1, 1, 1) next:
+          [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(255, 165, 0)
+                                              color2:RGBCOLOR(225, 100, 0) next:
+           [TTFourBorderStyle styleWithTop:RGBCOLOR(245, 120, 0)
+                                     right:RGBCOLOR(245, 120, 0) bottom:RGBCOLOR(245, 120, 0)
+                                      left:RGBCOLOR(245, 120, 0) width:1 next:nil]]]];
+    }
+  else {
     return
      [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:TT_ROUNDED] next:
      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 1, 1, 1) next:

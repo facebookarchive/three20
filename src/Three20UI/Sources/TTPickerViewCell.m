@@ -35,14 +35,14 @@ static const CGFloat kMaxWidth = 250.0f;
 
 @synthesize object    = _object;
 @synthesize selected  = _selected;
-
+@synthesize highlighted = _highlighted;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
   if (self) {
     _labelView = [[UILabel alloc] init];
-    _labelView.backgroundColor = [UIColor clearColor];
+      _labelView.backgroundColor = [UIColor clearColor];
     _labelView.textColor = TTSTYLEVAR(textColor);
     _labelView.highlightedTextColor = TTSTYLEVAR(highlightedTextColor);
     _labelView.lineBreakMode = UILineBreakModeTailTruncation;
@@ -87,10 +87,16 @@ static const CGFloat kMaxWidth = 250.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (TTStyle*)style {
-  if (self.selected) {
+  if (self.selected)
+  {
     return TTSTYLESTATE(pickerCell:, UIControlStateSelected);
-
-  } else {
+  }
+  else if (self.highlighted)
+  {
+      return TTSTYLESTATE(pickerCell:, UIControlStateHighlighted);
+  }
+  else
+  {
     return TTSTYLESTATE(pickerCell:, UIControlStateNormal);
   }
 }
@@ -134,5 +140,10 @@ static const CGFloat kMaxWidth = 250.0f;
   [self setNeedsDisplay];
 }
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setHighlighted:(BOOL)highlighted {
+    _highlighted = highlighted;
+    _labelView.highlighted = highlighted;
+    [self setNeedsDisplay];
+}
 @end
