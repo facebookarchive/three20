@@ -143,17 +143,18 @@
     [super setObject:object];
 
     TTTableSubtitleItem* item = object;
-    if (item.text.length) {
-      self.textLabel.text = item.text;
-    }
-    if (item.subtitle.length) {
-      self.detailTextLabel.text = item.subtitle;
-    }
-    if (item.defaultImage) {
+    self.textLabel.text = item.text;
+    self.detailTextLabel.text = item.subtitle;
+
+    if (item.defaultImage || item.imageURL) {
       self.imageView2.defaultImage = item.defaultImage;
-    }
-    if (item.imageURL) {
       self.imageView2.urlPath = item.imageURL;
+
+    } else {
+      // Subviews are laid out in this cell depending on the existence of the image view.
+      // If there is no image to be displayed, we remove the image view altogether.
+      [_imageView2 removeFromSuperview];
+      TT_RELEASE_SAFELY(_imageView2);
     }
   }
 }
