@@ -19,6 +19,10 @@
 // UICommon
 #import "Three20UICommon/TTGlobalUICommon.h"
 
+// TTStyle
+#import "Three20Style/TTGlobalStyle.h"
+#import "Three20Style/TTDefaultStyleSheet.h"
+
 const CGFloat   kTableCellSmallMargin = 6.0f;
 const CGFloat   kTableCellSpacing     = 8.0f;
 const CGFloat   kTableCellMargin      = 10.0f;
@@ -33,6 +37,14 @@ const NSInteger kTableMessageTextLineCount = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation TTTableViewCell
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if ( self ) {
+    self.selectionStyle = TTSTYLEVAR(tableSelectionStyle);
+  }
+  return self;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
