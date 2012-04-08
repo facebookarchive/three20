@@ -87,8 +87,20 @@ static const CGFloat    kDefaultMessageImageHeight  = 34.0f;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
-  // XXXjoe Compute height based on font sizes
-  return 90;
+  TTTableMessageItem* item = object;
+
+  CGFloat height = TTSTYLEVAR(tableFont).ttLineHeight + kTableCellVPadding*1.5;
+  if (item.caption) {
+    height += TTSTYLEVAR(font).ttLineHeight;
+  }
+  if (item.text) {
+    height += TTSTYLEVAR(font).ttLineHeight * kMessageTextLineCount;
+  }
+  if (item.imageURL) {
+    height = height > kDefaultMessageImageHeight ? height : kDefaultMessageImageHeight;
+  }
+
+  return height;
 }
 
 
