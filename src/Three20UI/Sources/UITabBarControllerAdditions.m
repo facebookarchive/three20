@@ -89,7 +89,9 @@ TT_FIX_CATEGORY_BUG(UITabBarControllerAdditions)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)bringControllerToFront:(UIViewController*)controller animated:(BOOL)animated {
-  self.selectedViewController = controller;
+  if ([self.viewControllers containsObject:controller]) {
+    self.selectedViewController = controller;
+  }
 }
 
 
