@@ -140,7 +140,12 @@
 - (void)delayDidEnd;
 
 /**
- * Shows or hides the navigation and status bars.
+ * Shows or hides the navigation bar.
+ */
+- (void)showNavigationBar:(BOOL)show animated:(BOOL)animated;
+
+/**
+ * Shows or hides the status bar and the navigation bar.
  */
 - (void)showBars:(BOOL)show animated:(BOOL)animated;
 
