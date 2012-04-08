@@ -53,3 +53,8 @@ NSString* TTPathForBundleResource(NSString* relativePath);
  * @return The documents path concatenated with the given relative path.
  */
 NSString* TTPathForDocumentsResource(NSString* relativePath);
+
+/**
+ * @return The caches path concatenated with the given relative path.
+ */
+NSString* TTPathForCachesResource(NSString* relativePath);
