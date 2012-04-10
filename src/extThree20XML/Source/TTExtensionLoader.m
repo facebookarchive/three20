@@ -45,6 +45,7 @@
   extension.license = @"Apache 2.0";
   extension.authors = [NSArray arrayWithObjects:
                        [TTExtensionAuthor authorWithName:@"Jeff Verkoeyen"],
+                       [TTExtensionAuthor authorWithName:@"Khurram Ali, RIKSOF"],
                        nil];
 
   return [extension autorelease];
