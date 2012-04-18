@@ -213,30 +213,34 @@ static const NSInteger kActivityLabelTag          = 96;
                   _centerPhotoIndex+1, _photoSource.numberOfPhotos];
   }
 
-  if (![self.ttPreviousViewController isKindOfClass:[TTThumbsViewController class]]) {
-    if (_photoSource.numberOfPhotos > 1) {
-      self.navigationItem.rightBarButtonItem =
-      [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"See All",
-                                                                @"See all photo thumbnails")
-                                        style:UIBarButtonItemStyleBordered
-                                       target:self
-                                       action:@selector(showThumbnails)]
-       autorelease];
-
-    } else {
-      self.navigationItem.rightBarButtonItem = nil;
-    }
-
-  } else {
-    self.navigationItem.rightBarButtonItem = nil;
-  }
-
+  self.navigationItem.rightBarButtonItem = [self rightBarButtonItem];
   UIBarButtonItem* playButton = [_toolbar itemWithTag:1];
   playButton.enabled = _photoSource.numberOfPhotos > 1;
   _previousButton.enabled = _centerPhotoIndex > 0;
   _nextButton.enabled = _centerPhotoIndex >= 0 && _centerPhotoIndex < _photoSource.numberOfPhotos-1;
 }
 
+- (UIBarButtonItem*)rightBarButtonItem
+{
+    
+    if (![self.ttPreviousViewController isKindOfClass:[TTThumbsViewController class]]) {
+        if (_photoSource.numberOfPhotos > 1) {
+            return
+            [[[UIBarButtonItem alloc] initWithTitle:TTLocalizedString(@"See All",
+                                                                      @"See all photo thumbnails")
+                                              style:UIBarButtonItemStyleBordered
+                                             target:self
+                                             action:@selector(showThumbnails)]
+             autorelease];
+            
+        } else {
+            return nil;
+        }
+        
+    } else {
+        return nil;
+    } 
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)updateToolbarWithOrientation:(UIInterfaceOrientation)interfaceOrientation {
