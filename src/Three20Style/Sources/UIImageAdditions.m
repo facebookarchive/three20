@@ -76,6 +76,8 @@ TT_FIX_CATEGORY_BUG(UIImageAdditions)
  * imageOrientation shows it to be necessary (and the rotate argument is YES).
  */
 - (UIImage*)transformWidth:(CGFloat)width height:(CGFloat)height rotate:(BOOL)rotate {
+  width = (int)(width+0.5); // round to integral
+  height = (int)(height+0.5);
   CGFloat destW = width;
   CGFloat destH = height;
   CGFloat sourceW = width;
