@@ -882,12 +882,20 @@ __attribute__((weak_import));
   }
   [controller persistNavigationPath:path];
 
-  if (controller.modalViewController
-      && controller.modalViewController.parentViewController == controller) {
-    [self persistController:controller.modalViewController path:path];
+  UIViewController *modalController = controller.modalViewController;
+  if (modalController) {
+    // Since in iOS 5.0 -parentViewController method is broken we are taking
+    // parent view controller with -presentingViewController method,
+    // that was added in 5.0. If controller doesn't responds to it - using old method.
+    // @see http://omegadelta.net/2011/11/04/oh-my-god-they-killed-parentviewcontroller/
+    UIViewController *parentViewController = [modalController respondsToSelector:@selector(presentingViewController)]
+      ? [modalController performSelector:@selector(presentingViewController)] 
+      : [modalController parentViewController];
 
-  } else if (controller.popupViewController
-             && controller.popupViewController.superController == controller) {
+    if (parentViewController == controller) {
+      [self persistController:controller.modalViewController path:path];
+    }
+  } else if (controller.popupViewController && controller.popupViewController.superController == controller) {
     [self persistController:controller.popupViewController path:path];
   }
 }
