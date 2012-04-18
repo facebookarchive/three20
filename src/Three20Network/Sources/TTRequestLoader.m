@@ -136,7 +136,9 @@ static const NSInteger kLoadMaxRetries = 2;
   
   NSURLRequest* URLRequest = [_queue createNSURLRequest:request URL:URL];
 
-  _connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
+  _connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self startImmediately:FALSE];
+  [_connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+  [_connection start];
 }
 
 
@@ -399,7 +401,7 @@ static const NSInteger kLoadMaxRetries = 2;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   TTNetworkRequestStopped();
 
-  TTDCONDITIONLOG(TTDFLAG_ETAGS, @"Response status code: %d", _response.statusCode);
+  TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"Response status code: %d", _response.statusCode);
   if (![_response respondsToSelector:@selector(statusCode)]){
 	[_queue loader:self didLoadResponse:_response data:_responseData];
   } else if (_response.statusCode == 304) {
