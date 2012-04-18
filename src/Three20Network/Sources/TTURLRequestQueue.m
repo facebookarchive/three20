@@ -672,6 +672,13 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)                             loader: (TTRequestLoader*)loader
+    canAuthenticateAgainstProtectionSpace: (NSURLProtectionSpace*) protectionSpace {
+    return (id)kCFBooleanTrue;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)                       loader: (TTRequestLoader*)loader
     didReceiveAuthenticationChallenge: (NSURLAuthenticationChallenge*) challenge {
   TTDCONDITIONLOG(TTDFLAG_URLREQUEST, @"CHALLENGE: %@", challenge);
