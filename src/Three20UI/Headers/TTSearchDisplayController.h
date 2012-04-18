@@ -16,6 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Three20UI/TTSearchBar.h"
 
 @protocol TTTableViewDataSource;
 @class TTTableViewController;
@@ -34,11 +35,15 @@ extern const int kTTSearchBarBackgroundTag;
   TTTableViewController*  _searchResultsViewController;
   NSTimer*                _pauseTimer;
   BOOL                    _pausesBeforeSearching;
+  UIView* _searchMessageView;
 
   id<UITableViewDelegate> _searchResultsDelegate2;
 }
 
+@property (nonatomic, readonly) TTSearchBarEx * searchBarEx;
+
 @property (nonatomic, retain) TTTableViewController* searchResultsViewController;
 @property (nonatomic)         BOOL                   pausesBeforeSearching;
+@property (nonatomic, retain) UIView * searchMessageView;
 
 @end

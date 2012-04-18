@@ -220,7 +220,7 @@ TT_FIX_CATEGORY_BUG(TTTextEditorInternal)
   if ([_delegate respondsToSelector:@selector(textEditorDidChange:)]) {
     [_delegate textEditorDidChange:_textEditor];
   }
-  return YES;
+  return NO;
 }
 
 

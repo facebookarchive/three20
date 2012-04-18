@@ -105,7 +105,7 @@ static const CGFloat kControlPadding = 8.0f;
   }
 
   CGFloat height = view.height;
-  if (!height) {
+  //if (!height) {
     if ([view isKindOfClass:[UITextView class]]) {
       UITextView* textView = (UITextView*)view;
       CGFloat ttLineHeight = textView.font.ttLineHeight;
@@ -114,7 +114,7 @@ static const CGFloat kControlPadding = 8.0f;
     } else if ([view isKindOfClass:[TTTextEditor class]]) {
       TTTextEditor* textEditor = (TTTextEditor*)view;
       CGFloat ttLineHeight = textEditor.font.ttLineHeight;
-      height = ttLineHeight * kDefaultTextViewLines;
+      height = ttLineHeight * (textEditor.maxNumberOfLines + 1);
 
     } else if ([view isKindOfClass:[UITextField class]]) {
       UITextField* textField = (UITextField*)view;
@@ -125,7 +125,7 @@ static const CGFloat kControlPadding = 8.0f;
       [view sizeToFit];
       height = view.height;
     }
-  }
+  //}
 
   if (height < TT_ROW_HEIGHT) {
     return TT_ROW_HEIGHT;
@@ -152,9 +152,10 @@ static const CGFloat kControlPadding = 8.0f;
   } else {
     CGFloat minX = kControlPadding;
     CGFloat contentWidth = self.contentView.width - kControlPadding;
-    if (![TTTableControlCell shouldRespectControlPadding:_control]) {
+    // Enable the padding for every kind of control
+    //if (![TTTableControlCell shouldRespectControlPadding:_control]) {
       contentWidth -= kControlPadding;
-    }
+    //}
     if (self.textLabel.text.length) {
       CGSize textSize = [self.textLabel sizeThatFits:self.contentView.bounds.size];
       contentWidth -= textSize.width + kTableCellSpacing;

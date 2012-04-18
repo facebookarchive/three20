@@ -251,10 +251,10 @@ static CGFloat kProgressMargin  = 6.0f;
     y += _progressView.height + kSpacing-1;
   }
 
-  _label.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + indicatorSize + kSpacing), y,
+  _label.frame = CGRectMake(floor((bezelWidth/2 - contentWidth/2) + indicatorSize + (kSpacing*2)), y,
                             textWidth, textSize.height);
 
-  _activityIndicator.frame = CGRectMake(_label.left - (indicatorSize+kSpacing), y,
+  _activityIndicator.frame = CGRectMake(_label.left - (indicatorSize+(kSpacing *2)), y,
                                         indicatorSize, indicatorSize);
 }
 

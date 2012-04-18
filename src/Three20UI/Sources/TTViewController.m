@@ -20,6 +20,7 @@
 #import "Three20UI/TTNavigator.h"
 #import "Three20UI/TTTableViewController.h"
 #import "Three20UI/TTSearchDisplayController.h"
+#import "Three20UI/TTSearchBar.h"
 
 // UINavigator
 #import "Three20UINavigator/TTGlobalNavigatorMetrics.h"
@@ -137,7 +138,7 @@
 - (void)setSearchViewController:(TTTableViewController*)searchViewController {
   if (searchViewController) {
     if (nil == _searchController) {
-      UISearchBar* searchBar = [[[UISearchBar alloc] init] autorelease];
+      TTSearchBarEx* searchBar = [[[TTSearchBarEx alloc] init] autorelease];
       [searchBar sizeToFit];
 
       _searchController = [[TTSearchDisplayController alloc] initWithSearchBar:searchBar

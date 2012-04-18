@@ -61,3 +61,21 @@
 - (void)showSearchResults:(BOOL)show;
 
 @end
+
+@interface TTSearchBarEx : UISearchBar {
+
+    UINavigationBar * _backgroundNavBar;
+    UINavigationItem * _backgroundNavItem;
+
+    UIBarButtonItem * _rightBarButtonItem;
+    UIBarButtonItem * _leftBarButtonItem;
+
+    BOOL _wasEditing;
+
+}
+
+@property (nonatomic, retain) UIBarButtonItem * rightBarButtonItem;
+@property (nonatomic, retain) UIBarButtonItem * leftBarButtonItem;
+@property (nonatomic, readonly) UITextField * searchTextField;
+
+@end
