@@ -35,7 +35,7 @@ Please refer to to Three20 documentation on how to add this extension.
 Using extThree20Google
 ======================
 
-<code>
+<pre><code>
 // Initialize
 GDirections *directions = [[GDirections alloc] init];
 
@@ -50,11 +50,11 @@ CLLocation *presentLocation;
                             to:@"1 Infinite Loop"
                      waypoints:nil];
 
-</code>
+</code></pre>
 
 And below is the remote delegate callback:
 
-<code>
+<pre><code>
 
 - (void)remoteObject:(TTRemoteObject *)remoteObject didFinishLoadForRequest:(TTURLRequest *)request {
     // remoteObject is GDirections object that we instantiated in the code above. It has all the routes, legs and steps.
@@ -69,4 +69,5 @@ And below is the remote delegate callback:
     }
 }
 
-</code>
+</code></pre>
+
