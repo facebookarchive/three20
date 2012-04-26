@@ -50,7 +50,7 @@ CLLocation *presentLocation;
                             to:@"1 Infinite Loop"
                      waypoints:nil];
 
-<code>
+</code>
 
 And below is the remote delegate callback:
 
@@ -69,4 +69,4 @@ And below is the remote delegate callback:
     }
 }
 
-<code>
+</code>
