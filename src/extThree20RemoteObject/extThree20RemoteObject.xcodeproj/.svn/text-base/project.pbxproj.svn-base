@@ -1,0 +1,1257 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		206E592A152238BC0054EBA7 /* TTDocumentValuePointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 206E5929152238BC0054EBA7 /* TTDocumentValuePointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		206E5934152239070054EBA7 /* TTDocumentValuePointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 206E5933152239070054EBA7 /* TTDocumentValuePointer.m */; };
+		208994251525BDAC009E38AD /* TTValueMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 208994241525BDAC009E38AD /* TTValueMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089942F1525BDC3009E38AD /* TTValueMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2089942E1525BDC3009E38AD /* TTValueMapper.m */; };
+		2089944015277359009E38AD /* TTDocumentAttributePointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D4556F151E5DEE0043F785 /* TTDocumentAttributePointer.m */; };
+		2089944115277359009E38AD /* TTDocumentBackPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45570151E5DEE0043F785 /* TTDocumentBackPointer.m */; };
+		2089944215277359009E38AD /* TTDocumentElementPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45571151E5DEE0043F785 /* TTDocumentElementPointer.m */; };
+		2089944315277359009E38AD /* TTDocumentForwardPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45572151E5DEE0043F785 /* TTDocumentForwardPointer.m */; };
+		2089944415277359009E38AD /* TTDocumentPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45573151E5DEE0043F785 /* TTDocumentPointer.m */; };
+		2089944515277359009E38AD /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45574151E5DEE0043F785 /* NSMutableArray+Stack.m */; };
+		2089944615277359009E38AD /* TTObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45575151E5DEE0043F785 /* TTObjectModel.m */; };
+		2089944715277359009E38AD /* TTObjectModelCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45576151E5DEE0043F785 /* TTObjectModelCollection.m */; };
+		2089944815277359009E38AD /* TTRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45577151E5DEE0043F785 /* TTRemoteObject.m */; };
+		2089944915277359009E38AD /* TTDocumentValuePointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 206E5933152239070054EBA7 /* TTDocumentValuePointer.m */; };
+		2089944A15277359009E38AD /* TTValueMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2089942E1525BDC3009E38AD /* TTValueMapper.m */; };
+		2089944D15277359009E38AD /* TTDocumentAttributePointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45581151E5E2B0043F785 /* TTDocumentAttributePointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089944E15277359009E38AD /* TTDocumentBackPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45582151E5E2B0043F785 /* TTDocumentBackPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089944F15277359009E38AD /* TTDocumentElementPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45583151E5E2B0043F785 /* TTDocumentElementPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089945015277359009E38AD /* TTDocumentForwardPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45584151E5E2B0043F785 /* TTDocumentForwardPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089945115277359009E38AD /* TTDocumentValuePointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 206E5929152238BC0054EBA7 /* TTDocumentValuePointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089945215277359009E38AD /* TTDocumentPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45585151E5E2B0043F785 /* TTDocumentPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089945315277359009E38AD /* TTObjectModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45587151E5E2B0043F785 /* TTObjectModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089945415277359009E38AD /* TTObjectModelCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45588151E5E2B0043F785 /* TTObjectModelCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089945515277359009E38AD /* TTRemoteObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45591151E5F660043F785 /* TTRemoteObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089945615277359009E38AD /* extThree20RemoteObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C019CC151EE8C400D35993 /* extThree20RemoteObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089945715277359009E38AD /* TTValueMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 208994241525BDAC009E38AD /* TTValueMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089945815277359009E38AD /* NSMutableArray+Stack.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45586151E5E2B0043F785 /* NSMutableArray+Stack.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2089945A15277359009E38AD /* extThree20RemoteObjectTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45502151E4D2B0043F785 /* extThree20RemoteObjectTests.h */; };
+		2089945B15277359009E38AD /* extThree20RemoteObject+JSON_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2089943015277327009E38AD /* extThree20RemoteObject+JSON_Prefix.pch */; };
+		2089947015277391009E38AD /* TTDocumentAttributePointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D4556F151E5DEE0043F785 /* TTDocumentAttributePointer.m */; };
+		2089947115277391009E38AD /* TTDocumentBackPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45570151E5DEE0043F785 /* TTDocumentBackPointer.m */; };
+		2089947215277391009E38AD /* TTDocumentElementPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45571151E5DEE0043F785 /* TTDocumentElementPointer.m */; };
+		2089947315277391009E38AD /* TTDocumentForwardPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45572151E5DEE0043F785 /* TTDocumentForwardPointer.m */; };
+		2089947415277391009E38AD /* TTDocumentPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45573151E5DEE0043F785 /* TTDocumentPointer.m */; };
+		2089947515277391009E38AD /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45574151E5DEE0043F785 /* NSMutableArray+Stack.m */; };
+		2089947615277391009E38AD /* TTObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45575151E5DEE0043F785 /* TTObjectModel.m */; };
+		2089947715277391009E38AD /* TTObjectModelCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45576151E5DEE0043F785 /* TTObjectModelCollection.m */; };
+		2089947815277391009E38AD /* TTRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45577151E5DEE0043F785 /* TTRemoteObject.m */; };
+		2089947915277391009E38AD /* TTDocumentValuePointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 206E5933152239070054EBA7 /* TTDocumentValuePointer.m */; };
+		2089947A15277391009E38AD /* TTValueMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2089942E1525BDC3009E38AD /* TTValueMapper.m */; };
+		2089947D15277391009E38AD /* TTDocumentAttributePointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45581151E5E2B0043F785 /* TTDocumentAttributePointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089947E15277391009E38AD /* TTDocumentBackPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45582151E5E2B0043F785 /* TTDocumentBackPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089947F15277391009E38AD /* TTDocumentElementPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45583151E5E2B0043F785 /* TTDocumentElementPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089948015277391009E38AD /* TTDocumentForwardPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45584151E5E2B0043F785 /* TTDocumentForwardPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089948115277391009E38AD /* TTDocumentValuePointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 206E5929152238BC0054EBA7 /* TTDocumentValuePointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089948215277391009E38AD /* TTDocumentPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45585151E5E2B0043F785 /* TTDocumentPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089948315277391009E38AD /* TTObjectModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45587151E5E2B0043F785 /* TTObjectModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089948415277391009E38AD /* TTObjectModelCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45588151E5E2B0043F785 /* TTObjectModelCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089948515277391009E38AD /* TTRemoteObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45591151E5F660043F785 /* TTRemoteObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089948615277391009E38AD /* extThree20RemoteObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C019CC151EE8C400D35993 /* extThree20RemoteObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089948715277391009E38AD /* TTValueMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 208994241525BDAC009E38AD /* TTValueMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2089948815277391009E38AD /* NSMutableArray+Stack.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45586151E5E2B0043F785 /* NSMutableArray+Stack.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2089948A15277391009E38AD /* extThree20RemoteObjectTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45502151E4D2B0043F785 /* extThree20RemoteObjectTests.h */; };
+		2089948C15277391009E38AD /* extThree20RemoteObject+XML_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2089943115277327009E38AD /* extThree20RemoteObject+XML_Prefix.pch */; };
+		20C019CD151EE8C400D35993 /* extThree20RemoteObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C019CC151EE8C400D35993 /* extThree20RemoteObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20C01ACB151EEEB200D35993 /* extThree20RemoteObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45503151E4D2B0043F785 /* extThree20RemoteObjectTests.m */; };
+		20D454E2151E2C3B0043F785 /* libextThree20RemoteObject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D454CA151E2C3A0043F785 /* libextThree20RemoteObject.a */; };
+		20D45509151E4D2B0043F785 /* extThree20RemoteObject_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 20D454FD151E4D2B0043F785 /* extThree20RemoteObject_Prefix.pch */; };
+		20D4550C151E4D2B0043F785 /* extThree20RemoteObjectTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45502151E4D2B0043F785 /* extThree20RemoteObjectTests.h */; };
+		20D45578151E5DEE0043F785 /* TTDocumentAttributePointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D4556F151E5DEE0043F785 /* TTDocumentAttributePointer.m */; };
+		20D45579151E5DEE0043F785 /* TTDocumentBackPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45570151E5DEE0043F785 /* TTDocumentBackPointer.m */; };
+		20D4557A151E5DEE0043F785 /* TTDocumentElementPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45571151E5DEE0043F785 /* TTDocumentElementPointer.m */; };
+		20D4557B151E5DEE0043F785 /* TTDocumentForwardPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45572151E5DEE0043F785 /* TTDocumentForwardPointer.m */; };
+		20D4557C151E5DEE0043F785 /* TTDocumentPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45573151E5DEE0043F785 /* TTDocumentPointer.m */; };
+		20D4557D151E5DEE0043F785 /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45574151E5DEE0043F785 /* NSMutableArray+Stack.m */; };
+		20D4557E151E5DEE0043F785 /* TTObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45575151E5DEE0043F785 /* TTObjectModel.m */; };
+		20D4557F151E5DEE0043F785 /* TTObjectModelCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45576151E5DEE0043F785 /* TTObjectModelCollection.m */; };
+		20D45580151E5DEE0043F785 /* TTRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D45577151E5DEE0043F785 /* TTRemoteObject.m */; };
+		20D45589151E5E2B0043F785 /* TTDocumentAttributePointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45581151E5E2B0043F785 /* TTDocumentAttributePointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20D4558A151E5E2B0043F785 /* TTDocumentBackPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45582151E5E2B0043F785 /* TTDocumentBackPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20D4558B151E5E2B0043F785 /* TTDocumentElementPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45583151E5E2B0043F785 /* TTDocumentElementPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20D4558C151E5E2B0043F785 /* TTDocumentForwardPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45584151E5E2B0043F785 /* TTDocumentForwardPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20D4558D151E5E2B0043F785 /* TTDocumentPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45585151E5E2B0043F785 /* TTDocumentPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20D4558E151E5E2B0043F785 /* NSMutableArray+Stack.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45586151E5E2B0043F785 /* NSMutableArray+Stack.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		20D4558F151E5E2B0043F785 /* TTObjectModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45587151E5E2B0043F785 /* TTObjectModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20D45590151E5E2B0043F785 /* TTObjectModelCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45588151E5E2B0043F785 /* TTObjectModelCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20D45592151E5F660043F785 /* TTRemoteObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 20D45591151E5F660043F785 /* TTRemoteObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2089943815277359009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20C01A21151EED2E00D35993 /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20;
+		};
+		2089943A15277359009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45512151E50A60043F785 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20Core;
+		};
+		2089943C15277359009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D4551B151E50CB0043F785 /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20Network;
+		};
+		2089943E15277359009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45556151E511A0043F785 /* extThree20JSON.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = "extThree20JSON+SBJSON";
+		};
+		2089946815277391009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20C01A21151EED2E00D35993 /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20;
+		};
+		2089946A15277391009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45512151E50A60043F785 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20Core;
+		};
+		2089946C15277391009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D4551B151E50CB0043F785 /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20Network;
+		};
+		208998D01529903D009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45548151E51150043F785 /* extThree20XML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 20C01B8B1520D8B400D35993;
+			remoteInfo = "extThree20XML+GDataXML";
+		};
+		208998D61529913E009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45548151E51150043F785 /* extThree20XML.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 20C01B741520D8B400D35993;
+			remoteInfo = "extThree20XML+GDataXML";
+		};
+		208998D815299151009E38AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45548151E51150043F785 /* extThree20XML.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 20C01B741520D8B400D35993;
+			remoteInfo = "extThree20XML+GDataXML";
+		};
+		20C01A29151EED2F00D35993 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20C01A21151EED2E00D35993 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20;
+		};
+		20C01A2B151EED2F00D35993 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20C01A21151EED2E00D35993 /* Three20.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20UnitTests;
+		};
+		20C01A70151EED6A00D35993 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20C01A21151EED2E00D35993 /* Three20.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20;
+		};
+		20D454E0151E2C3B0043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D454C1151E2C3A0043F785 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20D454C9151E2C3A0043F785;
+			remoteInfo = extThree20RemoteObject;
+		};
+		20D45517151E50A60043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45512151E50A60043F785 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20Core;
+		};
+		20D45519151E50A60043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45512151E50A60043F785 /* Three20Core.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20CoreUnitTests;
+		};
+		20D45524151E50CB0043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D4551B151E50CB0043F785 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = Three20Network;
+		};
+		20D45526151E50CB0043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D4551B151E50CB0043F785 /* Three20Network.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = Three20NetworkUnitTests;
+		};
+		20D45552151E51150043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45548151E51150043F785 /* extThree20XML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = extThree20XML;
+		};
+		20D45554151E51150043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45548151E51150043F785 /* extThree20XML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = extThree20XMLUnitTests;
+		};
+		20D45561151E511B0043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45556151E511A0043F785 /* extThree20JSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
+			remoteInfo = "extThree20JSON+SBJSON";
+		};
+		20D45563151E511B0043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45556151E511A0043F785 /* extThree20JSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E645BD91187751200F08CB1;
+			remoteInfo = "extThree20JSON+YAJL";
+		};
+		20D45565151E511B0043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45556151E511A0043F785 /* extThree20JSON.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
+			remoteInfo = "extThree20JSONUnitTests+SBJSON";
+		};
+		20D45567151E51580043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45512151E50A60043F785 /* Three20Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20Core;
+		};
+		20D45569151E51600043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D4551B151E50CB0043F785 /* Three20Network.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = Three20Network;
+		};
+		20D4556B151E51700043F785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20D45556151E511A0043F785 /* extThree20JSON.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = "extThree20JSON+SBJSON";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		206E5929152238BC0054EBA7 /* TTDocumentValuePointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentValuePointer.h; sourceTree = "<group>"; };
+		206E5933152239070054EBA7 /* TTDocumentValuePointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentValuePointer.m; sourceTree = "<group>"; };
+		208994241525BDAC009E38AD /* TTValueMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTValueMapper.h; sourceTree = "<group>"; };
+		2089942E1525BDC3009E38AD /* TTValueMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTValueMapper.m; sourceTree = "<group>"; };
+		2089943015277327009E38AD /* extThree20RemoteObject+JSON_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "extThree20RemoteObject+JSON_Prefix.pch"; sourceTree = "<group>"; };
+		2089943115277327009E38AD /* extThree20RemoteObject+XML_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "extThree20RemoteObject+XML_Prefix.pch"; sourceTree = "<group>"; };
+		2089946115277359009E38AD /* libextThree20RemoteObject+JSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libextThree20RemoteObject+JSON.a"; path = "libextThree20RemoteObject+JSON.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2089946215277383009E38AD /* Library+JSON.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Library+JSON.xcconfig"; sourceTree = "<group>"; };
+		2089946315277383009E38AD /* Library+XML.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Library+XML.xcconfig"; sourceTree = "<group>"; };
+		2089949115277391009E38AD /* libextThree20RemoteObject+XML.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libextThree20RemoteObject+XML.a"; path = "libextThree20RemoteObject+XML.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20C019CC151EE8C400D35993 /* extThree20RemoteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extThree20RemoteObject.h; sourceTree = "<group>"; };
+		20C01A21151EED2E00D35993 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../Three20/Three20.xcodeproj; sourceTree = "<group>"; };
+		20D454CA151E2C3A0043F785 /* libextThree20RemoteObject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20RemoteObject.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		20D454DA151E2C3B0043F785 /* extThree20RemoteObjectTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = extThree20RemoteObjectTests.octest; path = extRemoteObjectTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		20D454F9151E4D2B0043F785 /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Library.xcconfig; sourceTree = "<group>"; };
+		20D454FA151E4D2B0043F785 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		20D454FB151E4D2B0043F785 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = UnitTests.xcconfig; sourceTree = "<group>"; };
+		20D454FD151E4D2B0043F785 /* extThree20RemoteObject_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extThree20RemoteObject_Prefix.pch; sourceTree = "<group>"; };
+		20D45502151E4D2B0043F785 /* extThree20RemoteObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extThree20RemoteObjectTests.h; sourceTree = "<group>"; };
+		20D45503151E4D2B0043F785 /* extThree20RemoteObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = extThree20RemoteObjectTests.m; sourceTree = "<group>"; };
+		20D45506151E4D2B0043F785 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		20D45508151E4D2B0043F785 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		20D45512151E50A60043F785 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20Core/Three20Core.xcodeproj; sourceTree = "<group>"; };
+		20D4551B151E50CB0043F785 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20Network/Three20Network.xcodeproj; sourceTree = "<group>"; };
+		20D45548151E51150043F785 /* extThree20XML.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20XML.xcodeproj; path = ../extThree20XML/extThree20XML.xcodeproj; sourceTree = "<group>"; };
+		20D45556151E511A0043F785 /* extThree20JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20JSON.xcodeproj; path = ../extThree20JSON/extThree20JSON.xcodeproj; sourceTree = "<group>"; };
+		20D4556F151E5DEE0043F785 /* TTDocumentAttributePointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentAttributePointer.m; sourceTree = "<group>"; };
+		20D45570151E5DEE0043F785 /* TTDocumentBackPointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentBackPointer.m; sourceTree = "<group>"; };
+		20D45571151E5DEE0043F785 /* TTDocumentElementPointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentElementPointer.m; sourceTree = "<group>"; };
+		20D45572151E5DEE0043F785 /* TTDocumentForwardPointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentForwardPointer.m; sourceTree = "<group>"; };
+		20D45573151E5DEE0043F785 /* TTDocumentPointer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTDocumentPointer.m; sourceTree = "<group>"; };
+		20D45574151E5DEE0043F785 /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
+		20D45575151E5DEE0043F785 /* TTObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTObjectModel.m; sourceTree = "<group>"; };
+		20D45576151E5DEE0043F785 /* TTObjectModelCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTObjectModelCollection.m; sourceTree = "<group>"; };
+		20D45577151E5DEE0043F785 /* TTRemoteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTRemoteObject.m; sourceTree = "<group>"; };
+		20D45581151E5E2B0043F785 /* TTDocumentAttributePointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentAttributePointer.h; sourceTree = "<group>"; };
+		20D45582151E5E2B0043F785 /* TTDocumentBackPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentBackPointer.h; sourceTree = "<group>"; };
+		20D45583151E5E2B0043F785 /* TTDocumentElementPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentElementPointer.h; sourceTree = "<group>"; };
+		20D45584151E5E2B0043F785 /* TTDocumentForwardPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentForwardPointer.h; sourceTree = "<group>"; };
+		20D45585151E5E2B0043F785 /* TTDocumentPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTDocumentPointer.h; sourceTree = "<group>"; };
+		20D45586151E5E2B0043F785 /* NSMutableArray+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stack.h"; sourceTree = "<group>"; };
+		20D45587151E5E2B0043F785 /* TTObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTObjectModel.h; sourceTree = "<group>"; };
+		20D45588151E5E2B0043F785 /* TTObjectModelCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTObjectModelCollection.h; sourceTree = "<group>"; };
+		20D45591151E5F660043F785 /* TTRemoteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTRemoteObject.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2089944B15277359009E38AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2089947B15277391009E38AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20D454C7151E2C3A0043F785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20D454D6151E2C3B0043F785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20D454E2151E2C3B0043F785 /* libextThree20RemoteObject.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20C01A22151EED2E00D35993 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20C01A2A151EED2F00D35993 /* libThree20.a */,
+				20C01A2C151EED2F00D35993 /* Three20UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20D454BF151E2C3A0043F785 = {
+			isa = PBXGroup;
+			children = (
+				20D454F8151E4D2B0043F785 /* Configurations */,
+				20D454FC151E4D2B0043F785 /* Headers */,
+				20D454FF151E4D2B0043F785 /* Source */,
+				20D45511151E508A0043F785 /* Dependencies */,
+				20D45501151E4D2B0043F785 /* Tests */,
+				20D454CB151E2C3A0043F785 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20D454CB151E2C3A0043F785 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20D454CA151E2C3A0043F785 /* libextThree20RemoteObject.a */,
+				20D454DA151E2C3B0043F785 /* extThree20RemoteObjectTests.octest */,
+				2089946115277359009E38AD /* libextThree20RemoteObject+JSON.a */,
+				2089949115277391009E38AD /* libextThree20RemoteObject+XML.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20D454F8151E4D2B0043F785 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				2089946215277383009E38AD /* Library+JSON.xcconfig */,
+				2089946315277383009E38AD /* Library+XML.xcconfig */,
+				20D454F9151E4D2B0043F785 /* Library.xcconfig */,
+				20D454FA151E4D2B0043F785 /* Project.xcconfig */,
+				20D454FB151E4D2B0043F785 /* UnitTests.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		20D454FC151E4D2B0043F785 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				20D45581151E5E2B0043F785 /* TTDocumentAttributePointer.h */,
+				20D45582151E5E2B0043F785 /* TTDocumentBackPointer.h */,
+				20D45583151E5E2B0043F785 /* TTDocumentElementPointer.h */,
+				20D45584151E5E2B0043F785 /* TTDocumentForwardPointer.h */,
+				20D45585151E5E2B0043F785 /* TTDocumentPointer.h */,
+				206E5929152238BC0054EBA7 /* TTDocumentValuePointer.h */,
+				20D45586151E5E2B0043F785 /* NSMutableArray+Stack.h */,
+				20D45587151E5E2B0043F785 /* TTObjectModel.h */,
+				20D45588151E5E2B0043F785 /* TTObjectModelCollection.h */,
+				20D45591151E5F660043F785 /* TTRemoteObject.h */,
+				208994241525BDAC009E38AD /* TTValueMapper.h */,
+				20D454FD151E4D2B0043F785 /* extThree20RemoteObject_Prefix.pch */,
+				2089943015277327009E38AD /* extThree20RemoteObject+JSON_Prefix.pch */,
+				2089943115277327009E38AD /* extThree20RemoteObject+XML_Prefix.pch */,
+				20C019CC151EE8C400D35993 /* extThree20RemoteObject.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		20D454FF151E4D2B0043F785 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				20D4556F151E5DEE0043F785 /* TTDocumentAttributePointer.m */,
+				20D45570151E5DEE0043F785 /* TTDocumentBackPointer.m */,
+				20D45571151E5DEE0043F785 /* TTDocumentElementPointer.m */,
+				20D45572151E5DEE0043F785 /* TTDocumentForwardPointer.m */,
+				206E5933152239070054EBA7 /* TTDocumentValuePointer.m */,
+				20D45573151E5DEE0043F785 /* TTDocumentPointer.m */,
+				20D45574151E5DEE0043F785 /* NSMutableArray+Stack.m */,
+				20D45575151E5DEE0043F785 /* TTObjectModel.m */,
+				20D45576151E5DEE0043F785 /* TTObjectModelCollection.m */,
+				20D45577151E5DEE0043F785 /* TTRemoteObject.m */,
+				2089942E1525BDC3009E38AD /* TTValueMapper.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		20D45501151E4D2B0043F785 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				20D45502151E4D2B0043F785 /* extThree20RemoteObjectTests.h */,
+				20D45503151E4D2B0043F785 /* extThree20RemoteObjectTests.m */,
+				20D45504151E4D2B0043F785 /* Resources */,
+			);
+			name = Tests;
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		20D45504151E4D2B0043F785 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				20D45505151E4D2B0043F785 /* InfoPlist.strings */,
+				20D45507151E4D2B0043F785 /* PropertyLists */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		20D45507151E4D2B0043F785 /* PropertyLists */ = {
+			isa = PBXGroup;
+			children = (
+				20D45508151E4D2B0043F785 /* UnitTests-Info.plist */,
+			);
+			path = PropertyLists;
+			sourceTree = "<group>";
+		};
+		20D45511151E508A0043F785 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				20C01A21151EED2E00D35993 /* Three20.xcodeproj */,
+				20D45512151E50A60043F785 /* Three20Core.xcodeproj */,
+				20D4551B151E50CB0043F785 /* Three20Network.xcodeproj */,
+				20D45556151E511A0043F785 /* extThree20JSON.xcodeproj */,
+				20D45548151E51150043F785 /* extThree20XML.xcodeproj */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		20D45513151E50A60043F785 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20D45518151E50A60043F785 /* libThree20Core.a */,
+				20D4551A151E50A60043F785 /* CoreUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20D4551C151E50CB0043F785 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20D45525151E50CB0043F785 /* libThree20Network.a */,
+				20D45527151E50CB0043F785 /* NetworkUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20D45549151E51150043F785 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20D45553151E51150043F785 /* libextThree20XML+TTXMLParser.a */,
+				208998D11529903D009E38AD /* libextThree20XML+GDataXML.a */,
+				20D45555151E51150043F785 /* extXMLUnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20D45557151E511A0043F785 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20D45562151E511B0043F785 /* libextThree20JSON+SBJSON.a */,
+				20D45564151E511B0043F785 /* libextThree20JSON+YAJL.a */,
+				20D45566151E511B0043F785 /* extJSONUnitTests+SBJSON.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2089944C15277359009E38AD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2089944D15277359009E38AD /* TTDocumentAttributePointer.h in Headers */,
+				2089944E15277359009E38AD /* TTDocumentBackPointer.h in Headers */,
+				2089944F15277359009E38AD /* TTDocumentElementPointer.h in Headers */,
+				2089945015277359009E38AD /* TTDocumentForwardPointer.h in Headers */,
+				2089945115277359009E38AD /* TTDocumentValuePointer.h in Headers */,
+				2089945215277359009E38AD /* TTDocumentPointer.h in Headers */,
+				2089945315277359009E38AD /* TTObjectModel.h in Headers */,
+				2089945415277359009E38AD /* TTObjectModelCollection.h in Headers */,
+				2089945515277359009E38AD /* TTRemoteObject.h in Headers */,
+				2089945615277359009E38AD /* extThree20RemoteObject.h in Headers */,
+				2089945715277359009E38AD /* TTValueMapper.h in Headers */,
+				2089945815277359009E38AD /* NSMutableArray+Stack.h in Headers */,
+				2089945A15277359009E38AD /* extThree20RemoteObjectTests.h in Headers */,
+				2089945B15277359009E38AD /* extThree20RemoteObject+JSON_Prefix.pch in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2089947C15277391009E38AD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2089947D15277391009E38AD /* TTDocumentAttributePointer.h in Headers */,
+				2089947E15277391009E38AD /* TTDocumentBackPointer.h in Headers */,
+				2089947F15277391009E38AD /* TTDocumentElementPointer.h in Headers */,
+				2089948015277391009E38AD /* TTDocumentForwardPointer.h in Headers */,
+				2089948115277391009E38AD /* TTDocumentValuePointer.h in Headers */,
+				2089948215277391009E38AD /* TTDocumentPointer.h in Headers */,
+				2089948315277391009E38AD /* TTObjectModel.h in Headers */,
+				2089948415277391009E38AD /* TTObjectModelCollection.h in Headers */,
+				2089948515277391009E38AD /* TTRemoteObject.h in Headers */,
+				2089948615277391009E38AD /* extThree20RemoteObject.h in Headers */,
+				2089948715277391009E38AD /* TTValueMapper.h in Headers */,
+				2089948815277391009E38AD /* NSMutableArray+Stack.h in Headers */,
+				2089948A15277391009E38AD /* extThree20RemoteObjectTests.h in Headers */,
+				2089948C15277391009E38AD /* extThree20RemoteObject+XML_Prefix.pch in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20D454C8151E2C3A0043F785 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20D45589151E5E2B0043F785 /* TTDocumentAttributePointer.h in Headers */,
+				20D4558A151E5E2B0043F785 /* TTDocumentBackPointer.h in Headers */,
+				20D4558B151E5E2B0043F785 /* TTDocumentElementPointer.h in Headers */,
+				20D4558C151E5E2B0043F785 /* TTDocumentForwardPointer.h in Headers */,
+				206E592A152238BC0054EBA7 /* TTDocumentValuePointer.h in Headers */,
+				20D4558D151E5E2B0043F785 /* TTDocumentPointer.h in Headers */,
+				20D4558F151E5E2B0043F785 /* TTObjectModel.h in Headers */,
+				20D45590151E5E2B0043F785 /* TTObjectModelCollection.h in Headers */,
+				20D45592151E5F660043F785 /* TTRemoteObject.h in Headers */,
+				20C019CD151EE8C400D35993 /* extThree20RemoteObject.h in Headers */,
+				208994251525BDAC009E38AD /* TTValueMapper.h in Headers */,
+				20D4558E151E5E2B0043F785 /* NSMutableArray+Stack.h in Headers */,
+				20D45509151E4D2B0043F785 /* extThree20RemoteObject_Prefix.pch in Headers */,
+				20D4550C151E4D2B0043F785 /* extThree20RemoteObjectTests.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2089943415277359009E38AD /* extThree20RemoteObject+JSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2089945D15277359009E38AD /* Build configuration list for PBXNativeTarget "extThree20RemoteObject+JSON" */;
+			buildPhases = (
+				2089943F15277359009E38AD /* Sources */,
+				2089944B15277359009E38AD /* Frameworks */,
+				2089944C15277359009E38AD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2089943715277359009E38AD /* PBXTargetDependency */,
+				2089943915277359009E38AD /* PBXTargetDependency */,
+				2089943B15277359009E38AD /* PBXTargetDependency */,
+				2089943D15277359009E38AD /* PBXTargetDependency */,
+			);
+			name = "extThree20RemoteObject+JSON";
+			productName = extThree20RemoteObject;
+			productReference = 2089946115277359009E38AD /* libextThree20RemoteObject+JSON.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		2089946415277391009E38AD /* extThree20RemoteObject+XML */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2089948D15277391009E38AD /* Build configuration list for PBXNativeTarget "extThree20RemoteObject+XML" */;
+			buildPhases = (
+				2089946F15277391009E38AD /* Sources */,
+				2089947B15277391009E38AD /* Frameworks */,
+				2089947C15277391009E38AD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2089946715277391009E38AD /* PBXTargetDependency */,
+				2089946915277391009E38AD /* PBXTargetDependency */,
+				2089946B15277391009E38AD /* PBXTargetDependency */,
+				208998D915299151009E38AD /* PBXTargetDependency */,
+			);
+			name = "extThree20RemoteObject+XML";
+			productName = extThree20RemoteObject;
+			productReference = 2089949115277391009E38AD /* libextThree20RemoteObject+XML.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		20D454C9151E2C3A0043F785 /* extThree20RemoteObject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20D454EE151E2C3B0043F785 /* Build configuration list for PBXNativeTarget "extThree20RemoteObject" */;
+			buildPhases = (
+				20D454C6151E2C3A0043F785 /* Sources */,
+				20D454C7151E2C3A0043F785 /* Frameworks */,
+				20D454C8151E2C3A0043F785 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20C01A71151EED6A00D35993 /* PBXTargetDependency */,
+				20D45568151E51580043F785 /* PBXTargetDependency */,
+				20D4556A151E51600043F785 /* PBXTargetDependency */,
+				208998D71529913E009E38AD /* PBXTargetDependency */,
+				20D4556C151E51700043F785 /* PBXTargetDependency */,
+			);
+			name = extThree20RemoteObject;
+			productName = extThree20RemoteObject;
+			productReference = 20D454CA151E2C3A0043F785 /* libextThree20RemoteObject.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		20D454D9151E2C3B0043F785 /* extThree20RemoteObjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20D454F1151E2C3B0043F785 /* Build configuration list for PBXNativeTarget "extThree20RemoteObjectTests" */;
+			buildPhases = (
+				20D454D5151E2C3B0043F785 /* Sources */,
+				20D454D6151E2C3B0043F785 /* Frameworks */,
+				20D454D7151E2C3B0043F785 /* Resources */,
+				20D454D8151E2C3B0043F785 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20D454E1151E2C3B0043F785 /* PBXTargetDependency */,
+			);
+			name = extThree20RemoteObjectTests;
+			productName = extThree20RemoteObjectTests;
+			productReference = 20D454DA151E2C3B0043F785 /* extThree20RemoteObjectTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20D454C1151E2C3A0043F785 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 20D454C4151E2C3A0043F785 /* Build configuration list for PBXProject "extThree20RemoteObject" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 20D454BF151E2C3A0043F785;
+			productRefGroup = 20D454CB151E2C3A0043F785 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 20D45557151E511A0043F785 /* Products */;
+					ProjectRef = 20D45556151E511A0043F785 /* extThree20JSON.xcodeproj */;
+				},
+				{
+					ProductGroup = 20D45549151E51150043F785 /* Products */;
+					ProjectRef = 20D45548151E51150043F785 /* extThree20XML.xcodeproj */;
+				},
+				{
+					ProductGroup = 20C01A22151EED2E00D35993 /* Products */;
+					ProjectRef = 20C01A21151EED2E00D35993 /* Three20.xcodeproj */;
+				},
+				{
+					ProductGroup = 20D45513151E50A60043F785 /* Products */;
+					ProjectRef = 20D45512151E50A60043F785 /* Three20Core.xcodeproj */;
+				},
+				{
+					ProductGroup = 20D4551C151E50CB0043F785 /* Products */;
+					ProjectRef = 20D4551B151E50CB0043F785 /* Three20Network.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				20D454C9151E2C3A0043F785 /* extThree20RemoteObject */,
+				2089943415277359009E38AD /* extThree20RemoteObject+JSON */,
+				2089946415277391009E38AD /* extThree20RemoteObject+XML */,
+				20D454D9151E2C3B0043F785 /* extThree20RemoteObjectTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		208998D11529903D009E38AD /* libextThree20XML+GDataXML.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20XML+GDataXML.a";
+			remoteRef = 208998D01529903D009E38AD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20C01A2A151EED2F00D35993 /* libThree20.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20.a;
+			remoteRef = 20C01A29151EED2F00D35993 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20C01A2C151EED2F00D35993 /* Three20UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Three20UnitTests.octest;
+			remoteRef = 20C01A2B151EED2F00D35993 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20D45518151E50A60043F785 /* libThree20Core.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20Core.a;
+			remoteRef = 20D45517151E50A60043F785 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20D4551A151E50A60043F785 /* CoreUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreUnitTests.octest;
+			remoteRef = 20D45519151E50A60043F785 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20D45525151E50CB0043F785 /* libThree20Network.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libThree20Network.a;
+			remoteRef = 20D45524151E50CB0043F785 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20D45527151E50CB0043F785 /* NetworkUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NetworkUnitTests.octest;
+			remoteRef = 20D45526151E50CB0043F785 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20D45553151E51150043F785 /* libextThree20XML+TTXMLParser.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20XML+TTXMLParser.a";
+			remoteRef = 20D45552151E51150043F785 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20D45555151E51150043F785 /* extXMLUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = extXMLUnitTests.octest;
+			remoteRef = 20D45554151E51150043F785 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20D45562151E511B0043F785 /* libextThree20JSON+SBJSON.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20JSON+SBJSON.a";
+			remoteRef = 20D45561151E511B0043F785 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20D45564151E511B0043F785 /* libextThree20JSON+YAJL.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20JSON+YAJL.a";
+			remoteRef = 20D45563151E511B0043F785 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		20D45566151E511B0043F785 /* extJSONUnitTests+SBJSON.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "extJSONUnitTests+SBJSON.octest";
+			remoteRef = 20D45565151E511B0043F785 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20D454D7151E2C3B0043F785 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20D454D8151E2C3B0043F785 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2089943F15277359009E38AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2089944015277359009E38AD /* TTDocumentAttributePointer.m in Sources */,
+				2089944115277359009E38AD /* TTDocumentBackPointer.m in Sources */,
+				2089944215277359009E38AD /* TTDocumentElementPointer.m in Sources */,
+				2089944315277359009E38AD /* TTDocumentForwardPointer.m in Sources */,
+				2089944415277359009E38AD /* TTDocumentPointer.m in Sources */,
+				2089944515277359009E38AD /* NSMutableArray+Stack.m in Sources */,
+				2089944615277359009E38AD /* TTObjectModel.m in Sources */,
+				2089944715277359009E38AD /* TTObjectModelCollection.m in Sources */,
+				2089944815277359009E38AD /* TTRemoteObject.m in Sources */,
+				2089944915277359009E38AD /* TTDocumentValuePointer.m in Sources */,
+				2089944A15277359009E38AD /* TTValueMapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2089946F15277391009E38AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2089947015277391009E38AD /* TTDocumentAttributePointer.m in Sources */,
+				2089947115277391009E38AD /* TTDocumentBackPointer.m in Sources */,
+				2089947215277391009E38AD /* TTDocumentElementPointer.m in Sources */,
+				2089947315277391009E38AD /* TTDocumentForwardPointer.m in Sources */,
+				2089947415277391009E38AD /* TTDocumentPointer.m in Sources */,
+				2089947515277391009E38AD /* NSMutableArray+Stack.m in Sources */,
+				2089947615277391009E38AD /* TTObjectModel.m in Sources */,
+				2089947715277391009E38AD /* TTObjectModelCollection.m in Sources */,
+				2089947815277391009E38AD /* TTRemoteObject.m in Sources */,
+				2089947915277391009E38AD /* TTDocumentValuePointer.m in Sources */,
+				2089947A15277391009E38AD /* TTValueMapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20D454C6151E2C3A0043F785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20D45578151E5DEE0043F785 /* TTDocumentAttributePointer.m in Sources */,
+				20D45579151E5DEE0043F785 /* TTDocumentBackPointer.m in Sources */,
+				20D4557A151E5DEE0043F785 /* TTDocumentElementPointer.m in Sources */,
+				20D4557B151E5DEE0043F785 /* TTDocumentForwardPointer.m in Sources */,
+				20D4557C151E5DEE0043F785 /* TTDocumentPointer.m in Sources */,
+				20D4557D151E5DEE0043F785 /* NSMutableArray+Stack.m in Sources */,
+				20D4557E151E5DEE0043F785 /* TTObjectModel.m in Sources */,
+				20D4557F151E5DEE0043F785 /* TTObjectModelCollection.m in Sources */,
+				20D45580151E5DEE0043F785 /* TTRemoteObject.m in Sources */,
+				206E5934152239070054EBA7 /* TTDocumentValuePointer.m in Sources */,
+				2089942F1525BDC3009E38AD /* TTValueMapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20D454D5151E2C3B0043F785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20C01ACB151EEEB200D35993 /* extThree20RemoteObjectTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2089943715277359009E38AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20;
+			targetProxy = 2089943815277359009E38AD /* PBXContainerItemProxy */;
+		};
+		2089943915277359009E38AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Core;
+			targetProxy = 2089943A15277359009E38AD /* PBXContainerItemProxy */;
+		};
+		2089943B15277359009E38AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Network;
+			targetProxy = 2089943C15277359009E38AD /* PBXContainerItemProxy */;
+		};
+		2089943D15277359009E38AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "extThree20JSON+SBJSON";
+			targetProxy = 2089943E15277359009E38AD /* PBXContainerItemProxy */;
+		};
+		2089946715277391009E38AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20;
+			targetProxy = 2089946815277391009E38AD /* PBXContainerItemProxy */;
+		};
+		2089946915277391009E38AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Core;
+			targetProxy = 2089946A15277391009E38AD /* PBXContainerItemProxy */;
+		};
+		2089946B15277391009E38AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Network;
+			targetProxy = 2089946C15277391009E38AD /* PBXContainerItemProxy */;
+		};
+		208998D71529913E009E38AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "extThree20XML+GDataXML";
+			targetProxy = 208998D61529913E009E38AD /* PBXContainerItemProxy */;
+		};
+		208998D915299151009E38AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "extThree20XML+GDataXML";
+			targetProxy = 208998D815299151009E38AD /* PBXContainerItemProxy */;
+		};
+		20C01A71151EED6A00D35993 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20;
+			targetProxy = 20C01A70151EED6A00D35993 /* PBXContainerItemProxy */;
+		};
+		20D454E1151E2C3B0043F785 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 20D454C9151E2C3A0043F785 /* extThree20RemoteObject */;
+			targetProxy = 20D454E0151E2C3B0043F785 /* PBXContainerItemProxy */;
+		};
+		20D45568151E51580043F785 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Core;
+			targetProxy = 20D45567151E51580043F785 /* PBXContainerItemProxy */;
+		};
+		20D4556A151E51600043F785 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Three20Network;
+			targetProxy = 20D45569151E51600043F785 /* PBXContainerItemProxy */;
+		};
+		20D4556C151E51700043F785 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "extThree20JSON+SBJSON";
+			targetProxy = 20D4556B151E51700043F785 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		20D45505151E4D2B0043F785 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20D45506151E4D2B0043F785 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2089945E15277359009E38AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2089946215277383009E38AD /* Library+JSON.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20RemoteObject.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2089945F15277359009E38AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2089946215277383009E38AD /* Library+JSON.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20RemoteObject.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2089946015277359009E38AD /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2089946215277383009E38AD /* Library+JSON.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20RemoteObject.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Internal;
+		};
+		2089948E15277391009E38AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2089946315277383009E38AD /* Library+XML.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20RemoteObject.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2089948F15277391009E38AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2089946315277383009E38AD /* Library+XML.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20RemoteObject.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2089949015277391009E38AD /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2089946315277383009E38AD /* Library+XML.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20RemoteObject.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Internal;
+		};
+		20D454EC151E2C3B0043F785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D454FA151E4D2B0043F785 /* Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		20D454ED151E2C3B0043F785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D454FA151E4D2B0043F785 /* Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Release;
+		};
+		20D454EF151E2C3B0043F785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D454F9151E4D2B0043F785 /* Library.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20RemoteObject.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		20D454F0151E2C3B0043F785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D454F9151E4D2B0043F785 /* Library.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20RemoteObject.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		20D454F2151E2C3B0043F785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D454FB151E4D2B0043F785 /* UnitTests.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "extThree20RemoteObjectTests/extThree20RemoteObjectTests-Info.plist";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		20D454F3151E2C3B0043F785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D454FB151E4D2B0043F785 /* UnitTests.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "extThree20RemoteObjectTests/extThree20RemoteObjectTests-Info.plist";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		20D4550E151E4DC30043F785 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D454FA151E4D2B0043F785 /* Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Internal;
+		};
+		20D4550F151E4DC30043F785 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D454F9151E4D2B0043F785 /* Library.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20RemoteObject.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SKIP_INSTALL = YES;
+			};
+			name = Internal;
+		};
+		20D45510151E4DC30043F785 /* Internal */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D454FB151E4D2B0043F785 /* UnitTests.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "extThree20RemoteObjectTests/extThree20RemoteObjectTests-Info.plist";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Internal;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2089945D15277359009E38AD /* Build configuration list for PBXNativeTarget "extThree20RemoteObject+JSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2089945E15277359009E38AD /* Debug */,
+				2089945F15277359009E38AD /* Release */,
+				2089946015277359009E38AD /* Internal */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2089948D15277391009E38AD /* Build configuration list for PBXNativeTarget "extThree20RemoteObject+XML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2089948E15277391009E38AD /* Debug */,
+				2089948F15277391009E38AD /* Release */,
+				2089949015277391009E38AD /* Internal */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20D454C4151E2C3A0043F785 /* Build configuration list for PBXProject "extThree20RemoteObject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20D454EC151E2C3B0043F785 /* Debug */,
+				20D454ED151E2C3B0043F785 /* Release */,
+				20D4550E151E4DC30043F785 /* Internal */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20D454EE151E2C3B0043F785 /* Build configuration list for PBXNativeTarget "extThree20RemoteObject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20D454EF151E2C3B0043F785 /* Debug */,
+				20D454F0151E2C3B0043F785 /* Release */,
+				20D4550F151E4DC30043F785 /* Internal */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20D454F1151E2C3B0043F785 /* Build configuration list for PBXNativeTarget "extThree20RemoteObjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20D454F2151E2C3B0043F785 /* Debug */,
+				20D454F3151E2C3B0043F785 /* Release */,
+				20D45510151E4DC30043F785 /* Internal */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20D454C1151E2C3A0043F785 /* Project object */;
+}

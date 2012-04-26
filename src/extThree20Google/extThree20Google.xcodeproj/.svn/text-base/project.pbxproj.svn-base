@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2093D7B11543FCA000D32BD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2093D7B01543FCA000D32BD7 /* Foundation.framework */; };
+		2093D7BF1543FCA100D32BD7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2093D7BE1543FCA100D32BD7 /* SenTestingKit.framework */; };
+		2093D7C11543FCA100D32BD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2093D7C01543FCA100D32BD7 /* UIKit.framework */; };
+		2093D7C21543FCA100D32BD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2093D7B01543FCA000D32BD7 /* Foundation.framework */; };
+		2093D7C51543FCA100D32BD7 /* libextThree20Google.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2093D7AD1543FCA000D32BD7 /* libextThree20Google.a */; };
+		2093D7E41543FFB500D32BD7 /* extThree20Google.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D7E01543FFB500D32BD7 /* extThree20Google.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D7E51543FFB500D32BD7 /* extThree20Google_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2093D7E11543FFB500D32BD7 /* extThree20Google_Prefix.pch */; };
+		2093D7E61543FFB500D32BD7 /* extThree20Google.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D7E31543FFB500D32BD7 /* extThree20Google.m */; };
+		2093D7ED1543FFC200D32BD7 /* extThree20GoogleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D7E91543FFC200D32BD7 /* extThree20GoogleTests.m */; };
+		2093D7EE1543FFC200D32BD7 /* UnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2093D7EC1543FFC200D32BD7 /* UnitTests-Info.plist */; };
+		2093D8E41544117E00D32BD7 /* ParentCollectionJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D8E21544117E00D32BD7 /* ParentCollectionJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D8E51544117E00D32BD7 /* ParentModelJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D8E31544117E00D32BD7 /* ParentModelJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D8E81544118C00D32BD7 /* ParentCollectionJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D8E61544118C00D32BD7 /* ParentCollectionJSON.m */; };
+		2093D8E91544118C00D32BD7 /* ParentModelJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D8E71544118C00D32BD7 /* ParentModelJSON.m */; };
+		2093D8EC1544123600D32BD7 /* GDirections.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D8EA1544123600D32BD7 /* GDirections.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D8EF1544126200D32BD7 /* GDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D8EE1544126200D32BD7 /* GDirections.m */; };
+		2093D8F21544130900D32BD7 /* GRoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D8F01544130800D32BD7 /* GRoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D8F61544132600D32BD7 /* GRouteCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D8F41544132500D32BD7 /* GRouteCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D8FA1544135A00D32BD7 /* GRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D8F81544135900D32BD7 /* GRoute.m */; };
+		2093D8FB1544135A00D32BD7 /* GRouteCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D8F91544135900D32BD7 /* GRouteCollection.m */; };
+		2093D8FE154426B900D32BD7 /* GRouteLegCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D8FC154426B700D32BD7 /* GRouteLegCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D902154426D700D32BD7 /* GRouteLeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D900154426D500D32BD7 /* GRouteLeg.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D90615444D6F00D32BD7 /* GRouteLeg.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D90415444D6E00D32BD7 /* GRouteLeg.m */; };
+		2093D90715444D6F00D32BD7 /* GRouteLegCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D90515444D6F00D32BD7 /* GRouteLegCollection.m */; };
+		2093D90A154450D100D32BD7 /* GRouteStep.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D908154450CE00D32BD7 /* GRouteStep.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D90E154450EF00D32BD7 /* GRouteStepCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2093D90C154450EE00D32BD7 /* GRouteStepCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2093D9121544513F00D32BD7 /* GRouteStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D9101544513E00D32BD7 /* GRouteStep.m */; };
+		2093D9131544513F00D32BD7 /* GRouteStepCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2093D9111544513F00D32BD7 /* GRouteStepCollection.m */; };
+		2093D9151544526C00D32BD7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2093D9141544526B00D32BD7 /* CoreLocation.framework */; };
+		2097D1961545868700B6D99C /* extThree20GoogleLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2097D1941545868600B6D99C /* extThree20GoogleLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2097D19D154586E000B6D99C /* extThree20GoogleLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2097D19C154586E000B6D99C /* extThree20GoogleLocation.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2093D7C31543FCA100D32BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2093D7A41543FCA000D32BD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2093D7AC1543FCA000D32BD7;
+			remoteInfo = extThree20Google;
+		};
+		2093D835154409F700D32BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2093D7F6154409F300D32BD7 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 20D454CA151E2C3A0043F785;
+			remoteInfo = extThree20RemoteObject;
+		};
+		2093D837154409F700D32BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2093D7F6154409F300D32BD7 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2089946115277359009E38AD;
+			remoteInfo = "extThree20RemoteObject+JSON";
+		};
+		2093D839154409F700D32BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2093D7F6154409F300D32BD7 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2089949115277391009E38AD;
+			remoteInfo = "extThree20RemoteObject+XML";
+		};
+		2093D83B154409F700D32BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2093D7F6154409F300D32BD7 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 20D454DA151E2C3B0043F785;
+			remoteInfo = extThree20RemoteObjectTests;
+		};
+		2097D0D415445C5100B6D99C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2093D7F6154409F300D32BD7 /* extThree20RemoteObject.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2089943415277359009E38AD;
+			remoteInfo = "extThree20RemoteObject+JSON";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2093D7AD1543FCA000D32BD7 /* libextThree20Google.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libextThree20Google.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2093D7B01543FCA000D32BD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2093D7BD1543FCA100D32BD7 /* extThree20GoogleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = extThree20GoogleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2093D7BE1543FCA100D32BD7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		2093D7C01543FCA100D32BD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		2093D7DC1543FFB500D32BD7 /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Library.xcconfig; sourceTree = "<group>"; };
+		2093D7DD1543FFB500D32BD7 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		2093D7DE1543FFB500D32BD7 /* UnitTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = UnitTests.xcconfig; sourceTree = "<group>"; };
+		2093D7E01543FFB500D32BD7 /* extThree20Google.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extThree20Google.h; sourceTree = "<group>"; };
+		2093D7E11543FFB500D32BD7 /* extThree20Google_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extThree20Google_Prefix.pch; sourceTree = "<group>"; };
+		2093D7E31543FFB500D32BD7 /* extThree20Google.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = extThree20Google.m; sourceTree = "<group>"; };
+		2093D7E81543FFC200D32BD7 /* extThree20GoogleTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extThree20GoogleTests.h; sourceTree = "<group>"; };
+		2093D7E91543FFC200D32BD7 /* extThree20GoogleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = extThree20GoogleTests.m; sourceTree = "<group>"; };
+		2093D7EC1543FFC200D32BD7 /* UnitTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		2093D7F6154409F300D32BD7 /* extThree20RemoteObject.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20RemoteObject.xcodeproj; path = ../extThree20RemoteObject/extThree20RemoteObject.xcodeproj; sourceTree = "<group>"; };
+		2093D8E21544117E00D32BD7 /* ParentCollectionJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentCollectionJSON.h; sourceTree = "<group>"; };
+		2093D8E31544117E00D32BD7 /* ParentModelJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentModelJSON.h; sourceTree = "<group>"; };
+		2093D8E61544118C00D32BD7 /* ParentCollectionJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentCollectionJSON.m; sourceTree = "<group>"; };
+		2093D8E71544118C00D32BD7 /* ParentModelJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentModelJSON.m; sourceTree = "<group>"; };
+		2093D8EA1544123600D32BD7 /* GDirections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDirections.h; sourceTree = "<group>"; };
+		2093D8EE1544126200D32BD7 /* GDirections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDirections.m; sourceTree = "<group>"; };
+		2093D8F01544130800D32BD7 /* GRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRoute.h; sourceTree = "<group>"; };
+		2093D8F41544132500D32BD7 /* GRouteCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRouteCollection.h; sourceTree = "<group>"; };
+		2093D8F81544135900D32BD7 /* GRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRoute.m; sourceTree = "<group>"; };
+		2093D8F91544135900D32BD7 /* GRouteCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRouteCollection.m; sourceTree = "<group>"; };
+		2093D8FC154426B700D32BD7 /* GRouteLegCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRouteLegCollection.h; sourceTree = "<group>"; };
+		2093D900154426D500D32BD7 /* GRouteLeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRouteLeg.h; sourceTree = "<group>"; };
+		2093D90415444D6E00D32BD7 /* GRouteLeg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRouteLeg.m; sourceTree = "<group>"; };
+		2093D90515444D6F00D32BD7 /* GRouteLegCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRouteLegCollection.m; sourceTree = "<group>"; };
+		2093D908154450CE00D32BD7 /* GRouteStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRouteStep.h; sourceTree = "<group>"; };
+		2093D90C154450EE00D32BD7 /* GRouteStepCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRouteStepCollection.h; sourceTree = "<group>"; };
+		2093D9101544513E00D32BD7 /* GRouteStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRouteStep.m; sourceTree = "<group>"; };
+		2093D9111544513F00D32BD7 /* GRouteStepCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRouteStepCollection.m; sourceTree = "<group>"; };
+		2093D9141544526B00D32BD7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2097D1941545868600B6D99C /* extThree20GoogleLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extThree20GoogleLocation.h; sourceTree = "<group>"; };
+		2097D19C154586E000B6D99C /* extThree20GoogleLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = extThree20GoogleLocation.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2093D7AA1543FCA000D32BD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2093D9151544526C00D32BD7 /* CoreLocation.framework in Frameworks */,
+				2093D7B11543FCA000D32BD7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2093D7B91543FCA100D32BD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2093D7BF1543FCA100D32BD7 /* SenTestingKit.framework in Frameworks */,
+				2093D7C11543FCA100D32BD7 /* UIKit.framework in Frameworks */,
+				2093D7C21543FCA100D32BD7 /* Foundation.framework in Frameworks */,
+				2093D7C51543FCA100D32BD7 /* libextThree20Google.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2093D7A21543FCA000D32BD7 = {
+			isa = PBXGroup;
+			children = (
+				2093D7DB1543FFB500D32BD7 /* Configurations */,
+				2093D7DF1543FFB500D32BD7 /* Headers */,
+				2093D7E21543FFB500D32BD7 /* Source */,
+				2093D7AF1543FCA000D32BD7 /* Frameworks */,
+				2093D7AE1543FCA000D32BD7 /* Products */,
+				2093D7E71543FFC200D32BD7 /* UnitTests */,
+			);
+			sourceTree = "<group>";
+		};
+		2093D7AE1543FCA000D32BD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2093D7AD1543FCA000D32BD7 /* libextThree20Google.a */,
+				2093D7BD1543FCA100D32BD7 /* extThree20GoogleTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2093D7AF1543FCA000D32BD7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2093D9141544526B00D32BD7 /* CoreLocation.framework */,
+				2093D7F6154409F300D32BD7 /* extThree20RemoteObject.xcodeproj */,
+				2093D7B01543FCA000D32BD7 /* Foundation.framework */,
+				2093D7BE1543FCA100D32BD7 /* SenTestingKit.framework */,
+				2093D7C01543FCA100D32BD7 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2093D7DB1543FFB500D32BD7 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				2093D7DC1543FFB500D32BD7 /* Library.xcconfig */,
+				2093D7DD1543FFB500D32BD7 /* Project.xcconfig */,
+				2093D7DE1543FFB500D32BD7 /* UnitTests.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		2093D7DF1543FFB500D32BD7 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				2093D7E01543FFB500D32BD7 /* extThree20Google.h */,
+				2093D7E11543FFB500D32BD7 /* extThree20Google_Prefix.pch */,
+				2097D1941545868600B6D99C /* extThree20GoogleLocation.h */,
+				2093D8EA1544123600D32BD7 /* GDirections.h */,
+				2093D8F01544130800D32BD7 /* GRoute.h */,
+				2093D8F41544132500D32BD7 /* GRouteCollection.h */,
+				2093D900154426D500D32BD7 /* GRouteLeg.h */,
+				2093D8FC154426B700D32BD7 /* GRouteLegCollection.h */,
+				2093D908154450CE00D32BD7 /* GRouteStep.h */,
+				2093D90C154450EE00D32BD7 /* GRouteStepCollection.h */,
+				2093D8E21544117E00D32BD7 /* ParentCollectionJSON.h */,
+				2093D8E31544117E00D32BD7 /* ParentModelJSON.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		2093D7E21543FFB500D32BD7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2093D7E31543FFB500D32BD7 /* extThree20Google.m */,
+				2097D19C154586E000B6D99C /* extThree20GoogleLocation.m */,
+				2093D8EE1544126200D32BD7 /* GDirections.m */,
+				2093D8F81544135900D32BD7 /* GRoute.m */,
+				2093D8F91544135900D32BD7 /* GRouteCollection.m */,
+				2093D90415444D6E00D32BD7 /* GRouteLeg.m */,
+				2093D90515444D6F00D32BD7 /* GRouteLegCollection.m */,
+				2093D9101544513E00D32BD7 /* GRouteStep.m */,
+				2093D9111544513F00D32BD7 /* GRouteStepCollection.m */,
+				2093D8E61544118C00D32BD7 /* ParentCollectionJSON.m */,
+				2093D8E71544118C00D32BD7 /* ParentModelJSON.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		2093D7E71543FFC200D32BD7 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				2093D7E81543FFC200D32BD7 /* extThree20GoogleTests.h */,
+				2093D7E91543FFC200D32BD7 /* extThree20GoogleTests.m */,
+				2093D7EA1543FFC200D32BD7 /* Resources */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		2093D7EA1543FFC200D32BD7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2093D7EB1543FFC200D32BD7 /* PropertyLists */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2093D7EB1543FFC200D32BD7 /* PropertyLists */ = {
+			isa = PBXGroup;
+			children = (
+				2093D7EC1543FFC200D32BD7 /* UnitTests-Info.plist */,
+			);
+			path = PropertyLists;
+			sourceTree = "<group>";
+		};
+		2093D7F7154409F300D32BD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2093D836154409F700D32BD7 /* libextThree20RemoteObject.a */,
+				2093D838154409F700D32BD7 /* libextThree20RemoteObject+JSON.a */,
+				2093D83A154409F700D32BD7 /* libextThree20RemoteObject+XML.a */,
+				2093D83C154409F700D32BD7 /* extThree20RemoteObjectTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2093D7AB1543FCA000D32BD7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2093D7E41543FFB500D32BD7 /* extThree20Google.h in Headers */,
+				2093D8E41544117E00D32BD7 /* ParentCollectionJSON.h in Headers */,
+				2093D8EC1544123600D32BD7 /* GDirections.h in Headers */,
+				2093D8F21544130900D32BD7 /* GRoute.h in Headers */,
+				2093D8F61544132600D32BD7 /* GRouteCollection.h in Headers */,
+				2093D8FE154426B900D32BD7 /* GRouteLegCollection.h in Headers */,
+				2093D902154426D700D32BD7 /* GRouteLeg.h in Headers */,
+				2093D90A154450D100D32BD7 /* GRouteStep.h in Headers */,
+				2093D90E154450EF00D32BD7 /* GRouteStepCollection.h in Headers */,
+				2093D8E51544117E00D32BD7 /* ParentModelJSON.h in Headers */,
+				2097D1961545868700B6D99C /* extThree20GoogleLocation.h in Headers */,
+				2093D7E51543FFB500D32BD7 /* extThree20Google_Prefix.pch in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2093D7AC1543FCA000D32BD7 /* extThree20Google */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2093D7D11543FCA100D32BD7 /* Build configuration list for PBXNativeTarget "extThree20Google" */;
+			buildPhases = (
+				2093D7A91543FCA000D32BD7 /* Sources */,
+				2093D7AA1543FCA000D32BD7 /* Frameworks */,
+				2093D7AB1543FCA000D32BD7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2097D0D515445C5100B6D99C /* PBXTargetDependency */,
+			);
+			name = extThree20Google;
+			productName = extThree20Google;
+			productReference = 2093D7AD1543FCA000D32BD7 /* libextThree20Google.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		2093D7BC1543FCA100D32BD7 /* extThree20GoogleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2093D7D41543FCA100D32BD7 /* Build configuration list for PBXNativeTarget "extThree20GoogleTests" */;
+			buildPhases = (
+				2093D7B81543FCA100D32BD7 /* Sources */,
+				2093D7B91543FCA100D32BD7 /* Frameworks */,
+				2093D7BA1543FCA100D32BD7 /* Resources */,
+				2093D7BB1543FCA100D32BD7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2093D7C41543FCA100D32BD7 /* PBXTargetDependency */,
+			);
+			name = extThree20GoogleTests;
+			productName = extThree20GoogleTests;
+			productReference = 2093D7BD1543FCA100D32BD7 /* extThree20GoogleTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2093D7A41543FCA000D32BD7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 2093D7A71543FCA000D32BD7 /* Build configuration list for PBXProject "extThree20Google" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2093D7A21543FCA000D32BD7;
+			productRefGroup = 2093D7AE1543FCA000D32BD7 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2093D7F7154409F300D32BD7 /* Products */;
+					ProjectRef = 2093D7F6154409F300D32BD7 /* extThree20RemoteObject.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				2093D7AC1543FCA000D32BD7 /* extThree20Google */,
+				2093D7BC1543FCA100D32BD7 /* extThree20GoogleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2093D836154409F700D32BD7 /* libextThree20RemoteObject.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libextThree20RemoteObject.a;
+			remoteRef = 2093D835154409F700D32BD7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2093D838154409F700D32BD7 /* libextThree20RemoteObject+JSON.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20RemoteObject+JSON.a";
+			remoteRef = 2093D837154409F700D32BD7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2093D83A154409F700D32BD7 /* libextThree20RemoteObject+XML.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libextThree20RemoteObject+XML.a";
+			remoteRef = 2093D839154409F700D32BD7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2093D83C154409F700D32BD7 /* extThree20RemoteObjectTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			name = extThree20RemoteObjectTests.octest;
+			path = extRemoteObjectTests.octest;
+			remoteRef = 2093D83B154409F700D32BD7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2093D7BA1543FCA100D32BD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2093D7EE1543FFC200D32BD7 /* UnitTests-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2093D7BB1543FCA100D32BD7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2093D7A91543FCA000D32BD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2093D7E61543FFB500D32BD7 /* extThree20Google.m in Sources */,
+				2093D8E81544118C00D32BD7 /* ParentCollectionJSON.m in Sources */,
+				2093D8E91544118C00D32BD7 /* ParentModelJSON.m in Sources */,
+				2093D8EF1544126200D32BD7 /* GDirections.m in Sources */,
+				2093D8FA1544135A00D32BD7 /* GRoute.m in Sources */,
+				2093D8FB1544135A00D32BD7 /* GRouteCollection.m in Sources */,
+				2093D90615444D6F00D32BD7 /* GRouteLeg.m in Sources */,
+				2093D90715444D6F00D32BD7 /* GRouteLegCollection.m in Sources */,
+				2093D9121544513F00D32BD7 /* GRouteStep.m in Sources */,
+				2093D9131544513F00D32BD7 /* GRouteStepCollection.m in Sources */,
+				2097D19D154586E000B6D99C /* extThree20GoogleLocation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2093D7B81543FCA100D32BD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2093D7ED1543FFC200D32BD7 /* extThree20GoogleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2093D7C41543FCA100D32BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2093D7AC1543FCA000D32BD7 /* extThree20Google */;
+			targetProxy = 2093D7C31543FCA100D32BD7 /* PBXContainerItemProxy */;
+		};
+		2097D0D515445C5100B6D99C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "extThree20RemoteObject+JSON";
+			targetProxy = 2097D0D415445C5100B6D99C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2093D7CF1543FCA100D32BD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2093D7DD1543FFB500D32BD7 /* Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2093D7D01543FCA100D32BD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2093D7DD1543FFB500D32BD7 /* Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2093D7D21543FCA100D32BD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2093D7DC1543FFB500D32BD7 /* Library.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20Google.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Headers/extThree20Google_Prefix.pch;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2093D7D31543FCA100D32BD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2093D7DC1543FFB500D32BD7 /* Library.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/extThree20Google.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Headers/extThree20Google_Prefix.pch;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2093D7D51543FCA100D32BD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2093D7DE1543FFB500D32BD7 /* UnitTests.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "extThree20Google/extThree20Google-Prefix.pch";
+				INFOPLIST_FILE = "extThree20GoogleTests/extThree20GoogleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2093D7D61543FCA100D32BD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2093D7DE1543FFB500D32BD7 /* UnitTests.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "extThree20Google/extThree20Google-Prefix.pch";
+				INFOPLIST_FILE = "extThree20GoogleTests/extThree20GoogleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2093D7A71543FCA000D32BD7 /* Build configuration list for PBXProject "extThree20Google" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2093D7CF1543FCA100D32BD7 /* Debug */,
+				2093D7D01543FCA100D32BD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2093D7D11543FCA100D32BD7 /* Build configuration list for PBXNativeTarget "extThree20Google" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2093D7D21543FCA100D32BD7 /* Debug */,
+				2093D7D31543FCA100D32BD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2093D7D41543FCA100D32BD7 /* Build configuration list for PBXNativeTarget "extThree20GoogleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2093D7D51543FCA100D32BD7 /* Debug */,
+				2093D7D61543FCA100D32BD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2093D7A41543FCA000D32BD7 /* Project object */;
+}

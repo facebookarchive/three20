@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'extThree20RemoteObject' target in the 'extThree20RemoteObject' project
+//
+
+#define EXT_REMOTE_XML    1
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <Three20/Three20.h>
+    #import <extThree20XML/extThree20XML.h>
+    #import <extThree20XML/GDataXMLNode.h>
+#endif

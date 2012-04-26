@@ -1,0 +1,67 @@
+extThree20Google
+================
+
+extThree20Google is a Three20 extension that implements the following Google APIs:
+
+* Google Directions API: https://developers.google.com/maps/documentation/directions/
+
+Community
+=========
+
+If you would like to ask any questions regarding Three20, please check out any of the following:
+
+* [Three20.info][]
+* [Three20 Mailing List][]
+* [Three20 Tagged Questions on StackOverflow][]
+
+Documentation
+==============================
+
+You can access Three20 API documentation in several ways:
+
+1. Online: http://facebook.github.com/three20/api
+1. Within Xcode: 
+    1. Open your Xcode Preferences (`⌘,`) and switch to Documentation tab. 
+    1. Click the `+` button
+    1. Add the Three20 doc set feed: `feed://facebook.github.com/three20/api/com.facebook.Three20.atom`
+1. Generate the documentation from the project repository with the `src/scripts/docs.py` script
+
+Adding extThree20Google to your project
+=======================================
+
+Please refer to to Three20 documentation on how to add this extension.
+
+
+Using extThree20Google
+======================
+
+// Initialize
+GDirections *directions = [[GDirections alloc] init];
+
+// Register as delegate. This lets us know when the direction is loaded. Self must conform to TTRemoteDelegate.
+[directions registerDelegate:self];
+
+// To from can be given as a string or CLLocation
+CLLocation *presentLocation;
+
+// Get directions, delegate is called on successful load. Waypoints are ignored.
+[directions loadDirectionsFrom:presentLocation
+                            to:@"1 Infinite Loop"
+                     waypoints:nil];
+
+
+
+And below is the remote delegate callback:
+
+- (void)remoteObject:(TTRemoteObject *)remoteObject didFinishLoadForRequest:(TTURLRequest *)request {
+    // remoteObject is GDirections object that we instantiated in the code above. It has all the routes, legs and steps.
+    GRoute *route = [directions.routes.objects objectAtIndex:0];
+    
+    for (int i = 0; i < route.legs.objects.count; i++ ) {
+        GRouteLeg *leg = [route.legs.objects objectAtIndex:i];
+        
+        for ( int j = 0; j < leg.steps.objects.count; j++ ) {
+            GRouteStep *step = [leg.steps.objects objectAtIndex:j];
+        }
+    }
+}
