@@ -56,18 +56,18 @@ And below is the remote delegate callback:
 
 <pre><code>
 
-- (void)remoteObject:(TTRemoteObject *)remoteObject didFinishLoadForRequest:(TTURLRequest *)request {
-    // remoteObject is GDirections object that we instantiated in the code above. It has all the routes, legs and steps.
-    GRoute *route = [directions.routes.objects objectAtIndex:0];
+	- (void)remoteObject:(TTRemoteObject *)remoteObject didFinishLoadForRequest:(TTURLRequest *)request {
+    		// remoteObject is GDirections object that we instantiated in the code above. It has all the routes, legs and steps.
+    		GRoute *route = [directions.routes.objects objectAtIndex:0];
     
-    for (int i = 0; i < route.legs.objects.count; i++ ) {
-        GRouteLeg *leg = [route.legs.objects objectAtIndex:i];
-        
-        for ( int j = 0; j < leg.steps.objects.count; j++ ) {
-            GRouteStep *step = [leg.steps.objects objectAtIndex:j];
-        }
-    }
-}
+		for (int i = 0; i < route.legs.objects.count; i++ ) {
+			GRouteLeg *leg = [route.legs.objects objectAtIndex:i];
+
+			for ( int j = 0; j < leg.steps.objects.count; j++ ) {
+				GRouteStep *step = [leg.steps.objects objectAtIndex:j];
+			}
+		}
+	}
 
 </code></pre>
 
