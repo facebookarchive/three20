@@ -36,5 +36,13 @@
   }
 }
 
+- (void)dealloc {
+    [_inlineNextFrame release];
+    _inlineNextFrame = nil;
+    [_inlinePreviousFrame release];
+    _inlinePreviousFrame = nil;
+    [super dealloc];
+}
+
 
 @end

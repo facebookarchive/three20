@@ -23,7 +23,7 @@
 }
 
 @property (nonatomic, readonly) TTStyledInlineFrame* inlineParentFrame;
-@property (nonatomic, assign)   TTStyledInlineFrame* inlinePreviousFrame;
-@property (nonatomic, assign)   TTStyledInlineFrame* inlineNextFrame;
+@property (nonatomic, retain)   TTStyledInlineFrame* inlinePreviousFrame;
+@property (nonatomic, retain)   TTStyledInlineFrame* inlineNextFrame;
 
 @end
