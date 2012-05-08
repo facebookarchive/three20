@@ -126,6 +126,8 @@
 - (BOOL)cancel:(TTURLRequest*)request;
 
 - (NSError*)processResponse:(NSHTTPURLResponse*)response data:(id)data;
+- (NSURLRequest*)dispatchWillSendRequest:(NSURLRequest*)request
+						redirectResponse:(NSURLResponse*)response;
 - (void)dispatchError:(NSError*)error;
 - (void)dispatchLoaded:(NSDate*)timestamp;
 - (void)dispatchAuthenticationChallenge:(NSURLAuthenticationChallenge*)challenge;

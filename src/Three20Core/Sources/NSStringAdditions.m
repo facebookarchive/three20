@@ -128,6 +128,7 @@ TT_FIX_CATEGORY_BUG(NSStringAdditions)
     NSString* value = [query objectForKey:key];
     value = [value stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
     value = [value stringByReplacingOccurrencesOfString:@"=" withString:@"%3D"];
+    value = [value stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
     NSString* pair = [NSString stringWithFormat:@"%@=%@", key, value];
     [pairs addObject:pair];
   }

@@ -279,6 +279,21 @@ static const NSInteger kLoadMaxRetries = 2;
   return nil;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSURLRequest*)dispatchWillSendRequest:(NSURLRequest*)request
+						redirectResponse:(NSURLResponse*)response {
+	for (TTURLRequest* requestIterator in [[_requests copy] autorelease]) {
+		for (id<TTURLRequestDelegate> delegate in [requestIterator delegates]) {
+			if ([delegate respondsToSelector:@selector(request:willSendRequest:redirectResponse:)]) {
+				NSURLRequest* result = [delegate request:requestIterator
+										 willSendRequest:request
+										redirectResponse:response];
+				if (result != request) return result;
+			}
+		}
+	}
+	return request;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dispatchError:(NSError*)error {
@@ -337,6 +352,12 @@ static const NSInteger kLoadMaxRetries = 2;
 #pragma mark -
 #pragma mark NSURLConnectionDelegate
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSURLRequest*)connection:(NSURLConnection*)connection
+			willSendRequest:(NSURLRequest*)request
+		   redirectResponse:(NSURLResponse*)response {
+	 return [_queue loader:self willSendRequest:request redirectResponse:response];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSHTTPURLResponse*)response {
