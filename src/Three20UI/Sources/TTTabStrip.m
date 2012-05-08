@@ -177,5 +177,37 @@
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Public
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setSelectedTabIndexToCenter:(NSInteger)selectedTabIndex {
+  if (selectedTabIndex>_tabItems.count-1) {
+    selectedTabIndex = _tabViews.count-1;
+  }
+
+  [self layoutSubviews];
+  float horizontalOffset = 0.0f - _scrollView.size.width/2;
+  for (int i = 0; i < selectedTabIndex; ++i) {
+    TTTab* tab = [_tabViews objectAtIndex:i];
+      if (selectedTabIndex-1==i) {
+        horizontalOffset += tab.size.width*1.5;
+
+      } else {
+          horizontalOffset += tab.size.width;
+      }
+    }
+    if (horizontalOffset<0) {
+      horizontalOffset = 0;
+    }
+
+    _scrollView.contentOffset = CGPointMake(horizontalOffset, 0);
+    [super setSelectedTabIndex:selectedTabIndex];
+}
+
+
 @end
 

@@ -28,4 +28,6 @@
 
 }
 
+- (void)setSelectedTabIndexToCenter:(NSInteger)selectedTabIndex;
+
 @end
