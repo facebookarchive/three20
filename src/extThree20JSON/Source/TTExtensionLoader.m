@@ -44,6 +44,7 @@
   extension.license = @"Apache 2.0";
   extension.authors = [NSArray arrayWithObjects:
                        [TTExtensionAuthor authorWithName:@"Jeff Verkoeyen"],
+					   [TTExtensionAuthor authorWithName:@"Dominic Böttger"],
                        nil];
 
 #ifdef EXTJSON_SBJSON
@@ -52,8 +53,13 @@
 #elif defined(EXTJSON_YAJL)
   extension.version = [extension.version stringByAppendingString:@" YAJL 1.0.11"];
   extension.copyright = [extension.copyright stringByAppendingString:@" 2009 Gabriel Handford. 2010 Lloyd Hilaiel."];
+#elif defined(EXTJSON_TouchJSON)
+  extension.version = [extension.version stringByAppendingString:@" TouchJSON"];
+  extension.copyright = [extension.copyright stringByAppendingString:@" 2008 Jonathan Wight"];
+#elif defined(EXTJSON_JSONKit)
+	extension.version = [extension.version stringByAppendingString:@" JSONKit"];
+	extension.copyright = [extension.copyright stringByAppendingString:@" 2011 John Engelhart"];
 #endif
-
   return [extension autorelease];
 }
 
