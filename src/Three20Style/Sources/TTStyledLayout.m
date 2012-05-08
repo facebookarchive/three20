@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+// Slightly modified by github.com/jarnoan
+
 #import "Three20Style/TTStyledLayout.h"
 
 // Style
@@ -641,7 +643,15 @@
       [self breakLine];
 
     } else {
-      _width = contentWidth;
+        // I think this check should be done also when there's padding, 
+        // but in my case this is enough -jarnoan
+        if (contentWidth > _width) {
+            imageHeight = ceil(_width * imageHeight / imageWidth);
+            imageWidth = _width;
+            contentWidth = imageWidth;
+            contentHeight = imageHeight;
+        }
+        _width = contentWidth;
     }
   }
 
