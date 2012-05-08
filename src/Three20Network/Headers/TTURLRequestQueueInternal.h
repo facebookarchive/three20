@@ -23,6 +23,10 @@
  */
 @interface TTURLRequestQueue (TTRequestLoader)
 
+- (NSURLRequest*)loader: (TTRequestLoader*)loader
+        willSendRequest: (NSURLRequest*)request
+       redirectResponse: (NSURLResponse*)redirectResponse;
+
 - (void)                       loader: (TTRequestLoader*)loader
     didReceiveAuthenticationChallenge: (NSURLAuthenticationChallenge*)challenge;
 

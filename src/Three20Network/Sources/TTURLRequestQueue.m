@@ -269,6 +269,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSError* error = nil;
 
   if ((loader.cachePolicy & (TTURLRequestCachePolicyDisk|TTURLRequestCachePolicyMemory))
+	  && !IS_MASK_SET(loader.cachePolicy, TTURLRequestCachePolicyEtag)
       && [self loadFromCache:loader.urlPath cacheKey:loader.cacheKey
                expires:loader.cacheExpirationAge
                fromDisk:loader.cachePolicy & TTURLRequestCachePolicyDisk
@@ -567,6 +568,14 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSURLRequest*)loader: (TTRequestLoader*)loader
+        willSendRequest: (NSURLRequest*)request
+       redirectResponse: (NSURLResponse*)redirectResponse {
+  return [loader dispatchWillSendRequest:request redirectResponse:redirectResponse];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)     loader: (TTRequestLoader*)loader
     didLoadResponse: (NSHTTPURLResponse*)response
                data: (id)data {
@@ -646,7 +655,7 @@ static TTURLRequestQueue* gMainQueue = nil;
   NSDate* timestamp = nil;
   if ([self loadFromCache:loader.urlPath cacheKey:loader.cacheKey
                   expires:TT_CACHE_EXPIRATION_AGE_NEVER
-                 fromDisk:!_suspended && (loader.cachePolicy & TTURLRequestCachePolicyDisk)
+                 fromDisk:YES
                      data:&data error:&error timestamp:&timestamp]) {
 
     if (nil == error) {
