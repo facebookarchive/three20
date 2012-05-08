@@ -117,6 +117,18 @@ Both line break characters\n\nand HTML line breaks<br/>are respected.";
   //label1.textAlignment = UITextAlignmentCenter;
   [label1 sizeToFit];
   [self.view addSubview:label1];
+  
+  NSString *kText2 = @"You can <i>use</i> <b>other</b> fonts, too.";
+  
+  TTStyledTextLabel* label2 = [[[TTStyledTextLabel alloc] initWithFrame:self.view.bounds] autorelease];
+  label2.font = [UIFont fontWithName:@"Georgia" size:17];
+  label2.text = [TTStyledText textFromXHTML:kText2 lineBreaks:YES URLs:YES];
+  label2.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+  [label2 sizeToFit];
+  [self.view addSubview:label2];
+  
+  label2.top = label1.bottom;
+  
 }
 
 @end
