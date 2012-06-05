@@ -176,7 +176,7 @@ EXAMPLES:
 		did_anything = True
 		
 		if not options.xcode_version:
-			f=os.popen("xcodebuild -version")
+			f=os.popen("Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -version") # xcode 4.3.2
 			xcodebuild_version = f.readlines()[0]
 			match = re.search('Xcode ([a-zA-Z0-9.]+)', xcodebuild_version)
 			if match:
