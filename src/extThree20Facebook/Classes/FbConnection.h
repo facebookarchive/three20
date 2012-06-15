@@ -32,6 +32,7 @@
 @property (nonatomic, strong) FbObjectConnection *data;
 @property (nonatomic, strong) TTDocumentForwardPointer *paging;
 @property (nonatomic, strong) NSString *next;
+@property (nonatomic, strong) NSString *connection;
 
 - (id)initWithConnector:(FbObject *)fbObject objectClass:(Class)objectClass connection:(NSString *)connectionString;
 
