@@ -22,6 +22,7 @@
 @synthesize data;
 @synthesize paging;
 @synthesize next;
+@synthesize connection;
 
 #pragma mark - Initialization
 
@@ -44,7 +45,8 @@
  */
 -(void)load{
     if ( connector != nil ) {
-        url = [NSString stringWithFormat:@"%@/%@/%@", FB_URL, connector.xmlid, connection];
+        //url = [NSString stringWithFormat:@"%@/%@/%@", FB_URL, connector.xmlid, connection];
+        url = [NSString stringWithFormat:@"%@/%@/%@", FB_URL, @"me", connection];
         [super load];
     }
 }
