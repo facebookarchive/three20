@@ -61,6 +61,7 @@ The Second option is to add it to your project manually.  Here is how:
      * Three20Style
      * Three20UICommon
      * Three20UINavigator
+     * Three20Facebook
      * Three20UI
      * Three20
 
