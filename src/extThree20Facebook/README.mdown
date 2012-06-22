@@ -32,7 +32,7 @@ GET your Facebook ALBUM:
     [albums registerDelegate:self];
     [albums load];
 
-After loading ALBUM data, the response object is received in remoteObject(..) method that you have to override. It will look like as follows:
+When ALBUM data got loaded, the response object is received in remoteObject(..) method that you have to override. It will look like as follows:
 
     (void)remoteObject:(TTRemoteObject *)remoteObject didFinishLoadForRequest:(TTURLRequest *)request {
         
