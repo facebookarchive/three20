@@ -43,10 +43,24 @@
 /**
  * All FB objects are loaded the same way, with their id.
  */
--(void)load{
+-(void)load {
     if ( connector != nil ) {
-        //url = [NSString stringWithFormat:@"%@/%@/%@", FB_URL, connector.xmlid, connection];
-        url = [NSString stringWithFormat:@"%@/%@/%@", FB_URL, @"me", connection];
+        url = [NSString stringWithFormat:@"%@/%@/%@", FB_URL, connector.xmlid, connection];
+        [super load];
+    }
+}
+
+/**
+ * All FB objects are loaded the same way, with their id.
+ */
+-(void)load: (NSMutableDictionary *) parametersNSString{
+    
+    if(parametersNSString != nil){        
+        [parameters setDictionary:parametersNSString];    
+    }
+    
+    if ( connector != nil ) {
+        url = [NSString stringWithFormat:@"%@/%@/%@", FB_URL, connector.xmlid, connection];
         [super load];
     }
 }

@@ -35,5 +35,6 @@
 @property (nonatomic, strong) NSString *connection;
 
 - (id)initWithConnector:(FbObject *)fbObject objectClass:(Class)objectClass connection:(NSString *)connectionString;
+- (void)load: (NSMutableDictionary *) parametersNSString;
 
 @end
