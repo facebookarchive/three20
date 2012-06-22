@@ -14,33 +14,16 @@
 // limitations under the License.
 //
 
-#import <objc/runtime.h>
-#import "TTRemoteObject.h"
+#import "FbObject.h"
+#import "FbUser.h"
 
-/**
- * This class is the parent for all objects that are retrieved from the server.
- */
-@interface TTObjectModel : TTRemoteObject {
+@interface FbPoke : FbObject {
+    FbUser              *from;
+    FbUser              *to;    
 }
 
-/**
- * Initialize the object from a document.
- */
-- (void)decodeFromDocument:(id)doc;
-
-/**
- * Build an xml document from this object.
- */
-- (void)encodeToDocument:(id)doc;
-
-/**
- * Builds an xml document with this element as the root.
- */
--(NSData *)toDocumentWithRoot:(NSString *)root;
-
-/**
- * Serialize values to parameters.
- */
-- (void)serializeToParameters;
+@property (nonatomic, strong) NSString *xmlid;
+@property (nonatomic, strong) FbUser *from;
+@property (nonatomic, strong) FbUser *to;
 
 @end
