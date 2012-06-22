@@ -34,10 +34,10 @@ GET your Facebook ALBUM:
 
 After loading ALBUM data, the response object is received in remoteObject(..) method that you have to override. It will look like as follows:
 
-- (void)remoteObject:(TTRemoteObject *)remoteObject didFinishLoadForRequest:(TTURLRequest *)request {
-    
-      if ( conn.data.objectClass == [FbAlbum class] ) {
-          // Access ALBUM data here
-      }
-}
+    (void)remoteObject:(TTRemoteObject *)remoteObject didFinishLoadForRequest:(TTURLRequest *)request {
+        
+          if ( conn.data.objectClass == [FbAlbum class] ) {
+              // Access ALBUM data here
+          }
+    }
 
