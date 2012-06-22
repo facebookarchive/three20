@@ -1,7 +1,7 @@
 extFacebook
 ===========
 
-This extension provides support from accessing Facebook data in the form of Objects.
+This extension provides support for accessing Facebook data in the form of Objects.
 
 Using it in your App
 --------------------
