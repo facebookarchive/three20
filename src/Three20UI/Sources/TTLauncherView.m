@@ -800,6 +800,7 @@ static const NSInteger kDefaultColumnCount = 3;
     [pageCopy release];
   }
 
+  TT_INVALIDATE_TIMER(_editHoldTimer);
   TT_RELEASE_SAFELY(_buttons);
   [self setNeedsLayout];
 }
@@ -810,6 +811,8 @@ static const NSInteger kDefaultColumnCount = 3;
   if (_columnCount != columnCount) {
     _columnCount = columnCount;
     _rowCount = 0;
+
+    TT_INVALIDATE_TIMER(_editHoldTimer);
     TT_RELEASE_SAFELY(_buttons);
     [self setNeedsLayout];
   }
