@@ -35,6 +35,17 @@ const NSInteger kTableMessageTextLineCount = 2;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseId
+{
+  self = [super initWithStyle:style reuseIdentifier:reuseId];
+  if (self)
+    [self setIsAccessibilityElement:YES];
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)tableView:(UITableView*)tableView rowHeightForObject:(id)object {
   return TT_ROW_HEIGHT;
 }
@@ -63,6 +74,7 @@ const NSInteger kTableMessageTextLineCount = 2;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
+  [self setAccessibilityValue:[object description]];
 }
 
 

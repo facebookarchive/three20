@@ -67,6 +67,7 @@ static const CGFloat kCancelHighlightThreshold = 4.0f;
     self.font = TTSTYLEVAR(font);
     self.backgroundColor = TTSTYLEVAR(backgroundColor);
     self.contentMode = UIViewContentModeRedraw;
+    [self setIsAccessibilityElement:YES];
   }
 
   return self;
@@ -456,6 +457,7 @@ static const CGFloat kCancelHighlightThreshold = 4.0f;
     _text.delegate = self;
     _text.font = _font;
     _text.textAlignment = _textAlignment;
+    [self setAccessibilityValue:[_text allText]];
     [self setNeedsLayout];
     [self setNeedsDisplay];
   }

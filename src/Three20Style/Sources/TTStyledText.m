@@ -424,6 +424,27 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+-(NSString*)allText
+{
+  //Note: self.description simply calls self.rootNode.outerText
+  TTStyledNode *p = [self rootNode];
+  NSMutableString *result = [[NSMutableString alloc] initWithCapacity:50];
+
+  while (p) {
+    NSString *s = [p outerText];
+    if (s.length) {
+      [result appendString:s];
+      if ([s characterAtIndex:(s.length-1)] != ' ')
+        [result appendString:@" "];
+    }
+    p = [p nextSibling];
+  }
+
+  return [result autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)insertIndex {
   if (!_rootNode) {
     self.rootNode = child;

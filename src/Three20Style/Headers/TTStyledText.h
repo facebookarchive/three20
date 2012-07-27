@@ -139,6 +139,11 @@
 
 - (void)addText:(NSString*)text;
 
+/**
+ * Returns all the visible text for this object.
+ */
+- (NSString*)allText;
+
 - (void)insertChild:(TTStyledNode*)child atIndex:(NSInteger)index;
 
 - (TTStyledNode*)getElementByClassName:(NSString*)className;
