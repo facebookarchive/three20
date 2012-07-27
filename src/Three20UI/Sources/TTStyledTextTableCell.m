@@ -114,6 +114,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)setObject:(id)object {
   if (self.object != object) {
+    [self setObject:object];
     _label.text = object;
   }
 }
