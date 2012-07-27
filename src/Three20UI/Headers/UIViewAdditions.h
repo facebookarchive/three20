@@ -138,7 +138,7 @@
 /**
  * WARNING: This depends on undocumented APIs and may be fragile.  For testing only.
  */
-#ifdef DEBUG
+#ifdef DEBUG_TOUCHES
 - (void)simulateTapAtPoint:(CGPoint)location;
 #endif
 
