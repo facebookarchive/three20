@@ -164,7 +164,7 @@ are visited the controllers will be created and displayed.  You can also registe
 actions that are called when a URL is visited.
 
 TTNavigator also persists and restores the full path of navigation controllers and modal
-view controllers, so your users can quite the app and come back exactly where they left off.
+view controllers, so your users can quit the app and come back exactly where they left off.
 
 Learn more at [Three20.info][]
 
