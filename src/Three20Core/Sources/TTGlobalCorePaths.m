@@ -33,6 +33,12 @@ BOOL TTIsDocumentsURL(NSString* URL) {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+BOOL TTIsCachesURL(NSString* URL) {
+  return [URL hasPrefix:@"cache://"];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 void TTSetDefaultBundle(NSBundle* bundle) {
   [bundle retain];
   [globalBundle release];
@@ -63,3 +69,16 @@ NSString* TTPathForDocumentsResource(NSString* relativePath) {
   }
   return [documentsPath stringByAppendingPathComponent:relativePath];
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+NSString* TTPathForCachesResource(NSString* relativePath) {
+  static NSString* cachesPath = nil;
+  if (nil == cachesPath) {
+    NSArray* dirs = NSSearchPathForDirectoriesInDomains(
+      NSCachesDirectory, NSUserDomainMask, YES);
+    cachesPath = [[dirs objectAtIndex:0] retain];
+  }
+  return [cachesPath stringByAppendingPathComponent:relativePath];
+}
+

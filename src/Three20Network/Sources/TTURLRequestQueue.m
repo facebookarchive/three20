@@ -73,7 +73,7 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)init {
-	self = [super init];
+  self = [super init];
   if (self) {
     _loaders = [[NSMutableDictionary alloc] init];
     _loaderQueue = [[NSMutableArray alloc] init];
@@ -115,6 +115,14 @@ static TTURLRequestQueue* gMainQueue = nil;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)dataExistsInCaches:(NSString*)URL {
+  NSString* path = TTPathForCachesResource([URL substringFromIndex:8]);
+  NSFileManager* fm = [NSFileManager defaultManager];
+  return [fm fileExistsAtPath:path];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)loadFromBundle:(NSString*)URL error:(NSError**)error {
   NSString* path = TTPathForBundleResource([URL substringFromIndex:9]);
   NSFileManager* fm = [NSFileManager defaultManager];
@@ -132,6 +140,22 @@ static TTURLRequestQueue* gMainQueue = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSData*)loadFromDocuments:(NSString*)URL error:(NSError**)error {
   NSString* path = TTPathForDocumentsResource([URL substringFromIndex:12]);
+  NSFileManager* fm = [NSFileManager defaultManager];
+  if ([fm fileExistsAtPath:path]) {
+    return [NSData dataWithContentsOfFile:path];
+
+  } else if (error) {
+    *error = [NSError errorWithDomain:NSCocoaErrorDomain
+                      code:NSFileReadNoSuchFileError userInfo:nil];
+  }
+  return nil;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSData*)loadFromCaches:(NSString*)URL error:(NSError**)error {
+  NSString* path = TTPathForCachesResource([URL substringFromIndex:8]);
   NSFileManager* fm = [NSFileManager defaultManager];
   if ([fm fileExistsAtPath:path]) {
     return [NSData dataWithContentsOfFile:path];
@@ -173,6 +197,10 @@ static TTURLRequestQueue* gMainQueue = nil;
       *data = [self loadFromDocuments:URL error:error];
       return YES;
 
+    } else if (TTIsCachesURL(URL)) {
+      *data = [self loadFromCaches:URL error:error];
+      return YES;
+
     } else {
       *data = [[TTURLCache sharedCache] dataForKey:cacheKey expires:expirationAge
                                         timestamp:timestamp];
@@ -199,6 +227,9 @@ static TTURLRequestQueue* gMainQueue = nil;
 
     } else if (TTIsDocumentsURL(URL)) {
       hasData = [self dataExistsInDocuments:URL];
+
+    } else if (TTIsCachesURL(URL)) {
+      hasData = [self dataExistsInCaches:URL];
 
     } else {
       hasData = [[TTURLCache sharedCache] hasDataForKey:cacheKey expires:expirationAge];
@@ -496,13 +527,13 @@ static TTURLRequestQueue* gMainQueue = nil;
   if (!URL) {
     URL = [NSURL URLWithString:request.urlPath];
   }
-  
+
   NSTimeInterval usedTimeout = request.timeoutInterval;
-  
+
   if (usedTimeout < 0.0 || request == nil) {
     usedTimeout = self.defaultTimeout;
   }
-  
+
   NSMutableURLRequest* URLRequest = [NSMutableURLRequest requestWithURL:URL
                                     cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                     timeoutInterval:usedTimeout];
